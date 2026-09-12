@@ -1,0 +1,465 @@
+{
+  "version": "hazlenz.expert.verifier.v2-v3-diff.v1",
+  "from": {
+    "version": "hazlenz.expert.verifier-instruction.v2",
+    "sha256": "ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+    "lines": 105
+  },
+  "to": {
+    "version": "hazlenz.expert.verifier-instruction.v3",
+    "sha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+    "lines": 145
+  },
+  "addedLines": 42,
+  "removedLines": 2,
+  "blankLineChanges": 12,
+  "byClassification": {
+    "BINDING_PROTOCOL_REQUIRED": 39,
+    "SCHEMA_ALIGNMENT_REQUIRED": 5,
+    "SUBSTANTIVE_SEMANTIC_CHANGE": 0
+  },
+  "SUBSTANTIVE_SEMANTIC_CHANGE_COUNT": 0,
+  "V2_SEMANTIC_INSTRUCTION_PRESERVED_EXCEPT_BINDING_PROTOCOL": true,
+  "unclassifiedChanges": [],
+  "staleClassifications": [],
+  "blankLineRule": "a blank line carries no instruction; blank changes are classified BINDING_PROTOCOL_REQUIRED because every added paragraph in this diff is a binding-protocol paragraph. Applied uniformly.",
+  "changes": [
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "introduces the closed set the binding protocol depends on",
+      "line": "EACH UNRESOLVED FACT YOU ARE GIVEN CARRIES A factKey. Those keys are fixed, and they are the only"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the exact-copy requirement the contract enforces by string equality",
+      "line": "way to refer to those facts. Copy a key exactly when you use one: a key you invent, abbreviate or"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the whole-verdict refusal the contract already performs",
+      "line": "respell is not a key, and a verdict carrying one is discarded whole."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the additive invariant; v2 had no way to express coexistence so had nothing to say",
+      "line": "   A NOMINATION IS ADDED TO THE FACTS YOU WERE GIVEN. It never replaces one and never answers"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the new permitted response shape",
+      "line": "   one. You may nominate at the same time as answering a supplied fact, and doing both is the"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "completes the sentence above; adds no new test of decision-criticality",
+      "line": "   right answer whenever both are genuinely needed now."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "REMOVED",
+      "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+      "why": "the second half of the sentence names v2's either/or source-mode choice, which v3 replaces with an explicit binding key that may coexist with a nomination",
+      "line": "     A fact that would change what is done now is not asked about. Supply the question, and say"
+    },
+    {
+      "op": "REMOVED",
+      "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+      "why": "names v2 fields under a v2 exclusivity that v3 removes",
+      "line": "     whether it came from a SUPPLIED_FACT or from a NOMINATED_FACT of your own."
+    },
+    {
+      "op": "ADDED",
+      "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+      "why": "the same instruction, re-wrapped because the trailing clause changed",
+      "line": "     A fact that would change what is done now is not asked about. Supply the question. If it"
+    },
+    {
+      "op": "ADDED",
+      "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+      "why": "names the v3 field that replaces the v2 source-mode choice",
+      "line": "     answers one of the facts you were given, put that fact's key in bindingFactKey. You may ALSO"
+    },
+    {
+      "op": "ADDED",
+      "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+      "why": "states the coexistence v3 adds; under v2 this shape was refused by the contract",
+      "line": "     nominate one fact of your own in the same answer."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the coverage consequence of silence; v2 had no owed-fact ledger to speak about",
+      "line": "     THIS VERDICT RESOLVES NOTHING. It says only that YOU propose no question. It does not mark"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "completes the sentence above",
+      "line": "     any fact you were given as answered, and it never removes one from the list."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "the declaration step itself",
+      "line": "6. NOW ACCOUNT FOR EVERY FACT YOU WERE GIVEN, ONE LINE EACH, BY ITS factKey."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "explicitly denies that step 6 adds a judgement, which is what keeps it representational",
+      "line": "   This is bookkeeping, not a second judgement. For each fact say exactly one of:"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "declaration member name",
+      "line": "   BOUND_BY_CLARIFICATION"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the one-binding ceiling the contract enforces",
+      "line": "     The question you are supplying answers THIS fact. At most one fact may carry this, and its"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the agreement the contract checks between the declaration and the binding field",
+      "line": "     key must be the key you put in bindingFactKey."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "declaration member name",
+      "line": "   STILL_UNRESOLVED"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "mirrors v2's existing \"NO is a good answer\" posture onto the new field rather than introducing a new one",
+      "line": "     You are not answering this fact. That is a normal and frequent answer, and it is the right"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "completes the sentence above",
+      "line": "     one whenever you are unsure. The fact stays open."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "declaration member name",
+      "line": "   CHALLENGE_FACT_VALIDITY"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "restates v2 step 1 and step 2 as the two grounds for a challenge; introduces no new test",
+      "line": "     You believe this fact should not have been raised: the observation already settles it, or"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "restates v2 step 2's two-branch test as the challenge ground",
+      "line": "     answering it either way leads to the same thing being done today. Give your reason."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the boundary that keeps arbitration HazLenz-owned",
+      "line": "     THIS IS A REQUEST, NOT A DECISION. The fact stays open until it is reviewed, and nothing"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "completes the sentence above",
+      "line": "     you write here removes it."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the completeness rule the contract enforces",
+      "line": "   Every key must appear exactly once. A fact you do not mention is not thereby handled."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "states the no-implicit-sibling-coverage rule",
+      "line": "   AND ONE FACT DOES NOT COVER ANOTHER. Answering the fact keyed A leaves the fact keyed B"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "completes the sentence above",
+      "line": "   exactly where it was, however closely related the two sound."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "extends v2's existing YOU MAY NOT list to the new field; adds no new judgement",
+      "line": "YOU ALSO MAY NOT mark a supplied fact answered by any route other than bindingFactKey. Saying in"
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "completes the sentence above",
+      "line": "your reasoning that a fact is covered does not cover it."
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "paragraph break belonging to an added binding paragraph",
+      "line": ""
+    },
+    {
+      "op": "ADDED",
+      "classification": "BINDING_PROTOCOL_REQUIRED",
+      "why": "extends v2's existing no-quota statement to the new fields, so the new fields inherit the same absence of a target that questions, silences and nominations already have",
+      "line": "There is no expected number of bindings and no expected number of challenges either."
+    }
+  ],
+  "v2BlocksThatMustSurvive": [
+    {
+      "name": "the \"usually NO\" nomination prior",
+      "present": true
+    },
+    {
+      "name": "step 1, what is actually unresolved",
+      "present": true
+    },
+    {
+      "name": "step 2, the two-branch decision test",
+      "present": true
+    },
+    {
+      "name": "the MAGNITUDE anti-pattern",
+      "present": true
+    },
+    {
+      "name": "the unseen-control rule",
+      "present": true
+    },
+    {
+      "name": "step 3, is it already asked",
+      "present": true
+    },
+    {
+      "name": "the DO NOT nominate list",
+      "present": true
+    },
+    {
+      "name": "the nomination proof burden",
+      "present": true
+    },
+    {
+      "name": "the no-invented-hazard rule",
+      "present": true
+    },
+    {
+      "name": "the ABSTAIN definition",
+      "present": true
+    },
+    {
+      "name": "the YOU MAY NOT authority list",
+      "present": true
+    },
+    {
+      "name": "the no-quota closing",
+      "present": true
+    }
+  ],
+  "survivingBlockFailures": [],
+  "contract": {
+    "from": "hazlenz.expert.verifier.v2",
+    "to": "hazlenz.expert.verifier.v3",
+    "fieldChanges": [
+      {
+        "field": "bindingFactKey",
+        "op": "ADDED",
+        "classification": "BINDING_PROTOCOL_REQUIRED",
+        "why": "the closed-set binding declaration §165 proved v2 could not express. Checked by exact string equality against the supplied keys — no fuzzy match, no normalisation"
+      },
+      {
+        "field": "owedFactDeclarations",
+        "op": "ADDED",
+        "classification": "BINDING_PROTOCOL_REQUIRED",
+        "why": "one explicit line per supplied fact, so silence about a fact becomes impossible and a challenge becomes a recorded request rather than an inference"
+      },
+      {
+        "field": "clarificationSourceMode",
+        "op": "REDEFINED",
+        "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+        "why": "v2's two members are preserved and SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION is added for the shape v2 refused with NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE. The contract checks the declared mode against the actual payload, so it cannot disagree with it"
+      },
+      {
+        "field": "aboutUnresolvedFactRef",
+        "op": "REMOVED",
+        "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+        "why": "superseded by bindingFactKey, which is the same idea checked against a closed set. Two fields meaning one thing is how a binding gets asserted in one and denied in the other"
+      },
+      {
+        "field": "NOMINATED_FACT_DUPLICATES_A_SUPPLIED_FACT (rule)",
+        "op": "REMOVED",
+        "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+        "why": "v2 caught a renamed supplied fact with a 0.8 content-overlap threshold. v3 addresses supplied facts by key, so the structural rule NOMINATION_MUST_NOT_REUSE_A_SUPPLIED_FACT_KEY replaces it. The lexical threshold is DROPPED rather than tightened because an overlap score is a free-text semantic gate, and §160 FINDING 1 is why this programme does not run one"
+      },
+      {
+        "field": "proposedClarification",
+        "op": "REDEFINED",
+        "classification": "SCHEMA_ALIGNMENT_REQUIRED",
+        "why": "replacesClarificationId is not carried into the v3 schema; the field was never populated in any executed draw and a binding now expresses what it gestured at"
+      }
+    ],
+    "SUBSTANTIVE_SEMANTIC_CHANGE_COUNT": 0,
+    "admissionCodes": [
+      "BINDING_KEY_MISSING_FOR_SUPPLIED_MODE",
+      "BINDING_KEY_NOT_IN_SUPPLIED_SET",
+      "BINDING_KEY_MALFORMED",
+      "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION",
+      "BINDING_DECLARED_BY_A_NON_ADD_VERDICT",
+      "MORE_THAN_ONE_NOMINATION",
+      "NOMINATION_REQUIRED_FOR_THIS_SOURCE_MODE",
+      "NOMINATION_PRESENT_WITHOUT_A_NOMINATING_SOURCE_MODE",
+      "NOMINATION_FIELD_MISSING",
+      "OBSERVATION_SPAN_NOT_VERBATIM",
+      "BRANCHES_IDENTICAL",
+      "DECISIONS_DO_NOT_DIVERGE",
+      "AFFECTED_DECISION_NOT_A_CONTRACT_MEMBER",
+      "NOMINATION_MUST_NOT_REUSE_A_SUPPLIED_FACT_KEY",
+      "SOURCE_MODE_MISSING_ON_A_CLARIFICATION",
+      "SOURCE_MODE_NOT_A_MEMBER",
+      "SOURCE_MODE_DISAGREES_WITH_THE_PAYLOAD",
+      "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION",
+      "OWED_FACT_DECLARATIONS_MISSING",
+      "OWED_FACT_DECLARATION_NOT_A_MEMBER",
+      "OWED_FACT_DECLARATION_KEY_NOT_SUPPLIED",
+      "OWED_FACT_DECLARATION_DUPLICATED",
+      "OWED_FACT_NOT_DECLARED",
+      "MORE_THAN_ONE_FACT_DECLARED_BOUND",
+      "BOUND_DECLARATION_DISAGREES_WITH_BINDING_KEY",
+      "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION",
+      "CHALLENGE_WITHOUT_A_REASON",
+      "CHALLENGE_REASON_WITHOUT_A_CHALLENGE",
+      "CHALLENGE_CLAIMS_TO_SETTLE_THE_FACT",
+      "PROPOSAL_REQUIRED_FOR_THIS_VERDICT",
+      "PROPOSAL_NOT_PERMITTED_FOR_THIS_VERDICT",
+      "PROPOSAL_FIELD_MISSING",
+      "MORE_THAN_ONE_PROPOSED_CLARIFICATION",
+      "PROPOSAL_MAY_NOT_DECLARE_LINKAGE",
+      "HUMAN_TRUTH_PROVENANCE_IN_RESPONSE",
+      "FORBIDDEN_FIELD",
+      "CONTRACT_VERSION_MISMATCH",
+      "ANALYSIS_ID_MISMATCH",
+      "INVALID_VERDICT",
+      "RATIONALE_MISSING",
+      "OUTPUT_NOT_AN_OBJECT"
+    ],
+    "admissionRuleClassification": {
+      "BINDING_KEY_IS_A_MEMBER_OF_THE_SUPPLIED_SET": "SAFE_DETERMINISTIC_EXACT_STRING_EQUALITY",
+      "BINDING_COVERS_ONLY_ITS_OWN_KEY": "SAFE_DETERMINISTIC",
+      "EVERY_SUPPLIED_FACT_IS_DECLARED_EXACTLY_ONCE": "SAFE_DETERMINISTIC",
+      "AT_MOST_ONE_NOMINATION": "SAFE_DETERMINISTIC",
+      "NOMINATION_IS_ADDITIVE": "SAFE_DETERMINISTIC_BY_CONSTRUCTION",
+      "NO_INVENTED_HAZARD": "SAFE_DETERMINISTIC_VIA_VERBATIM_OBSERVATION_SPAN",
+      "TWO_PLAUSIBLE_ANSWER_STATES": "SAFE_DETERMINISTIC",
+      "ANSWERS_PRODUCE_DIFFERENT_CURRENT_DECISIONS": "SAFE_DETERMINISTIC",
+      "CHALLENGE_IS_A_REQUEST_NOT_A_SETTLEMENT": "SAFE_DETERMINISTIC_BY_CONSTRUCTION",
+      "THE_BOUND_QUESTION_ACTUALLY_ANSWERS_THE_BOUND_FACT": "REQUIRES_HUMAN_TRUTH",
+      "THE_CHALLENGE_IS_CORRECT": "REQUIRES_HUMAN_TRUTH",
+      "THE_NOMINATED_FACT_IS_GENUINELY_DECISION_CRITICAL": "REQUIRES_HUMAN_TRUTH"
+    },
+    "humanTruthProvenanceFieldsRefused": [
+      "humanSemanticTarget",
+      "acceptableEquivalents",
+      "authoredClass",
+      "disposition",
+      "expectedSelector",
+      "rowId",
+      "semanticOutcome",
+      "targetReached",
+      "excludeFromDenominators"
+    ],
+    "whyTheV2DuplicateRuleIsGone": "v2 used a 0.8 content-overlap threshold to catch a renamed supplied fact. v3 addresses supplied facts by key, so the structural check replaces the lexical one. A lexical threshold is a free-text semantic gate and this contract does not run one.",
+    "owedFactDeclarations": [
+      "BOUND_BY_CLARIFICATION",
+      "STILL_UNRESOLVED",
+      "CHALLENGE_FACT_VALIDITY"
+    ],
+    "clarificationSourceModes": [
+      "SUPPLIED_FACT",
+      "NOMINATED_FACT",
+      "SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION"
+    ]
+  }
+}

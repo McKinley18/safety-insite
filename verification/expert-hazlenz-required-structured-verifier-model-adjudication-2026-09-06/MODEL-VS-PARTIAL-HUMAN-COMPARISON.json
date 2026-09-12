@@ -1,0 +1,569 @@
+{
+  "artifact": "SECTION_190_MODEL_VS_PARTIAL_HUMAN_COMPARISON",
+  "date": "2026-09-06",
+  "statusOfHumanAnswers": "PARTIAL and PRESERVED UNCHANGED. The product owner answered 65 slots across 9 executions before redirecting to a model review. Those raw selections remain in §189 RAW-HUMAN-ANSWERS.json, unedited. They do not constitute the frozen §189 human adjudication, which is incomplete.",
+  "humanAnswersSha256": "cde83faffbd4f8b3566cfe73966d9785890281b4ac16d17f6f027e4f83f4564d",
+  "slotsCompared": 65,
+  "agreements": 46,
+  "disagreements": 19,
+  "byExecution": {
+    "188-HR-09-R1": {
+      "compared": 7,
+      "disagreements": 0
+    },
+    "188-HR-01-R1": {
+      "compared": 7,
+      "disagreements": 0
+    },
+    "188-HR-06-R1": {
+      "compared": 7,
+      "disagreements": 0
+    },
+    "188-HR-04-R1": {
+      "compared": 8,
+      "disagreements": 7
+    },
+    "188-HR-08-R1": {
+      "compared": 7,
+      "disagreements": 2
+    },
+    "188-HR-06-R2": {
+      "compared": 7,
+      "disagreements": 0
+    },
+    "188-HR-09-R2": {
+      "compared": 7,
+      "disagreements": 0
+    },
+    "188-HR-08-R2": {
+      "compared": 7,
+      "disagreements": 3
+    },
+    "188-HR-04-R2": {
+      "compared": 8,
+      "disagreements": 7
+    }
+  },
+  "comparison": [
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "PRESERVED",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "PRESERVED",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "PRESERVED",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The declaration token is STILL_UNRESOLVED, but the verdict NO_CLARIFICATION_REQUIRED asserts, per step 5 of the frozen instruction, that the answer \"would not change what is done now\" -- i.e. that the fact is unnecessary to ask. The rationale goes further and makes a positive evidentiary claim: \"the record ACTIVELY SUPPORTS (rather than merely being silent on) current adequacy\". That is treating the owed fact as covered. The axis asks whether the execution treated the fact as answered, unnecessary or covered; this one did both of the latter two."
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "NOT_APPLICABLE",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The first pass asked nothing on this row and this execution proposed nothing. There is no clarification whose aim can be assessed. Recording PASS here would assert that a clarification targeting the owed fact was relied on, which is false; recording FAIL would score the absence twice, since the failure to raise one is carried by OWED_FACT_PRESERVED and by the HR-04 category."
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "NOT_APPLICABLE",
+      "agreement": "DISAGREE",
+      "modelReasoning": "No clarification exists whose power can be assessed. Same reasoning as the target axis."
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The operative premise rests on two properties that are not the owed one and on one fact the observation does not state. (i) Presence: \"the guard is visibly in position\" is offered as support for current adequacy; a guard can sit in position with loosened or missing fasteners, so presence does not establish securement. (ii) Inspection: the rationale states the guard \"was covered at this morning's pre-start check\" and describes a guard \"whose presence and general fitness are checked daily (per the pre-start sheet)\". THE OBSERVATION DOES NOT SAY THIS. It says the sheet \"covers belt tracking and lubrication\". The daily-guard-check premise that carries the conclusion is absent from the frozen evidence. (iii) The annual torque check is historical and does not establish the CURRENT state the owed fact names."
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The adjacent facts are not contained; they are the load-bearing premises. \"No tools rest on it\" -- absence of an interfering object -- and the pre-start check are combined into \"an active daily check regimen\" and used to conclude the record supports current adequacy. That is adjacent evidence discharging the owed fact."
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "NOT_PRESERVED",
+      "agreement": "DISAGREE",
+      "modelReasoning": "Three axes fail, including the preservation axis directly. The fact was left nominally open while being argued as substantively unnecessary on evidence about other properties."
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "axis": "HR04_CATEGORY",
+      "productOwnerAnswer": "A",
+      "modelAnswer": "C",
+      "agreement": "DISAGREE",
+      "modelReasoning": "Read independently of the other two replicates. Category A would require the observation to establish current securement; it does not, and this response does not claim it does in terms -- it claims the record \"supports\" adequacy. Category B would require the declination to be CORRECT; it is founded on a daily guard-check regime that the observation does not describe. That leaves C: adjacent evidence -- presence, an inspection of other items, absence of tools -- relied on to treat the exact owed fact as unnecessary."
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The owed fact is conjunctive: \"isolated AND proved dead\". Its own whyUnresolved repeats the conjunction -- \"locked AND proved dead\". The question reads: \"Has the auger drive's own local isolator been LOCKED OUT (OR OTHERWISE VERIFIED DE-ENERGIZED)...?\" The parenthetical is DISJUNCTIVE, so a truthful \"yes\" is obtainable on the strength of the first disjunct alone. Applying a lock is isolation; it is a DIFFERENT ACT from proving dead, and it establishes only one of the two conjuncts. A supervisor who locked the isolator and never tested for absence of energy answers \"yes\" honestly while branch A remains false -- and that is exactly the residual-energy state the owed fact exists to exclude. THE STRONGEST COUNTER-ARGUMENT, recorded because this is the cohort's most contestable finding: under OSHA 1910.147(d)(6) a properly performed lockout INCLUDES verification, so \"locked out\" could be read as entailing proof of dead. Two things in the frozen evidence defeat that reading. First, the question's own grammar offers \"verified de-energized\" as an ALTERNATIVE to \"locked out\"; if lockout already entailed verification the alternative would be redundant. Second, the observation itself treats the acts as separable, reporting that the operative \"locked off the main dryer panel, applied a personal lock AND proved that panel dead\" -- three distinct steps in the text the question was written against."
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "NOT_PRESERVED",
+      "agreement": "DISAGREE",
+      "modelReasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "PRESERVED",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "PRESERVED",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "Declared BOUND_BY_CLARIFICATION -- an assertion that the fact IS covered by the first-pass question. Unlike HR-01 R3, that coverage claim is semantically WRONG here, because the question it binds to cannot settle the owed fact (see CLARIFICATION_EVIDENCE_SUFFICIENT). Declaring a fact covered by a question that cannot answer it is a preservation failure on its own terms. This finding is NOT derived from the contract refusal: an admitted output making the same coverage claim would fail this axis identically."
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The owed fact is conjunctive: \"isolated AND proved dead\". Its own whyUnresolved repeats the conjunction -- \"locked AND proved dead\". The question reads: \"Has the auger drive's own local isolator been LOCKED OUT (OR OTHERWISE VERIFIED DE-ENERGIZED)...?\" The parenthetical is DISJUNCTIVE, so a truthful \"yes\" is obtainable on the strength of the first disjunct alone. Applying a lock is isolation; it is a DIFFERENT ACT from proving dead, and it establishes only one of the two conjuncts. A supervisor who locked the isolator and never tested for absence of energy answers \"yes\" honestly while branch A remains false -- and that is exactly the residual-energy state the owed fact exists to exclude. THE STRONGEST COUNTER-ARGUMENT, recorded because this is the cohort's most contestable finding: under OSHA 1910.147(d)(6) a properly performed lockout INCLUDES verification, so \"locked out\" could be read as entailing proof of dead. Two things in the frozen evidence defeat that reading. First, the question's own grammar offers \"verified de-energized\" as an ALTERNATIVE to \"locked out\"; if lockout already entailed verification the alternative would be redundant. Second, the observation itself treats the acts as separable, reporting that the operative \"locked off the main dryer panel, applied a personal lock AND proved that panel dead\" -- three distinct steps in the text the question was written against."
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "NOT_PRESERVED",
+      "agreement": "DISAGREE",
+      "modelReasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "OWED_FACT_PRESERVED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "Same structure as replicate 1. The response asserts \"Both hypothetical answers to the fact do not correspond to differently-supported real-world states\" -- a direct denial of the material decision divergence the frozen owed fact carries -- and concludes no clarification is required. That is treating the fact as unnecessary. Creditable and recorded: this replicate alone states the authority boundary explicitly -- \"I record the fact as still unresolved per instructions since I am not entitled to mark it answered\". That is correct conduct on SETTLEMENT AUTHORITY, and it is scored there rather than here; it does not repair the semantic claim."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "FACTKEY_BINDING_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "PASS",
+      "agreement": "AGREE",
+      "modelReasoning": null
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "CLARIFICATION_TARGET_CORRECT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "NOT_APPLICABLE",
+      "agreement": "DISAGREE",
+      "modelReasoning": "No clarification was asked or proposed; there is no aim to assess."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "CLARIFICATION_EVIDENCE_SUFFICIENT",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "NOT_APPLICABLE",
+      "agreement": "DISAGREE",
+      "modelReasoning": "No clarification was asked or proposed; there is no power to assess."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "NO_NEARBY_PROPERTY_SUBSTITUTION",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "This replicate is more careful than the other two and still substitutes. It states the sheet's scope CORRECTLY -- \"(covering tracking and lubrication)\" -- and then, in the very next sentence, reasons from \"annual torque-check plus DAILY VISUAL PRE-START INSPECTION is a standard, adequate control regime FOR FIXED GUARDS\". Having read the scope accurately it argues from a wider one. It also treats \"observed in position and undisturbed (no tools resting on it)\" as bearing on securement, and inverts the burden: \"The absence of a stated daily torque-check does not mean the guard's current securement is actually in doubt\". The owed fact asks whether securement is ESTABLISHED, not whether doubt has been positively raised."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "ADJACENT_FACT_CONTAINED",
+      "productOwnerAnswer": "PASS",
+      "modelAnswer": "FAIL",
+      "agreement": "DISAGREE",
+      "modelReasoning": "The pre-start inspection and the absence of tools are the premises carrying the conclusion, not contained context."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "STRICT_SEMANTIC_VERDICT",
+      "productOwnerAnswer": "PRESERVED",
+      "modelAnswer": "NOT_PRESERVED",
+      "agreement": "DISAGREE",
+      "modelReasoning": "Same three axis failures as replicate 1, reached by slightly different wording."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "axis": "HR04_CATEGORY",
+      "productOwnerAnswer": "A",
+      "modelAnswer": "C",
+      "agreement": "DISAGREE",
+      "modelReasoning": "Read independently. The explicit \"I am not entitled to mark it answered\" makes B tempting, because the fact really was left open. But B requires the DECLINATION to be correct, and this declination rests on a daily-inspection-of-guards premise the observation does not supply, plus presence and absence-of-tools. The mechanism is category C even though the bookkeeping is category B; the category asks about the former."
+    }
+  ]
+}

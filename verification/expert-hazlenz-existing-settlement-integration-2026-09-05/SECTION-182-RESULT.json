@@ -1,0 +1,161 @@
+{
+  "operation": "§182 — bounded inactive integration of the existing clarification-settlement architecture",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_EXISTING_SETTLEMENT_INTEGRATION_COMPLETE — BOUNDED_INACTIVE_SETTLEMENT_BEHAVIOR_VALIDATION_AUTHORIZATION_REQUIRED",
+  "CLASSIFICATION": "EXISTING_SETTLEMENT_INTEGRATION_COMPLETE",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "governedRecordsModified": 0,
+  "promptChanges": "NONE — expert-prompt.ts byte-identical, v16 not begun",
+  "verifierV3": "still inactive; EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED remains the literal false",
+  "proofs": { "checks": 48, "failures": 0, "typescript": "tsc --noEmit, 0 errors" },
+
+  "WHAT_WAS_BUILT": {
+    "files": {
+      "added": [
+        "backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts (sha256 1c300ff178638b11c677aef1091f777a7a4e3ae71e5137383013105863891bd2)",
+        "backend/scripts/test-settlement-review-integration-2026-09-05.ts"
+      ],
+      "existingSourceFilesModified": 0,
+      "note": "the whole slice is ONE new file in the already-inactive owed-facts module set, plus its test. Proofs P20b and P20c assert expert-prompt.ts, owed-fact.types.ts and owed-fact-binding.ts are byte-identical to their §181 values."
+    },
+    "consumer": "consumeSettlementClaims() — turns ArbitrationRequest objects from CHALLENGE_FACT_VALIDITY into reviewable SettlementClaim records and changes no status; ledgerUnchanged is typed as the literal true",
+    "producer": "mintSettlementAuthority() — the only function in the repository that constructs an ADMISSIBLE_EVIDENCE authority, and it requires a recorded human decision that explicitly approves settlement",
+    "application": "settleByReviewedEvidence() — applies one branded authority to one fact via the EXISTING transition(), with replay protection carried by the caller",
+    "observability": "observeSettlementReview() — one record reconstructing factKey, claimId, origin, provider reason, criterion and its absence, status before, reviewer provenance, decision, authority minted or refused, transition attempted, refusal codes, status after",
+    "newOwedFactFields": 0,
+    "newProviderDeclarationFields": 0,
+    "newStatuses": 0
+  },
+
+  "AUTHORITY_BOUNDARY": {
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "howItIsStructural": "the authority carries a REAL module-private symbol brand, not a type-only one, so an object satisfying the interface cannot be constructed outside the module — a forged authority is an impossible value rather than a silenceable type error",
+    "sevenIndependentRefusals": ["DECISION_DOES_NOT_APPROVE_SETTLEMENT", "REVIEW_PROVENANCE_NOT_HUMAN", "CLAIM_ID_MISMATCH", "FACT_KEY_MISMATCH", "REVIEWED_EVIDENCE_DIGEST_MISMATCH", "RATIONALE_MISSING", "REVIEWER_IDENTITY_MISSING"],
+    "providerFailsAtLeastTwoBeforeAnyOtherCheckMatters": true,
+    "scope": "SINGLE_FACT_SINGLE_CLAIM_SINGLE_USE, with impliesFutureSufficiency typed as the literal false so an approval says this evidence settled this fact this once and nothing about the next identical-looking evidence"
+  },
+
+  "REVIEW_CONTRACT": {
+    "provenance": { "permitted": ["HUMAN_REVIEW"], "refused": ["PROVIDER_DECLARATION", "MODEL_ADJUDICATION", "HISTORICAL_EVALUATION_LABEL", "AUTOMATED_MATCHER", "DERIVED_HEURISTIC"] },
+    "whyTheRefusedListIsEnumerated": "HISTORICAL_EVALUATION_LABEL is the §162/§169 disposition that must never re-enter the loop it judges; AUTOMATED_MATCHER is the scorer §160/§161 retired. Naming them makes an accidental promotion a refusal with a code rather than an omission nobody notices.",
+    "decisions": ["APPROVE_SETTLEMENT", "REJECT_SETTLEMENT", "LEAVE_UNRESOLVED"],
+    "approvingDecisions": 1,
+    "forbiddenAndAbsent": ["PARTIAL_MATCH_PERCENT", "CONFIDENCE_THRESHOLD", "SIMILARITY_SCORE", "PROPERTY_MATCH_SCORE"],
+    "whyNoDegree": "a reviewer who is unsure returns LEAVE_UNRESOLVED, which produces the same outcome as doing nothing — and which is the right answer whenever the governed criterion cannot settle the property, a situation §181 showed will be common"
+  },
+
+  "REPLAY_AND_STALENESS": {
+    "minimalIdentityImplemented": "two digests, and only two",
+    "claimId": "sha256 over (contract version, analysisId, factKey, providerReason) — the same claim always yields the same id; a different reason yields a different one",
+    "evidenceDigest": "sha256 over the reason text alone, so an approval cannot be replayed against edited evidence",
+    "whyThisAndNoMore": "§182 asked for the smallest development-scoped form necessary. No revision subsystem was invented: application compares the fact's current status against factStatusAtClaim (LEDGER_MOVED_SINCE_CLAIM), and the pre-existing transition() independently throws on a terminal status.",
+    "duplicateProtection": "appliedClaimIds is carried BY THE CALLER rather than in module state, so replay protection is explicit at the call site instead of hidden global memory",
+    "casesProven": {
+      "wrongFactKey": "P7 FACT_KEY_MISMATCH",
+      "wrongClaimId": "P8, P11 CLAIM_ID_MISMATCH / AUTHORITY_NOT_FOR_THIS_CLAIM",
+      "modifiedEvidenceText": "P8b, P11b digest mismatch at mint and at application",
+      "alreadyResolvedFact": "P11c FACT_NOT_UNRESOLVED",
+      "duplicateDecision": "P10 CLAIM_ALREADY_APPLIED, does not widen authority",
+      "factAbsentFromLedger": "P11d FACT_NOT_IN_LEDGER",
+      "claimContradictingItsOwnType": "P11f CLAIM_DOES_NOT_SETTLE_BY_ITS_OWN_TYPE"
+    }
+  },
+
+  "HR04_REPLAY": {
+    "detail": "HR04-REPLAY.json, generated from the real modules",
+    "initial": { "securement": "UNRESOLVED", "presence": "UNRESOLVED" },
+    "afterConsumptionBeforeReview": { "securement": "UNRESOLVED", "reviewState": "AWAITING_HUMAN_REVIEW", "ledgerUnchanged": true },
+    "BRANCH_A_reject": { "authorityMinted": false, "refusedBecause": ["DECISION_DOES_NOT_APPROVE_SETTLEMENT"], "securementAfter": "UNRESOLVED" },
+    "BRANCH_B_approve": { "authorityMinted": true, "applied": true, "securementAfter": "SETTLED_BY_EVIDENCE", "presenceAfter": "UNRESOLVED", "transitionAuthority": "ADMISSIBLE_EVIDENCE" },
+    "DISCLAIMER": "STATE-MACHINE AND AUTHORITY PROOF ONLY. This does NOT claim a human ought to approve HR-04. The frozen product-owner truth for HR-04 remains REQUIRED, and §181's audit found the only governed criterion available for that fact offers physical_inspection, which a reviewer should judge incapable of settling securement. The approval branch exists to prove the state is reachable through the authorized path, not to suggest it should be taken."
+  },
+
+  "DISPLACED_FACT_PROOFS": {
+    "detail": "DISPLACED-FACT-PROOFS.json",
+    "1_settledA_notReopenedByClaimAboutB": "PASS",
+    "2_B_cannotInheritClaimOrAuthority": "PASS — AUTHORITY_NOT_FOR_THIS_FACT",
+    "3_B_mustBeSeparatelyReviewed": "PASS — a second human decision is required",
+    "4_authorityForA_cannotSettleB": "PASS",
+    "5_authorityForB_cannotAlterA": "PASS — A stays UNRESOLVED",
+    "6_challengeAgainstIneligibleFact": "PASS — FACT_NOT_IN_LEDGER, structurally refused rather than silently quarantined"
+  },
+
+  "ACCEPTABLE_EVIDENCE_INTERACTION": {
+    "shownToReviewer": "requirement, examples, insufficientExamples — projected with provenance stripped, exactly as the existing projection does",
+    "nullSupported": "acceptableEvidenceAbsent makes null VISIBLE as null; review remains possible and the human decides (P16, P16b)",
+    "coarseGuidance": "preserved VERBATIM — physical_inspection is shown as the example even for a securement fact, because that is what the governed record says. The code does not upgrade, paraphrase or supplement it (P17b).",
+    "settlementGuidanceCaveat": "every claim carries a fixed sentence recording that acceptableEvidence states what the governed record recognises as verification and NOT that this evidence settles this property, and that §181 found no functional-test verification method in the registry",
+    "autoDecide": "NEVER — nothing compares the provider reason to the criterion anywhere in the module (P18b)"
+  },
+
+  "GOVERNED_KNOWLEDGE_BOUNDARY": {
+    "GOVERNED_FUNCTIONAL_TEST_METHOD_PRESENT": false,
+    "EVIDENCE_QUESTION_METHOD_ALIGNMENT_GAPS_PRESENT": true,
+    "recordedInCode": "both are exported constants in settlement-review.ts so the §181 finding travels with the mechanism that depends on it, and both are carried on every observability record",
+    "registryModified": 0,
+    "registryHashesUnchanged": "three files byte-identical to their §181 values (P20)"
+  },
+
+  "SEMANTIC_BOUNDARY": {
+    "CLARIFICATION_EVIDENCE_SUFFICIENCY": "SEMANTIC_JUDGMENT_REQUIRED — untouched (P18c)",
+    "whatCodeValidates": ["identity", "provenance", "lifecycle", "authority", "binding", "state transition legality"],
+    "whatCodeDoesNotDecide": "whether physical inspection proves protective function, or any equivalent semantic relationship",
+    "assertedAbsent": ["similarity", "embedding", "cosine", "levenshtein", "score", "threshold", "percent", "confidence"],
+    "checkedWithCommentsStripped": true
+  },
+
+  "INACTIVE_BOUNDARY": {
+    "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED": "false = false, literal type, unchanged",
+    "customerRouteToConsumerOrProducer": "NONE (P1d)",
+    "importsOutsideTheModuleAndItsTest": "NONE",
+    "environmentOrConfigReads": "NONE (P1e)",
+    "databaseOrNetworkOperations": "NONE (P1f)",
+    "activeContractChangesRequired": "NONE — the slice added a new file and changed no existing contract, so the STOP condition was not reached"
+  },
+
+  "RESIDUAL": {
+    "R1": {
+      "finding": "transition() remains exported and directly callable in-process with 'ADMISSIBLE_EVIDENCE'",
+      "status": "PRE-EXISTING and unchanged by §182",
+      "whyNotClosed": "closing it means unexporting transition() and routing every caller through typed authorities — a change to an existing contract that the §170 and §181 proof suites depend on. The authorization says to stop and report if an active contract would need to change.",
+      "safetyPropertyThatStillHolds": "no PROVIDER input can reach that call — applyAdmittedDeclarations mints ADMITTED_BINDING only and owed-fact-binding.ts contains no occurrence of 'ADMISSIBLE_EVIDENCE' (R1b, P10)",
+      "scope": "development code in the same process, which is how the §170/§181 suites exercise the state machine; not a customer-reachable path",
+      "narrowestFutureFix": "stop exporting transition() and route callers through typed authorities — a separate authorization"
+    },
+    "R2": {
+      "finding": "the §181 A0 replay check F1.b was re-anchored",
+      "before": "src/ mints ADMISSIBLE_EVIDENCE nowhere — true of the pre-§182 tree",
+      "after": "src/ mints ADMISSIBLE_EVIDENCE only from the §182 authorized producer [settlement-review.ts]",
+      "classification": "RE-ANCHOR, NOT A RELAXATION — 'none exists' becomes 'the one authorized producer exists and nothing else does', which is stricter. The property that mattered was never zero; it was no UNAUTHORIZED producer.",
+      "precedent": "the same class of move as §178's version-ceiling re-anchor, and recorded the same way"
+    }
+  },
+
+  "CLAIM_BOUNDARY": {
+    "permittedAndProven": "The existing inactive settlement architecture now contains a human-authorized path capable of transitioning a bound owed fact to SETTLED_BY_EVIDENCE, while provider claims alone cannot do so.",
+    "mustNotClaim": ["HR-04 fixed", "HR-05 fixed", "HR-07 fixed", "behavioral improvement", "automated semantic sufficiency", "customer readiness", "production readiness", "formal acceptance"],
+    "why": "no model ran and no behaviour was measured. This is implementation evidence about what the architecture can and cannot do, not about what a provider or a reviewer will do with it."
+  },
+
+  "NEXT_GATE_RECOMMENDATION": {
+    "recommended": "BOUNDED_INACTIVE_SETTLEMENT_BEHAVIOR_VALIDATION",
+    "whatItShouldTest": "whether provider challenges plus human review correctly preserve or settle owed facts — that is, whether real CHALLENGE_FACT_VALIDITY reasons are good enough for a reviewer to decide on",
+    "whatItShouldNotDo": "authorize a new provider declaration schema. Only if real challenge reasons prove insufficient should a new declaration field move forward — which was §181's finding and remains the position.",
+    "aPracticalNoteForThatStage": "the reviewer surface is where this most plausibly goes wrong (§180 risk R4, a rubber-stamped review). Any validation should record how long review took and how often the criterion was judged incapable, not only the outcomes.",
+    "parallelUnchanged": "governed evidence alignment remediation remains PARALLEL and unaddressed; GOVERNED_FUNCTIONAL_TEST_METHOD_PRESENT = FALSE still constrains what any settlement can mean for a protective-function fact"
+  },
+
+  "worktree": {
+    "runtimeSourceFilesAdded": 1,
+    "existingSourceFilesModified": 0,
+    "scriptsAdded": 1,
+    "scriptsModified": ["backend/scripts/a0-settlement-replay-2026-09-05.ts — the F1.b re-anchor recorded as residual R2"],
+    "sections167To181EvidencePreserved": "unchanged",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

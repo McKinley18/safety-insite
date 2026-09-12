@@ -1,0 +1,146 @@
+FORMAL EXPERT HAZLENZ EVALUATION -- FINAL CLASSIFICATION
+§136, stage 4 of 4. Human adjudication complete. Recovered measures verified. Zero provider calls.
+
+runId       formal-run-65523fbb-eea3-4322-a47b-632fa2eae341
+cohortId    hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a
+manifest    1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3
+model       claude-sonnet-5   prompt hazlenz.expert.prompt.v6   scorer hazlenz.expert.scorers.v1
+arm scored  BASE (CONTENT_SCORING_ARM)
+
+
+A. HUMAN ADJUDICATION
+
+   174 / 174 items adjudicated by the product owner.  9 regulatory, 165 clarification.
+   SUPPORTED_BY_SUPPLIED_RECORD        0
+   NOT_SUPPORTED_BY_SUPPLIED_RECORD    9
+   MAPPED_TO_GAP                      16
+   MAPPED_TO_NO_GAP                  149
+   ADJUDICATIONS.json sha256  26c2ce8a7db50f5a62568ba1e35dd34a7ea526de00ce9369d320ef5fccdd54b7
+   The model did not supply, recommend, preselect or revise any verdict or any reason.
+
+
+B. RECOVERED MEASURES -- TWO INDEPENDENT CALCULATIONS, BOTH AGREE
+
+   M06_UNSUPPORTED_REGULATORY_ASSERTIONS   A 2/40   B 2/40   AGREE   0.050000  MAX 0.05  PASS
+        excludedNoRecordRow 2 (SEM-15, SRC-MSHA-057)  notAnObligation 5  obligationUnsupported 2
+   M07_GOVERNED_RECORD_GROUNDING           A 0/9    B 0/9    AGREE   0.000000  MIN 0.95  FAIL
+   M09_CLARIFICATION_QUALITY               A 5/165  B 5/165  AGREE   0.030303  MIN 0.70  FAIL
+        useful 5   decisionMismatch 11   mappedToNoGap 149
+
+   The frozen end-to-end rescoring path was unavailable because CohortRunRecord[] was not
+   persisted. M06/M07/M09 were nevertheless exactly recoverable from the persisted formal
+   adjudication artifacts and human verdicts using the unchanged frozen measurement
+   formulas. Results were independently verified.
+
+   The frozen buildScoringReport was NOT rerun. Saying otherwise would be false.
+
+
+C. COMPLETE FORMAL MEASUREMENT SURFACE
+
+   TWELVE HARD GATES                                   value      dir/threshold   result
+     M02_EXPERT_CANDIDATE_FALSE_POSITIVES              0.125000   MAX 0.20        PASS
+     M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY        0          MAX 0           PASS
+     M04_LIFE_CRITICAL_RETENTION                       1.000000   MIN 1.00        PASS
+     M05_FABRICATED_CITATIONS                          2          MAX 0           FAIL
+     M06_UNSUPPORTED_REGULATORY_ASSERTIONS             0.050000   MAX 0.05        PASS   (recovered)
+     M07_GOVERNED_RECORD_GROUNDING                     0.000000   MIN 0.95        FAIL   (recovered)
+     M08_GOVERNED_PROVENANCE_INTEGRITY                 0          MAX 0           PASS
+     M09_CLARIFICATION_QUALITY                         0.030303   MIN 0.70        FAIL   (recovered)
+     M10_UNNECESSARY_QUESTION_RATE                     0.844444   MAX 0.15        FAIL
+     M12_INTERNAL_INCOHERENCE                          0.171875   MAX 0.10        FAIL
+     M13_PROVIDER_CALLABILITY                          1.000000   MIN 0.98        PASS
+     M14_ORDER_SENSITIVITY                             0.921875   MAX 0.05        FAIL
+
+     6 PASS / 6 FAIL.  No gate remains UNMEASURED.
+
+   FIVE REPORTED MEASURES (never gated)
+     M01_ADDITIVE_HAZARD_RECALL                        0.846154   44/52
+     M11_CROSS_HAZARD_REASONING                        0.454545   5/11, 50 spurious insights
+     M15_LATENCY_P95                                   31203 ms
+     M16_COST_PER_ROW                                  $0.106619  $6.930238 / 65
+     M17_CROSS_PROCESS_REPRODUCIBILITY                 NO_OPPORTUNITY  0/0
+
+   FAMILY OUTCOMES (a family passes iff it has no failed hard gate)
+     SAFETY                 PASS
+     REGULATORY_INTEGRITY   FAIL   M05_FABRICATED_CITATIONS, M07_GOVERNED_RECORD_GROUNDING
+     REASONING_QUALITY      FAIL   M09_CLARIFICATION_QUALITY, M10_UNNECESSARY_QUESTION_RATE,
+                                   M12_INTERNAL_INCOHERENCE
+     RELIABILITY            FAIL   M14_ORDER_SENSITIVITY
+
+   M06 moved from UNMEASURED-and-therefore-failing to MEASURED PASS. It is the only gate whose
+   disposition adjudication changed. REGULATORY_INTEGRITY still fails on M05 and M07.
+
+   ROUTING / PROVIDER          195/195 logical calls started and completed, 195 provider requests,
+                               0 retries, 0 retries refused by budget, 0 failures of any class,
+                               stopReason COMPLETED, every response identified claude-sonnet-5,
+                               M13 1.0000.
+   GROUNDING                   40 of 65 rows supplied a governed record; every supplied record
+                               carried backingState UNAPPROVED_RECORD. REVIEWER_APPROVED_GOVERNED_RECORDS
+                               = 0 and APPROVED_EXACT_NOT_EXERCISED = true: the approved-exact path
+                               was never exercised by this cohort. M07 = 0/9.
+   DETERMINISTIC CONSISTENCY   M14 0.921875 -- 59 of 64 rows changed their scored field projection
+                               under input permutation. The most severe finding in the surface.
+   CLARIFICATION BEHAVIOUR     M09 5/165 useful; M10 0.844444 -- a clarification was asked on 38 of
+                               the 45 rows whose answer key owes none. 11 clarifications mapped to a
+                               gap but named a different affectedDecision than the gap carries.
+                               Of 18 authored gaps, 16 were mapped; SEM-08-G1 and SEM-19-G1 were
+                               mapped by no clarification.
+   INTERACTION BEHAVIOUR       M11 5/11 with 50 spurious insights. Stated frozen limitation: the
+                               closed EXPERT_INTERACTION_KINDS vocabulary cannot express a
+                               flammable-atmosphere / ignition-source interaction; no interaction
+                               kind was invented to make the measure look better.
+   NEGATIVE CONTROLS           48 FORBIDDEN_FAMILY_NEGATIVE_CONTROL rows and 45 CLARIFICATION_NOT_OWED
+                               rows carried the load. M03 = 0 (no contradiction with protected
+                               authority) and M08 = 0 (no provenance violation) both hold;
+                               M02 0.125 within 0.20; M10 is where the negative controls broke.
+   RETRY BEHAVIOUR             GLOBAL_RETRY_REQUEST_BUDGET 20, consumed 0. retryCauses [] and
+                               retriesSuppressed []. retryExhaustionClassification MIXED_CAUSE with
+                               transport 0 / modelBehaviour 0 / other 0 -- vacuous, nothing retried.
+   PROVIDER REQUESTS           195 of a 215 hard ceiling. PROVIDER_INVOCATION_COUNT = 195.
+   COST                        $6.930238 of a $22.36 ceiling; margin $15.429762; 0 prospective blocks.
+   TOKENS                      input 1,846,749  output 323,674  total 2,170,423.
+   LATENCY                     p50 17896 ms   p95 31203 ms   max 168183 ms   samples 195.
+   STRUCTURAL LIMITATIONS      harness v1 runs all three arms in ONE OS process, so all 64 candidate
+                               M17 pairs were rejected for sameProcess.
+   M17 NO_OPPORTUNITY          0/0. The cohort supplied no eligible cross-process opportunity;
+                               reported rather than scored, exactly as pre-registered.
+   P2_DETERMINISM_CONTROL      ABSENT. No seed; temperature/top_p/top_k unavailable and not sent for
+                               this model. This is why M17 was pre-registered as
+                               MEASURED_AND_REPORTED and never as a gate.
+   EVIDENCE-PERSISTENCE        CohortRunRecord[] was never persisted by the execution script, so
+   DEVIATION                   every validated ExpertAnalysis and merged block was lost at process
+                               exit. Classification: EVALUATION_EVIDENCE_PERSISTENCE_DEFECT -- not a
+                               model failure and not formal invalidity. Disclosed mid-run before any
+                               result. The run was not stopped and the scorer was not patched. The
+                               recoverability audit certified all three adjudicated measures
+                               EXACTLY_RECOVERABLE. No CohortRunRecord[] or ExpertAnalysis was
+                               synthesized, inferred or reconstructed at any point.
+
+
+D. FINAL CLASSIFICATION
+
+   FORMAL_EVALUATION_FAIL -- NOT ACCEPTED.
+
+   Six of twelve hard gates fail. Three of four gate families fail. Under the frozen acceptance
+   contract a family passes only with an empty failed-gate list, so the evaluation does not meet
+   it. This is a failed formal evaluation. It is not a partial pass, a near pass, a conditional
+   pass, mostly passed, or acceptable with fixes.
+
+   The execution itself remains valid: the pre-spend gate passed 28/28, integrity hashes were
+   unchanged across the run, no ceiling fired, and no provider failure occurred. The failures are
+   findings about the evaluated system, not about the harness -- with the single exception of the
+   evidence-persistence deviation recorded above, which changed how M06/M07/M09 were computed but
+   changed no value, threshold, formula or verdict.
+
+
+E. CONFINEMENT
+
+   PROVIDER_INVOCATION_COUNT = 195   provider requests during this operation: 0
+   additional model cost: $0.00      spend unchanged at $6.930238
+   FORMAL_COHORT_SPENT = TRUE        RESERVED_MATERIAL_OPENED = FALSE
+   cohort rerun: NO                  new cohort: NO                exploratory calls: NO
+   scorer / thresholds / formulas / truth / manifest / prompt / schema changed: NO
+   ADJUDICATION-PACKET.json and ADJUDICATIONS.json unchanged by this operation (hashes reverified)
+   PRODUCTION_ACCESS = FALSE   DATABASE_ACCESS = FALSE   DEPLOYMENT = FALSE
+   COMMIT = FALSE   PUSH = FALSE   TAG = FALSE   CUSTOMER_ACTIVATION = FALSE
+   remediation begun: NO

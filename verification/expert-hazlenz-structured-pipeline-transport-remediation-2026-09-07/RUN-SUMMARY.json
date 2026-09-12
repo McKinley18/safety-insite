@@ -1,0 +1,216 @@
+{
+  "artifact": "SECTION_198_RUN_SUMMARY",
+  "date": "2026-09-07",
+  "operation": "§198 — structured-pipeline transport/binding remediation and successor-protocol preparation. Product-owner Option B.",
+  "TERMINAL": "EXPERT_HAZLENZ_STRUCTURED_PIPELINE_TRANSPORT_REMEDIATED — SUCCESSOR_HOSTED_PROTOCOL_AUTHORIZATION_REQUIRED",
+  "terminalReason": "The governed-binding capability is now ABSENT when no governed source is supplied and PRESENT with its exact sourceIds rendered when one is. The §197 rejection keyword is gone from every request before the adapter strip runs. The circuit breaker, the empty-run scorer invariant and the integrity-scan precision fix are implemented and regression-covered. The §196 K3 claim is corrected additively without editing its evidence. 89/89 §198 matrix, 72/72 source integrity, every legacy suite green. No provider call was made and no deeper contract problem was exposed.",
+
+  "PROVIDER_CALLS": 0,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "filesUnderSrcModified": 0,
+  "commit": "NOT PERFORMED",
+  "push": "NOT PERFORMED",
+  "tag": "NOT PERFORMED",
+  "branchCreated": "NOT PERFORMED",
+  "deploy": "NOT PERFORMED",
+
+  "PRODUCT_OWNER_DECISION_IMPLEMENTED": {
+    "chosen": "OPTION B — omit governedEvidenceSourceIds entirely when the supplied governed set is empty",
+    "notDone": [
+      "did NOT extend the §108 provider strip to remove maxItems as the primary architecture",
+      "did NOT supply artificial governed source IDs to make the request executable",
+      "did NOT emit an empty-array or sentinel placeholder"
+    ],
+    "whyStrongerNotAWorkaround": "a bounded field is still a field: the model is told the capability exists and the only thing stopping a populated one is a keyword this provider does not honour at all. An absent field cannot be populated by a compliant producer, and is refused by additionalProperties:false at the transport and by exact set membership at the boundary."
+  },
+
+  "SCHEMA_BEHAVIOUR": {
+    "zeroGovernedSources": {
+      "propertyInSchema": "ABSENT",
+      "propertyInRequired": "ABSENT",
+      "maxItemsEmitted": false,
+      "maxItemsPresentBeforeAdapterStrip": false,
+      "systemPromptMentionsCapability": false,
+      "userPromptSection": "none",
+      "parserTreatment": "field unavailable for this treatment; its absence is the normal shape",
+      "providerIntroducingItAnyway": "FAIL CLOSED at both layers"
+    },
+    "oneOrMoreGovernedSources": {
+      "propertyInSchema": "PRESENT",
+      "propertyInRequired": "PRESENT",
+      "itemsEnum": "exactly the supplied sourceIds",
+      "systemPromptMentionsCapability": true,
+      "userPromptSection": "AVAILABLE GOVERNED EVIDENCE — these sourceIds and no others",
+      "exactSourceIdVisibleToModel": true,
+      "unsuppliedIdsRendered": 0,
+      "duplicateSuppliedId": "ABORTS rather than silently de-duplicating",
+      "malformedSuppliedId": "ABORTS rather than normalising"
+    }
+  },
+
+  "BINDING_VISIBILITY": {
+    "section197Defect": "buildExpertUserPrompt renders governed records under opaque handles (R1, R2) with citations redacted and never shows a sourceId, while §196 asked the first pass to name one. The binding was unexercisable in principle.",
+    "resolution": "buildExpertVNextUserPrompt appends a removable AVAILABLE GOVERNED EVIDENCE block exposing the exact sourceId of every supplied record, and only supplied records.",
+    "evidenceTextTreatment": "still rendered through redactCitationTokens, exactly as v15 does",
+    "whyTextStaysRedacted": "the authorization requires the exact sourceId to be visible and requires citation containment OUTSIDE the authorized supplied evidence to be unchanged. It does not require the TEXT to carry citations, and showing them would be actively wrong: v15's HARD PROHIBITIONS still tells the first pass that reproducing a number from its own input is the same violation as inventing one, and §196 gave the first pass no supplied-source reuse allowance. A first pass shown a citation could only be punished for repeating it.",
+    "residualStated": "a first pass cannot quote a governed citation. That is v15's rule, not a §198 invention. The supplied-source reuse allowance lives on the VERIFIER path, where the record arrives with its citation intact — confirmed unaffected by case G4.",
+    "buildExpertUserPromptModified": false,
+    "reversible": "removing the appended block reproduces buildExpertUserPrompt(input) byte for byte"
+  },
+
+  "REQUEST_COMPATIBILITY": {
+    "method": "all twelve §197 first-pass requests rebuilt offline under the remediated contract. Nothing sent.",
+    "rowsRebuilt": 12,
+    "capabilityAbsentRows": 10,
+    "capabilityPresentRows": ["SF-09", "SF-10"],
+    "knownProviderProhibitedKeywordsChecked": ["minLength", "minItems", "maxItems"],
+    "rowsWithAnyProhibitedKeywordRemaining": 0,
+    "maxItemsPresentInAnyRequest": false,
+    "maxItemsAbsentBeforeStripRuns": true,
+    "everyPresentRowExposesItsExactSourceIds": true,
+    "distinctSystemPromptHashes": 2,
+    "evidence": "REQUEST-COMPATIBILITY.json",
+    "WHAT_THIS_DOES_NOT_PROVE": "that the provider ACCEPTS the request. §198 proves only that the request no longer contains a keyword this provider is known to reject. Only sending one can prove acceptance, and §198 sends none."
+  },
+
+  "CIRCUIT_BREAKER": {
+    "module": "backend/scripts/lib/expert-pre-inference-circuit-breaker.ts",
+    "rule": "STOP on two consecutive pre-inference rejections sharing a normalized signature",
+    "signature": "stage | requestContractId | httpStatus | providerErrorType | normalizedMessage",
+    "normalizationRemoves": ["request ids", "uuids", "timestamps", "quoted identifiers carrying a separator or digit", "long bare numbers"],
+    "normalizationKeeps": ["the structural path including the tool index", "keywords such as maxItems", "the words of the message"],
+    "theDecidingField": "reachedInference — set from provider-returned usage and response shape, NEVER inferred from the HTTP status",
+    "inferenceTimeFailures": "produce NO signature and cannot contribute to a streak; a single inference-reaching attempt BREAKS a streak",
+    "testedBy": "cases K1–K3, L1–L6, M1–M4",
+    "counterfactual": "the §197 run would have stopped at 2 calls instead of 12",
+    "wiringIntoTheExecutor": "DEFERRED TO THE SUCCESSOR SLICE. §197's executor is a historical instrument and was not modified.",
+    "defectFoundWhileWritingIt": "the first normaliser replaced any quoted token of 8+ characters, turning \"property 'maxItems' is not supported\" into \"property '{identifier}' is not supported\" and making two DIFFERENT unsupported-keyword rejections look identical. Caught by case K2."
+  },
+
+  "EMPTY_RUN_SCORER_INVARIANT": {
+    "module": "backend/scripts/lib/expert-empty-run-safety.ts",
+    "rule": "completed model executions = 0 ⇒ no behavioural or semantic axis may emit a positive verdict",
+    "mechanism": "axisResult and axisRatio CANNOT express one — on an empty denominator they return the empty-run state regardless of what the caller computed",
+    "hardFailEvaluability": "returns anyTriggered: null, not false. false asserts the conditions were checked and held; null says the question was not askable.",
+    "selfAudit": "emptyRunReportingViolations scans a scorer's own output for a CLASS of positive wording, not one remembered string",
+    "coversTheExactSection197Strings": ["NO_PROVIDER_OUTPUT_SETTLED_ANY_FACT", "none triggered"],
+    "alsoEnforces": "a single observation is reported as x/n literally with NOT_MEANINGFULLY_ESTIMABLE, never as a percentage; a zero denominator never renders as 0/0",
+    "testedBy": "cases N1–N8",
+    "section197ScorerItself": "LEFT EXACTLY AS §197 PRODUCED IT. The correction is preserved in place; the invariant is made permanent in the shared module that future scorers import."
+  },
+
+  "INTEGRITY_INSTRUMENT_PRECISION": {
+    "module": "backend/scripts/lib/expert-source-semantic-scan.ts",
+    "defect": "§197's gate failed 57/58 by grepping /TRANSITION_AUTHORITIES…MODEL/ and matching owed-fact-ledger.ts's own COMMENT explaining that there is deliberately no member for a model explanation",
+    "correction": "stripComments removes comments while preserving line numbering; STRING LITERALS ARE DELIBERATELY KEPT, because a forbidden token in a literal is executable content and hiding it would weaken coverage",
+    "honestLimit": "comment-stripping alone would NOT have rescued that check — the ledger also IMPORTS MODEL_AUTHORED_SOURCES nearby, so the naive proximity regex matches executable text too. Recorded as case O2b. The real fix was always asserting over the exported constant's VALUES.",
+    "recorded": "preferValueAssertion — where an invariant can be asserted against an exported value, assert the value; use a scan only where no value carries the property",
+    "coverageWeakened": false,
+    "testedBy": "cases O1–O6"
+  },
+
+  "FOURTH_FINDING_TYPECHECK_COVERAGE_GAP": {
+    "what": "tsc --noEmit -p tsconfig.json includes only src/**/*. It does not typecheck anything under scripts/.",
+    "howFound": "renaming an export left a broken import in the §196 suite and the project typecheck reported clean",
+    "consequence": "every 'tsc clean' claim in §196 and §197 was a statement about src/ ALONE, and is restated as such here",
+    "whyTheDirectoryWasNotJustAdded": "scripts/ carries 2011 pre-existing errors in unrelated legacy scripts; fixing those is not this slice's work",
+    "remediation": "backend/tsconfig.scripts-198.json typechecks exactly the §196–§198 file set under the PROJECT'S OWN compiler options. Using the project's options matters: an ad-hoc --strict false invocation produced false errors in anthropic-expert-provider.ts, because loose narrowing changes how a discriminated union reads.",
+    "gateEnforces": true
+  },
+
+  "SECTION_196_K3_CORRECTION": {
+    "historicalAssertion": "with no governed evidence supplied, the wire schema forbids naming one at all — 'transport refuses it, and the boundary refuses it again'",
+    "historicalImplementation": "governedEvidenceSourceIds.maxItems === 0",
+    "whatWasObserved": "§197: twelve hosted requests carrying that schema rejected with HTTP 400 before inference. The transport did not refuse the id; it refused the entire request.",
+    "whyTheClaimWasWrong": "§196 tested the schema as a DOCUMENT, and as a document the claim was true. What failed is the second half — that this was an independent TRANSPORT layer. A guarantee is only a transport guarantee if the transport accepts and enforces it.",
+    "currentArchitecture": "CAPABILITY OMISSION — the property is absent entirely when the supplied set is empty",
+    "whatStillHolds": "BOUNDARY_REFUSES_UNSUPPLIED_SOURCE_ID, structurally supported by §196 K1/K2, unchanged and still passing. The safety property never depended on the transport layer that turned out not to exist. A claim was retired, not a protection.",
+    "historicalEvidenceEdited": false,
+    "historicalOutputPreserved": "verification/…-2026-09-06/TEST-OUTPUT.txt still records the original 91/91 run including the original K3 line verbatim, asserted by the §198 gate",
+    "prospectiveRegressionChange": "§196 suite K3 now asserts the current architecture and K3b asserts the supersession is registered. 91 → 92 cases.",
+    "register": "backend/scripts/lib/expert-superseded-claims.ts — one definition read by both the suite and SUPERSEDED-CLAIMS.md",
+    "registerEntryBar": "an entry may be added ONLY when a later observation falsified an earlier claim, and it must name that observation"
+  },
+
+  "VERIFICATION_EXECUTED": {
+    "test:198-transport-remediation": "89/89 PASS",
+    "verify:198-source-integrity": "PASS 72/72",
+    "test-196-structured-first-pass-owed-facts": "92/92 PASS (was 91/91)",
+    "test-expert-193-hardening": "46 passed, 0 failed",
+    "test-expert-194-regulatory-basis": "48 passed, 0 failed",
+    "test-expert-verifier-v3-binding-protocol": "49/49 PASS",
+    "test-expert-v3-development-integration": "40/40 PASS",
+    "verify-195-source-integrity": "PASS 21/21",
+    "tsc --noEmit -p tsconfig.json (src only)": "clean",
+    "tsc --noEmit -p tsconfig.scripts-198.json (§196–§198 file set)": "clean"
+  },
+  "GATES_DELIBERATELY_NOT_RERUN": {
+    "verify-196-source-integrity": "WRITES into §196's evidence directory",
+    "verify-197-source-integrity": "WRITES into §197's evidence directory AND pins the vNext prompt hash §198 deliberately moved",
+    "insteadOf": "the §198 gate subsumes their still-valid checks and proves preservation by HASHING both packages rather than by re-deriving them"
+  },
+
+  "SECTION_197_PRESERVATION": {
+    "terminal": "EXPERT_HAZLENZ_STRUCTURED_PIPELINE_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED, unchanged",
+    "providerCallsAttempted": 12,
+    "providerCallsCompleted": 0,
+    "outputTokens": 0,
+    "actualSpendUsd": 0.0,
+    "everyAxisStill": "NOT_EXERCISED",
+    "hardFailReportStill": "EVALUABLE=false, anyTriggered=null",
+    "recordedInstrumentDefectsStillInHistory": true,
+    "evidenceFilesByteUnchanged": "all 14, verified against a manifest taken before any §198 edit",
+    "preregistrationNowUnsatisfiable": "the pinned vNext prompt hash and every per-row wireSchemaSha256 have moved, so the §197 executor aborts rather than re-running a retired protocol instance under a stale freeze",
+    "oneIncidentDuringSection198": "wiring the new empty-run module into the §197 scorer and running it rewrote §197/DETERMINISTIC-RESULTS.json. Caught immediately against the pre-edit manifest, the patch was inverted, the scorer restored, the file regenerated, and all 28 §196/§197 evidence files verified byte-identical to baseline."
+  },
+
+  "SECTION_196_OPEN_CONTRACT_QUESTIONS": {
+    "status": "ALL THREE REMAIN OPEN AND UNRESOLVED",
+    "owedPropertyRepresentation": "OwedFact still has no dedicated field; owed-fact.types.ts is unmutated and missingFact was NOT folded into whyUnresolved",
+    "priorityEscalationAuthority": "projected facts still enter at the non-escalating OTHER floor; no provider-authored priority can escalate UNRESOLVED_SAFETY_STATE",
+    "semanticCorrectness": "untouched — §198 is transport/protocol remediation only and measures no model behaviour"
+  },
+
+  "SUCCESSOR_COHORT_DECISION": {
+    "status": "PREPARED, NOT MADE",
+    "classification": "BEHAVIORALLY_UNSPENT + PROTOCOL_EXPOSED",
+    "options": {
+      "1": "reuse the exact §197 cohort under a fresh preregistration — no model has seen it",
+      "2": "construct a fresh matched cohort — eliminates protocol-development familiarity",
+      "3": "reuse ten rows and replace SF-09 and SF-10, the two the §198 capability work actually turned on"
+    },
+    "note": "reuse is NOT automatically authorized by the absence of inference, and discard is NOT automatically required by protocol exposure. Every per-row schema hash has moved, so no path avoids a fresh preregistration; the only question is whether the scenarios inside it are the same twelve.",
+    "evidence": "SUCCESSOR-COHORT-DECISION.md"
+  },
+
+  "SUCCESSOR_PREREGISTRATION_REQUIREMENTS": [
+    "a new protocol id — §197's is retired",
+    "TWO system-prompt hashes, one per capability variant",
+    "per-row wireSchemaSha256, since the schema is per-request and now also per-capability",
+    "the remediated user-prompt hash per row, since the AVAILABLE GOVERNED EVIDENCE block changes it on capability-present rows",
+    "the circuit breaker wired into the executor with its stop rule preregistered",
+    "cohort reuse, if chosen, declared explicitly BEFORE spend with the protocol-exposure note recorded alongside it"
+  ],
+
+  "MUST_NOT_CLAIM": [
+    "that the provider accepts the remediated request — only sending one can establish that, and §198 sends none",
+    "any hosted behaviour, any semantic evidence, or any §197 axis result",
+    "vNext hosted validated",
+    "v3.3 hosted validated",
+    "that the structured pipeline behaves correctly or incorrectly under hosted execution",
+    "that any §196 open contract question is resolved",
+    "Expert HazLenz accepted, provider-validated or customer-ready",
+    "the §189 human gate measured — it remains UNMEASURED at 65/112"
+  ],
+
+  "NEXT_GATE": "PRODUCT-OWNER decision on successor cohort reuse (options 1/2/3), then a fresh successor preregistration and a separate hosted-execution authorization. No provider execution is authorized by §198 and none occurred.",
+
+  "worktree": {
+    "branch": "main",
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "unrelatedUncommittedWork": "PRESERVED — no reset, checkout, restore, stash or clean was performed"
+  }
+}

@@ -1,0 +1,6437 @@
+[
+  {
+    "rowId": "GAUNTLET-002",
+    "arm": "BASE",
+    "callId": "GAUNTLET-002-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17602,
+    "inputTokens": 9957,
+    "outputTokens": 1284,
+    "costUsd": 0.032754000000000005,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9957,
+          "outputTokens": 1284,
+          "costUsd": 0.032754000000000005,
+          "latencyMs": 17602,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-002",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-002-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12521,
+    "inputTokens": 9957,
+    "outputTokens": 1158,
+    "costUsd": 0.031494,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9957,
+          "outputTokens": 1158,
+          "costUsd": 0.031494,
+          "latencyMs": 12521,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-002",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-002-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12481,
+    "inputTokens": 9957,
+    "outputTokens": 1141,
+    "costUsd": 0.031324000000000005,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9957,
+          "outputTokens": 1141,
+          "costUsd": 0.031324000000000005,
+          "latencyMs": 12481,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-004",
+    "arm": "BASE",
+    "callId": "GAUNTLET-004-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 11230,
+    "inputTokens": 9957,
+    "outputTokens": 981,
+    "costUsd": 0.029724,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9957,
+          "outputTokens": 981,
+          "costUsd": 0.029724,
+          "latencyMs": 11230,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-004",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-004-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 11317,
+    "inputTokens": 9957,
+    "outputTokens": 973,
+    "costUsd": 0.029644000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9957,
+          "outputTokens": 973,
+          "costUsd": 0.029644000000000004,
+          "latencyMs": 11317,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-004",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-004-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 10504,
+    "inputTokens": 9957,
+    "outputTokens": 956,
+    "costUsd": 0.029474,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9957,
+          "outputTokens": 956,
+          "costUsd": 0.029474,
+          "latencyMs": 10504,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-005",
+    "arm": "BASE",
+    "callId": "GAUNTLET-005-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16663,
+    "inputTokens": 9884,
+    "outputTokens": 1546,
+    "costUsd": 0.035228,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9884,
+          "outputTokens": 1546,
+          "costUsd": 0.035228,
+          "latencyMs": 16662,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-005",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-005-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21323,
+    "inputTokens": 9884,
+    "outputTokens": 2036,
+    "costUsd": 0.040128,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9884,
+          "outputTokens": 2036,
+          "costUsd": 0.040128,
+          "latencyMs": 21322,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-005",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-005-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13259,
+    "inputTokens": 9884,
+    "outputTokens": 1322,
+    "costUsd": 0.032988,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9884,
+          "outputTokens": 1322,
+          "costUsd": 0.032988,
+          "latencyMs": 13259,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-007",
+    "arm": "BASE",
+    "callId": "GAUNTLET-007-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 52039,
+    "inputTokens": 9486,
+    "outputTokens": 2092,
+    "costUsd": 0.039892,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9486,
+          "outputTokens": 2092,
+          "costUsd": 0.039892,
+          "latencyMs": 52039,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-007",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-007-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21616,
+    "inputTokens": 9486,
+    "outputTokens": 2196,
+    "costUsd": 0.040931999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9486,
+          "outputTokens": 2196,
+          "costUsd": 0.040931999999999996,
+          "latencyMs": 21615,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-007",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-007-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22129,
+    "inputTokens": 9486,
+    "outputTokens": 2143,
+    "costUsd": 0.040401999999999993,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9486,
+          "outputTokens": 2143,
+          "costUsd": 0.040401999999999993,
+          "latencyMs": 22129,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-015",
+    "arm": "BASE",
+    "callId": "GAUNTLET-015-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16461,
+    "inputTokens": 9335,
+    "outputTokens": 1526,
+    "costUsd": 0.03393,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9335,
+          "outputTokens": 1526,
+          "costUsd": 0.03393,
+          "latencyMs": 16461,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-015",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-015-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16721,
+    "inputTokens": 9335,
+    "outputTokens": 1517,
+    "costUsd": 0.033839999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9335,
+          "outputTokens": 1517,
+          "costUsd": 0.033839999999999995,
+          "latencyMs": 16721,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-015",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-015-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14340,
+    "inputTokens": 9335,
+    "outputTokens": 1475,
+    "costUsd": 0.03342,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9335,
+          "outputTokens": 1475,
+          "costUsd": 0.03342,
+          "latencyMs": 14339,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-019",
+    "arm": "BASE",
+    "callId": "GAUNTLET-019-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19135,
+    "inputTokens": 9326,
+    "outputTokens": 1977,
+    "costUsd": 0.038422,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9326,
+          "outputTokens": 1977,
+          "costUsd": 0.038422,
+          "latencyMs": 19135,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-019",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-019-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20287,
+    "inputTokens": 9326,
+    "outputTokens": 2028,
+    "costUsd": 0.038931999999999994,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9326,
+          "outputTokens": 2028,
+          "costUsd": 0.038931999999999994,
+          "latencyMs": 20287,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-019",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-019-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15669,
+    "inputTokens": 9326,
+    "outputTokens": 1568,
+    "costUsd": 0.034332,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9326,
+          "outputTokens": 1568,
+          "costUsd": 0.034332,
+          "latencyMs": 15669,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-022",
+    "arm": "BASE",
+    "callId": "GAUNTLET-022-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13670,
+    "inputTokens": 9600,
+    "outputTokens": 1323,
+    "costUsd": 0.03243,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9600,
+          "outputTokens": 1323,
+          "costUsd": 0.03243,
+          "latencyMs": 13670,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-022",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-022-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13103,
+    "inputTokens": 9600,
+    "outputTokens": 1338,
+    "costUsd": 0.03258,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9600,
+          "outputTokens": 1338,
+          "costUsd": 0.03258,
+          "latencyMs": 13103,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-022",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-022-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12859,
+    "inputTokens": 9600,
+    "outputTokens": 1342,
+    "costUsd": 0.032619999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9600,
+          "outputTokens": 1342,
+          "costUsd": 0.032619999999999996,
+          "latencyMs": 12859,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-023",
+    "arm": "BASE",
+    "callId": "GAUNTLET-023-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25847,
+    "inputTokens": 9639,
+    "outputTokens": 2716,
+    "costUsd": 0.046438,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9639,
+          "outputTokens": 2716,
+          "costUsd": 0.046438,
+          "latencyMs": 25847,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-023",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-023-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25333,
+    "inputTokens": 9639,
+    "outputTokens": 2652,
+    "costUsd": 0.045798,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9639,
+          "outputTokens": 2652,
+          "costUsd": 0.045798,
+          "latencyMs": 25332,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-023",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-023-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22795,
+    "inputTokens": 9639,
+    "outputTokens": 2387,
+    "costUsd": 0.043148,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9639,
+          "outputTokens": 2387,
+          "costUsd": 0.043148,
+          "latencyMs": 22795,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-032",
+    "arm": "BASE",
+    "callId": "GAUNTLET-032-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 11203,
+    "inputTokens": 9340,
+    "outputTokens": 1047,
+    "costUsd": 0.02915,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9340,
+          "outputTokens": 1047,
+          "costUsd": 0.02915,
+          "latencyMs": 11202,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-032",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-032-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 11948,
+    "inputTokens": 9340,
+    "outputTokens": 1136,
+    "costUsd": 0.030039999999999997,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9340,
+          "outputTokens": 1136,
+          "costUsd": 0.030039999999999997,
+          "latencyMs": 11948,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-032",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-032-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12771,
+    "inputTokens": 9340,
+    "outputTokens": 1234,
+    "costUsd": 0.03102,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9340,
+          "outputTokens": 1234,
+          "costUsd": 0.03102,
+          "latencyMs": 12771,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-033",
+    "arm": "BASE",
+    "callId": "GAUNTLET-033-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16890,
+    "inputTokens": 9363,
+    "outputTokens": 1671,
+    "costUsd": 0.035435999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9363,
+          "outputTokens": 1671,
+          "costUsd": 0.035435999999999995,
+          "latencyMs": 16890,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-033",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-033-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17098,
+    "inputTokens": 9363,
+    "outputTokens": 1527,
+    "costUsd": 0.033996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9363,
+          "outputTokens": 1527,
+          "costUsd": 0.033996,
+          "latencyMs": 17098,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-033",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-033-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17191,
+    "inputTokens": 9363,
+    "outputTokens": 1636,
+    "costUsd": 0.035086,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9363,
+          "outputTokens": 1636,
+          "costUsd": 0.035086,
+          "latencyMs": 17191,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-045",
+    "arm": "BASE",
+    "callId": "GAUNTLET-045-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16524,
+    "inputTokens": 9465,
+    "outputTokens": 1588,
+    "costUsd": 0.034809999999999994,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9465,
+          "outputTokens": 1588,
+          "costUsd": 0.034809999999999994,
+          "latencyMs": 16524,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-045",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-045-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13711,
+    "inputTokens": 9465,
+    "outputTokens": 1409,
+    "costUsd": 0.03302,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9465,
+          "outputTokens": 1409,
+          "costUsd": 0.03302,
+          "latencyMs": 13711,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-045",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-045-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16944,
+    "inputTokens": 9465,
+    "outputTokens": 1603,
+    "costUsd": 0.03496,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9465,
+          "outputTokens": 1603,
+          "costUsd": 0.03496,
+          "latencyMs": 16944,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-054",
+    "arm": "BASE",
+    "callId": "GAUNTLET-054-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18950,
+    "inputTokens": 9294,
+    "outputTokens": 1907,
+    "costUsd": 0.037658,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9294,
+          "outputTokens": 1907,
+          "costUsd": 0.037658,
+          "latencyMs": 18950,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-054",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-054-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19762,
+    "inputTokens": 9294,
+    "outputTokens": 1956,
+    "costUsd": 0.038148,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9294,
+          "outputTokens": 1956,
+          "costUsd": 0.038148,
+          "latencyMs": 19762,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-054",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-054-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 3689,
+    "inputTokens": 9294,
+    "outputTokens": 227,
+    "costUsd": 0.020858,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9294,
+          "outputTokens": 227,
+          "costUsd": 0.020858,
+          "latencyMs": 3688,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-062",
+    "arm": "BASE",
+    "callId": "GAUNTLET-062-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21914,
+    "inputTokens": 9339,
+    "outputTokens": 1992,
+    "costUsd": 0.038598,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9339,
+          "outputTokens": 1992,
+          "costUsd": 0.038598,
+          "latencyMs": 21914,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-062",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-062-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18133,
+    "inputTokens": 9339,
+    "outputTokens": 1847,
+    "costUsd": 0.037148,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9339,
+          "outputTokens": 1847,
+          "costUsd": 0.037148,
+          "latencyMs": 18133,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-062",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-062-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 79653,
+    "inputTokens": 9339,
+    "outputTokens": 1665,
+    "costUsd": 0.035328,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9339,
+          "outputTokens": 1665,
+          "costUsd": 0.035328,
+          "latencyMs": 79653,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-082",
+    "arm": "BASE",
+    "callId": "GAUNTLET-082-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14540,
+    "inputTokens": 9990,
+    "outputTokens": 1469,
+    "costUsd": 0.03467,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9990,
+          "outputTokens": 1469,
+          "costUsd": 0.03467,
+          "latencyMs": 14539,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-082",
+    "arm": "PERMUTED",
+    "callId": "GAUNTLET-082-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20582,
+    "inputTokens": 9990,
+    "outputTokens": 2057,
+    "costUsd": 0.04055,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9990,
+          "outputTokens": 2057,
+          "costUsd": 0.04055,
+          "latencyMs": 20582,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "GAUNTLET-082",
+    "arm": "CROSS_PROCESS",
+    "callId": "GAUNTLET-082-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 3829,
+    "inputTokens": 9990,
+    "outputTokens": 230,
+    "costUsd": 0.02228,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9990,
+          "outputTokens": 230,
+          "costUsd": 0.02228,
+          "latencyMs": 3829,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-12",
+    "arm": "BASE",
+    "callId": "POPA-A-12-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4570,
+    "inputTokens": 9438,
+    "outputTokens": 365,
+    "costUsd": 0.022526,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9438,
+          "outputTokens": 365,
+          "costUsd": 0.022526,
+          "latencyMs": 4570,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-12",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-12-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 168183,
+    "inputTokens": 9438,
+    "outputTokens": 670,
+    "costUsd": 0.025576,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9438,
+          "outputTokens": 670,
+          "costUsd": 0.025576,
+          "latencyMs": 168183,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-12",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-12-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 7128,
+    "inputTokens": 9438,
+    "outputTokens": 641,
+    "costUsd": 0.025286,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9438,
+          "outputTokens": 641,
+          "costUsd": 0.025286,
+          "latencyMs": 7128,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-13",
+    "arm": "BASE",
+    "callId": "POPA-A-13-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14436,
+    "inputTokens": 9355,
+    "outputTokens": 1371,
+    "costUsd": 0.032420000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9355,
+          "outputTokens": 1371,
+          "costUsd": 0.032420000000000004,
+          "latencyMs": 14436,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-13",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-13-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16876,
+    "inputTokens": 9355,
+    "outputTokens": 1664,
+    "costUsd": 0.03535,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9355,
+          "outputTokens": 1664,
+          "costUsd": 0.03535,
+          "latencyMs": 16876,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-13",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-13-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18246,
+    "inputTokens": 9355,
+    "outputTokens": 1721,
+    "costUsd": 0.03592,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9355,
+          "outputTokens": 1721,
+          "costUsd": 0.03592,
+          "latencyMs": 18246,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-14",
+    "arm": "BASE",
+    "callId": "POPA-A-14-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16444,
+    "inputTokens": 9367,
+    "outputTokens": 1543,
+    "costUsd": 0.034164,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9367,
+          "outputTokens": 1543,
+          "costUsd": 0.034164,
+          "latencyMs": 16444,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-14",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-14-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 46841,
+    "inputTokens": 9367,
+    "outputTokens": 1756,
+    "costUsd": 0.036294,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9367,
+          "outputTokens": 1756,
+          "costUsd": 0.036294,
+          "latencyMs": 46841,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-14",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-14-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17405,
+    "inputTokens": 9367,
+    "outputTokens": 1661,
+    "costUsd": 0.035344,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9367,
+          "outputTokens": 1661,
+          "costUsd": 0.035344,
+          "latencyMs": 17405,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-15",
+    "arm": "BASE",
+    "callId": "POPA-A-15-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 8744,
+    "inputTokens": 9533,
+    "outputTokens": 792,
+    "costUsd": 0.026986,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9533,
+          "outputTokens": 792,
+          "costUsd": 0.026986,
+          "latencyMs": 8744,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-15",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-15-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15424,
+    "inputTokens": 9533,
+    "outputTokens": 1400,
+    "costUsd": 0.033066,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9533,
+          "outputTokens": 1400,
+          "costUsd": 0.033066,
+          "latencyMs": 15423,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-15",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-15-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 10079,
+    "inputTokens": 9533,
+    "outputTokens": 812,
+    "costUsd": 0.027186000000000002,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9533,
+          "outputTokens": 812,
+          "costUsd": 0.027186000000000002,
+          "latencyMs": 10079,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-16",
+    "arm": "BASE",
+    "callId": "POPA-A-16-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 7695,
+    "inputTokens": 10150,
+    "outputTokens": 631,
+    "costUsd": 0.026609999999999998,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10150,
+          "outputTokens": 631,
+          "costUsd": 0.026609999999999998,
+          "latencyMs": 7695,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-16",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-16-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 8165,
+    "inputTokens": 10150,
+    "outputTokens": 610,
+    "costUsd": 0.0264,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10150,
+          "outputTokens": 610,
+          "costUsd": 0.0264,
+          "latencyMs": 8165,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-16",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-16-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 10836,
+    "inputTokens": 10150,
+    "outputTokens": 953,
+    "costUsd": 0.02983,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10150,
+          "outputTokens": 953,
+          "costUsd": 0.02983,
+          "latencyMs": 10836,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-20",
+    "arm": "BASE",
+    "callId": "POPA-A-20-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15831,
+    "inputTokens": 9492,
+    "outputTokens": 1432,
+    "costUsd": 0.033304,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9492,
+          "outputTokens": 1432,
+          "costUsd": 0.033304,
+          "latencyMs": 15831,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-20",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-20-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13843,
+    "inputTokens": 9492,
+    "outputTokens": 1240,
+    "costUsd": 0.031384,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9492,
+          "outputTokens": 1240,
+          "costUsd": 0.031384,
+          "latencyMs": 13843,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-20",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-20-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12571,
+    "inputTokens": 9492,
+    "outputTokens": 1205,
+    "costUsd": 0.031034,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9492,
+          "outputTokens": 1205,
+          "costUsd": 0.031034,
+          "latencyMs": 12571,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-24",
+    "arm": "BASE",
+    "callId": "POPA-A-24-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 5304,
+    "inputTokens": 9472,
+    "outputTokens": 355,
+    "costUsd": 0.022494,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9472,
+          "outputTokens": 355,
+          "costUsd": 0.022494,
+          "latencyMs": 5304,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-24",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-24-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 5459,
+    "inputTokens": 9472,
+    "outputTokens": 356,
+    "costUsd": 0.022504,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9472,
+          "outputTokens": 356,
+          "costUsd": 0.022504,
+          "latencyMs": 5459,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-24",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-24-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4601,
+    "inputTokens": 9472,
+    "outputTokens": 362,
+    "costUsd": 0.022564,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9472,
+          "outputTokens": 362,
+          "costUsd": 0.022564,
+          "latencyMs": 4601,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-26",
+    "arm": "BASE",
+    "callId": "POPA-A-26-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4431,
+    "inputTokens": 9300,
+    "outputTokens": 389,
+    "costUsd": 0.02249,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9300,
+          "outputTokens": 389,
+          "costUsd": 0.02249,
+          "latencyMs": 4431,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-26",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-26-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 5086,
+    "inputTokens": 9300,
+    "outputTokens": 352,
+    "costUsd": 0.022119999999999997,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9300,
+          "outputTokens": 352,
+          "costUsd": 0.022119999999999997,
+          "latencyMs": 5086,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-26",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-26-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4330,
+    "inputTokens": 9300,
+    "outputTokens": 357,
+    "costUsd": 0.02217,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9300,
+          "outputTokens": 357,
+          "costUsd": 0.02217,
+          "latencyMs": 4330,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-27",
+    "arm": "BASE",
+    "callId": "POPA-A-27-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14879,
+    "inputTokens": 9451,
+    "outputTokens": 1395,
+    "costUsd": 0.032852,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9451,
+          "outputTokens": 1395,
+          "costUsd": 0.032852,
+          "latencyMs": 14879,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-27",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-27-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13368,
+    "inputTokens": 9451,
+    "outputTokens": 1302,
+    "costUsd": 0.031922,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9451,
+          "outputTokens": 1302,
+          "costUsd": 0.031922,
+          "latencyMs": 13368,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-27",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-27-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13220,
+    "inputTokens": 9451,
+    "outputTokens": 1223,
+    "costUsd": 0.031132,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9451,
+          "outputTokens": 1223,
+          "costUsd": 0.031132,
+          "latencyMs": 13219,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-28",
+    "arm": "BASE",
+    "callId": "POPA-A-28-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "OUTPUT_REJECTED",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 9322,
+    "inputTokens": 9313,
+    "outputTokens": 662,
+    "costUsd": 0.025246,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9313,
+          "outputTokens": 662,
+          "costUsd": 0.025246,
+          "latencyMs": 9321,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-28",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-28-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "OUTPUT_REJECTED",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 6626,
+    "inputTokens": 9313,
+    "outputTokens": 632,
+    "costUsd": 0.024946,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9313,
+          "outputTokens": 632,
+          "costUsd": 0.024946,
+          "latencyMs": 6626,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-28",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-28-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4804,
+    "inputTokens": 9313,
+    "outputTokens": 410,
+    "costUsd": 0.022726,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9313,
+          "outputTokens": 410,
+          "costUsd": 0.022726,
+          "latencyMs": 4804,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-29",
+    "arm": "BASE",
+    "callId": "POPA-A-29-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 31579,
+    "inputTokens": 9281,
+    "outputTokens": 339,
+    "costUsd": 0.021952,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9281,
+          "outputTokens": 339,
+          "costUsd": 0.021952,
+          "latencyMs": 31579,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-29",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-29-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4095,
+    "inputTokens": 9281,
+    "outputTokens": 336,
+    "costUsd": 0.021921999999999997,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9281,
+          "outputTokens": 336,
+          "costUsd": 0.021921999999999997,
+          "latencyMs": 4095,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-29",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-29-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 4278,
+    "inputTokens": 9281,
+    "outputTokens": 359,
+    "costUsd": 0.022151999999999998,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9281,
+          "outputTokens": 359,
+          "costUsd": 0.022151999999999998,
+          "latencyMs": 4278,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-32",
+    "arm": "BASE",
+    "callId": "POPA-A-32-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12616,
+    "inputTokens": 10171,
+    "outputTokens": 1185,
+    "costUsd": 0.032192,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10171,
+          "outputTokens": 1185,
+          "costUsd": 0.032192,
+          "latencyMs": 12615,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-32",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-32-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14237,
+    "inputTokens": 10171,
+    "outputTokens": 1280,
+    "costUsd": 0.033142,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10171,
+          "outputTokens": 1280,
+          "costUsd": 0.033142,
+          "latencyMs": 14237,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-32",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-32-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13412,
+    "inputTokens": 10171,
+    "outputTokens": 1164,
+    "costUsd": 0.031982,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10171,
+          "outputTokens": 1164,
+          "costUsd": 0.031982,
+          "latencyMs": 13412,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-33",
+    "arm": "BASE",
+    "callId": "POPA-A-33-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16589,
+    "inputTokens": 9358,
+    "outputTokens": 1622,
+    "costUsd": 0.034935999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9358,
+          "outputTokens": 1622,
+          "costUsd": 0.034935999999999995,
+          "latencyMs": 16589,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-33",
+    "arm": "PERMUTED",
+    "callId": "POPA-A-33-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15876,
+    "inputTokens": 9358,
+    "outputTokens": 1481,
+    "costUsd": 0.033526,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9358,
+          "outputTokens": 1481,
+          "costUsd": 0.033526,
+          "latencyMs": 15876,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "POPA-A-33",
+    "arm": "CROSS_PROCESS",
+    "callId": "POPA-A-33-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15617,
+    "inputTokens": 9358,
+    "outputTokens": 1622,
+    "costUsd": 0.034935999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9358,
+          "outputTokens": 1622,
+          "costUsd": 0.034935999999999995,
+          "latencyMs": 15617,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-01",
+    "arm": "BASE",
+    "callId": "AUG-01-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19143,
+    "inputTokens": 10105,
+    "outputTokens": 2017,
+    "costUsd": 0.04038,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10105,
+          "outputTokens": 2017,
+          "costUsd": 0.04038,
+          "latencyMs": 19143,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-01",
+    "arm": "PERMUTED",
+    "callId": "AUG-01-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16469,
+    "inputTokens": 10105,
+    "outputTokens": 1540,
+    "costUsd": 0.035609999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10105,
+          "outputTokens": 1540,
+          "costUsd": 0.035609999999999996,
+          "latencyMs": 16468,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-01",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-01-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19296,
+    "inputTokens": 10105,
+    "outputTokens": 1929,
+    "costUsd": 0.03949999999999999,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10105,
+          "outputTokens": 1929,
+          "costUsd": 0.03949999999999999,
+          "latencyMs": 19295,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-02",
+    "arm": "BASE",
+    "callId": "AUG-02-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16815,
+    "inputTokens": 9375,
+    "outputTokens": 1482,
+    "costUsd": 0.03357,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9375,
+          "outputTokens": 1482,
+          "costUsd": 0.03357,
+          "latencyMs": 16815,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-02",
+    "arm": "PERMUTED",
+    "callId": "AUG-02-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15838,
+    "inputTokens": 9375,
+    "outputTokens": 1232,
+    "costUsd": 0.03107,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9375,
+          "outputTokens": 1232,
+          "costUsd": 0.03107,
+          "latencyMs": 15838,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-02",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-02-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16753,
+    "inputTokens": 9375,
+    "outputTokens": 1399,
+    "costUsd": 0.03274,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9375,
+          "outputTokens": 1399,
+          "costUsd": 0.03274,
+          "latencyMs": 16753,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-03",
+    "arm": "BASE",
+    "callId": "AUG-03-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 31203,
+    "inputTokens": 10221,
+    "outputTokens": 2096,
+    "costUsd": 0.041402,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10221,
+          "outputTokens": 2096,
+          "costUsd": 0.041402,
+          "latencyMs": 31203,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-03",
+    "arm": "PERMUTED",
+    "callId": "AUG-03-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16860,
+    "inputTokens": 10221,
+    "outputTokens": 1640,
+    "costUsd": 0.036842,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10221,
+          "outputTokens": 1640,
+          "costUsd": 0.036842,
+          "latencyMs": 16860,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-03",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-03-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 31732,
+    "inputTokens": 10221,
+    "outputTokens": 1925,
+    "costUsd": 0.039692,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10221,
+          "outputTokens": 1925,
+          "costUsd": 0.039692,
+          "latencyMs": 31732,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-04",
+    "arm": "BASE",
+    "callId": "AUG-04-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14793,
+    "inputTokens": 9397,
+    "outputTokens": 230,
+    "costUsd": 0.021094,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9397,
+          "outputTokens": 230,
+          "costUsd": 0.021094,
+          "latencyMs": 14793,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-04",
+    "arm": "PERMUTED",
+    "callId": "AUG-04-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25685,
+    "inputTokens": 9397,
+    "outputTokens": 2523,
+    "costUsd": 0.04402400000000001,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9397,
+          "outputTokens": 2523,
+          "costUsd": 0.04402400000000001,
+          "latencyMs": 25685,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-04",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-04-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 29826,
+    "inputTokens": 9397,
+    "outputTokens": 2991,
+    "costUsd": 0.048704000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9397,
+          "outputTokens": 2991,
+          "costUsd": 0.048704000000000004,
+          "latencyMs": 29826,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-05",
+    "arm": "BASE",
+    "callId": "AUG-05-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23102,
+    "inputTokens": 9429,
+    "outputTokens": 2092,
+    "costUsd": 0.039778,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9429,
+          "outputTokens": 2092,
+          "costUsd": 0.039778,
+          "latencyMs": 23102,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-05",
+    "arm": "PERMUTED",
+    "callId": "AUG-05-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18223,
+    "inputTokens": 9429,
+    "outputTokens": 1838,
+    "costUsd": 0.037238,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9429,
+          "outputTokens": 1838,
+          "costUsd": 0.037238,
+          "latencyMs": 18223,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-05",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-05-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19788,
+    "inputTokens": 9429,
+    "outputTokens": 1877,
+    "costUsd": 0.037627999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9429,
+          "outputTokens": 1877,
+          "costUsd": 0.037627999999999995,
+          "latencyMs": 19788,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-06",
+    "arm": "BASE",
+    "callId": "AUG-06-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14876,
+    "inputTokens": 9360,
+    "outputTokens": 1472,
+    "costUsd": 0.03344,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9360,
+          "outputTokens": 1472,
+          "costUsd": 0.03344,
+          "latencyMs": 14876,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-06",
+    "arm": "PERMUTED",
+    "callId": "AUG-06-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15352,
+    "inputTokens": 9360,
+    "outputTokens": 1537,
+    "costUsd": 0.03409,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9360,
+          "outputTokens": 1537,
+          "costUsd": 0.03409,
+          "latencyMs": 15352,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-06",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-06-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15168,
+    "inputTokens": 9360,
+    "outputTokens": 1506,
+    "costUsd": 0.033780000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9360,
+          "outputTokens": 1506,
+          "costUsd": 0.033780000000000004,
+          "latencyMs": 15168,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-07",
+    "arm": "BASE",
+    "callId": "AUG-07-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 11043,
+    "inputTokens": 9320,
+    "outputTokens": 989,
+    "costUsd": 0.02853,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9320,
+          "outputTokens": 989,
+          "costUsd": 0.02853,
+          "latencyMs": 11043,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-07",
+    "arm": "PERMUTED",
+    "callId": "AUG-07-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 10850,
+    "inputTokens": 9320,
+    "outputTokens": 991,
+    "costUsd": 0.02855,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9320,
+          "outputTokens": 991,
+          "costUsd": 0.02855,
+          "latencyMs": 10850,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-07",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-07-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 10763,
+    "inputTokens": 9320,
+    "outputTokens": 985,
+    "costUsd": 0.02849,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9320,
+          "outputTokens": 985,
+          "costUsd": 0.02849,
+          "latencyMs": 10763,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-08",
+    "arm": "BASE",
+    "callId": "AUG-08-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20899,
+    "inputTokens": 9419,
+    "outputTokens": 2116,
+    "costUsd": 0.039998,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9419,
+          "outputTokens": 2116,
+          "costUsd": 0.039998,
+          "latencyMs": 20899,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-08",
+    "arm": "PERMUTED",
+    "callId": "AUG-08-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24354,
+    "inputTokens": 9419,
+    "outputTokens": 2413,
+    "costUsd": 0.042968000000000006,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9419,
+          "outputTokens": 2413,
+          "costUsd": 0.042968000000000006,
+          "latencyMs": 24354,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-08",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-08-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22764,
+    "inputTokens": 9419,
+    "outputTokens": 2277,
+    "costUsd": 0.041608,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9419,
+          "outputTokens": 2277,
+          "costUsd": 0.041608,
+          "latencyMs": 22764,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-09",
+    "arm": "BASE",
+    "callId": "AUG-09-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12504,
+    "inputTokens": 10156,
+    "outputTokens": 1139,
+    "costUsd": 0.031702,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10156,
+          "outputTokens": 1139,
+          "costUsd": 0.031702,
+          "latencyMs": 12504,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-09",
+    "arm": "PERMUTED",
+    "callId": "AUG-09-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15525,
+    "inputTokens": 10156,
+    "outputTokens": 1438,
+    "costUsd": 0.034692,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10156,
+          "outputTokens": 1438,
+          "costUsd": 0.034692,
+          "latencyMs": 15525,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-09",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-09-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16172,
+    "inputTokens": 10156,
+    "outputTokens": 1459,
+    "costUsd": 0.034902,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 10156,
+          "outputTokens": 1459,
+          "costUsd": 0.034902,
+          "latencyMs": 16172,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-10",
+    "arm": "BASE",
+    "callId": "AUG-10-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20175,
+    "inputTokens": 9427,
+    "outputTokens": 2116,
+    "costUsd": 0.040013999999999994,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9427,
+          "outputTokens": 2116,
+          "costUsd": 0.040013999999999994,
+          "latencyMs": 20175,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-10",
+    "arm": "PERMUTED",
+    "callId": "AUG-10-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24474,
+    "inputTokens": 9427,
+    "outputTokens": 2556,
+    "costUsd": 0.044413999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9427,
+          "outputTokens": 2556,
+          "costUsd": 0.044413999999999995,
+          "latencyMs": 24474,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-10",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-10-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23237,
+    "inputTokens": 9427,
+    "outputTokens": 2356,
+    "costUsd": 0.042414,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9427,
+          "outputTokens": 2356,
+          "costUsd": 0.042414,
+          "latencyMs": 23237,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-11",
+    "arm": "BASE",
+    "callId": "AUG-11-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19562,
+    "inputTokens": 9349,
+    "outputTokens": 2014,
+    "costUsd": 0.038838,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9349,
+          "outputTokens": 2014,
+          "costUsd": 0.038838,
+          "latencyMs": 19562,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-11",
+    "arm": "PERMUTED",
+    "callId": "AUG-11-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20787,
+    "inputTokens": 9349,
+    "outputTokens": 1925,
+    "costUsd": 0.037947999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9349,
+          "outputTokens": 1925,
+          "costUsd": 0.037947999999999996,
+          "latencyMs": 20787,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-11",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-11-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19391,
+    "inputTokens": 9349,
+    "outputTokens": 1871,
+    "costUsd": 0.037408,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9349,
+          "outputTokens": 1871,
+          "costUsd": 0.037408,
+          "latencyMs": 19390,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-12",
+    "arm": "BASE",
+    "callId": "AUG-12-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24438,
+    "inputTokens": 9464,
+    "outputTokens": 2453,
+    "costUsd": 0.043458,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9464,
+          "outputTokens": 2453,
+          "costUsd": 0.043458,
+          "latencyMs": 24438,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-12",
+    "arm": "PERMUTED",
+    "callId": "AUG-12-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25275,
+    "inputTokens": 9464,
+    "outputTokens": 2620,
+    "costUsd": 0.045128,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9464,
+          "outputTokens": 2620,
+          "costUsd": 0.045128,
+          "latencyMs": 25275,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-12",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-12-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23469,
+    "inputTokens": 9464,
+    "outputTokens": 2378,
+    "costUsd": 0.042707999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9464,
+          "outputTokens": 2378,
+          "costUsd": 0.042707999999999996,
+          "latencyMs": 23469,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-16",
+    "arm": "BASE",
+    "callId": "AUG-16-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 9827,
+    "inputTokens": 9456,
+    "outputTokens": 907,
+    "costUsd": 0.027982,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9456,
+          "outputTokens": 907,
+          "costUsd": 0.027982,
+          "latencyMs": 9827,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-16",
+    "arm": "PERMUTED",
+    "callId": "AUG-16-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15544,
+    "inputTokens": 9456,
+    "outputTokens": 1478,
+    "costUsd": 0.033692,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9456,
+          "outputTokens": 1478,
+          "costUsd": 0.033692,
+          "latencyMs": 15544,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "AUG-16",
+    "arm": "CROSS_PROCESS",
+    "callId": "AUG-16-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14664,
+    "inputTokens": 9456,
+    "outputTokens": 1451,
+    "costUsd": 0.033422,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9456,
+          "outputTokens": 1451,
+          "costUsd": 0.033422,
+          "latencyMs": 14664,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-01",
+    "arm": "BASE",
+    "callId": "SEM-01-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 26288,
+    "inputTokens": 9222,
+    "outputTokens": 2685,
+    "costUsd": 0.045294,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9222,
+          "outputTokens": 2685,
+          "costUsd": 0.045294,
+          "latencyMs": 26288,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-01",
+    "arm": "PERMUTED",
+    "callId": "SEM-01-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 36282,
+    "inputTokens": 9222,
+    "outputTokens": 2585,
+    "costUsd": 0.044294,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9222,
+          "outputTokens": 2585,
+          "costUsd": 0.044294,
+          "latencyMs": 36282,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-01",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-01-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 26123,
+    "inputTokens": 9222,
+    "outputTokens": 2660,
+    "costUsd": 0.045044,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9222,
+          "outputTokens": 2660,
+          "costUsd": 0.045044,
+          "latencyMs": 26123,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-02",
+    "arm": "BASE",
+    "callId": "SEM-02-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20768,
+    "inputTokens": 9177,
+    "outputTokens": 2008,
+    "costUsd": 0.038433999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9177,
+          "outputTokens": 2008,
+          "costUsd": 0.038433999999999996,
+          "latencyMs": 20768,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-02",
+    "arm": "PERMUTED",
+    "callId": "SEM-02-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25604,
+    "inputTokens": 9177,
+    "outputTokens": 2574,
+    "costUsd": 0.044093999999999994,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9177,
+          "outputTokens": 2574,
+          "costUsd": 0.044093999999999994,
+          "latencyMs": 25604,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-02",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-02-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22194,
+    "inputTokens": 9177,
+    "outputTokens": 2229,
+    "costUsd": 0.040644,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9177,
+          "outputTokens": 2229,
+          "costUsd": 0.040644,
+          "latencyMs": 22194,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-03",
+    "arm": "BASE",
+    "callId": "SEM-03-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24189,
+    "inputTokens": 9855,
+    "outputTokens": 2705,
+    "costUsd": 0.046759999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9855,
+          "outputTokens": 2705,
+          "costUsd": 0.046759999999999996,
+          "latencyMs": 24189,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-03",
+    "arm": "PERMUTED",
+    "callId": "SEM-03-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22124,
+    "inputTokens": 9855,
+    "outputTokens": 2323,
+    "costUsd": 0.04294,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9855,
+          "outputTokens": 2323,
+          "costUsd": 0.04294,
+          "latencyMs": 22124,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-03",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-03-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25482,
+    "inputTokens": 9855,
+    "outputTokens": 2696,
+    "costUsd": 0.04667,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9855,
+          "outputTokens": 2696,
+          "costUsd": 0.04667,
+          "latencyMs": 25482,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-04",
+    "arm": "BASE",
+    "callId": "SEM-04-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25701,
+    "inputTokens": 9247,
+    "outputTokens": 2440,
+    "costUsd": 0.042894,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9247,
+          "outputTokens": 2440,
+          "costUsd": 0.042894,
+          "latencyMs": 25700,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-04",
+    "arm": "PERMUTED",
+    "callId": "SEM-04-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22307,
+    "inputTokens": 9247,
+    "outputTokens": 1996,
+    "costUsd": 0.038454,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9247,
+          "outputTokens": 1996,
+          "costUsd": 0.038454,
+          "latencyMs": 22307,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-04",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-04-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19793,
+    "inputTokens": 9247,
+    "outputTokens": 1925,
+    "costUsd": 0.037744,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9247,
+          "outputTokens": 1925,
+          "costUsd": 0.037744,
+          "latencyMs": 19793,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-05",
+    "arm": "BASE",
+    "callId": "SEM-05-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 7578,
+    "inputTokens": 9220,
+    "outputTokens": 244,
+    "costUsd": 0.020880000000000003,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9220,
+          "outputTokens": 244,
+          "costUsd": 0.020880000000000003,
+          "latencyMs": 7578,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-05",
+    "arm": "PERMUTED",
+    "callId": "SEM-05-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 27644,
+    "inputTokens": 9220,
+    "outputTokens": 2814,
+    "costUsd": 0.04658,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9220,
+          "outputTokens": 2814,
+          "costUsd": 0.04658,
+          "latencyMs": 27643,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-05",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-05-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23561,
+    "inputTokens": 9220,
+    "outputTokens": 2485,
+    "costUsd": 0.043289999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9220,
+          "outputTokens": 2485,
+          "costUsd": 0.043289999999999995,
+          "latencyMs": 23561,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-07",
+    "arm": "BASE",
+    "callId": "SEM-07-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20265,
+    "inputTokens": 9192,
+    "outputTokens": 2039,
+    "costUsd": 0.038774,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9192,
+          "outputTokens": 2039,
+          "costUsd": 0.038774,
+          "latencyMs": 20265,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-07",
+    "arm": "PERMUTED",
+    "callId": "SEM-07-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18503,
+    "inputTokens": 9192,
+    "outputTokens": 1908,
+    "costUsd": 0.037464,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9192,
+          "outputTokens": 1908,
+          "costUsd": 0.037464,
+          "latencyMs": 18503,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-07",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-07-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22958,
+    "inputTokens": 9192,
+    "outputTokens": 2452,
+    "costUsd": 0.042904,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9192,
+          "outputTokens": 2452,
+          "costUsd": 0.042904,
+          "latencyMs": 22958,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-08",
+    "arm": "BASE",
+    "callId": "SEM-08-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23960,
+    "inputTokens": 9193,
+    "outputTokens": 2404,
+    "costUsd": 0.042426,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9193,
+          "outputTokens": 2404,
+          "costUsd": 0.042426,
+          "latencyMs": 23959,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-08",
+    "arm": "PERMUTED",
+    "callId": "SEM-08-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25507,
+    "inputTokens": 9193,
+    "outputTokens": 2628,
+    "costUsd": 0.044666,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9193,
+          "outputTokens": 2628,
+          "costUsd": 0.044666,
+          "latencyMs": 25507,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-08",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-08-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 32056,
+    "inputTokens": 9193,
+    "outputTokens": 2372,
+    "costUsd": 0.042106,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9193,
+          "outputTokens": 2372,
+          "costUsd": 0.042106,
+          "latencyMs": 32056,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-09",
+    "arm": "BASE",
+    "callId": "SEM-09-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19041,
+    "inputTokens": 9849,
+    "outputTokens": 2006,
+    "costUsd": 0.039758,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9849,
+          "outputTokens": 2006,
+          "costUsd": 0.039758,
+          "latencyMs": 19041,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-09",
+    "arm": "PERMUTED",
+    "callId": "SEM-09-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21094,
+    "inputTokens": 9849,
+    "outputTokens": 2210,
+    "costUsd": 0.041798,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9849,
+          "outputTokens": 2210,
+          "costUsd": 0.041798,
+          "latencyMs": 21094,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-09",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-09-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23551,
+    "inputTokens": 9849,
+    "outputTokens": 2438,
+    "costUsd": 0.044078,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9849,
+          "outputTokens": 2438,
+          "costUsd": 0.044078,
+          "latencyMs": 23551,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-10",
+    "arm": "BASE",
+    "callId": "SEM-10-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 26783,
+    "inputTokens": 9211,
+    "outputTokens": 2802,
+    "costUsd": 0.046442,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9211,
+          "outputTokens": 2802,
+          "costUsd": 0.046442,
+          "latencyMs": 26783,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-10",
+    "arm": "PERMUTED",
+    "callId": "SEM-10-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 30730,
+    "inputTokens": 9211,
+    "outputTokens": 3316,
+    "costUsd": 0.051582,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9211,
+          "outputTokens": 3316,
+          "costUsd": 0.051582,
+          "latencyMs": 30730,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-10",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-10-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 26335,
+    "inputTokens": 9211,
+    "outputTokens": 2762,
+    "costUsd": 0.046042,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9211,
+          "outputTokens": 2762,
+          "costUsd": 0.046042,
+          "latencyMs": 26335,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-15",
+    "arm": "BASE",
+    "callId": "SEM-15-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20906,
+    "inputTokens": 9832,
+    "outputTokens": 2192,
+    "costUsd": 0.041583999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9832,
+          "outputTokens": 2192,
+          "costUsd": 0.041583999999999996,
+          "latencyMs": 20906,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-15",
+    "arm": "PERMUTED",
+    "callId": "SEM-15-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22630,
+    "inputTokens": 9832,
+    "outputTokens": 2273,
+    "costUsd": 0.042394,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9832,
+          "outputTokens": 2273,
+          "costUsd": 0.042394,
+          "latencyMs": 22630,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-15",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-15-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 30514,
+    "inputTokens": 9832,
+    "outputTokens": 2244,
+    "costUsd": 0.042104,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9832,
+          "outputTokens": 2244,
+          "costUsd": 0.042104,
+          "latencyMs": 30514,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-16",
+    "arm": "BASE",
+    "callId": "SEM-16-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20991,
+    "inputTokens": 9200,
+    "outputTokens": 2069,
+    "costUsd": 0.03909,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9200,
+          "outputTokens": 2069,
+          "costUsd": 0.03909,
+          "latencyMs": 20991,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-16",
+    "arm": "PERMUTED",
+    "callId": "SEM-16-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22819,
+    "inputTokens": 9200,
+    "outputTokens": 2244,
+    "costUsd": 0.04084,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9200,
+          "outputTokens": 2244,
+          "costUsd": 0.04084,
+          "latencyMs": 22819,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-16",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-16-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24592,
+    "inputTokens": 9200,
+    "outputTokens": 2520,
+    "costUsd": 0.0436,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9200,
+          "outputTokens": 2520,
+          "costUsd": 0.0436,
+          "latencyMs": 24591,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-17",
+    "arm": "BASE",
+    "callId": "SEM-17-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21198,
+    "inputTokens": 9201,
+    "outputTokens": 2015,
+    "costUsd": 0.038552,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9201,
+          "outputTokens": 2015,
+          "costUsd": 0.038552,
+          "latencyMs": 21198,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-17",
+    "arm": "PERMUTED",
+    "callId": "SEM-17-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21297,
+    "inputTokens": 9201,
+    "outputTokens": 2116,
+    "costUsd": 0.039562,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9201,
+          "outputTokens": 2116,
+          "costUsd": 0.039562,
+          "latencyMs": 21297,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-17",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-17-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20837,
+    "inputTokens": 9201,
+    "outputTokens": 2026,
+    "costUsd": 0.038662,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9201,
+          "outputTokens": 2026,
+          "costUsd": 0.038662,
+          "latencyMs": 20837,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-18",
+    "arm": "BASE",
+    "callId": "SEM-18-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22098,
+    "inputTokens": 9178,
+    "outputTokens": 2048,
+    "costUsd": 0.038835999999999996,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9178,
+          "outputTokens": 2048,
+          "costUsd": 0.038835999999999996,
+          "latencyMs": 22098,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-18",
+    "arm": "PERMUTED",
+    "callId": "SEM-18-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21369,
+    "inputTokens": 9178,
+    "outputTokens": 2037,
+    "costUsd": 0.038726000000000003,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9178,
+          "outputTokens": 2037,
+          "costUsd": 0.038726000000000003,
+          "latencyMs": 21369,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-18",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-18-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24767,
+    "inputTokens": 9178,
+    "outputTokens": 2449,
+    "costUsd": 0.042845999999999995,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9178,
+          "outputTokens": 2449,
+          "costUsd": 0.042845999999999995,
+          "latencyMs": 24767,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-19",
+    "arm": "BASE",
+    "callId": "SEM-19-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 22138,
+    "inputTokens": 9239,
+    "outputTokens": 2059,
+    "costUsd": 0.039068000000000006,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9239,
+          "outputTokens": 2059,
+          "costUsd": 0.039068000000000006,
+          "latencyMs": 22138,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-19",
+    "arm": "PERMUTED",
+    "callId": "SEM-19-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 25149,
+    "inputTokens": 9239,
+    "outputTokens": 2539,
+    "costUsd": 0.043868000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9239,
+          "outputTokens": 2539,
+          "costUsd": 0.043868000000000004,
+          "latencyMs": 25149,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-19",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-19-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19796,
+    "inputTokens": 9239,
+    "outputTokens": 1915,
+    "costUsd": 0.037628,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9239,
+          "outputTokens": 1915,
+          "costUsd": 0.037628,
+          "latencyMs": 19796,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-21",
+    "arm": "BASE",
+    "callId": "SEM-21-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 24166,
+    "inputTokens": 9819,
+    "outputTokens": 2352,
+    "costUsd": 0.043158,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9819,
+          "outputTokens": 2352,
+          "costUsd": 0.043158,
+          "latencyMs": 24166,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-21",
+    "arm": "PERMUTED",
+    "callId": "SEM-21-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 5322,
+    "inputTokens": 9819,
+    "outputTokens": 234,
+    "costUsd": 0.021977999999999998,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9819,
+          "outputTokens": 234,
+          "costUsd": 0.021977999999999998,
+          "latencyMs": 5322,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-21",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-21-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 3998,
+    "inputTokens": 9819,
+    "outputTokens": 230,
+    "costUsd": 0.021938,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9819,
+          "outputTokens": 230,
+          "costUsd": 0.021938,
+          "latencyMs": 3998,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-24",
+    "arm": "BASE",
+    "callId": "SEM-24-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20575,
+    "inputTokens": 9218,
+    "outputTokens": 1982,
+    "costUsd": 0.038256,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9218,
+          "outputTokens": 1982,
+          "costUsd": 0.038256,
+          "latencyMs": 20575,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-24",
+    "arm": "PERMUTED",
+    "callId": "SEM-24-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21914,
+    "inputTokens": 9218,
+    "outputTokens": 2280,
+    "costUsd": 0.041236,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9218,
+          "outputTokens": 2280,
+          "costUsd": 0.041236,
+          "latencyMs": 21914,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-24",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-24-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19251,
+    "inputTokens": 9218,
+    "outputTokens": 1945,
+    "costUsd": 0.037886,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9218,
+          "outputTokens": 1945,
+          "costUsd": 0.037886,
+          "latencyMs": 19251,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-30",
+    "arm": "BASE",
+    "callId": "SEM-30-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17082,
+    "inputTokens": 9196,
+    "outputTokens": 1564,
+    "costUsd": 0.034032,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9196,
+          "outputTokens": 1564,
+          "costUsd": 0.034032,
+          "latencyMs": 17081,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-30",
+    "arm": "PERMUTED",
+    "callId": "SEM-30-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17139,
+    "inputTokens": 9196,
+    "outputTokens": 1471,
+    "costUsd": 0.033102,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9196,
+          "outputTokens": 1471,
+          "costUsd": 0.033102,
+          "latencyMs": 17139,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-30",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-30-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17896,
+    "inputTokens": 9196,
+    "outputTokens": 1579,
+    "costUsd": 0.034182000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9196,
+          "outputTokens": 1579,
+          "costUsd": 0.034182000000000004,
+          "latencyMs": 17896,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-31",
+    "arm": "BASE",
+    "callId": "SEM-31-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17100,
+    "inputTokens": 9197,
+    "outputTokens": 1587,
+    "costUsd": 0.034264,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9197,
+          "outputTokens": 1587,
+          "costUsd": 0.034264,
+          "latencyMs": 17100,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-31",
+    "arm": "PERMUTED",
+    "callId": "SEM-31-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18538,
+    "inputTokens": 9197,
+    "outputTokens": 1814,
+    "costUsd": 0.036534,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9197,
+          "outputTokens": 1814,
+          "costUsd": 0.036534,
+          "latencyMs": 18538,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-31",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-31-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 27034,
+    "inputTokens": 9197,
+    "outputTokens": 2575,
+    "costUsd": 0.044144,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9197,
+          "outputTokens": 2575,
+          "costUsd": 0.044144,
+          "latencyMs": 27034,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-32",
+    "arm": "BASE",
+    "callId": "SEM-32-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 10544,
+    "inputTokens": 9197,
+    "outputTokens": 981,
+    "costUsd": 0.028204,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9197,
+          "outputTokens": 981,
+          "costUsd": 0.028204,
+          "latencyMs": 10544,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-32",
+    "arm": "PERMUTED",
+    "callId": "SEM-32-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12902,
+    "inputTokens": 9197,
+    "outputTokens": 1148,
+    "costUsd": 0.029873999999999998,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9197,
+          "outputTokens": 1148,
+          "costUsd": 0.029873999999999998,
+          "latencyMs": 12902,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-32",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-32-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 12284,
+    "inputTokens": 9197,
+    "outputTokens": 1183,
+    "costUsd": 0.030224,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9197,
+          "outputTokens": 1183,
+          "costUsd": 0.030224,
+          "latencyMs": 12283,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-33",
+    "arm": "BASE",
+    "callId": "SEM-33-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14238,
+    "inputTokens": 9190,
+    "outputTokens": 1314,
+    "costUsd": 0.03152,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9190,
+          "outputTokens": 1314,
+          "costUsd": 0.03152,
+          "latencyMs": 14238,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-33",
+    "arm": "PERMUTED",
+    "callId": "SEM-33-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 11317,
+    "inputTokens": 9190,
+    "outputTokens": 1107,
+    "costUsd": 0.02945,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9190,
+          "outputTokens": 1107,
+          "costUsd": 0.02945,
+          "latencyMs": 11317,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-33",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-33-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 15244,
+    "inputTokens": 9190,
+    "outputTokens": 1537,
+    "costUsd": 0.03375,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9190,
+          "outputTokens": 1537,
+          "costUsd": 0.03375,
+          "latencyMs": 15244,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-34",
+    "arm": "BASE",
+    "callId": "SEM-34-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 9792,
+    "inputTokens": 9178,
+    "outputTokens": 862,
+    "costUsd": 0.026976,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9178,
+          "outputTokens": 862,
+          "costUsd": 0.026976,
+          "latencyMs": 9792,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-34",
+    "arm": "PERMUTED",
+    "callId": "SEM-34-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 13533,
+    "inputTokens": 9178,
+    "outputTokens": 1245,
+    "costUsd": 0.030806,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9178,
+          "outputTokens": 1245,
+          "costUsd": 0.030806,
+          "latencyMs": 13533,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SEM-34",
+    "arm": "CROSS_PROCESS",
+    "callId": "SEM-34-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 14419,
+    "inputTokens": 9178,
+    "outputTokens": 1456,
+    "costUsd": 0.032916,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9178,
+          "outputTokens": 1456,
+          "costUsd": 0.032916,
+          "latencyMs": 14419,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-019",
+    "arm": "BASE",
+    "callId": "SRC-MSHA-019-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21971,
+    "inputTokens": 9092,
+    "outputTokens": 2065,
+    "costUsd": 0.038834,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9092,
+          "outputTokens": 2065,
+          "costUsd": 0.038834,
+          "latencyMs": 21971,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-019",
+    "arm": "PERMUTED",
+    "callId": "SRC-MSHA-019-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21650,
+    "inputTokens": 9092,
+    "outputTokens": 1777,
+    "costUsd": 0.035954,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9092,
+          "outputTokens": 1777,
+          "costUsd": 0.035954,
+          "latencyMs": 21650,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-019",
+    "arm": "CROSS_PROCESS",
+    "callId": "SRC-MSHA-019-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 21204,
+    "inputTokens": 9092,
+    "outputTokens": 2071,
+    "costUsd": 0.038894,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9092,
+          "outputTokens": 2071,
+          "costUsd": 0.038894,
+          "latencyMs": 21204,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-041",
+    "arm": "BASE",
+    "callId": "SRC-MSHA-041-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 17264,
+    "inputTokens": 9714,
+    "outputTokens": 1456,
+    "costUsd": 0.033988000000000004,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9714,
+          "outputTokens": 1456,
+          "costUsd": 0.033988000000000004,
+          "latencyMs": 17264,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-041",
+    "arm": "PERMUTED",
+    "callId": "SRC-MSHA-041-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19700,
+    "inputTokens": 9714,
+    "outputTokens": 1977,
+    "costUsd": 0.039198,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9714,
+          "outputTokens": 1977,
+          "costUsd": 0.039198,
+          "latencyMs": 19699,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-041",
+    "arm": "CROSS_PROCESS",
+    "callId": "SRC-MSHA-041-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 16996,
+    "inputTokens": 9714,
+    "outputTokens": 1675,
+    "costUsd": 0.036178,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9714,
+          "outputTokens": 1675,
+          "costUsd": 0.036178,
+          "latencyMs": 16996,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-057",
+    "arm": "BASE",
+    "callId": "SRC-MSHA-057-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 18741,
+    "inputTokens": 9102,
+    "outputTokens": 1989,
+    "costUsd": 0.038094,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9102,
+          "outputTokens": 1989,
+          "costUsd": 0.038094,
+          "latencyMs": 18741,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-057",
+    "arm": "PERMUTED",
+    "callId": "SRC-MSHA-057-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 20479,
+    "inputTokens": 9102,
+    "outputTokens": 2061,
+    "costUsd": 0.038814,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9102,
+          "outputTokens": 2061,
+          "costUsd": 0.038814,
+          "latencyMs": 20479,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-MSHA-057",
+    "arm": "CROSS_PROCESS",
+    "callId": "SRC-MSHA-057-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 19353,
+    "inputTokens": 9102,
+    "outputTokens": 1903,
+    "costUsd": 0.037234,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9102,
+          "outputTokens": 1903,
+          "costUsd": 0.037234,
+          "latencyMs": 19353,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-OSHA-005",
+    "arm": "BASE",
+    "callId": "SRC-OSHA-005-BASE-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 102867,
+    "inputTokens": 9730,
+    "outputTokens": 2317,
+    "costUsd": 0.04263,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9730,
+          "outputTokens": 2317,
+          "costUsd": 0.04263,
+          "latencyMs": 102867,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-OSHA-005",
+    "arm": "PERMUTED",
+    "callId": "SRC-OSHA-005-PERMUTED-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23104,
+    "inputTokens": 9730,
+    "outputTokens": 2300,
+    "costUsd": 0.04246,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9730,
+          "outputTokens": 2300,
+          "costUsd": 0.04246,
+          "latencyMs": 23104,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  },
+  {
+    "rowId": "SRC-OSHA-005",
+    "arm": "CROSS_PROCESS",
+    "callId": "SRC-OSHA-005-CROSS_PROCESS-proc-632fa2eae341",
+    "processId": "proc-632fa2eae341",
+    "layerStatus": "PRESENT",
+    "failureKind": null,
+    "attemptCount": 1,
+    "latencyMs": 23313,
+    "inputTokens": 9730,
+    "outputTokens": 2399,
+    "costUsd": 0.04345,
+    "modelIdentity": "claude-sonnet-5",
+    "retrySuppressed": null,
+    "attempts": [
+      {
+        "attemptIndex": 0,
+        "isRetry": false,
+        "ok": true,
+        "failureKind": null,
+        "causedRetry": null,
+        "modelIdentity": "claude-sonnet-5",
+        "usage": {
+          "inputTokens": 9730,
+          "outputTokens": 2399,
+          "costUsd": 0.04345,
+          "latencyMs": 23312,
+          "httpStatus": 200,
+          "modelIdentity": "claude-sonnet-5"
+        }
+      }
+    ]
+  }
+]

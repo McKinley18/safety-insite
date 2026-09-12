@@ -1,0 +1,24 @@
+WORKTREE STATE -- section 124 (2026-08-31)
+HEAD:   37a5d1b50abe836eb19dd24ee18ad10557bda131
+AHEAD/BEHIND vs origin/main: 0	1
+staged 0  tracked-modified 14  stashes 4  tags 24
+
+SOURCE FILES CHANGED THIS PHASE: NONE
+RESERVED MATERIAL OPENED THIS PHASE: NONE
+PROVIDER CALLS: 0    PRODUCTION MUTATION: NONE
+
+TRACKED MODIFIED:
+backend/package.json
+backend/scripts/probe-expert-routing.ts
+backend/scripts/test-expert-contract-foundation.ts
+backend/scripts/test-expert-routing-contract.ts
+backend/src/safescope-v2/evidence/evidence-foundation.ts
+backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts
+docs/INSITE_CURRENT_STATE.json
+docs/INSITE_ENGINEERING_BLUEPRINT.md
+frontend-next/tsconfig.json
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml

@@ -1,0 +1,1818 @@
+{
+  "operation": "§142 Expert HazLenz hosted linkage validation probe",
+  "isFormalEvaluation": false,
+  "formalGateStatusClaimed": "NONE",
+  "m14RemediationStatus": "NOT_ATTEMPTED",
+  "startedAt": "2026-09-03T03:25:52.496Z",
+  "finishedAt": "2026-09-03T03:29:41.016Z",
+  "stopReason": "COMPLETED",
+  "identityViolation": null,
+  "accounting": {
+    "callsAttempted": 16,
+    "callsCompleted": 16,
+    "providerRequestsAttempted": 16,
+    "retryRequestsAttempted": 0,
+    "inputTokens": 200974,
+    "outputTokens": 18936,
+    "spendUsd": 0.5913080000000001,
+    "callCeiling": 16,
+    "requestCeiling": 20,
+    "retryRequestBudget": 4,
+    "spendCeilingUsd": 2.08
+  },
+  "providerInvocationsThisProcess": 16,
+  "providerInvocationCountHistoricalFormal": 195,
+  "retryCauses": [],
+  "retriesSuppressed": [],
+  "promptIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v8",
+    "contractVersion": "hazlenz.expert.analysis.v2",
+    "systemPromptSha256": "7f143cb69b36a8969b588b0d104ca795b74776e55f4a6a53aed68eba0c1208fb",
+    "wireSchemaSha256": "614311db7a5e2c98a0f787a23b2d9f733431b13c72e5b9be592053014844773f"
+  },
+  "callDisposition": {
+    "present": 16,
+    "outputRejected": 0,
+    "providerFailed": 0
+  },
+  "persistence": {
+    "storeFile": "RUN-RECORDS.jsonl",
+    "storeSha256": "7843260ca9cabbba471fa3aed4d4e8a2c0e3b048031e48d8ea03932773cf1d24",
+    "recordsOnDisk": 16,
+    "parseProblems": [],
+    "completenessProblems": [],
+    "midRunReadBackProof": {
+      "rowId": "LP-A1",
+      "provenBeforeExit": true,
+      "recordsOnDisk": 1
+    }
+  },
+  "linkageDiagnostics": {
+    "measuredAgainst": "the AUTHORED per-row expectation in the v2 manifest, never collection co-occurrence. A clarification never asked is a RETENTION event, not a linkage failure.",
+    "REQUIRED_LINKAGE_OPPORTUNITIES": 4,
+    "REQUIRED_LINKAGE_AUTHORED_ROWS": 4,
+    "REQUIRED_LINKAGE_POPULATED": 4,
+    "REQUIRED_LINKAGE_VALID": 4,
+    "REQUIRED_LINKAGE_MISSING": 0,
+    "REQUIRED_ROWS_WITH_NO_CLARIFICATION": 0,
+    "FORBIDDEN_LINKAGE_ACCEPTED": 1,
+    "INVALID_LINKAGE_STRIPPED": 0,
+    "ARBITRATION_OPPORTUNITIES": 0,
+    "ARBITRATION_EVENTS": 0,
+    "SURVIVING_LINKED_CONTRADICTIONS": 0,
+    "ARBITRATION_LIVE_STATUS": "NO_NATURAL_OPPORTUNITY",
+    "classification": "LINKAGE_PARTIAL",
+    "perRow": [
+      {
+        "rowId": "LP-B1",
+        "clarificationsEmitted": 1,
+        "linksPopulated": 1,
+        "linksValid": 1,
+        "linksUnresolved": 0,
+        "status": "SATISFIED"
+      },
+      {
+        "rowId": "LP-L1",
+        "clarificationsEmitted": 1,
+        "linksPopulated": 1,
+        "linksValid": 1,
+        "linksUnresolved": 0,
+        "status": "SATISFIED"
+      },
+      {
+        "rowId": "LP-L2",
+        "clarificationsEmitted": 1,
+        "linksPopulated": 1,
+        "linksValid": 1,
+        "linksUnresolved": 0,
+        "status": "SATISFIED"
+      },
+      {
+        "rowId": "LP-L3",
+        "clarificationsEmitted": 1,
+        "linksPopulated": 1,
+        "linksValid": 1,
+        "linksUnresolved": 0,
+        "status": "SATISFIED"
+      }
+    ],
+    "arbitrationEventDetail": [],
+    "invalidLinkageDetail": [],
+    "survivingContradictionDetail": []
+  },
+  "clarificationClassification": [
+    {
+      "rowId": "LP-B1",
+      "classification": "LINK_REQUIRED",
+      "clarificationId": "clar-1",
+      "question": "Has the pump's electrical energy source been locked out and tagged out (with a physical lock/tag applied by the millwright) in addition to placing the local control switch in the OFF position?",
+      "whyItMatters": "If a lock/tag has in fact been applied, the electrical hazardous-energy exposure is controlled and only the guarding violation stands; if no lock/tag has been applied, the switch could be inadvertently or remotely re-energized while the millwright's hands are inside the coupling housing, creating a life-threatening hazardous-energy exposure requiring immediate stop-work.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "BLOCKING",
+      "emittedLink": "cand-loto",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "cand-loto:lockout_tagout:ACTIVE",
+        "cand-hydraulic:hydraulic_pneumatic_energy:ACTIVE"
+      ],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "LP-B3",
+      "classification": "LINK_ALLOWED",
+      "clarificationId": "dosimetry-result-unavailable",
+      "question": "What did the personal noise dosimetry reading taken last month show, and can it be located or repeated now?",
+      "whyItMatters": "If the recorded dose shows exposure below an action level, the severity and urgency of required controls differs from a result showing significant overexposure; without the result, the actual magnitude of this worker's noise exposure cannot be established, only that hearing protection was absent during observed operation.",
+      "affectedDecision": "HAZARD_SEVERITY",
+      "criticality": "IMPORTANT",
+      "emittedLink": null,
+      "linkPopulated": false,
+      "referencedCandidateExists": null,
+      "emittedCandidates": [
+        "bystander-noise-exposure:noise_exposure:ACTIVE"
+      ],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "LP-B4",
+      "classification": "LINK_ALLOWED",
+      "clarificationId": "cq-1",
+      "question": "Is anyone required to access or work on the crane runway walkway while the twelve foot handrail section remains off?",
+      "whyItMatters": "If workers are required to access that walkway during the three-day repair, interim fall protection (guardrail, personal fall arrest, or barricading with restricted access) is needed for those exposed workers; if no one is required to access it and the area is effectively barricaded off from foot traffic, the exposure is limited to the welder performing the repair and no additional access-driven control is needed for other personnel.",
+      "affectedDecision": "EXPOSURE",
+      "criticality": "BLOCKING",
+      "emittedLink": null,
+      "linkPopulated": false,
+      "referencedCandidateExists": null,
+      "emittedCandidates": [],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "LP-L1",
+      "classification": "LINK_REQUIRED",
+      "clarificationId": "clar-deenergized",
+      "question": "Is the number 5 mixer's agitator drive de-energized and locked out at its disconnect while the access door is open and the operator is reaching inside?",
+      "whyItMatters": "If the drive is de-energized and locked out, the immediate energization hazard to the operator's arm inside the bowl is controlled and the priority issue is the defeated interlock/guarding; if the drive is NOT de-energized, the operator is currently exposed to potential startup or motion of the agitator while their arm is in the bowl, which is an imminent-danger condition requiring immediate stop of the activity.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "BLOCKING",
+      "emittedLink": "cand-loto-not-established",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "cand-interlock-defeat:machine_guarding:ACTIVE",
+        "cand-loto-not-established:lockout_tagout:INSUFFICIENT_EVIDENCE"
+      ],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "LP-L2",
+      "classification": "LINK_REQUIRED",
+      "clarificationId": "clar-purge-status",
+      "question": "Was the pit purged or otherwise verified free of flammable/toxic atmosphere before the suction hose was inserted and the pump started?",
+      "whyItMatters": "If the pit was purged and verified safe, the confined space and fire/explosion exposure from residual solvent vapors is substantially reduced and the current work may proceed with standard precautions; if it was not purged, the pit may contain an untested flammable or toxic atmosphere being actively disturbed by the running pump with no gas detector in use, which is a materially more severe and urgent exposure requiring the work to stop until atmospheric testing occurs.",
+      "affectedDecision": "HAZARD_SEVERITY",
+      "criticality": "BLOCKING",
+      "emittedLink": "cand-fire-explosion",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "cand-fire-explosion:fire_explosion:ACTIVE",
+        "cand-mobile-equipment:mobile_equipment:ACTIVE"
+      ],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "LP-L3",
+      "classification": "LINK_REQUIRED",
+      "clarificationId": "clar-1",
+      "question": "What are the actual contents of the drum (or can they be identified through testing or shop records)?",
+      "whyItMatters": "If the contents are identified as a mild, non-hazardous substance, the required response is limited to labeling and hazard communication corrections; if the contents are identified as corrosive, toxic, or otherwise highly hazardous, immediate removal of the worker from bare-hand contact and use of specific PPE/engineering controls would be required now. The correct immediate control cannot be selected without knowing what the substance is.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "BLOCKING",
+      "emittedLink": "chem-1",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "chem-1:chemical_inhalation_contact:ACTIVE",
+        "fire-1:fire_explosion:INSUFFICIENT_EVIDENCE"
+      ],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "LP-G3",
+      "classification": "LINK_FORBIDDEN",
+      "clarificationId": "clar_ppe_used",
+      "question": "What personal protective equipment, if any, do employees currently wear while decanting from these unlabeled drums?",
+      "whyItMatters": "If appropriate PPE (e.g., gloves, eye protection, respiratory protection) is already being used, the immediate contact/inhalation exposure during decanting is at least partially mitigated even though the labeling and SDS gaps remain; if no PPE is used, the decanting task presents an uncontrolled direct exposure requiring immediate interim action beyond the labeling fix.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "IMPORTANT",
+      "emittedLink": "decanting_skin_inhalation_exposure",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "unlabeled_drums:hazcom:ACTIVE",
+        "no_hazcom_program:hazcom:ACTIVE",
+        "sds_unavailable:hazcom:ACTIVE",
+        "decanting_skin_inhalation_exposure:chemical_inhalation_contact:ACTIVE"
+      ],
+      "survivedValidation": true,
+      "arbitrationApplicable": false
+    }
+  ],
+  "clarificationDiagnostics": {
+    "totalClarifications": 7,
+    "averagePerCall": 0.438,
+    "noGapControls": 4,
+    "noGapControlsSilent": 4,
+    "clarificationsOnNoGapRows": 0,
+    "trueGapControls": 4,
+    "trueGapControlsWithAQuestion": 3,
+    "trueGapControlsWithNoQuestion": 1,
+    "trueGapControlsWithMatchingLabel": 3,
+    "trueGapDetail": [
+      {
+        "rowId": "LP-B1",
+        "authoredGap": "whether the pump drive was locked and tagged at its disconnect and the discharge line bled down, or whether the local OFF switch is the only isolation applied",
+        "authoredAffectedDecision": "REQUIRED_CONTROL",
+        "emitted": [
+          {
+            "question": "Has the pump's electrical energy source been locked out and tagged out (with a physical lock/tag applied by the millwright) in addition to placing the local control switch in the OFF position?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "criticality": "BLOCKING",
+            "whyItMatters": "If a lock/tag has in fact been applied, the electrical hazardous-energy exposure is controlled and only the guarding violation stands; if no lock/tag has been applied, the switch could be inadvertently or remotely re-energized while the millwright's hands are inside the coupling housing, creating a life-threatening hazardous-energy exposure requiring immediate stop-work.",
+            "evidenceGap": "The observation states the control switch is OFF but does not state whether lockout/tagout devices have been applied to the energy-isolating device.",
+            "relatesToCandidateKey": "cand-loto"
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatchOnSomeQuestion": true
+      },
+      {
+        "rowId": "LP-B2",
+        "authoredGap": "whether this vault has been evaluated and classified under the site permit-required confined space program",
+        "authoredAffectedDecision": "APPLICABILITY",
+        "emitted": [],
+        "anyQuestionEmitted": false,
+        "labelMatchOnSomeQuestion": false
+      },
+      {
+        "rowId": "LP-B3",
+        "authoredGap": "the measured noise exposure level for this task, which the site already has on record but which was not available at the station",
+        "authoredAffectedDecision": "HAZARD_SEVERITY",
+        "emitted": [
+          {
+            "question": "What did the personal noise dosimetry reading taken last month show, and can it be located or repeated now?",
+            "affectedDecision": "HAZARD_SEVERITY",
+            "criticality": "IMPORTANT",
+            "whyItMatters": "If the recorded dose shows exposure below an action level, the severity and urgency of required controls differs from a result showing significant overexposure; without the result, the actual magnitude of this worker's noise exposure cannot be established, only that hearing protection was absent during observed operation.",
+            "evidenceGap": "The dosimetry result from the reading taken last month is not recorded in the station file and was unavailable at the time of the walkthrough.",
+            "relatesToCandidateKey": null
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatchOnSomeQuestion": true
+      },
+      {
+        "rowId": "LP-B4",
+        "authoredGap": "whether any employee is required to access the crane runway walkway during the three days the handrail is removed",
+        "authoredAffectedDecision": "EXPOSURE",
+        "emitted": [
+          {
+            "question": "Is anyone required to access or work on the crane runway walkway while the twelve foot handrail section remains off?",
+            "affectedDecision": "EXPOSURE",
+            "criticality": "BLOCKING",
+            "whyItMatters": "If workers are required to access that walkway during the three-day repair, interim fall protection (guardrail, personal fall arrest, or barricading with restricted access) is needed for those exposed workers; if no one is required to access it and the area is effectively barricaded off from foot traffic, the exposure is limited to the welder performing the repair and no additional access-driven control is needed for other personnel.",
+            "evidenceGap": "The observation explicitly states it does not establish whether anyone is required to access that walkway while the handrail is off.",
+            "relatesToCandidateKey": null
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatchOnSomeQuestion": true
+      }
+    ],
+    "affectedDecisionHistogram": {
+      "HAZARD_EXISTENCE": 0,
+      "HAZARD_SEVERITY": 2,
+      "EXPOSURE": 1,
+      "APPLICABILITY": 0,
+      "REQUIRED_CONTROL": 4,
+      "REGULATORY_INTERPRETATION": 0
+    },
+    "coverageTemplateRows": [],
+    "duplicateQuestions": []
+  },
+  "groundingDiagnostics": [
+    {
+      "rowId": "LP-G1",
+      "roles": [
+        "GOVERNED_RELEVANT",
+        "EMPTY_COLLECTION_CONTROL"
+      ],
+      "recordsSupplied": [
+        {
+          "title": "General requirements for all machines",
+          "backingState": "APPROVED"
+        }
+      ],
+      "referencesARecordHandle": true,
+      "obligationLanguageSentences": [
+        "Record R1 supports that point-of-operation guarding is a recognized general obligation, consistent with the hazard already identified, but no additional governed obligation beyond that is asserted here."
+      ],
+      "summary": "The deterministic findings already capture the unguarded point of operation as an active machine guarding hazard. Beyond that, the observation adds a concrete current fact — the operator was hand-feeding the die on every stroke throughout the observation — which establishes actual, ongoing hand exposure to the point of operation, not just an unguarded condition in the abstract. Record R1 supports that point-of-operation guarding is a recognized general obligation, consistent with the hazard already identified, but no additional governed obligation beyond that is asserted here.",
+      "candidateFamilies": [
+        "machine_guarding:ACTIVE"
+      ],
+      "forbiddenFamiliesEmitted": []
+    },
+    {
+      "rowId": "LP-G2",
+      "roles": [
+        "GOVERNED_UNRELATED",
+        "CITATION_ADVERSARIAL"
+      ],
+      "recordsSupplied": [
+        {
+          "title": "Selection and use of work practices — 29 CFR 1910.333(a)(1)",
+          "backingState": "DRAFT"
+        },
+        {
+          "title": "Welding, cutting and brazing — ventilation for general welding",
+          "backingState": "APPROVED"
+        }
+      ],
+      "referencesARecordHandle": false,
+      "obligationLanguageSentences": [
+        "The unprotected eleven-foot opening (fall hazard) is made worse by employees actively staging totes at its edge (material handling): the physical task of positioning and releasing loads requires employees to work with reduced attention to footing and balance right at the unguarded edge, increasing both the likelihood of a fall and the chance a dislodged tote strikes someone or falls through the opening onto anyone below."
+      ],
+      "summary": "The deterministic findings correctly capture the unguarded mezzanine opening as an active fall and walking-working-surface hazard, with the hinged cover left folded back and chained open rather than closed. An additional material-handling concern is that employees stage totes directly at the edge of this unprotected opening, which compounds the fall exposure by adding a struck-by/overbalance dynamic during load handling. No decision-critical facts are missing and neither supplied governed record (electrical work practices, welding ventilation) applies to this observation.",
+      "candidateFamilies": [
+        "material_handling_storage:ACTIVE"
+      ],
+      "forbiddenFamiliesEmitted": []
+    },
+    {
+      "rowId": "LP-G3",
+      "roles": [
+        "GOVERNED_ABSENT"
+      ],
+      "recordsSupplied": [],
+      "referencesARecordHandle": false,
+      "obligationLanguageSentences": [
+        "Decanting unknown/unlabeled chemical contents each shift creates a recurring, currently-occurring exposure pathway for skin contact or inhalation, since the workers cannot know what precautions the substance requires."
+      ],
+      "summary": "The observation establishes multiple current hazard communication gaps at the mixing station: no written program, four of six drums with no labeling at all, and no SDS access, while employees actively decant from the unlabeled drums each shift. These conditions compound because unlabeled contents plus missing SDS leave workers performing a hands-on decanting task with no way to identify the chemical or its hazards. One clarification on current PPE use during decanting would determine whether an additional immediate control is needed beyond fixing the labeling and documentation gaps.",
+      "candidateFamilies": [
+        "hazcom:ACTIVE",
+        "hazcom:ACTIVE",
+        "hazcom:ACTIVE",
+        "chemical_inhalation_contact:ACTIVE"
+      ],
+      "forbiddenFamiliesEmitted": []
+    },
+    {
+      "rowId": "LP-G4",
+      "roles": [
+        "GOVERNED_NARROWER"
+      ],
+      "recordsSupplied": [
+        {
+          "title": "Portable ladders — side rail extension above the landing surface",
+          "backingState": "APPROVED"
+        }
+      ],
+      "referencesARecordHandle": true,
+      "obligationLanguageSentences": [
+        "No supplied record establishes what is required for fixed ladders of this height, so the governing obligation for the actual condition observed is not covered by the record set provided."
+      ],
+      "summary": "The deterministic finding of an active fall hazard is well supported: a twenty-six-foot fixed ladder with no cage, well, or ladder safety system is climbed twice per shift by two employees, creating repeated real exposure. The only supplied governed record (R1) explicitly excludes fixed ladders from its scope, so no governed citation applies to the actual condition observed and none is asserted. A secondary, low-confidence observation about horizontal wall-hook storage of portable ladders is noted for completeness but is not established as unsafe from the text given.",
+      "candidateFamilies": [
+        "fall_protection:ACTIVE",
+        "walking_working_surfaces:INSUFFICIENT_EVIDENCE"
+      ],
+      "forbiddenFamiliesEmitted": []
+    }
+  ],
+  "citationDiagnostics": {
+    "INPUT_CITATION_SHAPED_COUNT": 0,
+    "EXPERT_OUTPUT_CITATION_SHAPED_COUNT": 0,
+    "ACCEPTED_CITATION_COUNT": 0,
+    "REJECTED_CITATION_COUNT": 0,
+    "MERGED_CITATION_COUNT": 0,
+    "GOVERNED_AUTHORITY_CITATION_COUNT": 4,
+    "SUPPLIED_RECORD_CITATION_COUNT": 5
+  },
+  "coverageDiagnostics": {
+    "deterministicCoveredCount": 8,
+    "additiveExpertCoveredCount": 5,
+    "combinedCoveredCount": 13,
+    "truthMissesAfterUnionCount": 0,
+    "truthPresentTotal": 13,
+    "expertOnlyFamiliesCount": 16,
+    "perRow": [
+      {
+        "rowId": "LP-A1",
+        "truthPresent": [
+          "machine_guarding"
+        ],
+        "deterministicCovered": [
+          "machine_guarding"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "LP-A2",
+        "truthPresent": [],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "LP-A3",
+        "truthPresent": [
+          "fall_protection"
+        ],
+        "deterministicCovered": [
+          "fall_protection"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "material_handling_storage"
+        ]
+      },
+      {
+        "rowId": "LP-A4",
+        "truthPresent": [],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "LP-B1",
+        "truthPresent": [
+          "hydraulic_pneumatic_energy"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "hydraulic_pneumatic_energy"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "lockout_tagout",
+          "hydraulic_pneumatic_energy"
+        ]
+      },
+      {
+        "rowId": "LP-B2",
+        "truthPresent": [],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "atmospheric_hazard",
+          "training_procedure_supervision"
+        ]
+      },
+      {
+        "rowId": "LP-B3",
+        "truthPresent": [
+          "noise_exposure"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "noise_exposure"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "noise_exposure"
+        ]
+      },
+      {
+        "rowId": "LP-B4",
+        "truthPresent": [
+          "fall_protection"
+        ],
+        "deterministicCovered": [
+          "fall_protection"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "LP-L1",
+        "truthPresent": [
+          "machine_guarding"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "machine_guarding"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ]
+      },
+      {
+        "rowId": "LP-L2",
+        "truthPresent": [
+          "fire_explosion"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "fire_explosion"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "fire_explosion",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "rowId": "LP-L3",
+        "truthPresent": [
+          "hazcom"
+        ],
+        "deterministicCovered": [
+          "hazcom"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "chemical_inhalation_contact",
+          "fire_explosion"
+        ]
+      },
+      {
+        "rowId": "LP-L4",
+        "truthPresent": [
+          "machine_guarding"
+        ],
+        "deterministicCovered": [
+          "machine_guarding"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "LP-G1",
+        "truthPresent": [
+          "machine_guarding"
+        ],
+        "deterministicCovered": [
+          "machine_guarding"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "LP-G2",
+        "truthPresent": [
+          "fall_protection"
+        ],
+        "deterministicCovered": [
+          "fall_protection"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "material_handling_storage"
+        ]
+      },
+      {
+        "rowId": "LP-G3",
+        "truthPresent": [
+          "hazcom"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "hazcom"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "hazcom",
+          "chemical_inhalation_contact"
+        ]
+      },
+      {
+        "rowId": "LP-G4",
+        "truthPresent": [
+          "fall_protection"
+        ],
+        "deterministicCovered": [
+          "fall_protection"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "walking_working_surfaces"
+        ]
+      }
+    ]
+  },
+  "routingDiagnostics": {
+    "expertCandidates": 21,
+    "decisionCriticalClarifications": 7,
+    "crossHazardInsights": 10,
+    "disagreements": 5,
+    "emptyCollectionRates": {
+      "denominator": 16,
+      "expertHazardCandidates": 4,
+      "decisionCriticalClarifications": 9,
+      "crossHazardInsights": 7,
+      "disagreements": 12
+    },
+    "interactionKinds": {
+      "FALL_EXPOSURE_ANCHORAGE": 4,
+      "LOTO_STORED_ENERGY": 2,
+      "CONFINED_SPACE_ATMOSPHERIC": 2,
+      "CHEMICAL_PPE_VENTILATION": 2
+    },
+    "outcomes": {
+      "ANALYZED": 16
+    }
+  },
+  "perFixture": [
+    {
+      "rowId": "LP-A1",
+      "roles": [
+        "NO_GAP_CONTROL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical",
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-1",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "REFINES_DETERMINISTIC",
+          "quotes": 2
+        }
+      ],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [],
+      "summary": "The deterministic findings correctly identify the unguarded infeed nip point as an active machine guarding hazard. The observation further establishes that two operators are continuously exposed to this hazard at line speed with no interim protective measure such as a barrier, rope, or warning line, confirming real, ongoing exposure rather than a theoretical one. No additional hazard families, cross-hazard interactions, or decision-critical missing facts are identified from the stated text.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 9280,
+      "inputTokens": 13061,
+      "outputTokens": 731,
+      "costUsd": 0.033431999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-A2",
+      "roles": [
+        "NO_GAP_CONTROL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [
+        {
+          "surface": "CONDITION_STATE_INTERPRETATION",
+          "type": "MAY_BE_INCOMPLETE"
+        },
+        {
+          "surface": "HAZARD_RECOGNITION",
+          "type": "MAY_BE_OVERINCLUSIVE"
+        }
+      ],
+      "summary": "The observation describes a loose bench grinder guard that was found, re-secured, torqued, re-measured to the correct tool rest gap, and successfully run-tested, with no employee exposure during the interval before repair. On the facts as stated, this reads as a closed-out, corrected condition rather than a current active hazard, and the hot_work finding has no apparent basis in the text. No new hazard families, decision-critical questions, or cross-hazard interactions are supported by the observation as written.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 9387,
+      "inputTokens": 12848,
+      "outputTokens": 856,
+      "costUsd": 0.034256,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-A3",
+      "roles": [
+        "NO_GAP_CONTROL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-storage-1",
+          "family": "material_handling_storage",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [
+        {
+          "kind": "FALL_EXPOSURE_ANCHORAGE",
+          "participants": [
+            "fall_protection (unprotected edge)",
+            "material_handling_storage (pallet stacking at edge)"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "The deterministic findings correctly identify an active, unmitigated fall hazard: a twelve-foot guardrail gap on a mezzanine with a fourteen-foot drop, three employees within two feet of the edge, and no harness, warning line, or safety monitor in place. In addition, the pallet-stacking activity occurring directly at that same open edge is a material handling hazard that compounds the fall exposure, since the physical task of positioning loads near an unguarded opening increases the chance of a loss of balance or of material falling onto anyone below. No governed record was supplied, so no regulatory citation or obligation is asserted here.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 12304,
+      "inputTokens": 12866,
+      "outputTokens": 1048,
+      "costUsd": 0.036212,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-A4",
+      "roles": [
+        "NO_GAP_CONTROL",
+        "EMPTY_COLLECTION_CONTROL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "walking_working_surfaces",
+          "material_handling_storage",
+          "emergency_equipment"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [
+        {
+          "surface": "CONDITION_STATE_INTERPRETATION",
+          "type": "MAY_BE_INCOMPLETE"
+        }
+      ],
+      "summary": "The observation as written describes a compliant, well-controlled aisle: clear floor markings, an unobstructed emergency exit path, adequate lighting, and racks with current inspection tags, with no work underway. Nothing in the text points to a current deficiency in egress or material handling, so the ACTIVE deterministic findings appear to warrant a closer look. No additional hazard candidates or decision-critical questions arise from the stated facts.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 6894,
+      "inputTokens": 12231,
+      "outputTokens": 621,
+      "costUsd": 0.030672,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B1",
+      "roles": [
+        "TRUE_GAP_CONTROL",
+        "LINKAGE_REQUIRED"
+      ],
+      "linkageExpectation": "REQUIRED",
+      "truth": {
+        "presentHazardFamilies": [
+          "hydraulic_pneumatic_energy"
+        ],
+        "forbiddenHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-B1-G1",
+            "description": "whether the pump drive was locked and tagged at its disconnect and the discharge line bled down, or whether the local OFF switch is the only isolation applied",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-loto",
+          "family": "lockout_tagout",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "cand-hydraulic",
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-1",
+          "question": "Has the pump's electrical energy source been locked out and tagged out (with a physical lock/tag applied by the millwright) in addition to placing the local control switch in the OFF position?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "cand-loto"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "LOTO_STORED_ENERGY",
+          "participants": [
+            "machine_guarding",
+            "lockout_tagout"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Beyond the guarding violation already identified, the observation supports an active lockout/tagout gap: the pump was only switched off locally, with no mention of lock/tag application, while the millwright had both hands inside the coupling housing — an unguarded, unisolated point of operation. It also independently shows a pressurized discharge line at the isolation valve, an unrelieved hydraulic energy source coinciding with the same maintenance activity. Whether a physical lockout/tagout device was actually applied to the switch is a blocking question, since the answer determines whether this is a controlled task or an imminent-danger exposure to unexpected start-up.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 18893,
+      "inputTokens": 12218,
+      "outputTokens": 1714,
+      "costUsd": 0.041576,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B2",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-B2-G1",
+            "description": "whether this vault has been evaluated and classified under the site permit-required confined space program",
+            "affectedDecision": "APPLICABILITY"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "haz-2-atmo",
+          "family": "atmospheric_hazard",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "haz-3-attendant",
+          "family": "training_procedure_supervision",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [
+        {
+          "kind": "CONFINED_SPACE_ATMOSPHERIC",
+          "participants": [
+            "atmospheric_hazard",
+            "training_procedure_supervision"
+          ]
+        },
+        {
+          "kind": "FALL_EXPOSURE_ANCHORAGE",
+          "participants": [
+            "fall_protection",
+            "training_procedure_supervision"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Beyond the identified fall protection hazard, the vault meets the profile of a confined space: below-grade, restricted twenty-four inch opening, no continuous ventilation, and entry occurred without any pre-entry atmospheric sampling, leaving the atmosphere unverified for the two workers now inside. Compounding this, no attendant was posted at the opening, which removes the ability to detect or respond to an atmospheric emergency or a fall on the ladder, and worsens either hazard's consequences. These conditions are additive current hazards, not hypothetical ones, since entry has already occurred under these stated conditions.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 16245,
+      "inputTokens": 12224,
+      "outputTokens": 1587,
+      "costUsd": 0.04031800000000001,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B3",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageExpectation": "ALLOWED",
+      "truth": {
+        "presentHazardFamilies": [
+          "noise_exposure"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-B3-G1",
+            "description": "the measured noise exposure level for this task, which the site already has on record but which was not available at the station",
+            "affectedDecision": "HAZARD_SEVERITY"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "bystander-noise-exposure",
+          "family": "noise_exposure",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "dosimetry-result-unavailable",
+          "question": "What did the personal noise dosimetry reading taken last month show, and can it be located or repeated now?",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "criticality": "IMPORTANT",
+          "relatesToCandidateKey": null
+        }
+      ],
+      "insights": [],
+      "disagreements": [],
+      "summary": "The deterministic findings correctly identify active noise and PPE hazards for the chipping hammer operator working without hearing protection. Beyond that, two nearby employees working within ten feet of the hammer for most of the shift represent an additional, distinct noise exposure population not captured in the existing findings. The missing dosimetry result leaves the actual severity of exposure undetermined, which matters for prioritizing the response.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14797,
+      "inputTokens": 12266,
+      "outputTokens": 936,
+      "costUsd": 0.033892000000000005,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B4",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageExpectation": "ALLOWED",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "forbiddenHazardFamilies": [
+          "material_handling_storage"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-B4-G1",
+            "description": "whether any employee is required to access the crane runway walkway during the three days the handrail is removed",
+            "affectedDecision": "EXPOSURE"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [],
+      "clarifications": [
+        {
+          "id": "cq-1",
+          "question": "Is anyone required to access or work on the crane runway walkway while the twelve foot handrail section remains off?",
+          "affectedDecision": "EXPOSURE",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": null
+        }
+      ],
+      "insights": [
+        {
+          "kind": "FALL_EXPOSURE_ANCHORAGE",
+          "participants": [
+            "fall_protection",
+            "hot_work"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "The deterministic findings correctly establish an active unprotected-edge fall hazard and active hot work at the site of the handrail removal, twenty-two feet above the floor. The observation leaves open whether anyone besides the welder is required to access the walkway during the three-day repair, which is a blocking gap because it determines whether additional interim fall protection or access control is needed for other personnel. The welder's own exposure to the open edge while performing the weld repair also means the fall and hot work hazards compound at the same task location, complicating fall-arrest equipment choices near an active weld.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14224,
+      "inputTokens": 13033,
+      "outputTokens": 932,
+      "costUsd": 0.035386,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L1",
+      "roles": [
+        "LINKAGE_REQUIRED"
+      ],
+      "linkageExpectation": "REQUIRED",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-L1-G1",
+            "description": "whether the mixer drive is de-energized and locked at its disconnect, given the interlock has been defeated with a cable tie",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-interlock-defeat",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "cand-loto-not-established",
+          "family": "lockout_tagout",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-deenergized",
+          "question": "Is the number 5 mixer's agitator drive de-energized and locked out at its disconnect while the access door is open and the operator is reaching inside?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "cand-loto-not-established"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "LOTO_STORED_ENERGY",
+          "participants": [
+            "cand-interlock-defeat",
+            "cand-loto-not-established"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "The open access door, defeated interlock (cable-tied actuator), and an operator's arm inside the mixer bowl together indicate a current, uncontrolled machine guarding hazard beyond the ground-control finding already recorded. Because the observation explicitly states the drive's de-energization status at the disconnect is unknown, whether the agitator could actually move while the operator is exposed cannot be determined from the text and is decision-critical to whether this is an imminent-danger stop-work condition. The defeated interlock and the unresolved energy-isolation status compound each other, since neither can be relied upon to prevent agitator motion during the exposure.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 19632,
+      "inputTokens": 12205,
+      "outputTokens": 1630,
+      "costUsd": 0.040709999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L2",
+      "roles": [
+        "LINKAGE_REQUIRED"
+      ],
+      "linkageExpectation": "REQUIRED",
+      "truth": {
+        "presentHazardFamilies": [
+          "fire_explosion"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-L2-G1",
+            "description": "whether the pit was purged of flammable vapour before the suction hose was introduced and the tanker engine left running beside the opening",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-fire-explosion",
+          "family": "fire_explosion",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "cand-mobile-equipment",
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "confidence": "LOW",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-purge-status",
+          "question": "Was the pit purged or otherwise verified free of flammable/toxic atmosphere before the suction hose was inserted and the pump started?",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "cand-fire-explosion"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "CONFINED_SPACE_ATMOSPHERIC",
+          "participants": [
+            "confined_space (haz-1)",
+            "fire_explosion (cand-fire-explosion)"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Beyond the confirmed confined space hazard, the pit's history of solvent washdown combined with a running vacuum tanker engine only four feet from the opening raises a plausible fire/explosion exposure, and the parked tanker itself introduces a secondary mobile equipment concern at the pit edge. The unresolved question of whether the pit was purged before the hose was inserted is decision-critical: it determines whether an untested flammable or toxic atmosphere is currently being actively disturbed near a live ignition source with no gas detection in place. These two conditions — an unverified atmosphere and a nearby ignition source — compound each other and warrant an interaction flag.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 21181,
+      "inputTokens": 12229,
+      "outputTokens": 1673,
+      "costUsd": 0.041188,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L3",
+      "roles": [
+        "LINKAGE_REQUIRED"
+      ],
+      "linkageExpectation": "REQUIRED",
+      "truth": {
+        "presentHazardFamilies": [
+          "hazcom"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-L3-G1",
+            "description": "what the drum contains, which is what decides whether a skin-contact or inhalation hazard exists at all for the bare-handed dipping",
+            "affectedDecision": "HAZARD_EXISTENCE"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "chem-1",
+          "family": "chemical_inhalation_contact",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "fire-1",
+          "family": "fire_explosion",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-1",
+          "question": "What are the actual contents of the drum (or can they be identified through testing or shop records)?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "chem-1"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "CHEMICAL_PPE_VENTILATION",
+          "participants": [
+            "hazcom",
+            "chemical_inhalation_contact"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Beyond the confirmed hazard communication failure, the observation establishes a current chemical contact exposure: an employee is bare-handing parts into an unidentified drum liquid with no gloves. The unlabeled contents also raise an unresolved fire/explosion possibility given proximity to a parts washer, though this cannot be confirmed from the text alone. The core blocking gap is that nobody can identify the substance, which prevents selecting appropriate PPE or controls and links the hazcom failure directly to the uncontrolled skin exposure.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 19492,
+      "inputTokens": 12208,
+      "outputTokens": 1529,
+      "costUsd": 0.039706,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L4",
+      "roles": [
+        "LINKAGE_AMBIGUOUS_MUST_NOT_LINK"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "LP-L4-G1",
+            "description": "whether a guard-removal permit is in force, which the observation leaves open for both exposed drives without distinguishing between them",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [],
+      "summary": "placeholder",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 8699,
+      "inputTokens": 12868,
+      "outputTokens": 240,
+      "costUsd": 0.028135999999999998,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G1",
+      "roles": [
+        "GOVERNED_RELEVANT",
+        "EMPTY_COLLECTION_CONTROL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-1",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "CONTRADICTS_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [
+        {
+          "surface": "CONDITION_STATE_INTERPRETATION",
+          "type": "MAY_BE_INCOMPLETE"
+        }
+      ],
+      "summary": "The deterministic findings already capture the unguarded point of operation as an active machine guarding hazard. Beyond that, the observation adds a concrete current fact — the operator was hand-feeding the die on every stroke throughout the observation — which establishes actual, ongoing hand exposure to the point of operation, not just an unguarded condition in the abstract. Record R1 supports that point-of-operation guarding is a recognized general obligation, consistent with the hazard already identified, but no additional governed obligation beyond that is asserted here.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 11322,
+      "inputTokens": 13009,
+      "outputTokens": 1033,
+      "costUsd": 0.036348,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G2",
+      "roles": [
+        "GOVERNED_UNRELATED",
+        "CITATION_ADVERSARIAL"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "forbiddenHazardFamilies": [
+          "welding_fumes"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "c1",
+          "family": "material_handling_storage",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [
+        {
+          "kind": "FALL_EXPOSURE_ANCHORAGE",
+          "participants": [
+            "fall_protection",
+            "material_handling_storage"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "The deterministic findings correctly capture the unguarded mezzanine opening as an active fall and walking-working-surface hazard, with the hinged cover left folded back and chained open rather than closed. An additional material-handling concern is that employees stage totes directly at the edge of this unprotected opening, which compounds the fall exposure by adding a struck-by/overbalance dynamic during load handling. No decision-critical facts are missing and neither supplied governed record (electrical work practices, welding ventilation) applies to this observation.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 11586,
+      "inputTokens": 13115,
+      "outputTokens": 960,
+      "costUsd": 0.03583,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G3",
+      "roles": [
+        "GOVERNED_ABSENT"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "hazcom"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "unlabeled_drums",
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "no_hazcom_program",
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "sds_unavailable",
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "decanting_skin_inhalation_exposure",
+          "family": "chemical_inhalation_contact",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar_ppe_used",
+          "question": "What personal protective equipment, if any, do employees currently wear while decanting from these unlabeled drums?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "IMPORTANT",
+          "relatesToCandidateKey": "decanting_skin_inhalation_exposure"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "CHEMICAL_PPE_VENTILATION",
+          "participants": [
+            "unlabeled_drums",
+            "sds_unavailable",
+            "decanting_skin_inhalation_exposure"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "The observation establishes multiple current hazard communication gaps at the mixing station: no written program, four of six drums with no labeling at all, and no SDS access, while employees actively decant from the unlabeled drums each shift. These conditions compound because unlabeled contents plus missing SDS leave workers performing a hands-on decanting task with no way to identify the chemical or its hazards. One clarification on current PPE use during decanting would determine whether an additional immediate control is needed beyond fixing the labeling and documentation gaps.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 19533,
+      "inputTokens": 12204,
+      "outputTokens": 2003,
+      "costUsd": 0.044438,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G4",
+      "roles": [
+        "GOVERNED_NARROWER"
+      ],
+      "linkageExpectation": "FORBIDDEN",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "forbiddenHazardFamilies": [
+          "material_handling_storage"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-fall-height-fixed-ladder",
+          "family": "fall_protection",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "relationship": "AGREES_WITH_DETERMINISTIC",
+          "quotes": 1
+        },
+        {
+          "key": "cand-ladder-storage-walking-surface",
+          "family": "walking_working_surfaces",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "relationship": "ADDITIONAL_TO_DETERMINISTIC",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [
+        {
+          "surface": "GOVERNED_REGULATORY_CITATION",
+          "type": "MAY_BE_INCOMPLETE"
+        }
+      ],
+      "summary": "The deterministic finding of an active fall hazard is well supported: a twenty-six-foot fixed ladder with no cage, well, or ladder safety system is climbed twice per shift by two employees, creating repeated real exposure. The only supplied governed record (R1) explicitly excludes fixed ladders from its scope, so no governed citation applies to the actual condition observed and none is asserted. A secondary, low-confidence observation about horizontal wall-hook storage of portable ladders is noted for completeness but is not established as unsafe from the text given.",
+      "uncertainty": [
+        "The observation does not indicate the height or clearance of the wall hooks relative to shop walkways, so whether horizontal ladder storage creates any walking-surface or struck-by concern cannot be determined."
+      ],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14809,
+      "inputTokens": 12389,
+      "outputTokens": 1443,
+      "costUsd": 0.039208,
+      "modelIdentity": "claude-sonnet-5"
+    }
+  ],
+  "advancementCriteria": [
+    {
+      "id": 1,
+      "name": "NO-GAP silence",
+      "target": ">= 3 of 4",
+      "observed": "4 of 4",
+      "met": true
+    },
+    {
+      "id": 2,
+      "name": "TRUE-GAP retention",
+      "target": ">= 3 of 4 semantically correct",
+      "observed": "3 of 4 emitted a question; label match on 3",
+      "met": null
+    },
+    {
+      "id": 3,
+      "name": "REQUIRED linkage",
+      "target": ">= 3 of 4 valid REQUIRED links",
+      "observed": "4 satisfied of 4 authored (4 opportunities, 0 missing, 0 emitted no question)",
+      "met": true
+    },
+    {
+      "id": 4,
+      "name": "FORBIDDEN linkage accepted",
+      "target": "0",
+      "observed": "1",
+      "met": false
+    },
+    {
+      "id": 5,
+      "name": "invalid/unresolved keys accepted",
+      "target": "0",
+      "observed": "0 emitted, 0 stripped by the boundary, 0 may survive into validated output",
+      "met": true
+    },
+    {
+      "id": 6,
+      "name": "natural contradiction does not survive",
+      "target": "none surviving",
+      "observed": "NO_NATURAL_OPPORTUNITY; opportunities 0, events 0, surviving 0",
+      "met": true
+    },
+    {
+      "id": 7,
+      "name": "governed negative controls",
+      "target": "all behave correctly",
+      "observed": "see groundingDiagnostics — verbatim text recorded",
+      "met": null
+    },
+    {
+      "id": 8,
+      "name": "governed positive",
+      "target": ">= 1 grounded positive",
+      "observed": "see groundingDiagnostics — verbatim text recorded",
+      "met": null
+    },
+    {
+      "id": 9,
+      "name": "unsupported accepted citations",
+      "target": "0",
+      "observed": "accepted 0, merged 0, rejected 0",
+      "met": true
+    },
+    {
+      "id": 10,
+      "name": "combined coverage vs baseline",
+      "target": "no material regression (§140 baseline: 1 truth-present family covered by neither, of 16 rows)",
+      "observed": "0 of 13 truth-present families covered by neither layer",
+      "met": true
+    },
+    {
+      "id": 11,
+      "name": "protected suites after probe",
+      "target": "33 of 33",
+      "observed": "run outside this script and recorded in the report",
+      "met": null
+    },
+    {
+      "id": 12,
+      "name": "no provider identity/budget/persistence defect",
+      "target": "none",
+      "observed": "identityViolation=null, stopReason=COMPLETED, storeProblems=0, completeness=0, mergeViolations=0",
+      "met": true
+    }
+  ],
+  "frozenCriteriaFromManifest": [
+    {
+      "id": 1,
+      "name": "clarification negative controls",
+      "target": ">= 3 of 4 NO-GAP controls silent"
+    },
+    {
+      "id": 2,
+      "name": "TRUE-GAP retention",
+      "target": ">= 3 of 4 semantically correct"
+    },
+    {
+      "id": 3,
+      "name": "required-linkage population",
+      "target": ">= 3 of 4 valid links on REQUIRED rows"
+    },
+    {
+      "id": 4,
+      "name": "contradictory linked cases",
+      "target": "arbitration fires on every correctly linked contradiction that occurs"
+    },
+    {
+      "id": 5,
+      "name": "invalid linkages",
+      "target": "0 accepted"
+    },
+    {
+      "id": 6,
+      "name": "unrelated / no-record governed controls",
+      "target": "all abstain"
+    },
+    {
+      "id": 7,
+      "name": "relevant record",
+      "target": "at least one grounded positive"
+    },
+    {
+      "id": 8,
+      "name": "unsupported accepted citation",
+      "target": "0"
+    },
+    {
+      "id": 9,
+      "name": "combined deterministic + Expert truth coverage",
+      "target": "no material regression versus the §140 development baseline (1 truth-present family covered by neither layer, of 16 rows)"
+    }
+  ],
+  "limitations": [
+    "One arm, one replicate per row. No within-condition divergence measured, none inferable.",
+    "No frozen scorer ran; no formal measure was computed; run.scoring was discarded.",
+    "M14 not attempted: no permutation, no order score, no same-input replicate.",
+    "Sixteen development rows are not a cohort.",
+    "Semantic judgements — whether a question IS the authored gap, whether prose abstained, whether a link is semantically right — are DEVELOPMENT classifications recorded beside the verbatim text, not scored measures.",
+    "A contradiction is a model error and cannot be commissioned; ARBITRATION_EVENTS = 0 with NO_NATURAL_OPPORTUNITY is not evidence against arbitration."
+  ]
+}

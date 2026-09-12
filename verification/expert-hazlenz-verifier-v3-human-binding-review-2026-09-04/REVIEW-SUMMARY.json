@@ -1,0 +1,264 @@
+{
+  "operation": "§168 verifier-v3 human binding review + bounded integration decision",
+  "date": "2026-09-04",
+  "terminal": "EXPERT_HAZLENZ_VERIFIER_V3_HUMAN_BINDING_REVIEW_PACKET_READY — HUMAN_ADJUDICATION_REQUIRED",
+  "terminalNote": "None of the four terminals the authorization lists can be claimed: each presupposes the human review has RETURNED. This operation BUILT the review instruments and assigned no disposition. §164 classified binding truthfulness as REQUIRES_HUMAN_TRUTH and the standing rule on this programme is that the neutral packet is built and the operation stops.",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "evidenceDirectory": "verification/expert-hazlenz-verifier-v3-human-binding-review-2026-09-04",
+  "dispositionsAssignedByThisOperation": 0,
+  "section167Integrity": {
+    "provedAt": "2026-09-05T03:35:49.392Z",
+    "statement": "§167 is frozen. Nothing in this operation rescored, reinterpreted or rewrote it. Any new interpretation produced by the human review is recorded separately as HUMAN_POSTHOC_ADJUDICATION.",
+    "section167": {
+      "RUN-RECORDS.jsonl": "62ea0dbd66d239999b6fb495aa441119fe855f86f4fd022d76ca56fd5b2b6744",
+      "FROZEN-REQUESTS.json": "aa64a1ed7939757e896b04c7c727860dc6e4dbcebd78070dbc1a17eb9177100c",
+      "FALSIFICATION-SCORES.json": "7e2a30b1214e3307e420b846543bdae85ff407572cb363e68a700d66e836afd4",
+      "EXECUTION-ACCOUNTING.json": "0781d065e5cc33c2a574f32c333febfe22fe2cc48eba9eb3fc4725edffeb8f30",
+      "SCOPED-FALSIFICATION-RESULT.md": "7f5518b3f480479290bd563938e949bb6b243938baba5c16bc9ad665d20c28bd",
+      "SCOPED-FALSIFICATION-SUMMARY.json": "fedbe56af8b5cd8af8c8edbdb90d394a1a9e00675f094761a26561bcf9dc1e82"
+    },
+    "frozenRequestHashes": {
+      "VC-08": "c1e5407a121c60b7e395e6e7b4f9b1ebc866b79a40911f2397bea534e5c02bb6",
+      "VC-04": "94b47273776d37942cbd8b0588c28ac26ad8573b052dda27fc4ba15ff2474ab3"
+    },
+    "requestHashesStillMatchTheRunRecords": true,
+    "recordCount": 12,
+    "section163Baseline": {
+      "DRAW-RUN-RECORDS.jsonl": "7e84cef427d8c12659d01b96bf992bf41fc42c1ed8a2f46ba6dc7ddef07d8399",
+      "recordCount": 20,
+      "unchanged": true
+    },
+    "section166Protocol": {
+      "VERIFIER-INSTRUCTION-V3.txt": "c6855f27956cb6ce01874cd4dbb40f8ac3890de369fd01aba1c140cad7931c5f",
+      "VERIFIER-V3-RESPONSE-SCHEMA.json": "b31979f9b913c44ec67b03f625a0ac89f67f5778400c9c5f509a4f0d5b17435d",
+      "V2-V3-SEMANTIC-DIFF.json": "73cde3345a966743eed6daed74f57f68e090945fa55b5732e28f940fcbefeb49"
+    }
+  },
+  "humanBindingReview": {
+    "packet": "HUMAN-BINDING-REVIEW-PACKET.md",
+    "form": "BINDING-ADJUDICATION-FORM.json",
+    "pairs": 12,
+    "dispositionsReturned": 0,
+    "allNull": true,
+    "neutralityPatternsChecked": 11,
+    "neutralityLeaks": 0,
+    "deliberateExclusion": "the verifier's own `rationale` is NOT shown — it is the model arguing for its own answer, which is the 'model self-assessment' the authorization excludes. It is preserved verbatim in §167 RUN-RECORDS.jsonl and may be consulted AFTER a disposition is recorded.",
+    "compoundShapeFlagged": [
+      "VC-08-2",
+      "VC-08-3",
+      "VC-08-4",
+      "VC-04-2"
+    ],
+    "compoundShapeNote": "VC-08-2 and VC-08-3 carry the strong marker ('and separately,') and address two subjects. VC-08-4 and VC-04-2 trip only a weak length+disjunction marker; in both the 'or' separates the two ANSWER BRANCHES of one fact, which is the shape the contract asks for. Reported rather than silently dropped.",
+    "countsPending": [
+      "semantically correct bindings",
+      "partial",
+      "incorrect",
+      "ambiguous",
+      "affectedDecision correctness",
+      "unsupported assumptions"
+    ],
+    "whyCountsArePending": "PHASE 6 forbids computing any count while a pair is null. All 12 are null."
+  },
+  "hsA1Draw6": {
+    "packet": "HS-A1-DRAW-6-ADJUDICATION-PACKET.md",
+    "dispositionReturned": null,
+    "architecturalQuestionAnsweredFromFrozenMaterial": {
+      "OWED_FACT_PRESERVATION": "REQUIRED and fully specified — the contract refuses a verdict omitting a declaration, refuses an out-of-set binding, and permits no route to COVERED but an admitted binding.",
+      "ADDITIVE_GAP_DISCOVERY_RECALL": "PERMITTED, NEVER REQUIRED, and never given a target. nominatedFact is nullable with no admission code for its absence; the instruction's inherited 'THE ANSWER IS USUALLY NO' prior is the opposite of a recall target; and the verifier's jurisdiction is explicitly bounded to the clarification set, not hazard re-analysis.",
+      "consequence": "On preservation, draw 6 is indistinguishable from the other five. On discovery, it differs — but that axis has no contractual requirement, no threshold and no measurement basis, so the difference cannot be scored as a contract violation.",
+      "measurementCaution": "if discovery becomes a scored axis its denominator is human-confirmed independently valid gaps. Exactly ONE has ever been confirmed, on ONE row. A 5-of-6 figure on that denominator is not a recall rate."
+    }
+  },
+  "compoundQuestion": {
+    "packet": "COMPOUND-QUESTION-ADJUDICATION-PACKET.md",
+    "dispositionsReturned": 0,
+    "governanceGapFound": "the §165 budget rule governs how HazLenz ASSEMBLES questions from surviving owed facts. It does NOT govern the single `question` string the verifier returns, and nothing in the v3 contract inspects that string for compound structure — MORE_THAN_ONE_PROPOSED_CLARIFICATION refuses an ARRAY, not two questions inside one string.",
+    "combinationTestOnTheTwoFacts": {
+      "sameAffectedDecision": true,
+      "sameEquipmentOrContext": false,
+      "sameImmediateControlIfAdverse": false
+    },
+    "note": "two of the four §165 combination conditions are not met on the face of the record. Whether that is decisive is the adjudication."
+  },
+  "architectureComponentStatus": {
+    "CLOSED_SET_OWED_FACT_LEDGER": "PROVEN_LOCAL + SUPPORTED_HOSTED",
+    "EXPLICIT_BINDING_FACT_KEY": "SUPPORTED_HOSTED; SUPPORTED_HUMAN_REVIEWED pending the open form",
+    "ADDITIVE_NOMINATION": "SUPPORTED_HOSTED (additivity); REQUIRES_MORE_HUMAN_TRUTH (discovery)",
+    "TARGET_COVERAGE_WARNING": "PROVEN_LOCAL; UNEXERCISED_HOSTED FOR ITS PRIMARY CASE — it fired on 5 of 12 draws but never once because an OWED fact was uncovered; every firing came from an additively nominated fact sitting unresolved",
+    "PER_FACT_DECLARATIONS": "SUPPORTED_HOSTED; the CHALLENGE_FACT_VALIDITY path is UNEXERCISED_HOSTED (0 emitted)",
+    "CONDITIONAL_SECOND_DRAW_POLICY_C": "UNEXERCISED_HOSTED — 0 of 12 draws fell silent, so the gate never opened",
+    "DEGENERATE_RETRY_POLICY": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION; UNEXERCISED_HOSTED (0 degenerate, 0 truncated, 0 transport failures)",
+    "QUESTION_BUDGET": "REQUIRES_REMEDIATION — the rule does not reach the verifier's returned question string",
+    "MULTI_GAP_PRESERVATION": "SUPPORTED_HOSTED (preservation); REQUIRES_MORE_HUMAN_TRUTH (discovery)",
+    "patternWorthNaming": "§167 was a clean run, and a clean run exercises failure-handling machinery LESS, not more. Four components are wholly or partly unexercised hosted precisely because nothing went wrong. That is a good outcome for the product and a thin one for the evidence."
+  },
+  "boundedIntegrationDecision": {
+    "recommendation": "DO NOT INTEGRATE IN THIS OPERATION. Nothing was integrated and no backend/src/ file was created or modified.",
+    "eligibleConditionalOnCleanBindingReview": [
+      "CLOSED_SET_OWED_FACT_LEDGER",
+      "EXPLICIT_BINDING_FACT_KEY (admission only)",
+      "additive-not-substitutive invariant",
+      "TARGET_COVERAGE_WARNING (computation)",
+      "PER_FACT_DECLARATIONS (parsing + refusals)",
+      "observability record",
+      "deterministic state transitions"
+    ],
+    "conditionOnAllOfThem": "the population boundary must stay intact — DEVELOPMENT_HUMAN_TRUTH must continue to throw on a PRODUCTION ledger",
+    "notEligible": {
+      "CONDITIONAL_SECOND_DRAW_POLICY_C": "UNEXERCISED_HOSTED. Do not activate a hosted retry mechanism merely because v3 made it unnecessary in this experiment.",
+      "QUESTION_BUDGET formatting": "REQUIRES_REMEDIATION — the rule does not reach the artefact it governs",
+      "additive-gap discovery expectations": "unspecified; nothing to integrate",
+      "customer-visible multi-question behaviour": "depends on the compound adjudication; no frontend work authorized",
+      "DEGENERATE_RETRY_POLICY": "unchanged; §167 supplies no new evidence",
+      "challenge/arbitration bridge": "UNEXERCISED_HOSTED (0 challenges emitted)"
+    },
+    "integrationTradeoff": "today the compiler enforces separation via rootDir './src'. Integration replaces compiler enforcement with a feature gate — a strictly weaker guarantee, which is why the set is selective.",
+    "sequencing": [
+      "return the 12 binding dispositions (zero cost, gates the most components)",
+      "adjudicate the compound-question and draw-6 packets",
+      "THEN authorize inactive integration as one named slice with a zero-behaviour-change regression proof"
+    ]
+  },
+  "silenceTruthBlocker": {
+    "HUMAN_AUTHORITATIVE_SILENCE_ROWS": 0,
+    "stillNotEstablished": [
+      "false-question precision",
+      "legitimate-silence specificity",
+      "unnecessary-question rate",
+      "binding behaviour when no clarification is warranted",
+      "whether richer owed-fact packets bias the verifier toward asking"
+    ],
+    "mustNotReuse": [
+      "HS-J1",
+      "HS-N1",
+      "HS-P1",
+      "HS-R1"
+    ],
+    "unresolvedForOperations": [
+      "§166",
+      "§167",
+      "§168"
+    ]
+  },
+  "silenceControlDesign": {
+    "packet": "SILENCE-CONTROL-CANDIDATE-PACKET.md",
+    "data": "SILENCE-CONTROL-CANDIDATES.json",
+    "AUTHORITY_STATUS": "CANDIDATE_NOT_AUTHORITATIVE",
+    "candidateCount": 5,
+    "distinctHazardDomains": [
+      "electrical / hazardous energy control",
+      "respiratory / solvent vapour",
+      "fall protection / work at height",
+      "noise exposure",
+      "powered industrial truck / pedestrian separation"
+    ],
+    "lintProblems": 0,
+    "readyForProductOwnerReview": true,
+    "warning": "MODEL-DRAFTED. §162 established that five of seven rows of model-authored evaluation truth did not survive human review and three were invalid. No denominator may rest on these until a review returns a disposition for each.",
+    "BLOCKING_DESIGN_FINDING": {
+      "check": "observationLengthReport",
+      "result": "SEPARABLE_BY_LENGTH",
+      "candidateBandChars": [
+        559,
+        592
+      ],
+      "requiredRowChars": {
+        "HS-A1": 402,
+        "HS-E1": 412
+      },
+      "why": "a row that settles everything is longer than a row that leaves a gap. ALL five candidates (559-592 chars) are longer than BOTH existing REQUIRED rows (402, 412). Length alone would separate the classes perfectly, making it a usable cue for 'ask nothing' and the measurement worthless.",
+      "consequence": "a valid silence-vs-required comparison CANNOT be assembled from these five controls plus the two existing REQUIRED rows.",
+      "remedies": [
+        "shorten the controls — risks under-settling the facts that make them controls",
+        "add REQUIRED rows in the same length band — itself new authored truth requiring independent review"
+      ],
+      "note": "the two existing REQUIRED rows are frozen §156 material and cannot be changed."
+    }
+  },
+  "thirdArmAnalysis": {
+    "document": "THIRD-ARM-VALUE-ANALYSIS.md",
+    "THIRD_ARM_RECOMMENDED": false,
+    "causalQuestion": "would richer owed-fact context alone have eliminated target displacement, without any binding protocol?",
+    "decisiveReason": "the answer cannot change the architecture decision. TARGET_COVERAGE_WARNING is a set difference over DECLARED bindings; without a binding declaration there is no set to difference, and coverage would need a semantic matcher — exactly what §160 retired and what §164's central idea exists to avoid. The binding protocol is retained under BOTH possible outcomes.",
+    "minimumFalsifyingDesign": "6 draws on HS-A1 only, v2 instruction+contract with the v3 owed-fact block present but no bindingFactKey and no declaration requirement; ~$0.34 worst case",
+    "whyNotWorthItNow": "the binding blocker is silence-side truth, which blocks EVERY precision claim and customer activation, and has been unresolved for three operations. Attribution blocks one phrasing of one claim and no activation.",
+    "revisitIf": [
+      "someone proposes REMOVING the binding protocol for prompt size or latency",
+      "displacement returns in a later hosted run and richer-context becomes a candidate explanation",
+      "an external claim is contemplated that requires attributing the effect to a named mechanism"
+    ]
+  },
+  "reliabilityPolicyStatus": {
+    "POLICY_C": "UNEXERCISED_HOSTED_UNDER_V3 — remain implemented but INACTIVE and OUT of the immediate integration slice. Not upgraded to proven. §167 if anything weakens the case for needing it: the silence failure it mitigates did not occur under v3 on this sample.",
+    "DEGENERATE_OUTPUT_POLICY": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION — unchanged. 0 degenerate responses in §167."
+  },
+  "questionBurden": {
+    "document": "QUESTION-BURDEN-DESIGN.md",
+    "structuralBudgetMeasured": {
+      "HS-A1 mean distinct facts per draw": 1.83,
+      "HS-E1": 1.0,
+      "max any draw": 2
+    },
+    "semanticNecessityMeasured": false,
+    "recommendedFix": "give each declared fact its own question field in a v3 schema revision — it cannot mis-split, needs no lexical heuristic, and the nomination is ALREADY structurally separate in the response. Post-hoc string splitting is explicitly NOT recommended: splitting on model prose will mis-split, and a mis-split safety question is worse than a compound one.",
+    "uiDesignPositions": [
+      "sequential, one decision-critical fact at a time",
+      "batch only where the §165 combination test passes",
+      "a partial answer must leave the unanswered fact UNRESOLVED with the warning live",
+      "deferral recorded, never discarded",
+      "show the count of remaining unresolved life-critical facts — hiding it would reproduce the silent-drop failure at the UI layer"
+    ],
+    "whatItCannotSettle": "acceptable customer burden. Both §167 rows warranted a question. A design asking 1.83 questions on rows that need one is well-behaved; the same design asking 1.83 on rows that need NONE would be unacceptable, and §167 cannot distinguish those two worlds.",
+    "frontendImplementation": "NONE — not authorized and not performed"
+  },
+  "protectedRegression": {
+    "SOURCE_PROJECT_TSC": "exit 0, clean",
+    "suitesRun": 16,
+    "failures": 0,
+    "transcript": "PROTECTED-REGRESSION.txt"
+  },
+  "claimsRegister": {
+    "newPublicClaim": "none",
+    "sectionAdded": "§168",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED",
+    "productionMarketingCopyChanged": "none"
+  },
+  "autonomyAndModelIndependence": {
+    "hazlenzOwns": [
+      "owed facts",
+      "fact keys",
+      "coverage",
+      "binding admission",
+      "nomination admission",
+      "arbitration",
+      "state transitions",
+      "call caps",
+      "question budgeting",
+      "final output"
+    ],
+    "providerRemainsReplaceable": true,
+    "noProviderNamedInAnyNewModule": true
+  },
+  "worktreeState": {
+    "codeFilesCreated": 3,
+    "codeFilesModified": 1,
+    "srcFilesTouched": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "preexistingUncommittedWorkPreserved": true,
+    "codeFileModified": "backend/package.json — two npm script entries added"
+  },
+  "nextAuthorizationRequired": [
+    "1. Return the 12 binding dispositions in BINDING-ADJUDICATION-FORM.json. Zero cost, gates the most components, and is the cheapest item on the list.",
+    "2. Return the HS-A1 draw-6 disposition and the compound-question dispositions. These decide whether QUESTION_BUDGET needs a contract change or a formatter, and whether an additive-gap discovery axis exists at all.",
+    "3. Review the 5 candidate silence-control rows — AND decide the length-cue remedy, because a valid silence-vs-required comparison cannot be assembled from these controls plus the two existing REQUIRED rows.",
+    "4. THEN authorize inactive development integration of the eligible components as one named slice.",
+    "Third arm: NOT recommended and not requested."
+  ]
+}

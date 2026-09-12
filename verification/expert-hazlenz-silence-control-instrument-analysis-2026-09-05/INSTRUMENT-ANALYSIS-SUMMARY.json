@@ -1,0 +1,280 @@
+{
+  "operation": "§172 silence-control instrument confound analysis",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_SILENCE_CONTROL_INSTRUMENT_INVALID — REAUTHORING_REQUIRED",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "evidenceDirectory": "verification/expert-hazlenz-silence-control-instrument-analysis-2026-09-05",
+  "verdictsAssignedByAnyModel": 0,
+  "whyNoVerdicts": "the five rows were DRAFTED by a model. Scoring them would be a model adjudicating its own output, and would make report item 29 — 'no model/provider adjudicated truth' — unconfirmable. A second reason is practical: the wording must change to fix the confounds, and adjudication attaches to the exact final wording.",
+  "controls": {
+    "SC-1": {
+      "chars": 398,
+      "domain": "electrical / hazardous energy control"
+    },
+    "SC-2": {
+      "chars": 409,
+      "domain": "respiratory / solvent vapour"
+    },
+    "SC-3": {
+      "chars": 382,
+      "domain": "fall protection / work at height"
+    },
+    "SC-4": {
+      "chars": 387,
+      "domain": "noise exposure"
+    },
+    "SC-5": {
+      "chars": 389,
+      "domain": "powered industrial truck / pedestrian separation"
+    }
+  },
+  "confoundChecks": {
+    "LENGTH_CONFOUND": {
+      "verdict": "RESOLVED",
+      "controlBandChars": [
+        382,
+        409
+      ],
+      "requiredChars": [
+        402,
+        412
+      ],
+      "requiredInsideControlBand": true,
+      "note": "controls 382-409, REQUIRED [402, 412]. HS-A1 at 402 sits inside the control band and HS-E1 at 412 is 3 characters above it. The §168 gross separation (559-592 vs 402/412) is gone."
+    },
+    "FORMAT_CONFOUND": {
+      "verdict": "MINOR_RESIDUAL",
+      "controlSentences": [
+        4,
+        5,
+        5,
+        3,
+        3
+      ],
+      "requiredSentences": [
+        4,
+        4
+      ],
+      "controlCommas": [
+        4,
+        1,
+        1,
+        4,
+        5
+      ],
+      "requiredCommas": [
+        1,
+        1
+      ],
+      "controlDigits": [
+        0,
+        2,
+        2,
+        2,
+        0
+      ],
+      "requiredDigits": [
+        0,
+        0
+      ],
+      "note": "both REQUIRED rows have exactly 1 comma and 0 digits. Controls run 1-5 commas and 0-2 digits, so SC-1, SC-4 and SC-5 are separable from both REQUIRED rows on comma count alone. Mild rather than decisive, and worth removing in a reauthoring pass."
+    },
+    "VOCABULARY_CONFOUND": {
+      "verdict": "MATERIAL",
+      "verificationVerbsInControls": [
+        "checked",
+        "closed",
+        "deployed",
+        "initialled",
+        "locked",
+        "padlocked",
+        "records",
+        "sheet",
+        "shut",
+        "survey",
+        "surveyed",
+        "tag",
+        "tested"
+      ],
+      "verificationVerbsInRequired": [
+        "closed"
+      ],
+      "presentOnlyInControls": [
+        "checked",
+        "deployed",
+        "initialled",
+        "locked",
+        "padlocked",
+        "records",
+        "sheet",
+        "shut",
+        "survey",
+        "surveyed",
+        "tag",
+        "tested"
+      ],
+      "countOnlyInControls": 12,
+      "note": "twelve verification verbs appear only in controls; the REQUIRED rows contain exactly one ('closed', and there in the sense of a closed guard door rather than a verification). A one-token rule -- 'if the text says tested / checked / surveyed / initialled, stay silent' -- separates the classes without applying any clarification semantics."
+    },
+    "EXPLICIT_SAFE_LABEL_CONFOUND": {
+      "verdict": "CLEAN",
+      "bannedCuesChecked": 16,
+      "hits": "none in any row"
+    },
+    "QUESTION_WORDING_CONFOUND": {
+      "verdict": "CLEAN",
+      "controlQuestionMarks": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "requiredQuestionMarks": [
+        0,
+        0
+      ],
+      "controlInterrogatives": [
+        4,
+        5,
+        3,
+        3,
+        4
+      ],
+      "requiredInterrogatives": [
+        4,
+        8
+      ],
+      "note": "zero question marks and zero interrogative constructions on both sides"
+    },
+    "DECISION_CATEGORY_CONFOUND": {
+      "verdict": "MATERIAL",
+      "controlDomains": [
+        "electrical / hazardous energy control",
+        "respiratory / solvent vapour",
+        "fall protection / work at height",
+        "noise exposure",
+        "powered industrial truck / pedestrian separation"
+      ],
+      "requiredDomains": [
+        "HS-A1 fire/explosion + machine guarding",
+        "HS-E1 machine guarding"
+      ],
+      "sharedDomains": [],
+      "note": "NO control shares a hazard domain with either REQUIRED row. Class is perfectly predictable from hazard family: guarding/fire implies REQUIRED, electrical/respiratory/fall/noise/forklift implies control. Any prior about which families usually warrant a question would score well without applying clarification semantics."
+    },
+    "SETTLED_FACT_DENSITY_CONFOUND": {
+      "verdict": "NOT_SYMMETRICALLY_ASSESSABLE",
+      "controlDeclaredSettledFacts": {
+        "SC-1": 5,
+        "SC-2": 6,
+        "SC-3": 6,
+        "SC-4": 5,
+        "SC-5": 6
+      },
+      "requiredDeclaredSettledFacts": {
+        "HS-A1": 0,
+        "HS-E1": 0
+      },
+      "neutralProxy_stateAssertionClauses": {
+        "SC-1": 2,
+        "SC-2": 2,
+        "SC-3": 2,
+        "SC-4": 2,
+        "SC-5": 3,
+        "HS-A1": 1,
+        "HS-E1": 2
+      },
+      "note": "the declared settled-fact counts (5-6 vs 0) cannot be compared: the drafts declare a settled-fact list and the frozen REQUIRED rows carry none, so the difference is an artifact of the instrument rather than of the text. The neutral proxy -- clauses asserting a verified state -- is 2-3 for controls against 1-2 for REQUIRED, which is suggestive but not separating. Reported as unresolved rather than clean."
+    }
+  },
+  "materialConfounds": [
+    "VOCABULARY_CONFOUND",
+    "DECISION_CATEGORY_CONFOUND"
+  ],
+  "minorConfounds": [
+    "FORMAT_CONFOUND"
+  ],
+  "unresolvedConfounds": [
+    "SETTLED_FACT_DENSITY_CONFOUND"
+  ],
+  "cleanConfounds": [
+    "LENGTH_CONFOUND",
+    "EXPLICIT_SAFE_LABEL_CONFOUND",
+    "QUESTION_WORDING_CONFOUND"
+  ],
+  "instrumentVerdict": "MATERIALLY_CONFOUNDED",
+  "headlineFindings": {
+    "lengthResolved": "controls 382-409 against REQUIRED 402 and 412 — the §168 gross separation (559-592) is gone and the reauthoring achieved what it was for",
+    "vocabularyMaterial": "twelve verification words appear ONLY in controls (checked, deployed, initialled, locked, padlocked, records, sheet, shut, survey, surveyed, tag, tested). A one-token rule separates the classes without applying any clarification semantics.",
+    "decisionCategoryMaterial": "NO control shares a hazard domain with either REQUIRED row; class is perfectly predictable from hazard family",
+    "structuralInsight": "a silence control settles facts, and settling a fact usually requires saying it was verified, while a REQUIRED row leaves a fact open and has no reason to say so. The verification vocabulary attaches to the row CLASS, exactly as length did in §168. Authoring a valid silence control tends to make it recognisable as one."
+  },
+  "determinations": {
+    "VALID_SILENCE_ROWS": "NOT_COMPUTABLE — no row adjudicated",
+    "INVALID_SILENCE_ROWS": "NOT_COMPUTABLE",
+    "AMBIGUOUS_SILENCE_ROWS": "NOT_COMPUTABLE",
+    "controlsAdmittedAsHumanAuthoritative": [],
+    "controlsRejected": [],
+    "controlsRequiringRewrite": [
+      "SC-1",
+      "SC-2",
+      "SC-3",
+      "SC-4",
+      "SC-5"
+    ],
+    "rewriteGrounds": "instrument confounds, independent of any row's truth",
+    "HUMAN_AUTHORITATIVE_SILENCE_ROWS_canMoveAboveZero": false,
+    "HUMAN_AUTHORITATIVE_SILENCE_ROWS": 0,
+    "silenceSidePrecisionValidationInterpretable": false,
+    "remainingCorpusDefectBlocksHostedValidation": true
+  },
+  "perRowAssessmentsPrepared": {
+    "counterfactualRecheck": "prepared as QUESTIONS in ROW-LEVEL-ADJUDICATION-INSTRUMENT.json, not as answers",
+    "evidenceSufficiency": "the §169 lesson bears on four of five rows — SC-2's airflow indicator, SC-3's scaffold tag, SC-5's pre-use check sheet and arguably SC-1's attending supervisor each rest a settled fact on an indicator, tag, document or presence",
+    "temporalScope": "flagged for SC-2 (checked at shift start, task later) and SC-4 (survey last month against today's exposure)"
+  },
+  "repairRequirements": [
+    "write controls in the SAME hazard families as the REQUIRED rows (machine guarding, fire/explosion) so domain does not predict class",
+    "balance verification vocabulary from the REQUIRED side — new REQUIRED rows that contain verification words and still leave one decision-critical fact open. Controls cannot simply drop the vocabulary; they need it to settle facts.",
+    "even out comma and digit counts",
+    "author the final exact wording, then adjudicate THAT"
+  ],
+  "expensiveItem": "the balancing REQUIRED rows are new authored evaluation truth and need their own independent human review. The two frozen REQUIRED rows cannot be edited and padding them is forbidden.",
+  "historicalIntegrity": {
+    "hashes": {
+      "section167RunRecords": "62ea0dbd66d239999b6fb495aa441119fe855f86f4fd022d76ca56fd5b2b6744",
+      "section168Controls": "d552e738bec843a08038b82c02c7d71a8c93811d09e340c40a3b814e5d2f3f2a",
+      "section169Counts": "d7101d562161c932530e8747cc3fe87eae0a03d36f747012141d59b58bdc4822",
+      "section163Baseline": "7e84cef427d8c12659d01b96bf992bf41fc42c1ed8a2f46ba6dc7ddef07d8399"
+    },
+    "section167Modified": false,
+    "section168ControlsModified": false,
+    "section169DispositionsModified": false,
+    "historicalRunsRescored": false,
+    "TOPIC_REACH": "12/12 unchanged",
+    "HUMAN_CONFIRMED_FULL_RESOLUTION_SUFFICIENCY": "8/12 unchanged",
+    "BINDING_SEMANTICALLY_CORRECT": "8/12 unchanged",
+    "BINDING_PARTIALLY_CORRECT": "4/12 unchanged",
+    "BINDING_INCORRECT": "0/12 unchanged",
+    "BINDING_AMBIGUOUS": "0/12 unchanged"
+  },
+  "noModelOrProviderAdjudicatedTruth": true,
+  "boundary": {
+    "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED": false,
+    "customerActivation": "UNAUTHORIZED"
+  },
+  "worktreeState": {
+    "srcFilesChanged": 0,
+    "scriptsCreated": 0,
+    "documentationOnly": true,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  },
+  "recommendedNextAuthorization": "Reauthor the control set against the two material confounds AND commission the balancing REQUIRED rows at the same time, then adjudicate the final exact wording of both sides in one pass. Do not spend the human review on the current five rows — their wording will change and the adjudication would have to be repeated."
+}

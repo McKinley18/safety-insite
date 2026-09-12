@@ -1,0 +1,79 @@
+§191 SOURCE INTEGRITY GATE — BOUNDED REMEDIATION
+recomputed 2026-09-07T00:10:29.107Z from the files on disk
+
+RESULT: PASS   21/21
+
+OK    PREREGISTRATION.json
+        expected  9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82
+OK    v3 EXPERT_VERIFIER_V3_SYSTEM_PROMPT
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    v3 VERIFIER_V3_RESPONSE_SCHEMA
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    v3 instruction version
+        expected  hazlenz.expert.verifier-instruction.v3
+OK    admission validator (expert-verifier-contract-v3.ts)
+        expected  475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+OK    first-pass expert-prompt.ts
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    first-pass EXPERT_SYSTEM_PROMPT
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    owed-facts/owed-fact.types.ts
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    §184 OWED-FACT-TRUTH-CANDIDATES.json
+        expected  649a17df3730b1d67f20bda9b6231d0a5461902c985ce87fb7b2659e67798b0b
+OK    §184 SECTION-184-INTEGRITY.json
+        expected  172aaba1fbd22b95259a1bdef3d76a8d5dbd32b27d69b9784532d60a36ebeb36
+OK    §188 frozen scorer
+        expected  48979797770506be722b7645dabdafde9ea6697aae1831ef47f9e62ed56c1c98
+OK    §188 neutral ballot still unanswered
+        expected  PENDING_HUMAN_ADJUDICATION
+OK    §189 human gate still incomplete
+        expected  65 / 112
+OK    §190 still labelled MODEL
+        expected  MODEL_SEMANTIC_ADJUDICATION
+OK    v3.1 minus the two blocks reproduces v3 exactly
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    v3.1 schema structure identical to v3 with descriptions stripped
+        expected  5f2f00e6ef1e8cb3dcb49154c090576a809e595c07059a07321ebd80def9a0b3
+OK    exactly three descriptions repaired
+        expected  3
+OK    v3.1 declares its own version
+        expected  hazlenz.expert.verifier-instruction.v3.1
+
+NEW IDENTITY — v3.1, a NEW PROSPECTIVE PROTOCOL. Rescores nothing.
+
+  v3.1 system prompt sha256   7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+  v3.1 schema sha256          d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+  v3.1 instruction version    hazlenz.expert.verifier-instruction.v3.1
+
+  §187B's fifteen executions remain attached to v3, not to v3.1. v3 and v3.1 results are
+  NOT one population and must never be combined into one score.
+
+§187 / §188 / §189 / §190 EVIDENCE — unchanged by this remediation
+
+  79129ae849cd54be2e73ba9cf84bda2d7ae4ce62003c4ea1ac127149c386cda9  §187 RESUMED-VERIFIER-EXECUTIONS.jsonl
+  9a71ddaa7b22fa4ceb40a375748ea7f39df5e43233d2cdd80d7e0f8ad7be73ec  §187 SECTION-187B-INTEGRITY.json
+  39eb9513f8e1c4f718bbcdc86fdf9735827e4f5fd1468bd7ce06234d929471a8  §188 HUMAN-ADJUDICATION.json
+  cfe79a15bd56b94ee2c2bc47073554cbfccfc50af802d4a50fb65bdd07acfa56  §188 STRICT-SEMANTIC-GATE.json
+  cde83faffbd4f8b3566cfe73966d9785890281b4ac16d17f6f027e4f83f4564d  §189 RAW-HUMAN-ANSWERS.json
+  7eb8e08046bca21c2e6ffa642f8f7824316be5d0bcc8a21eb9bed885af228f92  §190 MODEL-ADJUDICATION.json
+  52b5815cd546b22b3f277148e1666dd2185fb6d5362b76435fd09bfc43c0e2d7  §190 MODEL-STRICT-SEMANTIC-GATE.json
+
+FILES CHANGED BY §191
+
+  NEW  backend/scripts/lib/expert-verifier-instruction-v3-1.ts
+  NEW  backend/scripts/test-expert-verifier-v3-1-remediation.ts
+  NEW  backend/scripts/verify-191-source-integrity-2026-09-06.ts
+
+  NO existing runtime file was modified. v3, the admission validator, the owed-fact ledger,
+  the first-pass prompt, the formal scorers and every evidence artifact are byte-unchanged.
+
+PROVIDER_CALLS = 0   DATABASE_OPERATIONS = 0   PRODUCTION_ACTIVATION = NONE
+PROVIDER_SETTLEMENT_AUTHORITY = NEVER   VERIFIER_V3_VALIDATED = FALSE
+

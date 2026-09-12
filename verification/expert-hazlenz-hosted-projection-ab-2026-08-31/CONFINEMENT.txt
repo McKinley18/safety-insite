@@ -1,0 +1,41 @@
+CONFINEMENT — §118 hosted projection A/B (2026-08-31)
+
+18 hosted Anthropic calls. $0.571626 spent. 0 retries. Nothing repaired.
+
+--- git ---
+37a5d1b50abe836eb19dd24ee18ad10557bda131
+main
+origin/main: de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+ahead/behind: 0	1
+stashes: 4 (unchanged)  tags: 24 (unchanged)
+
+--- POST-RUN HASHES: must equal PRE-RUN-FROZEN-STATE.txt ---
+e80d977abf2d169491e65910e7ca13f1b7f6476a2e1011dc912cdc928d9fa6f2  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+ca8b16cdd86abef355ee9316fa5d9fd72a90ef4622509b26fdc52dc484e7566e  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+14adf05ba77e01851fcb2281ef179395ee67f2140c2dfd09223173def4deab45  backend/src/safescope-v2/evidence/evidence-foundation.ts
+ff6df3bdd6404c1f6f9461a06c443cd8d9ea32b91fd377288b05781682ab6f29  backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+affab139a674a90e9c72e9577a07ca18ee6085a85d0b548309d3da9e12f95209  backend/scripts/lib/expert-deterministic-projection.ts
+f7c34daab5a0c367622341c00d47ffa1052f7146e0f51b2fa9bfd49da1cca43c  backend/scripts/lib/expert-state-aware-scoring.ts
+e444b6920454a9d5cee6d72eece1aadddde141b7f84ead54ea42efe6f85c70cf  backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts
+81e0d293d130a6730207d55c6d4b4847da78fe9371ae8174f931f932dafddc02  backend/src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures.ts
+7449a110b2bc5f492cd08c1d8314d6c3bbac9968b60ba4b9d87ae0daa037d3d2  backend/src/safescope-v2/expert-hazlenz/fixtures/restoration-transition-fixtures.ts
+4b36490ac01d4f19646d4f7a16fdf347b71eabc00ff1629dec8968e1174c484c  backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+
+--- production files changed BY THIS PHASE (must be NONE) ---
+  count: 6 files under backend/src carry the PRE-EXISTING §105-§117 diff; this phase added ZERO.
+
+--- files ADDED by this phase (all probe/analysis/evidence) ---
+?? backend/scripts/analyze-hosted-projection-ab.ts
+?? backend/scripts/probe-expert-hosted-projection-ab.ts
+?? verification/expert-hazlenz-hosted-projection-ab-2026-08-31/
+
+--- non-involvement (must be 0) ---
+  controller/service/module changed: 0
+  frontend changed (excl. pre-existing tsconfig): 0
+  migrations changed: 0
+
+--- PRESERVED pre-existing unrelated work ---
+ M frontend-next/tsconfig.json
+ D verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml

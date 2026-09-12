@@ -1,0 +1,700 @@
+{
+  "artifact": "SECTION_181_GOVERNED_EVIDENCE_ALIGNMENT_AUDIT",
+  "date": "2026-09-05",
+  "scope": "EVIDENCE_QUESTION_TO_VERIFICATION_METHOD_ALIGNMENT",
+  "readOnly": true,
+  "governedRecordsModified": 0,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "method": "engineering judgement recorded in a named table in backend/scripts/a0-governed-evidence-alignment-audit-2026-09-05.ts. No automated semantic scorer exists: the code looks each pair up and counts, and reports UNCLASSIFIED for any pair the table does not cover.",
+  "provenance": {
+    "AI_PERFORMED_DEVELOPMENT_AUDIT": true,
+    "HUMAN_ADJUDICATED": false,
+    "note": "these classifications are an engineering judgement and are not human adjudication; a human review of the 28 pairs would be a separate act"
+  },
+  "registryFilesRead": [
+    "approved-knowledge-seed-records.v1.json",
+    "rec-msha-30-56-12.json",
+    "regulatory-expansion-v1.json"
+  ],
+  "registryFileSha256": {
+    "approved-knowledge-seed-records.v1.json": "fb23bcfa4c2ebb59bb9cc9c552e0c32a4d80d69c20557394fe299d0e1d1598f9",
+    "rec-msha-30-56-12.json": "604982c5e945118e8752daea4bbdd6970d75d1b4fa25eb75c79e4fb669f2dbc1",
+    "regulatory-expansion-v1.json": "d0e9fc54365b5e8150bd86db9328a15c24a331ad2ad054f9e5b50dd4190d28d4"
+  },
+  "TOTAL_APPROVED_RECORDS_REVIEWED": 20,
+  "TOTAL_RECORDS_IN_REGISTRY": 20,
+  "RECORDS_WITH_BOTH_QUESTIONS_AND_METHODS": 20,
+  "TOTAL_EVIDENCE_QUESTIONS": 28,
+  "ALIGNMENT_CLEAR": 21,
+  "QUESTION_STRONGER_THAN_METHOD": 4,
+  "METHOD_STRONGER_THAN_QUESTION": 1,
+  "AMBIGUOUS": 2,
+  "NO_VERIFICATION_METHOD": 0,
+  "UNCLASSIFIED": 0,
+  "misalignedQuestions": [
+    {
+      "recordId": "app-mg-01",
+      "question": "Is the guard functional?",
+      "methods": [
+        "physical_inspection"
+      ],
+      "note": "function is not established by looking. This is the §180 characterisation and it holds: the record asks presence AND function while offering only physical_inspection, so one of its two questions has no method behind it. It is also the §169 class — evidence consistent with a safeguard being present and non-functional."
+    },
+    {
+      "recordId": "rec-msha-30-56-12",
+      "question": "Is equipment properly grounded?",
+      "methods": [
+        "physical_inspection"
+      ],
+      "note": "the requiredFact is grounding_integrity. Continuity is not established by physical inspection; a visible conductor can be broken, corroded or unbonded. This is the same shape as app-mg-01's function question on a different hazard family"
+    },
+    {
+      "recordId": "app-haul-01",
+      "question": "Can persons contact moving parts?",
+      "methods": [
+        "inspection"
+      ],
+      "note": "reachability is a capability question — gap dimensions, reach distances, body position — not a state plain inspection reports. The record pairs an observable question with a capability question and offers one method for both, the same shape as app-mg-01"
+    },
+    {
+      "recordId": "app-ppe-02",
+      "question": "Is appropriate PPE provided?",
+      "methods": [
+        "observation"
+      ],
+      "note": "\"appropriate\" requires comparing provided PPE against an assessed hazard. Observation establishes what is provided, not whether it is the right protection"
+    }
+  ],
+  "ambiguousQuestions": [
+    {
+      "recordId": "app-fall-01",
+      "question": "Is edge protected?",
+      "methods": [
+        "physical_inspection"
+      ],
+      "note": "\"protected\" reads either as presence of edge protection, which inspection establishes, or as adequacy of it, which inspection alone does not. The record does not disambiguate."
+    },
+    {
+      "recordId": "app-mat-01",
+      "question": "Is material stable?",
+      "methods": [
+        "physical_inspection"
+      ],
+      "note": "stability may be evident from stacking, or may require assessment beyond looking. The record's citation is also a placeholder, so the derivation refuses it"
+    }
+  ],
+  "recurringPatterns": {
+    "presence_question_vs_physical_inspection": {
+      "observed": 16,
+      "reading": "the dominant and benign pattern — an observable state matched to a looking method"
+    },
+    "functional_question_vs_physical_inspection": {
+      "observed": [
+        "app-mg-01 :: Is the guard functional?",
+        "rec-msha-30-56-12 :: Is equipment properly grounded?"
+      ],
+      "reading": "the §169 class: evidence consistent with a safeguard being present and non-functional. TWO instances across the registry, in two different hazard families."
+    },
+    "capability_question_vs_inspection": {
+      "observed": [
+        "app-haul-01 :: Can persons contact moving parts?"
+      ],
+      "reading": "reachability needs dimensions and body position, not a state report"
+    },
+    "appropriateness_question_vs_observation": {
+      "observed": [
+        "app-ppe-02 :: Is appropriate PPE provided?"
+      ],
+      "reading": "adequacy requires comparison against an assessed hazard"
+    },
+    "status_question_vs_documentation_review": {
+      "observed": [
+        "app-hazcom-02 :: Is SDS available?",
+        "app-hazcom-02 :: Is the container labeled?"
+      ],
+      "reading": "aligned — an audit is the right method for a documentation availability question"
+    },
+    "protective_response_question_vs_functional_test": {
+      "observed": [],
+      "reading": "NOT PRESENT in this registry. No record asks a protective-response question, and no record offers a functional test as a verification method. That absence is itself the finding for HR-04-shaped facts."
+    }
+  },
+  "verificationMethodVocabulary": {
+    "distinctMethods": [
+      "audit",
+      "design_review",
+      "gas_detection",
+      "inspection",
+      "observation",
+      "physical_inspection",
+      "visual_inspection",
+      "walkthrough",
+      "zero_energy_verification"
+    ],
+    "observational": [
+      "inspection",
+      "observation",
+      "physical_inspection",
+      "visual_inspection",
+      "walkthrough"
+    ],
+    "deskBased": [
+      "audit",
+      "design_review"
+    ],
+    "instrumentedOrProcedural": [
+      "gas_detection",
+      "zero_energy_verification"
+    ],
+    "noFunctionalTestMethodExists": true,
+    "section171Comparison": "§171 recorded \"seven of nine distinct verification methods are looking-based\". This audit counts the same nine distinct methods and classifies five as directly observational, two as desk-based (audit, design_review) and two as instrumented or procedural (gas_detection, zero_energy_verification). The §171 figure holds if desk-based methods are grouped with looking; the grouping is stated here rather than assumed."
+  },
+  "placeholderCitationRecords": [
+    "app-rig-01",
+    "app-mat-01"
+  ],
+  "section180CharacterisationsChecked": {
+    "app-mg-01": "CONFIRMED — asks both presence and function while offering only physical_inspection; the function question has no method behind it",
+    "app-loto-01": "CONFIRMED — zero_energy_verification matches its isolation question, which is why §171 derived from it; its second question is the registry's only case of the method exceeding the question",
+    "app-fire-01": "CONFIRMED — 1910.157, tag legibility. It has nothing to say about burner flame-failure safeguards and could not have supplied a criterion for the fire rows"
+  },
+  "rows": [
+    {
+      "recordId": "app-mg-01",
+      "citation": "1910.212",
+      "domainId": "machine_guarding",
+      "status": "approved",
+      "requiredFacts": [
+        "guarding_status"
+      ],
+      "question": "Is the guard present?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "training_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "presence is precisely what a physical inspection establishes",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-mg-01",
+      "citation": "1910.212",
+      "domainId": "machine_guarding",
+      "status": "approved",
+      "requiredFacts": [
+        "guarding_status"
+      ],
+      "question": "Is the guard functional?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "training_only"
+      ],
+      "category": "QUESTION_STRONGER_THAN_METHOD",
+      "note": "function is not established by looking. This is the §180 characterisation and it holds: the record asks presence AND function while offering only physical_inspection, so one of its two questions has no method behind it. It is also the §169 class — evidence consistent with a safeguard being present and non-functional.",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-elec-01",
+      "citation": "1910.305",
+      "domainId": "electrical",
+      "status": "approved",
+      "requiredFacts": [
+        "cord_integrity"
+      ],
+      "question": "Is panel closed?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "tape_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "a closed panel is directly observable. Separate observation: the record's requiredFact is cord_integrity, which this question does not address — a question-to-requiredFact mismatch on a different axis from the one this audit measures",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-haz-01",
+      "citation": "1910.1200",
+      "domainId": "hazcom",
+      "status": "approved",
+      "requiredFacts": [
+        "labeling_status"
+      ],
+      "question": "Is the container labeled?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "verbal_identification"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "label presence is observable",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-cs-01",
+      "citation": "1910.146",
+      "domainId": "confined_space",
+      "status": "approved",
+      "requiredFacts": [
+        "atmospheric_test"
+      ],
+      "question": "Is atmosphere tested?",
+      "verificationMethods": [
+        "gas_detection"
+      ],
+      "weakActions": [
+        "no_monitoring"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "gas_detection is the activity the question asks about; performing it answers the question",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-exc-01",
+      "citation": "1926.652",
+      "domainId": "excavation_trenching",
+      "status": "approved",
+      "requiredFacts": [
+        "protective_system"
+      ],
+      "question": "Is system adequate?",
+      "verificationMethods": [
+        "design_review"
+      ],
+      "weakActions": [
+        "assumption"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "adequacy of a protective system is what design_review establishes — one of the few records whose method is matched to a judgement-shaped question",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-fall-01",
+      "citation": "1910.22",
+      "domainId": "fall_protection",
+      "status": "approved",
+      "requiredFacts": [
+        "guarding_status"
+      ],
+      "question": "Is edge protected?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "training_only"
+      ],
+      "category": "AMBIGUOUS",
+      "note": "\"protected\" reads either as presence of edge protection, which inspection establishes, or as adequacy of it, which inspection alone does not. The record does not disambiguate.",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-mob-01",
+      "citation": "56.9100",
+      "domainId": "mobile_equipment",
+      "status": "approved",
+      "requiredFacts": [
+        "traffic_control"
+      ],
+      "question": "Are pedestrians clear?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "signage_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "a momentary observable state. Worth noting it is a point-in-time answer to a question about a moving condition — a temporal caveat rather than a property mismatch",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-rig-01",
+      "citation": "placeholder_review_required",
+      "domainId": "rigging_lifting",
+      "status": "approved",
+      "requiredFacts": [
+        "sling_inspection"
+      ],
+      "question": "Is sling damaged?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "verbal_identification"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "visible damage is what inspection establishes. Note the record's citation is a placeholder, so the governed derivation REFUSES it with CITATION_IS_A_PLACEHOLDER and no criterion reaches an owed fact regardless",
+      "citationIsPlaceholder": true
+    },
+    {
+      "recordId": "app-fire-01",
+      "citation": "1910.157",
+      "domainId": "fire_protection",
+      "status": "approved",
+      "requiredFacts": [
+        "access_path"
+      ],
+      "question": "Is tag legible?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "memory_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "legibility is observable. This confirms the §171/§180 characterisation: the record is about extinguisher tags under 1910.157 and has nothing to say about burner flame-failure safeguards, so it could not have supplied a criterion for the HR-01/HR-07 fire rows",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-egress-01",
+      "citation": "1910.37",
+      "domainId": "emergency_egress",
+      "status": "approved",
+      "requiredFacts": [
+        "egress_path"
+      ],
+      "question": "Is path clear?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "training_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "an obstructed path is observable",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-ppe-01",
+      "citation": "1910.133",
+      "domainId": "ppe",
+      "status": "approved",
+      "requiredFacts": [
+        "ppe_usage"
+      ],
+      "question": "Is PPE used?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "memory_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "use is observable at the time of inspection",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-mat-01",
+      "citation": "placeholder_review_required",
+      "domainId": "material_handling",
+      "status": "approved",
+      "requiredFacts": [
+        "storage_stability"
+      ],
+      "question": "Is material stable?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "assumption"
+      ],
+      "category": "AMBIGUOUS",
+      "note": "stability may be evident from stacking, or may require assessment beyond looking. The record's citation is also a placeholder, so the derivation refuses it",
+      "citationIsPlaceholder": true
+    },
+    {
+      "recordId": "rec-msha-30-56-12",
+      "citation": "30 CFR 56.12",
+      "domainId": null,
+      "status": "approved",
+      "requiredFacts": [
+        "grounding_integrity"
+      ],
+      "question": "Is equipment properly grounded?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "tape_only"
+      ],
+      "category": "QUESTION_STRONGER_THAN_METHOD",
+      "note": "the requiredFact is grounding_integrity. Continuity is not established by physical inspection; a visible conductor can be broken, corroded or unbonded. This is the same shape as app-mg-01's function question on a different hazard family",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-loto-01",
+      "citation": "1910.147",
+      "domainId": "lockout_tagout",
+      "status": "approved",
+      "requiredFacts": [
+        "energy_isolation_status"
+      ],
+      "question": "Is energy source isolated?",
+      "verificationMethods": [
+        "zero_energy_verification"
+      ],
+      "weakActions": [
+        "warning_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "zero_energy_verification establishes exactly this. §171 chose this record for derivation for this reason, and the audit confirms the choice",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-loto-01",
+      "citation": "1910.147",
+      "domainId": "lockout_tagout",
+      "status": "approved",
+      "requiredFacts": [
+        "energy_isolation_status"
+      ],
+      "question": "Is lockout device applied?",
+      "verificationMethods": [
+        "zero_energy_verification"
+      ],
+      "weakActions": [
+        "warning_only"
+      ],
+      "category": "METHOD_STRONGER_THAN_QUESTION",
+      "note": "device application is visually checkable, while zero_energy_verification establishes the stronger fact that no energy remains. The method exceeds the question — the benign direction, and the only instance in the registry",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-fall-02",
+      "citation": "1910.28",
+      "domainId": "fall_protection",
+      "status": "approved",
+      "requiredFacts": [
+        "edge_protection_status",
+        "height"
+      ],
+      "question": "Is guardrail present?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "presence is observable",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-fall-02",
+      "citation": "1910.28",
+      "domainId": "fall_protection",
+      "status": "approved",
+      "requiredFacts": [
+        "edge_protection_status",
+        "height"
+      ],
+      "question": "Is fall arrest used?",
+      "verificationMethods": [
+        "physical_inspection"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "use is observable at the time of inspection",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-wws-01",
+      "citation": "1910.22",
+      "domainId": "walking_working_surfaces",
+      "status": "approved",
+      "requiredFacts": [
+        "surface_condition"
+      ],
+      "question": "Is surface clean and dry?",
+      "verificationMethods": [
+        "walkthrough"
+      ],
+      "weakActions": [
+        "signage_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "a walkthrough establishes surface condition directly",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-wws-01",
+      "citation": "1910.22",
+      "domainId": "walking_working_surfaces",
+      "status": "approved",
+      "requiredFacts": [
+        "surface_condition"
+      ],
+      "question": "Is walkway clear of obstructions?",
+      "verificationMethods": [
+        "walkthrough"
+      ],
+      "weakActions": [
+        "signage_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "a walkthrough establishes this directly",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-stfh-01",
+      "citation": "1910.22(a)(1)",
+      "domainId": "slips_trips_falls_housekeeping",
+      "status": "approved",
+      "requiredFacts": [
+        "housekeeping_status"
+      ],
+      "question": "Is the area free of debris?",
+      "verificationMethods": [
+        "visual_inspection"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "visual inspection establishes housekeeping state",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-stfh-01",
+      "citation": "1910.22(a)(1)",
+      "domainId": "slips_trips_falls_housekeeping",
+      "status": "approved",
+      "requiredFacts": [
+        "housekeeping_status"
+      ],
+      "question": "Is the floor dry?",
+      "verificationMethods": [
+        "visual_inspection"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "visual inspection establishes this",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-haul-01",
+      "citation": "56.14107",
+      "domainId": "powered_haulage",
+      "status": "approved",
+      "requiredFacts": [
+        "guarding_status"
+      ],
+      "question": "Are moving parts guarded?",
+      "verificationMethods": [
+        "inspection"
+      ],
+      "weakActions": [
+        "training_only"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "guard presence is observable by inspection",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-haul-01",
+      "citation": "56.14107",
+      "domainId": "powered_haulage",
+      "status": "approved",
+      "requiredFacts": [
+        "guarding_status"
+      ],
+      "question": "Can persons contact moving parts?",
+      "verificationMethods": [
+        "inspection"
+      ],
+      "weakActions": [
+        "training_only"
+      ],
+      "category": "QUESTION_STRONGER_THAN_METHOD",
+      "note": "reachability is a capability question — gap dimensions, reach distances, body position — not a state plain inspection reports. The record pairs an observable question with a capability question and offers one method for both, the same shape as app-mg-01",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-hazcom-02",
+      "citation": "1910.1200",
+      "domainId": "hazard_communication",
+      "status": "approved",
+      "requiredFacts": [
+        "label_presence",
+        "sds_availability"
+      ],
+      "question": "Is the container labeled?",
+      "verificationMethods": [
+        "audit"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "an audit establishes label presence",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-hazcom-02",
+      "citation": "1910.1200",
+      "domainId": "hazard_communication",
+      "status": "approved",
+      "requiredFacts": [
+        "label_presence",
+        "sds_availability"
+      ],
+      "question": "Is SDS available?",
+      "verificationMethods": [
+        "audit"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "availability is what a documentation audit establishes",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-ppe-02",
+      "citation": "1910.132",
+      "domainId": "personal_protective_equipment",
+      "status": "approved",
+      "requiredFacts": [
+        "ppe_usage"
+      ],
+      "question": "Is appropriate PPE provided?",
+      "verificationMethods": [
+        "observation"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "QUESTION_STRONGER_THAN_METHOD",
+      "note": "\"appropriate\" requires comparing provided PPE against an assessed hazard. Observation establishes what is provided, not whether it is the right protection",
+      "citationIsPlaceholder": false
+    },
+    {
+      "recordId": "app-ppe-02",
+      "citation": "1910.132",
+      "domainId": "personal_protective_equipment",
+      "status": "approved",
+      "requiredFacts": [
+        "ppe_usage"
+      ],
+      "question": "Is PPE being used?",
+      "verificationMethods": [
+        "observation"
+      ],
+      "weakActions": [
+        "verbal_warning"
+      ],
+      "category": "ALIGNMENT_CLEAR",
+      "note": "use is observable",
+      "citationIsPlaceholder": false
+    }
+  ]
+}

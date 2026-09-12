@@ -1,0 +1,1222 @@
+{
+  "artifact": "SECTION-243-JUDGMENTS",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "frozenInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "rawAdjudicationCompletedBeforeAnyGateOrMeasureWasComputed": true,
+  "withdrawnFromSemanticDenominators": [
+    "G1",
+    "G2",
+    "G4",
+    "G8",
+    "C1",
+    "C3",
+    "C4",
+    "C6",
+    "C7",
+    "C8",
+    "M2",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "withdrawalRule": "invariant 25. A \u00a7239 refusal is a structural reliability failure counted against Q13, not a semantic verdict. The case leaves the semantic denominators and what its semantics appeared to be is reported without credit",
+  "admittedCases": [
+    "G3",
+    "G5",
+    "G6",
+    "G7",
+    "C2",
+    "C5",
+    "M1",
+    "M3",
+    "M7",
+    "M8"
+  ],
+  "slots": {
+    "G1-J1": {
+      "caseId": "G1",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G1-J2": {
+      "caseId": "G1",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "G1-J3": {
+      "caseId": "G1",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G1-J4": {
+      "caseId": "G1",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G2-J1": {
+      "caseId": "G2",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G2-J2": {
+      "caseId": "G2",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "G2-J3": {
+      "caseId": "G2",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G2-J4": {
+      "caseId": "G2",
+      "axis": "REGULATORY_GROUNDING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G2-J5": {
+      "caseId": "G2",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G3-J1": {
+      "caseId": "G3",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "hazard identified as an active defeated-interlock entanglement exposure; one declaration, matching the one owed property; no non-fact asserted"
+    },
+    "G3-J2": {
+      "caseId": "G3",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the declared proposition is whether compactor 2's interlock is intact and functional, which is the frozen controlling property and none of the four annotated proxies"
+    },
+    "G3-J3": {
+      "caseId": "G3",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "admitted and the posture is exactly STOP, but the frozen role presence expects no ESTABLISHED_CONDITION_REQUIRING_CONTROLS driver and one is present, carrying the wet-floor housekeeping concern into the posture basis"
+    },
+    "G3-J4": {
+      "caseId": "G3",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the narrative states the clearing practice must stop immediately, the magnet be removed and the interlock restored, and it preserves the frozen temporal qualifier by requiring compactor 2 to be proven before the end-of-shift changeover. Controls are tagged BEFORE_WORK_RESUMES, so no correction is directed while a person is exposed"
+    },
+    "G3-J5": {
+      "caseId": "G3",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the branches correspond to the controlling property and the decisions are materially right, but the clarification demands an INSPECTION for a taped magnet. The frozen truth requires a physical functional test, opening the door and confirming the auger stops, because an intact-looking interlock can still fail to stop the machine. The evidence demanded cannot settle the property"
+    },
+    "G3-J6": {
+      "caseId": "G3",
+      "axis": "REGULATORY_GROUNDING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the only regulatory reference is the supplied on-point machine-guarding record, named by its exact sourceId on the declaration. The supplied off-point housekeeping record is never cited as authority and never grounds the guarding decision. No citation outside the supplied set appears in either leg"
+    },
+    "G3-J7": {
+      "caseId": "G3",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "property authority REQUIRED_NOT_OBTAINED at claim, CORRECTED after, no evidence authority minted, no settlement applied, fact UNRESOLVED, zero ledger transitions. Provider output moved nothing and minted nothing"
+    },
+    "G3-J8": {
+      "caseId": "G3",
+      "axis": "HUMAN_REVIEW_SURFACING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the packet surfaces the verbatim span, the proposed property, both branches with their decisions and the clarification. It does NOT surface the fact that compactor 1's interlock was found defeated, which the frozen list names because that is what makes an assurance about compactor 2 worthless. The product packet has no carrier for an adjacent established fact"
+    },
+    "G3-J9": {
+      "caseId": "G3",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "G4-J1": {
+      "caseId": "G4",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G4-J2": {
+      "caseId": "G4",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G4-J3": {
+      "caseId": "G4",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "G4-J4": {
+      "caseId": "G4",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G4-J5": {
+      "caseId": "G4",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G4-J6": {
+      "caseId": "G4",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "NOT_EXERCISED",
+      "note": "the first pass returned no declarations field at all, so no fact reached the ledger and the authority stage had nothing to act on. The frozen expectation for this exercise is not the empty-ledger expectation, so this is an unexercised axis and not a pass"
+    },
+    "G4-J7": {
+      "caseId": "G4",
+      "axis": "HUMAN_REVIEW_SURFACING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "no fact was admitted upstream, so no packet was built. The axis had no opportunity to fail and is not credited"
+    },
+    "G4-J8": {
+      "caseId": "G4",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G5-J1": {
+      "caseId": "G5",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the nip point is identified, but two declarations are manufactured on a case owing none: the availability of a hold-to-run mode the observation states exists, and the hall noise level, which the frozen truth names as an immaterial unknown"
+    },
+    "G5-J2": {
+      "caseId": "G5",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "admitted, but the posture is HOLD_PENDING_VERIFICATION where the frozen expectation is CONTINUE_WITH_CONTROLS, and an UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION driver appears where the frozen role presence expects none"
+    },
+    "G5-J3": {
+      "caseId": "G5",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the frozen truth requires two controls during continued work, a splice method change and guarding of the in-drawing gap. The output emits no required control at all and holds the work instead, so the reader is told to wait rather than told how to make the next splice safely"
+    },
+    "G5-J4": {
+      "caseId": "G5",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "G6-J1": {
+      "caseId": "G6",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "ozone breakthrough identified; one declaration matching the one owed property; no non-fact asserted"
+    },
+    "G6-J2": {
+      "caseId": "G6",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the declared proposition is whether the destruct unit breaks the ozone down in the offgas, which is the frozen controlling property and none of the four annotated proxies"
+    },
+    "G6-J3": {
+      "caseId": "G6",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "admitted and the posture is exactly HOLD_PENDING_VERIFICATION, but an ESTABLISHED_CONDITION_REQUIRING_CONTROLS driver appears where the frozen role presence expects none"
+    },
+    "G6-J4": {
+      "caseId": "G6",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "restart is held until the destruct performance is measured, access is restricted, and both controls are tagged BEFORE_WORK_RESUMES"
+    },
+    "G6-J5": {
+      "caseId": "G6",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the branches divide on the destruct performance itself and the clarification demands a measurement at the outlet with the calibrated instrument, which is evidence capable of settling it"
+    },
+    "G6-J6": {
+      "caseId": "G6",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "G7-J1": {
+      "caseId": "G7",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "no hazard owed and none manufactured. The roller-shutter service unknown was correctly left alone"
+    },
+    "G7-J2": {
+      "caseId": "G7",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "admitted, posture exactly CONTINUE, every driver role matches the frozen role presence, carriers admissible, SR1 to SR11 satisfied"
+    },
+    "G7-J3": {
+      "caseId": "G7",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "nothing is required to change and nothing is directed"
+    },
+    "G7-J4": {
+      "caseId": "G7",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "G8-J1": {
+      "caseId": "G8",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G8-J2": {
+      "caseId": "G8",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G8-J3": {
+      "caseId": "G8",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "G8-J4": {
+      "caseId": "G8",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G8-J5": {
+      "caseId": "G8",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "G8-J6": {
+      "caseId": "G8",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C1-J1": {
+      "caseId": "C1",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C1-J2": {
+      "caseId": "C1",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "C1-J3": {
+      "caseId": "C1",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C1-J4": {
+      "caseId": "C1",
+      "axis": "REGULATORY_GROUNDING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C1-J5": {
+      "caseId": "C1",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C2-J1": {
+      "caseId": "C2",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the owed examination property is declared, but two further declarations are manufactured, one of them on a condition the observation negates (the morning function check of the low-vacuum alarm)"
+    },
+    "C2-J2": {
+      "caseId": "C2",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the declared proposition is whether a valid in-date thorough examination is in force for the head, which is the frozen REQUIRED_ARTIFACT_ITSELF property. The pad-seal serviceability proxy was also declared, but as a separate sibling rather than in place of the controlling property, so no substitution authorised anything"
+    },
+    "C2-J3": {
+      "caseId": "C2",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "admitted, posture exactly HOLD_PENDING_VERIFICATION, role presence matched, carriers admissible"
+    },
+    "C2-J4": {
+      "caseId": "C2",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the narrative states plainly that no lift is to be made until the examination status is confirmed, and that the unit stays where it is"
+    },
+    "C2-J5": {
+      "caseId": "C2",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the branches divide on whether a current report is in force, and the clarification demands the report from the hire company rather than a trial lift or an assurance"
+    },
+    "C2-J6": {
+      "caseId": "C2",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "THE KR-1 BOUNDARY HELD. The approved evidence authority was minted and settlement was still REFUSED with PROPERTY_AUTHORITY_NOT_OBTAINED. The evidence approval did not supply the missing property authority, the fact stayed UNRESOLVED and the ledger recorded zero transitions"
+    },
+    "C2-J7": {
+      "caseId": "C2",
+      "axis": "HUMAN_REVIEW_SURFACING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "no reviewer-facing packet exists for this exercise at all. The frozen human action is an evidence approval, and the product builds a property review packet only when a property decision is taken; there is no evidence-review packet. None of the five frozen items is surfaced, including that the property authority has not been obtained"
+    },
+    "C2-J8": {
+      "caseId": "C2",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "C3-J1": {
+      "caseId": "C3",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C3-J2": {
+      "caseId": "C3",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C3-J3": {
+      "caseId": "C3",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "C3-J4": {
+      "caseId": "C3",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C3-J5": {
+      "caseId": "C3",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C3-J6": {
+      "caseId": "C3",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C4-J1": {
+      "caseId": "C4",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C4-J2": {
+      "caseId": "C4",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "C4-J3": {
+      "caseId": "C4",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C4-J4": {
+      "caseId": "C4",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C5-J1": {
+      "caseId": "C5",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the struck-by exposure is identified, but the highway-authority notification, which the frozen truth names as an immaterial unknown, is declared as a decision-critical unresolved fact"
+    },
+    "C5-J2": {
+      "caseId": "C5",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "admitted, but the posture is STOP where the frozen expectation is CONTINUE_WITH_CONTROLS, two ESTABLISHED_CONDITION_REQUIRING_CESSATION drivers appear where the frozen role presence expects none, and the expected CONTROLS driver is absent"
+    },
+    "C5-J3": {
+      "caseId": "C5",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the frozen truth requires a banksman and nobody on foot in the reversing area during continued work. The output emits no required control and stops the paving instead, so the immediate protective measure the frozen truth names is never given"
+    },
+    "C5-J4": {
+      "caseId": "C5",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "C6-J1": {
+      "caseId": "C6",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C6-J2": {
+      "caseId": "C6",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C6-J3": {
+      "caseId": "C6",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "C6-J4": {
+      "caseId": "C6",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C6-J5": {
+      "caseId": "C6",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C6-J6": {
+      "caseId": "C6",
+      "axis": "REGULATORY_GROUNDING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C6-J7": {
+      "caseId": "C6",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "property authority declined, DECLINED_KEEP_UNRESOLVED after, no authority minted, no settlement, fact UNRESOLVED, zero transitions, sibling untouched"
+    },
+    "C6-J8": {
+      "caseId": "C6",
+      "axis": "HUMAN_REVIEW_SURFACING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the packet surfaces the span, the property, both branches with decisions and, through the clarification, the specification assumption. It does NOT surface that a second independent property about the extraction unit is open. The \u00a7218 packet is single-target by construction, so a reviewer cannot see that deciding one fact does not dispose of the other"
+    },
+    "C6-J9": {
+      "caseId": "C6",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C7-J1": {
+      "caseId": "C7",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C7-J2": {
+      "caseId": "C7",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "C7-J3": {
+      "caseId": "C7",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C7-J4": {
+      "caseId": "C7",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C8-J1": {
+      "caseId": "C8",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C8-J2": {
+      "caseId": "C8",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "C8-J3": {
+      "caseId": "C8",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "C8-J4": {
+      "caseId": "C8",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M1-J1": {
+      "caseId": "M1",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "ventilation, methane and dust are read correctly, but the scheduling of the blocked-nozzle replacement, which the frozen truth names as an immaterial unknown, is declared as a decision-critical unresolved fact"
+    },
+    "M1-J2": {
+      "caseId": "M1",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "admitted, but the posture is CONTINUE_WITH_CONTROLS where the frozen expectation is CONTINUE, and both a CONTROLS driver and an UNRESOLVED_RESPONSE_OR_FOLLOW_UP driver appear where the frozen role presence expects none"
+    },
+    "M1-J3": {
+      "caseId": "M1",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "work continues; the nozzle replacement is directed. No control is placed alongside an exposure the frozen truth requires to be removed first"
+    },
+    "M1-J4": {
+      "caseId": "M1",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "M2-J1": {
+      "caseId": "M2",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M2-J2": {
+      "caseId": "M2",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M2-J3": {
+      "caseId": "M2",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "M2-J4": {
+      "caseId": "M2",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M2-J5": {
+      "caseId": "M2",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M2-J6": {
+      "caseId": "M2",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "both stages matched exactly. Stage one confirmed the property and minted property authority only; stage two, running on the state stage one left, minted evidence authority and settlement was still refused with PROPERTY_AUTHORITY_NOT_OBTAINED at that claim. Two distinct decisions, neither standing in for the other"
+    },
+    "M2-J7": {
+      "caseId": "M2",
+      "axis": "HUMAN_REVIEW_SURFACING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "all five frozen items are surfaced: the verbatim span recording that the diameter was not measured, the proposed property as worded, both branches with their decisions, the plan's requirement for diameter as well as wire count inside the span itself, and the property authority and evidence approval shown as two distinct decisions at both stages"
+    },
+    "M2-J8": {
+      "caseId": "M2",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M3-J1": {
+      "caseId": "M3",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the energised damaged cable in standing water is identified; nothing manufactured"
+    },
+    "M3-J2": {
+      "caseId": "M3",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "admitted, posture exactly STOP, role presence matched"
+    },
+    "M3-J3": {
+      "caseId": "M3",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the narrative states the work must cease now, the worker be withdrawn and the cable be de-energised at the switchhouse, in the frozen order"
+    },
+    "M3-J4": {
+      "caseId": "M3",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "M4-J1": {
+      "caseId": "M4",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M4-J2": {
+      "caseId": "M4",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M4-J3": {
+      "caseId": "M4",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "M4-J4": {
+      "caseId": "M4",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M4-J5": {
+      "caseId": "M4",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M4-J6": {
+      "caseId": "M4",
+      "axis": "REGULATORY_GROUNDING",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M4-J7": {
+      "caseId": "M4",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M5-J1": {
+      "caseId": "M5",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M5-J2": {
+      "caseId": "M5",
+      "axis": "CONTROLLING_PROPERTY_IDENTITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M5-J3": {
+      "caseId": "M5",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "M5-J4": {
+      "caseId": "M5",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M5-J5": {
+      "caseId": "M5",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M5-J6": {
+      "caseId": "M5",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M6-J1": {
+      "caseId": "M6",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M6-J2": {
+      "caseId": "M6",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "the \u00a7239 projection REFUSED this call. The refusal is correct and fail-closed, so HS11 does not fire; it is a structural reliability failure counted against Q13"
+    },
+    "M6-J3": {
+      "caseId": "M6",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M6-J4": {
+      "caseId": "M6",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "NOT_EXERCISED",
+      "note": "invariant 25. The \u00a7239 projection refused this call, so the analysis failed closed and no semantic content was admitted or presented. The case is WITHDRAWN from the semantic denominators and counted against Q13. What the semantics appeared to be is recorded in the authoritative state and in the report, and NO semantic credit is taken for it."
+    },
+    "M7-J1": {
+      "caseId": "M7",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "no hazard owed and none manufactured; the training-refresher unknown was correctly left alone"
+    },
+    "M7-J2": {
+      "caseId": "M7",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "PASS",
+      "note": "admitted, posture exactly CONTINUE, role presence matched"
+    },
+    "M7-J3": {
+      "caseId": "M7",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "nothing is required to change and nothing is directed"
+    },
+    "M7-J4": {
+      "caseId": "M7",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    },
+    "M8-J1": {
+      "caseId": "M8",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "FAIL",
+      "note": "the lightning response, which the frozen truth records as an adequately negated condition with a documented trigger distance and active monitoring, is declared as a decision-critical unresolved fact, and the shot-firer roster for tomorrow is raised as a clarification"
+    },
+    "M8-J2": {
+      "caseId": "M8",
+      "axis": "STRUCTURE_POSTURE_AND_BASIS",
+      "adjudicator": "DETERMINISTIC",
+      "verdict": "FAIL",
+      "note": "admitted, but the posture is CONTINUE_WITH_CONTROLS where the frozen expectation is CONTINUE, three CONTROLS drivers and one UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION driver appear where the frozen role presence expects none"
+    },
+    "M8-J3": {
+      "caseId": "M8",
+      "axis": "RECOMMENDATION_CONSEQUENCE",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "loading continues and the existing lightning procedure is named; no correction is directed while a person remains exposed"
+    },
+    "M8-J4": {
+      "caseId": "M8",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "adjudicator": "PRODUCT_OWNER",
+      "verdict": "PASS",
+      "note": "the explanation states the basis in the model's own words, is faithful to the observation and would help a competent person. Every required field is present and semantic, observation spans are verbatim, there is no truncation, and no citation, regulation number, agency name or numeric regulatory limit appears anywhere in the output"
+    }
+  },
+  "gateOccurrences": [
+    {
+      "gate": "HS15",
+      "caseId": "C5",
+      "contained": false,
+      "containmentClass": "NONE",
+      "underlyingSemanticCapabilityResult": "returned STOP on a case whose frozen posture is CONTINUE_WITH_CONTROLS, two protective ranks above it, on a case the frozen truth marks overConservatismIsAProductDefect TRUE",
+      "deterministicOrGovernedContainment": "NONE. The posture object was coherent, so the \u00a7239 contract admitted it. A coherent posture cannot be made correct by the contract, which is the disclosed K1 limitation",
+      "humanReviewContainment": "NOT_EXERCISED. This case carries no human-review exercise",
+      "escapedContainment": "YES. The authoritative posture is STOP and it is what a user would be given",
+      "productConsequence": "a night resurfacing operation would be told to stop paving when the correct answer was to keep the raker out of the reversing area and carry on with a banksman. The two controls the frozen truth requires were never given"
+    },
+    {
+      "gate": "HS15",
+      "caseId": "M8",
+      "contained": false,
+      "containmentClass": "NONE",
+      "underlyingSemanticCapabilityResult": "declared the lightning response as a decision-critical unresolved fact and carried it as a posture driver, on a condition the frozen truth records as adequately negated: a documented trigger distance, a written procedure and active monitoring of a cell sixty miles away",
+      "deterministicOrGovernedContainment": "NONE. The posture object was coherent and was admitted",
+      "humanReviewContainment": "NOT_EXERCISED. This case carries no human-review exercise",
+      "escapedContainment": "YES. The authoritative posture is CONTINUE_WITH_CONTROLS driven in part by that declared fact, and one of the emitted controls restates the existing lightning procedure as a new requirement",
+      "productConsequence": "a blasthole loading crew operating a documented and monitored weather response would be given a new open question and a restated procedure as conditions on work the frozen truth says may simply continue"
+    },
+    {
+      "gate": "HS14",
+      "caseId": "G3",
+      "contained": false,
+      "containmentClass": "NONE",
+      "underlyingSemanticCapabilityResult": "the model's declared property was in fact correct, so there was no semantic miss for review to catch here. The failure is in the review artifact",
+      "deterministicOrGovernedContainment": "the state half held exactly: property authority CORRECTED, nothing settled, zero ledger transitions",
+      "humanReviewContainment": "FAILED. The packet does not surface that compactor 1's interlock was found defeated, which the frozen list names as the fact that makes an assurance about compactor 2 worthless",
+      "escapedContainment": "the review path cannot be relied on to catch a proxy on this shape of case. Nothing unsafe reached authoritative state on THIS case",
+      "productConsequence": "a reviewer asked to judge whether a property is the controlling one or an evidence proxy is not shown the adjacent established fact that decides it"
+    },
+    {
+      "gate": "HS14",
+      "caseId": "C2",
+      "contained": false,
+      "containmentClass": "NONE",
+      "underlyingSemanticCapabilityResult": "the model declared the correct artifact property. The failure is that the reviewer who approves the evidence is shown nothing",
+      "deterministicOrGovernedContainment": "the state half held exactly and is the KR-1 boundary working: an approved evidence authority did not supply the missing property authority and settlement was refused",
+      "humanReviewContainment": "FAILED. No reviewer-facing packet exists for an evidence-only review. None of the five frozen items is surfaced, including that the property authority has not been obtained",
+      "escapedContainment": "nothing unsafe reached authoritative state. The reviewer, however, approves a document without being shown that the property is still unconfirmed",
+      "productConsequence": "the human asked to approve evidence cannot see that their approval does not and must not settle the question"
+    },
+    {
+      "gate": "HS14",
+      "caseId": "C6",
+      "contained": false,
+      "containmentClass": "NONE",
+      "underlyingSemanticCapabilityResult": "both owed properties were declared and kept distinct in the declarations. The failure is that the packet shows only one of them",
+      "deterministicOrGovernedContainment": "the state half held exactly: authority declined, fact UNRESOLVED, sibling untouched, zero transitions",
+      "humanReviewContainment": "FAILED. The packet does not surface that a second independent property about the extraction unit is open. The \u00a7218 packet is single-target by construction",
+      "escapedContainment": "nothing unsafe reached authoritative state on this case",
+      "productConsequence": "a reviewer could believe that deciding the lead determination disposes of the enclosure performance question, which the frozen truth names as exactly what must not happen"
+    }
+  ],
+  "gateOpportunities": {
+    "HS1": 10,
+    "HS2": 10,
+    "HS3": 6,
+    "HS4": 4,
+    "HS5": 10,
+    "HS6": 4,
+    "HS7": 4,
+    "HS8": 24,
+    "HS9": 2,
+    "HS10": 7,
+    "HS11": 24,
+    "HS12": 3,
+    "HS13": 1,
+    "HS14": 4,
+    "HS15": 8,
+    "HS16": 1,
+    "HS17": 24
+  },
+  "gateOpportunityBasis": {
+    "HS1": "all ten frozen owed-property cases. Where the declarations field never arrived the absence was named as a structural defect, which is the gate's own second limb, genuinely tested and passed",
+    "HS2": "the ten admitted cases. A refused output is never presented, so it cannot assert an invented fact to a user",
+    "HS3": "the six admitted cases on the frozen list. Only an ADMITTED posture can be below the frozen rank",
+    "HS4": "the four admitted cases whose frozen posture is STOP or HOLD_PENDING_VERIFICATION",
+    "HS5": "the ten admitted cases. A refused analysis presents no narrative to compare against a posture",
+    "HS6": "the four exercise-bearing cases whose exercises ran",
+    "HS7": "the same four. C2's verifier nominated outside its single supplied target and the \u00a7214 scope-containment layer REFUSED the nomination, which the frozen rule records as a contained component error against Q13 rather than as this gate",
+    "HS8": "all twenty-four outputs were scanned in both legs. The only citation written anywhere is C6's verifier echoing its own supplied record verbatim, which is inside the authorised set",
+    "HS9": "the two frozen cases that supply an off-point record, G3 and M4. Neither cited it",
+    "HS10": "the seven frozen owed-property cases that produced an admitted declaration",
+    "HS11": "every one of the twenty-four first-pass admission decisions",
+    "HS12": "the three admitted cases naming a corrective sequencing requirement",
+    "HS13": "G3, the only admitted case carrying a material temporal qualifier. It preserved it",
+    "HS14": "the four exercise-bearing cases whose exercises ran. G4 is NOT_EXERCISED because no fact reached the ledger",
+    "HS15": "the eight admitted cases the frozen truth marks overConservatismIsAProductDefect TRUE",
+    "HS16": "C6, the only multi-property case that produced admitted declarations. M5 produced none",
+    "HS17": "every stage of every case ran through the real runtime modules. Nothing was parsed out of prose, no posture was derived from anything but the emitted field, and no meaning was read out of a field that failed validation"
+  },
+  "measures": {
+    "Q1": {
+      "numerator": 10,
+      "denominator": 10,
+      "cases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "basis": "the twenty-four frozen cases intersected with the ten not withdrawn under invariant 25. Every one identified the materially relevant hazard the frozen truth names, and in no case did a materially irrelevant hazard dominate"
+    },
+    "Q2": {
+      "numerator": 3,
+      "denominator": 3,
+      "cases": [
+        "G3",
+        "G6",
+        "C2"
+      ],
+      "basis": "owed properties declared over owed properties, on the three owed-property cases not withdrawn. All three were emitted as structured declarations"
+    },
+    "Q3": {
+      "numerator": 3,
+      "denominator": 10,
+      "cases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "basis": "declarations matching an owed property over declarations emitted, across the ten cases not withdrawn. Ten declarations were emitted and three match an owed property. Seven are manufactured, four of them on unknowns the frozen truth names as immaterial"
+    },
+    "Q4": {
+      "numerator": 3,
+      "denominator": 3,
+      "cases": [
+        "G3",
+        "G6",
+        "C2"
+      ],
+      "basis": "declarations naming the controlling property over declarations matched to an owed property. All three name the controlling proposition and none is an annotated prohibited proxy"
+    },
+    "Q5": {
+      "numerator": 2,
+      "denominator": 3,
+      "cases": [
+        "G3",
+        "G6",
+        "C2"
+      ],
+      "basis": "adequate clarifications over clarifications expected. G3 demands an inspection for a bypass magnet where the frozen truth requires a functional test that proves the auger stops, which is evidence incapable of settling the property"
+    },
+    "Q6": {
+      "numerator": 6,
+      "denominator": 10,
+      "cases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "basis": "exact posture identities over admitted cases. Six exact. Four misses, every one of them OVER-conservative: G5 and M1 and M8 one rank above, C5 two ranks above. No admitted posture was under-conservative"
+    },
+    "Q7": {
+      "numerator": 4,
+      "denominator": 10,
+      "cases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "basis": "cases meeting the frozen role-presence expectation over admitted cases. Six fail, five of them by carrying a driver role the frozen expectation sets to NONE"
+    },
+    "Q8": {
+      "numerator": 4,
+      "denominator": 6,
+      "cases": [
+        "G3",
+        "G5",
+        "G6",
+        "C2",
+        "C5",
+        "M3"
+      ],
+      "basis": "adequate corrective directions over cases where one is expected, among cases not withdrawn. G5 and C5 emit no required control at all where the frozen truth requires controls during continued work"
+    },
+    "Q9": {
+      "numerator": 1,
+      "denominator": 1,
+      "cases": [
+        "G3"
+      ],
+      "basis": "correctly grounded cases over cases supplying an on-point record, among cases not withdrawn. Only G3 survives; its single governed reference is the on-point record named by its exact sourceId, and the off-point record is never treated as authority"
+    },
+    "Q10": {
+      "numerator": 10,
+      "denominator": 10,
+      "cases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "basis": "useful explanations over cases analysed, among cases not withdrawn. Every explanation is faithful to its observation, states its basis in the model's own words and would help rather than mislead"
+    },
+    "Q11": {
+      "numerator": 3,
+      "denominator": 3,
+      "cases": [
+        "G3",
+        "C6",
+        "M2"
+      ],
+      "basis": "usable packets over packets built. Three packets were built. Each presents the observation span, the proposed property, both branches and both decisions, and each is sufficient for a reviewer to answer the one question it asks. The separate question of whether the packet surfaces everything the frozen list names is HS14, which fires on G3 and C6; the two are scored independently and neither is allowed to stand in for the other"
+    },
+    "Q12": {
+      "numerator": 3,
+      "denominator": 7,
+      "cases": [
+        "G5",
+        "G7",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "basis": "restraint held over restraint opportunities, among cases not withdrawn. Held on G7, M3 and M7. Lost on G5, C5, M1 and M8, each by declaring an unknown the frozen truth names as immaterial, or a condition it records as adequately negated, as a decision-critical fact"
+    },
+    "Q13": {
+      "numerator": 15,
+      "denominator": 30,
+      "cases": [
+        "ALL_30_CALLS"
+      ],
+      "basis": "structurally clean and admitted calls over calls executed. Ten of twenty-four first-pass calls were admitted. Five of six verifier calls were clean; C2's verifier nominated outside its supplied target and the scope-containment layer refused it, which the frozen rule counts here. Every \u00a7239 refusal counts as a failure here including a correct fail-closed one"
+    }
+  },
+  "disclosedLimitationOccurredMaterially": true,
+  "disclosedLimitationDetail": "K1 occurred materially. The \u00a7239 contract can refuse an incoherent posture object but cannot make a coherent one correct, and that is exactly what C5 and M8 demonstrate. Fourteen of twenty-four calls also failed closed, which is the disclosed structural-reliability limitation occurring at scale"
+}

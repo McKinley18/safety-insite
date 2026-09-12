@@ -1,0 +1,23 @@
+{
+  "section": "252",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "classification": "CONTRACT CONSISTENCY DEFECT",
+  "resolved": false,
+  "providerSchemaPermitsNull": true,
+  "providerSchemaType": [
+    "string",
+    "null"
+  ],
+  "providerSchemaRequiredOnCessation": true,
+  "providerSchemaInstruction": "REQUIRED ON A CESSATION DRIVER. The control operating alongside the work that you considered, named from the observation. Write null only if the observation states no such control at all.",
+  "deterministicProjectionRefusesNull": true,
+  "deterministicProjectionCode": "CESSATION_DRIVER_WITHOUT_ALONGSIDE_CONTROL_ASSESSMENT",
+  "mechanicallyEstablishedByFrozenContract": false,
+  "whyNotEstablished": "both statements are frozen §247 artifacts and they contradict each other directly. The transmitted description instructs the model to write null in a named case; the projection refuses that exact value. Nothing else in §247 adjudicates between them: the epistemic character table, the K6 binding and the A2 rule are all silent on this field, and the §247 report records no decision about it. Choosing A or B would therefore be a new semantic decision rather than a reading of the frozen contract.",
+  "optionA": "NULL has legitimate semantic meaning (the observation states no alongside control at all) and the projection must admit it, treating an absent control as a satisfied confrontation rather than a missing one.",
+  "optionB": "NULL has no legitimate semantic meaning on a cessation driver, and the provider contract should no longer invite it. This would also remove two of the three union-typed parameters §251 measured.",
+  "consequenceToday": "a model that follows the description and writes null has its whole analysis refused fail-closed. That is safe and it is not silent, but it refuses an output the contract itself invited.",
+  "disposition": "RETURNED AS ONE BOUNDED FOLLOW-UP ITEM. Not repaired in §252."
+}

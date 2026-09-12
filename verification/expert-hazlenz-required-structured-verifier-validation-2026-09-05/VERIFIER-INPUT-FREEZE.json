@@ -1,0 +1,181 @@
+{
+  "artifact": "SECTION_187A_VERIFIER_INPUT_FREEZE",
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "suppliedOwedFactCountPerExecution": 1,
+  "suppliedOwedFacts": {
+    "HR-01": {
+      "payload": {
+        "factKey": "owed:fire:burner_flame_failure_safeguard_function_verified",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state whether the burner's flame-failure safeguard was function-tested",
+        "branchA": "established: the burner's flame-failure safeguard has been verified to shut off fuel on loss of flame",
+        "branchB": "not established: the burner's flame-failure safeguard has been verified to shut off fuel on loss of flame",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about the burner's flame-failure safeguard's protective function",
+          "ifB": "the burner must be shut down until the flame-failure safeguard's protective function is verified"
+        },
+        "evidenceSpan": "it lists a nozzle change and filter clean but does not record whether the burner was flame-tested"
+      },
+      "sha256": "ca8d69d2ee0250e542bb3c206dfcc3fe047d2996862e31fddd763f4b3b445ed3"
+    },
+    "HR-04": {
+      "payload": {
+        "factKey": "owed:guarding:fixed_guard_fastenings_currently_secure",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state the current securement of the guard fastenings",
+        "branchA": "established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+        "branchB": "not established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+          "ifB": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation"
+        },
+        "evidenceSpan": "the fastenings were last torque-checked at the annual service"
+      },
+      "sha256": "80565d3e83fdf0c8ee061e4c15c632e7aa698b72b07b965fc90eb7d34792b62e"
+    },
+    "HR-06": {
+      "payload": {
+        "factKey": "owed:guarding:rotor_guard_interlock_protective_function_verified",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state the interlock's protective behaviour after the tooth change",
+        "branchA": "established: the rotor guard door interlock's protective function was verified after the tooth change and before the debarker was returned to service",
+        "branchB": "not established: the rotor guard door interlock's protective function was verified after the tooth change and before the debarker was returned to service",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about the rotor guard door interlock's protective function",
+          "ifB": "the debarker must be stopped until the rotor guard door interlock's protective function is verified"
+        },
+        "evidenceSpan": "it recorded the tooth change but carries no interlock test result"
+      },
+      "sha256": "c3533b8ed35825fccdc69216ffe962017c1765c68be26699f2b35578d0f82f18"
+    },
+    "HR-08": {
+      "payload": {
+        "factKey": "owed:energy:auger_drive_isolation_verified_before_work",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state whether the auger drive's own local isolator was locked and proved dead",
+        "branchA": "established: the discharge auger drive has been isolated and proved dead before the operative works at the blockage",
+        "branchB": "not established: the discharge auger drive has been isolated and proved dead before the operative works at the blockage",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about whether the discharge auger drive is isolated and proved dead",
+          "ifB": "blockage-clearing work must stop until the discharge auger drive is isolated and proved dead"
+        },
+        "evidenceSpan": "the auger drive has its own local isolator and the lockout log shows no entry against it"
+      },
+      "sha256": "13bf87a644e365f60fcf6c493dd059789d0f8e574038d3c5e6f28d6b810fd79c"
+    },
+    "HR-09": {
+      "payload": {
+        "factKey": "owed:energy:stored_hydraulic_energy_dissipated_before_line_break",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state the accumulator's current pressure",
+        "branchA": "established: the stored hydraulic energy in the accumulator has been dissipated and confirmed at zero before the hose is broken",
+        "branchB": "not established: the stored hydraulic energy in the accumulator has been dissipated and confirmed at zero before the hose is broken",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about stored hydraulic energy in the accumulator",
+          "ifB": "the hose must not be broken until the accumulator is confirmed at zero"
+        },
+        "evidenceSpan": "the accumulator gauge sits behind the tank shroud unread since"
+      },
+      "sha256": "1e08e03ec17c47a7fb8c8c30d84e64e6640d2376651603f99b4dca5e22ce3988"
+    }
+  },
+  "cleanlinessAssertedBeforeSpend": [
+    "contains none of the 12 forbidden evaluation-only fields",
+    "contains no §184 evaluationRationale",
+    "whyUnresolved byte-identical to §184 truth",
+    "evidenceSpan byte-identical to §184 truth"
+  ],
+  "acceptableEvidence": "null under the existing §184/§185 derivation on all five rows. V3SuppliedOwedFact carries no acceptableEvidence field, so it is NOT transmitted. Recorded, not silently dropped; null is not a behavioural failure.",
+  "firstPassStimulusHashes": {
+    "HR-01": "717790e29de0bbfe96266587db70702bee2e806b8a042563f3d9d1788ed3694a",
+    "HR-04": "fb91e13fe649b934f81aa7a1cf177da58ac6b621a497e34750893dc6e5553202",
+    "HR-06": "a06b5903e3251eceeb6f65570a8b093a51092c01c130bde35ee1cd8b3f41de76",
+    "HR-08": "948bb116c8579b8f52ecce7d4c3a62139b76fd71c6ef8c24bcd63d6930bf1593",
+    "HR-09": "4f3bce3505d507c810d05049b18754bb5bacbbf8ca4cedd9f4a9329016043883"
+  },
+  "sameStimulusAcrossReplicates": true,
+  "userPromptShaByExecution": [
+    {
+      "rowId": "HR-09",
+      "replicate": 1,
+      "userPromptSha256": "075bb2b7d12ee2ace4822bac1ef60931616396c2ac675aa885866954d7fbd5ee"
+    },
+    {
+      "rowId": "HR-01",
+      "replicate": 1,
+      "userPromptSha256": "25113c9e7faa066d640588c79b5c04ebdbf70f7c98bf477738f13a6d4134776d"
+    },
+    {
+      "rowId": "HR-06",
+      "replicate": 1,
+      "userPromptSha256": "a1fc1aa8fb8d9278b18eb1751581da3df3a2264e18c7307b313d6df7fcd53f51"
+    },
+    {
+      "rowId": "HR-04",
+      "replicate": 1,
+      "userPromptSha256": "ad52699185240fe6ad5df98eccf377c72124733586c7fed922f34a40e0dff11a"
+    },
+    {
+      "rowId": "HR-08",
+      "replicate": 1,
+      "userPromptSha256": "3216838c83f0fb7d63c662b6a7977b117cc03b273cb045937ef548d4c6425f1d"
+    },
+    {
+      "rowId": "HR-06",
+      "replicate": 2,
+      "userPromptSha256": "a1fc1aa8fb8d9278b18eb1751581da3df3a2264e18c7307b313d6df7fcd53f51"
+    },
+    {
+      "rowId": "HR-09",
+      "replicate": 2,
+      "userPromptSha256": "075bb2b7d12ee2ace4822bac1ef60931616396c2ac675aa885866954d7fbd5ee"
+    },
+    {
+      "rowId": "HR-08",
+      "replicate": 2,
+      "userPromptSha256": "3216838c83f0fb7d63c662b6a7977b117cc03b273cb045937ef548d4c6425f1d"
+    },
+    {
+      "rowId": "HR-04",
+      "replicate": 2,
+      "userPromptSha256": "ad52699185240fe6ad5df98eccf377c72124733586c7fed922f34a40e0dff11a"
+    },
+    {
+      "rowId": "HR-01",
+      "replicate": 2,
+      "userPromptSha256": "25113c9e7faa066d640588c79b5c04ebdbf70f7c98bf477738f13a6d4134776d"
+    },
+    {
+      "rowId": "HR-09",
+      "replicate": 3,
+      "userPromptSha256": "075bb2b7d12ee2ace4822bac1ef60931616396c2ac675aa885866954d7fbd5ee"
+    },
+    {
+      "rowId": "HR-08",
+      "replicate": 3,
+      "userPromptSha256": "3216838c83f0fb7d63c662b6a7977b117cc03b273cb045937ef548d4c6425f1d"
+    },
+    {
+      "rowId": "HR-01",
+      "replicate": 3,
+      "userPromptSha256": "25113c9e7faa066d640588c79b5c04ebdbf70f7c98bf477738f13a6d4134776d"
+    },
+    {
+      "rowId": "HR-04",
+      "replicate": 3,
+      "userPromptSha256": "ad52699185240fe6ad5df98eccf377c72124733586c7fed922f34a40e0dff11a"
+    },
+    {
+      "rowId": "HR-06",
+      "replicate": 3,
+      "userPromptSha256": "a1fc1aa8fb8d9278b18eb1751581da3df3a2264e18c7307b313d6df7fcd53f51"
+    }
+  ],
+  "identicalPromptWithinRow": {
+    "HR-01": true,
+    "HR-04": true,
+    "HR-06": true,
+    "HR-08": true,
+    "HR-09": true
+  }
+}

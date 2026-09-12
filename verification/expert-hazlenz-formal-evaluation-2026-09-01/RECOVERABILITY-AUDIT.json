@@ -1,0 +1,154 @@
+{
+  "artifact": "FORMAL_EVIDENCE_RECOVERABILITY_AUDIT",
+  "runId": "formal-run-65523fbb-eea3-4322-a47b-632fa2eae341",
+  "cohortId": "hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a",
+  "cohortRunRecordsPersisted": false,
+  "defectClassification": "EVALUATION_EVIDENCE_PERSISTENCE_DEFECT",
+  "frozenEndToEndRescoringPathAvailable": false,
+  "onlyM06M07M09ReceiveAdjudications": true,
+  "adjudicationCannotAlterOtherMeasures": true,
+  "queueItems": 174,
+  "regulatoryStatementItems": 9,
+  "clarificationMappingItems": 165,
+  "dependencyTable": [
+    {
+      "measure": "M06_UNSUPPORTED_REGULATORY_ASSERTIONS",
+      "verdict": "EXACTLY_RECOVERABLE",
+      "missingFields": [],
+      "dependencies": [
+        {
+          "scorerExpression": "buildAdjudicationQueue(records).filter(kind===REGULATORY_STATEMENT)",
+          "fieldRead": "queue item set",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "the queue itself is persisted verbatim, so the scorer's own derived population is available without re-deriving it from analysis"
+        },
+        {
+          "scorerExpression": "byItem.get(q.itemId).verdict",
+          "fieldRead": "AdjudicationRecord.verdict",
+          "origin": "HUMAN_VERDICT",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "supplied by the human reviewer; required by the frozen contract"
+        },
+        {
+          "scorerExpression": "q.assertsObligation !== true -> skip",
+          "fieldRead": "assertsObligation",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "mechanical flag computed at queue-build time and persisted ON the item"
+        },
+        {
+          "scorerExpression": "q.rowId",
+          "fieldRead": "rowId",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": ""
+        },
+        {
+          "scorerExpression": "deriveRowLedger(r).contentEligible",
+          "fieldRead": "base call layerStatus in {PRESENT, OUTPUT_REJECTED}",
+          "origin": "ATTEMPT_LEDGER",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "the ledger persists layerStatus per (rowId, arm); CONTENT_SCORING_ARM = BASE"
+        },
+        {
+          "scorerExpression": "deriveRowLedger(r).hasGovernedRecord",
+          "fieldRead": "row.source.governedStandards.length > 0",
+          "origin": "GOVERNED_ATTACHMENT",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "frozen in the cohort manifest before the run"
+        },
+        {
+          "scorerExpression": "eligibleRowIds.size (DENOMINATOR)",
+          "fieldRead": "row population",
+          "origin": "ATTEMPT_LEDGER",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "computed over ALL rows, including rows with no queue item -- the ledger covers all 65"
+        }
+      ]
+    },
+    {
+      "measure": "M07_GOVERNED_RECORD_GROUNDING",
+      "verdict": "EXACTLY_RECOVERABLE",
+      "missingFields": [],
+      "dependencies": [
+        {
+          "scorerExpression": "buildAdjudicationQueue(records).filter(kind===REGULATORY_STATEMENT)",
+          "fieldRead": "queue item set (DENOMINATOR = queue.length)",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "denominator is exactly the persisted queue length"
+        },
+        {
+          "scorerExpression": "byItem.get(q.itemId).verdict === SUPPORTED_BY_SUPPLIED_RECORD",
+          "fieldRead": "AdjudicationRecord.verdict",
+          "origin": "HUMAN_VERDICT",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "NUMERATOR"
+        },
+        {
+          "scorerExpression": "q.rowId / q.fieldPath / q.subject",
+          "fieldRead": "evidence fields",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "evidence only; does not enter the ratio"
+        }
+      ]
+    },
+    {
+      "measure": "M09_CLARIFICATION_QUALITY",
+      "verdict": "EXACTLY_RECOVERABLE",
+      "missingFields": [],
+      "dependencies": [
+        {
+          "scorerExpression": "buildAdjudicationQueue(records).filter(kind===CLARIFICATION_MAPPING)",
+          "fieldRead": "queue item set (DENOMINATOR = queue.length)",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": ""
+        },
+        {
+          "scorerExpression": "byItem.get(q.itemId).verdict / .mappedGapId",
+          "fieldRead": "AdjudicationRecord.verdict, mappedGapId",
+          "origin": "HUMAN_VERDICT",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": ""
+        },
+        {
+          "scorerExpression": "(q.candidateGaps).find(g => g.gapId === verdict.mappedGapId)",
+          "fieldRead": "candidateGaps[].gapId",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "the row's authored gaps are carried ON the queue item"
+        },
+        {
+          "scorerExpression": "gap.affectedDecision !== q.clarificationAffectedDecision",
+          "fieldRead": "candidateGaps[].affectedDecision, clarificationAffectedDecision",
+          "origin": "ADJUDICATION_QUEUE",
+          "originalValuePersisted": true,
+          "presentInArtifacts": true,
+          "note": "BOTH sides of the scorer's own comparison are on the item; the adjudicator never makes this comparison and the scorer needs no analysis to make it"
+        }
+      ]
+    }
+  ],
+  "allThreeExactlyRecoverable": true,
+  "scorerModified": false,
+  "fallbackPathAddedToScorer": false,
+  "analysisSynthesized": false,
+  "providerCalls": 0,
+  "auditScriptSha256": "93bd62a33935c8e52c41b96d7b59f5039e1bec4cdb427ddc735cdb13e5cfbdde"
+}

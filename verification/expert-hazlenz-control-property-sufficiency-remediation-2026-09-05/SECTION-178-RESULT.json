@@ -1,0 +1,285 @@
+{
+  "operation": "§178 — bounded control-property-sufficiency remediation (LOCAL, zero provider calls)",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_CONTROL_PROPERTY_SUFFICIENCY_REMEDIATION_COMPLETE — REPLICATED_HOSTED_VALIDATION_AUTHORIZATION_REQUIRED",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "costUsd": 0.0,
+  "hostedValidationPerformed": false,
+
+  "TARGET": {
+    "hypothesis": "CONTROL_PROPERTY_CONFLATION_REMEDIATION_HYPOTHESIS",
+    "statement": "evidence establishing one property of a control must not automatically be treated as establishing another property required by the current decision",
+    "sourceEvidence": "§177 raw output on the frozen HR-04 row: the model quoted the control as being in position, reasoned that the observation confirms it is currently in place, and concluded that no decision-critical facts were missing — settling the guarding state on PRESENCE, so the §176 temporal question was never reached"
+  },
+
+  "WHY_THE_SECTION_176_RULE_DID_NOT_FIRE": {
+    "diagnosis": "placement, not wording. The §176 temporal rule lives in the established-facts list inside clarification step 2. The failing path closed the fact before reaching it, so a correct rule was never consulted.",
+    "consequenceForThisRepair": "placement is part of the hypothesis. A property rule inserted only where §176 sits would repeat the §176 outcome — passing static proofs and changing nothing on the failing path."
+  },
+
+  "THE_CHANGE": {
+    "file": "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts",
+    "scope": "PROMPT TEXT ONLY plus its version literal and one version-history comment",
+    "diff": "SECTION-178-PROMPT.diff — proven exact, see diffProvenance below",
+    "diffProvenance": "the pre-§178 file was reconstructed by reverse-applying exactly the three edits this slice made; the reconstruction hashes to 70fbc0d3cf3b307ad52523c4fd34de710b20e0636f0d9665bc7fffbb180eedc4, the file hash recorded at §177 closure. A byte-exact match proves the diff is the complete set of §178 changes to that file, with nothing else altered.",
+    "lineAccounting": {
+      "totalAddedLines": 118,
+      "totalRemovedLines": 4,
+      "versionHistoryCommentLines": 66,
+      "promptTextLinesAdded": 50,
+      "promptTextLinesRemoved": 3,
+      "promptTextNet": "+47 (EXPERT_SYSTEM_PROMPT 466 -> 513 lines, 34622 -> 38377 chars)",
+      "versionLiteralLines": "1 replaced"
+    },
+
+    "INSERTION_1": {
+      "name": "WHICH PROPERTY THE DECISION NEEDS",
+      "promptLines": 41,
+      "location": "the HEAD of `WHAT COUNTS AS ESTABLISHED`, inside clarification step 2, immediately BEFORE the pre-existing `A fact is ESTABLISHED only if the observation ... STATES it` rule and its particulars",
+      "whyThere": "this is the determination of whether a fact is established. Placing the property comparison at its head makes the comparison part of that determination rather than a check applied after it. The §177 failure was a fact closed at the moment of establishment on the wrong property; the rule now sits at that moment.",
+      "content": [
+        "establishment is declared property-relative: a fact is never established in the abstract, it is established FOR A PROPERTY",
+        "evidence about one property is declared SILENT about another — neither establishing nor ruling it out",
+        "five ordered steps: (i) name the owed decision and its fact; (ii) name the property the decision depends on; (iii) name the property the evidence establishes; (iv) compare — SAME PROPERTY means established, say so and move on with no hedge and no question; DIFFERENT PROPERTY means unresolved unless something else states it, and look for that something else first; (v) only then does timing arise",
+        "step (v) hands off explicitly to the §176 verification-time rule, so property is settled before moment"
+      ]
+    },
+
+    "INSERTION_2": {
+      "name": "the SECOND qualification in CURRENT STATE, NOT HISTORICAL STATE",
+      "promptLines": "9 net (12 written, 3 of the 6 pre-existing §176 lines rewrapped)",
+      "location": "inside `CURRENT STATE, NOT HISTORICAL STATE`, beside §176's temporal qualification of the already-answered rule",
+      "whyThere": "that section is explicitly read BEFORE lists 1 and 2 and can close a fact on its own — `never ask a question the observation already answered`. It is the earlier premature-closure surface. Putting the rule only in the established-facts list would leave this path uncovered, which is exactly the §176 mistake.",
+      "content": [
+        "the lead sentence moves from `One qualification, and only this one` to `Two qualifications, and only these two`, keeping the closed enumeration",
+        "a stated fact answers the question for the PROPERTY it states and says nothing either way about a different property of the same thing",
+        "the working of both qualifications is deferred to WHAT COUNTS AS ESTABLISHED, so the rule is stated once and applied once",
+        "neither qualification licenses reopening a fact whose property AND moment both match what the decision needs"
+      ]
+    },
+
+    "WHAT_WAS_DELIBERATELY_NOT_TOUCHED": {
+      "aHazardRelevantFactSection": "the `treat a stated step as done` rule in `A HAZARD-RELEVANT FACT IS NOT YET A CURRENT HAZARD` is unchanged. It governs doubting whether a stated step happened, which this repair does not question — the §177 failure accepted that the verification happened and misread what it established. Editing it would have weakened a precision brake for no diagnosed reason.",
+      "assertedConditionStateReasoning": "the hazard-state path that produced the CONTROLLED candidate was left alone. Extending the property rule there would push toward `presence never establishes safety`, which the authorization forbids and which no evidence supports.",
+      "everythingElse": "schema, normalizer, verifier-v3, arbitration, authority merge, runtime routing, persistence, scorer and thresholds are untouched; proof I.5 pins five module hashes."
+    },
+
+    "ORDERING_THE_PROMPT_NOW_EXPRESSES": [
+      "1. identify the owed decision-critical fact — insertion 1 step (i)",
+      "2. identify the specific property that fact requires — step (ii)",
+      "3. identify the property the supplied evidence establishes — step (iii)",
+      "4. compare them — step (iv)",
+      "5. only then mark the owed fact established or unresolved — step (iv) outcome",
+      "6. apply temporal sufficiency where time scope matters — step (v), handing off to the §176 rule",
+      "7. apply the counterfactual/decision-critical test before asking — the pre-existing five-part test, unchanged"
+    ],
+    "orderingConflict": "NONE. `WHAT COUNTS AS ESTABLISHED` already declares itself as running BEFORE the five-part test, and the current-state section already carried one qualification of exactly this shape, so a second parallel qualification is expressible without contradicting any existing rule. No downstream layering was required and the STOP condition was not reached."
+  },
+
+  "PRECISION_BOUNDARY_HELD": {
+    "forbiddenReadingsProvenAbsentFromTheWholePrompt": [
+      "physical inspection is insufficient",
+      "visual evidence is insufficient",
+      "documentation is insufficient",
+      "old evidence is insufficient",
+      "presence never establishes safety",
+      "all controls require function testing",
+      "always function-test",
+      "reverify every control"
+    ],
+    "ruleCutsBothWays": "the text states that a functional test establishes function completely and is itself silent about a configuration, a scope or a securement the decision may separately need — so this is not an anti-presence rule",
+    "presenceStillSettlesPresence": "where the decision turns on presence, a stated presence establishes it COMPLETELY and asking further is named as re-litigating a stated fact",
+    "noQuestionInflation": "a property mismatch is declared a reason a fact is unsettled and explicitly NOT permission to ask; the unresolved property must be one the current decision turns on, and the question must still pass all five parts of the counterfactual test on its own",
+    "preservedIntact": [
+      "the five-part decision-critical test",
+      "the §176 displaced-valid-fact precision brake (adjacent concerns do not inherit urgency; they go to candidates and become questions only by passing the full test on their own decision)",
+      "the seven NOT DECISION-CRITICAL shapes",
+      "the generic-question brake",
+      "the burden sitting on asking, never on staying silent",
+      "the §176 temporal rule in full"
+    ]
+  },
+
+  "IDENTITY": {
+    "before": {
+      "EXPERT_PROMPT_VERSION": "hazlenz.expert.prompt.v14",
+      "SYSTEM_PROMPT_SHA256": "84aacb9d222d028b028aa22df1c3df85668b76022ac0c94ce50d3ff8e910d9fe",
+      "systemPromptChars": 34622,
+      "systemPromptLines": 466,
+      "promptFileSha256": "70fbc0d3cf3b307ad52523c4fd34de710b20e0636f0d9665bc7fffbb180eedc4"
+    },
+    "after": {
+      "EXPERT_PROMPT_VERSION": "hazlenz.expert.prompt.v15",
+      "SYSTEM_PROMPT_SHA256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+      "systemPromptChars": 38377,
+      "systemPromptLines": 513,
+      "promptFileSha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694"
+    },
+    "howComputed": "EXPERT_SYSTEM_PROMPT imported from the live module and hashed in process, the same way expertPromptIdentity() computes it; the file hashed with shasum -a 256",
+    "contrastWithSection177": "§177 moved v13 -> v14 with the system-prompt bytes IDENTICAL, because the version string does not appear in the prompt text. §178 is the opposite case: the text genuinely changed, so the hash moves with the label and the v13/v14 traceability problem is not repeated.",
+    "EXPERT_ANALYSIS_CONTRACT_VERSION": "hazlenz.expert.analysis.v2 — unchanged; no wire-schema field, enum member or required entry moved",
+
+    "livePinsReAnchored": {
+      "count": 13,
+      "files": [
+        "scripts/test-expert-cohort-instrument.ts",
+        "scripts/test-expert-unsupported-settlement.ts",
+        "scripts/test-expert-clarification-settlement.ts",
+        "scripts/test-expert-routing-contract.ts",
+        "scripts/test-temporal-clarification-remediation-2026-09-05.ts",
+        "scripts/test-expert-measurement-layer.ts",
+        "scripts/test-expert-linkage-precedence.ts",
+        "scripts/test-expert-retention-bridge.ts",
+        "scripts/test-expert-fixture-hardening.ts",
+        "scripts/test-expert-affected-decision-arbitration.ts",
+        "scripts/test-expert-remediation-contract.ts",
+        "scripts/test-expert-projection-equivalence.ts (escaped-dot regex)",
+        "scripts/test-expert-linkage-contract.ts"
+      ],
+      "messagesMovedWithTheirAssertions": "five assertion MESSAGES still read (v14) after the literal moved — cohort-instrument C.17, measurement-layer F.1, fixture-hardening V.1, routing-contract A.2 and projection-equivalence F.2. All five were corrected. §177 recorded that the escaped-dot pin has caught a message/regex divergence three times; this slice moved regex and message together deliberately."
+    },
+    "ceilingGateReAnchored": {
+      "file": "scripts/test-expert-measurement-layer.ts",
+      "assertion": "F.1b and no unauthorized successor exists anywhere in the prompt module",
+      "before": "forbade prompt.v15 and prompt.v16 (v14 was the authorized ceiling)",
+      "after": "forbids prompt.v16 and prompt.v17 (v15 is the authorized ceiling)",
+      "classification": "RE-ANCHOR, NOT RELAXATION — the gate still proves the module contains no successor beyond the authorized version. The ceiling moves only because the product owner authorized v15."
+    },
+    "section176ProofAnchorReAnchored": {
+      "file": "scripts/test-temporal-clarification-remediation-2026-09-05.ts",
+      "what": "the §176 region's start anchor moved from 'One qualification, and only this one' to 'Two qualifications, and only these two', because §178 rewrote that lead sentence to introduce the second qualification",
+      "classification": "RE-ANCHOR, NOT RELAXATION — the span still ends where §176's text ends, so that file continues to prove §176's region and only §176's region. All 31 of its checks pass unchanged.",
+      "alsoUpdated": "its G.1 message, which described a v13 pin that no longer exists"
+    },
+    "deliberatelyLeftAtV13orV14": {
+      "spentHistoricalProbes": [
+        "probe-expert-hardened-v13-baseline-2026-09-03.ts",
+        "probe-expert-hardened-v13-replicate2-2026-09-03.ts",
+        "probe-expert-hardened-v13-replicate3-2026-09-03.ts"
+      ],
+      "spentPreflightHarnesses": [
+        "preflight-binding-falsification-harness-2026-09-04.ts (A.4 pins the v13 prompt-module hash)",
+        "preflight-binding-falsification-harness-v3-2026-09-04.ts (A.5, same)"
+      ],
+      "why": "these are pre-spend gates and records of what a PAST run actually executed under. They were already superseded by §176/§177 and §177 deliberately left them. Rewriting them would falsify the provenance of experiments that are already spent — the opposite of what a version pin is for.",
+      "fixtureProvenance": "hardened-development-set-v9.ts `authoredUnder` remains v13; it has no live consumer and states which version the fixture set WAS authored under"
+    }
+  },
+
+  "STATIC_PROOFS": {
+    "file": "backend/scripts/test-control-property-sufficiency-2026-09-05.ts",
+    "output": "STATIC-PROOFS-SECTION-178.txt",
+    "checks": 59,
+    "failures": 0,
+    "providerCalls": 0,
+    "groups": {
+      "A PROPERTY MATCH": "4 — establishment is property-relative; a match is declared established with no hedge and no question; the comparison is explicitly ordered",
+      "B PROPERTY MISMATCH": "4 — evidence for one property is SILENT about another; the owed property stands unresolved unless something else states it; the model must look for that something else first",
+      "C PRESENCE FACT": "3 — a stated presence COMPLETELY establishes a presence decision and asking further is re-litigation; the rule disclaims being about any evidence class",
+      "D FUNCTION FACT": "3 — function is a distinct property; presence evidence does not carry it",
+      "E SECUREMENT FACT": "2 — securement is a distinct property; the reverse direction is stated too, so this is not an anti-presence rule",
+      "F TEMPORAL COMPOSITION": "5 — the §176 rule is intact, is handed off to explicitly, and is sequenced AFTER the property comparison in text order",
+      "G NO INFLATION": "9 — mismatch is not permission to ask; the property must be decision-relevant; the five-part test still gates; no evidence class called insufficient; the eight forbidden blanket readings are absent from the entire prompt",
+      "H ADJACENT VALID FACT": "6 — the displaced-fact brake, the seven not-decision-critical shapes and the generic-question brake are all byte-present",
+      "I NO DETERMINISTIC PROPERTY TAXONOMY": "9 — the vocabulary is declared EXAMPLES, never a list to choose from; the model names the property in its own words; no property enum, union or constant array exists in the module; analysis.v2 unchanged; five protected module hashes pinned",
+      "J NO HAZARD-SPECIFIC OR ROW LEAKAGE": "5 — no hazard-family or equipment wording in the §178 region, no frozen-row wording anywhere in the prompt, no numeric threshold, no ask-more instruction, and the word 'guard' does not appear in the new text",
+      "K PLACEMENT": "6 — index proofs that the qualification sits inside the current-state section which is read before lists 1 and 2, that the worked rule opens WHAT COUNTS AS ESTABLISHED ahead of the STATES-it rule, that the whole rule precedes the five-part test, and that it is NOT placed only downstream of the already-answered logic",
+      "L IDENTITY": "3 — v15, the literal is in the module, and the system-prompt hash genuinely moved off the v14 value"
+    },
+    "protectedModuleHashesPinned": {
+      "expert-normalization.ts": "606dd1a7d468eecf00de773fd322f2018b00888dc18544c7894f4e5b0082d4ae",
+      "expert-authority-merge.ts": "9c4fa19663da947bcf17a451d629bf6a703b7e68e56ccca6a443f3196e25809d",
+      "expert-measure-scorers.ts": "3c916b110ffd6188f977d2741fa5572f487ecf85ad9904b3b9e23f8b46137fae",
+      "expert-contract.types.ts": "456d736f2fb291cc405494b19e9380e82f5a2904b0c692ea02911374d6dc7e8a",
+      "expert-runner.ts": "26dac3049b2203750492fa5368c7cff76b19054166fbdc42d1770e206aeb6736",
+      "note": "the first two values were recorded independently during the §177 closure slice, BEFORE any §178 edit, so a match proves those files did not move during this slice. The other three are recorded here as the §178 baseline."
+    }
+  },
+
+  "REGRESSION": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "expertAndClarificationSuites": { "suites": 28, "assertions": 2070, "failures": 0 },
+    "staticProofSuites": {
+      "section178": { "checks": 59, "failures": 0 },
+      "section176Rerun": { "checks": 31, "failures": 0, "output": "STATIC-PROOFS-SECTION-176-RERUN.txt" }
+    },
+    "totalExecuted": { "suites": 30, "assertions": 2160, "failures": 0 },
+    "perSuite": {
+      "expert-contract-foundation": 56, "expert-authority-merge": 51, "expert-provider-failure": 131,
+      "expert-nocall-harness": 141, "expert-routing-contract": 67, "expert-remediation-contract": 92,
+      "expert-linkage-contract": 51, "expert-linkage-probe-fixtures": 37, "expert-linkage-precedence": 57,
+      "expert-confirmation-probe-fixtures": 42, "expert-projection-equivalence": 90,
+      "expert-cohort-instrument": 155, "expert-execution-budget": 66, "expert-grounding-contract": 41,
+      "expert-anthropic-adapter-repair": 30, "expert-clarification-settlement": 148,
+      "expert-affected-decision-arbitration": 41, "expert-unsupported-settlement": 129,
+      "expert-retention-bridge": 123, "expert-fixture-hardening": 76, "expert-measurement-layer": 66,
+      "expert-reliability-architecture": 69, "expert-verifier-v2-contract": 46,
+      "expert-bounded-reliability": 44, "expert-verifier-v3-protocol": 49,
+      "expert-v3-development-integration": 40, "l32d-clarification-scope": 71,
+      "l32i-clarification-carrier": 61
+    },
+    "deterministicHazlenzGatesAlsoRun": {
+      "hazlenz-core": "PASS — production path regression 15/15 and temporal reconciliation 3/3, 487 ok lines total",
+      "hazlenz-evidence-boundary": "PASS — 13 assertions",
+      "hazlenz-precision": "PASS — decomposition precision/recall gate",
+      "hazlenz-level1-recall": "PASS — 17 checks",
+      "hazlenz-actionable-coverage": "PASS — 17 checks",
+      "hazlenz-guarding-applicability": "PASS — 18 checks",
+      "hazlenz-standards-jurisdiction": "PASS — 16 checks, 0 wrong-jurisdiction citations",
+      "hazlenz-source-authority": "PASS — every named provision is in the governed source set",
+      "hazlenz-understanding": "PASS — 25/25"
+    },
+    "NOT_RUN": {
+      "suites": [
+        "test:hazlenz-clarification-gauntlet",
+        "test:hazlenz-authentic-reasoning",
+        "test:hazlenz-field-gauntlet",
+        "test:hazlenz-authentic-gauntlet",
+        "test:hazlenz-field-output-smoke",
+        "test:hazlenz-independent-standards-audit"
+      ],
+      "reason": "each requires a running API at http://localhost:4000 (and a Postgres client, or outbound network for the standards audit). Standing them up is a database operation, which this authorization forbids. Attempts return `request failed` on every scenario — that is the missing service, not a regression.",
+      "relevanceToThisChange": "these exercise the DETERMINISTIC classify endpoint, not the Expert system prompt. §178 changed prompt text only, so they are not the surface this change can affect. Recorded as NOT RUN rather than passed or failed.",
+      "residual": "if the product owner wants them covered, they need a separate authorization that permits a disposable verification database and a local service."
+    }
+  },
+
+  "CLAIM_BOUNDARY": {
+    "whatThisIs": "REMEDIATION IMPLEMENTATION EVIDENCE ONLY",
+    "mustNotClaim": [
+      "that §178 fixed HR-04",
+      "improved clarification accuracy, recall or precision",
+      "that the control-property-conflation mechanism is now established",
+      "production readiness",
+      "customer readiness",
+      "formal validation"
+    ],
+    "why": "every proof here reads text. Static and local success shows the rule is present, ordered, placed where the failing path runs, braked and free of row leakage. It cannot show the model behaves differently — §176 passed 30+ static proofs and changed nothing on the target row, which is the whole reason this section exists.",
+    "unchangedFigures": "the §175 (4/5 strict recall, 4/5 silence precision, 8/10 row-level) and §177 (4/5, 5/5, 9/10) results stand exactly as recorded and are not re-measured, not re-scored and not superseded",
+    "causalStandingUnchanged": "PRECISION_IMPROVEMENT_CAUSALLY_ESTABLISHED remains FALSE and TEMPORAL_REMEDIATION_BEHAVIORALLY_CONFIRMED remains FALSE"
+  },
+
+  "REMAINING_UNCERTAINTY": [
+    "whether the rule fires on the failing path is unknown. Placement was chosen from the §177 raw reasoning, which shows where the model closed the fact — but a model may still close a fact without working the steps in front of it.",
+    "the hypothesis itself rests on n = 1 row across two single-sample runs on one model, and remains a hypothesis rather than an established defect.",
+    "a recall repair can cost precision. The §177 5/5 silence precision is itself uncertain (one row differing between single samples), so the precision baseline this repair must not regress is not firmly located.",
+    "the frozen ten-row instrument has now been spent twice at one execution per row. It can still be used, but only under a replicate design — a third one-shot run would produce another uninterpretable number.",
+    "six service-dependent HazLenz suites were not executed under this authorization's boundaries."
+  ],
+
+  "RECOMMENDED_NEXT_VALIDATION": "see REPLICATE-DESIGN-RECOMMENDATION.json — a preregistered replicate design at one frozen identity. NOT EXECUTED, and it requires a new product-owner authorization that permits provider spend.",
+
+  "worktree": {
+    "productionFilesChanged": ["backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts"],
+    "testFilesChanged": 13,
+    "testFilesAdded": ["backend/scripts/test-control-property-sufficiency-2026-09-05.ts"],
+    "sections167To177EvidencePreserved": "unchanged",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

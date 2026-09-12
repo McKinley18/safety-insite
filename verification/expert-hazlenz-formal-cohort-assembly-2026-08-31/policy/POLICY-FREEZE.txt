@@ -1,0 +1,12 @@
+SUPPLEMENTAL CONSTRUCTION POLICY -- FROZEN BEFORE RESERVED EXPOSURE
+frozen_at_utc: 2026-08-31T20:22:16Z
+policy_file: backend/scripts/lib/expert-cohort-supplemental-policy.ts
+policy_sha256: cc69d28e74308f492271ff573357b5c346ebe915f253e692f108e9e962f94967
+
+PRE-OPEN HASHES OF RESERVED MATERIAL (recorded before any row content was read):
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+
+SUPPLEMENTAL SOURCE (already-open, not reserved):
+1e61840ad534d75d68e38abf5877975fa660620549e6927899ce6e9e0f3ef77e  backend/src/safescope-v2/tests/hazlenz-decomposition-precision-corpus.ts

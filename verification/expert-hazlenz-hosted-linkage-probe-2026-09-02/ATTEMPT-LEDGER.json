@@ -1,0 +1,284 @@
+{
+  "budget": {
+    "targetLogicalCalls": 16,
+    "hardProviderRequestCeiling": 20,
+    "retryRequestBudget": 4,
+    "enforcedSpendCeilingUsd": 2.08,
+    "worstCaseRequestUsd": 0.104
+  },
+  "stopReason": "COMPLETED",
+  "identityViolation": null,
+  "accounting": {
+    "callsAttempted": 16,
+    "callsCompleted": 16,
+    "providerRequestsAttempted": 16,
+    "retryRequestsAttempted": 0,
+    "inputTokens": 200974,
+    "outputTokens": 18936,
+    "spendUsd": 0.5913080000000001,
+    "callCeiling": 16,
+    "requestCeiling": 20,
+    "retryRequestBudget": 4,
+    "spendCeilingUsd": 2.08
+  },
+  "retryCauses": [],
+  "retriesSuppressed": [],
+  "attemptsByCall": [
+    {
+      "rowId": "LP-A1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 9280,
+      "inputTokens": 13061,
+      "outputTokens": 731,
+      "costUsd": 0.033431999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-A2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 9387,
+      "inputTokens": 12848,
+      "outputTokens": 856,
+      "costUsd": 0.034256,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-A3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 12304,
+      "inputTokens": 12866,
+      "outputTokens": 1048,
+      "costUsd": 0.036212,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-A4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 6894,
+      "inputTokens": 12231,
+      "outputTokens": 621,
+      "costUsd": 0.030672,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 18893,
+      "inputTokens": 12218,
+      "outputTokens": 1714,
+      "costUsd": 0.041576,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 16245,
+      "inputTokens": 12224,
+      "outputTokens": 1587,
+      "costUsd": 0.04031800000000001,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14797,
+      "inputTokens": 12266,
+      "outputTokens": 936,
+      "costUsd": 0.033892000000000005,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-B4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14224,
+      "inputTokens": 13033,
+      "outputTokens": 932,
+      "costUsd": 0.035386,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 19632,
+      "inputTokens": 12205,
+      "outputTokens": 1630,
+      "costUsd": 0.040709999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 21181,
+      "inputTokens": 12229,
+      "outputTokens": 1673,
+      "costUsd": 0.041188,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 19492,
+      "inputTokens": 12208,
+      "outputTokens": 1529,
+      "costUsd": 0.039706,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-L4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 8699,
+      "inputTokens": 12868,
+      "outputTokens": 240,
+      "costUsd": 0.028135999999999998,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 11322,
+      "inputTokens": 13009,
+      "outputTokens": 1033,
+      "costUsd": 0.036348,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 11586,
+      "inputTokens": 13115,
+      "outputTokens": 960,
+      "costUsd": 0.03583,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 19533,
+      "inputTokens": 12204,
+      "outputTokens": 2003,
+      "costUsd": 0.044438,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "LP-G4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14809,
+      "inputTokens": 12389,
+      "outputTokens": 1443,
+      "costUsd": 0.039208,
+      "modelIdentity": "claude-sonnet-5"
+    }
+  ]
+}

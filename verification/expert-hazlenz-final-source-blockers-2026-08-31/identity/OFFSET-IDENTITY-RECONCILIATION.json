@@ -1,0 +1,80 @@
+{
+  "artifact": "OFFSET_IDENTITY_AND_RETIREMENT_RECONCILIATION",
+  "operation": "section 124 -- Close Final Formal-Cohort Source Blockers",
+  "mandatoryCheck": "Reconcile source-pool offsets 0 and 4 against ALL historical retired holdouts, spent offsets, invalidated acceptance corpora, L3 sealed/retired material and Expert reserved/closed material BEFORE designating or opening anything.",
+  "authoritativePartitionRule": {
+    "source": "blueprint decision log D-86 (L3-EPA), the amended independent evidence plan",
+    "rule": "gauntlet.source.v1: sort scenarioId by CMP (UTF-8 byte-wise ascending, no case folding, no collation, no normalization); 0-based index; m = 4; i %% 4 === k; k = parseInt(sha256.slice(-8),16) %% 4",
+    "recordedDerivation": "parseInt('22f0adb4',16) %% 4 = 0 -> 38 rows; partitions 38/38/37/37; reservation 0 -> 1 -> 2 -> 3, immutable, never reassignable on semantic composition",
+    "reproducedThisPhase": "sha256 = a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4; slice(-8) = 22f0adb4; k = 0; partition sizes 38/38/37/37 -- EXACT MATCH with D-86",
+    "consequence": "THE MODULUS IS 4, NOT 5, AND THE ROWS ARE SORTED BY scenarioId FIRST. There are exactly FOUR gauntlet source-pool offsets: 0, 1, 2, 3. THERE IS NO OFFSET 4."
+  },
+  "section123ErrorCorrected": {
+    "whatSection123Said": "Offsets are strides i %% 5 over the unsorted array, giving five offsets 0-4; offsets 0 and 4 are in neither the closed nor the reserved list and hold 15 further capable rows, which would take the achievable count to 60.",
+    "whyItWasWrong": [
+      "WRONG MODULUS: the authoritative D-86 rule is m = 4, not 5.",
+      "WRONG ORDER: D-86 requires sorting scenarioId UTF-8 byte-wise ascending before indexing; section 123 indexed the file's natural array order.",
+      "WRONG DESIGNATION: offset 0 is NOT undesignated. It was RETIRED by the Run 1 Level-3 sealed acceptance in blueprint section 61.",
+      "NON-EXISTENT MATERIAL: 'offset 4' does not exist under a four-way partition."
+    ],
+    "correctedFigures": "Achievable negative-control total is 43, not 45, and the 60-row route through 'offsets 0 and 4' does not exist."
+  },
+  "retirementRecords": [
+    {
+      "offset": "GAUNTLET_OFFSET_0",
+      "rows": 38,
+      "negativeControlCapable": 12,
+      "status": "RETIRED",
+      "retiredBy": "blueprint section 61 -- L3 FINAL SINGLE-USE SEALED ACCEPTANCE (2026-08-25). Header: 'HOLDOUT_SPENT = TRUE - GAUNTLET_OFFSET_0 = RETIRED - REALISM_OFFSET_3 = RETIRED'. Terminal: L3_ACCEPTANCE_INVALID -- PROVIDER_CALLABILITY_FAILURE_AFTER_SPEND. The corpus was spent and the measurement was NOT obtained.",
+      "governingRule": "'A FAILED ACCEPTANCE RUN SPENDS THE STRIDE. IT DOES NOT RETURN IT.' The opened stride is retired PERMANENTLY; it never becomes a development, tuning or regression set.",
+      "verdict": "COLLISION CONFIRMED. RETIRED = RETIRED. NOT reopened, NOT redesignated."
+    },
+    {
+      "offset": "GAUNTLET_OFFSET_1",
+      "rows": 38,
+      "negativeControlCapable": 13,
+      "status": "RETIRED",
+      "retiredBy": "Run 2 sealed acceptance. Header: 'RUN2_HOLDOUT_SPENT = TRUE - GAUNTLET_OFFSET_1 = RETIRED - REALISM_OFFSET_0 = RETIRED'. Terminal: L3_ACCEPTANCE_FAILED.",
+      "verdict": "RETIRED. Not available."
+    },
+    {
+      "offset": "GAUNTLET_OFFSET_2",
+      "rows": 37,
+      "negativeControlCapable": 8,
+      "status": "RESERVED",
+      "verdict": "Available under the existing reservation. NOT opened this phase -- see the arithmetic below."
+    },
+    {
+      "offset": "GAUNTLET_OFFSET_3",
+      "rows": 37,
+      "negativeControlCapable": 8,
+      "status": "RESERVED",
+      "verdict": "Available under the existing reservation. NOT opened this phase."
+    },
+    {
+      "offset": "GAUNTLET_OFFSET_4",
+      "status": "DOES_NOT_EXIST",
+      "verdict": "The partition is four-way (0-3). There is no offset 4 to designate as augmentation material."
+    }
+  ],
+  "evaluationPlanClosedListIsIncomplete": {
+    "finding": "EVALUATION_CORPUS_POLICY.closed in expert-evaluation-plan.ts lists only 'GAUNTLET_OFFSET_1 (retired)' and 'REALISM_OFFSET_0 (retired)'. It OMITS GAUNTLET_OFFSET_0 and REALISM_OFFSET_3, both retired by the Run 1 acceptance in blueprint section 61.",
+    "severity": "A frozen artifact under-reports retired material, which is precisely the condition that invited section 123's error.",
+    "actionTaken": "NONE. The plan file was NOT modified -- it is a frozen authority and test:expert-nocall-harness asserts closed.length === 4. The blueprint's own section 61 retirement record is treated as authoritative over the plan file's summary list, and correcting the list requires its own authorization.",
+    "recommendation": "Amend EVALUATION_CORPUS_POLICY.closed to name all four retired items, under a separate governance authorization that also updates the protected assertion."
+  },
+  "negativeControlArithmetic": {
+    "frozenRequirement": 48,
+    "seedOpened": 14,
+    "populationA": 13,
+    "gauntletOffset2": 8,
+    "gauntletOffset3": 8,
+    "realismOffsets1and2": 0,
+    "achievableTotal": 43,
+    "shortfall": 5,
+    "realismZeroReason": "The realism pack has NO hazard-family field at all -- its columns are employeeExposureKnown, equipmentInvolved, expectedTerms, forbiddenTerms, hazardObservation, id, industryContext, photosAvailable, shouldHaveMissingEvidence, siteType, taskContext, title. forbiddenTerms are citations and phrases, not families. Its rows cannot even be Expert-taxonomy-eligible without authoring family truth from observations, which the frozen truth rules forbid.",
+    "onlyMaterialThatCouldClose": "GAUNTLET_OFFSET_0 (12 capable) and GAUNTLET_OFFSET_1 (13 capable) -- BOTH PERMANENTLY RETIRED by spent Level-3 acceptance runs.",
+    "verdict": "NEGATIVE_CONTROL_OPPORTUNITIES = 43 < 48 from ALL authorized non-retired material. The stop condition fires."
+  },
+  "whyNothingWasOpened": "The minimum-exposure sequence exists to expose the least new formal material necessary. Metadata already proves the end state is 43 -- below 48 -- with offsets 2 and 3 fully counted. Opening them would spend two single-use reserved offsets, still fail to reach 48, and leave the cohort unfreezable AND the reserve burned. That is the exact failure pattern of section 61: 'the corpus is spent, the measurement was not obtained.' No reserved material was opened."
+}

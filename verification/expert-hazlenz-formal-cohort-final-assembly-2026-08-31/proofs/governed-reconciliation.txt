@@ -1,0 +1,27 @@
+PHASE 3 -- GOVERNED SNAPSHOT RECONCILIATION
+
+  PASS  snapshot SHA-256 matches the owner-reported hash  -- a2c5dc324ded4fee...
+  PASS  header carries the exact projected columns  -- citation,citationKey,title,approved_text,scope,authority_tier,reviewState,releaseId,recordChecksum
+  PASS  record count is exactly 64  -- 64
+  PASS  every record belongs to the accepted release  -- federal-core-2026-08-28.1
+  PASS  review-state distribution is exactly { mechanically_validated: 64 }  -- mechanically_validated=64
+  PASS  every recordChecksum is present and distinct  -- 64 distinct
+  PASS  every citation is non-empty and unique  -- 64 distinct
+  PASS  every record carries approved text  -- 64/64
+
+BACKING-STATE RESOLUTION FROM PRODUCTION TRUTH
+
+  UNAPPROVED_RECORD = 64
+  PASS  no APPROVED_* state was invented
+  PASS  mapping is lossless for THIS snapshot (single-valued domain)  -- all 64 share one reviewState, so nothing is collapsed
+  PASS  a governed-supplied row classifies GOVERNED_RECORD_SUPPLIED
+  PASS  and DISAGREEMENT_OPPORTUNITY -- M08 is exercised, per composition note :144
+
+LIMITATION, PRESERVED
+
+  REVIEWER_APPROVED_GOVERNED_RECORDS = 0
+  APPROVED_RECORD_GROUNDING_EXERCISED = FALSE
+  No immutable measure requires approved-record coverage: M06/M07 key off
+  governedStandards.length > 0, M08 is exercised BY unapproved records, and no
+  REQUIRED_CLASS_MINIMUMS entry names an approved class. This is a REPORTED
+  LIMITATION, not a failed gate, and must not be implied as covered by a green run.

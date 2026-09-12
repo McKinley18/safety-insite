@@ -1,0 +1,311 @@
+{
+  "section": "256",
+  "generated": "2026-09-12",
+  "kind": "WHOLE_PRODUCT_BETA_READINESS_REVIEW",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "remediationPerformed": false,
+  "productionCodeChanged": false,
+  "committed": false,
+  "artifactsWrittenDuringReview": [
+    {
+      "path": "PROTECTED-IDENTITIES.json",
+      "why": "regenerated as a side effect of running the §229 protected-identity verifier, which writes by design",
+      "tracked": false,
+      "productionCode": false
+    }
+  ],
+  "predecessorVerification": {
+    "package255Digest": "cd21919d27147b4071502f08eadfa0a4c547bbd8da3308772bf542c089795c6c",
+    "digestIs": "sha256 of REPORT-255.sha256",
+    "allFourMemberDigestsRecomputedEqual": true
+  },
+  "independentlyVerifiedInThisSection": {
+    "productionBuild": {
+      "command": "tsc -p backend/tsconfig.json",
+      "exitCode": 2,
+      "error": "src/safescope-v2/expert-hazlenz/contract/expert-237-posture-contract.ts(193,47) TS2552 Cannot find name 'POSTURE_REF_KINDS_237'",
+      "emittedFilesDespiteError": 1118,
+      "emittedFilesRecordedAt229": 1071,
+      "mainJsEmitted": true,
+      "buildScript": "tsc",
+      "renderBuildScript": "node --max-old-space-size=1024 ./node_modules/typescript/bin/tsc",
+      "dockerfileStep": "RUN npm run build:render",
+      "consequence": "a non-zero exit aborts the image build, so committing the candidate to main fails the deploy",
+      "errorIsTypePositionOnly": true,
+      "runtimeEffect": "none",
+      "whitelistedAsAllowedErrorBy": [
+        "run-251-regression.ts",
+        "run-252-regression.ts",
+        "run-253-regression.ts",
+        "build-239-evidence.ts",
+        "expert-240-final-acceptance-instrument.ts"
+      ]
+    },
+    "expertReachability": {
+      "definitionSite": "backend/src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts:201",
+      "productionCallers": [],
+      "allCallersUnder": "backend/scripts/",
+      "nestDecoratorsInExpertDirectory": 0,
+      "modulesImportingTheAdapters": 0,
+      "reachableFromAnyRouteOrService": false
+    },
+    "verifierGate": {
+      "gateConstant": "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED",
+      "gateValue": "literal false",
+      "gateImportedByProductionEntryPoint": false,
+      "entryPointCallsVerifierLegUnconditionallyWhenAnAdmittedDeclarationExists": true,
+      "consequence": "unmeasured verifier code would run on the user path and an admitting analysis makes two provider calls, not one",
+      "section254CallLedger": {
+        "entries": 6,
+        "allCallKind": "PRIMARY",
+        "verifierLegReached": 0
+      }
+    },
+    "candidatePersistence": {
+      "entryPointTracked": false,
+      "contractDirectoryTracked": false,
+      "owedFactsDirectoryTracked": false,
+      "expertWorktreeEntries": 33,
+      "consequence": "the entire validated §246-§255 candidate exists only as untracked working-tree files"
+    },
+    "deployment": {
+      "localHead": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+      "originMain": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "recordedDeployedSha": "45251d38a4e800bbff461708aa4c77061feade56",
+      "recordedDeployedShaConfirmedAt": "2026-08-28T18:33:25Z",
+      "originMainPushedAt": "2026-08-28 22:16 -0400",
+      "pushPostdatesTheHealthCheck": true,
+      "autoDeploy": "yes, trigger=commit, branch=main",
+      "genuinelyUnpushedCommits": ["37a5d1b50abe836eb19dd24ee18ad10557bda131"],
+      "section255ClaimOfTwoCommitsAheadOfDeployed": "NOT SUPPORTED BY THE EVIDENCE",
+      "de655d2fTouchedProductionBehaviour": "backend/src/standards/cutover/",
+      "runningProductionSha": "UNVERIFIED",
+      "worktreeEntries": 813,
+      "migrationsAtHead": 50,
+      "productionAppliedThrough": "InspectionKnowledgeReleaseBinding1800000018000",
+      "migrationDrift": 0
+    },
+    "cost": {
+      "section254InputTokensPerCall": 43713,
+      "section254OutputTokensPerCall": 2484,
+      "section254CostUsdPerCall": 0.1123,
+      "section254CallsAllFirstPass": true,
+      "systemPromptCharacters": 81664,
+      "systemPromptByteIdenticalAcrossAllSixCalls": true,
+      "systemPromptVariesOnlyWithGovernedRecordCount": true,
+      "transmittedSchemaDistinctValuesAcrossSixCalls": 6,
+      "cacheControlPresentInRequestBody": false,
+      "productionCallsPerAdmittingAnalysis": 2,
+      "measuredCostExcludesVerifierLeg": true,
+      "globalThrottle": "100 requests per 60000 ms",
+      "perTenantSpendCap": false,
+      "expertKillSwitch": false,
+      "concurrencyLimit": false,
+      "timeout": "present, AbortController with per-call timeoutMs",
+      "retryPolicy": "present, auth and model-name failures excluded from retry",
+      "attemptTelemetry": "present, append-only, in-memory only"
+    },
+    "security": {
+      "controllersTotal": 43,
+      "controllersGuarded": 42,
+      "unguardedControllers": ["health/health.controller.ts"],
+      "globalGuards": ["ThrottlerGuard"],
+      "entitlementEnforcement": "server-side, DB-authoritative over the JWT plan claim, audited",
+      "requireEntitlementUsages": 43,
+      "webhookSignatureVerification": "present",
+      "trackedEnvFiles": ["backend/.env.example"],
+      "secretScanOfTrackedDiagnosticArtifacts": "no credentials, connection strings or bearer tokens found",
+      "expertAdapterLogging": "none",
+      "errorMonitoring": "absent"
+    },
+    "storage": {
+      "provider": "S3 private, streamed through the API under JwtGuard",
+      "presignedUrls": false,
+      "providerConstruction": "lazy, inside provider()",
+      "healthCheckEvidencesProvisioning": false,
+      "failureModeIfUnset": "first evidence upload returns 500",
+      "accessScoping": "organization-scoped with owner fallback, on read and delete",
+      "auditEvents": true,
+      "retentionPolicy": false,
+      "backupPosition": "not stated"
+    },
+    "billing": {
+      "tiers": ["free", "pro"],
+      "proPriceMonthlyUsd": 24.99,
+      "companyPlanExists": false,
+      "retiredTierNamesNormalizingToPro": ["plus", "expert", "company", "enterprise"],
+      "seatEnforcementApplicable": false,
+      "liveConfiguration": "UNVERIFIED",
+      "requiredForFirstBetaCohort": false,
+      "betaProvisioningRoute": "grant pro entitlements directly; entitlement resolution reads the subscription row rather than requiring a Stripe round trip"
+    },
+    "legal": {
+      "termsOfUse": "does not exist",
+      "privacyPolicy": "does not exist",
+      "legalPageIs": "a 120-line disclaimer",
+      "signupConsent": "single checkbox, evaluated client-side at register/page.tsx:79, absent from the request body, never persisted",
+      "unsupportableClaimInLiveCopy": {
+        "file": "frontend-next/app/hazlenz/page.tsx",
+        "line": 23,
+        "text": "Autonomously identifies missing or ambiguous parameters",
+        "registerClassification": "NOT_CURRENTLY_SUPPORTABLE"
+      },
+      "thirdPartyModel": "claude-sonnet-5",
+      "subprocessorDisclosure": false
+    },
+    "humanConfirmationSubstrate": {
+      "hazlenzAnalysesTable": ["engineVersion", "traceId", "knowledgeReleaseId", "idempotencyKey", "requestVersion", "status current/superseded", "resultSnapshot jsonb", "advisoryStatus advisory", "requestedByUserId"],
+      "humanReviewsTable": ["decision accepted/edited/overridden/dismissed", "rationale", "reviewedConclusion jsonb", "reviewedByUserId", "analysisId", "findingId", "status current/superseded/invalidated"],
+      "gatingStateExists": false,
+      "delta": "the existing review is finding-level and gates nothing; the §255 boundary needs a state in which an analysis is presentable as analysis but not as an operational conclusion until confirmed",
+      "caution": "addAnalysis persists a CLIENT-SUPPLIED resultSnapshot and engineVersion; the Expert path must produce its result server-side"
+    },
+    "resultContractDefect": {
+      "field": "ExpertHazLenzResult.posture",
+      "declaredType": "unknown",
+      "shapeOnComplete": "the whole PostureProjectionResult239 object",
+      "shapeOnFirstPassRefused": "the inner posture",
+      "docCommentSays": "Null whenever the posture projection refused. Never synthesized.",
+      "existingConsumerWorkaround": "execute-254-driver-role-confirmation.ts navigates both shapes with any casts"
+    },
+    "instrumentInProductionBundle": {
+      "expertDirectoryTotalLines": 36960,
+      "fixturesLines": 10889,
+      "cohortAndMeasurementContractLines": 3217,
+      "instrumentMaterialUnderSrc": 14106,
+      "compiledIntoProductionBundle": true
+    },
+    "yieldEvidence": {
+      "H4": {
+        "refusalCode": "DISCHARGING_CONTROL_NOT_IN_REQUIRED_CONTROLS",
+        "check": "controlTexts.has(ref.trim()) — trim-normalized exact string equality",
+        "transmittedInstructionAndValidatorAgree": true,
+        "requiredControlsEntry": "Supervisor or permit issuer to track progress against the 15:30 planned finish and confirm before 16:00 whether work is complete, needs extension, or must cease",
+        "dischargingControlRef": "Monitor progress against the 15:30 planned finish time and ensure hot work ceases or is re-authorised before the 16:00 permit expiry",
+        "sameControlInSubstance": true,
+        "rejectedOutputWas": "MERELY_NON_CANONICAL"
+      },
+      "H3": {
+        "refusalCode": "DECLARATION_NOT_COVERED",
+        "check": "§233 P3 — every emitted declaration must appear in requiredBy or acceptedWithoutImmediateAction",
+        "declarationEmitted": "decl-slab-capacity",
+        "posturesCitedRefs": ["HAZARD_CANDIDATE cand-slab-capacity-unknown", "HAZARD_CANDIDATE cand-mewp-overturn"],
+        "acceptedWithoutImmediateAction": [],
+        "postureSelected": "HOLD_PENDING_VERIFICATION",
+        "candidateTwinOfTheDeclarationWasCitedAsTheControllingDriver": true,
+        "declarationSchemaCarriesACandidateBindingField": false,
+        "rejectedOutputWas": "INTERNALLY_INCONSISTENT_REFERENTIALLY_BUT_NOT_DECISION_CRITICALLY_SILENT"
+      },
+      "sharedRootCause": "both checks are discharged by asking the model to restate, in a second location, a tie it has already established in the first",
+      "belongsTo": "CONTRACT_DESIGN_AND_DETERMINISTIC_REPRESENTATION",
+      "invariantsNecessaryAtCurrentStrictness": true,
+      "invariantWeakeningProposed": false,
+      "remediationPerformed": false
+    }
+  },
+  "totals": {
+    "p0": 12,
+    "p1": 11,
+    "p2": 7,
+    "accepted": 6,
+    "unverified": 4,
+    "section255ItemsNormalized": 27,
+    "newFindings": 12
+  },
+  "normalizedSection255Items": [
+    { "id": "E1", "was": "ACCEPTED", "now": "ACCEPTED", "changed": false },
+    { "id": "E2", "was": "BLOCKER", "now": "P0", "changed": false, "reason": "confirmed independently" },
+    { "id": "E3", "was": "BLOCKER", "now": "P1", "changed": true, "direction": "down", "reason": "degraded not unsafe, provided Expert is additive and refusal is surfaced honestly; becomes P0 if Expert is the sole analysis path" },
+    { "id": "E4", "was": "RISK", "now": "P0", "changed": true, "direction": "up", "reason": "the development gate is not wired into the production entry point, so unmeasured verifier code would run on the user path and double the call count" },
+    { "id": "E5", "was": "RISK", "now": "P2", "changed": true, "direction": "down" },
+    { "id": "B1", "was": "BLOCKER", "now": "P0", "changed": false },
+    { "id": "B2", "was": "BLOCKER", "now": "P0", "changed": false },
+    { "id": "B3", "was": "BLOCKER", "now": "P0", "changed": false, "note": "dependent, not independent: it is the activation step of the E2/B1/B2 workstream" },
+    { "id": "B4", "was": "RISK", "now": "P0", "changed": true, "direction": "up", "reason": "the candidate is untracked-only and the deployed baseline is unestablished" },
+    { "id": "B5", "was": "RISK", "now": "P1", "changed": true, "direction": "up", "reason": "the stale document is also the source §255 drew its deployment facts from" },
+    { "id": "P1", "was": "POLISH", "now": "P2", "changed": false },
+    { "id": "P2", "was": "POLISH", "now": "P1", "changed": true, "direction": "up", "reason": "known-failing suites obscure regression signal during beta" },
+    { "id": "P3", "was": "POLISH", "now": "P0", "changed": true, "direction": "up", "reason": "breaks the production build; tsc exits 2 and the Dockerfile build step aborts" },
+    { "id": "I1", "was": "RISK", "now": "P0_IN_PART", "changed": true, "direction": "up", "reason": "spend cap and kill switch are P0; prompt caching is P2" },
+    { "id": "I2", "was": "RISK", "now": "P1", "changed": false },
+    { "id": "I3", "was": "RISK", "now": "P1", "changed": false, "note": "currently zero migration drift; the confirmation-state migration activates it" },
+    { "id": "I4", "was": "RISK/UNVERIFIED", "now": "UNVERIFIED", "changed": false, "note": "lazy construction means a healthy service does not evidence provisioning" },
+    { "id": "I5", "was": "RISK/UNVERIFIED", "now": "UNVERIFIED", "changed": false, "note": "and may not be required for the first cohort at all" },
+    { "id": "L1", "was": "BLOCKER", "now": "P1", "changed": true, "direction": "down", "reason": "the register edit is cheap; the live copy is the blocker and that is N2" },
+    { "id": "L2", "was": "BLOCKER", "now": "P0", "changed": false, "note": "legal owner; engineering cannot close" },
+    { "id": "L3", "was": "BLOCKER", "now": "P0", "changed": false },
+    { "id": "L4", "was": "RISK", "now": "P1", "changed": false },
+    { "id": "A1", "was": "ACCEPTED", "now": "ACCEPTED", "changed": false },
+    { "id": "A2", "was": "ACCEPTED", "now": "ACCEPTED", "changed": false },
+    { "id": "A3", "was": "ACCEPTED", "now": "ACCEPTED", "changed": false },
+    { "id": "A4", "was": "ACCEPTED", "now": "P0", "changed": true, "direction": "up", "reason": "cannot be accepted as a limitation while it blocks the production build" },
+    { "id": "A5", "was": "ACCEPTED", "now": "ACCEPTED", "changed": false }
+  ],
+  "newFindings": [
+    { "id": "N1", "disposition": "P0", "title": "The production build exits 2", "sameRootAs": "P3" },
+    { "id": "N2", "disposition": "P0", "title": "Unsupportable 'Autonomously identifies' capability claim in live customer copy", "location": "frontend-next/app/hazlenz/page.tsx:23" },
+    { "id": "N3", "disposition": "P0", "title": "No Terms of Use, no Privacy Policy, and signup consent is client-side only and never recorded" },
+    { "id": "N4", "disposition": "P0", "title": "The validated candidate exists only as untracked working-tree files" },
+    { "id": "N5", "disposition": "UNVERIFIED", "title": "The running production SHA is not established and origin/main is ahead of the recorded deployed SHA" },
+    { "id": "N6", "disposition": "P1", "title": "ExpertHazLenzResult.posture is typed unknown and shape-variant by status" },
+    { "id": "N7", "disposition": "P0", "title": "The verifier development gate is not wired into the production entry point", "basisFor": "E4 reclassification" },
+    { "id": "N8", "disposition": "P1", "title": "About 14,100 lines of acceptance-instrument material compile into the production bundle" },
+    { "id": "N9", "disposition": "P1", "title": "No error monitoring of any kind exists" },
+    { "id": "N10", "disposition": "P1", "title": "Measured Expert unit cost excludes the verifier leg the production path would make" },
+    { "id": "N11", "disposition": "P2", "title": "build-info.ts fallback constant is a stale June commit" },
+    { "id": "N12", "disposition": "P2", "title": "planEntitlements.ts and billing.ts read NEXT_PUBLIC_DISABLE_AUTH without the NODE_ENV guard applied elsewhere" }
+  ],
+  "p0Closure": [
+    { "id": "P0-1", "item": "P3/N1 production build", "smallestClosure": "define or import the missing constant in type position with no emitted-value change; move the five regression whitelists with it; product-owner decision because it touches a frozen contract module" },
+    { "id": "P0-2", "item": "N4 candidate untracked", "smallestClosure": "commit to a non-main branch; autoDeploy is bound to main so this carries zero deploy risk", "prerequisite": "none" },
+    { "id": "P0-3", "item": "E2 no production caller", "smallestClosure": "one authenticated entitlement-gated route running the entry point and persisting the result" },
+    { "id": "P0-4", "item": "B1 no confirmation surface", "smallestClosure": "a pending-confirmation state that gates operational presentation, plus a narrow confirm-or-change action" },
+    { "id": "P0-5", "item": "B2 fail-closed unimplemented", "smallestClosure": "presentation gated on recorded confirmation; absence rendered as awaiting confirmation, never as a conclusion" },
+    { "id": "P0-6", "item": "B3 not customer-active", "smallestClosure": "a flag activating Expert for named beta accounts only, additive to the deterministic path" },
+    { "id": "P0-7", "item": "E4/N7 verifier gate", "smallestClosure": "a product-owner decision to disable the verifier leg for beta or measure it before exposure" },
+    { "id": "P0-8", "item": "N2 unsupportable claim", "smallestClosure": "replace with the §255 permissible characterization and record the amendment in the claims register" },
+    { "id": "P0-9", "item": "N3 no terms, no privacy, no recorded consent", "smallestClosure": "a Terms of Use and Privacy Policy linked from registration, with acceptance transmitted and persisted" },
+    { "id": "P0-10", "item": "L3 third-party model disclosure", "smallestClosure": "product-owner and legal decision reflected in the privacy policy" },
+    { "id": "P0-11", "item": "L2 name and trademark", "smallestClosure": "a product-owner decision on beta scope plus legal review; accepting the risk for a closed cohort and recording that decision is a legitimate outcome" },
+    { "id": "P0-12", "item": "I1 unbounded spend exposure", "smallestClosure": "a per-tenant daily analysis ceiling enforced server-side plus a global kill switch" }
+  ],
+  "minimumEndToEndAcceptance": {
+    "kind": "PRODUCT_INTEGRATION_ACCEPTANCE",
+    "isNotASemanticBenchmark": true,
+    "denominator": 6,
+    "denominatorUnit": "product paths, not a semantic cohort and not a rate",
+    "preregistrationRequiredBeforeExecution": true,
+    "paths": [
+      "admitted analysis requiring confirmation is visible as analysis and NOT presented as an operational conclusion",
+      "human confirms and the conclusion becomes presentable on exactly one recorded transition",
+      "human changes the classification, the change takes effect exactly, and the original cannot afterwards settle",
+      "FIRST_PASS_REFUSED reaches the user as an honest refusal with no fabricated analysis and the deterministic path still delivers",
+      "PROVIDER_FAILED degrades safely with no partial result presented",
+      "persistence and provenance: engineVersion carries contract and entry version, snapshot stored, audit event written"
+    ],
+    "evidence": ["HTTP transcript", "resulting database rows", "rendered UI state"],
+    "doesNotEstablish": ["semantic quality", "population reliability", "the rate of either Class A first-pass defect"]
+  },
+  "deferredUntilAfterBeta": [
+    "prompt caching and static-context caching",
+    "retrieval of only relevant governed material",
+    "contract compaction — deferred and NOT recommended without demonstrated capability equivalence",
+    "dischargingControlRef transmitted-null gap",
+    "stale transport comment and stale build-info fallback",
+    "NEXT_PUBLIC_DISABLE_AUTH guard inconsistency",
+    "removing acceptance fixtures from the production bundle",
+    "retention, deletion and backup policy for the object store",
+    "population-level measurement of silent non-declaration and wrong-property selection"
+  ],
+  "notReopened": {
+    "autonomousDriverRoleCapability": "closed by §255; the §254 cohort may never be reused as a tuning set",
+    "newSemanticExperimentProposed": false,
+    "roleTaxonomyProposed": false,
+    "justificationFieldProposed": false,
+    "validatorProposed": false,
+    "verifierProposed": false,
+    "promptTuningProposed": false
+  },
+  "terminal": "WHOLE_PRODUCT_BETA_READINESS_REVIEW_COMPLETE_WITH_LIVE_VERIFICATION_GAPS — CONTROLLED_BETA_EXECUTION_PLAN_AUTHORIZATION_REQUIRED"
+}

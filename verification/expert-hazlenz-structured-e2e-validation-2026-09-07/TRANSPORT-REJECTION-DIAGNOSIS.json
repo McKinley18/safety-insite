@@ -1,0 +1,204 @@
+{
+  "artifact": "SECTION_197_TRANSPORT_REJECTION_DIAGNOSIS",
+  "date": "2026-09-07",
+  "providerCallsMadeByThisDiagnosis": 0,
+  "observedProviderError": {
+    "httpStatus": 400,
+    "type": "invalid_request_error",
+    "message": "tools.0.custom: For 'array' type, property 'maxItems' is not supported",
+    "occurrences": 12,
+    "identicalAcrossAllTwelveRows": true,
+    "outputTokens": 0,
+    "actualSpendUsd": 0,
+    "classification": "PRE-INFERENCE EXECUTION/INFRASTRUCTURE EVENT — not model behaviour, and not scored as any."
+  },
+  "rootCause": {
+    "statement": "The vNext wire schema emits `maxItems: 0` on `unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds` whenever NO governed evidence was supplied with the request. Anthropic's strict tool-schema mode rejects `maxItems` on an array, before generation, for the whole request.",
+    "whyItWasNotCaughtBefore": "the §108 compatibility strip removes `minLength` and `minItems` only. It was written before `maxItems` existed anywhere in this schema — §196 introduced the first occurrence — and its own comment records that no `maxItems` existed in the schema at the time: \"it does not touch `minimum`, `maximum`, `pattern`, `maxLength` or `maxItems` (none exist in this schema today...)\". §196 made that parenthesis false and nothing connected the two.",
+    "keywordsIntroducedByVNextAcrossAllTwelveRows": [
+      "maxItems"
+    ],
+    "onlyOffendingKeyword": true,
+    "perRow": [
+      {
+        "rowId": "SF-01",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-03",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-05",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-12",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-06",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-04",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-02",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-07",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-08",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-09",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-10",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      },
+      {
+        "rowId": "SF-11",
+        "v15KeywordCount": 7,
+        "vnextKeywordCount": 8,
+        "keywordsIntroducedByVNext": [
+          "maxItems"
+        ],
+        "maxItemsOccurrences": 1,
+        "maxItemsPaths": [
+          "$.properties.unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems"
+        ]
+      }
+    ]
+  },
+  "whatThisFalsifies": {
+    "section196CaseK3": "K3 asserted \"with no governed evidence supplied, the wire schema forbids naming one at all\", and summarised the design as \"transport refuses it, and the boundary refuses it again\". On the ACTUAL hosted transport the first half does not hold: the transport does not refuse the ID, it refuses THE ENTIRE REQUEST.",
+    "whatStillHolds": "the BOUNDARY half is untouched. §196 cases K1 and K2 refuse an unsupplied governed sourceId at the projection, deterministically, and nothing about this transport defect weakens that. The safety property survives; the claimed second layer does not.",
+    "honestRestatement": "the two-layer claim was correct about the schema as a document and wrong about the schema as a request. A structural guarantee that cannot be transmitted to the provider is not a structural guarantee on the hosted path."
+  },
+  "candidateCorrections": [
+    {
+      "option": "A — extend the §108 Anthropic compatibility strip to remove `maxItems`",
+      "effect": "the request becomes transportable. `governedEvidenceSourceIds` then carries `items: {type: string}` with no upper bound, so the model COULD emit an id, and the projection would refuse it as GOVERNED_SOURCE_ID_NOT_IN_SUPPLIED_SET.",
+      "changesHashedTreatmentArtifact": true,
+      "note": "this is the §108 precedent applied to a third keyword. It removes a transport-level guarantee and leaves the boundary-level one, which is where the product's protection has always actually lived.",
+      "wouldRequire": "a fresh §197 preregistration, because every per-row wireSchemaSha256 changes."
+    },
+    {
+      "option": "B — omit the `governedEvidenceSourceIds` property entirely when the supplied set is empty, rather than bounding it at zero",
+      "effect": "no `maxItems` is ever emitted; a model given no governed evidence has no field to put an id in at all, which is a STRONGER structural guarantee than maxItems:0 and one the transport accepts.",
+      "changesHashedTreatmentArtifact": true,
+      "note": "this changes the vNext protocol itself, so it is a protocol revision and not a transport workaround. It would also make the declaration item shape vary by request, which the schema already does for enums.",
+      "wouldRequire": "a vNext protocol revision plus a fresh §197 preregistration."
+    },
+    {
+      "option": "C — always supply the governed sourceIds that exist for the row",
+      "effect": "rows carrying governed evidence get an enum; rows with none still need one of A or B. Does not solve the empty case on its own.",
+      "changesHashedTreatmentArtifact": true,
+      "note": "incomplete by itself.",
+      "wouldRequire": "combination with A or B."
+    }
+  ],
+  "strippingMaxItemsChangesNothingElse": {
+    "keywordKindsRemoved": 1,
+    "schemaShaBefore": "6dd8f82baa2f3ed4624522373b2a431ecd85ece6d535025eab3c81ed0b4bb406",
+    "schemaShaAfter": "752e5b7aa296acdbc981b9e03f495b4e26186873226e373c86baae2792cfc923",
+    "note": "measured on SF-01's request. Exactly one keyword kind disappears; no property, type, enum, required list or description is touched."
+  },
+  "WHY_NO_REPAIR_WAS_APPLIED_IN_THIS_SLICE": "The §197 authorization states: \"Do not modify treatment prompts, schemas, truth or thresholds after the first provider call\", and for the neighbouring source-integrity case: \"Do not repair and then silently execute under the same preregistered state. Record the failure and obtain review if the correction changes any hashed treatment artifact.\" Every candidate correction changes the per-row wireSchemaSha256 frozen in the §197 preregistration. So the failure is recorded and review is requested, rather than repaired and re-run."
+}

@@ -84,3 +84,27 @@ verification/safety-insite-independent-ai-readiness-2026-08-04/**
 verification/safety-insite-persisted-multihazard-lifecycle-2026-08-03/**
 !verification/safety-insite-persisted-multihazard-lifecycle-2026-08-03/**/
 !verification/safety-insite-persisted-multihazard-lifecycle-2026-08-03/**/*.md
+
+# --- §229 baseline cleanup: generated build and diagnostic output, never authored source
+backend/build_errors.txt
+backend/build_errors_current.txt
+backend/build_output.txt
+backend/npm_build_diagnostics.txt
+backend/tsc_diagnostics.txt
+backend/server_logs.txt
+backend/report.pdf
+backend/generated-tests.json
+backend/feedback-store.json
+backend/pico.save
+backend/dist/
+# macOS Finder duplicate-copy artifacts. Not evidence; never authored.
+*\ 2.ts
+*\ 2.js
+*\ 2.json
+*\ 2.md
+*\ 2.jsonl
+*\ 2.sha256
+*\ 2.mjs
+*\ 2.txt
+*\ 2.xml
+*\ 2.csv

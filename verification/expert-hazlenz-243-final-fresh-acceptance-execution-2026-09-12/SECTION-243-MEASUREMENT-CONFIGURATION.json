@@ -1,0 +1,34 @@
+{
+  "artifact": "SECTION-243-MEASUREMENT-CONFIGURATION",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "whyThisFileExists": "two facts materially affect how Q13 should be read, and both are properties of the frozen execution path rather than of the candidate. They are recorded here rather than folded into the score, because the instrument was frozen before execution and may not be changed after results are seen.",
+  "strictToolSchemaDivergence": {
+    "productAdapterSendsStrictTrue": true,
+    "whereVerified": "execute-238-confirmation.ts and execute-231-final-acceptance.ts both build the tool block manually without strict, and \u00a7242A instructed \u00a7243 to use the same assembly path. \u00a7243 followed it exactly.",
+    "frozenExecutionPathSendsIt": false,
+    "consequence": "required-field enforcement was advisory on every \u00a7243 call. FOUR of the fourteen refusals (G4, G8, C3, M5) are pure required-field conformance failures that a strict tool mode is designed to prevent, and two calls (C7 and M5) returned schema-artifact placeholders that strict mode would reject outright.",
+    "whatThisDoesNotExcuse": "TEN of the fourteen refusals carry semantic-coherence codes that no schema enforcement can prevent: a driver role contradicting its candidate state, an established cessation driver under a non-STOP posture, a resumption dependency under a permitting posture, a duplicated basis reference, and a driver role on an inadmissible carrier. The majority of the Q13 shortfall is the candidate's own coherence, not the transport configuration.",
+    "wasAnythingRerun": "NO. Changing the configuration after seeing the result would be repairing the experiment, which the authorization forbids.",
+    "refusalsByCause": {
+      "SEMANTIC_COHERENCE": 10,
+      "SCHEMA_CONFORMANCE_ONLY": 4,
+      "total": 14
+    }
+  },
+  "derivationHarnessCorrectionsMadeBeforeScoring": [
+    {
+      "what": "the two-stage M2 exercise now runs stage two on the ledger and claim stage one left behind",
+      "why": "the frozen two-stage expectation describes exactly that. Without the carry-over, stage two reported five mismatches that were the harness's, not the candidate's. Scoring them would have converted a tooling failure into a semantic verdict."
+    },
+    {
+      "what": "a frozen expected refusal code is recorded NOT_EXERCISED where the frozen exercise attempts no settlement, instead of being reported absent",
+      "why": "a refusal can only be observed where a settlement is attempted. G3-E1 and C6-E1 name no evidence action, so no settlement was attempted and the code could not appear. Invariants 23 and 25 forbid turning an unexercised axis into a failure."
+    },
+    {
+      "what": "the review packet is now built with the clarification the first pass actually emitted",
+      "why": "the product packet has a slot for it and the harness was passing null, then the packet would have been scored for an omission the harness caused."
+    }
+  ],
+  "whatRemainsAProductGapNotAHarnessGap": "the property review packet has no carrier for an adjacent established fact and is single-target by construction, and there is no evidence-review packet at all. Those three absences are what HS14 fires on, and no harness change can supply them."
+}

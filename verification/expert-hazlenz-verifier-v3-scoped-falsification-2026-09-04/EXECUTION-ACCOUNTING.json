@@ -1,0 +1,19 @@
+{
+  "executedAt": "2026-09-05T03:18:53.581Z",
+  "plannedRequests": 12,
+  "requestsIssued": 12,
+  "retries": 0,
+  "replacementCalls": 0,
+  "firstPassInvocations": 0,
+  "totalInputTokens": 75600,
+  "totalOutputTokens": 14019,
+  "totalActualCostUsd": 0.29139,
+  "hardProspectiveCostCapUsd": 0.68,
+  "worstCaseCallUsd": 0.056,
+  "capCompliance": true,
+  "modelIdentities": [
+    "claude-sonnet-5"
+  ],
+  "recordStore": "RUN-RECORDS.jsonl",
+  "recordsAppended": 12
+}

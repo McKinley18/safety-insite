@@ -1,0 +1,1414 @@
+{
+  "provider": "anthropic",
+  "modelRequested": "claude-sonnet-5",
+  "modelResponded": [
+    "claude-sonnet-5"
+  ],
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "promptVersion": "hazlenz.expert.prompt.v5",
+  "systemPromptSha256": "e4624f8a0e04d34c4628ba4243c39725278086e7d1c35a87ceb148ccf89c82d8",
+  "determinismControl": "NONE -- temperature/top_p/top_k removed on this model, no seed",
+  "callsAttempted": 7,
+  "callsCompletedClean": 7,
+  "ceilingCalls": 7,
+  "ceilingCostUsd": 3,
+  "stoppedEarly": null,
+  "inputTokens": 56284,
+  "outputTokens": 8567,
+  "latencyP50Ms": 11891,
+  "latencyMaxMs": 23681,
+  "actualCostUsd": 0.198238,
+  "r6": {
+    "rows": [
+      {
+        "fixtureId": "R6",
+        "role": "R6_PRIMARY",
+        "rep": 1,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZtZczZBriMX3KaZhnDN",
+        "latencyMs": 11661,
+        "promptTokens": 8030,
+        "outputTokens": 1044,
+        "costUsd": 0.026500000000000003,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 1,
+          "clarifications": 2,
+          "insights": 0,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "expertExplanation": {
+          "summary": "The lockout/tagout process described is thorough and controlled — energy was bled down, verified at zero, and independently confirmed by a second worker. However, the guard removal that followed introduces a separate, current machine guarding exposure that is not addressed by the lockout finding alone. Clarifying the scope of work and reinstallation plan, plus confirming no bystander exposure, would round out the picture for this observation."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "candidateDetail": [
+          {
+            "hazardFamily": "machine_guarding",
+            "reasoning": "With the guard removed, the point of operation or moving parts of the press are currently exposed. Even though the machine is de-energized under LOTO, the guard removal is a present physical state that constitutes a machine guarding exposure if any re-energization occurs, or if other workers approach assuming the machine is safe. This is a distinct hazard family from lockout/tagout itself.",
+            "evidenceBasis": "The observation states the guard was removed to access the press after lockout, which is a current condition of an unguarded machine even though the lockout itself is controlled.",
+            "assertedConditionState": "ACTIVE",
+            "confidence": "MODERATE"
+          }
+        ],
+        "clarificationDetail": [
+          {
+            "question": "What task is being performed with the guard removed, and will the guard be reinstalled before the press is returned to service?",
+            "whyItMatters": "Determines the duration and nature of the current guarding gap and whether additional controls (e.g., barricading the point of operation, restricting access) are needed while the guard is off.",
+            "evidenceGap": "The observation confirms the guard was removed but does not state what work is being done or the plan for reinstallation.",
+            "criticality": "IMPORTANT"
+          },
+          {
+            "question": "Are there other workers in the area who could be exposed to the unguarded press while maintenance is in progress?",
+            "whyItMatters": "Affects whether additional exposure controls, signage, or barricading are needed for personnel other than the two workers who verified isolation.",
+            "evidenceGap": "The observation only references the two workers involved in lockout verification; no information on other personnel in proximity to the press.",
+            "criticality": "ROUTINE"
+          }
+        ],
+        "score": {
+          "fixtureId": "R6",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "FORBIDDEN",
+              "count": 1,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "FORBIDDEN",
+              "count": 2,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            }
+          ],
+          "opportunities": 4,
+          "hits": 2,
+          "misses": 0,
+          "overRouted": 2,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r6Content": {
+          "RESOLVED_GUARD_CANDIDATE_PRESENT": true,
+          "REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT": false,
+          "HYPOTHETICAL_REENERGIZATION_CLARIFICATION_PRESENT": true,
+          "OTHER_UNSUPPORTED_TYPED_CONTENT": true,
+          "clean": false
+        },
+        "bindingTotal": 1,
+        "bindingBound": 1,
+        "bindingUnbindable": 0
+      },
+      {
+        "fixtureId": "R6",
+        "role": "R6_PRIMARY",
+        "rep": 2,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZtaUNv5qUQuKz1teVM5",
+        "latencyMs": 11891,
+        "promptTokens": 8030,
+        "outputTokens": 1083,
+        "costUsd": 0.02689,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 1,
+          "clarifications": 2,
+          "insights": 0,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "expertExplanation": {
+          "summary": "The deterministic finding correctly identifies a controlled lockout/tagout condition, supported by verification of zero energy and a second-worker check. However, the guard was removed as part of this work, which introduces a distinct machine guarding exposure worth tracking separately while the guard remains off. Confirming whether the guard has since been reinstalled and whether a lock (not just a tag) was applied would close out remaining exposure and compliance questions."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "candidateDetail": [
+          {
+            "hazardFamily": "machine_guarding",
+            "reasoning": "With the guard removed, even though LOTO is controlled, the point of operation or moving parts may be exposed to workers if the machine were to unexpectedly become accessible or if work requires reaching into the guarded area. This is a distinct hazard family from lockout/tagout and should be tracked separately for the duration the guard is off.",
+            "evidenceBasis": "The observation states the guard was removed to perform work on the press.",
+            "assertedConditionState": "ACTIVE",
+            "confidence": "MODERATE"
+          }
+        ],
+        "clarificationDetail": [
+          {
+            "question": "Is the guard still removed at the time of this observation, and if so, what is the expected duration and is the area barricaded or restricted while it is off?",
+            "whyItMatters": "If the guard remains off with LOTO in place for servicing, exposure to the machine's moving parts or point of operation may exist for other workers in the area even though the press itself is de-energized and isolated; this determines whether an interim guarding or access control is needed.",
+            "evidenceGap": "The observation states the guard was removed but does not state whether it has been reinstalled or whether the work is complete.",
+            "criticality": "IMPORTANT"
+          },
+          {
+            "question": "Is the lockout device (lock) itself, not just the tag, applied to the energy-isolating means?",
+            "whyItMatters": "A tag alone without a physical lock may not meet the required level of control if the isolating device is capable of being locked; this affects whether the isolation is fully compliant.",
+            "evidenceGap": "The observation mentions 'the supervisor tag applied' but does not explicitly confirm a lock was also applied.",
+            "criticality": "ROUTINE"
+          }
+        ],
+        "score": {
+          "fixtureId": "R6",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "FORBIDDEN",
+              "count": 1,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "FORBIDDEN",
+              "count": 2,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            }
+          ],
+          "opportunities": 4,
+          "hits": 2,
+          "misses": 0,
+          "overRouted": 2,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r6Content": {
+          "RESOLVED_GUARD_CANDIDATE_PRESENT": true,
+          "REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT": false,
+          "HYPOTHETICAL_REENERGIZATION_CLARIFICATION_PRESENT": true,
+          "OTHER_UNSUPPORTED_TYPED_CONTENT": true,
+          "clean": false
+        },
+        "bindingTotal": 1,
+        "bindingBound": 1,
+        "bindingUnbindable": 0
+      },
+      {
+        "fixtureId": "R6",
+        "role": "R6_PRIMARY",
+        "rep": 3,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZtbMEaJQC6SstgC3PhU",
+        "latencyMs": 11487,
+        "promptTokens": 8030,
+        "outputTokens": 1073,
+        "costUsd": 0.02679,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 1,
+          "clarifications": 2,
+          "insights": 0,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "expertExplanation": {
+          "summary": "The lockout/tagout control described is thorough and current — locked out, tagged, stored energy bled down and verified at zero, with independent second-worker verification — so no additional concern is raised on that front. However, the observation also states the guard was removed, which introduces a separate, current machine guarding exposure at the point of operation independent of the energy-control status, and it is unclear whether access to that area is otherwise restricted while the guard is off."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "candidateDetail": [
+          {
+            "hazardFamily": "machine_guarding",
+            "reasoning": "With the guard removed, there is a machine guarding exposure at the point of operation for any worker approaching the press during the work, even though lockout/tagout controls are in place for stored/electrical energy. The guard's absence itself is a distinct hazard from the energy-control hazard and should be tracked until the guard is reinstalled and verified.",
+            "evidenceBasis": "The observation states the guard was removed to perform work on the press, which is a current condition once lockout is in place.",
+            "assertedConditionState": "ACTIVE",
+            "confidence": "MODERATE"
+          }
+        ],
+        "clarificationDetail": [
+          {
+            "question": "Is access to the press point of operation restricted (e.g., barricaded or attended) while the guard remains off?",
+            "whyItMatters": "If the area is not restricted, workers other than the two verifying isolation could be exposed to the unguarded point of operation, changing the exposure assessment even though lockout is in place.",
+            "evidenceGap": "The observation does not state whether the area around the removed guard is barricaded, signed, or otherwise controlled for incidental exposure.",
+            "criticality": "IMPORTANT"
+          },
+          {
+            "question": "What task is being performed with the guard removed, and will the guard be reinstalled and function-tested before the press is returned to service?",
+            "whyItMatters": "Confirms the scope of work and ensures a plan exists to restore the guard before re-energization, which affects whether the current state is temporary and controlled or an ongoing gap.",
+            "evidenceGap": "The observation does not describe the maintenance task being performed or the plan for guard reinstallation.",
+            "criticality": "ROUTINE"
+          }
+        ],
+        "score": {
+          "fixtureId": "R6",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "FORBIDDEN",
+              "count": 1,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "FORBIDDEN",
+              "count": 2,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            }
+          ],
+          "opportunities": 4,
+          "hits": 2,
+          "misses": 0,
+          "overRouted": 2,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r6Content": {
+          "RESOLVED_GUARD_CANDIDATE_PRESENT": true,
+          "REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT": false,
+          "HYPOTHETICAL_REENERGIZATION_CLARIFICATION_PRESENT": true,
+          "OTHER_UNSUPPORTED_TYPED_CONTENT": true,
+          "clean": false
+        },
+        "bindingTotal": 1,
+        "bindingBound": 1,
+        "bindingUnbindable": 0
+      }
+    ],
+    "R6_ALL_CLEAN": false
+  },
+  "t1": {
+    "row": {
+      "fixtureId": "T1",
+      "role": "T1_HISTORICAL_RESOLVED",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtcCNJJHMHVxZ3g59Gf",
+      "latencyMs": 3827,
+      "promptTokens": 8046,
+      "outputTokens": 347,
+      "costUsd": 0.019562,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "NOTHING_TO_ADD",
+      "expertExplanation": {
+        "summary": "The panel cover was removed for troubleshooting but has since been reinstalled, secured, and the circuit re-energized and tested normal prior to this walkthrough, consistent with the deterministic CONTROLLED classification. The observation gives no indication of incomplete remediation, recurrence, or residual exposure, so no additional hazards, clarifications, or interactions arise from this event."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [],
+      "clarificationDetail": [],
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 0,
+      "bindingBound": 0,
+      "bindingUnbindable": 0
+    },
+    "T1_RESOLVED_STATE_CLEAN": true
+  },
+  "t5": {
+    "row": {
+      "fixtureId": "T5",
+      "role": "T5_CURRENT_POSITIVE",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtcUi4TMVK9nJ4wmcFE",
+      "latencyMs": 14223,
+      "promptTokens": 8054,
+      "outputTokens": 1281,
+      "costUsd": 0.028918,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The deterministic finding correctly identifies the missing point-of-operation guard as a life-critical machine guarding hazard requiring restoration. Beyond that, the observation notes the shear remains capable of being cycled with the blade exposed, which raises an additional question of whether any interim energy control or removal from service has been applied to prevent operation until the guard is back in place — this is not addressed in the observation and is decision-critical to understanding current exposure. The combination of an exposed blade and an operable machine is a compounding interaction that increases urgency beyond the guarding gap alone."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "lockout_tagout",
+          "reasoning": "If the machine can still be cycled with the point-of-operation guard missing, there is no indication that the shear has been taken out of service or de-energized to prevent operation until the guard is restored. This is a separate control question from the guarding deficiency itself.",
+          "evidenceBasis": "The machine is described as still capable of being cycled while the guard is missing and the blade is exposed, raising the question of whether any energy control has been considered as an interim measure while the guard is off.",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Has the shear been removed from service or de-energized/locked out until the point-of-operation guard is restored, or is it still available for operator use?",
+          "whyItMatters": "If the machine remains operable and accessible to operators with the guard missing, exposure to the blade is ongoing and immediate; if it has been taken out of service, the exposure is controlled and the urgency/required interim action changes.",
+          "evidenceGap": "The observation states the machine can be cycled but does not say whether it is currently being operated, isolated, or removed from service pending guard restoration.",
+          "criticality": "BLOCKING"
+        },
+        {
+          "question": "Is any operator currently assigned to or running the shear during this walkthrough, or has work at this machine been stopped?",
+          "whyItMatters": "Determines actual current exposure of personnel to the unguarded blade versus a hazard that exists but is not presently being interacted with.",
+          "evidenceGap": "No statement about whether the machine is currently staffed or in active use at the time of observation.",
+          "criticality": "IMPORTANT"
+        }
+      ],
+      "score": {
+        "fixtureId": "T5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    "T5_CURRENT_HAZARD_RECALLED": true
+  },
+  "t3": {
+    "row": {
+      "fixtureId": "T3",
+      "role": "T3_UNCERTAINTY_CONTROL",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtdXZyvvgdvamq6rawX",
+      "latencyMs": 13671,
+      "promptTokens": 8054,
+      "outputTokens": 1341,
+      "costUsd": 0.029518000000000003,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The core fact — an isolation lock removed from the feed conveyor with no confirmation of reapplication — is already captured as an UNKNOWN lockout/tagout finding. Because the current isolation status is genuinely unresolved, several blocking questions remain about whether the lock was restored, why it was removed, and whether the conveyor is currently accessible or operating, all of which would change whether hazardous energy exposure exists right now. A secondary, lower-confidence guarding concern is raised given the conveyor's moving parts could be exposed if unisolated during this gap."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "machine_guarding",
+          "reasoning": "Loss of lockout on a conveyor implicates both energy control and physical guarding exposure if the machine could move or be accessed while unisolated; since re-isolation status is unconfirmed, a guarding/exposure risk tied to unexpected motion cannot be ruled out.",
+          "evidenceBasis": "The feed conveyor's isolation lock was removed and it is unknown whether re-isolation occurred, meaning the conveyor's moving parts (nip points, pinch points, belt/pulley) could currently be unguarded by energy control if the machine was left accessible during the removed-lock period.",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "LOW"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Has the isolation lock on the feed conveyor been reapplied, and has the machine been re-isolated before any current work began?",
+          "whyItMatters": "This directly determines whether the lockout/tagout hazard is currently active (unisolated equipment) or controlled; it changes whether work may proceed and whether corrective action is needed now.",
+          "evidenceGap": "The observation explicitly states it does not establish whether the lockout was reapplied or the machine re-isolated.",
+          "criticality": "BLOCKING"
+        },
+        {
+          "question": "Who removed the lock, why was it removed, and was any work performed on the conveyor during the period the lock was off?",
+          "whyItMatters": "Determines whether personnel were exposed to an energized/unguarded conveyor and whether a lockout procedure violation occurred that requires investigation beyond re-isolation status.",
+          "evidenceGap": "No information is given about the reason for removal, who removed it, or whether work occurred while unlocked.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "Is the feed conveyor currently running, stopped, or otherwise accessible to personnel at this moment?",
+          "whyItMatters": "Determines immediate exposure severity and whether an immediate stop-work or barricade action is warranted.",
+          "evidenceGap": "The observation gives no current status of the conveyor's operating state or personnel proximity.",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    "CURRENT_STATE_CLARIFICATION_SURVIVED": true
+  },
+  "r4SpotCheck": {
+    "row": {
+      "fixtureId": "R4",
+      "role": "R4_SPOT_CHECK",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZteXy5JVaNUXTNRRt9n",
+      "latencyMs": 23681,
+      "promptTokens": 8040,
+      "outputTokens": 2398,
+      "costUsd": 0.04006,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 4,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "Beyond the identified open solvent drum, the below-grade sump accessed through a 24-inch opening presents a plausible confined space hazard with potential atmospheric and egress concerns, compounded by the likelihood that solvent vapors from the open drum above could migrate into the sump where the worker is actively bailing residue. Key gaps include whether the sump has been evaluated as a confined space, whether atmospheric testing and entry/rescue controls are in place, and what hazards the residue itself poses. These unresolved facts are decision-critical because they determine whether the worker is currently exposed to an oxygen-deficient or flammable atmosphere in addition to the drum-related chemical exposure already flagged."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "confined_space",
+          "reasoning": "Below-grade sumps with small openings are not designed for continuous occupancy, have limited means of entry/exit, and can accumulate hazardous or oxygen-deficient atmospheres, especially with a solvent present nearby. The worker is bailing residue out of it, indicating body entry or partial entry into the space.",
+          "evidenceBasis": "A below-grade sump accessed through a restricted 24-inch opening is a limited-entry space with potential for hazardous atmosphere, engulfment, and difficult egress — classic confined space characteristics.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH"
+        },
+        {
+          "hazardFamily": "chemical_exposure",
+          "reasoning": "Sump residue in an industrial plant setting may contain accumulated chemical byproducts, solvent runoff, or sludge with its own vapor or contact hazards to the worker performing the bailing task, independent of the open drum on the deck above.",
+          "evidenceBasis": "The residue itself being bailed out of the sump may be a hazardous or chemical-contaminated substance, separate from the open solvent drum already flagged.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW"
+        },
+        {
+          "hazardFamily": "fall_protection",
+          "reasoning": "A 24-inch opening into a below-grade sump is a floor opening a worker could fall into while bailing residue, particularly if unguarded or uncovered when not actively supervised.",
+          "evidenceBasis": "Working at the edge of a below-grade opening presents a fall-into-opening hazard.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Has the below-grade sump been evaluated or permitted as a confined space, and has atmospheric testing (oxygen, flammability, toxicity) been performed before and during entry?",
+          "whyItMatters": "If the sump meets confined space criteria, entry without testing, ventilation, or a permit system creates a life-critical atmospheric hazard, especially given the nearby open solvent drum that could off-gas into the space.",
+          "evidenceGap": "The observation does not state whether the sump has been classified as a confined space or whether atmospheric monitoring was conducted.",
+          "criticality": "BLOCKING"
+        },
+        {
+          "question": "What method is the worker using to enter and exit the sump, and is any fall protection, retrieval system, or attendant in place?",
+          "whyItMatters": "Determines whether entry/egress and rescue capability controls are adequate for a below-grade space with a restricted opening.",
+          "evidenceGap": "No description of entry method, harness, retrieval line, or attendant presence is given.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "What is the composition of the residue being bailed from the sump, and does it pose its own chemical or vapor hazard?",
+          "whyItMatters": "If the residue is itself hazardous (e.g., accumulated solvent sludge), the worker's direct exposure during bailing may require respiratory or skin protection beyond what is needed for the open drum alone.",
+          "evidenceGap": "The observation identifies 'residue' without describing its chemical nature or hazard classification.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "Is the 24-inch opening guarded, covered, or barricaded when not in active use, and what is the depth of the sump below grade?",
+          "whyItMatters": "Determines whether a fall-into-opening or engulfment hazard exists for the worker or bystanders at the sump edge.",
+          "evidenceGap": "No information about guarding of the opening or the depth/configuration of the sump is provided.",
+          "criticality": "ROUTINE"
+        }
+      ],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 4,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 3,
+      "bindingBound": 3,
+      "bindingUnbindable": 0
+    },
+    "R4_HOSTED_CANDIDATE_SURVIVAL": "PASS"
+  },
+  "grounding": {
+    "quotesEmitted": 8,
+    "quotesBound": 8,
+    "quotesUnbindable": 0,
+    "evidenceOutOfBoundsCount": 0,
+    "analysesLostToEvidenceFailure": 0,
+    "malformedResponses": 0,
+    "outcomeContentInconsistencies": 0
+  },
+  "transportClean": true,
+  "anyNewMaterialDefect": false,
+  "terminal": "EXPERT_HAZLENZ_V5_TEMPORAL_STATE_REPAIR_FAILED -- HOSTED_OVERROUTING_REMAINS",
+  "EXPERT_HAZLENZ_PROVIDER_VALIDATED": false,
+  "EXPERT_HAZLENZ_CUSTOMER_ACTIVE": false,
+  "rows": [
+    {
+      "fixtureId": "R6",
+      "role": "R6_PRIMARY",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtZczZBriMX3KaZhnDN",
+      "latencyMs": 11661,
+      "promptTokens": 8030,
+      "outputTokens": 1044,
+      "costUsd": 0.026500000000000003,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The lockout/tagout process described is thorough and controlled — energy was bled down, verified at zero, and independently confirmed by a second worker. However, the guard removal that followed introduces a separate, current machine guarding exposure that is not addressed by the lockout finding alone. Clarifying the scope of work and reinstallation plan, plus confirming no bystander exposure, would round out the picture for this observation."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "machine_guarding",
+          "reasoning": "With the guard removed, the point of operation or moving parts of the press are currently exposed. Even though the machine is de-energized under LOTO, the guard removal is a present physical state that constitutes a machine guarding exposure if any re-energization occurs, or if other workers approach assuming the machine is safe. This is a distinct hazard family from lockout/tagout itself.",
+          "evidenceBasis": "The observation states the guard was removed to access the press after lockout, which is a current condition of an unguarded machine even though the lockout itself is controlled.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "What task is being performed with the guard removed, and will the guard be reinstalled before the press is returned to service?",
+          "whyItMatters": "Determines the duration and nature of the current guarding gap and whether additional controls (e.g., barricading the point of operation, restricting access) are needed while the guard is off.",
+          "evidenceGap": "The observation confirms the guard was removed but does not state what work is being done or the plan for reinstallation.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "Are there other workers in the area who could be exposed to the unguarded press while maintenance is in progress?",
+          "whyItMatters": "Affects whether additional exposure controls, signage, or barricading are needed for personnel other than the two workers who verified isolation.",
+          "evidenceGap": "The observation only references the two workers involved in lockout verification; no information on other personnel in proximity to the press.",
+          "criticality": "ROUTINE"
+        }
+      ],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": {
+        "RESOLVED_GUARD_CANDIDATE_PRESENT": true,
+        "REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT": false,
+        "HYPOTHETICAL_REENERGIZATION_CLARIFICATION_PRESENT": true,
+        "OTHER_UNSUPPORTED_TYPED_CONTENT": true,
+        "clean": false
+      },
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    {
+      "fixtureId": "R6",
+      "role": "R6_PRIMARY",
+      "rep": 2,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtaUNv5qUQuKz1teVM5",
+      "latencyMs": 11891,
+      "promptTokens": 8030,
+      "outputTokens": 1083,
+      "costUsd": 0.02689,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The deterministic finding correctly identifies a controlled lockout/tagout condition, supported by verification of zero energy and a second-worker check. However, the guard was removed as part of this work, which introduces a distinct machine guarding exposure worth tracking separately while the guard remains off. Confirming whether the guard has since been reinstalled and whether a lock (not just a tag) was applied would close out remaining exposure and compliance questions."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "machine_guarding",
+          "reasoning": "With the guard removed, even though LOTO is controlled, the point of operation or moving parts may be exposed to workers if the machine were to unexpectedly become accessible or if work requires reaching into the guarded area. This is a distinct hazard family from lockout/tagout and should be tracked separately for the duration the guard is off.",
+          "evidenceBasis": "The observation states the guard was removed to perform work on the press.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Is the guard still removed at the time of this observation, and if so, what is the expected duration and is the area barricaded or restricted while it is off?",
+          "whyItMatters": "If the guard remains off with LOTO in place for servicing, exposure to the machine's moving parts or point of operation may exist for other workers in the area even though the press itself is de-energized and isolated; this determines whether an interim guarding or access control is needed.",
+          "evidenceGap": "The observation states the guard was removed but does not state whether it has been reinstalled or whether the work is complete.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "Is the lockout device (lock) itself, not just the tag, applied to the energy-isolating means?",
+          "whyItMatters": "A tag alone without a physical lock may not meet the required level of control if the isolating device is capable of being locked; this affects whether the isolation is fully compliant.",
+          "evidenceGap": "The observation mentions 'the supervisor tag applied' but does not explicitly confirm a lock was also applied.",
+          "criticality": "ROUTINE"
+        }
+      ],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": {
+        "RESOLVED_GUARD_CANDIDATE_PRESENT": true,
+        "REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT": false,
+        "HYPOTHETICAL_REENERGIZATION_CLARIFICATION_PRESENT": true,
+        "OTHER_UNSUPPORTED_TYPED_CONTENT": true,
+        "clean": false
+      },
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    {
+      "fixtureId": "R6",
+      "role": "R6_PRIMARY",
+      "rep": 3,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtbMEaJQC6SstgC3PhU",
+      "latencyMs": 11487,
+      "promptTokens": 8030,
+      "outputTokens": 1073,
+      "costUsd": 0.02679,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The lockout/tagout control described is thorough and current — locked out, tagged, stored energy bled down and verified at zero, with independent second-worker verification — so no additional concern is raised on that front. However, the observation also states the guard was removed, which introduces a separate, current machine guarding exposure at the point of operation independent of the energy-control status, and it is unclear whether access to that area is otherwise restricted while the guard is off."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "machine_guarding",
+          "reasoning": "With the guard removed, there is a machine guarding exposure at the point of operation for any worker approaching the press during the work, even though lockout/tagout controls are in place for stored/electrical energy. The guard's absence itself is a distinct hazard from the energy-control hazard and should be tracked until the guard is reinstalled and verified.",
+          "evidenceBasis": "The observation states the guard was removed to perform work on the press, which is a current condition once lockout is in place.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Is access to the press point of operation restricted (e.g., barricaded or attended) while the guard remains off?",
+          "whyItMatters": "If the area is not restricted, workers other than the two verifying isolation could be exposed to the unguarded point of operation, changing the exposure assessment even though lockout is in place.",
+          "evidenceGap": "The observation does not state whether the area around the removed guard is barricaded, signed, or otherwise controlled for incidental exposure.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "What task is being performed with the guard removed, and will the guard be reinstalled and function-tested before the press is returned to service?",
+          "whyItMatters": "Confirms the scope of work and ensures a plan exists to restore the guard before re-energization, which affects whether the current state is temporary and controlled or an ongoing gap.",
+          "evidenceGap": "The observation does not describe the maintenance task being performed or the plan for guard reinstallation.",
+          "criticality": "ROUTINE"
+        }
+      ],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": {
+        "RESOLVED_GUARD_CANDIDATE_PRESENT": true,
+        "REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT": false,
+        "HYPOTHETICAL_REENERGIZATION_CLARIFICATION_PRESENT": true,
+        "OTHER_UNSUPPORTED_TYPED_CONTENT": true,
+        "clean": false
+      },
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    {
+      "fixtureId": "T1",
+      "role": "T1_HISTORICAL_RESOLVED",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtcCNJJHMHVxZ3g59Gf",
+      "latencyMs": 3827,
+      "promptTokens": 8046,
+      "outputTokens": 347,
+      "costUsd": 0.019562,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "NOTHING_TO_ADD",
+      "expertExplanation": {
+        "summary": "The panel cover was removed for troubleshooting but has since been reinstalled, secured, and the circuit re-energized and tested normal prior to this walkthrough, consistent with the deterministic CONTROLLED classification. The observation gives no indication of incomplete remediation, recurrence, or residual exposure, so no additional hazards, clarifications, or interactions arise from this event."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [],
+      "clarificationDetail": [],
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 0,
+      "bindingBound": 0,
+      "bindingUnbindable": 0
+    },
+    {
+      "fixtureId": "T5",
+      "role": "T5_CURRENT_POSITIVE",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtcUi4TMVK9nJ4wmcFE",
+      "latencyMs": 14223,
+      "promptTokens": 8054,
+      "outputTokens": 1281,
+      "costUsd": 0.028918,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The deterministic finding correctly identifies the missing point-of-operation guard as a life-critical machine guarding hazard requiring restoration. Beyond that, the observation notes the shear remains capable of being cycled with the blade exposed, which raises an additional question of whether any interim energy control or removal from service has been applied to prevent operation until the guard is back in place — this is not addressed in the observation and is decision-critical to understanding current exposure. The combination of an exposed blade and an operable machine is a compounding interaction that increases urgency beyond the guarding gap alone."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "lockout_tagout",
+          "reasoning": "If the machine can still be cycled with the point-of-operation guard missing, there is no indication that the shear has been taken out of service or de-energized to prevent operation until the guard is restored. This is a separate control question from the guarding deficiency itself.",
+          "evidenceBasis": "The machine is described as still capable of being cycled while the guard is missing and the blade is exposed, raising the question of whether any energy control has been considered as an interim measure while the guard is off.",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Has the shear been removed from service or de-energized/locked out until the point-of-operation guard is restored, or is it still available for operator use?",
+          "whyItMatters": "If the machine remains operable and accessible to operators with the guard missing, exposure to the blade is ongoing and immediate; if it has been taken out of service, the exposure is controlled and the urgency/required interim action changes.",
+          "evidenceGap": "The observation states the machine can be cycled but does not say whether it is currently being operated, isolated, or removed from service pending guard restoration.",
+          "criticality": "BLOCKING"
+        },
+        {
+          "question": "Is any operator currently assigned to or running the shear during this walkthrough, or has work at this machine been stopped?",
+          "whyItMatters": "Determines actual current exposure of personnel to the unguarded blade versus a hazard that exists but is not presently being interacted with.",
+          "evidenceGap": "No statement about whether the machine is currently staffed or in active use at the time of observation.",
+          "criticality": "IMPORTANT"
+        }
+      ],
+      "score": {
+        "fixtureId": "T5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    {
+      "fixtureId": "T3",
+      "role": "T3_UNCERTAINTY_CONTROL",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZtdXZyvvgdvamq6rawX",
+      "latencyMs": 13671,
+      "promptTokens": 8054,
+      "outputTokens": 1341,
+      "costUsd": 0.029518000000000003,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "The core fact — an isolation lock removed from the feed conveyor with no confirmation of reapplication — is already captured as an UNKNOWN lockout/tagout finding. Because the current isolation status is genuinely unresolved, several blocking questions remain about whether the lock was restored, why it was removed, and whether the conveyor is currently accessible or operating, all of which would change whether hazardous energy exposure exists right now. A secondary, lower-confidence guarding concern is raised given the conveyor's moving parts could be exposed if unisolated during this gap."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "machine_guarding",
+          "reasoning": "Loss of lockout on a conveyor implicates both energy control and physical guarding exposure if the machine could move or be accessed while unisolated; since re-isolation status is unconfirmed, a guarding/exposure risk tied to unexpected motion cannot be ruled out.",
+          "evidenceBasis": "The feed conveyor's isolation lock was removed and it is unknown whether re-isolation occurred, meaning the conveyor's moving parts (nip points, pinch points, belt/pulley) could currently be unguarded by energy control if the machine was left accessible during the removed-lock period.",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "LOW"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Has the isolation lock on the feed conveyor been reapplied, and has the machine been re-isolated before any current work began?",
+          "whyItMatters": "This directly determines whether the lockout/tagout hazard is currently active (unisolated equipment) or controlled; it changes whether work may proceed and whether corrective action is needed now.",
+          "evidenceGap": "The observation explicitly states it does not establish whether the lockout was reapplied or the machine re-isolated.",
+          "criticality": "BLOCKING"
+        },
+        {
+          "question": "Who removed the lock, why was it removed, and was any work performed on the conveyor during the period the lock was off?",
+          "whyItMatters": "Determines whether personnel were exposed to an energized/unguarded conveyor and whether a lockout procedure violation occurred that requires investigation beyond re-isolation status.",
+          "evidenceGap": "No information is given about the reason for removal, who removed it, or whether work occurred while unlocked.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "Is the feed conveyor currently running, stopped, or otherwise accessible to personnel at this moment?",
+          "whyItMatters": "Determines immediate exposure severity and whether an immediate stop-work or barricade action is warranted.",
+          "evidenceGap": "The observation gives no current status of the conveyor's operating state or personnel proximity.",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 1,
+      "bindingBound": 1,
+      "bindingUnbindable": 0
+    },
+    {
+      "fixtureId": "R4",
+      "role": "R4_SPOT_CHECK",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZteXy5JVaNUXTNRRt9n",
+      "latencyMs": 23681,
+      "promptTokens": 8040,
+      "outputTokens": 2398,
+      "costUsd": 0.04006,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 4,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "expertExplanation": {
+        "summary": "Beyond the identified open solvent drum, the below-grade sump accessed through a 24-inch opening presents a plausible confined space hazard with potential atmospheric and egress concerns, compounded by the likelihood that solvent vapors from the open drum above could migrate into the sump where the worker is actively bailing residue. Key gaps include whether the sump has been evaluated as a confined space, whether atmospheric testing and entry/rescue controls are in place, and what hazards the residue itself poses. These unresolved facts are decision-critical because they determine whether the worker is currently exposed to an oxygen-deficient or flammable atmosphere in addition to the drum-related chemical exposure already flagged."
+      },
+      "uncertainty": {
+        "statements": []
+      },
+      "candidateDetail": [
+        {
+          "hazardFamily": "confined_space",
+          "reasoning": "Below-grade sumps with small openings are not designed for continuous occupancy, have limited means of entry/exit, and can accumulate hazardous or oxygen-deficient atmospheres, especially with a solvent present nearby. The worker is bailing residue out of it, indicating body entry or partial entry into the space.",
+          "evidenceBasis": "A below-grade sump accessed through a restricted 24-inch opening is a limited-entry space with potential for hazardous atmosphere, engulfment, and difficult egress — classic confined space characteristics.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH"
+        },
+        {
+          "hazardFamily": "chemical_exposure",
+          "reasoning": "Sump residue in an industrial plant setting may contain accumulated chemical byproducts, solvent runoff, or sludge with its own vapor or contact hazards to the worker performing the bailing task, independent of the open drum on the deck above.",
+          "evidenceBasis": "The residue itself being bailed out of the sump may be a hazardous or chemical-contaminated substance, separate from the open solvent drum already flagged.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW"
+        },
+        {
+          "hazardFamily": "fall_protection",
+          "reasoning": "A 24-inch opening into a below-grade sump is a floor opening a worker could fall into while bailing residue, particularly if unguarded or uncovered when not actively supervised.",
+          "evidenceBasis": "Working at the edge of a below-grade opening presents a fall-into-opening hazard.",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW"
+        }
+      ],
+      "clarificationDetail": [
+        {
+          "question": "Has the below-grade sump been evaluated or permitted as a confined space, and has atmospheric testing (oxygen, flammability, toxicity) been performed before and during entry?",
+          "whyItMatters": "If the sump meets confined space criteria, entry without testing, ventilation, or a permit system creates a life-critical atmospheric hazard, especially given the nearby open solvent drum that could off-gas into the space.",
+          "evidenceGap": "The observation does not state whether the sump has been classified as a confined space or whether atmospheric monitoring was conducted.",
+          "criticality": "BLOCKING"
+        },
+        {
+          "question": "What method is the worker using to enter and exit the sump, and is any fall protection, retrieval system, or attendant in place?",
+          "whyItMatters": "Determines whether entry/egress and rescue capability controls are adequate for a below-grade space with a restricted opening.",
+          "evidenceGap": "No description of entry method, harness, retrieval line, or attendant presence is given.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "What is the composition of the residue being bailed from the sump, and does it pose its own chemical or vapor hazard?",
+          "whyItMatters": "If the residue is itself hazardous (e.g., accumulated solvent sludge), the worker's direct exposure during bailing may require respiratory or skin protection beyond what is needed for the open drum alone.",
+          "evidenceGap": "The observation identifies 'residue' without describing its chemical nature or hazard classification.",
+          "criticality": "IMPORTANT"
+        },
+        {
+          "question": "Is the 24-inch opening guarded, covered, or barricaded when not in active use, and what is the depth of the sump below grade?",
+          "whyItMatters": "Determines whether a fall-into-opening or engulfment hazard exists for the worker or bystanders at the sump edge.",
+          "evidenceGap": "No information about guarding of the opening or the depth/configuration of the sump is provided.",
+          "criticality": "ROUTINE"
+        }
+      ],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 4,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r6Content": null,
+      "bindingTotal": 3,
+      "bindingBound": 3,
+      "bindingUnbindable": 0
+    }
+  ]
+}

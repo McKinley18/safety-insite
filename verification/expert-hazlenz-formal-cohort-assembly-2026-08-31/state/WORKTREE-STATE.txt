@@ -1,0 +1,46 @@
+WORKTREE STATE -- EXPERT HAZLENZ FORMAL COHORT ASSEMBLY (2026-08-31)
+
+HEAD:      37a5d1b50abe836eb19dd24ee18ad10557bda131
+BRANCH:    main
+ORIGIN:    de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+AHEAD/BEHIND vs origin/main (left=origin,right=HEAD): 0	1
+STAGED:    0
+TRACKED MODIFIED: 14
+STASHES:   4
+TAGS:      24
+
+== TRACKED MODIFIED ==
+backend/package.json
+backend/scripts/probe-expert-routing.ts
+backend/scripts/test-expert-contract-foundation.ts
+backend/scripts/test-expert-routing-contract.ts
+backend/src/safescope-v2/evidence/evidence-foundation.ts
+backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts
+docs/INSITE_CURRENT_STATE.json
+docs/INSITE_ENGINEERING_BLUEPRINT.md
+frontend-next/tsconfig.json
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+
+== SOURCE FILE CHANGED BY THIS OPERATION ==
+  backend/src/safescope-v2/expert-hazlenz/expert-input-constructor.ts
+    2210cbe620ff3ad837389a4b84b5ab166d39cff1f374b8964fc52e019b3723e5  (section 121)
+    c28c2d9f6858258e441e92cedd5833c39ab98b02313aae0232da247c271dbe13  (section 122, HISTORICAL mapping resolved)
+  It is UNTRACKED (added in section 121, never committed), so this shows as a new file.
+
+== BYTE-UNCHANGED FROM SECTION 121 (re-proved after this operation) ==
+0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+022fb9db7e55a05db0870405bcccd4ba1140c41ae4750371143d93e3fdd5f330  backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts
+c6d593bef0a0c139af9fee3727068785ddff92e0bdbbc9102c883770c8b5b633  backend/src/safescope-v2/expert-hazlenz/expert-cohort-contract.ts
+bec26908b814bf80d6da4f563a83d57759c49d619c75d233325b8dbf71bb41cc  backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts
+96f6c84895ece2bad0750a4ef0194433b5e1f116cea4a034269328b7c7cf7323  backend/src/safescope-v2/expert-hazlenz/expert-cohort-composition.ts
+b4ea8b750afc5f4c88fb7f2892e71d894767427a7310b4b4314c6687e65e0fcd  backend/scripts/lib/expert-cohort-harness.ts
+e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+f1cc7a61cf957a45449274eaa1763fece0bd9cfee095a636421cd5a0ff88e467  backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts
+
+== RESERVED MATERIAL POST-OPERATION (must equal pre-open) ==
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json

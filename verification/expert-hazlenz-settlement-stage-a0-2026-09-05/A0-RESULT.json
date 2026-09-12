@@ -1,0 +1,179 @@
+{
+  "operation": "§181 — Stage A0 existing-architecture replay + parallel governed evidence alignment audit",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_SETTLEMENT_STAGE_A0_COMPLETE — BOUNDED_EXISTING_ARCHITECTURE_INTEGRATION_AUTHORIZATION_REQUIRED",
+  "A0_OUTCOME_CLASSIFICATION": "A0_SUPPORTS_EXISTING_ARCHITECTURE",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "runtimeSourceChanges": 0,
+  "governedRecordsModified": 0,
+  "promptChanges": "NONE — v15 untouched, v16 not begun",
+  "verifierV3": "still inactive; EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED remains the literal false",
+  "proofs": { "checks": 43, "failures": 0, "output": "SECTION-181-PROOFS.txt" },
+
+  "SECTION_180_FINDINGS_RE_DERIVED": {
+    "F1_settled_by_evidence_has_no_minted_authority": {
+      "verdict": "PARTIALLY_CONFIRMED",
+      "confirmed": "src/ mints ADMITTED_BINDING exactly once (owed-fact-binding.ts:355) and mints ADMISSIBLE_EVIDENCE and RECORDED_ARBITRATION nowhere",
+      "correction": "§180 said the state is 'unreachable'. It is not. transition() is exported and generic, accepts ADMISSIBLE_EVIDENCE for SETTLED_BY_EVIDENCE, and refuses any other authority for that status — A0 exercised both directions. The transition is also already proven in development suites (test-expert-bounded-reliability-architecture.ts:327 mints ADMISSIBLE_EVIDENCE; three suites mint RECORDED_ARBITRATION).",
+      "accurateStatement": "the state machine is complete and tested; what does not exist is a RUNTIME CALLER",
+      "authorizationQ4Classification": "BLOCKED_PENDING_A_MISSING_PRODUCER_AND_CONSUMER — not 'accidentally unreachable', not 'intentionally sealed'"
+    },
+    "F2_challenge_produces_an_unconsumed_arbitration_request": {
+      "verdict": "CONFIRMED",
+      "trace": "instruction → provider declaration → parseOwedFactDeclarations → ArbitrationRequest{settles:false, factStatusUnchanged:true} → DeclarationParseResult → OwedFactObservabilityRecord → nothing reads it to decide anything",
+      "refinement": "six references in src/, all carriage; a challenge without a reason is refused (CHALLENGE_WITHOUT_A_REASON); after a challenge the fact is still UNRESOLVED",
+      "classification": "DEAD AS A DECISION INPUT, LIVE AS OBSERVABILITY",
+      "connectingItIs": "A — necessary before new settlement representation, because the channel already carries a free-text evidence-to-target claim that a reviewer could read today"
+    },
+    "F3_no_structured_evidence_property_declaration": {
+      "verdict": "CONFIRMED",
+      "STRUCTURED_EVIDENCE_PROPERTY_DECLARATION": "ABSENT",
+      "projectedFields": ["factKey", "affectedDecision", "whyUnresolved", "branchA", "branchB", "decisionDivergence", "evidenceSpan", "acceptableEvidence"],
+      "nearestSurfaces": {
+        "evidenceGap": "first-pass contract; states what is MISSING, never what present evidence establishes, and exists only when a clarification is emitted — so the HR-04 silence carried no field at all",
+        "challengeReason": "v3 path; free text attached to a settlement claim, unstructured and unconsumed, and the closest thing the architecture has to an evidence-to-target statement"
+      }
+    },
+    "F4_the_section_179_rows_ran_outside_the_ledger": {
+      "verdict": "CONFIRMED",
+      "evidence": "neither the §179 runner nor the §175/§177 harness imports anything from owed-facts, and the harness contains no OwedFact or factKey reference at all"
+    }
+  },
+
+  "HR04_STRUCTURAL_REPLAY": {
+    "question": "can HR-04 be represented so that guard presence does NOT structurally erase the owed securement fact, without any new settlement field?",
+    "answer": "YES",
+    "how": "two factKeys — owed:guarding:guard_presence and owed:guarding:current_securement_of_fixed_guard — plus acceptableEvidence.requirement as the settlement target",
+    "newFieldsAdded": 0,
+    "proofs": {
+      "1.3": "representing presence does not remove the securement fact; factsRemoved empty; ledger holds both",
+      "1.4": "settling the PRESENCE fact via ADMISSIBLE_EVIDENCE leaves the SECUREMENT fact UNRESOLVED",
+      "1.5": "no requiredProperty, no propertyType, no property enum; OWED_FACT_STATUSES still 4 members",
+      "P6": "preservationViolations reports none"
+    },
+    "governedTargetItWouldCarry": "Evidence establishing guarding_status by a verification method the governed record for 1910.212 recognises. — examples: physical_inspection; insufficientExamples: training_only",
+    "theUncomfortablePart": "that target offers physical_inspection as sufficient evidence for a SECUREMENT property, which is the evidence class §169 ruled insufficient. The audit classifies app-mg-01's own function question QUESTION_STRONGER_THAN_METHOD. A reviewer should judge the criterion insufficient, and the architecture's correct behaviour is then to leave the fact UNRESOLVED — which it does.",
+    "whereTheReplayStopped": "SEMANTIC_JUDGMENT_REQUIRED — whether that criterion settles current securement is a semantic question this replay does not and may not answer"
+  },
+
+  "SETTLED_BY_EVIDENCE_REVIEW": {
+    "1_authorityRequired": "ADMISSIBLE_EVIDENCE, and REQUIRED_AUTHORITY maps it one-to-one with no wildcard",
+    "2_whoCanMintIt": "any caller of the exported transition(); no runtime caller does",
+    "3_isThereALegitimatePathToday": "NO runtime path. The transition is exercised only in development proof suites.",
+    "4_classification": "BLOCKED_PENDING_A_MISSING_PRODUCER_AND_CONSUMER",
+    "5_canAProviderEverCauseIt": "NO — verified end to end: the strongest provider-driven outcome is COVERED via ADMITTED_BINDING, and owed-fact-binding.ts contains no occurrence of 'ADMISSIBLE_EVIDENCE'",
+    "noMintingPathWasCreatedInA0": true
+  },
+
+  "DISPLACED_FACT_REPLAY": {
+    "property": "ADJACENT VALID FACT != SUBSTITUTE OWED FACT",
+    "canBReplaceA": "NO — factsRemoved empty; nominateAdditiveFact takes no key to remove, so substitution is unrepresentable",
+    "canBInheritAsEntitlement": "NO — B enters UNRESOLVED with source VERIFIER_NOMINATION and its own status",
+    "canBBecomeANewlyNominatedFact": "YES — admitted, nominationCount 1; legitimate new hazards are NOT suppressed",
+    "mustBBeSeparatelyAdmitted": "YES — a non-verbatim span is refused NOMINATION_EVIDENCE_SPAN_NOT_VERBATIM; a declaration that both binds and nominates is refused BINDING_MODE_CARRIES_A_NOMINATION",
+    "HR05_replay": "the actual §179 drying-fan question was admitted as its own fact beside the settled auger fact, replacing nothing",
+    "HR07_replay": "the actual §179 dust question, offered as a BINDING to the settled flame-failure fact, was REFUSED with BOUND_FACT_NOT_UNRESOLVED",
+    "limit": "this is representational and structural. It is NOT evidence that a model given this structure would stop producing displaced questions — a model may still nominate an adjacent fact on every row, and the architecture would faithfully admit each as its own fact. Volume belongs to the question budget, never to the admission burden.",
+    "warningForTheNextStage": "if hosted evidence shows frequent adjacent nominations, the pressure will be to add an importance test to nomination. That is §180 risk R8 and would be the wrong repair: a missed new hazard is worse than an unnecessary question."
+  },
+
+  "POSITIVE_CONTROLS": {
+    "HR-06": "REQUIRED, function owed — a bound question clears TARGET_COVERAGE_WARNING",
+    "HR-08": "REQUIRED, LIFE_CRITICAL isolation owed — unbound produces the warning and lists the key uncovered; carries a governed criterion from app-loto-01",
+    "HR-10": "settled control — a settled fact leaves the unresolved set and clears the warning WITHOUT being dropped, which is the budget property: it stops competing by ceasing to be owed"
+  },
+
+  "GOVERNED_EVIDENCE_ALIGNMENT_AUDIT": {
+    "detail": "GOVERNED-EVIDENCE-ALIGNMENT-AUDIT.json and .md",
+    "readOnly": true,
+    "governedRecordsModified": 0,
+    "TOTAL_APPROVED_RECORDS_REVIEWED": 20,
+    "TOTAL_EVIDENCE_QUESTIONS": 28,
+    "ALIGNMENT_CLEAR": 21,
+    "QUESTION_STRONGER_THAN_METHOD": 4,
+    "METHOD_STRONGER_THAN_QUESTION": 1,
+    "AMBIGUOUS": 2,
+    "NO_VERIFICATION_METHOD": 0,
+    "misaligned": [
+      "app-mg-01 — Is the guard functional? vs physical_inspection",
+      "rec-msha-30-56-12 — Is equipment properly grounded? vs physical_inspection",
+      "app-haul-01 — Can persons contact moving parts? vs inspection",
+      "app-ppe-02 — Is appropriate PPE provided? vs observation"
+    ],
+    "THE_FINDING_THAT_MATTERS_MOST": "NO FUNCTIONAL-TEST VERIFICATION METHOD EXISTS ANYWHERE IN THE REGISTRY. Nine distinct methods: five observational, two desk-based, two instrumented or procedural. The protective-response-question-vs-functional-test pattern does not appear because neither side of it exists.",
+    "consequenceForHR04": "the one property HR-04 turns on is the one the registry cannot express",
+    "section171FigureChecked": "§171's 'seven of nine looking-based' holds if audit and design_review are grouped with looking; the grouping is stated rather than assumed",
+    "section180CharacterisationsChecked": {
+      "app-mg-01": "CONFIRMED",
+      "app-loto-01": "CONFIRMED",
+      "app-fire-01": "CONFIRMED"
+    },
+    "findingsOnADifferentAxis": [
+      "app-elec-01 requiredFacts is cord_integrity but its only question asks whether the panel is closed",
+      "app-fire-01 requiredFacts is access_path but its only question asks whether the tag is legible",
+      "these are question-to-requiredFact mismatches, and they matter because deriveAcceptableEvidence builds its requirement sentence FROM requiredFacts",
+      "app-rig-01 and app-mat-01 carry placeholder citations, so the derivation refuses both"
+    ],
+    "classification": "PARALLEL_REMEDIATION — unchanged from §180 and now quantified",
+    "whyNotPrerequisite": "A0 demonstrated the architecture leaves a fact UNRESOLVED when its criterion is null, weak or absent; the failure is transparent rather than silent",
+    "prohibition": "no governed record was modified and none may be strengthened to make the architecture work"
+  },
+
+  "ARCHITECTURE_VS_KNOWLEDGE": {
+    "instruction": "kept separate, per the authorization",
+    "architecture": "ADEQUATE IN REPRESENTATION AND STRUCTURAL CONTROL, UNINTEGRATED — it can hold the distinction, refuses substitution and inheritance, and cannot be driven to settlement by provider output; what is missing is a producer of ADMISSIBLE_EVIDENCE and a consumer of the arbitration queue",
+    "knowledge": "WEAK IN A NARROW, NOW-QUANTIFIED WAY — 4 of 28 questions demand more than their method delivers, 2 are ambiguous, and no functional-test method exists at all",
+    "combination": "ARCHITECTURE_ADEQUATE_BUT_UNINTEGRATED + KNOWLEDGE_WEAK_ON_THE_PROPERTY_THAT_MATTERS",
+    "doNotConflate": "the HR-04 failure is not caused by the governed registry — HR-04 failed on the first-pass path where no governed criterion was ever consulted. Equally, a fully wired architecture would still find no criterion capable of settling a protective-function property. Both are true and neither excuses the other."
+  },
+
+  "REVISION_TO_SECTION_180": {
+    "what180Recommended": "STRUCTURED_SETTLEMENT_REPRESENTATION_JUSTIFIED — build a structured settlement declaration, after running A0",
+    "whatA0Found": "the representation is already adequate and the declaration is not the binding constraint. The claim a model would make — 'the observation already settles it' — can ALREADY be expressed through CHALLENGE_FACT_VALIDITY with a free-text reason, and a reviewer could already compare that reason against acceptableEvidence.requirement. Nothing reads it.",
+    "consequence": "the first integration does not need a new field. Build the consumer, then design the declaration from real challenge reasons rather than from a field shape guessed in advance.",
+    "isSection180Wrong": "no — §180 explicitly built A0 to be able to overturn its own recommendation, and this is that mechanism working. The structured declaration remains justified as a later refinement; its PRIORITY changed, not its merit."
+  },
+
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "representational capability — the architecture can express the HR-04 distinction with no new field",
+      "structural capability — substitution, inheritance, non-verbatim nomination and binding to a settled fact are all refused",
+      "the settlement state is un-invoked rather than sealed, and no provider path can reach it",
+      "the arbitration channel is dead as a decision input and live as observability",
+      "the governed registry contains no functional-test verification method"
+    ],
+    "mustNotClaim": [
+      "that HR-04 is behaviourally fixed",
+      "that displaced-fact leakage is behaviourally fixed",
+      "that semantic sufficiency is automated",
+      "production readiness",
+      "customer readiness",
+      "formal acceptance"
+    ],
+    "whyNot": "no model ran. Everything here is what the architecture CAN represent and WILL refuse, not what a provider would do when handed it."
+  },
+
+  "NEXT_AUTHORIZATION_SOUGHT": {
+    "stage": "bounded INACTIVE integration of the existing architecture — a producer of ADMISSIBLE_EVIDENCE reachable only from a recorded human review, and a consumer for the arbitration/settlement-claim queue",
+    "providerCalls": 0,
+    "explicitlyNotSought": ["a new settlement declaration field", "verifier-v3 activation", "prompt v16", "hosted execution", "governed-record edits", "customer activation"],
+    "parallel": "the governed alignment remediation, whose smallest defensible first steps are disambiguating the two ambiguous questions and deciding whether a functional-test method belongs in the vocabulary at all"
+  },
+
+  "worktree": {
+    "filesAdded": [
+      "backend/scripts/a0-settlement-replay-2026-09-05.ts",
+      "backend/scripts/a0-governed-evidence-alignment-audit-2026-09-05.ts",
+      "verification/expert-hazlenz-settlement-stage-a0-2026-09-05/"
+    ],
+    "runtimeSourceChanges": 0,
+    "harnessReachableFromCustomerRuntime": false,
+    "sections167To180EvidencePreserved": "unchanged",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

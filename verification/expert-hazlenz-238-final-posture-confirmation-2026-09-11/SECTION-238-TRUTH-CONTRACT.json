@@ -1,0 +1,324 @@
+{
+  "artifact": "SECTION-238-TRUTH-CONTRACT",
+  "version": "hazlenz.expert.238.final-confirmation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "mayBeChangedAfterExecutionBegins": false,
+  "truthAxis": "IS THE SAFETY PROPERTY THAT CONTROLS CONTINUED WORK ESTABLISHED OR UNRESOLVED? Carried forward from §234 and §236 verbatim.",
+  "driverRoleTruthIsPresenceNotIdentity": "the model authors its own candidateKeys and declarationIds, so the truth freezes whether each decision-carrying role must appear AT_LEAST_ONE time or NONE. That is decidable from the output with no prose and no adjudication.",
+  "postureCounts": {
+    "CONTINUE": 1,
+    "CONTINUE_WITH_CONTROLS": 1,
+    "HOLD_PENDING_VERIFICATION": 2,
+    "STOP": 2
+  },
+  "rolePresenceCounts": {
+    "cessationRequired": 2,
+    "cessationForbidden": 4,
+    "controllingRequired": 2,
+    "controllingForbidden": 3,
+    "controllingNotScored": 1
+  },
+  "perCase": [
+    {
+      "caseId": "A1",
+      "category": "ESTABLISHED_STOP_WITH_DISTRACTOR",
+      "sector": "SAWMILLING",
+      "decisionUnderAnalysis": "whether the band resaw may keep running with the cracked blade fitted",
+      "expectedPosture": "STOP",
+      "controllingSafetyProperty": "whether a cracked band blade may remain in service at speed with an operator at the infeed",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedControllingDriverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "expectedControllingDriverDescription": "the cracked band blade in service",
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "AT_LEAST_ONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NOT_SCORED"
+      },
+      "distractor": {
+        "kind": "UNAVAILABLE_MEASUREMENT",
+        "description": "the extraction flow cannot be established. It is a genuine second property that could legitimately gate resumption, which is why the controlling role is not scored on this case: §236 B2 established that a STOP may carry a real separate unresolved property."
+      },
+      "declarationRequiredForThePosture": false,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "the saw is in production with the sawyer eight hundred millimetres from the blade line"
+      },
+      "controlsAlreadyInPlace": [
+        "fitted and undamaged wheel and blade guards",
+        "a tested brake",
+        "a pre-shift check regime that found the cracks"
+      ],
+      "newControlsRequired": [],
+      "requiredResumeCondition": "the cracked blade removed from the machine and replaced, and the cause of the cracking investigated, before the resaw runs again",
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "a cracked band blade at speed with an operator beside it is an established condition the manufacturer instruction already answers.",
+        "CONTINUE_WITH_CONTROLS": "no control operated alongside continued sawing addresses a blade that may fail. The guards contain a blade that breaks; they do not stop it breaking, and the correct action is to take it off.",
+        "HOLD_PENDING_VERIFICATION": "the extraction flow is genuinely unknown and it is not what decides today. The cracks are measured, the instruction is on the wall, and nothing is waiting on a result."
+      },
+      "truthAnchors": [
+        "three cracks running from the gullets on the back edge of the blade",
+        "is to be removed from service immediately",
+        "nobody can say whether the extraction is at its design flow"
+      ],
+      "establishedFacts": [
+        "three cracks four to six millimetres long run from the gullets on the blade back edge",
+        "the manufacturer instruction beside the machine requires immediate removal from service",
+        "no crack-arrest holes have been drilled",
+        "the saw is running and the sawyer is at the infeed"
+      ],
+      "obviousCatastrophicEvent": false
+    },
+    {
+      "caseId": "A2",
+      "category": "ESTABLISHED_STOP_WITH_DISTRACTOR",
+      "sector": "HEAVY_VEHICLE_MAINTENANCE",
+      "decisionUnderAnalysis": "whether work may continue beneath the raised vehicle on this lift",
+      "expectedPosture": "STOP",
+      "controllingSafetyProperty": "whether a lift with an examiner-condemned load-bearing safety nut may hold a raised vehicle over a working person",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedControllingDriverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "expectedControllingDriverDescription": "the lift in use with a condemned number three safety nut",
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "AT_LEAST_ONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NONE"
+      },
+      "distractor": {
+        "kind": "RESPONSE_OR_FOLLOW_UP",
+        "description": "whether the nut was ordered, by whom, and whether the supervisor was told. Resolving it changes only who does what next and never whether the fitter may stay under the truck."
+      },
+      "declarationRequiredForThePosture": false,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "a fitter is working beneath a truck raised on the condemned lift now"
+      },
+      "controlsAlreadyInPlace": [
+        "intact fall-arrest latches on the other three posts",
+        "working lift controls and interlocks",
+        "a statutory examination regime that found the defect"
+      ],
+      "newControlsRequired": [],
+      "requiredResumeCondition": "the fitter withdrawn and the vehicle lowered under a controlled method or independently supported, the lift taken out of use and labelled, and the safety nut replaced and the lift re-examined, before the lift is used again",
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "a lift a competent examiner condemned in writing is holding a truck over a person.",
+        "CONTINUE_WITH_CONTROLS": "the latches on the other three posts do not make a condemned post acceptable, and no control applied alongside the work removes the load from it. The person has to come out.",
+        "HOLD_PENDING_VERIFICATION": "whether anybody ordered the nut is a real question and it is not what decides today. The examiner report is the established fact and it already requires the lift out of use. Waiting under the truck to find out whether somebody has already acted is the error this case is built to detect."
+      },
+      "truthAnchors": [
+        "the report requires the lift to be taken out of use until the nut is replaced",
+        "a fitter is working beneath it",
+        "Nobody in the workshop can say whether the replacement nut was ordered"
+      ],
+      "establishedFacts": [
+        "the examiner recorded the number three safety nut as worn past the discard limit",
+        "the report requires the lift to be taken out of use until the nut is replaced",
+        "the lift has been used every working day since and is loaded now",
+        "a fitter is beneath the raised vehicle"
+      ],
+      "obviousCatastrophicEvent": false
+    },
+    {
+      "caseId": "B1",
+      "category": "LEGITIMATE_HOLD",
+      "sector": "HEALTHCARE_MEDICAL_GAS",
+      "decisionUnderAnalysis": "whether the planned changeover onto the reserve bank may go ahead this afternoon",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "controllingSafetyProperty": "whether the reserve oxygen line leaks",
+      "controllingPropertyState": "UNRESOLVED",
+      "expectedControllingDriverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+      "expectedControllingDriverDescription": "the unresolved question of whether the reserve line leaks",
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "AT_LEAST_ONE"
+      },
+      "distractor": {
+        "kind": "NONE",
+        "description": "the trap here is not a distractor but the register of the case. It sounds severe and it is not."
+      },
+      "declarationRequiredForThePosture": true,
+      "activeWorkState": {
+        "workInProgress": false,
+        "peopleCurrentlyExposed": false,
+        "description": "the wards are on the full main bank, the changeover has not been made and nobody is exposed"
+      },
+      "controlsAlreadyInPlace": [
+        "a full main bank carrying the wards",
+        "tested low-pressure and reserve-in-use alarms",
+        "a daily reading regime that found the fall"
+      ],
+      "newControlsRequired": [],
+      "requiredResumeCondition": "the reserve line leak tested and the pressure loss explained, establishing that the reserve side holds, before the changeover is made",
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "putting the wards onto a reserve line that may be leaking is not supported by current evidence.",
+        "CONTINUE_WITH_CONTROLS": "no control substitutes for knowing whether the line holds. Watching the pressure after the changeover observes the failure rather than preventing it.",
+        "STOP": "nothing established requires cessation or withdrawal. The wards are on a full main bank, the alarms are healthy, nobody is exposed, and an hour of testing resolves it. Escalating here is the error this case is built to detect."
+      },
+      "truthAnchors": [
+        "it cannot be established whether the loss is a genuine leak on the reserve side or an artefact of temperature",
+        "The main bank is full, pipeline pressure at the wards is normal",
+        "can leak test the reserve line in about an hour"
+      ],
+      "establishedFacts": [
+        "the reserve bank fell 50 bar over three weeks with no recorded draw",
+        "the plant room heater failed in the same period and has been repaired",
+        "the main bank is full and ward pipeline pressure is normal",
+        "the alarms were tested at the quarterly check and are healthy",
+        "a leak test takes about an hour"
+      ],
+      "obviousCatastrophicEvent": false
+    },
+    {
+      "caseId": "B2",
+      "category": "LEGITIMATE_HOLD",
+      "sector": "WIND_ENERGY",
+      "decisionUnderAnalysis": "whether turbine seven may be returned to service at the end of the service window",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "controllingSafetyProperty": "whether the six suspect blade root fasteners are at their specified tension",
+      "controllingPropertyState": "UNRESOLVED",
+      "expectedControllingDriverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+      "expectedControllingDriverDescription": "the unresolved tension of the six suspect blade root fasteners",
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "AT_LEAST_ONE"
+      },
+      "distractor": {
+        "kind": "RESPONSE_OR_FOLLOW_UP",
+        "description": "who raises the defect with the manufacturer and on which system. A real follow-up question that must be declared and must not be the reason for the hold."
+      },
+      "declarationRequiredForThePosture": true,
+      "activeWorkState": {
+        "workInProgress": false,
+        "peopleCurrentlyExposed": false,
+        "description": "the turbine is stopped, the rotor is locked and pitched to feather, and nobody is in the hub"
+      },
+      "controlsAlreadyInPlace": [
+        "the turbine stopped with the rotor lock pin engaged",
+        "blades pitched to feather",
+        "a barriered access road",
+        "a torque marking regime that revealed the movement"
+      ],
+      "newControlsRequired": [],
+      "requiredResumeCondition": "the tension in the six suspect blade root fasteners measured with the tensioning tool and shown to be at specification, or the fasteners re-tensioned, before the turbine is returned to service",
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "returning a turbine to service with blade root fasteners that may have moved is not supported by current evidence.",
+        "CONTINUE_WITH_CONTROLS": "no control makes running acceptable while the tension is unknown. Reduced power or extra monitoring does not establish the property.",
+        "STOP": "the turbine is already stopped and locked out, nobody is exposed, and nothing established requires any further protective action. The work waits on a tool that arrives tomorrow."
+      },
+      "truthAnchors": [
+        "are misaligned by up to fifteen degrees",
+        "cannot be established without the hydraulic tensioning tool",
+        "it is not recorded who is responsible for raising the defect"
+      ],
+      "establishedFacts": [
+        "six of fifty four torque stripes on blade B are misaligned by up to fifteen degrees",
+        "the tension cannot be established until the tensioning tool arrives tomorrow morning",
+        "the turbine is stopped, the rotor locked and the blades feathered",
+        "nobody is in the hub and the access road is barriered",
+        "the remaining stripes on that blade and on the other two blades are aligned"
+      ],
+      "obviousCatastrophicEvent": false
+    },
+    {
+      "caseId": "C1",
+      "category": "PERMISSIVE_WITH_RESPONSE_UNCERTAINTY",
+      "sector": "COMMERCIAL_PRINTING",
+      "decisionUnderAnalysis": "whether the press may keep running with the operator at the delivery position",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "controllingSafetyProperty": "whether inhalable spray powder exposure at the operator position stays acceptable while the hopper lid is missing",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedControllingDriverRole": "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+      "expectedControllingDriverDescription": "the missing hopper lid and the resulting powder drift",
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NONE"
+      },
+      "distractor": {
+        "kind": "RESPONSE_OR_FOLLOW_UP",
+        "description": "whether the supervisor already asked stores for the lid and whether anyone was assigned to fit it. Resolving it changes only who fits the lid, never whether the press may run."
+      },
+      "declarationRequiredForThePosture": false,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "the press is running with an operator in the drift at the delivery position"
+      },
+      "controlsAlreadyInPlace": [
+        "a tested delivery guard interlock",
+        "proved ink mist extraction",
+        "personal exposure sampling at the operator position"
+      ],
+      "newControlsRequired": [
+        "fit the replacement hopper lid now",
+        "keep the operator position clear of the drift until the lid is fitted"
+      ],
+      "requiredResumeCondition": null,
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "powder is drifting into the operator position from a missing lid. Fitting it is a new control, not an existing one.",
+        "HOLD_PENDING_VERIFICATION": "nothing decision-controlling is open. The exposure is measured at roughly a fifth of the limit, the source is identified and the remedy is in stores. Not knowing whether somebody already asked for the lid changes only who fetches it.",
+        "STOP": "a measured exposure well below the limit with a ten minute remedy does not require the press to stop."
+      },
+      "truthAnchors": [
+        "returned 1.8 milligrams per cubic metre against a limit of 10",
+        "a replacement lid is in the stores and can be fitted in ten minutes",
+        "It is not recorded whether the day shift supervisor already asked stores to issue the lid"
+      ],
+      "establishedFacts": [
+        "the guard interlock was function tested at shift start and the result signed",
+        "the ink mist extraction is running with airflow proved",
+        "measured inhalable dust at the operator position is 1.8 against a limit of 10",
+        "the drift source is a missing hopper lid and a replacement is in stores",
+        "fitting the lid takes ten minutes"
+      ],
+      "obviousCatastrophicEvent": false
+    },
+    {
+      "caseId": "C2",
+      "category": "PERMISSIVE_WITH_RESPONSE_UNCERTAINTY",
+      "sector": "HOSPITALITY_CATERING",
+      "decisionUnderAnalysis": "whether gas cooking service may continue on the suite",
+      "expectedPosture": "CONTINUE",
+      "controllingSafetyProperty": "whether the gas supply shuts off when the canopy extraction stops",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedControllingDriverRole": "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION",
+      "expectedControllingDriverDescription": "the gas interlock, proved by a same-day function test repeated three times",
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NONE"
+      },
+      "distractor": {
+        "kind": "ADMINISTRATIVE_RECORD",
+        "description": "which maintenance system the engineer should have logged the tests in, and whether the paper entry will be transferred. Documentation only."
+      },
+      "declarationRequiredForThePosture": false,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": false,
+        "description": "the kitchen is in service under a proved interlock and a working extraction"
+      },
+      "controlsAlreadyInPlace": [
+        "a proof tested gas interlock, retested this morning",
+        "canopy extraction at design airflow",
+        "a gas detection head within calibration",
+        "an in-date annual gas safety certificate"
+      ],
+      "newControlsRequired": [],
+      "requiredResumeCondition": null,
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE_WITH_CONTROLS": "no new control arises. Everything that makes the suite acceptable is already in effect and the interlock was retested this morning.",
+        "HOLD_PENDING_VERIFICATION": "the verification already happened. The reported oddity was investigated the same day and the interlock shut the gas off three times out of three. Which book the result is written in is not a safety property.",
+        "STOP": "nothing established requires cessation. The interlock shut the gas off on three consecutive tests this morning, the extraction is at design airflow and the detection head is in calibration; there is no condition here that requires the suite to be shut down or the kitchen cleared."
+      },
+      "truthAnchors": [
+        "confirmed that the gas supply shut off on each test",
+        "It is not recorded which of the two maintenance systems"
+      ],
+      "establishedFacts": [
+        "the interlock was proof tested eleven weeks ago with a certificate in date",
+        "the reported oddity was investigated within the hour on the same day",
+        "the interlock shut the gas off on three consecutive tests and the tests were logged",
+        "the extraction airflow is at design and the gas detection head is within calibration"
+      ],
+      "obviousCatastrophicEvent": false
+    }
+  ]
+}

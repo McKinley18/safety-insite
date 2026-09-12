@@ -1,0 +1,221 @@
+{
+  "artifact": "FORMAL_EXPERT_EVALUATION_RUN_RECORD",
+  "runId": "formal-run-65523fbb-eea3-4322-a47b-632fa2eae341",
+  "firstSpendUtc": "2026-09-02T00:41:23Z",
+  "cohortId": "hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a",
+  "manifestSha256": "1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "promptIdentity": "hazlenz.expert.prompt.v6",
+  "promptSha256": "b58225b4d4fc8154fed66f5d81696bf4b9319300b0f2f0e4f2d97a66f2a981d4",
+  "contractIdentities": {
+    "input": "hazlenz.expert.input.v1",
+    "analysis": "hazlenz.expert.analysis.v2",
+    "validator": "hazlenz.expert.validator.v1",
+    "row": "hazlenz.expert.cohort.row.v1"
+  },
+  "scorerIdentity": "hazlenz.expert.scorers.v1",
+  "measurementIdentity": "hazlenz.expert.measurement.v1",
+  "harnessIdentity": "hazlenz.expert.cohort.harness.v1",
+  "projectionIdentity": "expert-deterministic-projection.ts (§119, promoted to the permanent path)",
+  "rowCount": 65,
+  "rowOrderSha256": "ee57d5dad456b9009d46ba8d9b0a5b34aba9bb4044bbb66e18c96b4d450032d0",
+  "selectionSha256": "ee57d5dad456b9009d46ba8d9b0a5b34aba9bb4044bbb66e18c96b4d450032d0",
+  "truthSha256": "290df2f78b66b41909c8d29db81ddac512afad46314b4512d6297bce842e702c",
+  "governedAttachmentSha256": "f95d846f5881da334324c26f923cb5ae6c0f7a9cb0791fcf272139eeb6c589c3",
+  "plannedLogicalCalls": 195,
+  "globalRetryRequestBudget": 20,
+  "hardProviderRequestCeiling": 215,
+  "hardSpendCeilingUsd": 22.36,
+  "worstCaseRequestUsd": 0.10400000000000001,
+  "p4PrespendAuthorization": true,
+  "preSpendGate": [
+    {
+      "n": 1,
+      "label": "cohort ID matches exactly",
+      "pass": true,
+      "detail": "hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a"
+    },
+    {
+      "n": 2,
+      "label": "manifest SHA-256 matches exactly",
+      "pass": true,
+      "detail": "1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3"
+    },
+    {
+      "n": 3,
+      "label": "row count = 65",
+      "pass": true,
+      "detail": "65"
+    },
+    {
+      "n": 4,
+      "label": "selection hash matches",
+      "pass": true,
+      "detail": "ee57d5dad456b9009d46..."
+    },
+    {
+      "n": 5,
+      "label": "row order matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 6,
+      "label": "all corpus/truth/provenance hashes match",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 7,
+      "label": "governed attachment mapping hash matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 8,
+      "label": "provider = anthropic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 9,
+      "label": "exact bound model = claude-sonnet-5",
+      "pass": true,
+      "detail": "claude-sonnet-5"
+    },
+    {
+      "n": 10,
+      "label": "prompt identity/hash matches frozen manifest",
+      "pass": true,
+      "detail": "hazlenz.expert.prompt.v6"
+    },
+    {
+      "n": 11,
+      "label": "input/analysis/validator/scorer/measurement/row/harness match",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 12,
+      "label": "deterministic projection enabled in the permanent path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 13,
+      "label": "PLANNED_LOGICAL_CALLS = 195",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 14,
+      "label": "GLOBAL_RETRY_REQUEST_BUDGET = 20",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 15,
+      "label": "HARD_PROVIDER_REQUEST_CEILING = 215",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 16,
+      "label": "HARD_SPEND_CEILING_USD = 22.36",
+      "pass": true,
+      "detail": "worstCaseRequestUsd $0.104000"
+    },
+    {
+      "n": 17,
+      "label": "frozen retry causes and max-one-retry semantics match",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 18,
+      "label": "provider credential is available",
+      "pass": true,
+      "detail": "presence only; value never read into the report"
+    },
+    {
+      "n": 19,
+      "label": "provider-request ceiling enforcement is active",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 20,
+      "label": "prospective spend enforcement is active",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 21,
+      "label": "per-attempt telemetry persistence is active",
+      "pass": true,
+      "detail": "2 attempts, cause TIMEOUT"
+    },
+    {
+      "n": 22,
+      "label": "model override mismatch protection is active",
+      "pass": true,
+      "detail": "EXECUTION_IDENTITY_MISMATCH"
+    },
+    {
+      "n": 23,
+      "label": "TRUTH_LEAK = 0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "n": 24,
+      "label": "corpus semantic validation remains green",
+      "pass": true,
+      "detail": "0 row problems"
+    },
+    {
+      "n": 25,
+      "label": "no semantic corpus mutation after freeze",
+      "pass": true,
+      "detail": "290df2f78b66b41909c8..."
+    },
+    {
+      "n": 26,
+      "label": "no prompt/schema/scorer/normalizer/projection mutation after freeze",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "n": 27,
+      "label": "no additional reserved material opened after freeze",
+      "pass": true,
+      "detail": "realism offsets 1 and 2 still RESERVED"
+    },
+    {
+      "n": 28,
+      "label": "P4_PRESPEND_AUTHORIZATION = TRUE",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "integrityHashesBeforeFirstCall": {
+    "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts": "e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458",
+    "backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts": "84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab",
+    "backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts": "3c916b110ffd6188f977d2741fa5572f487ecf85ad9904b3b9e23f8b46137fae",
+    "backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts": "022fb9db7e55a05db0870405bcccd4ba1140c41ae4750371143d93e3fdd5f330",
+    "backend/src/safescope-v2/expert-hazlenz/expert-cohort-contract.ts": "c6d593bef0a0c139af9fee3727068785ddff92e0bdbbc9102c883770c8b5b633",
+    "backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts": "f1cc7a61cf957a45449274eaa1763fece0bd9cfee095a636421cd5a0ff88e467",
+    "backend/src/safescope-v2/expert-hazlenz/expert-runner.ts": "26dac3049b2203750492fa5368c7cff76b19054166fbdc42d1770e206aeb6736",
+    "backend/src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1.ts": "a6c9a36f1d85db5fd25819f5fd1e764055cc486d85f226aa6c7a26388568a3fa",
+    "backend/src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1.ts": "f9fd22a5e99a3b4a13f472d9bd633fb239168126215af9669d9eec472a876381",
+    "backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts": "050128f473a1d8980e04916bb22b74b9640df2af96c1a62233d8c7a132b5e9d4",
+    "backend/scripts/lib/expert-cohort-harness.ts": "309a41a7e65da2ae73a65e92dbcdf27954344b16381430a4004fba1580366c9f",
+    "backend/scripts/lib/expert-execution-budget.ts": "82794b07f9e996061ef7c9d1e24d2621834f272ca3a86a0c2be47c948bcee306",
+    "backend/scripts/lib/expert-cohort-65-selection.ts": "1ca14dd26dc0eb5afe201825bd0147d60290820d6bba27960bb9c114dfa6ad98",
+    "backend/scripts/lib/expert-cohort-supplemental-policy.ts": "cc69d28e74308f492271ff573357b5c346ebe915f253e692f108e9e962f94967",
+    "safescope-data/gauntlets/safescope-gauntlet.source.v1.json": "a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+    "safescope-data/gauntlets/safescope-gauntlet.seed.json": "49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe"
+  },
+  "formalCohortSpent": "BECOMES TRUE AT THE FIRST REQUEST; IRREVERSIBLE"
+}

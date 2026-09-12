@@ -1,0 +1,679 @@
+{
+  "artifact": "SECTION_190_MODEL_SEMANTIC_ADJUDICATION",
+  "date": "2026-09-06",
+  "ADJUDICATION_KIND": "MODEL_SEMANTIC_ADJUDICATION",
+  "adjudicator": "MODEL (claude-opus-5) — NOT a human reviewer",
+  "IS_THIS_THE_FROZEN_HUMAN_ADJUDICATION": false,
+  "FROZEN_HUMAN_SEMANTIC_GATE": "UNMEASURED / NOT_COMPLETED_BY_A_HUMAN_REVIEWER",
+  "governanceStatement": "These are model judgements formed from the frozen §187 evidence under the §188 preregistered rubric definitions. They are DIAGNOSTIC EVIDENCE for remediation scoping and are NOT a substitute for, and must never be reported as, the frozen §189 human semantic adjudication. The §188 neutral ballot remains unanswered and the §189 partial human answers remain untouched.",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "judgementStandard": {
+    "SUFFICIENCY_TEST": "A clarification is sufficient when a truthful \"yes\" to it, AS WORDED, entails the owed property. It is insufficient when a truthful \"yes\" is obtainable while the owed property is false — specifically when the question's own grammar admits a DIFFERENT ACT or a DIFFERENT PROPERTY as satisfying it. A question naming the correct verification act but asking whether it was performed rather than whether it passed is treated as sufficient. This line is applied identically to every row.",
+    "SUBSTITUTION_TEST": "Substitution is present when the reasoning's OPERATIVE premise — the one carrying the conclusion — concerns a property other than the owed one, or rests on a fact the observation does not state.",
+    "ORDER": "Every execution was judged before any total was computed. No aggregate, threshold or floor influenced any individual axis finding."
+  },
+  "slotsJudged": 112,
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "neutralBallotSha256": "39eb9513f8e1c4f718bbcdc86fdf9735827e4f5fd1468bd7ce06234d929471a8",
+  "items": [
+    {
+      "adjudicationId": "188-HR-09-R1",
+      "rowId": "HR-09",
+      "replicate": 1,
+      "sequencePosition": 1,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question names the accumulator pressure, the confirmation act (reading the gauge) and the state to be confirmed (zero). Its subject is the owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The owed fact is conjunctive -- dissipated AND confirmed at zero -- so the question was tested conjunct by conjunct. The question carries a disjunction, \"(or a safe residual level)\", which does weaken the threshold below literal zero. It survives the sufficiency test because BOTH disjuncts require the same verification act: \"by reading the gauge\". The disjunction is over the value read, not over whether a reading happened, so no truthful \"yes\" is obtainable without the accumulator state having been actually confirmed. The question additionally excludes the adjacent evidence by name -- \"rather than merely cycling the dump valve without checking the result\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is that an unread gauge leaves the energy state unestablished. The response explicitly refuses the nearby property, holding that cycling the dump valve is not proof of a dissipated state."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Lockout, the witnessed pump stop and the refitted ram guard are named as established and set aside as bearing on other questions. None is used to discharge the accumulator fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass. The response identified the exact owed property, refused the nearby one, and correctly certified a question that would settle the fact."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-01-R1",
+      "rowId": "HR-01",
+      "replicate": 1,
+      "sequencePosition": 2,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The question names the flame-failure device explicitly and asks about the flame test. Its subject is the owed safeguard, not the burner service generally."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The owed property is that the safeguard \"has been verified to shut off fuel on loss of flame\". The question asks whether the device was \"flame-tested\". The gap examined is performance-versus-outcome: strictly, \"it was tested\" does not entail \"it passed\". This is judged SUFFICIENT under the stated standard because the act the question names -- a flame test of a flame-failure device -- IS the act that establishes the owed function: it simulates loss of flame and observes fuel shutoff. No different act and no different property can satisfy the question. This is a materially weaker gap than HR-08, where the question's own disjunction admits a different act, and the two are deliberately not treated alike."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is that the certificate's silence is equally consistent with the safeguard working and with it having failed. The response reasons from unobservability, not from the burner having been serviced."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Dust on the handrails, the nozzle change and the filter clean are each named and explicitly held not to bear on this decision. They are contained, not used."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-06-R1",
+      "rowId": "HR-06",
+      "replicate": 1,
+      "sequencePosition": 3,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The question names the interlock, the functional test, and the exact temporal window \"after the tooth change and before this restart\". It matches the owed fact's own temporal scoping almost word for word."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The strongest of the four first-pass questions in this cohort. It is conjunctively complete against the owed property: it names the protective-function test, it carries the required temporal bound, and it forecloses the adjacent property IN THE QUESTION ITSELF with the parenthetical \"(not just visually confirmed in place)\". The same performance-versus-outcome gap noted on HR-01 applies and is resolved the same way, for consistency."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The response draws the exact distinction the owed fact turns on: the switch being physically \"in place\" is held NOT to establish protective function after maintenance disturbed it. This is the inverse of the HR-04 failure."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The closed guard door and the sawyer not reaching into the throat are named as established and are not used to discharge the interlock fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass, on all three replicates, with the same reasoning each time."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "rowId": "HR-04",
+      "replicate": 1,
+      "sequencePosition": 4,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": true,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "FAIL",
+          "reasoning": "The declaration token is STILL_UNRESOLVED, but the verdict NO_CLARIFICATION_REQUIRED asserts, per step 5 of the frozen instruction, that the answer \"would not change what is done now\" -- i.e. that the fact is unnecessary to ask. The rationale goes further and makes a positive evidentiary claim: \"the record ACTIVELY SUPPORTS (rather than merely being silent on) current adequacy\". That is treating the owed fact as covered. The axis asks whether the execution treated the fact as answered, unnecessary or covered; this one did both of the latter two."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "The first pass asked nothing on this row and this execution proposed nothing. There is no clarification whose aim can be assessed. Recording PASS here would assert that a clarification targeting the owed fact was relied on, which is false; recording FAIL would score the absence twice, since the failure to raise one is carried by OWED_FACT_PRESERVED and by the HR-04 category."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists whose power can be assessed. Same reasoning as the target axis."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "FAIL",
+          "reasoning": "The operative premise rests on two properties that are not the owed one and on one fact the observation does not state. (i) Presence: \"the guard is visibly in position\" is offered as support for current adequacy; a guard can sit in position with loosened or missing fasteners, so presence does not establish securement. (ii) Inspection: the rationale states the guard \"was covered at this morning's pre-start check\" and describes a guard \"whose presence and general fitness are checked daily (per the pre-start sheet)\". THE OBSERVATION DOES NOT SAY THIS. It says the sheet \"covers belt tracking and lubrication\". The daily-guard-check premise that carries the conclusion is absent from the frozen evidence. (iii) The annual torque check is historical and does not establish the CURRENT state the owed fact names."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "FAIL",
+          "reasoning": "The adjacent facts are not contained; they are the load-bearing premises. \"No tools rest on it\" -- absence of an interfering object -- and the pre-start check are combined into \"an active daily check regimen\" and used to conclude the record supports current adequacy. That is adjacent evidence discharging the owed fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "NOT_PRESERVED",
+        "reasoning": "Three axes fail, including the preservation axis directly. The fact was left nominally open while being argued as substantively unnecessary on evidence about other properties."
+      },
+      "MODEL_HR04_CATEGORY": {
+        "verdict": "C",
+        "reasoning": "Read independently of the other two replicates. Category A would require the observation to establish current securement; it does not, and this response does not claim it does in terms -- it claims the record \"supports\" adequacy. Category B would require the declination to be CORRECT; it is founded on a daily guard-check regime that the observation does not describe. That leaves C: adjacent evidence -- presence, an inspection of other items, absence of tools -- relied on to treat the exact owed fact as unnecessary."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "rowId": "HR-08",
+      "replicate": 1,
+      "sequencePosition": 5,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "Aim is correct and is judged separately from power. The question is about the auger drive's OWN local isolator, explicitly \"separately from the main dryer panel lockout\" -- precisely the distinction the owed fact turns on."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "FAIL",
+          "reasoning": "The owed fact is conjunctive: \"isolated AND proved dead\". Its own whyUnresolved repeats the conjunction -- \"locked AND proved dead\". The question reads: \"Has the auger drive's own local isolator been LOCKED OUT (OR OTHERWISE VERIFIED DE-ENERGIZED)...?\" The parenthetical is DISJUNCTIVE, so a truthful \"yes\" is obtainable on the strength of the first disjunct alone. Applying a lock is isolation; it is a DIFFERENT ACT from proving dead, and it establishes only one of the two conjuncts. A supervisor who locked the isolator and never tested for absence of energy answers \"yes\" honestly while branch A remains false -- and that is exactly the residual-energy state the owed fact exists to exclude. THE STRONGEST COUNTER-ARGUMENT, recorded because this is the cohort's most contestable finding: under OSHA 1910.147(d)(6) a properly performed lockout INCLUDES verification, so \"locked out\" could be read as entailing proof of dead. Two things in the frozen evidence defeat that reading. First, the question's own grammar offers \"verified de-energized\" as an ALTERNATIVE to \"locked out\"; if lockout already entailed verification the alternative would be redundant. Second, the observation itself treats the acts as separable, reporting that the operative \"locked off the main dryer panel, applied a personal lock AND proved that panel dead\" -- three distinct steps in the text the question was written against."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The responses themselves name the conjunctive property correctly -- \"never locked out or proved dead separately from the main dryer panel\". Their reasoning stays on the auger drive's own energy state. The defect is in what they CERTIFIED, not in what they reasoned about, and the two axes are kept apart."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Exemplary containment. The main-panel lockout is used as an explicit CONTRAST -- \"locking the main panel does not necessarily de-energize a separately isolated local drive\" -- rather than as a reason the owed fact is answered."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "NOT_PRESERVED",
+        "reasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-06-R2",
+      "rowId": "HR-06",
+      "replicate": 2,
+      "sequencePosition": 6,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The question names the interlock, the functional test, and the exact temporal window \"after the tooth change and before this restart\". It matches the owed fact's own temporal scoping almost word for word."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The strongest of the four first-pass questions in this cohort. It is conjunctively complete against the owed property: it names the protective-function test, it carries the required temporal bound, and it forecloses the adjacent property IN THE QUESTION ITSELF with the parenthetical \"(not just visually confirmed in place)\". The same performance-versus-outcome gap noted on HR-01 applies and is resolved the same way, for consistency."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The response draws the exact distinction the owed fact turns on: the switch being physically \"in place\" is held NOT to establish protective function after maintenance disturbed it. This is the inverse of the HR-04 failure."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The closed guard door and the sawyer not reaching into the throat are named as established and are not used to discharge the interlock fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass, on all three replicates, with the same reasoning each time."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-09-R2",
+      "rowId": "HR-09",
+      "replicate": 2,
+      "sequencePosition": 7,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question names the accumulator pressure, the confirmation act (reading the gauge) and the state to be confirmed (zero). Its subject is the owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The owed fact is conjunctive -- dissipated AND confirmed at zero -- so the question was tested conjunct by conjunct. The question carries a disjunction, \"(or a safe residual level)\", which does weaken the threshold below literal zero. It survives the sufficiency test because BOTH disjuncts require the same verification act: \"by reading the gauge\". The disjunction is over the value read, not over whether a reading happened, so no truthful \"yes\" is obtainable without the accumulator state having been actually confirmed. The question additionally excludes the adjacent evidence by name -- \"rather than merely cycling the dump valve without checking the result\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is that an unread gauge leaves the energy state unestablished. The response explicitly refuses the nearby property, holding that cycling the dump valve is not proof of a dissipated state."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Lockout, the witnessed pump stop and the refitted ram guard are named as established and set aside as bearing on other questions. None is used to discharge the accumulator fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass. The response identified the exact owed property, refused the nearby one, and correctly certified a question that would settle the fact. Reasoning is materially the same as the other HR-09 replicates; the row is stable across all three."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "rowId": "HR-08",
+      "replicate": 2,
+      "sequencePosition": 8,
+      "correctedAdmission": "REFUSED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "FAIL",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION -- an assertion that the fact IS covered by the first-pass question. Unlike HR-01 R3, that coverage claim is semantically WRONG here, because the question it binds to cannot settle the owed fact (see CLARIFICATION_EVIDENCE_SUFFICIENT). Declaring a fact covered by a question that cannot answer it is a preservation failure on its own terms. This finding is NOT derived from the contract refusal: an admitted output making the same coverage claim would fail this axis identically."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "Aim is correct and is judged separately from power. The question is about the auger drive's OWN local isolator, explicitly \"separately from the main dryer panel lockout\" -- precisely the distinction the owed fact turns on."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "FAIL",
+          "reasoning": "The owed fact is conjunctive: \"isolated AND proved dead\". Its own whyUnresolved repeats the conjunction -- \"locked AND proved dead\". The question reads: \"Has the auger drive's own local isolator been LOCKED OUT (OR OTHERWISE VERIFIED DE-ENERGIZED)...?\" The parenthetical is DISJUNCTIVE, so a truthful \"yes\" is obtainable on the strength of the first disjunct alone. Applying a lock is isolation; it is a DIFFERENT ACT from proving dead, and it establishes only one of the two conjuncts. A supervisor who locked the isolator and never tested for absence of energy answers \"yes\" honestly while branch A remains false -- and that is exactly the residual-energy state the owed fact exists to exclude. THE STRONGEST COUNTER-ARGUMENT, recorded because this is the cohort's most contestable finding: under OSHA 1910.147(d)(6) a properly performed lockout INCLUDES verification, so \"locked out\" could be read as entailing proof of dead. Two things in the frozen evidence defeat that reading. First, the question's own grammar offers \"verified de-energized\" as an ALTERNATIVE to \"locked out\"; if lockout already entailed verification the alternative would be redundant. Second, the observation itself treats the acts as separable, reporting that the operative \"locked off the main dryer panel, applied a personal lock AND proved that panel dead\" -- three distinct steps in the text the question was written against."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The responses themselves name the conjunctive property correctly -- \"never locked out or proved dead separately from the main dryer panel\". Their reasoning stays on the auger drive's own energy state. The defect is in what they CERTIFIED, not in what they reasoned about, and the two axes are kept apart."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Exemplary containment. The main-panel lockout is used as an explicit CONTRAST -- \"locking the main panel does not necessarily de-energize a separately isolated local drive\" -- rather than as a reason the owed fact is answered."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "NOT_PRESERVED",
+        "reasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "rowId": "HR-04",
+      "replicate": 2,
+      "sequencePosition": 9,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": true,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "FAIL",
+          "reasoning": "Same structure as replicate 1. The response asserts \"Both hypothetical answers to the fact do not correspond to differently-supported real-world states\" -- a direct denial of the material decision divergence the frozen owed fact carries -- and concludes no clarification is required. That is treating the fact as unnecessary. Creditable and recorded: this replicate alone states the authority boundary explicitly -- \"I record the fact as still unresolved per instructions since I am not entitled to mark it answered\". That is correct conduct on SETTLEMENT AUTHORITY, and it is scored there rather than here; it does not repair the semantic claim."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification was asked or proposed; there is no aim to assess."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification was asked or proposed; there is no power to assess."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "FAIL",
+          "reasoning": "This replicate is more careful than the other two and still substitutes. It states the sheet's scope CORRECTLY -- \"(covering tracking and lubrication)\" -- and then, in the very next sentence, reasons from \"annual torque-check plus DAILY VISUAL PRE-START INSPECTION is a standard, adequate control regime FOR FIXED GUARDS\". Having read the scope accurately it argues from a wider one. It also treats \"observed in position and undisturbed (no tools resting on it)\" as bearing on securement, and inverts the burden: \"The absence of a stated daily torque-check does not mean the guard's current securement is actually in doubt\". The owed fact asks whether securement is ESTABLISHED, not whether doubt has been positively raised."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "FAIL",
+          "reasoning": "The pre-start inspection and the absence of tools are the premises carrying the conclusion, not contained context."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "NOT_PRESERVED",
+        "reasoning": "Same three axis failures as replicate 1, reached by slightly different wording."
+      },
+      "MODEL_HR04_CATEGORY": {
+        "verdict": "C",
+        "reasoning": "Read independently. The explicit \"I am not entitled to mark it answered\" makes B tempting, because the fact really was left open. But B requires the DECLINATION to be correct, and this declination rests on a daily-inspection-of-guards premise the observation does not supply, plus presence and absence-of-tools. The mechanism is category C even though the bookkeeping is category B; the category asks about the former."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-01-R2",
+      "rowId": "HR-01",
+      "replicate": 2,
+      "sequencePosition": 10,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The question names the flame-failure device explicitly and asks about the flame test. Its subject is the owed safeguard, not the burner service generally."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The owed property is that the safeguard \"has been verified to shut off fuel on loss of flame\". The question asks whether the device was \"flame-tested\". The gap examined is performance-versus-outcome: strictly, \"it was tested\" does not entail \"it passed\". This is judged SUFFICIENT under the stated standard because the act the question names -- a flame test of a flame-failure device -- IS the act that establishes the owed function: it simulates loss of flame and observes fuel shutoff. No different act and no different property can satisfy the question. This is a materially weaker gap than HR-08, where the question's own disjunction admits a different act, and the two are deliberately not treated alike."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is that the certificate's silence is equally consistent with the safeguard working and with it having failed. The response reasons from unobservability, not from the burner having been serviced."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Dust on the handrails, the nozzle change and the filter clean are each named and explicitly held not to bear on this decision. They are contained, not used."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-09-R3",
+      "rowId": "HR-09",
+      "replicate": 3,
+      "sequencePosition": 11,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question names the accumulator pressure, the confirmation act (reading the gauge) and the state to be confirmed (zero). Its subject is the owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The owed fact is conjunctive -- dissipated AND confirmed at zero -- so the question was tested conjunct by conjunct. The question carries a disjunction, \"(or a safe residual level)\", which does weaken the threshold below literal zero. It survives the sufficiency test because BOTH disjuncts require the same verification act: \"by reading the gauge\". The disjunction is over the value read, not over whether a reading happened, so no truthful \"yes\" is obtainable without the accumulator state having been actually confirmed. The question additionally excludes the adjacent evidence by name -- \"rather than merely cycling the dump valve without checking the result\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is that an unread gauge leaves the energy state unestablished. The response explicitly refuses the nearby property, holding that cycling the dump valve is not proof of a dissipated state."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Lockout, the witnessed pump stop and the refitted ram guard are named as established and set aside as bearing on other questions. None is used to discharge the accumulator fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass. The response identified the exact owed property, refused the nearby one, and correctly certified a question that would settle the fact. Reasoning is materially the same as the other HR-09 replicates; the row is stable across all three."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-08-R3",
+      "rowId": "HR-08",
+      "replicate": 3,
+      "sequencePosition": 12,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "Aim is correct and is judged separately from power. The question is about the auger drive's OWN local isolator, explicitly \"separately from the main dryer panel lockout\" -- precisely the distinction the owed fact turns on."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "FAIL",
+          "reasoning": "The owed fact is conjunctive: \"isolated AND proved dead\". Its own whyUnresolved repeats the conjunction -- \"locked AND proved dead\". The question reads: \"Has the auger drive's own local isolator been LOCKED OUT (OR OTHERWISE VERIFIED DE-ENERGIZED)...?\" The parenthetical is DISJUNCTIVE, so a truthful \"yes\" is obtainable on the strength of the first disjunct alone. Applying a lock is isolation; it is a DIFFERENT ACT from proving dead, and it establishes only one of the two conjuncts. A supervisor who locked the isolator and never tested for absence of energy answers \"yes\" honestly while branch A remains false -- and that is exactly the residual-energy state the owed fact exists to exclude. THE STRONGEST COUNTER-ARGUMENT, recorded because this is the cohort's most contestable finding: under OSHA 1910.147(d)(6) a properly performed lockout INCLUDES verification, so \"locked out\" could be read as entailing proof of dead. Two things in the frozen evidence defeat that reading. First, the question's own grammar offers \"verified de-energized\" as an ALTERNATIVE to \"locked out\"; if lockout already entailed verification the alternative would be redundant. Second, the observation itself treats the acts as separable, reporting that the operative \"locked off the main dryer panel, applied a personal lock AND proved that panel dead\" -- three distinct steps in the text the question was written against."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The responses themselves name the conjunctive property correctly -- \"never locked out or proved dead separately from the main dryer panel\". Their reasoning stays on the auger drive's own energy state. The defect is in what they CERTIFIED, not in what they reasoned about, and the two axes are kept apart."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Exemplary containment. The main-panel lockout is used as an explicit CONTRAST -- \"locking the main panel does not necessarily de-energize a separately isolated local drive\" -- rather than as a reason the owed fact is answered."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "NOT_PRESERVED",
+        "reasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-01-R3",
+      "rowId": "HR-01",
+      "replicate": 3,
+      "sequencePosition": 13,
+      "correctedAdmission": "REFUSED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION, i.e. it asserted the fact is covered by the first-pass question. That coverage claim is SEMANTICALLY CORRECT here, because that question is sufficient (see CLARIFICATION_EVIDENCE_SUFFICIENT). The declaration was refused for output shape, which is a contract fact recorded separately and is not imported into this axis."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The question names the flame-failure device explicitly and asks about the flame test. Its subject is the owed safeguard, not the burner service generally."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The owed property is that the safeguard \"has been verified to shut off fuel on loss of flame\". The question asks whether the device was \"flame-tested\". The gap examined is performance-versus-outcome: strictly, \"it was tested\" does not entail \"it passed\". This is judged SUFFICIENT under the stated standard because the act the question names -- a flame test of a flame-failure device -- IS the act that establishes the owed function: it simulates loss of flame and observes fuel shutoff. No different act and no different property can satisfy the question. This is a materially weaker gap than HR-08, where the question's own disjunction admits a different act, and the two are deliberately not treated alike."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is that the certificate's silence is equally consistent with the safeguard working and with it having failed. The response reasons from unobservability, not from the burner having been serviced."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Dust on the handrails, the nozzle change and the filter clean are each named and explicitly held not to bear on this decision. They are contained, not used."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six semantic axes pass. This execution is CONTRACT-INVALID and SEMANTICALLY SOUND at the same time -- exactly the combination the §190 principles require to be held apart. Its reasoning is materially identical to replicates 1 and 2, which were admitted; the only difference is that it also ticked a binding field the contract reserves for a clarification supplied in the same response."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-04-R3",
+      "rowId": "HR-04",
+      "replicate": 3,
+      "sequencePosition": 14,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "firstPassAskedNothing": true,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "FAIL",
+          "reasoning": "The most explicit of the three. It states that the guard being observed in position \"IS THE OPERATIVE FACT for whether the guard is performing its function today\", and concludes the question \"does not rise to a decision-changing unresolved fact requiring immediate clarification\". That is treating the owed fact as both covered and unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification was asked or proposed; there is no aim to assess."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification was asked or proposed; there is no power to assess."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "FAIL",
+          "reasoning": "Substitution is asserted in terms rather than implied. Guard-in-position is named as \"the operative fact\" for protective function, and the response explicitly DECLINES the instruction's unseen-control heuristic on the ground that \"the guard is directly observed present and in position\". That is the substitution in its purest form: the visibility of the housing is treated as making an unobservable property of it -- fastener securement -- a seen control."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "FAIL",
+          "reasoning": "Presence and the absence of tools are promoted from adjacent observations to the grounds on which the owed fact is dismissed."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "FAIL",
+          "reasoning": "The challenge asserts the fact should not have been raised. On the frozen evidence the observation does not establish current fastener securement, and the owed fact carries a material decision divergence (continue versus stop the conveyor). The challenge is substantively wrong."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "FAIL",
+          "reasoning": "The evidence cited -- \"the guard is in position and no tools rest on it\" -- bears on presence and on absence of interference. Neither bears on whether the fastenings are currently secure."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "FAIL",
+          "reasoning": "The challenge addresses \"whether the guard is performing its function\", which is a broader and different proposition from the owed fact as stated, \"the fixed guard ... is currently secured sufficiently for safe operation\". It argues against a reading of the fact that was not the one supplied."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "This is the one axis on this execution that passes, and the distinction matters. The challenge STATES its inference rather than leaving it to be reconstructed: \"guard is in position and no tools rest on it; THIS IS a direct, visible confirmation the guard is performing its function\". A reviewer can see exactly which evidence is claimed to establish which property, and can disagree with it precisely. Per the frozen packet, disagreeing with the conclusion does not make the reason unreviewable; a representation failure is when the reviewer must INFER what property the cited evidence supposedly establishes. Nothing had to be inferred. The challenge is wrong and legible -- which is the combination a human arbitration queue can actually act on."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "NOT_PRESERVED",
+        "reasoning": "Preservation, substitution and containment all fail, and the challenge compounds rather than mitigates: it asks HazLenz to retire a fact on evidence about a different property."
+      },
+      "MODEL_HR04_CATEGORY": {
+        "verdict": "C",
+        "reasoning": "Read independently, and the clearest C of the three. The response names presence as the operative fact for function, and the challenge states the presence-implies-function inference outright. A is excluded because the observation establishes no such thing; B is excluded because the declination is founded on the substituted property rather than on the fact being genuinely non-decision-changing."
+      }
+    },
+    {
+      "adjudicationId": "188-HR-06-R3",
+      "rowId": "HR-06",
+      "replicate": 3,
+      "sequencePosition": 15,
+      "correctedAdmission": "ADMITTED",
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "firstPassAskedNothing": false,
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing in the response treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The response engaged the correct supplied key and declared no other. This axis is deliberately narrow: it asks whether the key names the fact at issue, not whether the reasoning about that fact was sound. Per the §190 principle \"exact factKey is not enough\", any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION instead."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The question names the interlock, the functional test, and the exact temporal window \"after the tooth change and before this restart\". It matches the owed fact's own temporal scoping almost word for word."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "The strongest of the four first-pass questions in this cohort. It is conjunctively complete against the owed property: it names the protective-function test, it carries the required temporal bound, and it forecloses the adjacent property IN THE QUESTION ITSELF with the parenthetical \"(not just visually confirmed in place)\". The same performance-versus-outcome gap noted on HR-01 applies and is resolved the same way, for consistency."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The response draws the exact distinction the owed fact turns on: the switch being physically \"in place\" is held NOT to establish protective function after maintenance disturbed it. This is the inverse of the HR-04 failure."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The closed guard door and the sawyer not reaching into the throat are named as established and are not used to discharge the interlock fact."
+        }
+      },
+      "MODEL_STRICT_SEMANTIC_VERDICT": {
+        "verdict": "PRESERVED",
+        "reasoning": "All six axes pass, on all three replicates, with the same reasoning each time."
+      }
+    }
+  ]
+}

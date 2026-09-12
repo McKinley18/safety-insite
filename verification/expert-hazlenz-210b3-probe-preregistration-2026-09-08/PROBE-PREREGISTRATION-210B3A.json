@@ -1,0 +1,912 @@
+{
+  "artifact": "SECTION_210B3A_HOSTED_PROBE_PREREGISTRATION",
+  "probeVersion": "hazlenz.expert.210b3.first-pass-semantic-probe.v1",
+  "writtenBeforeAnyProviderCall": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "isAcceptanceEvidence": false,
+  "note": "DEVELOPMENT evidence only. Frozen before execution. Once presented for product-owner review this file is not edited; a truth defect found later is recorded as a PREREGISTRATION_DEFECT beside the frozen text, never silently repaired.",
+  "instruction": {
+    "oldVersion": "hazlenz.expert.first-pass-instruction.vNext",
+    "newVersion": "hazlenz.expert.first-pass-instruction.210b2-S1-S6",
+    "oldIdentity": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+    "newIdentity": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+    "newIdentityGovernedVariant": "994b378e259d12f3f966f1c92c4c0565f639a0e8ad6084a2f7ff95a73c8cd72a",
+    "staticAddedChars": 3482,
+    "staticAddedTokensEstimated": 1220
+  },
+  "executionPlan": {
+    "calls": 8,
+    "leg": "FIRST_PASS",
+    "callsPerStimulus": 1,
+    "verifierCalls": 0,
+    "governedStageCalls": 0,
+    "governedEvidenceSuppliedInFirstPass": [
+      "PB-02"
+    ],
+    "semanticRetries": 0,
+    "postOutputTruthEdits": 0,
+    "providerModelConfiguration": "unchanged from §208 except prompt caching, see cacheDecision"
+  },
+  "cacheDecision": {
+    "finding": "AT 8 CALLS WITHOUT CACHING THE PROBE EXCEEDS ITS OWN HARD CEILING.",
+    "projectionWithoutCaching": {
+      "scenario": "no caching, as §208 and §208B ran",
+      "cacheEnabled": false,
+      "inputBilledUnits": 205280,
+      "outputTokens": 18592,
+      "costUsd": 0.5965,
+      "withinTarget": false,
+      "withinCeiling": false
+    },
+    "projectionWithCaching": {
+      "scenario": "prompt caching enabled on the stable prefix",
+      "cacheEnabled": true,
+      "inputBilledUnits": 82993,
+      "outputTokens": 18592,
+      "costUsd": 0.3519,
+      "withinTarget": false,
+      "withinCeiling": true
+    },
+    "consequence": "prompt caching on the stable prefix is not an optimization for this probe, it is what brings it inside the $0.50 ceiling. Enabling it is a transport change from the §208/§208B configuration and is flagged here for explicit authorization rather than made silently.",
+    "targetNotAchievable": "the $0.20 target is not reachable at 8 calls with realistic output length: output alone is ~18,592 tokens ~= $0.186. Reported rather than engineered around, because capping output to hit a budget risks truncated structured output.",
+    "recommendation": "authorize caching and accept a projected $0.35, within the $0.50 ceiling and above the $0.20 target; or reduce coverage, which costs discrimination."
+  },
+  "tokenPlan": {
+    "oldInstructionIdentity": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+    "newInstructionIdentity": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+    "newInstructionIdentityGoverned": "994b378e259d12f3f966f1c92c4c0565f639a0e8ad6084a2f7ff95a73c8cd72a",
+    "expectedStablePrefixBytes": 46306,
+    "expectedCacheablePrefixPercent": 65.9,
+    "expectedLogicalInputTokenRange": {
+      "min": 24500,
+      "max": 27500,
+      "basis": "the §208 first-pass median of 24,440 plus the measured +1,220 (plain) or +1,390 (governed) static delta, plus per-case observation and schema variation"
+    },
+    "pricingBasis": {
+      "inputUsdPerMTok": 2,
+      "outputUsdPerMTok": 10,
+      "source": "solved from CALL-LEDGER-208; reproduces every recorded costUsd with zero residual"
+    },
+    "cacheMultipliers": {
+      "write": 1.25,
+      "read": 0.1
+    },
+    "assumedOutputTokensPerCall": 2324,
+    "outputBasis": "the §208 first-pass median output",
+    "targetSpendUsd": 0.2,
+    "hardCeilingUsd": 0.5,
+    "reportSeparately": [
+      "logicalInputTokens",
+      "uncachedInputTokens",
+      "cacheCreationInputTokens",
+      "cacheReadInputTokens",
+      "outputTokens",
+      "costUsd"
+    ],
+    "absentCacheTelemetry": "NOT_AVAILABLE, never 0"
+  },
+  "passRule": {
+    "rule": "Every axis must be 100% across every case where it is exercised. There is no aggregate compensation and no partial credit.",
+    "onOneSubstantiveFailure": "DEVELOPMENT_REQUIRES_REVIEW",
+    "whyStrict": "eight high-information cases aimed directly at known failure mechanisms. A single substantive failure on a case built to expose exactly that mechanism is information, not noise, and averaging it away would repeat the aggregate-compensation error §209 refused.",
+    "notApplicableRule": "NOT_APPLICABLE is valid only where PROBE_AXES freezes it for that case in this file, before execution.",
+    "retries": 0,
+    "postOutputTruthEdits": 0
+  },
+  "axes": [
+    {
+      "id": "A",
+      "name": "REQUIRED_FACT_RECALL",
+      "question": "Did every frozen decision-critical property emit as a declaration?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-06"
+      ],
+      "exercisedOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-07",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-06"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "FALSE_GAP_RESTRAINT",
+      "question": "Did any frozen decision-neutral or prohibited fact become an owed declaration?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "exercisedOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-06",
+        "PB-07",
+        "PB-08"
+      ],
+      "notApplicableOn": []
+    },
+    {
+      "id": "C",
+      "name": "EXACT_PROPERTY",
+      "question": "Does each declaration target the actual owed property rather than an availability, existence, check-history or requirement proxy?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-06"
+      ],
+      "exercisedOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-07",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-06"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "CONJUNCT_QUALIFIER_COMPLETENESS",
+      "question": "Are every required conjunct and temporal or sequence qualifier preserved in the property, the branches and the clarification?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-06"
+      ],
+      "exercisedOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-07",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-06"
+      ]
+    },
+    {
+      "id": "E",
+      "name": "BRANCH_SETTLEMENT_COMPLETENESS",
+      "question": "Would the two branches actually settle the exact property?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-06"
+      ],
+      "exercisedOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-07",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-06"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "CLARIFICATION_SUFFICIENCY",
+      "question": "Could a complete answer to the clarification settle the exact owed property?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-06"
+      ],
+      "exercisedOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-07",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-06"
+      ]
+    },
+    {
+      "id": "G",
+      "name": "INDEPENDENT_FACT_PRESERVATION",
+      "question": "Are independent facts kept independent and all of them preserved?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-06",
+        "PB-07"
+      ],
+      "exercisedOn": [
+        "PB-04",
+        "PB-05",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-06",
+        "PB-07"
+      ]
+    },
+    {
+      "id": "H",
+      "name": "FACT_LOCAL_DECISION_CONTAINMENT",
+      "question": "Does settlement of one fact avoid claiming overall safety or continuation while an independent fact remains unresolved?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-05",
+        "PB-06",
+        "PB-07"
+      ],
+      "exercisedOn": [
+        "PB-04",
+        "PB-08"
+      ],
+      "notApplicableOn": [
+        "PB-01",
+        "PB-02",
+        "PB-03",
+        "PB-05",
+        "PB-06",
+        "PB-07"
+      ]
+    },
+    {
+      "id": "I",
+      "name": "GOVERNED_NORMATIVE_DESCRIPTIVE_BOUNDARY",
+      "question": "Did the model avoid treating normative requirement text as proof of actual case-specific state?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "PB-01",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-06",
+        "PB-07",
+        "PB-08"
+      ],
+      "exercisedOn": [
+        "PB-02"
+      ],
+      "notApplicableOn": [
+        "PB-01",
+        "PB-03",
+        "PB-04",
+        "PB-05",
+        "PB-06",
+        "PB-07",
+        "PB-08"
+      ]
+    }
+  ],
+  "stimuli": [
+    {
+      "caseId": "PB-01",
+      "targets": [
+        "S1"
+      ],
+      "observation": "A cut-off saw is being used to cut concrete kerb units in the yard. The water bowser feeding the saw was filled at the start of the shift and its level gauge reads three quarters full. The supply tap at the bowser is open and the hose is connected at both ends. The operator is midway through a cut and a grey dust cloud is rising from the blade and drifting across the yard. The inspector was standing about fifteen metres away, upwind, and could not see the blade guard area. A second operative is stacking cut units about three metres from the saw. Cutting continued throughout the visit.",
+      "suppliedContext": {
+        "location": "precast yard, kerb cutting bay",
+        "task": "cutting concrete kerb units with a petrol cut-off saw"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "respirable_dust",
+        "noise",
+        "machinery"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether water is actually reaching the blade and suppressing dust at the cut while cutting is in progress"
+      ],
+      "prohibitedProxyProperties": [
+        "whether water is available in the bowser",
+        "whether the bowser is filled or its level is adequate",
+        "whether the hose is connected",
+        "whether the supply tap is open"
+      ],
+      "requiredConjuncts": [
+        "water actually delivered at the blade",
+        "during the cutting now in progress"
+      ],
+      "requiredTemporalQualifiers": [
+        "now, while the cut is being made"
+      ],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "any declaration about water availability, bowser level, tap position or hose connection: the text establishes all four, so declaring one is both a proxy and a false gap"
+      ],
+      "requiredIndependentFactPreservation": "NOT_APPLICABLE: one property",
+      "requiredFactLocalDecisionBoundaries": [],
+      "acceptableClarificationEvidence": [
+        "direct observation at the blade of whether water is discharging while cutting",
+        "checking the nozzle for blockage with the saw running"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "asking whether water was available or the bowser was filled",
+        "asking whether the saw is fitted with water suppression"
+      ],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-01.Q1",
+          "axis": "C",
+          "question": "Does the declared property concern water actually reaching the blade rather than water being available?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-01.Q2",
+          "axis": "B",
+          "question": "Was any declaration made about bowser level, tap position or hose connection?",
+          "expected": "PASS: none made"
+        },
+        {
+          "id": "PB-01.Q3",
+          "axis": "A",
+          "question": "Was the suppression property declared at all?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-01.Q4",
+          "axis": "F",
+          "question": "Would a complete answer to the clarification settle whether water reached the blade during cutting?",
+          "expected": "PASS"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-02",
+      "targets": [
+        "S1",
+        "S6"
+      ],
+      "observation": "A fitter is working inside the take-up area of a stopped belt conveyor, adjusting the tracking on the return roller. The gravity take-up carriage hangs on its counterweight above the walkway he is standing in. A rack of purpose-made restraint chocks for this carriage is mounted on the wall four metres away and two chocks are missing from it. The conveyor is stopped and its isolator is locked off with the fitter's own padlock. The carriage is above head height and was not examined during the visit.",
+      "suppliedContext": {
+        "location": "mineral processing plant, conveyor CV-207 take-up bay",
+        "task": "adjusting return roller tracking inside the take-up area"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "stored_energy",
+        "machine_guarding",
+        "mobile_equipment"
+      ],
+      "governedEvidence": [
+        {
+          "sourceId": "GOV-SE-11",
+          "text": "Where a gravity take-up counterweight can move under its own weight, the carriage shall be mechanically restrained, or the counterweight lowered and secured, before any person enters the take-up area."
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether the take-up carriage was actually mechanically restrained, or the counterweight lowered and secured, before the fitter entered the take-up area"
+      ],
+      "prohibitedProxyProperties": [
+        "whether a restraint method exists for this carriage",
+        "whether chocks are available on the rack",
+        "that two chocks are missing therefore restraint was applied",
+        "that the governed record requires restraint therefore restraint is in place"
+      ],
+      "requiredConjuncts": [
+        "the action actually taken on this carriage",
+        "before he entered"
+      ],
+      "requiredTemporalQualifiers": [
+        "before entry, not at some later point"
+      ],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "a declaration about whether a restraint method or chocks exist",
+        "a declaration about the isolation state, which the text establishes"
+      ],
+      "requiredIndependentFactPreservation": "NOT_APPLICABLE: one property",
+      "requiredFactLocalDecisionBoundaries": [],
+      "acceptableClarificationEvidence": [
+        "direct observation of the carriage showing chocks fitted, or the counterweight landed and secured",
+        "the fitter stating what he did to the carriage before entering"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "asking whether a restraint method exists or where the chocks are kept",
+        "asking whether the conveyor is isolated"
+      ],
+      "governedNormativeDescriptiveBoundary": {
+        "normativelyEstablishes": "that mechanical restraint, or a lowered and secured counterweight, is required before entry, and therefore why the fact matters",
+        "doesNotProve": "that restraint was applied to this carriage, that chocks were fitted, or that the two missing chocks are on this machine rather than elsewhere"
+      },
+      "evaluationQuestions": [
+        {
+          "id": "PB-02.Q1",
+          "axis": "C",
+          "question": "Does the declared property concern what was actually done before entry rather than what method exists?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-02.Q2",
+          "axis": "I",
+          "question": "Is GOV-SE-11 used to explain why the fact matters rather than as evidence that restraint occurred?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-02.Q3",
+          "axis": "B",
+          "question": "Was the isolation state declared as an owed fact?",
+          "expected": "PASS: not declared"
+        },
+        {
+          "id": "PB-02.Q4",
+          "axis": "D",
+          "question": "Does the property keep both the action and the before-entry timing?",
+          "expected": "PASS"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-03",
+      "targets": [
+        "S1"
+      ],
+      "observation": "A welder is making fillet welds on a jig at a bay fitted with local exhaust ventilation. The LEV system carries a thorough examination label dated nineteen days ago recording a pass on all four bays. Eleven days ago the flexible capture arm at this bay was struck by a passing pallet truck; the arm has been re-taped along a split near the elbow and the tape is visibly loose at one edge. The welder has positioned the hood roughly a metre from the arc. Visible fume is rising past the hood towards the welder's breathing zone. Welding continued during the visit.",
+      "suppliedContext": {
+        "location": "fabrication shop, welding bay 3",
+        "task": "fillet welding on a jig under local exhaust ventilation"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "welding_fume",
+        "ventilation",
+        "respiratory"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether the local exhaust ventilation is actually capturing fume at the arc now, given the damage and repair since the examination"
+      ],
+      "prohibitedProxyProperties": [
+        "whether the LEV has a current thorough examination",
+        "whether the LEV was tested or examined",
+        "whether the examination label is in date"
+      ],
+      "requiredConjuncts": [
+        "actual capture performance now",
+        "as the arm is currently repaired and positioned"
+      ],
+      "requiredTemporalQualifiers": [
+        "now, after the strike and the repair, not at the examination"
+      ],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "a declaration about whether the LEV was examined or whether the examination is current: the text establishes both"
+      ],
+      "requiredIndependentFactPreservation": "NOT_APPLICABLE: one property",
+      "requiredFactLocalDecisionBoundaries": [],
+      "acceptableClarificationEvidence": [
+        "a face-velocity or capture test at the hood in its present position and condition",
+        "a smoke or dust-lamp check showing whether fume is drawn into the hood at the arc"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "asking when the LEV was last examined or whether it passed",
+        "asking whether the repair was carried out"
+      ],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-03.Q1",
+          "axis": "C",
+          "question": "Does the declared property concern present capture performance rather than examination history?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-03.Q2",
+          "axis": "B",
+          "question": "Was examination currency declared as an owed fact?",
+          "expected": "PASS: not declared"
+        },
+        {
+          "id": "PB-03.Q3",
+          "axis": "E",
+          "question": "Do the branches describe capture states of the world rather than paperwork states?",
+          "expected": "PASS"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-04",
+      "targets": [
+        "S2",
+        "S3-negative-control"
+      ],
+      "observation": "A pallet racking bay in the despatch aisle was struck by a reach truck earlier in the shift. The upright at the front of bay D12 now shows a visible bow over about a metre of its height. The bay is still loaded to the third beam level and no assessment of the damage has been recorded. Separately, the operatives picking from the adjacent bay are working from a mobile scissor lift whose entry gate hangs open and swings freely as the platform moves; the inspector could not see whether the latch engages when the gate is pushed shut. Both the loaded damaged bay and the scissor lift were in use during the visit.",
+      "suppliedContext": {
+        "location": "distribution centre, despatch aisle D",
+        "task": "order picking from pallet racking using a mobile scissor lift"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "racking_integrity",
+        "work_at_height",
+        "mobile_equipment"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 2,
+      "requiredOwedProperties": [
+        "whether the bowed upright at bay D12 still carries its loaded beam levels safely",
+        "whether the scissor lift entry gate latch actually engages and holds the gate closed"
+      ],
+      "prohibitedProxyProperties": [
+        "whether a racking damage assessment procedure exists",
+        "whether the scissor lift has a gate fitted"
+      ],
+      "requiredConjuncts": [
+        "each property stated separately"
+      ],
+      "requiredTemporalQualifiers": [],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "a single merged declaration covering both the racking and the gate",
+        "a declaration that settles the gate through the racking assessment or the reverse"
+      ],
+      "requiredIndependentFactPreservation": "REQUIRED: two declarations. They need different evidence (a structural damage assessment versus a latch function test), have independent branches, are independently settleable, and change different actions today (unload or offload bay D12 versus take the lift out of service). Settling one leaves the other open. Merging them into one conjunctive property is a failure of this case.",
+      "requiredFactLocalDecisionBoundaries": [
+        "the racking decision concerns bay D12, not the racking installation generally",
+        "the gate decision concerns this lift, not work at height generally"
+      ],
+      "acceptableClarificationEvidence": [
+        "a competent racking damage assessment of the bowed upright at its current load",
+        "a functional test of the gate latch on this lift"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "one question asking whether the equipment in the aisle is safe",
+        "asking whether damaged racking is reported under a procedure"
+      ],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-04.Q1",
+          "axis": "A",
+          "question": "Were both properties declared?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-04.Q2",
+          "axis": "G",
+          "question": "Are they two separate declarations rather than one merged conjunctive declaration?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-04.Q3",
+          "axis": "E",
+          "question": "Does each declaration have branches that settle only its own property?",
+          "expected": "PASS"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-05",
+      "targets": [
+        "S3"
+      ],
+      "observation": "A two-leg chain sling is rigged to lift a fabricated steel frame from a trailer. The identification tag on the sling is present but the stamped figures on it are worn smooth and could not be read from the ground. The two legs meet the frame at a noticeably wide spread, wider than the slinger appeared to expect, and no angle was measured. The frame has its mass painted on the side and the slinger read it aloud as 1.8 tonnes. The lift had not yet been made when the inspector arrived and the crane driver was waiting on the signal.",
+      "suppliedContext": {
+        "location": "steel stockyard, trailer unloading bay",
+        "task": "lifting a fabricated steel frame from a trailer with a two-leg chain sling"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "lifting_operations",
+        "suspended_loads",
+        "mobile_equipment"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether this sling is rated to lift 1.8 tonnes at the leg angle it is actually rigged at"
+      ],
+      "prohibitedProxyProperties": [
+        "whether the sling has a tag",
+        "whether the sling has been inspected",
+        "whether the load mass is known, which the text establishes"
+      ],
+      "requiredConjuncts": [
+        "the sling rated capacity",
+        "the actual leg angle in use"
+      ],
+      "requiredTemporalQualifiers": [],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "a declaration naming only the rating and omitting the angle",
+        "a declaration naming only the angle and omitting the rating",
+        "a declaration about the load mass, which the text establishes"
+      ],
+      "requiredIndependentFactPreservation": "ONE property. The rating and the angle are not independent owed facts: neither settles the question alone, because the capacity that matters is the rated capacity DERATED for the angle in use. FROZEN ACCEPTABLE ALTERNATIVE: emitting two declarations is not automatically a failure, but it is a failure unless each one still names the joint determination, so that answering both settles the adequacy question. A split that leaves two separately answerable facts neither of which settles adequacy is a FAIL on axis D.",
+      "requiredFactLocalDecisionBoundaries": [],
+      "acceptableClarificationEvidence": [
+        "the sling capacity from its certificate or a legible tag, read together with the measured or calculated leg angle for this rigging"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "asking only what the sling is rated at",
+        "asking only what the leg angle is",
+        "asking whether the sling is in date or has been inspected"
+      ],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-05.Q1",
+          "axis": "D",
+          "question": "Do the owed property, branchA and the clarification all keep both the rating and the angle?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-05.Q2",
+          "axis": "F",
+          "question": "Could a complete answer to the clarification settle adequacy, rather than establishing one half?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-05.Q3",
+          "axis": "B",
+          "question": "Was the load mass, which the text establishes, declared?",
+          "expected": "PASS: not declared"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-06",
+      "targets": [
+        "S5"
+      ],
+      "observation": "An overhead travelling crane in the maintenance bay is out of service for a scheduled gearbox replacement. Its isolator is locked off with two padlocks and a danger tag naming the millwright, the hook block is landed on a stillage, and a floor barrier with a sign stands across the bay. The statutory thorough examination certificate for the crane is kept in the plant office and the inspector did not see it during the visit, so its date is not known. The site plans to return the crane to service only after the gearbox work is complete. No lifting took place in the bay during the visit and none is scheduled.",
+      "suppliedContext": {
+        "location": "heavy engineering works, maintenance bay 2",
+        "task": "scheduled gearbox replacement on an out-of-service overhead crane"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "lifting_equipment",
+        "stored_energy",
+        "maintenance"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 0,
+      "requiredOwedProperties": [],
+      "prohibitedProxyProperties": [],
+      "requiredConjuncts": [],
+      "requiredTemporalQualifiers": [],
+      "decisionNeutralUnknowns": [
+        "the date of the crane thorough examination certificate: genuinely unknown and genuinely safety-related, but the crane is isolated, tagged, barriered and out of use, and no lifting is scheduled. Under both answers the same thing is done today: the crane stays isolated until the gearbox work is finished and it is examined before return to service."
+      ],
+      "prohibitedDeclarations": [
+        "any declaration about the examination certificate date or currency",
+        "any declaration about the gearbox work scope"
+      ],
+      "requiredIndependentFactPreservation": "NOT_APPLICABLE: no owed facts expected",
+      "requiredFactLocalDecisionBoundaries": [],
+      "acceptableClarificationEvidence": [],
+      "clarificationPatternsThatWouldNotSettle": [],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-06.Q1",
+          "axis": "B",
+          "question": "Was any owed fact declared for this observation?",
+          "expected": "PASS: zero declarations"
+        },
+        {
+          "id": "PB-06.Q2",
+          "axis": "B",
+          "question": "Was the certificate date in particular declared as an owed fact?",
+          "expected": "PASS: not declared"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-07",
+      "targets": [
+        "S3"
+      ],
+      "observation": "A pipefitter is about to break a flanged joint on a process line that was isolated earlier in the shift by closing two block valves with a bleed between them. He told the inspector he had checked the isolation. The bleed valve is fitted with a small pressure indicator which currently reads zero, and the line was drained through it. The observation does not record when the indicator last showed pressure, nor whether the block valves were confirmed shut before the bleed was opened. The fitter has his spanners on the flange and was waiting only for the inspector to move clear.",
+      "suppliedContext": {
+        "location": "chemical plant, process line PL-14 flange station",
+        "task": "breaking a flanged joint on an isolated process line"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "stored_energy",
+        "process_safety",
+        "hazardous_substances"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether the two block valves were confirmed shut before the bleed was opened, and the bleed then confirmed to be relieving to zero with the line still isolated, immediately before the flange is broken"
+      ],
+      "prohibitedProxyProperties": [
+        "whether the isolation was checked",
+        "whether a double block and bleed arrangement exists on this line",
+        "whether the indicator currently reads zero, which the text establishes"
+      ],
+      "requiredConjuncts": [
+        "block valves confirmed shut",
+        "bleed confirmed relieving to zero"
+      ],
+      "requiredTemporalQualifiers": [
+        "the block valves confirmed shut BEFORE the bleed was opened",
+        "the zero reading confirmed with the isolation still in place, immediately before breaking"
+      ],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "a declaration that a check or verification occurred, without the sequence",
+        "a declaration resting on the present zero reading alone, which the text establishes"
+      ],
+      "requiredIndependentFactPreservation": "NOT_APPLICABLE: one property",
+      "requiredFactLocalDecisionBoundaries": [],
+      "acceptableClarificationEvidence": [
+        "the fitter describing the order in which he closed the blocks, opened the bleed and read the indicator, with the line still isolated",
+        "a witnessed re-verification of the isolation immediately before the joint is broken"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "asking whether the isolation was checked",
+        "asking what the indicator reads now",
+        "asking whether the line was drained"
+      ],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-07.Q1",
+          "axis": "D",
+          "question": "Do both sequence elements survive into the property, the branches and the clarification?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-07.Q2",
+          "axis": "F",
+          "question": "Would a general answer that verification occurred settle the property?",
+          "expected": "PASS: it would not, and the clarification asks for the sequence"
+        },
+        {
+          "id": "PB-07.Q3",
+          "axis": "B",
+          "question": "Was the present zero reading declared as an owed fact?",
+          "expected": "PASS: not declared"
+        }
+      ]
+    },
+    {
+      "caseId": "PB-08",
+      "targets": [
+        "S4",
+        "S2"
+      ],
+      "observation": "Refuelling is under way at the site fuel bay. The dispenser has an emergency stop mushroom on its front panel; the bay was recommissioned last month and the observation does not record whether the mushroom has been function tested against the pump since. Separately, the bay is built inside a concrete bund whose drain valve sits at the low corner behind a stack of empty drums; the valve handle could not be seen and no one present said whether it is shut. A tanker is discharging into the bulk tank and a truck is being filled at the dispenser at the same time.",
+      "suppliedContext": {
+        "location": "quarry site, bulk fuel bay",
+        "task": "refuelling a haul truck while a tanker discharges into the bulk tank"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "flammable_liquids",
+        "environmental_containment",
+        "emergency_controls"
+      ],
+      "governedEvidence": [],
+      "expectedDeclarationCount": 2,
+      "requiredOwedProperties": [
+        "whether the dispenser emergency stop actually shuts down the pump when operated",
+        "whether the bund drain valve is actually shut while fuel is being transferred"
+      ],
+      "prohibitedProxyProperties": [
+        "whether an emergency stop is fitted, which the text establishes",
+        "whether the bund has a drain valve, which the text establishes"
+      ],
+      "requiredConjuncts": [
+        "each property stated separately"
+      ],
+      "requiredTemporalQualifiers": [
+        "the drain valve state during the transfer now in progress"
+      ],
+      "decisionNeutralUnknowns": [],
+      "prohibitedDeclarations": [
+        "a merged declaration covering both the emergency stop and the bund"
+      ],
+      "requiredIndependentFactPreservation": "REQUIRED: two declarations. Different evidence (a function test of the stop versus sighting the valve), independent branches, independently settleable, different actions today.",
+      "requiredFactLocalDecisionBoundaries": [
+        "FROZEN CONTAINMENT TARGET: if the emergency stop is confirmed to work, decisionIfA for that fact may say the emergency shutdown control for the dispenser is adequate and that refuelling may continue AS FAR AS THAT CONTROL IS CONCERNED. It may NOT say the fuel bay is safe, that refuelling may continue without qualification, that no corrective action is required, or that the transfer is adequately controlled, because the bund drain valve state is still open.",
+        "the same containment applies in reverse to the bund declaration"
+      ],
+      "acceptableClarificationEvidence": [
+        "a function test of the emergency stop against the running pump",
+        "direct sighting of the bund drain valve handle position during transfer"
+      ],
+      "clarificationPatternsThatWouldNotSettle": [
+        "asking whether the bay was recommissioned",
+        "asking whether the bund is of adequate capacity"
+      ],
+      "governedNormativeDescriptiveBoundary": null,
+      "evaluationQuestions": [
+        {
+          "id": "PB-08.Q1",
+          "axis": "A",
+          "question": "Were both properties declared?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-08.Q2",
+          "axis": "H",
+          "question": "Does the emergency-stop decisionIfA avoid claiming the bay is safe or that refuelling may continue unqualified while the bund fact is open?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-08.Q3",
+          "axis": "H",
+          "question": "Does the bund decisionIfA avoid the same unqualified closure?",
+          "expected": "PASS"
+        },
+        {
+          "id": "PB-08.Q4",
+          "axis": "G",
+          "question": "Are the two kept as separate declarations?",
+          "expected": "PASS"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "stimuli": 8,
+    "expectedDeclarationsAcrossProbe": 9,
+    "evaluationQuestions": 26,
+    "zeroDeclarationControls": [
+      "PB-06"
+    ],
+    "twoDeclarationCases": [
+      "PB-04",
+      "PB-08"
+    ]
+  },
+  "frozenAt": "2026-09-08T00:00:00.000Z"
+}

@@ -1,0 +1,386 @@
+{
+  "artifact": "SECTION_192_MECHANICAL_GATES",
+  "date": "2026-09-06",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "POPULATION": "verifier-v3.1 — a NEW population. Never combined with the §187B v3 cohort.",
+  "verifierIdentity": {
+    "instructionVersion": "hazlenz.expert.verifier-instruction.v3.1",
+    "systemPromptSha256": "7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c",
+    "responseSchemaSha256": "d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65",
+    "contractVersion": "hazlenz.expert.verifier.v3",
+    "admissionValidatorSha256": "475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc",
+    "executorVersion": "hazlenz.expert.v3-1.prospective-executor.v1",
+    "toolName": "emit_verifier_verdict",
+    "toolChoice": "forced tool"
+  },
+  "preregistrationSha256": "68ba7ffa80fd8d111760cb628bff2493f46181cb41c124da2e0614e365f13267",
+  "executions": {
+    "planned": 39,
+    "attemptRecords": 0,
+    "behavioral": 39
+  },
+  "HARD_GATES": [
+    {
+      "id": "providerErrors",
+      "observed": 0,
+      "gate": "= 0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "contractInvalid",
+      "observed": 0,
+      "gate": "= 0",
+      "verdict": "PASS",
+      "note": "the §187B illegal state (BOUND_BY_CLARIFICATION with no proposedClarification under a non-additive verdict) did not recur"
+    },
+    {
+      "id": "wrongSuppliedFactKeyBindings",
+      "observed": 0,
+      "gate": "= 0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "unauthorizedSettlementTransitions",
+      "observed": 0,
+      "gate": "= 0",
+      "verdict": "PASS",
+      "note": "structural: no execution performs a status transition; a challenge bridges to an ArbitrationRequest typed settles:false / factStatusUnchanged:true"
+    },
+    {
+      "id": "PROVIDER_SETTLEMENT_AUTHORITY",
+      "observed": "NEVER",
+      "gate": "NEVER",
+      "verdict": "PASS",
+      "note": "structural"
+    },
+    {
+      "id": "adjacentStateLedgerMutation",
+      "observed": 0,
+      "gate": "= 0",
+      "verdict": "PASS",
+      "note": "structural"
+    }
+  ],
+  "ALL_MECHANICAL_GATES_PASS": true,
+  "MECHANICAL_DISTRIBUTION": {
+    "verdicts": {
+      "VERIFIED_AS_IS": 9,
+      "NO_CLARIFICATION_REQUIRED": 9,
+      "ADD_OR_REPLACE_CLARIFICATION": 21
+    },
+    "declarationModes": {
+      "STILL_UNRESOLVED": 12,
+      "CHALLENGE_FACT_VALIDITY": 6,
+      "BOUND_BY_CLARIFICATION": 21
+    },
+    "proposedClarificationsEmitted": 21,
+    "nominationsEmitted": 0,
+    "bindingsEmitted": 21,
+    "challengeBearingExecutions": 6,
+    "caution": "semantic correctness must NOT be inferred from these mechanical labels"
+  },
+  "PROPOSAL_COUNTS_BY_DESIGN_GROUP": {
+    "note": "raw proposedClarification / total is NEVER the clarification-policy denominator; the analysis lives in CLARIFICATION-POLICY-ANALYSIS.md",
+    "unconditionalOpportunityExecutions": {
+      "n": 18,
+      "proposals": 15
+    },
+    "regressionExecutions": {
+      "n": 9,
+      "proposals": 0
+    },
+    "conjunctiveExecutions": {
+      "n": 6,
+      "proposals": 6
+    },
+    "challengeOpportunityExecutions": {
+      "n": 6,
+      "proposals": 0
+    }
+  },
+  "PER_ROW": [
+    {
+      "rowId": "FV-01",
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "proposals": 0,
+      "bindings": 0,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-02",
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "proposals": 0,
+      "bindings": 0,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-03",
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "proposals": 0,
+      "bindings": 0,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-04",
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-05",
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-06",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-07",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-08",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-09",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-10",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposals": 3,
+      "bindings": 3,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-11",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "proposals": 0,
+      "bindings": 0,
+      "challenges": 0,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-12",
+      "families": [
+        "FULLY_ESTABLISHED_CONTROL",
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED"
+      ],
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY",
+        "CHALLENGE_FACT_VALIDITY",
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposals": 0,
+      "bindings": 0,
+      "challenges": 3,
+      "admitted": 3
+    },
+    {
+      "rowId": "FV-13",
+      "families": [
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "executions": 3,
+      "verdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED"
+      ],
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY",
+        "CHALLENGE_FACT_VALIDITY",
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposals": 0,
+      "bindings": 0,
+      "challenges": 3,
+      "admitted": 3
+    }
+  ]
+}

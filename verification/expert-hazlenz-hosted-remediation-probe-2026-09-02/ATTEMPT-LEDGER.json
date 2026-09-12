@@ -1,0 +1,288 @@
+{
+  "budget": {
+    "targetLogicalCalls": 16,
+    "hardProviderRequestCeiling": 20,
+    "retryRequestBudget": 4,
+    "maxRetriesPerLogicalCall": 1,
+    "authorizedSpendCeilingUsd": 3,
+    "modelPricedCeilingUsd": 2.08,
+    "enforcedSpendCeilingUsd": 2.08,
+    "worstCaseRequestUsd": 0.104,
+    "enforcement": "prospective, before each request, at the frozen worst case"
+  },
+  "stopReason": "COMPLETED",
+  "identityViolation": null,
+  "accounting": {
+    "callsAttempted": 16,
+    "callsCompleted": 16,
+    "providerRequestsAttempted": 16,
+    "retryRequestsAttempted": 0,
+    "inputTokens": 190231,
+    "outputTokens": 17864,
+    "spendUsd": 0.559102,
+    "callCeiling": 16,
+    "requestCeiling": 20,
+    "retryRequestBudget": 4,
+    "spendCeilingUsd": 2.08
+  },
+  "retryCauses": [],
+  "retriesSuppressed": [],
+  "attemptsByCall": [
+    {
+      "rowId": "DP-A1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 12925,
+      "inputTokens": 12391,
+      "outputTokens": 739,
+      "costUsd": 0.032172,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-A2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 13304,
+      "inputTokens": 12178,
+      "outputTokens": 788,
+      "costUsd": 0.032236,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-A3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 15360,
+      "inputTokens": 12196,
+      "outputTokens": 992,
+      "costUsd": 0.034312,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-A4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 12408,
+      "inputTokens": 11561,
+      "outputTokens": 858,
+      "costUsd": 0.031702,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-B1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14285,
+      "inputTokens": 11578,
+      "outputTokens": 932,
+      "costUsd": 0.032476,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-B2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 21427,
+      "inputTokens": 11548,
+      "outputTokens": 1635,
+      "costUsd": 0.039445999999999995,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-B3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 22233,
+      "inputTokens": 11554,
+      "outputTokens": 1795,
+      "costUsd": 0.041058,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-B4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 21908,
+      "inputTokens": 11612,
+      "outputTokens": 1635,
+      "costUsd": 0.039574,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-C1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 11702,
+      "inputTokens": 12118,
+      "outputTokens": 652,
+      "costUsd": 0.030756,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-C2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 15768,
+      "inputTokens": 11532,
+      "outputTokens": 1091,
+      "costUsd": 0.033974000000000004,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-C3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 15990,
+      "inputTokens": 12236,
+      "outputTokens": 1208,
+      "costUsd": 0.036552,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-D1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 15381,
+      "inputTokens": 12339,
+      "outputTokens": 1081,
+      "costUsd": 0.035488,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-D2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 15016,
+      "inputTokens": 11690,
+      "outputTokens": 1030,
+      "costUsd": 0.03368,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-D3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 20698,
+      "inputTokens": 11534,
+      "outputTokens": 1760,
+      "costUsd": 0.040668,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-D4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 11576,
+      "inputTokens": 11719,
+      "outputTokens": 705,
+      "costUsd": 0.030488,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "DP-E1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14435,
+      "inputTokens": 12445,
+      "outputTokens": 963,
+      "costUsd": 0.034519999999999995,
+      "modelIdentity": "claude-sonnet-5"
+    }
+  ]
+}

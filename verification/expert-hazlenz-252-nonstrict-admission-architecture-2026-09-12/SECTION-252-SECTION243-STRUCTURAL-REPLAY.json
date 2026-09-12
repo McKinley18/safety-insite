@@ -1,0 +1,858 @@
+{
+  "section": "252",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "conformanceGateCrossTab": {
+    "note": "the conformance gate is the only component §252 adds. This compares its verdict alone against what the §243 pipeline concluded on the same bytes.",
+    "section243AdmittedAndGateAdmits": [
+      "G3",
+      "G5",
+      "G6",
+      "G7",
+      "C2",
+      "C5",
+      "M1",
+      "M3",
+      "M7",
+      "M8"
+    ],
+    "section243AdmittedButGateRefuses": [],
+    "section243RefusedAndGateRefuses": [
+      "C3",
+      "G1",
+      "G2",
+      "G4",
+      "G8",
+      "M4",
+      "M5"
+    ],
+    "section243RefusedButGateAdmits": [
+      "C1",
+      "C4",
+      "C6",
+      "C7",
+      "C8",
+      "M2",
+      "M6"
+    ],
+    "interpretation": "a case in \"section243RefusedButGateAdmits\" is not an escape: those outputs were refused by the SEMANTIC-COHERENCE checks, which the gate does not duplicate and which still run and still refuse. The gate is an addition in front of them, never a replacement."
+  },
+  "isCapabilityRescore": false,
+  "measures": "STRUCTURAL CONTAINMENT ONLY",
+  "source": "verification/expert-hazlenz-243-final-fresh-acceptance-execution-2026-09-12/RAW-243-FIRST-PASS.jsonl, read and never rewritten",
+  "section243OutputsRefusedByTheSection243Run": [
+    "C1",
+    "C3",
+    "C4",
+    "C6",
+    "C7",
+    "C8",
+    "G1",
+    "G2",
+    "G4",
+    "G8",
+    "M2",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "escapedCaseIds": [],
+  "summary": {
+    "totalOutputs": 24,
+    "fullyAdmitted": 2,
+    "refused": 22,
+    "unresolvedTruthPreserved": 1,
+    "preservedRecordTotal": 1,
+    "unsafeMalformedOutputAdmitted": 0,
+    "semanticInventionEvents": 0,
+    "conformanceGateAdmits": 17
+  },
+  "rows": [
+    {
+      "caseId": "G1",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 2,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT"
+        ],
+        "firstThree": [
+          "$.unresolvedFactDeclarations[1].branchB: REQUIRED_FIELD_ABSENT",
+          "$.immediateSafetyPosture.whatHappensNow: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "e5c6c976cdff038362f0083c83e8f47e810efb5df402c0940cab91e67841b807",
+      "currentCandidate": {
+        "outcome": "PRESERVE_UNRESOLVED",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 7,
+        "postureCodes": [
+          "POSTURE_NARRATIVE_MISSING",
+          "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+          "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 1,
+        "admittedFacts": 1,
+        "preservedUnresolved": 1,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G2",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 1,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT"
+        ],
+        "firstThree": [
+          "$.immediateSafetyPosture.whatHappensNow: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "707b69773fd13beecb8880b092b753032b6e710d2ed3591d00c027c80d3fbbab",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 4,
+        "postureCodes": [
+          "POSTURE_NARRATIVE_MISSING",
+          "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G3",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "5825f2ed93a27dc2deb6375c2a41799324143b35d02757b32475a61a4ef3fab0",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 4,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G4",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 5,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT",
+          "FIELD_TYPE_DOES_NOT_MATCH_CONTRACT"
+        ],
+        "firstThree": [
+          "$.uncertainty: REQUIRED_FIELD_ABSENT",
+          "$.outcome: REQUIRED_FIELD_ABSENT",
+          "$.unresolvedFactDeclarations: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "646277bc152b7cec35a6c4d8f6c0bb76b56546173440af5b78de503bae268115",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "FIELD_TYPE_DOES_NOT_MATCH_CONTRACT"
+        ],
+        "conformanceViolationCount": 5,
+        "postureCodes": [
+          "POSTURE_MISSING",
+          "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+        ],
+        "roleJustificationCodes": [],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G5",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "157def188aa6b8c7ce5e9a8a3815a1fa32433bf8a0b0d24a0c028b262a13ecb1",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 4,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 2,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G6",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "6a52fe25dbb792bf6c0c1c2af5b88814379b017d2ae7f80bd53ddfaf3f35f44b",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 4,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G7",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "abc6fac23630c77889dc4f248d70e14973fc17e86b0c7a3658e55845189bd202",
+      "currentCandidate": {
+        "outcome": "ADMIT",
+        "status": "COMPLETE",
+        "admitted": true,
+        "conformanceCodes": [],
+        "conformanceViolationCount": 0,
+        "postureCodes": [],
+        "roleJustificationCodes": [],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "G8",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 5,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT",
+          "FIELD_TYPE_DOES_NOT_MATCH_CONTRACT"
+        ],
+        "firstThree": [
+          "$.uncertainty: REQUIRED_FIELD_ABSENT",
+          "$.outcome: REQUIRED_FIELD_ABSENT",
+          "$.unresolvedFactDeclarations: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 2,
+      "toolInputPresent": true,
+      "toolInputSha": "1266d8cb6d171fe7468ce61632a5f32934649efc07b63be850fddd2a956fab77",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "FIELD_TYPE_DOES_NOT_MATCH_CONTRACT"
+        ],
+        "conformanceViolationCount": 5,
+        "postureCodes": [
+          "POSTURE_MISSING",
+          "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+        ],
+        "roleJustificationCodes": [],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C1",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "5e1c2a6a7deba97c194881e98bfac7f089f5f0ab0dda9a5e40675f3b2d18e421",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 3,
+        "postureCodes": [
+          "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C2",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "74e6b967b8dda4b1c7a2e3424ecd1e603cea20a60db34463a42a6f1de43ad324",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 6,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 3,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C3",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 1,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT"
+        ],
+        "firstThree": [
+          "$.outcome: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "7d18be2dad7f33132143a8e574c8c44518a341344b828214ccc76839a855d79d",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 5,
+        "postureCodes": [
+          "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 2,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C4",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "bbd6bc6d5370fa8642a9f5d5e567bb33911c1ea54855eae22f1ab5fca4b8463b",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 3,
+        "postureCodes": [
+          "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C5",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "45cc97bff240ad9b33b34ffdc4bb775e3c0bc9ca0799ebd9b2654d698f67b9e0",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 3,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C6",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "9170cb5ebdca2d0033eba265b1acd893e8daa61bb56da46372081d50798fa6bf",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 5,
+        "postureCodes": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 2,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C7",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "cd4f0710b498ed832c8b934a82a537cd058bc9b2782edf654f83a6a10c68b6a5",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 3,
+        "postureCodes": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "C8",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "1fa12390d68acab16dc0a6c0e70a7a1b2f8624098d876916bc1d198c08b37932",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 3,
+        "postureCodes": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M1",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "411833342e3fceef3018d8cea66482e39f84d3883c79e27b5a7ce3f902d5b4ae",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 3,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M2",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "2cad5a50e433980a2e3670b93590739c0e872a0cb1c233664dd53797da195f6b",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 4,
+        "postureCodes": [
+          "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M3",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "2647a865e481c8b3892e4506ec95a31f1340b1bd915f75fb1a4bb03e3832168b",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 2,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M4",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 1,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT"
+        ],
+        "firstThree": [
+          "$.crossHazardInsights[0].confidence: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "1595af582c2fa5c6e960b72427efb6bb5968b71f2d4912d340c738a3663cc276",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 5,
+        "postureCodes": [
+          "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 2,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M5",
+      "conformanceGateOnly": {
+        "admits": false,
+        "violationCount": 10,
+        "codes": [
+          "REQUIRED_FIELD_ABSENT",
+          "PROPERTY_NOT_DECLARED_BY_CONTRACT"
+        ],
+        "firstThree": [
+          "$.expertHazardCandidates: REQUIRED_FIELD_ABSENT",
+          "$.decisionCriticalClarifications: REQUIRED_FIELD_ABSENT",
+          "$.crossHazardInsights: REQUIRED_FIELD_ABSENT"
+        ]
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "c49c3680912f7a981b333e7ac24c3d35307ff01b175fd83fc71a596b60312071",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "REQUIRED_FIELD_ABSENT",
+          "PROPERTY_NOT_DECLARED_BY_CONTRACT"
+        ],
+        "conformanceViolationCount": 10,
+        "postureCodes": [
+          "POSTURE_MISSING",
+          "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+        ],
+        "roleJustificationCodes": [],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M6",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "386f982c617a76b118bef3b58808fec0bb0c555893fe5e1a2cd05fa1c63fd0a2",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 6,
+        "postureCodes": [
+          "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+        ],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 2,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M7",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "9d4c9bc8ff3164c9fe2cc9369c2e0b4134309947d3f78c0e67e2a4bee53358cf",
+      "currentCandidate": {
+        "outcome": "ADMIT",
+        "status": "COMPLETE",
+        "admitted": true,
+        "conformanceCodes": [],
+        "conformanceViolationCount": 0,
+        "postureCodes": [],
+        "roleJustificationCodes": [],
+        "declarationRefusals": 0,
+        "admittedFacts": 0,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    },
+    {
+      "caseId": "M8",
+      "conformanceGateOnly": {
+        "admits": true,
+        "violationCount": 0,
+        "codes": [],
+        "firstThree": []
+      },
+      "stopReason": "tool_use",
+      "toolUseBlocks": 1,
+      "toolInputPresent": true,
+      "toolInputSha": "b1ff10937a880ec65bfe8710cdfaa517afb36b6957ed9cac2a5e3323efd83320",
+      "currentCandidate": {
+        "outcome": "REFUSE",
+        "status": "FIRST_PASS_REFUSED",
+        "admitted": false,
+        "conformanceCodes": [
+          "NO_UNION_BRANCH_SATISFIED"
+        ],
+        "conformanceViolationCount": 4,
+        "postureCodes": [],
+        "roleJustificationCodes": [
+          "ROLE_JUSTIFICATION_MISSING"
+        ],
+        "declarationRefusals": 0,
+        "admittedFacts": 1,
+        "preservedUnresolved": 0,
+        "semanticInventions": []
+      }
+    }
+  ]
+}

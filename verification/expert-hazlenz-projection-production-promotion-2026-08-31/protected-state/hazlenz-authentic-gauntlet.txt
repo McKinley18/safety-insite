@@ -1,0 +1,298 @@
+==================================================
+HazLenz Field Gauntlet
+==================================================
+API: http://localhost:4000/safescope-v2/classify
+Scenarios: 91
+Threshold: 80% average
+Reports: /Users/mckinley/Desktop/Safety_InSite/backend/tmp/hazlenz-authentic-capability-gauntlet.json
+          /Users/mckinley/Desktop/Safety_InSite/backend/tmp/hazlenz-authentic-capability-gauntlet.md
+
+[FAIL] Machine guarding - Conveyor tail pulley missing guard during cleanup: 
+[FAIL] Machine guarding - Missing grinder tongue guard: 
+[FAIL] Machine guarding - Exposed rotating shaft coupling: 
+[FAIL] Machine guarding - Nip point at rollers: 
+[FAIL] Machine guarding - Interlocked guard defeated: 
+[FAIL] Machine guarding - Point-of-operation guard missing: 
+[FAIL] Machine guarding - Safe guarded conveyor locked out: 
+[FAIL] Lockout / hazardous energy - Maintenance while energized: 
+[FAIL] Lockout / hazardous energy - Jam clearing without isolation: 
+[FAIL] Lockout / hazardous energy - Multiple energy sources: 
+[FAIL] Lockout / hazardous energy - Stored hydraulic energy: 
+[FAIL] Lockout / hazardous energy - Contractor servicing equipment: 
+[FAIL] Lockout / hazardous energy - Startup after maintenance: 
+[FAIL] Lockout / hazardous energy - Safe locked out equipment: 
+[FAIL] Walking-working surfaces / housekeeping - Oil spill near walkway: 
+[FAIL] Walking-working surfaces / housekeeping - Extension cord across aisle: 
+[FAIL] Walking-working surfaces / housekeeping - Damaged stairs: 
+[FAIL] Walking-working surfaces / housekeeping - Missing handrail: 
+[FAIL] Walking-working surfaces / housekeeping - Open floor hole: 
+[FAIL] Walking-working surfaces / housekeeping - Cluttered work area: 
+[FAIL] Walking-working surfaces / housekeeping - Maintenance bay spill near drain: 
+[FAIL] Fall protection / ladders / elevated work - Worker on roof edge: 
+[FAIL] Fall protection / ladders / elevated work - Aerial lift without tie-off: 
+[FAIL] Fall protection / ladders / elevated work - Damaged ladder: 
+[FAIL] Fall protection / ladders / elevated work - Ladder used incorrectly: 
+[FAIL] Fall protection / ladders / elevated work - Scaffold missing guardrails: 
+[FAIL] Fall protection / ladders / elevated work - Unprotected platform edge: 
+[FAIL] Electrical - Exposed conductors: 
+[FAIL] Electrical - Open electrical panel: 
+[FAIL] Electrical - Damaged extension cord: 
+[FAIL] Electrical - Blocked electrical disconnect: 
+[FAIL] Electrical - Wet location electrical use: 
+[FAIL] Electrical - Missing GFCI on construction site: 
+[FAIL] Powered industrial trucks / mobile equipment - Forklift pedestrian interaction: 
+[FAIL] Powered industrial trucks / mobile equipment - Backup alarm not working: 
+[FAIL] Powered industrial trucks / mobile equipment - Seatbelt not used: 
+[FAIL] Powered industrial trucks / mobile equipment - Elevated forks: 
+[FAIL] Powered industrial trucks / mobile equipment - Damaged forklift: 
+[FAIL] Powered industrial trucks / mobile equipment - Blind corner traffic exposure: 
+[FAIL] Excavation / trenching / construction - Unprotected trench: 
+[FAIL] Excavation / trenching / construction - Spoil pile at edge: 
+[FAIL] Excavation / trenching / construction - Water accumulation: 
+[FAIL] Excavation / trenching / construction - No ladder from trench: 
+[FAIL] Excavation / trenching / construction - Excavator struck-by exposure: 
+[FAIL] Excavation / trenching / construction - Overhead utility concern: 
+[FAIL] Confined space - Tank entry without permit: 
+[FAIL] Confined space - Unknown atmosphere: 
+[FAIL] Confined space - Attendant missing: 
+[FAIL] Confined space - Rescue plan missing: 
+[FAIL] Confined space - Ventilation inadequate: 
+[FAIL] Confined space - Line breaking into confined area: 
+[FAIL] Industrial hygiene / health - Silica dust during cutting: 
+[FAIL] Industrial hygiene / health - Welding fumes in enclosed area: 
+[FAIL] Industrial hygiene / health - Solvent use without ventilation: 
+[FAIL] Industrial hygiene / health - Noise exposure: 
+[FAIL] Industrial hygiene / health - Heat stress: 
+[FAIL] Industrial hygiene / health - Chemical splash potential: 
+[FAIL] Industrial hygiene / health - Respirator use without fit test: 
+[FAIL] Industrial hygiene / health - Asbestos or lead suspicion: 
+[FAIL] Environmental-adjacent / spill exposure - Open used-oil container: 
+[FAIL] Environmental-adjacent / spill exposure - Leaking drum: 
+[FAIL] Environmental-adjacent / spill exposure - Chemical near drain: 
+[FAIL] Environmental-adjacent / spill exposure - Incompatible storage: 
+[FAIL] Environmental-adjacent / spill exposure - Battery acid spill potential: 
+[FAIL] Environmental-adjacent / spill exposure - Unlabeled waste container: 
+[FAIL] Fire / emergency / life safety - Blocked extinguisher: 
+[FAIL] Fire / emergency / life safety - Blocked exit: 
+[FAIL] Fire / emergency / life safety - Flammable storage issue: 
+[FAIL] Fire / emergency / life safety - Hot work near combustibles: 
+[FAIL] Fire / emergency / life safety - Missing eyewash access: 
+[FAIL] Fire / emergency / life safety - Compressed gas near ignition source: 
+[FAIL] MSHA / mining-specific - Conveyor guarding: 
+[FAIL] MSHA / mining-specific - Berm missing at elevated roadway: 
+[FAIL] MSHA / mining-specific - Mobile equipment pre-op defect: 
+[FAIL] MSHA / mining-specific - Highwall / ground control concern: 
+[FAIL] MSHA / mining-specific - Workplace exam observation: 
+[FAIL] MSHA / mining-specific - Trailing cable damage: 
+[FAIL] MSHA / mining-specific - Housekeeping around plant walkway: 
+[FAIL] MSHA / mining-specific - Crusher platform fall hazard: 
+[FAIL] Ambiguous / tricky - Severe-looking but incomplete: 
+[FAIL] Ambiguous / tricky - Vague photo description: 
+[FAIL] Ambiguous / tricky - Conflicting evidence: 
+[FAIL] Ambiguous / tricky - Safe condition not over-classified: 
+[FAIL] Ambiguous / tricky - Non-violation improvement opportunity: 
+[FAIL] Ambiguous / tricky - Two hazards in one observation: 
+[FAIL] Ambiguous / tricky - Wrong jurisdiction trap: 
+[FAIL] Ambiguous / tricky - Empty clean container: 
+[FAIL] Ambiguous / tricky - Secured oxygen cylinder: 
+[FAIL] Ambiguous / tricky - PPE mention should not dominate: 
+[FAIL] Ambiguous / tricky - Natural gas odor not cylinder storage: 
+[FAIL] Ambiguous / tricky - Generic gas term not compressed gas: 
+
+==================================================
+Scorecard
+==================================================
+Scenario | Score | Status | Failed dimensions | Classification | Risk | Top standards | Evidence gaps | Corrective actions
+--------- | ----- | ------ | ----------------- | -------------- | ---- | ------------- | ------------- | -----------------
+Machine guarding - Conveyor tail pulley missing guard during cleanup | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Machine guarding - Missing grinder tongue guard | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Machine guarding - Exposed rotating shaft coupling | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Machine guarding - Nip point at rollers | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Machine guarding - Interlocked guard defeated | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Machine guarding - Point-of-operation guard missing | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Machine guarding - Safe guarded conveyor locked out | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Maintenance while energized | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Jam clearing without isolation | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Multiple energy sources | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Stored hydraulic energy | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Contractor servicing equipment | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Startup after maintenance | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Lockout / hazardous energy - Safe locked out equipment | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Oil spill near walkway | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Extension cord across aisle | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Damaged stairs | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Missing handrail | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Open floor hole | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Cluttered work area | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Walking-working surfaces / housekeeping - Maintenance bay spill near drain | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fall protection / ladders / elevated work - Worker on roof edge | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fall protection / ladders / elevated work - Aerial lift without tie-off | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fall protection / ladders / elevated work - Damaged ladder | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fall protection / ladders / elevated work - Ladder used incorrectly | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fall protection / ladders / elevated work - Scaffold missing guardrails | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fall protection / ladders / elevated work - Unprotected platform edge | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Electrical - Exposed conductors | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Electrical - Open electrical panel | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Electrical - Damaged extension cord | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Electrical - Blocked electrical disconnect | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Electrical - Wet location electrical use | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Electrical - Missing GFCI on construction site | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Powered industrial trucks / mobile equipment - Forklift pedestrian interaction | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Powered industrial trucks / mobile equipment - Backup alarm not working | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Powered industrial trucks / mobile equipment - Seatbelt not used | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Powered industrial trucks / mobile equipment - Elevated forks | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Powered industrial trucks / mobile equipment - Damaged forklift | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Powered industrial trucks / mobile equipment - Blind corner traffic exposure | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Excavation / trenching / construction - Unprotected trench | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Excavation / trenching / construction - Spoil pile at edge | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Excavation / trenching / construction - Water accumulation | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Excavation / trenching / construction - No ladder from trench | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Excavation / trenching / construction - Excavator struck-by exposure | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Excavation / trenching / construction - Overhead utility concern | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Confined space - Tank entry without permit | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Confined space - Unknown atmosphere | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Confined space - Attendant missing | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Confined space - Rescue plan missing | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Confined space - Ventilation inadequate | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Confined space - Line breaking into confined area | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Silica dust during cutting | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Welding fumes in enclosed area | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Solvent use without ventilation | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Noise exposure | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Heat stress | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Chemical splash potential | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Respirator use without fit test | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Industrial hygiene / health - Asbestos or lead suspicion | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Environmental-adjacent / spill exposure - Open used-oil container | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Environmental-adjacent / spill exposure - Leaking drum | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Environmental-adjacent / spill exposure - Chemical near drain | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Environmental-adjacent / spill exposure - Incompatible storage | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Environmental-adjacent / spill exposure - Battery acid spill potential | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Environmental-adjacent / spill exposure - Unlabeled waste container | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fire / emergency / life safety - Blocked extinguisher | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fire / emergency / life safety - Blocked exit | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fire / emergency / life safety - Flammable storage issue | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fire / emergency / life safety - Hot work near combustibles | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fire / emergency / life safety - Missing eyewash access | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Fire / emergency / life safety - Compressed gas near ignition source | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Conveyor guarding | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Berm missing at elevated roadway | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Mobile equipment pre-op defect | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Highwall / ground control concern | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Workplace exam observation | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Trailing cable damage | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Housekeeping around plant walkway | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+MSHA / mining-specific - Crusher platform fall hazard | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Severe-looking but incomplete | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Vague photo description | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Conflicting evidence | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Safe condition not over-classified | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Non-violation improvement opportunity | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Two hazards in one observation | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Wrong jurisdiction trap | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Empty clean container | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Secured oxygen cylinder | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - PPE mention should not dominate | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Natural gas odor not cylinder storage | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+Ambiguous / tricky - Generic gas term not compressed gas | 0% (FAIL) | FAIL | request failed | n/a | n/a | none |  | 
+
+==================================================
+Average score: 0.0%
+Pass: 0 | Needs review: 0 | Fail: 91
+Report JSON: /Users/mckinley/Desktop/Safety_InSite/backend/tmp/hazlenz-authentic-capability-gauntlet.json
+Report MD:   /Users/mckinley/Desktop/Safety_InSite/backend/tmp/hazlenz-authentic-capability-gauntlet.md
+==================================================
+
+Failures:
+- Machine guarding - Conveyor tail pulley missing guard during cleanup: 
+- Machine guarding - Missing grinder tongue guard: 
+- Machine guarding - Exposed rotating shaft coupling: 
+- Machine guarding - Nip point at rollers: 
+- Machine guarding - Interlocked guard defeated: 
+- Machine guarding - Point-of-operation guard missing: 
+- Machine guarding - Safe guarded conveyor locked out: 
+- Lockout / hazardous energy - Maintenance while energized: 
+- Lockout / hazardous energy - Jam clearing without isolation: 
+- Lockout / hazardous energy - Multiple energy sources: 
+- Lockout / hazardous energy - Stored hydraulic energy: 
+- Lockout / hazardous energy - Contractor servicing equipment: 
+- Lockout / hazardous energy - Startup after maintenance: 
+- Lockout / hazardous energy - Safe locked out equipment: 
+- Walking-working surfaces / housekeeping - Oil spill near walkway: 
+- Walking-working surfaces / housekeeping - Extension cord across aisle: 
+- Walking-working surfaces / housekeeping - Damaged stairs: 
+- Walking-working surfaces / housekeeping - Missing handrail: 
+- Walking-working surfaces / housekeeping - Open floor hole: 
+- Walking-working surfaces / housekeeping - Cluttered work area: 
+- Walking-working surfaces / housekeeping - Maintenance bay spill near drain: 
+- Fall protection / ladders / elevated work - Worker on roof edge: 
+- Fall protection / ladders / elevated work - Aerial lift without tie-off: 
+- Fall protection / ladders / elevated work - Damaged ladder: 
+- Fall protection / ladders / elevated work - Ladder used incorrectly: 
+- Fall protection / ladders / elevated work - Scaffold missing guardrails: 
+- Fall protection / ladders / elevated work - Unprotected platform edge: 
+- Electrical - Exposed conductors: 
+- Electrical - Open electrical panel: 
+- Electrical - Damaged extension cord: 
+- Electrical - Blocked electrical disconnect: 
+- Electrical - Wet location electrical use: 
+- Electrical - Missing GFCI on construction site: 
+- Powered industrial trucks / mobile equipment - Forklift pedestrian interaction: 
+- Powered industrial trucks / mobile equipment - Backup alarm not working: 
+- Powered industrial trucks / mobile equipment - Seatbelt not used: 
+- Powered industrial trucks / mobile equipment - Elevated forks: 
+- Powered industrial trucks / mobile equipment - Damaged forklift: 
+- Powered industrial trucks / mobile equipment - Blind corner traffic exposure: 
+- Excavation / trenching / construction - Unprotected trench: 
+- Excavation / trenching / construction - Spoil pile at edge: 
+- Excavation / trenching / construction - Water accumulation: 
+- Excavation / trenching / construction - No ladder from trench: 
+- Excavation / trenching / construction - Excavator struck-by exposure: 
+- Excavation / trenching / construction - Overhead utility concern: 
+- Confined space - Tank entry without permit: 
+- Confined space - Unknown atmosphere: 
+- Confined space - Attendant missing: 
+- Confined space - Rescue plan missing: 
+- Confined space - Ventilation inadequate: 
+- Confined space - Line breaking into confined area: 
+- Industrial hygiene / health - Silica dust during cutting: 
+- Industrial hygiene / health - Welding fumes in enclosed area: 
+- Industrial hygiene / health - Solvent use without ventilation: 
+- Industrial hygiene / health - Noise exposure: 
+- Industrial hygiene / health - Heat stress: 
+- Industrial hygiene / health - Chemical splash potential: 
+- Industrial hygiene / health - Respirator use without fit test: 
+- Industrial hygiene / health - Asbestos or lead suspicion: 
+- Environmental-adjacent / spill exposure - Open used-oil container: 
+- Environmental-adjacent / spill exposure - Leaking drum: 
+- Environmental-adjacent / spill exposure - Chemical near drain: 
+- Environmental-adjacent / spill exposure - Incompatible storage: 
+- Environmental-adjacent / spill exposure - Battery acid spill potential: 
+- Environmental-adjacent / spill exposure - Unlabeled waste container: 
+- Fire / emergency / life safety - Blocked extinguisher: 
+- Fire / emergency / life safety - Blocked exit: 
+- Fire / emergency / life safety - Flammable storage issue: 
+- Fire / emergency / life safety - Hot work near combustibles: 
+- Fire / emergency / life safety - Missing eyewash access: 
+- Fire / emergency / life safety - Compressed gas near ignition source: 
+- MSHA / mining-specific - Conveyor guarding: 
+- MSHA / mining-specific - Berm missing at elevated roadway: 
+- MSHA / mining-specific - Mobile equipment pre-op defect: 
+- MSHA / mining-specific - Highwall / ground control concern: 
+- MSHA / mining-specific - Workplace exam observation: 
+- MSHA / mining-specific - Trailing cable damage: 
+- MSHA / mining-specific - Housekeeping around plant walkway: 
+- MSHA / mining-specific - Crusher platform fall hazard: 
+- Ambiguous / tricky - Severe-looking but incomplete: 
+- Ambiguous / tricky - Vague photo description: 
+- Ambiguous / tricky - Conflicting evidence: 
+- Ambiguous / tricky - Safe condition not over-classified: 
+- Ambiguous / tricky - Non-violation improvement opportunity: 
+- Ambiguous / tricky - Two hazards in one observation: 
+- Ambiguous / tricky - Wrong jurisdiction trap: 
+- Ambiguous / tricky - Empty clean container: 
+- Ambiguous / tricky - Secured oxygen cylinder: 
+- Ambiguous / tricky - PPE mention should not dominate: 
+- Ambiguous / tricky - Natural gas odor not cylinder storage: 
+- Ambiguous / tricky - Generic gas term not compressed gas: 
+- Average score 0.0% is below threshold 80%

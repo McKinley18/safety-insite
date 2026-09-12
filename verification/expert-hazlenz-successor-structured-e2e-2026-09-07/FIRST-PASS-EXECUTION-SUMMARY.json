@@ -1,0 +1,26 @@
+{
+  "artifact": "SECTION_199_FIRST_PASS_EXECUTION_SUMMARY",
+  "preregistrationSha256": "ddd6f63d56de4e6e62037457bed06b3de59b1100d169ec1b28d427d6f3d4fea4",
+  "plannedFirstPassRows": 12,
+  "attempted": 12,
+  "stopReason": null,
+  "transportCanary": {
+    "rowId": "SF-01",
+    "outcome": "INFERENCE_COMPLETED",
+    "disposable": false
+  },
+  "circuitBreaker": {
+    "tripped": false,
+    "trippedOnSignature": null,
+    "attemptsRecorded": 12
+  },
+  "spendAccounting": {
+    "actualProviderSpendUsd": 0.61794,
+    "budgetReservedUsd": 0.87394,
+    "callsAttempted": 12,
+    "callsWithNoProviderUsage": 2,
+    "syntheticReservationUsd": 0.256,
+    "accountingRule": "ACTUAL SPEND = provider-returned usage only; a call reporting no usage adds zero. BUDGET RESERVED = actual spend plus the frozen worst case for every call that reported no usage. The reserved figure governs the ceiling and is never reported as money spent."
+  },
+  "ACTUAL_PROVIDER_SPEND_USD": 0.61794
+}

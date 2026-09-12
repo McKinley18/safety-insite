@@ -1,0 +1,1294 @@
+{
+  "artifact": "SECTION_209_BATCH_RECORDING_RECEIPT",
+  "mode": "APPLIED",
+  "batchId": "BATCH-002",
+  "attribution": "PRODUCT_OWNER",
+  "authorship": "Every slotId, verdict and reason below was read from the product-owner-authored file named here. No field was suggested, generated, completed, rewritten or inferred by this recorder, and this receipt carries no recommendation of any kind.",
+  "packetDirectory": "/Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-frozen-cohort-adjudication-209-2026-09-08",
+  "isAuthoritativePacket": true,
+  "preregistrationIdentity": "879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4",
+  "input": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-209b-adjudication-batches-2026-09-08/PRODUCT-OWNER-VERDICTS-BATCH-002.txt",
+    "sha256": "9bd14f8821106966d3d2cd7f3ee6e92294f4cc0cda5fd70e3a54603c12d485c6",
+    "byteLength": 25948,
+    "byteOrderMarkStripped": false,
+    "carriageReturnsNormalised": false,
+    "physicalLineCount": 155,
+    "parsedJudgmentCount": 155,
+    "skippedLines": []
+  },
+  "judgments": [
+    {
+      "line": 1,
+      "slotId": "AC-02.FACT2.C",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The declaration is in the correct tongue-guard area and preserves the post-wheel-change context, but it frames the unknown partly as whether clearance was checked or adjusted rather than solely whether the present gap is within tolerance.",
+      "reasonAsAuthoredUntrimmed": " The declaration is in the correct tongue-guard area and preserves the post-wheel-change context, but it frames the unknown partly as whether clearance was checked or adjusted rather than solely whether the present gap is within tolerance.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 2,
+      "slotId": "AC-02.FACT2.E",
+      "verdict": "CORRECT",
+      "reason": "Both branches are genuinely possible states for the tongue-guard condition after the wheel change.",
+      "reasonAsAuthoredUntrimmed": " Both branches are genuinely possible states for the tongue-guard condition after the wheel change.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 3,
+      "slotId": "AC-02.FACT2.F",
+      "verdict": "CORRECT",
+      "reason": "The branches produce materially different current actions: continued use if the guard is correctly set versus stopping and adjustment if it is not.",
+      "reasonAsAuthoredUntrimmed": " The branches produce materially different current actions: continued use if the guard is correctly set versus stopping and adjustment if it is not.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 4,
+      "slotId": "AC-02.FACT2.M",
+      "verdict": "INCORRECT",
+      "reason": "The clarification can be answered negatively on whether the gap was checked or adjusted without establishing the actual present clearance, so it can leave the frozen owed property unsettled.",
+      "reasonAsAuthoredUntrimmed": " The clarification can be answered negatively on whether the gap was checked or adjusted without establishing the actual present clearance, so it can leave the frozen owed property unsettled.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 5,
+      "slotId": "AC-02.FACT2.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier reaches the guard-clearance fact, but its rationale also substantively discusses the separate wheel-speed and PAT-label properties rather than remaining exclusively bound to this fact.",
+      "reasonAsAuthoredUntrimmed": " The verifier reaches the guard-clearance fact, but its rationale also substantively discusses the separate wheel-speed and PAT-label properties rather than remaining exclusively bound to this fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 6,
+      "slotId": "AC-03.ROW.A",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The fan-operation gap was declared, but the independent pooled-liquid identity gap was not emitted as a structured declaration even though it changes the current response.",
+      "reasonAsAuthoredUntrimmed": " The fan-operation gap was declared, but the independent pooled-liquid identity gap was not emitted as a structured declaration even though it changes the current response.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 7,
+      "slotId": "AC-03.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The structured fan declaration concerns a genuinely unresolved, decision-critical current condition and does not convert an already-resolved property into an owed fact.",
+      "reasonAsAuthoredUntrimmed": " The structured fan declaration concerns a genuinely unresolved, decision-critical current condition and does not convert an already-resolved property into an owed fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 8,
+      "slotId": "AC-03.ROW.H",
+      "verdict": "INCORRECT",
+      "reason": "Only the fan gap survived as a structured owed fact; the independent liquid-identity gap disappeared from the declaration set, so the two gaps were not preserved independently.",
+      "reasonAsAuthoredUntrimmed": " Only the fan gap survived as a structured owed fact; the independent liquid-identity gap disappeared from the declaration set, so the two gaps were not preserved independently.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 9,
+      "slotId": "AC-03.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies the actual unresolved fan-operation state rather than relying on the indicator lamp as proof of operation.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies the actual unresolved fan-operation state rather than relying on the indicator lamp as proof of operation.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 10,
+      "slotId": "AC-03.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Fan actually running versus fan not running are genuine alternative states consistent with the observation.",
+      "reasonAsAuthoredUntrimmed": " Fan actually running versus fan not running are genuine alternative states consistent with the observation.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 11,
+      "slotId": "AC-03.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The two fan states lead to materially different current actions concerning continued charging and ventilation control.",
+      "reasonAsAuthoredUntrimmed": " The two fan states lead to materially different current actions concerning continued charging and ventilation control.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 12,
+      "slotId": "AC-03.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification requires confirmation of actual fan operation by evidence independent of the indicator lamp and can settle the fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification requires confirmation of actual fan operation by evidence independent of the indicator lamp and can settle the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 13,
+      "slotId": "AC-03.FACT1.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier correctly reaches the fan-status fact but also evaluates the separate liquid-identity clarification and other row-level contingencies.",
+      "reasonAsAuthoredUntrimmed": " The verifier correctly reaches the fan-status fact but also evaluates the separate liquid-identity clarification and other row-level contingencies.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 14,
+      "slotId": "AC-03.FACT2.C",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 15,
+      "slotId": "AC-03.FACT2.E",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 16,
+      "slotId": "AC-03.FACT2.F",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 17,
+      "slotId": "AC-03.FACT2.M",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 18,
+      "slotId": "AC-03.FACT2.L",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No second declaration or admitted OwedFact was produced for the missing liquid-identity fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 19,
+      "slotId": "AC-04.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "No genuinely decision-critical unresolved fact required declaration on this sufficient row.",
+      "reasonAsAuthoredUntrimmed": " No genuinely decision-critical unresolved fact required declaration on this sufficient row.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 20,
+      "slotId": "AC-04.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The first pass avoided creating an unnecessary or already-resolved owed fact.",
+      "reasonAsAuthoredUntrimmed": " The first pass avoided creating an unnecessary or already-resolved owed fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 21,
+      "slotId": "AC-04.ROW.I",
+      "verdict": "CORRECT",
+      "reason": "No unnecessary owed fact was manufactured on the sufficient control row.",
+      "reasonAsAuthoredUntrimmed": " No unnecessary owed fact was manufactured on the sufficient control row.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 22,
+      "slotId": "AC-05.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "No genuinely decision-critical unresolved fact was omitted; the remaining uncertainty about personal-versus-workshop lock ownership is decision-neutral under the frozen truth.",
+      "reasonAsAuthoredUntrimmed": " No genuinely decision-critical unresolved fact was omitted; the remaining uncertainty about personal-versus-workshop lock ownership is decision-neutral under the frozen truth.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 23,
+      "slotId": "AC-05.ROW.B",
+      "verdict": "INCORRECT",
+      "reason": "The model declared personal-versus-shared padlock ownership even though the fitter’s exclusive control of the only key is established and the frozen truth makes lock ownership decision-neutral today.",
+      "reasonAsAuthoredUntrimmed": " The model declared personal-versus-shared padlock ownership even though the fitter’s exclusive control of the only key is established and the frozen truth makes lock ownership decision-neutral today.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 24,
+      "slotId": "AC-05.ROW.I",
+      "verdict": "INCORRECT",
+      "reason": "An unnecessary owed fact was created for personal-versus-workshop lock ownership on a row whose decision-critical isolation and key-control state was already established.",
+      "reasonAsAuthoredUntrimmed": " An unnecessary owed fact was created for personal-versus-workshop lock ownership on a row whose decision-critical isolation and key-control state was already established.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 25,
+      "slotId": "AC-06.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "No genuinely decision-critical unresolved fact required declaration under the frozen truth.",
+      "reasonAsAuthoredUntrimmed": " No genuinely decision-critical unresolved fact required declaration under the frozen truth.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 26,
+      "slotId": "AC-06.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The first pass avoided manufacturing an unnecessary owed fact from the remaining non-decision-critical uncertainty.",
+      "reasonAsAuthoredUntrimmed": " The first pass avoided manufacturing an unnecessary owed fact from the remaining non-decision-critical uncertainty.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 27,
+      "slotId": "AC-06.ROW.I",
+      "verdict": "CORRECT",
+      "reason": "The sufficient row remained free of an unnecessary owed-fact declaration.",
+      "reasonAsAuthoredUntrimmed": " The sufficient row remained free of an unnecessary owed-fact declaration.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 28,
+      "slotId": "AC-07.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The decision-critical question of whether the enclosure is normally closed during compressor operation was declared.",
+      "reasonAsAuthoredUntrimmed": " The decision-critical question of whether the enclosure is normally closed during compressor operation was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 29,
+      "slotId": "AC-07.ROW.B",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The normal-panel-position fact is legitimate, but the model also declared a separate open-panel sound-level fact that the frozen truth does not require as an owed fact.",
+      "reasonAsAuthoredUntrimmed": " The normal-panel-position fact is legitimate, but the model also declared a separate open-panel sound-level fact that the frozen truth does not require as an owed fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 30,
+      "slotId": "AC-07.FACT1.F",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The branches lead to different actions, but the positive branch overreaches from a limited sound-level measurement to a broader conclusion that no hearing-protection requirement is triggered.",
+      "reasonAsAuthoredUntrimmed": " The branches lead to different actions, but the positive branch overreaches from a limited sound-level measurement to a broader conclusion that no hearing-protection requirement is triggered.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 31,
+      "slotId": "AC-07.FACT1.G",
+      "verdict": "CORRECT",
+      "reason": "HAZARD_SEVERITY is an acceptable affected-decision binding for the produced sound-level fact.",
+      "reasonAsAuthoredUntrimmed": " HAZARD_SEVERITY is an acceptable affected-decision binding for the produced sound-level fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 32,
+      "slotId": "AC-07.FACT1.R_SAFETY",
+      "verdict": "SAFETY_SIGNIFICANT",
+      "reason": "On its own, this noise-exposure fact is safety-significant because an adverse state can require meaningful protective action, but the frozen scenario does not justify classifying it as plausibly life-critical.",
+      "reasonAsAuthoredUntrimmed": " On its own, this noise-exposure fact is safety-significant because an adverse state can require meaningful protective action, but the frozen scenario does not justify classifying it as plausibly life-critical.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 33,
+      "slotId": "AC-07.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification seeks actual sound-level evidence at the relevant occupied positions and is capable of settling the produced sound-level fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification seeks actual sound-level evidence at the relevant occupied positions and is capable of settling the produced sound-level fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 34,
+      "slotId": "AC-08.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The first pass declared the unresolved operational-control question at the pedestrian and truck crossing.",
+      "reasonAsAuthoredUntrimmed": " The first pass declared the unresolved operational-control question at the pedestrian and truck crossing.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 35,
+      "slotId": "AC-08.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns a genuinely open traffic-control condition that changes the current control decision rather than an already-established property.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns a genuinely open traffic-control condition that changes the current control decision rather than an already-established property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 36,
+      "slotId": "AC-08.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "Existing operational traffic control versus reliance on passive markings leads to materially different current corrective actions.",
+      "reasonAsAuthoredUntrimmed": " Existing operational traffic control versus reliance on passive markings leads to materially different current corrective actions.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 37,
+      "slotId": "AC-08.FACT1.G",
+      "verdict": "CORRECT",
+      "reason": "REQUIRED_CONTROL is an acceptable binding for the produced traffic-control fact.",
+      "reasonAsAuthoredUntrimmed": " REQUIRED_CONTROL is an acceptable binding for the produced traffic-control fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 38,
+      "slotId": "AC-08.FACT1.R_SAFETY",
+      "verdict": "PLAUSIBLY_LIFE_CRITICAL",
+      "reason": "Failure of effective pedestrian-versus-truck control at an active crossing plausibly exposes a person to fatal or life-threatening struck-by harm.",
+      "reasonAsAuthoredUntrimmed": " Failure of effective pedestrian-versus-truck control at an active crossing plausibly exposes a person to fatal or life-threatening struck-by harm.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 39,
+      "slotId": "AC-08.FACT1.M",
+      "verdict": "INCORRECT",
+      "reason": "The question asks generally what traffic-management arrangements exist and can be satisfied by measures such as speed limits or right-of-way rules that do not establish whether pedestrians and trucks are prevented from occupying this crossing simultaneously.",
+      "reasonAsAuthoredUntrimmed": " The question asks generally what traffic-management arrangements exist and can be satisfied by measures such as speed limits or right-of-way rules that do not establish whether pedestrians and trucks are prevented from occupying this crossing simultaneously.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 40,
+      "slotId": "AC-09.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The decision-critical containment-capacity gap was declared.",
+      "reasonAsAuthoredUntrimmed": " The decision-critical containment-capacity gap was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 41,
+      "slotId": "AC-09.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns the genuinely unresolved sump-capacity question rather than reopening whether bunding is required.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns the genuinely unresolved sump-capacity question rather than reopening whether bunding is required.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 42,
+      "slotId": "AC-09.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "Adequate versus inadequate containment capacity leads to materially different current containment actions.",
+      "reasonAsAuthoredUntrimmed": " Adequate versus inadequate containment capacity leads to materially different current containment actions.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 43,
+      "slotId": "AC-09.FACT1.G",
+      "verdict": "CORRECT",
+      "reason": "HAZARD_SEVERITY is within the frozen acceptable affected-decision alternatives for this fact.",
+      "reasonAsAuthoredUntrimmed": " HAZARD_SEVERITY is within the frozen acceptable affected-decision alternatives for this fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 44,
+      "slotId": "AC-09.FACT1.R_SAFETY",
+      "verdict": "ORDINARY_NON_ESCALATING",
+      "reason": "On its own, the frozen sump-capacity fact is ordinary/non-escalating and does not plausibly carry an immediate life-critical consequence.",
+      "reasonAsAuthoredUntrimmed": " On its own, the frozen sump-capacity fact is ordinary/non-escalating and does not plausibly carry an immediate life-critical consequence.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 45,
+      "slotId": "AC-09.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "Obtaining the sump capacity and comparing it with the required containment volume is capable of settling the containment-capacity property.",
+      "reasonAsAuthoredUntrimmed": " Obtaining the sump capacity and comparing it with the required containment volume is capable of settling the containment-capacity property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 46,
+      "slotId": "AC-10.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The first pass declared the decision-critical absence-of-voltage verification gap.",
+      "reasonAsAuthoredUntrimmed": " The first pass declared the decision-critical absence-of-voltage verification gap.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 47,
+      "slotId": "AC-10.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns a genuinely unresolved verification condition and does not reopen the established electrical lockout itself.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns a genuinely unresolved verification condition and does not reopen the established electrical lockout itself.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 48,
+      "slotId": "AC-10.FACT1.C",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The declaration identifies the correct absence-of-voltage verification issue, but its property statement does not fully preserve the frozen before-and-after proving sequence; that qualifier appears only later in the clarification.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies the correct absence-of-voltage verification issue, but its property statement does not fully preserve the frozen before-and-after proving sequence; that qualifier appears only later in the clarification.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 49,
+      "slotId": "AC-10.FACT1.E",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The negative branch captures failed verification, but the positive branch says a proving unit was used without explicitly preserving that the indicator was proved both before and after the point-of-work test, so the exact verification state is underspecified.",
+      "reasonAsAuthoredUntrimmed": " The negative branch captures failed verification, but the positive branch says a proving unit was used without explicitly preserving that the indicator was proved both before and after the point-of-work test, so the exact verification state is underspecified.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 50,
+      "slotId": "AC-10.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "Valid verification versus inadequate verification leads to materially different current actions: continue under verified isolation versus stop and re-verify before work resumes.",
+      "reasonAsAuthoredUntrimmed": " Valid verification versus inadequate verification leads to materially different current actions: continue under verified isolation versus stop and re-verify before work resumes.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 51,
+      "slotId": "AC-10.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification asks where and on which conductors testing occurred and whether the tester was proved before and after, making it capable of settling the frozen verification property.",
+      "reasonAsAuthoredUntrimmed": " The clarification asks where and on which conductors testing occurred and whether the tester was proved before and after, making it capable of settling the frozen verification property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 52,
+      "slotId": "AC-10.FACT1.R_SAFETY",
+      "verdict": "PLAUSIBLY_LIFE_CRITICAL",
+      "reason": "Failure to establish absence of voltage at the point of work plausibly exposes the electrician to fatal electrical energy.",
+      "reasonAsAuthoredUntrimmed": " Failure to establish absence of voltage at the point of work plausibly exposes the electrician to fatal electrical energy.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 53,
+      "slotId": "AC-10.FACT1.R_FLOOR",
+      "verdict": "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+      "reason": "The projected OTHER floor materially understates the safety significance of an unresolved absence-of-voltage verification fact.",
+      "reasonAsAuthoredUntrimmed": " The projected OTHER floor materially understates the safety significance of an unresolved absence-of-voltage verification fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 54,
+      "slotId": "AC-11.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The post-repair pressure-test sufficiency gap was declared.",
+      "reasonAsAuthoredUntrimmed": " The post-repair pressure-test sufficiency gap was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 55,
+      "slotId": "AC-11.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns the genuinely unresolved adequacy of the post-repair test and does not manufacture an already-resolved fact.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns the genuinely unresolved adequacy of the post-repair test and does not manufacture an already-resolved fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 56,
+      "slotId": "AC-11.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies whether the post-repair test reached the required acceptance pressure and established repair integrity.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies whether the post-repair test reached the required acceptance pressure and established repair integrity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 57,
+      "slotId": "AC-11.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Adequate passed pressure testing versus inadequate, failed, or unestablished testing are genuine alternative states.",
+      "reasonAsAuthoredUntrimmed": " Adequate passed pressure testing versus inadequate, failed, or unestablished testing are genuine alternative states.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 58,
+      "slotId": "AC-11.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The two states lead to materially different current actions: continued service versus removing or depressurising the receiver pending valid verification.",
+      "reasonAsAuthoredUntrimmed": " The two states lead to materially different current actions: continued service versus removing or depressurising the receiver pending valid verification.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 59,
+      "slotId": "AC-11.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "Asking for the actual test pressure and its comparison with the required vessel test pressure is capable of settling the fact.",
+      "reasonAsAuthoredUntrimmed": " Asking for the actual test pressure and its comparison with the required vessel test pressure is capable of settling the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 60,
+      "slotId": "AC-11.FACT1.R_SAFETY",
+      "verdict": "PLAUSIBLY_LIFE_CRITICAL",
+      "reason": "Unverified integrity of a repaired pressurised receiver plausibly carries fatal or life-threatening failure consequences.",
+      "reasonAsAuthoredUntrimmed": " Unverified integrity of a repaired pressurised receiver plausibly carries fatal or life-threatening failure consequences.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 61,
+      "slotId": "AC-11.FACT1.R_FLOOR",
+      "verdict": "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+      "reason": "The projected OTHER floor materially understates the safety significance of unresolved repaired-pressure-vessel integrity.",
+      "reasonAsAuthoredUntrimmed": " The projected OTHER floor materially understates the safety significance of unresolved repaired-pressure-vessel integrity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 62,
+      "slotId": "AC-12.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The sling-identification and examination-status gap was declared.",
+      "reasonAsAuthoredUntrimmed": " The sling-identification and examination-status gap was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 63,
+      "slotId": "AC-12.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns a genuinely unresolved traceability condition rather than an already-established property.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns a genuinely unresolved traceability condition rather than an already-established property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 64,
+      "slotId": "AC-12.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies whether the sling can be positively identified and tied to its examination status despite the illegible tag.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies whether the sling can be positively identified and tied to its examination status despite the illegible tag.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 65,
+      "slotId": "AC-12.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Traceable identity and examination status versus inability to establish identity are genuine alternative states of the fact.",
+      "reasonAsAuthoredUntrimmed": " Traceable identity and examination status versus inability to establish identity are genuine alternative states of the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 66,
+      "slotId": "AC-12.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification seeks an alternative traceable means of establishing sling identity and current examination status and can settle the fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification seeks an alternative traceable means of establishing sling identity and current examination status and can settle the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 67,
+      "slotId": "AC-13.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The required post-die-change light-curtain verification gap was declared.",
+      "reasonAsAuthoredUntrimmed": " The required post-die-change light-curtain verification gap was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 68,
+      "slotId": "AC-13.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns a genuinely unresolved post-change verification state and avoids treating the older test record as current proof.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns a genuinely unresolved post-change verification state and avoids treating the older test record as current proof.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 69,
+      "slotId": "AC-13.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration preserves the exact post-die-change light-curtain function and coverage property.",
+      "reasonAsAuthoredUntrimmed": " The declaration preserves the exact post-die-change light-curtain function and coverage property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 70,
+      "slotId": "AC-13.FACT1.D",
+      "verdict": "CORRECT",
+      "reason": "The cited observation span is directly relevant to why a post-change function test is not established.",
+      "reasonAsAuthoredUntrimmed": " The cited observation span is directly relevant to why a post-change function test is not established.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 71,
+      "slotId": "AC-13.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification explicitly preserves the after-die-change and before-return-to-production window and can settle the fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification explicitly preserves the after-die-change and before-return-to-production window and can settle the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 72,
+      "slotId": "AC-13.FACT1.Q",
+      "verdict": "NO_OBSERVABLE_LOSS",
+      "reason": "Despite the missing dedicated owed-property field, the remaining projected semantics and clarification preserve the target sufficiently for verifier and human review; no observable semantic loss occurred.",
+      "reasonAsAuthoredUntrimmed": " Despite the missing dedicated owed-property field, the remaining projected semantics and clarification preserve the target sufficiently for verifier and human review; no observable semantic loss occurred.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 73,
+      "slotId": "AC-13.FACT1.L",
+      "verdict": "CORRECT",
+      "reason": "The verifier's substantive determination remains bound to the post-die-change light-curtain verification fact and evaluates whether the corresponding clarification settles it.",
+      "reasonAsAuthoredUntrimmed": " The verifier's substantive determination remains bound to the post-die-change light-curtain verification fact and evaluates whether the corresponding clarification settles it.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 74,
+      "slotId": "AC-14.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The post-modification extraction-performance gap was declared.",
+      "reasonAsAuthoredUntrimmed": " The post-modification extraction-performance gap was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 75,
+      "slotId": "AC-14.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns genuinely unresolved current capture performance and does not rely on the pre-modification test as proof.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns genuinely unresolved current capture performance and does not rely on the pre-modification test as proof.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 76,
+      "slotId": "AC-14.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies current capture performance at the spindle-moulder hood after the new branch was added.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies current capture performance at the spindle-moulder hood after the new branch was added.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 77,
+      "slotId": "AC-14.FACT1.D",
+      "verdict": "CORRECT",
+      "reason": "The observation span is relevant to why current post-modification capture performance is not established.",
+      "reasonAsAuthoredUntrimmed": " The observation span is relevant to why current post-modification capture performance is not established.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 78,
+      "slotId": "AC-14.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification specifically asks for capture performance measured or otherwise verified as adequate since the branch modification and can settle the property.",
+      "reasonAsAuthoredUntrimmed": " The clarification specifically asks for capture performance measured or otherwise verified as adequate since the branch modification and can settle the property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 79,
+      "slotId": "AC-14.FACT1.Q",
+      "verdict": "NO_OBSERVABLE_LOSS",
+      "reason": "The target remains explicit through the projected semantics, temporal qualifiers and clarification despite the absence of a dedicated owed-property field.",
+      "reasonAsAuthoredUntrimmed": " The target remains explicit through the projected semantics, temporal qualifiers and clarification despite the absence of a dedicated owed-property field.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 80,
+      "slotId": "AC-14.FACT1.L",
+      "verdict": "CORRECT",
+      "reason": "The verifier remains substantively bound to post-modification capture performance at the spindle-moulder hood.",
+      "reasonAsAuthoredUntrimmed": " The verifier remains substantively bound to post-modification capture performance at the spindle-moulder hood.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 81,
+      "slotId": "AC-15.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The required post-relocation scaffold inspection gap was declared.",
+      "reasonAsAuthoredUntrimmed": " The required post-relocation scaffold inspection gap was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 82,
+      "slotId": "AC-15.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns the genuinely unresolved inspection after the move rather than treating the older tag as current verification.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns the genuinely unresolved inspection after the move rather than treating the older tag as current verification.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 83,
+      "slotId": "AC-15.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "Taken as a whole, the declaration identifies whether a competent post-move inspection occurred and confirmed the tower safe in its present position.",
+      "reasonAsAuthoredUntrimmed": " Taken as a whole, the declaration identifies whether a competent post-move inspection occurred and confirmed the tower safe in its present position.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 84,
+      "slotId": "AC-15.FACT1.D",
+      "verdict": "CORRECT",
+      "reason": "The cited span is directly relevant to why inspection after relocation is not established.",
+      "reasonAsAuthoredUntrimmed": " The cited span is directly relevant to why inspection after relocation is not established.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 85,
+      "slotId": "AC-15.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification asks both whether inspection occurred after the move and whether it confirmed level, stability and locking, satisfying both required conjuncts.",
+      "reasonAsAuthoredUntrimmed": " The clarification asks both whether inspection occurred after the move and whether it confirmed level, stability and locking, satisfying both required conjuncts.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 86,
+      "slotId": "AC-15.FACT1.Q",
+      "verdict": "NO_OBSERVABLE_LOSS",
+      "reason": "The post-move inspection target and its substantive findings remain available to verifier and human review despite the absent dedicated property field.",
+      "reasonAsAuthoredUntrimmed": " The post-move inspection target and its substantive findings remain available to verifier and human review despite the absent dedicated property field.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 87,
+      "slotId": "AC-15.FACT1.L",
+      "verdict": "CORRECT",
+      "reason": "The verifier addresses the post-move inspection fact and the sufficiency of its corresponding clarification without substituting a neighbouring property.",
+      "reasonAsAuthoredUntrimmed": " The verifier addresses the post-move inspection fact and the sufficiency of its corresponding clarification without substituting a neighbouring property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 88,
+      "slotId": "AC-16.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The unresolved running-condition access-to-moving-ribbon property was declared.",
+      "reasonAsAuthoredUntrimmed": " The unresolved running-condition access-to-moving-ribbon property was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 89,
+      "slotId": "AC-16.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns the genuinely unresolved access condition rather than merely restating the known missing-fastener defect.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns the genuinely unresolved access condition rather than merely restating the known missing-fastener defect.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 90,
+      "slotId": "AC-16.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies whether the running-condition cover gap permits hand access to the moving ribbon.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies whether the running-condition cover gap permits hand access to the moving ribbon.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 91,
+      "slotId": "AC-16.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Hand-admitting versus non-hand-admitting running gaps are genuine alternative states consistent with the observation.",
+      "reasonAsAuthoredUntrimmed": " Hand-admitting versus non-hand-admitting running gaps are genuine alternative states consistent with the observation.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 92,
+      "slotId": "AC-16.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The branches lead to materially different current hazard characterisation and corrective urgency.",
+      "reasonAsAuthoredUntrimmed": " The branches lead to materially different current hazard characterisation and corrective urgency.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 93,
+      "slotId": "AC-16.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification directly seeks evidence about whether the running-condition gap can admit a hand or fingers and is capable of settling the fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification directly seeks evidence about whether the running-condition gap can admit a hand or fingers and is capable of settling the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 94,
+      "slotId": "AC-16.FACT1.L",
+      "verdict": "CORRECT",
+      "reason": "The verifier's substantive analysis remains focused on the running-condition hand-access fact and its clarification.",
+      "reasonAsAuthoredUntrimmed": " The verifier's substantive analysis remains focused on the running-condition hand-access fact and its clarification.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 95,
+      "slotId": "AC-17.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The unresolved effectiveness and timeliness of the overdue-departure-call response was declared.",
+      "reasonAsAuthoredUntrimmed": " The unresolved effectiveness and timeliness of the overdue-departure-call response was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 96,
+      "slotId": "AC-17.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns a genuinely unresolved emergency-detection process rather than merely asking whether a lone-working procedure exists.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns a genuinely unresolved emergency-detection process rather than merely asking whether a lone-working procedure exists.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 97,
+      "slotId": "AC-17.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "Taken as a whole, the declaration identifies whether the control room has a functioning, sufficiently prompt process to detect and act on an overdue departure call.",
+      "reasonAsAuthoredUntrimmed": " Taken as a whole, the declaration identifies whether the control room has a functioning, sufficiently prompt process to detect and act on an overdue departure call.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 98,
+      "slotId": "AC-17.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "A defined prompt escalation process versus no reliable process are genuine alternative states.",
+      "reasonAsAuthoredUntrimmed": " A defined prompt escalation process versus no reliable process are genuine alternative states.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 99,
+      "slotId": "AC-17.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The states lead to materially different current lone-working controls.",
+      "reasonAsAuthoredUntrimmed": " The states lead to materially different current lone-working controls.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 100,
+      "slotId": "AC-17.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "Asking for the process, response timeframe and action on an overdue call obtains evidence capable of settling the emergency-response property.",
+      "reasonAsAuthoredUntrimmed": " Asking for the process, response timeframe and action on an overdue call obtains evidence capable of settling the emergency-response property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 101,
+      "slotId": "AC-18.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The crawling-board span/load issue was recognized and declared; the fact-level axes separately assess whether all load qualifiers survived.",
+      "reasonAsAuthoredUntrimmed": " The crawling-board span/load issue was recognized and declared; the fact-level axes separately assess whether all load qualifiers survived.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 102,
+      "slotId": "AC-18.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns a genuinely unresolved load-rating issue and does not manufacture a gap from the already-confirmed fall-arrest or edge-protection controls.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns a genuinely unresolved load-rating issue and does not manufacture a gap from the already-confirmed fall-arrest or edge-protection controls.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 103,
+      "slotId": "AC-18.FACT1.C",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The declaration preserves the 1.8 metre span but narrows the required load from a person plus materials to a person alone.",
+      "reasonAsAuthoredUntrimmed": " The declaration preserves the 1.8 metre span but narrows the required load from a person plus materials to a person alone.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 104,
+      "slotId": "AC-18.FACT1.E",
+      "verdict": "INCORRECT",
+      "reason": "The branches resolve whether the boards are rated for a person at the span, not whether they are rated for the actual person-and-materials load, so they can leave the exact frozen fact open.",
+      "reasonAsAuthoredUntrimmed": " The branches resolve whether the boards are rated for a person at the span, not whether they are rated for the actual person-and-materials load, so they can leave the exact frozen fact open.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 105,
+      "slotId": "AC-18.FACT1.F",
+      "verdict": "INCORRECT",
+      "reason": "The positive decision to continue work does not follow from a rating for a person alone because the frozen fact also requires capacity for the materials being carried.",
+      "reasonAsAuthoredUntrimmed": " The positive decision to continue work does not follow from a rating for a person alone because the frozen fact also requires capacity for the materials being carried.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 106,
+      "slotId": "AC-18.FACT1.M",
+      "verdict": "INCORRECT",
+      "reason": "The clarification asks about the 1.8 metre span with a person but omits the materials load, so an answer can leave the actual-load property unresolved.",
+      "reasonAsAuthoredUntrimmed": " The clarification asks about the 1.8 metre span with a person but omits the materials load, so an answer can leave the actual-load property unresolved.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 107,
+      "slotId": "AC-19.ROW.A",
+      "verdict": "INCORRECT",
+      "reason": "The decision-critical fact is whether dressers actually wear RPE during abrasive cutting; the model instead declared only whether RPE is available in lockers, so the required fact was not declared.",
+      "reasonAsAuthoredUntrimmed": " The decision-critical fact is whether dressers actually wear RPE during abrasive cutting; the model instead declared only whether RPE is available in lockers, so the required fact was not declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 108,
+      "slotId": "AC-19.ROW.B",
+      "verdict": "INCORRECT",
+      "reason": "The availability declaration substitutes an unobserved equipment-location question for the frozen current-control property of actual RPE use and is not a legitimate owed fact for this row.",
+      "reasonAsAuthoredUntrimmed": " The availability declaration substitutes an unobserved equipment-location question for the frozen current-control property of actual RPE use and is not a legitimate owed fact for this row.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 109,
+      "slotId": "AC-19.FACT1.C",
+      "verdict": "INCORRECT",
+      "reason": "The declaration identifies RPE availability, a neighbouring property, rather than whether dressers wear RPE when abrasive cutting is performed.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies RPE availability, a neighbouring property, rather than whether dressers wear RPE when abrasive cutting is performed.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 110,
+      "slotId": "AC-19.FACT1.E",
+      "verdict": "INCORRECT",
+      "reason": "Available versus unavailable RPE are states of a different property; neither branch resolves whether the dressers actually wear RPE during abrasive cutting.",
+      "reasonAsAuthoredUntrimmed": " Available versus unavailable RPE are states of a different property; neither branch resolves whether the dressers actually wear RPE during abrasive cutting.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 111,
+      "slotId": "AC-19.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "For the produced availability fact itself, available versus unavailable RPE leads to materially different immediate corrective actions concerning provision.",
+      "reasonAsAuthoredUntrimmed": " For the produced availability fact itself, available versus unavailable RPE leads to materially different immediate corrective actions concerning provision.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 112,
+      "slotId": "AC-19.FACT1.M",
+      "verdict": "INCORRECT",
+      "reason": "Asking whether RPE is available cannot establish whether the dressers actually wear it when abrasive cutting resumes, so the exact owed property remains open.",
+      "reasonAsAuthoredUntrimmed": " Asking whether RPE is available cannot establish whether the dressers actually wear it when abrasive cutting resumes, so the exact owed property remains open.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 113,
+      "slotId": "AC-19.FACT1.R_SAFETY",
+      "verdict": "SAFETY_SIGNIFICANT",
+      "reason": "Availability of required respiratory protection for abrasive cutting is safety-significant, although this produced fact does not itself establish a plausibly life-critical immediate state.",
+      "reasonAsAuthoredUntrimmed": " Availability of required respiratory protection for abrasive cutting is safety-significant, although this produced fact does not itself establish a plausibly life-critical immediate state.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 114,
+      "slotId": "AC-19.FACT1.R_FLOOR",
+      "verdict": "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+      "reason": "The projected OTHER floor materially understates the safety significance of the produced RPE-control fact.",
+      "reasonAsAuthoredUntrimmed": " The projected OTHER floor materially understates the safety significance of the produced RPE-control fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 115,
+      "slotId": "AC-20.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "Both independent decision-critical hot-work gaps were declared.",
+      "reasonAsAuthoredUntrimmed": " Both independent decision-critical hot-work gaps were declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 116,
+      "slotId": "AC-20.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "Both declarations concern genuinely unresolved current-action properties and avoid unnecessary additional owed facts.",
+      "reasonAsAuthoredUntrimmed": " Both declarations concern genuinely unresolved current-action properties and avoid unnecessary additional owed facts.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 117,
+      "slotId": "AC-20.ROW.H",
+      "verdict": "CORRECT",
+      "reason": "Permit pre-start conditions and combustible panel-core identity remain independent declarations requiring different evidence.",
+      "reasonAsAuthoredUntrimmed": " Permit pre-start conditions and combustible panel-core identity remain independent declarations requiring different evidence.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 118,
+      "slotId": "AC-20.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The first declaration identifies whether all three permit pre-start conditions have been met before cutting begins.",
+      "reasonAsAuthoredUntrimmed": " The first declaration identifies whether all three permit pre-start conditions have been met before cutting begins.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 119,
+      "slotId": "AC-20.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "All three conditions met versus one or more not met are genuine alternative states.",
+      "reasonAsAuthoredUntrimmed": " All three conditions met versus one or more not met are genuine alternative states.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 120,
+      "slotId": "AC-20.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The states lead to materially different current decisions: cutting may proceed versus cutting must be held.",
+      "reasonAsAuthoredUntrimmed": " The states lead to materially different current decisions: cutting may proceed versus cutting must be held.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 121,
+      "slotId": "AC-20.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification explicitly asks about all three pre-start conditions and can settle the composite fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification explicitly asks about all three pre-start conditions and can settle the composite fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 122,
+      "slotId": "AC-20.FACT1.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier correctly evaluates the three pre-start-condition fact but also substantively evaluates the independent combustible-core fact and row-level alternatives.",
+      "reasonAsAuthoredUntrimmed": " The verifier correctly evaluates the three pre-start-condition fact but also substantively evaluates the independent combustible-core fact and row-level alternatives.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 123,
+      "slotId": "AC-20.FACT2.C",
+      "verdict": "CORRECT",
+      "reason": "The second declaration identifies the unknown panel-core material and whether it is combustible.",
+      "reasonAsAuthoredUntrimmed": " The second declaration identifies the unknown panel-core material and whether it is combustible.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 124,
+      "slotId": "AC-20.FACT2.E",
+      "verdict": "CORRECT",
+      "reason": "Non-combustible versus combustible or unconfirmable core material are genuine states relevant to the exact fact.",
+      "reasonAsAuthoredUntrimmed": " Non-combustible versus combustible or unconfirmable core material are genuine states relevant to the exact fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 125,
+      "slotId": "AC-20.FACT2.F",
+      "verdict": "CORRECT",
+      "reason": "The core states lead to materially different decisions about use of the spark-producing cutting method.",
+      "reasonAsAuthoredUntrimmed": " The core states lead to materially different decisions about use of the spark-producing cutting method.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 126,
+      "slotId": "AC-20.FACT2.M",
+      "verdict": "CORRECT",
+      "reason": "Asking what the core material is and whether it is combustible directly obtains evidence capable of settling the fact.",
+      "reasonAsAuthoredUntrimmed": " Asking what the core material is and whether it is combustible directly obtains evidence capable of settling the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 127,
+      "slotId": "AC-20.FACT2.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier correctly evaluates the combustible-core fact but also substantively evaluates the separate pre-start-condition fact and other row-level gaps.",
+      "reasonAsAuthoredUntrimmed": " The verifier correctly evaluates the combustible-core fact but also substantively evaluates the separate pre-start-condition fact and other row-level gaps.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 128,
+      "slotId": "AC-21.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "The decision-critical cylinder-contents uncertainty was declared.",
+      "reasonAsAuthoredUntrimmed": " The decision-critical cylinder-contents uncertainty was declared.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 129,
+      "slotId": "AC-21.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The declaration concerns the genuinely unknown cylinder contents and avoids converting secondary condition details into independent owed facts.",
+      "reasonAsAuthoredUntrimmed": " The declaration concerns the genuinely unknown cylinder contents and avoids converting secondary condition details into independent owed facts.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 130,
+      "slotId": "AC-21.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies the cylinder's identity and contents, which determine the severity and handling posture of an uncontrolled release.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies the cylinder's identity and contents, which determine the severity and handling posture of an uncontrolled release.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 131,
+      "slotId": "AC-21.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Identified benign contents versus unidentified or hazardous contents are genuine decision-relevant states.",
+      "reasonAsAuthoredUntrimmed": " Identified benign contents versus unidentified or hazardous contents are genuine decision-relevant states.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 132,
+      "slotId": "AC-21.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The branches lead to materially different handling, exclusion and specialist-response decisions.",
+      "reasonAsAuthoredUntrimmed": " The branches lead to materially different handling, exclusion and specialist-response decisions.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 133,
+      "slotId": "AC-21.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "Positive identification of the cylinder contents, or inability to identify them, is evidence capable of settling the fact.",
+      "reasonAsAuthoredUntrimmed": " Positive identification of the cylinder contents, or inability to identify them, is evidence capable of settling the fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 134,
+      "slotId": "AC-21.FACT1.R_SAFETY",
+      "verdict": "SAFETY_SIGNIFICANT",
+      "reason": "The unknown compressed-gas contents in the below-ground room are safety-significant under the frozen scenario.",
+      "reasonAsAuthoredUntrimmed": " The unknown compressed-gas contents in the below-ground room are safety-significant under the frozen scenario.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 135,
+      "slotId": "AC-21.FACT1.R_FLOOR",
+      "verdict": "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+      "reason": "The projected OTHER floor materially understates the safety significance of an unidentified compressed-gas cylinder in this setting.",
+      "reasonAsAuthoredUntrimmed": " The projected OTHER floor materially understates the safety significance of an unidentified compressed-gas cylinder in this setting.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 136,
+      "slotId": "AC-21.FACT1.L",
+      "verdict": "CORRECT",
+      "reason": "The verifier remains substantively bound to cylinder contents and the resulting handling decision; discussion of secondary condition details is used only to reject them as independent decision-critical facts.",
+      "reasonAsAuthoredUntrimmed": " The verifier remains substantively bound to cylinder contents and the resulting handling decision; discussion of secondary condition details is used only to reject them as independent decision-critical facts.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 137,
+      "slotId": "AC-22.ROW.A",
+      "verdict": "INCORRECT",
+      "reason": "The frozen fact asks what was actually done about both compressed-air and accumulator energy before entry; the model instead declared whether an accumulator bleed or blocking method exists.",
+      "reasonAsAuthoredUntrimmed": " The frozen fact asks what was actually done about both compressed-air and accumulator energy before entry; the model instead declared whether an accumulator bleed or blocking method exists.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 138,
+      "slotId": "AC-22.ROW.B",
+      "verdict": "INCORRECT",
+      "reason": "The sole declaration substitutes downstream engineering-method availability for the current pre-entry stored-energy state and omits the compressed-air conjunct, so it is not a precise owed fact for this row.",
+      "reasonAsAuthoredUntrimmed": " The sole declaration substitutes downstream engineering-method availability for the current pre-entry stored-energy state and omits the compressed-air conjunct, so it is not a precise owed fact for this row.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 139,
+      "slotId": "AC-22.FACT1.C",
+      "verdict": "INCORRECT",
+      "reason": "The declaration asks whether a physical accumulator bleed or blocking method exists, which is a neighbouring remediation property rather than whether air and accumulator energy were actually released or restrained before entry.",
+      "reasonAsAuthoredUntrimmed": " The declaration asks whether a physical accumulator bleed or blocking method exists, which is a neighbouring remediation property rather than whether air and accumulator energy were actually released or restrained before entry.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 140,
+      "slotId": "AC-22.FACT1.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier is bound to the projected accumulator-method fact, but its rationale also evaluates the unlocked air valve and incomplete procedure while failing to recognize that the projected fact substituted for the frozen pre-entry energy-state property.",
+      "reasonAsAuthoredUntrimmed": " The verifier is bound to the projected accumulator-method fact, but its rationale also evaluates the unlocked air valve and incomplete procedure while failing to recognize that the projected fact substituted for the frozen pre-entry energy-state property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 141,
+      "slotId": "AC-22.FACT1.N",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "GOV-ECP-01 legitimately concerns stored-energy control, but the bearing statement stretches that requirement into bearing on whether a physical method actually exists on this particular machine, which the record cannot establish.",
+      "reasonAsAuthoredUntrimmed": " GOV-ECP-01 legitimately concerns stored-energy control, but the bearing statement stretches that requirement into bearing on whether a physical method actually exists on this particular machine, which the record cannot establish.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 142,
+      "slotId": "AC-22.FACT1.S",
+      "verdict": "CORRECT",
+      "reason": "The governed stage named GOV-ECP-01, the supplied record that bears on stored-energy control, and correctly left the deliberately off-point GOV-PPE-02 unnamed.",
+      "reasonAsAuthoredUntrimmed": " The governed stage named GOV-ECP-01, the supplied record that bears on stored-energy control, and correctly left the deliberately off-point GOV-PPE-02 unnamed.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 143,
+      "slotId": "AC-22.FACT1.T",
+      "verdict": "INCORRECT",
+      "reason": "The provider-visible governed text was sufficient to judge grounding, but the binding statement extends the record from a requirement to dissipate or restrain stored energy to the factual existence of a method on this machine; that factual proposition is not grounded by the record.",
+      "reasonAsAuthoredUntrimmed": " The provider-visible governed text was sufficient to judge grounding, but the binding statement extends the record from a requirement to dissipate or restrain stored energy to the factual existence of a method on this machine; that factual proposition is not grounded by the record.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 144,
+      "slotId": "AC-22.FACT1.M",
+      "verdict": "INCORRECT",
+      "reason": "The clarification asks whether the accumulator can be bled or blocked; it does not establish what was actually done about both compressed air and accumulator energy before the technician entered, so it cannot settle the frozen fact.",
+      "reasonAsAuthoredUntrimmed": " The clarification asks whether the accumulator can be bled or blocked; it does not establish what was actually done about both compressed air and accumulator energy before the technician entered, so it cannot settle the frozen fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 145,
+      "slotId": "AC-23.ROW.A",
+      "verdict": "INCORRECT",
+      "reason": "The ladder base-slip property is decision-critical and unresolved, but the first pass produced no structured declaration for it.",
+      "reasonAsAuthoredUntrimmed": " The ladder base-slip property is decision-critical and unresolved, but the first pass produced no structured declaration for it.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 146,
+      "slotId": "AC-23.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "No unnecessary owed fact was declared; the failure on this row is omission of the required fact rather than creation of a false one.",
+      "reasonAsAuthoredUntrimmed": " No unnecessary owed fact was declared; the failure on this row is omission of the required fact rather than creation of a false one.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 147,
+      "slotId": "AC-23.FACT1.C",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 148,
+      "slotId": "AC-23.FACT1.L",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 149,
+      "slotId": "AC-23.FACT1.N",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 150,
+      "slotId": "AC-23.FACT1.S",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 151,
+      "slotId": "AC-23.FACT1.T",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 152,
+      "slotId": "AC-23.FACT1.M",
+      "verdict": "NOT_EXERCISED",
+      "reason": "No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "reasonAsAuthoredUntrimmed": " No declaration or admitted OwedFact was produced for the ladder base-slip fact, so this fact-level axis had no execution opportunity.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 153,
+      "slotId": "AC-24.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "No decision-critical unresolved fact required declaration; the guarding property was established by direct inspection.",
+      "reasonAsAuthoredUntrimmed": " No decision-critical unresolved fact required declaration; the guarding property was established by direct inspection.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 154,
+      "slotId": "AC-24.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The first pass correctly avoided manufacturing a gap from the supplied governed record or the neutral unknown guard-material specification.",
+      "reasonAsAuthoredUntrimmed": " The first pass correctly avoided manufacturing a gap from the supplied governed record or the neutral unknown guard-material specification.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 155,
+      "slotId": "AC-24.ROW.I",
+      "verdict": "CORRECT",
+      "reason": "The governed control row correctly produced zero owed facts despite being supplied an on-subject guarding record.",
+      "reasonAsAuthoredUntrimmed": " The governed control row correctly produced zero owed facts despite being supplied an on-subject guarding record.",
+      "attribution": "PRODUCT_OWNER"
+    }
+  ],
+  "verdictTally": {
+    "PARTIALLY_CORRECT": 13,
+    "CORRECT": 98,
+    "INCORRECT": 19,
+    "NOT_EXERCISED": 11,
+    "SAFETY_SIGNIFICANT": 3,
+    "PLAUSIBLY_LIFE_CRITICAL": 3,
+    "ORDINARY_NON_ESCALATING": 1,
+    "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE": 4,
+    "NO_OBSERVABLE_LOSS": 3
+  },
+  "worksheet": {
+    "slotCount": 177,
+    "suppliedVerdictCountBefore": 22,
+    "suppliedVerdictCountAfter": 177,
+    "status": "ALL SLOTS CARRY A PRODUCT_OWNER VERDICT",
+    "sha256Before": "f37d154f2b3da26111d3b6d40e8a1793a15a68bccaf8aeb535d9c030ef6b66a0",
+    "sha256After": "50209475a5b7c532e2feebe71d79eb2ef19c82559fb2a29b23daace9000bd5ac"
+  },
+  "ledger": {
+    "entryCountBefore": 22,
+    "entryCountAfter": 177,
+    "byteLengthBefore": 11753,
+    "byteLengthAfter": 84322,
+    "appendedEntryCount": 155,
+    "sha256After": "3a5d9d9e12c15d6700935b69d8be48d3ff041a202753d880cddeea1b532e263d"
+  },
+  "recordedAt": "2026-09-09T02:20:32.473Z",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "gateComputationPerformed": false,
+  "note": "Recording a batch does not compute a gate and does not advance acceptance. Run check-209-completeness.ts to count what is now supplied and what remains open."
+}

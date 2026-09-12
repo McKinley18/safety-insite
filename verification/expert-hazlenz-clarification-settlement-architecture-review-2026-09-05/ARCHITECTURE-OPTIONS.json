@@ -1,0 +1,126 @@
+{
+  "artifact": "SECTION_180_ARCHITECTURE_OPTIONS",
+  "date": "2026-09-05",
+  "status": "REVIEW ONLY — nothing implemented, no option authorized",
+  "note": "Options B and C are not alternatives: C is B plus a settlement target that is already implemented and usually null. They are compared separately because their failure modes differ where a governed criterion exists.",
+
+  "OPTION_A": {
+    "name": "PROMPT-ONLY CONTINUATION",
+    "description": "Further prompt engineering with no structural settlement representation. A v16 wording, or a different placement of the v15 rule.",
+    "advantages": [
+      "cheapest by a wide margin; one file, no schema, no new surface",
+      "no new failure surface introduced, and nothing new to keep inactive",
+      "the §176/§178 static-proof harness already exists and would apply unchanged",
+      "reversible in a single edit"
+    ],
+    "failureModes": [
+      "no measurement surface: the settlement decision stays inside prose, so the next failure is diagnosed the same way this one was — by reading raw output row by row",
+      "three prompt identities (v13, v14, v15) have now failed to move HR-04, and §179 replicate 3 reasoned explicitly through presence, the pre-start check AND the historical torque verification before settling the fact",
+      "each attempt costs a replicated hosted validation to evaluate; §179 cost 30 calls and $1.53991 to learn one row did not move",
+      "wording changes risk the precision half — §179 already shows 12/15 silence against a 13/15 floor"
+    ],
+    "determinismBoundary": "unchanged — nothing deterministic is added or removed",
+    "semanticBoundary": "unchanged — everything stays semantic, which is the problem as well as the safety property",
+    "implementationComplexity": "LOW",
+    "legalSafetyTrustImplications": "neutral to negative. The settlement decision remains unauditable, so a reviewer cannot show why a question was or was not asked.",
+    "testability": "static proofs only. §176 passed 30+ static proofs and changed nothing behaviourally; that precedent is the strongest argument against relying on this alone.",
+    "compatibilityWithInactiveVerifierV3": "total — it does not touch it",
+    "riskOfOverQuestioning": "MODERATE — recall-oriented wording has historically cost precision",
+    "riskOfFalseSettlement": "HIGH and UNOBSERVABLE — the failure mode is unchanged and still leaves no trace",
+    "verdict": "NOT REFUTED AS A CATEGORY — v15 was one wording at one placement, and PROMPT_ENGINEERING_CANNOT_SOLVE_SETTLEMENT is explicitly not established. But as the sole next step it repeats a loop that has failed three times and cannot report why."
+  },
+
+  "OPTION_B": {
+    "name": "STRUCTURED MODEL DECLARATION",
+    "description": "The provider emits an explicit per-fact settlement declaration — evidence observed, what property it establishes, an assessment, an unresolved reason. The verifier performs STRUCTURAL checks only. No settlement target is required.",
+    "advantages": [
+      "makes the settlement step representable, checkable and reviewable without making it deterministic",
+      "reuses an existing precedent exactly: a claim is treated like CHALLENGE_FACT_VALIDITY — settles:false, factStatusUnchanged:true — so it can never suppress a clarification on its own",
+      "gives the ledger's unreachable SETTLED_BY_EVIDENCE state a legitimate route (human review), and gives the unconsumed arbitration queue a consumer",
+      "independent of governed knowledge quality, so it degrades gracefully where acceptableEvidence is null — which is most facts today",
+      "turns HR-04's three prose summaries into three inspectable rows"
+    ],
+    "failureModes": [
+      "a fluent, wrong declaration is still fluent; structure makes it visible, not false",
+      "declaration burden may change model behaviour on unrelated axes — §167's movement was confounded by exactly this kind of bundled change",
+      "adds output tokens and latency per fact",
+      "without a target, 'what property does this establish' has nothing to be compared against except a human's own reading"
+    ],
+    "determinismBoundary": "verbatim-span byte equality, one-declaration-per-supplied-fact, field presence, enum membership, the settled-and-bound contradiction, forbidden-field echo. All properties of FORM.",
+    "semanticBoundary": "whether evidenceEstablishes satisfies the owed property is never computed. CLARIFICATION_EVIDENCE_SUFFICIENCY = SEMANTIC_JUDGMENT_REQUIRED is preserved verbatim.",
+    "implementationComplexity": "MODERATE — one declaration block, a set of new admission codes, observability. All inside the already-gated stage.",
+    "legalSafetyTrustImplications": "positive. A reviewer can see what the system believed settled a fact and on what evidence. No new authority is granted to a provider.",
+    "testability": "HIGH — synthetic zero-call proofs can drive every structural check with known answers, in the style of the existing preflight suites.",
+    "compatibilityWithInactiveVerifierV3": "designed for it. The gate stays a literal false and no environment is consulted.",
+    "riskOfOverQuestioning": "LOW-MODERATE — asking the model to justify settlement could bias it toward declaring things unresolved. Must be measured, not assumed.",
+    "riskOfFalseSettlement": "REDUCED IN VISIBILITY, NOT IN OCCURRENCE — the model may still be wrong; it can no longer be wrong invisibly, and it cannot act on the claim.",
+    "verdict": "JUSTIFIED"
+  },
+
+  "OPTION_C": {
+    "name": "GOVERNED SETTLEMENT TARGET + STRUCTURED DECLARATION",
+    "description": "Option B, plus the owed fact carrying the settlement target the declaration is compared against. Per Q1 the target is acceptableEvidence.requirement — an existing field — not a new one.",
+    "advantages": [
+      "everything in B, plus the comparison has two named sides instead of one",
+      "no schema change at all: acceptableEvidence is already typed, already provenance-governed, already projected to the provider with provenance stripped",
+      "insufficientExamples is already the §169 half — the evidence classes that look like settlement and are not — which is precisely HR-04's error class",
+      "the target is derived from an approved governed record through a hazard-agnostic sentence frame, so no one authors safety truth in this layer"
+    ],
+    "failureModes": [
+      "the target is null for most facts today, so on most facts C is exactly B",
+      "where the governed criterion is coarse it can mislead: §171 recorded that seven of nine distinct verification methods across twenty approved records are looking-based, the class §169 ruled insufficient",
+      "a coarse criterion could make a wrong settlement claim look supported, which is worse than no criterion unless provenance is carried into observability",
+      "invites pressure to strengthen governed records to make the architecture work — which would be authoring safety truth to fit a tool"
+    ],
+    "determinismBoundary": "identical to B. Deriving the target is deterministic and byte-stable; comparing it to the declaration is not attempted.",
+    "semanticBoundary": "identical to B, with the target made explicit so a human reviewer compares two stated things rather than one stated thing and their own reading.",
+    "implementationComplexity": "MODERATE — B plus wiring an existing derivation into ledger construction",
+    "legalSafetyTrustImplications": "strongest of the options. The criterion is governed-sourced, its provenance is typed, forbidden provenances are refusable, and null is a legitimate answer.",
+    "testability": "HIGH — the derivation is already deterministic and total with five named refusal reasons",
+    "compatibilityWithInactiveVerifierV3": "designed for it",
+    "riskOfOverQuestioning": "LOW-MODERATE, as B",
+    "riskOfFalseSettlement": "LOWEST of the credible options where a criterion exists; equal to B where it does not",
+    "verdict": "JUSTIFIED — and it is B's natural second stage rather than a competing design"
+  },
+
+  "OPTION_D": {
+    "name": "DETERMINISTIC SEMANTIC SETTLEMENT GATE",
+    "description": "Compute settlement sufficiency deterministically — similarity, embedding score, keyword or property matching against acceptableEvidence.",
+    "includedOnlyToBeRefused": true,
+    "whyRefused": [
+      "violates non-negotiable constraint 2 outright",
+      "it is the B_selectorAccuracy keyword scorer §160 and §161 retired, rebuilt in the production path rather than in a scorer",
+      "§160 established the failure concretely: the selector was satisfied by the observation text itself on 3 of 4 REQUIRED cases",
+      "it would convert a semantic judgement into deterministic truth, which is the one conversion the architecture is built to refuse",
+      "CLARIFICATION_EVIDENCE_SUFFICIENCY exists as a named constant specifically so this cannot be added quietly"
+    ],
+    "verdict": "REFUSED — recorded so that a future reader sees it was considered and rejected on established grounds, not overlooked"
+  },
+
+  "OPTION_E": {
+    "name": "EXERCISE THE EXISTING ARCHITECTURE FIRST (A0)",
+    "description": "Before adding any representation, run the EXISTING owed-fact ledger, projection, declaration and binding machinery against the frozen §179 rows and observe whether the failures survive it.",
+    "whyThisIsAnOption": "Finding 4: HR-04, HR-05 and HR-07 all failed on the FIRST-PASS path, which has no ledger, no factKey and no binding. The architecture that would make a displaced question structurally refusable was not running. §179 is therefore not evidence against it.",
+    "advantages": [
+      "zero new code and zero new schema; the machinery is pure and directly callable",
+      "cheapest experiment that could overturn the recommendation",
+      "if HR-04 survives it, the case for the settlement declaration rests on direct evidence rather than inference",
+      "if HR-04 does not survive it, the declaration may be unnecessary and the programme avoids building it"
+    ],
+    "failureModes": [
+      "local execution proves what the deterministic layer does, not what a hosted model does; a hosted step would still be needed and is separately authorized",
+      "constructing owed facts for the ten frozen rows is itself authoring, and must not become a route to re-authoring the frozen truth"
+    ],
+    "determinismBoundary": "unchanged",
+    "semanticBoundary": "unchanged",
+    "implementationComplexity": "LOWEST of the non-trivial options",
+    "verdict": "ADOPTED AS STAGE A0 of the recommended sequence rather than as a competing architecture"
+  },
+
+  "comparisonSummary": {
+    "onDiagnosis": "A leaves the failure invisible. B and C make it inspectable. That difference is the review's central argument, because §179 cost 30 calls to learn one row did not move and could not say why.",
+    "onSafety": "no option grants a provider new authority. B and C explicitly deny it: a settlement claim is a request, and the fact stays UNRESOLVED.",
+    "onGovernedKnowledge": "only C depends on it, and only where a criterion exists. Both B and C must fail transparently on null, which is why the governed-knowledge gap is parallel rather than prerequisite.",
+    "onCost": "A is cheapest to build and most expensive to evaluate — every attempt needs a replicated hosted run. B/C are more expensive to build and cheaper to evaluate thereafter."
+  }
+}

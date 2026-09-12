@@ -1,0 +1,272 @@
+{
+  "operation": "§146 Expert HazLenz expanded post-remediation development validation",
+  "capturedAt": "2026-09-03T04:54:59.201Z",
+  "isFormalEvaluation": false,
+  "hashes": {
+    "probeScriptSha256": "516a1bd76ec81b8f2b6f651843f727638ae0d4947648cf81f70c942845ef1b72",
+    "fixtureManifestSha256": "4a1bc28dde2e64f31c9c19fc3ab7d8ac8f68da5a62a3a54cfac2d819927b79f8",
+    "systemPromptSha256": "8f5c7960c559067626f12e239d63b5da2d312c9faf7dd19d329f555cf93b60f9",
+    "wireSchemaSha256": "2a6c01e8c67004a96f890e4fe2e32a016afde5c348498378f194f9a93f2026c1",
+    "normalizationSha256": "a12b478d80111ac570d1f7660f7f119dc86def251045520ee5fa17522dca1d9b",
+    "contractTypesSha256": "fec3fd5fea5514929717258178883b7b63f7a4f73b4bf5a7d7412bee88bbdfdd"
+  },
+  "execution": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "promptVersion": "hazlenz.expert.prompt.v9",
+    "analysisContractVersion": "hazlenz.expert.analysis.v2"
+  },
+  "budget": {
+    "targetLogicalCalls": 24,
+    "hardProviderRequestCeiling": 32,
+    "retryRequestBudget": 8,
+    "enforcedSpendCeilingUsd": 3.328,
+    "worstCaseRequestUsd": 0.104
+  },
+  "extra": {
+    "git": {
+      "head": null,
+      "branch": null,
+      "upstream": null,
+      "dirty": null
+    },
+    "historicalProviderInvocationCount": 195,
+    "contractVersions": {
+      "input": "hazlenz.expert.input.v1",
+      "validator": "hazlenz.expert.validator.v1",
+      "measurement": "hazlenz.expert.measurement.v1",
+      "harness": "hazlenz.expert.cohort.harness.v1",
+      "runRecordStore": "hazlenz.expert.run-record-store.v1",
+      "probeMeasures": "hazlenz.expert.probe-measures.v1",
+      "fixtureSet": "hazlenz.expert.dev-validation.fixtures.v4"
+    },
+    "arms": [
+      "BASE"
+    ],
+    "m14RemediationStatus": "NOT_ATTEMPTED",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "computedAdditiveOpportunities": {
+      "EV-A1": [],
+      "EV-A2": [
+        "silica_respirable_dust"
+      ],
+      "EV-A3": [
+        "chemical_inhalation_contact"
+      ],
+      "EV-A4": [
+        "lockout_tagout"
+      ],
+      "EV-A5": [
+        "fall_protection"
+      ],
+      "EV-A6": [],
+      "EV-A7": [
+        "traffic_control"
+      ],
+      "EV-A8": [
+        "fire_explosion"
+      ],
+      "EV-B1": [],
+      "EV-B2": [],
+      "EV-B3": [],
+      "EV-B4": [],
+      "EV-B5": [],
+      "EV-B6": [
+        "electrical"
+      ],
+      "EV-C1": [
+        "fire_explosion",
+        "chemical_release"
+      ],
+      "EV-C2": [],
+      "EV-C3": [
+        "machine_guarding",
+        "emergency_equipment"
+      ],
+      "EV-C4": [],
+      "EV-C5": [],
+      "EV-C6": [
+        "ventilation_air_quality"
+      ],
+      "EV-D1": [],
+      "EV-D2": [
+        "emergency_equipment",
+        "material_handling_storage"
+      ],
+      "EV-D3": [
+        "training_procedure_supervision"
+      ],
+      "EV-D4": []
+    },
+    "gate": [
+      {
+        "id": "A.1 logical calls within the authorized band",
+        "ok": true,
+        "detail": "24 rows (target 24, hard ceiling 30)"
+      },
+      {
+        "id": "A.2 every row is structurally scoreable",
+        "ok": true,
+        "detail": "0 problems"
+      },
+      {
+        "id": "A.3 ids are fresh EV-* development ids",
+        "ok": true,
+        "detail": "EV-A1 EV-A2 EV-A3 EV-A4 EV-A5 EV-A6 EV-A7 EV-A8 EV-B1 EV-B2 EV-B3 EV-B4 EV-B5 EV-B6 EV-C1 EV-C2 EV-C3 EV-C4 EV-C5 EV-C6 EV-D1 EV-D2 EV-D3 EV-D4"
+      },
+      {
+        "id": "A.4 the set is not over-sampled on one family",
+        "ok": true,
+        "detail": "24 distinct domains across 24 rows"
+      },
+      {
+        "id": "B.1 >=8 TRUE-GAP clarification positives",
+        "ok": true,
+        "detail": "9"
+      },
+      {
+        "id": "B.2 TRUE-GAPs span the affectedDecision vocabulary",
+        "ok": true,
+        "detail": "6 of 6: HAZARD_EXISTENCE, HAZARD_SEVERITY, APPLICABILITY, REQUIRED_CONTROL, EXPOSURE, REGULATORY_INTERPRETATION"
+      },
+      {
+        "id": "B.3 >=6 NO-GAP negatives",
+        "ok": true,
+        "detail": "15"
+      },
+      {
+        "id": "B.4 all six tempting shapes are represented",
+        "ok": true,
+        "detail": "USEFUL_DOCUMENTATION_DETAIL, SEVERITY_REFINEMENT_ONLY, GENERIC_PPE_FOLLOWUP, ROUTINE_DUE_DILIGENCE, HISTORICAL_INFORMATION, ALREADY_ESTABLISHED_FACT"
+      },
+      {
+        "id": "B.5 >=8 authored additive-candidate opportunities",
+        "ok": true,
+        "detail": "8"
+      },
+      {
+        "id": "B.6 >=6 plausible-interaction rows and >=6 no-insight rows",
+        "ok": true,
+        "detail": "7 plausible / 17 none"
+      },
+      {
+        "id": "B.7 >=3 valid disagreement opportunities",
+        "ok": true,
+        "detail": "EV-B6 EV-C4 EV-C5 EV-C6"
+      },
+      {
+        "id": "B.8 governed composition: >=2 relevant, >=2 unrelated, >=1 none, >=1 narrower",
+        "ok": true,
+        "detail": "relevant 2 unrelated 2 none 1 narrower 1"
+      },
+      {
+        "id": "B.9 >=2 citation-adversarial cases",
+        "ok": true,
+        "detail": "2"
+      },
+      {
+        "id": "B.10 linkage REGRESSION ONLY: >=2 REQUIRED, >=1 ambiguous/generic, and a small share",
+        "ok": true,
+        "detail": "4 required + 2 no-link = 6 of 24 rows"
+      },
+      {
+        "id": "C.1 every TRUE-GAP states BOTH answers and BOTH DIFFERENT current outcomes",
+        "ok": true,
+        "detail": "9 gaps carry a complete counterfactual"
+      },
+      {
+        "id": "C.2 every TRUE-GAP row carries exactly one authored gap",
+        "ok": true,
+        "detail": "retention is unambiguous per row"
+      },
+      {
+        "id": "C.3 every NO-GAP row states WHY it is not decision-critical",
+        "ok": true,
+        "detail": "no blanket labels"
+      },
+      {
+        "id": "C.4 decomposition truth is DECOMPOSITION_UNRESOLVABLE unless genuinely adjudicable",
+        "ok": true,
+        "detail": "23 of 24 rows honestly decline to author candidate-count truth"
+      },
+      {
+        "id": "C.5 no linkage row authors FORBIDDEN truth from a presumed decomposition",
+        "ok": true,
+        "detail": "linkage rows carry a SCENARIO INTENT judged against the emitted candidate set"
+      },
+      {
+        "id": "D.1 no formal-cohort, reserved or SPENT-probe path imported",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "E.1 model bound exactly",
+        "ok": true,
+        "detail": "claude-sonnet-5"
+      },
+      {
+        "id": "E.2 vendor endpoint",
+        "ok": true,
+        "detail": "https://api.anthropic.com"
+      },
+      {
+        "id": "E.3 thinking disabled",
+        "ok": true,
+        "detail": "disabled"
+      },
+      {
+        "id": "E.4 credential present (never logged or persisted)",
+        "ok": true,
+        "detail": "set"
+      },
+      {
+        "id": "F.1 built one request per row, called nothing",
+        "ok": true,
+        "detail": "24 built, 0 invocations"
+      },
+      {
+        "id": "F.2 ONE ARM ONLY — M14 not attempted",
+        "ok": true,
+        "detail": "BASE"
+      },
+      {
+        "id": "F.3 additive-candidate opportunities are COMPUTED from the real engine",
+        "ok": true,
+        "detail": "15 truth-present families the deterministic layer misses, across 12 rows"
+      },
+      {
+        "id": "F.4 prompt is v9",
+        "ok": true,
+        "detail": "hazlenz.expert.prompt.v9"
+      },
+      {
+        "id": "G.1 no truth-key-only string reaches any request",
+        "ok": true,
+        "detail": "24 scanned"
+      },
+      {
+        "id": "G.2 no built prompt carries citation-shaped text",
+        "ok": true,
+        "detail": "24 scanned"
+      },
+      {
+        "id": "G.3 redaction is exercised",
+        "ok": true,
+        "detail": "7 supplied record fields carried a citation pre-render"
+      },
+      {
+        "id": "H.1 spend ceiling is the LOWER of authorized and model-priced",
+        "ok": true,
+        "detail": "authorized $3.328, priced $3.3280 -> enforcing $3.3280"
+      },
+      {
+        "id": "H.2 MEASURE-ONLY: store exists",
+        "ok": true,
+        "detail": "no provider request will be issued"
+      }
+    ]
+  }
+}

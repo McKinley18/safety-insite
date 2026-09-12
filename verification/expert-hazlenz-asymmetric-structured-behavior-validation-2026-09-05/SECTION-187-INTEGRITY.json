@@ -1,0 +1,154 @@
+{
+  "artifact": "SECTION_187_INTEGRITY",
+  "date": "2026-09-05",
+  "operation": "§187 — asymmetric structured owed-fact behavioural validation: PRE-SPEND STOP",
+  "terminal": "EXPERT_HAZLENZ_ASYMMETRIC_STRUCTURED_VALIDATION_INCONCLUSIVE — EVIDENCE_OR_EXECUTION_REVIEW_REQUIRED",
+  "terminalReason": "The REQUIRED treatment is not executable on the component §179 measured: the first-pass Expert has no owed-fact input field. The only component that accepts an owed fact (the v3 verifier) needs a firstPass block that does not exist for any HR row, and its zero-owed-fact branch emits a false and strongly cueing sentence on SILENCE rows. Every executable variant materially changes what the validation measures, so the design choice was returned to the product owner before spend.",
+  "FIRST_PROVIDER_CALL_MADE": false,
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "COST_USD": 0.0,
+  "sourceChanges": 0,
+  "promptChanges": 0,
+  "schemaChanges": 0,
+  "governedRecordChanges": 0,
+  "section182EvidenceChanges": 0,
+  "section184TruthChanges": 0,
+  "section186ArtifactChanges": 0,
+  "blockers": [
+    {
+      "id": "B1",
+      "finding": "the first-pass Expert cannot receive a supplied owed fact",
+      "evidence": "ExpertAnalysisInput (expert-contract.types.ts:542) has no owed-fact field; expert-input-constructor.ts and expert-contract.types.ts contain zero occurrences of 'owed'",
+      "consequence": "the REQUIRED treatment as specified cannot be applied to the component §179 measured"
+    },
+    {
+      "id": "B2",
+      "finding": "no first-pass content exists for any HR row",
+      "evidence": "the only firstPass blocks in the repository belong to the HS-* rows frozen at §166/§167",
+      "consequence": "running the v3 verifier on HR rows requires either extra provider calls or AUTHORING the stimulus — the confound that stopped §183"
+    },
+    {
+      "id": "B3",
+      "finding": "the verifier's zero-owed-fact branch states something false and strongly cueing",
+      "evidence": "executed: buildVerifierV3UserPrompt with owedFacts: [] emits '(none were identified — the first pass returned an entirely empty analysis)'",
+      "consequence": "running the SILENCE arm through the verifier would inject a stronger cue than the settlement status §186 declined to expose, into exactly the rows whose restraint is measured"
+    }
+  ],
+  "variants": [
+    {
+      "id": 1,
+      "design": "first-pass Expert, all ten rows (the §179 design)",
+      "calls": 30,
+      "estimatedCostUsd": 1.54,
+      "withinCaps": true,
+      "answers": [
+        "F",
+        "G"
+      ],
+      "cannotAnswer": [
+        "A",
+        "B",
+        "H"
+      ],
+      "why": "the first-pass Expert emits no owedFactDeclarations, so there is no binding and no CHALLENGE_FACT_VALIDITY",
+      "note": "its SILENCE arm is a re-run of a treatment §179 already measured at SILENCE_PASS = 12/15 against a §187 gate of 13/15"
+    },
+    {
+      "id": 2,
+      "design": "asymmetric two-component: v3 verifier for REQUIRED (5 first-pass to build the stimulus + 15 verifier), first-pass Expert for SILENCE (15)",
+      "calls": 35,
+      "estimatedCostUsd": 1.86,
+      "withinCaps": true,
+      "answers": [
+        "A",
+        "B",
+        "F",
+        "G",
+        "H"
+      ],
+      "cost": "the two arms exercise DIFFERENT COMPONENTS under DIFFERENT SYSTEM PROMPTS, so the matched pair controls the observation and owed property but not the analyser"
+    },
+    {
+      "id": 3,
+      "design": "v3 verifier for all ten rows (10 first-pass + 30 verifier)",
+      "calls": 40,
+      "estimatedCostUsd": 2.19,
+      "withinCaps": false,
+      "stopRule": "exceeds the 36-call hard cap; the authorization's own rule is STOP"
+    }
+  ],
+  "costBasis": "§179 measured 30 first-pass calls at $1.53991 (~$0.0513/call); the §166 v3 preflight bounded verifier calls at ~$0.056 worst case",
+  "priorMeasurementOfVariant1SilenceArm": {
+    "source": "§179 V15-REPLICATED-RUN-SUMMARY.json",
+    "SILENCE_PASS": "12/15 exact",
+    "section187Gate": "13/15",
+    "statement": "OBSERVED NUMERIC RESULT only. No causal claim is made about why 12/15 occurred, and nothing here predicts a re-run's outcome."
+  },
+  "freezeMaterialEstablished": {
+    "frozenRowHashes": "10/10 verified against SECTION-184-INTEGRITY.json",
+    "section184TruthArtifacts": "5/5 byte-identical",
+    "firstPassPrompt": {
+      "version": "hazlenz.expert.prompt.v15",
+      "fileSha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694"
+    },
+    "owedFactSourcePostSection185": {
+      "owed-fact.types.ts": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+      "owed-fact-ledger.ts": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+      "verifier-v3-development-boundary.ts": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245",
+      "owed-fact-binding.ts": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0"
+    },
+    "model": "claude-sonnet-5",
+    "credentials": "ANTHROPIC_API_KEY present in backend/.env; not read, not printed",
+    "requiredRows": [
+      "HR-01",
+      "HR-04",
+      "HR-06",
+      "HR-08",
+      "HR-09"
+    ],
+    "silenceRows": [
+      "HR-02",
+      "HR-03",
+      "HR-05",
+      "HR-07",
+      "HR-10"
+    ],
+    "acceptableEvidence": "null on all ten rows under the existing §184/§185 deterministic derivation; preserved as null, reported, and not treated as a failure"
+  },
+  "stopConditionsHonoured": [
+    "no SILENCE execution received an owed fact (none executed)",
+    "no REQUIRED execution received more than one owed fact (none executed)",
+    "no supplied fact differs from frozen §184 truth (none supplied)",
+    "no evaluation-only §184 rationale placed in any provider-visible field",
+    "direct terminal construction NOT used to fake settled provider inputs"
+  ],
+  "preserved": {
+    "CURRENT_REGRESSION_FAILURE": false,
+    "HISTORICAL_PIN_NO_LONGER_MATCHES_CURRENT_SOURCE": true,
+    "classification": "EXPECTED_HISTORICAL_PIN_DIVERGENCE_AFTER_AUTHORIZED_LATER_CHANGE",
+    "section186Terminal": "EXPERT_HAZLENZ_SETTLED_FACT_PROJECTION_REVIEW_COMPLETE — STRUCTURED_SETTLEMENT_REPRESENTATION_DESIGN_REQUIRED",
+    "directTerminalConstructionResidual": "OPEN / OUT OF SCOPE"
+  },
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "Nothing behavioural. No provider ran."
+    ],
+    "mustNotClaim": [
+      "provider understands settled owed facts",
+      "structured settlement representation is complete",
+      "HR-04 is generally solved",
+      "automatic semantic settlement works",
+      "governed evidence is sufficient",
+      "customer readiness",
+      "production readiness",
+      "formal acceptance"
+    ]
+  },
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

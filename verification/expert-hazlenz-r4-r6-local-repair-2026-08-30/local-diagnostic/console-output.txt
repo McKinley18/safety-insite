@@ -1,0 +1,45 @@
+EXPERT HAZLENZ -- R4/R6 LOCAL REPRODUCTION DIAGNOSTIC
+provider   local-ollama   model qwen3-coder:30b   repeats 10
+
+== R4 -- EXTRA PLAUSIBLE HAZARD (HG10) ==
+
+  rep 0 seed=20260829  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 1 seed=20260830  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 2 seed=20260831  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 3 seed=20260832  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 4 seed=20260833  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 5 seed=20260834  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 6 seed=20260835  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 7 seed=20260836  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 8 seed=20260837  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+  rep 9 seed=20260838  CANDIDATE_SURVIVED  before=1 after=1 outcome=ANALYZED issues=-
+
+R4 tally over 10 reps: { CANDIDATE_SURVIVED: 10 }
+
+== R6 -- EXPLANATION-ONLY NEGATIVE CONTROL (HG12) ==
+
+  rep 0 seed=20260829  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 1 seed=20260830  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 2 seed=20260831  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 3 seed=20260832  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 4 seed=20260833  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 5 seed=20260834  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 6 seed=20260835  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 7 seed=20260836  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 8 seed=20260837  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+  rep 9 seed=20260838  over-routed=0  c=0 q=0 i=0 d=0  outcome=NOTHING_TO_ADD
+
+R6: 10/10 reps fully clean (empty). Collections ever over-routed: none
+
+== OFFLINE STRUCTURAL COMPARISON: local canonical schema vs Anthropic-stripped schema ==
+
+  local/canonical schema:    minLength=14  minItems=1
+  Anthropic-facing schema:   minLength=0  minItems=0
+  (Anthropic-facing schema is built by the REAL, unmodified buildAnthropicRequestBody(); this makes no network call.)
+
+  SYNTHETIC PROOF -- a candidate + explanation with empty required strings (illegal only
+  by minLength, which the Anthropic-facing schema no longer carries):
+    state=REJECTED  candidates=0  issues=CONTRACT_VERSION_MISMATCH
+    matches hosted R4 signature (PRESENT layer, 0 candidates, CANDIDATE_MALFORMED + EXPLANATION_MALFORMED)?  false
+
+evidence written to /Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-r4-r6-local-repair-2026-08-30

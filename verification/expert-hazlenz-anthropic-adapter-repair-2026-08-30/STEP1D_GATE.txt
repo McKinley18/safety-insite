@@ -1,0 +1,33 @@
+STEP 1D — ANTHROPIC_SCHEMA_WRAPPER_REPAIR_READY GATE (2026-08-30)
+
+Condition                                          Status
+--------------------------------------------------  ---------------------------
+Transformation is Anthropic-only                    TRUE — stripAnthropicUnsupportedKeywords lives
+                                                      in anthropic-expert-provider.ts, is applied only
+                                                      inside buildAnthropicRequestBody's tools[0]
+                                                      construction, touches no shared module.
+Source schema immutability proved                   TRUE — test A.1 (hash before === hash after),
+                                                      A.7 (wrapped schema also unmutated).
+Diff limited to minLength/minItems removal           TRUE — tests A.5/A.6/A.9 (every other leaf
+                                                      value at every path preserved); A.4 confirms
+                                                      the exact §107-measured counts (14/1) on the
+                                                      wrapped schema before stripping.
+Trusted boundary remains strict                      TRUE — tests B.1-B.8: empty required string,
+                                                      under-populated participants, malformed
+                                                      candidate, invalid groundingStatus, contradicted
+                                                      grounding declaration, and malformed evidence
+                                                      are ALL still refused; the fatal-reason list
+                                                      (B.8) is unchanged from §105 — authority did not
+                                                      move from the boundary to the provider.
+Protected regressions all green                      TRUE — 56/0, 51/0, 131/0, 141/0, 58/0, 40/0,
+                                                      61/0, 37/0, HazLenz core/precision/level1-recall/
+                                                      actionable-coverage all exit 0 (0 dangerous, 0
+                                                      life-critical omissions), backend tsc exit 0.
+Confinement green                                     TRUE — no controller/service/module reference,
+                                                      no frontend reference, no regression suite makes
+                                                      a network call, hosted adapter importers are
+                                                      probe-only scripts.
+
+ANTHROPIC_SCHEMA_WRAPPER_REPAIR_READY = TRUE
+
+Step 2 (the bounded seven-call hosted behavior re-probe) is authorized to proceed.

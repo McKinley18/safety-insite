@@ -1,0 +1,40 @@
+SECTION 207 -- EXECUTION GATE PROOF
+===================================
+
+Produced by scripts/render-207-artifacts.ts from the live gate. Zero provider calls.
+
+source identity : 879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4
+
+------------------------------------------------------------------------------
+SCENARIO: AS THE REPOSITORY STANDS TODAY (no review, no authorization)
+  permitted : false
+  pin       : 879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4
+  verified  : VERIFIED
+  BLOCKER   : PRODUCT_OWNER_REVIEW_NOT_RECORDED — the frozen specification has not been read and accepted by the product owner. Freezing fixes the content; it does not decide whether the content is right, and executing against an unreviewed specification is the §199 mistake with a hash on top.
+  BLOCKER   : COHORT_EXECUTION_NOT_AUTHORIZED — §207 authorizes ZERO fresh provider calls. The next hosted execution requires a separate product-owner authorization, carrying a reference, after review of the frozen truth specification and preregistration.
+
+------------------------------------------------------------------------------
+SCENARIO: PREREGISTRATION RECORD ABSENT (everything else satisfied)
+  permitted : false
+  pin       : 879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4
+  verified  : record not loaded
+  BLOCKER   : the frozen preregistration record is missing or unreadable at /nonexistent-repo-root-for-207-proof/verification/expert-hazlenz-fresh-cohort-preregistration-207-2026-09-08/PREREGISTRATION-207.json. THE COHORT MAY NOT RUN WITHOUT IT: without the record there is nothing establishing that the expectations predate the output.
+
+------------------------------------------------------------------------------
+SCENARIO: PIN AND RECORD DISAGREE (everything else satisfied)
+  permitted : false
+  pin       : ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  verified  : VERIFIED
+  BLOCKER   : the preregistration identity 879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4 does not match the expected identity ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff pinned in the execution gate. The record and the harness disagree about which specification is frozen.
+
+------------------------------------------------------------------------------
+SCENARIO: ALL CONDITIONS MET (hypothetical §208 authorization)
+  permitted : true
+  pin       : 879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4
+  verified  : VERIFIED
+  blockers  : none
+
+------------------------------------------------------------------------------
+The last scenario is the control. A gate that refused unconditionally would prove nothing
+about the first three: it would only prove that it refuses.
+

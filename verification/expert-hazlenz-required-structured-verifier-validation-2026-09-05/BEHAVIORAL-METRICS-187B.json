@@ -1,0 +1,214 @@
+{
+  "artifact": "SECTION_187B_BEHAVIORAL_METRICS",
+  "date": "2026-09-05",
+  "BEHAVIORAL_EXECUTIONS": 15,
+  "providerCallsThisResume": 15,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.27927,
+  "admissionNote": "the figures below use the CORRECTED admission recompute (ADMISSION-RECOMPUTE.json). The in-run RESUME-RUN-SUMMARY.json reports contractInvalid=15, which is a harness scoring defect, not a model result. Neither file was overwritten.",
+  "HARD_GATES": {
+    "successfulVerifierProviderErrors": {
+      "observed": 0,
+      "gate": 0,
+      "verdict": "PASS"
+    },
+    "contractInvalidBehavioralExecutions": {
+      "observed": 2,
+      "gate": 0,
+      "verdict": "FAIL",
+      "which": [
+        "HR-08#2",
+        "HR-01#3"
+      ],
+      "codes": [
+        "BINDING_DECLARED_BY_A_NON_ADD_VERDICT",
+        "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION",
+        "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION",
+        "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION"
+      ],
+      "classification": "GENUINE MODEL OUTPUT-SHAPE VIOLATION. Both declared BOUND_BY_CLARIFICATION with a bindingFactKey under verdict VERIFIED_AS_IS and no proposedClarification. The architecture refused each whole, leaving every owed fact where it was.",
+      "notAHarnessArtifact": true
+    },
+    "wrongFactKeyBindings": {
+      "observed": 0,
+      "gate": 0,
+      "verdict": "PASS",
+      "note": "both bindings named the CORRECT supplied key; the violation was shape, not target"
+    },
+    "unauthorizedSettlementTransitions": {
+      "observed": 0,
+      "gate": 0,
+      "verdict": "PASS"
+    },
+    "PROVIDER_SETTLEMENT_AUTHORITY": {
+      "observed": "NEVER",
+      "verdict": "PASS",
+      "basis": "structural; no transition was performed by any execution"
+    },
+    "adjacentFactSubstitution": {
+      "observed": "PENDING_HUMAN_ADJUDICATION",
+      "gate": 0
+    }
+  },
+  "REQUIRED_STRICT_SEMANTIC_GATE": {
+    "gate": ">= 12/15",
+    "result": "PENDING_HUMAN_ADJUDICATION",
+    "note": "this model does not decide it and did not"
+  },
+  "perRowFloors": {
+    "HR-01": {
+      "gate": ">= 2/3",
+      "result": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-04": {
+      "gate": ">= 2/3",
+      "result": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-06": {
+      "gate": ">= 2/3",
+      "result": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-08": {
+      "gate": ">= 2/3",
+      "result": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-09": {
+      "gate": ">= 2/3",
+      "result": "PENDING_HUMAN_ADJUDICATION"
+    }
+  },
+  "MECHANICAL_OBSERVATIONS": {
+    "verdictCounts": {
+      "VERIFIED_AS_IS": 12,
+      "NO_CLARIFICATION_REQUIRED": 3
+    },
+    "declarationModeCounts": {
+      "STILL_UNRESOLVED": 12,
+      "BOUND_BY_CLARIFICATION": 2,
+      "CHALLENGE_FACT_VALIDITY": 1
+    },
+    "proposedClarificationsEmitted": 0,
+    "clarificationEmissionRate": "0 / 15",
+    "bindingsEmitted": 2,
+    "challengeBearingExecutions": 1,
+    "correctBindingRate": "2 of 2 bindings named the correct supplied key (both nonetheless contract-refused for shape)"
+  },
+  "HR04": {
+    "verdicts": [
+      "NO_CLARIFICATION_REQUIRED",
+      "NO_CLARIFICATION_REQUIRED",
+      "NO_CLARIFICATION_REQUIRED"
+    ],
+    "allThreeNoClarificationRequired": true,
+    "challengesEmitted": 1,
+    "providerOutputAloneLeftFactUnresolved": "3 / 3 — mechanically true; no transition occurred and no settlement authority exists",
+    "A_B_C_D_CLASSIFICATION": "PENDING_HUMAN_ADJUDICATION",
+    "materialForAdjudication": "all three rationales, and the single challenge reason, rest explicitly on guard presence, the daily pre-start check and 'no tools rest on it'. Whether that constitutes category C invalid false-settlement of the current-securement property is the adjudication and is NOT made here."
+  },
+  "CHALLENGE_REVIEWABILITY": {
+    "challengeBearingExecutions": 1,
+    "result": "PENDING_HUMAN_ADJUDICATION",
+    "smallNCaveat": "n=1. The >= 80% reviewable gate can only evaluate to 0% or 100% on a single observation; the rate is not a meaningful proportion and must not be reported as one."
+  },
+  "perRow": {
+    "HR-01": {
+      "behavioralExecutions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "contractAdmittedCorrected": 2,
+      "clarificationsEmitted": 0,
+      "challengesEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-04": {
+      "behavioralExecutions": 3,
+      "verdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED",
+        "NO_CLARIFICATION_REQUIRED"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "contractAdmittedCorrected": 3,
+      "clarificationsEmitted": 0,
+      "challengesEmitted": 1,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-06": {
+      "behavioralExecutions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "contractAdmittedCorrected": 3,
+      "clarificationsEmitted": 0,
+      "challengesEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-08": {
+      "behavioralExecutions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "BOUND_BY_CLARIFICATION",
+        "STILL_UNRESOLVED"
+      ],
+      "contractAdmittedCorrected": 2,
+      "clarificationsEmitted": 0,
+      "challengesEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    "HR-09": {
+      "behavioralExecutions": 3,
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS",
+        "VERIFIED_AS_IS"
+      ],
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "contractAdmittedCorrected": 3,
+      "clarificationsEmitted": 0,
+      "challengesEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    }
+  },
+  "secondaryMeasures": {
+    "REQUIRED clarification emission rate": "0/15",
+    "REQUIRED correct binding rate": "2/2 correct key, 0/2 contract-admissible",
+    "REQUIRED declaration rate": "15/15 emitted at least one owed-fact declaration",
+    "CHALLENGE_FACT_VALIDITY rate": "1/15",
+    "strict semantic sufficiency": "PENDING_HUMAN_ADJUDICATION",
+    "challenge reviewability rate": "PENDING_HUMAN_ADJUDICATION",
+    "cross-hazard insight rate": "not emitted by this schema path",
+    "disagreement rate": "not emitted by this schema path"
+  }
+}

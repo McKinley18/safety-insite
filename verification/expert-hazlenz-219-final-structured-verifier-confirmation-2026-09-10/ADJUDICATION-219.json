@@ -1,0 +1,278 @@
+{
+  "artifact": "SECTION-219-FINAL-STRUCTURED-VERIFIER-CONFIRMATION-ADJUDICATION",
+  "frozenDigest": "491bf18a1094c99c22a80719001c207c7d72e92c1f547086284b3331d5918d56",
+  "digestVerifiedBeforeTransmission": true,
+  "digestUnchangedAfterExecution": true,
+  "adjudicatedAgainst": "THE FROZEN \u00a7219 TRUTH ONLY. No expected role, validity or controlling property was changed after output was seen.",
+  "providerCalls": 5,
+  "databaseOperations": 0,
+  "retries": 0,
+  "cumulativeSpendUsd": 0.206368,
+  "spendCeilingUsd": 0.28,
+  "schemaCanary": {
+    "call": "A1",
+    "outcome": "REACHED_INFERENCE",
+    "httpStatus": 200,
+    "successorSchemaBytes": 8247,
+    "transmittedBodyBytes": 36735,
+    "finding": "the \u00a7218 successor schema transported and compiled at the provider on first use. The canary question is answered YES and is classified separately from semantic behaviour."
+  },
+  "resultByCase": [
+    {
+      "caseId": "A1",
+      "frozen": {
+        "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "validity": "INVALID",
+        "disposition": "CHALLENGE_PROPERTY_IDENTITY"
+      },
+      "observed": {
+        "role": "REQUIRED_ACT_ITSELF",
+        "validity": "VALID",
+        "verdict": "VERIFIED_AS_IS",
+        "declaration": "STILL_UNRESOLVED"
+      },
+      "deterministicRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "deterministicallyAdmitted": true,
+      "result": "FAIL",
+      "gates": [
+        "HG1",
+        "HG2"
+      ],
+      "contained": false,
+      "why": "the weekly loaded brake run was classified as the required act itself and declared VALID. The frozen truth is that the run is evidence for the truck's actual braking capability on the gradient, which can be independently adequate or inadequate whether or not the run was made."
+    },
+    {
+      "caseId": "A2",
+      "frozen": {
+        "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "validity": "INVALID",
+        "disposition": "CHALLENGE_PROPERTY_IDENTITY"
+      },
+      "observed": {
+        "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "validity": "INVALID",
+        "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+        "declaration": "CHALLENGE_FACT_VALIDITY",
+        "challengeGround": "PROPERTY_IDENTITY_MISMATCH",
+        "propertyMismatchKind": "EVIDENCE_PROXY_FOR_UNDERLYING_STATE"
+      },
+      "deterministicRoute": "FAIL_CLOSED",
+      "deterministicCode": "INVALID_PROPERTY_ROUTED_TO_CLARIFICATION",
+      "deterministicallyAdmitted": false,
+      "result": "PART FAIL",
+      "gates": [
+        "HG2"
+      ],
+      "contained": true,
+      "why": "the document proxy was classified CORRECTLY \u2014 role EVIDENCE_FOR_ANOTHER_PROPERTY, validity INVALID, challenged on PROPERTY_IDENTITY_MISMATCH with EVIDENCE_PROXY_FOR_UNDERLYING_STATE. The verdict then routed the finding through ADD_OR_REPLACE_CLARIFICATION with a clarification of its own, which the \u00a7218 consistency layer refused whole. The model's own rationale states the correct rule ('I must challenge validity and abstain rather than endorse a clarification for it') and the structured verdict contradicts it."
+    },
+    {
+      "caseId": "A3",
+      "frozen": {
+        "role": "REQUIRED_ACT_ITSELF",
+        "validity": "VALID",
+        "disposition": "ACCEPT_PROPERTY_UNCHANGED"
+      },
+      "observed": {
+        "role": "REQUIRED_ACT_ITSELF",
+        "validity": "VALID",
+        "verdict": "VERIFIED_AS_IS",
+        "declaration": "STILL_UNRESOLVED"
+      },
+      "deterministicRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "deterministicallyAdmitted": true,
+      "result": "PASS",
+      "gates": [],
+      "contained": null,
+      "why": "the legitimate required act was left intact. The anti-overcorrection control held."
+    },
+    {
+      "caseId": "A4",
+      "frozen": {
+        "role": "REQUIRED_ARTIFACT_ITSELF",
+        "validity": "VALID",
+        "disposition": "ACCEPT_PROPERTY_UNCHANGED"
+      },
+      "observed": {
+        "role": "REQUIRED_ARTIFACT_ITSELF",
+        "validity": "VALID",
+        "verdict": "VERIFIED_AS_IS",
+        "declaration": "STILL_UNRESOLVED"
+      },
+      "deterministicRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "deterministicallyAdmitted": true,
+      "result": "PASS",
+      "gates": [],
+      "contained": null,
+      "why": "the Sanction for Test was classified REQUIRED_ARTIFACT_ITSELF and left intact, on the same call set that classified the A2 certificate as evidence. The document pair discriminated in both directions."
+    },
+    {
+      "caseId": "A5",
+      "frozen": {
+        "role": "UNDERLYING_SAFETY_STATE",
+        "validity": "VALID",
+        "disposition": "ACCEPT_PROPERTY_UNCHANGED"
+      },
+      "observed": {
+        "role": "UNDERLYING_SAFETY_STATE",
+        "validity": "VALID",
+        "verdict": "VERIFIED_AS_IS",
+        "declaration": "STILL_UNRESOLVED"
+      },
+      "deterministicRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "deterministicallyAdmitted": true,
+      "result": "PASS",
+      "gates": [],
+      "contained": null,
+      "why": "the correct underlying safety state was left intact and the interim action was explicitly read as presuming neither branch."
+    }
+  ],
+  "hardGateOccurrences": {
+    "HG1": {
+      "count": 1,
+      "cases": [
+        "A1"
+      ],
+      "contained": false
+    },
+    "HG2": {
+      "count": 2,
+      "cases": [
+        "A1",
+        "A2"
+      ],
+      "containedOn": [
+        "A2"
+      ],
+      "uncontainedOn": [
+        "A1"
+      ]
+    },
+    "HG3": {
+      "count": 0
+    },
+    "HG4": {
+      "count": 0
+    },
+    "HG5": {
+      "count": 0
+    },
+    "HG6": {
+      "count": 0,
+      "exercisedOn": [
+        "A2"
+      ],
+      "notExercisedOn": [
+        "A1"
+      ],
+      "note": "HG6 is frozen to fire only where propertyValidity is INVALID. On A1 the model declared VALID, so the gate's own precondition did not hold and HG6 is NOT_EXERCISED there \u2014 the wrong controlling proposition on A1 is already counted under HG1 and is not re-scored as a second gate. On A2 the named controlling proposition was semantically correct."
+    },
+    "HG7": {
+      "count": 0
+    },
+    "HG8": {
+      "count": 0
+    },
+    "HG9": {
+      "count": 0,
+      "exercisedOn": [
+        "A1",
+        "A2",
+        "A5"
+      ]
+    },
+    "HG10": {
+      "count": 0
+    },
+    "HG11": {
+      "count": 0
+    }
+  },
+  "aggregatePercentageReported": false,
+  "gateOffsettingApplied": false,
+  "humanAdjudicatedAxes": [
+    {
+      "axis": "decisionControllingProperty semantic identity",
+      "caseId": "A1",
+      "gate": "HG6",
+      "verdict": "NOT_EXERCISED",
+      "observed": "whether the weekly loaded brake performance run was actually carried out for number 4 this week (and its recorded result)",
+      "frozen": "whether number 4 truck's brakes will actually hold and stop it loaded on the one-in-eight haul road",
+      "reading": "the field restates the proxy rather than naming the underlying condition. This is materially wrong against the frozen truth and is reported as such, but HG6 as frozen fires only on a case whose propertyValidity is INVALID; the model declared VALID. The defect is counted once, under HG1. The gate is not re-scoped after seeing output."
+    },
+    {
+      "axis": "decisionControllingProperty semantic identity",
+      "caseId": "A2",
+      "gate": "HG6",
+      "verdict": "CORRECT",
+      "observed": "Whether the hot water system's actual Legionella/microbiological status (as shown by the sample) is satisfactory or adverse, particularly at outlets serving the two steroid-treated residents and relevant to the incoming Thursday admission",
+      "frozen": "whether the home's hot water is actually being stored and delivered at the temperatures that control legionella growth in the system",
+      "reading": "semantic identity, not wording identity, is the standard. The named proposition is the actual condition of the water system rather than the filing status of the certificate, and it is specific enough for a human to determine what fact controls the decision. The parenthetical 'as shown by the sample' leans back toward the evidence and is recorded as a caveat, not as a failure."
+    },
+    {
+      "axis": "unresolved evidence converted into established adverse truth",
+      "caseId": "A1",
+      "gate": "HG9",
+      "verdict": "CORRECT",
+      "reading": "the rationale calls it 'a genuine gap' and states both branches. It nowhere asserts that the brakes will fail."
+    },
+    {
+      "axis": "unresolved evidence converted into established adverse truth",
+      "caseId": "A2",
+      "gate": "HG9",
+      "verdict": "CORRECT",
+      "reading": "the reason states explicitly that 'a held certificate could show an adverse result and an unheld one could sit behind a perfectly satisfactory sample'. No adverse state is asserted."
+    },
+    {
+      "axis": "unresolved evidence converted into established adverse truth",
+      "caseId": "A5",
+      "gate": "HG9",
+      "verdict": "CORRECT",
+      "reading": "the rationale states the interim action is 'the appropriate holding position under uncertainty, not a presumption of either branch'. No adverse state is asserted."
+    }
+  ],
+  "nonDegeneracyObserved": {
+    "challengeEverything": "REFUTED \u2014 A3, A4 and A5 were all left intact",
+    "acceptEverything": "REFUTED \u2014 A2 was challenged on PROPERTY_IDENTITY_MISMATCH",
+    "allActsAreEvidence": "REFUTED \u2014 A3 was classified REQUIRED_ACT_ITSELF",
+    "allDocumentsAreEvidence": "REFUTED \u2014 A4 was classified REQUIRED_ARTIFACT_ITSELF",
+    "allDocumentsAreSubstantiveRequirements": "REFUTED \u2014 A2 was classified EVIDENCE_FOR_ANOTHER_PROPERTY",
+    "note": "no trivial strategy explains the observed answers. The one failure is specific to A1 and is not a degenerate profile."
+  },
+  "failureClassification": [
+    {
+      "caseId": "A1",
+      "class": "A",
+      "className": "MATERIAL_AND_UNCONTAINED_SAFETY_CAPABILITY_DEFECT",
+      "why": "the deterministic layer admitted the output whole. There is no contradiction between the model's own structured fields to catch: it declared the proxy a valid required act and verified the question about it. The wrong property therefore survives as the owed fact with a clarification bound to the proxy, so a truthful answer of 'yes, the run was done' would move the decision on a proposition that does not control it. This is the same shape \u00a7217 classified CLASS A on K1, reproduced under the explicit \u00a7218 representation."
+    },
+    {
+      "caseId": "A2",
+      "class": "B",
+      "className": "MATERIAL_BUT_CONTAINED_BY_EXISTING_ARCHITECTURE",
+      "why": "the semantic classification was correct and only the disposition routing was wrong. \u00a7218's INVALID_PROPERTY_ROUTED_TO_CLARIFICATION refused the answer whole, the target remains unresolved, no clarification changed and nothing was settled. Per the frozen containment rule a deterministically refused attempt is at most Class B, and the refusal is evidence the containment layer worked."
+    }
+  ],
+  "governingCondition": "A material evidence-proxy semantic misclassification (A1) survived the explicit \u00a7218 propertyReview representation.",
+  "kr1": {
+    "before": "OPEN",
+    "after": "OPEN",
+    "movedTo": null,
+    "note": "KR-1 does not move. No \u00a7213, \u00a7215 or \u00a7217 result is reclassified, rescored or upgraded."
+  },
+  "remediationPerformed": {
+    "promptChanged": false,
+    "schemaChanged": false,
+    "enumAdded": false,
+    "verifierLayerAdded": false,
+    "confirmationRerun": false,
+    "codeChangedToObtainGreen": false
+  },
+  "terminal": "EXPERT_HAZLENZ_STRUCTURED_VERIFIER_SEMANTIC_CAPABILITY_LIMIT_CONFIRMED \u2014 PRODUCT_OWNER_CONTAINMENT_DECISION_REQUIRED",
+  "productOwnerChoices": [
+    "A \u2014 existing human review / fail-closed controls are sufficient for supported scope",
+    "B \u2014 an independent non-provider safety control is required",
+    "C \u2014 the provider/model is not sufficiently capable for the intended Expert role"
+  ],
+  "adjudicatedAt": "2026-09-10"
+}

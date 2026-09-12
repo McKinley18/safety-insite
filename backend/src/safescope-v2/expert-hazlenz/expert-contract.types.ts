@@ -167,6 +167,81 @@ export interface ExpertHazardCandidate {
 /**
  * What a missing fact could change. Every member is a decision the product actually makes; a
  * question that changes none of them is not decision-critical and the normalizer refuses it.
+ *
+ * ==================== EVERY MEMBER IS DEFINED, AND THAT IS §139 WORK ====================
+ *
+ * These were bare names until §139. The §138 instrument audit verified that no member carried a
+ * definition in this type, in `EXPERT_SYSTEM_PROMPT`, or in the wire schema -- the schema emitted
+ * `enum: [...EXPERT_AFFECTED_DECISIONS]` with no per-value `description` at all. Two independent
+ * labellers, the model and the evaluation answer-key author, then disagreed BIDIRECTIONALLY on the
+ * same pairs (`REQUIRED_CONTROL` <-> `HAZARD_EXISTENCE` three times, `HAZARD_SEVERITY` <->
+ * `HAZARD_EXISTENCE` in both directions). Disagreement running both ways between two labellers is
+ * the signature of an under-specified vocabulary, not of a model biased in one direction, so the
+ * repair is to DEFINE the vocabulary rather than to correct the model.
+ *
+ * `EXPERT_MEASURE_SCORERS` reads `affectedDecision` for equality, and one frozen gate triggers
+ * exclusively on `HAZARD_EXISTENCE`. A label is therefore load-bearing and is not a topic tag.
+ *
+ *  - `HAZARD_EXISTENCE`         Does the hazardous condition exist at all, right now? Legitimate
+ *                               ONLY while existence is genuinely open. A question asked alongside
+ *                               the asker's own `ACTIVE` candidate for that hazard is a
+ *                               contradiction, not a clarification.
+ *  - `HAZARD_SEVERITY`          The hazard exists; how severe is the consequence, or how large is
+ *                               the magnitude. "How much / how many / how long / how far."
+ *  - `EXPOSURE`                 Who or what is exposed, or whether exposure is occurring at all.
+ *  - `APPLICABILITY`            Whether a rule, programme or control framework governs the facts as
+ *                               established. About SCOPE. Not about which control to use.
+ *  - `REQUIRED_CONTROL`         Which control is required, or whether a specific control was
+ *                               applied, once hazard and framework are settled. "Was it isolated,
+ *                               locked out, bled down, guarded" is THIS, never `HAZARD_EXISTENCE`.
+ *  - `REGULATORY_INTERPRETATION` What a SUPPLIED governed record means, or how its stated conditions
+ *                               apply here. Unusable when no governed record was supplied, because
+ *                               there is then no text to interpret.
+ *
+ * The three collision pairs are decided explicitly and the same three sentences appear in the prompt
+ * and in the wire schema, so the model and this type cannot drift apart.
+ *
+ * ==================== §148: THE LABEL IS DESTRUCTIVE, AND THE MODEL IS NOW TOLD SO ====================
+ *
+ * §147 produced the first hosted exercise of `CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE`. On CR-F2
+ * the model asked a substantively correct SCOPE question -- whether a solvent loading pad is a
+ * classified hazardous area -- labelled it `HAZARD_EXISTENCE`, linked it to its own `fire_explosion`
+ * candidate which it had asserted `ACTIVE`, and arbitration destroyed the question. Arbitration
+ * behaved exactly as §141 specified and proved. **The LABEL was wrong; the arbitration was not.**
+ *
+ * §148 evaluated five policies for that case and RETAINED the fail-closed behaviour unchanged:
+ *
+ *   A  reject the whole clarification                    -- RETAINED, this is the current behaviour
+ *   B  keep the question, strip/neutralize the label     -- REFUSED
+ *   C  deterministically reclassify `affectedDecision`   -- REFUSED
+ *   D  reclassify only where another reading is inferable-- REFUSED
+ *   E  keep A and repair label accuracy at the model     -- ADOPTED, alongside A
+ *
+ * B is not expressible without a contract change: `affectedDecision` is `required` on the wire and
+ * non-nullable here, `EXPERT_MEASURE_SCORERS` reads it for equality, and a neutralized label would
+ * hand the reviewer a question whose decision relationship is unknown -- strictly worse than the
+ * arbitration it replaces, because a question that contradicts an ACTIVE candidate would then reach
+ * the customer with no label to contradict on.
+ *
+ * C and D fail for the same reason and it is the reason this stage exists: reclassification requires
+ * reading an arbitrary natural-language question and deciding what decision it turns on. That is
+ * SEMANTIC INFERENCE, the capability the arbitration stage was deliberately built WITHOUT, and §138
+ * measured the cost of guessing there -- 6 of 11 row-level flags were label artefacts rather than
+ * real contradictions. A keyword rule would additionally contradict the governing principle already
+ * written into `relatesToCandidateKey` below: classify by the DECISION RELATIONSHIP, never by whether
+ * the question's words include a particular term. D is C with a confidence gate, and the gate is the
+ * same inference.
+ *
+ * E is the owner's earliest-trustworthy-layer principle applied: the untrusted input is the LABEL, so
+ * the label is repaired where it is produced. v11 adds the self-check against the model's own
+ * candidate list, routes the four cases that get mislabelled as existence, and -- the part that was
+ * missing -- DISCLOSES THE CONSEQUENCE. Until §148 the producer was told the rule and never told that
+ * breaking it destroys the question.
+ *
+ * `CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE` IS NOT WEAKENED, NOT NARROWED AND NOT MADE
+ * CONDITIONAL. Its trigger is byte-unchanged. A genuine existence contradiction is still rejected in
+ * full, and `affectedDecision` accuracy is now a REQUIRED MODEL-SIDE GATE rather than a cosmetic
+ * measure -- which is the disposition §141 left open and §147 made costly.
  */
 export const EXPERT_AFFECTED_DECISIONS = [
   'HAZARD_EXISTENCE',
@@ -197,6 +272,77 @@ export interface DecisionCriticalClarification {
   criticality: ExpertClarificationCriticality;
   /** What is missing from the evidence, stated as a fact rather than as a question. */
   evidenceGap: string;
+  /**
+   * OPTIONAL declared linkage to a candidate in the same analysis. §139.
+   *
+   * The blueprint rule that a clarification must not REQUIRE a candidate is unchanged -- this is a
+   * nullable back-reference the producer may set, never a dependency. It exists so cross-collection
+   * arbitration can tell "you say this hazard is active and also ask whether it exists" from "you
+   * ask about a different hazard than the one you raised". Without it the two are indistinguishable
+   * and any arbitration must either over-suppress or do nothing; §138 measured the cost of guessing,
+   * finding that 6 of 11 flagged contradictions were label artefacts rather than real ones.
+   *
+   * `null` means the producer declared no link, and arbitration then ABSTAINS rather than assuming.
+   *
+   * OPTIONAL in the type as well as on the wire, so every construction site that predates §139 --
+   * fixtures, tests, other producers -- keeps compiling and keeps meaning exactly what it meant:
+   * no declared link. `normalizeExpertOutput` always writes an explicit `string | null`.
+   *
+   * ==================== §141: WHEN IT MUST BE SET, MAY BE SET, AND MUST NOT BE ====================
+   *
+   * §140 measured 3 linkage opportunities under a definition that counted ANY clarification emitted
+   * beside ANY candidate. That definition conflated three different situations, and the resulting
+   * "1 of 3 populated" was not evidence of under-population. Re-read against the rule below, all
+   * three of those decisions were CORRECT. The defect was the under-specified contract, not the
+   * model. So the contract now states the three cases explicitly.
+   *
+   * ==================== §143: THE GOVERNING PRINCIPLE, AND THE PRECEDENCE ====================
+   *
+   *      SPECIFIC SEMANTIC RELATIONSHIP OVERRIDES SUPERFICIAL QUESTION FORM.
+   *
+   * A clarification is classified by the DECISION RELATIONSHIP it has to an actual emitted
+   * candidate -- never by whether its words include PPE, procedure, documentation, inspection or
+   * training. §142 measured what the older wording cost: a question about the PPE worn during one
+   * specific decanting task, uniquely qualifying one of four candidates, was scored a FORBIDDEN
+   * link because the old clause said "general PPE ... follow-up" without saying that GENERAL was
+   * doing the work. The categories collided, and a correct model behaviour was recorded as a
+   * violation.
+   *
+   * The three tests are now applied IN ORDER, and the first that matches decides:
+   *
+   *   1. REQUIRED  -- all THREE hold:
+   *        (a) exactly ONE emitted candidate is the direct subject of the missing fact;
+   *        (b) materially different answers would change that candidate's existence, active/current
+   *            status, applicability, required control, exposure characterization, or accepted
+   *            interpretation;
+   *        (c) the clarification cannot be interpreted correctly without knowing which candidate it
+   *            qualifies.
+   *
+   *   2. ALLOWED   -- one candidate is clearly the primary subject and the question materially
+   *        refines it, but the question stands on its own and is decision-useful without the link.
+   *
+   *   3. FORBIDDEN -- everything else, and only for a POSITIVE reason: no candidate is the direct
+   *        semantic subject; two or more candidates are equally plausible; the question is genuinely
+   *        row-level or general; it concerns a different hazard; the only connection is a shared
+   *        family or category; or it is GENERIC PPE / procedure / documentation / training follow-up
+   *        WITH NO CANDIDATE-SPECIFIC DECISION EFFECT.
+   *
+   * "Generic" is the operative word in that last clause. A PPE, procedure or documentation question
+   * that satisfies the REQUIRED test is REQUIRED -- the form of the question never demotes a real
+   * candidate-specific relationship, because REQUIRED is tested FIRST.
+   *
+   * A key must name a candidate this analysis actually emitted. An invented or unresolvable key is
+   * not honoured: `normalizeExpertOutput` strips it to `null` and records
+   * `CLARIFICATION_LINK_UNRESOLVED` against the item, so the question survives, the false
+   * back-reference does not, and arbitration abstains rather than acting on a name that means
+   * nothing.
+   *
+   * REQUIRED-ness is SEMANTIC and therefore cannot be decided at the production boundary -- nothing
+   * here rejects a clarification for failing to link. Missing-when-required is detectable only
+   * against an authored expectation, which is a DEVELOPMENT instrument concern and lives in
+   * `scripts/lib/expert-probe-measures.ts`.
+   */
+  relatesToCandidateKey?: string | null;
 }
 
 // ---------------------------------------------------------------- C. cross-hazard insights
@@ -325,6 +471,63 @@ export interface DeterministicFindingView {
   requiredActions: string[];
 }
 
+// ---------------------------------------------------------------- deterministic family dispositions
+
+/**
+ * What the deterministic layer concluded about ONE hazard family. §119, promoting the §116 design
+ * hosted-confirmed in §118/D-130.
+ *
+ * ==================== WHY THIS IS NOT A `DeterministicFindingView` ====================
+ *
+ * A `DeterministicFindingView` is a FINDING -- something the engine concluded exists. A
+ * `NOT_APPLICABLE` determination is the opposite: a statement that a family was considered and NO
+ * finding arises. Representing "there is no finding here" as an entry in a findings array is a
+ * category error, and §116 rejected that extension point for exactly that reason.
+ *
+ * ==================== WHY ITS OWN VOCABULARY, NOT `ExpertConditionState` ====================
+ *
+ * `EXPERT_CONDITION_STATES` has no member meaning "evaluated and excluded", and it may not gain
+ * one: `test-expert-contract-foundation.ts` E.3 asserts that vocabulary is BYTE-IDENTICAL to the
+ * Level-3 one, read as data at runtime. Adding `NOT_APPLICABLE` there would break a frozen shared
+ * vocabulary and make an Expert condition assertion stop being comparable to a Level-3 one. So this
+ * is a separate, smaller vocabulary describing what the DETERMINISTIC layer said, not what Expert
+ * asserts.
+ */
+export const DETERMINISTIC_DISPOSITIONS = ['ACTIVE', 'CONTROLLED', 'NOT_APPLICABLE', 'UNKNOWN'] as const;
+export type DeterministicDisposition = (typeof DETERMINISTIC_DISPOSITIONS)[number];
+
+export interface DeterministicControllingFact {
+  /** The deterministic layer's own predicate name, verbatim. */
+  fact: string;
+  status: 'SUPPORTED' | 'NOT_SUPPORTED' | 'CONTRADICTED' | 'UNKNOWN' | 'NOT_APPLICABLE';
+}
+
+/**
+ * ==================== CITATION-FREE BY NECESSITY, NOT BY OVERSIGHT ====================
+ *
+ * `FORBIDDEN_EXPERT_FIELD_NAMES` includes `citation`/`cfr`, and `CITATION_SHAPED_PATTERN` refuses a
+ * citation smuggled into PROSE, not only into a field. The deterministic decision this is derived
+ * from carries `citation: '29 CFR 1910.212(a)(1)'`. Projecting it would hand the model a citation
+ * and invite it to echo one back -- and the normalizer would then reject the ENTIRE analysis. So
+ * this type carries the Expert taxonomy family and never the citation, the bundle or the source.
+ */
+export interface DeterministicFamilyDisposition {
+  /** Expert taxonomy family. NEVER a citation. */
+  hazardFamily: string;
+  disposition: DeterministicDisposition;
+  isActionable: boolean;
+  /** The engine's own confidence in this disposition. */
+  confidence: number;
+  /** The named predicates that produced the disposition, with their statuses. */
+  controllingFacts: DeterministicControllingFact[];
+  /** One derived, citation-free sentence. Never hand-written per family. */
+  rationale: string;
+  /** Verbatim spans of the observation that established the controlling state facts. */
+  evidenceQuotes: string[];
+  /** So a constructed diagnostic row is distinguishable from a derived one. */
+  provenance: 'DERIVED_FROM_PRODUCTION_ENGINE' | 'CONSTRUCTED_FOR_DIAGNOSTIC';
+}
+
 /**
  * A governed record as SUPPLIED to Expert. Expert may reason about this. It may not invent one, and
  * the normalizer rejects any citation-shaped string in Expert output.
@@ -348,6 +551,27 @@ export interface ExpertAnalysisInput {
   allowedHazardFamilies: string[];
   /** The protected deterministic result, as context. */
   deterministicFindings: DeterministicFindingView[];
+  /**
+   * What the deterministic layer concluded about each hazard family it EVALUATED, including the
+   * families it evaluated and EXCLUDED. §119, promoting the §116 design hosted-confirmed in §118.
+   *
+   * ==================== ABSENT IS NOT THE SAME AS "EVALUATED AND EXCLUDED" ====================
+   *
+   * OPTIONAL, and the optionality is the whole point. Three states must stay distinguishable:
+   *
+   *   undefined  the caller has no deterministic family evaluation to offer. Backward compatible:
+   *              the prompt renders NO section at all and the request is byte-identical to one
+   *              built before this field existed.
+   *   []         an evaluation ran and produced nothing projectable. Also renders no section --
+   *              silence is the honest rendering of "nothing to say", and synthesising an empty
+   *              NOT_APPLICABLE here would fabricate a determination the engine never made.
+   *   [rows]     these families WERE evaluated, with these dispositions.
+   *
+   * `deterministicFindings` cannot carry this: it renders a family that was evaluated-and-excluded
+   * identically to a family never considered -- as absence -- which is the §116 root cause of the
+   * hosted R6 over-routing.
+   */
+  deterministicFamilyDispositions?: DeterministicFamilyDisposition[];
   /** Governed records the system chose to supply. Empty means Expert may cite nothing at all. */
   governedStandards: GovernedStandardView[];
   /** Answers already collected in this workflow. */
@@ -355,6 +579,34 @@ export interface ExpertAnalysisInput {
 }
 
 // ---------------------------------------------------------------- the analysis contract
+
+/**
+ * Whether a hazard candidate CLAIMS an exact quote from the observation.
+ *
+ * §104's hosted probe measured `EVIDENCE_QUOTES_EMITTED = 0` across both grounding fixtures, and
+ * §100/§101 measured the same `quotes = 0/0` locally across fourteen calls. The cause was not model
+ * incapacity: `evidence` was optional on the wire AND the prompt actively told the producer to omit
+ * it ("A QUOTE IS OPTIONAL ... raise the candidate anyway with an empty list"), so silence was the
+ * cheapest legal answer and every producer took it.
+ *
+ * A required status field replaces silence with a DECLARATION. The producer must say which case it
+ * is in, and the boundary then holds it to that claim:
+ *
+ *   EXACT_QUOTE_SUPPLIED     evidence MUST be non-empty and every quote MUST bind exactly.
+ *                            A claim with nothing behind it FAILS CLOSED — the candidate is dropped.
+ *   NO_EXACT_QUOTE_AVAILABLE evidence MUST be empty. The candidate SURVIVES and scores as
+ *                            ungrounded, exactly as before. This is the escape hatch that keeps the
+ *                            §101 failure from returning: attempt 1 of the routing repair demanded a
+ *                            quote for every candidate and suppressed the whole collection.
+ *
+ * The point is that omission is no longer free and no longer silent. It costs an explicit statement
+ * that the observation contains nothing quotable, which is FALSIFIABLE against the observation.
+ */
+export const EXPERT_GROUNDING_STATUSES = [
+  'EXACT_QUOTE_SUPPLIED',
+  'NO_EXACT_QUOTE_AVAILABLE',
+] as const;
+export type ExpertGroundingStatus = (typeof EXPERT_GROUNDING_STATUSES)[number];
 
 export const EXPERT_OUTCOMES = [
   'ANALYZED',

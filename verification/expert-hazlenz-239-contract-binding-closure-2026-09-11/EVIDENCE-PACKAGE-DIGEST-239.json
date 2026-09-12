@@ -1,0 +1,43 @@
+{
+  "artifact": "EVIDENCE-PACKAGE-DIGEST-239",
+  "fileCount": 9,
+  "evidencePackageDigest": "aef1539c45e8106ac56018d63a17b69cbcbfdeef89711e0dd52be3ccc2e2c1c2",
+  "files": [
+    {
+      "sha256": "5fccb22cbdf4848bfdbec986ddc27598383725924c39149595507da34309b6bf",
+      "file": "LADDER-239.json"
+    },
+    {
+      "sha256": "804490cf1a49f33031c20e47923818516353a71459c3360579ee847f2aaee0c5",
+      "file": "PROTECTED-IDENTITIES-239.json"
+    },
+    {
+      "sha256": "fd2c4666407e3542e74364d70f791973c3f6c2465985436c74cf21b252446078",
+      "file": "SECTION-239-CONTRACT-CONSISTENCY.json"
+    },
+    {
+      "sha256": "3f24c3180181cdfde68919c63722ef115912ebab6ce7887032bb8735411d4348",
+      "file": "SECTION-239-CONTRACT-IDENTITY.json"
+    },
+    {
+      "sha256": "ff49140dfe6ad5ad1da7bf9b893474b507c270ada34f5632960d19179c709ec2",
+      "file": "SECTION-239-DIAGNOSTIC-REPLAY-OF-238.json"
+    },
+    {
+      "sha256": "934bb767f5ae95501429c170329fc4754ad03ea3f93b7de65e9b34d5896d3b87",
+      "file": "SECTION-239-IMPLEMENTATION.json"
+    },
+    {
+      "sha256": "f1b886c429351ebc672c4658fecd933fac9548f7762c14229c21be7336c35a3e",
+      "file": "SECTION-239-LOCAL-SUITE-OUTPUT.txt"
+    },
+    {
+      "sha256": "dadda3f81f6357a3a3cf87ffad709d8970d69db2531b3c26501fc5f0c9ce1b00",
+      "file": "SECTION-239-REPORT.md"
+    },
+    {
+      "sha256": "94446689e9834e4be90664b9564fe793f001c2bcbc8b5c9972cde1c18cc21bd1",
+      "file": "SECTION-239-SUCCESSOR-CANDIDATE-FREEZE.json"
+    }
+  ]
+}

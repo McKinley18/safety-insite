@@ -1,0 +1,45 @@
+CONFINEMENT — PROMPT v6 BOUNDED HOSTED HAZARD-ACTUALITY CONFIRMATION, 2026-08-30
+
+A. controllers/services/modules referencing the Expert module:
+   NONE (0 matches).
+
+B. frontend references:
+   NONE (0 matches).
+
+C. importers of the HOSTED (Anthropic) adapter (construct match):
+backend/scripts/test-expert-anthropic-adapter-repair.ts
+backend/scripts/diagnose-anthropic-schema-compatibility.ts
+backend/scripts/diagnose-r4-r6-local-repair.ts
+backend/scripts/probe-expert-hosted-transport.ts
+backend/scripts/probe-expert-hosted-r4-r6-targeted-confirmation.ts
+backend/scripts/probe-expert-hosted-v5-temporal-state-confirmation.ts
+backend/scripts/probe-expert-hosted-v6-hazard-actuality-confirmation.ts   <- new this phase
+   +1 importer vs §113 (this phase's own probe script). No other new importer.
+
+D. did this phase modify any production/customer/Expert-core file?
+   ZERO. `git diff --stat` on `expert-hazlenz/` and `expert-hazlenz-adapters/` is byte-identical to
+   §113's recorded diff (28 / 70 / 254 / 6 insertions across the same four files, all of which is
+   the pre-existing §105-113 working-tree diff). `expert-prompt.ts` still reads
+   `EXPERT_PROMPT_VERSION = 'hazlenz.expert.prompt.v6'` — the prompt was FROZEN across the entire
+   measurement, as this operation's authorization required, and NOTHING discovered during the
+   measurement was repaired.
+
+   One new file, probe-only, zero production reference:
+     backend/scripts/probe-expert-hosted-v6-hazard-actuality-confirmation.ts
+
+E. adapter path:
+   REAL, PERMANENT `AnthropicExpertProvider` / `buildAnthropicRequestBody`, unmodified. No
+   diagnostic schema bypass. `stripAnthropicUnsupportedKeywords` is the adapter's own permanent
+   §108 compatibility stage and was not touched.
+
+F. hosted calls made this phase:
+   9 planned, 9 attempted, 9 completed clean (HTTP 200), $0.284080 spent of a $3.00 ceiling
+   (pre-flight worst-case projection from the real request bodies: $0.8587 — see
+   preflight/preflight.json). No tenth call. Optional calls 8 and 9 were authorized only because
+   all 7 primary calls completed cleanly, and were never used as retries.
+
+G. evidence/grounding architecture:
+   UNCHANGED and UNTOUCHED.
+
+H. commit/push/tag/deploy status:
+   Nothing committed, pushed, tagged, or deployed. HEAD remains 37a5d1b5.

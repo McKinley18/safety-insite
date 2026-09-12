@@ -1,0 +1,198 @@
+{
+  "artifact": "SECTION_188_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "§188 bounded no-provider-call remediation review of the completed §187A/§187B REQUIRED structured-verifier validation",
+
+  "TERMINAL": "EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_ADJUDICATION_INCONCLUSIVE — EVIDENCE_REVIEW_REQUIRED",
+  "terminalReason": "The frozen §187A preregistration assigns every strict semantic axis to human judgement and states 'This model does not decide them.' The §187B review packet repeats that this model 'did not supply a verdict on any of the ten axes and must not.' The adjudication therefore cannot be completed reproducibly from the frozen instrument alone: the instrument demands an input it forbids this model to supply. The other two terminals are both conditioned on the adjudication having been performed, and neither antecedent is satisfied.",
+  "historicalTerminalNotModified": "EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_BEHAVIOR_FAILED — REMEDIATION_REVIEW_REQUIRED",
+
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCT_RUNTIME_CHANGES": 0,
+  "PROMPT_CHANGES": 0,
+  "SCHEMA_CHANGES": 0,
+  "VERIFIER_CONTRACT_CHANGES": 0,
+  "NEW_MODEL_EXECUTIONS": 0,
+  "STIMULI_REGENERATED": 0,
+  "REPLICATES_RERUN": 0,
+
+  "SOURCE_INTEGRITY_GATE": { "result": "PASS", "checks": "12/12", "artifact": "SOURCE-INTEGRITY.txt" },
+
+  "spend": {
+    "thisOperationUsd": 0.0,
+    "section187A_actualUsd": 0.26255,
+    "section187A_reportedUsd": 1.22255,
+    "section187A_syntheticReservationUsd": 0.96,
+    "section187B_actualUsd": 0.27927,
+    "cumulativeActualUsd": 0.54182,
+    "rule": "provider-returned usage only; a call reporting no usage adds zero"
+  },
+
+  "MECHANICAL_HARD_GATES": {
+    "providerErrors": { "observed": 0, "gate": 0, "verdict": "PASS" },
+    "contractInvalidBehavioralExecutions": {
+      "observed": 2, "gate": 0, "verdict": "FAIL",
+      "which": ["HR-08#2", "HR-01#3"],
+      "classification": "GENUINE MODEL OUTPUT-SHAPE VIOLATION, refused whole; no owed fact settled or removed"
+    },
+    "wrongFactKeyBindings": { "observed": 0, "gate": 0, "verdict": "PASS" },
+    "unauthorizedSettlementTransitions": { "observed": 0, "gate": 0, "verdict": "PASS" },
+    "PROVIDER_SETTLEMENT_AUTHORITY": { "observed": "NEVER", "verdict": "PASS" },
+    "adjacentFactSubstitution": { "observed": "PENDING_HUMAN_ADJUDICATION", "gate": 0 }
+  },
+
+  "CONTRACT_VS_TARGET_SEPARATION": {
+    "VERIFIER_RESPONSE_CONTRACT_VALID": false,
+    "TARGET_SELECTION_WRONG": false,
+    "why": "both refused outputs named the CORRECT supplied factKey; the violation was output shape, not target selection. The two must not be collapsed into one metric."
+  },
+
+  "STRICT_SEMANTIC_GATE": {
+    "RESULT": "UNMEASURED",
+    "lifecycleStage": "FORMAL_ADJUDICATION_PENDING",
+    "isThisAFailure": false,
+    "isThisAPass": false,
+    "threshold": ">= 12/15 strict owed-fact preservation (PENDING HUMAN ADJUDICATION)",
+    "denominator": 15,
+    "refusedExecutionsRemainInDenominator": true,
+    "refusedTreatmentBasis": "the preregistration's REJECTED_IS_NOT_SILENCE rule governs the numerator ('never scored as behaviour') and nowhere excludes a refused observation from the denominator, which the gate writes literally as /15",
+    "maximumAttainableNumerator": 13,
+    "headroom": 1,
+    "perRowCeilings": { "HR-01": "2/3", "HR-08": "2/3", "note": "zero slack against the >= 2/3 floor" },
+    "pendingVerdictSlots": 112
+  },
+
+  "HR04": {
+    "verdicts": ["NO_CLARIFICATION_REQUIRED", "NO_CLARIFICATION_REQUIRED", "NO_CLARIFICATION_REQUIRED"],
+    "challengesEmitted": 1,
+    "providerOutputAloneLeftFactUnresolved": { "observed": "3/3", "verdict": "PASS", "basis": "deterministic; needs no adjudication" },
+    "invalidFalseSettlementChallenge": "PENDING_HUMAN_ADJUDICATION",
+    "currentSecurementTargetPreserved": "PENDING_HUMAN_ADJUDICATION",
+    "A_B_C_D_CLASSIFICATION": "PENDING_HUMAN_ADJUDICATION",
+    "note": "the mechanical record alone is consistent with both category B and category C, which is why the frozen instrument routes it to a human"
+  },
+
+  "CHALLENGE_REVIEWABILITY": {
+    "n": 1,
+    "CHALLENGE_REVIEWABILITY_OBSERVED": "PENDING_HUMAN_ADJUDICATION / 1",
+    "PREREGISTERED_THRESHOLD_EVALUATION": "NOT_MEANINGFULLY_ESTIMABLE",
+    "NOT_EXERCISED": false,
+    "gateChangedRetroactively": false,
+    "caveat": "on one observation the literal gate can only return 0% or 100%; neither is a population proportion. Report x/1, never a percentage."
+  },
+
+  "CLARIFICATION_EMISSION": {
+    "PROPOSED_CLARIFICATIONS_EMITTED": "0/15",
+    "EXECUTIONS_WHERE_A_PROPOSAL_WAS_UNCONDITIONALLY_AVAILABLE": "3/15",
+    "PROPOSALS_ON_THOSE": "0/3",
+    "EXECUTIONS_WHERE_ZERO_IS_CORRECT_IFF_THE_EXISTING_QUESTION_SUFFICES": "12/15",
+    "nominationsEmitted": "0/15",
+    "eliminatedDeterministically": [
+      "acceptableEvidence interpreted too loosely — V3SuppliedOwedFact carries no such field and it was never transmitted",
+      "the prompt's 'the answer is usually no' prior — scoped to nomination, not to the clarification decision",
+      "challenge used as a substitute for clarification — 1 challenge in 15"
+    ],
+    "note": "0/15 must not be reported as a behavioural clarification-suppression rate; it conflates a design-expected zero on 12 executions with a contested zero on 3"
+  },
+
+  "HARNESS_DEFECTS": {
+    "HARNESS_ADMISSION_ENVELOPE_OMISSION": {
+      "classification": "VERIFICATION_INFRASTRUCTURE_DEFECT",
+      "originalComputation": "0 admitted / 15 refused",
+      "correctedComputation": "13 admitted / 2 refused",
+      "correctedWithoutRespend": true,
+      "bothPreserved": true
+    },
+    "HARNESS_FAILURE_CHARGE_ACCUMULATION": {
+      "classification": "LOCAL_HARNESS_ACCOUNTING_DEFECT",
+      "oldValueUsd": 1.22255,
+      "correctedValueUsd": 0.26255,
+      "cause": "one counter served both the budget guard and the spend report; a zero-token HTTP 400 was charged the frozen $0.064 worst case and the total was printed as TOTAL_ACTUAL_COST_USD",
+      "method": "two-counter ProviderSpendLedger; actual spend is provider-returned usage only, reservations live in the guard and are never reported as money",
+      "historicalOutputPreserved": "RUN-SUMMARY.json left unedited as run evidence",
+      "regressionCoverage": "backend/scripts/test-expert-provider-spend-accounting.ts — 26 assertions, 26 passed, 0 provider requests",
+      "productRuntimeTouched": false
+    }
+  },
+
+  "CONTRACT_FAILURE_ROOT_CAUSE": {
+    "schemaPermitsTheImpossibleState": true,
+    "schemaConditionalKeywordsPresent": [],
+    "schemaKeywordsCheckedAndAbsent": ["if", "then", "else", "oneOf", "anyOf", "allOf", "not", "dependentRequired", "dependencies"],
+    "schemaDescriptionsLicenseTheRefusedOutput": true,
+    "selfContradictingDescription": "clarificationSourceMode: 'Required on ADD_OR_REPLACE_CLARIFICATION, null otherwise' contradicts 'Must agree with which of bindingFactKey and nominatedFact are present' whenever bindingFactKey is non-null under a non-ADD verdict. A defect in the artifact independent of any model behaviour.",
+    "declarationEnumHasNoDescription": true,
+    "boundByClarificationIsOverloaded": true,
+    "missingVocabularyMember": "no declaration token means 'the first pass's question already reaches this fact' — the conclusion step 3 drives the model toward. 13/15 recorded it as STILL_UNRESOLVED; 2/15 reached for BOUND_BY_CLARIFICATION.",
+    "admissionRemainsTheGuard": true,
+    "smallestRecommendedRemediation": "R1 — repair the three schema field descriptions, and nothing else",
+    "explicitlyNotRecommendedNow": [
+      "R3 JSON-Schema if/then conditionals — provider enforcement unverified in this repository and verification costs provider calls",
+      "R4 a fourth declaration member — needs its own authorization and must be typed settles:false if ever taken",
+      "normalizing the illegal state away — would destroy the evidence that the model asserted a binding",
+      "partial admission — a partly-valid verdict is not a partly-correct one"
+    ]
+  },
+
+  "residualsPreserved": [
+    "BOUND_FACT_NOT_UNRESOLVED unchanged",
+    "no settled fact exposed",
+    "no ALREADY_SETTLED added",
+    "no new declaration mode, status, property ontology or requiredProperty",
+    "EXPECTED_HISTORICAL_PIN_DIVERGENCE_AFTER_AUTHORIZED_LATER_CHANGE preserved",
+    "direct terminal-construction residual OPEN",
+    "projection-firewall declarative gap OPEN",
+    "§179 preserved as HISTORICAL_FIRST_PASS_SILENCE_EVIDENCE; never combined with §187A/B into one score",
+    "SILENCE rows not rerun",
+    "FIRST_PASS_STIMULUS_CONFOUND = MINOR, not reclassified after observing verifier output"
+  ],
+
+  "filesAdded": [
+    "backend/scripts/lib/expert-provider-spend-accounting.ts",
+    "backend/scripts/test-expert-provider-spend-accounting.ts",
+    "backend/scripts/build-188-adjudication-ballot-2026-09-06.ts",
+    "backend/scripts/score-188-strict-semantic-gate-2026-09-06.ts",
+    "backend/scripts/verify-188-source-integrity-2026-09-06.ts"
+  ],
+  "filesRepaired": ["backend/scripts/probe-required-structured-verifier-2026-09-05.ts"],
+  "section187EvidenceModified": 0,
+
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "Fifteen behavioural verifier executions exist and are adjudicable; corrected admission is 13 admitted / 2 refused.",
+      "A mechanical contract gate failed, diagnosed to a self-contradicting schema description and a missing declaration token.",
+      "The §187A cost figure is corrected, regression-covered, and the erroneous original preserved.",
+      "Product runtime, prompts, schemas and verifier contracts are byte-unchanged."
+    ],
+    "mustNotClaim": [
+      "verifier-v3 validated",
+      "strict semantic gate passed or failed",
+      "HR-04 solved or unsolved",
+      "adjacent-fact substitution absent",
+      "clarification policy sound or defective",
+      "challenge representation adequate",
+      "SILENCE improvement",
+      "full ten-row validation",
+      "absence of infrastructure fragility",
+      "customer readiness",
+      "production readiness",
+      "formal acceptance"
+    ]
+  },
+
+  "requiredNext": [
+    "human semantic adjudication of HUMAN-ADJUDICATION.json (112 slots, zero provider calls)",
+    "run backend/scripts/score-188-strict-semantic-gate-2026-09-06.ts, which refuses while any slot is null",
+    "only then choose between the contract-remediation and semantic-remediation paths; a bounded remediation authorization is required either way"
+  ],
+
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED",
+    "productionChange": "NONE"
+  }
+}

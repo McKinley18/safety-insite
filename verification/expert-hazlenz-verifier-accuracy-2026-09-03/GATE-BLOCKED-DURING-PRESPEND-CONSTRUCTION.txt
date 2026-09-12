@@ -1,0 +1,12 @@
+PRESERVED CONSTRUCTION RECORD — NOT A RECORD OF THE §156 EXPERIMENT.
+Written by a DRY-RUN pre-spend execution while the gate was still being wired: two containment
+checks were self-referential (they grepped this script for symbol names the assertion text itself
+contains), the packet metadata carried a section reference, and the credential had not been loaded
+because this script imports nothing from src/. All four blocked at $0.00, which is what the gate is
+for. Renamed rather than deleted. HOSTED_CALLS_AT_THE_TIME_OF_THESE_BLOCKS = 0.
+
+EXPERT_HAZLENZ_VERIFIER_ACCURACY_EXPERIMENT_BLOCKED — PRESPEND_GATE_FAILURE
+B.1 THE PACKET LEAKS NO ANSWER — no row id, no REQUIRED/FORBIDDEN, no authored selector: 1 leaks
+D.1 this experiment invokes NO first-pass Expert analysis: no first-pass entry point is reachable from this file
+D.2 the verifier client is standalone and implements no production provider interface: standalone
+E.3 an API credential is present: set

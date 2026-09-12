@@ -1,0 +1,13 @@
+{
+  "statement": "The §162 cue instrument measures TOPIC REACH, not RESOLUTION SUFFICIENCY.",
+  "section167ScoredTargetReached": "12/12",
+  "humanFullyCorrect": "8/12",
+  "humanPartiallyCorrect": "4/12",
+  "humanIncorrect": "0/12",
+  "agreementOnQuestionA": "12/12 — the instrument and the human agree that every clarification asks about the owed fact",
+  "divergence": "on question B the instrument is silent by construction: a cue match cannot tell whether the evidence a question demands would actually settle the fact.",
+  "section167Rescored": false,
+  "classification": "HUMAN_POSTHOC_ADJUDICATION — recorded separately, §167 remains immutable",
+  "consequence": "no claim may read §167's 12/12 as \"12 fully correct bindings\". The supported reading is 12/12 topic reach with 8/12 human-confirmed resolution sufficiency.",
+  "vindicatesSection164Obligation": "this is exactly why §164 classified binding truthfulness REQUIRES_HUMAN_TRUTH and required human sampling of bound pairs rather than an automated judge. The sampling found something the instrument could not."
+}

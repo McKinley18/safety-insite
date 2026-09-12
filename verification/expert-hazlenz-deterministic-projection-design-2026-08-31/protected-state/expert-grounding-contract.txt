@@ -1,0 +1,51 @@
+§105 EXPERT GROUNDING + ROUTING CONTRACT — deterministic, zero provider calls
+
+--- A. a clarification survives with NO candidate beside it
+ok    A.1 a zero-candidate response is VALID
+ok    A.2 the candidate list is genuinely empty
+ok    A.3 and the clarification SURVIVED — it does not depend on a candidate existing
+ok    A.4 the SCHEMA says so, so a model reading only the schema still learns it
+ok    A.5 the prompt says so too
+
+--- B. three collections populate independently in ONE response
+ok    B.1 the multi-collection response is VALID
+ok    B.2 all three SURVIVED together — no field subsumes or suppresses a sibling
+ok    B.3 expertHazardCandidates is a required sibling of the others
+ok    B.3 decisionCriticalClarifications is a required sibling of the others
+ok    B.3 crossHazardInsights is a required sibling of the others
+ok    B.3 disagreements is a required sibling of the others
+
+--- C. outcome is decided LAST, and an empty string never reaches the boundary
+ok    C.1 outcome is the LAST property — a consequence of the lists, not a commitment before them
+ok    C.2 expertHazardCandidates is decided BEFORE outcome
+ok    C.2 decisionCriticalClarifications is decided BEFORE outcome
+ok    C.2 crossHazardInsights is decided BEFORE outcome
+ok    C.3 required candidate strings carry minLength:1 — the transport refuses what the boundary would
+ok    C.4 required clarification strings carry minLength:1
+ok    C.5 and an empty string that arrives anyway is STILL refused at the boundary
+ok    C.6 a genuinely empty response is VALID — the negative control is not forced to invent
+ok    C.7 NOTHING_TO_ADD carrying content is RECORDED as an inconsistency
+ok    C.8 but it is not fatal and the content is not discarded over a label
+ok    C.9 the label mismatch is explicitly NOT fatal
+
+--- D. grounding is DECLARED, and a false declaration fails closed
+ok    D.1 a candidate MUST declare grounding and MUST carry the evidence key
+ok    D.2 there are exactly two declarations — no third, silent option
+ok    D.3 decisionCriticalClarifications is NOT forced to carry evidence — no fake grounding on a non-observational object
+ok    D.3 crossHazardInsights is NOT forced to carry evidence — no fake grounding on a non-observational object
+ok    D.3 disagreements is NOT forced to carry evidence — no fake grounding on a non-observational object
+ok    D.4 an honest exact quote binds and the candidate is GROUNDED
+ok    D.5 NO_EXACT_QUOTE_AVAILABLE still RAISES the candidate, ungrounded — §101 cannot return
+ok    D.6 claiming a quote and supplying none FAILS CLOSED — the candidate does not cross
+ok    D.6b and the refusal is ITEM-SCOPED — honest siblings are not destroyed with the liar
+ok    D.7 declaring no quote and then supplying one is equally a false declaration
+ok    D.8 a FABRICATED quote still fails closed — the §105 rule sits beside that check, not over it
+ok    D.9 an UNBINDABLE paraphrase is refused — approximate matching is never accepted
+ok    D.10 and the attempted text is PRESERVED for the operator, never tidied away
+ok    D.11 an unrecognised declaration drops the candidate
+ok    D.12 but bad FORMATTING is not an unfounded ASSERTION, so it is not fatal
+ok    D.13 neither §105 code is fatal — a false claim kills its candidate, not the analysis
+ok    D.13b and the PRE-EXISTING evidence rules are untouched — §105 added, it did not relax
+ok    D.14 the NORMALIZED contract is unchanged — only the wire form moved
+
+40 passed, 0 failed

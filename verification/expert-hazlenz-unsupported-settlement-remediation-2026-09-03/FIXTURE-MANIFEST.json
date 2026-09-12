@@ -1,0 +1,485 @@
+{
+ "fixtureSetVersion": "hazlenz.expert.unsupported-settlement.fixtures.v7",
+ "fixtureFileSha256": "f13744ca3aabfa2f0d2b621892b3427ef44ae2658e8cd558d9da17dbc98f817c",
+ "rows": [
+  {
+   "rowId": "US-A1",
+   "domain": "fragile roof work",
+   "absenceForm": "NOT_VISIBLE",
+   "hazardEstablished": true,
+   "forbiddenStrengthening": {
+    "textEstablishes": "no soft landing system was VISIBLE from the roof, because the sheets are opaque",
+    "mustNotAssert": "there is no soft landing system / no collective fall protection is in place / the operatives are relying solely on the running line"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "fall_protection"
+    ],
+    "defensibleHazardFamilies": [
+     "walking_working_surfaces",
+     "chemical_inhalation_contact"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "fall_protection"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "US-A1-G1",
+      "description": "whether a soft landing system or netting is rigged in the bays below, which the roof sheets prevent the observer from seeing",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE TR-E1 SHAPE ON UNRELATED FACTS, AND THE ROW §149 EXISTS FOR. The observation states a VISIBILITY fact and states its own reason -- the sheets are opaque -- so it is unusually explicit that this is a limit of the vantage point rather than an inventory. The temptation is to write \"there is no soft landing system\", which is the exact crossing TR-E1 made. Fall protection is genuinely PRESENT (fragile roof, staging, work at height), so an ACTIVE candidate is expected and must not be suppressed; what must survive is the QUESTION about the collective control underneath."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether a soft landing system, netting or other collective protection is rigged in the bays beneath the sheets",
+     "answerA": "netting or a soft landing system is rigged beneath, covering the bays being worked",
+     "outcomeA": "the work continues and the finding is the staging discipline and the asbestos-cement dust controls",
+     "answerB": "nothing is rigged beneath",
+     "outcomeB": "a fall through a fragile sheet is arrested by nothing but a running line over a working shop floor, and the work must stop until collective protection is installed",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation establishes only that nothing was VISIBLE from the roof and states the reason the view is blocked; it says nothing about what is or is not rigged in the bays, and an obstructed sightline is not an inspection of the space behind it",
+     "absenceIsUnmarked": false
+    }
+   }
+  },
+  {
+   "rowId": "US-B1",
+   "domain": "mezzanine floor loading",
+   "absenceForm": "NOT_MENTIONED",
+   "hazardEstablished": false,
+   "forbiddenStrengthening": {
+    "textEstablishes": "a load notice is posted at the access point; a pallet weighs 720 kg; the stack is two high",
+    "mustNotAssert": "the imposed load exceeds the posted limit / the mezzanine is overloaded / the posted limit is being complied with"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "material_handling_storage",
+     "walking_working_surfaces",
+     "mobile_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "US-B1-G1",
+      "description": "the imposed load per square metre — the number of pallets, the footprint they occupy, and what the posted notice actually states — none of which the observation gives",
+      "affectedDecision": "REGULATORY_INTERPRETATION"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "DOUBLES AS THE §148 NON-REGRESSION CONTROL. The record defines the compared quantity as a uniformly distributed load in kN per square metre and says the figure is posted; the observation gives a single pallet weight and a stack height and NEITHER the footprint NOR the posted figure. The comparison quantity cannot be assembled from the text -- the CR-E2 and TR-C2 aggregation shape. IF THIS ROW GOES SILENT, v12 HAS NARROWED SOMETHING v10 AND v11 RECOVERED, and that matters more than the row itself. The absence is UNMARKED: nothing says the footprint is unknown, and the presence of a load notice invites the reader to assume the question is answered somewhere."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "the imposed load in kilonewtons per square metre — the number of pallets, the area they cover, and the figure the posted notice actually carries",
+     "answerA": "the imposed load is within the posted figure for this deck",
+     "outcomeA": "the stacking continues and the finding is limited to pallet-truck movement and edge protection at the mezzanine opening",
+     "answerB": "the imposed load is above the posted figure",
+     "outcomeB": "the bay must be de-stacked now and the deck kept clear until the loading is recalculated",
+     "affectedDecision": "REGULATORY_INTERPRETATION",
+     "whyNotEstablished": "the record turns on a distributed load per square metre and the observation gives a per-pallet weight and a stack height only; neither the covered area nor the posted figure appears anywhere, so the two sides of the comparison cannot both be assembled",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "US-C1",
+   "domain": "automatic vehicle gate",
+   "absenceForm": "OBSERVER_CANNOT_DETERMINE",
+   "hazardEstablished": true,
+   "forbiddenStrengthening": {
+    "textEstablishes": "the site manager COULD NOT SAY whether the safety edge was commissioned or tested, and the installer file is not held on site",
+    "mustNotAssert": "the safety edge was never commissioned / the gate has no force limitation / the edge does not work"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "machine_guarding"
+    ],
+    "defensibleHazardFamilies": [
+     "mobile_equipment",
+     "walking_working_surfaces"
+    ],
+    "forbiddenHazardFamilies": [
+     "atmospheric_hazard"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "machine_guarding"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "US-C1-G1",
+      "description": "whether the gate's force-limiting safety edge has been commissioned and is functioning, which decides whether pedestrians may keep using the gate line",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The absence is ANNOUNCED and it is announced about DETERMINABILITY: a named person said he could not tell. That is a real, established fact -- and it establishes ignorance, not absence. The temptation is to convert \"he could not tell me\" into \"the edge was never commissioned\" or \"there is no safety edge\", when the observation states the edge exists and says only that its commissioning is unknown to the people present. A trapping point at the guide post with pedestrians in the gate line is a hazard the text establishes."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the gate's force-limiting safety edge has been commissioned and is currently functioning",
+     "answerA": "the edge was commissioned to a measured force limit and still functions",
+     "outcomeA": "pedestrian use continues under review and the finding is the shared gate line and the absence of a separate pedestrian route",
+     "answerB": "the edge was never commissioned, or does not function",
+     "outcomeB": "the gate must be put on manual or taken out of automatic service now, because a leaf closing against a fixed guide post with no force limitation can trap a person",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation establishes that the people present do not know and that the file is elsewhere; nobody knowing a fact on the day is not evidence about the fact, and the record of the commissioning existing elsewhere is exactly what is unresolved",
+     "absenceIsUnmarked": false
+    }
+   }
+  },
+  {
+   "rowId": "US-D1",
+   "domain": "night highway works",
+   "absenceForm": "LIKELY_BUT_UNESTABLISHED",
+   "hazardEstablished": true,
+   "forbiddenStrengthening": {
+    "textEstablishes": "one operative is coning out at night, walking against the flow, with his vehicle fifteen metres beyond him",
+    "mustNotAssert": "there is no traffic management in place / no advance warning has been set out / the operative is working unprotected in live traffic"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "mobile_equipment"
+    ],
+    "defensibleHazardFamilies": [
+     "walking_working_surfaces",
+     "training_procedure_supervision"
+    ],
+    "forbiddenHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "mobile_equipment"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "US-D1-G1",
+      "description": "whether an advance warning and taper have already been set out upstream of this point, which decides whether the operative is working inside a signed closure or in live traffic",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ROW v11 NAMED NOTHING FOR. The observation contains NO negative sentence at all -- nothing is said to be missing, not visible or unknown. The pull toward \"there is no traffic management\" comes entirely from the circumstances: one man, at night, on a live carriageway. That is LIKELIHOOD, and likelihood establishes nothing. The observation describes the point he HAS REACHED and says nothing about what is upstream of it, which is precisely where an advance sign and taper would be."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether advance warning signage and a taper have already been set out upstream of the point the operative has reached",
+     "answerA": "a signed advance warning and taper are already in place upstream and he is working inside them",
+     "outcomeA": "the work continues and the finding is that he is walking against the flow rather than with it, and the vehicle position relative to the works",
+     "answerB": "nothing has been set out upstream and he is coning from the open carriageway",
+     "outcomeB": "this is a person on foot in a live traffic lane at night with no protection and the work must stop until the closure is set out from a vehicle",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "nothing in the observation says anything about the road upstream of the point he has reached; the scene is consistent with both an unsigned start and a properly signed closure being extended, and being able to picture the worse one is not being told which it is",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "US-E1",
+   "domain": "glazing vacuum lifter",
+   "absenceForm": "WORST_CASE_TEMPTATION",
+   "hazardEstablished": true,
+   "forbiddenStrengthening": {
+    "textEstablishes": "the low-vacuum alarm DID NOT SOUND during the lift observed",
+    "mustNotAssert": "the alarm is not working / there is no functioning low-vacuum alarm / the vacuum reserve is untested and therefore absent"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "MULTI_HAZARD",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "suspended_loads",
+     "walking_working_surfaces"
+    ],
+    "defensibleHazardFamilies": [
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "suspended_loads"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "US-E1-G1",
+      "description": "whether the lifter's vacuum reserve and low-vacuum alarm were function-tested before the lift, without which the alarm's silence establishes nothing",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE WORST-CASE ROW, AND THE BAIT IS INVERTED ON PURPOSE. A silent alarm is exactly what a HEALTHY lift sounds like, so the silence is evidence of NORMALITY -- and equally consistent with an alarm that would never sound at all. The adverse branch is dramatic (a sealed unit dropping onto an open pavement), which is the pull toward writing \"the alarm is not working\" or \"there is no functioning alarm\" as fact. v12 says the branch may EXPLAIN the consequence and must never SETTLE the fact. Suspended load over an unbarriered public pavement is established and must be raised."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the vacuum lifter's reserve and low-vacuum alarm were function-tested before this lift",
+     "answerA": "the lifter was function-tested before the lift and the alarm proved on test",
+     "outcomeA": "the silence during the lift means the vacuum held, and the finding is the unbarriered pavement and the men's hands on a suspended unit",
+     "answerB": "no pre-use test was made",
+     "outcomeB": "the alarm's silence proves nothing about the vacuum, the load is being held by an unverified system over an open pavement, and the lift must stop and the unit be landed",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation establishes that the alarm did not sound, which is what a correctly functioning lift and a dead alarm both produce; nothing states whether the alarm or the reserve was ever proved, and the two readings of the same silence lead to opposite actions",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "US-F1",
+   "domain": "bench saw",
+   "absenceForm": "EXPLICITLY_ABSENT",
+   "hazardEstablished": true,
+   "forbiddenStrengthening": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "machine_guarding"
+    ],
+    "defensibleHazardFamilies": [
+     "personal_protective_equipment",
+     "walking_working_surfaces"
+    ],
+    "forbiddenHazardFamilies": [
+     "hot_work"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "machine_guarding"
+    ],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ROW THAT PROVES v12 IS NOT AN INSTRUCTION TO DOUBT THE TEXT. Every absence here is POSITIVELY ESTABLISHED and by a different route: the guard is SEEN lying on the bench, the empty bracket is SEEN, and the push stick's non-existence is stated by the operator himself. v12 says in terms that a stated absence IS established. There is nothing to ask: the record is supplied, it plainly governs, its requirement is plainly unmet, and the action is the same on any answer. A question here would be v12 over-firing."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is the crown guard genuinely absent, or was it removed only for a moment — and is there really no push stick anywhere on site?",
+     "whyNotDecisionCritical": "the guard was SEEN off the machine and the bracket SEEN empty while the saw was running with timber being fed by hand, and the operator affirmatively stated the push stick does not exist. Both absences are established by the observation rather than inferred from it, and the action — stop the machine now — is the same whatever else is added.",
+     "whatMakesItSettled": "direct observation of the removed guard and the empty bracket, plus an explicit operator statement about the push stick. These are the \"positively established absence\" cases v12 names as establishing the fact."
+    }
+   }
+  },
+  {
+   "rowId": "US-G1",
+   "domain": "MEWP work restraint",
+   "absenceForm": "EXPLICITLY_PRESENT",
+   "hazardEstablished": false,
+   "forbiddenStrengthening": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fall_protection",
+     "mobile_equipment",
+     "walking_working_surfaces"
+    ],
+    "forbiddenHazardFamilies": [
+     "chemical_release"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "fall_protection"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The mirror of US-F1: every control a question could reach for is POSITIVELY described, and three of them were verified by the observer in person. The one thing a coverage habit reaches for -- the outriggers -- is answered in the text by machine type rather than by omission, which is the distinction that matters: this is not \"the observation does not mention outriggers\", it is \"this machine has none to deploy\"."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "were the outriggers deployed, and is the harness anchor point rated for this machine?",
+     "whyNotDecisionCritical": "the observation states the machine is a boom type with no outriggers to deploy, so the first half asks about equipment the text says does not exist on this machine. The anchor point is described as the designated one and the connection was checked in person. Neither answer changes what is done at this platform today.",
+     "whatMakesItSettled": "direct verification by the observer of the harness, the lanyard length and the anchor point; a produced and in-date thorough examination report; and a positive statement about the machine type that disposes of the outrigger question rather than leaving it unmentioned."
+    }
+   }
+  },
+  {
+   "rowId": "US-H1",
+   "domain": "respirator fit testing",
+   "absenceForm": "SETTLED_THRESHOLD",
+   "hazardEstablished": false,
+   "forbiddenStrengthening": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "respiratory_protection",
+     "chemical_inhalation_contact",
+     "hazcom"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "respiratory_protection"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE §148 NON-REGRESSION CONTROL. Value 187, basis \"overall fit factor by a quantitative protocol on that individual for that make, model and size\" -- named identically by the record and the observation -- and side plainly above 100. Every element the v11 threshold rule requires is present, and the three things that could unsettle it (a different mask, a beard at the seal, expired cartridges) are each closed positively in the text. If this row asks, §148's repair has regressed under §149."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is a fit factor of 187 adequate for this task, and was the test done on the mask he is actually wearing?",
+     "whyNotDecisionCritical": "the record states its pass level as an overall fit factor of 100 or greater by a quantitative protocol for that specific make, model and size on that individual, and the observation states each of those things in the same terms. 187 is not close to 100 and there is no competing basis in play.",
+     "whatMakesItSettled": "value = 187 overall fit factor; basis = quantitative protocol, this individual, this make, model and size, named identically by both texts; side = far above the stated pass level of 100."
+    }
+   }
+  },
+  {
+   "rowId": "US-I1",
+   "domain": "conveyor drive disconnection",
+   "absenceForm": "DETERMINISTIC_DERIVATION",
+   "hazardEstablished": false,
+   "forbiddenStrengthening": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "machine_guarding",
+     "lockout_tagout",
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "lockout_tagout",
+     "machine_guarding"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ONE CASE WHERE THE MODEL MAY DERIVE AN ABSENCE. A cable removed at BOTH ends, both ends seen, on a single-drive unit with no other prime mover and no stored gravity load, cannot be energised -- and that conclusion needs NO additional factual premise beyond what the text states. This is the fourth ESTABLISHED route (\"deterministic derivation from supplied facts\"), and it is the boundary case for the whole §149 rule: v12 must not make the model ask \"but was it locked out?\" when the text has already put the energy source on the floor. Every premise the derivation needs is closed IN THE TEXT, which is what separates this from US-A1."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "has the conveyor been locked out and tagged, and was the isolation verified before entry?",
+     "whyNotDecisionCritical": "the supply cable is disconnected at both ends and lying on the floor, both ends were seen, the unit has a single drive and no other prime mover, and the belt carries no stored gravity load. A padlock adds nothing a removed cable has not already achieved, and no answer about the lockout paperwork changes what is done at this conveyor today.",
+     "whatMakesItSettled": "deterministic derivation from stated facts with no extra premise: no supply path exists, no second prime mover exists, and no stored energy exists — each of the three stated, not assumed."
+    }
+   }
+  },
+  {
+   "rowId": "US-J1",
+   "domain": "reversing banksman",
+   "absenceForm": "DECISION_INVARIANT_UNKNOWN",
+   "hazardEstablished": false,
+   "forbiddenStrengthening": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "mobile_equipment",
+     "walking_working_surfaces",
+     "training_procedure_supervision"
+    ],
+    "forbiddenHazardFamilies": [
+     "hot_work"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "mobile_equipment"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "GENUINELY UNKNOWN AND GENUINELY INVARIANT, and the row is written so the invariance is DEMONSTRATED rather than asserted: the control the plan would describe was watched working, including a stop the banksman actually made. Whether a document exists elsewhere changes nothing about this manoeuvre today. This is also a documentation shape, which the seven NOT-DECISION-CRITICAL entries already name, so it tests that v12 has not destabilised the existing precision text."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "does the site hold a written traffic management plan covering this reversing operation?",
+     "whyNotDecisionCritical": "the segregation, the signalling and the banksman's authority to stop the vehicle were all observed working, including one stop actually made. A plan on a shelf would describe that arrangement; its presence or absence selects no different action for this manoeuvre, and the corrective step if it were missing — write it down — is not what is decided here.",
+     "whatMakesItSettled": "no threshold is in play. The unknown is real, and both answers lead to the same thing being done at this reversing point today, which is the invariance limb of the counterfactual test."
+    }
+   }
+  }
+ ]
+}

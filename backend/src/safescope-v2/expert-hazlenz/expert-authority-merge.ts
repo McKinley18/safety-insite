@@ -142,6 +142,17 @@ export interface MergedIntelligence {
   expertAdvisory: ExpertAdvisoryBlock;
   /** Observable, always. `PRESENT` is not the interesting value; the other three are. */
   expertLayer: { status: ExpertLayerStatus; detail: string | null };
+  /**
+   * D. §170. Present ONLY when the verifier-v3 development stage attached one, which requires
+   * `EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED` -- a literal `false`. The key is therefore ABSENT from
+   * every merged result today, and `mergeExpertIntelligence` called with three arguments returns an
+   * object deep-equal to the one it returned before this field existed.
+   *
+   * It is typed `unknown` deliberately: the merge must not acquire a dependency on the owed-fact
+   * module, because that would let a coverage concern reach the place where protected authority is
+   * composed. The stage owns the shape; the merge only carries it.
+   */
+  owedFactCoverage?: unknown;
 }
 
 // ---------------------------------------------------------------- the merge
@@ -154,6 +165,15 @@ export function mergeExpertIntelligence(
   deterministic: DeterministicAuthorityResult,
   governed: GovernedAuthorityResult,
   expert: ExpertLayerInput,
+  /**
+   * §170. Owed-fact coverage, attached only by the gated verifier-v3 development stage. Omitted
+   * everywhere today, and when omitted the returned object carries no `owedFactCoverage` key at
+   * all -- so the result is deep-equal to the pre-§170 result rather than merely equivalent.
+   *
+   * It cannot change A or B: it is spread last into the returned literal and touches no branch
+   * above. There is no path from a coverage value to a protected finding or a governed citation.
+   */
+  owedFactCoverage?: unknown,
 ): MergedIntelligence {
   // A -- copied, not filtered. No predicate, no sort, no dedupe: those are all places a removal
   // could hide, and none of them is needed to attach a label.
@@ -195,6 +215,10 @@ export function mergeExpertIntelligence(
     },
     expertAdvisory,
     expertLayer: { status: expert.status, detail: expert.detail },
+    // Absent unless supplied. A conditional spread rather than `owedFactCoverage: undefined`,
+    // because a key present with an undefined value is a different object from no key at all, and
+    // the invariance proof compares objects.
+    ...(owedFactCoverage === undefined ? {} : { owedFactCoverage }),
   };
 }
 

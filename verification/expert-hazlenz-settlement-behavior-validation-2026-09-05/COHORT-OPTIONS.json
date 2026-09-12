@@ -1,0 +1,91 @@
+{
+  "artifact": "SECTION_183_COHORT_OPTIONS",
+  "date": "2026-09-05",
+  "status": "OPTIONS FOR THE PRODUCT OWNER — none executed, no option authorized, $0.00 spent",
+  "purpose": "The §183 design cannot be run as specified. These are the paths that remain, with what each buys and what each cannot answer. The choice is the owner's because each trades a different thing away.",
+
+  "OPTION_1": {
+    "name": "PRODUCT OWNER SUPPLIES THE OWED FACTS",
+    "shape": "the product owner writes, for each of the ten frozen rows, the material unresolved fact — factKey, why it is unresolved, both branches and the decision divergence — filling the MATERIAL_UNRESOLVED_FACTS field that has been null since §174",
+    "providerCalls": 0,
+    "buys": [
+      "the stimulus stops being model-authored, so the HR-04 result becomes interpretable",
+      "it closes the gap §175 first hit and that has blocked strict scoring three times since",
+      "it is reusable — every future settlement experiment on this instrument needs the same content"
+    ],
+    "costs": [
+      "real product-owner authoring labour on ten rows",
+      "the authored facts then need the same care as any evaluation truth: authored before seeing outputs, and never revised to fit a result"
+    ],
+    "risk": "the owner writing HR-04's fact faces the same tension I do — a specific wording states the distinction. The difference is that an owner-authored stimulus is a legitimate instrument, where a model-authored one evaluating that same model is the closed loop the programme has refused since §162.",
+    "recommendationIfChosen": "author blind to the §179 results and to this analysis's candidate wordings, and freeze before any run"
+  },
+
+  "OPTION_2": {
+    "name": "TWO-ROW HUMAN-AUTHORITATIVE COHORT (HS-A1, HS-E1)",
+    "shape": "run the §183 settlement path only on the two rows whose owed-fact targets are human-authoritative from §162 and human-reviewed at §169",
+    "providerCalls": "6 at three replicates, well inside the caps",
+    "buys": [
+      "genuinely authoritative owed-fact content, authored by nobody for this experiment",
+      "a real reviewability measurement on real challenge reasons — the question that decides whether a declaration field is justified"
+    ],
+    "cannotAnswer": [
+      "HR-04 false settlement — the primary target is not in this cohort",
+      "containment (HR-05/HR-07 shapes) — both rows are REQUIRED-shaped and HUMAN_AUTHORITATIVE_SILENCE_ROWS for owed-fact content is 0",
+      "settled positive controls — same reason"
+    ],
+    "caveat": "these are the rows §167 already spent, so a result here is not independent of that history",
+    "verdict": "the cheapest honest experiment available today, and it answers the declaration-field question while leaving the safety question open"
+  },
+
+  "OPTION_3": {
+    "name": "GOVERNED-DERIVED OWED FACTS, ACCEPTING THE COARSENESS",
+    "shape": "construct owed facts only from approved-record requiredFacts and evidenceQuestions, deterministically, with no narrative authored by anyone",
+    "providerCalls": "30 at three replicates over ten rows",
+    "buys": [
+      "zero authoring — the stimulus is entirely governed-derived and reproducible",
+      "it measures what the architecture would actually do in production, where governed framing is all it has"
+    ],
+    "cannotAnswer": [
+      "HR-04 — app-mg-01 frames the fact as guarding_status, which does not distinguish presence from securement, so the property under test is not expressible in the stimulus"
+    ],
+    "whatItWouldActuallyMeasure": "whether a model can settle or challenge COARSE governed facts reviewably — which is a real and useful question, and is NOT the question §183 asked",
+    "verdict": "valid experiment, different question. Choosing it means accepting that §183's primary target is deferred to Option 1 or to governed remediation."
+  },
+
+  "OPTION_4": {
+    "name": "GOVERNED EVIDENCE ALIGNMENT REMEDIATION FIRST",
+    "shape": "address the §181 finding before any settlement behaviour validation — decide whether a functional-test verification method belongs in the vocabulary, and disambiguate the two ambiguous evidence questions",
+    "providerCalls": 0,
+    "rationale": "the reason HR-04's owed fact cannot be constructed from governed sources is that the registry has no method establishing that a safeguard works. That is the same finding that will block a reviewer from approving settlement on any protective-function fact once the run happens.",
+    "buys": "removes the root cause of both the construction blocker and the anticipated review blocker",
+    "costs": "a knowledge-governance programme of unknown size, and governed records must never be strengthened merely to make a tool work",
+    "verdict": "the authorization's own GOVERNED-KNOWLEDGE DECISION RULE points here — the dominant reason the experiment cannot proceed is that the governed criterion is incapable"
+  },
+
+  "OPTION_5": {
+    "name": "RUN THE REVIEWABILITY HALF KNOWINGLY, ON AUTHORED FACTS",
+    "shape": "proceed as §183 specifies, with model-authored owed facts, but preregister that criteria 6, 7 and 8 are VOID BY CONSTRUCTION and score only criteria 1-5 and 9-10",
+    "providerCalls": "30",
+    "buys": "an answer to the declaration-field question on the full ten-row instrument",
+    "costs": [
+      "$1.50 and the owner's review time on up to 30 claim packets",
+      "the primary safety target is explicitly not measured, and the record must say so permanently",
+      "every challenge is a response to a stimulus this model wrote — the §167 confound, knowingly incurred"
+    ],
+    "verdict": "legitimate if the owner wants the reviewability answer now and accepts the recorded void. It is the owner's call to spend money and review labour on a partial instrument, not mine to make by proceeding quietly."
+  },
+
+  "whatIsNotAnOption": [
+    "authoring the owed facts myself and running the full design as though the result were interpretable — this is the closed loop refused since §162, and §167 already recorded the confound it produces",
+    "strengthening a governed record so the owed fact becomes constructible",
+    "weakening the preregistered criteria so the available instrument passes them"
+  ],
+
+  "recommendation": {
+    "primary": "OPTION_1 — product owner supplies the owed facts, then re-run §183 as written",
+    "why": "it is the only path that answers §183's primary question, and the missing content has now blocked scoring at §175, §177, §179 and here. It is a one-time cost that unblocks a recurring obstacle.",
+    "ifOwnerWantsAnAnswerSooner": "OPTION_2 alongside it — six calls, real human-authoritative targets, and it settles the declaration-field question independently of the HR-04 question",
+    "parallel": "OPTION_4 remains the standing parallel track from §180 and §181, unchanged and now with a second reason behind it"
+  }
+}

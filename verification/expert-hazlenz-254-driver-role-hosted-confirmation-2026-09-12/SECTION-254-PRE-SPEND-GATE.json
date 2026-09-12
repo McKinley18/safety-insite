@@ -1,0 +1,145 @@
+{
+  "section": "254",
+  "generated": "2026-09-12",
+  "verdict": "PASS",
+  "authorized": {
+    "candidateIdentity": "293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf",
+    "instrumentDigest": "674e940157b2d0647158a56c998e76d49fedf0d7c0ab4c53025a6ff886bf59ef",
+    "package253": "25444e3be6e7a2e531ffb2228bbc28fb0fadb48b7b571d0a2595c0dea95bf303",
+    "package252": "a08844f9ca807dd514ed42952eefb54385992109b779671c4aa8d9197d3c340b",
+    "systemPromptNoGoverned": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957"
+  },
+  "liveDerivedCandidateIdentity": "293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf",
+  "checks": [
+    {
+      "id": "G1 candidate identity re-derives to the authorized v2.3 digest",
+      "verdict": "PASS",
+      "detail": "293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf vs 293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf"
+    },
+    {
+      "id": "G2 all v2.3 identity elements resolve",
+      "verdict": "PASS",
+      "detail": "24/24"
+    },
+    {
+      "id": "G3 strictSchema is FALSE on the envelope and on the assembled request",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G4 the §253 successor cessation schema is the one the entry point invokes",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G5 the finalized alongsideControlConsidered semantics are bound",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G6 the structural admission module is active, proved by execution",
+      "verdict": "PASS",
+      "detail": "hazlenz.expert.252.structural-admission.v1"
+    },
+    {
+      "id": "G7 the admission verdict rule is active",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G8 the normalizer is active",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G9 the posture projection is active",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G10 the role-justification projection is active",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G11 RR-7 is active",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G12 the authority and settlement controls are present and bound",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G13 the system prompt matches the frozen candidate",
+      "verdict": "PASS",
+      "detail": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957"
+    },
+    {
+      "id": "G14 no semantic invention on any gate probe",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G15 the frozen instrument digest is the authorized one",
+      "verdict": "PASS",
+      "detail": "674e940157b2d0647158a56c998e76d49fedf0d7c0ab4c53025a6ff886bf59ef"
+    },
+    {
+      "id": "G16 the instrument digest re-derives from its own content",
+      "verdict": "PASS",
+      "detail": "674e940157b2d0647158a56c998e76d49fedf0d7c0ab4c53025a6ff886bf59ef vs 674e940157b2d0647158a56c998e76d49fedf0d7c0ab4c53025a6ff886bf59ef"
+    },
+    {
+      "id": "G17 the instrument carries exactly six cases",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G18 the six observation payloads are byte-identical to the §252 freeze",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G19 only metadata-only differences exist from the §252 freeze",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G20 the instrument binds this candidate",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G21 the instrument is unexecuted and awaiting authorization",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G22 the §253 package verifies and digests to the authorized value",
+      "verdict": "PASS",
+      "detail": "25444e3be6e7a2e531ffb2228bbc28fb0fadb48b7b571d0a2595c0dea95bf303"
+    },
+    {
+      "id": "G23 the §252 package verifies and digests to the authorized value",
+      "verdict": "PASS",
+      "detail": "a08844f9ca807dd514ed42952eefb54385992109b779671c4aa8d9197d3c340b"
+    },
+    {
+      "id": "G24 an API credential is configured",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G25 the frozen execution policy is first-pass only, six calls, transport-only contingency",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G26 six observation digests are recorded on the instrument",
+      "verdict": "PASS",
+      "detail": ""
+    }
+  ]
+}

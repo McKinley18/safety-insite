@@ -1,0 +1,33 @@
+WORKTREE STATE -- section 125 (2026-08-31)
+HEAD:   37a5d1b50abe836eb19dd24ee18ad10557bda131
+AHEAD/BEHIND vs origin/main: 0	1
+staged 0  tracked-modified 14  stashes 4  tags 24
+
+FILES ADDED THIS PHASE:
+  backend/src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry.ts
+  backend/src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1.ts
+  backend/scripts/lib/expert-augmentation-construction-policy.ts
+  backend/scripts/validate-negative-control-augmentation.ts
+TRACKED FILE MODIFIED: backend/package.json (+1 script line this phase)
+RESERVED MATERIAL OPENED: NONE   PROVIDER CALLS: 0   PRODUCTION ACCESS: NONE
+
+TRACKED MODIFIED:
+backend/package.json
+backend/scripts/probe-expert-routing.ts
+backend/scripts/test-expert-contract-foundation.ts
+backend/scripts/test-expert-routing-contract.ts
+backend/src/safescope-v2/evidence/evidence-foundation.ts
+backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts
+docs/INSITE_CURRENT_STATE.json
+docs/INSITE_ENGINEERING_BLUEPRINT.md
+frontend-next/tsconfig.json
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+
+RESERVED CORPORA (byte-unchanged):
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json

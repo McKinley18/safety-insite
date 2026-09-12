@@ -1,0 +1,69 @@
+§165 PROTECTED REGRESSION — executed 2026-09-05T02:00:43Z
+====================================================================================================
+
+--- SOURCE_PROJECT_TSC: npx tsc --noEmit (src/**/* only; rootDir ./src excludes scripts/)
+exit 0 — clean
+
+--- npm run test:expert-bounded-reliability
+  44/44 PASS  ·  0 FAIL
+
+--- npm run test:expert-reliability-architecture
+ok    F.2 a degenerate REISSUE cannot earn another — there is no third request  FAIL_CLOSED_AFTER_REISSUE
+ok    K.2 AND THE MEASURED RATE IS REPORTED HONESTLY RATHER THAN ASSERTED AS ACCEPTABLE — 11 of 22 valid FORBIDDEN executions escalate across the three draws  this FAILS the §155 credibility criterion and is reported as a failure
+69 passed, 0 failed
+
+--- npm run test:expert-verifier-v2-contract
+46 passed, 0 failed
+PROVIDER_CALLS = 0   FIRST_PASS_INVOCATIONS = 0   PRODUCTION_FILES_CHANGED = 0
+
+--- npm run test:expert-contract-foundation
+ok    A.7 FAIL_CLOSED_AND_FALLBACK does not permit ADD
+ok    D.5a a malformed clarification FAILS schema validation (issue emitted)
+56 passed, 0 failed
+
+--- npm run test:expert-routing-contract
+67 passed, 0 failed
+
+--- npm run test:expert-measurement-layer
+66 passed, 0 failed
+
+--- npm run test:expert-fixture-hardening
+ok    F.24 a mechanical defect FAILS CLOSED
+76 passed, 0 failed
+
+--- npm run test:expert-clarification-settlement
+ok    A2.6 and a threshold the facts FAIL is settled too, not only one they satisfy
+148 passed, 0 failed
+
+--- npm run test:expert-affected-decision-arbitration
+ok    M2.3 CASE 7: an ambiguous question carrying the contradictory label FAILS CLOSED, and nothing guesses what it meant
+41 passed, 0 failed
+
+--- npm run test:expert-unsupported-settlement
+ok    L.6 a raw/normalized disagreement FAILS reconciliation loudly instead of being averaged away
+129 passed, 0 failed
+
+--- npm run test:expert-retention-bridge
+ok    M.13 case M/N  uncertainty retained ONLY in explanation or candidate state is named as a FAILURE by the contract — the local proof available for a behavioural claim
+123 passed, 0 failed
+
+--- npm run test:hazlenz-level1-recall
+  [PASS] HE-07 Administrative records naming electrical and lockout — no physical condition
+  [PASS] HE-08 Equipment named as stored stock — no energy, no exposure
+PASS HazLenz Level-1 recall gate (17 checks)
+
+--- npm run test:hazlenz-actionable-coverage
+  [PASS] A-34 classifier said Material Handling @0.70 medium; emitted=[]
+  [PASS] A-12 classifier said Unclassified @0.25 low; emitted=[]
+PASS HazLenz actionable-coverage gate (17 checks)
+
+--- npm run test:hazlenz-guarding-applicability
+PASS no decision reports NOT_APPLICABLE while a hazard predicate is SUPPORTED
+cases: 16   failures: 0   dangerous failures: 0
+HazLenz machine-guarding applicability precedence regression: all invariants passed, 0 failed
+
+--- npm run test:governed-kill-switch-authority
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> knowledgeReleaseId stays NULL — expected null, got null
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> no durable write attempted — expected 0, got 0
+PASS — 115 passed, 0 failed
+

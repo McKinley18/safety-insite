@@ -1,0 +1,1243 @@
+{
+  "artifact": "SECTION-228-RAW-RESULTS",
+  "derivedFrom": {
+    "firstPass": "RAW-228-FIRST-PASS.jsonl",
+    "verifier": "RAW-228-VERIFIER.jsonl"
+  },
+  "frozenDigest": "4c91ae539f18efdad0f37e30967e8b188b659864fac8ab0cda08c8e2dea0c3cc",
+  "providerCallsInDerivation": 0,
+  "databaseOperations": 0,
+  "outputRepaired": false,
+  "semanticsReconstructedFromProse": false,
+  "owedFactsManufactured": false,
+  "conditionalCorrectionDeterminations": {
+    "C3": {
+      "declaredIsTheFrozenProperty": false,
+      "adjudication": "The frozen controlling property is whether the hood is still achieving adequate capture of the wood dust at source in its moved position. The first pass declared whether sanding is currently being carried out under the present LEV configuration WITHOUT additional interim controls. That is a question about what controls are in place right now, not about the physical state of capture, and its branches divide management responses rather than dividing the property. It is not the frozen proposition and it is not even one of the four annotated proxies. The rule fires: CORRECT_PROPERTY."
+    },
+    "C8": {
+      "declaredIsTheFrozenProperty": true,
+      "adjudication": "The frozen controlling property is whether operating the walkway-side emergency pull-cord will actually stop the belt. The first pass declared whether the emergency pull-cord along this walkway currently stops the belt when operated. Same proposition. A reviewer cannot honestly correct a property they agree with, so the rule produces CONFIRM_PROPERTY and the CORRECT_PROPERTY axis is NOT_EXERCISED on this case."
+    }
+  },
+  "cases": [
+    {
+      "caseId": "C1",
+      "firstPass": {
+        "failureClass": "OUTPUT_TRUNCATED",
+        "stopReason": "max_tokens",
+        "outputTokens": 4000,
+        "declarationsShape": "ABSENT",
+        "declarationCount": null,
+        "candidates": [
+          {
+            "candidateKey": "struct-damage-column",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "structural_failure",
+            "reasoning": "A struck, bowed support column with cracked base grout under a mezzanine currently carrying about forty pallets (two-high stacked, 25 kg sacks) is a live structural damage condition. The column is a load-bearing element and its deformation directly threatens the integrity of the structure it supports, right now."
+          },
+          {
+            "candidateKey": "unknown-load-rating",
+            "assertedConditionState": "UNKNOWN",
+            "hazardFamily": "structural_failure",
+            "reasoning": "Without a known rated load, it cannot be established whether the current load (forty pallets, two-high, 25kg sacks) is within or beyond the mezzanine's safe capacity even absent the column damage. This is a distinct structural hazard from the column strike: an unverifiable load capacity on an already-loaded mezzanine."
+          },
+          {
+            "candidateKey": "struck-by-forklift-aisle",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "struck_by",
+            "reasoning": "The aisle where a counterbalance forklift already struck a structural column remains open to production traffic and personnel, with no stated change to traffic control or reversing procedures. This is a current struck-by/vehicle-contact exposure in the same location where the initial strike occurred, independent of the structural damage hazard."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "q-load-rating",
+            "answers": "decl-load-capacity"
+          },
+          {
+            "id": "q-column-assessment",
+            "answers": "decl-column-integrity"
+          }
+        ],
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "declarations": null,
+        "outputRepaired": false
+      },
+      "structuralDefects": [
+        "FIRST_PASS_OUTPUT_TRUNCATED",
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD"
+      ],
+      "containedDefects": [
+        {
+          "defect": "the provider truncated at max_tokens and the required unresolvedFactDeclarations field never arrived",
+          "containment": "the field was never parsed or reconstructed; no fact was admitted; the verifier leg was elided; the failure is named in the end state as a structural provider defect"
+        }
+      ],
+      "projection": {
+        "admittedCount": 0,
+        "refused": [],
+        "projectionCodes": [],
+        "admittedFactKeys": [],
+        "admittedProperties": []
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": false,
+        "reason": "NO_ADMITTED_DECLARATION"
+      },
+      "exercises": [
+        {
+          "exerciseId": "C1-E1",
+          "ran": false,
+          "notExercisedBecause": "NO ADMITTED FACT — the upstream first pass produced nothing for this stage to act on",
+          "targetFactKey": null,
+          "targetDeclaredProperty": null,
+          "propertyAuthorityRequirement": null,
+          "propertyAuthorityAtClaim": null,
+          "humanPropertyActionFrozen": "NONE",
+          "humanPropertyActionApplied": null,
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": null,
+          "propertyAuthorityAfter": null,
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "APPROVE_SETTLEMENT",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": null,
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": null,
+          "matchesFrozenExpectation": null,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [],
+        "transitionsAcrossAllExercises": 0
+      }
+    },
+    {
+      "caseId": "C2",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 2249,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidates": [
+          {
+            "candidateKey": "overdue-thorough-examination",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "lifting_operations",
+            "reasoning": "The sling's last documented thorough examination is a month past this site's own stated interval, and the register that could show a later examination is inaccessible. The accessory is currently rigged and about to be used for a 2.1 tonne lift without anyone on site able to confirm it is within a valid examination interval."
+          },
+          {
+            "candidateKey": "struck-by-suspended-load",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "struck_by",
+            "reasoning": "A 2.1 tonne precast panel about to be lifted by tower crane presents a struck-by/falling-load exposure to anyone in or entering the lift and slew path, compounded here by the unresolved sling examination status."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "cq-examination-status",
+            "answers": "decl-exam-status"
+          }
+        ],
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "declarations": [
+          {
+            "declarationId": "decl-exam-status",
+            "missingFact": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval",
+            "observationSourceId": "OBS-228A-C2",
+            "observationSpan": "nobody here can say whether a further thorough examination has been carried out since the date on the tag",
+            "notEstablishedBecause": "The observation states only that nobody present can say whether a further examination occurred and that the register showing this is off site and inaccessible; it does not state that no further examination happened, nor that one did.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "A thorough examination of this sling was in fact carried out since the tag date, so the sling is currently within the site's six-month interval",
+            "branchB": "No thorough examination has been carried out since the tag date, so the sling is currently outside the site's six-month interval",
+            "decisionIfA": "This sling's examination status no longer blocks the lift; the lift may proceed using this sling subject to no other open matters",
+            "decisionIfB": "This sling must not be used for the lift; it should be withdrawn from service and replaced with an accessory of confirmed valid examination status before the panel is lifted",
+            "decisionWhileUnresolved": "Hold the lift with this sling and do not proceed with the booked lift until the examination status is confirmed one way or the other",
+            "whyNecessaryNow": "The crane lift is booked in twenty minutes and the panel is already slung, so the decision of whether this sling may be used must be made before that lift proceeds, not afterward."
+          }
+        ],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 1,
+        "refused": [],
+        "projectionCodes": [
+          {
+            "declarationId": "decl-exam-status",
+            "codes": []
+          }
+        ],
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-228A-C2.636-741.1"
+        ],
+        "admittedProperties": [
+          "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval"
+        ]
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": true,
+        "failureClass": "NO_FAILURE",
+        "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C2.636-741.1",
+        "declarationId": "decl-exam-status",
+        "propertyReview": {
+          "targetDeclarationId": "decl-exam-status",
+          "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether a thorough examination of this sling has in fact been carried out since the tag date, keeping it within the site's six-month interval",
+          "propertyReviewReason": "The doing of the periodic thorough examination within the required interval is itself the substantive requirement that gates lawful use of the accessory; there is no further underlying condition beneath it that the examination is merely evidence for. Knowing the answer with certainty directly resolves whether the sling may be used today."
+        },
+        "consistency": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+          "review": {
+            "targetDeclarationId": "decl-exam-status",
+            "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether a thorough examination of this sling has in fact been carried out since the tag date, keeping it within the site's six-month interval",
+            "propertyReviewReason": "The doing of the periodic thorough examination within the required interval is itself the substantive requirement that gates lawful use of the accessory; there is no further underlying condition beneath it that the examination is merely evidence for. Knowing the answer with certainty directly resolves whether the sling may be used today."
+          },
+          "representationReviewMayProceed": true
+        },
+        "scopeContainment": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "multiFactRequested": false
+        }
+      },
+      "exercises": [
+        {
+          "exerciseId": "C2-E1",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C2.636-741.1",
+          "targetDeclaredProperty": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CONFIRM_PROPERTY",
+          "humanPropertyActionApplied": "CONFIRM_PROPERTY",
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": "CONFIRMED",
+          "propertyAuthorityAfter": "CONFIRMED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval"
+          },
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "944be10d59a676227312bce68646ad20f2ccc179c675db8b4ea098ef51a036dc",
+            "observationSpanPresent": true,
+            "proposedPropertyPresent": true,
+            "branchesPresent": true,
+            "decisionsPresent": true,
+            "proposedProperty": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval"
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": []
+        },
+        {
+          "exerciseId": "C2-E2",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C2.636-741.1",
+          "targetDeclaredProperty": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CONFIRM_PROPERTY",
+          "humanPropertyActionApplied": "CONFIRM_PROPERTY",
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": "CONFIRMED",
+          "propertyAuthorityAfter": "CONFIRMED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval"
+          },
+          "humanEvidenceActionFrozen": "APPROVE_SETTLEMENT",
+          "evidenceAuthorityMinted": true,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": true,
+          "settlementApplied": true,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "SETTLED_BY_EVIDENCE",
+          "ledgerTransitions": 1,
+          "transitions": [
+            {
+              "seq": 1,
+              "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C2.636-741.1",
+              "from": "UNRESOLVED",
+              "to": "SETTLED_BY_EVIDENCE",
+              "authority": "ADMISSIBLE_EVIDENCE",
+              "justification": "human review authorized safety reviewer approved settlement: recorded evidence rationale for the §228B frozen exercise",
+              "whyUnresolvedAtTransition": "The observation states only that nobody present can say whether a further examination occurred and that the register showing this is off site and inaccessible; it does not state that no further examination happened, nor that one did."
+            }
+          ],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "944be10d59a676227312bce68646ad20f2ccc179c675db8b4ea098ef51a036dc",
+            "observationSpanPresent": true,
+            "proposedPropertyPresent": true,
+            "branchesPresent": true,
+            "decisionsPresent": true,
+            "proposedProperty": "Whether a thorough examination of this specific sling has been carried out at any point since the date recorded on the tag, i.e. whether it is currently within a valid thorough examination interval"
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C2.636-741.1",
+            "status": "UNRESOLVED",
+            "modelAuthored": true,
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "transitionsAcrossAllExercises": 1
+      }
+    },
+    {
+      "caseId": "C3",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 2703,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidates": [
+          {
+            "candidateKey": "lev-dust-escape",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "respiratory",
+            "reasoning": "Hardwood dust is a respiratory hazard (sensitiser/carcinogenic wood dust). A visible plume escaping capture during active sanding indicates the LEV capture at this hood is not currently controlling the dust as intended, meaning operators are currently exposed to airborne wood dust at the bench."
+          },
+          {
+            "candidateKey": "lev-performance-unverified-post-reroute",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "hazardFamily": "respiratory",
+            "reasoning": "An added bend and extended/rerouted duct run can change system resistance and reduce face velocity below the level needed for effective capture, independent of the underlying visible dust escape. This is a distinct, unmeasured performance gap in the current physical configuration of the LEV."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "cq-continue-operation",
+            "answers": "ufd-continue-operation"
+          }
+        ],
+        "uncertainty": "\n<parameter name=\"statements\">[]",
+        "outcome": "ANALYZED",
+        "declarations": [
+          {
+            "declarationId": "ufd-continue-operation",
+            "missingFact": "Whether sanding work is currently being carried out at this bench under the present LEV configuration without additional interim controls",
+            "observationSourceId": "OBS-228A-C3",
+            "observationSpan": "a visible plume of fine dust escapes past the edge of the hood while the belt is running",
+            "notEstablishedBecause": "The observation describes the dust escape occurring while the belt is running at the time of inspection, but does not state whether operations have continued, been paused, or had interim controls (RPE, task restriction) applied since the observation was made.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "Sanding continues at this bench under the current LEV configuration with no interim respiratory or task controls in place",
+            "branchB": "Sanding at this bench has been stopped, or interim controls (RPE, reduced duration, alternative extraction) have been applied, pending verification of the hood's capture performance",
+            "decisionIfA": "Immediate action is required: stop or restrict sanding at this bench, or provide interim respiratory protection, until face-velocity/static-pressure is checked and capture is restored",
+            "decisionIfB": "No immediate stop-work action is needed beyond arranging the verification check, since interim exposure is already being managed",
+            "decisionWhileUnresolved": "Treat the exposure as unmanaged and recommend an immediate interim control (task pause or RPE) until it is confirmed which branch applies",
+            "whyNecessaryNow": "Operators may be currently breathing hardwood dust at a bench with a demonstrated capture failure; whether further immediate action is owed depends entirely on whether the exposure is already being controlled in the interim."
+          }
+        ],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 1,
+        "refused": [],
+        "projectionCodes": [
+          {
+            "declarationId": "ufd-continue-operation",
+            "codes": []
+          }
+        ],
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-228A-C3.527-615.1"
+        ],
+        "admittedProperties": [
+          "Whether sanding work is currently being carried out at this bench under the present LEV configuration without additional interim controls"
+        ]
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": true,
+        "failureClass": "NO_FAILURE",
+        "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C3.527-615.1",
+        "declarationId": "ufd-continue-operation",
+        "propertyReview": {
+          "targetDeclarationId": "ufd-continue-operation",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether sanding is currently being performed at this bench with unmanaged/unverified dust exposure (no interim controls) versus with exposure already being managed pending verification",
+          "propertyReviewReason": "This is not evidence for something else; it is the actual current operational and exposure state that determines whether an immediate stop-work/interim-control action is needed right now, as opposed to merely scheduling the verification check."
+        },
+        "consistency": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+          "review": {
+            "targetDeclarationId": "ufd-continue-operation",
+            "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether sanding is currently being performed at this bench with unmanaged/unverified dust exposure (no interim controls) versus with exposure already being managed pending verification",
+            "propertyReviewReason": "This is not evidence for something else; it is the actual current operational and exposure state that determines whether an immediate stop-work/interim-control action is needed right now, as opposed to merely scheduling the verification check."
+          },
+          "representationReviewMayProceed": true
+        },
+        "scopeContainment": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "multiFactRequested": false
+        }
+      },
+      "exercises": [
+        {
+          "exerciseId": "C3-E1",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C3.527-615.1",
+          "targetDeclaredProperty": "Whether sanding work is currently being carried out at this bench under the present LEV configuration without additional interim controls",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CONDITIONAL_CORRECT",
+          "humanPropertyActionApplied": "CORRECT_PROPERTY",
+          "conditionalRuleFired": true,
+          "propertyAuthorityOutcome": "CORRECTED",
+          "propertyAuthorityAfter": "CORRECTED",
+          "correctedControllingProperty": "whether the hood is still achieving adequate capture of the wood dust at source in its moved position with the re-routed duct",
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "whether the hood is still achieving adequate capture of the wood dust at source in its moved position with the re-routed duct"
+          },
+          "humanEvidenceActionFrozen": "APPROVE_SETTLEMENT",
+          "evidenceAuthorityMinted": true,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": true,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [
+            "PROPERTY_AUTHORITY_NOT_OBTAINED"
+          ],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "e568ad1262018b5cc95dc8eff8ce807e38c26a1fad1b2a08c9663ed8cbc73c2d",
+            "observationSpanPresent": true,
+            "proposedPropertyPresent": true,
+            "branchesPresent": true,
+            "decisionsPresent": true,
+            "proposedProperty": "Whether sanding work is currently being carried out at this bench under the present LEV configuration without additional interim controls"
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C3.527-615.1",
+            "status": "UNRESOLVED",
+            "modelAuthored": true,
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "transitionsAcrossAllExercises": 0
+      }
+    },
+    {
+      "caseId": "C4",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 3588,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 2,
+        "candidates": [
+          {
+            "candidateKey": "asbestos-wall-disturbance",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "asbestos",
+            "reasoning": "A 1963 building wall that has never been opened, with no R&D survey and a management survey that explicitly could not access the boiler house area, presents an active risk that the wall material contains asbestos-containing material (e.g. in render, board linings, or gasket/lagging residue behind the surface). Core-drilling is an intrusive, high-disturbance activity. With the drill bit already against the wall and about to penetrate, the exposure is imminent/current, not hypothetical."
+          },
+          {
+            "candidateKey": "electrical-conduit-proximity",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "electrical",
+            "reasoning": "The conduit is stated to cross behind the actual drill path, not merely to run nearby, and it is confirmed as not isolated and not proved dead. Core-drilling directly toward a conductor that may be live is a present risk of contact with energised conductors, causing electric shock or arc injury to the operators, and this exists now because the drill is set up and about to proceed."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "q-conduit-live",
+            "answers": "decl-conduit-dead"
+          },
+          {
+            "id": "q-asbestos-survey",
+            "answers": "decl-acm-status"
+          }
+        ],
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "declarations": [
+          {
+            "declarationId": "decl-conduit-dead",
+            "missingFact": "Whether the conduit circuit is actually de-energised (dead) at the point crossing the drill path",
+            "observationSourceId": "OBS-228A-C4",
+            "observationSpan": "it has not been isolated, has not been proved dead",
+            "notEstablishedBecause": "The observation states plainly that isolation and proving-dead have not been done; the electrician's statement that it is 'probably dead' is an unverified belief, not a proved state, and the distribution board schedule needed to trace and isolate the circuit is missing.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "The conduit is confirmed dead and isolated before drilling proceeds",
+            "branchB": "The conduit remains unconfirmed or is found to be live at the point of drilling",
+            "decisionIfA": "Drilling may proceed at this location with respect to the electrical hazard, as the risk of contact with an energised conductor has been eliminated",
+            "decisionIfB": "Drilling must not proceed at this position; the circuit must be traced via the distribution board, isolated, and proved dead with a test instrument first",
+            "decisionWhileUnresolved": "Drilling must not commence at this position; work is held until the conduit's isolation and dead status are established",
+            "whyNecessaryNow": "The drill bit is already against the wall directly over the conduit's path, so the decision to proceed or hold must be made before the next physical step (drilling) occurs."
+          },
+          {
+            "declarationId": "decl-acm-status",
+            "missingFact": "Whether the wall material at the drill location contains asbestos-containing material",
+            "observationSourceId": "OBS-228A-C4",
+            "observationSpan": "no refurbishment and demolition survey has been produced for this wall",
+            "notEstablishedBecause": "No refurbishment and demolition survey exists for this wall and the management survey record for the boiler house notes 'no access — plant in situ', so no prior assessment of this wall's material composition has been made available.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "Survey or sampling confirms the wall material at this location is free of asbestos-containing material",
+            "branchB": "Survey or sampling confirms, or fails to rule out, that the wall material contains asbestos-containing material",
+            "decisionIfA": "Core-drilling may proceed with standard (non-asbestos) controls",
+            "decisionIfB": "Core-drilling must not proceed at this location; asbestos-safe procedures (removal, controlled drilling with appropriate RPE/enclosure, or licensed contractor involvement as appropriate) must be arranged first",
+            "decisionWhileUnresolved": "Drilling must not commence; the wall is treated as presumed to contain asbestos until a survey or sampling result is obtained",
+            "whyNecessaryNow": "The core bit is already positioned against the wall and about to penetrate it, an irreversible disturbance, so the material status must be established before that action occurs."
+          }
+        ],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 2,
+        "refused": [],
+        "projectionCodes": [
+          {
+            "declarationId": "decl-conduit-dead",
+            "codes": []
+          },
+          {
+            "declarationId": "decl-acm-status",
+            "codes": []
+          }
+        ],
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-228A-C4.672-722.1",
+          "FP.REQUIRED_CONTROL.OBS-228A-C4.263-333.1"
+        ],
+        "admittedProperties": [
+          "Whether the conduit circuit is actually de-energised (dead) at the point crossing the drill path",
+          "Whether the wall material at the drill location contains asbestos-containing material"
+        ]
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": true,
+        "failureClass": "NO_FAILURE",
+        "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C4.672-722.1",
+        "declarationId": "decl-conduit-dead",
+        "propertyReview": {
+          "targetDeclarationId": "decl-conduit-dead",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether the conduit is actually de-energised and isolated at the point the drill path crosses it",
+          "propertyReviewReason": "The dead/isolated status of the conduit at the drill path is the physical condition that directly determines whether contact with an energised conductor is possible; it is not a proxy for some other underlying condition — it is itself the hazard state. The electrician's verbal belief and the missing distribution board schedule are pieces of evidence bearing on this state, but the property named in the fact is the state itself, correctly framed."
+        },
+        "consistency": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+          "review": {
+            "targetDeclarationId": "decl-conduit-dead",
+            "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether the conduit is actually de-energised and isolated at the point the drill path crosses it",
+            "propertyReviewReason": "The dead/isolated status of the conduit at the drill path is the physical condition that directly determines whether contact with an energised conductor is possible; it is not a proxy for some other underlying condition — it is itself the hazard state. The electrician's verbal belief and the missing distribution board schedule are pieces of evidence bearing on this state, but the property named in the fact is the state itself, correctly framed."
+          },
+          "representationReviewMayProceed": true
+        },
+        "scopeContainment": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "multiFactRequested": false
+        }
+      },
+      "exercises": [
+        {
+          "exerciseId": "C4-E1",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C4.263-333.1",
+          "targetDeclaredProperty": "Whether the wall material at the drill location contains asbestos-containing material",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "KEEP_UNRESOLVED",
+          "humanPropertyActionApplied": "KEEP_UNRESOLVED",
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": "NO_AUTHORITY_MINTED:DECISION_MINTS_NO_AUTHORITY",
+          "propertyAuthorityAfter": "DECLINED_KEEP_UNRESOLVED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "REJECT_SETTLEMENT",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [
+            "DECISION_DOES_NOT_APPROVE_SETTLEMENT"
+          ],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [
+            {
+              "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C4.672-722.1",
+              "status": "UNRESOLVED"
+            }
+          ],
+          "packetFields": {
+            "packetId": "149a2571452c01c6364151f2674474ba8ec859ca6d50d042acfa8134ffa65455",
+            "observationSpanPresent": true,
+            "proposedPropertyPresent": true,
+            "branchesPresent": true,
+            "decisionsPresent": true,
+            "proposedProperty": "Whether the wall material at the drill location contains asbestos-containing material"
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C4.672-722.1",
+            "status": "UNRESOLVED",
+            "modelAuthored": true,
+            "affectedDecision": "REQUIRED_CONTROL"
+          },
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C4.263-333.1",
+            "status": "UNRESOLVED",
+            "modelAuthored": true,
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "transitionsAcrossAllExercises": 0
+      }
+    },
+    {
+      "caseId": "C5",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 2695,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidates": [
+          {
+            "candidateKey": "amm-detector-fault-ventilation-uncertainty",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "chemical_exposure",
+            "reasoning": "Ammonia is a toxic, corrosive gas. The detector that is supposed to sense a release and trigger emergency ventilation is faulted, and it is not established whether the interlocked ventilation would still respond to an actual release while the head is in this state. Operatives are entering the plant room daily while the pack runs, so a real release during this period would not be reliably detected or ventilated."
+          },
+          {
+            "candidateKey": "unattended-fault-nine-days",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "chemical_exposure",
+            "reasoning": "A prolonged unresolved fault on a life-safety detection and ventilation interlock, combined with continued daily routine entry to the same space, extends the window of exposure to an unmitigated ammonia release well beyond a brief transient fault."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "vent-inhibit-status",
+            "answers": "vent-inhibit-decl"
+          }
+        ],
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "declarations": [
+          {
+            "declarationId": "vent-inhibit-decl",
+            "missingFact": "Whether the emergency ventilation will still automatically start on an ammonia release while Head 1 remains in fault",
+            "observationSourceId": "OBS-228A-C5",
+            "observationSpan": "the panel manual does not state whether a head in fault inhibits the ventilation output or leaves it available",
+            "notEstablishedBecause": "The observation states only that the documentation does not say whether a fault inhibits or preserves the ventilation output, and that the interlock has not been function-tested since the fault appeared; neither the design behaviour nor a test result is given.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "The ventilation output remains available and would still start automatically on detection of a release despite Head 1's fault",
+            "branchB": "Head 1's fault inhibits the ventilation output, so ventilation would not start automatically on a release while the fault persists",
+            "decisionIfA": "Daily readings entries may continue under existing controls while the detector fault is escalated for repair, since the ventilation safeguard remains functional",
+            "decisionIfB": "Daily entries must not continue relying on the automatic interlock; compensating measures (portable gas detection, restricted/attended entry, or manual ventilation activation) are needed until the head is repaired and the interlock is function-tested",
+            "decisionWhileUnresolved": "Treat the ventilation response as unconfirmed and apply compensating measures (portable detection or restricted entry) for routine plant room entries until the interlock behaviour during a Head 1 fault is confirmed",
+            "whyNecessaryNow": "Operatives are entering the plant room daily while the pack runs and the fault has persisted nine days; whether the last line of defence against an ammonia release (ventilation) will actually activate governs whether entry can continue under existing controls or needs additional protection today."
+          }
+        ],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 0,
+        "refused": [
+          {
+            "declarationId": "vent-inhibit-decl",
+            "reason": "NON_SEMANTIC_PLACEHOLDER_VALUE"
+          }
+        ],
+        "projectionCodes": [
+          {
+            "declarationId": "vent-inhibit-decl",
+            "codes": [
+              "NON_SEMANTIC_PLACEHOLDER_VALUE"
+            ]
+          }
+        ],
+        "admittedFactKeys": [],
+        "admittedProperties": []
+      },
+      "rr7": {
+        "applied": true,
+        "appliedBy": "THE_FROZEN_HARNESS_NOT_THE_PROVIDER",
+        "field": "decisionIfB",
+        "fillerValue": "N/A",
+        "rawPersistedBeforeMalformation": true,
+        "providerOutputEdited": false,
+        "preservedRecords": [
+          {
+            "recordKind": "STRUCTURALLY_INVALID_DECLARATION",
+            "declarationId": "vent-inhibit-decl",
+            "identifiedProperty": "Whether the emergency ventilation will still automatically start on an ammonia release while Head 1 remains in fault",
+            "absentRequiredFields": [],
+            "presentFields": {
+              "declarationId": "vent-inhibit-decl",
+              "missingFact": "Whether the emergency ventilation will still automatically start on an ammonia release while Head 1 remains in fault",
+              "observationSourceId": "OBS-228A-C5",
+              "observationSpan": "the panel manual does not state whether a head in fault inhibits the ventilation output or leaves it available",
+              "notEstablishedBecause": "The observation states only that the documentation does not say whether a fault inhibits or preserves the ventilation output, and that the interlock has not been function-tested since the fault appeared; neither the design behaviour nor a test result is given.",
+              "affectedDecision": "REQUIRED_CONTROL",
+              "branchA": "The ventilation output remains available and would still start automatically on detection of a release despite Head 1's fault",
+              "decisionIfA": "Daily readings entries may continue under existing controls while the detector fault is escalated for repair, since the ventilation safeguard remains functional",
+              "branchB": "Head 1's fault inhibits the ventilation output, so ventilation would not start automatically on a release while the fault persists",
+              "decisionIfB": "N/A",
+              "whyNecessaryNow": "Operatives are entering the plant room daily while the pack runs and the fault has persisted nine days; whether the last line of defence against an ammonia release (ventilation) will actually activate governs whether entry can continue under existing controls or needs additional protection today."
+            },
+            "refusalCodes": [
+              "NON_SEMANTIC_PLACEHOLDER_VALUE"
+            ],
+            "refusalDetail": [
+              "decisionIfB is \"N/A\", which states no branch or action"
+            ],
+            "admissible": false,
+            "mayBeSettled": false,
+            "mayCloseTheAnalysis": false,
+            "requiresUpstreamRepair": true
+          }
+        ],
+        "preservedCount": 1,
+        "expectedPreservedProperty": "whether the emergency ventilation will actually start on an ammonia release while the detector head is in its fault state"
+      },
+      "verifier": {
+        "exercised": false,
+        "reason": "FROZEN_ELISION"
+      },
+      "exercises": [
+        {
+          "exerciseId": "C5-E1",
+          "ran": false,
+          "notExercisedBecause": "NO ADMITTED FACT — the upstream first pass produced nothing for this stage to act on",
+          "targetFactKey": null,
+          "targetDeclaredProperty": null,
+          "propertyAuthorityRequirement": null,
+          "propertyAuthorityAtClaim": null,
+          "humanPropertyActionFrozen": "NONE",
+          "humanPropertyActionApplied": null,
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": null,
+          "propertyAuthorityAfter": null,
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": null,
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": null,
+          "matchesFrozenExpectation": null,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [],
+        "transitionsAcrossAllExercises": 0
+      }
+    },
+    {
+      "caseId": "C6",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 1295,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidates": [
+          {
+            "candidateKey": "mewp-fall-controlled",
+            "assertedConditionState": "CONTROLLED",
+            "hazardFamily": "work_at_height",
+            "reasoning": "Work at height from a MEWP platform is a hazard family present by the nature of the task; the observation shows it is currently controlled by intact edge protection and a restraint system, so it is raised as CONTROLLED rather than left implicit."
+          },
+          {
+            "candidateKey": "overhead-electrical-contact",
+            "assertedConditionState": "UNKNOWN",
+            "hazardFamily": "work_at_height",
+            "reasoning": "Replacing a light fitting typically involves working on or near an electrical circuit; if the circuit were live during handling this would be a distinct electrical contact hazard. The observation is silent on isolation status, so this is raised at low confidence for completeness rather than asserted."
+          }
+        ],
+        "clarificationIds": [],
+        "uncertainty": {
+          "statements": [
+            "Whether the electrical circuit supplying the light fitting was isolated before work began is not stated; this is noted as residual uncertainty rather than a clarification because the observation gives no indication of exposure to live conductors and the task as described is a mechanical platform-access operation."
+          ]
+        },
+        "outcome": "ANALYZED",
+        "declarations": [],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 0,
+        "refused": [],
+        "projectionCodes": [],
+        "admittedFactKeys": [],
+        "admittedProperties": []
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": false,
+        "reason": "FROZEN_ELISION"
+      },
+      "exercises": [
+        {
+          "exerciseId": "C6-E1",
+          "ran": false,
+          "notExercisedBecause": "the case owns nothing by design; there is no target",
+          "targetFactKey": null,
+          "targetDeclaredProperty": null,
+          "propertyAuthorityRequirement": null,
+          "propertyAuthorityAtClaim": null,
+          "humanPropertyActionFrozen": "NONE",
+          "humanPropertyActionApplied": null,
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": null,
+          "propertyAuthorityAfter": null,
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": null,
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": null,
+          "matchesFrozenExpectation": null,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [],
+        "transitionsAcrossAllExercises": 0
+      }
+    },
+    {
+      "caseId": "C7",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 2308,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidates": [
+          {
+            "candidateKey": "no-wse",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "pressure_systems",
+            "reasoning": "A packaged steam boiler operating at pressure without a confirmed, competent-person-certified written scheme of examination in force is operating outside the framework that is supposed to govern periodic examination of the pressure system, while remaining in continuous three-shift service. This is a live condition, not a historical one, because the boiler is running now and the scheme's existence remains unresolved now."
+          },
+          {
+            "candidateKey": "missing-pssr-file",
+            "assertedConditionState": "UNKNOWN",
+            "hazardFamily": "pressure_systems",
+            "reasoning": "Without the pressure systems file, the site cannot confirm what examination regime, repair history or scheme conditions apply to this specific boiler, compounding the uncertainty about whether the plant is being operated within any established safe operating envelope."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "q-wse-exists",
+            "answers": "decl-wse"
+          }
+        ],
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "declarations": [
+          {
+            "declarationId": "decl-wse",
+            "missingFact": "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is in force for this boiler",
+            "observationSourceId": "OBS-228A-C7",
+            "observationSpan": "No written scheme of examination for this boiler can be produced, and nobody on site can say whether one exists or who drew it up.",
+            "notEstablishedBecause": "The observation states only that the document cannot be produced and that nobody on site can say whether one exists — it does not state that no scheme was ever drawn up, nor that one currently exists but is merely misplaced.",
+            "affectedDecision": "APPLICABILITY",
+            "branchA": "A written scheme of examination was properly drawn up and certified by a competent person and remains valid, but the document is simply unlocated with the missing file",
+            "branchB": "No written scheme of examination was ever drawn up, or none currently in force exists, for this boiler",
+            "decisionIfA": "The boiler is within a valid examination framework; the immediate action is to locate or reconstruct the documentation and confirm current examination status, without requiring the boiler to be taken out of service on this ground alone",
+            "decisionIfB": "The boiler has been operating with no examination framework in force at all; a competent person must assess the boiler and a scheme must be established, and continued operation should be reviewed pending that assessment",
+            "decisionWhileUnresolved": "Treat the scheme status as unconfirmed, arrange for a competent person to establish or verify the scheme as a priority, and do not rely on an assumption that one is in force until confirmed",
+            "whyNecessaryNow": "The boiler is in continuous three-shift service at pressure right now, so whether it is operating within or outside the required examination framework determines whether operation may continue as-is or whether an urgent competent-person review is needed before further service.",
+            "governedEvidenceSourceIds": [
+              "GOV-PSSR-2000-R8"
+            ]
+          }
+        ],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 1,
+        "refused": [],
+        "projectionCodes": [
+          {
+            "declarationId": "decl-wse",
+            "codes": []
+          }
+        ],
+        "admittedFactKeys": [
+          "FP.APPLICABILITY.OBS-228A-C7.598-728.1"
+        ],
+        "admittedProperties": [
+          "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is in force for this boiler"
+        ]
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": true,
+        "failureClass": "NO_FAILURE",
+        "targetFactKey": "FP.APPLICABILITY.OBS-228A-C7.598-728.1",
+        "declarationId": "decl-wse",
+        "propertyReview": {
+          "targetDeclarationId": "decl-wse",
+          "propertySemanticRole": "REQUIRED_ARTIFACT_ITSELF",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is currently in force for this boiler",
+          "propertyReviewReason": "The regulatory requirement is that a scheme be 'in force' for the system; the existence and currency of that scheme is the substantive thing required, not merely evidence pointing to some separate underlying safety state. Knowing the answer directly resolves the applicability/compliance decision."
+        },
+        "consistency": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+          "review": {
+            "targetDeclarationId": "decl-wse",
+            "propertySemanticRole": "REQUIRED_ARTIFACT_ITSELF",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is currently in force for this boiler",
+            "propertyReviewReason": "The regulatory requirement is that a scheme be 'in force' for the system; the existence and currency of that scheme is the substantive thing required, not merely evidence pointing to some separate underlying safety state. Knowing the answer directly resolves the applicability/compliance decision."
+          },
+          "representationReviewMayProceed": true
+        },
+        "scopeContainment": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "multiFactRequested": false
+        }
+      },
+      "exercises": [
+        {
+          "exerciseId": "C7-E1",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.APPLICABILITY.OBS-228A-C7.598-728.1",
+          "targetDeclaredProperty": "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is in force for this boiler",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CONFIRM_PROPERTY",
+          "humanPropertyActionApplied": "CONFIRM_PROPERTY",
+          "conditionalRuleFired": null,
+          "propertyAuthorityOutcome": "CONFIRMED",
+          "propertyAuthorityAfter": "CONFIRMED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is in force for this boiler"
+          },
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "3eb494f0a425584932a56e74fe81389b006ace5e3b1f4eb067a6a8bc1aebe2c0",
+            "observationSpanPresent": true,
+            "proposedPropertyPresent": true,
+            "branchesPresent": true,
+            "decisionsPresent": true,
+            "proposedProperty": "Whether a written scheme of examination, drawn up or certified by a competent person, exists and is in force for this boiler"
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [
+          {
+            "factKey": "FP.APPLICABILITY.OBS-228A-C7.598-728.1",
+            "status": "UNRESOLVED",
+            "modelAuthored": true,
+            "affectedDecision": "APPLICABILITY"
+          }
+        ],
+        "transitionsAcrossAllExercises": 0
+      }
+    },
+    {
+      "caseId": "C8",
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "stopReason": "tool_use",
+        "outputTokens": 2725,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidates": [
+          {
+            "candidateKey": "estop-failure-uncorrected",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "machinery",
+            "reasoning": "The only verification event stated is a failed one. No record establishes the pull-cord was subsequently repaired and re-tested successfully. With the belt running and two operatives on the walkway now, they are relying on an emergency stop device whose last confirmed state was non-functional. This is a current machinery hazard: the primary emergency isolation device for personnel on this walkway is not confirmed operative while exposure is ongoing."
+          },
+          {
+            "candidateKey": "spillage-clearing-entanglement",
+            "assertedConditionState": "ACTIVE",
+            "hazardFamily": "entanglement",
+            "reasoning": "Clearing spillage adjacent to a running conveyor belt creates an entanglement/nip-point exposure at belt edges, rollers, or pulleys during the task, independent of the pull-cord issue. This is a current hazard because the task is described as in progress now."
+          }
+        ],
+        "clarificationIds": [
+          {
+            "id": "cq-1",
+            "answers": "decl-1"
+          }
+        ],
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "declarations": [
+          {
+            "declarationId": "decl-1",
+            "missingFact": "Whether the emergency pull-cord along this walkway currently stops the belt when operated",
+            "observationSourceId": "OBS-228A-C8",
+            "observationSpan": "there is no completed job record, no post-repair test entry in the conveyor log",
+            "notEstablishedBecause": "The observation states there is no completed job record and no post-repair test entry, and reports only an informal, unverifiable claim from the fitter that he 'sorted it' — it does not state whether the pull-cord now functions.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "The pull-cord was in fact repaired and now stops the belt when operated",
+            "branchB": "The pull-cord remains defective and does not stop the belt when operated",
+            "decisionIfA": "The emergency stop capability for this walkway is available; work may continue relying on it as the emergency control, subject to any other open matters",
+            "decisionIfB": "The walkway has no functioning emergency stop from that pull-cord; the spillage-clearing task alongside the running belt must not continue relying on it and either the belt must be stopped/isolated for the work or an alternative verified means of emergency stop must be provided before work proceeds",
+            "decisionWhileUnresolved": "Treat the pull-cord as unverified and not confirmed functional; do not rely on it as the emergency stop for personnel on the walkway until its operation is positively confirmed, and apply an alternative control or halt the spillage-clearing task in the interim",
+            "whyNecessaryNow": "Operatives are on the walkway now clearing spillage beside a running belt, and the only stated verification event for the emergency stop was a failure with no confirmed remedy, so the adequacy of the current safety control for ongoing work cannot be determined without this fact."
+          }
+        ],
+        "outputRepaired": false
+      },
+      "structuralDefects": [],
+      "containedDefects": [],
+      "projection": {
+        "admittedCount": 1,
+        "refused": [],
+        "projectionCodes": [
+          {
+            "declarationId": "decl-1",
+            "codes": []
+          }
+        ],
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-228A-C8.396-475.1"
+        ],
+        "admittedProperties": [
+          "Whether the emergency pull-cord along this walkway currently stops the belt when operated"
+        ]
+      },
+      "rr7": null,
+      "verifier": {
+        "exercised": true,
+        "failureClass": "NO_FAILURE",
+        "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C8.396-475.1",
+        "declarationId": "decl-1",
+        "propertyReview": {
+          "targetDeclarationId": "decl-1",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether the pull-cord emergency stop currently functions to stop the belt when operated",
+          "propertyReviewReason": "This is not evidence of a state but the physical/functional state itself: whether operating the cord actually halts the belt. The job record and test entry are the evidence that would establish it, but the property under review is correctly framed as the functional state, not the paperwork."
+        },
+        "consistency": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+          "review": {
+            "targetDeclarationId": "decl-1",
+            "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether the pull-cord emergency stop currently functions to stop the belt when operated",
+            "propertyReviewReason": "This is not evidence of a state but the physical/functional state itself: whether operating the cord actually halts the belt. The job record and test entry are the evidence that would establish it, but the property under review is correctly framed as the functional state, not the paperwork."
+          },
+          "representationReviewMayProceed": true
+        },
+        "scopeContainment": {
+          "admitted": true,
+          "codes": [],
+          "detail": [],
+          "multiFactRequested": false
+        }
+      },
+      "exercises": [
+        {
+          "exerciseId": "C8-E1",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-228A-C8.396-475.1",
+          "targetDeclaredProperty": "Whether the emergency pull-cord along this walkway currently stops the belt when operated",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CONDITIONAL_CORRECT",
+          "humanPropertyActionApplied": "CONFIRM_PROPERTY",
+          "conditionalRuleFired": false,
+          "propertyAuthorityOutcome": "CONFIRMED",
+          "propertyAuthorityAfter": "CONFIRMED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "Whether the emergency pull-cord along this walkway currently stops the belt when operated"
+          },
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "5c11dfef22406fa73147a63f71c33cef3005fd920dc341f82a82fccada37061b",
+            "observationSpanPresent": true,
+            "proposedPropertyPresent": true,
+            "branchesPresent": true,
+            "decisionsPresent": true,
+            "proposedProperty": "Whether the emergency pull-cord along this walkway currently stops the belt when operated"
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": []
+        }
+      ],
+      "ledgerAtEnd": {
+        "facts": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-228A-C8.396-475.1",
+            "status": "UNRESOLVED",
+            "modelAuthored": true,
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "transitionsAcrossAllExercises": 0
+      }
+    }
+  ]
+}

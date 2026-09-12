@@ -1,0 +1,329 @@
+{
+  "artifact": "SECTION_209_BATCH_RECORDING_RECEIPT",
+  "mode": "APPLIED",
+  "batchId": "BATCH-001",
+  "attribution": "PRODUCT_OWNER",
+  "authorship": "Every slotId, verdict and reason below was read from the product-owner-authored file named here. No field was suggested, generated, completed, rewritten or inferred by this recorder, and this receipt carries no recommendation of any kind.",
+  "packetDirectory": "/Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-frozen-cohort-adjudication-209-2026-09-08",
+  "isAuthoritativePacket": true,
+  "preregistrationIdentity": "879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4",
+  "input": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-209b-adjudication-batches-2026-09-08/PRODUCT-OWNER-VERDICTS-BATCH-001.txt",
+    "sha256": "175acdd4270f28bbed17043482fabd2a7a4ce65be4709a6ae7d2270642fb2e95",
+    "byteLength": 5108,
+    "byteOrderMarkStripped": false,
+    "carriageReturnsNormalised": false,
+    "physicalLineCount": 43,
+    "parsedJudgmentCount": 22,
+    "skippedLines": [
+      {
+        "line": 2,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 4,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 6,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 8,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 10,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 12,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 14,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 16,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 18,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 20,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 22,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 24,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 26,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 28,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 30,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 32,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 34,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 36,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 38,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 40,
+        "kind": "BLANK",
+        "text": ""
+      },
+      {
+        "line": 42,
+        "kind": "BLANK",
+        "text": ""
+      }
+    ]
+  },
+  "judgments": [
+    {
+      "line": 1,
+      "slotId": "AC-01.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "Both decision-critical unresolved facts were declared: actual lanyard attachment to the designated anchor point and the duct cover’s ability to carry the MEWP wheel loading in the raised configuration.",
+      "reasonAsAuthoredUntrimmed": " Both decision-critical unresolved facts were declared: actual lanyard attachment to the designated anchor point and the duct cover’s ability to carry the MEWP wheel loading in the raised configuration.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 3,
+      "slotId": "AC-01.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "Both declarations concern genuinely unresolved facts that change today’s action; neither converts the established harness-wearing or normal stowed-outrigger facts into an unnecessary owed fact.",
+      "reasonAsAuthoredUntrimmed": " Both declarations concern genuinely unresolved facts that change today’s action; neither converts the established harness-wearing or normal stowed-outrigger facts into an unnecessary owed fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 5,
+      "slotId": "AC-01.ROW.H",
+      "verdict": "CORRECT",
+      "reason": "The lanyard-attachment and duct-capacity gaps remain separate declarations with separate branches, evidence needs, clarifications, and decisions; settling either leaves the other unresolved.",
+      "reasonAsAuthoredUntrimmed": " The lanyard-attachment and duct-capacity gaps remain separate declarations with separate branches, evidence needs, clarifications, and decisions; settling either leaves the other unresolved.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 7,
+      "slotId": "AC-01.ROW.I",
+      "verdict": "CORRECT",
+      "reason": "No false owed fact was declared for harness inspection status, outrigger deployment, or another already-resolved or decision-neutral property; the two declarations that were made are genuinely open.",
+      "reasonAsAuthoredUntrimmed": " No false owed fact was declared for harness inspection status, outrigger deployment, or another already-resolved or decision-neutral property; the two declarations that were made are genuinely open.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 9,
+      "slotId": "AC-01.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies the exact unresolved property: whether the worn lanyard is actually connected to the basket’s designated anchor point, rather than merely whether a harness or anchor point exists.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies the exact unresolved property: whether the worn lanyard is actually connected to the basket’s designated anchor point, rather than merely whether a harness or anchor point exists.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 11,
+      "slotId": "AC-01.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Connected to the designated anchor point and unclipped or connected to a non-anchor part are genuine alternative states consistent with the observation and resolve the exact lanyard-attachment property.",
+      "reasonAsAuthoredUntrimmed": " Connected to the designated anchor point and unclipped or connected to a non-anchor part are genuine alternative states consistent with the observation and resolve the exact lanyard-attachment property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 13,
+      "slotId": "AC-01.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The branches produce materially different current actions: accept the fall-arrest arrangement and continue if properly attached, versus stop and correct the attachment if not properly attached.",
+      "reasonAsAuthoredUntrimmed": " The branches produce materially different current actions: accept the fall-arrest arrangement and continue if properly attached, versus stop and correct the attachment if not properly attached.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 15,
+      "slotId": "AC-01.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "Asking where the lanyard is actually connected would establish or refute attachment to the designated anchor point and therefore can fully settle the owed property.",
+      "reasonAsAuthoredUntrimmed": " Asking where the lanyard is actually connected would establish or refute attachment to the designated anchor point and therefore can fully settle the owed property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 17,
+      "slotId": "AC-01.FACT1.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier directly evaluates the lanyard-attachment fact and recognizes the clarification as sufficient, but its verdict rationale also evaluates the separate duct-capacity fact and the row’s other possible contingencies, so it is not about this fact and no other.",
+      "reasonAsAuthoredUntrimmed": " The verifier directly evaluates the lanyard-attachment fact and recognizes the clarification as sufficient, but its verdict rationale also evaluates the separate duct-capacity fact and the row’s other possible contingencies, so it is not about this fact and no other.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 19,
+      "slotId": "AC-01.FACT2.C",
+      "verdict": "CORRECT",
+      "reason": "Taken as a whole, the declaration identifies the exact unresolved property: whether this specific duct cover can support the MEWP’s wheel loading in the current raised configuration.",
+      "reasonAsAuthoredUntrimmed": " Taken as a whole, the declaration identifies the exact unresolved property: whether this specific duct cover can support the MEWP’s wheel loading in the current raised configuration.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 21,
+      "slotId": "AC-01.FACT2.E",
+      "verdict": "CORRECT",
+      "reason": "Adequate rating for the raised MEWP wheel loading versus inadequate or unconfirmable capacity are genuine alternative states of the exact duct-capacity fact.",
+      "reasonAsAuthoredUntrimmed": " Adequate rating for the raised MEWP wheel loading versus inadequate or unconfirmable capacity are genuine alternative states of the exact duct-capacity fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 23,
+      "slotId": "AC-01.FACT2.F",
+      "verdict": "CORRECT",
+      "reason": "The two states lead to materially different current actions: remain positioned and continue if adequate versus lower/reposition off the duct before continuing if inadequate or unconfirmable.",
+      "reasonAsAuthoredUntrimmed": " The two states lead to materially different current actions: remain positioned and continue if adequate versus lower/reposition off the duct before continuing if inadequate or unconfirmable.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 25,
+      "slotId": "AC-01.FACT2.M",
+      "verdict": "CORRECT",
+      "reason": "The clarification asks for the duct cover’s load-bearing capacity and comparison with the MEWP wheel loading while raised, which is evidence capable of settling the exact property.",
+      "reasonAsAuthoredUntrimmed": " The clarification asks for the duct cover’s load-bearing capacity and comparison with the MEWP wheel loading while raised, which is evidence capable of settling the exact property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 27,
+      "slotId": "AC-01.FACT2.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier directly evaluates the duct-capacity owed fact and correctly assesses its clarification, but it also discusses the independent lanyard fact and other row-level considerations, so exact single-fact binding is not maintained.",
+      "reasonAsAuthoredUntrimmed": " The verifier directly evaluates the duct-capacity owed fact and correctly assesses its clarification, but it also discusses the independent lanyard fact and other row-level considerations, so exact single-fact binding is not maintained.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 29,
+      "slotId": "AC-02.ROW.A",
+      "verdict": "CORRECT",
+      "reason": "Both decision-critical current-action gaps were declared: wheel rated speed versus spindle speed and tongue-guard clearance after the wheel change; the genuinely unknown inspection-label date does not change today’s action and therefore was correctly not declared as an owed fact.",
+      "reasonAsAuthoredUntrimmed": " Both decision-critical current-action gaps were declared: wheel rated speed versus spindle speed and tongue-guard clearance after the wheel change; the genuinely unknown inspection-label date does not change today’s action and therefore was correctly not declared as an owed fact.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 31,
+      "slotId": "AC-02.ROW.B",
+      "verdict": "CORRECT",
+      "reason": "The two declarations are genuinely unresolved and decision-critical; the decision-neutral portable-appliance inspection date was raised only as a candidate and was not converted into an owed-fact declaration.",
+      "reasonAsAuthoredUntrimmed": " The two declarations are genuinely unresolved and decision-critical; the decision-neutral portable-appliance inspection date was raised only as a candidate and was not converted into an owed-fact declaration.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 33,
+      "slotId": "AC-02.ROW.H",
+      "verdict": "CORRECT",
+      "reason": "Wheel-speed compatibility and tongue-guard clearance are independent safety properties requiring different evidence, and the two declarations preserve them separately rather than merging them.",
+      "reasonAsAuthoredUntrimmed": " Wheel-speed compatibility and tongue-guard clearance are independent safety properties requiring different evidence, and the two declarations preserve them separately rather than merging them.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 35,
+      "slotId": "AC-02.FACT1.C",
+      "verdict": "CORRECT",
+      "reason": "The declaration identifies the exact unresolved wheel-speed property: whether the newly fitted wheel’s maximum rated operating speed meets or exceeds this grinder’s spindle speed.",
+      "reasonAsAuthoredUntrimmed": " The declaration identifies the exact unresolved wheel-speed property: whether the newly fitted wheel’s maximum rated operating speed meets or exceeds this grinder’s spindle speed.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 37,
+      "slotId": "AC-02.FACT1.E",
+      "verdict": "CORRECT",
+      "reason": "Wheel rating at or above spindle speed and wheel rating below spindle speed are genuine mutually relevant states that resolve the exact speed-compatibility property.",
+      "reasonAsAuthoredUntrimmed": " Wheel rating at or above spindle speed and wheel rating below spindle speed are genuine mutually relevant states that resolve the exact speed-compatibility property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 39,
+      "slotId": "AC-02.FACT1.F",
+      "verdict": "CORRECT",
+      "reason": "The branches produce materially different current decisions: no speed-related corrective action if correctly rated versus stopping the grinder and correcting the wheel/spindle mismatch if overspeeded.",
+      "reasonAsAuthoredUntrimmed": " The branches produce materially different current decisions: no speed-related corrective action if correctly rated versus stopping the grinder and correcting the wheel/spindle mismatch if overspeeded.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 41,
+      "slotId": "AC-02.FACT1.M",
+      "verdict": "CORRECT",
+      "reason": "Asking whether the wheel’s marked maximum operating speed meets or exceeds the grinder spindle speed directly obtains the comparison required to establish or refute the owed property.",
+      "reasonAsAuthoredUntrimmed": " Asking whether the wheel’s marked maximum operating speed meets or exceeds the grinder spindle speed directly obtains the comparison required to establish or refute the owed property.",
+      "attribution": "PRODUCT_OWNER"
+    },
+    {
+      "line": 43,
+      "slotId": "AC-02.FACT1.L",
+      "verdict": "PARTIALLY_CORRECT",
+      "reason": "The verifier substantively reaches and evaluates the exact wheel-speed owed fact, but its rationale also evaluates the tongue-guard clarification, the PAT-label issue, and the row more generally; this is correct topic reach with adjacent-property drift rather than exact single-fact binding.",
+      "reasonAsAuthoredUntrimmed": " The verifier substantively reaches and evaluates the exact wheel-speed owed fact, but its rationale also evaluates the tongue-guard clarification, the PAT-label issue, and the row more generally; this is correct topic reach with adjacent-property drift rather than exact single-fact binding.",
+      "attribution": "PRODUCT_OWNER"
+    }
+  ],
+  "verdictTally": {
+    "CORRECT": 19,
+    "PARTIALLY_CORRECT": 3
+  },
+  "worksheet": {
+    "slotCount": 177,
+    "suppliedVerdictCountBefore": 0,
+    "suppliedVerdictCountAfter": 22,
+    "status": "OPEN — 22 of 177 slots carry a PRODUCT_OWNER verdict",
+    "sha256Before": "a31d94c23fd116bc87675a3995231c9f4ebf738f86d1c24900418c1e9cac59bf",
+    "sha256After": "f37d154f2b3da26111d3b6d40e8a1793a15a68bccaf8aeb535d9c030ef6b66a0"
+  },
+  "ledger": {
+    "entryCountBefore": 0,
+    "entryCountAfter": 22,
+    "byteLengthBefore": 0,
+    "byteLengthAfter": 11753,
+    "appendedEntryCount": 22,
+    "sha256After": "bd2808d7ad1a0450b133dda1679ab086e665fd38033d95e06ea653b5a81d0c35"
+  },
+  "recordedAt": "2026-09-09T01:47:12.281Z",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "gateComputationPerformed": false,
+  "note": "Recording a batch does not compute a gate and does not advance acceptance. Run check-209-completeness.ts to count what is now supplied and what remains open."
+}

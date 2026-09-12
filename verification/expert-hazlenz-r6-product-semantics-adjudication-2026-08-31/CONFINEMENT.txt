@@ -1,0 +1,81 @@
+CONFINEMENT — R6 product-semantics adjudication (2026-08-31)
+
+ZERO hosted provider calls. ZERO local provider calls. $0.00 spent.
+
+--- HEAD / branch / upstream ---
+37a5d1b50abe836eb19dd24ee18ad10557bda131
+main
+de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+0	1
+
+--- Expert-core / adapter diff (must be the pre-existing 4-file §105-§113 diff) ---
+ .../expert-hazlenz/expert-contract.types.ts        |  28 +++
+ .../expert-hazlenz/expert-normalization.ts         |  70 ++++++
+ .../safescope-v2/expert-hazlenz/expert-prompt.ts   | 254 ++++++++++++++++++---
+ .../expert-hazlenz/fixtures/no-call-scenarios.ts   |   6 +
+ 4 files changed, 327 insertions(+), 31 deletions(-)
+
+--- frozen versions ---
+export const EXPERT_PROMPT_VERSION = 'hazlenz.expert.prompt.v6' as const;
+export const EXPERT_ANALYSIS_CONTRACT_VERSION = 'hazlenz.expert.analysis.v2' as const;
+export const EXPERT_INPUT_CONTRACT_VERSION = 'hazlenz.expert.input.v1' as const;
+
+--- SHA-256 of files this adjudication must NOT have changed ---
+e80d977abf2d169491e65910e7ca13f1b7f6476a2e1011dc912cdc928d9fa6f2  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+ca8b16cdd86abef355ee9316fa5d9fd72a90ef4622509b26fdc52dc484e7566e  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+e444b6920454a9d5cee6d72eece1aadddde141b7f84ead54ea42efe6f85c70cf  backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts
+81e0d293d130a6730207d55c6d4b4847da78fe9371ae8174f931f932dafddc02  backend/src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures.ts
+511eacd754004b168d636c0dc875cf33d517c301f0cdff504fa6eaea8665f292  backend/src/safescope-v2/expert-hazlenz/fixtures/temporal-state-fixtures.ts
+d7d091d858048baf8d73a652621c698cf67e3628a118096fd332dada64d386c2  backend/src/safescope-v2/evidence/evidence-foundation.ts
+
+--- hosted adapter importers (must be unchanged: 5 probe/test files, no controller/service/module) ---
+backend/scripts/diagnose-anthropic-schema-compatibility.ts
+backend/scripts/diagnose-r4-r6-local-repair.ts
+backend/scripts/probe-expert-hosted-r4-r6-targeted-confirmation.ts
+backend/scripts/probe-expert-hosted-transport.ts
+backend/scripts/probe-expert-hosted-v5-temporal-state-confirmation.ts
+backend/scripts/probe-expert-hosted-v6-hazard-actuality-confirmation.ts
+backend/scripts/probe-expert-routing.ts
+backend/scripts/test-expert-anthropic-adapter-repair.ts
+
+NOTE: 8 importers, all probe/test scripts under backend/scripts/. Zero controllers, services or
+modules; zero frontend references. THIS PHASE ADDED NO IMPORTER and no script of any kind.
+
+--- frontend references to expert-hazlenz (must be zero) ---
+       0
+--- controller/service/module references (must be zero) ---
+(eval):1: no matches found: --include=*.controller.ts
+       0
+
+--- files created by this phase (all under verification/, none under backend/ or frontend-next/) ---
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/analysis/PHASE2-EXISTING-PRODUCT-SEMANTICS.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/analysis/PHASE3-GOVERNED-STANDARD-ANALYSIS.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/analysis/PHASE4-EXPOSURE-ANALYSIS.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/analysis/PHASE5-COUNTERFACTUAL-MATRIX.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/analysis/PHASE6-ADVERSARIAL-REVIEW.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/analysis/PHASE7-8-DECISION-AND-CONSEQUENCES.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/CONFINEMENT.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/evidence/HOSTED-R6-V4-V5-V6-VERBATIM.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/evidence/R6-EXACT-OBSERVATION.md
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/backend-tsc.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/EXIT_CODES.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-anthropic-adapter-repair.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-authority-merge.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-contract-foundation.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-grounding-contract.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-nocall-harness.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-provider-failure.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/expert-routing-contract.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/hazlenz-actionable-coverage.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/hazlenz-core.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/hazlenz-level1-recall.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/hazlenz-precision.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/l32i-clarification-carrier.txt
+verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/protected-state/l32j-carrier-activation.txt
+
+--- CORRECTED controller/service/module check (the earlier ugrep --include line errored under zsh) ---
+expert-hazlenz references in *.controller.ts / *.service.ts / *.module.ts: 0
+matching files (expect none listed):
+  (none)

@@ -1,0 +1,1050 @@
+{
+  "provider": "anthropic",
+  "modelRequested": "claude-sonnet-5",
+  "modelResponded": [
+    "claude-sonnet-5"
+  ],
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "promptVersion": "hazlenz.expert.prompt.v4",
+  "determinismControl": "NONE -- temperature/top_p/top_k removed on this model, no seed",
+  "callsAttempted": 7,
+  "callsCompletedClean": 7,
+  "ceilingCalls": 7,
+  "ceilingCostUsd": 3,
+  "stoppedEarly": null,
+  "inputTokens": 48428,
+  "outputTokens": 13845,
+  "latencyP50Ms": 20171,
+  "latencyMaxMs": 28165,
+  "actualCostUsd": 0.235306,
+  "r4": {
+    "rows": [
+      {
+        "fixtureId": "R4",
+        "role": "R4_PRIMARY",
+        "rep": 1,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZk4wJeGMZADojKtsv3C",
+        "latencyMs": 25883,
+        "promptTokens": 6922,
+        "outputTokens": 2692,
+        "costUsd": 0.040764,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 3,
+          "clarifications": 5,
+          "insights": 1,
+          "disagreements": 1
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R4",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "REQUIRED",
+              "count": 3,
+              "verdict": "CORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "OPTIONAL",
+              "count": 5,
+              "verdict": "NOT_SCORED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "OPTIONAL",
+              "count": 1,
+              "verdict": "NOT_SCORED"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "OPTIONAL",
+              "count": 1,
+              "verdict": "NOT_SCORED"
+            }
+          ],
+          "opportunities": 1,
+          "hits": 1,
+          "misses": 0,
+          "overRouted": 0,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": {
+          "classification": "R4_CANDIDATE_SURVIVED",
+          "malformedFieldDetail": []
+        },
+        "r6Items": null
+      },
+      {
+        "fixtureId": "R4",
+        "role": "R4_PRIMARY",
+        "rep": 2,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZk6qWwLyhfNEsYpbuVi",
+        "latencyMs": 25894,
+        "promptTokens": 6922,
+        "outputTokens": 2812,
+        "costUsd": 0.041964,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 3,
+          "clarifications": 5,
+          "insights": 1,
+          "disagreements": 1
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R4",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "REQUIRED",
+              "count": 3,
+              "verdict": "CORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "OPTIONAL",
+              "count": 5,
+              "verdict": "NOT_SCORED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "OPTIONAL",
+              "count": 1,
+              "verdict": "NOT_SCORED"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "OPTIONAL",
+              "count": 1,
+              "verdict": "NOT_SCORED"
+            }
+          ],
+          "opportunities": 1,
+          "hits": 1,
+          "misses": 0,
+          "overRouted": 0,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": {
+          "classification": "R4_CANDIDATE_SURVIVED",
+          "malformedFieldDetail": []
+        },
+        "r6Items": null
+      },
+      {
+        "fixtureId": "R4",
+        "role": "R4_PRIMARY",
+        "rep": 3,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZk8kKD134BdRduMTe24",
+        "latencyMs": 28165,
+        "promptTokens": 6922,
+        "outputTokens": 3008,
+        "costUsd": 0.043924,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 3,
+          "clarifications": 5,
+          "insights": 2,
+          "disagreements": 1
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R4",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "REQUIRED",
+              "count": 3,
+              "verdict": "CORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "OPTIONAL",
+              "count": 5,
+              "verdict": "NOT_SCORED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "OPTIONAL",
+              "count": 2,
+              "verdict": "NOT_SCORED"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "OPTIONAL",
+              "count": 1,
+              "verdict": "NOT_SCORED"
+            }
+          ],
+          "opportunities": 1,
+          "hits": 1,
+          "misses": 0,
+          "overRouted": 0,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": {
+          "classification": "R4_CANDIDATE_SURVIVED",
+          "malformedFieldDetail": []
+        },
+        "r6Items": null
+      }
+    ],
+    "survived": 3,
+    "total": 3,
+    "verdict": "R4_HOSTED_FAILURE_NOT_REPRODUCED"
+  },
+  "r6": {
+    "rows": [
+      {
+        "fixtureId": "R6",
+        "role": "R6_PRIMARY",
+        "rep": 1,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZkApeTqpk15rRvm95Qa",
+        "latencyMs": 10749,
+        "promptTokens": 6912,
+        "outputTokens": 1111,
+        "costUsd": 0.024933999999999998,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 1,
+          "clarifications": 2,
+          "insights": 0,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R6",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "FORBIDDEN",
+              "count": 1,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "FORBIDDEN",
+              "count": 2,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            }
+          ],
+          "opportunities": 4,
+          "hits": 2,
+          "misses": 0,
+          "overRouted": 2,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": null,
+        "r6Items": [
+          {
+            "collection": "expertHazardCandidates",
+            "index": 0,
+            "exactText": "machine_guarding / The guard was removed to perform work on the press, which exposes machine hazards (pinch points, stored mechanical hazards) unless the guard is restored before re-energization.",
+            "class": "unsupported candidate"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "index": 0,
+            "exactText": "Will the guard be reinstalled and verified before lockout is removed and the press is re-energized?",
+            "class": "unnecessary clarification"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "index": 1,
+            "exactText": "What task is being performed while the guard is removed, and is any residual stored energy source (e.g., springs, counterweights, or pneumatic accumulators) present beyond what was bled down?",
+            "class": "unnecessary clarification"
+          }
+        ]
+      },
+      {
+        "fixtureId": "R6",
+        "role": "R6_PRIMARY",
+        "rep": 2,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZkBccCGkNsD2xddQo14",
+        "latencyMs": 11527,
+        "promptTokens": 6912,
+        "outputTokens": 1054,
+        "costUsd": 0.024364,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 1,
+          "clarifications": 2,
+          "insights": 0,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R6",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "FORBIDDEN",
+              "count": 1,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "FORBIDDEN",
+              "count": 2,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            }
+          ],
+          "opportunities": 4,
+          "hits": 2,
+          "misses": 0,
+          "overRouted": 2,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": null,
+        "r6Items": [
+          {
+            "collection": "expertHazardCandidates",
+            "index": 0,
+            "exactText": "machine_guarding / The guard was removed to perform work on the press, and there is no statement about whether or when the guard will be reinstalled before the press is returned to service.",
+            "class": "unsupported candidate"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "index": 0,
+            "exactText": "Will the guard be reinstalled and verified in place before the lockout is removed and the press is re-energized?",
+            "class": "unnecessary clarification"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "index": 1,
+            "exactText": "What is the work being performed while the guard is removed, and is there any residual exposure to workers accessing the point of operation during this window?",
+            "class": "unnecessary clarification"
+          }
+        ]
+      },
+      {
+        "fixtureId": "R6",
+        "role": "R6_PRIMARY",
+        "rep": 3,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZkCTwL2e1VE6h2jkivU",
+        "latencyMs": 12015,
+        "promptTokens": 6912,
+        "outputTokens": 1076,
+        "costUsd": 0.024583999999999998,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 1,
+          "clarifications": 2,
+          "insights": 0,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R6",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "FORBIDDEN",
+              "count": 1,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "FORBIDDEN",
+              "count": 2,
+              "verdict": "INCORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "FORBIDDEN",
+              "count": 0,
+              "verdict": "CORRECT_EMPTY"
+            }
+          ],
+          "opportunities": 4,
+          "hits": 2,
+          "misses": 0,
+          "overRouted": 2,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": null,
+        "r6Items": [
+          {
+            "collection": "expertHazardCandidates",
+            "index": 0,
+            "exactText": "machine_guarding / The guard was removed to access the press after lockout, but the observation does not state whether the guard has been reinstalled or whether work is complete, leaving an open question about current guarding status.",
+            "class": "unsupported candidate"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "index": 0,
+            "exactText": "What task is being performed now that the guard is removed and the press is locked out, and will the guard be reinstalled and verified before the press is returned to service?",
+            "class": "unnecessary clarification"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "index": 1,
+            "exactText": "Who has authority to remove the lockout/tag, and is there a written or verified procedure confirming all workers are clear before re-energization?",
+            "class": "unnecessary clarification"
+          }
+        ]
+      }
+    ],
+    "cleanReps": 0,
+    "total": 3,
+    "totalOverRoutedItems": 9,
+    "overRoutedCollections": [
+      "expertHazardCandidates",
+      "decisionCriticalClarifications"
+    ],
+    "verdict": "R6_HOSTED_OVERROUTING_REPRODUCED"
+  },
+  "control": {
+    "rows": [
+      {
+        "fixtureId": "R5",
+        "role": "CONTROL",
+        "rep": 1,
+        "ran": true,
+        "httpStatus": 200,
+        "failureKind": null,
+        "stopReason": "tool_use",
+        "requestId": "req_011CeZkDMSgK7YX3R7YfJpBm",
+        "latencyMs": 20171,
+        "promptTokens": 6926,
+        "outputTokens": 2092,
+        "costUsd": 0.034772,
+        "respondedModel": "claude-sonnet-5",
+        "layerStatus": "PRESENT",
+        "issues": [],
+        "counts": {
+          "candidates": 3,
+          "clarifications": 3,
+          "insights": 2,
+          "disagreements": 0
+        },
+        "outcome": "ANALYZED",
+        "score": {
+          "fixtureId": "R5",
+          "perCollection": [
+            {
+              "collection": "expertHazardCandidates",
+              "expectation": "REQUIRED",
+              "count": 3,
+              "verdict": "CORRECT_POPULATED"
+            },
+            {
+              "collection": "decisionCriticalClarifications",
+              "expectation": "REQUIRED",
+              "count": 3,
+              "verdict": "CORRECT_POPULATED"
+            },
+            {
+              "collection": "crossHazardInsights",
+              "expectation": "REQUIRED",
+              "count": 2,
+              "verdict": "CORRECT_POPULATED"
+            },
+            {
+              "collection": "disagreements",
+              "expectation": "OPTIONAL",
+              "count": 0,
+              "verdict": "NOT_SCORED"
+            }
+          ],
+          "opportunities": 3,
+          "hits": 3,
+          "misses": 0,
+          "overRouted": 0,
+          "explanationOnlyLosses": [],
+          "zeroCandidateClarificationPresent": false,
+          "uncertaintyStatementCount": 0
+        },
+        "r4": null,
+        "r6Items": null
+      }
+    ],
+    "ok": true
+  },
+  "anyNewDefect": false,
+  "terminal": "EXPERT_HAZLENZ_R6_HOSTED_OVERROUTING_CONFIRMED -- HOSTED_NEGATIVE_CONTROL_REPAIR_REQUIRED",
+  "EXPERT_HAZLENZ_PROVIDER_VALIDATED": false,
+  "EXPERT_HAZLENZ_CUSTOMER_ACTIVE": false,
+  "rows": [
+    {
+      "fixtureId": "R4",
+      "role": "R4_PRIMARY",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZk4wJeGMZADojKtsv3C",
+      "latencyMs": 25883,
+      "promptTokens": 6922,
+      "outputTokens": 2692,
+      "costUsd": 0.040764,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 5,
+        "insights": 1,
+        "disagreements": 1
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 5,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": {
+        "classification": "R4_CANDIDATE_SURVIVED",
+        "malformedFieldDetail": []
+      },
+      "r6Items": null
+    },
+    {
+      "fixtureId": "R4",
+      "role": "R4_PRIMARY",
+      "rep": 2,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZk6qWwLyhfNEsYpbuVi",
+      "latencyMs": 25894,
+      "promptTokens": 6922,
+      "outputTokens": 2812,
+      "costUsd": 0.041964,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 5,
+        "insights": 1,
+        "disagreements": 1
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 5,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": {
+        "classification": "R4_CANDIDATE_SURVIVED",
+        "malformedFieldDetail": []
+      },
+      "r6Items": null
+    },
+    {
+      "fixtureId": "R4",
+      "role": "R4_PRIMARY",
+      "rep": 3,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZk8kKD134BdRduMTe24",
+      "latencyMs": 28165,
+      "promptTokens": 6922,
+      "outputTokens": 3008,
+      "costUsd": 0.043924,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 5,
+        "insights": 2,
+        "disagreements": 1
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 5,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": {
+        "classification": "R4_CANDIDATE_SURVIVED",
+        "malformedFieldDetail": []
+      },
+      "r6Items": null
+    },
+    {
+      "fixtureId": "R6",
+      "role": "R6_PRIMARY",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZkApeTqpk15rRvm95Qa",
+      "latencyMs": 10749,
+      "promptTokens": 6912,
+      "outputTokens": 1111,
+      "costUsd": 0.024933999999999998,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": null,
+      "r6Items": [
+        {
+          "collection": "expertHazardCandidates",
+          "index": 0,
+          "exactText": "machine_guarding / The guard was removed to perform work on the press, which exposes machine hazards (pinch points, stored mechanical hazards) unless the guard is restored before re-energization.",
+          "class": "unsupported candidate"
+        },
+        {
+          "collection": "decisionCriticalClarifications",
+          "index": 0,
+          "exactText": "Will the guard be reinstalled and verified before lockout is removed and the press is re-energized?",
+          "class": "unnecessary clarification"
+        },
+        {
+          "collection": "decisionCriticalClarifications",
+          "index": 1,
+          "exactText": "What task is being performed while the guard is removed, and is any residual stored energy source (e.g., springs, counterweights, or pneumatic accumulators) present beyond what was bled down?",
+          "class": "unnecessary clarification"
+        }
+      ]
+    },
+    {
+      "fixtureId": "R6",
+      "role": "R6_PRIMARY",
+      "rep": 2,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZkBccCGkNsD2xddQo14",
+      "latencyMs": 11527,
+      "promptTokens": 6912,
+      "outputTokens": 1054,
+      "costUsd": 0.024364,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": null,
+      "r6Items": [
+        {
+          "collection": "expertHazardCandidates",
+          "index": 0,
+          "exactText": "machine_guarding / The guard was removed to perform work on the press, and there is no statement about whether or when the guard will be reinstalled before the press is returned to service.",
+          "class": "unsupported candidate"
+        },
+        {
+          "collection": "decisionCriticalClarifications",
+          "index": 0,
+          "exactText": "Will the guard be reinstalled and verified in place before the lockout is removed and the press is re-energized?",
+          "class": "unnecessary clarification"
+        },
+        {
+          "collection": "decisionCriticalClarifications",
+          "index": 1,
+          "exactText": "What is the work being performed while the guard is removed, and is there any residual exposure to workers accessing the point of operation during this window?",
+          "class": "unnecessary clarification"
+        }
+      ]
+    },
+    {
+      "fixtureId": "R6",
+      "role": "R6_PRIMARY",
+      "rep": 3,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZkCTwL2e1VE6h2jkivU",
+      "latencyMs": 12015,
+      "promptTokens": 6912,
+      "outputTokens": 1076,
+      "costUsd": 0.024583999999999998,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": null,
+      "r6Items": [
+        {
+          "collection": "expertHazardCandidates",
+          "index": 0,
+          "exactText": "machine_guarding / The guard was removed to access the press after lockout, but the observation does not state whether the guard has been reinstalled or whether work is complete, leaving an open question about current guarding status.",
+          "class": "unsupported candidate"
+        },
+        {
+          "collection": "decisionCriticalClarifications",
+          "index": 0,
+          "exactText": "What task is being performed now that the guard is removed and the press is locked out, and will the guard be reinstalled and verified before the press is returned to service?",
+          "class": "unnecessary clarification"
+        },
+        {
+          "collection": "decisionCriticalClarifications",
+          "index": 1,
+          "exactText": "Who has authority to remove the lockout/tag, and is there a written or verified procedure confirming all workers are clear before re-energization?",
+          "class": "unnecessary clarification"
+        }
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "role": "CONTROL",
+      "rep": 1,
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZkDMSgK7YX3R7YfJpBm",
+      "latencyMs": 20171,
+      "promptTokens": 6926,
+      "outputTokens": 2092,
+      "costUsd": 0.034772,
+      "respondedModel": "claude-sonnet-5",
+      "layerStatus": "PRESENT",
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 3,
+        "insights": 2,
+        "disagreements": 0
+      },
+      "outcome": "ANALYZED",
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "r4": null,
+      "r6Items": null
+    }
+  ]
+}

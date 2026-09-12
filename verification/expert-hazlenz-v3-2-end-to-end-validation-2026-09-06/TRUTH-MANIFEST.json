@@ -1,0 +1,228 @@
+{
+  "artifact": "SECTION_195_TRUTH_MANIFEST",
+  "warning": "SCORING TRUTH ONLY. Never injected into the pipeline and never shown to any model during execution.",
+  "totalExpectedOwedFacts": 11,
+  "rows": [
+    {
+      "rowId": "EE-01",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "shutter safety edge reversal function verified after replacement",
+          "owedProperty": "the safety edge has been verified to reverse the shutter on contact, after the replacement and before the shutter was returned to use",
+          "conjuncts": [
+            "the reversal function was verified",
+            "verification happened after the replacement"
+          ],
+          "evidenceSpan": "Nothing on the sheet records a reversal test",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the edge was replaced",
+        "a job sheet was signed",
+        "lubrication was done"
+      ]
+    },
+    {
+      "rowId": "EE-02",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "tanker isolated AND vented before the manway is opened",
+          "owedProperty": "the tanker is isolated AND vented to atmosphere before the manway is opened",
+          "conjuncts": [
+            "the tanker is isolated",
+            "the tanker is vented to atmosphere"
+          ],
+          "evidenceSpan": "The vent line log carries no entry for this vehicle today",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the discharge valve is closed and padlocked",
+        "the manway is still bolted"
+      ]
+    },
+    {
+      "rowId": "EE-03",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "line isolated AND purged AND chamber atmosphere confirmed safe before entry",
+          "owedProperty": "the line is isolated AND purged AND the chamber atmosphere is confirmed safe before the fitter enters",
+          "conjuncts": [
+            "the line is isolated",
+            "the line is purged",
+            "the chamber atmosphere is confirmed safe before entry"
+          ],
+          "evidenceSpan": "the entry log has no atmosphere reading recorded for today",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the surface valve is isolated and locked",
+        "the line was steam-purged on the previous shift",
+        "a gas monitor exists"
+      ]
+    },
+    {
+      "rowId": "EE-04",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "mezzanine handrail upright fixings currently secure after the impact",
+          "owedProperty": "the handrail upright fixings are currently secure following the impact",
+          "conjuncts": [
+            "the fixings are currently secure"
+          ],
+          "evidenceSpan": "No one has recorded a check of the upright fixings since",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the handrail is in position along the full run",
+        "the uprights are bolted through the deck",
+        "the damage report is closed"
+      ]
+    },
+    {
+      "rowId": "EE-05",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "south stair emergency luminaires function-tested",
+          "owedProperty": "the three luminaires above the south mezzanine stair have been function-tested",
+          "conjuncts": [
+            "those specific luminaires have been function-tested"
+          ],
+          "evidenceSpan": "are not listed on it",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "a monthly test sheet is initialled",
+        "the north-side escape-route luminaires are covered",
+        "the luminaires are installed"
+      ]
+    },
+    {
+      "rowId": "EE-06",
+      "expectedOwedFacts": [],
+      "adjacentPropertiesEstablished": [
+        "certificate current and serial-matched",
+        "SWL checked against the load",
+        "a second person witnessed"
+      ]
+    },
+    {
+      "rowId": "EE-07",
+      "expectedOwedFacts": [],
+      "adjacentPropertiesEstablished": [
+        "bin clear of the walkway",
+        "crown guard fitted",
+        "push stick in use"
+      ]
+    },
+    {
+      "rowId": "EE-08",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "running line end anchor currently fit for arrest",
+          "owedProperty": "the running line end anchor is currently fit for fall arrest",
+          "conjuncts": [
+            "the anchor is currently fit for arrest"
+          ],
+          "evidenceSpan": "no periodic check is recorded",
+          "affectedDecision": "REQUIRED_CONTROL"
+        },
+        {
+          "factKeyIntent": "open floor hatch protected against fall through the opening",
+          "owedProperty": "the propped-open floor hatch is protected against a person falling through it",
+          "conjuncts": [
+            "the opening is protected"
+          ],
+          "evidenceSpan": "propped open with no barrier round the opening",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the roofer is clipped to a running line",
+        "an installation certificate exists"
+      ]
+    },
+    {
+      "rowId": "EE-09",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "work rest gap re-set and measured after the wheel change",
+          "owedProperty": "the work rest gap has been re-set and measured following this morning's wheel change",
+          "conjuncts": [
+            "the gap has been re-set after the wheel change",
+            "the gap has been measured"
+          ],
+          "evidenceSpan": "it records no measurement of the work rest gap",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the guard was refitted",
+        "the work rest is in place",
+        "a visual guard check was recorded"
+      ]
+    },
+    {
+      "rowId": "EE-10",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "conductors proved dead at the point of work before work starts",
+          "owedProperty": "the conductors have been proved dead at the point of work after isolation and before work starts",
+          "conjuncts": [
+            "the conductors were proved dead at the point of work",
+            "the proving happened after isolation and before work started"
+          ],
+          "evidenceSpan": "carries no entry against the proving step",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "the isolator is open",
+        "a personal lock is fitted",
+        "the permit records the isolation point and time"
+      ]
+    },
+    {
+      "rowId": "EE-11",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "conveyor coupling guard fully refitted and secure after the belt change",
+          "owedProperty": "the coupling guard has been fully refitted and its fixings are secure after the belt change",
+          "conjuncts": [
+            "the guard was refitted after the belt change",
+            "its fixings are currently secure"
+          ],
+          "evidenceSpan": "carries no note of it being refitted or checked since",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "two bolt heads are visible",
+        "a maintenance record exists"
+      ]
+    },
+    {
+      "rowId": "EE-12",
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "open fourth side of the tower platform protected against a fall",
+          "owedProperty": "the open fourth side of the tower platform is protected against a fall",
+          "conjuncts": [
+            "the open side is protected"
+          ],
+          "evidenceSpan": "the fourth side faces the line and is open",
+          "affectedDecision": "REQUIRED_CONTROL"
+        }
+      ],
+      "adjacentPropertiesEstablished": [
+        "a signed handover tag",
+        "guardrails on three sides",
+        "the tower was built this morning"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "//": "SECTION 243 EXECUTION SCOPE ONLY. Typechecks the two new §243 files and what they import. Never report as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": ["scripts/lib/expert-243-assembly.ts", "scripts/execute-243-final-acceptance.ts"]
+}

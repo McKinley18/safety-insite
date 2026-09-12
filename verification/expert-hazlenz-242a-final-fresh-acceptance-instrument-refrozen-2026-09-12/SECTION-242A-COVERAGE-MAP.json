@@ -1,0 +1,1137 @@
+{
+  "artifact": "SECTION-242A-COVERAGE-MAP",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "byDomain": {
+    "OSHA_GENERAL_INDUSTRY": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8"
+    ],
+    "OSHA_CONSTRUCTION": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "MSHA": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8"
+    ]
+  },
+  "byAxis": {
+    "1": {
+      "name": "workplace-observation understanding",
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "2": {
+      "name": "hazard identification",
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "3": {
+      "name": "multiple independent hazards",
+      "cases": [
+        "G3",
+        "C1",
+        "C4",
+        "C5",
+        "C6",
+        "M3",
+        "M5"
+      ]
+    },
+    "4": {
+      "name": "safe or negated conditions",
+      "cases": [
+        "G2",
+        "G5",
+        "G7",
+        "C1",
+        "C4",
+        "C5",
+        "C8",
+        "M1",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "5": {
+      "name": "uncertainty recognition",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ]
+    },
+    "6": {
+      "name": "declaration behavior",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ]
+    },
+    "7": {
+      "name": "exact controlling property",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ]
+    },
+    "8": {
+      "name": "established versus unresolved condition",
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "C7",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    "9": {
+      "name": "branch construction",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M5"
+      ]
+    },
+    "10": {
+      "name": "immediate safety posture",
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "11": {
+      "name": "controls",
+      "cases": [
+        "G2",
+        "G5",
+        "G8",
+        "C1",
+        "C4",
+        "C5",
+        "M6"
+      ]
+    },
+    "12": {
+      "name": "action sequencing",
+      "cases": [
+        "G1",
+        "G3",
+        "C3",
+        "C7",
+        "M3",
+        "M4"
+      ]
+    },
+    "13": {
+      "name": "resume conditions",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "C7",
+        "M2",
+        "M4",
+        "M5"
+      ]
+    },
+    "14": {
+      "name": "corrective actions",
+      "cases": [
+        "G1",
+        "C3",
+        "C7",
+        "M1",
+        "M3",
+        "M6",
+        "M8"
+      ]
+    },
+    "15": {
+      "name": "clarification",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ]
+    },
+    "16": {
+      "name": "evidence versus property distinction",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "C2",
+        "C6",
+        "M2",
+        "M5"
+      ]
+    },
+    "17": {
+      "name": "regulatory grounding",
+      "cases": [
+        "G2",
+        "G3",
+        "C1",
+        "C6",
+        "M4"
+      ]
+    },
+    "18": {
+      "name": "OSHA and MSHA authority",
+      "cases": [
+        "G2",
+        "C1",
+        "C6",
+        "M4"
+      ]
+    },
+    "19": {
+      "name": "invented-authority resistance",
+      "cases": [
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C8",
+        "M1",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "20": {
+      "name": "verifier behavior",
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M5"
+      ]
+    },
+    "21": {
+      "name": "authority containment",
+      "cases": [
+        "G3",
+        "G4",
+        "C2",
+        "C6",
+        "M2"
+      ]
+    },
+    "22": {
+      "name": "settlement containment",
+      "cases": [
+        "C2",
+        "M2"
+      ]
+    },
+    "23": {
+      "name": "recommendation consequence",
+      "cases": [
+        "G1",
+        "G2",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C8",
+        "M1",
+        "M3",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "24": {
+      "name": "restraint",
+      "cases": [
+        "G1",
+        "G2",
+        "G5",
+        "G7",
+        "C1",
+        "C4",
+        "C5",
+        "C8",
+        "M1",
+        "M3",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "25": {
+      "name": "human review",
+      "cases": [
+        "G3",
+        "G4",
+        "C2",
+        "C6",
+        "M2"
+      ]
+    },
+    "26": {
+      "name": "auditability",
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "C7",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M7"
+      ]
+    }
+  },
+  "axesCovered": 26,
+  "axesTotal": 26,
+  "axesWithFewerThanTwoCases": [],
+  "postureCounts": {
+    "CONTINUE": 5,
+    "CONTINUE_WITH_CONTROLS": 7,
+    "HOLD_PENDING_VERIFICATION": 6,
+    "STOP": 6
+  },
+  "permittingCases": 12,
+  "nonPermittingCases": 12,
+  "declaringCases": 10,
+  "nonDeclaringCases": 14,
+  "owedProperties": 12,
+  "hardGateCoverage": {
+    "HS1": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 10
+    },
+    "HS2": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "HS3": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "slots": 19
+    },
+    "HS4": {
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G6",
+        "C2",
+        "C3",
+        "C6",
+        "C7",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ],
+      "slots": 12
+    },
+    "HS5": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "HS6": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 15
+    },
+    "HS7": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 15
+    },
+    "HS8": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "HS9": {
+      "cases": [
+        "G3",
+        "M4"
+      ],
+      "slots": 2
+    },
+    "HS10": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 10
+    },
+    "HS11": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 48
+    },
+    "HS12": {
+      "cases": [
+        "G1",
+        "G3",
+        "G6",
+        "C3",
+        "C7",
+        "M3",
+        "M4"
+      ],
+      "slots": 7
+    },
+    "HS13": {
+      "cases": [
+        "G3",
+        "G8",
+        "C3",
+        "C6",
+        "M2"
+      ],
+      "slots": 5
+    },
+    "HS14": {
+      "cases": [
+        "G3",
+        "G4",
+        "C2",
+        "C6",
+        "M2"
+      ],
+      "slots": 5
+    },
+    "HS15": {
+      "cases": [
+        "G2",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C4",
+        "C5",
+        "C6",
+        "C8",
+        "M1",
+        "M2",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 29
+    },
+    "HS16": {
+      "cases": [
+        "C6",
+        "M5"
+      ],
+      "slots": 3
+    },
+    "HS17": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    }
+  },
+  "qualityCoverage": {
+    "Q1": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "Q2": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 10
+    },
+    "Q3": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "Q4": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 10
+    },
+    "Q5": {
+      "cases": [
+        "G3",
+        "G4",
+        "G6",
+        "G8",
+        "C2",
+        "C3",
+        "C6",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "slots": 10
+    },
+    "Q6": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "Q7": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "Q8": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "slots": 19
+    },
+    "Q9": {
+      "cases": [
+        "G2",
+        "G3",
+        "C1",
+        "C6",
+        "M4"
+      ],
+      "slots": 5
+    },
+    "Q10": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 24
+    },
+    "Q11": {
+      "cases": [
+        "G3",
+        "G4",
+        "C2",
+        "C6",
+        "M2"
+      ],
+      "slots": 5
+    },
+    "Q12": {
+      "cases": [
+        "G1",
+        "G2",
+        "G4",
+        "G5",
+        "G7",
+        "C1",
+        "C4",
+        "C5",
+        "C7",
+        "C8",
+        "M1",
+        "M3",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 15
+    },
+    "Q13": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ],
+      "slots": 48
+    }
+  },
+  "gatesWithNoCase": [],
+  "measuresWithNoCase": [],
+  "gatesWithNoSlot": [],
+  "measuresWithNoSlot": [],
+  "humanReviewShapeCoverage": {
+    "HR-CONFIRM": [
+      "G4-E1",
+      "M2-E1",
+      "M2-E2"
+    ],
+    "HR-REVIEWABLE-UNCERTAINTY": [
+      "C6-E1"
+    ],
+    "HR-CATCH-IMPERFECTION": [
+      "G3-E1"
+    ],
+    "HR-REFUSE-UNSUPPORTED": [
+      "C2-E1"
+    ]
+  },
+  "neighbouringDegreeCases": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C8",
+    "M1",
+    "M2",
+    "M5",
+    "M6",
+    "M7",
+    "M8"
+  ],
+  "overcorrectionTrapCases": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "C1",
+    "C2",
+    "C4",
+    "C5",
+    "C6",
+    "C8",
+    "M1",
+    "M2",
+    "M5",
+    "M6",
+    "M7",
+    "M8"
+  ],
+  "consequenceCounts": {
+    "LIFE_CRITICAL": 8,
+    "SERIOUS": 4,
+    "MATERIAL": 0
+  },
+  "slotTotal": 131,
+  "productOwnerSlots": 102,
+  "deterministicSlots": 29
+}

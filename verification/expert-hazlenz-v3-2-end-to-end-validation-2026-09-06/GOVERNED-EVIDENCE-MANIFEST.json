@@ -1,0 +1,78 @@
+{
+  "artifact": "SECTION_195_GOVERNED_EVIDENCE_MANIFEST",
+  "shape": "canonical ExpertVerifierInput.governedEvidence: { sourceId, text }",
+  "noCitationShapedText": true,
+  "whyNoCitationShapedText": "a verifier quoting a citation FROM a supplied source is refused whole by the §193 boundary. See CITATION-RELIANCE-COLLISION.md. Fixtures avoid forcing that refusal.",
+  "rows": [
+    {
+      "rowId": "EE-09",
+      "SUPPLIED_SOURCE_IDS": [
+        "GOV-ABRASIVE-WHEEL-WORKREST-01"
+      ],
+      "governedEvidence": [
+        {
+          "sourceId": "GOV-ABRASIVE-WHEEL-WORKREST-01",
+          "text": "Approved knowledge record, abrasive wheels. Required fact: the distance between the work rest and the wheel face is maintained as small as practicable and re-set after every wheel change. Recognised verification methods: direct measurement of the gap with a rule or feeler gauge, recorded against the wheel change. Commonly accepted weak actions to avoid: visual estimation of the gap; relying on the guard having been refitted."
+        }
+      ],
+      "EXPECTED_ALLOWED_RELIANCE": [
+        "GOV-ABRASIVE-WHEEL-WORKREST-01"
+      ],
+      "EXPECTED_FORBIDDEN_RELIANCE": "any source id not supplied; any regulatory proposition beyond what this record states"
+    },
+    {
+      "rowId": "EE-10",
+      "SUPPLIED_SOURCE_IDS": [
+        "GOV-ISOLATION-PROVING-01"
+      ],
+      "governedEvidence": [
+        {
+          "sourceId": "GOV-ISOLATION-PROVING-01",
+          "text": "Approved knowledge record, electrical isolation. Required fact: the conductors worked on are proved dead at the point of work after isolation and before work starts. Recognised verification methods: test with an approved voltage indicator proved immediately before and immediately after the dead test. Commonly accepted weak actions to avoid: relying on the isolator position; relying on a permit entry alone."
+        }
+      ],
+      "EXPECTED_ALLOWED_RELIANCE": [
+        "GOV-ISOLATION-PROVING-01"
+      ],
+      "EXPECTED_FORBIDDEN_RELIANCE": "any source id not supplied"
+    },
+    {
+      "rowId": "EE-11",
+      "SUPPLIED_SOURCE_IDS": [
+        "GOV-RPE-FACEFIT-01"
+      ],
+      "governedEvidence": [
+        {
+          "sourceId": "GOV-RPE-FACEFIT-01",
+          "text": "Approved knowledge record, respiratory protective equipment. Required fact: tight-fitting facepieces are face-fit tested to the wearer before first use and at the prescribed interval. Recognised verification methods: a recorded qualitative or quantitative fit test naming the wearer and the facepiece model."
+        }
+      ],
+      "EXPECTED_ALLOWED_RELIANCE": [],
+      "EXPECTED_FORBIDDEN_RELIANCE": "GOV-RPE-FACEFIT-01 — it is real governed evidence but concerns respiratory protection and has nothing to do with guard securement. Declaring reliance on it would be stretching the source."
+    },
+    {
+      "rowId": "EE-12",
+      "SUPPLIED_SOURCE_IDS": [
+        "GOV-FIXED-LADDER-CAGE-01"
+      ],
+      "governedEvidence": [
+        {
+          "sourceId": "GOV-FIXED-LADDER-CAGE-01",
+          "text": "Approved knowledge record, fixed ladders. Required fact: fixed ladders rising above the prescribed height are fitted with a suitable fall-protection feature. Recognised verification methods: recorded inspection of the ladder installation against the design drawing. Scope note: this record covers fixed ladder installations only and does not address mobile access equipment or working platforms."
+        }
+      ],
+      "EXPECTED_ALLOWED_RELIANCE": [],
+      "EXPECTED_FORBIDDEN_RELIANCE": "GOV-FIXED-LADDER-CAGE-01 — topically adjacent (fall protection) but its own scope note excludes mobile access equipment and working platforms. Relying on it to support a proposition about a tower platform overreaches the source."
+    }
+  ],
+  "rowsWithNoGovernedEvidence": [
+    "EE-01",
+    "EE-02",
+    "EE-03",
+    "EE-04",
+    "EE-05",
+    "EE-06",
+    "EE-07",
+    "EE-08"
+  ]
+}

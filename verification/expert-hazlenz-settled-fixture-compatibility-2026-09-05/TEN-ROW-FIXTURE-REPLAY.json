@@ -1,0 +1,100 @@
+{
+  "artifact": "SECTION_185_TEN_ROW_FIXTURE_REPLAY",
+  "derivedFrom": "verification/expert-hazlenz-owed-fact-truth-2026-09-05 (§184 recorded truth, byte-identical)",
+  "branchDerivation": "branchA/branchB derived mechanically from the approved factStatement per RUNTIME-FIXTURE-DERIVATION.md. No prose authored.",
+  "statusMapping": "settledFromObservation -> SETTLED_BY_EVIDENCE (existing member; no status added). The establishing evidence is a span of the observation, so the fact is settled by evidence.",
+  "acceptableEvidence": "null on all ten. Derivation is §181/§184 work, deliberately out of §185 scope. null is valid by contract and manufactures nothing.",
+  "representable": "10 / 10",
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "pairId": "PAIR-3",
+      "existingClarificationTruth": "REQUIRED",
+      "status": "UNRESOLVED",
+      "whyUnresolved": "the observation does not state whether the burner's flame-failure safeguard was function-tested",
+      "defects": [],
+      "projectedWhyUnresolved": "the observation does not state whether the burner's flame-failure safeguard was function-tested"
+    },
+    {
+      "rowId": "HR-02",
+      "pairId": "PAIR-1",
+      "existingClarificationTruth": "SILENCE",
+      "status": "SETTLED_BY_EVIDENCE",
+      "whyUnresolved": null,
+      "defects": [],
+      "projectedWhyUnresolved": null
+    },
+    {
+      "rowId": "HR-03",
+      "pairId": "PAIR-5",
+      "existingClarificationTruth": "SILENCE",
+      "status": "SETTLED_BY_EVIDENCE",
+      "whyUnresolved": null,
+      "defects": [],
+      "projectedWhyUnresolved": null
+    },
+    {
+      "rowId": "HR-04",
+      "pairId": "PAIR-2",
+      "existingClarificationTruth": "REQUIRED",
+      "status": "UNRESOLVED",
+      "whyUnresolved": "the observation does not state the current securement of the guard fastenings",
+      "defects": [],
+      "projectedWhyUnresolved": "the observation does not state the current securement of the guard fastenings"
+    },
+    {
+      "rowId": "HR-05",
+      "pairId": "PAIR-4",
+      "existingClarificationTruth": "SILENCE",
+      "status": "SETTLED_BY_EVIDENCE",
+      "whyUnresolved": null,
+      "defects": [],
+      "projectedWhyUnresolved": null
+    },
+    {
+      "rowId": "HR-06",
+      "pairId": "PAIR-1",
+      "existingClarificationTruth": "REQUIRED",
+      "status": "UNRESOLVED",
+      "whyUnresolved": "the observation does not state the interlock's protective behaviour after the tooth change",
+      "defects": [],
+      "projectedWhyUnresolved": "the observation does not state the interlock's protective behaviour after the tooth change"
+    },
+    {
+      "rowId": "HR-07",
+      "pairId": "PAIR-3",
+      "existingClarificationTruth": "SILENCE",
+      "status": "SETTLED_BY_EVIDENCE",
+      "whyUnresolved": null,
+      "defects": [],
+      "projectedWhyUnresolved": null
+    },
+    {
+      "rowId": "HR-08",
+      "pairId": "PAIR-4",
+      "existingClarificationTruth": "REQUIRED",
+      "status": "UNRESOLVED",
+      "whyUnresolved": "the observation does not state whether the auger drive's own local isolator was locked and proved dead",
+      "defects": [],
+      "projectedWhyUnresolved": "the observation does not state whether the auger drive's own local isolator was locked and proved dead"
+    },
+    {
+      "rowId": "HR-09",
+      "pairId": "PAIR-5",
+      "existingClarificationTruth": "REQUIRED",
+      "status": "UNRESOLVED",
+      "whyUnresolved": "the observation does not state the accumulator's current pressure",
+      "defects": [],
+      "projectedWhyUnresolved": "the observation does not state the accumulator's current pressure"
+    },
+    {
+      "rowId": "HR-10",
+      "pairId": "PAIR-2",
+      "existingClarificationTruth": "SILENCE",
+      "status": "SETTLED_BY_EVIDENCE",
+      "whyUnresolved": null,
+      "defects": [],
+      "projectedWhyUnresolved": null
+    }
+  ]
+}

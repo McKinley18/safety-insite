@@ -1,0 +1,446 @@
+{
+  "artifact": "SECTION-234-FROZEN-PROTOCOL",
+  "version": "hazlenz.expert.234.posture-discrimination.v1",
+  "instrumentDigest": "d988f2904c77185c047f06fd680a83d8733e1d5d7451d8e4e6b1128145cd7c64",
+  "codeDigestsFrozenBeforeSpend": {
+    "instrumentModule": "db950ccbccebe868f9bf993e1576e4b325699af6229aecd033f06212666841df",
+    "assemblyModule": "3b58e20da39415a2072a258765b25b383e5f5f00b531383e99a69f4d70eb31bc",
+    "scorer": "2c33f0e4fd8ea08fe6aa152c63bcd14afce6e6638ca4c4d2cabe02adc260cee9"
+  },
+  "scorerWrittenBeforeFirstProviderCall": true,
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "moduleDigests233": {
+    "contract": "dda676aff97d6c4bbf5ac57eb8ec3fa3e89249225bdb9c0ff109ab5163a7323a",
+    "projection": "8901d0d39b8dcf50a8a045f1759ae284168ba7d5818876c255e3c82346c4f044",
+    "fixtures": "d744993f69486f510625cf11b919656b5e9a94337a463f46374558ef259448d3",
+    "suite": "61f9db3ddb2b1fb8a205f7aaae89169c0ee78841a58268ff618058a777380502"
+  },
+  "contractIdentity233": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+    "baseVersions": {
+      "schema": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "prompt": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics"
+    },
+    "postureField": "immediateSafetyPosture",
+    "postures": "d80f83678510f91cb1202e8859af993c56c34f23161a5a1be44222883576e5eb",
+    "postureDefinitions": "d6c5d2a04bc20e88aeb900228ec7ffc6e75911b2c3c01b4b752e1cb52be46576",
+    "postureDistinctions": "efcef1fda7e847108920bcfc768eb27a058f98bffedfb84310e416c6c564c914",
+    "controlTimings": "78df16f6c1b7be8694f7d97cc2b83dca0bc381027798ecb652b90658b310afa9",
+    "protectiveSequence": "2aa4b79964b94a1621c67bea1af3096d042e37d6133edf2d1e1cbbaeeb0b3b10",
+    "schemaProperty": "ea45a616ea092bd20b26795dfb3f7b6d465c086319213a102ff5e7e9041ae1c9",
+    "blockLines": "351494506931e0e9ea79e6c65d0172a425a185a698f85e686665cc72dc7e0193",
+    "systemPromptNoGoverned": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+    "systemPromptGoverned": "e345c5efa83b0c79828ab6ecd90b395c6f8c0f92a7a7026a354c72d7eb7474cf"
+  },
+  "projectionIdentity233": {
+    "projectionVersion": "hazlenz.expert.233.posture-projection.v1",
+    "contractVersion": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+    "refusalCodes": [
+      "POSTURE_MISSING",
+      "POSTURE_NOT_AN_OBJECT",
+      "POSTURE_VALUE_INVALID",
+      "POSTURE_NARRATIVE_MISSING",
+      "POSTURE_NARRATIVE_PLACEHOLDER",
+      "POSTURE_BASIS_NOT_AN_ARRAY",
+      "POSTURE_BASIS_ITEM_MALFORMED",
+      "POSTURE_CONTROLS_NOT_AN_ARRAY",
+      "POSTURE_CONTROL_ITEM_MALFORMED",
+      "POSTURE_RESUME_CONDITION_MALFORMED",
+      "POSTURE_BASIS_REF_UNRESOLVED",
+      "POSTURE_BASIS_REF_DUPLICATED",
+      "RESUME_CONDITION_REF_UNRESOLVED",
+      "ACTIVE_CANDIDATE_NOT_COVERED",
+      "DECLARATION_NOT_COVERED",
+      "RESUME_CONDITION_EMPTY",
+      "BLOCKING_CLARIFICATION_WITH_CONTINUE",
+      "CONTROLS_MISSING_FOR_CONTINUE_WITH_CONTROLS",
+      "CONTROLS_PRESENT_UNDER_CONTINUE",
+      "CONTROL_CONCURRENT_WITH_EXPOSURE_UNDER_NON_PERMITTING_POSTURE"
+    ],
+    "codeToInvariant": {
+      "POSTURE_MISSING": "P1",
+      "POSTURE_NOT_AN_OBJECT": "P1",
+      "POSTURE_VALUE_INVALID": "P1",
+      "POSTURE_NARRATIVE_MISSING": "P1",
+      "POSTURE_NARRATIVE_PLACEHOLDER": "P1",
+      "POSTURE_BASIS_NOT_AN_ARRAY": "P1",
+      "POSTURE_BASIS_ITEM_MALFORMED": "P1",
+      "POSTURE_CONTROLS_NOT_AN_ARRAY": "P1",
+      "POSTURE_CONTROL_ITEM_MALFORMED": "P1",
+      "POSTURE_RESUME_CONDITION_MALFORMED": "P1",
+      "POSTURE_BASIS_REF_UNRESOLVED": "P2",
+      "POSTURE_BASIS_REF_DUPLICATED": "P2",
+      "RESUME_CONDITION_REF_UNRESOLVED": "P2",
+      "ACTIVE_CANDIDATE_NOT_COVERED": "P3",
+      "DECLARATION_NOT_COVERED": "P3",
+      "RESUME_CONDITION_EMPTY": "P4",
+      "BLOCKING_CLARIFICATION_WITH_CONTINUE": "P5",
+      "CONTROLS_MISSING_FOR_CONTINUE_WITH_CONTROLS": "P6",
+      "CONTROLS_PRESENT_UNDER_CONTINUE": "P6",
+      "CONTROL_CONCURRENT_WITH_EXPOSURE_UNDER_NON_PERMITTING_POSTURE": "P6"
+    },
+    "recommendationCompletenessCodes": [
+      "RECOMMENDATION_CONTRADICTS_POSTURE",
+      "RECOMMENDATION_LESS_PROTECTIVE_THAN_POSTURE",
+      "RECOMMENDATION_OMITS_OPERATIONAL_CONSEQUENCE",
+      "RECOMMENDATION_DROPS_REQUIRED_CONTROLS",
+      "RECOMMENDATION_DROPS_RESUME_CONDITION"
+    ],
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false
+  },
+  "section233ManifestVerified": [
+    {
+      "file": "SECTION-233-IMPLEMENTATION.json",
+      "expected": "bbd2f4fa212d3627dd981629d3be5ae50694c1bba9bb8d34d1ec959e0f8919c2",
+      "actual": "bbd2f4fa212d3627dd981629d3be5ae50694c1bba9bb8d34d1ec959e0f8919c2",
+      "ok": true
+    },
+    {
+      "file": "SECTION-233-CONTRACT-IDENTITY.json",
+      "expected": "0fc262cc4f6ad1157f84fe2b7e6047306c5314657e07c4a92e3689341a3356ce",
+      "actual": "0fc262cc4f6ad1157f84fe2b7e6047306c5314657e07c4a92e3689341a3356ce",
+      "ok": true
+    },
+    {
+      "file": "PROTECTED-IDENTITIES-233.json",
+      "expected": "61e9e99da45af07c12bcf8a7f2417b7d50007ac932b334d9a7f861eefba46fa6",
+      "actual": "61e9e99da45af07c12bcf8a7f2417b7d50007ac932b334d9a7f861eefba46fa6",
+      "ok": true
+    },
+    {
+      "file": "LADDER-233.json",
+      "expected": "a12a8707e9ace97e56519bbeabb87819aca5cfbdcd12597ba62bfd5a0d9c8ea9",
+      "actual": "a12a8707e9ace97e56519bbeabb87819aca5cfbdcd12597ba62bfd5a0d9c8ea9",
+      "ok": true
+    },
+    {
+      "file": "SECTION-233-LOCAL-SUITE-OUTPUT.txt",
+      "expected": "538697e85d22976c0f22a9c9b47787a66ea33af67dff072977a606f09fb8a5fc",
+      "actual": "538697e85d22976c0f22a9c9b47787a66ea33af67dff072977a606f09fb8a5fc",
+      "ok": true
+    },
+    {
+      "file": "SECTION-233-REPORT.md",
+      "expected": "23e9a742beea5c1945ecf85d373e15122e2730f23f4872dfe2212a734f791ccb",
+      "actual": "23e9a742beea5c1945ecf85d373e15122e2730f23f4872dfe2212a734f791ccb",
+      "ok": true
+    }
+  ],
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+  "protectedModuleCount": 29,
+  "protectedModulesMutatedSinceSection233": [],
+  "unauthorizedProtectedModuleMutations": 0,
+  "assemblyVersion": "hazlenz.expert.234.assembly.v1",
+  "assemblyIdentity": {
+    "assemblyVersion": "hazlenz.expert.234.assembly.v1",
+    "contractVersion": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+    "arm": "SINGLE",
+    "legs": [
+      "FIRST_PASS"
+    ],
+    "verifierLeg": "NOT_ASSEMBLED_AND_NOT_AUTHORIZED",
+    "caseCount": 16,
+    "perCase": [
+      {
+        "caseId": "D1",
+        "ordinal": 1,
+        "analysisId": "ANL-234-D1",
+        "observationSourceId": "OBS-234-D1",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "d1c03014ff6f61faf984e2a8813c82d89e18a860c60efe7d1c12e11f72842b83",
+        "wireSchemaDigest": "fa4a1a289f8e6589335ff125905a539f88ce837931a2fe47dfe6fa140ea1c9b0",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "D2",
+        "ordinal": 2,
+        "analysisId": "ANL-234-D2",
+        "observationSourceId": "OBS-234-D2",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "bf50d69e7180d4113cedc5e4c74bd1e1a6fa90cbd29845de105985995793e94c",
+        "wireSchemaDigest": "4c2463ed70cf9c5389a8406bd1dc6448247127c11fcd9c0cad2388c11df4987c",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "D3",
+        "ordinal": 3,
+        "analysisId": "ANL-234-D3",
+        "observationSourceId": "OBS-234-D3",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "b2d464cc859a41b5fc749cf18a7df5c83f740c3cf7d68fbd65d4a50361251aa6",
+        "wireSchemaDigest": "41f9999aaf35dcb78951548dcea4b3ed90a6ae84686c7bb41f9f43645ca967ab",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "D4",
+        "ordinal": 4,
+        "analysisId": "ANL-234-D4",
+        "observationSourceId": "OBS-234-D4",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "1e828975a9850b5b9c758a907d367bb0436cc046b631bea4efc73f118c1dfe35",
+        "wireSchemaDigest": "63fadf58fd8c156b223d46ab65727344f43fa94937273eb1881b3826ec7da353",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "E1",
+        "ordinal": 5,
+        "analysisId": "ANL-234-E1",
+        "observationSourceId": "OBS-234-E1",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "7f2c8c8880933cea4d256cd328bdab8f120344a311bb9f1a5ecbcd5f7b640def",
+        "wireSchemaDigest": "951dc865be2bcc19d559dcd53fcf8d3da39387d812204ed6ebe7a71c950bb452",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "E2",
+        "ordinal": 6,
+        "analysisId": "ANL-234-E2",
+        "observationSourceId": "OBS-234-E2",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "ed6846eecf06349b9d1dbb9e2659cf626cd663c07716f5be3826e1a47c44f25f",
+        "wireSchemaDigest": "11172914b10650b78d7a19858bc67de0e59ee1dfc5532e3133aa694b02ea600d",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "E3",
+        "ordinal": 7,
+        "analysisId": "ANL-234-E3",
+        "observationSourceId": "OBS-234-E3",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "90c5e8faf3e4527850ec7de47b0adf3521cafa914d5fd47a82b4fe8bb1a12d2d",
+        "wireSchemaDigest": "99c10449590e8b20b017f3075caf39af5ae1183aed7e1502220dc1f9109ccf38",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "E4",
+        "ordinal": 8,
+        "analysisId": "ANL-234-E4",
+        "observationSourceId": "OBS-234-E4",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "4fcae16519105b2bec5adb5b263bce0eee5044e0c581619f236d139ba1341d5e",
+        "wireSchemaDigest": "bae782bfe39dc9a0407dab8d2171a3671fa13221ca653452cf285333aa007160",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "F1",
+        "ordinal": 9,
+        "analysisId": "ANL-234-F1",
+        "observationSourceId": "OBS-234-F1",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "2d0c3b1b884f68007529d1af2d61fd1764dd4c852700febe34b87304fd049b2e",
+        "wireSchemaDigest": "83040cf41dd294d7107eda7ce49ef3c7e15f373c8430039ef03bc5869244c888",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "F2",
+        "ordinal": 10,
+        "analysisId": "ANL-234-F2",
+        "observationSourceId": "OBS-234-F2",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "614f0469edcca269a61333eb027919a0d066b763f4f0f84a8d2e5e439073c49e",
+        "wireSchemaDigest": "fed162a0091f89670ce5b49dd4c453e643c7096dc266130c41097040d38d3de6",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "F3",
+        "ordinal": 11,
+        "analysisId": "ANL-234-F3",
+        "observationSourceId": "OBS-234-F3",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "e3bbc553140c8a26bde599e6bd344c376042636fc02002463ea872b1348820da",
+        "wireSchemaDigest": "09d4d2f5fdde51364f711a12af0a2cc2de9b6e1aaa57dff5fe8f3515eb27d404",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "F4",
+        "ordinal": 12,
+        "analysisId": "ANL-234-F4",
+        "observationSourceId": "OBS-234-F4",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "af4b393af42bf56f849a581f953d1568bd2c6ee2bbac793619316b6f9dac9ffa",
+        "wireSchemaDigest": "10aa291be22f48788475dd8ca3c904f70d2be67021322c417aadffa5f57ef78c",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "S1",
+        "ordinal": 13,
+        "analysisId": "ANL-234-S1",
+        "observationSourceId": "OBS-234-S1",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "8eb73716775d0176bbfca4ebce2c4b65d353d08a34e06b4ba28fd385ae4e807f",
+        "wireSchemaDigest": "a9a1572cf6227fbca771a40bb94fceb43c935df86e93216ff0f187a1fc375758",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "S2",
+        "ordinal": 14,
+        "analysisId": "ANL-234-S2",
+        "observationSourceId": "OBS-234-S2",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "457eb195bed10d4fdd8620640a90b76c971d8c320ee1de6767658d5af2dccd91",
+        "wireSchemaDigest": "748782397e82c143876e31a98d9eebf802f67a7bf99f0837b7a792df9219f553",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "S3",
+        "ordinal": 15,
+        "analysisId": "ANL-234-S3",
+        "observationSourceId": "OBS-234-S3",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "f445dc0fb730224af7a3bd4ce441650c40ce365b42c22f734a85940d6db4bea0",
+        "wireSchemaDigest": "e48b1877d64c3b953da33fc956cfaba1e9f55f36165a1f9fe6a7396f015ffb3c",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "S4",
+        "ordinal": 16,
+        "analysisId": "ANL-234-S4",
+        "observationSourceId": "OBS-234-S4",
+        "systemPromptDigest": "8b8a6d3e8f4c8ddafb47e8a3bea2a914513f87f92821c6137d2777edf6450553",
+        "userPromptDigest": "da21bf360dfac1d70b5311ce8a56229974b92891fb2a4784183d765f0a7ca1ab",
+        "wireSchemaDigest": "d03109e231d248dc17a148f107b336418c530f50fd899cbb499ac504eda62979",
+        "governedRecordCount": 0
+      }
+    ],
+    "systemPromptUniform": true,
+    "wireSchemaUniform": false
+  },
+  "providerIdentity": {
+    "endpoint": "https://api.anthropic.com",
+    "requestedModel": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "execution": {
+    "arm": "SINGLE",
+    "leg": "FIRST_PASS_ONLY",
+    "verifierLeg": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "temperatureOverride": "none — provider default, as §231",
+    "firstPassMaxTokens": 8000,
+    "maxTokensRationale": "DELIBERATE AND PREREGISTERED. §231 ran at 4000 and recorded one truncation on the SMALLER §210J schema; the §233 successor adds a required root object, so the same ceiling carries a higher truncation risk. A truncated output produces no adjudicable posture and is NOT contingency-eligible, so it would cost a case rather than a retry. Output tokens are billed on actual use, so raising the ceiling costs nothing unless the model needs it, and it protects the instrument rather than the result.",
+    "semanticPreferenceRetries": 0,
+    "contingencyEligibleFailureClasses": [
+      "TRANSPORT_FAILURE",
+      "HTTP_FAILURE"
+    ],
+    "databaseOperations": 0,
+    "guardWorstCaseCallUsd": 0.14,
+    "guardBudgetedInputTokens": 30000,
+    "measuredInputTokensPerCall": 27700,
+    "ifGuardTrips": "STOP and return EXECUTION_INCOMPLETE. Never reduce coverage to fit the ceiling."
+  },
+  "costEvidence": {
+    "unitCostBasis": "§231 CALL-LEDGER-231 first-pass mean USD 0.089530 over 30 calls, maximum USD 0.104338. No §221 or §227 constant is imported.",
+    "meanFirstPassUsd": 0.08953,
+    "maxObservedFirstPassUsd": 0.104338,
+    "section233SchemaIsLarger": "the §233 transmitted schema is 22,987 bytes against the §210J 19,089, so input cost per call is modestly higher than the §231 mean and output may be longer."
+  },
+  "callPlan": {
+    "primaryCalls": 16,
+    "maximumTotalCalls": 16,
+    "projectedSpendUsd": 1.4325,
+    "worstCaseSpendUsd": 1.6694,
+    "hardCeilingUsd": 1.8,
+    "perCase": [
+      {
+        "caseId": "D1",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "D2",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "D3",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "D4",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "E1",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "E2",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "E3",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "E4",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "F1",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "F2",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "F3",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "F4",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "S1",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "S2",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "S3",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "S4",
+        "firstPass": 1,
+        "verifier": 0
+      }
+    ]
+  },
+  "spendLedgerStart": {
+    "providerCallsMade": 0,
+    "spendUsd": 0,
+    "contingencyCallsUsed": 0,
+    "contingencyCallsAvailable": 0,
+    "note": "the §234 authorization books SIXTEEN calls with no separate contingency allowance. A transport or HTTP retry is drawn from the same sixteen and the cohort then cannot complete without returning for authorization, which is the correct behaviour rather than a defect."
+  },
+  "section233ImplementationMayBeModifiedDuringExecution": false,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false
+}

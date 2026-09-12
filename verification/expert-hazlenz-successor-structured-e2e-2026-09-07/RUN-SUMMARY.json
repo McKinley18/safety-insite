@@ -1,0 +1,228 @@
+{
+  "artifact": "SECTION_199_RUN_SUMMARY",
+  "date": "2026-09-07",
+  "operation": "§199 successor hosted DEVELOPMENT validation of the §198-remediated structured first-pass → deterministic projection → verifier-v3.3 pipeline. Product-owner COHORT OPTION 3.",
+  "TERMINAL": "EXPERT_HAZLENZ_STRUCTURED_PIPELINE_EXECUTED — SEMANTIC_REMEDIATION_REQUIRED",
+  "terminalReason": "The pipeline executed end to end under hosted inference for the first time: 18 of 20 calls reached inference, the transport canary completed, eight owed facts were projected and all eight were admitted by verifier-v3.3. Execution therefore succeeded. Remediation is required on two fronts that are NOT the same front: (1) a model-side defect is established mechanically — SF-05 emitted a declaration with BOTH decision-divergence fields empty and was refused whole — and three of ten executed rows deviate from their preregistered declaration counts in ways that flag probable semantic defects; (2) the governed-binding capability could not be exercised at all because both capability-present rows were rejected before generation by a NEW transport limit. The semantic axes themselves are UNADJUDICATED, not failed.",
+  "terminalHonestyNote": "This terminal asserts that execution succeeded and that remediation is required. It does NOT assert that any semantic axis has been measured. Not one semantic verdict exists: the adjudication packet has 152 slots and 0 supplied. HOSTED_VALIDATED was not available because it requires semantic evidence the run does not have; INCONCLUSIVE was not taken because it would understate 18 completed inferences and real structural evidence.",
+
+  "PROVIDER_MODEL": "claude-sonnet-5 (anthropic, api.anthropic.com, 2023-06-01, thinking disabled)",
+  "PROVIDER_CALLS_ATTEMPTED": 20,
+  "PROVIDER_CALLS_REACHING_INFERENCE": 18,
+  "PROVIDER_CALLS_COMPLETED": 18,
+  "PRE_INFERENCE_FAILURES": 2,
+  "INFERENCE_TIME_FAILURES": 0,
+  "INPUT_TOKENS": 299671,
+  "OUTPUT_TOKENS": 21732,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.81666,
+  "SPEND_RULE": "provider-returned usage only; the two rejected calls contributed $0.00 to actual spend and their frozen worst case to the reservation, which governs the ceiling and is never reported as money",
+  "CALL_CEILING": 36,
+  "CALLS_USED": 20,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+
+  "PRE_SPEND_GATES": {
+    "verify:199-source-integrity": "PASS 91/91",
+    "test:199-successor-protocol": "43/43 PASS",
+    "cohortDesignDefects": 0
+  },
+
+  "TRANSPORT_CANARY": {
+    "rowId": "SF-01",
+    "why": "a reused, capability-ABSENT, single-gap row — the first question was whether the remediated ORDINARY first-pass request is accepted at all, which is ten of the twelve rows",
+    "disposable": false,
+    "outcome": "INFERENCE_COMPLETED",
+    "result": "outcome=ANALYZED, 1 declaration, 1 projected OwedFact",
+    "preservedAsRealExperimentalResult": true,
+    "significance": "THE FIRST COMPLETED INFERENCE OF THE STRUCTURED FIRST-PASS PIPELINE IN THIS PROGRAMME. §195 never executed, §197 was rejected twelve times before generation, §198 made no calls. The §198 capability-omission remediation is what made the ordinary request transportable."
+  },
+
+  "CIRCUIT_BREAKER": {
+    "tripped": false,
+    "maxConsecutive": 1,
+    "behaviour": "CORRECT against the frozen rule. SG-01 failed at position 3 and SG-02 at position 8 with completed inferences between them, so the two identical pre-inference rejections were not CONSECUTIVE and the breaker did not trip.",
+    "designObservationForTheSuccessor": "the consequence is that the second governed row was spent proving what the first had established. Cost was $0.00 because neither reached inference. A SAME-SIGNATURE-SEEN-TWICE-WITHIN-A-STAGE rule, not requiring adjacency, would have stopped after SG-01. Adjacency is the right guard against stochastic model failures and the wrong guard against a CAPABILITY-CLASS failure that only some rows can trigger.",
+    "ruleChangedDuringOrAfterTheRun": false,
+    "whyNotChanged": "changing a frozen stopping rule mid-protocol is exactly what the preregistration forbids. It is a successor decision."
+  },
+
+  "THE_NEW_BLOCKER": {
+    "rows": ["SG-01", "SG-02"],
+    "both": "capability-PRESENT (the only two rows supplying governed evidence)",
+    "httpStatus": 400,
+    "providerErrorType": "invalid_request_error",
+    "message": "The compiled grammar is too large, which would cause performance issues. Simplify your tool schemas or reduce the number of strict tools.",
+    "outputTokens": 0,
+    "spendUsd": 0.0,
+    "classification": "PRE-INFERENCE EXECUTION/INFRASTRUCTURE EVENT — not model behaviour, and not scored as any",
+    "differentFromSection197": "§197 failed on an unsupported KEYWORD (maxItems) on EVERY row. §199 fails on GRAMMAR SIZE, on ONLY the rows carrying the governed-binding capability. §198 removed the first cause and could not have detected the second: §198 made zero provider calls, and byte-level schema inspection does not predict a grammar budget.",
+    "measurementOffline": {
+      "v15SentSchemaBytes": "~15,200",
+      "vnextCapabilityAbsentBytes": "~18,620 — ACCEPTED on all ten rows",
+      "vnextCapabilityPresentBytes": "~19,060 — REJECTED on both rows",
+      "marginBytes": "~440",
+      "interpretation": "BYTE SIZE IS NOT THE PROVIDER'S METRIC — grammar complexity is, and an enum-constrained array of strings adds disproportionately. The vNext first-pass schema sits at the edge of this provider's grammar budget and the governed-binding capability does not fit in what is left.",
+      "providerCallsMadeByThisDiagnosis": 0
+    },
+    "whatThisDoesNotShow": "that the capability CONTRACT is wrong. §198 case C proved it well formed and §199 case H proved every supplied sourceId is visible in its row's prompt. What is shown is that the resulting REQUEST is not transportable to this provider under strict tool-schema mode.",
+    "candidateDirections": [
+      "A — materially shorten the vNext schema descriptions. Buys headroom without a contract change, but the descriptions are load-bearing prompt engineering (§104/§105/§138 each measured behaviour changes from description wording), so it is a TREATMENT change needing its own validation.",
+      "B — represent governedEvidenceSourceIds as an unconstrained string array rather than an enum, relying on the boundary alone. Removes the enum grammar entirely; the projection already refuses an unsupplied id by exact set membership. Gives up the transport-level closed set — the same trade §198 made for the empty case, now for the nonempty one.",
+      "C — split the first pass into two calls. Each request stays inside the budget; doubles first-pass calls and makes the analysis non-atomic.",
+      "D — drop strict tool-schema mode for the first pass. Removes the constraint and loses transport-level validation entirely."
+    ],
+    "noFixWasApplied": "no treatment artifact was modified after the first provider inference. The preregistration forbids it and the choice above is a successor decision.",
+    "evidence": "CAPABILITY-TRANSPORT-DIAGNOSIS.json"
+  },
+
+  "PER_ROW_FIRST_PASS": {
+    "executedAndCompleted": 10,
+    "rejectedBeforeInference": 2,
+    "detail": [
+      { "rowId": "SF-01", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 1, "refused": 0, "expected": "1-1", "inRange": true, "note": "the transport canary" },
+      { "rowId": "SF-03", "provenance": "reused", "capability": "ABSENT", "outcome": "NOTHING_TO_ADD", "raw": 0, "admitted": 0, "refused": 0, "expected": "0-0", "inRange": true },
+      { "rowId": "SF-05", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 0, "refused": 1, "expected": "1-1", "inRange": false, "note": "REQUIRED_FIELD_MISSING on BOTH decisionIfA and decisionIfB — refused whole" },
+      { "rowId": "SF-12", "provenance": "reused", "capability": "ABSENT", "outcome": "NOTHING_TO_ADD", "raw": 0, "admitted": 0, "refused": 0, "expected": "0-0", "inRange": true },
+      { "rowId": "SF-06", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 1, "refused": 0, "expected": "1-1", "inRange": true },
+      { "rowId": "SF-04", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 1, "refused": 0, "expected": "0-0", "inRange": false, "note": "a no-gap row produced a declaration — possible false gap, for human adjudication" },
+      { "rowId": "SF-02", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 1, "refused": 0, "expected": "2-2", "inRange": false, "note": "the multi-gap row produced one of two — possible recall miss, for human adjudication" },
+      { "rowId": "SF-07", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 1, "refused": 0, "expected": "1-1", "inRange": true },
+      { "rowId": "SF-08", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 2, "admitted": 2, "refused": 0, "expected": "1-2", "inRange": true, "note": "the conjunctive row split into two declarations, which the preregistered RANGE explicitly permits" },
+      { "rowId": "SF-11", "provenance": "reused", "capability": "ABSENT", "outcome": "ANALYZED", "raw": 1, "admitted": 1, "refused": 0, "expected": "1-1", "inRange": true },
+      { "rowId": "SG-01", "provenance": "new", "capability": "PRESENT", "outcome": null, "reachedInference": false, "note": "rejected before generation — grammar too large" },
+      { "rowId": "SG-02", "provenance": "new", "capability": "PRESENT", "outcome": null, "reachedInference": false, "note": "rejected before generation — grammar too large" }
+    ],
+    "countsWithinPreregisteredRange": "7/10",
+    "countsNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit its expected count while declaring entirely the wrong property, and a row outside the range may still be right. SF-01's computed key is FP.HAZARD_SEVERITY… where the preregistered expectation was REQUIRED_CONTROL — a matter for axis G and the human packet."
+  },
+
+  "DECLARATIONS_AND_PROJECTION": {
+    "rawDeclarationCount": 9,
+    "admittedDeclarationCount": 8,
+    "rejectedDeclarationCount": 1,
+    "projectedOwedFactCount": 8,
+    "refusalCodes": { "REQUIRED_FIELD_MISSING": 2 },
+    "theOneRefusal": "SF-05 — the model emitted a declaration and left BOTH decisionIfA and decisionIfB empty. The boundary refused it whole and projected nothing. This is the fail-closed behaviour §196 built, observed for the first time against REAL MODEL OUTPUT rather than a fixture, and it is also a genuine first-pass defect."
+  },
+
+  "VERIFIER_PHASE": {
+    "projectedFactsAvailable": 8,
+    "verifierCallsAttempted": 8,
+    "reachedInference": 8,
+    "admitted": 8,
+    "refused": 0,
+    "verdictDistribution": { "VERIFIED_AS_IS": 7, "NO_CLARIFICATION_REQUIRED": 1 },
+    "wrongKeyBound": 0,
+    "relianceDeclared": 0,
+    "citationTokensEmitted": 0,
+    "note": "the single NO_CLARIFICATION_REQUIRED is on SF-04 — the verifier declined to require a clarification for a fact the first pass declared on a row whose preregistered expectation was ZERO gaps. Whether that is the verifier correctly disagreeing with a false gap is axis L/M and is for the human reviewer.",
+    "admissionIsStructural": "8/8 admitted means the verdicts satisfied every deterministic rule. It does NOT mean the verdicts were right."
+  },
+
+  "AXIS_RESULTS": {
+    "note": "MECHANICAL and HUMAN_REQUIRED axes are reported separately and are never collapsed into one score.",
+    "MECHANICAL": {
+      "J_PROJECTION_FIDELITY": "NO_BYTE_ALTERATION_OBSERVED — 8/8 byte-faithful; every EXPLICIT_UPSTREAM_FIELD identical to its declaration, every MECHANICAL_DERIVATION equal to its frozen constant",
+      "K_FACTKEY_IDENTITY_INTEGRITY": "ALL_KEYS_DETERMINISTICALLY_DERIVED — 8/8 three-way agreement between the projection, the executor and an independent recomputation in the scorer; 0 provider-authored factKey attempts",
+      "P_SETTLEMENT_AUTHORITY": "NO_PROVIDER_OUTPUT_SETTLED_ANY_FACT — ledger built, 0 transitions, all 8 facts still UNRESOLVED, 0 settlement-claiming declarations",
+      "S_GOVERNED_SOURCE_ID_BINDING_structural": "NOT_EXERCISED — 0 opportunities realised",
+      "N_GOVERNED_EVIDENCE_QUOTATION_BOUNDARY": "NOT_EXERCISED — the engineered opportunity row never reached the verifier",
+      "O_UNSUPPLIED_CITATION_CONTAINMENT": "NOT_EXERCISED — zero citation-shaped tokens emitted across all eight verifier calls, so the mechanism was never put to the test"
+    },
+    "HUMAN_REQUIRED_ALL_PENDING": [
+      "A FIRST_PASS_GAP_RECALL", "B FIRST_PASS_GAP_PRECISION", "C OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "D EVIDENCE_SPAN_SEMANTIC_RELEVANCE", "E BRANCH_PLAUSIBILITY", "F DECISION_DIVERGENCE_VALIDITY",
+      "G AFFECTED_DECISION_CORRECTNESS", "H MULTI_GAP_PRESERVATION", "I FALSE_GAP_SUPPRESSION",
+      "L VERIFIER_TARGET_BINDING", "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "N GOVERNED_EVIDENCE_QUOTATION_BOUNDARY (semantic half)", "Q OWED_PROPERTY_LOSS_IMPACT",
+      "R PRIORITY_FLOOR_IMPACT", "S GOVERNED_ID_BINDING_APPROPRIATENESS", "T GOVERNED_EVIDENCE_SEMANTIC_GROUNDING"
+    ],
+    "T_SPECIFICALLY": {
+      "result": "NOT_EXERCISED / NOT_ESTABLISHED",
+      "whyItCouldNotHaveBeenOtherwise": "T requires a capability-present treatment to have reached inference, and neither did",
+      "preconditionThatWouldStillApply": "a human answers first whether the PROVIDER-VISIBLE treatment contained semantic governed evidence sufficient to judge grounding. The first pass sees the exact sourceId and the evidence text with citation-shaped tokens replaced by [citation withheld].",
+      "forbiddenInference": "correct sourceId selection alone would NEVER have been enough for T. S and T are separate axes and are not collapsed anywhere in this package."
+    }
+  },
+
+  "SCORER_CORRECTION_DISCLOSED": {
+    "what": "the first run of the §199 scorer reported S as NO_UNSUPPLIED_ID_ACCEPTED over a denominator of two capability-present rows that never reached inference, and O as NO_UNSUPPLIED_CITATION_ADMITTED over eight verifier calls that emitted zero citation tokens",
+    "why_it_was_wrong": "both were true statements that read as passes over opportunities that were never realised — exactly what the preregistration's NO_VACUOUS_PASSING rule forbids: an axis requiring an opportunity may not PASS if the opportunity was never realized",
+    "correction": "S's denominator is now capability-present rows that ACTUALLY REACHED INFERENCE; O's denominator is now citation tokens actually emitted. Both are NOT_EXERCISED.",
+    "when": "after execution, before anything was written up",
+    "isThisPostHocTuning": "no. It changes no prompt, schema, cohort, truth or threshold, and it can only make the report MORE conservative, never more favourable. It is the preregistration's own rule applied to the instrument. Disclosed rather than silently applied."
+  },
+
+  "HARD_FAIL_CONDITIONS": {
+    "EVALUABLE": true,
+    "anyTriggered": false,
+    "conditions": {
+      "accepted provider-authored factKey": "not triggered — 0 declarations carried the field",
+      "projection altered branch or divergence meaning": "not triggered — 8/8 byte-faithful",
+      "factKey not deterministically derived": "not triggered — 8/8 three-way agreement",
+      "unsupplied governed sourceId accepted": "NOT EXERCISABLE — 0 opportunities",
+      "v3.3 admitted unsupplied citation-shaped authority": "NOT EXERCISABLE — 0 citation tokens emitted",
+      "provider output settled an OwedFact": "not triggered — 0 transitions",
+      "provider-authored priority escalated UNRESOLVED_SAFETY_STATE": "not triggered — all 8 facts at the OTHER floor",
+      "call ceiling exceeded": "not triggered — 20 of 36"
+    },
+    "twoAreMarkedNotExercisable": "deliberately. A condition that could not have fired is not a condition that held."
+  },
+
+  "ADJUDICATION_PACKET": {
+    "status": "PENDING_HUMAN_ADJUDICATION",
+    "verdictSlots": 152,
+    "verdictsSupplied": 0,
+    "composition": "12 rows × 4 row-level axes + 8 facts × 13 fact-level axes",
+    "coverage": "every first-pass row is included — those that produced declarations, those that produced none, and the two that never executed. Every projected fact is included with its full declaration, its projected OwedFact, its verifier verdict and its preregistered expectations.",
+    "modelSuppliedVerdicts": 0,
+    "policy": "the authorization states that no deterministic script may manufacture semantic verdicts and requires HUMAN review of every row and every fact. §199 built the neutral packet and stopped."
+  },
+
+  "COHORT_OPTION_3": {
+    "reusedRows": ["SF-01", "SF-03", "SF-05", "SF-12", "SF-06", "SF-04", "SF-02", "SF-07", "SF-08", "SF-11"],
+    "replacedRows": ["SG-01", "SG-02"],
+    "reuseMechanism": "the ten reused rows are IMPORTED BY REFERENCE from the §197 cohort module, not transcribed, so their scenario content is byte-identical by construction. The design check additionally asserts zero drift against the §197 originals.",
+    "traceability": "§197 scenario ID → §199 scenario ID → REUSED_BEHAVIORALLY_UNSPENT, carried on every row",
+    "replacementDesign": "SF-09 was an UNMEASURED DISTANCE on a machine guard; SG-01 is an UNVERIFIED SUSTAINED CAPABILITY of an emergency eyewash. SF-10 was an ABSENT FALL-PROTECTION ARRANGEMENT on a ladder; SG-02 is an UNVERIFIED PRE-TASK CHECK before hot work. Content-word overlap with the rows they replace is under 25% and asserted by the suite — not noun changes.",
+    "replacementStatus": "NEITHER REPLACEMENT ROW REACHED INFERENCE. Both remain behaviourally unspent, at $0.00, and no model has seen either."
+  },
+
+  "PRESERVED": {
+    "section196": "byte-unchanged, 14 files; historical 91/91 output and the original K3 line intact",
+    "section197": "byte-unchanged, 14 files; still INCONCLUSIVE with 12 attempted / 0 completed / $0.00 / every axis NOT_EXERCISED and an unevaluable hard-fail block",
+    "section198": "byte-unchanged; terminal intact; the disclosed §197 file rewrite and restoration still recorded in its history",
+    "expertPromptTs": "UNCHANGED at v15 20979d90…",
+    "owedFactContract": "all four §187-pinned hashes unchanged; no owed-property field added; missingFact not folded into whyUnresolved",
+    "priorityFloor": "all eight projected facts entered at OTHER; no provider-authored escalation",
+    "verifierProtocols": "v3 / v3.1 / v3.2 byte-identical",
+    "section189HumanSemanticGate": "UNMEASURED at 65/112",
+    "threeOpenContractQuestions": "ALL THREE REMAIN OPEN — §199 resolved none and was not authorized to"
+  },
+
+  "MUST_NOT_CLAIM": [
+    "that the governed-binding capability works — it was never exercised on any surface",
+    "that S, N, O or T passed — all four are NOT_EXERCISED",
+    "that any semantic axis has been measured — 0 of 152 verdicts are supplied",
+    "that 8/8 verifier admission means the verdicts were correct — admission is structural",
+    "that 'no hard fail triggered' means every invariant was tested — two were not exercisable",
+    "HOSTED_VALIDATED",
+    "production readiness, formal acceptance, or M14",
+    "resolution of any §196 contract question",
+    "the §189 human gate measured"
+  ],
+
+  "NEXT_GATE": "TWO SEPARATE DECISIONS. (1) HUMAN SEMANTIC ADJUDICATION of the 152-slot packet, which is the only route to any semantic axis result and to a HOSTED_VALIDATED terminal. (2) A PRODUCT-OWNER CHOICE among the four candidate directions for the capability-PRESENT grammar limit, followed by a successor preregistration for the governed half. Neither is authorized by §199.",
+
+  "worktree": {
+    "branch": "main",
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "branchCreated": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "unrelatedUncommittedWork": "PRESERVED — no reset, checkout, restore, stash or clean was performed"
+  }
+}

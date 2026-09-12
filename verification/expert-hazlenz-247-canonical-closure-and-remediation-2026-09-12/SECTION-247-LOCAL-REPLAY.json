@@ -1,0 +1,415 @@
+{
+  "section": "247",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "source": "verification/expert-hazlenz-243-final-fresh-acceptance-execution-2026-09-12",
+  "preservedArtefacts": {
+    "firstPass": 24,
+    "verifier": 6,
+    "total": 30
+  },
+  "replayedThroughNewPath": 24,
+  "whatThisCanEstablish": [
+    "K6 structural handling of each emitted role/carrier pair",
+    "contract compatibility of the §247 successor with §239 admissions",
+    "how many historical basis entries would now owe a justification"
+  ],
+  "whatThisCannotEstablish": [
+    "that the model would now choose different driver roles",
+    "any change in generation quality; a schema change is not behavioural evidence"
+  ],
+  "k6": {
+    "basisEntriesTotal": 70,
+    "expressibleUnder247": 69,
+    "inexpressibleUnder247": 1,
+    "casesWithAnInexpressiblePair": [
+      "M2"
+    ],
+    "interpretation": "these pairs were emitted under §239 and refused by the projection after generation. Under §247 the same pair cannot be written at all, so the case is not lost to a post-hoc refusal."
+  },
+  "justificationExposure": {
+    "basisEntriesThatWouldOweAJustification": 70,
+    "cessationDriversThatWouldOweAnAlongsideControlAssessment": 8,
+    "controlsDriversThatWouldOweADischargingControl": 17,
+    "note": "the preserved outputs predate the field and carry none of it. This is exposure, not a measured improvement."
+  },
+  "perCase": [
+    {
+      "caseId": "G1",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 5,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 5,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 5,
+      "cessationDrivers": 1,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "G2",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 3,
+      "pairs": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 3,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "G3",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 4,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 1,
+      "controlsDrivers": 1
+    },
+    {
+      "caseId": "G4",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 0,
+      "pairs": [],
+      "expressibleUnder247": 0,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 0,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "G5",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 4,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 0,
+      "controlsDrivers": 3
+    },
+    {
+      "caseId": "G6",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 4,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 0,
+      "controlsDrivers": 1
+    },
+    {
+      "caseId": "G7",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 0,
+      "pairs": [],
+      "expressibleUnder247": 0,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 0,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "G8",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 0,
+      "pairs": [],
+      "expressibleUnder247": 0,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 0,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "C1",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 3,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 3,
+      "cessationDrivers": 0,
+      "controlsDrivers": 2
+    },
+    {
+      "caseId": "C2",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 6,
+      "pairs": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 6,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 6,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "C3",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 4,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 0,
+      "controlsDrivers": 1
+    },
+    {
+      "caseId": "C4",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 3,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 3,
+      "cessationDrivers": 1,
+      "controlsDrivers": 1
+    },
+    {
+      "caseId": "C5",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 3,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 3,
+      "cessationDrivers": 2,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "C6",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 5,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 5,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 5,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "C7",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 0,
+      "pairs": [],
+      "expressibleUnder247": 0,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 0,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "C8",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 3,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 3,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "M1",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 3,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP|UNRESOLVED_DECLARATION",
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 3,
+      "cessationDrivers": 0,
+      "controlsDrivers": 1
+    },
+    {
+      "caseId": "M2",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 3,
+      "inexpressibleUnder247": 1,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 0,
+      "controlsDrivers": 1
+    },
+    {
+      "caseId": "M3",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 2,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 2,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 2,
+      "cessationDrivers": 2,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "M4",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 4,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 1,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "M5",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 0,
+      "pairs": [],
+      "expressibleUnder247": 0,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 0,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "M6",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 6,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE"
+      ],
+      "expressibleUnder247": 6,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 6,
+      "cessationDrivers": 0,
+      "controlsDrivers": 3
+    },
+    {
+      "caseId": "M7",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 0,
+      "pairs": [],
+      "expressibleUnder247": 0,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 0,
+      "cessationDrivers": 0,
+      "controlsDrivers": 0
+    },
+    {
+      "caseId": "M8",
+      "reachedInference": true,
+      "parsedPresent": true,
+      "basisEntries": 4,
+      "pairs": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION"
+      ],
+      "expressibleUnder247": 4,
+      "inexpressibleUnder247": 0,
+      "wouldOweJustification": 4,
+      "cessationDrivers": 0,
+      "controlsDrivers": 3
+    }
+  ]
+}

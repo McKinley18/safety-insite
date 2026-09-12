@@ -1,0 +1,111 @@
+{
+  "artifact": "SECTION_187B_INTEGRITY",
+  "date": "2026-09-05",
+  "operation": "§187B resume-only execution of the fifteen outstanding §187A verifier calls",
+  "terminal": "EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_BEHAVIOR_FAILED — REMEDIATION_REVIEW_REQUIRED",
+  "terminalReason": "All fifteen behavioral executions completed, but the hard gate 'contract-invalid / rejected behavioral executions = 0' is NOT MET: two executions (HR-08#2, HR-01#3) declared BOUND_BY_CLARIFICATION with a bindingFactKey under verdict VERIFIED_AS_IS and no proposedClarification, and were refused whole by the architecture. That is a genuine model output-shape violation, determinable mechanically without adjudication. The REQUIRED strict semantic gate remains PENDING_HUMAN_ADJUDICATION and was NOT decided by this model.",
+  "PRE_RESUME_INTEGRITY": "12 / 12 PASS",
+  "RESUME_CALLS": 15,
+  "BEHAVIORAL_EXECUTIONS": 15,
+  "firstPassCallsThisResume": 0,
+  "ACTUAL_PROVIDER_SPEND_USD_THIS_RESUME": 0.27927,
+  "RESUME_SPEND_CEILING_USD": 1.25,
+  "RESUME_CALL_CAP": 15,
+  "cumulativeActualSpendUsd": 0.54182,
+  "costAccounting": {
+    "method": "provider-returned usage only; a failed call adds zero",
+    "RUN_SUMMARY_COST_FIELD_ACCURATE": false,
+    "ACTUAL_PROVIDER_SPEND_USD_187A": 0.26255,
+    "COST_ACCOUNTING_DEFECT": "HARNESS_FAILURE_CHARGE_ACCUMULATION",
+    "defectNotRepairedDuringRun": true,
+    "recommendation": "correct the §187A harness failure-charge accumulation locally, AFTER the behavioral cohort closes"
+  },
+  "HARNESS_DEFECT_FOUND_AND_CORRECTED_WITHOUT_RESPEND": {
+    "id": "HARNESS_ADMISSION_ENVELOPE_OMISSION",
+    "what": "the resume harness passed the model tool payload to checkVerifierV3Output without the HazLenz-owned envelope fields verifierContractVersion and analysisId, which VERIFIER_V3_RESPONSE_SCHEMA never asks the model to emit",
+    "effect": "CONTRACT_VERSION_MISMATCH and ANALYSIS_ID_MISMATCH raised on all fifteen, making RESUME-RUN-SUMMARY.json report contractInvalid=15",
+    "classification": "VERIFICATION_INFRASTRUCTURE_DEFECT — never a model result",
+    "correction": "admission recomputed as a pure function over the persisted raw payloads, injecting the envelope exactly as the §167 reference executor does. ZERO new provider calls.",
+    "correctedResult": "13 admitted / 2 refused",
+    "originalPreserved": "RESUME-RUN-SUMMARY.json and RESUMED-VERIFIER-EXECUTIONS.jsonl were NOT overwritten; ADMISSION-RECOMPUTE.json is additive"
+  },
+  "HARD_GATES": {
+    "successfulVerifierProviderErrors": "0 — PASS",
+    "contractInvalidBehavioralExecutions": "2 — FAIL (genuine model output-shape violation)",
+    "wrongFactKeyBindings": "0 — PASS (both bindings named the correct supplied key)",
+    "unauthorizedSettlementTransitions": "0 — PASS",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER — PASS",
+    "adjacentFactSubstitution": "PENDING_HUMAN_ADJUDICATION"
+  },
+  "REQUIRED_STRICT_SEMANTIC_GATE": "PENDING_HUMAN_ADJUDICATION (>= 12/15)",
+  "MECHANICAL": {
+    "verdicts": {
+      "VERIFIED_AS_IS": 12,
+      "NO_CLARIFICATION_REQUIRED": 3
+    },
+    "declarationModes": {
+      "STILL_UNRESOLVED": 12,
+      "BOUND_BY_CLARIFICATION": 2,
+      "CHALLENGE_FACT_VALIDITY": 1
+    },
+    "proposedClarificationsEmitted": 0,
+    "challengeBearingExecutions": 1,
+    "wrongKeyDeclarations": 0
+  },
+  "HR04": {
+    "verdicts": [
+      "NO_CLARIFICATION_REQUIRED",
+      "NO_CLARIFICATION_REQUIRED",
+      "NO_CLARIFICATION_REQUIRED"
+    ],
+    "challengesEmitted": 1,
+    "providerOutputAloneLeftFactUnresolved": "3 / 3",
+    "A_B_C_D_CLASSIFICATION": "PENDING_HUMAN_ADJUDICATION",
+    "note": "all three rationales and the challenge reason rest explicitly on guard presence, the daily pre-start check and 'no tools rest on it'. Whether that is category C is the adjudication and was NOT made here."
+  },
+  "CHALLENGE_REVIEWABILITY": "PENDING_HUMAN_ADJUDICATION (n=1; a rate on one observation is not a proportion)",
+  "FIRST_PASS_STIMULUS_CONFOUND": "MINOR — unchanged from §187A, not reclassified after seeing verifier output",
+  "section187AClassification": "EXECUTION_INVALID_FOR_BEHAVIORAL_CONCLUSION_DUE_TO_PROVIDER_CREDIT_FAILURE",
+  "attemptsVsExecutions": "the fifteen §187A HTTP 400 credit rejections remain ATTEMPT history and count as zero behavioral replicates. The fifteen §187B calls are the behavioral cohort.",
+  "residualsPreserved": [
+    "BOUND_FACT_NOT_UNRESOLVED unchanged",
+    "no settled fact exposed",
+    "no ALREADY_SETTLED added",
+    "no new declaration mode, status, property ontology or requiredProperty",
+    "EXPECTED_HISTORICAL_PIN_DIVERGENCE_AFTER_AUTHORIZED_LATER_CHANGE preserved",
+    "direct terminal-construction residual OPEN",
+    "projection-firewall declarative gap OPEN",
+    "§179 preserved as HISTORICAL_FIRST_PASS_SILENCE_EVIDENCE; never combined with §187A/B into one score",
+    "SILENCE rows not rerun"
+  ],
+  "sourceChanges": 0,
+  "promptChanges": 0,
+  "schemaChanges": 0,
+  "governedRecordChanges": 0,
+  "newScripts": [
+    "backend/scripts/resume-required-structured-verifier-2026-09-05.ts",
+    "backend/scripts/recompute-187b-admission-2026-09-05.ts"
+  ],
+  "DATABASE_OPERATIONS": 0,
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "Fifteen verifier executions on five product-owner-reviewed unresolved owed facts were completed and persisted, with the mechanical results reported. A hard contract gate failed."
+    ],
+    "mustNotClaim": [
+      "SILENCE improvement",
+      "full ten-row validation",
+      "provider understanding of settled facts",
+      "absence of infrastructure fragility",
+      "HR-04 solved or unsolved (pending adjudication)",
+      "customer readiness",
+      "production readiness",
+      "formal acceptance"
+    ]
+  },
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

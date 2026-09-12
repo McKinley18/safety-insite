@@ -1,0 +1,64 @@
+{
+  "section": "251",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "status": "NOT PERFORMED",
+  "why": "A successor re-freeze binds the same six substantive cases to a compact strict executable schema. No compact strict executable schema exists, because the compaction does not clear the provider grammar limit. Re-freezing against the current schema would rebind the instrument to a representation already demonstrated untransmittable.",
+  "sixFrozenObservations": {
+    "count": 6,
+    "substantiveChanges": 0,
+    "exposedToInference": 0,
+    "state": "UNSPENT — the model has never been asked any of them",
+    "cases": [
+      {
+        "caseId": "H1",
+        "families": [
+          "WORK_AT_HEIGHT"
+        ],
+        "observationSha": "5c8c6923054474698c285d9d953c5f900e46d6d0199217f77f9f1cb27cc98873"
+      },
+      {
+        "caseId": "H2",
+        "families": [
+          "CONFINED_SPACE"
+        ],
+        "observationSha": "d3dfb25c328e6940dbfa4e68af8d2e035f9a4d33b17f7f00bfc88eeae4efa3ba"
+      },
+      {
+        "caseId": "H3",
+        "families": [
+          "WORK_AT_HEIGHT",
+          "STRUCTURAL"
+        ],
+        "observationSha": "df692cf779f8ef888bb5711eb63dcdee65bbf1bb04cd9ddd72a53b9cc7f39593"
+      },
+      {
+        "caseId": "H4",
+        "families": [
+          "FIRE"
+        ],
+        "observationSha": "98ecdcb41bed7a9c2f7cfd6132ea01be50fc5b87ec471aeb1c0d143c3012e02d"
+      },
+      {
+        "caseId": "H5",
+        "families": [
+          "EXCAVATION"
+        ],
+        "observationSha": "4658fa85dd995aa898bbf5bbfc477a357c0196366c84e5ced633d7ebca482093"
+      },
+      {
+        "caseId": "H6",
+        "families": [
+          "LIFTING"
+        ],
+        "observationSha": "0a961eaccfd5d9bec50b18e6e2273491c468f5d215e300b4f736f73c2a80841c"
+      }
+    ]
+  },
+  "executableIdentityRebound": false,
+  "wireSchemaIdentityRebound": false,
+  "normalizationIdentityRebound": false,
+  "requestDigestRebound": false,
+  "manifestMetadataChanged": false
+}

@@ -1,0 +1,37 @@
+-- standards jurisdiction safety and bounded matching --
+  [PASS] J-01 (osha-general-industry) LOTO under general industry cites 1910, never 1926 or 30 CFR
+          emitted=[29 CFR 1910.147]
+  [PASS] J-02 (msha) the same LOTO observation under MSHA cites 30 CFR, never 29 CFR
+          emitted=[30 CFR 56.12016]
+  [PASS] J-03 (osha-construction) a fall exposure under construction cites 1926, never 1910
+          emitted=[29 CFR 1926.501]
+  [PASS] J-04 (osha-general-industry) the same fall exposure under general industry cites 1910, never 1926
+          emitted=[29 CFR 1910.28]
+  [PASS] J-05 (osha-general-industry) an excavation under general industry must NOT borrow the construction trenching standard
+          emitted=[none]
+  [PASS] J-06 (msha) machine guarding under MSHA cites 30 CFR only
+          emitted=[30 CFR 56.14107(a)]
+  [PASS] J-07 (osha-construction) electrical exposure under construction cites 1926, never 1910
+          emitted=[29 CFR 1926.416(a)(1)]
+  [PASS] J-08 (msha) hazard communication under MSHA cites Part 47, never 1910.1200
+          emitted=[30 CFR 47.41(a)]
+  [PASS] S-01 (osha-general-industry) verified lockout is a safe state, not a LOTO citation
+          emitted=[none]
+  [PASS] S-02 (osha-general-industry) a guard reported correctly fitted is not a guarding citation
+          emitted=[none]
+  [PASS] S-03 (osha-general-industry) an explicitly negated hazard produces no citation for that family
+          emitted=[none]
+  [PASS] S-04 (osha-general-industry) a protected floor opening is not a fall-protection citation
+          emitted=[none]
+  [PASS] S-05 (osha-general-industry) an administrative record names no hazard and earns no citation
+          emitted=[none]
+  [PASS] A-01 (osha-general-industry) a cylinder mentioned as secured earns no unsecured-cylinder citation
+          emitted=[none]
+  [PASS] A-02 (osha-general-industry) a walkway named only as a location earns no walking-surface citation
+          emitted=[none]
+  [PASS] A-03 (osha-general-industry) noise vocabulary without an exposure earns no noise citation
+          emitted=[none]
+
+  wrong-jurisdiction citations: 0
+
+PASS HazLenz standards jurisdiction gate (16 checks, 0 wrong-jurisdiction citations)

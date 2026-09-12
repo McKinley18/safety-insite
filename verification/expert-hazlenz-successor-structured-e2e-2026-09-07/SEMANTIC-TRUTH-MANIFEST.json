@@ -1,0 +1,703 @@
+{
+  "artifact": "SECTION_199_SEMANTIC_TRUTH_MANIFEST",
+  "warning": "SCORING AND PACKET-STRUCTURE REFERENCE ONLY. Never injected into the pipeline and never shown to any model during execution.",
+  "TRUTH_PROVENANCE": {
+    "AI_ASSISTED_SCENARIO_AND_EXPECTATION_AUTHORING": true,
+    "PRODUCT_OWNER_REVIEWED": false,
+    "FULLY_INDEPENDENT_HUMAN_AUTHORING": false,
+    "USED_AS_THE_SEMANTIC_ORACLE": false,
+    "role": "cohort design and adjudication-packet structure only. Every semantic verdict in §199 is produced by a human reviewer, not by comparison against this file.",
+    "neverDescribeAs": "independent human truth"
+  },
+  "identityRule": "factKey is COMPUTED identity. Semantic target correctness is scored against factKeyIntent and the owed-property intent, NEVER by comparing a generated factKey to a human-authored expected key. Identity is separately audited for deterministic derivation.",
+  "reusedTruthNote": "the ten reused rows carry their §197 truth UNCHANGED and re-hashed prospectively here. It was never used to score anything, because §197 completed no inference.",
+  "rows": [
+    {
+      "rowId": "SF-01",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-01",
+      "truthSha256": "6dd5bb3123b0964ab5b501eb0dbc4c48ff4cd461e37a707ff497679e039456a5",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "pairedWith": "SF-03",
+      "establishedByTheText": [
+        "a chuck guard is fitted",
+        "the guard is closed over the chuck",
+        "two of three mounting points carry a bolt",
+        "the machine was running with an operator at it"
+      ],
+      "notEstablishedByTheText": [
+        "whether the guard is secured at the third mounting point",
+        "whether the two visible bolts are tight"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "chuck guard securement at all mounting points",
+          "owedProperty": "whether the chuck guard is securely fastened at every mounting point, so that it cannot be displaced while the spindle turns",
+          "conjuncts": [
+            "the guard is fastened at all three mounting points"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [],
+          "acceptableSpanRegions": [
+            "The third mounting point is behind the column and could not be seen from where the inspector stood",
+            "Two of the three guard mounting points are visible from the operator side"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the guard is fastened and secure at every mounting point",
+            "bMustMean": "the guard is unfastened or insecure at one or more mounting points"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the guard is accepted as an effective control and the machine continues in use",
+            "ifB": "the drill press is stopped until the guard is properly secured and re-checked"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether a chuck guard is FITTED — the text states it is",
+            "whether the guard is CLOSED — the text states it is",
+            "whether the guard is the correct type or design for the machine",
+            "whether the operator was trained"
+          ],
+          "designNoteOnCriticality": "a displaced chuck guard on a running drill press is an entanglement exposure with a person at the machine now; a reviewer may well call this safety-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "PRESENCE versus SECUREMENT. The guard is unambiguously present and closed, so a declaration about presence is a substitution rather than a near miss."
+    },
+    {
+      "rowId": "SF-03",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-03",
+      "truthSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "families": [
+        "NO_REAL_GAP",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "pairedWith": "SF-01",
+      "establishedByTheText": [
+        "a chuck guard is fitted and closed",
+        "all three mounting points were checked by hand and each is fitted and tight",
+        "the machine was running with an operator at it"
+      ],
+      "notEstablishedByTheText": [],
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "noGapExpected": true,
+      "expectedOwedFacts": [],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "The matched partner of SF-01, identical in setting and vocabulary, with the securement established by direct inspection. A gap declared here is a false gap."
+    },
+    {
+      "rowId": "SF-05",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-05",
+      "truthSha256": "fe6fd032a13c1a8c1d44e2a2cb6c3b19882a9fe6803fa2c66d56fda9d7ee128a",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "pairedWith": "SF-12",
+      "establishedByTheText": [
+        "the access door is closed",
+        "a status lamp shows green and the operator reports that this indicates the interlock is made",
+        "the interlock switch is present but was not accessible for inspection",
+        "no function-test record was available on site",
+        "the machine was cutting"
+      ],
+      "notEstablishedByTheText": [
+        "whether opening the door actually stops hazardous motion",
+        "whether the interlock has ever been function-tested"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "door interlock protective function verified",
+          "owedProperty": "whether the access-door interlock actually stops hazardous motion when the door is opened — that is, whether it performs its protective function",
+          "conjuncts": [
+            "the interlock stops hazardous motion on door opening"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [],
+          "acceptableSpanRegions": [
+            "No record of an interlock function test was available on site",
+            "The interlock switch itself is mounted behind the door frame and was not accessible for inspection",
+            "nobody present could say when one was last carried out"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the interlock stops hazardous motion when the door is opened",
+            "bMustMean": "the interlock does not stop hazardous motion, or is defeated or defective"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the interlock is accepted as an effective control and machining continues",
+            "ifB": "the machine is taken out of service until the interlock is repaired and proven"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether an interlock is FITTED — the text states the switch is there",
+            "whether the door is CLOSED — the text states it is",
+            "whether the status lamp is lit or legible — the text states it shows green",
+            "whether the operator understands what the lamp means",
+            "whether the switch is accessible for inspection — that is the reason the fact is open, not the fact itself"
+          ],
+          "designNoteOnCriticality": "an unproven interlock on a machine that is cutting is an access-to-moving-parts exposure now; a reviewer may well call this safety-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "APPEARANCE and STATUS INDICATION versus PROTECTIVE FUNCTION. A green lamp, a closed door and a present switch are all stated. None of them establishes that the interlock works, and a declaration that accepts any of them as the fact is wrong."
+    },
+    {
+      "rowId": "SF-12",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-12",
+      "truthSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "families": [
+        "NO_REAL_GAP",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "pairedWith": "SF-05",
+      "establishedByTheText": [
+        "the access door is closed",
+        "the interlock was function-tested in the inspector's presence and stopped spindle and axis motion on door opening",
+        "restart required the door closed and the cycle re-initiated",
+        "the test was recorded and countersigned"
+      ],
+      "notEstablishedByTheText": [],
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "noGapExpected": true,
+      "expectedOwedFacts": [],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "The matched partner of SF-05 with the protective function demonstrated rather than indicated. Also the only row carrying a deterministic finding, so false-gap suppression is tested with a populated deterministic context rather than an empty one."
+    },
+    {
+      "rowId": "SF-06",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-06",
+      "truthSha256": "64f9513f525d6ddb793313497f86d683531d2d9aa62c247f38214aed1bd48a98",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE"
+      ],
+      "pairedWith": "SF-04",
+      "establishedByTheText": [
+        "the brake was reported slipping and the crane was taken out of service on 2 September",
+        "the brake was replaced on 4 September",
+        "the \"work completed\" box carries a signature",
+        "the \"load test\" and \"returned to service\" boxes are blank",
+        "the crane is in use lifting loads now"
+      ],
+      "notEstablishedByTheText": [
+        "whether the replaced brake was proven under load before the crane went back into use",
+        "whether anyone formally returned the crane to service"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "hoist brake proven under load before return to service",
+          "owedProperty": "whether the replaced hoist brake was verified to hold under load BEFORE the crane was put back into use — the verification and its timing together",
+          "conjuncts": [
+            "the brake was verified to hold under load",
+            "that verification happened before the crane was returned to use"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [],
+          "acceptableSpanRegions": [
+            "The \"load test\" and \"returned to service\" boxes on the same sheet are blank",
+            "carries a signature in the \"work completed\" box"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the brake was load-tested and the crane formally returned to service before it was used again",
+            "bMustMean": "the crane went back into use without the replaced brake being proven under load"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the repair is accepted as complete and lifting continues",
+            "ifB": "lifting stops and the crane is withdrawn until the brake is load-tested and the crane is formally returned to service"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether the brake was REPLACED — the text states it was, on 4 September",
+            "whether a repair sheet exists — the text states it does and that it is signed",
+            "whether the original slipping fault was real",
+            "whether the crane is inspected periodically in general"
+          ],
+          "designNoteOnCriticality": "an unproven hoist brake on a crane lifting loads over a working area is a dropped-load exposure now; a reviewer may well call this safety-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "TEMPORAL SCOPE. The repair is established; what is open is verification AND its position in time relative to return to service. A declaration that drops the temporal conjunct has lost the thing that makes the fact decision-critical."
+    },
+    {
+      "rowId": "SF-04",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-04",
+      "truthSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "families": [
+        "NO_REAL_GAP",
+        "TEMPORAL_SCOPE"
+      ],
+      "pairedWith": "SF-06",
+      "establishedByTheText": [
+        "the brake was replaced on 4 September",
+        "a 1.25x rated load test was carried out and passed on 4 September",
+        "the appointed person signed the crane back into service after that test",
+        "the crane is in use now"
+      ],
+      "notEstablishedByTheText": [
+        "which of the two approved brake part numbers was fitted — a genuine absence that changes nothing about what is done today"
+      ],
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "noGapExpected": true,
+      "expectedOwedFacts": [],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "The matched partner of SF-06, with the verification and its timing both stated. It additionally plants ONE real but non-decision-critical absence — the brake part number — so precision is tested against a genuine unknown rather than against a complete text. Declaring the part number is a false gap: both answers lead to the same action today."
+    },
+    {
+      "rowId": "SF-02",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-02",
+      "truthSha256": "7dc5c81899303b657ad20d33c68114d3e604048a2679b2a71426391ee709ef84",
+      "families": [
+        "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS"
+      ],
+      "pairedWith": null,
+      "establishedByTheText": [
+        "a tripod, winch and attendant are in place and the line is attached to the entrant",
+        "a completed and signed entry permit exists",
+        "a gas monitor is switched on and displaying readings",
+        "the rescue arrangements section names \"site team\" and nothing further",
+        "the attendant has not been told what the rescue plan is",
+        "the entrant is in the sump now"
+      ],
+      "notEstablishedByTheText": [
+        "whether the gas monitor is within its calibration or bump-test validity, so its readings can be relied on",
+        "whether a rescue arrangement capable of retrieving this entrant exists and is known to the people who would have to use it"
+      ],
+      "expectedGapCount": {
+        "min": 2,
+        "max": 2
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "gas monitor calibration validity",
+          "owedProperty": "whether the gas monitor is within its calibration and bump-test validity, so that the readings it is displaying can be relied on as evidence of the atmosphere",
+          "conjuncts": [
+            "the monitor is within calibration or bump-test validity"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [
+            "EXPOSURE"
+          ],
+          "acceptableSpanRegions": [
+            "nobody present could say when it was last calibrated or bump-tested",
+            "The gas monitor clipped to the entrant's harness was switched on and displaying readings"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the monitor is in calibration and its readings are trustworthy",
+            "bMustMean": "the monitor is out of calibration or unverified and its readings cannot be relied on"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the atmospheric monitoring is accepted and the entry continues",
+            "ifB": "the entrant is withdrawn until a verified monitor is in use"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether a gas monitor is PRESENT — the text states it is",
+            "whether the monitor is SWITCHED ON — the text states it is",
+            "whether the monitor is DISPLAYING READINGS — the text states it is",
+            "what the readings actually were"
+          ],
+          "designNoteOnCriticality": "an unverified monitor on a live confined-space entry is an atmospheric exposure with a person inside now; a reviewer may well call this safety-critical"
+        },
+        {
+          "factKeyIntent": "rescue arrangement exists and is known to those who must use it",
+          "owedProperty": "whether a rescue arrangement capable of retrieving this entrant exists and is known to the attendant who would have to initiate it",
+          "conjuncts": [
+            "a capable rescue arrangement exists",
+            "the people who must use it know what it is"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [
+            "EXPOSURE"
+          ],
+          "acceptableSpanRegions": [
+            "The rescue arrangements section of the permit reads \"site team\" and nothing further",
+            "the attendant said he had not been told what the rescue plan was"
+          ],
+          "branchSemantics": {
+            "aMustMean": "a capable rescue arrangement exists and the attendant knows how to invoke it",
+            "bMustMean": "no capable rescue arrangement exists, or nobody on site knows what it is"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the entry continues under the existing permit",
+            "ifB": "the entry is stopped and the entrant retrieved until rescue arrangements are established and briefed"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether a permit EXISTS — the text states it exists and is signed",
+            "whether the tripod and winch are RIGGED — the text states they are",
+            "whether an attendant is PRESENT — the text states he is",
+            "whether the permit is filled in — the text states it is"
+          ],
+          "designNoteOnCriticality": "no known rescue plan during a live entry is the classic confined-space fatality mechanism; a reviewer may well call this safety-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "Two genuinely INDEPENDENT gaps: different equipment, different evidence, different people would answer them, and settling one leaves the other completely open. Both are surrounded by established neighbours — a signed permit, a rigged tripod, a switched-on monitor — so a model that reads topic rather than property will substitute."
+    },
+    {
+      "rowId": "SF-07",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-07",
+      "truthSha256": "ff1a08f4ebaa0aa70ffcc32297100e72f18465db84107fc7f314f67393f0b623",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "pairedWith": null,
+      "establishedByTheText": [
+        "an LEV hood is installed above the bench",
+        "the fan is running",
+        "the last recorded examination is within the past twelve months",
+        "wiping happens about 600 mm forward of the hood face",
+        "no airflow indicator is fitted",
+        "two operators are working with a ketone-based cleaner now"
+      ],
+      "notEstablishedByTheText": [
+        "whether the LEV actually captures solvent vapour at the position where the wiping is done"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "LEV capture effectiveness at the actual work position",
+          "owedProperty": "whether the local exhaust ventilation actually captures solvent vapour at the position where the wiping is carried out, about 600 mm forward of the hood face",
+          "conjuncts": [
+            "the LEV captures vapour at the actual work position"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [
+            "EXPOSURE"
+          ],
+          "acceptableSpanRegions": [
+            "nobody present could say whether the hood draws vapour away from the position where the wiping is actually done",
+            "The wiping is carried out about 600 mm forward of the hood face",
+            "No airflow indicator is fitted at the hood"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the LEV captures vapour effectively at the position where wiping occurs",
+            "bMustMean": "the LEV does not capture vapour at that position and operators are breathing it"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the LEV is accepted as an effective control and wiping continues at the bench",
+            "ifB": "wiping is moved into the capture zone, or stopped, until capture at the work position is established"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether an LEV is INSTALLED — the text states it is",
+            "whether the fan is RUNNING — the text states it is",
+            "whether the system has been EXAMINED — the text states the examination is within twelve months",
+            "whether an airflow indicator is fitted — that is the reason the fact is open, not the fact",
+            "whether respiratory protective equipment is worn — not raised by the text"
+          ],
+          "designNoteOnCriticality": "ineffective capture with operators wiping ketone in the open is an inhalation exposure now; a reviewer may judge this important rather than immediately life-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "INSTALLATION and EXAMINATION versus EFFECTIVENESS AT THE WORK POSITION. Three strong neighbours are established, and the geometry — 600 mm forward of the hood face — is the objective reason the effectiveness question is live rather than imagined."
+    },
+    {
+      "rowId": "SF-08",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-08",
+      "truthSha256": "dcf19aabf9b886347117987797853cff325257e8286ecb08f3cc58f5e0670ab6",
+      "families": [
+        "CONJUNCTIVE_FACT"
+      ],
+      "pairedWith": null,
+      "establishedByTheText": [
+        "the isolator is off",
+        "a personal padlock and danger tag naming the fitter are fitted to the hasp",
+        "the fitter is working inside the open enclosure now",
+        "the panel contains a capacitor bank"
+      ],
+      "notEstablishedByTheText": [
+        "whether the circuit was proved dead at the point of work after isolation",
+        "whether the capacitor bank was discharged before the enclosure was opened"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 2
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "panel proved safe to work on — dead at the point of work and stored energy discharged",
+          "owedProperty": "whether the panel was proved safe to work on before the enclosure was opened: the circuit proved dead at the point of work AND the capacitor bank discharged",
+          "conjuncts": [
+            "a voltage test proved the circuit dead at the point of work after isolation",
+            "the capacitor bank was discharged before the enclosure was opened"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [],
+          "acceptableSpanRegions": [
+            "could not establish whether a voltage test had been carried out at the point of work after isolation",
+            "nor whether the capacitor bank had been discharged before the enclosure was opened"
+          ],
+          "branchSemantics": {
+            "aMustMean": "both the dead test and the capacitor discharge were done before work began",
+            "bMustMean": "one or both were not done, so the fitter may be working on live or stored energy"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the isolation is accepted as proved and the work continues",
+            "ifB": "the work stops immediately and the panel is proved dead and discharged before it resumes"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether the isolator is OFF — the text states it is",
+            "whether a padlock and tag are FITTED — the text states they are",
+            "whether the fitter is authorised or trained",
+            "whether a permit exists — not raised by the text"
+          ],
+          "designNoteOnCriticality": "a person working inside an enclosure that may be live or holding stored charge is an electrocution exposure now; a reviewer is likely to call this life-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "CONJUNCTIVE. Locked and tagged is established; proved dead and discharged are both open. Two declarations, one per conjunct, is an ACCEPTABLE representation and the expected range says so — what must not happen is one conjunct being dropped. This row is deliberately given a range rather than a single expected count, because forcing a single number here would author an ambiguity into the truth."
+    },
+    {
+      "rowId": "SF-11",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "section197Origin": "SF-11",
+      "truthSha256": "51dd7d5b7f851bb364930c3a3094316144cb331b68a6491f592b6a3430aa6e1e",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "EXPOSURE_DECISION",
+        "NOT_OBSERVED_IS_NOT_ABSENT"
+      ],
+      "pairedWith": null,
+      "establishedByTheText": [
+        "a forklift operates in the aisle",
+        "the aisle is 3.2 m wide with no marked walkway and no barrier or gate at either end",
+        "no pedestrians were seen during ten minutes of observation",
+        "the supervisor says pedestrian access \"depends on the job\""
+      ],
+      "notEstablishedByTheText": [
+        "whether pedestrians are in the aisle while the forklift is operating",
+        "ten minutes without a pedestrian does not establish that pedestrians do not enter"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "pedestrian presence in the aisle during forklift operation",
+          "owedProperty": "whether pedestrians enter or work in aisle 7 while the forklift is operating there",
+          "conjuncts": [
+            "pedestrians are present in the aisle during forklift operation"
+          ],
+          "expectedAffectedDecision": "EXPOSURE",
+          "acceptableAlternativeAffectedDecisions": [
+            "REQUIRED_CONTROL"
+          ],
+          "acceptableSpanRegions": [
+            "The shift supervisor said pedestrian access to aisle 7 \"depends on the job\"",
+            "The inspector saw no pedestrians in the aisle during the ten minutes he observed it"
+          ],
+          "branchSemantics": {
+            "aMustMean": "pedestrians do enter the aisle while the forklift operates",
+            "bMustMean": "pedestrians are genuinely excluded while the forklift operates"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "separation is required now — segregation, exclusion or a controlled crossing before forklift work continues in the aisle",
+            "ifB": "the existing arrangement is accepted and forklift work continues"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether a marked walkway EXISTS — the text states it does not",
+            "whether barriers or gates EXIST — the text states they do not",
+            "the width of the aisle — the text gives it as 3.2 m",
+            "whether the forklift operator is licensed — not raised by the text",
+            "treating \"no pedestrians seen in ten minutes\" as establishing that none enter"
+          ],
+          "designNoteOnCriticality": "pedestrian/vehicle interaction in an unsegregated aisle is a struck-by fatality mechanism; a reviewer may well call this safety-critical"
+        }
+      ],
+      "governedCapability": "ABSENT",
+      "governedEvidenceExpectation": "none supplied — the capability is ABSENT at the first pass and reliance NONE is the only correct verifier declaration",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "EXPOSURE, and the NOT-OBSERVED-IS-NOT-ABSENT rule. The absent controls are all stated facts, not gaps. What is genuinely open is whether anyone is exposed, and the ten minutes of observation is a trap: it is evidence about ten minutes and nothing more."
+    },
+    {
+      "rowId": "SG-01",
+      "provenance": "REPLACED_PROTOCOL_EXPOSED",
+      "section197Origin": "SF-09",
+      "truthSha256": "e499d663f41de15090062d3238407dc30b693e023860dd3ab01a35d531fa71c1",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION",
+        "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY"
+      ],
+      "pairedWith": null,
+      "establishedByTheText": [
+        "a plumbed emergency eyewash unit is mounted 4.5 m from the decanting position",
+        "the route to it was clear and unobstructed",
+        "both spray heads delivered flow immediately when activated",
+        "the unit ran for about twenty seconds before being shut off",
+        "no record of a flow or duration check was available",
+        "two operators are decanting 32 per cent hydrochloric acid now"
+      ],
+      "notEstablishedByTheText": [
+        "whether the supply sustains flow for a full flushing period without interruption"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "eyewash supply sustains flow for a full flushing period",
+          "owedProperty": "whether the eyewash supply can sustain uninterrupted flow to both heads for a full flushing period, rather than only for the brief activation that was observed",
+          "conjuncts": [
+            "the supply sustains uninterrupted flow for a full flushing period"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [
+            "REGULATORY_INTERPRETATION"
+          ],
+          "acceptableSpanRegions": [
+            "Nobody present could say whether the supply sustains flow for a full flushing period without interruption",
+            "no record of any flow or duration check was available on site",
+            "The unit was left running for about twenty seconds and was then shut off"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the supply sustains uninterrupted flow for a full flushing period",
+            "bMustMean": "the supply fails, drops or is interrupted before a full flushing period elapses"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the eyewash is accepted as an effective emergency provision and decanting continues",
+            "ifB": "decanting stops until a flushing facility capable of sustaining the full period is available at this position"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether an eyewash unit is INSTALLED — the text states it is, and that it is plumbed",
+            "whether the unit FLOWS AT ALL — the text states both heads delivered flow immediately",
+            "whether the route is obstructed — the text states it was clear",
+            "the distance to the unit — the text gives it as 4.5 m",
+            "the water temperature — not raised by the text, and inventing it is a fabricated gap",
+            "whether the operators wear eye protection — not raised by the text"
+          ],
+          "designNoteOnCriticality": "an eyewash that stops flowing partway through a flush, beside live hand-decanting of concentrated acid, is a permanent-eye-injury exposure now; a reviewer may well call this safety-critical"
+        }
+      ],
+      "governedCapability": "PRESENT",
+      "governedEvidenceExpectation": "a supplied record genuinely bears on the owed fact. Naming its exact sourceId at the first pass is legitimate (axis S); at the verifier, declared reliance and reproducing the citation it contains is the behaviour v3.3 is expected to admit (axis N)",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "IMMEDIATE FUNCTION versus SUSTAINED CAPABILITY, with a governed record that genuinely bears on the fact. Everything a casual reader would check — installed, plumbed, close, unobstructed, flowing — is established, and the twenty-second activation is the trap: it demonstrates that the unit starts, and nothing about whether it lasts. The supplied governed record speaks directly to uninterrupted supply for a full flushing period and carries a citation, so at the VERIFIER this is a legitimate-reliance and faithful-quotation opportunity. The owed fact is fully established by the observation alone, so it stays adjudicable even though the first pass sees the governed text with its citation redacted."
+    },
+    {
+      "rowId": "SG-02",
+      "provenance": "REPLACED_PROTOCOL_EXPOSED",
+      "section197Origin": "SF-10",
+      "truthSha256": "72bd7db47417c173e5d116501895bf6f33ece79686b792e8f5c7831b4ab7afc0",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE",
+        "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+      ],
+      "pairedWith": null,
+      "establishedByTheText": [
+        "hot work with an abrasive cut-off saw is in progress",
+        "the cutting position is directly above a 300 mm floor opening into the drainage sump",
+        "sparks were falling through the opening",
+        "a hot work permit was issued, filled in and signed",
+        "a dry powder extinguisher stands beside the cutting position"
+      ],
+      "notEstablishedByTheText": [
+        "whether the sump below the opening was tested or checked for flammable residues or vapour before the cutting began"
+      ],
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "noGapExpected": false,
+      "expectedOwedFacts": [
+        {
+          "factKeyIntent": "sump checked for flammable residues before hot work began",
+          "owedProperty": "whether the drainage sump beneath the cutting position was tested or checked for flammable residues or vapour BEFORE the cutting started",
+          "conjuncts": [
+            "the sump was tested or checked for flammable residues or vapour",
+            "that check happened before the cutting began"
+          ],
+          "expectedAffectedDecision": "REQUIRED_CONTROL",
+          "acceptableAlternativeAffectedDecisions": [
+            "EXPOSURE",
+            "HAZARD_EXISTENCE"
+          ],
+          "acceptableSpanRegions": [
+            "The inspector could not establish whether anyone had tested the sump atmosphere or checked it for flammable residues before the cutting began",
+            "sparks from the saw were falling through the opening"
+          ],
+          "branchSemantics": {
+            "aMustMean": "the sump was checked before cutting began and found free of flammable residues or vapour",
+            "bMustMean": "the sump was never checked, or was checked only after cutting began, so sparks may be falling into an untested space"
+          },
+          "expectedDecisionDivergence": {
+            "ifA": "the hot work continues under the existing permit and fire watch arrangement",
+            "ifB": "cutting stops immediately, the opening is covered or the sump is tested and made safe, before any further hot work"
+          },
+          "unacceptableNeighbouringProperties": [
+            "whether a hot work PERMIT EXISTS — the text states it is issued, filled in and signed",
+            "whether an EXTINGUISHER is present — the text states one is beside the cutting position",
+            "whether sparks are falling through the opening — the text states they are",
+            "the size of the opening — the text gives it as 300 mm",
+            "whether a fire watch is posted — not raised by the text; asking about it is a different fact and does not substitute for the sump check",
+            "whether the contractor is trained or inducted — not raised by the text"
+          ],
+          "designNoteOnCriticality": "sparks falling into an untested sump that may hold flammable residue is an ignition-and-flashback mechanism with people standing over it; a reviewer is likely to call this life-critical"
+        }
+      ],
+      "governedCapability": "PRESENT",
+      "governedEvidenceExpectation": "the supplied record is OFF POINT. Naming its sourceId at the first pass would be inappropriate even though it is structurally permitted (axis S semantic half); at the verifier, reliance NONE is correct and any citation written is necessarily unsupplied and must be refused (axis O)",
+      "axisTPrecondition": "the first pass sees this record's text with citation-shaped tokens redacted. Whether what remains is semantically sufficient to ground a binding is itself a human judgement, recorded per row in the packet. T defaults to NOT_EXERCISED.",
+      "designIntent": "A PRE-TASK CHECK whose TIMING is the whole point, carried alongside a governed record that has nothing to do with it. Permit, extinguisher and spark path are all established facts, not gaps; what is open is whether the space receiving the sparks was checked, and whether that happened before cutting started. The supplied governed record is about powered-industrial-truck operator training and bears on none of it, so the correct verifier declaration is reliance NONE and any citation it writes is necessarily one it was not given. That is an OPPORTUNITY, not a guarantee: the model may write no citation at all, and the result must then be reported as an opportunity not taken rather than as a pass."
+    }
+  ]
+}

@@ -1,0 +1,1019 @@
+{
+  "artifact": "SECTION-227-FROZEN-PROTOCOL",
+  "instrumentVersion": "hazlenz.expert.227.hosted-capability-confirmation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "authorization": {
+    "section": "§227",
+    "purpose": "final bounded hosted first-pass semantic capability confirmation",
+    "isNotADevelopmentOrTuningSection": true,
+    "executesTheExactFrozenSection226Design": true
+  },
+  "preSpendIntegrity": {
+    "passed": true,
+    "checks": [
+      {
+        "check": "C1. exactly 8 fresh primary cases exist",
+        "ok": true,
+        "detail": "8 cases, 8 assembled, all attest no prior-cohort derivation"
+      },
+      {
+        "check": "C2. all cases pass the §226 truth-consistency preflight",
+        "ok": true,
+        "detail": "21/21 checks"
+      },
+      {
+        "check": "C3. every expected unresolved property is explicitly enumerated",
+        "ok": true,
+        "detail": "7 owed properties, each with a proposition and a stated reason it is open"
+      },
+      {
+        "check": "C4. every established fact is explicitly enumerated",
+        "ok": true,
+        "detail": "41 established facts across 8 cases"
+      },
+      {
+        "check": "C5. every non-fact is explicitly enumerated",
+        "ok": true,
+        "detail": "16 non-facts across 8 cases"
+      },
+      {
+        "check": "C6. every prohibited proxy / adjacent property is explicit where applicable",
+        "ok": true,
+        "detail": "25 annotated near neighbours"
+      },
+      {
+        "check": "C7. expected declaration count is frozen and matches the enumeration",
+        "ok": true,
+        "detail": "K1:1 K2:1 K3:1 K4:1 K5:1 K6:2 K7:0 K8:0"
+      },
+      {
+        "check": "C8. the exact controlling property or properties are frozen",
+        "ok": true,
+        "detail": "K1-P1 K2-P1 K3-P1 K4-P1 K5-P1 K6-P1 K6-P2"
+      },
+      {
+        "check": "C9. required-act and required-artifact semantics are frozen where applicable",
+        "ok": true,
+        "detail": "act: K4 · artifact: K5"
+      },
+      {
+        "check": "C10. restraint cases contain zero decision-critical unresolved properties",
+        "ok": true,
+        "detail": "K7, K8 owe nothing and each states why"
+      },
+      {
+        "check": "C11. no expected unresolved property is simultaneously established",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "check": "C12. all scored axes are preregistered, and every gate names its cases",
+        "ok": true,
+        "detail": "18 judgment slots across 7 gates"
+      },
+      {
+        "check": "C13. the current prompt identity is pinned and is the §226 successor",
+        "ok": true,
+        "detail": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics @ dcf2f2bdfcff9737…"
+      },
+      {
+        "check": "C14. the wire schema identity is pinned per case",
+        "ok": true,
+        "detail": "8 distinct schema identities across 8 cases (per-case by design)"
+      },
+      {
+        "check": "C15. the execution configuration and model identity are pinned",
+        "ok": true,
+        "detail": "claude-sonnet-5, api 2023-06-01, caching DISABLED"
+      },
+      {
+        "check": "C16. the §226 frozen instrument, results and report remain unchanged",
+        "ok": true,
+        "detail": "15 manifest entries re-verified, 0 drifted"
+      },
+      {
+        "check": "C17. the §225 evidence remains unchanged",
+        "ok": true,
+        "detail": "19 manifest entries re-verified, 0 drifted"
+      },
+      {
+        "check": "C18. single arm by design, and it is recorded as such",
+        "ok": true,
+        "detail": "no predecessor leg; every gate is absolute on the §226 arm"
+      },
+      {
+        "check": "C19. call plan is within the authorized ceiling",
+        "ok": true,
+        "detail": "8 planned + 2 contingency, ceiling 10, projected USD 0.72, hard ceiling USD 1.1"
+      },
+      {
+        "check": "C20. no cache_control is constructed anywhere in an assembled call",
+        "ok": true,
+        "detail": "caching DISABLED"
+      },
+      {
+        "check": "C21. no evidence file pre-exists for this section",
+        "ok": true,
+        "detail": "no RAW-227.jsonl and no CALL-LEDGER-227.jsonl"
+      },
+      {
+        "check": "C22. the API key resolves",
+        "ok": true,
+        "detail": "ANTHROPIC_API_KEY present"
+      },
+      {
+        "check": "C23. no governed record is supplied, and that is recorded as a decision",
+        "ok": true,
+        "detail": "the frozen question is first-pass declaration recall and con…"
+      },
+      {
+        "check": "C24. zero database operations and zero semantic-preference retries are authorized",
+        "ok": true,
+        "detail": "both 0"
+      },
+      {
+        "check": "C25. the authoring limitation is recorded before any spend and is not mitigated",
+        "ok": true,
+        "detail": "a pass cannot separate contract capability from case-authoring effects"
+      }
+    ]
+  },
+  "truthConsistencyPreflight": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "P0",
+        "what": "exactly 8 fresh primary cases exist, each attesting no prior-cohort derivation",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P1",
+        "what": "no owed property collides with a stated established fact",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P1b",
+        "what": "every owed property records why it is genuinely open",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P2",
+        "what": "expected declaration count equals the number of owed properties",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P2b",
+        "what": "the exact controlling property keys are frozen and match the owed set",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P3",
+        "what": "every case enumerates established facts and non-facts explicitly",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P4",
+        "what": "no two owed properties in a case are the same property reworded",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P4b",
+        "what": "no prohibited near neighbour is the owed property reworded",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P5",
+        "what": "restraint cases owe nothing and state why; owing cases state no restraint basis",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P6",
+        "what": "every owed property enumerates its prohibited proxy and adjacent near neighbours",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P6b",
+        "what": "every prohibited kind is in the closed set",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P7",
+        "what": "required act and artifact flags agree with the owed kinds",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P8",
+        "what": "no enumerated non-fact is also an established fact or an owed property",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P9",
+        "what": "every case preregisters the measures it exercises, and they agree with the gates",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P9b",
+        "what": "every gate names at least one case, so no gate is vacuous",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P10",
+        "what": "case identifiers are unique",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P11",
+        "what": "each of the eight frozen §226 shapes is covered exactly once",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P12",
+        "what": "the two-independent-properties case owes exactly two, neither entailing the other",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P13",
+        "what": "the legitimate required-act and required-artifact cases owe that kind",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P14",
+        "what": "the required-artifact case annotates the underlying act beneath the artifact",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P15",
+        "what": "the candidate-state bypass case owes a property and enumerates a control-state proxy",
+        "passed": true,
+        "detail": "clean"
+      }
+    ]
+  },
+  "arm": {
+    "single": true,
+    "arm": "REMEDIATED_226"
+  },
+  "authoringLimitation": {
+    "singleArm": true,
+    "statedBeforeSpend": true,
+    "limitation": "This is a single-arm confirmation. A pass cannot independently separate contract capability from case-authoring effects: the cases were authored by the same session that wrote the §226 remediation, and no paired leg constrains that here.",
+    "whyAccepted": "§225 already supplied controlled paired-arm evidence, on eight byte-identical paired cases, that the instruction is what moved the targeted behaviour. §227 answers only whether the current candidate contract satisfies the frozen capability requirements on these fresh cases.",
+    "notMitigated": true,
+    "mustNotBeConcealedOrRetrospectivelyMitigated": true
+  },
+  "contract": {
+    "version": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+    "instructionIdentity": {
+      "version": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "base": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "plain": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "governed": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2"
+    }
+  },
+  "model": "claude-sonnet-5",
+  "apiVersion": "2023-06-01",
+  "cachingPosture": "DISABLED — no cache_control constructed anywhere",
+  "governedRecords": {
+    "supplied": 0,
+    "reason": "the frozen question is first-pass declaration recall and controlling-property selection. A supplied governed record would add the grounding boundary as a second variable and is not needed to answer it. §225 made the same decision, so the two runs are comparable in posture."
+  },
+  "callPlan": {
+    "planned": 8,
+    "contingency": 2,
+    "ceiling": 10,
+    "oneCallPerCase": true,
+    "contingencyPolicy": {
+      "authorizedReason": "a transport or HTTP failure with no usable response — failureClass TRANSPORT_TRANSIENT or TRANSPORT_STRUCTURAL, where the call did not reach inference",
+      "forbiddenReasons": [
+        "replacing a semantically wrong answer",
+        "improving a score",
+        "testing revised wording",
+        "modifying a case",
+        "obtaining a second draw because the first answer was unfavourable"
+      ],
+      "everyUseMustRecordItsExactReason": true
+    }
+  },
+  "spend": {
+    "projectedUsd": 0.72,
+    "hardCeilingUsd": 1.1,
+    "basis": "the §225 remediated-arm ledger: 8 calls, USD 0.67723, mean USD 0.08465, max USD 0.09161. §226 adds about 114 lines of instruction so input tokens rise modestly."
+  },
+  "databaseOperations": 0,
+  "semanticPreferenceRetriesAuthorized": 0,
+  "measures": [
+    "DECLARATION_RECALL",
+    "PROPERTY_IDENTITY",
+    "INDEPENDENCE",
+    "RESTRAINT",
+    "REQUIRED_ACT_CONTROL",
+    "REQUIRED_ARTIFACT_CONTROL",
+    "CANDIDATE_STATE_BYPASS"
+  ],
+  "primaryGates": [
+    {
+      "id": "G1",
+      "measure": "DECLARATION_RECALL",
+      "requirement": "decision-critical declaration recall 100%",
+      "appliesToCases": [
+        "K1",
+        "K2",
+        "K3",
+        "K4",
+        "K5",
+        "K6"
+      ]
+    },
+    {
+      "id": "G2",
+      "measure": "PROPERTY_IDENTITY",
+      "requirement": "exact controlling-property identity 100%",
+      "appliesToCases": [
+        "K1",
+        "K2",
+        "K3",
+        "K4",
+        "K5",
+        "K6"
+      ]
+    },
+    {
+      "id": "G3",
+      "measure": "INDEPENDENCE",
+      "requirement": "independent property preservation 100%",
+      "appliesToCases": [
+        "K6"
+      ]
+    },
+    {
+      "id": "G4",
+      "measure": "RESTRAINT",
+      "requirement": "false decision-critical declarations on a restraint case 0",
+      "appliesToCases": [
+        "K7",
+        "K8"
+      ]
+    },
+    {
+      "id": "G5",
+      "measure": "REQUIRED_ACT_CONTROL",
+      "requirement": "required-act over-corrections 0",
+      "appliesToCases": [
+        "K4"
+      ]
+    },
+    {
+      "id": "G6",
+      "measure": "REQUIRED_ARTIFACT_CONTROL",
+      "requirement": "required-artifact over-corrections 0",
+      "appliesToCases": [
+        "K5"
+      ]
+    },
+    {
+      "id": "G7",
+      "measure": "CANDIDATE_STATE_BYPASS",
+      "requirement": "candidate-state bypasses 0",
+      "appliesToCases": [
+        "K1"
+      ]
+    }
+  ],
+  "gateRule": {
+    "aggregateCompensationPermitted": false,
+    "rule": "Each gate is pass/fail at the stated occurrence. No gate may be offset by another gate, by an aggregate score, by a headline accuracy figure, or by the size of the improvement over §224 or §225 (HAZLENZ_INVARIANTS 22).",
+    "notExercised": "A gate with no genuine opportunity to fail on any case is recorded NOT_EXERCISED, which is never CORRECT and never a pass (invariant 23).",
+    "ambiguous": "AMBIGUOUS on a hard-gate judgment means the gate cannot pass from that judgment, and may not be resolved after the fact to obtain a terminal (invariant 24).",
+    "structuralFailures": "A structural, contract or tooling failure is recorded as such and is never converted into a semantic verdict about the model (invariant 25).",
+    "borderline": "A close judgment is marked BORDERLINE and flagged for re-adjudication. A borderline judgment does not change a gate outcome by itself.",
+    "recallDefinition": "A decision-critical property counts as recalled ONLY when the required structured declaration exists. Prose, candidate reasoning, uncertainty, clarification and summary do not substitute for it."
+  },
+  "perCaseIdentities": [
+    {
+      "caseId": "K1",
+      "ordinal": 1,
+      "analysisId": "ANL-227-K1",
+      "observationSourceId": "OBS-227-K1",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "6706f43d44dbf5d5b4f39b63bd079a9caaf8d23a98a3e11a9efa628f9ea9eb04",
+      "wireSchemaSha256": "32c19c7f26e5b5a4ba2342342f6eb6ad11e55bf8f0ac21ba55cdf19e6c099aa6"
+    },
+    {
+      "caseId": "K2",
+      "ordinal": 2,
+      "analysisId": "ANL-227-K2",
+      "observationSourceId": "OBS-227-K2",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "d3a2af75230c41d9bb232cfe992dc2ac9572dc89d7b78469722e1e2763397f3b",
+      "wireSchemaSha256": "dfdef6c8242c8b95f612840a1ff5f97d0b064fe450db5f84d0214d079031d00f"
+    },
+    {
+      "caseId": "K3",
+      "ordinal": 3,
+      "analysisId": "ANL-227-K3",
+      "observationSourceId": "OBS-227-K3",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "695d20524b0281165be88908d935d48aef8e22b8f3f15c34f8bc65ac2ae4617e",
+      "wireSchemaSha256": "8b7f6e5dbfa1056c46ddcfbfb0197333b01462eb00e265e9e2ae5704e386befd"
+    },
+    {
+      "caseId": "K4",
+      "ordinal": 4,
+      "analysisId": "ANL-227-K4",
+      "observationSourceId": "OBS-227-K4",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "db83ca77d709fb1c3426543d4a9c5b6b0f2c41b48670e637dbcf1b608a075d19",
+      "wireSchemaSha256": "ecf1f9851fa18838c5d943b49a985305febc2c44963670214796dcb3b8be5190"
+    },
+    {
+      "caseId": "K5",
+      "ordinal": 5,
+      "analysisId": "ANL-227-K5",
+      "observationSourceId": "OBS-227-K5",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "70c93073d4ca0c85e19577f22302973a42472f022221b2acb676845a5be003e2",
+      "wireSchemaSha256": "27b3d3d3c0293a02983a5c6b617486efcb1207ff724cd741809102452864d113"
+    },
+    {
+      "caseId": "K6",
+      "ordinal": 6,
+      "analysisId": "ANL-227-K6",
+      "observationSourceId": "OBS-227-K6",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "94021aa08c40ba7a142af341b9e60b9252b0be1f1fdc26f20e195ed63924b327",
+      "wireSchemaSha256": "d01397723307b951470ff54e87c141b4723ae2029f8e272a67de197b1dd3f4fc"
+    },
+    {
+      "caseId": "K7",
+      "ordinal": 7,
+      "analysisId": "ANL-227-K7",
+      "observationSourceId": "OBS-227-K7",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "3836207f5b257502d508634b1edbf38eeb1fb30e0ed5cdb85d37efa4f992da7e",
+      "wireSchemaSha256": "ee39255606367f7eb86cae75aba7735612c19307f421f9c6972d1fe210dff208"
+    },
+    {
+      "caseId": "K8",
+      "ordinal": 8,
+      "analysisId": "ANL-227-K8",
+      "observationSourceId": "OBS-227-K8",
+      "instructionSha256": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptSha256": "58985bfc62a2f7dda8b0feb3c02a7c20b2cc037b21767f41520a86d1758f8664",
+      "wireSchemaSha256": "9952869c31e3162f5e14f0093a7a02a4b0dadc9daa7bfdb05fb912e0e2e7b7c9"
+    }
+  ],
+  "priorEvidenceVerified": {
+    "section226": {
+      "manifestEntries": 15,
+      "drifted": 0
+    },
+    "section225": {
+      "manifestEntries": 19,
+      "drifted": 0
+    }
+  },
+  "cases": [
+    {
+      "caseId": "K1",
+      "frozenBySection226": {
+        "shape": "CANDIDATE_STATE_BYPASS",
+        "whatItTests": "an owed property sitting under a candidate the model has every invitation to assert ACTIVE or CONTROLLED",
+        "primaryGate": "G1"
+      },
+      "authoredIn227": {
+        "observation": "A contractor is cutting through a redundant steel pipe with a petrol cut-off saw inside the bunded area of a farm chemical store. Sparks are coming off the cut and falling onto the bund floor. The pipe was part of a dosing line that was drained and capped several years ago; nobody on the farm can say what product it carried and no test of the residue inside it has been done. A dry powder extinguisher is on the ground beside the work and a second man is standing by as fire watch.",
+        "suppliedContext": {
+          "location": "arable farm, chemical store bunded area",
+          "task": "cutting out a redundant dosing pipe with a petrol cut-off saw"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "fire_and_explosion",
+          "chemical_exposure"
+        ],
+        "decisionUnderAnalysis": "whether the cutting may go ahead today, and under what precautions"
+      },
+      "establishedFacts": [
+        "a petrol cut-off saw is being used on the pipe and sparks are being produced",
+        "the work is inside the bunded area of a chemical store",
+        "the pipe was drained and capped several years ago",
+        "nobody can say what product the line carried",
+        "no test of the residue inside the pipe has been done",
+        "a dry powder extinguisher and a fire watch are present"
+      ],
+      "owedProperties": [
+        {
+          "key": "K1-P1",
+          "proposition": "whether the residue remaining inside this pipe can ignite or explode when the pipe is cut",
+          "kind": "HAZARD_STATE",
+          "whyGenuinelyOpen": "The product the line carried is not stated and nobody present can name it, and no test of the residue has been done. Draining and capping a line is stated and does not establish that nothing ignitable remains in it. Whether ordinary hot-work precautions suffice, or the pipe must be cleaned, purged or cold-cut instead, turns on the answer.",
+          "prohibited": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether a fire watch and an extinguisher are in place"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the pipe has been tested for residue"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the product records for the dosing line can be found"
+            },
+            {
+              "kind": "PROCESS_STEP",
+              "text": "whether a hot work permit has been raised"
+            },
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether sparks are reaching combustible material"
+            }
+          ]
+        }
+      ],
+      "nonFacts": [
+        "who last operated the dosing line before it was capped",
+        "how many metres of pipe are to be removed"
+      ],
+      "restraintBasis": null,
+      "expectedDeclarationCount": 1,
+      "expectedControllingPropertyKeys": [
+        "K1-P1"
+      ],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "DECLARATION_RECALL",
+        "PROPERTY_IDENTITY",
+        "CANDIDATE_STATE_BYPASS"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K2",
+      "frozenBySection226": {
+        "shape": "CONTROL_STATE_PROXY",
+        "whatItTests": "a working, audible, visible control standing between the model and the condition",
+        "primaryGate": "G2"
+      },
+      "authoredIn227": {
+        "observation": "In a press shop the operators on the blanking line are wearing ear defenders rated SNR 30. The defenders are in good condition, correctly fitted and worn throughout the shift, and spares are kept at the line. The line was re-configured last month and a larger blanking press was installed in place of two smaller ones. The noise survey held on file was carried out before that change and recorded 92 dB(A) at these workstations. No measurement has been taken since the new press went in.",
+        "suppliedContext": {
+          "location": "metal pressing works, blanking line",
+          "task": "operating a newly installed blanking press"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "noise"
+        ],
+        "decisionUnderAnalysis": "whether the blanking line may run today with the hearing protection currently in use"
+      },
+      "establishedFacts": [
+        "operators are wearing correctly fitted SNR 30 ear defenders throughout the shift",
+        "the line was re-configured last month with a larger blanking press",
+        "the noise survey on file predates that change and recorded 92 dB(A)",
+        "no measurement has been taken since the new press was installed"
+      ],
+      "owedProperties": [
+        {
+          "key": "K2-P1",
+          "proposition": "whether the noise these operators are actually exposed to at the ear is within the exposure limit value",
+          "kind": "HAZARD_STATE",
+          "whyGenuinelyOpen": "The only noise figure supplied describes a machine arrangement that no longer exists. Nothing supplied states what the new press produces, so the exposure the defenders have to bring down is unstated. Whether the line may run as it is, or must be stopped or engineered, turns on the answer.",
+          "prohibited": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the operators are wearing hearing protection"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the SNR 30 defenders provide sufficient attenuation"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether a noise survey has been carried out since the re-configuration"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the previous noise survey report is available"
+            }
+          ]
+        }
+      ],
+      "nonFacts": [
+        "which manufacturer supplied the new blanking press",
+        "how many blanks the line is scheduled to produce today"
+      ],
+      "restraintBasis": null,
+      "expectedDeclarationCount": 1,
+      "expectedControllingPropertyKeys": [
+        "K2-P1"
+      ],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "DECLARATION_RECALL",
+        "PROPERTY_IDENTITY"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K3",
+      "frozenBySection226": {
+        "shape": "VERIFICATION_ACT_PROXY",
+        "whatItTests": "a condition whose obvious question is whether anyone has checked it",
+        "primaryGate": "G2"
+      },
+      "authoredIn227": {
+        "observation": "A forklift struck the end upright of a run of pallet racking in a distribution warehouse three weeks ago. The upright carries a visible bow about a metre above floor level. Loaded pallets are still on that bay at three levels and pickers work the aisle through the day. The manufacturer's load notice is fixed to the end frame. No record of any racking inspection since the impact is held, and nobody can say whether the damage has been measured against the manufacturer's deflection criteria.",
+        "suppliedContext": {
+          "location": "distribution warehouse, ambient pick aisle",
+          "task": "picking from a bay whose end upright was struck by a forklift"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "structural_failure",
+          "struck_by"
+        ],
+        "decisionUnderAnalysis": "whether the loaded pallets may stay on this bay and whether the aisle may be worked today"
+      },
+      "establishedFacts": [
+        "the end upright was struck by a forklift three weeks ago and carries a visible bow",
+        "loaded pallets remain on the bay at three levels",
+        "pickers work the aisle through the day",
+        "the manufacturer's load notice is fixed to the end frame",
+        "no record of any racking inspection since the impact is held"
+      ],
+      "owedProperties": [
+        {
+          "key": "K3-P1",
+          "proposition": "whether this damaged upright will still carry the loads that are on the bay",
+          "kind": "HAZARD_STATE",
+          "whyGenuinelyOpen": "A visible bow is stated and the load notice is stated, and neither states what the damaged member will now carry. Nothing supplied gives the size of the deflection or the load on the bay. Whether the bay must be off-loaded and the aisle closed now, or may be worked while a repair is arranged, turns on the answer.",
+          "prohibited": [
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the racking has been inspected since the impact"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the damage has been measured against the manufacturer's criteria"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether a racking inspection report exists"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the bay has been off-loaded or barriered"
+            },
+            {
+              "kind": "PROCESS_STEP",
+              "text": "whether the impact was reported to the racking supplier"
+            }
+          ]
+        }
+      ],
+      "nonFacts": [
+        "which driver struck the upright",
+        "what the pallets on the bay contain"
+      ],
+      "restraintBasis": null,
+      "expectedDeclarationCount": 1,
+      "expectedControllingPropertyKeys": [
+        "K3-P1"
+      ],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "DECLARATION_RECALL",
+        "PROPERTY_IDENTITY"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K4",
+      "frozenBySection226": {
+        "shape": "LEGITIMATE_REQUIRED_ACT",
+        "whatItTests": "the act IS the governing requirement; must not be over-corrected into a condition",
+        "primaryGate": "G5"
+      },
+      "authoredIn227": {
+        "observation": "A heating engineer replaced a length of gas pipework serving the ranges in a commercial kitchen and reconnected the appliances yesterday afternoon. The company procedure, and the regulations it is written to, make a tightness test and a purge the precondition for putting the installation back into use. The engineer has finished on site and is not contactable this morning. The head chef has the ranges lit for the breakfast service. Nobody in the kitchen can say whether the test and the purge were done before the ranges were first used. The new joints look sound and there is no smell of gas in the kitchen.",
+        "suppliedContext": {
+          "location": "commercial kitchen, gas range line",
+          "task": "returning replaced gas pipework to use"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "fire_and_explosion",
+          "gas_systems"
+        ],
+        "decisionUnderAnalysis": "whether the ranges may be used for the lunch service today"
+      },
+      "establishedFacts": [
+        "a length of gas pipework was replaced and the appliances reconnected yesterday afternoon",
+        "procedure and regulation make the test and the purge the precondition for recommissioning",
+        "the engineer has left site and is not contactable this morning",
+        "the ranges are lit for the breakfast service",
+        "the new joints look sound and there is no smell of gas"
+      ],
+      "owedProperties": [
+        {
+          "key": "K4-P1",
+          "proposition": "whether the tightness test and purge were carried out on this installation before it was put back into use",
+          "kind": "REQUIRED_ACT",
+          "whyGenuinelyOpen": "Procedure makes performing the test and the purge the precondition for returning the installation to use. Nobody present can say whether it happened and the engineer is not contactable, so the supplied facts neither state that it was done nor state that it was not. Joints looking sound is stated and does not establish it. Whether the ranges may run now or must be shut off turns on whether the act happened.",
+          "prohibited": [
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether the replaced pipework is actually gas tight"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether a tightness test certificate has been issued"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the appliances are isolated at the meter"
+            }
+          ]
+        }
+      ],
+      "nonFacts": [
+        "which merchant supplied the replacement pipe",
+        "how many covers the kitchen expects this morning"
+      ],
+      "restraintBasis": null,
+      "expectedDeclarationCount": 1,
+      "expectedControllingPropertyKeys": [
+        "K4-P1"
+      ],
+      "requiredActSemanticsApply": true,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "DECLARATION_RECALL",
+        "PROPERTY_IDENTITY",
+        "REQUIRED_ACT_CONTROL"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K5",
+      "frozenBySection226": {
+        "shape": "LEGITIMATE_REQUIRED_ARTIFACT",
+        "whatItTests": "the existence or currency of a record IS the statutory precondition; must not be undercut to the act it records",
+        "primaryGate": "G6"
+      },
+      "authoredIn227": {
+        "observation": "A licensed contractor has built a full enclosure in a plant room to remove asbestos insulating board from around the pipework. The enclosure has been smoke tested and held, the negative pressure unit is running with a filter test dated this week, the operatives' respiratory protective equipment is face-fit tested and in date, and the plan of work is on site and signed. The statutory notification of the work to the enforcing authority cannot be produced, and nobody on site can say whether it was sent fourteen days ago, sent late, or sent at all.",
+        "suppliedContext": {
+          "location": "commercial premises, basement plant room",
+          "task": "licensed removal of asbestos insulating board from pipework"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "asbestos",
+          "respiratory"
+        ],
+        "decisionUnderAnalysis": "whether the removal work may start today"
+      },
+      "establishedFacts": [
+        "the enclosure has been smoke tested and held",
+        "the negative pressure unit is running with a filter test dated this week",
+        "the operatives' respiratory protective equipment is face-fit tested and in date",
+        "the plan of work is on site and signed",
+        "the statutory notification cannot be produced and nobody can say whether it was sent"
+      ],
+      "owedProperties": [
+        {
+          "key": "K5-P1",
+          "proposition": "whether a valid statutory notification of this work exists and was given the required period of notice",
+          "kind": "REQUIRED_ARTIFACT",
+          "whyGenuinelyOpen": "The notification with its notice period is the precondition for starting licensed work, and it stops the work by itself whatever the enclosure looks like. Every physical control is stated and in date, so nothing about the containment is open. Whether the job may start today or must wait turns on whether the notification exists and ran.",
+          "prohibited": [
+            {
+              "kind": "UNDERLYING_ACT_BENEATH_ARTIFACT",
+              "text": "whether the enforcing authority was actually told about this work"
+            },
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether the enclosure will contain the fibres"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the negative pressure unit is running"
+            },
+            {
+              "kind": "PROCESS_STEP",
+              "text": "whether the plan of work has been followed"
+            }
+          ]
+        }
+      ],
+      "nonFacts": [
+        "which laboratory carried out the filter test",
+        "how many square metres of board are to be removed"
+      ],
+      "restraintBasis": null,
+      "expectedDeclarationCount": 1,
+      "expectedControllingPropertyKeys": [
+        "K5-P1"
+      ],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": true,
+      "scoredMeasures": [
+        "DECLARATION_RECALL",
+        "PROPERTY_IDENTITY",
+        "REQUIRED_ARTIFACT_CONTROL"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K6",
+      "frozenBySection226": {
+        "shape": "TWO_INDEPENDENT_PROPERTIES",
+        "whatItTests": "both genuinely open on the supplied facts, neither entailed by the other, and the work activity invites joining them",
+        "primaryGate": "G3"
+      },
+      "authoredIn227": {
+        "observation": "A contractor is setting up to core drill a 150 millimetre hole through the first floor concrete slab of an occupied office building so that a new soil pipe can be run. The building dates from 1998 and no as-built drawings for the slab can be found; the slab has not been scanned. The room directly below the drilling position is open plan office and is in use; nobody can say whether it has been cleared for the drilling or whether anyone will be beneath the position while the core is cut. The drill rig is anchored and the operator has a water catchment tray fitted.",
+        "suppliedContext": {
+          "location": "occupied office building, first floor",
+          "task": "core drilling through a concrete floor slab"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "structural_failure",
+          "struck_by"
+        ],
+        "decisionUnderAnalysis": "whether this core may be drilled today"
+      },
+      "establishedFacts": [
+        "a 150 millimetre core is to be drilled through the first floor slab",
+        "the building dates from 1998 and no as-built drawings can be found",
+        "the slab has not been scanned",
+        "the room directly below is open plan office and is in use",
+        "the drill rig is anchored and a water catchment tray is fitted"
+      ],
+      "owedProperties": [
+        {
+          "key": "K6-P1",
+          "proposition": "whether this slab contains post-tensioned tendons or reinforcement on the line of the core",
+          "kind": "HAZARD_STATE",
+          "whyGenuinelyOpen": "Neither the drawings nor a scan is available, so what is inside the slab at this position is unstated. Whether the core may be cut here at all, or must be moved, turns on the answer.",
+          "prohibited": [
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the slab has been scanned"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether as-built drawings for the slab can be obtained"
+            }
+          ]
+        },
+        {
+          "key": "K6-P2",
+          "proposition": "whether the space directly beneath the core position is clear of people for the duration of the cut",
+          "kind": "HAZARD_STATE",
+          "whyGenuinelyOpen": "The room below is stated to be in use and whether it has been cleared, or will be occupied while the core is cut, is unstated. Whether the drilling may begin now or the area below must be cleared and held first turns on the answer, and it is independent of what is inside the slab.",
+          "prohibited": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether a barrier has been put up in the room below"
+            },
+            {
+              "kind": "PROCESS_STEP",
+              "text": "whether the office below has been notified of the work"
+            }
+          ]
+        }
+      ],
+      "nonFacts": [
+        "which contractor fitted the original soil pipes",
+        "how long the core is expected to take to cut"
+      ],
+      "restraintBasis": null,
+      "expectedDeclarationCount": 2,
+      "expectedControllingPropertyKeys": [
+        "K6-P1",
+        "K6-P2"
+      ],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "DECLARATION_RECALL",
+        "PROPERTY_IDENTITY",
+        "INDEPENDENCE"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K7",
+      "frozenBySection226": {
+        "shape": "SAFE_OR_NEGATED_RESTRAINT",
+        "whatItTests": "an established-safe condition that must not be manufactured into a hazard",
+        "primaryGate": "G4"
+      },
+      "authoredIn227": {
+        "observation": "A counterbalance forklift in a builders' merchant yard is moving banded packs of concrete blocks. The driver completed and signed the daily pre-use check this morning; the forks, mast chains and hydraulics were checked and are sound. The thorough examination certificate displayed on the dash is three months old against a twelve month interval. The driver's in-date licence for this truck is displayed. The pack weight is marked on the band and is well within the rated capacity on the truck's plate at the lift height being used. The yard is level and dry and is separated from the pedestrian route by a fixed barrier.",
+        "suppliedContext": {
+          "location": "builders' merchant, external stock yard",
+          "task": "moving banded packs of concrete blocks with a counterbalance forklift"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "vehicle_operations",
+          "struck_by"
+        ],
+        "decisionUnderAnalysis": "whether the forklift may continue moving block packs today"
+      },
+      "establishedFacts": [
+        "the daily pre-use check was completed and signed this morning",
+        "the forks, mast chains and hydraulics were checked and are sound",
+        "the thorough examination certificate is three months old against a twelve month interval",
+        "the driver holds an in-date licence for this truck and it is displayed",
+        "the pack weight is marked and is within the rated capacity at the lift height used",
+        "the yard is level and dry and is separated from pedestrians by a fixed barrier"
+      ],
+      "owedProperties": [],
+      "nonFacts": [
+        "which supplier manufactured the concrete blocks",
+        "how many packs remain to be moved today"
+      ],
+      "restraintBasis": "Every control the decision turns on is stated and current: the machine is in date and checked, the driver is authorised, the load is within capacity at the height used, and pedestrians are separated by a fixed barrier. Nothing decision-critical is open, and manufacturing a gap here to look thorough is the opposite defect and costs as much.",
+      "expectedDeclarationCount": 0,
+      "expectedControllingPropertyKeys": [],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "RESTRAINT"
+      ],
+      "derivedFromPriorCase": null
+    },
+    {
+      "caseId": "K8",
+      "frozenBySection226": {
+        "shape": "ORDINARY_NON_DECISION_CRITICAL_RESTRAINT",
+        "whatItTests": "a real unknown that bears on nothing decided today",
+        "primaryGate": "G4"
+      },
+      "authoredIn227": {
+        "observation": "A wall mounted water boiler in an office kitchen drips slightly from its tap into the drip tray beneath it. The tray is draining to waste and the floor below is dry. The unit is supplied from a residual current protected circuit and the electrical installation condition report for the office is current. The boiler's temperature cut out was tested and recorded at the service two months ago. Nobody can say when the drip started or who first reported it.",
+        "suppliedContext": {
+          "location": "office kitchen",
+          "task": "drawing hot water from a wall mounted boiler"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "thermal",
+          "electrical"
+        ],
+        "decisionUnderAnalysis": "whether the water boiler may remain in use today"
+      },
+      "establishedFacts": [
+        "the boiler drips into a drip tray which is draining to waste",
+        "the floor below is dry",
+        "the unit is on a residual current protected circuit",
+        "the electrical installation condition report for the office is current",
+        "the temperature cut out was tested and recorded at the service two months ago"
+      ],
+      "nonFacts": [
+        "when the drip started",
+        "who first reported the drip"
+      ],
+      "owedProperties": [],
+      "restraintBasis": "How long the tap has been dripping is a real unknown, and it bears on nothing decided today: the tray is draining, the floor is dry, the supply is protected and in date, and the cut out was tested two months ago. An unknown is owed only where resolving it is material to the decision under analysis.",
+      "expectedDeclarationCount": 0,
+      "expectedControllingPropertyKeys": [],
+      "requiredActSemanticsApply": false,
+      "requiredArtifactSemanticsApply": false,
+      "scoredMeasures": [
+        "RESTRAINT"
+      ],
+      "derivedFromPriorCase": null
+    }
+  ],
+  "frozenAt": "2026-09-11T15:08:22.444Z"
+}

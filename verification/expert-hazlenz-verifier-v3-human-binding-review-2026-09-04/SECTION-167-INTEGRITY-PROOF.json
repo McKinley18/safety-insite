@@ -1,0 +1,28 @@
+{
+  "provedAt": "2026-09-05T03:48:07.165Z",
+  "statement": "§167 is frozen. Nothing in this operation rescored, reinterpreted or rewrote it. Any new interpretation produced by the human review is recorded separately as HUMAN_POSTHOC_ADJUDICATION.",
+  "section167": {
+    "RUN-RECORDS.jsonl": "62ea0dbd66d239999b6fb495aa441119fe855f86f4fd022d76ca56fd5b2b6744",
+    "FROZEN-REQUESTS.json": "aa64a1ed7939757e896b04c7c727860dc6e4dbcebd78070dbc1a17eb9177100c",
+    "FALSIFICATION-SCORES.json": "7e2a30b1214e3307e420b846543bdae85ff407572cb363e68a700d66e836afd4",
+    "EXECUTION-ACCOUNTING.json": "0781d065e5cc33c2a574f32c333febfe22fe2cc48eba9eb3fc4725edffeb8f30",
+    "SCOPED-FALSIFICATION-RESULT.md": "7f5518b3f480479290bd563938e949bb6b243938baba5c16bc9ad665d20c28bd",
+    "SCOPED-FALSIFICATION-SUMMARY.json": "fedbe56af8b5cd8af8c8edbdb90d394a1a9e00675f094761a26561bcf9dc1e82"
+  },
+  "frozenRequestHashes": {
+    "VC-08": "c1e5407a121c60b7e395e6e7b4f9b1ebc866b79a40911f2397bea534e5c02bb6",
+    "VC-04": "94b47273776d37942cbd8b0588c28ac26ad8573b052dda27fc4ba15ff2474ab3"
+  },
+  "requestHashesStillMatchTheRunRecords": true,
+  "recordCount": 12,
+  "section163Baseline": {
+    "DRAW-RUN-RECORDS.jsonl": "7e84cef427d8c12659d01b96bf992bf41fc42c1ed8a2f46ba6dc7ddef07d8399",
+    "recordCount": 20,
+    "unchanged": true
+  },
+  "section166Protocol": {
+    "VERIFIER-INSTRUCTION-V3.txt": "c6855f27956cb6ce01874cd4dbb40f8ac3890de369fd01aba1c140cad7931c5f",
+    "VERIFIER-V3-RESPONSE-SCHEMA.json": "b31979f9b913c44ec67b03f625a0ac89f67f5778400c9c5f509a4f0d5b17435d",
+    "V2-V3-SEMANTIC-DIFF.json": "73cde3345a966743eed6daed74f57f68e090945fa55b5732e28f940fcbefeb49"
+  }
+}

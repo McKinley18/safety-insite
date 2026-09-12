@@ -1,0 +1,104 @@
+{
+  "artifact": "SECTION-230-FROZEN-PROTOCOL",
+  "version": "hazlenz.expert.230.final-fresh-acceptance.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "frozenAt": "2026-09-11T19:05:49.517Z",
+  "executionAuthorized": false,
+  "terminal": "EXPERT_HAZLENZ_FINAL_FRESH_ACCEPTANCE_INSTRUMENT_FROZEN — PRODUCT_OWNER_EXECUTION_AUTHORIZATION_REQUIRED",
+  "candidateBaseline": "48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200",
+  "candidateBaselineVerifiedOnDisk": true,
+  "candidateBaselineChanged": false,
+  "preSpendIdentityChecks": [
+    "candidate baseline digest equals 48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200",
+    "Expert prompt identity — the §226 system prompt digest, with and without governed binding",
+    "wire schema identity — per case, from buildExpert210jWireSchema over the case input",
+    "first-pass contract identity — §210J module digest and §226 contract version",
+    "verifier identity — §218 instruction and response schema digests, plus consistency module",
+    "OwedFact identity — types, ledger and binding module digests",
+    "property authority identity — module digest and SETTLEMENT_PERMITTING_STATES membership",
+    "settlement identity — settlement-review module digest",
+    "governed evidence identity — derivation and vNext binding module digests",
+    "current build identity — production typecheck and build pass with the same emitted set",
+    "the 29-module composite protected identity from the §229 baseline"
+  ],
+  "preflight": {
+    "result": "PASS",
+    "passed": 17,
+    "total": 17
+  },
+  "cohort": {
+    "cases": 30,
+    "byDomain": {
+      "OSHA_GENERAL_INDUSTRY": 11,
+      "OSHA_CONSTRUCTION": 10,
+      "MSHA": 9
+    },
+    "familiesCovered": "30/30",
+    "judgmentSlots": 163
+  },
+  "gates": {
+    "hardSafetyGates": 14,
+    "qualityMeasures": 13
+  },
+  "callPlan": {
+    "exactPrimaryCallCount": 52,
+    "maximumTotalCalls": 54,
+    "projectedSpendUsd": 3.6328,
+    "recommendedHardCeilingUsd": 4.28
+  },
+  "manifestRules": {
+    "pathConvention": "BARE_FILENAME",
+    "pathConventionDeclaredExplicitly": true,
+    "verifyWith": "cd <evidence directory> && shasum -a 256 -c REPORT-230.sha256",
+    "contents": "FROZEN EVIDENCE ONLY",
+    "livingDocumentsExcluded": true,
+    "excludedAndWhy": [
+      "docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md — living; will legitimately change",
+      "docs/hazlenz/current/HAZLENZ_INVARIANTS.md — living",
+      "docs/hazlenz/current/CONTEXT_INDEX.md — living",
+      "any governance plan under docs/hazlenz/governance/ — living"
+    ],
+    "lessonFrom": "§229 found the §223 manifest covering three living documents alongside frozen evidence. §229 was required to update all three, so those checksums no longer match — a guaranteed future false alarm. No §230 manifest repeats it.",
+    "noImplicitConventions": "every manifest this section produces declares its convention in this record rather than relying on a section-specific habit."
+  },
+  "authoringIndependence": {
+    "caseAuthoring": "THIS SESSION",
+    "truthDefinition": "THIS SESSION",
+    "scoringSlotGeneration": "THIS SESSION",
+    "remediationUnderTest": "the §226 session — a DIFFERENT session",
+    "historicalInformationVisibleDuringAuthoring": "ALL OF IT. This session executed §228B and §228C, read every provider output from both, and performed the §229 cleanup. It has seen which traps the model took and which it did not.",
+    "statisticalIndependence": false,
+    "whyNot": "the party authoring the cases and the scoring rules is the party that watched the system being measured. That is the same limitation §227 and §228A recorded, and it is not mitigated away by being written down.",
+    "constraintsActuallyHonoured": [
+      "no prior provider output was consulted while authoring any expected answer in this cohort — each case truth was derived from the case facts alone",
+      "no case was shaped to make the current prompt pass; several are authored specifically to be hard for it, including the immediate-decision cases where §228B showed a real weakness",
+      "no §221, §225, §227, §228B or §228C observation, industry, equipment, hazard family or property shape is reused — see FRESHNESS_230"
+    ],
+    "whatWouldMakeItIndependent": [
+      "cases authored by a competent safety professional who has not seen any provider output from this programme",
+      "truth established by that author, reviewed by a second competent person",
+      "scoring slots generated from the family list by a party with no stake in the result",
+      "the development session given the frozen cohort only at execution time"
+    ],
+    "effectOnTheResult": "An ACCEPTED result from this instrument is evidence about capability on a fresh, unseen-by-the-model cohort. It is NOT evidence of independent validation. The product owner should treat the distinction as material when deciding what an acceptance licenses."
+  },
+  "boundary": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "remediation": false,
+    "promptTuning": false,
+    "schemaChanges": false,
+    "authorityLogicChanges": false,
+    "settlementLogicChanges": false,
+    "runtimeChanged": false,
+    "candidateBaselineChanged": false,
+    "semanticPreferenceRetries": 0,
+    "contingencyForSemanticOutcomes": false,
+    "commit": false,
+    "push": false,
+    "tag": false,
+    "deploy": false,
+    "finalAcceptanceExecuted": false
+  },
+  "instrumentDigest": "bbde6ca0a1d1253ea8dc78d46bef8a26b3ef75ac2d59f72ed051e9e8fbe06844"
+}

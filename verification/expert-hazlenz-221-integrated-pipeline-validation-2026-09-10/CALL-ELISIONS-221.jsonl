@@ -1,0 +1,9 @@
+{"caseId":"IG1","leg":"VERIFIER","reason":"NO_ADMITTED_DECLARATION","refused":[]}
+{"caseId":"IG2","leg":"VERIFIER","reason":"NO_ADMITTED_DECLARATION","refused":[]}
+{"caseId":"IG3","leg":"VERIFIER","reason":"NO_ADMITTED_DECLARATION","refused":[]}
+{"caseId":"IG2","leg":"VERIFIER","reason":"FIRST_PASS_DECLARATIONS_NOT_AN_ARRAY","observedType":"absent","note":"the malformed field is preserved exactly and is NEVER parsed or repaired"}
+{"caseId":"IG3","leg":"VERIFIER","reason":"FIRST_PASS_DECLARATIONS_NOT_AN_ARRAY","observedType":"absent","note":"the malformed field is preserved exactly and is NEVER parsed or repaired"}
+{"caseId":"IG7","leg":"VERIFIER","reason":"FIRST_PASS_DECLARATIONS_NOT_AN_ARRAY","observedType":"string","note":"the malformed field is preserved exactly and is NEVER parsed or repaired"}
+{"caseId":"IG8","leg":"VERIFIER","reason":"NO_ADMITTED_DECLARATION","refused":[]}
+{"caseId":"IG9","leg":"VERIFIER","reason":"NO_ADMITTED_DECLARATION","refused":[]}
+{"caseId":"IG10","leg":"VERIFIER","reason":"ELIDED_BY_FROZEN_DESIGN","condition":"ELIDED BY DESIGN. RR-7 refuses the declaration before the verifier stage, so a verifier call would measure nothing. Recorded as a design decision, not an omission.","admittedDeclarations":1}

@@ -1,0 +1,170 @@
+{
+  "artifact": "SECTION-232-ROOT-CAUSE",
+  "version": "hazlenz.expert.232.root-cause.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "failedCandidateBaseline": "48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200",
+  "evidenceBase": {
+    "package": "verification/expert-hazlenz-231-final-fresh-acceptance-2026-09-11",
+    "baseDigest": "bbe5ff199c8bb9034080ef501cf69db4bdc65ad72257c0370be456d5671a8089",
+    "successorDigest": "523cb1b54388698e695519a62e5f7040f1cd48819ecb8f5036efeaff5648290c",
+    "disputed": false,
+    "rescored": false,
+    "artifactsUsed": [
+      "SECTION-231-AUTHORITATIVE-STATE.json — frozen intermediate state, not final prose",
+      "SECTION-231-GATES-AND-MEASURES.json",
+      "ADJUDICATION-231-MEASURES.json",
+      "RAW-231-FIRST-PASS.jsonl"
+    ]
+  },
+
+  "architectureFinding": {
+    "question": "Does immediate safety posture exist as an authoritative structured product state?",
+    "answer": "NO. There is no representation of work posture anywhere in the runtime or the contract layer.",
+    "evidence": [
+      "ValidatedExpertAnalysis (expert-contract.types.ts) root carries outcome, expertHazardCandidates, decisionCriticalClarifications, crossHazardInsights, disagreements, expertExplanation, uncertainty. No posture, no work state, no exposure state.",
+      "EXPERT_OUTCOMES is ANALYZED / NOTHING_TO_ADD / INSUFFICIENT_EVIDENCE / EXPERT_UNAVAILABLE — an analysis-completion state, not a safety posture.",
+      "EXPERT_CONDITION_STATES describes the state of a hazard, not the state of the work.",
+      "A repository-wide search for workPosture, safetyPosture, exposureState or any equivalent returns zero hits outside the §230 instrument itself.",
+      "The only structured carrier of what happens to the work today is decisionWhileUnresolved: a PER-DECLARATION free-text string introduced by §210J."
+    ],
+    "theThreeConsequencesOfAttachingPostureToDeclarations": [
+      "It does not exist when no declaration is emitted. Four of the thirty §231 cases emitted zero declarations on a STOP_OR_HOLD frozen posture.",
+      "It is validated for presence and non-semantic filler only. checkUnresolvedAction reads nothing for meaning and NO_DIVERGENCE_CHECK_AGAINST_DECISION_IF_B records that no content check exists.",
+      "propertyAuthorityFailClosedEffect() returns decisionWhileUnresolvedRemainsAuthoritative: true. The architecture asserts the authority of a posture whose existence it does not guarantee and whose content it never checks."
+    ],
+    "deadLabel": {
+      "field": "EXPERT_CLARIFICATION_CRITICALITY = ROUTINE | IMPORTANT | BLOCKING",
+      "finding": "BLOCKING is declared and consumed nowhere in the Expert HazLenz pipeline. Every one of the 21 exercised STOP_OR_HOLD cases in §231 carried a BLOCKING clarification — the eight that fired HS13 and the thirteen that passed alike. The model already asserts that work is blocked and the system does nothing with the assertion."
+    },
+    "prosePostureIsNotDetectable": {
+      "test": "stop-language and continue-language regex over the 25 decisionWhileUnresolved strings in §231",
+      "result": "does not separate pass from fail. C6 carries no stop-language and passed; M9's first declaration carries stop-language and fired. This is consistent with the §148 finding that deterministic reclassification of a natural-language field requires semantic inference, which invariant 3 forbids.",
+      "designConsequence": "posture must be model-authored as a structured label, never parsed out of prose"
+    }
+  },
+
+  "events": [
+    {
+      "id": "E1", "gate": "HS13", "case": "G1",
+      "firstDivergence": "RECOMMENDATION RENDERING. Observation, semantic interpretation and hazard recognition were all correct: three ACTIVE candidates naming the unguarded coupling, the operator proximity and the loose-clothing entanglement, plus a correct cross-hazard insight.",
+      "mechanism": "The frozen truth owes zero properties because nothing is unresolved; the stop is driven by an ESTABLISHED hazard. decisionWhileUnresolved is attached to declarations, so with zero declarations the contract contains no field in which a work posture can be expressed. The model had nowhere to put it.",
+      "classification": ["F"],
+      "notAClassificationOf": "not A (recognition was correct), not B (no property is owed), not C (nothing to preserve)"
+    },
+    {
+      "id": "E2", "gate": "HS13", "case": "G4",
+      "firstDivergence": "RECOMMENDATION RENDERING, same mechanism as E1. Both hazards recognised as ACTIVE; zero declarations; no carrier.",
+      "mechanism": "Identical to E1. The stop driver is the established open elevator inspection door, which the frozen truth records as 'established and needs no further fact'.",
+      "classification": ["F"]
+    },
+    {
+      "id": "E3", "gate": "HS13", "case": "G5",
+      "firstDivergence": "IMMEDIATE DECISION DERIVATION. Property declaration, unresolved-fact state, branch construction and verifier routing were all correct and matched the frozen truth.",
+      "mechanism": "A carrier existed and was populated. Its content authorised continued operation of an 8 bar vessel on the ground that 'no failure event has yet occurred'. The posture was derived from the absence of a realised failure rather than from the unresolved protective-device property.",
+      "classification": ["D"]
+    },
+    {
+      "id": "E4", "gate": "HS13", "case": "G10",
+      "firstDivergence": "CORRECTIVE-ACTION SEQUENCING. Property identity, branches and clarification were all correct and exemplary.",
+      "mechanism": "The posture text placed verification 'before or in parallel with continued decanting'. The defect is purely the ORDER of verification against exposure. There is no representation anywhere of whether verification may proceed concurrently with exposure, so the unsafe ordering is expressible and undetectable.",
+      "classification": ["H", "D"]
+    },
+    {
+      "id": "E5", "gate": "HS13", "case": "C1",
+      "firstDivergence": "RECOMMENDATION RENDERING, partial. The declared stability fact was handled correctly and its decisionWhileUnresolved restricted work near the six connections.",
+      "mechanism": "The case carries TWO drivers: an unresolved stability property and an ESTABLISHED unprotected leading-edge fall exposure. The declaration carried a posture for the first. The second is established, so it owes no declaration, so it has no carrier. The output marks the fall ACTIVE and then says nothing about it.",
+      "classification": ["F"],
+      "significance": "shows the defect is not 'the model forgot to declare'. It declared correctly and still had nowhere to put the action for the established hazard."
+    },
+    {
+      "id": "E6", "gate": "HS13", "case": "M6",
+      "firstDivergence": "IMMEDIATE DECISION DERIVATION, with a corrective-action substitution.",
+      "mechanism": "The posture text leaves the belt running on unspecified 'compensating monitoring', never directs the immediate site-controlled cable repositioning, and omits agent serviceability from the decision even though the model's own candidate marks the overdue agent inspection ACTIVE. A structured posture would have had to reference both ACTIVE candidates.",
+      "classification": ["D", "H"]
+    },
+    {
+      "id": "E7", "gate": "HS13", "case": "M8",
+      "firstDivergence": "CORRECTIVE-ACTION SEQUENCING, specifically the resume condition.",
+      "mechanism": "The posture text leaves the substation energised with a test 'as soon as practicable', on a site that owns no tester. It names a timing, not a resume condition, and no fallback. Nothing in the contract requires a posture to name what must become true before the work resumes.",
+      "classification": ["H", "D"]
+    },
+    {
+      "id": "E8", "gate": "HS13", "case": "M9",
+      "firstDivergence": "IMMEDIATE DECISION DERIVATION, with an internal contradiction between two per-declaration postures.",
+      "mechanism": "Two declarations carry two independent posture strings for the same drift. One restricts haulage beneath the dished roof section; the other says 'Continue diesel haulage with heightened caution'. Because posture is per-declaration, the contract permits two contradictory work postures in one analysis and nothing reconciles them. There is no analysis-level posture for them to be consistent with.",
+      "classification": ["D", "H"],
+      "significance": "demonstrates that per-declaration posture is not merely incomplete but structurally incoherent on multi-fact cases"
+    },
+    {
+      "id": "E9", "gate": "HS1", "case": "G4",
+      "firstDivergence": "PROPERTY DECLARATION, but the cause sits in the posture layer.",
+      "whereItShouldFirstHaveBeenCreated": "as a structured declaration at first pass, from the same recognition that produced the uncertainty statement",
+      "didItExistSemanticallyBeforeProjection": "YES. uncertainty.statements contains 'The precise depth or mass of the dust layer is not measured, and no housekeeping record exists to characterize accumulation trends, but this does not change the current recommendation given the layer is confirmed present and readily lofted.'",
+      "wasItLostDuringDeclaration": "it was never declared. It was diverted into uncertainty.statements, a free-text array with ZERO downstream consumers anywhere in the pipeline.",
+      "wasItRepresentedUnderANeighbouringProperty": "partially. The model asserted the dust hazard ACTIVE, absorbing an unresolved-EXTENT question into an established-EXISTENCE claim.",
+      "didItDisappearDuringStructuralValidation": "NO. Nothing was refused. There was no malformed input for RR-7 to preserve.",
+      "shouldAFailClosedMechanismHavePreservedIt": "There is none on this path. Invariant 9 requires that unresolved truth be visible or its absence be named as a defect, but no mechanism inspects an uncertainty statement to ask whether it should have been a declaration.",
+      "mechanism": "The model applied invariant 16 — an unknown is owed only when material to the decision under analysis — and got the materiality judgment wrong. Its stated justification is a claim about the RECOMMENDATION. Materiality is defined relative to a decision the architecture does not represent, so the judgment is both unconstrained and unauditable.",
+      "classification": ["C", "D"],
+      "corroboration": "the same reasoning form appears in G2 and M5, where it is CORRECT. Three of six uncertainty statements in §231 justify non-declaration by asserting that the unknown does not change the recommendation. The reasoning form is legitimate; only the posture it appeals to is missing.",
+      "priorArt": "§226 already named the adjacent circularity: assertedConditionState is an OUTPUT CONCLUSION and §224 used it as an INPUT PREDICATE. §231 shows the §226 instruction remediation is directionally effective and still insufficient on this case."
+    },
+    {
+      "id": "E10", "gate": "HS3", "case": "G5",
+      "firstDivergence": "IMMEDIATE DECISION DERIVATION. Same field, same sentence as E3.",
+      "didTheSystemConfuseEvidenceOfFailureWithTheControllingProperty": "YES, but not at the property layer. The declared property was correct and the §218 verifier routed it UNDERLYING_SAFETY_STATE / VALID. The confusion occurs only in the posture sentence, which treats the absence of a realised failure event as support for continued operation.",
+      "connectionToTheExistingEvidencePropertyDistinction": "This is the same distinction the §218 role vocabulary already encodes for properties — EVIDENCE_FOR_ANOTHER_PROPERTY versus UNDERLYING_SAFETY_STATE — applied at a layer that has no vocabulary, no role and no validation. It is not an isolated exception and must not be given one.",
+      "invariantGap": "Invariant 14 states that absence of evidence is not established ADVERSE truth. It is written one-directionally. G5 is the converse: absence of a realised failure treated as established SAFE truth. No invariant covers that direction.",
+      "classification": ["D"]
+    }
+  ],
+
+  "commonCauseClustering": {
+    "clusterA": {
+      "name": "IMMEDIATE SAFETY POSTURE HAS NO FIRST-CLASS REPRESENTATION",
+      "events": ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10"],
+      "hardGateEventsExplained": "10 of 10",
+      "subFamilies": {
+        "A1_noCarrierExists": { "events": ["E1", "E2", "E5"], "driver": "posture required by an ESTABLISHED hazard, which owes no declaration and therefore has no carrier" },
+        "A2_postureDegreeWrong": { "events": ["E3", "E6", "E8", "E10"], "driver": "carrier exists, content is unvalidated free prose, no vocabulary for degree of protection" },
+        "A3_sequencingAndResumeConditionWrong": { "events": ["E4", "E7"], "driver": "no representation of whether verification may run concurrently with exposure, nor of what must become true to resume" },
+        "A4_materialityJudgedAgainstAnUnrepresentedDecision": { "events": ["E9"], "driver": "invariant 16 applied against a decision the architecture does not represent" }
+      },
+      "downstreamQualityMeasures": {
+        "Q7_immediateDecision": "8 of 10 misses are HS13 firings. The remaining two are G9 and C9, both the same posture defect below gate threshold.",
+        "Q8_correctiveAction": "5 of 5 misses fall inside the HS13 or Q7 set. Fully downstream.",
+        "Q3_declarationPrecision": "identical case set to Q12: C9, M3, M4.",
+        "Q12_restraint": "identical case set to Q3: C9, M3, M4. All three are MANUFACTURED declarations, and two of the three (C9, M4) exist to carry an action the frozen truth agrees is required. The model manufactured an unresolved fact because a declaration is the only object that can carry an instruction. Restraint and declaration precision are the SAME defect as silence, seen from the other side."
+      },
+      "decisiveEvidence": [
+        "Of the three exercised zero-declaration STOP_OR_HOLD cases, two failed HS13 (G1, G4) and one passed (C8). C8 passed only because its explanation prose happened to contain 'capping/protecting the bars before continued work'. A life-safety gate was decided by whether free prose happened to contain an action.",
+        "M4 passed HS13 while failing Q12. Its stop instruction is carried inside a declaration the frozen truth says should never have been emitted. Passing the safety gate REQUIRED committing the restraint failure.",
+        "C1 declared correctly and still fired, because its stop driver was an established hazard with no carrier.",
+        "M9 emitted two contradictory work postures in one analysis and nothing reconciled them."
+      ]
+    },
+    "clusterB": {
+      "name": "EXACT DECISION-CONTROLLING PROPERTY IDENTITY",
+      "measures": ["Q4", "Q5"],
+      "hardGateEventsExplained": "0 of 10",
+      "finding": "This is NOT the same root cause as cluster A, and the product owner's instruction not to assume separate fixes is answered in the negative: they are genuinely separate.",
+      "why": [
+        "Q4 is the only §231 measure with an independent failure set: G3, G7, G8, G9, M6, M9.",
+        "Q5 is largely downstream of Q4. Five of seven Q5 misses occur on a case that also missed Q4: declare a proxy and you ask for evidence for the proxy. The two residuals are C6 (correct property, wrong evidence demand) and G4 (no clarification because no declaration).",
+        "The structured representation for property identity ALREADY EXISTS and §223 established it is sufficient. The twelve-field declaration, the §218 role vocabulary and the human property-review boundary are all in place.",
+        "Two instruction remediations have already been measured against this family. §224 moved recall 4/7 to 6/7 and identity 1/7 to 3/7 and was declared insufficient by §225. §226 was built to break the §224 circularity and §231 now measures identity at 0.7273 against a 0.90 threshold.",
+        "HS2 recorded zero occurrences on three opportunities and KR-1 was contained end to end. The human boundary that exists to catch a wrong property caught every wrong property it was asked to catch."
+      ],
+      "recommendation": "Do not open a third instruction cycle on property identity inside this remediation. Per the programme's own rule that once an explicit structured representation exists and a material defect still survives the matter escalates to a product-owner capability decision, cluster B should be carried as a v1.0 capability limitation contained at the human property-review boundary — the same disposition KR-1 already holds — and decided by the product owner rather than engineered around."
+    }
+  },
+
+  "architectureBoundaryResponsible": {
+    "boundary": "the first-pass semantic contract and its deterministic projection",
+    "preciseLocation": "the successor-contract layer in backend/scripts/lib, where unresolvedFactDeclarations and decisionWhileUnresolved are defined and projected. Neither field appears in expert-contract.types.ts or expert-normalization.ts.",
+    "whyNotTheVerifier": "the §218 verifier reviews ONE admitted declaration and is advisory. It cannot run on a zero-declaration analysis, so it cannot cover three of the ten events.",
+    "whyNotTheAuthorityOrSettlementLayer": "every authority and settlement judgment in §231 matched its frozen expectation field for field. Twenty-four of twenty-four deterministic comparisons passed. Nothing in that layer is implicated.",
+    "whyNotRendering": "Expert HazLenz has no production activation under invariant 30, so there is no rendering layer to repair. The authoritative result IS the output."
+  }
+}

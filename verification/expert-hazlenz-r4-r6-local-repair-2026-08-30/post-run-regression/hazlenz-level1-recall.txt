@@ -1,0 +1,30 @@
+-- Level-1 required-hazard omission repros (Phase 2 measurement) --
+  [PASS] B-07 need one of [atmospheric_hazard, ventilation_air_quality, respiratory_protection] emitted=[confined_space, ventilation_air_quality]
+  [PASS] B-10 (life-critical) need one of [hydraulic_pneumatic_energy, lockout_tagout] emitted=[compressed_gas, hydraulic_pneumatic_energy, machine_guarding]
+  [PASS] B-13 need one of [respiratory_protection, ppe, ventilation_air_quality] emitted=[respiratory_protection, silica_respirable_dust]
+  [PASS] B-15 (life-critical) need one of [lockout_tagout] emitted=[electrical, lockout_tagout]
+  [PASS] B-15 (life-critical) need one of [electrical] emitted=[electrical, lockout_tagout]
+  [PASS] B-16 need one of [ppe] emitted=[machine_guarding, personal_protective_equipment]
+  [PASS] B-18 (life-critical) need one of [lockout_tagout] emitted=[confined_space, lockout_tagout, ventilation_air_quality]
+  [PASS] B-19 (life-critical) need one of [hot_work, welding_cutting] emitted=[confined_space, fire_explosion, hot_work]
+  [PASS] A-02 need one of [ppe] emitted=[hot_work, personal_protective_equipment]
+
+-- Hazardous-energy / MCC probe family --
+  [PASS] HE-01 MCC bucket opened, disconnect closed, no lock — exposure with no energy control
+          emitted=[electrical, lockout_tagout]
+  [PASS] HE-02 Same task after verified isolation and lockout — safe state, no finding
+          emitted=[]
+  [PASS] HE-03 Energized enclosure open with exposed conductors — electrical exposure
+          emitted=[electrical]
+  [PASS] HE-04 Closed enclosure, no work occurring — descriptive, no finding
+          emitted=[]
+  [PASS] HE-05 Disconnect open but absence of voltage never established — verification omitted
+          emitted=[lockout_tagout]
+  [PASS] HE-06 Legitimate maintenance with documented LOTO — safe state, no finding
+          emitted=[machine_guarding]
+  [PASS] HE-07 Administrative records naming electrical and lockout — no physical condition
+          emitted=[]
+  [PASS] HE-08 Equipment named as stored stock — no energy, no exposure
+          emitted=[]
+
+PASS HazLenz Level-1 recall gate (17 checks)

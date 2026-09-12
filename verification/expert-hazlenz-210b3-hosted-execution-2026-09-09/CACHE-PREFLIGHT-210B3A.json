@@ -1,0 +1,101 @@
+{
+  "artifact": "SECTION_210B3A_CACHE_PREFLIGHT",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "preregistrationSha256": "7b2e292f5fc2ddd61368b4adc8f4416c11b1925ecd514a589169f0118fec20b5",
+  "authorizedPreregistrationSha256": "7b2e292f5fc2ddd61368b4adc8f4416c11b1925ecd514a589169f0118fec20b5",
+  "instructionIdentities": {
+    "plain": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+    "governed": "994b378e259d12f3f966f1c92c4c0565f639a0e8ad6084a2f7ff95a73c8cd72a"
+  },
+  "model": "claude-sonnet-5",
+  "perCase": [
+    {
+      "caseId": "PB-01",
+      "governed": false,
+      "toolsBytes": 18807,
+      "toolsSha": "4de5a9008297df21309aaab1db5377eb4fb8d95a0b8f76c3b74e30360c0d8908",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2392
+    },
+    {
+      "caseId": "PB-02",
+      "governed": true,
+      "toolsBytes": 19249,
+      "toolsSha": "dc119bba2db6e151542dff0ce344c48f61f7f3f498aba32ed427da1b30fc3f30",
+      "systemBytes": 47645,
+      "systemSha": "994b378e259d12f3f966f1c92c4c0565f639a0e8ad6084a2f7ff95a73c8cd72a",
+      "userBytes": 3035
+    },
+    {
+      "caseId": "PB-03",
+      "governed": false,
+      "toolsBytes": 18812,
+      "toolsSha": "5653e889614d22cc2115efa54166bb0f09464567a1dc75ebb10b5eab736212df",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2372
+    },
+    {
+      "caseId": "PB-04",
+      "governed": false,
+      "toolsBytes": 18825,
+      "toolsSha": "ce29cd769401ca02d4378e5ef2d79329ce72069820e57c6f83cd8b77b277acbd",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2447
+    },
+    {
+      "caseId": "PB-05",
+      "governed": false,
+      "toolsBytes": 18827,
+      "toolsSha": "d5df03cf411e42b7e65a5c4a7bbd855016cc7a3bb1ff6f0dd34549cd676bf0cd",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2383
+    },
+    {
+      "caseId": "PB-06",
+      "governed": false,
+      "toolsBytes": 18819,
+      "toolsSha": "db8c5e4cbb6f3ea385bb97f9d360a6788608a6668d9dababcd7eb472445cd998",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2449
+    },
+    {
+      "caseId": "PB-07",
+      "governed": false,
+      "toolsBytes": 18825,
+      "toolsSha": "7ddb0260832ca7a62eea78d27e368505bd4efbb9bca924302dfcd5093923e13f",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2417
+    },
+    {
+      "caseId": "PB-08",
+      "governed": false,
+      "toolsBytes": 18838,
+      "toolsSha": "b60b7a39fbdd715b4b8e5c3ae3dac7375aeaee45b0670d2a135b2711bcb73b46",
+      "systemBytes": 46306,
+      "systemSha": "55d10ae6da5d179b4dcb6adfc1d0b78ba00ceba09979d9545e5825bd7a66de7e",
+      "userBytes": 2406
+    }
+  ],
+  "distinctToolBlocks": 8,
+  "distinctSystemBlocks": 2,
+  "toolsVaryByCase": true,
+  "systemsVaryByCase": true,
+  "sharedSystemPrefixBytes": 41736,
+  "cachePrefixOrder": "tools -> system -> messages",
+  "projectionsUsd": {
+    "outputAllCalls": 0.18592,
+    "noCaching": 0.57792,
+    "cachingReadAcrossCases": 0.382553,
+    "cachingWriteOnly": 0.642504,
+    "hardCeiling": 0.5
+  },
+  "basis": "logical input taken as the frozen expectedLogicalInputTokenRange.min (24,500); output as the frozen assumedOutputTokensPerCall. Projection only. No provider telemetry exists yet.",
+  "timestamp": "2026-09-09T20:42:51.665Z"
+}

@@ -1,0 +1,22 @@
+{
+  "artifact": "SECTION-227-EXECUTION-SUMMARY",
+  "executorVersion": "hazlenz.expert.227.hosted-capability-execution.v1",
+  "frozenDigest": "d0cda04c6a40a257997c0e70c4dffde80d62f179e64fc143fd9d1b47d7b1a338",
+  "plannedCalls": 8,
+  "callsExecuted": 8,
+  "contingencyCallsExecuted": 0,
+  "contingencyCallsAuthorized": 2,
+  "contingencyLog": [],
+  "ceiling": 10,
+  "spendUsd": 0.685892,
+  "spendCeilingUsd": 1.1,
+  "semanticPreferenceRetries": 0,
+  "databaseOperations": 0,
+  "stoppedEarly": null,
+  "promptChangedDuringExecution": false,
+  "schemaChanged": false,
+  "caseChangedAfterFreeze": false,
+  "malformedOutputRepaired": false,
+  "stringifiedFieldsParsed": false,
+  "completedAt": "2026-09-11T15:12:15.093Z"
+}

@@ -1,0 +1,65 @@
+
+--- A. the baseline merge
+ok    A.1 the no-Expert merge satisfies every invariant
+ok    A.2 deterministic findings carry DETERMINISTIC_AUTHORITY
+ok    A.3 governed citations carry GOVERNED_REGULATORY_AUTHORITY
+ok    A.4 the advisory block carries EXPERT_ADVISORY
+ok    A.5 there is NO combined findings array to flatten the three sources into
+ok    A.6 the Expert layer status is observable even when Expert did not run
+ok    A.7 eleven merge invariants are declared
+
+--- B. Expert adds -- the four additive capabilities
+ok    B.1 Expert may add an advisory candidate
+ok    B.2 Expert may add a clarification
+ok    B.3 Expert may add cross-hazard reasoning
+ok    B.4 Expert may add a disagreement
+ok    B.5 adding four things violates no invariant
+ok    B.6 the protected halves are IDENTICAL to the no-Expert merge
+
+--- C. Expert cannot remove -- five failure shapes, adversarially
+ok    C.1 failure: no invariant violated
+ok    C.2 failure: the protected halves are byte-identical to the no-Expert merge
+ok    C.3 failure: the life-critical finding keeps all four required actions
+ok    C.4 failure: the knowledge release id is unchanged
+ok    C.5 failure: the layer status is a declared member and therefore observable
+ok    C.1 timeout: no invariant violated
+ok    C.2 timeout: the protected halves are byte-identical to the no-Expert merge
+ok    C.3 timeout: the life-critical finding keeps all four required actions
+ok    C.4 timeout: the knowledge release id is unchanged
+ok    C.5 timeout: the layer status is a declared member and therefore observable
+ok    C.1 malformed: no invariant violated
+ok    C.2 malformed: the protected halves are byte-identical to the no-Expert merge
+ok    C.3 malformed: the life-critical finding keeps all four required actions
+ok    C.4 malformed: the knowledge release id is unchanged
+ok    C.5 malformed: the layer status is a declared member and therefore observable
+ok    C.1 omission: no invariant violated
+ok    C.2 omission: the protected halves are byte-identical to the no-Expert merge
+ok    C.3 omission: the life-critical finding keeps all four required actions
+ok    C.4 omission: the knowledge release id is unchanged
+ok    C.5 omission: the layer status is a declared member and therefore observable
+ok    C.1 contradiction: no invariant violated
+ok    C.2 contradiction: the protected halves are byte-identical to the no-Expert merge
+ok    C.3 contradiction: the life-critical finding keeps all four required actions
+ok    C.4 contradiction: the knowledge release id is unchanged
+ok    C.5 contradiction: the layer status is a declared member and therefore observable
+ok    C.6 a HIGH-confidence contradiction is RECORDED as advisory and the finding stands
+
+--- D. governed provenance is untouchable
+ok    D.1 an Expert opinion about a rejected record leaves the governed block identical
+ok    D.2 an unapproved record is still unapproved and still provenance-ineligible
+ok    D.3 the release id is copied from the governed input, never from Expert
+ok    D.4 a NULL release id stays NULL -- Expert cannot back-fill history
+
+--- E. the verifier itself detects a broken merge
+ok    E.1 a removed deterministic finding is detected
+ok    E.2 a removed required action is detected
+ok    E.3 a rebound knowledge release id is detected
+ok    E.4 an unapproved record promoted to approved is detected
+ok    E.5 a life-critical flag flipped to false is detected
+
+--- F. the merge does not mutate its inputs
+ok    F.1 mutating the merged result does not reach the deterministic input
+ok    F.2 mutating the merged result does not reach the governed input
+ok    F.3 the shared empty advisory constant is still empty after a run
+
+51 passed, 0 failed

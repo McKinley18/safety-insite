@@ -1,0 +1,83 @@
+{
+  "artifact": "SECTION_209B_ADJUDICATION_BATCH_MANIFEST",
+  "batchLabel": "001",
+  "preregistrationIdentity": "879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4",
+  "instrumentSlotCount": 177,
+  "batchSlotCount": 22,
+  "firstSlotId": "AC-01.ROW.A",
+  "lastSlotId": "AC-02.FACT1.L",
+  "nextSlotId": "AC-02.FACT2.C",
+  "slotIds": [
+    "AC-01.ROW.A",
+    "AC-01.ROW.B",
+    "AC-01.ROW.H",
+    "AC-01.ROW.I",
+    "AC-01.FACT1.C",
+    "AC-01.FACT1.E",
+    "AC-01.FACT1.F",
+    "AC-01.FACT1.M",
+    "AC-01.FACT1.L",
+    "AC-01.FACT2.C",
+    "AC-01.FACT2.E",
+    "AC-01.FACT2.F",
+    "AC-01.FACT2.M",
+    "AC-01.FACT2.L",
+    "AC-02.ROW.A",
+    "AC-02.ROW.B",
+    "AC-02.ROW.H",
+    "AC-02.FACT1.C",
+    "AC-02.FACT1.E",
+    "AC-02.FACT1.F",
+    "AC-02.FACT1.M",
+    "AC-02.FACT1.L"
+  ],
+  "verdictsSuppliedByThisRenderer": 0,
+  "gateLinkageExposed": false,
+  "producedToFrozenFactBindingAsserted": false,
+  "verifierEvidenceSource": "RAW-VERIFIER-208B.jsonl — ACCEPTANCE_VERIFIER_EVIDENCE",
+  "verifierEvidenceNotUsed": "RAW-VERIFIER-208.jsonl — DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE, never opened by this renderer",
+  "sourcesRead": [
+    {
+      "label": "§209 worksheet",
+      "path": "verification/expert-hazlenz-frozen-cohort-adjudication-209-2026-09-08/ADJUDICATION-WORKSHEET-209.json",
+      "sha256": "a31d94c23fd116bc87675a3995231c9f4ebf738f86d1c24900418c1e9cac59bf"
+    },
+    {
+      "label": "§200 axis instructions",
+      "path": "verification/expert-hazlenz-semantic-adjudication-2026-09-07/ADJUDICATION-WORKSHEET.json",
+      "sha256": "07dbb1707fa7bca43438ad2e7daade8c53d39acf0af9ea10513b1b37af9900f2"
+    },
+    {
+      "label": "§208 first pass",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/RAW-FIRST-PASS-208.jsonl",
+      "sha256": "711dfa354a31bf0b22607ac6af3c0094ff665ab8e2a0e544ea5d64a827191614"
+    },
+    {
+      "label": "§208 corrected projection",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/PROJECTION-208-CORRECTED.jsonl",
+      "sha256": "78fb731b8fe2fe6687ee8dc7e20f0e786f56637868bf4b128d90e096af23df9e"
+    },
+    {
+      "label": "§208 governed stage",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/RAW-GOVERNED-208.jsonl",
+      "sha256": "40fc53f352b70df14cdc2bcc331aa1c00db1ec10db4000ddfc00f10de7ce3637"
+    },
+    {
+      "label": "§208B recovered verifier",
+      "path": "verification/expert-hazlenz-verifier-recovery-208b-2026-09-08/RAW-VERIFIER-208B.jsonl",
+      "sha256": "3f93c3524208bbe12b4db19efbe3f906a8e02af46ededbad510fd12c05d7f7de"
+    }
+  ],
+  "renderedDocument": {
+    "name": "BATCH-001-SLOTS-001-022.md",
+    "byteLength": 647392
+  },
+  "preambleIdentity": {
+    "sha256": "3aff0a01abea6ba0b1b88426a87a6c4b98c3e9a06202ff0cc504b4264a83075c",
+    "lineCount": 29,
+    "note": "the renderer's own fixed preamble, excluded from the anti-steering scan because it names the steering categories in order to disclaim them. Pinned here so a change to it is visible."
+  },
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "generatedAt": "2026-09-09T01:36:10.674Z"
+}

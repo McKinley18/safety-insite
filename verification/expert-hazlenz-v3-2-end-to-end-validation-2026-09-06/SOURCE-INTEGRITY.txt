@@ -1,0 +1,72 @@
+§195 SOURCE INTEGRITY GATE — END-TO-END VALIDATION (NOT EXECUTED)
+recomputed 2026-09-07T14:11:55.844Z from the files on disk
+
+RESULT: PASS   21/21
+
+OK    v3 system prompt
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    v3 response schema
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    v3.1 system prompt — §192 stays attached
+        expected  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+OK    v3.1 response schema — §192 stays attached
+        expected  d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+OK    v3 admission validator
+        expected  475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+OK    §187 preregistration
+        expected  9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82
+OK    §192 preregistration
+        expected  68ba7ffa80fd8d111760cb628bff2493f46181cb41c124da2e0614e365f13267
+OK    first-pass expert-prompt.ts
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    first-pass system prompt
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    owed-facts/owed-fact.types.ts
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    canonical CITATION_SHAPED_PATTERN reused, not redefined
+        expected  \b\d{2}\s*CFR\s*\d+
+OK    §192 cohort module
+        expected  3b4a7fafcd8acb46d52c2f1a7a11d1f50324c055386295d5028e7c99c4c5c095
+OK    §188 neutral ballot still unanswered
+        expected  PENDING_HUMAN_ADJUDICATION
+OK    §189 human gate still UNMEASURED
+        expected  65 / 112
+OK    §190 still labelled MODEL
+        expected  MODEL_SEMANTIC_ADJUDICATION
+OK    §192 raw outputs immutable
+        expected  39
+OK    v3.2 minus its block reproduces v3.1 exactly
+        expected  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+OK    backend/scripts audit sweep clean
+        expected  clean
+
+THREE PROTOCOLS, THREE IDENTITIES — never merged
+
+  v3    prompt 678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+        schema 1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+  v3.1  prompt 7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+        schema d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+  v3.2  prompt f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f   NEW
+        schema 83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e   NEW
+        version hazlenz.expert.verifier-instruction.v3.2
+
+  §187B belongs to v3. §192 belongs to v3.1. v3.2 has NO hosted evidence of any kind.
+
+§195 EXECUTED = FALSE — the OWED-FACT / TASK-STATE CONSTRUCTION stage does not exist.
+PROVIDER_CALLS = 0. Nothing was spent. See PIPELINE-STAGE-BLOCKER.md
+
+FILES ADDED BY §195
+  NEW  backend/scripts/lib/expert-e2e-cohort-2026-09-06.ts        12 fresh rows, frozen
+  NEW  backend/scripts/freeze-195-cohort-2026-09-06.ts            manifests, zero calls
+  NEW  backend/scripts/verify-195-source-integrity-2026-09-06.ts  this gate
+  No existing runtime file was modified.
+
+PROVIDER_CALLS = 0   DATABASE_OPERATIONS = 0   PRODUCTION_ACTIVATION = NONE
+§189 HUMAN GATE = UNMEASURED (65/112)   v3.2 HOSTED VALIDATED = FALSE
+

@@ -1,0 +1,118 @@
+{
+  "artifact": "SECTION-234-TRUTH-PREFLIGHT",
+  "version": "hazlenz.expert.234.posture-discrimination.v1",
+  "machineChecked": true,
+  "ranBeforeFreeze": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "result": "PASS",
+  "passed": 17,
+  "total": 17,
+  "checks": [
+    {
+      "id": "P1",
+      "rule": "sixteen cases, four per posture, unique case identifiers",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P2",
+      "rule": "every truth anchor is a verbatim substring of its case observation, and every case carries at least one",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P3",
+      "rule": "every expected posture is a member of the frozen §233 vocabulary",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P4",
+      "rule": "HOLD_PENDING_VERIFICATION if and only if the controlling property is UNRESOLVED; CONTINUE, CONTINUE_WITH_CONTROLS and STOP require it ESTABLISHED",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P5",
+      "rule": "CONTINUE owes no new control; CONTINUE_WITH_CONTROLS names at least one control that is not currently in effect; HOLD and STOP carry their requirement in the resume condition rather than as a continuation control",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P6",
+      "rule": "a posture that does not permit continued work names a resume condition, and one that does names none",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P7",
+      "rule": "HOLD requires verification BEFORE continuation; CONTINUE and STOP have no concurrent verification to record; CONTINUE_WITH_CONTROLS may verify concurrently or not at all",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P8",
+      "rule": "the established condition requires immediate protective action if and only if the expected posture is STOP",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P9",
+      "rule": "each case refutes exactly the three postures it did not choose, in substantive terms",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P10",
+      "rule": "no case reuses an excluded prior-cohort subject term",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P11",
+      "rule": "no §234 observation overlaps any §230/§231 observation above the threshold",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P12",
+      "rule": "no §234 case is a paraphrase of another §234 case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P13",
+      "rule": "every named boundary concept is exercised, and each adjacent-degree boundary by at least two cases",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P14",
+      "rule": "not all STOP cases are obvious emergencies and no CONTINUE case is a trivial safe control",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P15",
+      "rule": "each case books exactly one first-pass call and no verifier call, and the total is within the authorized maximum",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P16",
+      "rule": "no case supplies a governed record, and every case carries a jurisdiction, a hazard family list and a decision under analysis",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P17",
+      "rule": "the frozen §233 continuation table agrees with the frozen truth on every case",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "repairsMadeBeforeFreeze": [
+    "The first run failed P9. Two CONTINUE cases (D3 and D4) refuted STOP in a single short clause that was too thin to adjudicate against. Both rationales were written out properly in the development instrument before the freeze and before any spend, which is the only point at which a repair is permitted. No expected posture, observation or truth field was changed."
+  ]
+}

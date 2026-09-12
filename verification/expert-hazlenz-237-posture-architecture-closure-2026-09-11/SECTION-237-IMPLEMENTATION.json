@@ -1,0 +1,369 @@
+{
+  "artifact": "SECTION-237-IMPLEMENTATION",
+  "version": "hazlenz.expert.237.closure.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false,
+  "posture": "ADDITIVE SUCCESSOR TO §233. Neither §233 nor §235 is edited, so the digests the frozen §236 protocol records still hold and §236 stays reproducible from the tree. §237 supersedes the §235 cessation design without rewriting it.",
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "section233Unchanged": true,
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "section235Unchanged": true,
+  "section236Rescored": false,
+  "priorEvidencePackagesVerified": [
+    "§233",
+    "§234",
+    "§235",
+    "§236"
+  ],
+  "reportItem1_wasCessationStateDeterministicallyDerivable": {
+    "question": "Can the authoritative cessation-driving candidate set be derived deterministically from candidate state already present in the admitted analysis?",
+    "answer": "NO",
+    "everyGovernedCandidateProperty": [
+      {
+        "field": "candidateKey",
+        "kind": "string",
+        "carriesConsequence": false
+      },
+      {
+        "field": "hazardFamily",
+        "kind": "enum, per-analysis allowed families",
+        "carriesConsequence": false
+      },
+      {
+        "field": "assertedConditionState",
+        "kind": "enum ACTIVE | CONTROLLED | CORRECTED | REMOVED_FROM_SERVICE | NEGATED | HYPOTHETICAL | INSUFFICIENT_EVIDENCE | UNKNOWN",
+        "carriesConsequence": false,
+        "why": "it states WHETHER the condition obtains. It says nothing about what the condition requires of anyone."
+      },
+      {
+        "field": "groundingStatus",
+        "kind": "enum",
+        "carriesConsequence": false
+      },
+      {
+        "field": "evidence / evidenceBasis / reasoning",
+        "kind": "prose",
+        "carriesConsequence": false,
+        "why": "prose, and invariant 3 forbids deriving a safety consequence by reading it"
+      },
+      {
+        "field": "confidence",
+        "kind": "enum LOW | MODERATE | HIGH",
+        "carriesConsequence": false,
+        "why": "certainty about the assertion, not the consequence of the condition"
+      },
+      {
+        "field": "relationshipToDeterministic",
+        "kind": "enum",
+        "carriesConsequence": false
+      },
+      {
+        "field": "requiresUserConfirmation",
+        "kind": "boolean",
+        "carriesConsequence": false
+      }
+    ],
+    "candidateRulesConsideredAndRejected": [
+      {
+        "rule": "assertedConditionState === ACTIVE implies a cessation driver",
+        "rejected": "REFUTED BY SPENT EVIDENCE AND FORBIDDEN BY THE AUTHORIZATION. §234 D2 asserts a molten zinc kettle ACTIVE on a case whose correct posture is CONTINUE. §236 A2 runs a poultry line with ACTIVE hazards at CONTINUE_WITH_CONTROLS. The authorization states in as many words: do not infer STOP merely because a hazard is serious, and do not infer STOP merely because a candidate exists."
+      },
+      {
+        "rule": "ACTIVE and present in requiredBy and not accepted implies a cessation driver",
+        "rejected": "the §234 CONTINUE_WITH_CONTROLS cases E1, E2, E3 and E4 and the §236 case A2 all carry exactly that shape and all correctly permit work. The rule would force STOP on every one of them."
+      },
+      {
+        "rule": "derive it from requiredControls: a candidate no control addresses requires cessation",
+        "rejected": "controls are not linked to candidates in the contract, and the inference is circular: CONTINUE_WITH_CONTROLS means by definition that controls suffice."
+      },
+      {
+        "rule": "derive it from the declaration branch decisions decisionIfA and decisionIfB",
+        "rejected": "both are prose. Comparing them for meaning is the semantic inference invariant 3 forbids, and §148 already refused deterministic reclassification of a natural-language field."
+      }
+    ],
+    "theSemanticInformationThatExistsOnlyHere": "WHETHER AN ESTABLISHED CONDITION'S CONSEQUENCE IS CESSATION RATHER THAN CONTROL — that is, whether any immediate control can make continued exposure acceptable. That is a judgment about the controllability of a hazard. No field in the first-pass contract encodes consequence, severity or controllability, and no combination of the fields that do exist separates a kettle that may keep running from an evaporator that may not.",
+    "whatFollows": "The JUDGMENT is irreducible and is retained. The DUPLICATION is not, and is removed. §237 keeps exactly one provider-authored statement of it and attaches that statement to the reference the analysis already carries, so no reference is written twice and no separate field exists to be omitted or malformed.",
+    "derivedSetProperties": {
+      "deterministic": "the derived cessation set is requiredBy filtered on one enum member. No prose, no inference, no default.",
+      "auditable": "every member of the derived set names a candidateKey that resolves in the same analysis, and the role that put it there is on the same entry.",
+      "reproducible": "the same admitted analysis yields the same set on every run.",
+      "structurallyComplete": "every requiredBy entry must carry a role, so no driver can be silent about what it drives.",
+      "cannotSilentlyDisappear": "there is no separate field to omit. A missing or invalid role refuses the entry and therefore the analysis, and an absent role can never read as an empty cessation set."
+    }
+  },
+  "reportItem2_authoritativeSourceStateUsed": {
+    "source": "immediateSafetyPosture.requiredBy[].driverRole",
+    "why": "the reference to the candidate already exists in requiredBy and arrived correctly typed on nine of nine §236 calls. Attaching the judgment to it means no reference is written twice and there is no separate field to omit or malform.",
+    "vocabulary": [
+      "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION",
+      "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+      "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+      "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+    ],
+    "definitions": {
+      "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION": "An established condition that bears on this posture and requires nothing of anyone today. A hazard can be real, present and active and still be here. This is a real answer.",
+      "ESTABLISHED_CONDITION_REQUIRING_CONTROLS": "An established condition that makes work acceptable only with an immediate control in effect. Name the control in requiredControls.",
+      "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "An established condition whose CURRENT STATE, on its own, already requires the work to cease, be withdrawn from or be isolated. Nothing is waiting on a result and no control operated alongside the work would make continued exposure acceptable. Use this ONLY when that is true: it is not a severity rating.",
+      "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "An unresolved fact whose resolution could change WHETHER THE CURRENT WORK OR EXPOSURE IS ACCEPTABLE. Resolving it one way permits the work and the other way does not.",
+      "UNRESOLVED_RESPONSE_OR_FOLLOW_UP": "An unresolved fact whose resolution changes only WHAT IS DONE ABOUT IT: which corrective action is chosen, how it is documented, who follows it up, how confirmation is obtained, or whether someone has already acted. Real and worth declaring, and it does not by itself decide whether work continues."
+    },
+    "refKindBinding": {
+      "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION": "HAZARD_CANDIDATE",
+      "ESTABLISHED_CONDITION_REQUIRING_CONTROLS": "HAZARD_CANDIDATE",
+      "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "HAZARD_CANDIDATE",
+      "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "UNRESOLVED_DECLARATION",
+      "UNRESOLVED_RESPONSE_OR_FOLLOW_UP": "UNRESOLVED_DECLARATION"
+    },
+    "derivedCessationSet": "requiredBy filtered on ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+    "derivationIsAFilterAndNothingMore": true
+  },
+  "reportItem3_duplicateProviderFieldRemovedOrRetained": {
+    "field": "immediateSafetyPosture.establishedConditionsRequiringCessation",
+    "disposition": "REMOVED",
+    "whyRemoved": [
+      "it duplicated candidate identity: a second list of references to candidates the analysis had already named. Two of its three §235 rules did nothing but check the copy against its original, which is the anti-pattern the §237 authorization names.",
+      "it was separately omissible, and §236 proved that empirically: every one of the four contract refusals came from that field, absent on three of nine and malformed on a fourth, while nothing else in the contract refused anything.",
+      "it added no discriminating power in §236. On all six calls where it arrived, it agreed with the posture. The cross-check never once fired."
+    ],
+    "whatWasNotRemoved": "THE JUDGMENT. Whether an established condition already requires cessation is irreducible and is still model-authored. Only the duplication is gone.",
+    "codesRetired": [
+      "CESSATION_LIST_MISSING",
+      "CESSATION_LIST_NOT_AN_ARRAY",
+      "CESSATION_ITEM_MALFORMED",
+      "CESSATION_REF_UNRESOLVED",
+      "CESSATION_REF_NOT_A_CANDIDATE",
+      "CESSATION_CONDITION_NOT_IN_BASIS",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE"
+    ],
+    "codesRetiredCount": 7
+  },
+  "reportItem4_posturefloorImplementation": {
+    "invariant": "if one or more authoritative established candidates independently require cessation, the immediate posture cannot be less protective than STOP.",
+    "code": "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+    "rule": "any requiredBy entry whose driverRole is ESTABLISHED_CONDITION_REQUIRING_CESSATION and a posture other than STOP refuses the analysis.",
+    "enforcedFrom": "authoritative basis state, not a redundant self-report",
+    "whatItDoesNotDo": [
+      "it does not infer STOP because a hazard is serious",
+      "it does not infer STOP because a candidate exists or is ACTIVE",
+      "the permissive role is listed first in the vocabulary and in the instruction, so a real, present, properly controlled hazard has a truthful member to use"
+    ],
+    "theOtherSide": "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER also refuses a STOP whose only drivers require controls, so the floor is enforced in both directions."
+  },
+  "reportItem5_treatmentOfResponseUncertainty": {
+    "semanticRule": "ONLY UNCERTAINTY ABOUT A DECISION-CONTROLLING SAFETY PROPERTY MAY CHANGE THE IMMEDIATE WORK POSTURE BY REQUIRING VERIFICATION BEFORE CONTINUATION.",
+    "code": "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+    "rule": "a posture that does not permit continued work must carry at least one driver whose role is in [\"ESTABLISHED_CONDITION_REQUIRING_CESSATION\",\"UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION\"].",
+    "atLeastOneNotEveryOne": "a legitimate hold that ALSO declares a follow-up question is admitted. The rule removes an escalation, never a declaration.",
+    "couldAnExistingPropertyHaveDoneThis": {
+      "candidate": "unresolvedFactDeclarations[].affectedDecision, a governed enum of HAZARD_EXISTENCE | HAZARD_SEVERITY | EXPOSURE | APPLICABILITY | REQUIRED_CONTROL | REGULATORY_INTERPRETATION",
+      "answer": "NO, and the §236 evidence settles it rather than an argument. All six declarations across all nine §236 calls came back REQUIRED_CONTROL: on two legitimate holds, on a CONTINUE, on a CONTINUE_WITH_CONTROLS, on a STOP and on the C2 defect itself. The property has zero discriminating power on exactly the distinction it looks like it should carry.",
+      "thereforeAMinimalFieldWasNecessary": true,
+      "andItIsNarrowlyScoped": "two of five members on one existing entry, transmitted with definitions and a worked contrast, and no new taxonomy anywhere else in the contract."
+    }
+  },
+  "reportItem6_filesChanged": {
+    "created": [
+      {
+        "path": "backend/scripts/lib/expert-237-posture-contract.ts",
+        "role": "the derivability record, the five-member driver-role vocabulary, the instruction block, the schema addition and reconstruction back to §233"
+      },
+      {
+        "path": "backend/scripts/lib/expert-237-posture-projection.ts",
+        "role": "delegates every §233 check unchanged, adds D1 to D4, retains §235 P8 and P9, and exposes the derived cessation set as a filter"
+      },
+      {
+        "path": "backend/scripts/lib/expert-237-contract-consistency.ts",
+        "role": "the bidirectional registry with two directions added for removal: nothing retired survives, and retention is byte-exact"
+      },
+      {
+        "path": "backend/scripts/lib/expert-237-posture-fixtures.ts",
+        "role": "the local scenarios"
+      },
+      {
+        "path": "backend/scripts/test-237-posture-closure.ts",
+        "role": "the local suite"
+      },
+      {
+        "path": "backend/scripts/lib/expert-238-final-confirmation-design.ts",
+        "role": "the six-call PROPOSAL. No case is authored and no call is authorized."
+      }
+    ],
+    "modified": [],
+    "protectedModulesMutated": [],
+    "section233ModulesModified": [],
+    "section235ModulesModified": [],
+    "section235ModulesReusedUnchanged": [
+      "expert-235-wire-normalization.ts (imported whole)",
+      "expert-235-posture-fixtures.ts (candidate, declaration and clarification builders)",
+      "expert-235-contract-consistency.ts (twenty-two registry entries inherited)"
+    ]
+  },
+  "reportItem7_contractChanges": {
+    "removed": {
+      "postureProperty": "establishedConditionsRequiringCessation",
+      "transmittedRules": [
+        "RULE. Every reference in establishedConditionsRequiringCessation must be a candidateKey from THIS analysis.",
+        "RULE. establishedConditionsRequiringCessation may name only hazard candidates. An unresolved-fact declaration is by definition not established and may not be listed there.",
+        "RULE. Anything you list in establishedConditionsRequiringCessation must also appear in requiredBy.",
+        "RULE. If establishedConditionsRequiringCessation is not empty, the posture must be STOP."
+      ],
+      "refusalCodes": [
+        "CESSATION_LIST_MISSING",
+        "CESSATION_LIST_NOT_AN_ARRAY",
+        "CESSATION_ITEM_MALFORMED",
+        "CESSATION_REF_UNRESOLVED",
+        "CESSATION_REF_NOT_A_CANDIDATE",
+        "CESSATION_CONDITION_NOT_IN_BASIS",
+        "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE"
+      ]
+    },
+    "added": {
+      "basisEntryMember": "driverRole",
+      "vocabularyMembers": 5,
+      "transmittedRules": [
+        "RULE. Every entry in requiredBy must carry a driverRole from the list above.",
+        "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate, and a driverRole beginning UNRESOLVED may be used only on an unresolved-fact declaration.",
+        "RULE. If any driverRole is ESTABLISHED_CONDITION_REQUIRING_CESSATION, the posture must be STOP.",
+        "RULE. Under HOLD_PENDING_VERIFICATION or STOP, at least one driverRole must be ESTABLISHED_CONDITION_REQUIRING_CESSATION or UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION. An unresolved fact that changes only the response, the documentation, the follow-up, the confirmation method or whether somebody has already acted cannot on its own require work to wait or to stop."
+      ],
+      "refusalCodes": [
+        "POSTURE_DRIVER_ROLE_MISSING",
+        "POSTURE_DRIVER_ROLE_INVALID",
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+        "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER"
+      ]
+    },
+    "retained": {
+      "rulesFrom235": 8,
+      "registryEntriesInheritedFrom235": 23,
+      "citationsRestatedBecauseTheSchemaMovedAroundThem": [
+        "POSTURE_BASIS_ITEM_MALFORMED"
+      ],
+      "whyRestated": "POSTURE_BASIS_ITEM_MALFORMED cited the basis required list, which §237 changed by adding driverRole. C2 caught the stale citation on the first run, which is the consistency check earning its place on a removal slice."
+    },
+    "netPayload": {
+      "promptBytes233": 73499,
+      "promptBytes235": 76817,
+      "promptBytes237": 78386,
+      "schemaBytes233": 23632,
+      "schemaBytes235": 25124,
+      "schemaBytes237": 26188,
+      "honestNote": "the closure does NOT shrink the payload. The driver-role vocabulary and its definitions cost more than the removed property saved, roughly two per cent up on §235. What changed is not size but where the obligation sits."
+    },
+    "bidirectionalAlignment": {
+      "section237": "8/8 PASS",
+      "section235StillGreen": "6/6 PASS",
+      "noValidatorEnforcesAnUntransmittedRule": true,
+      "noTransmittedRuleLacksEnforcement": true,
+      "nothingRetiredSurvives": true
+    },
+    "reconstruction": {
+      "promptReducesTo233ByteForByte": true,
+      "schemaReducesTo233ByteForByte": true,
+      "rootPropertiesAdded": 0,
+      "postureSubPropertiesAdded": 0,
+      "basisEntryMembersAdded": 1,
+      "postureSubfields": [
+        "posture",
+        "requiredBy",
+        "acceptedWithoutImmediateAction",
+        "requiredControls",
+        "resumeCondition",
+        "whatHappensNow"
+      ],
+      "basisEntrySubfields": [
+        "ref",
+        "refKind",
+        "driverRole"
+      ]
+    }
+  },
+  "reportItem8_localTestResults": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "suite": "backend/scripts/test-237-posture-closure.ts",
+    "passed": 204,
+    "failed": 0,
+    "scenarioCount": 22,
+    "fourteenAuthorizedItems": {
+      "1_cessationDerivedIfPossible": "ANSWERED NO, documented, and the derived set proven to be a filter on one enum member with no default and no inference",
+      "2_omissionCannotRemoveTheStopFloor": "PASS — there is no such field to omit; the floor comes from the basis",
+      "3_malformedDuplicateCannotAffectPosture": "PASS — a stray legacy list neither refuses, helps, nor manufactures a floor",
+      "4_establishedStopPlusUnrelatedUnresolved": "PASS — STOP preserved, declaration carried",
+      "5_legitimateHoldRemainsHold": "PASS — including a hold with a mixed basis",
+      "6_cwcPlusResponseUncertaintyRemainsCwc": "PASS — the trap refused, the correct posture admitted",
+      "7_continuePlusAdministrativeUncertaintyRemainsContinue": "PASS",
+      "8_genuineControllingUncertaintyStillElevates": "PASS",
+      "9_noManufacturedDeclarationRequired": "PASS — STOP with zero declarations",
+      "10_noFalseStopInflation": "PASS — swept at all four postures",
+      "11_section235AlignmentSuiteGreen": "209 passed, 0 failed, and the §235 consistency check is still green",
+      "12_section233PostureSuiteGreen": "109 passed, 0 failed",
+      "13_protectedLadderGreen": "17 passed, 0 failed, 0 missing, of 17",
+      "14_productionTypecheck": "PASS"
+    },
+    "theChecksHaveTeeth": "the suite removes a registry entry and asserts C1 fails, transmits a rule with no code and asserts C3 fails."
+  },
+  "reportItem9_regressionResults": {
+    "section233BehaviourUnchanged": "all fourteen §233 scenarios produce the identical §233 code set and admission under the §237 projection",
+    "section235P8Equivalence": "the §235 resume-coherence fixtures produce the same P8 outcome under §237, so the retained rule is reimplemented rather than reinterpreted",
+    "section235SuiteUnaffected": "209 passed, 0 failed",
+    "wireShape": "no union type; no root property added; NO posture sub-property added, because the §235 field is gone and nothing replaces it; exactly one basis-entry member added; the acceptance-list entry is byte-identical to §233",
+    "proseIndependence": "every prose field replaced with arbitrary text changes no admission and no code"
+  },
+  "reportItem10_protectedIdentity": {
+    "compositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "moduleCount": 29,
+    "missingModules": [],
+    "unauthorizedMutations": 0,
+    "ladder": "17/17"
+  },
+  "reportItem11_remainingKnownSemanticLimitations": [
+    {
+      "id": "L1",
+      "severity": "MATERIAL, AND THE CENTRAL ONE",
+      "limitation": "D4 IS A FLOOR, NOT A FIX. It refuses a hold whose drivers are all labelled response-only. A model that believes a response question IS decision-controlling will label it so, and no deterministic rule refutes that. §236 C2 would be caught only if the model labelled the unit-seven question UNRESOLVED_RESPONSE_OR_FOLLOW_UP.",
+      "whyItCannotBeClosedLocally": "choosing the label is the semantic judgment. Refuting it would require reading the declaration prose, which invariant 3 forbids.",
+      "whatMeasuresIt": "the §238 permissive slot, and nothing else can."
+    },
+    {
+      "id": "L2",
+      "limitation": "the same is true of the cessation role. A model that never labels a cessation driver is never refused by the floor. This limitation is inherited from §235 P7 unchanged and is not claimed repaired.",
+      "disposition": "disclosed. §236 gives the only evidence either way and it was favourable: both established-property STOP traps populated it correctly."
+    },
+    {
+      "id": "L3",
+      "limitation": "relocating the obligation onto the basis entry is a reasoned bet that a member on an entry the model produced correctly nine times out of nine will arrive more reliably than a separate required array. It is not proven. A dropped role still refuses the analysis.",
+      "governedBy": "invariant 27. A schema change is never evidence that a behavioural defect is repaired."
+    },
+    {
+      "id": "L4",
+      "limitation": "the §237 contract is not wired to an assembly or an executor, because no provider call is authorized and an executor would be dead code.",
+      "disposition": "the first step under hosted authorization, as §233 L3 and §235 L4 were"
+    }
+  ],
+  "reportItem13_estimatedSpend": {
+    "projectedUsd": 0.6549,
+    "worstCaseUsd": 0.6861,
+    "recommendedHardCeilingUsd": 0.85,
+    "basis": "§236 CALL-LEDGER-236 measured mean USD 0.105961 over 9 calls, maximum USD 0.111012, mean input 36,847 tokens, mean output 3,227 tokens, longest output 3,725. Nothing is carried over from §231 or §234."
+  },
+  "successCondition": {
+    "derivabilityQuestionAnswered": true,
+    "duplicateProviderObligationRemoved": true,
+    "postureFloorPreservedFromAuthoritativeState": true,
+    "responseUncertaintyRuleImplementedGenerically": true,
+    "legitimateHoldAndRestraintPreserved": true,
+    "bidirectionalContractAlignmentMaintained": true,
+    "nothingRetiredSurvives": true,
+    "section233And235Unmodified": true,
+    "section234And236EvidenceUnmodified": true,
+    "semanticBehaviourChangeProven": false,
+    "semanticBehaviourChangeClaimed": false
+  }
+}

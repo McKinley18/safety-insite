@@ -1,0 +1,212 @@
+§199 PRE-SPEND SOURCE INTEGRITY GATE — SUCCESSOR HOSTED VALIDATION
+recomputed 2026-09-09T23:11:46.076Z from the files on disk
+
+RESULT: FAIL   90/91
+
+OK    v3 system prompt
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    v3 response schema
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    v3.1 system prompt
+        expected  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+OK    v3.1 response schema
+        expected  d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+OK    v3 admission validator
+        expected  475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+OK    v3.2 system prompt unchanged
+        expected  f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f
+OK    v3.2 response schema unchanged
+        expected  83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e
+OK    first-pass expert-prompt.ts UNTOUCHED
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    v15 system prompt UNTOUCHED
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    v15 prompt version
+        expected  hazlenz.expert.prompt.v15
+OK    owed-facts/owed-fact.types.ts UNMUTATED
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts UNMUTATED
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts UNMUTATED
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts UNMUTATED
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    canonical CITATION_SHAPED_PATTERN reused, not redefined
+        expected  \b\d{2}\s*CFR\s*\d+
+OK    vNext(absent) reconstructs to v15 prompt
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    vNext(present) reconstructs to v15 prompt
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    vNext(absent) reconstructs to v15 schema
+        expected  6f01cac8dc7d6f0d49638324cae3fff686d2dd5a89ca3e80dd74586c981c8e8c
+OK    vNext(present) reconstructs to v15 schema
+        expected  6f01cac8dc7d6f0d49638324cae3fff686d2dd5a89ca3e80dd74586c981c8e8c
+OK    vNext user prompt reconstructs to the v15 user prompt
+        expected  4e3aa26c72b381178538db79098bfe3ca70a9cca0bb260f4a2a01336c5de5a0f
+OK    vNext instruction version
+        expected  hazlenz.expert.first-pass-instruction.vNext
+OK    empty set — capability OMITTED from properties
+        expected  absent
+OK    empty set — omitted from required
+        expected  absent
+OK    empty set — no maxItems anywhere
+        expected  0
+OK    empty set — no capability instruction in the prompt
+        expected  absent
+OK    nonempty set — capability PRESENT
+        expected  present
+OK    nonempty set — enum is exactly the supplied ids
+        expected  ["GOV-1"]
+OK    nonempty set — capability instruction IS in the prompt
+        expected  present
+OK    prompt and schema derive capability from the SAME supplied set
+        expected  agree
+OK    exact sourceId is provider-visible
+        expected  visible
+OK    malformed supplied id ABORTS
+        expected  aborts
+OK    duplicate supplied id ABORTS
+        expected  aborts
+OK    no factKey property in either capability variant
+        expected  0
+OK    capability-absent declaration projects
+        expected  1
+OK    provenance table covers a projected OwedFact exactly
+        expected  ["acceptableEvidence","affectedDecision","branchA","branchB","decisionDivergence","evidenceSpan","factKey","modelAuthored","priority","source","status","whyUnresolved"]
+OK    projected priority is the non-escalating floor
+        expected  OTHER
+OK    projected status is UNRESOLVED
+        expected  UNRESOLVED
+OK    projection version
+        expected  hazlenz.expert.first-pass-owed-fact-projection.v1
+OK    projection effect false on every axis
+        expected  false,false,false,false,false
+OK    provider-sent factKey REFUSED
+        expected  true
+OK    unsupplied governed id REFUSED
+        expected  true
+OK    supplied governed id ADMITTED
+        expected  1
+OK    v3.3 admits a citation copied from a supplied source
+        expected  true
+OK    v3.3 refuses a citation absent from every supplied source
+        expected  true
+OK    v3.3 refuses a citation under reliance NONE
+        expected  true
+OK    v3.3 refuses an unsupplied sourceId
+        expected  true
+OK    v3.3 admission contract version
+        expected  hazlenz.expert.verifier.v3.3
+OK    the three transition authorities are exactly the frozen set
+        expected  ADMITTED_BINDING,ADMISSIBLE_EVIDENCE,RECORDED_ARBITRATION
+OK    no transition authority names a model, provider or explanation
+        expected  0
+OK    every terminal status requires a named authority
+        expected  3
+OK    the projection never calls transition()
+        expected  true
+OK    breaker version
+        expected  hazlenz.expert.pre-inference-circuit-breaker.v1
+OK    normalization PRESERVES maxItems identity
+        expected  distinct
+OK    normalization removes volatile detail
+        expected  same
+OK    an inference-reaching attempt yields NO signature
+        expected  null
+OK    two identical pre-inference rejections TRIP the breaker
+        expected  tripped
+OK    two inference-reaching failures do NOT trip it
+        expected  clear
+OK    empty-run safety version
+        expected  hazlenz.expert.empty-run-safety.v1
+OK    an empty denominator is NOT_EXERCISED, never a pass
+        expected  NOT_EXERCISED
+OK    hardFailEvaluability returns null on an empty run
+        expected  null
+OK    cohort design defects
+        expected  0
+OK    cohort version
+        expected  hazlenz.expert.structured-e2e-cohort.2026-09-07.v2
+OK    twelve rows
+        expected  12
+OK    OPTION 3 — ten reused rows
+        expected  10
+OK    OPTION 3 — two replacement rows
+        expected  SG-01,SG-02
+OK    OPTION 3 — SF-09 and SF-10 are gone
+        expected  0
+OK    every reused row is byte-identical to its §197 original
+        expected  0
+OK    two capability-present rows
+        expected  SG-01,SG-02
+OK    a governed-quotation opportunity exists
+        expected  1
+OK    an unsupplied-citation containment opportunity exists
+        expected  1
+OK    no cohort observation carries a citation-shaped string
+        expected  0
+OK    the canary is in the cohort
+        expected  true
+OK    the canary is a NON-GOVERNED row
+        expected  0
+OK    the canary is a REUSED row
+        expected  REUSED_BEHAVIORALLY_UNSPENT
+OK    §196 evidence file count
+        expected  14
+OK    §197 evidence file count
+        expected  14
+OK    §196 historical 91/91 output preserved
+        expected  true
+OK    §196 original K3 line preserved verbatim
+        expected  true
+OK    §197 terminal unchanged
+        expected  EXPERT_HAZLENZ_STRUCTURED_PIPELINE_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED
+OK    §197 12 attempted / 0 completed / $0.00 / 0 tokens
+        expected  12|0|0|0
+OK    §197 every axis still NOT_EXERCISED
+        expected  true
+OK    §197 hard-fail report still unevaluable
+        expected  false|null
+OK    §198 terminal unchanged
+        expected  EXPERT_HAZLENZ_STRUCTURED_PIPELINE_TRANSPORT_REMEDIATED — SUCCESSOR_HOSTED_PROTOCOL_AUTHORIZATION_REQUIRED
+OK    §198 provider calls still 0
+        expected  0
+OK    §198 records the §197 file rewrite and restoration
+        expected  true
+OK    §196 K3 supersession still registered
+        expected  SUPERSEDED_BY_SECTION_198
+OK    §195 EXECUTED still false
+        expected  false
+OK    §189 human gate still UNMEASURED
+        expected  65 / 112
+FAIL  backend/scripts audit sweep clean (no NUL regression)
+        expected  clean
+        actual    /Users/mckinley/Desktop/Safety_InSite/backend/scripts/execute-208-acceptance-cohort.ts
+OK    expert-hazlenz src audit sweep clean
+        expected  clean
+OK    §196–§199 file set typechecks
+        expected  clean
+
+PROTOCOL IDENTITIES FOR THIS RUN
+  v15 base                     20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979   UNCHANGED
+  vNext, capability ABSENT     bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b
+  vNext, capability PRESENT    669bde6933e19bd1e1c35acde9a8db2a24020666917d9fe79c0718d5344df44b
+  verifier v3.2 (executed)     f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f   UNCHANGED
+  admission contract           hazlenz.expert.verifier.v3.3
+  cohort                       hazlenz.expert.structured-e2e-cohort.2026-09-07.v2
+  transport canary             SF-01 (reused, capability-absent)
+
+EVIDENCE PACKAGE DIGESTS — preservation proven by hashing, not by re-deriving
+  §196  14 files  93a1512fdefa808e70eb881d80c0a09b4dae8cdc8b02eb5552d63a8073263a0c
+  §197  14 files  fd13a63bf39e185e9dadadc83780d6b1f2c5ec34ec8ed80ab98753f5b6423564
+  §198  11 files  7af7457a2653e13ec9f1f87cfbe0b9d83abb254367e415d539c1bf59891a98f9
+
+  The §196, §197 and §198 gates were NOT re-run: each writes into its own evidence
+  directory, and the §197 gate pins a vNext hash §198 deliberately moved. Their still-valid
+  checks are subsumed above.
+
+WORKTREE
+  branch main   HEAD 37a5d1b50abe836eb19dd24ee18ad10557bda131
+
+GATE FAILED — PROVIDER CALLS = 0. STOP.
+

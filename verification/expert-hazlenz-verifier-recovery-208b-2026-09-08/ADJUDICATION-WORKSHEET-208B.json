@@ -1,0 +1,4617 @@
+{
+  "artifact": "SECTION_208B_ACCEPTANCE_ADJUDICATION_WORKSHEET",
+  "verifierEvidenceSource": "ACCEPTANCE_VERIFIER_EVIDENCE — verification/expert-hazlenz-verifier-recovery-208b-2026-09-08/RAW-VERIFIER-208B.jsonl. Applied UNIFORMLY across all 24 facts; no per-fact selection between the original and recovered sets exists or is possible.",
+  "preregistrationIdentity": "879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4",
+  "status": "OPEN — ZERO VERDICTS SUPPLIED",
+  "whyNoModelVerdicts": "every verdict must carry PRODUCT_OWNER attribution. No agent may supply one, no default supplies one, and no code path in the builder writes one. The deterministic scoring is evidence in the packet and is never shown as a suggested answer.",
+  "verdictVocabulary": [
+    "CORRECT",
+    "PARTIALLY_CORRECT",
+    "INCORRECT",
+    "AMBIGUOUS",
+    "NOT_EXERCISED"
+  ],
+  "attributionRequired": "PRODUCT_OWNER",
+  "frozenBudget": {
+    "cases": 24,
+    "rowJudgments": 57,
+    "factJudgments": 120,
+    "totalJudgments": 177,
+    "section205Total": 159,
+    "addedByAmendments": 18,
+    "fullFactorialWouldBe": 408
+  },
+  "slotCount": 177,
+  "slotsWithNoOpportunity": 11,
+  "openSlotCount": 177,
+  "suppliedVerdictCount": 0,
+  "ambiguityRule": "AMBIGUOUS is never a pass. On a hard-gate slot it makes the gate UNDETERMINED, which blocks acceptance exactly as FAILED does.",
+  "notExercisedRule": "permitted only where the design targeted an axis and the opportunity did not materialise, with a recorded reason. A vacuous CORRECT is forbidden. A NOT_EXERCISED on a hard-gate slot reduces that gate denominator; below the preregistered minimum the gate is COVERAGE_INSUFFICIENT, which is not a pass.",
+  "nonPreregisteredDiagnosticObservations": [
+    {
+      "caseId": "AC-05",
+      "observation": "the run produced 1 admitted facts where the frozen design expected 0. The surplus facts are NOT given extra fact-axis slots — that would expand the instrument mid-adjudication. Over-production is measured by row axis B, which is per row. The surplus facts are preserved in the packet in full."
+    },
+    {
+      "caseId": "AC-07",
+      "observation": "the run produced 2 admitted facts where the frozen design expected 1. The surplus facts are NOT given extra fact-axis slots — that would expand the instrument mid-adjudication. Over-production is measured by row axis B, which is per row. The surplus facts are preserved in the packet in full."
+    }
+  ],
+  "fidelityDisclosures": [
+    "The §208 executor defect 3 (empty hazard-candidate block) is REMEDIED, not caveated: the §208B recovery re-executed all 24 verifier calls against the frozen first-pass outputs with the candidate block populated. Axis L and gate G6 are adjudicated from that evidence."
+  ],
+  "slots": [
+    {
+      "slotId": "AC-01.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.ROW.H",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "H",
+      "axisName": "MULTI_GAP_PRESERVATION",
+      "question": "Do independent gaps survive INDEPENDENTLY?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G2"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.ROW.I",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "I",
+      "axisName": "FALSE_GAP_SUPPRESSION",
+      "question": "On a row whose text is sufficient, was an unnecessary owed fact avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT2.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT2.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT2.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT2.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-01.FACT2.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-01",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.ROW.H",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "H",
+      "axisName": "MULTI_GAP_PRESERVATION",
+      "question": "Do independent gaps survive INDEPENDENTLY?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G2"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT2.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 2,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT2.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 2,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT2.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 2,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT2.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 2,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-02.FACT2.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-02",
+      "factOrdinal": 2,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.ROW.H",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "H",
+      "axisName": "MULTI_GAP_PRESERVATION",
+      "question": "Do independent gaps survive INDEPENDENTLY?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G2"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT2.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 2,
+      "factKey": null,
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": "the frozen design expected 2 projected fact(s) on this case and the run produced 1. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 2 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT2.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 2,
+      "factKey": null,
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": "the frozen design expected 2 projected fact(s) on this case and the run produced 1. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 2 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT2.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 2,
+      "factKey": null,
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": "the frozen design expected 2 projected fact(s) on this case and the run produced 1. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 2 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT2.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 2,
+      "factKey": null,
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": "the frozen design expected 2 projected fact(s) on this case and the run produced 1. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 2 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-03.FACT2.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-03",
+      "factOrdinal": 2,
+      "factKey": null,
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": "the frozen design expected 2 projected fact(s) on this case and the run produced 1. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 2. This slot is bound MECHANICALLY to produced fact 2 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-04.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-04",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-04.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-04",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-04.ROW.I",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-04",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "I",
+      "axisName": "FALSE_GAP_SUPPRESSION",
+      "question": "On a row whose text is sufficient, was an unnecessary owed fact avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-05.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-05",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 0. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-05.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-05",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 0. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-05.ROW.I",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-05",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "I",
+      "axisName": "FALSE_GAP_SUPPRESSION",
+      "question": "On a row whose text is sufficient, was an unnecessary owed fact avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 1 admitted fact(s) where the frozen design expected 0. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-06.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-06",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-06.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-06",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-06.ROW.I",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-06",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "I",
+      "axisName": "FALSE_GAP_SUPPRESSION",
+      "question": "On a row whose text is sufficient, was an unnecessary owed fact avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-07.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-07",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 2 admitted fact(s) where the frozen design expected 1. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-07.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-07",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 2 admitted fact(s) where the frozen design expected 1. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-07.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-07",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 2 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-07.FACT1.G",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-07",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+      "axisId": "G",
+      "axisName": "AFFECTED_DECISION_CORRECTNESS",
+      "question": "Is the fact bound to the correct affectedDecision?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 2 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-07.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-07",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 2 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-07.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-07",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 2 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-08.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-08",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-08.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-08",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-08.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-08",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-08.FACT1.G",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-08",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1",
+      "axisId": "G",
+      "axisName": "AFFECTED_DECISION_CORRECTNESS",
+      "question": "Is the fact bound to the correct affectedDecision?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-08.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-08",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-08.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-08",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-09.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-09",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-09.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-09",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-09.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-09",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-09.235-425.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-09.FACT1.G",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-09",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-09.235-425.1",
+      "axisId": "G",
+      "axisName": "AFFECTED_DECISION_CORRECTNESS",
+      "question": "Is the fact bound to the correct affectedDecision?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-09.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-09",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-09.235-425.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-09.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-09",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-09.235-425.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-10.FACT1.R_FLOOR",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-10",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "axisId": "R_FLOOR",
+      "axisName": "PRIORITY_FLOOR_IMPACT (floor half)",
+      "question": "Does the OTHER floor under-escalate this fact?",
+      "allowedVocabulary": [
+        "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+        "FLOOR_WOULD_NOT_MATERIALLY_UNDER_ESCALATE",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-11.FACT1.R_FLOOR",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-11",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "axisId": "R_FLOOR",
+      "axisName": "PRIORITY_FLOOR_IMPACT (floor half)",
+      "question": "Does the OTHER floor under-escalate this fact?",
+      "allowedVocabulary": [
+        "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+        "FLOOR_WOULD_NOT_MATERIALLY_UNDER_ESCALATE",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-12.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-12",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-12.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-12",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-12.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-12",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-12.317-473.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-12.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-12",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-12.317-473.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-12.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-12",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-12.317-473.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.FACT1.D",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1",
+      "axisId": "D",
+      "axisName": "EVIDENCE_SPAN_SEMANTIC_RELEVANCE",
+      "question": "Is the verbatim span actually relevant to WHY this fact is unresolved?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7",
+        "G8"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.FACT1.Q",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1",
+      "axisId": "Q",
+      "axisName": "OWED_PROPERTY_LOSS_IMPACT",
+      "question": "Did the ABSENCE of a dedicated owed-property field in OwedFact cause loss for this fact?",
+      "allowedVocabulary": [
+        "NO_OBSERVABLE_LOSS",
+        "MINOR_WORDING_LOSS",
+        "TARGET_AMBIGUITY",
+        "NEIGHBOURING_PROPERTY_AMBIGUITY",
+        "CLARIFICATION_INSUFFICIENCY",
+        "INCORRECT_VERIFIER_BINDING",
+        "HUMAN_REVIEW_DIFFICULTY"
+      ],
+      "contributesToGates": [
+        "G8"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-13.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-13",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.FACT1.D",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1",
+      "axisId": "D",
+      "axisName": "EVIDENCE_SPAN_SEMANTIC_RELEVANCE",
+      "question": "Is the verbatim span actually relevant to WHY this fact is unresolved?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7",
+        "G8"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.FACT1.Q",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1",
+      "axisId": "Q",
+      "axisName": "OWED_PROPERTY_LOSS_IMPACT",
+      "question": "Did the ABSENCE of a dedicated owed-property field in OwedFact cause loss for this fact?",
+      "allowedVocabulary": [
+        "NO_OBSERVABLE_LOSS",
+        "MINOR_WORDING_LOSS",
+        "TARGET_AMBIGUITY",
+        "NEIGHBOURING_PROPERTY_AMBIGUITY",
+        "CLARIFICATION_INSUFFICIENCY",
+        "INCORRECT_VERIFIER_BINDING",
+        "HUMAN_REVIEW_DIFFICULTY"
+      ],
+      "contributesToGates": [
+        "G8"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-14.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-14",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G5"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.FACT1.D",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1",
+      "axisId": "D",
+      "axisName": "EVIDENCE_SPAN_SEMANTIC_RELEVANCE",
+      "question": "Is the verbatim span actually relevant to WHY this fact is unresolved?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7",
+        "G8"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.FACT1.Q",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1",
+      "axisId": "Q",
+      "axisName": "OWED_PROPERTY_LOSS_IMPACT",
+      "question": "Did the ABSENCE of a dedicated owed-property field in OwedFact cause loss for this fact?",
+      "allowedVocabulary": [
+        "NO_OBSERVABLE_LOSS",
+        "MINOR_WORDING_LOSS",
+        "TARGET_AMBIGUITY",
+        "NEIGHBOURING_PROPERTY_AMBIGUITY",
+        "CLARIFICATION_INSUFFICIENCY",
+        "INCORRECT_VERIFIER_BINDING",
+        "HUMAN_REVIEW_DIFFICULTY"
+      ],
+      "contributesToGates": [
+        "G8"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-15.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-15",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-16.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-16",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-17.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-17",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-17.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-17",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-17.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-17",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-17.503-634.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-17.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-17",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-17.503-634.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-17.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-17",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-17.503-634.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-17.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-17",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-17.503-634.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-18.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-18",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-18.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-18",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-18.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-18",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-18.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-18",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-18.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-18",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-18.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-18",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-19.FACT1.R_FLOOR",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-19",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "axisId": "R_FLOOR",
+      "axisName": "PRIORITY_FLOOR_IMPACT (floor half)",
+      "question": "Does the OTHER floor under-escalate this fact?",
+      "allowedVocabulary": [
+        "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+        "FLOOR_WOULD_NOT_MATERIALLY_UNDER_ESCALATE",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.ROW.H",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "H",
+      "axisName": "MULTI_GAP_PRESERVATION",
+      "question": "Do independent gaps survive INDEPENDENTLY?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G2"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT2.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT2.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT2.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT2.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-20.FACT2.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-20",
+      "factOrdinal": 2,
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.E",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "E",
+      "axisName": "BRANCH_PLAUSIBILITY",
+      "question": "Are branchA and branchB genuinely possible resolutions of THIS exact fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.F",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "F",
+      "axisName": "DECISION_DIVERGENCE_VALIDITY",
+      "question": "Do ifA and ifB represent MATERIALLY DIFFERENT downstream decisions?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G9"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.R_SAFETY",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "R_SAFETY",
+      "axisName": "PRIORITY_FLOOR_IMPACT (safety classification half)",
+      "question": "How would you classify this fact's safety significance?",
+      "allowedVocabulary": [
+        "ORDINARY_NON_ESCALATING",
+        "SAFETY_SIGNIFICANT",
+        "PLAUSIBLY_LIFE_CRITICAL",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.R_FLOOR",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "R_FLOOR",
+      "axisName": "PRIORITY_FLOOR_IMPACT (floor half)",
+      "question": "Does the OTHER floor under-escalate this fact?",
+      "allowedVocabulary": [
+        "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE",
+        "FLOOR_WOULD_NOT_MATERIALLY_UNDER_ESCALATE",
+        "INDETERMINATE"
+      ],
+      "contributesToGates": [
+        "G15"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-21.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-21",
+      "factOrdinal": 1,
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.FACT1.N",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "axisId": "N",
+      "axisName": "GOVERNED_EVIDENCE_QUOTATION_BOUNDARY",
+      "question": "Was reliance on a supplied governed record legitimate, and any quotation faithful?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G12",
+        "G14"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.FACT1.S",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "axisId": "S",
+      "axisName": "FIRST_PASS_GOVERNED_SOURCE_ID_BINDING (semantic half)",
+      "question": "Was naming — or not naming — a governed sourceId appropriate for this fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G14"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.FACT1.T",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "axisId": "T",
+      "axisName": "FIRST_PASS_GOVERNED_EVIDENCE_SEMANTIC_GROUNDING",
+      "question": "PRECONDITION FIRST: did the provider-visible treatment contain governed evidence sufficient to judge grounding at all?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G14"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-22.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-22",
+      "factOrdinal": 1,
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G1",
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. Row axes A and B are where that difference is judged.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.FACT1.C",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": 1,
+      "factKey": null,
+      "axisId": "C",
+      "axisName": "OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "question": "Does this declaration identify the EXACT property that remains unknown?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [],
+      "structuralNotExercised": "the frozen design expected 1 projected fact(s) on this case and the run produced 0. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.FACT1.L",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": 1,
+      "factKey": null,
+      "axisId": "L",
+      "axisName": "VERIFIER_TARGET_BINDING",
+      "question": "Does the verifier verdict address the EXACT projected owed fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G6"
+      ],
+      "structuralNotExercised": "the frozen design expected 1 projected fact(s) on this case and the run produced 0. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": "AXIS L PROVENANCE: this verdict comes from the §208B RECOVERED verifier evidence, executed against the frozen §208 first-pass outputs with the hazard-candidate block correctly populated and the §199 provider envelope. The §208 verifier outputs are DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE and are NOT an input to this judgment. The §208 fidelity limitation does not apply here.",
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.FACT1.N",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": 1,
+      "factKey": null,
+      "axisId": "N",
+      "axisName": "GOVERNED_EVIDENCE_QUOTATION_BOUNDARY",
+      "question": "Was reliance on a supplied governed record legitimate, and any quotation faithful?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G12",
+        "G14"
+      ],
+      "structuralNotExercised": "the frozen design expected 1 projected fact(s) on this case and the run produced 0. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.FACT1.S",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": 1,
+      "factKey": null,
+      "axisId": "S",
+      "axisName": "FIRST_PASS_GOVERNED_SOURCE_ID_BINDING (semantic half)",
+      "question": "Was naming — or not naming — a governed sourceId appropriate for this fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G14"
+      ],
+      "structuralNotExercised": "the frozen design expected 1 projected fact(s) on this case and the run produced 0. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.FACT1.T",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": 1,
+      "factKey": null,
+      "axisId": "T",
+      "axisName": "FIRST_PASS_GOVERNED_EVIDENCE_SEMANTIC_GROUNDING",
+      "question": "PRECONDITION FIRST: did the provider-visible treatment contain governed evidence sufficient to judge grounding at all?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G14"
+      ],
+      "structuralNotExercised": "the frozen design expected 1 projected fact(s) on this case and the run produced 0. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-23.FACT1.M",
+      "kind": "FACT_AXIS",
+      "caseId": "AC-23",
+      "factOrdinal": 1,
+      "factKey": null,
+      "axisId": "M",
+      "axisName": "CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "question": "Would the clarification actually obtain evidence CAPABLE OF SETTLING the fact?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G7"
+      ],
+      "structuralNotExercised": "the frozen design expected 1 projected fact(s) on this case and the run produced 0. This slot has no fact to judge. It is NOT_EXERCISED with the reason recorded, is NOT scored, and REDUCES the denominator of every gate it feeds.",
+      "fidelityDisclosure": null,
+      "pairingNote": "the run produced 0 admitted fact(s) where the frozen design expected 1. This slot is bound MECHANICALLY to produced fact 1 in projection order; confirm that pairing against the frozen truth before judging, and re-bind it if the correspondence is different.",
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-24.ROW.A",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-24",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "A",
+      "axisName": "FIRST_PASS_GAP_RECALL",
+      "question": "Were ALL genuinely decision-critical unresolved facts declared for this row?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-24.ROW.B",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-24",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "B",
+      "axisName": "FIRST_PASS_GAP_PRECISION",
+      "question": "Were unnecessary or already-resolved facts avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G3",
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    },
+    {
+      "slotId": "AC-24.ROW.I",
+      "kind": "ROW_AXIS",
+      "caseId": "AC-24",
+      "factOrdinal": null,
+      "factKey": null,
+      "axisId": "I",
+      "axisName": "FALSE_GAP_SUPPRESSION",
+      "question": "On a row whose text is sufficient, was an unnecessary owed fact avoided?",
+      "allowedVocabulary": [
+        "CORRECT",
+        "PARTIALLY_CORRECT",
+        "INCORRECT",
+        "AMBIGUOUS",
+        "NOT_EXERCISED"
+      ],
+      "contributesToGates": [
+        "G4"
+      ],
+      "structuralNotExercised": null,
+      "fidelityDisclosure": null,
+      "pairingNote": null,
+      "verdict": null,
+      "attribution": null,
+      "recordedAt": null
+    }
+  ],
+  "generatedAt": "2026-09-09T00:25:35.589Z"
+}

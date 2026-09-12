@@ -1,0 +1,62 @@
+
+A. RETIREMENT GUARD (fail-closed, consults BOTH sources)
+
+  PASS  A.1 retired offset 0 is REFUSED
+  PASS  A.2 retired offset 1 is REFUSED
+  PASS  A.3 retired realism offset 3 is REFUSED
+  PASS  A.4 UNKNOWN material is REFUSED
+  PASS  A.5 reserved offsets 2 and 3 remain permitted (and were NOT opened)
+  PASS  A.6 the frozen plan list under-reports exactly three retirements, reported not reconciled
+
+B. ROW VALIDITY AND THE FORBIDDEN-FAMILY RULE
+
+  PASS  B.1 all 16 rows pass the frozen row contract
+  PASS  B.2 exactly 16 rows
+  PASS  B.3 row ids are unique
+  PASS  B.4 EVERY forbidden family has a LURE in its observation -- absence alone is never a reason
+  PASS  B.5 every forbidden family carries a substantive machine-auditable rationale
+
+C. REQUIRED DISTRIBUTION
+
+  PASS  C.ROWS_WITH_FORBIDDEN_FAMILY_TRUTH 14 >= 10
+  PASS  C.SAFE_RESOLVED_OR_NEGATED 6 >= 4
+  PASS  C.ACTIVE_HAZARD 8 >= 4
+  PASS  C.MULTI_FAMILY_OR_SIBLING_ROUTING 4 >= 4
+  PASS  C.CLARIFICATION_NOT_OWED 13 >= 4
+  PASS  C.CLARIFICATION_OWED 3 >= 2
+  PASS  C.GOVERNED_RECORD_MATCHABLE 14 >= 4
+      recorded cross-hazard interactions: 3
+
+D. ANTI-CONTAMINATION
+
+  PASS  D.1 all 16 observations yield a distinctive >=40 char fragment
+  PASS  D.2 KNOWN_PROVIDER_CASE_COPY = FALSE -- no new observation appears in any development fixture, diagnostic fixture, opened seed, corpus or verification artifact
+      retired material was NOT read for this check: it is excluded by path, and its identity is established by hash in the retirement registry instead.
+
+E. CANONICAL-PATH DRY RUN, PROVIDER DISABLED
+
+  PASS  E.1 the run is provider-DISABLED
+  PASS  E.2 every row traverses freeze-time validation
+  PASS  E.3 all 16 rows x 3 arms constructed through the canonical path
+  PASS  E.4 no call record exists
+  PASS  E.5 a DISABLED run produces NO score
+  PASS  E.6 TRUTH_LEAK = 0 across all 48 constructed requests
+  PASS  E.7 PROVIDER_INVOCATION_COUNT = 0, by the harness's own counter
+
+F. NEGATIVE-CONTROL CAPABILITY PROOF
+
+  PASS  F.1 NEW_TRUTH_SUPPORTED_NEGATIVE_CONTROL_OPPORTUNITIES = 14 >= 10
+      seed 14 + PopA 13 + offset2 8 + offset3 8 + realism 0 = 43
+      + augmentation 14 = 57
+  PASS  F.2 AVAILABLE_NEGATIVE_CONTROL_CAPABILITY = 57 >= 48 (margin 9)
+      offsets 2 and 3 counted from METADATA ONLY -- neither was opened.
+
+G. HASHES
+
+      identifier      FORMAL_EXPERT_NEGATIVE_CONTROL_AUGMENTATION_V1
+      manifest        b2e96cc5b4fcfd61aa1159a85fcdd34915f883e3fba2d30948cdf65cad30bf64
+      truth keys      51afb054af7f9858fc6b0b1ffb980aa81ef9208a9e73eaa959a559e9e8b620b2
+      provenance      e33fb8df7dd3e7e2eeb07bd616f66a8134c235785d20318911000bfa36a10339
+
+29 passed, 0 failed
+PROVIDER_INVOCATION_COUNT = 0   RESERVED_OFFSETS_OPENED = 0

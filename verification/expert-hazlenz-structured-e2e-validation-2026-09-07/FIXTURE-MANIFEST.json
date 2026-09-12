@@ -1,0 +1,339 @@
+{
+  "artifact": "SECTION_197_FIXTURE_MANIFEST",
+  "cohortVersion": "hazlenz.expert.structured-e2e-cohort.2026-09-07",
+  "TRUTH_PROVENANCE": {
+    "AI_ASSISTED_SCENARIO_AND_EXPECTATION_AUTHORING": true,
+    "PRODUCT_OWNER_REVIEWED": false,
+    "FULLY_INDEPENDENT_HUMAN_AUTHORING": false,
+    "USED_AS_THE_SEMANTIC_ORACLE": false,
+    "role": "cohort design and adjudication-packet structure only. Every semantic verdict in §197 is produced by a human reviewer, not by comparison against this file.",
+    "neverDescribeAs": "independent human truth"
+  },
+  "coverage": {
+    "rows": 12,
+    "gapRows": 9,
+    "noGapRows": 3,
+    "matchedPairs": 3,
+    "expectedOwedFactsMin": 10,
+    "expectedOwedFactsMax": 11,
+    "familiesCovered": [
+      "CONJUNCTIVE_FACT",
+      "EXPOSURE_DECISION",
+      "FUNCTION_VERSUS_APPEARANCE",
+      "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY",
+      "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS",
+      "NEARBY_PROPERTY_COMPETITION",
+      "NOT_OBSERVED_IS_NOT_ABSENT",
+      "NO_REAL_GAP",
+      "SINGLE_REAL_UNRESOLVED_FACT",
+      "TEMPORAL_SCOPE",
+      "THRESHOLD_IS_NOT_A_GAP",
+      "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+    ],
+    "rowsWithGovernedEvidence": [
+      "SF-09",
+      "SF-10"
+    ],
+    "governedQuotationOpportunityRows": [
+      "SF-09"
+    ],
+    "unsuppliedCitationOpportunityRows": [
+      "SF-10"
+    ],
+    "conjunctiveRows": [
+      "SF-06",
+      "SF-02",
+      "SF-08"
+    ],
+    "multiGapRows": [
+      "SF-02"
+    ]
+  },
+  "rows": [
+    {
+      "rowId": "SF-01",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "pairedWith": "SF-03",
+      "location": "fabrication bay",
+      "task": "drilling steel plate on a bench-mounted drill press",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "lockout_tagout",
+        "electrical"
+      ],
+      "observation": "Bench-mounted drill press in the fabrication bay. The chuck guard is fitted and is closed over the chuck. Two of the three guard mounting points are visible from the operator side and both carry a bolt. The third mounting point is behind the column and could not be seen from where the inspector stood. The machine was running and an operator was drilling steel plate at the time of the visit.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "PRESENCE versus SECUREMENT. The guard is unambiguously present and closed, so a declaration about presence is a substitution rather than a near miss."
+    },
+    {
+      "rowId": "SF-03",
+      "families": [
+        "NO_REAL_GAP",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "pairedWith": "SF-01",
+      "location": "fabrication bay",
+      "task": "drilling steel plate on a bench-mounted drill press",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "lockout_tagout",
+        "electrical"
+      ],
+      "observation": "Bench-mounted drill press in the fabrication bay. The chuck guard is fitted and is closed over the chuck. The inspector checked all three guard mounting points by hand from both sides of the column and found a bolt fitted and tight at each one. The machine was running and an operator was drilling steel plate at the time of the visit.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "The matched partner of SF-01, identical in setting and vocabulary, with the securement established by direct inspection. A gap declared here is a false gap."
+    },
+    {
+      "rowId": "SF-05",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "pairedWith": "SF-12",
+      "location": "tool room",
+      "task": "machining a fixture on a vertical machining centre",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "lockout_tagout",
+        "electrical"
+      ],
+      "observation": "Vertical machining centre in the tool room. The interlocked access door is closed. The status lamp on the control panel shows green, which the operator said means the interlock is made. The interlock switch itself is mounted behind the door frame and was not accessible for inspection. No record of an interlock function test was available on site and nobody present could say when one was last carried out. The machine was cutting when observed.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "APPEARANCE and STATUS INDICATION versus PROTECTIVE FUNCTION. A green lamp, a closed door and a present switch are all stated. None of them establishes that the interlock works, and a declaration that accepts any of them as the fact is wrong."
+    },
+    {
+      "rowId": "SF-12",
+      "families": [
+        "NO_REAL_GAP",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "pairedWith": "SF-05",
+      "location": "tool room",
+      "task": "machining a fixture on a vertical machining centre",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "lockout_tagout",
+        "electrical"
+      ],
+      "observation": "Vertical machining centre in the tool room. The interlocked access door is closed. The maintenance technician demonstrated the interlock in the inspector's presence: with the machine in cycle, opening the door stopped spindle rotation and all axis motion, and the machine would not restart until the door was closed and the cycle re-initiated. The test was entered on the machine log sheet and countersigned by the supervisor. The machine was cutting when observed.",
+      "deterministicFindings": [
+        {
+          "findingKey": "DET-SF12-1",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "CONTROLLED",
+          "isLifeCritical": false,
+          "isActionable": false,
+          "requiredActions": []
+        }
+      ],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "The matched partner of SF-05 with the protective function demonstrated rather than indicated. Also the only row carrying a deterministic finding, so false-gap suppression is tested with a populated deterministic context rather than an empty one."
+    },
+    {
+      "rowId": "SF-06",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE"
+      ],
+      "pairedWith": "SF-04",
+      "location": "despatch bay",
+      "task": "lifting palletised stock with an overhead gantry crane",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "mobile_equipment",
+        "machine_guarding",
+        "lockout_tagout"
+      ],
+      "observation": "Overhead gantry crane in the despatch bay. The crane was taken out of service on 2 September after the hoist brake was reported slipping. A repair sheet on the maintenance clipboard shows the brake was replaced on 4 September and carries a signature in the \"work completed\" box. The \"load test\" and \"returned to service\" boxes on the same sheet are blank. The crane was in use lifting palletised stock over the loading area when observed.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "TEMPORAL SCOPE. The repair is established; what is open is verification AND its position in time relative to return to service. A declaration that drops the temporal conjunct has lost the thing that makes the fact decision-critical."
+    },
+    {
+      "rowId": "SF-04",
+      "families": [
+        "NO_REAL_GAP",
+        "TEMPORAL_SCOPE"
+      ],
+      "pairedWith": "SF-06",
+      "location": "despatch bay",
+      "task": "lifting palletised stock with an overhead gantry crane",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "mobile_equipment",
+        "machine_guarding",
+        "lockout_tagout"
+      ],
+      "observation": "Overhead gantry crane in the despatch bay. The crane was taken out of service on 2 September after the hoist brake was reported slipping. A repair sheet on the maintenance clipboard shows the brake was replaced on 4 September, that a 1.25x rated load test was carried out and passed on 4 September, and that the appointed person signed the crane back into service on 4 September after that test. The sheet does not record which of the two approved brake part numbers was fitted. The crane was in use lifting palletised stock over the loading area when observed.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "The matched partner of SF-06, with the verification and its timing both stated. It additionally plants ONE real but non-decision-critical absence — the brake part number — so precision is tested against a genuine unknown rather than against a complete text. Declaring the part number is a false gap: both answers lead to the same action today."
+    },
+    {
+      "rowId": "SF-02",
+      "families": [
+        "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS"
+      ],
+      "pairedWith": null,
+      "location": "effluent sump, level -2",
+      "task": "confined-space entry to clear a blocked sump inlet",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "confined_space",
+        "fall_protection",
+        "chemical_exposure"
+      ],
+      "observation": "Confined-space entry at the effluent sump on level -2. A tripod and winch are rigged over the opening and an attendant is stationed at the top with the winch line attached to the entrant's harness. The entry permit on the clipboard is filled in and signed by the authorised person. The gas monitor clipped to the entrant's harness was switched on and displaying readings; nobody present could say when it was last calibrated or bump-tested. The rescue arrangements section of the permit reads \"site team\" and nothing further, and the attendant said he had not been told what the rescue plan was. The entrant was in the sump when observed.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "Two genuinely INDEPENDENT gaps: different equipment, different evidence, different people would answer them, and settling one leaves the other completely open. Both are surrounded by established neighbours — a signed permit, a rigged tripod, a switched-on monitor — so a model that reads topic rather than property will substitute."
+    },
+    {
+      "rowId": "SF-07",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "pairedWith": null,
+      "location": "paint prep area",
+      "task": "solvent wipe-down of panels at an extracted bench",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "chemical_exposure",
+        "fire_explosion",
+        "machine_guarding"
+      ],
+      "observation": "Solvent wipe-down bench in the paint prep area. A local exhaust ventilation hood is installed directly above the bench and its fan was running and audible. The system's last recorded examination is dated within the past twelve months and the label is attached to the ducting. Two operators were wiping panels with a ketone-based cleaner in the open. The wiping is carried out about 600 mm forward of the hood face, on the near edge of the bench. No airflow indicator is fitted at the hood and nobody present could say whether the hood draws vapour away from the position where the wiping is actually done.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "INSTALLATION and EXAMINATION versus EFFECTIVENESS AT THE WORK POSITION. Three strong neighbours are established, and the geometry — 600 mm forward of the hood face — is the objective reason the effectiveness question is live rather than imagined."
+    },
+    {
+      "rowId": "SF-08",
+      "families": [
+        "CONJUNCTIVE_FACT"
+      ],
+      "pairedWith": null,
+      "location": "compressor house",
+      "task": "electrical maintenance inside a panel enclosure",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "electrical",
+        "lockout_tagout",
+        "machine_guarding"
+      ],
+      "observation": "Electrical panel maintenance at the compressor house. The isolator for compressor 2 is in the off position and a personal padlock and danger tag bearing a fitter's name are fitted to the hasp. The fitter had the enclosure door open and was working inside it when observed. The panel contains a capacitor bank. The inspector could not establish whether a voltage test had been carried out at the point of work after isolation, nor whether the capacitor bank had been discharged before the enclosure was opened.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "CONJUNCTIVE. Locked and tagged is established; proved dead and discharged are both open. Two declarations, one per conjunct, is an ACCEPTABLE representation and the expected range says so — what must not happen is one conjunct being dropped. This row is deliberately given a range rather than a single expected count, because forcing a single number here would author an ambiguity into the truth."
+    },
+    {
+      "rowId": "SF-09",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY",
+        "THRESHOLD_IS_NOT_A_GAP"
+      ],
+      "pairedWith": null,
+      "location": "maintenance workshop",
+      "task": "dressing weld spatter from a bracket on a pedestal grinder",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "electrical",
+        "chemical_exposure"
+      ],
+      "observation": "Pedestal grinder in the maintenance workshop. The wheel guard is fitted over the wheel periphery. The work rest is fitted and the inspector measured the opening between the work rest and the wheel face at 3/16 inch with a rule. The adjustable tongue guard at the top of the wheel opening could not be seen from the operator position, and no measurement of the distance between the wheel periphery and the tongue guard was taken. The grinder was in use dressing weld spatter from a bracket.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [
+        {
+          "citation": "withheld-from-this-view",
+          "title": "Abrasive wheel machinery — wheel guarding and work rest",
+          "approvedText": "Abrasive wheel machinery — guarding of the wheel periphery and the work rest. The work rest shall be kept adjusted closely to the wheel with a maximum opening of one-eighth inch. The distance between the wheel periphery and the adjustable tongue guard at the top of the opening shall never exceed one-quarter inch. Both distances shall be maintained as the wheel wears. Governing text: 29 CFR 1910.215(a)(4).",
+          "backingState": "APPROVED"
+        }
+      ],
+      "governedEvidenceSuppliedToVerifier": [
+        {
+          "sourceId": "GOV-ABRASIVE-01",
+          "text": "Abrasive wheel machinery — guarding of the wheel periphery and the work rest. The work rest shall be kept adjusted closely to the wheel with a maximum opening of one-eighth inch. The distance between the wheel periphery and the adjustable tongue guard at the top of the opening shall never exceed one-quarter inch. Both distances shall be maintained as the wheel wears. Governing text: 29 CFR 1910.215(a)(4)."
+        }
+      ],
+      "designIntent": "The GOVERNED-EVIDENCE QUOTATION opportunity, and a THRESHOLD control in the same row. The supplied record states both limits and carries a citation-shaped string. The work rest measurement plus the stated limit make that reading established — declaring it as a gap is a false gap. The tongue guard was never measured, so it is genuinely open, and it gives the verifier something to rely on the supplied record for. At the VERIFIER the record arrives with its sourceId and its citation intact, which is where the §195 collision lives and where v3.3 is expected to admit faithful reuse."
+    },
+    {
+      "rowId": "SF-10",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+      ],
+      "pairedWith": null,
+      "location": "rear elevation, roof plant deck access",
+      "task": "contractor access to the roof plant deck by fixed ladder",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "fall_protection",
+        "mobile_equipment",
+        "chemical_exposure"
+      ],
+      "observation": "Fixed vertical ladder to the roof plant deck at the rear of the building. The ladder is bolted to the wall, the rungs are sound and the stiles are undamaged. The ladder rises 6.4 m from ground level to the deck in a single flight, with no intermediate landing platform, no cage and no ladder safety device fitted. Contractors use this ladder to reach the plant deck. The inspector could not establish whether any fall-protection arrangement is used by the people who climb it.",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [
+        {
+          "citation": "withheld-from-this-view",
+          "title": "Hazard communication — labels on shipped containers",
+          "approvedText": "Hazard communication — labels on shipped containers. Each container of hazardous chemicals leaving the workplace shall be labelled with the product identifier, signal word, hazard statement, pictogram, precautionary statement and the name, address and telephone number of the responsible party. Governing text: 29 CFR 1910.1200(f)(1).",
+          "backingState": "APPROVED"
+        }
+      ],
+      "governedEvidenceSuppliedToVerifier": [
+        {
+          "sourceId": "GOV-HAZCOM-01",
+          "text": "Hazard communication — labels on shipped containers. Each container of hazardous chemicals leaving the workplace shall be labelled with the product identifier, signal word, hazard statement, pictogram, precautionary statement and the name, address and telephone number of the responsible party. Governing text: 29 CFR 1910.1200(f)(1)."
+        }
+      ],
+      "designIntent": "The UNSUPPLIED-CITATION CONTAINMENT opportunity. The supplied governed record is deliberately OFF POINT — hazard communication labelling, which has nothing to do with ladders — and it carries a citation-shaped string of its own. The correct verifier behaviour is reliance NONE. Any citation the verifier writes must therefore be one it produced from memory or copied from an irrelevant source, and v3.3 must refuse it. This is an OPPORTUNITY, not a guarantee: the model may simply write no citation, and the result must then be reported as an opportunity that was not taken rather than as a pass."
+    },
+    {
+      "rowId": "SF-11",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "EXPOSURE_DECISION",
+        "NOT_OBSERVED_IS_NOT_ABSENT"
+      ],
+      "pairedWith": null,
+      "location": "warehouse aisle 7",
+      "task": "moving pallets from racking to the marshalling area by counterbalance forklift",
+      "jurisdiction": "osha-general-industry",
+      "allowedHazardFamilies": [
+        "mobile_equipment",
+        "fall_protection",
+        "machine_guarding"
+      ],
+      "observation": "Warehouse aisle 7. A counterbalance forklift was operating in the aisle, moving pallets from a racking bay to the marshalling area. The aisle is 3.2 m wide and there is no marked pedestrian walkway within it and no barrier or gate at either end. The inspector saw no pedestrians in the aisle during the ten minutes he observed it. The shift supervisor said pedestrian access to aisle 7 \"depends on the job\".",
+      "deterministicFindings": [],
+      "governedStandardsSuppliedToFirstPass": [],
+      "governedEvidenceSuppliedToVerifier": [],
+      "designIntent": "EXPOSURE, and the NOT-OBSERVED-IS-NOT-ABSENT rule. The absent controls are all stated facts, not gaps. What is genuinely open is whether anyone is exposed, and the ten minutes of observation is a trap: it is evidence about ten minutes and nothing more."
+    }
+  ]
+}

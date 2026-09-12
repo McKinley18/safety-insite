@@ -1,0 +1,1260 @@
+{
+  "operation": "§144 Expert HazLenz v9 bounded hosted linkage confirmation probe",
+  "isFormalEvaluation": false,
+  "formalGateStatusClaimed": "NONE",
+  "m14RemediationStatus": "NOT_ATTEMPTED",
+  "startedAt": "2026-09-03T04:05:17.604Z",
+  "finishedAt": "2026-09-03T04:08:12.845Z",
+  "stopReason": "COMPLETED",
+  "identityViolation": null,
+  "accounting": {
+    "callsAttempted": 9,
+    "callsCompleted": 9,
+    "providerRequestsAttempted": 9,
+    "retryRequestsAttempted": 0,
+    "inputTokens": 115067,
+    "outputTokens": 13922,
+    "spendUsd": 0.36935399999999996,
+    "callCeiling": 9,
+    "requestCeiling": 12,
+    "retryRequestBudget": 3,
+    "spendCeilingUsd": 1.2480000000000002
+  },
+  "providerInvocationsThisProcess": 9,
+  "historicalProviderInvocationCount": 195,
+  "retryCauses": [],
+  "retriesSuppressed": [],
+  "promptIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v9",
+    "contractVersion": "hazlenz.expert.analysis.v2",
+    "systemPromptSha256": "8f5c7960c559067626f12e239d63b5da2d312c9faf7dd19d329f555cf93b60f9",
+    "wireSchemaSha256": "fc37abc7eef49499655122ac0f09000056a16500fe8bcb4e597e35b2005891b1"
+  },
+  "callDisposition": {
+    "present": 9,
+    "outputRejected": 0,
+    "providerFailed": 0
+  },
+  "persistence": {
+    "storeFile": "RUN-RECORDS.jsonl",
+    "storeSha256": "1d344c44fff801d3c6259540543d8fc9a85e2a767bbd2d5151f99c6ae6892ce6",
+    "recordsOnDisk": 9,
+    "parseProblems": [],
+    "completenessProblems": [],
+    "midRunReadBackProof": {
+      "rowId": "CL-R1",
+      "provenBeforeExit": true,
+      "recordsOnDisk": 1
+    }
+  },
+  "LINKAGE_V9_HOSTED_CONFIRMATION": "FAIL_FORBIDDEN_LINKAGE",
+  "linkageDiagnostics": {
+    "measuredAgainst": "the AUTHORED per-row linkageTruth in the frozen v3 manifest. An opportunity requires an emitted clarification on a row that makes a linkage claim — neither \"candidate + clarification\" (§140) nor \"labelled FORBIDDEN\" (§142) is sufficient.",
+    "REQUIRED_LINKAGE_OPPORTUNITIES": 3,
+    "REQUIRED_LINKAGE_POPULATED": 3,
+    "REQUIRED_LINKAGE_VALID": 3,
+    "REQUIRED_LINKAGE_MISSING": 0,
+    "ALLOWED_LINKAGE_OPPORTUNITIES": 2,
+    "ALLOWED_LINKAGE_POPULATED": 2,
+    "ALLOWED_LINKAGE_VALID": 2,
+    "FORBIDDEN_LINKAGE_OPPORTUNITIES": 1,
+    "FORBIDDEN_LINKAGE_ATTEMPTS": 1,
+    "FORBIDDEN_LINKAGE_ACCEPTED": 1,
+    "NO_LINKAGE_OPPORTUNITY_ROWS": 2,
+    "NOT_A_LINKAGE_TEST_ROWS": 1,
+    "INVALID_LINKAGE_ATTEMPTS": 0,
+    "INVALID_LINKAGE_STRIPPED": 0,
+    "ARBITRATION_EVENTS": 0,
+    "perRow": [
+      {
+        "rowId": "CL-R1",
+        "expectation": "REQUIRED",
+        "clarificationsEmitted": 1,
+        "populated": 1,
+        "valid": 1,
+        "unresolved": 0,
+        "status": "SATISFIED"
+      },
+      {
+        "rowId": "CL-R2",
+        "expectation": "REQUIRED",
+        "clarificationsEmitted": 1,
+        "populated": 1,
+        "valid": 1,
+        "unresolved": 0,
+        "status": "SATISFIED"
+      },
+      {
+        "rowId": "CL-R3",
+        "expectation": "REQUIRED",
+        "clarificationsEmitted": 1,
+        "populated": 1,
+        "valid": 1,
+        "unresolved": 0,
+        "status": "SATISFIED"
+      },
+      {
+        "rowId": "CL-F1",
+        "expectation": "FORBIDDEN",
+        "clarificationsEmitted": 1,
+        "populated": 1,
+        "valid": 1,
+        "unresolved": 0,
+        "status": "VIOLATION"
+      },
+      {
+        "rowId": "CL-F2",
+        "expectation": "FORBIDDEN",
+        "clarificationsEmitted": 0,
+        "populated": 0,
+        "valid": 0,
+        "unresolved": 0,
+        "status": "NO_LINKAGE_OPPORTUNITY"
+      },
+      {
+        "rowId": "CL-F3",
+        "expectation": "FORBIDDEN",
+        "clarificationsEmitted": 0,
+        "populated": 0,
+        "valid": 0,
+        "unresolved": 0,
+        "status": "NO_LINKAGE_OPPORTUNITY"
+      },
+      {
+        "rowId": "CL-N1",
+        "expectation": "NOT_A_LINKAGE_TEST",
+        "clarificationsEmitted": 0,
+        "populated": 0,
+        "valid": 0,
+        "unresolved": 0,
+        "status": "NOT_A_LINKAGE_TEST"
+      },
+      {
+        "rowId": "CL-T1",
+        "expectation": "ALLOWED",
+        "clarificationsEmitted": 1,
+        "populated": 1,
+        "valid": 1,
+        "unresolved": 0,
+        "status": "CLEAN"
+      },
+      {
+        "rowId": "CL-T2",
+        "expectation": "ALLOWED",
+        "clarificationsEmitted": 1,
+        "populated": 1,
+        "valid": 1,
+        "unresolved": 0,
+        "status": "CLEAN"
+      }
+    ],
+    "ARBITRATION_OPPORTUNITIES": 0,
+    "SURVIVING_LINKED_CONTRADICTIONS": 0,
+    "ARBITRATION_LIVE_STATUS": "NO_NATURAL_OPPORTUNITY",
+    "classification": "LINKAGE_PARTIAL",
+    "arbitrationEventDetail": [],
+    "invalidLinkageDetail": [],
+    "survivingContradictionDetail": []
+  },
+  "clarificationClassification": [
+    {
+      "rowId": "CL-R1",
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "The isolation question is the direct subject of exactly one candidate — the lockout/tagout one — and decides whether it stays ACTIVE. The atmospheric candidate is unaffected by the answer, so the referent is unique while a second candidate is genuinely available to be chosen wrongly.",
+      "clarificationId": "clar-loto-mcc",
+      "question": "Was the agitator drive isolated and locked out at the motor control centre, in addition to the local selector being set to STOP?",
+      "whyItMatters": "If the drive was isolated and locked at the MCC, the agitator cannot be energized while the fitter's arm is in the vessel and no further action is needed on this point. If it was not isolated at the MCC, the local STOP selector alone does not prevent re-energization (locally or remotely), and the fitter is exposed to an unexpected start hazard with an arm inside the manway, requiring immediate correction before work continues.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "BLOCKING",
+      "emittedLink": "cand-loto",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "cand-loto:lockout_tagout:INSUFFICIENT_EVIDENCE",
+        "cand-atmospheric:atmospheric_hazard:ACTIVE"
+      ],
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "CL-R2",
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "Isolation between booth and collector determines whether the fire/explosion propagation candidate remains ACTIVE. It does not change the dust-accumulation candidate, which stands on the loaded ductwork regardless, so exactly one candidate is the subject.",
+      "clarificationId": "clar-isolation-device",
+      "question": "Is the dust collector fitted with an isolation valve or abort gate between the booth and the collector body?",
+      "whyItMatters": "If an isolation valve or abort gate is present and functional, a deflagration originating in the collector would be prevented from propagating flame back into the occupied grinding booth even with the vent panel compromised; if no such device exists, a deflagration in the collector could flash back through the ductwork into the booth where personnel are actively grinding, making the exposure to booth occupants far more severe. The observation explicitly states this is not established, so the correct current characterization of worker exposure risk cannot be finalized without it.",
+      "affectedDecision": "EXPOSURE",
+      "criticality": "BLOCKING",
+      "emittedLink": "fire-explosion-vent-defeated",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "fire-explosion-vent-defeated:fire_explosion:ACTIVE",
+        "ductwork-dust-loading:combustible_dust:ACTIVE"
+      ],
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "CL-R3",
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "THE PRECEDENCE TEST. Control/PPE-shaped in FORM, but respiratory protection is the direct subject of exactly one candidate — the inhalation exposure — and the two answers give two different current actions. Under v8 the \"general PPE follow-up\" clause collided with this and it would have scored as a FORBIDDEN link; under v9 TEST 1 runs first and it is REQUIRED. Paired with CL-F3, which is the genuinely generic PPE question that stays FORBIDDEN.",
+      "clarificationId": "clar-resp-protection",
+      "question": "What respiratory protection, if any, was the technician wearing while cleaning inside the booth with the extract fan off?",
+      "whyItMatters": "If the technician was wearing an appropriate air-supplied or solvent-rated respirator, the inhalation exposure from the unventilated aerosolised solvent is controlled at the person level despite the fan being off; if no respiratory protection was worn, the technician has unmitigated direct exposure to solvent vapour/aerosol in an enclosed space. These two answers lead to different conclusions about whether the current exposure is controlled or not.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "BLOCKING",
+      "emittedLink": "cand-resp-protection-unknown",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "cand-solvent-inhalation:chemical_inhalation_contact:ACTIVE",
+        "cand-resp-protection-unknown:respiratory_protection:INSUFFICIENT_EVIDENCE",
+        "cand-fire-explosion-solvent:fire_explosion:INSUFFICIENT_EVIDENCE"
+      ],
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "CL-F1",
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: ambiguous referent. Two presses of the same family in the same state, and the authorisation question applies to both identically. There is no unique candidate to name, so any link is wrong.",
+      "clarificationId": "cq_authorisation_status",
+      "question": "Has either the east or west trim press actually completed the site muting-authorisation process (e.g., engineering review confirming muting is limited to a safe portion of the cycle with compensating safeguards)?",
+      "whyItMatters": "If the presses were authorised, the muting may be an engineered, compensated condition (e.g., muted only during the non-hazardous part of the stroke) and the response would focus on verifying the compensating measures and key control; if they were never authorised, the muting is an uncontrolled defeat of point-of-operation guarding on both machines and the presses should be stopped or the curtains restored until authorisation and compensating measures are established.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "criticality": "BLOCKING",
+      "emittedLink": "unverified_muting_authorisation",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "muted_light_curtains:machine_guarding:ACTIVE",
+        "mute_key_left_in_panel:machine_guarding:ACTIVE",
+        "unverified_muting_authorisation:training_procedure_supervision:INSUFFICIENT_EVIDENCE"
+      ],
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "CL-T1",
+      "linkageTruth": "ALLOWED",
+      "linkageRationale": "The exposure question has the fall candidate as its primary subject, but it reads correctly on its own — \"is anyone scheduled on the roof\" needs no candidate to be understood or acted on. ALLOWED: linking and omitting are both correct, and omission is not scored as a failure.",
+      "clarificationId": "clar-1",
+      "question": "Is any employee currently scheduled or expected to access the roof through this hatch while it remains propped open and unguarded?",
+      "whyItMatters": "If a worker is scheduled to use the hatch now, the fall exposure is confirmed and immediate fall protection (guardrail, cover, or personal fall arrest) must be implemented before any access; if no one is scheduled to access it, the priority is to secure or cover the opening to prevent incidental exposure until it is needed, which is a different and less urgent control action.",
+      "affectedDecision": "EXPOSURE",
+      "criticality": "BLOCKING",
+      "emittedLink": "cand-1",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "cand-1:walking_working_surfaces:ACTIVE",
+        "cand-2:material_handling_storage:ACTIVE"
+      ],
+      "arbitrationApplicable": false
+    },
+    {
+      "rowId": "CL-T2",
+      "linkageTruth": "ALLOWED",
+      "linkageRationale": "Line contents primarily concern the hot-work candidate but the question stands alone. Also carries an unrelated APPROVED respiratory record, so governed abstention is observed without spending a dedicated row on it.",
+      "clarificationId": "line_contents_unknown",
+      "question": "What does the process line being hot-tapped actually carry?",
+      "whyItMatters": "If the line carries a flammable or hazardous substance, the hot-tap creates a fire/explosion or chemical release exposure requiring immediate work stoppage and specialized controls; if it carries an inert or non-hazardous substance, the hot-tap can proceed under standard hot work controls. The permit copy at the job does not state which, and the correct response differs materially between the two.",
+      "affectedDecision": "HAZARD_SEVERITY",
+      "criticality": "BLOCKING",
+      "emittedLink": "unknown_line_contents",
+      "linkPopulated": true,
+      "referencedCandidateExists": true,
+      "emittedCandidates": [
+        "no_fire_watch:hot_work:ACTIVE",
+        "combustible_lagging_proximity:fire_explosion:ACTIVE",
+        "unknown_line_contents:chemical_release:INSUFFICIENT_EVIDENCE"
+      ],
+      "arbitrationApplicable": false
+    }
+  ],
+  "clarificationDiagnostics": {
+    "note": "NARROW probe. This is NOT a broad clarification-recall evaluation and must not be read as one; broad retention validation remains INTENTIONALLY DEFERRED.",
+    "totalClarifications": 6,
+    "averagePerCall": 0.667,
+    "trueGapControls": 5,
+    "trueGapControlsWithAQuestion": 5,
+    "trueGapControlsWithLabelMatch": 4,
+    "trueGapDetail": [
+      {
+        "rowId": "CL-R1",
+        "authoredGap": "whether the agitator drive is isolated and locked at its motor control centre, rather than merely selected to STOP at the local panel",
+        "authoredAffectedDecision": "REQUIRED_CONTROL",
+        "emitted": [
+          {
+            "question": "Was the agitator drive isolated and locked out at the motor control centre, in addition to the local selector being set to STOP?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "whyItMatters": "If the drive was isolated and locked at the MCC, the agitator cannot be energized while the fitter's arm is in the vessel and no further action is needed on this point. If it was not isolated at the MCC, the local STOP selector alone does not prevent re-energization (locally or remotely), and the fitter is exposed to an unexpected start hazard with an arm inside the manway, requiring immediate correction before work continues.",
+            "relatesToCandidateKey": "cand-loto"
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatch": true
+      },
+      {
+        "rowId": "CL-R2",
+        "authoredGap": "whether an isolation valve or abort gate separates the grinding booth from the collector body, which decides whether a deflagration could propagate back to occupied space",
+        "authoredAffectedDecision": "REQUIRED_CONTROL",
+        "emitted": [
+          {
+            "question": "Is the dust collector fitted with an isolation valve or abort gate between the booth and the collector body?",
+            "affectedDecision": "EXPOSURE",
+            "whyItMatters": "If an isolation valve or abort gate is present and functional, a deflagration originating in the collector would be prevented from propagating flame back into the occupied grinding booth even with the vent panel compromised; if no such device exists, a deflagration in the collector could flash back through the ductwork into the booth where personnel are actively grinding, making the exposure to booth occupants far more severe. The observation explicitly states this is not established, so the correct current characterization of worker exposure risk cannot be finalized without it.",
+            "relatesToCandidateKey": "fire-explosion-vent-defeated"
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatch": false
+      },
+      {
+        "rowId": "CL-R3",
+        "authoredGap": "what respiratory protection the technician inside the booth was wearing while the extract fan was off",
+        "authoredAffectedDecision": "REQUIRED_CONTROL",
+        "emitted": [
+          {
+            "question": "What respiratory protection, if any, was the technician wearing while cleaning inside the booth with the extract fan off?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "whyItMatters": "If the technician was wearing an appropriate air-supplied or solvent-rated respirator, the inhalation exposure from the unventilated aerosolised solvent is controlled at the person level despite the fan being off; if no respiratory protection was worn, the technician has unmitigated direct exposure to solvent vapour/aerosol in an enclosed space. These two answers lead to different conclusions about whether the current exposure is controlled or not.",
+            "relatesToCandidateKey": "cand-resp-protection-unknown"
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatch": true
+      },
+      {
+        "rowId": "CL-T1",
+        "authoredGap": "whether anyone is scheduled to work on the roof, and therefore to pass the propped-open hatch, during the period it is propped",
+        "authoredAffectedDecision": "EXPOSURE",
+        "emitted": [
+          {
+            "question": "Is any employee currently scheduled or expected to access the roof through this hatch while it remains propped open and unguarded?",
+            "affectedDecision": "EXPOSURE",
+            "whyItMatters": "If a worker is scheduled to use the hatch now, the fall exposure is confirmed and immediate fall protection (guardrail, cover, or personal fall arrest) must be implemented before any access; if no one is scheduled to access it, the priority is to secure or cover the opening to prevent incidental exposure until it is needed, which is a different and less urgent control action.",
+            "relatesToCandidateKey": "cand-1"
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatch": true
+      },
+      {
+        "rowId": "CL-T2",
+        "authoredGap": "what the live line being hot-tapped actually carries",
+        "authoredAffectedDecision": "HAZARD_SEVERITY",
+        "emitted": [
+          {
+            "question": "What does the process line being hot-tapped actually carry?",
+            "affectedDecision": "HAZARD_SEVERITY",
+            "whyItMatters": "If the line carries a flammable or hazardous substance, the hot-tap creates a fire/explosion or chemical release exposure requiring immediate work stoppage and specialized controls; if it carries an inert or non-hazardous substance, the hot-tap can proceed under standard hot work controls. The permit copy at the job does not state which, and the correct response differs materially between the two.",
+            "relatesToCandidateKey": "unknown_line_contents"
+          }
+        ],
+        "anyQuestionEmitted": true,
+        "labelMatch": true
+      }
+    ],
+    "noGapOrNotATestRows": 1,
+    "noGapOrNotATestSilent": 1,
+    "affectedDecisionHistogram": {
+      "HAZARD_EXISTENCE": 0,
+      "HAZARD_SEVERITY": 1,
+      "EXPOSURE": 2,
+      "APPLICABILITY": 0,
+      "REQUIRED_CONTROL": 3,
+      "REGULATORY_INTERPRETATION": 0
+    },
+    "coverageTemplateRows": []
+  },
+  "citationDiagnostics": {
+    "INPUT_CITATION_SHAPED_COUNT": 0,
+    "EXPERT_OUTPUT_CITATION_SHAPED_COUNT": 0,
+    "ACCEPTED_CITATION_COUNT": 0,
+    "REJECTED_CITATION_COUNT": 0,
+    "MERGED_CITATION_COUNT": 0,
+    "GOVERNED_AUTHORITY_CITATION_COUNT": 1,
+    "SUPPLIED_RECORD_CITATION_COUNT": 1
+  },
+  "groundingDiagnostics": [
+    {
+      "rowId": "CL-T2",
+      "recordsSupplied": [
+        {
+          "title": "Respiratory protection program",
+          "backingState": "APPROVED"
+        }
+      ],
+      "referencesARecordHandle": false,
+      "summary": "The observation describes active hot-tapping of a live process line with two current control gaps: the permit-required fire watch is absent from the work location, and combustible lagging sits within a metre of the tap point — together these mean a spark-ignited fire could go undetected. A further gap is that the permit copy at the job does not record what the line carries, which leaves open whether the hot-tap is exposing workers to a flammable or hazardous substance release, a fact that changes whether the work can safely continue as-is. No governed record supplied addresses hot work, fire watch, or process line content controls, so no regulatory obligation is asserted here beyond what the observation itself shows.",
+      "forbiddenFamiliesEmitted": []
+    }
+  ],
+  "coverageDiagnostics": {
+    "deterministicCoveredCount": 2,
+    "additiveExpertCoveredCount": 9,
+    "combinedCoveredCount": 11,
+    "truthMissesAfterUnionCount": 0,
+    "truthPresentTotal": 11,
+    "expertOnlyFamiliesCount": 17,
+    "perRow": [
+      {
+        "rowId": "CL-R1",
+        "truthPresent": [
+          "lockout_tagout",
+          "atmospheric_hazard"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "lockout_tagout",
+          "atmospheric_hazard"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "lockout_tagout",
+          "atmospheric_hazard"
+        ]
+      },
+      {
+        "rowId": "CL-R2",
+        "truthPresent": [
+          "combustible_dust",
+          "fire_explosion"
+        ],
+        "deterministicCovered": [
+          "combustible_dust"
+        ],
+        "additiveExpertCovered": [
+          "fire_explosion"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "fire_explosion"
+        ]
+      },
+      {
+        "rowId": "CL-R3",
+        "truthPresent": [
+          "chemical_inhalation_contact"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "chemical_inhalation_contact"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "chemical_inhalation_contact",
+          "respiratory_protection",
+          "fire_explosion"
+        ]
+      },
+      {
+        "rowId": "CL-F1",
+        "truthPresent": [
+          "machine_guarding"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "machine_guarding"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "machine_guarding",
+          "training_procedure_supervision"
+        ]
+      },
+      {
+        "rowId": "CL-F2",
+        "truthPresent": [
+          "mobile_equipment",
+          "emergency_equipment"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "mobile_equipment",
+          "emergency_equipment"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "mobile_equipment",
+          "emergency_equipment"
+        ]
+      },
+      {
+        "rowId": "CL-F3",
+        "truthPresent": [
+          "personal_protective_equipment"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "personal_protective_equipment"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "personal_protective_equipment",
+          "welding_fumes"
+        ]
+      },
+      {
+        "rowId": "CL-N1",
+        "truthPresent": [],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": []
+      },
+      {
+        "rowId": "CL-T1",
+        "truthPresent": [
+          "fall_protection"
+        ],
+        "deterministicCovered": [
+          "fall_protection"
+        ],
+        "additiveExpertCovered": [],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "walking_working_surfaces",
+          "material_handling_storage"
+        ]
+      },
+      {
+        "rowId": "CL-T2",
+        "truthPresent": [
+          "hot_work"
+        ],
+        "deterministicCovered": [],
+        "additiveExpertCovered": [
+          "hot_work"
+        ],
+        "coveredByNeither": [],
+        "expertOnlyFamilies": [
+          "hot_work",
+          "fire_explosion",
+          "chemical_release"
+        ]
+      }
+    ]
+  },
+  "routingDiagnostics": {
+    "expertCandidates": 20,
+    "decisionCriticalClarifications": 6,
+    "crossHazardInsights": 6,
+    "disagreements": 1,
+    "outcomes": {
+      "ANALYZED": 8,
+      "NOTHING_TO_ADD": 1
+    }
+  },
+  "perFixture": [
+    {
+      "rowId": "CL-R1",
+      "roles": [
+        "LINKAGE_REQUIRED",
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "The isolation question is the direct subject of exactly one candidate — the lockout/tagout one — and decides whether it stays ACTIVE. The atmospheric candidate is unaffected by the answer, so the referent is unique while a second candidate is genuinely available to be chosen wrongly.",
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "atmospheric_hazard"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-R1-G1",
+            "description": "whether the agitator drive is isolated and locked at its motor control centre, rather than merely selected to STOP at the local panel",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-loto",
+          "family": "lockout_tagout",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        },
+        {
+          "key": "cand-atmospheric",
+          "family": "atmospheric_hazard",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-loto-mcc",
+          "question": "Was the agitator drive isolated and locked out at the motor control centre, in addition to the local selector being set to STOP?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "cand-loto"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "LOTO_STORED_ENERGY",
+          "participants": [
+            "lockout_tagout",
+            "confined_space"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Beyond the confined-space finding, the observation raises an unresolved lockout/tagout question: the agitator was only stopped at a local selector, with no confirmation of isolation and lockout at the motor control centre, while a fitter's arm was inside the vessel through the manway. It also supports a nitrogen-blanket atmospheric exposure at the point of entry, separate from the general confined-space hazard. The combination of unconfirmed drive isolation and the fitter's arm being physically inside the agitator's space compounds the potential consequences of any inadvertent start, so confirming MCC-level lockout is the critical open decision here.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 20512,
+      "inputTokens": 12705,
+      "outputTokens": 1680,
+      "costUsd": 0.04221,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-R2",
+      "roles": [
+        "LINKAGE_REQUIRED",
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "Isolation between booth and collector determines whether the fire/explosion propagation candidate remains ACTIVE. It does not change the dust-accumulation candidate, which stands on the loaded ductwork regardless, so exactly one candidate is the subject.",
+      "truth": {
+        "presentHazardFamilies": [
+          "combustible_dust",
+          "fire_explosion"
+        ],
+        "forbiddenHazardFamilies": [
+          "noise_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-R2-G1",
+            "description": "whether an isolation valve or abort gate separates the grinding booth from the collector body, which decides whether a deflagration could propagate back to occupied space",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "fire-explosion-vent-defeated",
+          "family": "fire_explosion",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 1
+        },
+        {
+          "key": "ductwork-dust-loading",
+          "family": "combustible_dust",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-isolation-device",
+          "question": "Is the dust collector fitted with an isolation valve or abort gate between the booth and the collector body?",
+          "affectedDecision": "EXPOSURE",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "fire-explosion-vent-defeated"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "OTHER",
+          "participants": [
+            "fire-explosion-vent-defeated",
+            "haz-1 combustible_dust ACTIVE grinding in progress"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Beyond the already-established active combustible dust hazard, the observation reveals that the collector's explosion vent panel is painted over, defeating the deflagration relief device precisely while grinding is generating dust and ignition sources, and that the ductwork itself is loaded with fine metal dust, creating a flame-propagation path. Whether an isolation valve or abort gate exists between the booth and collector is left unresolved in the observation and is decision-critical to whether a collector-side deflagration could flash back into the occupied booth. Together, the defeated vent and active grinding make any ignition event inside the collector far more consequential than either fact alone would suggest.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 21211,
+      "inputTokens": 12705,
+      "outputTokens": 1646,
+      "costUsd": 0.04187,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-R3",
+      "roles": [
+        "LINKAGE_REQUIRED",
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "THE PRECEDENCE TEST. Control/PPE-shaped in FORM, but respiratory protection is the direct subject of exactly one candidate — the inhalation exposure — and the two answers give two different current actions. Under v8 the \"general PPE follow-up\" clause collided with this and it would have scored as a FORBIDDEN link; under v9 TEST 1 runs first and it is REQUIRED. Paired with CL-F3, which is the genuinely generic PPE question that stays FORBIDDEN.",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_inhalation_contact"
+        ],
+        "forbiddenHazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-R3-G1",
+            "description": "what respiratory protection the technician inside the booth was wearing while the extract fan was off",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-solvent-inhalation",
+          "family": "chemical_inhalation_contact",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 2
+        },
+        {
+          "key": "cand-resp-protection-unknown",
+          "family": "respiratory_protection",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        },
+        {
+          "key": "cand-fire-explosion-solvent",
+          "family": "fire_explosion",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "quotes": 0
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-resp-protection",
+          "question": "What respiratory protection, if any, was the technician wearing while cleaning inside the booth with the extract fan off?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "cand-resp-protection-unknown"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "CHEMICAL_PPE_VENTILATION",
+          "participants": [
+            "cand-solvent-inhalation",
+            "primer spraying in adjacent bay sharing return-air path"
+          ]
+        }
+      ],
+      "disagreements": [
+        {
+          "surface": "CONDITION_STATE_INTERPRETATION",
+          "type": "MAY_BE_INCOMPLETE"
+        }
+      ],
+      "summary": "The technician is generating aerosolised solvent while kneeling inside a closed booth with the extract fan deliberately switched off, producing an active inhalation exposure that is not addressed by the general ventilation_air_quality CONTROLLED finding; whether that exposure is mitigated depends entirely on the unrecorded respiratory protection, which is a blocking gap. The shared return-air path with the adjacent primer-spraying bay compounds this, since contaminants are not isolated between the two spaces. A possible flammability concern from the aerosolised solvent in an unventilated enclosure is also plausible but not established by the text.",
+      "uncertainty": [
+        "The observation does not state whether the aerosolised solvent is flammable or its vapour concentration, so the plausibility of a flammable-atmosphere hazard cannot be further refined from the text alone.",
+        "The scope of the deterministic ventilation_air_quality CONTROLLED finding relative to the fan-off cleaning task is not fully clear from the observation."
+      ],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 27789,
+      "inputTokens": 12751,
+      "outputTokens": 2569,
+      "costUsd": 0.051192,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-F1",
+      "roles": [
+        "LINKAGE_FORBIDDEN"
+      ],
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: ambiguous referent. Two presses of the same family in the same state, and the authorisation question applies to both identically. There is no unique candidate to name, so any link is wrong.",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-F1-G1",
+            "description": "whether the muting arrangement on these presses has been through the site authorisation process, which the observation leaves open for both machines identically",
+            "affectedDecision": "APPLICABILITY"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "muted_light_curtains",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 1
+        },
+        {
+          "key": "mute_key_left_in_panel",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        },
+        {
+          "key": "unverified_muting_authorisation",
+          "family": "training_procedure_supervision",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "cq_authorisation_status",
+          "question": "Has either the east or west trim press actually completed the site muting-authorisation process (e.g., engineering review confirming muting is limited to a safe portion of the cycle with compensating safeguards)?",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "unverified_muting_authorisation"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "OTHER",
+          "participants": [
+            "muted_light_curtains",
+            "mute_key_left_in_panel"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Both trim presses on line 4 are currently operating with their point-of-operation light curtains muted while operators hand-load blanks, an active guarding defeat during a task that places hands in the danger zone. This is compounded by the mute override key being left in each panel, allowing uncontrolled activation of the muted state, and by the unresolved question of whether either machine was ever taken through the site's muting-authorisation process — a fact that determines whether the current muting is an uncontrolled bypass or an engineered, compensated condition. Until that authorisation status is confirmed, the muted operation with hand loading should be treated as an unauthorised guarding defeat.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 27276,
+      "inputTokens": 12670,
+      "outputTokens": 1926,
+      "costUsd": 0.0446,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-F2",
+      "roles": [
+        "LINKAGE_FORBIDDEN"
+      ],
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: different hazard. The eyewash question belongs to the emergency-equipment candidate and has no bearing on the parked lift; the two conditions share only a location. A link across them is a cross-hazard error.",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment",
+          "emergency_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-F2-G1",
+            "description": "when the eyewash station was last inspected and flushed",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "scissor_lift_walkway_obstruction",
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 1
+        },
+        {
+          "key": "eyewash_no_inspection_tag",
+          "family": "emergency_equipment",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        },
+        {
+          "key": "eyewash_bowl_obstructed",
+          "family": "emergency_equipment",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [
+        {
+          "kind": "OTHER",
+          "participants": [
+            "scissor_lift_walkway_obstruction",
+            "eyewash_bowl_obstructed"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "Two independent current hazards are present: a raised, unattended scissor lift obstructing a marked pedestrian walkway, and an eyewash station beside the paint store that is both untagged and has its bowl physically covered by a cardboard box, defeating its emergency function. A cross-hazard concern is noted because the blocked walkway sits at the same location as the disabled eyewash, compounding delay in an emergency response to a chemical eye exposure. No governed regulatory record was supplied, so no regulatory obligation is asserted here.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 18483,
+      "inputTokens": 12701,
+      "outputTokens": 1539,
+      "costUsd": 0.040792,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-F3",
+      "roles": [
+        "LINKAGE_FORBIDDEN"
+      ],
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: genuinely generic PPE follow-up. A missing PPE matrix is row-level and administrative, touching three workstations equally and changing no single candidate's current decision. This is the clause v9 TEST 3 keeps, and it is the control that proves the CL-R3 permission did not simply delete the prohibition.",
+      "truth": {
+        "presentHazardFamilies": [
+          "personal_protective_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "ppe-1",
+          "family": "personal_protective_equipment",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        },
+        {
+          "key": "weld-fumes-1",
+          "family": "welding_fumes",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [],
+      "summary": "Beyond the deterministic material handling and suspended loads findings, the absence of the posted PPE matrix at all three workstations is a distinct current PPE-program gap affecting welding, material handling, and grinding tasks alike. Welding fume exposure during the tacking operation is noted as a possible but unconfirmed additional hazard since ventilation controls are not described. No cross-hazard interaction or decision-blocking clarification is identified from the facts given.",
+      "uncertainty": [
+        "It is not stated whether fume extraction or general ventilation is present at the welding bench, so the adequacy of welding fume control cannot be determined from this observation alone."
+      ],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14630,
+      "inputTokens": 12742,
+      "outputTokens": 1127,
+      "costUsd": 0.036753999999999995,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-N1",
+      "roles": [
+        "NO_LINKAGE_OPPORTUNITY",
+        "NO_GAP_CONTROL"
+      ],
+      "linkageTruth": "NOT_A_LINKAGE_TEST",
+      "linkageRationale": "This row makes NO LINKAGE CLAIM. Nothing is owed, so no clarification is expected and no linkage situation can arise. Under v2 this would have been labelled FORBIDDEN by default and would have sat in the violation denominator without ever being a linkage test. It is excluded from every linkage denominator instead.",
+      "truth": {
+        "presentHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "walking_working_surfaces",
+          "fall_protection",
+          "emergency_equipment"
+        ],
+        "decisionCriticalGaps": []
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "candidates": [],
+      "clarifications": [],
+      "insights": [],
+      "disagreements": [],
+      "summary": "This is a clean quarterly inspection record: handrails are continuous and secure, treads are unworn with intact nosings, the landing is clear, and emergency lighting was function-tested with results recorded. No current gap, deficiency, or unresolved condition is described in any of the three allowed hazard families, so there is nothing additional to raise.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 9809,
+      "inputTokens": 12663,
+      "outputTokens": 331,
+      "costUsd": 0.028636,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-T1",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "ALLOWED",
+      "linkageRationale": "The exposure question has the fall candidate as its primary subject, but it reads correctly on its own — \"is anyone scheduled on the roof\" needs no candidate to be understood or acted on. ALLOWED: linking and omitting are both correct, and omission is not scored as a failure.",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "forbiddenHazardFamilies": [
+          "material_handling_storage"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-T1-G1",
+            "description": "whether anyone is scheduled to work on the roof, and therefore to pass the propped-open hatch, during the period it is propped",
+            "affectedDecision": "EXPOSURE"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "cand-1",
+          "family": "walking_working_surfaces",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        },
+        {
+          "key": "cand-2",
+          "family": "material_handling_storage",
+          "state": "ACTIVE",
+          "confidence": "LOW",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "clar-1",
+          "question": "Is any employee currently scheduled or expected to access the roof through this hatch while it remains propped open and unguarded?",
+          "affectedDecision": "EXPOSURE",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "cand-1"
+        }
+      ],
+      "insights": [],
+      "disagreements": [],
+      "summary": "The deterministic engine correctly flags fall protection as unresolved because employee access to the roof hatch is not established, but the unguarded hatch opening itself (no cover, guardrail, or gate) is a current walking-working-surface hazard independent of scheduled roof work, and the conduit used to prop it open is an additional, lower-confidence struck-by/dislodgement concern given the 20-foot drop below. The single missing fact that would resolve the primary decision is whether anyone is currently scheduled to access the roof through this hatch, since that determines whether immediate personal fall protection is required versus simply securing the opening.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 14625,
+      "inputTokens": 13307,
+      "outputTokens": 1366,
+      "costUsd": 0.040274,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "CL-T2",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "ALLOWED",
+      "linkageRationale": "Line contents primarily concern the hot-work candidate but the question stands alone. Also carries an unrelated APPROVED respiratory record, so governed abstention is observed without spending a dedicated row on it.",
+      "truth": {
+        "presentHazardFamilies": [
+          "hot_work"
+        ],
+        "forbiddenHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-T2-G1",
+            "description": "what the live line being hot-tapped actually carries",
+            "affectedDecision": "HAZARD_SEVERITY"
+          }
+        ]
+      },
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "candidates": [
+        {
+          "key": "no_fire_watch",
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 1
+        },
+        {
+          "key": "combustible_lagging_proximity",
+          "family": "fire_explosion",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "quotes": 1
+        },
+        {
+          "key": "unknown_line_contents",
+          "family": "chemical_release",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "quotes": 1
+        }
+      ],
+      "clarifications": [
+        {
+          "id": "line_contents_unknown",
+          "question": "What does the process line being hot-tapped actually carry?",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "criticality": "BLOCKING",
+          "relatesToCandidateKey": "unknown_line_contents"
+        }
+      ],
+      "insights": [
+        {
+          "kind": "OTHER",
+          "participants": [
+            "no_fire_watch",
+            "combustible_lagging_proximity"
+          ]
+        }
+      ],
+      "disagreements": [],
+      "summary": "The observation describes active hot-tapping of a live process line with two current control gaps: the permit-required fire watch is absent from the work location, and combustible lagging sits within a metre of the tap point — together these mean a spark-ignited fire could go undetected. A further gap is that the permit copy at the job does not record what the line carries, which leaves open whether the hot-tap is exposing workers to a flammable or hazardous substance release, a fact that changes whether the work can safely continue as-is. No governed record supplied addresses hot work, fire watch, or process line content controls, so no regulatory obligation is asserted here beyond what the observation itself shows.",
+      "uncertainty": [],
+      "issues": [],
+      "mergeViolations": [],
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null,
+          "causedRetry": null
+        }
+      ],
+      "latencyMs": 20768,
+      "inputTokens": 12823,
+      "outputTokens": 1738,
+      "costUsd": 0.043025999999999995,
+      "modelIdentity": "claude-sonnet-5"
+    }
+  ],
+  "frozenCriteria": [
+    {
+      "id": 1,
+      "name": "REQUIRED linkage",
+      "target": "all 3 REQUIRED opportunities valid (>= 3/3 when exactly three are present)"
+    },
+    {
+      "id": 2,
+      "name": "FORBIDDEN linkage",
+      "target": "0 accepted forbidden links across all 3 dedicated FORBIDDEN controls"
+    },
+    {
+      "id": 3,
+      "name": "invalid candidate keys",
+      "target": "0 unresolved bad keys accepted"
+    },
+    {
+      "id": 4,
+      "name": "no forced linkage",
+      "target": "no link where the row has no linkage opportunity"
+    },
+    {
+      "id": 5,
+      "name": "TRUE-GAP retention",
+      "target": ">= 1 of 2 — broad clarification-retention validation is INTENTIONALLY DEFERRED and this probe must not be read as closing it"
+    },
+    {
+      "id": 6,
+      "name": "NO-GAP silence",
+      "target": "no meaningful regression from v8 behaviour"
+    },
+    {
+      "id": 7,
+      "name": "arbitration",
+      "target": "natural opportunity only; ZERO events is NOT a failure when no contradiction occurs"
+    }
+  ],
+  "limitations": [
+    "One arm, one replicate per row, nine development rows. No rate, no distribution, no reproducibility claim.",
+    "NOT a broad clarification-recall probe and NOT a crossHazardInsights campaign.",
+    "No frozen scorer ran; no formal measure was computed; run.scoring was discarded.",
+    "M14 not attempted: no permutation, no same-input replicate, no order or reliability conclusion.",
+    "A contradiction is a model error and cannot be commissioned; ARBITRATION_EVENTS = 0 with NO_NATURAL_OPPORTUNITY is not evidence against arbitration.",
+    "Semantic judgements are DEVELOPMENT classifications recorded beside the verbatim text."
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "artifact": "PAIR_MAP",
+  "createdAt": "2026-09-05",
+  "WARNING": "AUTHORING-SIDE ONLY. Do NOT show to the reviewer before adjudication — it discloses the pairing and the intended roles. For post-review comparison.",
+  "intendedRoleIsNotTruth": "SILENCE and REQUIRED here name the role a row was AUTHORED for. Neither is established truth. No row becomes authoritative because it was authored with an intended role.",
+  "blindOrder": {
+    "HR-01": "PAIR-3-R",
+    "HR-02": "PAIR-1-S",
+    "HR-03": "PAIR-5-S",
+    "HR-04": "PAIR-2-R",
+    "HR-05": "PAIR-4-S",
+    "HR-06": "PAIR-1-R",
+    "HR-07": "PAIR-3-S",
+    "HR-08": "PAIR-4-R",
+    "HR-09": "PAIR-5-R",
+    "HR-10": "PAIR-2-S"
+  },
+  "pairs": [
+    {
+      "PAIR_ID": "PAIR-1",
+      "INTENDED_SILENCE_CANDIDATE_ID": "PAIR-1-S",
+      "INTENDED_REQUIRED_CANDIDATE_ID": "PAIR-1-R",
+      "blindIds": {
+        "silence": "HR-02",
+        "required": "HR-06"
+      },
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "TARGET_DECISION": "whether the debarker may continue to run as observed",
+      "TARGET_FACTKEY": "owed:guarding:interlock_function_verified_before_return_to_service",
+      "INTENDED_SEMANTIC_DIFFERENCE": "SILENCE states the interlock was function-tested before restart; REQUIRED states the log recorded the tooth change but not whether the interlock was function-tested",
+      "lengths": {
+        "silence": 358,
+        "required": 342,
+        "delta": 16
+      },
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — the approved record app-mg-01 lists verificationMethods ['physical_inspection'] only, which cannot support a function-verified criterion for this factKey"
+    },
+    {
+      "PAIR_ID": "PAIR-2",
+      "INTENDED_SILENCE_CANDIDATE_ID": "PAIR-2-S",
+      "INTENDED_REQUIRED_CANDIDATE_ID": "PAIR-2-R",
+      "blindIds": {
+        "silence": "HR-10",
+        "required": "HR-04"
+      },
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "TARGET_DECISION": "whether the conveyor may keep running with an operative on the adjacent gangway",
+      "TARGET_FACTKEY": "owed:guarding:fixed_guard_fastenings_secure",
+      "INTENDED_SEMANTIC_DIFFERENCE": "SILENCE states the fastenings were torque-checked and recorded tight this morning; REQUIRED states the same sheet covers other items and the fastenings were last torque-checked at the annual service",
+      "lengths": {
+        "silence": 336,
+        "required": 349,
+        "delta": 13
+      },
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — same record, same limitation"
+    },
+    {
+      "PAIR_ID": "PAIR-3",
+      "INTENDED_SILENCE_CANDIDATE_ID": "PAIR-3-S",
+      "INTENDED_REQUIRED_CANDIDATE_ID": "PAIR-3-R",
+      "blindIds": {
+        "silence": "HR-07",
+        "required": "HR-01"
+      },
+      "TARGET_HAZARD_FAMILY": "fire_explosion",
+      "TARGET_DECISION": "whether drying may continue under the existing controls",
+      "TARGET_FACTKEY": "owed:fire:flame_failure_safeguard_function_verified",
+      "INTENDED_SEMANTIC_DIFFERENCE": "SILENCE states the burner was flame-tested and the shutoff time recorded; REQUIRED states the certificate lists other service items and does not record whether the burner was flame-tested",
+      "lengths": {
+        "silence": 331,
+        "required": 329,
+        "delta": 2
+      },
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    },
+    {
+      "PAIR_ID": "PAIR-4",
+      "INTENDED_SILENCE_CANDIDATE_ID": "PAIR-4-S",
+      "INTENDED_REQUIRED_CANDIDATE_ID": "PAIR-4-R",
+      "blindIds": {
+        "silence": "HR-05",
+        "required": "HR-08"
+      },
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "TARGET_DECISION": "whether the blockage-clearing work may continue as observed",
+      "TARGET_FACTKEY": "owed:energy:auger_drive_isolation_verified_before_work",
+      "INTENDED_SEMANTIC_DIFFERENCE": "SILENCE states the auger drive was locked at its own isolator and proved dead by attempted start; REQUIRED states the main panel was locked and proved dead while the auger's own isolator has no lockout entry",
+      "lengths": {
+        "silence": 321,
+        "required": 317,
+        "delta": 4
+      },
+      "governedKnowledgeFlag": "none identified — app-loto-01 lists zero_energy_verification, which would support this factKey, but no criterion was derived or attached here"
+    },
+    {
+      "PAIR_ID": "PAIR-5",
+      "INTENDED_SILENCE_CANDIDATE_ID": "PAIR-5-S",
+      "INTENDED_REQUIRED_CANDIDATE_ID": "PAIR-5-R",
+      "blindIds": {
+        "silence": "HR-03",
+        "required": "HR-09"
+      },
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "TARGET_DECISION": "whether the hydraulic hose may be broken as planned",
+      "TARGET_FACTKEY": "owed:energy:stored_energy_dissipated_before_line_break",
+      "INTENDED_SEMANTIC_DIFFERENCE": "SILENCE states the accumulator gauge was watched to zero and witnessed; REQUIRED states the pump stop was witnessed but the gauge sits behind a shroud and has not been read since",
+      "lengths": {
+        "silence": 310,
+        "required": 308,
+        "delta": 2
+      },
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    }
+  ],
+  "candidateRows": [
+    {
+      "candidateId": "PAIR-1-S",
+      "pair": "PAIR-1",
+      "intendedRole": "INTENDED_SILENCE_CANDIDATE",
+      "text": "A debarker runs and a sawyer rolls logs onto the infeed chain. The guard door over the rotor is closed and its interlock switch is in place. After last night's tooth change the fitter function-tested the interlock; the rotor stopped when the guard was opened, and he signed the return-to-service log before restart. The sawyer does not reach into the throat.",
+      "chars": 358,
+      "family": "machine_guarding",
+      "decision": "whether the debarker may continue to run as observed",
+      "factKey": "owed:guarding:interlock_function_verified_before_return_to_service",
+      "evidenceSufficiencyFlag": "the SILENCE row states a function test AND a signed return-to-service log; a reviewer must decide whether the signed log establishes the test occurred, or is a document standing in for it",
+      "temporalScopeFlag": "both rows turn on whether verification preceded RETURN TO SERVICE — the same temporal axis §169 flagged on VC-04-1",
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — the approved record app-mg-01 lists verificationMethods ['physical_inspection'] only, which cannot support a function-verified criterion for this factKey"
+    },
+    {
+      "candidateId": "PAIR-1-R",
+      "pair": "PAIR-1",
+      "intendedRole": "INTENDED_REQUIRED_CANDIDATE",
+      "text": "A debarker runs and a sawyer rolls logs onto the infeed chain. The guard door over the rotor is closed and its interlock switch is in place. After last night's tooth change the fitter signed the return-to-service log before restart; it recorded the tooth change but carries no interlock test result. The sawyer does not reach into the throat.",
+      "chars": 342,
+      "family": "machine_guarding",
+      "decision": "whether the debarker may continue to run as observed",
+      "factKey": "owed:guarding:interlock_function_verified_before_return_to_service",
+      "evidenceSufficiencyFlag": "the REQUIRED row rests entirely on what the log carries; whether a missing entry means the test did not happen is a reviewer judgement",
+      "temporalScopeFlag": "both rows turn on whether verification preceded RETURN TO SERVICE — the same temporal axis §169 flagged on VC-04-1",
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — the approved record app-mg-01 lists verificationMethods ['physical_inspection'] only, which cannot support a function-verified criterion for this factKey"
+    },
+    {
+      "candidateId": "PAIR-2-S",
+      "pair": "PAIR-2",
+      "intendedRole": "INTENDED_SILENCE_CANDIDATE",
+      "text": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter torque-checked all six guard fastenings; he recorded them tight and initialled the sheet. The handrail is sound and no tools rest on the guard.",
+      "chars": 336,
+      "family": "machine_guarding",
+      "decision": "whether the conveyor may keep running with an operative on the adjacent gangway",
+      "factKey": "owed:guarding:fixed_guard_fastenings_secure",
+      "evidenceSufficiencyFlag": "the SILENCE row rests the settled state on a check sheet entry and an initial; §169 found a document may not establish the state it records",
+      "temporalScopeFlag": "this morning's pre-start check against an annual service — the reviewer must decide which is operative",
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — same record, same limitation"
+    },
+    {
+      "candidateId": "PAIR-2-R",
+      "pair": "PAIR-2",
+      "intendedRole": "INTENDED_REQUIRED_CANDIDATE",
+      "text": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter initialled the sheet, which covers belt tracking and lubrication; the fastenings were last torque-checked at the annual service. No tools rest on the guard.",
+      "chars": 349,
+      "family": "machine_guarding",
+      "decision": "whether the conveyor may keep running with an operative on the adjacent gangway",
+      "factKey": "owed:guarding:fixed_guard_fastenings_secure",
+      "evidenceSufficiencyFlag": "the REQUIRED row states the fastenings were last torque-checked at the annual service, which is a settled PAST state and an open PRESENT one",
+      "temporalScopeFlag": "this morning's pre-start check against an annual service — the reviewer must decide which is operative",
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — same record, same limitation"
+    },
+    {
+      "candidateId": "PAIR-3-S",
+      "pair": "PAIR-3",
+      "intendedRole": "INTENDED_SILENCE_CANDIDATE",
+      "text": "A grain dryer runs on the drying floor. The burner sits behind a steel shroud and the flame-failure device cannot be seen from the walkway. At Monday's service the engineer flame-tested the burner; he recorded that fuel shut off within two seconds of flame loss and filed the certificate. Dust has settled on the walkway handrails.",
+      "chars": 331,
+      "family": "fire_explosion",
+      "decision": "whether drying may continue under the existing controls",
+      "factKey": "owed:fire:flame_failure_safeguard_function_verified",
+      "evidenceSufficiencyFlag": "the SILENCE row states a recorded shutoff time on a filed certificate; whether a certificate establishes present function is the reviewer's call",
+      "temporalScopeFlag": "Monday's service against the present run",
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    },
+    {
+      "candidateId": "PAIR-3-R",
+      "pair": "PAIR-3",
+      "intendedRole": "INTENDED_REQUIRED_CANDIDATE",
+      "text": "A grain dryer runs on the drying floor. The burner sits behind a steel shroud and the flame-failure device cannot be seen from the walkway. At Monday's service the engineer filed the certificate; it lists a nozzle change and filter clean but does not record whether the burner was flame-tested. Dust has settled on the handrails.",
+      "chars": 329,
+      "family": "fire_explosion",
+      "decision": "whether drying may continue under the existing controls",
+      "factKey": "owed:fire:flame_failure_safeguard_function_verified",
+      "evidenceSufficiencyFlag": "the REQUIRED row rests on the certificate's contents",
+      "temporalScopeFlag": "Monday's service against the present run",
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    },
+    {
+      "candidateId": "PAIR-4-S",
+      "pair": "PAIR-4",
+      "intendedRole": "INTENDED_SILENCE_CANDIDATE",
+      "text": "An operative clears a blockage at a grain dryer's discharge auger while the drying fans run on. Before starting he locked off the auger drive at its local isolator, applied a personal lock and proved the auger dead by attempting a start from the panel, which did not turn. The key is on his belt and no second key exists.",
+      "chars": 321,
+      "family": "hazardous_energy",
+      "decision": "whether the blockage-clearing work may continue as observed",
+      "factKey": "owed:energy:auger_drive_isolation_verified_before_work",
+      "evidenceSufficiencyFlag": "the SILENCE row states a FUNCTIONAL proof (attempted start that did not turn), which is a stronger evidence class than a document or indicator",
+      "temporalScopeFlag": "both turn on whether isolation preceded the work starting",
+      "governedKnowledgeFlag": "none identified — app-loto-01 lists zero_energy_verification, which would support this factKey, but no criterion was derived or attached here"
+    },
+    {
+      "candidateId": "PAIR-4-R",
+      "pair": "PAIR-4",
+      "intendedRole": "INTENDED_REQUIRED_CANDIDATE",
+      "text": "An operative clears a blockage at a grain dryer's discharge auger while the drying fans run on. Before starting he locked off the main dryer panel, applied a personal lock and proved that panel dead; the auger drive has its own local isolator and the lockout log shows no entry against it. The key hangs at the panel.",
+      "chars": 317,
+      "family": "hazardous_energy",
+      "decision": "whether the blockage-clearing work may continue as observed",
+      "factKey": "owed:energy:auger_drive_isolation_verified_before_work",
+      "evidenceSufficiencyFlag": "the REQUIRED row states the main panel was proved dead and the auger isolator has no lockout entry",
+      "temporalScopeFlag": "both turn on whether isolation preceded the work starting",
+      "governedKnowledgeFlag": "none identified — app-loto-01 lists zero_energy_verification, which would support this factKey, but no criterion was derived or attached here"
+    },
+    {
+      "candidateId": "PAIR-5-S",
+      "pair": "PAIR-5",
+      "intendedRole": "INTENDED_SILENCE_CANDIDATE",
+      "text": "A fitter is about to break a hydraulic hose on a baler ram. The pump is stopped and the isolator locked with his own lock. He cycled the manual dump valve and watched the accumulator gauge fall to zero and not rise; a second fitter witnessed the reading. The ram guard is refitted and no load rests on the ram.",
+      "chars": 310,
+      "family": "hazardous_energy",
+      "decision": "whether the hydraulic hose may be broken as planned",
+      "factKey": "owed:energy:stored_energy_dissipated_before_line_break",
+      "evidenceSufficiencyFlag": "the SILENCE row states a directly observed gauge reading witnessed by a second person",
+      "temporalScopeFlag": "both turn on the state at the moment the line is broken, not earlier",
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    },
+    {
+      "candidateId": "PAIR-5-R",
+      "pair": "PAIR-5",
+      "intendedRole": "INTENDED_REQUIRED_CANDIDATE",
+      "text": "A fitter is about to break a hydraulic hose on a baler ram. The pump is stopped and the isolator locked with his own lock; a second fitter witnessed the pump stop. He cycled the manual dump valve and left it open, and the accumulator gauge sits behind the tank shroud unread since. The ram guard is refitted.",
+      "chars": 308,
+      "family": "hazardous_energy",
+      "decision": "whether the hydraulic hose may be broken as planned",
+      "factKey": "owed:energy:stored_energy_dissipated_before_line_break",
+      "evidenceSufficiencyFlag": "the REQUIRED row states the gauge is unread since the pump stopped",
+      "temporalScopeFlag": "both turn on the state at the moment the line is broken, not earlier",
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    }
+  ]
+}

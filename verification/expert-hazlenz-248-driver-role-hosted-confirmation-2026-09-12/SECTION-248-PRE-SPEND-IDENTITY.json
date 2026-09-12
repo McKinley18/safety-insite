@@ -1,0 +1,109 @@
+{
+  "section": "248",
+  "generated": "2026-09-12",
+  "purpose": "pre-spend verification of the seven frozen preconditions for the §247 driver-role hosted confirmation",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "spendUsd": 0,
+  "outcome": "STOP_BEFORE_SPEND",
+  "summary": {
+    "checks": 10,
+    "passed": 6,
+    "failed": 4
+  },
+  "failedPreconditions": [
+    "P5 the TRANSMITTED schema expresses exactly 6 admissible role/carrier pairs",
+    "P5b the TRANSMITTED schema expresses 0 inadmissible combinations",
+    "P3 the §247 driver-role representation is present on the transmitted schema",
+    "P3b the transmitted system prompt carries the §247 justification instruction"
+  ],
+  "rootCause": {
+    "statement": "The §247 driver-role representation and the §247 K6 union exist as a contract module in the production tree and are unit-proved there, but NOTHING ON THE EXECUTABLE PATH TRANSMITS THEM. Both the production entry point and the provider adapter still build §239 bytes.",
+    "evidence": [
+      "src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts:143 calls build239SystemPrompt",
+      "src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts:145 calls buildExpert239WireSchema",
+      "src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts:191,199 build the same §239 bytes",
+      "the assembled request carries no roleJustification and no anyOf union",
+      "the assembled request expresses 10 role/carrier pairs, of which 4 are inadmissible"
+    ],
+    "identityDefect": "SECTION-247-CANDIDATE-IDENTITY-V2.json elements 5, 6, 7 and 17 name the §247 builders and module. The executable entry point calls the §239 builders. The identity bound the INTENDED builders rather than the INVOKED ones, and element 3 proof (test-246-productionization) checks only that the entry point imports from ./contract/, never which contract version it calls.",
+    "class": "This is the §245 failure class recurring inside the v2 identity that was created to prevent it: a semantic artifact measured or bound without confirming that the executable path invokes it."
+  },
+  "transmittedRequestAtCheckTime": {
+    "strictSchema": true,
+    "anyOfUnionPresent": false,
+    "roleJustificationPresent": false,
+    "systemPromptCarriesJustificationInstruction": false,
+    "expressibleRoleCarrierPairs": 10,
+    "admissiblePairs": 6,
+    "inadmissibleExpressible": 4,
+    "frozenPreconditionRequires": {
+      "expressiblePairs": 6,
+      "inadmissibleExpressible": 0
+    }
+  },
+  "whatWasNotDone": [
+    "no provider call was made",
+    "no case was transmitted",
+    "no threshold was altered",
+    "no instrument file was modified",
+    "no semantic source file was repaired during §248"
+  ],
+  "verifier": {
+    "path": "backend/scripts/verify-248-pre-spend.ts",
+    "sha256": "55c5eceb4df2c27bdafdb42b61b6a300bcf989426062c830631580ae81fcdc8a",
+    "containsNetworkPrimitive": false
+  },
+  "checks": [
+    {
+      "verdict": "PASS",
+      "id": "P1 every §247 frozen instrument file verifies",
+      "detail": "11 files, 0 mismatched"
+    },
+    {
+      "verdict": "PASS",
+      "id": "P1b the §247 package digest matches the authorization",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "P2 Candidate Identity v2 resolves 17/17 with no declarations",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "P7 no semantic source file changed after instrument freeze",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "P4 strict schema is enabled on the transmitted tool",
+      "detail": null
+    },
+    {
+      "verdict": "FAIL",
+      "id": "P5 the TRANSMITTED schema expresses exactly 6 admissible role/carrier pairs",
+      "detail": "union=false, expressible=10"
+    },
+    {
+      "verdict": "FAIL",
+      "id": "P5b the TRANSMITTED schema expresses 0 inadmissible combinations",
+      "detail": "independent enums: 10 expressible, 4 inadmissible"
+    },
+    {
+      "verdict": "FAIL",
+      "id": "P3 the §247 driver-role representation is present on the transmitted schema",
+      "detail": null
+    },
+    {
+      "verdict": "FAIL",
+      "id": "P3b the transmitted system prompt carries the §247 justification instruction",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "P6 the production contract tree is present",
+      "detail": null
+    }
+  ]
+}

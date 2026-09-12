@@ -1,0 +1,108 @@
+{
+  "artifact": "SECTION_194_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "\u00a7194 verifier regulatory-basis representation review and bounded integration",
+  "TERMINAL": "EXPERT_HAZLENZ_VERIFIER_V3_2_REGULATORY_BASIS_INTEGRATED \u2014 END_TO_END_PIPELINE_VALIDATION_AUTHORIZATION_REQUIRED",
+  "terminalReason": "The existing governed-evidence architecture supported structured regulatory binding cleanly. A bounded representation was implemented as a prospective v3.2, all deterministic gates pass (48/48), and v3.2 is ready for hosted evaluation. It has NOT been hosted-validated.",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "DETERMINISTIC_TESTS": "48/48 PASS",
+  "SOURCE_INTEGRITY": "PASS 21/21",
+  "existingRuntimeFilesModified": 0,
+  "THREE_PROTOCOLS_NEVER_MERGED": {
+    "v3": "historical development protocol \u2014 \u00a7187B, prompt 678160c9\u2026, schema 1bddc1a5\u2026",
+    "v3_1": "\u00a7192 prospectively validated development protocol \u2014 prompt 7e73d175\u2026, schema d39c86bc\u2026",
+    "v3_2": "regulatory-basis representation protocol \u2014 prompt f2522995\u2026, schema 83071b51\u2026, NOT HOSTED VALIDATED",
+    "rule": "\u00a7187B belongs to v3, \u00a7192 belongs to v3.1, v3.2 has no hosted evidence of any kind"
+  },
+  "PRESERVED": {
+    "section192": "MODEL DEVELOPMENT VALIDATION = PASS, immutable",
+    "section189_human_gate": "UNMEASURED at 65/112",
+    "G7": "15/18 with zero slack \u2014 preserved, not upgraded",
+    "FV_11": "included exactly as preregistered",
+    "section193_tests": "46/46 PASS, re-run",
+    "section193_nul_audit_repair": "COMPLETE",
+    "section193_citation_mismatch": "ADDRESSED by \u00a7194 for claimed reliance; the undeclared prose-assertion residual remains and is stated"
+  },
+  "ARCHITECTURE": {
+    "existingMechanismsFound": 2,
+    "mechanism1": "ExpertVerifierInput.governedEvidence: { sourceId, text }[] \u2014 'as supplied to the first pass. Never re-fetched, never re-selected.' sourceId is the canonical identifier.",
+    "mechanism2": "the FIRST PASS already binds model claims to those ids \u2014 expert-prompt.ts:1055 enumerates supplied sourceIds into the wire schema, expert-normalization.ts:263 refuses EVIDENCE_SOURCE_UNKNOWN",
+    "whatSection194Did": "applied the established first-pass evidence-binding pattern to the verifier path, using the closed-set-by-exact-string-equality discipline v3 already uses for bindingFactKey",
+    "inventedNewArchitecture": false,
+    "representation": "regulatoryBasis { reliance: NONE | SUPPLIED_GOVERNED_EVIDENCE, sourceIds: string[], proposition: string|null }, required on every verdict so silence about reliance is impossible",
+    "whyPropositionIsIncluded": "deterministic enforcement does not need it; GOVERNABILITY does. Without it a declaration names a source but not the claim, and a reviewer would have to infer the claim from prose \u2014 the exact inference problem \u00a7194 exists to escape.",
+    "notReused": {
+      "authority_citation": "a citation string is a PROPERTY of a governed record, not an identifier \u2014 binding to it would let a model type the right characters and self-authorise",
+      "ApprovedKnowledgeRecord_recordId": "the verifier never sees records, only governedEvidence[].sourceId; binding to what was actually supplied keeps the closed set verifiable from the request alone, with no registry lookup or database access"
+    },
+    "schemaEnumAlternativeConsidered": "the first pass enumerates supplied ids INTO the schema, making an invented id provider-side invalid. NOT taken: it makes the schema per-request and the protocol identity hash would stop being a single stable value, which \u00a7187-\u00a7192 depend on. The same guarantee is obtained at admission via SOURCE_ID_NOT_IN_SUPPLIED_SET."
+  },
+  "FAIL_CLOSED_MATRIX": {
+    "A_raw_citation_outside_structure": "REFUSE WHOLE",
+    "B_declared_reliance_valid_supplied_source": "structurally admitted; semantics separately reviewable",
+    "C_declared_reliance_unknown_or_invented_source": "REFUSE WHOLE",
+    "D_reliance_NONE": "admitted, subject to every other contract rule",
+    "E_supplied_jurisdiction_named": "ADMITTED \u2014 never a citation violation",
+    "zeroGovernedEvidenceSupplied": "ANY declared reliance is refused \u2014 there is no route by which a verifier supplies the rule from memory"
+  },
+  "TWELVE_POINT_MATRIX": "all 12 pass; case 3 (reasoning that governed evidence is ABSENT) is admitted, which every keyword approach \u00a7193 measured would have refused",
+  "DETERMINISM_NOT_OVERCLAIMED": {
+    "decided": [
+      "reliance was declared",
+      "the declaration is internally consistent",
+      "every referenced sourceId exists in the supplied governed evidence (exact string equality, closed set)",
+      "no raw citation anywhere in free text",
+      "contract state is legal"
+    ],
+    "notDecided": [
+      "the proposition is a faithful reading of the source",
+      "the source supports the conclusion drawn",
+      "the legal conclusion is correct"
+    ],
+    "recordedInCode": "V3_2_ADMISSION_RULE_CLASSIFICATION marks the three semantic axes REQUIRES_HUMAN_TRUTH",
+    "statement": "STRUCTURAL SOURCE BINDING IS NOT LEGAL VALIDATION"
+  },
+  "HONEST_RESIDUAL": "a v3.2 verifier could still write a regulatory-sounding sentence in prose and declare NONE, and be admitted. No deterministic rule catches that \u2014 the \u00a7193 finding stands. What changes: there is now a legitimate route it declined to use, CLAIMED authority is fail-closed, and an undeclared prose assertion becomes a semantic review item against a NONE declaration rather than a contract hole. This should NOT be described as closing the prose-assertion class.",
+  "ONE_TEST_FAILED_FIRST_RUN": {
+    "assertion": "D.3 \u2014 a citation string inside regulatoryBasis.proposition was not refused",
+    "cause": "\u00a7193's verifierFreeTextStrings predates regulatoryBasis and did not scan the new field, so a model could have self-authorised inside the structure",
+    "fix": "v3.2's contract scans proposition itself with the same canonical pattern; the \u00a7193 module was left byte-untouched because \u00a7193 is closed evidence",
+    "recorded": "kept in the evidence rather than quietly fixed"
+  },
+  "SCOPE_HELD": {
+    "clarificationFrequency": "unchanged",
+    "conjunctiveSufficiency": "unchanged",
+    "adjacentPropertyReasoning": "unchanged",
+    "challengeBehaviour": "unchanged",
+    "owedFactTargeting": "unchanged",
+    "settlementSemantics": "unchanged",
+    "evidence": "ten \u00a7191/\u00a7166 passages asserted byte-identical in v3.2 (C.1); four frequency-directive patterns absent (C.2); PROVIDER_SETTLEMENT_AUTHORITY = NEVER (12)"
+  },
+  "filesAdded": [
+    "backend/scripts/lib/expert-verifier-instruction-v3-2.ts",
+    "backend/scripts/lib/expert-verifier-contract-v3-2.ts",
+    "backend/scripts/test-expert-194-regulatory-basis.ts",
+    "backend/scripts/verify-194-source-integrity-2026-09-06.ts"
+  ],
+  "filesModified": [],
+  "priorEvidenceModified": 0,
+  "priorSuitesRerun": "\u00a7193 46/46 \u00b7 \u00a7191 69/69 \u00b7 \u00a7166 49/49 \u00b7 Expert grounding 41/41 \u00b7 integrity \u00a7188 12/12 \u00a7190 19/19 \u00a7191 21/21 \u00a7192 21/21 \u00a7193 23/23",
+  "mustNotClaim": [
+    "v3.2 hosted validated",
+    "v3.2 customer accepted",
+    "the prose-assertion class closed",
+    "structural source binding is legal validation",
+    "end-to-end Expert HazLenz validation complete",
+    "the \u00a7189 human gate measured",
+    "production or customer readiness"
+  ],
+  "nextValidation": "FRESH END-TO-END pipeline cohort from raw observations, using v3.2 not v3.1, with NO hand-authored first-pass state. Must exercise ordinary owed-fact reasoning with no regulatory reliance; cases where governed evidence IS supplied and reliance is legitimate; and cases where no adequate governed evidence is supplied, to verify abstention. \u00a7192 had governedEvidence empty on all thirteen rows, so the second and third shapes have never been exercised at all. NOT executed in \u00a7194.",
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

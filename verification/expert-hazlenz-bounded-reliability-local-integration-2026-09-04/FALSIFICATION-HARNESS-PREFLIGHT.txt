@@ -1,0 +1,61 @@
+§165 PRE-SPEND PREFLIGHT — §164 12-CALL BINDING FALSIFICATION EXPERIMENT
+====================================================================================================
+  PROVIDER CALLS THIS SCRIPT: 0   COST: $0.00   ACTIVATION: DEVELOPMENT_INACTIVE
+
+--- A  FROZEN MATERIAL
+
+ok    A.1 the §156 blinded packet is reused UNCHANGED  — 75d64197583092ed8ac826a1…
+ok    A.2 verifier instruction v2 is BYTE-IDENTICAL — no prompt experiment, no v3  — hazlenz.expert.verifier-instruction.v2 ffc63119b5a30ec88e09a078…
+ok    A.3 verifier contract v2 is the one under test  — hazlenz.expert.verifier.v2
+ok    A.4 the v13 first-pass prompt module is byte-identical — no v14, no v15  — unchanged
+ok    A.5 the hardened v9 fixture is byte-identical  — unchanged
+ok    A.6 both authoritative cases are present and are the only two  — HS-A1/VC-08, HS-E1/VC-04
+
+--- B  FROZEN HUMAN TRUTH
+
+ok    B.1 frozen human targets match §162 and their cues are not satisfied by the observations  — hazlenz.expert.human-semantic-targets.2026-09-04; deep-equal to §162; cues not satisfied by either observation
+ok    B.2 truth is not broadened — the two authoritative rows and no others  — HS-A1, HS-E1
+
+--- C  NO SELF-VALIDATION, AND SEMANTIC-OUTCOME SEPARATION
+
+ok    C.1 no draw is shown another draw's output to judge  — 8 verdict/output tokens, 0 present in either case payload
+ok    C.2 the displaced/invalid split is unassignable by code  — hazlenz.expert.verifier.semantic-outcome.v2; 4 members require human authority
+ok    C.3 owed-target recall is independent of clarification validity  — VALID_BUT_TARGET_DISPLACED is a recall MISS and not a precision defect
+
+--- D  NO TRUTH LEAKAGE INTO THE REQUEST
+
+ok    D.VC-08 no evaluation-truth artefact anywhere in the request  — 9 patterns, 0 matches
+ok    D.VC-04 no evaluation-truth artefact anywhere in the request  — 9 patterns, 0 matches
+ok    D.3 each case has ONE frozen semantic request hash, reused for all six of its draws  — VC-08 d9ba1dc6fb7e4559…  VC-04 f89ec76bbaa7430d…
+ok    D.4 no sampling or determinism control is introduced  — none present
+
+--- E  CALL CAP, COST CAP, RAW PRESERVATION
+
+ok    E.1 12 requests, zero retries, zero reruns  — 2 cases × 6 draws; no retry path is designed
+FAIL  E.2 the PROSPECTIVE worst case is inside the design's $0.30 cap  — worst case $0.59798 vs cap $0.30; §163-measured expected cost $0.25231. §164's $0.30 is the EXPECTED figure, not a prospective worst-case bound
+ok    E.3 the output ceiling is adequate and unchanged from §158/§163  — 4000; the largest completed verifier-v2 output observed is 1525 tokens
+ok    E.4 the runtime call cap this experiment exercises is the bounded one  — 2 draws per analysis inside a 5-call bounded path
+ok    E.5 the raw-preservation store is empty or absent  — clean
+ok    E.6 the frozen formal invocation count is intact  — 195, immutable
+ok    E.7 this preflight cannot issue a request  — no network call, no credential read, no HTTP client
+
+--- F  CAN THE FROZEN CONTRACT EXPRESS THE MANIPULATION UNDER TEST?
+
+ok    F.1 the frozen v2 contract REFUSES an additive verdict (bind + nominate together)  — refused with [NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE]
+ok    F.2 the frozen v2 response schema has no field in which to declare a binding  — schema fields: verdict, rationale, aboutUnresolvedFactRef, clarificationSourceMode, proposedClarification, nominatedFact
+ok    F.3 the frozen v2 instruction contains no binding step to execute  — 7 binding tokens, 0 present
+FAIL  F.4 the binding-enabled arm is deliverable under frozen material  — NOT DELIVERABLE — the manipulation requires a schema field and an instruction step that do not exist in frozen v2, and Phase 13 forbids creating them in this operation
+
+====================================================================================================
+  PRE-SPEND GATE: 24/26 PASS · 2 FAIL
+  FALSIFICATION_HARNESS_READY = FALSE
+  PROVIDER CALLS: 0   COST: $0.00   NOTHING WAS SPENT
+====================================================================================================
+
+BLOCKERS:
+  E.2 the PROSPECTIVE worst case is inside the design's $0.30 cap
+      worst case $0.59798 vs cap $0.30; §163-measured expected cost $0.25231. §164's $0.30 is the EXPECTED figure, not a prospective worst-case bound
+  F.4 the binding-enabled arm is deliverable under frozen material
+      NOT DELIVERABLE — the manipulation requires a schema field and an instruction step that do not exist in frozen v2, and Phase 13 forbids creating them in this operation
+
+wrote /Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-bounded-reliability-local-integration-2026-09-04/FALSIFICATION-HARNESS-PREFLIGHT.json

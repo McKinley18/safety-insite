@@ -1,0 +1,167 @@
+{
+  "artifact": "SECTION-240-TRUTH-PREFLIGHT",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "result": "PASS",
+  "passed": 26,
+  "total": 26,
+  "checks": [
+    {
+      "id": "P1",
+      "rule": "no owed property is already established by an enumerated fact",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P2",
+      "rule": "the observation holds every owed property open by a verbatim anchor, and a case owing nothing carries no anchor",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P3",
+      "rule": "every owed property carries annotated prohibited proxies, none of which is the controlling property itself",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P4",
+      "rule": "HOLD_PENDING_VERIFICATION if and only if the controlling property is UNRESOLVED",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P5",
+      "rule": "the expected controlling driver role is the one the expected posture requires",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P6",
+      "rule": "the frozen role-presence expectation agrees with the posture and with the §239 rules",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P7",
+      "rule": "the admissible controlling-driver carriers are exactly those §239 admits for the expected role",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P8",
+      "rule": "controls, resume conditions and timings agree with the posture",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P9",
+      "rule": "each case refutes exactly the three postures it did not choose, substantively",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P10",
+      "rule": "the posture distribution is an acceptance instrument rather than a posture benchmark",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P11",
+      "rule": "governed records are consistent with the authority they may carry",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P12",
+      "rule": "every exercise is internally coherent and consistent with the authority model",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P13",
+      "rule": "a case that runs a human-review exercise states what the packet must surface",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P14",
+      "rule": "the verifier plan is coherent and the call plan adds up",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P15",
+      "rule": "every LIFE_CRITICAL owed property is marked decision-changing",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P16",
+      "rule": "the cohort can fail by over-restriction as easily as by under-restriction",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P17",
+      "rule": "no case uses an excluded subject term",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P18",
+      "rule": "no §240 observation overlaps a §230, §234, §236 or §238 observation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P19",
+      "rule": "no §240 case is a paraphrase of another",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P20",
+      "rule": "every capability axis is exercised by at least two cases",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P21",
+      "rule": "every hard gate and every quality measure has at least one case and at least one slot",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P22",
+      "rule": "the A / B / C / D decision rule set is total and unambiguous over the reachable space",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P23",
+      "rule": "the judgment volume is inside the authorized envelope and the deterministic slots are genuinely deterministic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P24",
+      "rule": "every case books one first-pass call and carries a complete transmitted context and scoring applicability",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P25",
+      "rule": "all four human-review shapes are exercised and all three domains are balanced",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P26",
+      "rule": "the per-case scoring applicability and the derived slots agree in both directions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "whatARepairMeant": "the preflight raised findings on the DEVELOPMENT instrument and every one was repaired in it BEFORE this freeze. P1 found one owed property whose wording lexically restated its own established fact. P17 found two cases using an excluded prior-section subject term. P26, added after the first three were repaired, found that five permissive cases declared a gate that only fires on a non-permitting posture, that three cases declared a measure or gate no slot fed, and that two slots fed a gate their case did not declare. NO CHECK WAS WEAKENED, NO THRESHOLD MOVED AND NO GATE WAS RETIRED: each repair corrected the instrument to say what it meant."
+}

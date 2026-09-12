@@ -1,0 +1,132 @@
+{
+  "artifact": "SECTION-228A-CALL-PLAN",
+  "version": "hazlenz.expert.228a.targeted-integrated-revalidation.v1",
+  "derivedFromFinishedCases": true,
+  "perCase": [
+    {
+      "caseId": "C1",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "totalCalls": 2,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C2",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "totalCalls": 2,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C3",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "totalCalls": 2,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C4",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "totalCalls": 2,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C5",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "totalCalls": 1,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "the verifier leg runs over an ADMITTED declaration. Nothing is admitted here by construction, so the call has no target. The elision is legitimate, is frozen before execution, and saves a draw rather than avoiding an unfavourable one."
+    },
+    {
+      "caseId": "C6",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "totalCalls": 1,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "no declaration is expected and the verifier reviews an admitted declaration. If the first pass unexpectedly declares something, the verifier leg stays elided and the unexpected declaration is itself the HR13 finding. The elision is frozen before execution and does not depend on what comes back."
+    },
+    {
+      "caseId": "C7",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "totalCalls": 2,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C8",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "totalCalls": 2,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    }
+  ],
+  "firstPassCalls": 8,
+  "verifierCalls": 6,
+  "otherProviderCalls": 0,
+  "exactPrimaryCallCount": 14,
+  "contingencyCalls": 2,
+  "maximumAuthorizedCalls": 16,
+  "costEvidence": {
+    "firstPass": {
+      "source": "CALL-LEDGER-227.jsonl, 8 calls, current contract",
+      "observed": [
+        0.094094,
+        0.08235,
+        0.09376,
+        0.089238,
+        0.082978,
+        0.097104,
+        0.072694,
+        0.073674
+      ],
+      "meanUsd": 0.0857365,
+      "maxUsd": 0.097104
+    },
+    "verifier": {
+      "source": "CALL-LEDGER-221.jsonl, the 3 VERIFIER-leg calls",
+      "observed": [
+        0.041976,
+        0.041854,
+        0.04316
+      ],
+      "meanUsd": 0.04233,
+      "maxUsd": 0.04316
+    },
+    "whyNot221Constants": "the §221 spend constants were frozen for the §221 cohort and its first-pass contract. Reusing them would carry a stale projection into a different instrument."
+  },
+  "projectedSpendUsd": 0.9399,
+  "worstCaseSpendUsd": 1.23,
+  "recommendedHardCeilingUsd": 1.23,
+  "ceilingRationale": "the ceiling is the worst case — every primary call priced at the highest unit cost ever observed for its leg, plus both contingency calls priced at the dearer leg — rounded up to the cent. The headroom above worst case is smaller than the cost of one further first-pass call, so the ceiling gives execution variance without room for an extra semantic draw.",
+  "contingencyPolicy": {
+    "callsAuthorized": 2,
+    "spendableOnlyFor": "a preregistered EXECUTION FAILURE — a transport failure, an HTTP failure, or a response that never reached inference",
+    "neverSpendableFor": "an unfavourable, incomplete or semantically disappointing answer. A contingency call may not be used to obtain a different semantic draw, and every use is recorded with its failure class in the call ledger.",
+    "semanticPreferenceRetries": 0
+  },
+  "databaseOperations": 0
+}

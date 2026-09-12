@@ -1,0 +1,78 @@
+{
+  "artifact": "SECTION_175_STRICT_ADJUDICATION_PACKET",
+  "purpose": "For each REQUIRED row that emitted a clarification, a human decides whether the question addresses the material unresolved fact. This model did not decide it and must not.",
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "observation": "A grain dryer runs on the drying floor. The burner sits behind a steel shroud and the flame-failure device cannot be seen from the walkway. At Monday's service the engineer filed the certificate; it lists a nozzle change and filter clean but does not record whether the burner was flame-tested. Dust has settled on the handrails.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "flame_test_status",
+          "question": "Was the flame-failure device actually flame-tested at Monday's service, even though the filed certificate does not record it, or can this be confirmed through another means (e.g., the engineer's direct account or a supplementary test log)?",
+          "whyItMatters": "If the device was tested and found functional, the dryer's burner has a verified working safety shutoff and no corrective action is needed beyond updating the record. If it was not tested, the flame-failure device's functional status is unknown on an operating burner, which would require either testing before continued operation or another verification method to confirm the fuel shutoff safety control is functional, given fire/explosion consequences of an undetected failure.",
+          "evidenceGap": "The service certificate lists a nozzle change and filter clean but does not state whether the flame-failure device was tested during this service or any other recent occasion.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-04",
+      "observation": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter initialled the sheet, which covers belt tracking and lubrication; the fastenings were last torque-checked at the annual service. No tools rest on the guard.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-06",
+      "observation": "A debarker runs and a sawyer rolls logs onto the infeed chain. The guard door over the rotor is closed and its interlock switch is in place. After last night's tooth change the fitter signed the return-to-service log before restart; it recorded the tooth change but carries no interlock test result. The sawyer does not reach into the throat.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "clar_interlock_test",
+          "question": "Was the rotor guard door interlock switch functionally tested (verified to de-energize the rotor when opened) at any point after the tooth change and before the debarker was returned to service?",
+          "whyItMatters": "If the interlock was tested and functions correctly, the guard-interlock system is verified operative and no further action is needed beyond noting the log gap. If it was not tested, the interlock's protective function following disturbance during maintenance is unconfirmed, and the debarker is currently running with a guard whose fail-safe function is unverified, exposing the sawyer if the door were opened during operation.",
+          "evidenceGap": "The return-to-service log's silence on interlock test result does not establish whether a functional interlock test was performed or omitted.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-08",
+      "observation": "An operative clears a blockage at a grain dryer's discharge auger while the drying fans run on. Before starting he locked off the main dryer panel, applied a personal lock and proved that panel dead; the auger drive has its own local isolator and the lockout log shows no entry against it. The key hangs at the panel.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "auger_isolator_locked_q",
+          "question": "Has the auger drive's local isolator actually been locked and proved dead, even though the lockout log has no entry against it, or is the auger drive currently only isolated (if at all) at the main dryer panel upstream?",
+          "whyItMatters": "If the local isolator was in fact locked out (e.g., verbally confirmed or physically locked but not logged), the auger drive is isolated at its point of operation and the exposure is a documentation gap only. If it was not locked out at all, the auger drive may retain the capacity to be energised independently of the main panel while the operative's hands are in the discharge auger clearing a blockage, which is a live entanglement/struck-by exposure requiring an immediate stop-work until the auger's own isolator is locked and verified.",
+          "evidenceGap": "Whether the auger drive's own local isolator has been physically locked out and proved dead, independent of the missing log entry.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-09",
+      "observation": "A fitter is about to break a hydraulic hose on a baler ram. The pump is stopped and the isolator locked with his own lock; a second fitter witnessed the pump stop. He cycled the manual dump valve and left it open, and the accumulator gauge sits behind the tank shroud unread since. The ram guard is refitted.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "clar-1",
+          "question": "Has the accumulator gauge been read (or otherwise confirmed at zero) since the dump valve was cycled and before the fitter breaks the hose?",
+          "whyItMatters": "If the gauge reads zero (or was otherwise confirmed at zero) the accumulator is verified de-energized and the hose can be broken safely; if it has not been read and could still show residual pressure, the fitter is about to open a pressurized line, risking a high-pressure fluid injection or whip injury, and the task should be halted until stored energy is verified dissipated.",
+          "evidenceGap": "The observation states the gauge 'sits behind the tank shroud unread since' the dump valve was cycled, so whether the accumulator has actually reached zero stored pressure is not established.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    }
+  ],
+  "silenceFailures": []
+}

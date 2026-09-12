@@ -1,0 +1,738 @@
+/**
+ * §210D -- MINIMAL RESIDUAL-REMEDIATION HOSTED CONFIRMATION. PREREGISTRATION SOURCE.
+ * ZERO PROVIDER CALLS. ZERO DATABASE OPERATIONS. DESIGN AND FREEZE ONLY.
+ *
+ * Five new capability-ABSENT first-pass cases, authored BEFORE any provider call, to determine
+ * whether the §210C declaration gate behaves correctly while protecting the behaviour §210B-3B
+ * already produced. This is NOT capability characterization and NOT an accuracy measurement.
+ *
+ * ==================== WHY EACH CASE EXISTS ====================
+ *
+ *   D1  Gate 1 / R1. One property with two necessary elements, and a check-history framing sitting
+ *       right beside it. Freezes BOTH failure modes separately: an incomplete property, and the
+ *       destructive repair that reaches consistency by cutting the branches down instead.
+ *   D2  Gate 2 / R2. A fact the model is very likely to ASK about, with a louder nearby condition
+ *       the text already settles, so declaring the loud one instead is the observable failure.
+ *   D3  Gate 3 versus Gate 2. A genuine unknown that invites a question, where both answers leave
+ *       today's action identical and a real future consequence is available to manufacture
+ *       divergence from. Expected: zero declarations.
+ *   D4  Protected. Two genuinely independent current-action gaps, in a setting unlike PB-04's.
+ *   D5  Protected, and the counterweight to D3. One genuinely owed present-state property AND one
+ *       attractive decision-neutral unknown in the same observation. A model that passed D3 by
+ *       becoming reluctant to declare anything fails D5.
+ *
+ * D3 and D5 together are the primary evidence that §210C did not obtain false-gap restraint by
+ * globally suppressing declarations. Neither alone would show it.
+ *
+ * ==================== WHAT IS DELIBERATELY ABSENT ====================
+ *
+ * No governed evidence. Every case is capability-ABSENT, because the capability-PRESENT first-pass
+ * grammar is refused by the provider (§210C PB-02 analysis) and S6 stays NOT_EXERCISED.
+ *
+ * No PB-01..PB-08 replay and no noun-substituted rewrite of one. Each case is a different industry
+ * setting with a different mechanism-bearing structure.
+ *
+ * No evaluation vocabulary inside any observation: an observation that says "decision-critical" or
+ * "proxy" hands the model the answer and the case stops discriminating.
+ */
+
+export const PROBE_VERSION = 'hazlenz.expert.210d.residual-confirmation.v1' as const;
+
+export interface ConfirmationStimulus {
+  caseId: string;
+  primaryTarget: string;
+  targets: readonly string[];
+  observation: string;
+  suppliedContext: { location: string; task: string };
+  jurisdiction: string;
+  hazardFamilies: readonly string[];
+  /** Always empty in §210D. Capability-ABSENT on every case. */
+  governedEvidence: readonly { sourceId: string; text: string }[];
+  /** The decision actually under analysis. Frozen, because Gate 3's carve-out depends on it. */
+  decisionUnderAnalysis: string;
+  expectedDeclarationCount: number;
+  requiredOwedProperties: readonly string[];
+  prohibitedProxyProperties: readonly string[];
+  requiredConjuncts: readonly string[];
+  requiredQualifiers: readonly string[];
+  decisionNeutralUnknowns: readonly string[];
+  prohibitedDeclarations: readonly string[];
+  requiredClarificationDeclarationBindings: readonly string[];
+  acceptableClarificationEvidence: readonly string[];
+  insufficientClarificationPatterns: readonly string[];
+  branchAMeaning: readonly string[];
+  branchBMeaning: readonly string[];
+  factLocalDecisionIfA: readonly string[];
+  factLocalDecisionIfB: readonly string[];
+  currentActionComparison: string;
+  futureOnlyConsequences: readonly string[];
+  independentFactRelationships: string;
+  prohibitedDestructiveReconciliation: readonly string[];
+  evaluationQuestions: readonly {
+    id: string; axis: string; question: string; expected: string;
+  }[];
+}
+
+const NONE: readonly string[] = [];
+
+export const CONFIRMATION_STIMULI: readonly ConfirmationStimulus[] = [
+  // ================================================================ D1
+  {
+    caseId: 'D1',
+    primaryTarget: 'GATE_1_R1',
+    targets: ['R1'],
+    observation:
+      'A power press in the pressroom is fitted with a light curtain guarding the front of the '
+      + 'die area. A laminated card fixed to the frame records a stopping-performance measurement '
+      + 'taken when the curtain was installed two years ago, together with the separation distance '
+      + 'the curtain was then set at, and the curtain is still mounted at that distance. Three '
+      + 'weeks ago the press had its clutch and brake unit replaced by a contractor, and the '
+      + 'maintenance entry for that job records the unit change but records no measurement after '
+      + 'it. The operator is feeding blanks by hand into the die on every stroke and the press is '
+      + 'running on single-stroke through the visit.',
+    suppliedContext: {
+      location: 'metal forming works, pressroom, 250-tonne power press',
+      task: 'hand feeding blanks into a power press guarded by a light curtain',
+    },
+    jurisdiction: 'osha-general-industry',
+    hazardFamilies: ['machine_guarding', 'mechanical_power_press', 'stored_energy'],
+    governedEvidence: [],
+    decisionUnderAnalysis: 'whether hand feeding at this press may continue now',
+    expectedDeclarationCount: 1,
+    requiredOwedProperties: [
+      'whether the separation distance the light curtain is mounted at is still sufficient for the '
+      + 'press\'s actual stopping performance as it now runs, since the clutch and brake unit were '
+      + 'replaced',
+    ],
+    prohibitedProxyProperties: [
+      'whether a stopping-performance measurement has been taken or recorded',
+      'whether the card on the frame is current or in date',
+      'whether the light curtain is fitted, working or functioning',
+      'whether the clutch and brake were replaced, which the text establishes',
+      'whether the maintenance entry is complete',
+    ],
+    requiredConjuncts: [
+      'the press\'s actual stopping performance as it now runs',
+      'the separation distance the curtain is actually mounted at',
+    ],
+    requiredQualifiers: [
+      'now, since the clutch and brake unit was replaced, not as measured at installation',
+    ],
+    decisionNeutralUnknowns: [],
+    prohibitedDeclarations: [
+      'a declaration naming only the stopping performance and omitting the separation distance',
+      'a declaration naming only the separation distance and omitting the stopping performance',
+      'a declaration about whether a measurement was taken, recorded or is in date, rather than '
+      + 'about whether the distance is sufficient for the performance',
+      'a declaration about the clutch and brake replacement, which the text establishes',
+    ],
+    requiredClarificationDeclarationBindings: [
+      'the clarification asking for a stopping-performance measurement at the press as it now runs, '
+      + 'read against the mounted separation distance, binds to the single owed declaration',
+    ],
+    acceptableClarificationEvidence: [
+      'a stopping-performance measurement taken on the press in its present condition, compared '
+      + 'against the separation distance the curtain is mounted at',
+      'a recalculation of the required separation distance from a fresh stop-time measurement, '
+      + 'checked against where the curtain actually is',
+    ],
+    insufficientClarificationPatterns: [
+      'asking whether a stop-time test has ever been carried out',
+      'asking whether the light curtain works or was function tested',
+      'asking only what the stopping time is, without reference to the mounted distance',
+      'asking only what the separation distance is, without reference to stopping performance',
+    ],
+    branchAMeaning: [
+      'the press still stops within the time the mounted separation distance was set for, so a hand '
+      + 'cannot reach the die before motion stops',
+    ],
+    branchBMeaning: [
+      'the press now takes longer to stop than the mounted separation distance allows for, so a '
+      + 'hand can reach the die before motion stops',
+    ],
+    factLocalDecisionIfA: [
+      'hand feeding at this press may continue as far as light-curtain separation is concerned',
+    ],
+    factLocalDecisionIfB: [
+      'stop hand feeding at this press and keep it stopped until the curtain is repositioned or the '
+      + 'braking performance is restored',
+    ],
+    currentActionComparison:
+      'the two answers require materially different action today: continue feeding, or stop the '
+      + 'press. This fact IS owed.',
+    futureOnlyConsequences: [],
+    independentFactRelationships:
+      'ONE property. The stopping performance and the separation distance are not independent owed '
+      + 'facts: neither settles reach-before-stop alone, because what matters is the distance '
+      + 'RELATIVE TO the performance. FROZEN ACCEPTABLE ALTERNATIVE: two declarations are not '
+      + 'automatically a failure, but each must still name the joint determination, so that '
+      + 'answering both settles sufficiency. A split leaving two separately answerable facts '
+      + 'neither of which settles sufficiency is a FAIL on axis D.',
+    prohibitedDestructiveReconciliation: [
+      'removing the stopping-performance element from branchA, branchB or the clarification so that '
+      + 'they agree with a property that names only the separation distance',
+      'removing the separation-distance element from branchA, branchB or the clarification so that '
+      + 'they agree with a property that names only the stopping performance',
+      'removing the since-the-brake-change qualifier from the branches or the clarification so that '
+      + 'they agree with a property framed at installation',
+    ],
+    evaluationQuestions: [
+      { id: 'D1.Q1', axis: 'C',
+        question: 'Does the declared property concern whether the mounted distance is sufficient '
+          + 'for actual current stopping performance, rather than whether a measurement exists, is '
+          + 'recorded or is in date?',
+        expected: 'PASS' },
+      { id: 'D1.Q2', axis: 'D',
+        question: 'Do the owed property, both branches and the clarification each keep BOTH the '
+          + 'stopping performance and the separation distance, and the since-the-brake-change '
+          + 'qualifier?',
+        expected: 'PASS' },
+      { id: 'D1.Q3', axis: 'E',
+        question: 'Does missingFact carry everything its own branches and clarification rely on, '
+          + 'so the entry does not disagree with itself?',
+        expected: 'PASS' },
+      { id: 'D1.Q4', axis: 'E',
+        question: 'DESTRUCTIVE-REPAIR QUESTION. Did missingFact become semantically complete while '
+          + 'the branch and clarification semantics remained intact? FAIL if apparent consistency '
+          + 'was reached by deleting a required conjunct or qualifier from branchA, branchB, the '
+          + 'clarification, or the decision divergence.',
+        expected: 'PASS' },
+      { id: 'D1.Q5', axis: 'B',
+        question: 'Was the clutch and brake replacement, which the text establishes, declared as an '
+          + 'owed fact?',
+        expected: 'PASS: not declared' },
+      { id: 'D1.Q6', axis: 'A',
+        question: 'Was the reach-before-stop sufficiency property declared at all?',
+        expected: 'PASS' },
+    ],
+  },
+
+  // ================================================================ D2
+  {
+    caseId: 'D2',
+    primaryTarget: 'GATE_2_R2',
+    targets: ['R2'],
+    observation:
+      'A grey-iron foundry is preparing to tap and pour. The pouring ladle was relined yesterday '
+      + 'and stood in the bay overnight. A preheat burner on a stand is positioned at the ladle '
+      + 'mouth; it was not alight when the inspector passed, and neither of the two moulders '
+      + 'present could say whether it had been run since the reline or for how long. Along the '
+      + 'pour route the floor is visibly wet, from a hose used to wash down spilled sand earlier in '
+      + 'the shift, and the wet stretch runs for about four metres directly between the furnace and '
+      + 'the mould line. The pour is due within the hour and the melt is already up to temperature.',
+    suppliedContext: {
+      location: 'grey-iron foundry, melt deck and mould line',
+      task: 'tapping a furnace into a relined ladle and pouring moulds',
+    },
+    jurisdiction: 'osha-general-industry',
+    hazardFamilies: ['molten_metal', 'thermal_burns', 'process_safety'],
+    governedEvidence: [],
+    decisionUnderAnalysis: 'whether the ladle may be filled from the furnace and the pour made now',
+    expectedDeclarationCount: 1,
+    requiredOwedProperties: [
+      'whether the relined ladle is actually dry through its lining before molten metal is tapped '
+      + 'into it',
+    ],
+    prohibitedProxyProperties: [
+      'whether a preheat burner is provided or positioned at the ladle, which the text establishes',
+      'whether the ladle was relined, which the text establishes',
+      'whether a preheat procedure exists',
+      'whether the preheat was recorded',
+    ],
+    requiredConjuncts: [
+      'the actual dryness of the lining',
+      'before metal is tapped into it',
+    ],
+    requiredQualifiers: [
+      'before the tap, not at some later point in the pour',
+    ],
+    decisionNeutralUnknowns: [],
+    prohibitedDeclarations: [
+      'a declaration about the wet floor along the pour route: the text establishes that it is wet, '
+      + 'so there is no unresolved fact there',
+      'a declaration about whether a preheat burner exists or is positioned, which the text '
+      + 'establishes',
+      'a declaration about whether the melt is up to temperature, which the text establishes',
+    ],
+    requiredClarificationDeclarationBindings: [
+      'if a clarification asks how long the preheat was run, or whether the lining is dry, it MUST '
+      + 'be bound to a declaration stating the dryness property. The fact may not survive only as '
+      + 'a clarification, only as a hazard candidate, only as narrative, or only inside branch '
+      + 'language belonging to a different declaration.',
+    ],
+    acceptableClarificationEvidence: [
+      'the preheat duration and temperature actually achieved on this ladle since the reline',
+      'a direct check of the lining for residual moisture immediately before the tap',
+    ],
+    insufficientClarificationPatterns: [
+      'asking whether a preheat burner is available',
+      'asking whether the ladle was relined',
+      'asking whether there is a preheat procedure',
+    ],
+    branchAMeaning: [
+      'the lining has been preheated sufficiently since the reline and is dry through',
+    ],
+    branchBMeaning: [
+      'the lining retains moisture from the reline, or the preheat was not run long enough to drive '
+      + 'it out',
+    ],
+    factLocalDecisionIfA: [
+      'the tap into this ladle may proceed as far as lining moisture is concerned',
+    ],
+    factLocalDecisionIfB: [
+      'do not tap into this ladle; complete the preheat and confirm the lining is dry first',
+    ],
+    currentActionComparison:
+      'the two answers require materially different action today: tap now, or hold the tap and '
+      + 'preheat. This fact IS owed.',
+    futureOnlyConsequences: [],
+    independentFactRelationships:
+      'ONE property is owed. The wet floor is a real hazard the text ESTABLISHES rather than leaves '
+      + 'unresolved, so it belongs in hazard candidates and not in unresolvedFactDeclarations. '
+      + 'Raising it as a candidate is not a failure; DECLARING it as an owed fact is.',
+    prohibitedDestructiveReconciliation: [
+      'removing the before-the-tap timing from the branches or the clarification to agree with a '
+      + 'property framed as general ladle condition',
+    ],
+    evaluationQuestions: [
+      { id: 'D2.Q1', axis: 'A',
+        question: 'Was the lining-dryness property emitted as a declaration, rather than surviving '
+          + 'only as a clarification, a hazard candidate or narrative?',
+        expected: 'PASS' },
+      { id: 'D2.Q2', axis: 'F',
+        question: 'Is every clarification that governs today\'s action accounted for by a '
+          + 'declaration, with the dryness question bound to the dryness declaration?',
+        expected: 'PASS' },
+      { id: 'D2.Q3', axis: 'B',
+        question: 'Was the wet pour route, which the text establishes, declared as an owed fact?',
+        expected: 'PASS: not declared' },
+      { id: 'D2.Q4', axis: 'C',
+        question: 'Does the declared property concern the actual dryness of the lining rather than '
+          + 'the existence or availability of a preheat burner or procedure?',
+        expected: 'PASS' },
+    ],
+  },
+
+  // ================================================================ D3
+  {
+    caseId: 'D3',
+    primaryTarget: 'GATE_3_R3_VERSUS_GATE_2',
+    targets: ['R3', 'GATE_INTERACTION'],
+    observation:
+      'A telehandler is moving stillages in the yard of a plant hire depot. An overhead line on '
+      + 'wood poles crosses the corner of the yard. A barrier of concrete blocks and a goalpost '
+      + 'with height-limit bunting have been set out beneath and either side of the line, and the '
+      + 'measured ground clearance from the barrier line to the conductors is far greater than the '
+      + 'exclusion distance that would be required for any distribution or transmission voltage up '
+      + 'to and including the highest used in the country. With its boom fully raised and extended '
+      + 'the telehandler cannot reach the conductors from outside the barrier, and the driver is '
+      + 'working the whole yard from outside it. Nobody on site knew what voltage the line carries '
+      + 'and the depot has no record of it. A mobile crane lift is planned in the same corner of '
+      + 'the yard next month.',
+    suppliedContext: {
+      location: 'plant hire depot, external stillage yard',
+      task: 'moving stillages with a telehandler in a yard crossed by an overhead line',
+    },
+    jurisdiction: 'osha-general-industry',
+    hazardFamilies: ['overhead_powerlines', 'mobile_equipment', 'electrical'],
+    governedEvidence: [],
+    decisionUnderAnalysis:
+      'whether telehandler stillage movements in this yard may continue now. It is NOT the planned '
+      + 'crane lift next month.',
+    expectedDeclarationCount: 0,
+    requiredOwedProperties: [],
+    prohibitedProxyProperties: [],
+    requiredConjuncts: [],
+    requiredQualifiers: [],
+    decisionNeutralUnknowns: [
+      'the voltage the overhead line carries: genuinely unknown, genuinely safety-related, and '
+      + 'genuinely worth establishing. It is decision-NEUTRAL for the work under analysis because '
+      + 'the barrier already stands further back than the exclusion distance required for the '
+      + 'highest voltage in use anywhere in the country, and the telehandler cannot reach the '
+      + 'conductors from outside it. Under every answer the same thing is done today: the barrier '
+      + 'stays where it is and the telehandler works outside it.',
+    ],
+    prohibitedDeclarations: [
+      'any declaration about the line voltage',
+      'any declaration about whether a record of the voltage exists or who holds it',
+      'any declaration about the barrier position or the goalpost, which the text establishes',
+      'any declaration about the telehandler\'s reach, which the text establishes',
+      'any declaration framed on the crane lift next month, which is not the decision under '
+      + 'analysis',
+    ],
+    requiredClarificationDeclarationBindings: [
+      'a clarification asking the line voltage is ACCEPTABLE and expected: the question is worth '
+      + 'asking and the contract permits a question with no declaration where the answer does not '
+      + 'govern today\'s action. What is NOT acceptable is converting it into an owed declaration. '
+      + 'Gate 2 must not manufacture a declaration home for a question Gate 3 removes.',
+    ],
+    acceptableClarificationEvidence: [
+      'the distribution network operator\'s record of the line voltage',
+    ],
+    insufficientClarificationPatterns: [],
+    branchAMeaning: [
+      'a model that declares anyway will typically write branchA as a lower voltage requiring a '
+      + 'smaller exclusion distance',
+    ],
+    branchBMeaning: [
+      'and branchB as a higher voltage requiring a larger exclusion distance',
+    ],
+    factLocalDecisionIfA: [
+      'the barrier stays where it is and the telehandler works outside it',
+    ],
+    factLocalDecisionIfB: [
+      'the barrier stays where it is and the telehandler works outside it. IDENTICAL to A, because '
+      + 'the barrier already exceeds the largest exclusion distance either answer could require.',
+    ],
+    currentActionComparison:
+      'THE SAME under both answers. This is the frozen heart of the case. Any decisionIfA and '
+      + 'decisionIfB pair that appears to diverge does so by inventing a consequence the '
+      + 'observation does not support, or by silently answering a different question than the one '
+      + 'under analysis.',
+    futureOnlyConsequences: [
+      'the mobile crane lift planned next month will need a different exclusion distance and the '
+      + 'voltage must be established before it. That is a FUTURE decision and must not be used to '
+      + 'manufacture present divergence. It becomes owed only in an analysis whose decision under '
+      + 'analysis IS that lift.',
+    ],
+    independentFactRelationships: 'NOT_APPLICABLE: no owed facts expected',
+    prohibitedDestructiveReconciliation: [],
+    evaluationQuestions: [
+      { id: 'D3.Q1', axis: 'G',
+        question: 'GATE-INTERACTION QUESTION. Did Gate 3 correctly prevent a decision-neutral '
+          + 'clarification from becoming an owed declaration, despite Gate 2\'s pressure to give '
+          + 'decision-critical questions a declaration home?',
+        expected: 'PASS: zero declarations' },
+      { id: 'D3.Q2', axis: 'B',
+        question: 'Was the line voltage declared as an owed fact?',
+        expected: 'PASS: not declared' },
+      { id: 'D3.Q3', axis: 'G',
+        question: 'Was the crane lift planned next month used to manufacture a present-action '
+          + 'divergence?',
+        expected: 'PASS: it was not' },
+    ],
+  },
+
+  // ================================================================ D4
+  {
+    caseId: 'D4',
+    primaryTarget: 'PROTECTED_INDEPENDENT_FACT_PRESERVATION',
+    targets: ['PROTECTED_H', 'PROTECTED_I'],
+    observation:
+      'A development heading in an underground metalliferous mine was blasted at the end of the '
+      + 'previous shift. The jumbo has been tramed back up to the face and the two-man crew are '
+      + 'about to begin drilling the next round. The back and shoulders above the drilling '
+      + 'position have not been examined since the blast and the scaling bar is still racked on '
+      + 'the machine; no one present said whether the face had been barred down. Separately, the '
+      + 'ventilation duct that serves the heading ends some distance back from the face, its last '
+      + 'section having been dropped during the blast and not yet re-hung, and no airflow reading '
+      + 'has been taken at the face since the round was fired.',
+    suppliedContext: {
+      location: 'underground metalliferous mine, development heading 1420 north',
+      task: 'drilling the next round at a recently blasted development face',
+    },
+    jurisdiction: 'osha-general-industry',
+    hazardFamilies: ['ground_control', 'ventilation', 'mobile_equipment'],
+    governedEvidence: [],
+    decisionUnderAnalysis: 'whether the crew may begin drilling at this face now',
+    expectedDeclarationCount: 2,
+    requiredOwedProperties: [
+      'whether the back and shoulders above the drilling position have actually been scaled of '
+      + 'loose ground since the blast',
+      'whether the heading is actually being ventilated at the face, and the blast fume cleared, '
+      + 'with the duct in its present position',
+    ],
+    prohibitedProxyProperties: [
+      'whether a scaling bar is provided or racked on the machine, which the text establishes',
+      'whether a scaling procedure exists',
+      'whether ventilation ducting is installed on the drive, which the text establishes',
+      'whether an airflow reading has been recorded',
+    ],
+    requiredConjuncts: [
+      'each property stated separately',
+    ],
+    requiredQualifiers: [
+      'the ground condition since the blast, not at some earlier examination',
+      'the airflow at the face with the duct as it now stands',
+    ],
+    decisionNeutralUnknowns: [],
+    prohibitedDeclarations: [
+      'a single merged declaration covering both the loose ground and the ventilation',
+      'a declaration that settles the ground condition through the ventilation, or the reverse',
+      'a declaration about whether a scaling bar or ducting exists, both of which the text '
+      + 'establishes',
+    ],
+    requiredClarificationDeclarationBindings: [
+      'a scaling question binds to the ground-condition declaration',
+      'an airflow or fume-clearance question binds to the ventilation declaration',
+      'one question may not be bound to both declarations',
+    ],
+    acceptableClarificationEvidence: [
+      'a competent examination and barring down of the back and shoulders at the drilling position '
+      + 'since the blast',
+      'an airflow or gas measurement taken at the face with the duct in its present position',
+    ],
+    insufficientClarificationPatterns: [
+      'one question asking whether the heading is safe to work',
+      'asking whether scaling bars are carried on the jumbo',
+      'asking whether the drive has ventilation',
+    ],
+    branchAMeaning: [
+      'GROUND: the back and shoulders have been scaled since the blast and are secure',
+      'VENTILATION: airflow at the face is adequate and the blast fume is cleared',
+    ],
+    branchBMeaning: [
+      'GROUND: the face has not been scaled since the blast and loose ground remains overhead',
+      'VENTILATION: airflow does not reach the face with the duct short and fume remains',
+    ],
+    factLocalDecisionIfA: [
+      'GROUND: drilling may begin as far as ground support at this position is concerned',
+      'VENTILATION: drilling may begin as far as face ventilation is concerned',
+    ],
+    factLocalDecisionIfB: [
+      'GROUND: keep the crew out from under the back and bar down before any drilling',
+      'VENTILATION: re-hang the duct to the face and clear the fume before the crew works there',
+    ],
+    currentActionComparison:
+      'each fact independently requires materially different action today, and settling either one '
+      + 'leaves the other open. BOTH are owed.',
+    futureOnlyConsequences: [],
+    independentFactRelationships:
+      'REQUIRED: two declarations. They need different evidence (a physical examination of the back '
+      + 'versus an airflow measurement at the face), have independent branches, are independently '
+      + 'settleable, and change different actions today (bar down versus re-hang the duct and '
+      + 'clear fume). Neither is a conjunct of the other and neither settles the other. Merging '
+      + 'them into one conjunctive property is a failure of this case, and so is dropping either.',
+    prohibitedDestructiveReconciliation: [
+      'merging the two properties into one conjunctive missingFact in order to make a single entry '
+      + 'agree with branches drawn from both',
+    ],
+    evaluationQuestions: [
+      { id: 'D4.Q1', axis: 'A',
+        question: 'Were both properties declared?',
+        expected: 'PASS' },
+      { id: 'D4.Q2', axis: 'H',
+        question: 'Are they two separate declarations rather than one merged conjunctive '
+          + 'declaration, with neither deleted?',
+        expected: 'PASS' },
+      { id: 'D4.Q3', axis: 'I',
+        question: 'Does each declaration\'s positive branch settle only its own property, without '
+          + 'claiming the face is safe to drill or that work may begin generally while the other '
+          + 'fact is open?',
+        expected: 'PASS' },
+      { id: 'D4.Q4', axis: 'F',
+        question: 'Is each clarification bound to exactly one declaration, rather than one question '
+          + 'bound to both?',
+        expected: 'PASS' },
+    ],
+  },
+
+  // ================================================================ D5
+  {
+    caseId: 'D5',
+    primaryTarget: 'PROTECTED_PRESENT_STATE_PLUS_RESTRAINT',
+    targets: ['PROTECTED_C', 'R3'],
+    observation:
+      'An operator is abrasive blasting a fabricated frame inside a blast enclosure, wearing a '
+      + 'loose-fitting air-fed blasting helmet. In the compressor room next door a dedicated '
+      + 'breathing-air compressor with its filtration set is running, and a general plant-air '
+      + 'compressor stands beside it serving the shop ring main. Both machines have similar red '
+      + 'airlines leaving them, the two lines run together through a bulkhead behind a stack of '
+      + 'abrasive drums, and the run could not be traced by eye from either end. Blasting '
+      + 'continued throughout the visit. The supervisor mentioned that a different operative is '
+      + 'rostered to take over blasting on the night shift, and nobody present could say whether '
+      + 'that operative has completed his supplied-air training.',
+    suppliedContext: {
+      location: 'surface treatment shop, blast enclosure and compressor room',
+      task: 'abrasive blasting a fabricated frame using an air-fed blasting helmet',
+    },
+    jurisdiction: 'osha-general-industry',
+    hazardFamilies: ['respiratory', 'abrasive_blasting', 'compressed_air'],
+    governedEvidence: [],
+    decisionUnderAnalysis:
+      'whether the blasting operation in progress may continue now. It is NOT the night-shift '
+      + 'changeover.',
+    expectedDeclarationCount: 1,
+    requiredOwedProperties: [
+      'whether the helmet the operator is wearing is actually being fed from the breathing-air '
+      + 'compressor rather than the plant-air ring main, while he is blasting now',
+    ],
+    prohibitedProxyProperties: [
+      'whether a breathing-air compressor is provided or available, which the text establishes',
+      'whether the breathing-air compressor is running, which the text establishes',
+      'whether the filtration set exists or is fitted, which the text establishes',
+      'whether the airline was inspected or the connection was checked',
+    ],
+    requiredConjuncts: [
+      'the supply the helmet is actually connected to',
+      'while blasting is in progress now',
+    ],
+    requiredQualifiers: [
+      'now, during the blasting in progress',
+    ],
+    decisionNeutralUnknowns: [
+      'whether the operative rostered to take over on the night shift has completed his '
+      + 'supplied-air training: genuinely unknown and genuinely safety-related, and superficially '
+      + 'attractive to ask about. It is decision-NEUTRAL for the operation under analysis because '
+      + 'the changeover is on a later shift and the operator now blasting is not that person. '
+      + 'Under both answers the same thing is done today: this operation is judged on its own '
+      + 'controls, and the incoming operative\'s training is confirmed before he starts, whenever '
+      + 'that is.',
+    ],
+    prohibitedDeclarations: [
+      'any declaration about the night-shift operative\'s training',
+      'any declaration about whether a breathing-air compressor is provided, running, or filtered, '
+      + 'all of which the text establishes',
+      'any declaration about whether the drums or the bulkhead obstruct access, which the text '
+      + 'establishes',
+    ],
+    requiredClarificationDeclarationBindings: [
+      'the clarification asking which compressor the helmet line is actually fed from binds to the '
+      + 'single owed declaration',
+      'a question about the night-shift operative\'s training, if asked at all, must NOT be bound '
+      + 'to a declaration and must NOT cause one to be created',
+    ],
+    acceptableClarificationEvidence: [
+      'tracing the helmet airline back to its source, or breaking the connection at the helmet end '
+      + 'and confirming which machine feeds it',
+      'a direct check at the bulkhead identifying which line serves the blast enclosure',
+    ],
+    insufficientClarificationPatterns: [
+      'asking whether a breathing-air compressor is available',
+      'asking whether the breathing-air compressor is running',
+      'asking whether breathing air is provided on site',
+    ],
+    branchAMeaning: [
+      'the helmet is fed from the dedicated breathing-air compressor through its filtration set',
+    ],
+    branchBMeaning: [
+      'the helmet is fed from the general plant-air ring main, so the operator is breathing '
+      + 'unfiltered compressor air',
+    ],
+    factLocalDecisionIfA: [
+      'blasting may continue as far as the breathing-air supply to this helmet is concerned',
+    ],
+    factLocalDecisionIfB: [
+      'stop blasting immediately and keep the operator out of the enclosure until the helmet is '
+      + 'connected to the breathing-air supply',
+    ],
+    currentActionComparison:
+      'FOR THE OWED FACT the two answers require materially different action today: continue, or '
+      + 'stop immediately. FOR THE NEUTRAL UNKNOWN the current action is identical either way. The '
+      + 'case requires the model to do BOTH: emit the first and withhold the second.',
+    futureOnlyConsequences: [
+      'the night-shift operative\'s training must be confirmed before he takes over. That is a '
+      + 'FUTURE decision and must not be used to manufacture present divergence.',
+    ],
+    independentFactRelationships:
+      'ONE owed property. The training question is not a second owed fact; it is the decision-'
+      + 'neutral unknown this case exists to see withheld. A model that emits both has failed '
+      + 'restraint; a model that emits neither has failed recall. Only emitting exactly the first '
+      + 'passes.',
+    prohibitedDestructiveReconciliation: [
+      'removing the while-blasting-now qualifier from the branches or the clarification to agree '
+      + 'with a property framed as general supply arrangements',
+    ],
+    evaluationQuestions: [
+      { id: 'D5.Q1', axis: 'A',
+        question: 'Was the present-state breathing-air connection property declared?',
+        expected: 'PASS' },
+      { id: 'D5.Q2', axis: 'C',
+        question: 'Does that property concern which supply the helmet is actually fed from now, '
+          + 'rather than whether breathing air is provided or the compressor is running?',
+        expected: 'PASS' },
+      { id: 'D5.Q3', axis: 'B',
+        question: 'Was the night-shift operative\'s training declared as an owed fact?',
+        expected: 'PASS: not declared' },
+      { id: 'D5.Q4', axis: 'G',
+        question: 'COMPLEMENTARY GATE-INTERACTION QUESTION. Did the system suppress the '
+          + 'decision-neutral unknown while still emitting the separate genuinely '
+          + 'decision-critical present-state property?',
+        expected: 'PASS: exactly one declaration, and it is the connection property' },
+    ],
+  },
+];
+
+// ================================================================ axes
+
+export interface ConfirmationAxis {
+  id: string;
+  name: string;
+  question: string;
+  vocabulary: readonly string[];
+  notApplicableFrozenFor: readonly string[];
+}
+
+export const CONFIRMATION_AXES: readonly ConfirmationAxis[] = [
+  { id: 'A', name: 'REQUIRED_FACT_RECALL',
+    question: 'Did every frozen decision-critical property emit as a declaration?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: ['D3'] },
+  { id: 'B', name: 'FALSE_GAP_RESTRAINT',
+    question: 'Did any frozen decision-neutral, established or prohibited fact become an owed '
+      + 'declaration?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: [] },
+  { id: 'C', name: 'EXACT_PROPERTY',
+    question: 'Does each declaration target the actual owed property rather than an availability, '
+      + 'existence, check-history, record or requirement proxy?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: ['D3'] },
+  { id: 'D', name: 'CONJUNCT_QUALIFIER_COMPLETENESS',
+    question: 'Are every required conjunct and qualifier preserved in the property, the branches '
+      + 'and the clarification?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: ['D3'] },
+  { id: 'E', name: 'PROPERTY_REASONING_CONSISTENCY',
+    question: 'Does missingFact carry everything its own branches, decisions and clarification '
+      + 'rely on, WITHOUT that agreement having been reached by deleting semantics from them?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: ['D3'] },
+  { id: 'F', name: 'CLARIFICATION_DECLARATION_BINDING',
+    question: 'Is every clarification that governs today\'s action bound to a declaration, and is '
+      + 'no declaration manufactured for a clarification that does not?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: [] },
+  { id: 'G', name: 'CURRENT_ACTION_COUNTERFACTUAL_RESTRAINT',
+    question: 'Was every emitted declaration one whose two answers require materially different '
+      + 'action NOW, with no future-only consequence used to manufacture present divergence?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: [] },
+  { id: 'H', name: 'INDEPENDENT_FACT_PRESERVATION',
+    question: 'Are independent facts kept independent and all of them preserved?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: ['D1', 'D2', 'D3', 'D5'] },
+  { id: 'I', name: 'FACT_LOCAL_DECISION_CONTAINMENT',
+    question: 'Does settlement of one fact avoid claiming overall safety or continuation while an '
+      + 'independent fact remains unresolved?',
+    vocabulary: ['PASS', 'FAIL'], notApplicableFrozenFor: ['D1', 'D2', 'D3', 'D5'] },
+];
+
+export const PASS_RULE = {
+  rule: 'Every exercised evaluation question must PASS. There is no partial credit and no aggregate '
+    + 'compensation.',
+  onOneSubstantiveFailure: 'EXPERT_HAZLENZ_RESIDUAL_SEMANTIC_REMEDIATION_REQUIRES_REVIEW',
+  onCleanResult: 'EXPERT_HAZLENZ_RESIDUAL_FIRST_PASS_DEVELOPMENT_CONFIRMED — '
+    + 'TARGETED_VERIFIER_VALIDATION_REQUIRED',
+  whyStrict: 'five cases aimed directly at three named residual mechanisms and two protected '
+    + 'behaviours. A failure on a case built to expose exactly that mechanism is information, not '
+    + 'noise. Averaging it away would repeat the aggregate-compensation error §209 refused.',
+  notApplicableRule: 'NOT_APPLICABLE is valid only where this file freezes it for that case, '
+    + 'before execution.',
+  retries: 0,
+  postOutputTruthEdits: 0,
+  isAcceptance: false,
+  isNot: [
+    'Expert HazLenz acceptance',
+    'production validation',
+    'an accuracy percentage',
+    'proof of G6 verifier remediation',
+  ],
+} as const;
+
+export const GATE_INTERACTION_PAIR = {
+  question: 'Did §210C obtain false-gap restraint by globally suppressing declarations?',
+  answeredBy: ['D3.Q1', 'D5.Q4'],
+  rule: 'BOTH must PASS. D3 alone can be passed by a model that declares nothing; D5 alone can be '
+    + 'passed by a model that declares everything. Only the pair distinguishes correct behaviour '
+    + 'from either degenerate strategy.',
+} as const;
+
+export const DESTRUCTIVE_REPAIR_QUESTION = {
+  question: 'D1.Q4',
+  rule: 'FAIL if apparent property/reasoning consistency was achieved by deleting a required '
+    + 'conjunct or qualifier from branchA, branchB, the clarification, or the decision divergence, '
+    + 'rather than by enriching missingFact.',
+} as const;

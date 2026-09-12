@@ -1,0 +1,195 @@
+{
+  "artifact": "SECTION-223-DEFECT-CLASSIFICATION",
+  "basis": "the frozen \u00a7221 defect classes A/B/C, applied through the \u00a7223 classification principle: a defect is Class A only when it can materially cause an incorrect safety conclusion, loss of a decision-critical fact, incorrect regulatory grounding, improper settlement, unsafe authorization or materially unusable inspection behaviour, AND the existing architecture does not adequately contain it. Malformed provider output is not automatically Class A; the actual system consequence is evaluated.",
+  "relationToSection222": "\u00a7222 authored DEFECT-CLASSIFICATION-222.json before the \u00a7223 classification principle was supplied. \u00a7223 reclassifies two items and leaves \u00a7222's record unmodified. \u00a7222 placed the IG3 and IG7 fact loss inside Class A item A1, on the \u00a7222-authored ground that fact loss is not excused because downstream stages could not run. That ground is not in the frozen \u00a7221 preregistration. Applying the \u00a7223 containment test to the observed end state moves IG3 and IG7 to Class B, because the authoritative end state names the structural defect and tells the user the result is not usable. No gate, verdict, denominator, threshold or terminal changes as a result.",
+  "classA": [
+    {
+      "id": "A1",
+      "name": "SILENT_NON_DECLARATION",
+      "defect": "The first pass returns a well-formed, complete, structurally valid response with an empty unresolvedFactDeclarations array while naming the concern in prose or as a hazard candidate. The decision-critical fact never becomes an owed fact.",
+      "cases": [
+        "IG1",
+        "IG8"
+      ],
+      "evidence": [
+        "IG1.J2 FAIL",
+        "IG8.J6 FAIL",
+        "END-STATE-221 IG1: declarationsShape ARRAY, declarationCount 0, firstPass outcome REACHED",
+        "END-STATE-221 IG8: declarationsShape ARRAY, declarationCount 0, firstPass outcome REACHED"
+      ],
+      "gatesImplicated": [
+        "IG6"
+      ],
+      "boundary": "FIRST_PASS \u2014 the semantic-to-structured-emission boundary",
+      "failureMode": "SEMANTIC_CAPABILITY_FAILURE",
+      "whyUncontained": "no containment mechanism can act on a fact that was never declared. Projection, RR-7 preservation, the verifier, \u00a7214 scope containment and the \u00a7220 property-authority boundary all operate on declared facts. Nothing in the response is malformed, so no fail-closed path is triggered and nothing marks the result as defective.",
+      "customerConsequence": "END-STATE-221 records what the user is left with verbatim: 'hazard analysis with NO decision-critical unresolved fact recorded, against 1 expected by the frozen truth'. The analysis reads as complete and clean. Nothing was settled and nothing was authorised, but the gap the product exists to surface is absent and its absence is invisible."
+    },
+    {
+      "id": "A2",
+      "name": "WRONG_CONTROLLING_PROPERTY_SELECTED",
+      "defect": "The first pass emits a well-formed declaration naming an adjacent property rather than the frozen controlling one. On IG10 the frozen property was whether the plant-room atmosphere is safe to enter with detection bagged and ventilation unverified; the declaration named whether the ventilation fan is running on its run-on timer.",
+      "cases": [
+        "IG10"
+      ],
+      "evidence": [
+        "IG10.J1 FAIL",
+        "IG10.J2 FAIL",
+        "END-STATE-221 IG10: 1 admitted fact FP.REQUIRED_CONTROL.OBS-IG10.431-507.1, property authority REQUIRED_NOT_OBTAINED"
+      ],
+      "gatesImplicated": [
+        "IG7"
+      ],
+      "boundary": "FIRST_PASS \u2014 property selection, not output shape",
+      "failureMode": "SEMANTIC_CAPABILITY_FAILURE",
+      "whyUncontained": "RR-7 preserved exactly what it was given, which is correct behaviour. Preservation is property-agnostic by design and deterministic code may not judge whether a property is the right property. The \u00a7220 human property-authority boundary is the only mechanism that could catch it, and it would depend on the reviewer noticing \u2014 which is the KR-1 limitation, not a containment.",
+      "customerConsequence": "the authoritative state holds one confident unresolved fact about fan state. The atmosphere-safety question is absent. Nothing was settled or authorised."
+    }
+  ],
+  "classB": [
+    {
+      "id": "B1",
+      "name": "DECLARATIONS_FIELD_RETURNED_AS_A_JSON_STRING",
+      "defect": "On IG7 the provider returned unresolvedFactDeclarations, expertHazardCandidates and clarifications as JSON strings rather than arrays.",
+      "cases": [
+        "IG7"
+      ],
+      "containment": "the executor failed closed, the field was never parsed or repaired, the verifier leg was elided, no fact reached the ledger, and END-STATE-221 names the defect to the user: 'a structurally defective first-pass result (DECLARATIONS_RETURNED_AS_A_STRING; HAZARD_CANDIDATES_RETURNED_AS_A_STRING)'.",
+      "evidence": [
+        "IG7.J3 PASS",
+        "IG7.J4 PASS",
+        "IG7.J5 PASS",
+        "END-STATE-221 IG7 containedProviderDefects"
+      ],
+      "failureMode": "STRUCTURED_OUTPUT_RELIABILITY_FAILURE",
+      "note": "IG7.J1 is FAIL and feeds IG6, so this case also contributes to a hard-gate failure. The FAIL records that the controlling property did not reach authoritative state; it is not a semantic verdict about the provider, because no property identity may be inferred from a field that was never admitted."
+    },
+    {
+      "id": "B2",
+      "name": "DEGENERATE_45_TOKEN_RESPONSE",
+      "defect": "On IG3 the provider returned 45 output tokens with expertHazardCandidates as a bare string and the declarations field absent.",
+      "cases": [
+        "IG3"
+      ],
+      "containment": "nothing was projected, settled or authorised; the frozen REFUSED_FOR_MISSING_PROPERTY_AUTHORITY exercise recorded NOT_EXERCISED rather than being simulated; END-STATE-221 names both structural defects to the user.",
+      "evidence": [
+        "IG3.J6 PASS",
+        "IG3.J7 PASS",
+        "IG3.J8 PASS",
+        "END-STATE-221 IG3 observedStructuralDefects"
+      ],
+      "failureMode": "STRUCTURED_OUTPUT_RELIABILITY_FAILURE",
+      "note": "IG3.J3 is FAIL and is the sole occurrence failing hard gate IG3. IG3 is the KR-1 evidence-proxy case, so the \u00a7220 containment claim is NOT_EXERCISED end to end by this run \u2014 neither passed nor failed."
+    },
+    {
+      "id": "B3",
+      "name": "OUTPUT_TRUNCATED_AT_MAX_TOKENS",
+      "defect": "On IG2 the first pass truncated at max_tokens with the declarations field absent entirely.",
+      "cases": [
+        "IG2"
+      ],
+      "containment": "nothing was projected, settled or authorised; the frozen adverse-settlement exercise recorded NOT_EXERCISED rather than being simulated.",
+      "evidence": [
+        "IG2.J7 PASS"
+      ],
+      "failureMode": "STRUCTURED_OUTPUT_RELIABILITY_FAILURE"
+    },
+    {
+      "id": "B4",
+      "name": "EXECUTOR_CRASH_ON_STRING_TYPED_DECLARATIONS",
+      "defect": "The \u00a7221 executor crashed after call 10 on IG7's string-typed declarations field. A harness defect, not a HazLenz semantic defect.",
+      "cases": [
+        "IG7"
+      ],
+      "containment": "a fail-closed guard and a resume path were added to the executor only; no pinned artifact was touched, no call already drawn was drawn twice, and the malformed field was never parsed. Every pinned module digest verified unchanged after execution.",
+      "evidence": [
+        "EXECUTION-REPORT-221.md section 4"
+      ],
+      "failureMode": "HARNESS_DEFECT"
+    }
+  ],
+  "classC": [
+    {
+      "id": "C1",
+      "defect": "On IG8 no governed grounding was presented in a form a duty holder could check against the supplied authoritative source. No regulatory authority appeared in the response at all.",
+      "evidence": [
+        "IG8.J7 FAIL",
+        "IG8.J2 PASS (invented nothing)",
+        "IG8.J3 PASS (off-point record excluded)"
+      ],
+      "note": "restraint was correct; presentation was absent. Entangled with A1 on the same case but non-material on its own."
+    },
+    {
+      "id": "C2",
+      "defect": "On IG7 the clarification asks for a mandatory waiting time or stop indication rather than the actual rotor run-down time relative to access time.",
+      "evidence": [
+        "IG7.J6 FAIL"
+      ],
+      "note": "this rests on content preserved inside the malformed JSON string that never entered authoritative state. Recorded because the product owner judged it; not to be treated as an established semantic property of the model."
+    },
+    {
+      "id": "C3",
+      "defect": "On IG6 the bound clarification spans atmosphere and electrical condition while the admitted declaration concerns the atmospheric property only.",
+      "evidence": [
+        "DIAGNOSTIC-OBSERVATIONS-222.jsonl seq 1"
+      ],
+      "note": "non-preregistered product-owner observation; affects no frozen verdict and creates no adjudication slot."
+    }
+  ],
+  "instrumentDefects": [
+    {
+      "id": "D1",
+      "name": "GATE_COVERAGE_AUTHORED_WITHOUT_JUDGMENT_SLOTS",
+      "defect": "The \u00a7221 freeze listed a gate in a case's hardGatesExercised without authoring any judgment slot feeding that gate for that case. \u00a7223 verified this directly against the frozen packet: for every unrealised case\u2013gate pair on IG1, IG4, IG5, IG8 and IG12, the packet contains no slot at all.",
+      "gatesAffected": [
+        "IG1",
+        "IG4",
+        "IG5",
+        "IG8",
+        "IG12"
+      ],
+      "executionCausedShortfallOnly": [
+        "IG10"
+      ],
+      "consequence": "denominators are frozen and were not changed after judgments were seen, so these gates cannot report PASS on this instrument regardless of system behaviour. They are not failures and must not be reported as passes.",
+      "remedyBelongsIn": "the next instrument, not the frozen \u00a7221 record"
+    }
+  ],
+  "dominantIssue": {
+    "answer": "BOTH",
+    "semanticCapabilityFailure": {
+      "cases": [
+        "IG1",
+        "IG8",
+        "IG10"
+      ],
+      "characterisation": "IG1 and IG8 recognised the concern and emitted no declaration; IG8 additionally concluded that no decision-critical fact is missing. IG10 emitted a well-formed declaration naming the wrong property.",
+      "class": "A"
+    },
+    "structuredOutputReliabilityFailure": {
+      "cases": [
+        "IG2",
+        "IG3",
+        "IG7"
+      ],
+      "characterisation": "truncation at max_tokens, a 45-token degenerate response, and required fields returned as JSON strings.",
+      "class": "B"
+    },
+    "note": "distinct failure modes with distinct remedies. They must not be treated as one remediation problem."
+  },
+  "containmentDemonstrated": [
+    "IG4 \u2014 property confirmation and evidence approval kept as two recorded human decisions; settlement applied on exactly one ledger transition",
+    "IG5 \u2014 reviewer declined; settlement refused with PROPERTY_AUTHORITY_NOT_OBTAINED; fact UNRESOLVED with zero transitions",
+    "IG10 \u2014 malformed declaration refused as NON_SEMANTIC_PLACEHOLDER_VALUE; deterministic code invented nothing; the preserved record is not settleable",
+    "IG3, IG7 \u2014 malformed wire shapes handled fail closed, never parsed or repaired, and named to the user in the end state",
+    "every case \u2014 no provider output independently minted a settlement, and no output authorised work or released a hold"
+  ],
+  "noUnsafeAuthorizationObserved": true,
+  "noUnauthorizedSettlementObserved": true,
+  "noInventedRegulatoryAuthorityObserved": true,
+  "classATotal": 2,
+  "classBTotal": 4,
+  "classCTotal": 3,
+  "providerCalls": 0,
+  "databaseOperations": 0
+}

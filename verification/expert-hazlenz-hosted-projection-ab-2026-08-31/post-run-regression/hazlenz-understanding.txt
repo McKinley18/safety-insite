@@ -1,0 +1,31 @@
+◇ injected env (20) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+✅ compressed-gas: compressed_gas / cylinder_projectile_or_gas_release
+✅ hazcom: hazard_communication / unknown_substance_contact_or_inhalation
+✅ electrical: electrical / electrical_shock_or_arc_flash
+✅ machine-guarding: machine_guarding / caught_in_entanglement_or_crushing
+✅ conveyor: machine_guarding / caught_in_entanglement_or_crushing
+✅ loto: lockout_tagout / unexpected_startup_or_stored_energy_release
+✅ walking-surface: walking_working_surfaces / same_level_slip_trip_fall
+✅ fall-protection: fall_protection / fall_to_lower_level
+✅ mobile-equipment: mobile_equipment / struck_by_or_caught_between_mobile_equipment
+✅ flammable-hot-work: fire_protection / ignition_of_combustibles_or_vapors
+✅ egress: emergency_egress / delayed_or_prevented_evacuation
+✅ confined-space: confined_space / atmospheric_asphyxiation_or_toxic_exposure
+✅ excavation: excavation_trenching / cave_in_crushing_or_engulfment
+✅ ppe-eye-face: personal_protective_equipment / flying_particle_eye_or_face_injury
+✅ silica: respirable_dust_silica / respirable_dust_inhalation
+✅ noise: noise_exposure / noise_induced_hearing_loss
+✅ heat-stress: heat_stress / heat_illness
+✅ ergonomics: ergonomics / musculoskeletal_overexertion_or_strain
+✅ rigging: cranes_rigging_hoisting / rigging_failure_or_dropped_load
+✅ welding-fire-watch: fire_protection / ignition_of_combustibles_or_vapors
+✅ forklift: mobile_equipment / struck_by_or_caught_between_mobile_equipment
+✅ dropped-object: dropped_objects / struck_by_falling_object
+✅ ground-control: ground_control / fall_of_ground_or_material
+✅ water-drowning: water_drowning / fall_into_water_and_drowning
+✅ environmental-release: environmental_release / release_to_drain_soil_or_water
+HazLenz hazard understanding benchmark: 25/25 passed.

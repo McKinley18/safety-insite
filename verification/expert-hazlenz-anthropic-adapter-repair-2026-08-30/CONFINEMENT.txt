@@ -1,0 +1,33 @@
+CONFINEMENT — §108 STEP 1C, 2026-08-30
+
+A. files referencing the Expert module:
+   backend/scripts/diagnose-anthropic-schema-compatibility.ts
+   backend/scripts/diagnose-expert-probe-content.ts
+   backend/scripts/diagnose-expert-quote-binding.ts
+   backend/scripts/probe-expert-grounding-repair.ts
+   backend/scripts/probe-expert-hosted-transport.ts
+   backend/scripts/probe-expert-routing.ts
+   backend/scripts/probe-expert-transport.ts
+   backend/scripts/test-expert-anthropic-adapter-repair.ts
+   backend/scripts/test-expert-authority-merge.ts
+   backend/scripts/test-expert-contract-foundation.ts
+   backend/scripts/test-expert-grounding-contract.ts
+   backend/scripts/test-expert-nocall-harness.ts
+   backend/scripts/test-expert-provider-failure.ts
+   backend/scripts/test-expert-routing-contract.ts
+   backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+   backend/src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider.ts
+   backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+   COUNT: 17
+
+B. controllers/services/modules among them: NONE (0 matches)
+
+C. importers of the HOSTED adapter (construct match):
+   backend/scripts/test-expert-anthropic-adapter-repair.ts:15:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+   backend/scripts/diagnose-anthropic-schema-compatibility.ts:46:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+   backend/scripts/probe-expert-hosted-transport.ts:37:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+
+D. frontend references: NONE (0 matches)
+
+E. does test-expert-anthropic-adapter-repair.ts make any network call (fetch)?
+   NONE — 0 matches

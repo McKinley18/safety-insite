@@ -1,0 +1,95 @@
+§166 VERIFIER-v3 BINDING PROTOCOL — LOCAL PROOF MATRIX
+====================================================================================================
+  instruction  hazlenz.expert.verifier-instruction.v3  678160c95bc7db385d49f3b4d5077fb8…
+  contract     hazlenz.expert.verifier.v3
+  packet       75d64197583092ed8ac826a1c3c85d86…
+
+--- A–D  BINDING, MULTIPLE SUPPLIED FACTS, AND ADDITIVITY
+
+ok    A. one supplied fact + a correct binding is admitted and covers exactly it  — admitted, COVERED via ADMITTED_BINDING, warning FALSE, 0 side effects
+ok    B. two supplied facts, binding the first leaves the second UNRESOLVED  — warning TRUE, uncovered=[discharge_auger_drive_isolation_state]
+ok    C. two supplied facts + binding the first + an additive nomination: all three representable  — 3 facts in the ledger; the nominated one is UNRESOLVED alongside both
+ok    D. the additive nomination did not delete the second supplied fact  — 0 facts removed, 0 deletion violations
+
+--- E–F  A BINDING KEY IS A CLOSED-SET MEMBER OR IT IS NOTHING
+
+ok    E. a binding to a nonexistent factKey is refused  — "owed:not-in-the-set" is not one of the 1 supplied keys
+ok    F. a one-character typo and a case change are BOTH refused — no fuzzy match exists  — exact string equality, no normalisation, no nearest neighbour
+
+--- G  FREE TEXT CANNOT CLEAR COVERAGE
+
+ok    G. a question that matches the owed fact word for word but binds nothing clears no coverage  — admitted as a valid nomination; the owed fact stays UNRESOLVED because nothing bound it
+
+--- H–I  SILENCE RESOLVES NOTHING
+
+ok    H. NO_CLARIFICATION_REQUIRED with an unresolved supplied fact leaves the warning standing  — admitted, 0 transitions, warning TRUE
+ok    I. two consecutive NO declarations make no fact COVERED  — no COVERED fact, 0 transitions, warning still TRUE after both draws
+
+--- J–L  A CHALLENGE IS A REQUEST; HAZLENZ OWNS THE TRANSITION
+
+ok    J. a challenge produces an arbitration request and does NOT clear the fact  — 1 arbitration request, fact UNRESOLVED, 0 transitions, warning TRUE
+ok    K. a challenge that is not upheld leaves the original fact exactly where it was  — the request carries settles:false as a literal type and produces no ledger declaration
+ok    L. arbitration CAN reject the fact, but only through the HazLenz-owned transition  — RECORDED_ARBITRATION, 1 transition, warning clears only now
+
+--- M  ONE FACT DOES NOT COVER ANOTHER, HOWEVER SIMILAR THE TEXT
+
+ok    M. binding fact A leaves fact B uncovered even with byte-identical descriptive text  — identical whyUnresolved prose; only the bound key moved
+
+--- N–P  THE NOMINATION CEILING AND THE SOURCE-MODE AGREEMENT RULE
+
+ok    N. more than one nomination is refused; the ceiling is one and the field is not a list  — a nomination is one object, never a list
+ok    O. a nomination with no source mode is refused  — ADD_OR_REPLACE must declare its source mode
+ok    P. a nominating source mode with no nomination — and a supplied mode carrying one — are refused  — the declared mode must agree with the payload in both directions
+
+--- Q–T  INVARIANTS CARRIED FORWARD FROM §165, RE-PROVEN UNDER v3
+
+ok    Q. a rationale asserting coverage mutates nothing  — the verdict is admitted and the claim in its prose has no effect whatsoever
+ok    R. development human truth still cannot enter a production ledger under v3  — throws at creation
+ok    S. raw verifier attempts remain append-only under v3  — 2 attempts preserved; an edited first attempt is reported
+ok    T. the call-budget invariants are unchanged by the protocol revision  — 5-call cap, 4 channels, unchanged
+
+--- U–X  THE HS-A1 AND HS-E1 SHAPES THE EXPERIMENT WILL TEST
+
+ok    U. HS-A1 — bind the flame-failure target AND nominate the auger gap in ONE response  — the shape §165 proved v2 REFUSES is admitted by v3, and both facts survive
+ok    V. HS-A1 — the auger fact can be bound ONLY when it was supplied, and the target survives either way  — bound when supplied; refused when not; the flame-failure target stays uncovered in both
+ok    W. HS-E1 — the interlock-function fact can be bound  — COVERED via ADMITTED_BINDING; warning clears
+ok    X. HS-E1 — a NO verdict leaves the target coverage warning TRUE  — the §163 settled-silence shape now leaves a live, named, uncovered key
+
+--- Y  ADVERSARIAL MALFORMED CASES
+
+ok    Y1. an undeclared supplied fact  — refused with OWED_FACT_NOT_DECLARED
+ok    Y2. a declaration for a key that was not supplied  — refused with OWED_FACT_DECLARATION_KEY_NOT_SUPPLIED
+ok    Y3. the same key declared twice  — refused with OWED_FACT_DECLARATION_DUPLICATED
+ok    Y4. two facts declared bound at once  — refused with MORE_THAN_ONE_FACT_DECLARED_BOUND
+ok    Y5. a bound declaration disagreeing with bindingFactKey  — refused with BOUND_DECLARATION_DISAGREES_WITH_BINDING_KEY
+ok    Y6. a challenge with no reason  — refused with CHALLENGE_WITHOUT_A_REASON
+ok    Y7. a challenge smuggling a settlement flag  — refused with CHALLENGE_CLAIMS_TO_SETTLE_THE_FACT
+ok    Y8. a silent verdict declaring a fact bound  — refused with BOUND_DECLARATION_WITHOUT_A_CLARIFICATION
+ok    Y9. a binding key on a silent verdict  — refused with BINDING_DECLARED_BY_A_NON_ADD_VERDICT
+ok    Y10. a nomination whose span is not verbatim  — refused with OBSERVATION_SPAN_NOT_VERBATIM
+ok    Y11. a nomination whose branches lead to the same action  — refused with DECISIONS_DO_NOT_DIVERGE
+ok    Y12. a nomination that renames a supplied key  — refused with NOMINATION_MUST_NOT_REUSE_A_SUPPLIED_FACT_KEY
+ok    Y13. evaluation truth echoed back in the response  — refused with HUMAN_TRUTH_PROVENANCE_IN_RESPONSE
+ok    Y14. a forbidden collection returned alongside the verdict  — refused with FORBIDDEN_FIELD
+ok    Y15. a non-string binding key is refused rather than coerced  — no coercion
+ok    Y16. a non-array declaration block is refused  — must be an array
+
+--- D1–D4  SEMANTIC-PRESERVATION DIFF
+
+ok    D1. every changed line is classified, and no classification is stale  — 42 added, 2 removed, 12 blank; 0 unclassified, 0 stale
+ok    D2. SUBSTANTIVE_SEMANTIC_CHANGE_COUNT = 0  — binding-protocol 39, schema-alignment 5, substantive 0
+ok    D3. every v2 block that must survive is present in v3, byte for byte  — 12 blocks checked positively, including the "usually NO" prior
+ok    D4. the contract diff matches the live schema and adds no substantive semantic change  — 6 field changes: 2 added, 2 removed, 2 redefined
+
+--- C  CONFINEMENT AND CONTRACT SURFACE
+
+ok    C1. the v3 modules import nothing from src/ and can reach no provider  — 3 modules · 0 src/ imports · 0 provider tokens
+ok    C2. the v3 admission rule contains no semantic matcher and no lexical threshold  — binding is exact string equality; v2's 0.8 overlap threshold is dropped, not tightened
+ok    C3. an admitted v3 verdict may affect clarifications and coverage, and nothing else  — candidates, citations, deterministic output, risk, actions, insights and disagreements are all false
+ok    C4. the supplied owedFacts block leaks no grading truth  — 7 patterns, 0 matches; 56 prompt lines
+ok    C5. every frozen v3 enum is the size the protocol specifies  — 3 declarations · 3 source modes · 41 admission codes
+
+====================================================================================================
+  49/49 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   COST: $0.00   DATABASE ACCESS: none   src/ CHANGES: none
+====================================================================================================

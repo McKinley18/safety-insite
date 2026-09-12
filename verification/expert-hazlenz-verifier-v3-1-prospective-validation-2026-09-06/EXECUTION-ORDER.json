@@ -1,0 +1,280 @@
+{
+  "artifact": "SECTION_192_EXECUTION_ORDER",
+  "seedHex": "7e73d175",
+  "method": "three interleaved blocks; Fisher-Yates over the thirteen row ids under mulberry32 seeded from the v3.1 system prompt sha256; a block opening on the previous block's closing row is rotated left one position",
+  "frozenOrder": [
+    {
+      "sequencePosition": 1,
+      "rowId": "FV-01",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 2,
+      "rowId": "FV-03",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 3,
+      "rowId": "FV-13",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 4,
+      "rowId": "FV-04",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 5,
+      "rowId": "FV-09",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 6,
+      "rowId": "FV-07",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 7,
+      "rowId": "FV-05",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 8,
+      "rowId": "FV-10",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 9,
+      "rowId": "FV-12",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 10,
+      "rowId": "FV-02",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 11,
+      "rowId": "FV-08",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 12,
+      "rowId": "FV-06",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 13,
+      "rowId": "FV-11",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 14,
+      "rowId": "FV-05",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 15,
+      "rowId": "FV-10",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 16,
+      "rowId": "FV-13",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 17,
+      "rowId": "FV-06",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 18,
+      "rowId": "FV-04",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 19,
+      "rowId": "FV-02",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 20,
+      "rowId": "FV-03",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 21,
+      "rowId": "FV-12",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 22,
+      "rowId": "FV-01",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 23,
+      "rowId": "FV-07",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 24,
+      "rowId": "FV-09",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 25,
+      "rowId": "FV-11",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 26,
+      "rowId": "FV-08",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 27,
+      "rowId": "FV-12",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 28,
+      "rowId": "FV-11",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 29,
+      "rowId": "FV-05",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 30,
+      "rowId": "FV-03",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 31,
+      "rowId": "FV-10",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 32,
+      "rowId": "FV-09",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 33,
+      "rowId": "FV-06",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 34,
+      "rowId": "FV-08",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 35,
+      "rowId": "FV-04",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 36,
+      "rowId": "FV-07",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 37,
+      "rowId": "FV-01",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 38,
+      "rowId": "FV-02",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 39,
+      "rowId": "FV-13",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    }
+  ]
+}

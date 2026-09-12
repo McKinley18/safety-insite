@@ -1,0 +1,34 @@
+PHASE 0 -- CONSTRUCTOR DRIFT RECONCILIATION
+==========================================
+
+METHOD: revert ONLY the five section 122 edits from the current file and hash the result.
+If the revert reproduces the section 121 frozen hash byte-for-byte, those edits ARE the
+complete diff and there is no unrelated drift. This is a proof, not an inspection.
+
+section 121 frozen hash : 2210cbe620ff3ad837389a4b84b5ab166d39cff1f374b8964fc52e019b3723e5
+reverted copy hash      : 2210cbe620ff3ad837389a4b84b5ab166d39cff1f374b8964fc52e019b3723e5
+RESULT                  : MATCH -- zero unrelated semantic drift
+
+THE FIVE EDITS, ENUMERATED:
+  1. condition-mapping block replaced: HISTORICAL default CORRECTED -> INSUFFICIENT_EVIDENCE;
+     INTERPRETIVE_CONDITION_MAPPINGS -> CONDITION_MAPPING_RESOLUTIONS; VERIFIED_CORRECTION_STATUS
+     added; toExpertConditionState gains an optional second parameter and a HISTORICAL branch.
+  2. CanonicalDeterministicFinding gains optional correctionStatus.
+  3. buildExpertAnalysisInput passes f.correctionStatus through.
+  4. HazLenzAnalysisState.hazards[] gains optional correctionStatus.
+  5. toCanonicalExpertInputSource passes h.correctionStatus through.
+
+PROVEN CONSEQUENCES:
+  prompt semantics changed        : NO  -- expert-prompt.ts byte-unchanged e02c15ea..., version v6
+  projection semantics changed    : NO  -- expert-deterministic-projection.ts byte-unchanged f1cc7a61...
+  truth leakage introduced        : NO  -- TRUTH_LEAK = 0 re-measured (instrument suite D.1)
+  evaluation-only behaviour added : NO  -- the added parameter is a PRODUCTION engine field
+                                          (HazardDecomposition.correctionStatus); no cohort or
+                                          truth type is reachable from any signature here
+  still the single canonical path : YES -- buildExpertAnalysisInputFromAnalysis remains the only
+                                          transformation; no second builder exists
+  section 119 equivalence holds   : YES -- test:expert-projection-equivalence 88/0
+  section 121 regressions green   : YES -- instrument suite 155/0 (was 150/0; +5 mapping tests)
+
+NEW AUTHORITATIVE CONSTRUCTOR HASH (section 123, after freezing both mappings):
+  72dab946616496bdd4fcb529828b14041ce7ae7723e857961c1f253fe4ff8279

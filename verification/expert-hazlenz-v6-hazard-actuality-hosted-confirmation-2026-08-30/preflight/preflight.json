@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-08-30T00:00:00.000Z",
+  "promptVersion": "hazlenz.expert.prompt.v6",
+  "systemPromptSha256": "b58225b4d4fc8154fed66f5d81696bf4b9319300b0f2f0e4f2d97a66f2a981d4",
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "fixtureHashes": {
+    "R6": "2adf4721159cd33fb3c8449b32144178eb859d25bfae1c418245e50495bc2914",
+    "U-A": "321dd06b4282344e5fdbce8ad8563533f3e689f8c2ec5c6a912d2a07379144d9",
+    "U-B": "9afb6faffac7cdecb76e5d11ec4a7cb882b52fb2b0293d9ab70e35abadd1f108",
+    "U-C": "d306e6027a2f8317bb07d811d7985f9f39d9a05eaa5083884fb58a359b4029b7",
+    "U-F": "43cd3f5fa89f8d7c3ab86a7a55907ca9f06c7c16ea11e00232915fbc23a879fd",
+    "T5": "74571bc5fa12c15bda20c574f95e287f145196cd13da47fdc2b01443026dd3aa",
+    "R4": "107ca95b391f6d7c42b87e3c6cb806f8869cd56b52ee104f0c5f0f87f6daa4ca"
+  },
+  "hostedConfig": {
+    "endpoint": "https://api.anthropic.com",
+    "model": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "timeoutMs": 180000,
+    "thinking": "disabled",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "plannedPrimaryCalls": 7,
+  "plannedOptionalCalls": 2,
+  "absoluteCeiling": 9,
+  "costCeilingUsd": 3,
+  "adapterPath": "permanent AnthropicExpertProvider / buildAnthropicRequestBody -- no diagnostic bypass",
+  "projectedWorstCaseUsd": 0.85869
+}

@@ -1,0 +1,7 @@
+# ACCEPTANCE EVIDENCE PACKAGE DIGEST — computed over the 14 frozen files listed in
+# REPORT-231.sha256, in that order, as sha256( for each: name + LF + sha256(bytes) + LF ).
+bbe5ff199c8bb9034080ef501cf69db4bdc65ad72257c0370be456d5671a8089  SECTION-231-FROZEN-ACCEPTANCE-EVIDENCE-PACKAGE
+# SUCCESSOR ACCEPTANCE EVIDENCE PACKAGE DIGEST. Built by construction from the base package
+# bbe5ff199c8bb9034080ef501cf69db4bdc65ad72257c0370be456d5671a8089 by appending
+# SECTION-231-EXECUTION-ANOMALIES.json. The base digest stands and is not rewritten.
+523cb1b54388698e695519a62e5f7040f1cd48819ecb8f5036efeaff5648290c  SECTION-231-FROZEN-ACCEPTANCE-EVIDENCE-PACKAGE-SUCCESSOR-1

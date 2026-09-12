@@ -1,0 +1,43 @@
+AC-01.ROW.A | CORRECT | Both decision-critical unresolved facts were declared: actual lanyard attachment to the designated anchor point and the duct cover’s ability to carry the MEWP wheel loading in the raised configuration.
+
+AC-01.ROW.B | CORRECT | Both declarations concern genuinely unresolved facts that change today’s action; neither converts the established harness-wearing or normal stowed-outrigger facts into an unnecessary owed fact.
+
+AC-01.ROW.H | CORRECT | The lanyard-attachment and duct-capacity gaps remain separate declarations with separate branches, evidence needs, clarifications, and decisions; settling either leaves the other unresolved.
+
+AC-01.ROW.I | CORRECT | No false owed fact was declared for harness inspection status, outrigger deployment, or another already-resolved or decision-neutral property; the two declarations that were made are genuinely open.
+
+AC-01.FACT1.C | CORRECT | The declaration identifies the exact unresolved property: whether the worn lanyard is actually connected to the basket’s designated anchor point, rather than merely whether a harness or anchor point exists.
+
+AC-01.FACT1.E | CORRECT | Connected to the designated anchor point and unclipped or connected to a non-anchor part are genuine alternative states consistent with the observation and resolve the exact lanyard-attachment property.
+
+AC-01.FACT1.F | CORRECT | The branches produce materially different current actions: accept the fall-arrest arrangement and continue if properly attached, versus stop and correct the attachment if not properly attached.
+
+AC-01.FACT1.M | CORRECT | Asking where the lanyard is actually connected would establish or refute attachment to the designated anchor point and therefore can fully settle the owed property.
+
+AC-01.FACT1.L | PARTIALLY_CORRECT | The verifier directly evaluates the lanyard-attachment fact and recognizes the clarification as sufficient, but its verdict rationale also evaluates the separate duct-capacity fact and the row’s other possible contingencies, so it is not about this fact and no other.
+
+AC-01.FACT2.C | CORRECT | Taken as a whole, the declaration identifies the exact unresolved property: whether this specific duct cover can support the MEWP’s wheel loading in the current raised configuration.
+
+AC-01.FACT2.E | CORRECT | Adequate rating for the raised MEWP wheel loading versus inadequate or unconfirmable capacity are genuine alternative states of the exact duct-capacity fact.
+
+AC-01.FACT2.F | CORRECT | The two states lead to materially different current actions: remain positioned and continue if adequate versus lower/reposition off the duct before continuing if inadequate or unconfirmable.
+
+AC-01.FACT2.M | CORRECT | The clarification asks for the duct cover’s load-bearing capacity and comparison with the MEWP wheel loading while raised, which is evidence capable of settling the exact property.
+
+AC-01.FACT2.L | PARTIALLY_CORRECT | The verifier directly evaluates the duct-capacity owed fact and correctly assesses its clarification, but it also discusses the independent lanyard fact and other row-level considerations, so exact single-fact binding is not maintained.
+
+AC-02.ROW.A | CORRECT | Both decision-critical current-action gaps were declared: wheel rated speed versus spindle speed and tongue-guard clearance after the wheel change; the genuinely unknown inspection-label date does not change today’s action and therefore was correctly not declared as an owed fact.
+
+AC-02.ROW.B | CORRECT | The two declarations are genuinely unresolved and decision-critical; the decision-neutral portable-appliance inspection date was raised only as a candidate and was not converted into an owed-fact declaration.
+
+AC-02.ROW.H | CORRECT | Wheel-speed compatibility and tongue-guard clearance are independent safety properties requiring different evidence, and the two declarations preserve them separately rather than merging them.
+
+AC-02.FACT1.C | CORRECT | The declaration identifies the exact unresolved wheel-speed property: whether the newly fitted wheel’s maximum rated operating speed meets or exceeds this grinder’s spindle speed.
+
+AC-02.FACT1.E | CORRECT | Wheel rating at or above spindle speed and wheel rating below spindle speed are genuine mutually relevant states that resolve the exact speed-compatibility property.
+
+AC-02.FACT1.F | CORRECT | The branches produce materially different current decisions: no speed-related corrective action if correctly rated versus stopping the grinder and correcting the wheel/spindle mismatch if overspeeded.
+
+AC-02.FACT1.M | CORRECT | Asking whether the wheel’s marked maximum operating speed meets or exceeds the grinder spindle speed directly obtains the comparison required to establish or refute the owed property.
+
+AC-02.FACT1.L | PARTIALLY_CORRECT | The verifier substantively reaches and evaluates the exact wheel-speed owed fact, but its rationale also evaluates the tongue-guard clarification, the PAT-label issue, and the row more generally; this is correct topic reach with adjacent-property drift rather than exact single-fact binding.

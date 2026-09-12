@@ -1,0 +1,542 @@
+{
+ "operation": "§148 bounded hosted settlement-threshold + affectedDecision routing probe",
+ "isFormalEvaluation": false,
+ "historicalProviderInvocationCount": 195,
+ "startedAt": "2026-09-03T18:02:06.449Z",
+ "finishedAt": "2026-09-03T18:05:13.611Z",
+ "stopReason": "COMPLETED",
+ "identityViolation": null,
+ "accounting": {
+  "callsAttempted": 10,
+  "callsCompleted": 10,
+  "providerRequestsAttempted": 10,
+  "retryRequestsAttempted": 0,
+  "inputTokens": 158028,
+  "outputTokens": 13744,
+  "spendUsd": 0.453496,
+  "callCeiling": 10,
+  "requestCeiling": 12,
+  "retryRequestBudget": 2,
+  "spendCeilingUsd": 1.2480000000000002
+ },
+ "retryCauses": [],
+ "retriesSuppressed": [],
+ "providerInvocationsThisProcess": 10,
+ "identity": {
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "promptVersion": "hazlenz.expert.prompt.v11",
+  "systemPromptSha256": "d3ef737724eb609db7b7c18809969e815fe2b79e107c5bcbd830128a6ac799e6",
+  "wireSchemaSha256": "2a369ca1717beb2192e5c21147d49cf02ca5d3fa4cd213bb3ae85ff23a1f2a4a",
+  "analysisContractVersion": "hazlenz.expert.analysis.v2"
+ },
+ "persistence": {
+  "recordsOnDisk": 10,
+  "parseProblems": [],
+  "completenessProblems": [],
+  "midRunReadBackProof": {
+   "rowId": "TR-A1",
+   "provenBeforeExit": true,
+   "recordsOnDisk": 1
+  }
+ },
+ "callDisposition": {
+  "present": 10,
+  "outputRejected": 0,
+  "providerFailed": 0
+ },
+ "rejectionDiagnostics": [],
+ "clarification": {
+  "REQUIRED_ROWS": 5,
+  "REQUIRED_ROWS_THAT_SPOKE_LOOSE": 4,
+  "REQUIRED_ROWS_SILENT": 1,
+  "REQUIRED_SILENT_ROW_IDS": [
+   "TR-E1"
+  ],
+  "FORBIDDEN_ROWS": 5,
+  "FORBIDDEN_ROWS_SILENT": 5,
+  "FORBIDDEN_ROWS_THAT_SPOKE": [],
+  "TOTAL_CLARIFICATIONS_DELIVERED": 5,
+  "TOTAL_CLARIFICATIONS_EMITTED_ON_THE_WIRE": 5,
+  "CLARIFICATIONS_PER_CALL": 0.5,
+  "INVALID_CLARIFICATION_OBJECTS": [],
+  "STRICT_RECALL": "NOT_COMPUTED_BY_SCRIPT — adjudicate from CLARIFICATION-ADJUDICATION.csv; a semantically different question is not recall, and a DESTROYED question is not delivered"
+ },
+ "affectedDecisionRouting": {
+  "REASONED_BUT_DESTROYED_COUNT": 0,
+  "REASONED_BUT_DESTROYED": [],
+  "SURVIVAL_DENOMINATOR_REQUIRED_ROWS": 5,
+  "SURVIVAL_LOST_ON_REQUIRED_ROWS": 0,
+  "AFFECTED_DECISION_SURVIVAL": 1,
+  "TRUE_CONTRADICTIONS_EMITTED": [],
+  "TRUE_CONTRADICTIONS_REJECTED": 0,
+  "TRUE_CONTRADICTION_REJECTION": null,
+  "ARBITRATION_EVENTS": 0,
+  "LABEL_EXACT_MATCH_ON_REQUIRED_ROWS": "2/5",
+  "LABEL_HAZARD_EXISTENCE_ON_ESTABLISHED_HAZARD_ROWS": 1,
+  "NOTE": "A drop whose emitted label was HAZARD_EXISTENCE beside the model's own ACTIVE candidate is CORRECT arbitration and a ROUTING failure. It is never recorded as an arbitration defect, and it never counts as delivered recall."
+ },
+ "regression": {
+  "citation": {
+   "INPUT_CITATION_SHAPED_COUNT": 0,
+   "EXPERT_OUTPUT_CITATION_SHAPED_COUNT": 0,
+   "ACCEPTED_CITATION_COUNT": 0,
+   "REJECTED_CITATION_COUNT": 0,
+   "MERGED_CITATION_COUNT": 0,
+   "GOVERNED_AUTHORITY_CITATION_COUNT": 6,
+   "SUPPLIED_RECORD_CITATION_COUNT": 12
+  },
+  "coverage": {
+   "deterministicCoveredCount": 0,
+   "additiveExpertCoveredCount": 7,
+   "combinedCoveredCount": 7,
+   "truthMissesAfterUnionCount": 0,
+   "truthPresentTotal": 7,
+   "expertOnlyFamiliesCount": 14,
+   "perRow": [
+    {
+     "rowId": "TR-A1",
+     "truthPresent": [
+      "confined_space_entry"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "confined_space_entry"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "confined_space_entry",
+      "atmospheric_hazard"
+     ]
+    },
+    {
+     "rowId": "TR-B1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion"
+     ]
+    },
+    {
+     "rowId": "TR-B2",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion"
+     ]
+    },
+    {
+     "rowId": "TR-B3",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "chemical_inhalation_contact"
+     ]
+    },
+    {
+     "rowId": "TR-B4",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion"
+     ]
+    },
+    {
+     "rowId": "TR-C1",
+     "truthPresent": [
+      "noise_exposure"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "noise_exposure"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "noise_exposure",
+      "personal_protective_equipment"
+     ]
+    },
+    {
+     "rowId": "TR-C2",
+     "truthPresent": [
+      "suspended_loads"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "suspended_loads"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "suspended_loads"
+     ]
+    },
+    {
+     "rowId": "TR-D1",
+     "truthPresent": [
+      "fire_explosion",
+      "hot_work"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "fire_explosion",
+      "hot_work"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "hot_work",
+      "fire_explosion"
+     ]
+    },
+    {
+     "rowId": "TR-E1",
+     "truthPresent": [
+      "confined_space_entry",
+      "atmospheric_hazard"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "confined_space_entry",
+      "atmospheric_hazard"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "confined_space_entry",
+      "atmospheric_hazard"
+     ]
+    },
+    {
+     "rowId": "TR-F1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "material_handling_storage"
+     ]
+    }
+   ]
+  },
+  "linkage": {
+   "REQUIRED_LINKAGE_OPPORTUNITIES": 0,
+   "REQUIRED_LINKAGE_POPULATED": 0,
+   "REQUIRED_LINKAGE_VALID": 0,
+   "REQUIRED_LINKAGE_MISSING": 0,
+   "ALLOWED_LINKAGE_OPPORTUNITIES": 0,
+   "ALLOWED_LINKAGE_POPULATED": 0,
+   "ALLOWED_LINKAGE_VALID": 0,
+   "FORBIDDEN_LINKAGE_OPPORTUNITIES": 0,
+   "FORBIDDEN_LINKAGE_ATTEMPTS": 0,
+   "FORBIDDEN_LINKAGE_ACCEPTED": 0,
+   "NO_LINKAGE_OPPORTUNITY_ROWS": 0,
+   "NOT_A_LINKAGE_TEST_ROWS": 10,
+   "INVALID_LINKAGE_ATTEMPTS": 0,
+   "INVALID_LINKAGE_STRIPPED": 1,
+   "ARBITRATION_EVENTS": 0,
+   "perRow": [
+    {
+     "rowId": "TR-A1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 2,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-B1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-B2",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-B3",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-B4",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-C1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-C2",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-D1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-E1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "TR-F1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    }
+   ]
+  },
+  "FORBIDDEN_FAMILY_CANDIDATES_EMITTED": [],
+  "PROTECTED_AUTHORITY_CONTRADICTIONS": 0,
+  "TOTAL_CANDIDATES": 17,
+  "RAW_WIRE_CITATION_HITS": 0
+ },
+ "frozenGates": {
+  "strictRequiredRecall": 1,
+  "maxForbiddenViolations": 0,
+  "affectedDecisionSurvival": 1,
+  "trueContradictionRejection": 1,
+  "maxInvalidClarificationObjects": 0,
+  "maxCitationContainmentViolations": 0,
+  "maxProtectedAuthorityContradictions": 0
+ },
+ "budget": {
+  "targetLogicalCalls": 10,
+  "hardProviderRequestCeiling": 12,
+  "enforcedSpendCeilingUsd": 1.248
+ },
+ "gate": [
+  {
+   "id": "A.1 logical calls are within the authorized band",
+   "ok": true,
+   "detail": "10 rows (request ceiling 12)"
+  },
+  {
+   "id": "A.2 every row is structurally scoreable",
+   "ok": true,
+   "detail": "0 problems"
+  },
+  {
+   "id": "A.3 ids are fresh TR-* development ids",
+   "ok": true,
+   "detail": "TR-A1 TR-B1 TR-B2 TR-B3 TR-B4 TR-C1 TR-C2 TR-D1 TR-E1 TR-F1"
+  },
+  {
+   "id": "A.4 the set is not over-sampled on one family",
+   "ok": true,
+   "detail": "10 distinct domains across 10 rows"
+  },
+  {
+   "id": "B.1 the halves are BALANCED",
+   "ok": true,
+   "detail": "5 REQUIRED / 5 matched FORBIDDEN controls"
+  },
+  {
+   "id": "B.2 all six authorized opportunity classes are supplied",
+   "ok": true,
+   "detail": "6 of 6"
+  },
+  {
+   "id": "B.3 FOUR settled-threshold controls, each supplying a record and each owed SILENCE",
+   "ok": true,
+   "detail": "TR-B1=SETTLED_BELOW TR-B2=SETTLED_ABOVE TR-B3=SETTLED_NEAR_BOUNDARY TR-B4=IRRELEVANT_CONCEPT"
+  },
+  {
+   "id": "B.3b including the CR-D1 analog, where PROXIMITY IS THE ONLY FOOTHOLD LEFT",
+   "ok": true,
+   "detail": "TR-B3"
+  },
+  {
+   "id": "B.4 and TWO genuinely live threshold rows that must STILL ASK — the anti-revert control",
+   "ok": true,
+   "detail": "TR-C1=BASIS_AMBIGUOUS TR-C2=AGGREGATE_MISSING"
+  },
+  {
+   "id": "B.5 the §147 UNMARKED defect shape is still represented on the REQUIRED half",
+   "ok": true,
+   "detail": "3 of 5: TR-A1 TR-C2 TR-E1"
+  },
+  {
+   "id": "B.5b and one ANNOUNCED case survives as a non-regression control",
+   "ok": true,
+   "detail": "present"
+  },
+  {
+   "id": "B.6 the arbitration-exposed REQUIRED rows assert a PRESENT hazard, so a clarification really does land beside an ACTIVE candidate",
+   "ok": true,
+   "detail": "TR-A1 TR-C1 TR-C2 TR-D1 TR-E1"
+  },
+  {
+   "id": "B.6b exactly ONE row carries the existence-contradiction temptation, scored as an EXERCISE",
+   "ok": true,
+   "detail": "TR-E1"
+  },
+  {
+   "id": "C.1 every REQUIRED row states BOTH answers and BOTH DIFFERENT current outcomes",
+   "ok": true,
+   "detail": "5 complete counterfactuals"
+  },
+  {
+   "id": "C.2 exactly one authored gap per REQUIRED row, none on any FORBIDDEN row",
+   "ok": true,
+   "detail": "retention is unambiguous per row"
+  },
+  {
+   "id": "C.3 every FORBIDDEN row states the tempting question AND a per-row reason",
+   "ok": true,
+   "detail": "no blanket labels; each names the value, the basis and the side"
+  },
+  {
+   "id": "C.4 every authored affectedDecision is in the frozen vocabulary",
+   "ok": true,
+   "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION"
+  },
+  {
+   "id": "C.5 REGULATORY_INTERPRETATION is never claimed without a SUPPLIED record",
+   "ok": true,
+   "detail": "checked"
+  },
+  {
+   "id": "C.6 and NO row authors HAZARD_EXISTENCE as the owed label — on a row whose hazard the text establishes, an existence question IS the contradiction",
+   "ok": true,
+   "detail": "checked"
+  },
+  {
+   "id": "D.1 no formal-cohort, reserved or SPENT-probe path is imported",
+   "ok": true,
+   "detail": "clean — and the spent v5 fixture set is not reused either"
+  },
+  {
+   "id": "E.1 model bound exactly",
+   "ok": true,
+   "detail": "claude-sonnet-5"
+  },
+  {
+   "id": "E.2 vendor endpoint",
+   "ok": true,
+   "detail": "https://api.anthropic.com"
+  },
+  {
+   "id": "E.3 thinking disabled",
+   "ok": true,
+   "detail": "disabled"
+  },
+  {
+   "id": "E.4 credential present (never logged or persisted)",
+   "ok": true,
+   "detail": "set"
+  },
+  {
+   "id": "F.1 built one request per row, called nothing",
+   "ok": true,
+   "detail": "10 built, 0 invocations"
+  },
+  {
+   "id": "F.2 ONE ARM ONLY — M14 not attempted",
+   "ok": true,
+   "detail": "BASE"
+  },
+  {
+   "id": "F.3 the prospective repaired prompt is v11",
+   "ok": true,
+   "detail": "hazlenz.expert.prompt.v11"
+  },
+  {
+   "id": "F.4 the analysis contract is UNCHANGED at v2 — the schema gained no field",
+   "ok": true,
+   "detail": "hazlenz.expert.analysis.v2"
+  },
+  {
+   "id": "F.5 the NARROWED threshold clause is in the system prompt this probe will send",
+   "ok": true,
+   "detail": "present, conjunctive and correctly ordered in all requests"
+  },
+  {
+   "id": "F.6 and the affectedDecision routing disclosure, with its consequence",
+   "ok": true,
+   "detail": "present in all requests"
+  },
+  {
+   "id": "F.7 the v10 recovery is NOT reverted — both other settlement mechanisms still shipped",
+   "ok": true,
+   "detail": "worst-case, resemblance and the settlement check all intact"
+  },
+  {
+   "id": "G.1 no truth-key-only string reaches any request",
+   "ok": true,
+   "detail": "10 scanned"
+  },
+  {
+   "id": "G.2 no built prompt carries citation-shaped text",
+   "ok": true,
+   "detail": "10 scanned"
+  },
+  {
+   "id": "G.3 redaction is exercised",
+   "ok": true,
+   "detail": "12 supplied record fields carried a citation pre-render"
+  },
+  {
+   "id": "H.1 spend ceiling is the LOWER of authorized and model-priced",
+   "ok": true,
+   "detail": "authorized $2.00, priced $1.2480 -> enforcing $1.2480"
+  },
+  {
+   "id": "H.1b the retry allowance is the whole headroom and no more",
+   "ok": true,
+   "detail": "2 requests, inside the 12-request cap"
+  },
+  {
+   "id": "H.2 MEASURE-ONLY: store exists",
+   "ok": true,
+   "detail": "no provider request will be issued"
+  }
+ ]
+}

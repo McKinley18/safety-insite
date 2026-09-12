@@ -1,0 +1,85 @@
+{
+  "artifact": "POST_HOC_EVIDENCE_RECOVERY_RESULT",
+  "runId": "formal-run-65523fbb-eea3-4322-a47b-632fa2eae341",
+  "cohortId": "hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a",
+  "frozenBuildScoringReportRerun": false,
+  "frozenEndToEndPathUnavailableReason": "CohortRunRecord[] was not persisted",
+  "scorerModified": false,
+  "analysisSynthesized": false,
+  "providerCalls": 0,
+  "verdictsAccepted": 174,
+  "verdictsRejected": [],
+  "calculationA": {
+    "M06": {
+      "id": "M06_UNSUPPORTED_REGULATORY_ASSERTIONS",
+      "numerator": 2,
+      "denominator": 40,
+      "value": 0.05,
+      "threshold": 0.05,
+      "direction": "MAX",
+      "disposition": "HARD_GATE",
+      "state": "MEASURED",
+      "pass": true
+    },
+    "M07": {
+      "id": "M07_GOVERNED_RECORD_GROUNDING",
+      "numerator": 0,
+      "denominator": 9,
+      "value": 0,
+      "threshold": 0.95,
+      "direction": "MIN",
+      "disposition": "HARD_GATE",
+      "state": "MEASURED",
+      "pass": false
+    },
+    "M09": {
+      "id": "M09_CLARIFICATION_QUALITY",
+      "numerator": 5,
+      "denominator": 165,
+      "value": 0.030303030303030304,
+      "threshold": 0.7,
+      "direction": "MIN",
+      "disposition": "HARD_GATE",
+      "state": "MEASURED",
+      "pass": false
+    }
+  },
+  "calculationB": {
+    "M06": {
+      "id": "M06_UNSUPPORTED_REGULATORY_ASSERTIONS",
+      "numerator": 2,
+      "denominator": 40,
+      "value": 0.05,
+      "threshold": 0.05,
+      "direction": "MAX",
+      "disposition": "HARD_GATE",
+      "state": "MEASURED",
+      "pass": true
+    },
+    "M07": {
+      "id": "M07_GOVERNED_RECORD_GROUNDING",
+      "numerator": 0,
+      "denominator": 9,
+      "value": 0,
+      "threshold": 0.95,
+      "direction": "MIN",
+      "disposition": "HARD_GATE",
+      "state": "MEASURED",
+      "pass": false
+    },
+    "M09": {
+      "id": "M09_CLARIFICATION_QUALITY",
+      "numerator": 5,
+      "denominator": 165,
+      "value": 0.030303030303030304,
+      "threshold": 0.7,
+      "direction": "MIN",
+      "disposition": "HARD_GATE",
+      "state": "MEASURED",
+      "pass": false
+    }
+  },
+  "independentCalculationsAgree": true,
+  "handCheckableLedger": "RECOVERY-LEDGER.csv",
+  "verifierScriptSha256": "42c8e61529aee6a381878e6c56ce15f2b36a6eb696420ecd2312d09870a2368a"
+}

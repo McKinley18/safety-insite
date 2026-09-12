@@ -1,0 +1,12 @@
+{
+  "//": "SECTION 216 EXPERIMENT SCOPE ONLY. Typechecks the §216 disposition-remediation files plus the §210i/§210j/§211/§212/§214/§215 modules they build on, and NOTHING ELSE. Report as EXPERIMENT_SCOPE_TYPECHECK (§216), never as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-210i-*.ts", "scripts/lib/expert-210j-*.ts", "scripts/lib/expert-211-*.ts",
+    "scripts/lib/expert-212-*.ts", "scripts/lib/expert-214-*.ts", "scripts/lib/expert-215-*.ts",
+    "scripts/lib/expert-216-*.ts",
+    "scripts/test-21*-*.ts", "scripts/verify-212-*.ts", "scripts/build-215-*.ts",
+    "scripts/execute-215-*.ts"
+  ]
+}

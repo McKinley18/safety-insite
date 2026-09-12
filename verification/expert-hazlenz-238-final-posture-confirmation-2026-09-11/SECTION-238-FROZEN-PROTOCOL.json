@@ -1,0 +1,332 @@
+{
+  "artifact": "SECTION-238-FROZEN-PROTOCOL",
+  "version": "hazlenz.expert.238.final-confirmation.v1",
+  "instrumentDigest": "21ea0832330ff73fa928aa8b8e8854fccc10a5a33a61c52a3933ec30eaa70f1f",
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "moduleDigests233": {
+    "contract": "dda676aff97d6c4bbf5ac57eb8ec3fa3e89249225bdb9c0ff109ab5163a7323a",
+    "projection": "8901d0d39b8dcf50a8a045f1759ae284168ba7d5818876c255e3c82346c4f044",
+    "fixtures": "d744993f69486f510625cf11b919656b5e9a94337a463f46374558ef259448d3",
+    "suite": "61f9db3ddb2b1fb8a205f7aaae89169c0ee78841a58268ff618058a777380502"
+  },
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "moduleDigests235": {
+    "normalization": "e895ff214a6ba1e76a2812d573f2c8dfb6847cc18d1e0414422650db1c66d5fb",
+    "contract": "4faee904803b582c54eafab636ce910dd83fcd98346088dc8b6556736e3f6201",
+    "projection": "b742b124947ffbfc31a0d4cc8f885cb17427393346682ccfacc1ccf2588533d3",
+    "consistency": "b9ed6339d28b8e8d4224286b0b13b60898c8b695525206977fe9838040696cfb",
+    "fixtures": "465bf58c13102131e654b88a5ed13fac8371f625459eb3506eed3027a7bc4fab",
+    "suite": "f5fdcc973afcc7cc3e6437be5fe47767aa63f9e24b66907e7b705ca0ec11d958"
+  },
+  "closureDigest237": "1820bfd10ae3ab9105bd4233e97d97500267c6361cf520c60438383540461755",
+  "moduleDigests237": {
+    "contract": "fe881d1360bc4f34a09e48f1db1df00fa3c01ba384f16eac4773af28bfbe6324",
+    "projection": "7a6df06203403df7e02f4a229d22f6bf22c9db5ffe4361c96c2b20a0a9d79b20",
+    "consistency": "aba79f5b3a6019c6aba24b174fbf12a4b7c2addd2bcf50831247cffed9634719",
+    "fixtures": "6dac24f5fb94e7b1e37ca5ce9a300055542faa79bd8206845985dae86dfffa9e",
+    "suite": "eb08d04b05ecf25bc0d5dcb8fbe37370d57c25bdf465760bab1d035c32f3be25"
+  },
+  "contractIdentity237": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+    "baseVersions": {
+      "posture": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+      "rulesInheritedFrom": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment"
+    },
+    "driverRoleField": "driverRole",
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "postures": "d80f83678510f91cb1202e8859af993c56c34f23161a5a1be44222883576e5eb",
+    "driverRoles": "76d1049d612fb42633c435a1fc250f8c5f2284125f0eaf774742e66884648012",
+    "driverRoleDefinitions": "e8af37363abadb56eea067ff257e1ba413ca7ba8338149a2a287ed7c2a8ee76a",
+    "driverRoleRefKinds": "5c5806e165c86608b5518f0a74e96d38a64f072a7a6c21f9aadd984da9328c47",
+    "decisionControllingRoles": "8c9db6e6af48d4c61ea09a007d1f900e0d2d2740cf8751cdbca9913ceaca15d2",
+    "rulesRetainedFrom235": 8,
+    "rulesRemovedFrom235": 4,
+    "providerVisibleRules": "19e3e205766c7714a104f48f8bdfd25aeab100545fda644a421a33b055e27fd6",
+    "driverBlockLines": "01b069b6700c9938f1d4d38be6d3c1422e2de7b463534878ebb3dc83a0835044",
+    "postureSchemaProperty": "6a673ef292b5f5348f918aa216befe2726b6c3cbff757508b2f08cf5e61d3e79",
+    "systemPromptNoGoverned": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+    "systemPromptGoverned": "670dfdb16945dc64d788a12befda721a1faaed366879223a74a15b6df4583ccb",
+    "cessationDerivability": "NO"
+  },
+  "projectionIdentity237": {
+    "projectionVersion": "hazlenz.expert.237.posture-projection.v1",
+    "refusalCodes237": [
+      "POSTURE_DRIVER_ROLE_MISSING",
+      "POSTURE_DRIVER_ROLE_INVALID",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+    ],
+    "codeToInvariant237": {
+      "POSTURE_DRIVER_ROLE_MISSING": "D",
+      "POSTURE_DRIVER_ROLE_INVALID": "D",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND": "D",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE": "D",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER": "D",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE": "P8",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT": "P9"
+    },
+    "codesRetiredFrom235": [
+      "CESSATION_LIST_MISSING",
+      "CESSATION_LIST_NOT_AN_ARRAY",
+      "CESSATION_ITEM_MALFORMED",
+      "CESSATION_REF_UNRESOLVED",
+      "CESSATION_REF_NOT_A_CANDIDATE",
+      "CESSATION_CONDITION_NOT_IN_BASIS",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE"
+    ],
+    "delegatesTo233": true,
+    "section233CodesUnchanged": true,
+    "reusesSection235Normalizer": true,
+    "section235ModulesModified": false,
+    "cessationSetIsDerivedNotAuthored": true,
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false
+  },
+  "consistencyIdentity237": {
+    "version": "hazlenz.expert.237.contract-consistency.v1",
+    "registeredCodes": 27,
+    "inheritedFrom235": 22,
+    "retiredFrom235": 7,
+    "inheritedCitationsRestated": [
+      "POSTURE_BASIS_ITEM_MALFORMED"
+    ],
+    "providerVisibleRules": 12,
+    "rulesRetainedFrom235": 8,
+    "rulesRemovedFrom235": 4,
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "registryDigest": "9921bec0e8ec5576ad3ded1a1cfd3a410d66a2e26296e5bc59bdd651cd27279e",
+    "transmittedPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+    "transmittedSchemaDigest": "e6ca92461a41752441a386ce603f57df1966044ac909710563f9d1a0cf8ab580"
+  },
+  "section237ContractConsistency": "8/8 PASS",
+  "section237ManifestVerified": [
+    {
+      "file": "LADDER-237.json",
+      "ok": true
+    },
+    {
+      "file": "PROTECTED-IDENTITIES-237.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-237-CONTRACT-CONSISTENCY.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-237-CONTRACT-IDENTITY.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-237-IMPLEMENTATION.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-237-LOCAL-SUITE-OUTPUT.txt",
+      "ok": true
+    },
+    {
+      "file": "SECTION-237-REPORT.md",
+      "ok": true
+    },
+    {
+      "file": "SECTION-238-FINAL-CONFIRMATION-DESIGN.json",
+      "ok": true
+    }
+  ],
+  "providerVisibleRules237": [
+    "RULE. whatHappensNow must say something a duty holder can act on. A placeholder such as \"n/a\", \"none\", \"unused\" or \"to be determined\" is refused.",
+    "RULE. A candidateKey or declarationId may appear in requiredBy OR in acceptedWithoutImmediateAction, never in both. Pick the one you mean.",
+    "RULE. Every unresolved-fact declaration you emit must appear in requiredBy or in acceptedWithoutImmediateAction. None may stand outside the posture.",
+    "RULE. Every hazard candidate you mark ACTIVE must appear in requiredBy or in acceptedWithoutImmediateAction. Accepting one without action is a correct answer; leaving it out is not.",
+    "RULE. If you mark a clarification BLOCKING and bind it to a declaration, the posture may not be CONTINUE.",
+    "RULE. requiredControls must be empty when the posture is CONTINUE. If a control is what makes continuation acceptable, the posture is CONTINUE_WITH_CONTROLS.",
+    "RULE. Under HOLD_PENDING_VERIFICATION or STOP, no control may carry timing DURING_CONTINUED_WORK, because no work is permitted to continue alongside it.",
+    "RULE. resumeCondition must leave both lists empty when the posture is CONTINUE or CONTINUE_WITH_CONTROLS. Work that may continue is not waiting to resume.",
+    "RULE. Every entry in requiredBy must carry a driverRole from the list above.",
+    "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate, and a driverRole beginning UNRESOLVED may be used only on an unresolved-fact declaration.",
+    "RULE. If any driverRole is ESTABLISHED_CONDITION_REQUIRING_CESSATION, the posture must be STOP.",
+    "RULE. Under HOLD_PENDING_VERIFICATION or STOP, at least one driverRole must be ESTABLISHED_CONDITION_REQUIRING_CESSATION or UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION. An unresolved fact that changes only the response, the documentation, the follow-up, the confirmation method or whether somebody has already acted cannot on its own require work to wait or to stop."
+  ],
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+  "protectedModuleCount": 29,
+  "unauthorizedProtectedModuleMutations": 0,
+  "codeDigestsFrozenBeforeSpend": {
+    "instrumentModule": "2b7989d75991ae7dd00385b8e917c5df6033068fa0be446847b13f49c9e9402b",
+    "designModule": "e4fd8fb78659175a1a06cbb4fbdd58e94ba034458faccb7c94eb6a2f70295d5f",
+    "assemblyModule": "08fc29ae50a0405d391ff6077cad91d521b67e7e76dff9f88de49ceabe9591c0",
+    "scorer": "fd6d6cc3629e8729085b14c020585aa0465371970c2e8ed3135e89dffade0e5e"
+  },
+  "scorerWrittenBeforeFirstProviderCall": true,
+  "assemblyVersion": "hazlenz.expert.238.assembly.v1",
+  "assemblyIdentity": {
+    "assemblyVersion": "hazlenz.expert.238.assembly.v1",
+    "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+    "arm": "SINGLE",
+    "legs": [
+      "FIRST_PASS"
+    ],
+    "verifierLeg": "NOT_ASSEMBLED_AND_NOT_AUTHORIZED",
+    "pairedAttributionArm": "NOT_ASSEMBLED_AND_NOT_AUTHORIZED",
+    "caseCount": 6,
+    "perCase": [
+      {
+        "caseId": "A1",
+        "ordinal": 1,
+        "analysisId": "ANL-238-A1",
+        "observationSourceId": "OBS-238-A1",
+        "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+        "userPromptDigest": "86d530a82abe5598683897b66984d3611662d4da73c2fa0ec57b6d33a38a7c93",
+        "wireSchemaDigest": "351bd3fbee9f07418e5e09565e0b2e4f0df2c21f47fc71fb9c48fafd12bc1737",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "A2",
+        "ordinal": 2,
+        "analysisId": "ANL-238-A2",
+        "observationSourceId": "OBS-238-A2",
+        "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+        "userPromptDigest": "abacf23d21e386ffc543384d3ad9f07887440766887b7c338529d873a79a00e0",
+        "wireSchemaDigest": "9dd3a8be756c7e0e423670ef63be83c36a169e5449a207e1646c5f539ffa37c3",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "B1",
+        "ordinal": 3,
+        "analysisId": "ANL-238-B1",
+        "observationSourceId": "OBS-238-B1",
+        "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+        "userPromptDigest": "7c581c90fa53ec39612545a53f5202f8e324d350aa6bd9c06e9680aafac8b91e",
+        "wireSchemaDigest": "340d03573e00020876324075f55203082f5f7887b249f7fa319e78be272acea0",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "B2",
+        "ordinal": 4,
+        "analysisId": "ANL-238-B2",
+        "observationSourceId": "OBS-238-B2",
+        "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+        "userPromptDigest": "7ecc634d0d364dddc07bcde53e6c49039528ef98d4f32d1c771dbb6ce14bf21e",
+        "wireSchemaDigest": "e966b9629f2aa3d23590ba157618fa4df52942cd5ad08944dca67d63df0f8fbd",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "C1",
+        "ordinal": 5,
+        "analysisId": "ANL-238-C1",
+        "observationSourceId": "OBS-238-C1",
+        "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+        "userPromptDigest": "e0d6f44c267a0562f9fb8ba5f0c2d081a9b4cea158c1f356a6ae4c103e6c1e90",
+        "wireSchemaDigest": "5e23fb228ac72bbb56ddcc83749de0d8536d09337515a8d74156f078c2f9bd7c",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "C2",
+        "ordinal": 6,
+        "analysisId": "ANL-238-C2",
+        "observationSourceId": "OBS-238-C2",
+        "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+        "userPromptDigest": "05d644b68ce95404accf6c815c6a38f5a93491f40cd7c518d94731bc17efc50b",
+        "wireSchemaDigest": "b47450248e98c7ceb29590cddbbeeafe5462c51c24d74484165d8e2a86e9b28b",
+        "governedRecordCount": 0
+      }
+    ],
+    "systemPromptUniform": true
+  },
+  "providerIdentity": {
+    "endpoint": "https://api.anthropic.com",
+    "requestedModel": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "execution": {
+    "arm": "SINGLE",
+    "leg": "FIRST_PASS_ONLY",
+    "verifierLeg": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "pairedAttributionArm": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "firstPassMaxTokens": 8000,
+    "maxTokensRationale": "carried forward. §236 truncated nothing at 8,000 with a longest output of 3,725 tokens, and §237 adds a member to every basis entry.",
+    "semanticRetries": 0,
+    "transportRetriesAuthorized": 0,
+    "ifTransportFailureOccurs": "the authorization books exactly six calls with no retry allowance. A transport or HTTP failure that yields no adjudicable response terminates the run as EXECUTION INCOMPLETE and returns for authorization.",
+    "guardWorstCaseCallUsd": 0.15,
+    "guardBasis": "30,000 budgeted input tokens plus a full 8,000-token output at USD 2 and USD 10 per million, uplifted. Roughly 1.35x the §236 observed maximum.",
+    "ifGuardTrips": "STOP and return EXECUTION_INCOMPLETE. Never reduce coverage to fit the ceiling.",
+    "databaseOperations": 0
+  },
+  "callPlan": {
+    "primaryCalls": 6,
+    "maximumTotalCalls": 6,
+    "projectedSpendUsd": 0.6549,
+    "worstCaseSpendUsd": 0.6861,
+    "hardCeilingUsd": 0.85,
+    "perCase": [
+      {
+        "caseId": "A1",
+        "category": "ESTABLISHED_STOP_WITH_DISTRACTOR"
+      },
+      {
+        "caseId": "A2",
+        "category": "ESTABLISHED_STOP_WITH_DISTRACTOR"
+      },
+      {
+        "caseId": "B1",
+        "category": "LEGITIMATE_HOLD"
+      },
+      {
+        "caseId": "B2",
+        "category": "LEGITIMATE_HOLD"
+      },
+      {
+        "caseId": "C1",
+        "category": "PERMISSIVE_WITH_RESPONSE_UNCERTAINTY"
+      },
+      {
+        "caseId": "C2",
+        "category": "PERMISSIVE_WITH_RESPONSE_UNCERTAINTY"
+      }
+    ]
+  },
+  "spendLedgerStart": {
+    "providerCallsMade": 0,
+    "spendUsd": 0,
+    "retryAllowance": 0
+  },
+  "section233Or235Or237MayBeModifiedDuringExecution": false,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false
+}

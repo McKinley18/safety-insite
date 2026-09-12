@@ -1,0 +1,927 @@
+{
+  "openedReserve": {
+    "openedAtUtc": "2026-09-01T17:04:34Z",
+    "scope": "D86_GAUNTLET_OFFSETS_2_AND_3_ONLY",
+    "registryRecordedContribution": 16,
+    "measuredEligibleRows": 16,
+    "measuredForbiddenNegativeControls": 16,
+    "eligibleForbiddenRowIds": [
+      "SRC-MSHA-019",
+      "SRC-MSHA-041",
+      "SRC-MSHA-057",
+      "SRC-OSHA-005",
+      "SRC-OSHA-009",
+      "SRC-OSHA-025",
+      "SRC-OSHA-029",
+      "SRC-OSHA-1003",
+      "SRC-MSHA-033",
+      "SRC-MSHA-042",
+      "SRC-MSHA-046",
+      "SRC-MSHA-062",
+      "SRC-OSHA-022",
+      "SRC-OSHA-034",
+      "SRC-OSHA-1012",
+      "SRC-OSHA-1028"
+    ]
+  },
+  "poolRows": 168,
+  "poolBySource": {
+    "gauntlet.seed": 45,
+    "D-86 offset 2": 8,
+    "D-86 offset 3": 8,
+    "Population A": 34,
+    "Population B": 22,
+    "augmentation V2": 16,
+    "semantic §129": 35
+  },
+  "supply": {
+    "CLARIFICATION_OWED": {
+      "required": 20,
+      "total": 25,
+      "fromD86": 0
+    },
+    "CLARIFICATION_NOT_OWED": {
+      "required": 14,
+      "total": 143,
+      "fromD86": 16
+    },
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": {
+      "required": 48,
+      "total": 60,
+      "fromD86": 16
+    },
+    "CROSS_HAZARD_INTERACTION": {
+      "required": 10,
+      "total": 17,
+      "fromD86": 0
+    },
+    "MULTI_HAZARD": {
+      "required": 12,
+      "total": 67,
+      "fromD86": 6
+    },
+    "LIFE_CRITICAL_PRESENT": {
+      "required": 10,
+      "total": 80,
+      "fromD86": 8
+    },
+    "NEGATED_OR_SAFE_STATE": {
+      "required": 10,
+      "total": 45,
+      "fromD86": 0
+    },
+    "DETERMINISTIC_HAZARD_PRESENT": {
+      "required": 30,
+      "total": 139,
+      "fromD86": 16
+    },
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": {
+      "required": 10,
+      "total": 49,
+      "fromD86": 16
+    }
+  },
+  "forbiddenSupply": {
+    "previouslyOpen": 44,
+    "newlyOpened": 16,
+    "total": 60,
+    "required": 48,
+    "satisfied": true
+  },
+  "analyticLowerBound": 65,
+  "analyticLowerBoundBasis": "|R| >= O + F - maxOverlap = 20 + 48 - 3 = 65",
+  "owedAndForbiddenRowsInWholePool": 3,
+  "multicoverIncumbent": 65,
+  "attachmentFloor": 48,
+  "minimumJointlyFeasibleH": 65,
+  "minimalityProven": true,
+  "minimalityProofBasis": "analytic inclusion-exclusion lower bound equals the verified witness size",
+  "branchAndBoundSearchExhausted": false,
+  "nodesExplored": 20000055,
+  "predictionH67Held": false,
+  "witness": {
+    "diagnosticOnly": true,
+    "frozen": false,
+    "rowCount": 65,
+    "rows": [
+      {
+        "rowId": "GAUNTLET-002",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-004",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-007",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-01",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-03",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-005",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-015",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-022",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-054",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-062",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-082",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-009",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-025",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-029",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-1003",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-022",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-034",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-1012",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-1028",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-019",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-032",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-033",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-045",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "POPA-A-32",
+        "source": "Population A",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "GAUNTLET-023",
+        "source": "gauntlet.seed",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-041",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-OSHA-005",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-033",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-042",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-046",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-062",
+        "source": "D-86 offset 3",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-019",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "SRC-MSHA-057",
+        "source": "D-86 offset 2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT",
+          "DETERMINISTIC_MISS_RECALL_OPPORTUNITY"
+        ]
+      },
+      {
+        "rowId": "POPA-A-12",
+        "source": "Population A",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE"
+        ]
+      },
+      {
+        "rowId": "POPA-A-13",
+        "source": "Population A",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE"
+        ]
+      },
+      {
+        "rowId": "POPA-A-14",
+        "source": "Population A",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE"
+        ]
+      },
+      {
+        "rowId": "POPA-A-15",
+        "source": "Population A",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE"
+        ]
+      },
+      {
+        "rowId": "AUG-02",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-05",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-06",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-08",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-09",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-31",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-32",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-04",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-01",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-02",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-03",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-04",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-05",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-07",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-10",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-24",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-10",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "MULTI_HAZARD",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-11",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "AUG-12",
+        "source": "augmentation V2",
+        "classes": [
+          "CLARIFICATION_NOT_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-09",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-15",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-16",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-25",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-17",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-26",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-35",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-18",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "CROSS_HAZARD_INTERACTION",
+          "MULTI_HAZARD",
+          "LIFE_CRITICAL_PRESENT",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      },
+      {
+        "rowId": "SEM-30",
+        "source": "semantic §129",
+        "classes": [
+          "CLARIFICATION_OWED",
+          "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+          "LIFE_CRITICAL_PRESENT",
+          "NEGATED_OR_SAFE_STATE",
+          "DETERMINISTIC_HAZARD_PRESENT"
+        ]
+      }
+    ],
+    "classCounts": {
+      "CLARIFICATION_OWED": {
+        "required": 20,
+        "supplied": 20,
+        "margin": 0
+      },
+      "CLARIFICATION_NOT_OWED": {
+        "required": 14,
+        "supplied": 45,
+        "margin": 31
+      },
+      "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": {
+        "required": 48,
+        "supplied": 48,
+        "margin": 0
+      },
+      "CROSS_HAZARD_INTERACTION": {
+        "required": 10,
+        "supplied": 11,
+        "margin": 1
+      },
+      "MULTI_HAZARD": {
+        "required": 12,
+        "supplied": 27,
+        "margin": 15
+      },
+      "LIFE_CRITICAL_PRESENT": {
+        "required": 10,
+        "supplied": 31,
+        "margin": 21
+      },
+      "NEGATED_OR_SAFE_STATE": {
+        "required": 10,
+        "supplied": 17,
+        "margin": 7
+      },
+      "DETERMINISTIC_HAZARD_PRESENT": {
+        "required": 30,
+        "supplied": 61,
+        "margin": 31
+      },
+      "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": {
+        "required": 10,
+        "supplied": 24,
+        "margin": 14
+      },
+      "GOVERNED_RECORD_SUPPLIED": {
+        "required": 40,
+        "supplied": 40,
+        "margin": 0
+      },
+      "NO_GOVERNED_RECORD": {
+        "required": 8,
+        "supplied": 25,
+        "margin": 17
+      },
+      "DISAGREEMENT_OPPORTUNITY": {
+        "required": 6,
+        "supplied": 40,
+        "margin": 34
+      }
+    },
+    "d86RowsParticipating": [
+      "SRC-OSHA-009",
+      "SRC-OSHA-025",
+      "SRC-OSHA-029",
+      "SRC-OSHA-1003",
+      "SRC-OSHA-022",
+      "SRC-OSHA-034",
+      "SRC-OSHA-1012",
+      "SRC-OSHA-1028",
+      "SRC-MSHA-041",
+      "SRC-OSHA-005",
+      "SRC-MSHA-033",
+      "SRC-MSHA-042",
+      "SRC-MSHA-046",
+      "SRC-MSHA-062",
+      "SRC-MSHA-019",
+      "SRC-MSHA-057"
+    ]
+  },
+  "attachmentFeasibility": {
+    "snapshotPresent": true,
+    "snapshotSha256": "a2c5dc324ded4fee8689982785682cec0f21c4ed0ce2b1128afd8f902c4d5cd3",
+    "snapshotIdentityMatches": true,
+    "governedRecordSupplied": {
+      "required": 40,
+      "feasible": true
+    },
+    "noGovernedRecord": {
+      "required": 8,
+      "available": 25,
+      "feasible": true
+    },
+    "disagreementOpportunity": {
+      "required": 6,
+      "available": 40,
+      "feasible": true
+    },
+    "reviewerApprovedGovernedRecords": 0,
+    "reportedLimitation": "REVIEWER_APPROVED_GOVERNED_RECORDS = 0 under the current frozen contract"
+  },
+  "governanceImpact": {
+    "current": {
+      "targetRows": 60,
+      "hardCeiling": 60,
+      "minimumDefensibleRows": 48
+    },
+    "requiredHardCeilingAtLeast": 65,
+    "targetRowsMustAlsoChange": true,
+    "minimumDefensibleRowsChangeRequired": false,
+    "applied": false
+  },
+  "costImpact": {
+    "basis": "verification/expert-hazlenz-hosted-projection-ab-2026-08-31 (18 calls, exact fit)",
+    "locallyDerivable": true,
+    "at60": {
+      "rows": 60,
+      "calls": 180,
+      "meanUsd": 5.71626,
+      "worstUsd": 18.720000000000002,
+      "inputTokens": 1706580,
+      "outputTokens": 230220
+    },
+    "atMinimumH": {
+      "rows": 65,
+      "calls": 195,
+      "meanUsd": 6.192615,
+      "worstUsd": 20.28,
+      "inputTokens": 1848795,
+      "outputTokens": 249405
+    },
+    "deltaCalls": 15,
+    "deltaMeanUsd": 0.476355,
+    "hardCallCeiling": 200
+  },
+  "confinement": {
+    "reservedMaterialOpened": true,
+    "reservedScope": "D86_GAUNTLET_OFFSETS_2_AND_3_ONLY",
+    "providerInvocationCount": 0,
+    "formalCohortSpent": false,
+    "p4PrespendAuthorization": false,
+    "cohortStatus": "CANDIDATE",
+    "cohortSizePolicyChanged": false
+  }
+}

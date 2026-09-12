@@ -1,0 +1,3165 @@
+{
+ "operation": "§154 bounded hosted clarification retention-bridge probe",
+ "isFormalEvaluation": false,
+ "historicalProviderInvocationCount": 195,
+ "startedAt": "2026-09-03T21:23:20.983Z",
+ "finishedAt": "2026-09-03T21:27:19.953Z",
+ "stopReason": "COMPLETED",
+ "identityViolation": null,
+ "accounting": {
+  "callsAttempted": 16,
+  "callsCompleted": 16,
+  "providerRequestsAttempted": 16,
+  "retryRequestsAttempted": 0,
+  "inputTokens": 292688,
+  "outputTokens": 20522,
+  "spendUsd": 0.790596,
+  "callCeiling": 16,
+  "requestCeiling": 16,
+  "retryRequestBudget": 0,
+  "spendCeilingUsd": 1.6640000000000001
+ },
+ "retryCauses": [],
+ "retriesSuppressed": [],
+ "providerInvocationsThisProcess": 16,
+ "identity": {
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "promptVersion": "hazlenz.expert.prompt.v13",
+  "systemPromptSha256": "c4b3162439988e74186c36f75ee1f14875835e1cc832251a8d7365a4b158e3f3",
+  "wireSchemaSha256": "15e2b80947355954f105f8b34bf8cf00c6c1153a82c2255b9e8151ccd66c4a97",
+  "analysisContractVersion": "hazlenz.expert.analysis.v2"
+ },
+ "persistence": {
+  "recordsOnDisk": 16,
+  "parseProblems": [],
+  "completenessProblems": [],
+  "midRunReadBackProof": {
+   "rowId": "HS-A1",
+   "provenBeforeExit": true,
+   "recordsOnDisk": 1
+  }
+ },
+ "callDisposition": {
+  "present": 16,
+  "outputRejected": 0,
+  "providerFailed": 0
+ },
+ "rejectionDiagnostics": [],
+ "clarification": {
+  "REQUIRED_ROWS": 8,
+  "REQUIRED_ROWS_THAT_SPOKE_LOOSE": 5,
+  "REQUIRED_ROWS_SILENT": 3,
+  "REQUIRED_SILENT_ROW_IDS": [
+   "HS-A1",
+   "HS-E1",
+   "HS-H1"
+  ],
+  "FORBIDDEN_ROWS": 8,
+  "FORBIDDEN_ROWS_SILENT": 8,
+  "FORBIDDEN_ROWS_THAT_SPOKE": [],
+  "TOTAL_CLARIFICATIONS_DELIVERED": 5,
+  "TOTAL_CLARIFICATIONS_EMITTED_ON_THE_WIRE": 5,
+  "CLARIFICATIONS_PER_CALL": 0.313,
+  "INVALID_CLARIFICATION_OBJECTS": [],
+  "STRICT_RECALL": "NOT_COMPUTED_BY_SCRIPT — adjudicate from CLARIFICATION-ADJUDICATION.csv; a semantically different question is not recall, and a DESTROYED question is not delivered"
+ },
+ "affectedDecisionRouting": {
+  "REASONED_BUT_DESTROYED_COUNT": 0,
+  "REASONED_BUT_DESTROYED": [],
+  "SURVIVAL_DENOMINATOR_REQUIRED_ROWS": 5,
+  "SURVIVAL_LOST_ON_REQUIRED_ROWS": 0,
+  "AFFECTED_DECISION_SURVIVAL": 1,
+  "TRUE_CONTRADICTIONS_EMITTED": [],
+  "TRUE_CONTRADICTIONS_REJECTED": 0,
+  "TRUE_CONTRADICTION_REJECTION": null,
+  "ARBITRATION_EVENTS": 0,
+  "LABEL_EXACT_MATCH_ON_REQUIRED_ROWS": "2/5",
+  "LABEL_HAZARD_EXISTENCE_ON_ESTABLISHED_HAZARD_ROWS": 0,
+  "NOTE": "A drop whose emitted label was HAZARD_EXISTENCE beside the model's own ACTIVE candidate is CORRECT arbitration and a ROUTING failure. It is never recorded as an arbitration defect, and it never counts as delivered recall.",
+  "REALIZED_CONTRADICTION_NOTE": "NOT_EXERCISED — denominator 0. A realized contradiction requires the MODEL to emit HAZARD_EXISTENCE naming its own ACTIVE candidate, which v12 tells it not to do. It cannot be commissioned. The rejection PROPERTY is proved deterministically against the real normalizer in test-expert-unsupported-settlement.ts (N.4). This is NOT reported as 100%."
+ },
+ "rawLinkage": {
+  "instrumentVersion": "hazlenz.expert.raw-linkage-diagnostics.v1",
+  "RAW_LINKAGE_ATTEMPTS": 4,
+  "RAW_INVALID_LINKAGE_ATTEMPTS": 0,
+  "NORMALIZED_VALID_LINKAGES": 4,
+  "STRIPPED_INVALID_LINKAGES": 0,
+  "ACCEPTED_INVALID_LINKAGES": 0,
+  "rawCaptureAvailable": true,
+  "reconciled": true,
+  "reconciliationDetail": "raw attempts 4 = 4 valid + 0 invalid; normalized kept 4 and the boundary stripped 0. Every invalid attempt the model made is visible in the raw figures.",
+  "perRow": [
+   {
+    "rowId": "HS-B1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-C1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-D1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-F1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   }
+  ],
+  "NOTE": "Computed from the captured wire BEFORE normalization stripped anything. The §148 blind spot was that INVALID_LINKAGE_ATTEMPTS reads the VALIDATED analysis, from which a broken key has already been removed. Historical runs have no captured wire and are NOT back-inferred; §141-§148 metrics are unchanged."
+ },
+ "affectedDecisionBaseline": {
+  "TOTAL_CLARIFICATIONS_LABELLED": 5,
+  "HAZARD_SEVERITY_USAGE_COUNT": 0,
+  "HAZARD_SEVERITY_USAGE_RATE": 0,
+  "HAZARD_SEVERITY_CORRECT_COUNT": "NOT_COMPUTED_BY_SCRIPT — adjudicate each entry of adjudication[] by asking what decision the ANSWER changes. §151 measured 0 correct of 7 across three probes; this run is the test of that on hardened material.",
+  "HAZARD_SEVERITY_INCORRECT_COUNT": "NOT_COMPUTED_BY_SCRIPT — see above.",
+  "HAZARD_SEVERITY_FALSE_SELECTION_RATE": "NOT_COMPUTED_BY_SCRIPT — derived from the adjudicated correct/incorrect counts, never from a keyword rule.",
+  "LABEL_EXACT_MATCH_ON_REQUIRED_ROWS": "2/5",
+  "EMITTED_VS_EXPECTED_CONFUSION": {
+   "REQUIRED_CONTROL": {
+    "EXPOSURE": 2,
+    "REQUIRED_CONTROL": 1
+   },
+   "REGULATORY_INTERPRETATION": {
+    "REQUIRED_CONTROL": 1
+   },
+   "APPLICABILITY": {
+    "APPLICABILITY": 1
+   }
+  },
+  "CONFUSION_NOTE": "Raw emitted-vs-expected counts on REQUIRED rows only. A cell is a DISAGREEMENT, not automatically a model error — §151 re-derived every expected label and found them all correct, but that adjudication must be redone here, not assumed.",
+  "LABEL_USAGE_BY_MEMBER": {
+   "EXPOSURE": 2,
+   "REQUIRED_CONTROL": 2,
+   "APPLICABILITY": 1
+  },
+  "V14_FALSIFIER": "APPLY BEFORE INTERPRETING. §151 predicts v13 disproportionately selects HAZARD_SEVERITY when the missing fact governs another decision category. Recurrence on authoring-valid hardened rows SUPPORTS the diagnosis; absence WEAKENS or FALSIFIES it. Do NOT implement v14 automatically either way.",
+  "adjudication": [
+   {
+    "rowId": "HS-B1",
+    "form": "RETAINED_CANDIDATE_SHAPED",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Is any counterweight actually being added to or removed from the cradle while the rope lock is engaged, or is loading occurring only while the line is otherwise secured from movement (e.g., additional belay, brake, or the line set stationary during loading)?",
+    "emittedAffectedDecision": "EXPOSURE",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "whether the line set is balanced between the cradle and the bar",
+     "whether the bar stage-side is loaded to match the counterweights being added",
+     "whether the deck below the bar is kept clear while the set is being loaded"
+    ],
+    "evidenceGap": "Whether the counterweight loading activity itself could cause the line/bar to move while crew are on the deck below, or whether the rope lock plus loading procedure fully prevents any movement during this operation.",
+    "whyItMatters": "If counterweights are being loaded while the line's only restraint is the rope lock and that lock could slip or be released under active load changes, the scenery bar over the crew below could move or fall, requiring the deck below to be cleared or the operation to be re-sequenced; if loading is performed with the line otherwise secured and stationary such that no uncontrolled movement can occur, the current operation does not require a change and can continue as configured.",
+    "relatesToCandidateKey": "suspended_scenery_bar_over_workers",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "suspended_scenery_bar_over_workers=ACTIVE",
+     "pin_rail_unattended_during_loading=INSUFFICIENT_EVIDENCE",
+     "counterweight_loading_gallery_fall_exposure=UNKNOWN"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-C1",
+    "form": "OBSERVER_CANNOT_DETERMINE",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Has the patient's ferromagnetic screening content (implants, metal objects, prior surgeries) been verified by suite staff through any means (direct questioning, re-screening, or confirmed retrieval of the ward's questionnaire) before the patient proceeds past the door into the scanner room?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "what the ferromagnetic screening questionnaire recorded for this patient",
+     "whether this patient has been screened for ferromagnetic implants by any means available now"
+    ],
+    "evidenceGap": "Whether the ferromagnetic screening questionnaire content has been or will be verified by suite staff before the patient enters the scanner room is not stated.",
+    "whyItMatters": "If verification is obtained or performed before entry, the patient can proceed safely and no further action is needed; if the patient enters or the scan proceeds with the screening outcome still unconfirmed, there is an uncontrolled risk of ferromagnetic projectile or implant interaction and the scan must be held until screening is completed or repeated.",
+    "relatesToCandidateKey": "cand-1",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "cand-1=ACTIVE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-D1",
+    "form": "AGGREGATION_AGAINST_A_RECORD",
+    "expectation": "REQUIRED",
+    "hazardEstablished": false,
+    "question": "What is the total aggregate quantity of the Class IA solvent-based cleaner (all containers, including those on the racking) currently present in this fire area?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "REGULATORY_INTERPRETATION",
+    "acceptableSelectors": [
+     "the aggregate quantity of Class IA liquid in this fire area",
+     "the number and size of the further containers on the racking"
+    ],
+    "evidenceGap": "The total aggregate quantity of Class IA liquid (fill level of the two floor drums plus the number and size of containers on the racking) in this fire area is not stated.",
+    "whyItMatters": "The supplied record caps aggregate Class IA liquid outside an inside storage room or cabinet in one fire area at 25 gallons. Two part-full 25 litre drums already total up to about 13 gallons combined depending on fill level, and an unknown further quantity sits on the racking. If the aggregate is at or below 25 gallons, storage is within the governed limit and no quantity-based corrective action is triggered under R1; if it exceeds 25 gallons, the record's limit is breached and containers must be removed or relocated to an inside storage room or cabinet to bring the fire area into compliance. The observation itself states the count is not recorded, so this is currently unresolved and directly determines which of those two outcomes applies.",
+    "relatesToCandidateKey": "C1",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "C1=ACTIVE",
+     "C2=ACTIVE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-F1",
+    "form": "LIKELY_BUT_UNESTABLISHED",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Has the footpath beneath the jetting work been closed, barricaded, or is there an active traffic/pedestrian control measure in place at the near end, despite being described as open at the far end?",
+    "emittedAffectedDecision": "EXPOSURE",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "whether the lance is fitted with a functioning dead-man or dump-valve control",
+     "whether the jet stops when the operative releases the trigger"
+    ],
+    "evidenceGap": "Whether any pedestrian exclusion, barrier, or diversion control exists at the open (far) end of the footpath during the jetting operation.",
+    "whyItMatters": "If the path is fully closed or controlled with a diversion so no pedestrian can actually enter the zone beneath the work, the struck-by exposure to the public is not currently realized and no additional control is needed; if it remains open with pedestrians able to walk beneath the jetting, an immediate exclusion zone, barrier, or overhead protection is required before work continues.",
+    "relatesToCandidateKey": "cand-struck-by-pedestrian",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "cand-struck-by-pedestrian=ACTIVE",
+     "cand-noise-exposure=ACTIVE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-G1",
+    "form": "SYSTEM_COVERAGE",
+    "expectation": "REQUIRED",
+    "hazardEstablished": false,
+    "question": "Does the depot fire strategy (or any other current emergency response plan) account for the battery energy storage container, its gas detection/ventilation systems, and its location relative to the workshop personnel door and window?",
+    "emittedAffectedDecision": "APPLICABILITY",
+    "expectedAffectedDecision": "APPLICABILITY",
+    "acceptableSelectors": [
+     "whether the depot fire strategy was reassessed when the container was installed",
+     "what separation the fire strategy requires between such a container and workshop openings"
+    ],
+    "evidenceGap": "Whether any current emergency/fire response plan (beyond the outdated wall-posted strategy) incorporates the new container and its location.",
+    "whyItMatters": "If the fire strategy has been updated or a separate risk assessment covers the container despite the wall-mounted copy being outdated, then emergency response and evacuation routing already account for the new hazard and no immediate corrective action is needed beyond replacing the posted document. If no current plan accounts for the container at all, then responders and building occupants have no guidance reflecting a fire/explosion/gas-release source directly adjacent to an occupied workshop entrance, which would require an immediate interim control (e.g., updated evacuation routing, temporary signage, or restricting use of that door) rather than a routine document update.",
+    "relatesToCandidateKey": null,
+    "linkedCandidateState": null,
+    "candidateStates": [
+     "cand-fire-1=ACTIVE",
+     "cand-emergency-1=INSUFFICIENT_EVIDENCE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   }
+  ]
+ },
+ "retentionRegression": {
+  "RETAINED_BUT_NOT_ASKED": "NOT_COMPUTED_BY_SCRIPT — adjudicate the rows below against the model's own candidate states, reasoning, uncertainty and summary.",
+  "REQUIRED_ROWS_SILENT": [
+   "HS-A1",
+   "HS-E1",
+   "HS-H1"
+  ],
+  "RETENTION_SIGNALS_TOTAL": 5,
+  "RETENTION_SIGNALS_NOTE": "Candidates left INSUFFICIENT_EVIDENCE or UNKNOWN on REQUIRED rows. A SCREENING AID ONLY, never a gate: §149 measured this signal on 5 rows, all REQUIRED, and 4 of those 5 emitted the clarification anyway, so it predicts neither direction alone.",
+  "rows": [
+   {
+    "rowId": "HS-A1",
+    "form": "NOT_VISIBLE",
+    "RETENTION_SIGNALS": 1,
+    "signalKeys": [
+     "flame_failure_device_unverifiable"
+    ],
+    "clarificationDelivered": false,
+    "candidateProse": [
+     {
+      "candidateKey": "auger_entanglement",
+      "state": "ACTIVE",
+      "evidenceBasis": "The text states an operative is actively clearing a blockage at the discharge auger while the dryer, and by implication its driven components, remain running.",
+      "reasoning": "Clearing a blockage at an auger while it and the associated equipment are running exposes the operative to entanglement/caught-in injury from the moving auger flighting or drive components. This is a current, ongoing exposure, not a hypothetical."
+     },
+     {
+      "candidateKey": "combustible_dust_accumulation",
+      "state": "ACTIVE",
+      "evidenceBasis": "The text states grain dust has settled on horizontal surfaces of the walkway and on motor housings.",
+      "reasoning": "Accumulated grain dust on horizontal surfaces, including on motor housings near a heat source (the dryer/burner), is a recognized combustible dust hazard that can propagate a secondary dust explosion or ignite from hot equipment surfaces."
+     },
+     {
+      "candidateKey": "flame_failure_device_unverifiable",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The text states the flame-failure device and its wiring cannot be seen from the walkway due to the shroud.",
+      "reasoning": "The flame-failure device is a critical safety control preventing unburned fuel accumulation and explosion in the burner/plenum. Its condition and function cannot be visually confirmed from the walkway, so whether it is operating correctly cannot be determined from this observation alone."
+     }
+    ],
+    "uncertainty": [
+     "Whether the flame-failure device is currently functioning correctly cannot be determined from the observation, as it is physically obscured from view; no stated fact indicates it has failed or is out of service."
+    ],
+    "summary": "An operative is clearing a blockage at the discharge auger while the dryer continues to run, creating an active entanglement hazard. Grain dust has settled on walkway surfaces and motor housings, a combustible dust accumulation that is worsened by proximity to heat-generating equipment near the burner. The flame-failure device and its wiring cannot be visually confirmed from the walkway, so its current functional status is unverifiable from this observation alone, though this alone does not establish a decision-changing gap without further stated facts.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-B1",
+    "form": "RETAINED_CANDIDATE_SHAPED",
+    "RETENTION_SIGNALS": 2,
+    "signalKeys": [
+     "pin_rail_unattended_during_loading",
+     "counterweight_loading_gallery_fall_exposure"
+    ],
+    "clarificationDelivered": true,
+    "candidateProse": [
+     {
+      "candidateKey": "suspended_scenery_bar_over_workers",
+      "state": "ACTIVE",
+      "evidenceBasis": "The observation states a scenery bar is suspended on the line set stage-side and that two stage crew are working on the deck directly below that bar.",
+      "reasoning": "A suspended scenery bar hangs on a line set that is simultaneously being loaded with counterweights at the gallery, while two workers occupy the deck space beneath the bar. Any uncontrolled movement of the line (e.g., from the counterweight loading being underway, or unexpected release) would create a struck-by/falling-load exposure for the crew working directly below."
+     },
+     {
+      "candidateKey": "pin_rail_unattended_during_loading",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The observation states that nobody is currently standing at the pin rail while counterweights are being loaded onto the cradle and a rope lock secures the line set.",
+      "reasoning": "The pin rail is typically where a line set's operating line is secured and monitored; with counterweights actively being added at the gallery and no one stationed at the pin rail, there may be a reduced ability to respond to or control unexpected movement of the line, though the rope lock is stated as engaged."
+     },
+     {
+      "candidateKey": "counterweight_loading_gallery_fall_exposure",
+      "state": "UNKNOWN",
+      "evidenceBasis": "",
+      "reasoning": "Loading galleries in fly towers are typically elevated, open-edged work platforms; the technician is working at gallery level handling counterweights, which could involve a fall exposure if the gallery edge is unprotected. The observation does not describe the gallery's edge protection, so this is inferred from the nature of the task rather than stated directly."
+     }
+    ],
+    "uncertainty": [
+     "The physical configuration and edge protection of the loading gallery is not described, so whether a fall exposure exists for the technician cannot be confirmed from the observation alone."
+    ],
+    "summary": "A scenery bar is suspended stage-side on a line set that is currently being loaded with counterweights at the gallery, while two stage crew work on the deck directly beneath that bar — a suspended-load exposure over occupied space. No one is stationed at the pin rail during this loading activity, which may reduce the ability to respond to unexpected line movement, though the rope lock is stated as engaged. Whether the loading operation itself could cause line movement while the rope lock is the only restraint is not established and would determine whether the crew below need to be relocated or the sequence changed.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-E1",
+    "form": "PRIOR_EVENT",
+    "RETENTION_SIGNALS": 0,
+    "signalKeys": [],
+    "clarificationDelivered": false,
+    "candidateProse": [],
+    "uncertainty": [],
+    "summary": "The observation describes a debarker with its guard door closed and interlock in place while the sawyer works from the deck without reaching into the throat — a controlled, current state with no stated gap. The overnight rotor tooth change is a resolved historical event: the machine was returned to service, the guard is confirmed closed with the interlock engaged, and no failure, bypass, or residual exposure from that maintenance is stated. The lockout/tagout question already flagged by the deterministic engine concerns that completed maintenance activity, not a live hazard, and nothing in the text gives reason to believe the machine is not properly restored to normal operation.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-G1",
+    "form": "SYSTEM_COVERAGE",
+    "RETENTION_SIGNALS": 1,
+    "signalKeys": [
+     "cand-emergency-1"
+    ],
+    "clarificationDelivered": true,
+    "candidateProse": [
+     {
+      "candidateKey": "cand-fire-1",
+      "state": "ACTIVE",
+      "evidenceBasis": "The observation establishes the battery energy storage container is positioned roughly four metres from a workshop wall that has a personnel door and window opening directly onto the yard where the container sits.",
+      "reasoning": "Battery energy storage systems present thermal runaway / fire and explosion risk (off-gassing, jet-flame venting). A separation distance of only about four metres from a building wall containing a personnel door and window creates a current exposure pathway for fire, explosive off-gas, or thermal event effects to reach the workshop interior and any occupants using that door or window, given no fire-rated separation, bollards, or barrier is described."
+     },
+     {
+      "candidateKey": "cand-emergency-1",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The posted fire strategy document depicts the yard layout as it existed prior to the container's installation, meaning the current site configuration is not reflected in that document.",
+      "reasoning": "A fire strategy/plan that does not reflect a new fixed installation (the BESS container, its ventilation louvres, gas detection head, and its proximity to the workshop wall) may mean evacuation routes, muster points, fire service access, or hazard zone markings shown on that strategy no longer correspond to the current yard layout. Whether this constitutes a live emergency-planning gap cannot be determined from the observation alone."
+     }
+    ],
+    "uncertainty": [],
+    "summary": "The newly installed battery energy storage container sits only about four metres from a workshop wall with a personnel door and window, raising a fire/explosion exposure pathway into an occupied space that is additional to the deterministic findings. The posted fire strategy predates the container's arrival, leaving it unclear whether any current emergency plan reflects the container's presence and hazards, which is a decision-critical gap for emergency response applicability. The proximity of the container to the workshop opening, combined with the site's already-active atmospheric hazard, could compound a gas or thermal event before it is contained or detected.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-H1",
+    "form": "WORST_CASE_TEMPTATION",
+    "RETENTION_SIGNALS": 1,
+    "signalKeys": [
+     "cand-pressure-verify"
+    ],
+    "clarificationDelivered": false,
+    "candidateProse": [
+     {
+      "candidateKey": "cand-thermal",
+      "state": "ACTIVE",
+      "evidenceBasis": "The technician is wearing heat-resistant gloves while opening the door of an autoclave immediately after a cycle, indicating recognition of residual heat as the load and chamber contents are removed.",
+      "reasoning": "An autoclave load and chamber surfaces remain hot immediately after a cycle even when pressure has returned to zero; opening the door and handling the trolley at this point exposes the technician to contact burn hazards from hot surfaces, steam residue, or the load itself."
+     },
+     {
+      "candidateKey": "cand-pressure-verify",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The gauge reading is stated as zero, but the observation does not state whether this reading was cross-checked or whether the gauge itself is functioning correctly.",
+      "reasoning": "Residual chamber pressure during door opening is a known autoclave hazard; a faulty or unverified gauge reading zero when actual pressure is not zero would create a real exposure. The interlock releasing and the gauge reading zero both support a de-pressurized state, but gauge malfunction is a recognized failure mode."
+     }
+    ],
+    "uncertainty": [
+     "Whether the over-temperature alarm's silence throughout the observed cycle reflects a normal (non-alarming) run or an alarm malfunction cannot be determined from the observation alone, though this does not change the present door-opening exposure being assessed."
+    ],
+    "summary": "Beyond the identified interlock and suspended-load hazards, the technician's use of heat-resistant gloves while opening the autoclave door right after cycle completion points to a current thermal burn hazard from hot chamber surfaces or load contents, which is added as a candidate. The pressure gauge reading zero supports a de-pressurized chamber, but this is a routine reliance on instrument accuracy that does not by itself change any action, so it is noted only as a low-confidence candidate rather than a clarification. No cross-hazard interaction rises above the interlock/thermal proximity noted, and no regulatory record was supplied to assess against, so no citation or applicability determination is made.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   }
+  ]
+ },
+ "unsupportedSettlementRegression": {
+  "UNSUPPORTED_SETTLEMENT_COUNT": "NOT_COMPUTED_BY_SCRIPT — §149 closed this at 0/10 and this is the REGRESSION check, not a re-litigation. Adjudicate whether any row promoted an unobserved fact to an affirmative state.",
+  "CANDIDATE_SUPPRESSION_ROWS": [
+   "HS-E1",
+   "HS-K1"
+  ],
+  "CANDIDATE_SUPPRESSION_NOTE": "§154 must not buy questions by suppressing hazards, nor silence by suppressing them. These are rows whose text establishes a hazard and where the model raised NO candidate at all.",
+  "perRow": [
+   {
+    "rowId": "HS-A1",
+    "candidateProse": [
+     {
+      "candidateKey": "auger_entanglement",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "An operative is clearing a blockage at the discharge auger with the dryer running."
+      ],
+      "evidenceBasis": "The text states an operative is actively clearing a blockage at the discharge auger while the dryer, and by implication its driven components, remain running.",
+      "reasoning": "Clearing a blockage at an auger while it and the associated equipment are running exposes the operative to entanglement/caught-in injury from the moving auger flighting or drive components. This is a current, ongoing exposure, not a hypothetical."
+     },
+     {
+      "candidateKey": "combustible_dust_accumulation",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "Grain dust has settled on the horizontal surfaces of the walkway and on the motor housings."
+      ],
+      "evidenceBasis": "The text states grain dust has settled on horizontal surfaces of the walkway and on motor housings.",
+      "reasoning": "Accumulated grain dust on horizontal surfaces, including on motor housings near a heat source (the dryer/burner), is a recognized combustible dust hazard that can propagate a secondary dust explosion or ignite from hot equipment surfaces."
+     },
+     {
+      "candidateKey": "flame_failure_device_unverifiable",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "the flame-failure device and its wiring are behind that shroud and cannot be seen"
+      ],
+      "evidenceBasis": "The text states the flame-failure device and its wiring cannot be seen from the walkway due to the shroud.",
+      "reasoning": "The flame-failure device is a critical safety control preventing unburned fuel accumulation and explosion in the burner/plenum. Its condition and function cannot be visually confirmed from the walkway, so whether it is operating correctly cannot be determined from this observation alone."
+     }
+    ],
+    "summary": "An operative is clearing a blockage at the discharge auger while the dryer continues to run, creating an active entanglement hazard. Grain dust has settled on walkway surfaces and motor housings, a combustible dust accumulation that is worsened by proximity to heat-generating equipment near the burner. The flame-failure device and its wiring cannot be visually confirmed from the walkway, so its current functional status is unverifiable from this observation alone, though this alone does not establish a decision-changing gap without further stated facts.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-B1",
+    "candidateProse": [
+     {
+      "candidateKey": "suspended_scenery_bar_over_workers",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "a scenery bar hangs on the same line stage-side",
+       "Two stage crew are working on the deck below the bar, moving a rostrum."
+      ],
+      "evidenceBasis": "The observation states a scenery bar is suspended on the line set stage-side and that two stage crew are working on the deck directly below that bar.",
+      "reasoning": "A suspended scenery bar hangs on a line set that is simultaneously being loaded with counterweights at the gallery, while two workers occupy the deck space beneath the bar. Any uncontrolled movement of the line (e.g., from the counterweight loading being underway, or unexpected release) would create a struck-by/falling-load exposure for the crew working directly below."
+     },
+     {
+      "candidateKey": "pin_rail_unattended_during_loading",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "Nobody is standing at the pin rail."
+      ],
+      "evidenceBasis": "The observation states that nobody is currently standing at the pin rail while counterweights are being loaded onto the cradle and a rope lock secures the line set.",
+      "reasoning": "The pin rail is typically where a line set's operating line is secured and monitored; with counterweights actively being added at the gallery and no one stationed at the pin rail, there may be a reduced ability to respond to or control unexpected movement of the line, though the rope lock is stated as engaged."
+     },
+     {
+      "candidateKey": "counterweight_loading_gallery_fall_exposure",
+      "state": "UNKNOWN",
+      "quotedEvidence": [],
+      "evidenceBasis": "",
+      "reasoning": "Loading galleries in fly towers are typically elevated, open-edged work platforms; the technician is working at gallery level handling counterweights, which could involve a fall exposure if the gallery edge is unprotected. The observation does not describe the gallery's edge protection, so this is inferred from the nature of the task rather than stated directly."
+     }
+    ],
+    "summary": "A scenery bar is suspended stage-side on a line set that is currently being loaded with counterweights at the gallery, while two stage crew work on the deck directly beneath that bar — a suspended-load exposure over occupied space. No one is stationed at the pin rail during this loading activity, which may reduce the ability to respond to unexpected line movement, though the rope lock is stated as engaged. Whether the loading operation itself could cause line movement while the rope lock is the only restraint is not established and would determine whether the crew below need to be relocated or the sequence changed.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-C1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-1",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "the ferromagnetic screening questionnaire for this patient was completed by the referring ward and has not arrived with the notes, and that nobody in the suite can confirm what it recorded"
+      ],
+      "evidenceBasis": "The observation states the completed screening questionnaire has not arrived with the notes and that nobody in the suite can confirm what it recorded, meaning the ferromagnetic screening outcome for this specific patient is currently unverified by suite staff.",
+      "reasoning": "MRI screening for ferromagnetic objects/implants is a procedural safeguard against projectile and implant-interaction hazards in the MRI environment. The patient is already positioned at the scanner room door with the questionnaire outcome unconfirmed by anyone present, so the procedural control that would normally establish the patient is safe to proceed has not been completed at the point where the patient is staged for entry."
+     }
+    ],
+    "summary": "The deterministic finding confirms the door interlock and controlled-area signage are active and functioning. Separately, the observation establishes that the patient's ferromagnetic screening questionnaire has not reached the suite and nobody present can confirm its contents, while the patient is already staged at the scanner room door — this is a procedural safeguard gap distinct from the physical interlock control. Whether staff verify screening status before the patient enters the room is not stated and is decision-critical: it determines whether the scan can proceed or must be held.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-D1",
+    "candidateProse": [
+     {
+      "candidateKey": "C1",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "Two part-full 25 litre drums of a Class IA solvent-based cleaner stand on the floor beside the dosing pumps, and further containers of the same product are stored on the racking behind them",
+       "the observation does not record how many",
+       "neither an inside storage room nor a storage cabinet is present"
+      ],
+      "evidenceBasis": "The text establishes multiple containers of a Class IA flammable liquid stored on the floor and on racking in a single fire area with no inside storage room or storage cabinet present, and states the total container count is not recorded.",
+      "reasoning": "Class IA liquids are highly flammable, and the supplied governed record caps the aggregate quantity of Class IA liquid stored outside an inside storage room or cabinet in one fire area at 25 gallons. Two part-full 25 litre drums plus an unrecorded further quantity on racking, with no inside storage room or cabinet present, places a flammable liquid storage hazard squarely in the fire area; whether the aggregate exceeds the governed limit cannot be determined from the stated facts but the underlying flammable-storage hazard is active regardless."
+     },
+     {
+      "candidateKey": "C2",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "holds the chlorine and acid supply for the main pool",
+       "is a single fire compartment with the plant room"
+      ],
+      "evidenceBasis": "The text establishes that chlorine and acid supplies are held in the same room as a flammable solvent-based cleaner, within a single shared fire compartment with the plant room.",
+      "reasoning": "Chlorine and acid are incompatible with, and can react hazardously with, organic solvent-based products if mixed or if a fire/heat event occurs; co-location of oxidizing/corrosive pool chemicals with a flammable Class IA solvent in one undivided compartment raises a chemical release/incompatibility exposure distinct from the simple fire loading question."
+     }
+    ],
+    "summary": "The dosing room stores an unrecorded total quantity of a Class IA flammable solvent cleaner on the floor and on racking, with no inside storage room or storage cabinet present, which is the exact condition the supplied record governs by aggregate quantity — but the aggregate is not stated, so whether the governed 25-gallon limit is met or exceeded cannot currently be determined and is asked as a blocking clarification. The same undivided fire compartment also holds the pool's chlorine and acid supply alongside the flammable solvent, an interaction that would make a fire or chemical incident in this room worse than either hazard occurring alone. No deterministic findings were provided to compare against, so these are raised as additional expert observations.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-E1",
+    "candidateProse": [],
+    "summary": "The observation describes a debarker with its guard door closed and interlock in place while the sawyer works from the deck without reaching into the throat — a controlled, current state with no stated gap. The overnight rotor tooth change is a resolved historical event: the machine was returned to service, the guard is confirmed closed with the interlock engaged, and no failure, bypass, or residual exposure from that maintenance is stated. The lockout/tagout question already flagged by the deterministic engine concerns that completed maintenance activity, not a live hazard, and nothing in the text gives reason to believe the machine is not properly restored to normal operation.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-F1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-struck-by-pedestrian",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "The jetting is being carried out over a footpath that runs under the bridge and is open to pedestrians at the far end."
+      ],
+      "evidenceBasis": "The text establishes that high-pressure hydro-demolition of concrete is being performed directly above a footpath that is currently open to pedestrians.",
+      "reasoning": "High-pressure jetting of a concrete soffit generates dislodged concrete debris and pressurized water spray falling from height. With the footpath below open to pedestrian access, there is a current struck-by/falling-debris exposure to members of the public passing beneath the work area, independent of the fall protection and hydraulic energy hazards already identified for the operatives on the scaffold."
+     },
+     {
+      "candidateKey": "cand-noise-exposure",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "hydro-demolishing a concrete bridge soffit from a scaffold deck using a hand-held lance at high pressure",
+       "The pump unit is on the deck below with its engine running."
+      ],
+      "evidenceBasis": "The text establishes concurrent high-pressure jetting against concrete and a running combustion engine pump in close proximity to the two operatives on the deck.",
+      "reasoning": "High-pressure hydro-demolition lances combined with a running engine-driven pump are characteristic high-noise-generating operations. The operatives are described wearing helmets and visors but no hearing protection is mentioned, and their proximity to both noise sources on the deck suggests a current noise exposure."
+     }
+    ],
+    "summary": "Beyond the identified fall protection and hydraulic energy hazards affecting the two operatives, the observation establishes a current struck-by/debris exposure to pedestrians on the footpath beneath the jetting work, since that path is described as open at the far end. A possible noise exposure from the combination of the high-pressure lance and the running pump engine is also flagged with low confidence, as no hearing protection is mentioned. The interaction between the fall hazard and the reactive force of the pressurized lance is worse than either alone, since a loss of balance while operating a live high-pressure jet compounds both fall severity and uncontrolled discharge risk. A clarification is needed on whether the pedestrian path is actually controlled or exclusion-zoned during this work, as this determines whether immediate action is required to protect the public.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-G1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-fire-1",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "It stands about four metres from the workshop wall, which has a personnel door and a window opening onto the yard."
+      ],
+      "evidenceBasis": "The observation establishes the battery energy storage container is positioned roughly four metres from a workshop wall that has a personnel door and window opening directly onto the yard where the container sits.",
+      "reasoning": "Battery energy storage systems present thermal runaway / fire and explosion risk (off-gassing, jet-flame venting). A separation distance of only about four metres from a building wall containing a personnel door and window creates a current exposure pathway for fire, explosive off-gas, or thermal event effects to reach the workshop interior and any occupants using that door or window, given no fire-rated separation, bollards, or barrier is described."
+     },
+     {
+      "candidateKey": "cand-emergency-1",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "The depot fire strategy on the office wall shows the yard layout as it was before the container arrived."
+      ],
+      "evidenceBasis": "The posted fire strategy document depicts the yard layout as it existed prior to the container's installation, meaning the current site configuration is not reflected in that document.",
+      "reasoning": "A fire strategy/plan that does not reflect a new fixed installation (the BESS container, its ventilation louvres, gas detection head, and its proximity to the workshop wall) may mean evacuation routes, muster points, fire service access, or hazard zone markings shown on that strategy no longer correspond to the current yard layout. Whether this constitutes a live emergency-planning gap cannot be determined from the observation alone."
+     }
+    ],
+    "summary": "The newly installed battery energy storage container sits only about four metres from a workshop wall with a personnel door and window, raising a fire/explosion exposure pathway into an occupied space that is additional to the deterministic findings. The posted fire strategy predates the container's arrival, leaving it unclear whether any current emergency plan reflects the container's presence and hazards, which is a decision-critical gap for emergency response applicability. The proximity of the container to the workshop opening, combined with the site's already-active atmospheric hazard, could compound a gas or thermal event before it is contained or detected.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-H1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-thermal",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "heat-resistant gloves"
+      ],
+      "evidenceBasis": "The technician is wearing heat-resistant gloves while opening the door of an autoclave immediately after a cycle, indicating recognition of residual heat as the load and chamber contents are removed.",
+      "reasoning": "An autoclave load and chamber surfaces remain hot immediately after a cycle even when pressure has returned to zero; opening the door and handling the trolley at this point exposes the technician to contact burn hazards from hot surfaces, steam residue, or the load itself."
+     },
+     {
+      "candidateKey": "cand-pressure-verify",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "The chamber pressure gauge on the front panel reads zero."
+      ],
+      "evidenceBasis": "The gauge reading is stated as zero, but the observation does not state whether this reading was cross-checked or whether the gauge itself is functioning correctly.",
+      "reasoning": "Residual chamber pressure during door opening is a known autoclave hazard; a faulty or unverified gauge reading zero when actual pressure is not zero would create a real exposure. The interlock releasing and the gauge reading zero both support a de-pressurized state, but gauge malfunction is a recognized failure mode."
+     }
+    ],
+    "summary": "Beyond the identified interlock and suspended-load hazards, the technician's use of heat-resistant gloves while opening the autoclave door right after cycle completion points to a current thermal burn hazard from hot chamber surfaces or load contents, which is added as a candidate. The pressure gauge reading zero supports a de-pressurized chamber, but this is a routine reliance on instrument accuracy that does not by itself change any action, so it is noted only as a low-confidence candidate rather than a clarification. No cross-hazard interaction rises above the interlock/thermal proximity noted, and no regulatory record was supplied to assess against, so no citation or applicability determination is made.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-J1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "The sprayer is wearing an air-fed hood supplied from the compressor with a breathing-air filter"
+      ],
+      "evidenceBasis": "The observation shows the sprayer wearing supplied-air respiratory protection while spraying, with the booth extract running and airflow confirmed in the green band, indicating the inhalation exposure from spray paint aerosols/solvents is being actively controlled.",
+      "reasoning": "Spray painting generates airborne solvent vapours and overspray particulates that would otherwise pose an inhalation hazard; the observation establishes both engineering control (booth extract with confirmed airflow) and PPE (air-fed hood) are in place and functioning, so the underlying chemical inhalation hazard is present but currently controlled rather than an uncontrolled active exposure."
+     },
+     {
+      "candidateKey": "cand-2",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [],
+      "evidenceBasis": "The observation describes spray painting operations and extract ventilation but does not mention any ignition source controls, static grounding, or explosive atmosphere monitoring.",
+      "reasoning": "Paint spray booths handling solvent-based coatings can generate flammable vapour concentrations; while the running extract fan reduces this risk, the observation gives no information about coating type (solvent vs water-based), grounding/bonding of equipment, or ignition source control, so the current state of this hazard cannot be determined from the text."
+     }
+    ],
+    "summary": "The core hazard here — chemical inhalation exposure from spray-applied coatings — is currently controlled: booth extract airflow was confirmed in the green band, the fan/gun interlock was demonstrated to function, and the sprayer wears an air-fed hood with a breathing-air filter change record signed current for this month. No decision-critical fact is missing given the controls demonstrated in the observation, so no clarification is raised. A low-confidence, ungrounded fire/explosion possibility from solvent vapour is noted for completeness given the spray booth context, though the observation gives no basis to assess it further.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-K1",
+    "candidateProse": [],
+    "summary": "placeholder",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-L1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-loto",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "The machine-room isolator is off and padlocked with his own lock, and he holds the only key on his belt"
+      ],
+      "evidenceBasis": "The isolator is off, padlocked with the engineer's personal lock, and he alone holds the key, which he showed to the observer.",
+      "reasoning": "This describes a personal lockout of the single electrical supply to the lift machine, consistent with a controlled energy-isolation state while the engineer works on the traction sheave. It is raised as CONTROLLED rather than a live hazard because the observation states the isolation and exclusive key control as current facts, not merely as a plan."
+     },
+     {
+      "candidateKey": "cand-suspended-load",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "The counterweight is at the top of its guides and is chocked with the manufacturer's pin, which I saw in place.",
+       "resting on the fully compressed buffers, with the ropes visibly slack over the sheave"
+      ],
+      "evidenceBasis": "The counterweight is physically chocked with the manufacturer's pin, observed in place, and the car is resting on compressed buffers with the ropes slack, indicating neither suspended mass is currently held only by the ropes.",
+      "reasoning": "A lift counterweight and car are gravity-loaded suspended masses that would normally present a suspended-load / unexpected-movement hazard while a technician works on the sheave. Here both ends of the roping system are described as currently supported independently of the ropes (counterweight pinned, car on compressed buffers with slack ropes), so the mechanical stored-energy/suspended-load risk during sheave work appears currently controlled rather than active."
+     }
+    ],
+    "summary": "The observation describes a lift engineer working on the traction sheave with the sole electrical supply isolated and padlocked under his exclusive control, which reads as a currently controlled lockout/tagout state. Both suspended masses in the roping system — the counterweight (pinned) and the car (on compressed buffers with slack ropes) — are described as currently independently supported, so the mechanical suspended-load hazard also appears controlled rather than active. Separately, the deterministic finding of an active 'conveyors' hazard does not correspond to anything in this observation and is flagged for review.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-M1",
+    "candidateProse": [
+     {
+      "candidateKey": "atmos-monitoring",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "the readings were recorded at 20.8 percent oxygen and 2 percent of the lower flammable limit for methane"
+      ],
+      "evidenceBasis": "The atmosphere was tested pre-entry at three depths and the recorded values fall within the acceptable ranges stated in the supplied record for oxygen and flammable gas, with continuous monitoring rigged and running on the entrant.",
+      "reasoning": "Sludge holding tanks at anaerobic digestion plants can generate methane, hydrogen sulfide and oxygen-deficient atmospheres. The observation establishes pre-entry testing at three depths with a calibrated instrument, results within the acceptable band set by the supplied record, and continuous monitoring in progress, so the atmospheric hazard is present but presently controlled by testing and monitoring rather than absent."
+     }
+    ],
+    "summary": "The confined space entry hazard is confirmed active by the deterministic finding, and the observation shows the associated atmospheric hazard is currently being managed: pre-entry testing at three depths with an in-date calibrated instrument returned 20.8 percent oxygen and 2 percent LFL for methane, both within the acceptable range set by the supplied atmospheric testing record, and continuous monitoring is running on the entrant. No toxic air contaminant testing result (e.g. hydrogen sulfide) is mentioned, but nothing in the observation raises this as a live gap requiring a question given the record's testing regime is otherwise satisfied. No cross-hazard interaction or disagreement arises from the facts as stated.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-N1",
+    "candidateProse": [
+     {
+      "candidateKey": "noise_exposure_workshop",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [],
+      "evidenceBasis": "The observation does not mention noise levels, air tools, or hearing protection at all; this is raised purely as a general possibility in a tyre workshop setting rather than anything the text supports.",
+      "reasoning": "Tyre inflation and workshop bays commonly involve compressors and impact tools that can generate elevated noise, but nothing in this observation describes noise levels, duration, or hearing protection use, so this is speculative context rather than an established hazard."
+     }
+    ],
+    "summary": "The observation describes a well-controlled tyre inflation task: the split-rim wheel is fully enclosed in a floor-bolted restraint cage, and the fitter stands outside and to the side of the cage while inflating via an airline extension, with no other personnel in the bay. No deterministic hazard was flagged, and the observation gives no basis to assert an active hazard here, since the stated facts show the explosive-separation exposure being controlled by the cage and standoff position. A low-confidence, ungrounded possibility of workshop noise exposure is noted only as general context, not as an established current hazard.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-P1",
+    "candidateProse": [
+     {
+      "candidateKey": "residual_heat_oil_drain",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "draining the oil into a wheeled bin using the fryer's own drain tap and hose"
+      ],
+      "evidenceBasis": "The text establishes the chef is currently draining oil through the drain tap and hose into a bin, a task that involves direct handling of fryer oil as it flows through the drain system.",
+      "reasoning": "Draining oil from a fryer, even when the unit is switched off, involves handling a substance that can retain significant heat and cause burns if it contacts skin during the pour, splash, or hose handling. The task is in progress now, and the chef's use of heat-resistant gauntlets and apron indicates the task itself is recognised as carrying a burn exposure."
+     },
+     {
+      "candidateKey": "slip_spill_walking_surface",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "with the bin positioned under the tap and the area coned"
+      ],
+      "evidenceBasis": "The text states the area around the draining operation is coned off, which is consistent with a precaution against a floor hazard such as an oil spill, but the text does not state whether any oil has spilled or whether the floor is currently wet or slippery.",
+      "reasoning": "Draining oil via a hose into a bin creates a plausible risk of spillage onto the floor, which would be a slip hazard. The coning suggests an awareness of this risk being managed, but the observation does not confirm or deny an actual spill or slippery surface at this time."
+     }
+    ],
+    "summary": "The observation describes a controlled oil-draining task on a cold, switched-off fryer, with the chef wearing heat-resistant gauntlets and apron and the area coned off, and a current high-limit thermostat test record on file. The residual thermal burn exposure from handling drained oil is the main hazard worth noting, and it is already being addressed with appropriate PPE and area control. No decision-critical facts are missing that would change what is done now, since the fryer's make and oil capacity are administrative details that do not affect the current control approach.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-Q1",
+    "candidateProse": [
+     {
+      "candidateKey": "chem-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "decanting concentrated hydrochloric acid from a Winchester into a labelled dispensing bottle",
+       "checked the cupboard's airflow with a smoke tube in her presence and it drew fully at the sash opening"
+      ],
+      "evidenceBasis": "The observation shows a technician actively decanting a concentrated corrosive/volatile acid while working inside a fume cupboard verified to be drawing fully at the sash opening.",
+      "reasoning": "Concentrated hydrochloric acid decanting produces corrosive vapour and splash exposure. This is a real current hazardous task, but the observation also establishes the primary engineering control (fume cupboard airflow verified fully drawing) is functioning at the time of the task, so the inhalation/contact hazard is present but controlled rather than uncontrolled."
+     },
+     {
+      "candidateKey": "ppe-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "Her goggles, apron and nitrile gloves are on"
+      ],
+      "evidenceBasis": "The text states the technician is wearing goggles, apron and nitrile gloves during the decanting task.",
+      "reasoning": "PPE appropriate to corrosive liquid handling is confirmed worn, which is a control against the chemical contact hazard rather than a separate active hazard."
+     },
+     {
+      "candidateKey": "emerg-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "the eyewash station two metres away was run and flowed clear while I watched"
+      ],
+      "evidenceBasis": "The text states the eyewash station was tested and flowed clear, and is located two metres from the task.",
+      "reasoning": "Functioning, nearby emergency eyewash is confirmed available and operational for the corrosive-handling task, representing a verified control rather than a gap."
+     }
+    ],
+    "summary": "The observation describes a technician decanting concentrated hydrochloric acid inside a fume cupboard whose airflow was verified fully drawing, wearing goggles, apron and nitrile gloves, with a nearby eyewash station tested and flowing clear. Each element relevant to the chemical inhalation/contact hazard (ventilation, PPE, emergency eyewash) is stated as verified and functioning at the time of the task, so these are best characterised as controlled conditions rather than open gaps. No missing fact was identified that would change what is done now, and no hazard interaction is established since the controls described are each functioning rather than degraded or absent.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-R1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-silica-dust",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "the saw's water suppression is connected and running with visible water at the blade",
+       "a fitted FFP3 mask"
+      ],
+      "evidenceBasis": "The text states water suppression is connected and running with visible water at the blade, and that the worker is wearing a fitted FFP3 mask, both of which are controls for the respirable dust generated by cutting kerbs (concrete/masonry) with a petrol saw.",
+      "reasoning": "Cutting kerbs with a petrol cut-off saw generates respirable crystalline silica dust. The observation shows two layered controls in place (wet cutting and fitted FFP3 respirator), so the hazard is present but appears controlled at the moment observed."
+     },
+     {
+      "candidateKey": "cand-noise",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "ear defenders"
+      ],
+      "evidenceBasis": "The text states the worker is wearing ear defenders while operating a petrol cut-off saw, a known high-noise tool.",
+      "reasoning": "Petrol cut-off saws produce high noise levels; hearing protection is stated as worn, so the hazard exists but is controlled as observed."
+     }
+    ],
+    "summary": "The observation describes a groundworker cutting kerbs with a petrol cut-off saw, which the deterministic engine correctly flags as hot work. Alongside this, the task creates respirable dust and high noise exposure, but both appear controlled at the time observed through running water suppression plus a fitted FFP3 mask, and worn ear defenders. No decision-critical facts are missing: the observation gives enough to see that the relevant controls are in place, and the unspecified duration or quantity of kerbs cut would not change what is done today.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   }
+  ]
+ },
+ "regression": {
+  "citation": {
+   "INPUT_CITATION_SHAPED_COUNT": 0,
+   "EXPERT_OUTPUT_CITATION_SHAPED_COUNT": 0,
+   "ACCEPTED_CITATION_COUNT": 0,
+   "REJECTED_CITATION_COUNT": 0,
+   "MERGED_CITATION_COUNT": 0,
+   "GOVERNED_AUTHORITY_CITATION_COUNT": 2,
+   "SUPPLIED_RECORD_CITATION_COUNT": 4
+  },
+  "coverage": {
+   "deterministicCoveredCount": 0,
+   "additiveExpertCoveredCount": 5,
+   "combinedCoveredCount": 5,
+   "truthMissesAfterUnionCount": 4,
+   "truthPresentTotal": 9,
+   "expertOnlyFamiliesCount": 26,
+   "perRow": [
+    {
+     "rowId": "HS-A1",
+     "truthPresent": [
+      "combustible_dust",
+      "machine_guarding"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "combustible_dust",
+      "machine_guarding"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "machine_guarding",
+      "combustible_dust",
+      "fire_explosion"
+     ]
+    },
+    {
+     "rowId": "HS-B1",
+     "truthPresent": [
+      "suspended_loads"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "suspended_loads"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "suspended_loads"
+     ]
+    },
+    {
+     "rowId": "HS-C1",
+     "truthPresent": [
+      "emergency_equipment"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [
+      "emergency_equipment"
+     ],
+     "expertOnlyFamilies": [
+      "training_procedure_supervision"
+     ]
+    },
+    {
+     "rowId": "HS-D1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion",
+      "chemical_release"
+     ]
+    },
+    {
+     "rowId": "HS-E1",
+     "truthPresent": [
+      "machine_guarding"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [
+      "machine_guarding"
+     ],
+     "expertOnlyFamilies": []
+    },
+    {
+     "rowId": "HS-F1",
+     "truthPresent": [
+      "walking_working_surfaces"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "walking_working_surfaces"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "walking_working_surfaces",
+      "noise_exposure"
+     ]
+    },
+    {
+     "rowId": "HS-G1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion",
+      "emergency_equipment"
+     ]
+    },
+    {
+     "rowId": "HS-H1",
+     "truthPresent": [
+      "thermal_burn"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "thermal_burn"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "thermal_burn",
+      "pressure_systems"
+     ]
+    },
+    {
+     "rowId": "HS-J1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "chemical_inhalation_contact",
+      "fire_explosion"
+     ]
+    },
+    {
+     "rowId": "HS-K1",
+     "truthPresent": [
+      "chemical_inhalation_contact",
+      "personal_protective_equipment"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [
+      "chemical_inhalation_contact",
+      "personal_protective_equipment"
+     ],
+     "expertOnlyFamilies": []
+    },
+    {
+     "rowId": "HS-L1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "lockout_tagout",
+      "suspended_loads"
+     ]
+    },
+    {
+     "rowId": "HS-M1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "atmospheric_hazard"
+     ]
+    },
+    {
+     "rowId": "HS-N1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "noise_exposure"
+     ]
+    },
+    {
+     "rowId": "HS-P1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "thermal_burn",
+      "walking_working_surfaces"
+     ]
+    },
+    {
+     "rowId": "HS-Q1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "chemical_inhalation_contact",
+      "personal_protective_equipment",
+      "emergency_equipment"
+     ]
+    },
+    {
+     "rowId": "HS-R1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "respiratory_protection",
+      "noise_exposure"
+     ]
+    }
+   ]
+  },
+  "linkage": {
+   "REQUIRED_LINKAGE_OPPORTUNITIES": 0,
+   "REQUIRED_LINKAGE_POPULATED": 0,
+   "REQUIRED_LINKAGE_VALID": 0,
+   "REQUIRED_LINKAGE_MISSING": 0,
+   "ALLOWED_LINKAGE_OPPORTUNITIES": 0,
+   "ALLOWED_LINKAGE_POPULATED": 0,
+   "ALLOWED_LINKAGE_VALID": 0,
+   "FORBIDDEN_LINKAGE_OPPORTUNITIES": 0,
+   "FORBIDDEN_LINKAGE_ATTEMPTS": 0,
+   "FORBIDDEN_LINKAGE_ACCEPTED": 0,
+   "NO_LINKAGE_OPPORTUNITY_ROWS": 0,
+   "NOT_A_LINKAGE_TEST_ROWS": 16,
+   "INVALID_LINKAGE_ATTEMPTS": 0,
+   "INVALID_LINKAGE_STRIPPED": 0,
+   "ARBITRATION_EVENTS": 0,
+   "perRow": [
+    {
+     "rowId": "HS-A1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-B1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-C1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-D1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-E1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-F1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-G1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-H1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-J1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-K1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-L1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-M1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-N1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-P1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-Q1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-R1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    }
+   ]
+  },
+  "FORBIDDEN_FAMILY_CANDIDATES_EMITTED": [],
+  "PROTECTED_AUTHORITY_CONTRADICTIONS": 0,
+  "TOTAL_CANDIDATES": 27,
+  "RAW_WIRE_CITATION_HITS": 0
+ },
+ "frozenGates": {
+  "strictRequiredRecall": 1,
+  "maxForbiddenViolations": 0,
+  "maxRetainedButNotAsked": 0,
+  "maxUnsupportedSettlements": 0,
+  "affectedDecisionSurvival": 1,
+  "maxAcceptedInvalidLinkages": 0,
+  "rawLinkageReconciliationRequired": true,
+  "trueContradictionDeterministicProofRequired": true,
+  "hostedTrueContradictionIsObservational": true,
+  "maxInvalidClarificationObjects": 0,
+  "maxCitationContainmentViolations": 0,
+  "maxProtectedAuthorityContradictions": 0
+ },
+ "budget": {
+  "targetLogicalCalls": 16,
+  "hardProviderRequestCeiling": 16,
+  "enforcedSpendCeilingUsd": 1.664
+ },
+ "gate": [
+  {
+   "id": "A.1 sixteen logical calls, matching the authorization",
+   "ok": true,
+   "detail": "16 rows (request ceiling 16)"
+  },
+  {
+   "id": "A.2 every row is structurally scoreable",
+   "ok": true,
+   "detail": "0 problems"
+  },
+  {
+   "id": "A.3 ids are fresh HS-* development ids",
+   "ok": true,
+   "detail": "HS-A1 HS-B1 HS-C1 HS-D1 HS-E1 HS-F1 HS-G1 HS-H1 HS-J1 HS-K1 HS-L1 HS-M1 HS-N1 HS-P1 HS-Q1 HS-R1"
+  },
+  {
+   "id": "A.4 sixteen distinct domains",
+   "ok": true,
+   "detail": "16"
+  },
+  {
+   "id": "A.5 THE v9 DIGEST MATCHES §151 EXACTLY — this run is against the reviewed material",
+   "ok": true,
+   "detail": "434c127c44a8d6d8592c1b6e…"
+  },
+  {
+   "id": "A.5b and the fixture FILE is byte-identical to its §151 state",
+   "ok": true,
+   "detail": "09195af8fb7ce07c693c8d05…"
+  },
+  {
+   "id": "A.5c the set is declared UNSPENT with no prior hosted authorization",
+   "ok": true,
+   "detail": "authored under hazlenz.expert.prompt.v13"
+  },
+  {
+   "id": "B.1 the fixture linter PASSES live, at $0.00",
+   "ok": true,
+   "detail": "16 rows, 0 mechanical, 0 unsigned"
+  },
+  {
+   "id": "B.2 eight REQUIRED and eight FORBIDDEN",
+   "ok": true,
+   "detail": "8 / 8"
+  },
+  {
+   "id": "B.3 every row carries its full signature set, none re-signed to a hollow value",
+   "ok": true,
+   "detail": "all sixteen complete"
+  },
+  {
+   "id": "B.4 every REQUIRED row enumerates at least two acceptable selectors",
+   "ok": true,
+   "detail": "the §151 selector-over-specification repair"
+  },
+  {
+   "id": "B.5 the CONSEQUENCE-MAGNITUDE probe row is present, owed SILENCE, and declares its own falsifier BEFORE the run",
+   "ok": true,
+   "detail": "HS-R1"
+  },
+  {
+   "id": "B.5b and NO row authors HAZARD_SEVERITY or HAZARD_EXISTENCE as an expected label — §151 measured HAZARD_SEVERITY correct 0 of 7, so it is not a label to expect",
+   "ok": true,
+   "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION, APPLICABILITY"
+  },
+  {
+   "id": "B.6 v11, v12 and v13 each keep a non-regression row in the set",
+   "ok": true,
+   "detail": "16 forms"
+  },
+  {
+   "id": "B.7 all sixteen forms appear exactly once — a result names its own mechanism",
+   "ok": true,
+   "detail": "16 of 16"
+  },
+  {
+   "id": "B.8 THE ADJUDICATION SIDECAR IS FROZEN and hashes to its pre-registered value — no denominator can be chosen after seeing the data",
+   "ok": true,
+   "detail": "591a027d67232fdd246e87d6…"
+  },
+  {
+   "id": "B.8b and its denominators are exactly the §152 dispositions the authorization fixed",
+   "ok": true,
+   "detail": "REQUIRED 7 (HS-F1 excluded, HS-H1 and HS-A1 included); FORBIDDEN 7 (HS-M1 excluded)"
+  },
+  {
+   "id": "B.9 the degenerate-output detector is armed and versioned",
+   "ok": true,
+   "detail": "hazlenz.expert.degenerate-output-detector.v2"
+  },
+  {
+   "id": "B.9b the family comparison map is armed and versioned",
+   "ok": true,
+   "detail": "hazlenz.expert.family-comparison-map.v1"
+  },
+  {
+   "id": "B.10 replicate 1 artifacts are present and readable for the row-by-row comparison",
+   "ok": true,
+   "detail": "the §152 evidence directory"
+  },
+  {
+   "id": "B.10b replicate 2 artifacts are present and readable — the third draw is worth nothing without the two it is compared against",
+   "ok": true,
+   "detail": "the §153 evidence directory"
+  },
+  {
+   "id": "B.10c both stored draws load, cover all sixteen rows, and run under detector v2 BEFORE spend — the matrix cannot fail after the money is gone",
+   "ok": true,
+   "detail": "both draws parsed, 16 rows each, detector v2 ran clean over both"
+  },
+  {
+   "id": "C.1 every REQUIRED row states BOTH answers and BOTH DIFFERENT current outcomes",
+   "ok": true,
+   "detail": "8 complete counterfactuals"
+  },
+  {
+   "id": "C.2 exactly one authored gap per REQUIRED row, none on any FORBIDDEN row",
+   "ok": true,
+   "detail": "retention is unambiguous per row"
+  },
+  {
+   "id": "C.3 every FORBIDDEN row states the tempting question AND a per-row reason",
+   "ok": true,
+   "detail": "no blanket labels; each names the value, the basis and the side"
+  },
+  {
+   "id": "C.4 every authored affectedDecision is in the frozen vocabulary",
+   "ok": true,
+   "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION, APPLICABILITY"
+  },
+  {
+   "id": "C.5 REGULATORY_INTERPRETATION is never claimed without a SUPPLIED record",
+   "ok": true,
+   "detail": "checked"
+  },
+  {
+   "id": "C.6 and NO row authors HAZARD_EXISTENCE as the owed label — on a row whose hazard the text establishes, an existence question IS the contradiction",
+   "ok": true,
+   "detail": "checked"
+  },
+  {
+   "id": "D.1 no formal-cohort, reserved or SPENT-probe path is imported",
+   "ok": true,
+   "detail": "clean — and the spent v5 fixture set is not reused either"
+  },
+  {
+   "id": "E.1 model bound exactly",
+   "ok": true,
+   "detail": "claude-sonnet-5"
+  },
+  {
+   "id": "E.2 vendor endpoint",
+   "ok": true,
+   "detail": "https://api.anthropic.com"
+  },
+  {
+   "id": "E.3 thinking disabled",
+   "ok": true,
+   "detail": "disabled"
+  },
+  {
+   "id": "E.4 credential present (never logged or persisted)",
+   "ok": true,
+   "detail": "set"
+  },
+  {
+   "id": "F.1 built one request per row, called nothing",
+   "ok": true,
+   "detail": "16 built, 0 invocations"
+  },
+  {
+   "id": "F.2 ONE ARM ONLY — M14 not attempted",
+   "ok": true,
+   "detail": "BASE"
+  },
+  {
+   "id": "F.2b v14 IS UNIMPLEMENTED — v13 is the shipped version and no v14 block exists",
+   "ok": true,
+   "detail": "this is a baseline, not a remediation"
+  },
+  {
+   "id": "F.2c and the §139 collision rule §151 proposes to amend is UNTOUCHED",
+   "ok": true,
+   "detail": "the baseline measures shipped behaviour, not an edited contract"
+  },
+  {
+   "id": "F.3 the prospective repaired prompt is v13",
+   "ok": true,
+   "detail": "hazlenz.expert.prompt.v13"
+  },
+  {
+   "id": "F.4 the analysis contract is UNCHANGED at v2 — the schema gained no field",
+   "ok": true,
+   "detail": "hazlenz.expert.analysis.v2"
+  },
+  {
+   "id": "F.5 THE RETENTION BRIDGE is in the system prompt this probe will send, and placed LAST",
+   "ok": true,
+   "detail": "present and after the settlement check in all requests"
+  },
+  {
+   "id": "F.5b with the distinction from the settlement check stated — RESOLVED versus left OPEN",
+   "ok": true,
+   "detail": "the diagnosis, in one sentence, in every request"
+  },
+  {
+   "id": "F.5c and all four retention channels named",
+   "ok": true,
+   "detail": "candidate state, reasoning, summary, uncertainty"
+  },
+  {
+   "id": "F.6 THE ANTI-OVERFIRE CLAUSE is present — the state alone is never a reason to ask",
+   "ok": true,
+   "detail": "the conjunction and the deference to the counterfactual test, in all requests"
+  },
+  {
+   "id": "F.6b and the no-duplicate rule",
+   "ok": true,
+   "detail": "present in all requests"
+  },
+  {
+   "id": "F.7 NOTHING from v9-v12 was dropped from the text being sent — §149's closure especially",
+   "ok": true,
+   "detail": "v12 settlement, v11 threshold and routing, v10 checks, v9 precision and the INSUFFICIENT_EVIDENCE state all intact"
+  },
+  {
+   "id": "G.1 no truth-key-only string reaches any request",
+   "ok": true,
+   "detail": "16 scanned"
+  },
+  {
+   "id": "G.2 no built prompt carries citation-shaped text",
+   "ok": true,
+   "detail": "16 scanned"
+  },
+  {
+   "id": "G.3 redaction is exercised",
+   "ok": true,
+   "detail": "4 supplied record fields carried a citation pre-render"
+  },
+  {
+   "id": "H.1 spend ceiling is the LOWER of authorized and model-priced",
+   "ok": true,
+   "detail": "authorized $2.50, priced $1.6640 -> enforcing $1.6640"
+  },
+  {
+   "id": "H.1b the retry allowance is ZERO, and a retry would be refused rather than overspend",
+   "ok": true,
+   "detail": "0 retry requests against a 16-request cap"
+  },
+  {
+   "id": "H.2 store is empty or absent",
+   "ok": true,
+   "detail": "clean"
+  },
+  {
+   "id": "H.3 PRE-SPEND-IDENTITY.json does not already exist",
+   "ok": true,
+   "detail": "clean"
+  },
+  {
+   "id": "H.4 a SECOND write to the live identity is refused, bytes unchanged",
+   "ok": true,
+   "detail": "sha256 f70ff0c11c906133… stable"
+  }
+ ],
+ "instrumentIntegrity": {
+  "setDigestBefore": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+  "setDigestAfter": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+  "setDigestUnchanged": true,
+  "fixtureFileShaBefore": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+  "fixtureFileShaAfter": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+  "fixtureFileUnchanged": true,
+  "linterPassedAfter": true,
+  "linterFindingsAfter": [],
+  "NOTE": "NO FIXTURE WAS MODIFIED AFTER THE FIRST PROVIDER REQUEST. Verified two ways — the row digest, which covers the signatures, and the raw file hash."
+ },
+ "measurementLayer": {
+  "sidecarSha256": "591a027d67232fdd246e87d6e4ab4ad662108ea7f42a2b81665fa5af67a2981f",
+  "degenerateDetectorVersion": "hazlenz.expert.degenerate-output-detector.v2",
+  "familyMapVersion": "hazlenz.expert.family-comparison-map.v1",
+  "degenerateOutput": {
+   "version": "hazlenz.expert.degenerate-output-detector.v2",
+   "verdicts": [
+    {
+     "rowId": "HS-A1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-B1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-C1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-D1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-E1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-F1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-G1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-H1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-J1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-K1",
+     "signals": [
+      "PLACEHOLDER_SUMMARY",
+      "ALL_PROSE_IS_PLACEHOLDER"
+     ],
+     "detail": [
+      "summary \"placeholder\"",
+      "every non-empty prose field (1) is a placeholder token"
+     ],
+     "DEGENERATE_PROVIDER_OUTPUT": true,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-L1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-M1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-N1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-P1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-Q1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    },
+    {
+     "rowId": "HS-R1",
+     "signals": [],
+     "detail": [],
+     "DEGENERATE_PROVIDER_OUTPUT": false,
+     "suspect": false
+    }
+   ],
+   "DEGENERATE_ROW_IDS": [
+    "HS-K1"
+   ],
+   "SUSPECT_ROW_IDS": [],
+   "DENOMINATOR_LOSS": 1,
+   "rerunAuthorized": false,
+   "note": "A degenerate row keeps its provider request and its cost, keeps its raw response and its normalized result, and is excluded ONLY from semantic model denominators — reported, never silently. NO RERUN IS AUTHORIZED by this operation and this module cannot request one. A SUSPECT row is reported and excluded from nothing."
+  },
+  "threeViews": {
+   "A_LITERAL": {
+    "requiredDenominator": 8,
+    "requiredSpoke": 5,
+    "requiredSilent": [
+     "HS-A1",
+     "HS-E1",
+     "HS-H1"
+    ],
+    "forbiddenDenominator": 8,
+    "forbiddenSilent": 8,
+    "forbiddenSpoke": []
+   },
+   "B_PREREGISTERED_ADJUDICATED": {
+    "requiredDenominator": 7,
+    "requiredSpoke": 4,
+    "requiredSilent": [
+     "HS-A1",
+     "HS-E1",
+     "HS-H1"
+    ],
+    "forbiddenDenominator": 7,
+    "forbiddenSilent": 7,
+    "forbiddenSpoke": []
+   },
+   "C_EXECUTION_VALID": {
+    "requiredDenominator": 7,
+    "requiredSpoke": 4,
+    "requiredSilent": [
+     "HS-A1",
+     "HS-E1",
+     "HS-H1"
+    ],
+    "forbiddenDenominator": 6,
+    "forbiddenSilent": 6,
+    "forbiddenSpoke": []
+   },
+   "NOTE": "A = every authored v9 row as frozen. B = A minus the PRE-SPEND sidecar exclusions (HS-F1 fixture-confounded, HS-M1 fixture-defect). C = B minus only rows the degenerate detector condemned in THIS replicate. THE THREE ARE REPORTED SEPARATELY AND NEVER SUBSTITUTED FOR ONE ANOTHER. LOOSE counts only; STRICT recall is adjudicated by a human."
+  },
+  "threeDrawStability": {
+   "LABEL": "THREE-DRAW EMPIRICAL STABILITY — NOT a population variance estimate. Three nondeterministic executions exist.",
+   "ROWS_STABLE_3_OF_3": 3,
+   "ROWS_WITH_SINGLE_FLIP": 3,
+   "ROWS_MULTI_STATE_VARIABLE": 8,
+   "ROWS_EXECUTION_CONTAMINATED": 2,
+   "perAxis": {
+    "CLARIFICATION_PRESENCE_3_DRAW_STABILITY": "13/16",
+    "AFFECTED_DECISION_3_DRAW_STABILITY": "9/16",
+    "CANDIDATE_STATE_3_DRAW_STABILITY": "4/16",
+    "CANDIDATE_FAMILY_3_DRAW_STABILITY": "5/16",
+    "LINKAGE_3_DRAW_STABILITY": "14/16",
+    "CANDIDATE_PRESENCE_3_DRAW_STABILITY": "13/16"
+   },
+   "behaviouralDispersion": {
+    "DESCRIPTIVE_ONLY": "Distinct observed CLARIFICATION states per row across three draws. DO NOT INFER PROBABILITIES FROM THREE DRAWS.",
+    "validRowsConsidered": 14,
+    "rowsWith1State": 10,
+    "rowsWith2States": 4,
+    "rowsWith3States": 0,
+    "MEAN_DISTINCT_STATES_PER_VALID_ROW": 1.286
+   },
+   "matrix": [
+    {
+     "rowId": "HS-A1",
+     "form": "NOT_VISIBLE",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       1,
+       1,
+       3
+      ],
+      "candidateState": [
+       [
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "combustible_dust"
+       ],
+       [
+        "combustible_dust"
+       ],
+       [
+        "machine_guarding",
+        "combustible_dust",
+        "fire_explosion"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       true,
+       true,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "EXECUTION_CONTAMINATED",
+     "distinctClarificationStates": [
+      "DEGENERATE",
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 2
+    },
+    {
+     "rowId": "HS-B1",
+     "form": "RETAINED_CANDIDATE_SHAPED",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       3,
+       3,
+       3
+      ],
+      "candidateState": [
+       [
+        "ACTIVE",
+        "ACTIVE",
+        "UNKNOWN"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE",
+        "UNKNOWN"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "suspended_loads",
+        "suspended_loads",
+        "fall_protection"
+       ],
+       [
+        "suspended_loads",
+        "material_handling_storage",
+        "fall_protection"
+       ],
+       [
+        "suspended_loads",
+        "suspended_loads",
+        "fall_protection"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       true,
+       true
+      ],
+      "clarificationCount": [
+       1,
+       1,
+       1
+      ],
+      "affectedDecision": [
+       [
+        "EXPOSURE"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "EXPOSURE"
+       ]
+      ],
+      "linkage": [
+       1,
+       1,
+       1
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": false,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SPOKE:1"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-C1",
+     "form": "OBSERVER_CANNOT_DETERMINE",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       1,
+       2,
+       1
+      ],
+      "candidateState": [
+       [
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE",
+        "UNKNOWN"
+       ],
+       [
+        "ACTIVE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "training_procedure_supervision"
+       ],
+       [
+        "training_procedure_supervision",
+        "material_handling_storage"
+       ],
+       [
+        "training_procedure_supervision"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       true,
+       true
+      ],
+      "clarificationCount": [
+       1,
+       1,
+       1
+      ],
+      "affectedDecision": [
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ]
+      ],
+      "linkage": [
+       1,
+       1,
+       1
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SPOKE:1"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-D1",
+     "form": "AGGREGATION_AGAINST_A_RECORD",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       2,
+       2,
+       2
+      ],
+      "candidateState": [
+       [
+        "ACTIVE",
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "fire_explosion",
+        "chemical_release"
+       ],
+       [
+        "fire_explosion",
+        "chemical_release"
+       ],
+       [
+        "fire_explosion",
+        "chemical_release"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       true,
+       true
+      ],
+      "clarificationCount": [
+       1,
+       1,
+       1
+      ],
+      "affectedDecision": [
+       [
+        "REGULATORY_INTERPRETATION"
+       ],
+       [
+        "REGULATORY_INTERPRETATION"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ]
+      ],
+      "linkage": [
+       1,
+       1,
+       1
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": true,
+      "candidateFamily": true,
+      "clarificationPresence": true,
+      "affectedDecision": false,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SPOKE:1"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-E1",
+     "form": "PRIOR_EVENT",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       false
+      ],
+      "candidateCount": [
+       1,
+       1,
+       0
+      ],
+      "candidateState": [
+       [
+        "CORRECTED"
+       ],
+       [
+        "CORRECTED"
+       ],
+       []
+      ],
+      "candidateFamily": [
+       [
+        "lockout_tagout"
+       ],
+       [
+        "lockout_tagout"
+       ],
+       []
+      ],
+      "clarificationPresence": [
+       true,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       1,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": false,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": false,
+      "affectedDecision": false,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "SINGLE_FLIP",
+     "distinctClarificationStates": [
+      "SPOKE:1",
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 2
+    },
+    {
+     "rowId": "HS-F1",
+     "form": "LIKELY_BUT_UNESTABLISHED",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       3,
+       2,
+       2
+      ],
+      "candidateState": [
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "walking_working_surfaces",
+        "noise_exposure",
+        "personal_protective_equipment"
+       ],
+       [
+        "walking_working_surfaces",
+        "noise_exposure"
+       ],
+       [
+        "walking_working_surfaces",
+        "noise_exposure"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       true,
+       true
+      ],
+      "clarificationCount": [
+       1,
+       1,
+       1
+      ],
+      "affectedDecision": [
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "EXPOSURE"
+       ]
+      ],
+      "linkage": [
+       1,
+       1,
+       1
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": false,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SPOKE:1"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-G1",
+     "form": "SYSTEM_COVERAGE",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       2,
+       2,
+       2
+      ],
+      "candidateState": [
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "ACTIVE",
+        "ACTIVE"
+       ],
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "fire_explosion",
+        "emergency_equipment"
+       ],
+       [
+        "fire_explosion",
+        "fire_explosion"
+       ],
+       [
+        "fire_explosion",
+        "emergency_equipment"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       true,
+       true
+      ],
+      "clarificationCount": [
+       2,
+       1,
+       1
+      ],
+      "affectedDecision": [
+       [
+        "EXPOSURE",
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "APPLICABILITY"
+       ]
+      ],
+      "linkage": [
+       2,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": false,
+      "linkage": false
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SPOKE:2",
+      "SPOKE:1"
+     ],
+     "distinctClarificationStateCount": 2
+    },
+    {
+     "rowId": "HS-H1",
+     "form": "WORST_CASE_TEMPTATION",
+     "expectation": "REQUIRED",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       2,
+       2,
+       2
+      ],
+      "candidateState": [
+       [
+        "ACTIVE",
+        "CORRECTED"
+       ],
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "thermal_burn",
+        "pressure_systems"
+       ],
+       [
+        "thermal_burn",
+        "pressure_systems"
+       ],
+       [
+        "thermal_burn",
+        "pressure_systems"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       1,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": true,
+      "clarificationPresence": false,
+      "affectedDecision": false,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "SINGLE_FLIP",
+     "distinctClarificationStates": [
+      "SPOKE:1",
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 2
+    },
+    {
+     "rowId": "HS-J1",
+     "form": "EXPLICITLY_PRESENT",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       3,
+       3,
+       2
+      ],
+      "candidateState": [
+       [
+        "CONTROLLED",
+        "CONTROLLED",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "CONTROLLED",
+        "CONTROLLED",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "CONTROLLED",
+        "INSUFFICIENT_EVIDENCE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "chemical_inhalation_contact",
+        "respiratory_protection",
+        "fire_explosion"
+       ],
+       [
+        "respiratory_protection",
+        "chemical_inhalation_contact",
+        "fire_explosion"
+       ],
+       [
+        "chemical_inhalation_contact",
+        "fire_explosion"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-K1",
+     "form": "EXPLICITLY_ABSENT",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       false,
+       false
+      ],
+      "candidateCount": [
+       1,
+       0,
+       0
+      ],
+      "candidateState": [
+       [
+        "ACTIVE"
+       ],
+       [],
+       []
+      ],
+      "candidateFamily": [
+       [
+        "personal_protective_equipment"
+       ],
+       [],
+       []
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       true,
+       true
+      ]
+     },
+     "stable": {
+      "candidatePresence": false,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "EXECUTION_CONTAMINATED",
+     "distinctClarificationStates": [
+      "SILENT",
+      "DEGENERATE"
+     ],
+     "distinctClarificationStateCount": 2
+    },
+    {
+     "rowId": "HS-L1",
+     "form": "TRUE_DETERMINISTIC_DERIVATION",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       2,
+       2,
+       2
+      ],
+      "candidateState": [
+       [
+        "CONTROLLED",
+        "CONTROLLED"
+       ],
+       [
+        "CONTROLLED",
+        "CONTROLLED"
+       ],
+       [
+        "CONTROLLED",
+        "CONTROLLED"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "lockout_tagout",
+        "suspended_loads"
+       ],
+       [
+        "lockout_tagout",
+        "suspended_loads"
+       ],
+       [
+        "lockout_tagout",
+        "suspended_loads"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": true,
+      "candidateFamily": true,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": true,
+     "classification": "STABLE_3_OF_3",
+     "distinctClarificationStates": [
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-M1",
+     "form": "SETTLED_THRESHOLD",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       2,
+       1,
+       1
+      ],
+      "candidateState": [
+       [
+        "CONTROLLED",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "CONTROLLED"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "atmospheric_hazard",
+        "atmospheric_hazard"
+       ],
+       [
+        "atmospheric_hazard"
+       ],
+       [
+        "atmospheric_hazard"
+       ]
+      ],
+      "clarificationPresence": [
+       true,
+       true,
+       false
+      ],
+      "clarificationCount": [
+       1,
+       1,
+       0
+      ],
+      "affectedDecision": [
+       [
+        "REQUIRED_CONTROL"
+       ],
+       [
+        "REQUIRED_CONTROL"
+       ],
+       []
+      ],
+      "linkage": [
+       1,
+       1,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": false,
+      "affectedDecision": false,
+      "linkage": false
+     },
+     "allStable": false,
+     "classification": "SINGLE_FLIP",
+     "distinctClarificationStates": [
+      "SPOKE:1",
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 2
+    },
+    {
+     "rowId": "HS-N1",
+     "form": "DECISION_INVARIANT_UNKNOWN",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       1,
+       1,
+       1
+      ],
+      "candidateState": [
+       [
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "CONTROLLED"
+       ],
+       [
+        "INSUFFICIENT_EVIDENCE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "material_handling_storage"
+       ],
+       [
+        "material_handling_storage"
+       ],
+       [
+        "noise_exposure"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-P1",
+     "form": "NON_DECISION_CRITICAL_DETAIL",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       2,
+       2,
+       2
+      ],
+      "candidateState": [
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ],
+       [
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "thermal_burn",
+        "walking_working_surfaces"
+       ],
+       [
+        "thermal_burn",
+        "walking_working_surfaces"
+       ],
+       [
+        "thermal_burn",
+        "walking_working_surfaces"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": true,
+      "candidateFamily": true,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": true,
+     "classification": "STABLE_3_OF_3",
+     "distinctClarificationStates": [
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-Q1",
+     "form": "EVIDENCE_RESOLVES_THE_GAP",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       true,
+       true
+      ],
+      "candidateCount": [
+       3,
+       3,
+       3
+      ],
+      "candidateState": [
+       [
+        "CONTROLLED",
+        "CONTROLLED",
+        "CONTROLLED"
+       ],
+       [
+        "CONTROLLED",
+        "CONTROLLED",
+        "CONTROLLED"
+       ],
+       [
+        "CONTROLLED",
+        "CONTROLLED",
+        "CONTROLLED"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "chemical_inhalation_contact",
+        "personal_protective_equipment",
+        "emergency_equipment"
+       ],
+       [
+        "chemical_inhalation_contact",
+        "personal_protective_equipment",
+        "emergency_equipment"
+       ],
+       [
+        "chemical_inhalation_contact",
+        "personal_protective_equipment",
+        "emergency_equipment"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": true,
+      "candidateState": true,
+      "candidateFamily": true,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": true,
+     "classification": "STABLE_3_OF_3",
+     "distinctClarificationStates": [
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 1
+    },
+    {
+     "rowId": "HS-R1",
+     "form": "SEVERITY_REFINEMENT_ONLY",
+     "expectation": "FORBIDDEN",
+     "axis": {
+      "candidatePresence": [
+       true,
+       false,
+       true
+      ],
+      "candidateCount": [
+       2,
+       0,
+       2
+      ],
+      "candidateState": [
+       [
+        "CONTROLLED",
+        "CONTROLLED"
+       ],
+       [],
+       [
+        "CONTROLLED",
+        "CONTROLLED"
+       ]
+      ],
+      "candidateFamily": [
+       [
+        "respiratory_protection",
+        "noise_exposure"
+       ],
+       [],
+       [
+        "respiratory_protection",
+        "noise_exposure"
+       ]
+      ],
+      "clarificationPresence": [
+       false,
+       false,
+       false
+      ],
+      "clarificationCount": [
+       0,
+       0,
+       0
+      ],
+      "affectedDecision": [
+       [],
+       [],
+       []
+      ],
+      "linkage": [
+       0,
+       0,
+       0
+      ],
+      "degenerateExecution": [
+       false,
+       false,
+       false
+      ]
+     },
+     "stable": {
+      "candidatePresence": false,
+      "candidateState": false,
+      "candidateFamily": false,
+      "clarificationPresence": true,
+      "affectedDecision": true,
+      "linkage": true
+     },
+     "allStable": false,
+     "classification": "MULTI_STATE_VARIABLE",
+     "distinctClarificationStates": [
+      "SILENT"
+     ],
+     "distinctClarificationStateCount": 1
+    }
+   ]
+  },
+  "postHocCommonDetector": {
+   "LABEL": "POST-HOC COMMON-DETECTOR DIAGNOSTIC",
+   "detector": "hazlenz.expert.degenerate-output-detector.v2",
+   "caveat": "Detector v2 is applied RETROSPECTIVELY to §152 and §153 raw wire, which is preserved. It exists ONLY to make execution quality comparable across draws. IT DOES NOT OVERWRITE THE HISTORICAL §152 OR §153 SCORES, which were computed under the detector in force at the time (§152: none; §153: v1).",
+   "replicate1_underV2": [
+    "HS-A1"
+   ],
+   "replicate2_underV2": [
+    "HS-A1",
+    "HS-K1"
+   ],
+   "replicate3_underV2": [
+    "HS-K1"
+   ],
+   "replicate2_asScoredAtTheTime_underV1": [
+    "HS-K1"
+   ]
+  },
+  "mappedCoverage": {
+   "version": "hazlenz.expert.family-comparison-map.v1",
+   "truthPresentTotal": 9,
+   "coveredByEither": 5,
+   "coveredByExpertOnly": 4,
+   "coveredByDeterministicViaMap": 0,
+   "coveredViaWeakMappingOnly": 0,
+   "missedByBoth": [
+    {
+     "rowId": "HS-C1",
+     "family": "emergency_equipment",
+     "expertHasNoDeterministicRoute": false
+    },
+    {
+     "rowId": "HS-E1",
+     "family": "machine_guarding",
+     "expertHasNoDeterministicRoute": false
+    },
+    {
+     "rowId": "HS-K1",
+     "family": "chemical_inhalation_contact",
+     "expertHasNoDeterministicRoute": false
+    },
+    {
+     "rowId": "HS-K1",
+     "family": "personal_protective_equipment",
+     "expertHasNoDeterministicRoute": true
+    }
+   ],
+   "perRow": [
+    {
+     "rowId": "HS-A1",
+     "family": "combustible_dust",
+     "covered": true,
+     "by": "EXPERT",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-A1",
+     "family": "machine_guarding",
+     "covered": true,
+     "by": "EXPERT",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-B1",
+     "family": "suspended_loads",
+     "covered": true,
+     "by": "EXPERT",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-C1",
+     "family": "emergency_equipment",
+     "covered": false,
+     "by": "NEITHER",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-E1",
+     "family": "machine_guarding",
+     "covered": false,
+     "by": "NEITHER",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-F1",
+     "family": "walking_working_surfaces",
+     "covered": true,
+     "by": "EXPERT",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-H1",
+     "family": "thermal_burn",
+     "covered": true,
+     "by": "EXPERT",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-K1",
+     "family": "chemical_inhalation_contact",
+     "covered": false,
+     "by": "NEITHER",
+     "via": null,
+     "strength": null
+    },
+    {
+     "rowId": "HS-K1",
+     "family": "personal_protective_equipment",
+     "covered": false,
+     "by": "NEITHER",
+     "via": null,
+     "strength": null
+    }
+   ]
+  }
+ }
+}

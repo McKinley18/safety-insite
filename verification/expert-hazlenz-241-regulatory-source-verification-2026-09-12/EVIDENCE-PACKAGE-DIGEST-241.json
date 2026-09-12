@@ -1,0 +1,61 @@
+{
+  "artifact": "EVIDENCE-PACKAGE-DIGEST-241",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "pathConvention": "RELATIVE_TO_PACKAGE_ROOT, forward slashes, official regulatory sources under official-sources/",
+  "manifestRule": "FROZEN EVIDENCE ONLY. No living document is included. The manifest covers every file in this package except the manifest and this digest.",
+  "fileCount": 12,
+  "files": [
+    {
+      "sha256": "029dd4d45779ebdfedb3f09c424b3a2f701d6373ac18c74e6f9e1196b1a9117c",
+      "file": "SECTION-241-REGULATORY-SOURCE-VERIFICATION-REPORT.md"
+    },
+    {
+      "sha256": "59d6faeb63b5d80fedf1544b2ff8772a4e4dcec97c73a4242ec885ce0a2c09bc",
+      "file": "official-sources/alt-56.14105.xml"
+    },
+    {
+      "sha256": "0ae1fc58c5e96b39288f0b5598e1cfc047d58761a80f6706eb068ca6f4f89705",
+      "file": "official-sources/alt-56.15005.xml"
+    },
+    {
+      "sha256": "de46f1511bbdab320f2ffaf9e42b59c7a2ace23553483c9e487a10232a14eb8d",
+      "file": "official-sources/alt-57.1.xml"
+    },
+    {
+      "sha256": "070fbdb67eb96dbd1007116963d628fa1876d0f085ffb5f07b58adf5b6c904f3",
+      "file": "official-sources/s-1910-141.xml"
+    },
+    {
+      "sha256": "44121b918709bc5f5a47001364901621476f662bfae63e20dbd4fc3fcebd04b9",
+      "file": "official-sources/s-1910-151.xml"
+    },
+    {
+      "sha256": "ab526c85568c28e040a2e69723e0b7b6c4277086fb444133c20f10d846543483",
+      "file": "official-sources/s-1910-212.xml"
+    },
+    {
+      "sha256": "dd74e96041a3ef79abcfae1c90fea6164c78047f05beb2d06a3eda92eed281c6",
+      "file": "official-sources/s-1926-1153.xml"
+    },
+    {
+      "sha256": "875c2b1c4c691b683f9e8a86c356186155d7da843f131b4f3eb7e7197c05da55",
+      "file": "official-sources/s-1926-62.xml"
+    },
+    {
+      "sha256": "d724bf4c54f19d6f7183f68b81407865b3e66b634bfda132e93f4e427673fe59",
+      "file": "official-sources/s-57-14105.xml"
+    },
+    {
+      "sha256": "db1cca3de0ade79618448fa60baadba48d9f934652f10f8af16f6a88999691cd",
+      "file": "official-sources/s-57-15005.xml"
+    },
+    {
+      "sha256": "2b2a192a9f3145a25769a607642986344e6c003b40a5d13f49060dc125b6fbfc",
+      "file": "regulatory-source-verification.json"
+    }
+  ],
+  "evidencePackageDigest": "5801070d809f9b642ba3ea138f2408e17e21e3b6c65975d7dfdbdcad1319a3dc",
+  "decision": "REGULATORY_SOURCE_VERIFICATION_FAILED",
+  "terminal": "EXPERT_HAZLENZ_FINAL_FRESH_ACCEPTANCE_REGULATORY_SOURCE_VERIFICATION_FAILED — INSTRUMENT_REFREEZE_REQUIRED"
+}

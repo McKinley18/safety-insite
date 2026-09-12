@@ -1,0 +1,504 @@
+{
+  "artifact": "SECTION_184_OWED_FACT_TRUTH_CANDIDATES",
+  "date": "2026-09-05",
+  "status": "RECORDED 2026-09-05 -- product-owner adjudication complete. All ten rows carry productOwnerVerdict = \"EDIT\". The product owner edited targetDecision, decisionIfEstablished and decisionIfNotEstablished on all five pairs and approved every other substantive field. This is recorded truth, not candidate material.",
+  "truthClassOnceApproved": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_OWED_FACT_TRUTH",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "whyThePairStructureMattersForNeutrality": "both members of a pair turn on the SAME owed fact — one observation establishes it, the other leaves it open. A factStatement leaning toward either answer would be visibly wrong for the other member, so the pairing forces a neutral statement. HR-04 and HR-10 share one sentence.",
+  "layers": {
+    "A_owedFactTruth": "factStatement, branches, decision divergence, evidenceSpan — may become provider-visible",
+    "B_evaluationTruth": "evaluationRationale, expectedClarificationDisposition, settledFromObservation, verdicts — EVALUATION ONLY, never projected",
+    "C_providerVisible": [
+      "factKey",
+      "affectedDecision",
+      "whyUnresolved",
+      "branchA",
+      "branchB",
+      "decisionDivergence",
+      "evidenceSpan",
+      "acceptableEvidence"
+    ]
+  },
+  "qualityChecks": [
+    {
+      "check": "1 all ten frozen row hashes unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "3 no expected-result language in factStatement or whyUnresolved",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "4 HR-04 factStatement carries no answer-key language",
+      "pass": true,
+      "detail": "Whether the fixed guard over the head drum nip point is currently secured sufficiently for safe operation."
+    },
+    {
+      "check": "5 every SILENCE row is represented as settled, with establishing evidence and whyUnresolved null",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "6 every REQUIRED row is represented as unresolved, with whyUnresolved and no establishing evidence",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "7 decision branches diverge on every row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "8 factKeys are shared within a pair and distinct across pairs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "9 every evidenceSpan is verbatim in its frozen observation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "2 no provider output informed any wording",
+      "pass": true,
+      "detail": "no §175/§177/§179 run record was read by this generator; sourceBasis records the inputs used"
+    },
+    {
+      "check": "10 no governed criterion strengthened — classification is metadata only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "11 no closed property ontology introduced",
+      "pass": true,
+      "detail": "factKeys name facts, not property types; no enum is proposed"
+    },
+    {
+      "check": "12 no source or runtime modification",
+      "pass": true,
+      "detail": "§184 writes only under verification/"
+    },
+    {
+      "check": "verdicts are null on every row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "14 FACT_SETTLEMENT_DOES_NOT_ASSERT_WHOLE_OPERATION_SAFETY",
+      "pass": true,
+      "detail": "no branch A asserts that the machine or task is safe; each denies only that this uncertainty requires an additional control",
+      "result": "10 / 10"
+    },
+    {
+      "check": "15 PAIR_SHARED_FACT_SEMANTICS_IDENTICAL",
+      "pass": true,
+      "detail": "both members of every pair carry identical factKey, factStatement, targetDecision, decisionIfEstablished and decisionIfNotEstablished",
+      "result": "5 / 5"
+    },
+    {
+      "check": "16 SETTLED_AND_UNRESOLVED_PARTNER_USE_SAME_FACT_TARGET",
+      "pass": true,
+      "detail": "targetDecision is pair-level and byte-identical across each pair's settled and unresolved member",
+      "result": "5 / 5"
+    },
+    {
+      "check": "17 DECISION_BRANCH_SCOPE_DOES_NOT_EXCEED_OWED_FACT",
+      "pass": true,
+      "detail": "branch B's obligation terminates on this fact being established and makes no claim about any other hazard",
+      "result": "10 / 10"
+    },
+    {
+      "check": "18 TARGET_DECISION_SCOPE_DOES_NOT_EXCEED_OWED_FACT",
+      "pass": true,
+      "detail": "the subject of every targetDecision is the uncertainty about the named property, not the overall safety of the operation",
+      "result": "10 / 10"
+    },
+    {
+      "check": "19 REQUIRED_WHY_UNRESOLVED_DOES_NOT_EMBED_SETTLEMENT_ANSWER",
+      "pass": true,
+      "detail": "each of the five states only what the observation does not state; HR-04 names neither guard presence nor the annual torque check",
+      "result": "5 / 5"
+    },
+    {
+      "check": "20 SETTLED_ROWS_HAVE_WHY_UNRESOLVED_NULL",
+      "pass": true,
+      "detail": "null on HR-02, HR-03, HR-05, HR-07 and HR-10 as recorded truth. NOT expressible in the runtime OwedFact type: SETTLED_FIXTURE_TYPE_MISMATCH remains TRUE and unimplemented",
+      "result": "5 / 5"
+    },
+    {
+      "check": "21 EVALUATION_ONLY_RATIONALE_NOT_PROJECTED_TO_PROVIDER",
+      "pass": true,
+      "detail": "evaluationRationale is absent from the eight PROVIDER_VISIBLE fields. Enforcement is DECLARATIVE only -- no runtime guard exists, so a future run must assert the projected payload contains none of the withheld fields",
+      "result": "10 / 10"
+    },
+    {
+      "check": "22 HR04_PROVIDER_VISIBLE_STATE_DOES_NOT_STATE_OR_IMPLY \"PRESENCE DOES NOT PROVE SECUREMENT\"",
+      "pass": true,
+      "detail": "the HR-04 projected payload states the property and the absence, never the argument. Residual, by design: evidenceSpan is a verbatim quote that selects the annual-service sentence",
+      "result": "TRUE"
+    },
+    {
+      "check": "23 PAIR4_ISOLATION_AND_PROVE_DEAD_SEMANTICS_PRESERVED_ACROSS_FACTSTATEMENT_BRANCHES_TARGETDECISION",
+      "pass": true,
+      "detail": "both elements -- isolated AND proved dead -- are present in factStatement, decisionIfEstablished, decisionIfNotEstablished and targetDecision",
+      "result": "TRUE"
+    }
+  ],
+  "allChecksPass": true,
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "pairId": "PAIR-3",
+      "pairPartner": "HR-07",
+      "frozenRowSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d",
+      "existingClarificationTruth": "REQUIRED",
+      "factKey": "owed:fire:burner_flame_failure_safeguard_function_verified",
+      "factStatement": "Whether the burner's flame-failure safeguard has been verified to shut off fuel on loss of flame.",
+      "targetDecision": "whether uncertainty about the flame-failure safeguard's protective function requires an additional control before burner operation continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about the burner's flame-failure safeguard's protective function",
+      "decisionIfNotEstablished": "the burner must be shut down until the flame-failure safeguard's protective function is verified",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "LIFE_CRITICAL",
+      "evidenceSpan": "it lists a nozzle change and filter clean but does not record whether the burner was flame-tested",
+      "settledFromObservation": false,
+      "establishingEvidence": null,
+      "whyUnresolved": "the observation does not state whether the burner's flame-failure safeguard was function-tested",
+      "evaluationRationale": "The certificate records a nozzle change and filter clean and is silent on whether the burner was flame-tested. The safeguard cannot be seen from the walkway, so nothing else in the observation bears on its function.",
+      "expectedClarificationDisposition": "REQUIRED",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "ABSENT",
+      "governedRecord": null,
+      "governedEvidenceNote": "No approved record covers burner flame-failure safeguards. app-fire-01 is 1910.157, portable extinguisher tags; §171 refused to derive from it because doing so would manufacture a criterion to fit history.",
+      "authoringNotes": "Priority proposed LIFE_CRITICAL: an unproved flame-failure safeguard on a running burner. Confirm or downgrade — priority affects question-budget behaviour, not truth.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the flame-failure safeguard's protective function requires an additional control before burner operation continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about the burner's flame-failure safeguard's protective function",
+        "decisionIfNotEstablished": "the burner must be shut down until the flame-failure safeguard's protective function is verified"
+      }
+    },
+    {
+      "rowId": "HR-02",
+      "pairId": "PAIR-1",
+      "pairPartner": "HR-06",
+      "frozenRowSha256": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722",
+      "existingClarificationTruth": "SILENCE",
+      "factKey": "owed:guarding:rotor_guard_interlock_protective_function_verified",
+      "factStatement": "Whether the rotor guard door interlock's protective function was verified after the tooth change and before the debarker was returned to service.",
+      "targetDecision": "whether uncertainty about the rotor guard door interlock's protective function requires an additional control before operation continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about the rotor guard door interlock's protective function",
+      "decisionIfNotEstablished": "the debarker must be stopped until the rotor guard door interlock's protective function is verified",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "REQUIRED_CONTROL",
+      "evidenceSpan": "the fitter function-tested the interlock; the rotor stopped when the guard was opened",
+      "settledFromObservation": true,
+      "establishingEvidence": "the fitter function-tested the interlock; the rotor stopped when the guard was opened",
+      "whyUnresolved": null,
+      "evaluationRationale": "The observation states a function test of the specific protective behaviour — the rotor stopped when the guard was opened — performed after the disturbance and before restart. The property the decision needs is verified at the moment the decision needs it.",
+      "expectedClarificationDisposition": "SILENCE",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "INCAPABLE_FOR_TARGET",
+      "governedRecord": "app-mg-01",
+      "governedEvidenceNote": "app-mg-01 asks \"Is the guard functional?\" but offers only physical_inspection. §181 classified that pair QUESTION_STRONGER_THAN_METHOD. No functional-test verification method exists anywhere in the registry.",
+      "authoringNotes": "The settled partner of HR-06. The function test and its observed result are both stated.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the rotor guard door interlock's protective function requires an additional control before operation continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about the rotor guard door interlock's protective function",
+        "decisionIfNotEstablished": "the debarker must be stopped until the rotor guard door interlock's protective function is verified"
+      }
+    },
+    {
+      "rowId": "HR-03",
+      "pairId": "PAIR-5",
+      "pairPartner": "HR-09",
+      "frozenRowSha256": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622",
+      "existingClarificationTruth": "SILENCE",
+      "factKey": "owed:energy:stored_hydraulic_energy_dissipated_before_line_break",
+      "factStatement": "Whether the stored hydraulic energy in the accumulator has been dissipated and confirmed at zero before the hose is broken.",
+      "targetDecision": "whether uncertainty about stored hydraulic energy in the accumulator requires an additional control before the hydraulic hose is broken",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about stored hydraulic energy in the accumulator",
+      "decisionIfNotEstablished": "the hose must not be broken until the accumulator is confirmed at zero",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "LIFE_CRITICAL",
+      "evidenceSpan": "watched the accumulator gauge fall to zero and not rise; a second fitter witnessed the reading",
+      "settledFromObservation": true,
+      "establishingEvidence": "watched the accumulator gauge fall to zero and not rise; a second fitter witnessed the reading",
+      "whyUnresolved": null,
+      "evaluationRationale": "The gauge was watched to zero and observed not to rise, with a witness. The stored energy is confirmed dissipated at the point the decision needs it.",
+      "expectedClarificationDisposition": "SILENCE",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "ADEQUATE",
+      "governedRecord": "app-loto-01",
+      "governedEvidenceNote": "zero_energy_verification is the method this fact needs. §181 ALIGNMENT_CLEAR.",
+      "authoringNotes": "The settled partner of HR-09. The gauge was watched to zero AND observed not to rise, with a witness. Confirm this is sufficient in your judgement.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about stored hydraulic energy in the accumulator requires an additional control before the hydraulic hose is broken",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about stored hydraulic energy in the accumulator",
+        "decisionIfNotEstablished": "the hose must not be broken until the accumulator is confirmed at zero"
+      }
+    },
+    {
+      "rowId": "HR-04",
+      "pairId": "PAIR-2",
+      "pairPartner": "HR-10",
+      "frozenRowSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274",
+      "existingClarificationTruth": "REQUIRED",
+      "factKey": "owed:guarding:fixed_guard_fastenings_currently_secure",
+      "factStatement": "Whether the fixed guard over the head drum nip point is currently secured sufficiently for safe operation.",
+      "targetDecision": "whether uncertainty about the fixed guard's current securement requires an additional control before conveyor operation continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+      "decisionIfNotEstablished": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "REQUIRED_CONTROL",
+      "evidenceSpan": "the fastenings were last torque-checked at the annual service",
+      "settledFromObservation": false,
+      "establishingEvidence": null,
+      "whyUnresolved": "the observation does not state the current securement of the guard fastenings",
+      "evaluationRationale": "The pre-start check the observation reports covers belt tracking and lubrication, and the only fastening verification named is at the annual service. Nothing in the observation reports the current securement of the fastenings. THIS IS EVALUATION TRUTH AND MUST NOT REACH A PROVIDER — it is the adjudication §183 identified as the answer key.",
+      "expectedClarificationDisposition": "REQUIRED",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "COARSE",
+      "governedRecord": "app-mg-01",
+      "governedEvidenceNote": "app-mg-01 offers physical_inspection for guarding_status. Looking can reveal a visibly loose guard but does not establish fastening torque, so the criterion is weaker than the fact requires without being unrelated to it.",
+      "authoringNotes": "THE ROW TO SCRUTINISE HARDEST. The factStatement deliberately says only that the guard must be \"currently secured sufficiently for safe operation\". It does not say presence is insufficient and does not mention the annual torque check — that reasoning sits in evaluationRationale, which is withheld. Check the whyUnresolved wording too: it names what the observation does not state, which is what an owed fact is, and stops there.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the fixed guard's current securement requires an additional control before conveyor operation continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+        "decisionIfNotEstablished": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation"
+      }
+    },
+    {
+      "rowId": "HR-05",
+      "pairId": "PAIR-4",
+      "pairPartner": "HR-08",
+      "frozenRowSha256": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f",
+      "existingClarificationTruth": "SILENCE",
+      "factKey": "owed:energy:auger_drive_isolation_verified_before_work",
+      "factStatement": "Whether the discharge auger drive has been isolated and proved dead before the operative works at the blockage.",
+      "targetDecision": "whether uncertainty about the discharge auger drive being isolated and proved dead requires an additional control before blockage-clearing work continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about whether the discharge auger drive is isolated and proved dead",
+      "decisionIfNotEstablished": "blockage-clearing work must stop until the discharge auger drive is isolated and proved dead",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "LIFE_CRITICAL",
+      "evidenceSpan": "proved the auger dead by attempting a start from the panel, which did not turn",
+      "settledFromObservation": true,
+      "establishingEvidence": "proved the auger dead by attempting a start from the panel, which did not turn",
+      "whyUnresolved": null,
+      "evaluationRationale": "The auger drive was locked at its own local isolator and proved dead by an attempted start. The isolation of the specific drive is verified by a method that establishes it.",
+      "expectedClarificationDisposition": "SILENCE",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "ADEQUATE",
+      "governedRecord": "app-loto-01",
+      "governedEvidenceNote": "app-loto-01 offers zero_energy_verification against \"Is energy source isolated?\" — §181 classified this ALIGNMENT_CLEAR and it is the record §171 derived from for exactly this reason.",
+      "authoringNotes": "The settled partner of HR-08, and the row that produced displaced questions at §179. Its owed fact is settled here; any future adjacent concern about the drying fans must be a separate nomination and must not attach to this fact.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the discharge auger drive being isolated and proved dead requires an additional control before blockage-clearing work continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about whether the discharge auger drive is isolated and proved dead",
+        "decisionIfNotEstablished": "blockage-clearing work must stop until the discharge auger drive is isolated and proved dead"
+      }
+    },
+    {
+      "rowId": "HR-06",
+      "pairId": "PAIR-1",
+      "pairPartner": "HR-02",
+      "frozenRowSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb",
+      "existingClarificationTruth": "REQUIRED",
+      "factKey": "owed:guarding:rotor_guard_interlock_protective_function_verified",
+      "factStatement": "Whether the rotor guard door interlock's protective function was verified after the tooth change and before the debarker was returned to service.",
+      "targetDecision": "whether uncertainty about the rotor guard door interlock's protective function requires an additional control before operation continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about the rotor guard door interlock's protective function",
+      "decisionIfNotEstablished": "the debarker must be stopped until the rotor guard door interlock's protective function is verified",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "REQUIRED_CONTROL",
+      "evidenceSpan": "it recorded the tooth change but carries no interlock test result",
+      "settledFromObservation": false,
+      "establishingEvidence": null,
+      "whyUnresolved": "the observation does not state the interlock's protective behaviour after the tooth change",
+      "evaluationRationale": "The return-to-service log records the tooth change and carries no interlock test result. Nothing in the observation reports the interlock's protective behaviour after the guard was disturbed.",
+      "expectedClarificationDisposition": "REQUIRED",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "INCAPABLE_FOR_TARGET",
+      "governedRecord": "app-mg-01",
+      "governedEvidenceNote": "app-mg-01 asks \"Is the guard functional?\" but offers only physical_inspection. §181 classified that pair QUESTION_STRONGER_THAN_METHOD. No functional-test verification method exists anywhere in the registry.",
+      "authoringNotes": "The log records the tooth change and no interlock result. Confirm that a signed return-to-service log does not itself establish the interlock test.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the rotor guard door interlock's protective function requires an additional control before operation continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about the rotor guard door interlock's protective function",
+        "decisionIfNotEstablished": "the debarker must be stopped until the rotor guard door interlock's protective function is verified"
+      }
+    },
+    {
+      "rowId": "HR-07",
+      "pairId": "PAIR-3",
+      "pairPartner": "HR-01",
+      "frozenRowSha256": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b",
+      "existingClarificationTruth": "SILENCE",
+      "factKey": "owed:fire:burner_flame_failure_safeguard_function_verified",
+      "factStatement": "Whether the burner's flame-failure safeguard has been verified to shut off fuel on loss of flame.",
+      "targetDecision": "whether uncertainty about the flame-failure safeguard's protective function requires an additional control before burner operation continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about the burner's flame-failure safeguard's protective function",
+      "decisionIfNotEstablished": "the burner must be shut down until the flame-failure safeguard's protective function is verified",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "LIFE_CRITICAL",
+      "evidenceSpan": "the engineer flame-tested the burner; he recorded that fuel shut off within two seconds of flame loss",
+      "settledFromObservation": true,
+      "establishingEvidence": "the engineer flame-tested the burner; he recorded that fuel shut off within two seconds of flame loss",
+      "whyUnresolved": null,
+      "evaluationRationale": "The observation states a flame test with its result — fuel shut off within two seconds of flame loss. The protective function itself is verified, not merely the device's presence.",
+      "expectedClarificationDisposition": "SILENCE",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "ABSENT",
+      "governedRecord": null,
+      "governedEvidenceNote": "No approved record covers burner flame-failure safeguards. app-fire-01 is 1910.157, portable extinguisher tags; §171 refused to derive from it because doing so would manufacture a criterion to fit history.",
+      "authoringNotes": "The settled partner of HR-01. Note the observation states the RESULT of the flame test, not merely that a test occurred; that is what makes it settled rather than merely documented.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the flame-failure safeguard's protective function requires an additional control before burner operation continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about the burner's flame-failure safeguard's protective function",
+        "decisionIfNotEstablished": "the burner must be shut down until the flame-failure safeguard's protective function is verified"
+      }
+    },
+    {
+      "rowId": "HR-08",
+      "pairId": "PAIR-4",
+      "pairPartner": "HR-05",
+      "frozenRowSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0",
+      "existingClarificationTruth": "REQUIRED",
+      "factKey": "owed:energy:auger_drive_isolation_verified_before_work",
+      "factStatement": "Whether the discharge auger drive has been isolated and proved dead before the operative works at the blockage.",
+      "targetDecision": "whether uncertainty about the discharge auger drive being isolated and proved dead requires an additional control before blockage-clearing work continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about whether the discharge auger drive is isolated and proved dead",
+      "decisionIfNotEstablished": "blockage-clearing work must stop until the discharge auger drive is isolated and proved dead",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "LIFE_CRITICAL",
+      "evidenceSpan": "the auger drive has its own local isolator and the lockout log shows no entry against it",
+      "settledFromObservation": false,
+      "establishingEvidence": null,
+      "whyUnresolved": "the observation does not state whether the auger drive's own local isolator was locked and proved dead",
+      "evaluationRationale": "The main dryer panel was locked and proved dead, but the auger drive has its own local isolator and the lockout log shows no entry against it. Nothing in the observation reports the state of that isolator.",
+      "expectedClarificationDisposition": "REQUIRED",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "ADEQUATE",
+      "governedRecord": "app-loto-01",
+      "governedEvidenceNote": "app-loto-01 offers zero_energy_verification against \"Is energy source isolated?\" — §181 classified this ALIGNMENT_CLEAR and it is the record §171 derived from for exactly this reason.",
+      "authoringNotes": "Two isolators appear in this row. The owed fact is about the AUGER DRIVE's own isolator, not the main panel. Confirm the factStatement targets the right one.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the discharge auger drive being isolated and proved dead requires an additional control before blockage-clearing work continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about whether the discharge auger drive is isolated and proved dead",
+        "decisionIfNotEstablished": "blockage-clearing work must stop until the discharge auger drive is isolated and proved dead"
+      }
+    },
+    {
+      "rowId": "HR-09",
+      "pairId": "PAIR-5",
+      "pairPartner": "HR-03",
+      "frozenRowSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef",
+      "existingClarificationTruth": "REQUIRED",
+      "factKey": "owed:energy:stored_hydraulic_energy_dissipated_before_line_break",
+      "factStatement": "Whether the stored hydraulic energy in the accumulator has been dissipated and confirmed at zero before the hose is broken.",
+      "targetDecision": "whether uncertainty about stored hydraulic energy in the accumulator requires an additional control before the hydraulic hose is broken",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about stored hydraulic energy in the accumulator",
+      "decisionIfNotEstablished": "the hose must not be broken until the accumulator is confirmed at zero",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "LIFE_CRITICAL",
+      "evidenceSpan": "the accumulator gauge sits behind the tank shroud unread since",
+      "settledFromObservation": false,
+      "establishingEvidence": null,
+      "whyUnresolved": "the observation does not state the accumulator's current pressure",
+      "evaluationRationale": "The dump valve was cycled and left open, but the accumulator gauge sits behind the tank shroud and has not been read since. Nothing in the observation reports the accumulator's current pressure.",
+      "expectedClarificationDisposition": "REQUIRED",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "ADEQUATE",
+      "governedRecord": "app-loto-01",
+      "governedEvidenceNote": "zero_energy_verification is the method this fact needs. §181 ALIGNMENT_CLEAR.",
+      "authoringNotes": "The dump valve was cycled and left open. Confirm that cycling alone does not establish the fact in your judgement — the candidate assumes it does not, because the gauge is unread.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about stored hydraulic energy in the accumulator requires an additional control before the hydraulic hose is broken",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about stored hydraulic energy in the accumulator",
+        "decisionIfNotEstablished": "the hose must not be broken until the accumulator is confirmed at zero"
+      }
+    },
+    {
+      "rowId": "HR-10",
+      "pairId": "PAIR-2",
+      "pairPartner": "HR-04",
+      "frozenRowSha256": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed",
+      "existingClarificationTruth": "SILENCE",
+      "factKey": "owed:guarding:fixed_guard_fastenings_currently_secure",
+      "factStatement": "Whether the fixed guard over the head drum nip point is currently secured sufficiently for safe operation.",
+      "targetDecision": "whether uncertainty about the fixed guard's current securement requires an additional control before conveyor operation continues",
+      "decisionIfEstablished": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+      "decisionIfNotEstablished": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "priority": "REQUIRED_CONTROL",
+      "evidenceSpan": "the fitter torque-checked all six guard fastenings; he recorded them tight",
+      "settledFromObservation": true,
+      "establishingEvidence": "the fitter torque-checked all six guard fastenings; he recorded them tight",
+      "whyUnresolved": null,
+      "evaluationRationale": "The observation states a torque check of all six fastenings this morning with a recorded result. The specific property is verified, by a method capable of establishing it, at the time the decision needs it.",
+      "expectedClarificationDisposition": "SILENCE",
+      "sourceBasis": "the frozen HR row text and the §174 product-owner clarification verdict. The factKey and target decision are consistent with the §173 PAIR-MAP, which is AUTHORING-SIDE material used here for consistency only and is not truth. No provider output from §175, §177 or §179 informed any wording.",
+      "governedEvidenceClass": "COARSE",
+      "governedRecord": "app-mg-01",
+      "governedEvidenceNote": "app-mg-01 offers physical_inspection for guarding_status. Looking can reveal a visibly loose guard but does not establish fastening torque, so the criterion is weaker than the fact requires without being unrelated to it.",
+      "authoringNotes": "The neutrality check for HR-04. The SAME factStatement must read correctly here, where the fastenings were torque-checked this morning and recorded tight. If it reads as leaning toward \"unresolved\", the HR-04 wording is contaminated and both should be rejected.",
+      "productOwnerVerdict": "EDIT",
+      "productOwnerFinalText": {
+        "targetDecision": "whether uncertainty about the fixed guard's current securement requires an additional control before conveyor operation continues",
+        "decisionIfEstablished": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+        "decisionIfNotEstablished": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation"
+      }
+    }
+  ],
+  "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_OWED_FACT_TRUTH",
+  "productOwnerReviewed": true,
+  "recordedOn": "2026-09-05",
+  "provenanceRoles": {
+    "Claude": "prepared candidate statements, branches, spans, rationales and mechanical checks.",
+    "GPT-5.6 Sol": "assisted the product owner during semantic review.",
+    "productOwner": "edited targetDecision and both decision branches across all five pairs and approved all other substantive fields across all ten rows."
+  },
+  "mustNeverBeDescribedAs": [
+    "independent human truth",
+    "AI-free authoring",
+    "validated safety truth",
+    "production truth",
+    "formal acceptance truth"
+  ],
+  "editedFields": [
+    "targetDecision",
+    "decisionIfEstablished",
+    "decisionIfNotEstablished"
+  ],
+  "fieldsApprovedAsWritten": [
+    "factStatement",
+    "factKey",
+    "settledFromObservation",
+    "whyUnresolved",
+    "establishingEvidence",
+    "evidenceSpan",
+    "evaluationRationale",
+    "governedEvidenceClass",
+    "affectedDecision"
+  ],
+  "qualityCheckCount": 23,
+  "settledFixtureDirection": {
+    "PRODUCT_OWNER_SETTLED_FIXTURE_DIRECTION": "WHY_UNRESOLVED_NULL_WHEN_NOT_UNRESOLVED",
+    "IMPLEMENTATION_NOT_YET_AUTHORIZED": true,
+    "intendedInvariant": {
+      "status == UNRESOLVED": "whyUnresolved is truthful and nonblank",
+      "status != UNRESOLVED": "whyUnresolved is null"
+    },
+    "notImplementedHere": "SETTLED_FIXTURE_TYPE_MISMATCH remains TRUE. No runtime source was modified."
+  }
+}

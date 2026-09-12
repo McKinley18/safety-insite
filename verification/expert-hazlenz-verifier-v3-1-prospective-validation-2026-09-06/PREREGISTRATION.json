@@ -1,0 +1,655 @@
+{
+  "artifact": "SECTION_192_PRE_SPEND_PREREGISTRATION",
+  "writtenBeforeFirstProviderCall": true,
+  "operation": "§192 fresh prospective hosted development validation of verifier-v3.1",
+  "POPULATION_SEPARATION": {
+    "statement": "v3.1 is a NEW POPULATION. §187B's fifteen v3 executions are never combined with these results, and no §187 stimulus, owed fact or output is reused.",
+    "v3_systemPromptSha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+    "v3_schemaSha256": "1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a"
+  },
+  "verifierIdentity": {
+    "instructionVersion": "hazlenz.expert.verifier-instruction.v3.1",
+    "systemPromptSha256": "7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c",
+    "responseSchemaSha256": "d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65",
+    "contractVersion": "hazlenz.expert.verifier.v3",
+    "admissionValidatorSha256": "475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc",
+    "executorVersion": "hazlenz.expert.v3-1.prospective-executor.v1",
+    "toolName": "emit_verifier_verdict",
+    "toolChoice": "forced tool"
+  },
+  "provider_model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "verifierMaxTokens": 4000,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "cohort": {
+    "version": "hazlenz.expert.v3-1.prospective-cohort.2026-09-06",
+    "cohortModuleSha256": "3b4a7fafcd8acb46d52c2f1a7a11d1f50324c055386295d5028e7c99c4c5c095",
+    "rows": 13,
+    "replicates": 3,
+    "coverage": {
+      "rows": 13,
+      "unconditionalProposalOpportunities": 6,
+      "opportunityPropertyFamilies": [
+        "detection_alarm_function",
+        "guarding_clearance",
+        "fall_anchor_integrity",
+        "energy_separate_source",
+        "ventilation_capture",
+        "pressure_relief_function"
+      ],
+      "challengeOpportunities": 2,
+      "regressionRows": 3,
+      "conjunctiveRows": [
+        {
+          "rowId": "FV-04",
+          "conjuncts": 2
+        },
+        {
+          "rowId": "FV-05",
+          "conjuncts": 3
+        }
+      ],
+      "familiesCovered": [
+        "ADJACENT_PROPERTY_TRAP",
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY",
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION",
+        "EXISTING_SUFFICIENT_QUESTION",
+        "FULLY_ESTABLISHED_CONTROL",
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL"
+      ]
+    },
+    "firstPassSetsAreAuthored": true,
+    "whyAuthored": "the cohort must GUARANTEE its behaviour families; a generated first pass cannot. Cost: this validates the verifier IN ISOLATION, not the end-to-end pipeline, and says nothing about whether a real first pass would produce these questions.",
+    "sizeJustification": "13 rows rather than the suggested 8-10, because the coverage floors (>=6 unconditional opportunities across >=3 property families, >=3 regression rows, >=2 challenge opportunities, one A^B and one A^B^C conjunctive row, plus fully-established and obstructed families) cannot all be met in 10 rows. 39 calls sits inside the frozen cap and ceiling."
+  },
+  "frozenRows": [
+    {
+      "rowId": "FV-01",
+      "observationSha256": "17d3e8d656d2069c7d6da5a4f6339d266c6c25096934c70786ed826106da6598",
+      "owedFactSha256": "2a0f999b5a752fe77d6b66a8bee09f5c9dd98aba5c4337c29bca63f9c4b78c94",
+      "firstPassSha256": "748c9faad747ec017b6c6f5aa167a547029465de4d9499f5af5d874b3007234d",
+      "userPromptSha256": "ead1bf8fc28e8ecde8bf12d7526e1481e86f8af8c4ed9739a62d03b00a41fd83",
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "owedPropertyFamily": "guarding_protective_function",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-02",
+      "observationSha256": "640511f6e5f0e4e67ada8ece2fd817fd7181bbe120c21bc206f61a6c61ee488c",
+      "owedFactSha256": "69ecfccabc14ba035f135e791b2f51b92a778f698e18d4115cc0062ae3625510",
+      "firstPassSha256": "02df3bc1e1fd50452ad4292ff0e512da293e005ba21172207564f2c3065e85dc",
+      "userPromptSha256": "613fa8403562c642ccc86a7492440028acf01727eaac90aefc1f4d07909afd93",
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "owedPropertyFamily": "stored_energy_pressure",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-03",
+      "observationSha256": "902024c64c261d0975c4661035a1b640b292e1363ae63aedb39ba8f5f3d5c9a8",
+      "owedFactSha256": "26df93d8b78393b098fc9e93ac8e6e85a61733bd5ebd2f088d64bc25bc417e8e",
+      "firstPassSha256": "f0ec1ea6ee6659f1537e601e9c091740e11edf9bfb3a78b0589a16609d4d5e55",
+      "userPromptSha256": "af89695edc8e488fba1cacb41fa155747f013799b0b8a9be5b954b239b7adc61",
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL"
+      ],
+      "owedPropertyFamily": "fire_thermal_protective_function",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-04",
+      "observationSha256": "e36da04f1b6dc5488b00b8e97dce6d217dcfd7b0d11f37e581680ca2a83e7168",
+      "owedFactSha256": "5e18c7080c498c7bdb94cf75ddf22178d4504e909b62244e2b505c4eb97662ce",
+      "firstPassSha256": "ce4a5929febe674a28b73b2170a01b4269605b16d813eacbc9625030ac7d088c",
+      "userPromptSha256": "a8eb15574e1ee332308161f53514913e75d206239c29fe107db80c113ad76c91",
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "owedPropertyFamily": "energy_isolation_and_stored_energy",
+      "conjunctCount": 2,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-05",
+      "observationSha256": "8c365af14ce872d8df684a12f38107e2aed36f5562a6b6b1ff8978b3cef6aa7e",
+      "owedFactSha256": "9bcf131eae24c501b3716fb8955ee91b9f912c195b48b21d0dccfb1fe0e2026f",
+      "firstPassSha256": "da2e9095cad9618f23bc34a62e93c57729d1deaf9e6a21052c91bdf4093a527e",
+      "userPromptSha256": "faa2b0486618d53df00b04029aa256a428e9c464594a1f520767e1b83e5e1bb5",
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "owedPropertyFamily": "chemical_line_isolation",
+      "conjunctCount": 3,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-06",
+      "observationSha256": "97aefbbc79c3dc95e73f3a2e2bd7488f11478144876fd3fe5d1854fd21cd008a",
+      "owedFactSha256": "8ee53bbcc11e78b06fd7f115a4727b55b8defbd0b706606687472b2abbff05ef",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "43f53520ec3e5a184bd18a3dd5302cd48ee8ffce0dcec130e9172ebdfb23eeac",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "owedPropertyFamily": "detection_alarm_function",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-07",
+      "observationSha256": "b03d6e24308fdb10fb7156099abc198ebe6356311be627d952ad60964e7d1509",
+      "owedFactSha256": "c835df832ca5bd37d0b6adcdd9de9a2474f84caaa22573440c299f8bb5a815bf",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "4fad93bc4b52a531d48767142dbb5548e279d188039bf63b69253bcb6603119b",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "owedPropertyFamily": "guarding_clearance",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-08",
+      "observationSha256": "078f37d8699d43f8b6f8e393251af3bdcf6bcdaeb1117e8345486b8387781494",
+      "owedFactSha256": "6a9958e6205ffa71c3ca8f289142897c5452631f3f0ad34e8e44ce4dcdf87668",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "0de53dc349bfadf1d08db886c555be2e2d1f506e63fc592a8d56700002b9766d",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "owedPropertyFamily": "fall_anchor_integrity",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-09",
+      "observationSha256": "d648da8ba00183695838bf53384da23942382f4e5b899f5d124266560733e500",
+      "owedFactSha256": "b9f3c1154e79ef3c8d82b595c4ae7e693faae0e57dce8bec28ce29f9168bca88",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "049a08a629a1b0f1864bc14a5123cf60e4a1b25df163aa940aa61842bf6bf0d9",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "owedPropertyFamily": "energy_separate_source",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-10",
+      "observationSha256": "4ea06aff03dc56b4995841616784875254acea2a2c5c7afb723be44f9261025d",
+      "owedFactSha256": "70e28c9a5f2e873d057f47ecf58e5db158b37372cae2e89d2b44ff0c3c405756",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "00e9745bee8a743feae30d25ecc165b8deec61b8966a8b4a0e5a04f2002a7ec6",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "owedPropertyFamily": "ventilation_capture",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-11",
+      "observationSha256": "02080236aff4e234757028e6d0924d872eca5eb4f1ff5023022eb3da5efeb4ee",
+      "owedFactSha256": "a660c9f77a12902839a5e1ed45c03a7d08c9d58f98f2b2f93caa8551e2c541f8",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "b732ec5e688b05fc3e85f13a4ba6ff8662ec0709a68301bcd297f71a88ef958c",
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "owedPropertyFamily": "pressure_relief_function",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false
+    },
+    {
+      "rowId": "FV-12",
+      "observationSha256": "1b4dec204b8b9ffdb611aa25d8ffbb7bb9615a8e26315ac2180610e22bcc81e6",
+      "owedFactSha256": "40f99f0c282e732af21489aa6240ad2df8e88d1613df79811db5e545fab6d94b",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "5acbf852e8c14ee23469bf7d49ec0cb09952607fb6e48501fbc128d40c7942a4",
+      "families": [
+        "FULLY_ESTABLISHED_CONTROL",
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "owedPropertyFamily": "pressure_stored_energy",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true
+    },
+    {
+      "rowId": "FV-13",
+      "observationSha256": "66a0dc33a8714f1ff4e42b9c8689af6409db0eb2b95c76bd69efb824de406332",
+      "owedFactSha256": "a5abb442767f220699d0b6a9083ecf6415d9fa06bb0e311f660debf5ecc9dd15",
+      "firstPassSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "userPromptSha256": "e0c1c7afbb2dc6ac7adbd8c7a4affad6beb89a454e7bf9f856560ec8b3548f1d",
+      "families": [
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "owedPropertyFamily": "workplace_transport_segregation",
+      "conjunctCount": 1,
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true
+    }
+  ],
+  "executionOrder": {
+    "method": "three interleaved blocks; Fisher-Yates over the thirteen row ids under mulberry32 seeded from the v3.1 system prompt sha256; a block opening on the previous block's closing row is rotated left one position",
+    "seedHex": "7e73d175",
+    "frozenOrder": [
+      {
+        "sequencePosition": 1,
+        "rowId": "FV-01",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 2,
+        "rowId": "FV-03",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 3,
+        "rowId": "FV-13",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 4,
+        "rowId": "FV-04",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 5,
+        "rowId": "FV-09",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 6,
+        "rowId": "FV-07",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 7,
+        "rowId": "FV-05",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 8,
+        "rowId": "FV-10",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 9,
+        "rowId": "FV-12",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 10,
+        "rowId": "FV-02",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 11,
+        "rowId": "FV-08",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 12,
+        "rowId": "FV-06",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 13,
+        "rowId": "FV-11",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 14,
+        "rowId": "FV-05",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 15,
+        "rowId": "FV-10",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 16,
+        "rowId": "FV-13",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 17,
+        "rowId": "FV-06",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 18,
+        "rowId": "FV-04",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 19,
+        "rowId": "FV-02",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 20,
+        "rowId": "FV-03",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 21,
+        "rowId": "FV-12",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 22,
+        "rowId": "FV-01",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 23,
+        "rowId": "FV-07",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 24,
+        "rowId": "FV-09",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 25,
+        "rowId": "FV-11",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 26,
+        "rowId": "FV-08",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 27,
+        "rowId": "FV-12",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 28,
+        "rowId": "FV-11",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 29,
+        "rowId": "FV-05",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 30,
+        "rowId": "FV-03",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 31,
+        "rowId": "FV-10",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 32,
+        "rowId": "FV-09",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 33,
+        "rowId": "FV-06",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 34,
+        "rowId": "FV-08",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 35,
+        "rowId": "FV-04",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 36,
+        "rowId": "FV-07",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 37,
+        "rowId": "FV-01",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 38,
+        "rowId": "FV-02",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 39,
+        "rowId": "FV-13",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      }
+    ]
+  },
+  "caps": {
+    "plannedCalls": 39,
+    "hardCallCap": 44,
+    "hardSpendCapUsd": 3.25,
+    "worstCasePerCallUsd": 0.072,
+    "worstCaseTotalUsd": 2.808,
+    "retries": 0,
+    "onExceeding": "STOP and report INCOMPLETE. The replicate count is never silently reduced.",
+    "onCreditRejection": "STOP on FIRST occurrence. §187A proved that reproving an account condition 15 times establishes nothing.",
+    "spendRule": "provider-returned usage only; a call reporting no usage adds zero"
+  },
+  "AXIS_CLASSIFICATION": {
+    "note": "Preregistered before spend so the §189 ambiguity cannot recur. The main §192 result is a DEVELOPMENT result adjudicated by a MODEL and labelled diagnostic. No model-produced adjudication is ever called human.",
+    "MECHANICAL": [
+      "provider errors",
+      "contract admission and refusal codes",
+      "factKey binding correctness against the supplied key",
+      "declaration modes",
+      "unauthorized settlement transitions",
+      "PROVIDER_SETTLEMENT_AUTHORITY",
+      "proposedClarification emission counts",
+      "nomination counts",
+      "verdict distribution",
+      "adjacent-state ledger mutation"
+    ],
+    "MODEL_DIAGNOSTIC": [
+      "exact owed-fact preservation",
+      "clarification target correctness",
+      "clarification evidence sufficiency",
+      "nearby-property substitution",
+      "adjacent-fact containment",
+      "unnecessary clarification",
+      "missed clarification",
+      "good-behaviour regression",
+      "conjunctive sufficiency",
+      "challenge validity and reviewability"
+    ],
+    "HUMAN_REQUIRED": [],
+    "humanAcceptanceGate": "NOT PART OF §192. A human acceptance gate remains a separate later step, and §192 does not discharge it."
+  },
+  "MECHANICAL_GATES": {
+    "providerErrors": 0,
+    "contractInvalid": 0,
+    "wrongSuppliedFactKeyBindings": 0,
+    "unauthorizedSettlementTransitions": 0,
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "adjacentStateLedgerMutation": 0,
+    "waiverPolicy": "no mechanical gate may be waived after observing outputs"
+  },
+  "SEMANTIC_DEVELOPMENT_GATES": {
+    "note": "Development thresholds, frozen before spend. Reported separately and never collapsed into one aggregate.",
+    "G1_owedFactPreserved": {
+      "scope": "the 33 executions on the 11 rows whose fact is genuinely open (all but FV-12, FV-13)",
+      "threshold": ">= 31/33"
+    },
+    "G2_clarificationTargetCorrect": {
+      "scope": "executions where a clarification exists, first-pass or proposed",
+      "threshold": ">= 90%"
+    },
+    "G3_clarificationEvidenceSufficient": {
+      "scope": "executions where a clarification exists",
+      "threshold": ">= 90%"
+    },
+    "G4_nearbyPropertySubstitution": {
+      "scope": "all 39",
+      "threshold": "= 0"
+    },
+    "G5_adjacentFactContained": {
+      "scope": "all 39",
+      "threshold": ">= 37/39"
+    },
+    "G6_unnecessaryClarification": {
+      "scope": "the 15 executions on FV-01..03, FV-12, FV-13",
+      "threshold": "<= 1/15"
+    },
+    "G7_missedClarificationOnOpportunities": {
+      "scope": "the 18 executions on the 6 unconditional opportunity rows",
+      "threshold": "appropriate proposals >= 15/18"
+    },
+    "G8_goodBehaviourRegression": {
+      "scope": "the 9 executions on FV-01..03",
+      "threshold": "fact preserved and no unnecessary replacement >= 8/9"
+    },
+    "G9_conjunctiveSufficiency": {
+      "scope": "the 6 executions on FV-04, FV-05",
+      "threshold": "insufficiency identified >= 5/6"
+    },
+    "G10_challengeValidityAndReviewability": {
+      "scope": "challenge-bearing executions",
+      "threshold": "reported as x/n; NOT_MEANINGFULLY_ESTIMABLE below n=5; no threshold applied at small n"
+    }
+  },
+  "CLARIFICATION_POLICY_DENOMINATOR": {
+    "rule": "NEVER raw proposedClarification / total executions. Report OPPORTUNITIES, PROPOSALS, APPROPRIATE_PROPOSALS, MISSED_PROPOSALS and UNNECESSARY_PROPOSALS separately.",
+    "opportunities": 18,
+    "opportunityRows": [
+      "FV-06",
+      "FV-07",
+      "FV-08",
+      "FV-09",
+      "FV-10",
+      "FV-11"
+    ],
+    "opportunityPropertyFamilies": [
+      "detection_alarm_function",
+      "guarding_clearance",
+      "fall_anchor_integrity",
+      "energy_separate_source",
+      "ventilation_capture",
+      "pressure_relief_function"
+    ]
+  },
+  "noPostHocTuning": "after the first provider call: no change to prompt, schema, fixtures, execution order, scorers, thresholds or gates."
+}

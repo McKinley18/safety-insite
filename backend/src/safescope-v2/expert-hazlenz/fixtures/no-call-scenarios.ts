@@ -211,6 +211,7 @@ const S03: NoCallScenario = {
       expertHazardCandidates: [{
         candidateKey: 'e1', hazardFamily: 'machine_guarding',
         assertedConditionState: 'CONTROLLED',
+        groundingStatus: 'EXACT_QUOTE_SUPPLIED',
         evidence: [span(OBS3, 'the guard was removed')],
         evidenceBasis: 'the guard is off the machine',
         reasoning: 'Guard removal is described; the isolation makes it controlled rather than active.',
@@ -287,6 +288,7 @@ const S05: NoCallScenario = {
       expertHazardCandidates: [{
         candidateKey: 'e1', hazardFamily: 'machine_guarding',
         assertedConditionState: 'INSUFFICIENT_EVIDENCE',
+        groundingStatus: 'EXACT_QUOTE_SUPPLIED',
         evidence: [span(OBS5, 'order pickers walk')],
         evidenceBasis: 'pedestrians share the travel path',
         reasoning: 'Separation of pedestrians from powered traffic is a distinct control from '
@@ -423,6 +425,10 @@ const S08: NoCallScenario = {
       expertHazardCandidates: [{
         candidateKey: 'e1', hazardFamily: 'chemical_exposure',
         assertedConditionState: 'ACTIVE',
+        // The declaration is truthful about INTENT -- the producer claims it is quoting. What it
+        // supplies does not resolve, so EVIDENCE_OUT_OF_BOUNDS still condemns the analysis exactly
+        // as before. The §105 grounding rule sits BESIDE this check, it does not replace it.
+        groundingStatus: 'EXACT_QUOTE_SUPPLIED',
         // A span that does not resolve: the classic fabricated-evidence shape.
         evidence: [{ sourceId: 'obs-1', startOffset: 5, endOffset: 40, quotedText: 'text that is not there' }],
         evidenceBasis: 'x', reasoning: 'y', confidence: 'HIGH',

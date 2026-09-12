@@ -1,0 +1,47 @@
+--- A. IMPLICIT TEMPORAL GAP: a prior positive verification is not automatically present truth
+ok    A.1 a verification is scoped to the time it was performed
+ok    A.2 a positively stated fact can still be unestablished for this decision
+ok    A.3 the decisive moments are named without naming a hazard family
+ok    A.4 the model is told to compare the two moments explicitly
+ok    A.5 matching moments are declared ESTABLISHED, so the rule resolves rather than hedges
+
+--- B. EXPLICIT TEMPORAL GAP: prior behaviour is still represented
+ok    B.1 the current-vs-past section survives intact
+ok    B.2 re-litigating a stated verified fact is still forbidden
+ok    B.3 the remediation-closure rule still stands
+ok    B.4 the qualification is explicitly bounded to later-moment decisions
+
+--- C. EVIDENCE SUFFICIENCY: unchanged
+ok    C.1 own inference still does not establish a fact
+ok    C.2 the assumed-worse-state rule survives
+ok    C.3 the resemblance rule survives
+ok    C.4 the threshold-is-not-a-gap precision rule survives
+
+--- D. PRECISION / DISPLACED VALID FACT
+ok    D.1 a settled owed fact does not lend urgency to an adjacent concern
+ok    D.2 the adjacent concern is routed to candidates, not to questions
+ok    D.3 it may still become a question only by passing the full test on its own decision
+ok    D.4 settledness is named as a reason for silence, not a cue to hunt
+ok    D.5 the five-part counterfactual test is unchanged and still gates every question
+ok    D.6 the burden still sits on asking
+
+--- E. NO QUESTION-INFLATION
+ok    E.1 the rule denies any age or interval reading
+ok    E.2 old evidence is explicitly declared fully established where the decision allows
+ok    E.3 recency is explicitly denied as sufficient
+ok    E.4 three inflation triggers are named and forbidden
+ok    E.5 no schedule or due-date reading is licensed
+ok    E.6 "might have changed since" is explicitly not a reason
+
+--- F. NO DETERMINISTIC THRESHOLD, NO HAZARD-SPECIFIC WORDING, NO ROW LEAKAGE
+ok    F.1 all three inserted regions are present
+ok    F.2 no numeric time threshold in the inserted text  [none]
+ok    F.3 no hazard-family-specific wording in the inserted text
+ok    F.4 no §175 row wording anywhere in the production prompt
+ok    F.5 no instruction to ask more questions generally
+
+--- G. identity
+ok    G.1 prompt version is the current authorized one (v13 at §176, v14 at §177, v15 at §178)  [hazlenz.expert.prompt.v15]
+      systemPromptSha256 = 20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+
+ALL STATIC PROOFS PASSED — provider calls: 0

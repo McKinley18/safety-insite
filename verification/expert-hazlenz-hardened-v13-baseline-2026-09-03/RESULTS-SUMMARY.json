@@ -1,0 +1,1557 @@
+{
+ "operation": "§152 bounded hosted clarification retention-bridge probe",
+ "isFormalEvaluation": false,
+ "historicalProviderInvocationCount": 195,
+ "startedAt": "2026-09-03T20:15:51.173Z",
+ "finishedAt": "2026-09-03T20:21:33.989Z",
+ "stopReason": "COMPLETED",
+ "identityViolation": null,
+ "accounting": {
+  "callsAttempted": 16,
+  "callsCompleted": 16,
+  "providerRequestsAttempted": 16,
+  "retryRequestsAttempted": 0,
+  "inputTokens": 292688,
+  "outputTokens": 24249,
+  "spendUsd": 0.8278659999999999,
+  "callCeiling": 16,
+  "requestCeiling": 16,
+  "retryRequestBudget": 0,
+  "spendCeilingUsd": 1.6640000000000001
+ },
+ "retryCauses": [],
+ "retriesSuppressed": [],
+ "providerInvocationsThisProcess": 16,
+ "identity": {
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "promptVersion": "hazlenz.expert.prompt.v13",
+  "systemPromptSha256": "c4b3162439988e74186c36f75ee1f14875835e1cc832251a8d7365a4b158e3f3",
+  "wireSchemaSha256": "15e2b80947355954f105f8b34bf8cf00c6c1153a82c2255b9e8151ccd66c4a97",
+  "analysisContractVersion": "hazlenz.expert.analysis.v2"
+ },
+ "persistence": {
+  "recordsOnDisk": 16,
+  "parseProblems": [],
+  "completenessProblems": [],
+  "midRunReadBackProof": {
+   "rowId": "HS-A1",
+   "provenBeforeExit": true,
+   "recordsOnDisk": 1
+  }
+ },
+ "callDisposition": {
+  "present": 16,
+  "outputRejected": 0,
+  "providerFailed": 0
+ },
+ "rejectionDiagnostics": [],
+ "clarification": {
+  "REQUIRED_ROWS": 8,
+  "REQUIRED_ROWS_THAT_SPOKE_LOOSE": 7,
+  "REQUIRED_ROWS_SILENT": 1,
+  "REQUIRED_SILENT_ROW_IDS": [
+   "HS-A1"
+  ],
+  "FORBIDDEN_ROWS": 8,
+  "FORBIDDEN_ROWS_SILENT": 7,
+  "FORBIDDEN_ROWS_THAT_SPOKE": [
+   {
+    "rowId": "HS-M1",
+    "form": "SETTLED_THRESHOLD",
+    "questions": [
+     "Was the internal atmosphere of the tank tested for toxic air contaminants (e.g., hydrogen sulfide), and if so what was the result?"
+    ]
+   }
+  ],
+  "TOTAL_CLARIFICATIONS_DELIVERED": 9,
+  "TOTAL_CLARIFICATIONS_EMITTED_ON_THE_WIRE": 9,
+  "CLARIFICATIONS_PER_CALL": 0.563,
+  "INVALID_CLARIFICATION_OBJECTS": [],
+  "STRICT_RECALL": "NOT_COMPUTED_BY_SCRIPT — adjudicate from CLARIFICATION-ADJUDICATION.csv; a semantically different question is not recall, and a DESTROYED question is not delivered"
+ },
+ "affectedDecisionRouting": {
+  "REASONED_BUT_DESTROYED_COUNT": 0,
+  "REASONED_BUT_DESTROYED": [],
+  "SURVIVAL_DENOMINATOR_REQUIRED_ROWS": 8,
+  "SURVIVAL_LOST_ON_REQUIRED_ROWS": 0,
+  "AFFECTED_DECISION_SURVIVAL": 1,
+  "TRUE_CONTRADICTIONS_EMITTED": [],
+  "TRUE_CONTRADICTIONS_REJECTED": 0,
+  "TRUE_CONTRADICTION_REJECTION": null,
+  "ARBITRATION_EVENTS": 0,
+  "LABEL_EXACT_MATCH_ON_REQUIRED_ROWS": "5/8",
+  "LABEL_HAZARD_EXISTENCE_ON_ESTABLISHED_HAZARD_ROWS": 0,
+  "NOTE": "A drop whose emitted label was HAZARD_EXISTENCE beside the model's own ACTIVE candidate is CORRECT arbitration and a ROUTING failure. It is never recorded as an arbitration defect, and it never counts as delivered recall.",
+  "REALIZED_CONTRADICTION_NOTE": "NOT_EXERCISED — denominator 0. A realized contradiction requires the MODEL to emit HAZARD_EXISTENCE naming its own ACTIVE candidate, which v12 tells it not to do. It cannot be commissioned. The rejection PROPERTY is proved deterministically against the real normalizer in test-expert-unsupported-settlement.ts (N.4). This is NOT reported as 100%."
+ },
+ "rawLinkage": {
+  "instrumentVersion": "hazlenz.expert.raw-linkage-diagnostics.v1",
+  "RAW_LINKAGE_ATTEMPTS": 7,
+  "RAW_INVALID_LINKAGE_ATTEMPTS": 0,
+  "NORMALIZED_VALID_LINKAGES": 7,
+  "STRIPPED_INVALID_LINKAGES": 0,
+  "ACCEPTED_INVALID_LINKAGES": 0,
+  "rawCaptureAvailable": true,
+  "reconciled": true,
+  "reconciliationDetail": "raw attempts 7 = 7 valid + 0 invalid; normalized kept 7 and the boundary stripped 0. Every invalid attempt the model made is visible in the raw figures.",
+  "perRow": [
+   {
+    "rowId": "HS-B1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-C1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-D1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-F1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-G1",
+    "rawAttempts": 2,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 2,
+    "stripped": 0,
+    "consistent": true
+   },
+   {
+    "rowId": "HS-M1",
+    "rawAttempts": 1,
+    "rawInvalid": 0,
+    "rawInvalidKeys": [],
+    "normalizedValid": 1,
+    "stripped": 0,
+    "consistent": true
+   }
+  ],
+  "NOTE": "Computed from the captured wire BEFORE normalization stripped anything. The §148 blind spot was that INVALID_LINKAGE_ATTEMPTS reads the VALIDATED analysis, from which a broken key has already been removed. Historical runs have no captured wire and are NOT back-inferred; §141-§148 metrics are unchanged."
+ },
+ "affectedDecisionBaseline": {
+  "TOTAL_CLARIFICATIONS_LABELLED": 9,
+  "HAZARD_SEVERITY_USAGE_COUNT": 0,
+  "HAZARD_SEVERITY_USAGE_RATE": 0,
+  "HAZARD_SEVERITY_CORRECT_COUNT": "NOT_COMPUTED_BY_SCRIPT — adjudicate each entry of adjudication[] by asking what decision the ANSWER changes. §151 measured 0 correct of 7 across three probes; this run is the test of that on hardened material.",
+  "HAZARD_SEVERITY_INCORRECT_COUNT": "NOT_COMPUTED_BY_SCRIPT — see above.",
+  "HAZARD_SEVERITY_FALSE_SELECTION_RATE": "NOT_COMPUTED_BY_SCRIPT — derived from the adjudicated correct/incorrect counts, never from a keyword rule.",
+  "LABEL_EXACT_MATCH_ON_REQUIRED_ROWS": "5/8",
+  "EMITTED_VS_EXPECTED_CONFUSION": {
+   "REQUIRED_CONTROL": {
+    "EXPOSURE": 1,
+    "REQUIRED_CONTROL": 4
+   },
+   "REGULATORY_INTERPRETATION": {
+    "REGULATORY_INTERPRETATION": 1
+   },
+   "APPLICABILITY": {
+    "EXPOSURE": 1,
+    "REQUIRED_CONTROL": 1
+   }
+  },
+  "CONFUSION_NOTE": "Raw emitted-vs-expected counts on REQUIRED rows only. A cell is a DISAGREEMENT, not automatically a model error — §151 re-derived every expected label and found them all correct, but that adjudication must be redone here, not assumed.",
+  "LABEL_USAGE_BY_MEMBER": {
+   "EXPOSURE": 2,
+   "REQUIRED_CONTROL": 6,
+   "REGULATORY_INTERPRETATION": 1
+  },
+  "V14_FALSIFIER": "APPLY BEFORE INTERPRETING. §151 predicts v13 disproportionately selects HAZARD_SEVERITY when the missing fact governs another decision category. Recurrence on authoring-valid hardened rows SUPPORTS the diagnosis; absence WEAKENS or FALSIFIES it. Do NOT implement v14 automatically either way.",
+  "adjudication": [
+   {
+    "rowId": "HS-B1",
+    "form": "RETAINED_CANDIDATE_SHAPED",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Is the rope lock on the line set rated and confirmed to hold the line while the counterweight cradle is actively being loaded and unbalanced, and is anyone stationed at or monitoring the pin rail/lock during this loading operation?",
+    "emittedAffectedDecision": "EXPOSURE",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "whether the line set is balanced between the cradle and the bar",
+     "whether the bar stage-side is loaded to match the counterweights being added",
+     "whether the deck below the bar is kept clear while the set is being loaded"
+    ],
+    "evidenceGap": "Whether the rope lock is rated/verified secure for this loading operation and whether anyone is positioned to respond at the pin rail during the active counterweight loading is not stated.",
+    "whyItMatters": "If the rope lock is confirmed adequately engaged and someone is able to respond at the pin rail if the load shifts, the crew working below the suspended bar face only the baseline suspended-load exposure; if nobody can operate or verify the lock during active loading and the lock were to slip while the counterweight arm is unbalanced, the bar could fall or move suddenly onto the crew below, requiring an immediate stop-work and repositioning of personnel until loading is complete and the line is confirmed secure.",
+    "relatesToCandidateKey": "counterweight_loading_unattended_pinrail",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "suspended_scenery_bar=ACTIVE",
+     "counterweight_loading_unattended_pinrail=ACTIVE",
+     "gallery_fall_exposure=UNKNOWN"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-C1",
+    "form": "OBSERVER_CANNOT_DETERMINE",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Has the ferromagnetic screening questionnaire content been obtained or re-verified (e.g., by phone with the ward, or by re-screening the patient directly) before the patient is taken past the door into the scanner room?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "what the ferromagnetic screening questionnaire recorded for this patient",
+     "whether this patient has been screened for ferromagnetic implants by any means available now"
+    ],
+    "evidenceGap": "Whether the ferromagnetic screening information has been independently re-obtained or confirmed by suite staff prior to the patient entering the scanner room.",
+    "whyItMatters": "If the screening result is obtained and confirms no ferromagnetic/electronic contraindications, the patient can proceed into the scanner room safely; if it cannot be obtained or re-verification reveals a contraindication (e.g., an implant, aneurysm clip, or metallic foreign body), the patient must not be taken past the door and alternative screening or imaging must occur. The two answers lead to opposite decisions about whether to proceed with the scan right now.",
+    "relatesToCandidateKey": "missing-screening-record",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "missing-screening-record=ACTIVE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-D1",
+    "form": "AGGREGATION_AGAINST_A_RECORD",
+    "expectation": "REQUIRED",
+    "hazardEstablished": false,
+    "question": "What is the total aggregate quantity (in gallons/litres) of the Class IA solvent-based cleaner present in the fire area, including all containers on the racking, at one time?",
+    "emittedAffectedDecision": "REGULATORY_INTERPRETATION",
+    "expectedAffectedDecision": "REGULATORY_INTERPRETATION",
+    "acceptableSelectors": [
+     "the aggregate quantity of Class IA liquid in this fire area",
+     "the number and size of the further containers on the racking"
+    ],
+    "evidenceGap": "The observation states further containers are stored on the racking but does not record how many, so the total aggregate quantity of Class IA liquid in the fire area cannot be calculated.",
+    "whyItMatters": "The supplied record sets a maximum aggregate quantity of Class IA liquid outside an inside storage room or cabinet in one fire area; if the two part-full 25 litre drums plus the unspecified number of racked containers total below that maximum, the storage as described, while still a fire hazard, is not in excess of the governed limit and the required action is different than if the aggregate exceeds it, which would require immediate quantity reduction or provision of an inside storage room/cabinet to come into compliance. Without knowing the count of racked containers the aggregate cannot be computed and the two outcomes are materially different.",
+    "relatesToCandidateKey": "c1_flammable_storage",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "c1_flammable_storage=ACTIVE",
+     "c2_chlorine_acid_incompatibility=ACTIVE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-E1",
+    "form": "PRIOR_EVENT",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Was a functional/operational test (e.g., proper operation check, guard and interlock verification) performed on the debarker after the rotor tooth change and before returning it to service this morning?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "whether the guard interlock was function-tested after the rotor work",
+     "whether the rotor was proved to stop when the guard is opened"
+    ],
+    "evidenceGap": "The observation states the machine was returned to service after the rotor tooth change but does not state whether the interlock and guard were functionally tested or verified before restart.",
+    "whyItMatters": "If a post-maintenance functional check was performed and the interlock/guard verified to be working correctly, the current guarding is adequately established as effective; if no such check occurred, the interlock switch's proper function after the overnight rotor tooth change is unverified, and the guard could be non-functional despite appearing closed, meaning the sawyer at the infeed deck could be exposed to an unguarded rotor without a reliable means of detecting it.",
+    "relatesToCandidateKey": null,
+    "linkedCandidateState": null,
+    "candidateStates": [
+     "lockout_return_to_service=CORRECTED"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-F1",
+    "form": "LIKELY_BUT_UNESTABLISHED",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Is the footpath beneath the jetting operation physically closed, barriered, or otherwise excluded to pedestrians, or does it remain open to public access during the work?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "whether the lance is fitted with a functioning dead-man or dump-valve control",
+     "whether the jet stops when the operative releases the trigger"
+    ],
+    "evidenceGap": "The observation states the footpath 'is open to pedestrians at the far end' but does not state whether any exclusion, barrier, or diversion control has been applied to prevent pedestrian access under the active jetting zone.",
+    "whyItMatters": "If the footpath is actively closed or diverted with barriers/signage/a banksman, the struck-by exposure to the public is controlled and no additional action is needed; if it remains genuinely open as the observation states, work should stop or the path must be closed until an exclusion zone is established, since falling debris and high-pressure discharge could strike passers-by.",
+    "relatesToCandidateKey": "cand-struck-by-pedestrian",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "cand-struck-by-pedestrian=ACTIVE",
+     "cand-noise-exposure=INSUFFICIENT_EVIDENCE",
+     "cand-ppe-inadequate=INSUFFICIENT_EVIDENCE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-G1",
+    "form": "SYSTEM_COVERAGE",
+    "expectation": "REQUIRED",
+    "hazardEstablished": false,
+    "question": "Does the workshop personnel door/window in the wall facing the battery container remain in active use as an access point, or has it been sealed, relocated, or otherwise removed from use since the container was installed?",
+    "emittedAffectedDecision": "EXPOSURE",
+    "expectedAffectedDecision": "APPLICABILITY",
+    "acceptableSelectors": [
+     "whether the depot fire strategy was reassessed when the container was installed",
+     "what separation the fire strategy requires between such a container and workshop openings"
+    ],
+    "evidenceGap": "Whether the personnel door and window in the workshop wall opposite the container are currently in active use by personnel.",
+    "whyItMatters": "If the door/window is a live, used access point four metres from the battery container, personnel exposure to a fire/explosion or vented gas event is real and current, supporting escalation such as increased separation, barrier protection, or door relocation. If it has been decommissioned, blocked, or is no longer used, the exposure pathway this candidate relies on does not currently exist and no siting-related action is needed.",
+    "relatesToCandidateKey": "cand-fire-explosion",
+    "linkedCandidateState": "ACTIVE",
+    "candidateStates": [
+     "cand-fire-explosion=ACTIVE",
+     "cand-emergency-equipment=INSUFFICIENT_EVIDENCE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-G1",
+    "form": "SYSTEM_COVERAGE",
+    "expectation": "REQUIRED",
+    "hazardEstablished": false,
+    "question": "Has the depot fire strategy been reviewed or updated to reflect the addition of the battery energy storage container, even if the posted copy on the office wall has not yet been reprinted?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "APPLICABILITY",
+    "acceptableSelectors": [
+     "whether the depot fire strategy was reassessed when the container was installed",
+     "what separation the fire strategy requires between such a container and workshop openings"
+    ],
+    "evidenceGap": "Whether an updated version of the fire strategy accounting for the container exists anywhere at the depot, distinct from the outdated copy posted on the office wall.",
+    "whyItMatters": "If an updated fire strategy exists (even unposted) that accounts for the container's location, hazard zone, and emergency response needs, the posted document is merely an outdated display copy and the only action needed is administrative (reprint/repost). If no updated strategy exists anywhere, then the site currently lacks any emergency planning basis that accounts for this new fire/explosion hazard, which is a materially more significant gap requiring the strategy to be developed before further reliance on it.",
+    "relatesToCandidateKey": "cand-emergency-equipment",
+    "linkedCandidateState": "INSUFFICIENT_EVIDENCE",
+    "candidateStates": [
+     "cand-fire-explosion=ACTIVE",
+     "cand-emergency-equipment=INSUFFICIENT_EVIDENCE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-H1",
+    "form": "WORST_CASE_TEMPTATION",
+    "expectation": "REQUIRED",
+    "hazardEstablished": true,
+    "question": "Was the over-temperature alarm's failure to sound during the observed cycle due to a normal cycle profile that never reached the alarm setpoint, or due to a fault in the alarm/sensor itself?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "REQUIRED_CONTROL",
+    "acceptableSelectors": [
+     "whether the load was given a cooling hold before the door was opened",
+     "whether this was a liquid cycle requiring a cooling hold",
+     "whether the load temperature was checked before the door was opened"
+    ],
+    "evidenceGap": "Whether the over-temperature alarm is functional was not established; only that it did not sound during the one observed cycle.",
+    "whyItMatters": "If the alarm did not sound because the cycle simply never reached an over-temperature condition, no corrective action on the alarm system is needed. If the alarm failed to sound despite conditions that should have triggered it (a faulty sensor or alarm circuit), the autoclave is currently operating with a non-functional safety alarm and must be removed from service or flagged for repair before further cycles are run, since operators would have no warning of a future over-temperature event.",
+    "relatesToCandidateKey": null,
+    "linkedCandidateState": null,
+    "candidateStates": [
+     "cand-thermal=ACTIVE",
+     "cand-pressure=CORRECTED"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   },
+   {
+    "rowId": "HS-M1",
+    "form": "SETTLED_THRESHOLD",
+    "expectation": "FORBIDDEN",
+    "hazardEstablished": false,
+    "question": "Was the internal atmosphere of the tank tested for toxic air contaminants (e.g., hydrogen sulfide), and if so what was the result?",
+    "emittedAffectedDecision": "REQUIRED_CONTROL",
+    "expectedAffectedDecision": "NONE_OWED",
+    "acceptableSelectors": [],
+    "evidenceGap": "The observation states oxygen and flammable-gas (methane LFL) readings but does not state whether toxic air contaminants were tested or the result of any such test.",
+    "whyItMatters": "If toxic contaminants were tested and found within acceptable limits, the pre-entry atmospheric testing fully satisfies the supplied governed record and the entry can proceed as controlled. If toxic contaminants were not tested, or were tested and found elevated, the atmosphere does not meet the acceptable-atmosphere requirement of the supplied record despite acceptable oxygen and methane readings, and entry should not proceed (or should be halted) until this is addressed — a materially different outcome for the same entry.",
+    "relatesToCandidateKey": "toxic-contaminant-testing",
+    "linkedCandidateState": "INSUFFICIENT_EVIDENCE",
+    "candidateStates": [
+     "atm-testing-compliant=CONTROLLED",
+     "toxic-contaminant-testing=INSUFFICIENT_EVIDENCE"
+    ],
+    "delivered": true,
+    "ADJUDICATION": "HUMAN_REQUIRED — what decision does the ANSWER change? Is the emitted label that decision? Is another member equally valid?"
+   }
+  ]
+ },
+ "retentionRegression": {
+  "RETAINED_BUT_NOT_ASKED": "NOT_COMPUTED_BY_SCRIPT — adjudicate the rows below against the model's own candidate states, reasoning, uncertainty and summary.",
+  "REQUIRED_ROWS_SILENT": [
+   "HS-A1"
+  ],
+  "RETENTION_SIGNALS_TOTAL": 4,
+  "RETENTION_SIGNALS_NOTE": "Candidates left INSUFFICIENT_EVIDENCE or UNKNOWN on REQUIRED rows. A SCREENING AID ONLY, never a gate: §149 measured this signal on 5 rows, all REQUIRED, and 4 of those 5 emitted the clarification anyway, so it predicts neither direction alone.",
+  "rows": [
+   {
+    "rowId": "HS-A1",
+    "form": "NOT_VISIBLE",
+    "RETENTION_SIGNALS": 0,
+    "signalKeys": [],
+    "clarificationDelivered": false,
+    "candidateProse": [
+     {
+      "candidateKey": "placeholder",
+      "state": "ACTIVE",
+      "evidenceBasis": "",
+      "reasoning": ""
+     }
+    ],
+    "uncertainty": [],
+    "summary": "placeholder",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-B1",
+    "form": "RETAINED_CANDIDATE_SHAPED",
+    "RETENTION_SIGNALS": 1,
+    "signalKeys": [
+     "gallery_fall_exposure"
+    ],
+    "clarificationDelivered": true,
+    "candidateProse": [
+     {
+      "candidateKey": "suspended_scenery_bar",
+      "state": "ACTIVE",
+      "evidenceBasis": "The observation states a scenery bar is suspended on the line set stage-side, and that two stage crew are working on the deck directly below that bar.",
+      "reasoning": "A suspended scenery bar is a load held aloft over an area where two stage crew are currently performing work (moving a rostrum) on the deck below. Any uncontrolled movement or failure of the line set, or of the rope lock holding it, would create a struck-by/falling-load exposure to the crew beneath it, which is present and active now."
+     },
+     {
+      "candidateKey": "counterweight_loading_unattended_pinrail",
+      "state": "ACTIVE",
+      "evidenceBasis": "The observation states a technician is actively loading counterweights onto the cradle for the line set while the pin rail (where the rope lock lever for that same line is typically operated) has nobody stationed at it.",
+      "reasoning": "Loading counterweights changes the balance of the line set holding the suspended scenery bar. With nobody at the pin rail during this active loading operation, there is no one positioned to operate or monitor the rope lock/lock-off for that line if the load becomes unbalanced during loading, while crew work beneath the suspended bar on the same line."
+     },
+     {
+      "candidateKey": "gallery_fall_exposure",
+      "state": "UNKNOWN",
+      "evidenceBasis": "The observation places the technician working at the loading gallery, an elevated platform, but does not describe any edge protection, guardrail condition, or fall arrest use.",
+      "reasoning": "Loading galleries in fly towers are elevated working platforms; working there while handling counterweights typically involves proximity to an open edge. The observation does not state whether guardrails or fall protection are present, so this is a plausible but unconfirmed hazard."
+     }
+    ],
+    "uncertainty": [],
+    "summary": "A scenery bar remains suspended on a line set directly above two stage crew working on the deck, while a technician simultaneously loads counterweights onto that same line's cradle at the gallery with nobody stationed at the pin rail to respond to any load shift. The rope lock is stated as engaged, but its adequacy during the active rebalancing act and the lack of pin rail coverage create a mechanically linked exposure worse than either fact alone, since crew below have no one positioned to react if the lock does not hold under the changing load. A possible fall exposure at the loading gallery is also flagged as a low-confidence, unconfirmed candidate given no information on edge protection there.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-F1",
+    "form": "LIKELY_BUT_UNESTABLISHED",
+    "RETENTION_SIGNALS": 2,
+    "signalKeys": [
+     "cand-noise-exposure",
+     "cand-ppe-inadequate"
+    ],
+    "clarificationDelivered": true,
+    "candidateProse": [
+     {
+      "candidateKey": "cand-struck-by-pedestrian",
+      "state": "ACTIVE",
+      "evidenceBasis": "The text states the footpath under the work area is currently open to pedestrians while high-pressure jetting of the soffit is underway overhead.",
+      "reasoning": "High-pressure hydro-demolition debris, dislodged concrete fragments and water discharge falling from a scaffold deck onto a footpath open to pedestrians below creates a struck-by/overhead-falling-object exposure to members of the public passing beneath the work. This is a current condition (pedestrians can walk under it now), not a hypothetical."
+     },
+     {
+      "candidateKey": "cand-noise-exposure",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The text establishes a high-pressure hydro-demolition lance is in use and a running engine-driven pump is present on the deck, both of which are commonly noisy pieces of plant, but no sound level, duration, or hearing protection is mentioned.",
+      "reasoning": "High-pressure water jetting equipment and a running combustion engine pump in close proximity to two operatives are plausible sources of significant noise exposure, but no measurement or hearing protection status is given, so the existence/severity cannot be confirmed from the text."
+     },
+     {
+      "candidateKey": "cand-ppe-inadequate",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The text lists waterproofs, visors and helmets as worn PPE but does not mention hearing protection, cut-resistant/impact-rated clothing specific to high-pressure jetting, or fall-arrest harnesses.",
+      "reasoning": "Given the stated high pressure of the lance and the fall exposure already identified, the listed PPE (waterproofs, visors, helmets) may not be the full complement appropriate to hydro-demolition at height; whether additional PPE such as jetting-rated protective wear or fall-arrest equipment is issued is not stated."
+     }
+    ],
+    "uncertainty": [],
+    "summary": "Beyond the deterministic fall and hydraulic-energy hazards, the observation establishes a current struck-by exposure to pedestrians on the footpath beneath the jetting operation, which passes under the active work at an open, unexcluded far end. This interacts with the fall hazard at height, since either a loss of balance from jet reaction force or a dropped object/debris could reach the public below, and it is unresolved whether any exclusion control is in place for that footpath. Noise exposure and PPE adequacy for high-pressure jetting are flagged as plausible but unconfirmed hazards given the absence of any stated sound levels, hearing protection, or fall-arrest/jetting-rated protective equipment.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   },
+   {
+    "rowId": "HS-G1",
+    "form": "SYSTEM_COVERAGE",
+    "RETENTION_SIGNALS": 1,
+    "signalKeys": [
+     "cand-emergency-equipment"
+    ],
+    "clarificationDelivered": true,
+    "candidateProse": [
+     {
+      "candidateKey": "cand-fire-explosion",
+      "state": "ACTIVE",
+      "evidenceBasis": "The observation establishes the battery energy storage container is positioned roughly four metres from a workshop wall that has a personnel door and window opening onto the yard, placing an occupied building opening close to a battery storage installation.",
+      "reasoning": "Battery energy storage systems carry a fire and explosion hazard (thermal runaway with potential for jet flame or explosion venting). A close separation distance to a building opening (door/window) used by personnel is a current siting fact that creates a fire/explosion exposure pathway toward the workshop interior, independent of any operational fault occurring."
+     },
+     {
+      "candidateKey": "cand-emergency-equipment",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "evidenceBasis": "The observation states the posted fire strategy depicts the yard layout from before the container was installed, meaning the displayed document does not reflect the current yard arrangement.",
+      "reasoning": "A fire strategy document that predates a significant new fire/explosion hazard (the battery container) may no longer correctly show evacuation routes, hazard zones, or emergency response information relevant to responders and building occupants near the new installation. Whether this constitutes a current gap in emergency planning cannot be fully assessed from the observation alone."
+     }
+    ],
+    "uncertainty": [],
+    "summary": "Beyond the deterministic findings, the battery energy storage container's proximity to an occupied workshop opening raises a plausible fire/explosion exposure, and the posted fire strategy predating the container's installation raises a plausible emergency-planning gap; both are flagged with moderate confidence pending confirmation of current door/window usage and whether an updated strategy exists elsewhere. The active atmospheric hazard already found, combined with the container's reliance on ventilation and gas detection to manage battery off-gassing, means inadequate ventilation could allow gas buildup that turns a fire event into an explosion, worsened by the short four-metre path to the workshop opening. Two clarifications are raised because their answers would materially change whether siting/access controls or emergency-planning updates are actually required now.",
+    "VERDICT": "HUMAN_REQUIRED — does the output hold a decision-critical fact OPEN with no clarification carrying it?"
+   }
+  ]
+ },
+ "unsupportedSettlementRegression": {
+  "UNSUPPORTED_SETTLEMENT_COUNT": "NOT_COMPUTED_BY_SCRIPT — §149 closed this at 0/10 and this is the REGRESSION check, not a re-litigation. Adjudicate whether any row promoted an unobserved fact to an affirmative state.",
+  "CANDIDATE_SUPPRESSION_ROWS": [
+   "HS-A1"
+  ],
+  "CANDIDATE_SUPPRESSION_NOTE": "§152 must not buy questions by suppressing hazards, nor silence by suppressing them. These are rows whose text establishes a hazard and where the model raised NO candidate at all.",
+  "perRow": [
+   {
+    "rowId": "HS-A1",
+    "candidateProse": [
+     {
+      "candidateKey": "placeholder",
+      "state": "ACTIVE",
+      "quotedEvidence": [],
+      "evidenceBasis": "",
+      "reasoning": ""
+     }
+    ],
+    "summary": "placeholder",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-B1",
+    "candidateProse": [
+     {
+      "candidateKey": "suspended_scenery_bar",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "a scenery bar hangs on the same line stage-side",
+       "Two stage crew are working on the deck below the bar, moving a rostrum."
+      ],
+      "evidenceBasis": "The observation states a scenery bar is suspended on the line set stage-side, and that two stage crew are working on the deck directly below that bar.",
+      "reasoning": "A suspended scenery bar is a load held aloft over an area where two stage crew are currently performing work (moving a rostrum) on the deck below. Any uncontrolled movement or failure of the line set, or of the rope lock holding it, would create a struck-by/falling-load exposure to the crew beneath it, which is present and active now."
+     },
+     {
+      "candidateKey": "counterweight_loading_unattended_pinrail",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "loading counterweights onto a cradle at the loading gallery",
+       "Nobody is standing at the pin rail."
+      ],
+      "evidenceBasis": "The observation states a technician is actively loading counterweights onto the cradle for the line set while the pin rail (where the rope lock lever for that same line is typically operated) has nobody stationed at it.",
+      "reasoning": "Loading counterweights changes the balance of the line set holding the suspended scenery bar. With nobody at the pin rail during this active loading operation, there is no one positioned to operate or monitor the rope lock/lock-off for that line if the load becomes unbalanced during loading, while crew work beneath the suspended bar on the same line."
+     },
+     {
+      "candidateKey": "gallery_fall_exposure",
+      "state": "UNKNOWN",
+      "quotedEvidence": [],
+      "evidenceBasis": "The observation places the technician working at the loading gallery, an elevated platform, but does not describe any edge protection, guardrail condition, or fall arrest use.",
+      "reasoning": "Loading galleries in fly towers are elevated working platforms; working there while handling counterweights typically involves proximity to an open edge. The observation does not state whether guardrails or fall protection are present, so this is a plausible but unconfirmed hazard."
+     }
+    ],
+    "summary": "A scenery bar remains suspended on a line set directly above two stage crew working on the deck, while a technician simultaneously loads counterweights onto that same line's cradle at the gallery with nobody stationed at the pin rail to respond to any load shift. The rope lock is stated as engaged, but its adequacy during the active rebalancing act and the lack of pin rail coverage create a mechanically linked exposure worse than either fact alone, since crew below have no one positioned to react if the lock does not hold under the changing load. A possible fall exposure at the loading gallery is also flagged as a low-confidence, unconfirmed candidate given no information on edge protection there.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-C1",
+    "candidateProse": [
+     {
+      "candidateKey": "missing-screening-record",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "the ferromagnetic screening questionnaire for this patient was completed by the referring ward and has not arrived with the notes, and that nobody in the suite can confirm what it recorded"
+      ],
+      "evidenceBasis": "The observation states the completed screening questionnaire has not arrived with the notes and that nobody in the suite can confirm what it recorded, meaning the imaging staff currently have no access to the ferromagnetic screening result for this patient.",
+      "reasoning": "Ferromagnetic screening is the procedural control that identifies whether a patient carries ferromagnetic or electronic implants/objects that would be hazardous when brought near the MRI's strong magnetic field. With the questionnaire result unavailable and unconfirmed, the suite has no verified basis to know the patient is safe to bring into the scanner room, and the patient is already staged at the scanner room door on the trolley, awaiting entry. This is a current gap in the screening/verification procedure, not a historical or resolved issue."
+     }
+    ],
+    "summary": "The deterministic finding confirms the door interlock and controlled-area signage are functioning, but a separate procedural gap exists: the ferromagnetic screening questionnaire for this patient has not arrived and nobody in the suite can confirm its contents, while the patient already waits on the trolley at the scanner room door. This is a current, unresolved verification gap rather than a historical issue, since no re-screening or confirmation is described as having occurred. Whether that screening information is obtained or independently re-verified before the patient passes the door is the single fact that determines whether the scan can proceed safely right now.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-D1",
+    "candidateProse": [
+     {
+      "candidateKey": "c1_flammable_storage",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "Two part-full 25 litre drums of a Class IA solvent-based cleaner stand on the floor beside the dosing pumps, and further containers of the same product are stored on the racking behind them"
+      ],
+      "evidenceBasis": "The observation establishes that Class IA flammable liquid is present in multiple containers, with the total count of the additional racked containers not recorded, and that no inside storage room or storage cabinet is present.",
+      "reasoning": "Class IA liquids are highly flammable and volatile. Multiple containers of this material are present outside of an inside storage room or cabinet in a single fire compartment shared with a plant room, which under the supplied record on maximum quantity in an industrial occupancy area is the exact condition that record governs. Whether the aggregate quantity present exceeds the governed threshold cannot be determined because the number of additional containers on the racking is not recorded, but the presence of a Class IA flammable liquid stored outside required enclosure is itself a fire/explosion hazard independent of the exact quantity."
+     },
+     {
+      "candidateKey": "c2_chlorine_acid_incompatibility",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "The swimming pool dosing room holds the chlorine and acid supply for the main pool."
+      ],
+      "evidenceBasis": "The observation establishes that chlorine and acid supplies are held in the same room as the flammable solvent-based cleaner drums.",
+      "reasoning": "Chlorine and acid are reactive/incompatible chemicals whose accidental mixing (e.g., through a leak or spill) can generate toxic gas. Their co-location in the same dosing room as a Class IA flammable solvent introduces a chemical release/inhalation hazard distinct from the fire hazard already raised, and is not addressed by the supplied flammable-quantity record."
+     }
+    ],
+    "summary": "The dosing room stores Class IA flammable solvent in multiple containers outside any inside storage room or cabinet, in a single fire compartment with the plant room, which is exactly the condition the supplied flammable-quantity record addresses; however the aggregate quantity cannot be computed because the number of racked containers is not recorded, so whether the governed maximum is exceeded remains open and is asked as a clarification. The same room also holds the pool's chlorine and acid supply alongside the flammable solvent, and the combination in one shared, enclosed compartment raises the consequence of either a fire or a chemical release beyond either hazard alone.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-E1",
+    "candidateProse": [
+     {
+      "candidateKey": "lockout_return_to_service",
+      "state": "CORRECTED",
+      "quotedEvidence": [
+       "The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift."
+      ],
+      "evidenceBasis": "The text states the machine was returned to service after maintenance was completed, indicating the lockout/tagout applicable to that servicing activity was cleared as part of returning the machine to normal operation.",
+      "reasoning": "This documents the historical maintenance event and its closeout; the machine is now running with the guard closed and interlock in place, so there is no stated current lockout/tagout gap distinct from the deterministic assessment's own unresolved rationale. Raised here only to note the closeout is stated, not to add a new active hazard."
+     }
+    ],
+    "summary": "The debarker is currently operating with its rotor guard door closed and interlock switch in place while the sawyer works from the infeed deck without reaching into the throat, which is a controlled current condition and not a hazard as observed. The overnight rotor tooth change and this morning's return to service are historical and stated as completed, so no active lockout/tagout hazard is raised on that history alone, consistent with the deterministic engine's unresolved but not contradicted assessment. One open question remains: whether the guard/interlock was functionally verified after the maintenance work before restart, since that determines whether the currently-observed guarding can be relied upon.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-F1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-struck-by-pedestrian",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "The jetting is being carried out over a footpath that runs under the bridge and is open to pedestrians at the far end."
+      ],
+      "evidenceBasis": "The text states the footpath under the work area is currently open to pedestrians while high-pressure jetting of the soffit is underway overhead.",
+      "reasoning": "High-pressure hydro-demolition debris, dislodged concrete fragments and water discharge falling from a scaffold deck onto a footpath open to pedestrians below creates a struck-by/overhead-falling-object exposure to members of the public passing beneath the work. This is a current condition (pedestrians can walk under it now), not a hypothetical."
+     },
+     {
+      "candidateKey": "cand-noise-exposure",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "hand-held lance at high pressure",
+       "pump unit is on the deck below with its engine running"
+      ],
+      "evidenceBasis": "The text establishes a high-pressure hydro-demolition lance is in use and a running engine-driven pump is present on the deck, both of which are commonly noisy pieces of plant, but no sound level, duration, or hearing protection is mentioned.",
+      "reasoning": "High-pressure water jetting equipment and a running combustion engine pump in close proximity to two operatives are plausible sources of significant noise exposure, but no measurement or hearing protection status is given, so the existence/severity cannot be confirmed from the text."
+     },
+     {
+      "candidateKey": "cand-ppe-inadequate",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "They are in waterproofs, visors and helmets."
+      ],
+      "evidenceBasis": "The text lists waterproofs, visors and helmets as worn PPE but does not mention hearing protection, cut-resistant/impact-rated clothing specific to high-pressure jetting, or fall-arrest harnesses.",
+      "reasoning": "Given the stated high pressure of the lance and the fall exposure already identified, the listed PPE (waterproofs, visors, helmets) may not be the full complement appropriate to hydro-demolition at height; whether additional PPE such as jetting-rated protective wear or fall-arrest equipment is issued is not stated."
+     }
+    ],
+    "summary": "Beyond the deterministic fall and hydraulic-energy hazards, the observation establishes a current struck-by exposure to pedestrians on the footpath beneath the jetting operation, which passes under the active work at an open, unexcluded far end. This interacts with the fall hazard at height, since either a loss of balance from jet reaction force or a dropped object/debris could reach the public below, and it is unresolved whether any exclusion control is in place for that footpath. Noise exposure and PPE adequacy for high-pressure jetting are flagged as plausible but unconfirmed hazards given the absence of any stated sound levels, hearing protection, or fall-arrest/jetting-rated protective equipment.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-G1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-fire-explosion",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "stands about four metres from the workshop wall, which has a personnel door and a window opening onto the yard"
+      ],
+      "evidenceBasis": "The observation establishes the battery energy storage container is positioned roughly four metres from a workshop wall that has a personnel door and window opening onto the yard, placing an occupied building opening close to a battery storage installation.",
+      "reasoning": "Battery energy storage systems carry a fire and explosion hazard (thermal runaway with potential for jet flame or explosion venting). A close separation distance to a building opening (door/window) used by personnel is a current siting fact that creates a fire/explosion exposure pathway toward the workshop interior, independent of any operational fault occurring."
+     },
+     {
+      "candidateKey": "cand-emergency-equipment",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [
+       "The depot fire strategy on the office wall shows the yard layout as it was before the container arrived."
+      ],
+      "evidenceBasis": "The observation states the posted fire strategy depicts the yard layout from before the container was installed, meaning the displayed document does not reflect the current yard arrangement.",
+      "reasoning": "A fire strategy document that predates a significant new fire/explosion hazard (the battery container) may no longer correctly show evacuation routes, hazard zones, or emergency response information relevant to responders and building occupants near the new installation. Whether this constitutes a current gap in emergency planning cannot be fully assessed from the observation alone."
+     }
+    ],
+    "summary": "Beyond the deterministic findings, the battery energy storage container's proximity to an occupied workshop opening raises a plausible fire/explosion exposure, and the posted fire strategy predating the container's installation raises a plausible emergency-planning gap; both are flagged with moderate confidence pending confirmation of current door/window usage and whether an updated strategy exists elsewhere. The active atmospheric hazard already found, combined with the container's reliance on ventilation and gas detection to manage battery off-gassing, means inadequate ventilation could allow gas buildup that turns a fire event into an explosion, worsened by the short four-metre path to the workshop opening. Two clarifications are raised because their answers would materially change whether siting/access controls or emergency-planning updates are actually required now.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-H1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-thermal",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "heat-resistant gloves"
+      ],
+      "evidenceBasis": "The technician is wearing heat-resistant gloves while opening the autoclave door immediately after a cycle, indicating the load/chamber and its contents are still expected to be hot enough to require thermal protection.",
+      "reasoning": "Autoclave contents and internal surfaces remain hot immediately after a cycle even though pressure has released to zero; the technician's use of heat-resistant gloves and positioning to the hinge side as the door opens indicates an ongoing thermal burn exposure from hot surfaces, residual steam, or the load itself as the door is opened."
+     },
+     {
+      "candidateKey": "cand-pressure",
+      "state": "CORRECTED",
+      "quotedEvidence": [
+       "chamber pressure gauge on the front panel reads zero"
+      ],
+      "evidenceBasis": "The gauge reading indicates the chamber pressure is currently at zero.",
+      "reasoning": "The pressure gauge reading zero indicates the chamber has depressurized before door opening, which is the correct state for safe door release; this is included for completeness as a pressure-system-relevant fact even though it does not indicate a current hazard."
+     }
+    ],
+    "summary": "Beyond the guarding/interlock and suspended-load findings, the immediate post-cycle door opening carries a residual thermal burn exposure, mitigated by the technician's heat-resistant gloves, lab coat, and hinge-side positioning. The chamber pressure reading zero indicates depressurization occurred correctly and is not itself a current hazard. A genuine open question is whether the over-temperature alarm's silence during the cycle reflects normal operation or a latent alarm fault, which would determine whether the unit needs to be pulled from service.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-J1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-chem-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "a sprayer is finishing a panel"
+      ],
+      "evidenceBasis": "The observation establishes spray painting is actively underway, which is a chemical inhalation/contact exposure source, but the same text describes active extraction and PPE controls addressing it.",
+      "reasoning": "Spray painting generates overspray and solvent vapors that are a chemical inhalation/contact hazard. The observation shows this hazard is present but currently controlled by the running booth extract (airflow confirmed in green band) and the air-fed hood supplied with filtered breathing air, so it is raised as a controlled hazard rather than an uncontrolled one."
+     },
+     {
+      "candidateKey": "cand-resp-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "an air-fed hood supplied from the compressor with a breathing-air filter, and the filter change record beside the compressor is signed for this month"
+      ],
+      "evidenceBasis": "The observation states the sprayer is wearing supplied-air respiratory protection with a breathing-air filter, and that the filter change record is signed for the current month, indicating the respiratory protection element is current and maintained.",
+      "reasoning": "Supplied-air respiratory protection is itself a hazard family requiring attention to breathing air quality; here the filter maintenance record is current, so the respiratory protection appears adequately controlled based on stated facts."
+     },
+     {
+      "candidateKey": "cand-fire-1",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [],
+      "evidenceBasis": "",
+      "reasoning": "Paint spray booths involve flammable solvent vapors and an ignition-capable environment; the observation does not mention bonding/grounding, ventilation rate adequacy for flammability, or ignition source controls beyond the gun-fan interlock, so a fire/explosion hazard from solvent vapor accumulation cannot be ruled in or out from the text."
+     }
+    ],
+    "summary": "The deterministic finding confirms an active guarding/interlock control preventing gun operation without extract fans running, which directly mitigates the chemical inhalation hazard inherent to spray painting. The observation also shows the respiratory protection element (air-fed hood with a currently-signed filter record) is in place and current, and airflow was directly observed in the acceptable band. No fire/explosion-specific controls (such as bonding or vapor concentration monitoring) are mentioned, so that hazard family is noted only as a low-confidence, unconfirmed possibility rather than a stated gap.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-K1",
+    "candidateProse": [
+     {
+      "candidateKey": "UNPLACEHOLDER",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "Two other workers are at benches eight metres away with no screening between them and the gap."
+      ],
+      "evidenceBasis": "The observation states two other workers are located near the enclosure gap with no screening present between them and the point where blast media is escaping.",
+      "reasoning": "Escaping abrasive blast media through the door gap can travel toward nearby workstations; with no screening barrier between the gap and the two workers at benches, they are exposed to flying abrasive media without eye/face or body protection described for them."
+     }
+    ],
+    "summary": "",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-L1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-loto",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "The machine-room isolator is off and padlocked with his own lock, and he holds the only key on his belt"
+      ],
+      "evidenceBasis": "The isolator is off, locked with the engineer's personal lock, and he holds the sole key, indicating a single-worker personal lockout is in place on the electrical supply to the machine.",
+      "reasoning": "Lockout/tagout is directly relevant given the isolator is de-energized and padlocked with the engineer's own lock and key retained on his person, which is the correct control for the electrical hazard of the traction machine. This is raised to record the control is in place, not because the hazard is uncontrolled."
+     },
+     {
+      "candidateKey": "cand-suspended-load",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "The counterweight is at the top of its guides and is chocked with the manufacturer's pin, which I saw in place."
+      ],
+      "evidenceBasis": "The counterweight, a suspended/gravity-driven mass, is physically chocked with a manufacturer's pin observed in place, and the car is resting on fully compressed buffers with slack ropes over the sheave.",
+      "reasoning": "The counterweight and car represent a stored gravitational energy hazard (suspended load) typical of traction lift work. Here the counterweight is chocked with a pin the inspector personally observed, and the car is resting on compressed buffers with slack ropes, indicating the stored energy has been mechanically restrained rather than merely relying on the electrical isolation. This is raised as a hazard family present and controlled, consistent with the stated facts."
+     }
+    ],
+    "summary": "The engineer is working on the traction sheave with the isolator locked out under his own personal lock and key, and the counterweight independently restrained by a manufacturer's chock pin while the car rests on fully compressed buffers with slack ropes — both the electrical and gravitational stored-energy hazards appear to be controlled by stated, verified facts. No current gap or exposure is described in the observation, so no clarification is raised. A cross-hazard note is recorded because the lockout and the mechanical chocking address two different energy sources bearing on the same sheave, and both are necessary since isolating the supply alone would not restrain the counterweight's potential energy.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-M1",
+    "candidateProse": [
+     {
+      "candidateKey": "atm-testing-compliant",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "20.8 percent oxygen and 2 percent of the lower flammable limit for methane"
+      ],
+      "evidenceBasis": "The observation states the pre-entry atmospheric readings for oxygen and methane LFL, both of which fall within the acceptable range set out in the supplied governed record.",
+      "reasoning": "This is a permit space (sludge holding tank) where atmospheric hazards (oxygen deficiency/enrichment, flammable methane from anaerobic digestion) are inherently present. The stated readings (20.8% O2, within 19.5-23.5%; 2% LFL, below the 10% threshold) show the atmosphere was tested with a calibrated instrument per the supplied record and found acceptable, and continuous monitoring is running during entry. This reflects a controlled atmospheric hazard rather than an uncontrolled one."
+     },
+     {
+      "candidateKey": "toxic-contaminant-testing",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [],
+      "evidenceBasis": "The observation describes testing for oxygen and methane (flammable gas) but does not describe any reading or test result for toxic air contaminants such as hydrogen sulfide, which is commonly generated in sludge/anaerobic digestion environments.",
+      "reasoning": "Anaerobic digestion sludge tanks are a recognized source of hydrogen sulfide and other toxic gases. The observation only reports oxygen and LFL methane readings; it does not state whether toxic contaminants were tested or what the result was, even though the supplied governed record requires testing for potential toxic air contaminants in addition to oxygen and flammable gas."
+     }
+    ],
+    "summary": "The confined space entry is a sludge holding tank in an anaerobic digestion plant where pre-entry testing for oxygen and flammable methane meets the acceptable-atmosphere criteria in the supplied governed record, and continuous monitoring is running during entry, indicating the tested parameters are controlled. However, the supplied record also requires testing for potential toxic air contaminants, and the observation gives no reading or mention of such testing in an environment (anaerobic digestion sludge) where hydrogen sulfide or similar toxic gases are a recognized concern — this gap is decision-critical because an untested or elevated toxic contaminant would mean the atmosphere does not meet the governed acceptability standard despite acceptable oxygen and methane readings.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-N1",
+    "candidateProse": [
+     {
+      "candidateKey": "repeated_manual_wheel_handling",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [],
+      "evidenceBasis": "The observation describes a single tyre-fitting task involving a commercial truck tyre on a split-rim wheel, which are heavy components, but does not describe frequency, lifting method, or repetition.",
+      "reasoning": "Commercial truck split-rim wheels and tyres are heavy and handling them repeatedly can create manual handling/musculoskeletal or struck-by exposure during mounting/demounting, separate from the inflation hazard already controlled by the cage. The observation itself notes it does not record how many tyres are changed in a shift, leaving open whether repetitive heavy handling is occurring."
+     }
+    ],
+    "summary": "The observation describes a tyre fitter correctly using a bolted-down restraint cage while inflating a split-rim wheel, standing clear outside the cage with an airline extension — this is the controlled configuration for this hazard and no gap in that control is stated. The only additional angle worth noting at low confidence is potential repetitive manual handling of heavy truck wheels/tyres, though the observation gives no frequency or method detail to substantiate it as a current, active hazard. No decision-critical facts are missing and no cross-hazard interaction is established by the text.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-P1",
+    "candidateProse": [
+     {
+      "candidateKey": "residual_oil_burn",
+      "state": "ACTIVE",
+      "quotedEvidence": [
+       "draining the oil into a wheeled bin using the fryer's own drain tap and hose"
+      ],
+      "evidenceBasis": "The text establishes that oil is currently being drained from the fryer through a tap and hose into a bin, an activity involving direct handling of fryer oil.",
+      "reasoning": "Although the fryer is switched off and cold, draining oil through a tap and hose into a wheeled bin carries a splash/spill burn and slip potential from oil contacting skin or the floor during the pour; the chef is wearing heat-resistant gauntlets and an apron, which is a control already reflected in the observation, but the act of draining itself remains a live handling task with contact potential."
+     },
+     {
+      "candidateKey": "oil_spill_slip",
+      "state": "INSUFFICIENT_EVIDENCE",
+      "quotedEvidence": [],
+      "evidenceBasis": "The observation does not state whether any oil has spilled onto the floor around the bin or tap during the draining operation.",
+      "reasoning": "Draining oil via a tap and hose into a bin creates a potential for spillage onto the kitchen floor, which would create a slip hazard; the area is coned, which suggests some walking-surface control is already in place, but whether any spillage has occurred is not stated."
+     }
+    ],
+    "summary": "The fryer is off and cold, and the duty chef is draining oil using the fryer's built-in tap and hose into a coned-off, positioned bin while wearing heat-resistant gauntlets and an apron, so the primary thermal burn pathway from hot oil is not currently supported by the facts stated. The high-limit thermostat test record being signed and current is a resolved administrative control and raises no open question. No decision-critical fact is missing given the controls already described in the observation.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-Q1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-1",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "decanting concentrated hydrochloric acid from a Winchester into a labelled dispensing bottle"
+      ],
+      "evidenceBasis": "The observation states the technician is actively decanting concentrated hydrochloric acid, a corrosive and inhalation hazard, at the time of the inspection.",
+      "reasoning": "Concentrated hydrochloric acid decanting presents inhalation and contact hazards; this is the specific chemical task the deterministic hazcom finding relates to. The observation shows this exposure is present but actively controlled by engineering (fume cupboard airflow verified) and PPE (goggles, apron, gloves) at this moment."
+     },
+     {
+      "candidateKey": "cand-2",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "Her goggles, apron and nitrile gloves are on"
+      ],
+      "evidenceBasis": "The observation states the technician was wearing goggles, apron and nitrile gloves at the time of the decanting task.",
+      "reasoning": "Appropriate PPE for corrosive acid handling is confirmed worn, controlling the contact/splash hazard associated with the chemical task above."
+     },
+     {
+      "candidateKey": "cand-3",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "the eyewash station two metres away was run and flowed clear while I watched"
+      ],
+      "evidenceBasis": "The observation states the eyewash station was tested and flowed clear during the inspector's observation.",
+      "reasoning": "An eyewash station is emergency equipment relevant to corrosive chemical handling; its function was verified operational at the time of inspection, controlling the consequence of an accidental splash."
+     }
+    ],
+    "summary": "The observation describes a technician decanting concentrated hydrochloric acid inside a fume cupboard with verified airflow, wearing goggles, apron and nitrile gloves, with a nearby eyewash station tested and confirmed functional. These are the chemical inhalation/contact, PPE, and emergency equipment elements relevant to the active hazcom finding, and each is shown as currently controlled rather than uncontrolled. No gap in the observation changes any control or exposure decision, so no clarification is raised.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   },
+   {
+    "rowId": "HS-R1",
+    "candidateProse": [
+     {
+      "candidateKey": "cand-silica",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "a fitted FFP3 mask",
+       "water suppression is connected and running with visible water at the blade"
+      ],
+      "evidenceBasis": "The text states a fitted FFP3 mask is worn and that water suppression is connected and running with visible water at the blade, both of which are controls relevant to respirable dust generated by cutting kerbs.",
+      "reasoning": "Cutting kerbs (concrete/masonry) with a cut-off saw generates respirable crystalline silica dust; the observation shows both engineering control (water suppression) and PPE (FFP3) actively in use, indicating the inhalation hazard is being controlled rather than left unmitigated."
+     },
+     {
+      "candidateKey": "cand-noise",
+      "state": "CONTROLLED",
+      "quotedEvidence": [
+       "ear defenders"
+      ],
+      "evidenceBasis": "The text states ear defenders are worn while operating the petrol cut-off saw.",
+      "reasoning": "Petrol cut-off saws are high-noise tools; the worker is wearing ear defenders, indicating the noise exposure hazard is currently controlled by PPE."
+     }
+    ],
+    "summary": "The deterministic finding correctly flags hot work from the petrol cut-off saw; alongside this, the observation shows the associated respirable dust and noise hazards inherent to kerb-cutting are currently being controlled — water suppression is running and an FFP3 mask is fitted for dust, and ear defenders are worn for noise. No decision-critical gaps arise from the unstated duration or kerb count, since neither would change the current control picture: PPE and engineering controls are already in place and no one else is within exposure range. No cross-hazard interaction is established beyond controls already described, and no regulatory record was supplied to assess compliance against.",
+    "VERDICT": "HUMAN_ADJUDICATION_REQUIRED — did the model promote an unobserved fact to an affirmative state? §149 measured 0/10 and this is the regression check."
+   }
+  ]
+ },
+ "regression": {
+  "citation": {
+   "INPUT_CITATION_SHAPED_COUNT": 0,
+   "EXPERT_OUTPUT_CITATION_SHAPED_COUNT": 0,
+   "ACCEPTED_CITATION_COUNT": 0,
+   "REJECTED_CITATION_COUNT": 0,
+   "MERGED_CITATION_COUNT": 0,
+   "GOVERNED_AUTHORITY_CITATION_COUNT": 2,
+   "SUPPLIED_RECORD_CITATION_COUNT": 4
+  },
+  "coverage": {
+   "deterministicCoveredCount": 0,
+   "additiveExpertCoveredCount": 4,
+   "combinedCoveredCount": 4,
+   "truthMissesAfterUnionCount": 5,
+   "truthPresentTotal": 9,
+   "expertOnlyFamiliesCount": 27,
+   "perRow": [
+    {
+     "rowId": "HS-A1",
+     "truthPresent": [
+      "combustible_dust",
+      "machine_guarding"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [
+      "combustible_dust",
+      "machine_guarding"
+     ],
+     "expertOnlyFamilies": []
+    },
+    {
+     "rowId": "HS-B1",
+     "truthPresent": [
+      "suspended_loads"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "suspended_loads"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "suspended_loads",
+      "fall_protection"
+     ]
+    },
+    {
+     "rowId": "HS-C1",
+     "truthPresent": [
+      "emergency_equipment"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [
+      "emergency_equipment"
+     ],
+     "expertOnlyFamilies": [
+      "training_procedure_supervision"
+     ]
+    },
+    {
+     "rowId": "HS-D1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion",
+      "chemical_release"
+     ]
+    },
+    {
+     "rowId": "HS-E1",
+     "truthPresent": [
+      "machine_guarding"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [
+      "machine_guarding"
+     ],
+     "expertOnlyFamilies": [
+      "lockout_tagout"
+     ]
+    },
+    {
+     "rowId": "HS-F1",
+     "truthPresent": [
+      "walking_working_surfaces"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "walking_working_surfaces"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "walking_working_surfaces",
+      "noise_exposure",
+      "personal_protective_equipment"
+     ]
+    },
+    {
+     "rowId": "HS-G1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "fire_explosion",
+      "emergency_equipment"
+     ]
+    },
+    {
+     "rowId": "HS-H1",
+     "truthPresent": [
+      "thermal_burn"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "thermal_burn"
+     ],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "thermal_burn",
+      "pressure_systems"
+     ]
+    },
+    {
+     "rowId": "HS-J1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "chemical_inhalation_contact",
+      "respiratory_protection"
+     ]
+    },
+    {
+     "rowId": "HS-K1",
+     "truthPresent": [
+      "chemical_inhalation_contact",
+      "personal_protective_equipment"
+     ],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [
+      "personal_protective_equipment"
+     ],
+     "coveredByNeither": [
+      "chemical_inhalation_contact"
+     ],
+     "expertOnlyFamilies": [
+      "personal_protective_equipment"
+     ]
+    },
+    {
+     "rowId": "HS-L1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "lockout_tagout",
+      "suspended_loads"
+     ]
+    },
+    {
+     "rowId": "HS-M1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "atmospheric_hazard"
+     ]
+    },
+    {
+     "rowId": "HS-N1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "material_handling_storage"
+     ]
+    },
+    {
+     "rowId": "HS-P1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "thermal_burn",
+      "walking_working_surfaces"
+     ]
+    },
+    {
+     "rowId": "HS-Q1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "chemical_inhalation_contact",
+      "personal_protective_equipment",
+      "emergency_equipment"
+     ]
+    },
+    {
+     "rowId": "HS-R1",
+     "truthPresent": [],
+     "deterministicCovered": [],
+     "additiveExpertCovered": [],
+     "coveredByNeither": [],
+     "expertOnlyFamilies": [
+      "respiratory_protection",
+      "noise_exposure"
+     ]
+    }
+   ]
+  },
+  "linkage": {
+   "REQUIRED_LINKAGE_OPPORTUNITIES": 0,
+   "REQUIRED_LINKAGE_POPULATED": 0,
+   "REQUIRED_LINKAGE_VALID": 0,
+   "REQUIRED_LINKAGE_MISSING": 0,
+   "ALLOWED_LINKAGE_OPPORTUNITIES": 0,
+   "ALLOWED_LINKAGE_POPULATED": 0,
+   "ALLOWED_LINKAGE_VALID": 0,
+   "FORBIDDEN_LINKAGE_OPPORTUNITIES": 0,
+   "FORBIDDEN_LINKAGE_ATTEMPTS": 0,
+   "FORBIDDEN_LINKAGE_ACCEPTED": 0,
+   "NO_LINKAGE_OPPORTUNITY_ROWS": 0,
+   "NOT_A_LINKAGE_TEST_ROWS": 16,
+   "INVALID_LINKAGE_ATTEMPTS": 0,
+   "INVALID_LINKAGE_STRIPPED": 0,
+   "ARBITRATION_EVENTS": 0,
+   "perRow": [
+    {
+     "rowId": "HS-A1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-B1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-C1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-D1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-E1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-F1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-G1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 2,
+     "populated": 2,
+     "valid": 2,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-H1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-J1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-K1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-L1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-M1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 1,
+     "populated": 1,
+     "valid": 1,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-N1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-P1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-Q1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    },
+    {
+     "rowId": "HS-R1",
+     "expectation": "NOT_A_LINKAGE_TEST",
+     "clarificationsEmitted": 0,
+     "populated": 0,
+     "valid": 0,
+     "unresolved": 0,
+     "status": "NOT_A_LINKAGE_TEST"
+    }
+   ]
+  },
+  "FORBIDDEN_FAMILY_CANDIDATES_EMITTED": [],
+  "PROTECTED_AUTHORITY_CONTRADICTIONS": 0,
+  "TOTAL_CANDIDATES": 29,
+  "RAW_WIRE_CITATION_HITS": 0
+ },
+ "frozenGates": {
+  "strictRequiredRecall": 1,
+  "maxForbiddenViolations": 0,
+  "maxRetainedButNotAsked": 0,
+  "maxUnsupportedSettlements": 0,
+  "affectedDecisionSurvival": 1,
+  "maxAcceptedInvalidLinkages": 0,
+  "rawLinkageReconciliationRequired": true,
+  "trueContradictionDeterministicProofRequired": true,
+  "hostedTrueContradictionIsObservational": true,
+  "maxInvalidClarificationObjects": 0,
+  "maxCitationContainmentViolations": 0,
+  "maxProtectedAuthorityContradictions": 0
+ },
+ "budget": {
+  "targetLogicalCalls": 16,
+  "hardProviderRequestCeiling": 16,
+  "enforcedSpendCeilingUsd": 1.664
+ },
+ "gate": [
+  {
+   "id": "A.1 sixteen logical calls, matching the authorization",
+   "ok": true,
+   "detail": "16 rows (request ceiling 16)"
+  },
+  {
+   "id": "A.2 every row is structurally scoreable",
+   "ok": true,
+   "detail": "0 problems"
+  },
+  {
+   "id": "A.3 ids are fresh HS-* development ids",
+   "ok": true,
+   "detail": "HS-A1 HS-B1 HS-C1 HS-D1 HS-E1 HS-F1 HS-G1 HS-H1 HS-J1 HS-K1 HS-L1 HS-M1 HS-N1 HS-P1 HS-Q1 HS-R1"
+  },
+  {
+   "id": "A.4 sixteen distinct domains",
+   "ok": true,
+   "detail": "16"
+  },
+  {
+   "id": "A.5 THE v9 DIGEST MATCHES §151 EXACTLY — this run is against the reviewed material",
+   "ok": true,
+   "detail": "434c127c44a8d6d8592c1b6e…"
+  },
+  {
+   "id": "A.5b and the fixture FILE is byte-identical to its §151 state",
+   "ok": true,
+   "detail": "09195af8fb7ce07c693c8d05…"
+  },
+  {
+   "id": "A.5c the set is declared UNSPENT with no prior hosted authorization",
+   "ok": true,
+   "detail": "authored under hazlenz.expert.prompt.v13"
+  },
+  {
+   "id": "B.1 the fixture linter PASSES live, at $0.00",
+   "ok": true,
+   "detail": "16 rows, 0 mechanical, 0 unsigned"
+  },
+  {
+   "id": "B.2 eight REQUIRED and eight FORBIDDEN",
+   "ok": true,
+   "detail": "8 / 8"
+  },
+  {
+   "id": "B.3 every row carries its full signature set, none re-signed to a hollow value",
+   "ok": true,
+   "detail": "all sixteen complete"
+  },
+  {
+   "id": "B.4 every REQUIRED row enumerates at least two acceptable selectors",
+   "ok": true,
+   "detail": "the §151 selector-over-specification repair"
+  },
+  {
+   "id": "B.5 the CONSEQUENCE-MAGNITUDE probe row is present, owed SILENCE, and declares its own falsifier BEFORE the run",
+   "ok": true,
+   "detail": "HS-R1"
+  },
+  {
+   "id": "B.5b and NO row authors HAZARD_SEVERITY or HAZARD_EXISTENCE as an expected label — §151 measured HAZARD_SEVERITY correct 0 of 7, so it is not a label to expect",
+   "ok": true,
+   "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION, APPLICABILITY"
+  },
+  {
+   "id": "B.6 v11, v12 and v13 each keep a non-regression row in the set",
+   "ok": true,
+   "detail": "16 forms"
+  },
+  {
+   "id": "B.7 all sixteen forms appear exactly once — a result names its own mechanism",
+   "ok": true,
+   "detail": "16 of 16"
+  },
+  {
+   "id": "C.1 every REQUIRED row states BOTH answers and BOTH DIFFERENT current outcomes",
+   "ok": true,
+   "detail": "8 complete counterfactuals"
+  },
+  {
+   "id": "C.2 exactly one authored gap per REQUIRED row, none on any FORBIDDEN row",
+   "ok": true,
+   "detail": "retention is unambiguous per row"
+  },
+  {
+   "id": "C.3 every FORBIDDEN row states the tempting question AND a per-row reason",
+   "ok": true,
+   "detail": "no blanket labels; each names the value, the basis and the side"
+  },
+  {
+   "id": "C.4 every authored affectedDecision is in the frozen vocabulary",
+   "ok": true,
+   "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION, APPLICABILITY"
+  },
+  {
+   "id": "C.5 REGULATORY_INTERPRETATION is never claimed without a SUPPLIED record",
+   "ok": true,
+   "detail": "checked"
+  },
+  {
+   "id": "C.6 and NO row authors HAZARD_EXISTENCE as the owed label — on a row whose hazard the text establishes, an existence question IS the contradiction",
+   "ok": true,
+   "detail": "checked"
+  },
+  {
+   "id": "D.1 no formal-cohort, reserved or SPENT-probe path is imported",
+   "ok": true,
+   "detail": "clean — and the spent v5 fixture set is not reused either"
+  },
+  {
+   "id": "E.1 model bound exactly",
+   "ok": true,
+   "detail": "claude-sonnet-5"
+  },
+  {
+   "id": "E.2 vendor endpoint",
+   "ok": true,
+   "detail": "https://api.anthropic.com"
+  },
+  {
+   "id": "E.3 thinking disabled",
+   "ok": true,
+   "detail": "disabled"
+  },
+  {
+   "id": "E.4 credential present (never logged or persisted)",
+   "ok": true,
+   "detail": "set"
+  },
+  {
+   "id": "F.1 built one request per row, called nothing",
+   "ok": true,
+   "detail": "16 built, 0 invocations"
+  },
+  {
+   "id": "F.2 ONE ARM ONLY — M14 not attempted",
+   "ok": true,
+   "detail": "BASE"
+  },
+  {
+   "id": "F.2b v14 IS UNIMPLEMENTED — v13 is the shipped version and no v14 block exists",
+   "ok": true,
+   "detail": "this is a baseline, not a remediation"
+  },
+  {
+   "id": "F.2c and the §139 collision rule §151 proposes to amend is UNTOUCHED",
+   "ok": true,
+   "detail": "the baseline measures shipped behaviour, not an edited contract"
+  },
+  {
+   "id": "F.3 the prospective repaired prompt is v13",
+   "ok": true,
+   "detail": "hazlenz.expert.prompt.v13"
+  },
+  {
+   "id": "F.4 the analysis contract is UNCHANGED at v2 — the schema gained no field",
+   "ok": true,
+   "detail": "hazlenz.expert.analysis.v2"
+  },
+  {
+   "id": "F.5 THE RETENTION BRIDGE is in the system prompt this probe will send, and placed LAST",
+   "ok": true,
+   "detail": "present and after the settlement check in all requests"
+  },
+  {
+   "id": "F.5b with the distinction from the settlement check stated — RESOLVED versus left OPEN",
+   "ok": true,
+   "detail": "the diagnosis, in one sentence, in every request"
+  },
+  {
+   "id": "F.5c and all four retention channels named",
+   "ok": true,
+   "detail": "candidate state, reasoning, summary, uncertainty"
+  },
+  {
+   "id": "F.6 THE ANTI-OVERFIRE CLAUSE is present — the state alone is never a reason to ask",
+   "ok": true,
+   "detail": "the conjunction and the deference to the counterfactual test, in all requests"
+  },
+  {
+   "id": "F.6b and the no-duplicate rule",
+   "ok": true,
+   "detail": "present in all requests"
+  },
+  {
+   "id": "F.7 NOTHING from v9-v12 was dropped from the text being sent — §149's closure especially",
+   "ok": true,
+   "detail": "v12 settlement, v11 threshold and routing, v10 checks, v9 precision and the INSUFFICIENT_EVIDENCE state all intact"
+  },
+  {
+   "id": "G.1 no truth-key-only string reaches any request",
+   "ok": true,
+   "detail": "16 scanned"
+  },
+  {
+   "id": "G.2 no built prompt carries citation-shaped text",
+   "ok": true,
+   "detail": "16 scanned"
+  },
+  {
+   "id": "G.3 redaction is exercised",
+   "ok": true,
+   "detail": "4 supplied record fields carried a citation pre-render"
+  },
+  {
+   "id": "H.1 spend ceiling is the LOWER of authorized and model-priced",
+   "ok": true,
+   "detail": "authorized $2.50, priced $1.6640 -> enforcing $1.6640"
+  },
+  {
+   "id": "H.1b the retry allowance is ZERO, and a retry would be refused rather than overspend",
+   "ok": true,
+   "detail": "0 retry requests against a 16-request cap"
+  },
+  {
+   "id": "H.2 store is empty or absent",
+   "ok": true,
+   "detail": "clean"
+  },
+  {
+   "id": "H.3 PRE-SPEND-IDENTITY.json does not already exist",
+   "ok": true,
+   "detail": "clean"
+  },
+  {
+   "id": "H.4 a SECOND write to the live identity is refused, bytes unchanged",
+   "ok": true,
+   "detail": "sha256 b3f8043cda6124f9… stable"
+  }
+ ],
+ "instrumentIntegrity": {
+  "setDigestBefore": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+  "setDigestAfter": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+  "setDigestUnchanged": true,
+  "fixtureFileShaBefore": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+  "fixtureFileShaAfter": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+  "fixtureFileUnchanged": true,
+  "linterPassedAfter": true,
+  "linterFindingsAfter": [],
+  "NOTE": "NO FIXTURE WAS MODIFIED AFTER THE FIRST PROVIDER REQUEST. Verified two ways — the row digest, which covers the signatures, and the raw file hash."
+ }
+}

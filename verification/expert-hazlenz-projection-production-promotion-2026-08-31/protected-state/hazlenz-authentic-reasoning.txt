@@ -1,0 +1,81 @@
+==================================================
+HazLenz Authentic Reasoning Evaluation
+==================================================
+API: http://localhost:4000/safescope-v2/classify
+Scenarios: 20
+Threshold: 80% average
+
+[FAIL] MSHA conveyor tail pulley missing guard during cleanup: 
+[FAIL] Open breaker slot and missing panel cover: 
+[FAIL] Damaged electrical cord in wet area: 
+[FAIL] Unlabeled chemical container: 
+[FAIL] Open used oil container near walkway: 
+[FAIL] Unsecured oxygen cylinder near aisle: 
+[FAIL] Loader and pedestrians share an aggregate haul route: 
+[FAIL] Scrap and hoses across walkway: 
+[FAIL] Unprotected edge on elevated platform: 
+[FAIL] Scaffold missing guardrail: 
+[FAIL] LOTO servicing jammed machine: 
+[FAIL] Hot work near combustibles: 
+[FAIL] Crusher dust / silica exposure: 
+[FAIL] Crusher noise exposure: 
+[FAIL] Confined space atmosphere concern: 
+[FAIL] Safe guarded conveyor locked out for maintenance: 
+[FAIL] Natural gas odor in boiler room: 
+[FAIL] Earplugs forgotten near grinder: 
+[FAIL] Boxes and scrap cluttering hallway: 
+[FAIL] Vague unsafe observation: 
+
+==================================================
+Scorecard
+==================================================
+Scenario | Score | Failed dimensions | Classification | Risk | Top standards | Evidence gaps | Corrective actions
+--------- | ----- | ----------------- | -------------- | ---- | ------------- | ------------- | -----------------
+MSHA conveyor tail pulley missing guard during cleanup | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Open breaker slot and missing panel cover | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Damaged electrical cord in wet area | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Unlabeled chemical container | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Open used oil container near walkway | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Unsecured oxygen cylinder near aisle | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Loader and pedestrians share an aggregate haul route | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Scrap and hoses across walkway | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Unprotected edge on elevated platform | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Scaffold missing guardrail | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+LOTO servicing jammed machine | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Hot work near combustibles | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Crusher dust / silica exposure | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Crusher noise exposure | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Confined space atmosphere concern | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Safe guarded conveyor locked out for maintenance | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Natural gas odor in boiler room | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Earplugs forgotten near grinder | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Boxes and scrap cluttering hallway | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+Vague unsafe observation | 0% | request failed | n/a | n/a | n/a | n/a | n/a
+
+==================================================
+Average score: 0.0%
+Critical failures: 20
+==================================================
+
+Failures:
+- MSHA conveyor tail pulley missing guard during cleanup: 
+- Open breaker slot and missing panel cover: 
+- Damaged electrical cord in wet area: 
+- Unlabeled chemical container: 
+- Open used oil container near walkway: 
+- Unsecured oxygen cylinder near aisle: 
+- Loader and pedestrians share an aggregate haul route: 
+- Scrap and hoses across walkway: 
+- Unprotected edge on elevated platform: 
+- Scaffold missing guardrail: 
+- LOTO servicing jammed machine: 
+- Hot work near combustibles: 
+- Crusher dust / silica exposure: 
+- Crusher noise exposure: 
+- Confined space atmosphere concern: 
+- Safe guarded conveyor locked out for maintenance: 
+- Natural gas odor in boiler room: 
+- Earplugs forgotten near grinder: 
+- Boxes and scrap cluttering hallway: 
+- Vague unsafe observation: 
+- Average score 0.0% is below threshold 80%

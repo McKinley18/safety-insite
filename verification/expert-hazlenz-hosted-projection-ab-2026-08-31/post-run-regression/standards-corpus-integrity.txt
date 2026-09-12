@@ -1,0 +1,6 @@
+PASS No duplicate standards under different citation-string formats for the same regulation
+FAIL 29 CFR 1910.147 exists in the corpus 
+SKIP 1910.178(p)(1) not present in this corpus (not required to exist, only correct if present)
+SKIP 1910.22(a) not present in this corpus (not required to exist, only correct if present)
+============================================================
+Standards corpus integrity regression: 1 FAILED

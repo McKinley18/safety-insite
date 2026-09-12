@@ -1,0 +1,784 @@
+{
+  "artifact": "SECTION-221-PER-CASE-END-STATE",
+  "frozenDigest": "82487b704e7601476481bbbe803d1b3299742478404e8df65f0149330302e1f6",
+  "providerCalls": 13,
+  "databaseOperations": 0,
+  "cases": [
+    {
+      "caseId": "IG1",
+      "families": [
+        1
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 1296,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": 2,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "clarificationCount": 0,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "NOT_EXERCISED",
+        "perFact": []
+      },
+      "settlement": {
+        "frozenExercise": "NONE",
+        "outcome": "NOT_EXERCISED",
+        "detail": null
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 2,
+        "unresolvedFactsRemaining": [],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "hazard analysis with NO decision-critical unresolved fact recorded, against 1 expected by the frozen truth. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": []
+    },
+    {
+      "caseId": "IG2",
+      "families": [
+        2,
+        12
+      ],
+      "firstPass": {
+        "failureClass": "OUTPUT_TRUNCATED",
+        "outputTokens": 4000,
+        "stopReason": "max_tokens",
+        "hazardCandidateCount": 4,
+        "declarationsShape": "ABSENT",
+        "declarationCount": 0,
+        "clarificationCount": 2,
+        "outcome": "DEFECTIVE"
+      },
+      "projection": {
+        "admittedFactKeys": [],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "NOT_EXERCISED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "NOT_EXERCISED",
+        "perFact": []
+      },
+      "settlement": {
+        "frozenExercise": "ADVERSE_SETTLEMENT",
+        "outcome": "NOT_EXERCISED",
+        "detail": {
+          "reason": "the pipeline produced no admitted owed fact for this case, so the frozen settlement exercise had nothing to act on. NOT_EXERCISED is recorded; it is never scored as a pass."
+        }
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 4,
+        "unresolvedFactsRemaining": [],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "a structurally defective first-pass result (FIRST_PASS_OUTPUT_TRUNCATED; DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD). 0 owed fact(s) reached the ledger against 2 expected by the frozen truth. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": [
+        "FIRST_PASS_OUTPUT_TRUNCATED",
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD"
+      ]
+    },
+    {
+      "caseId": "IG3",
+      "families": [
+        3
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 45,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": "NOT_AN_ARRAY",
+        "declarationsShape": "ABSENT",
+        "declarationCount": 0,
+        "clarificationCount": "ABSENT",
+        "outcome": "DEFECTIVE"
+      },
+      "projection": {
+        "admittedFactKeys": [],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "NOT_EXERCISED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "NOT_EXERCISED",
+        "perFact": []
+      },
+      "settlement": {
+        "frozenExercise": "REFUSED_FOR_MISSING_PROPERTY_AUTHORITY",
+        "outcome": "NOT_EXERCISED",
+        "detail": {
+          "reason": "the pipeline produced no admitted owed fact for this case, so the frozen settlement exercise had nothing to act on. NOT_EXERCISED is recorded; it is never scored as a pass."
+        }
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": "NOT_AN_ARRAY_OR_ABSENT",
+        "unresolvedFactsRemaining": [],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "a structurally defective first-pass result (HAZARD_CANDIDATES_RETURNED_AS_A_STRING; DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD). 0 owed fact(s) reached the ledger against 1 expected by the frozen truth. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": [
+        "HAZARD_CANDIDATES_RETURNED_AS_A_STRING",
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD"
+      ]
+    },
+    {
+      "caseId": "IG4",
+      "families": [
+        4,
+        11
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 2198,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": 2,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "clarificationCount": 1,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-IG4.418-601.1"
+        ],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 1,
+        "outcome": "REACHED",
+        "perCall": [
+          {
+            "declarationId": "D1",
+            "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+            "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether the standby person is positioned at the chamber opening with the tripod and winch rigged over the opening at the moment of the next entry",
+            "propertyRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+            "propertyCodes": [],
+            "vocabularyCodes": [],
+            "scopeCodes": [],
+            "admitted": true,
+            "nominatedFactPresent": false,
+            "targetDeclaration": "BOUND_BY_CLARIFICATION"
+          }
+        ]
+      },
+      "propertyAuthority": {
+        "outcome": "REACHED",
+        "perFact": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-IG4.418-601.1",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED"
+          }
+        ]
+      },
+      "settlement": {
+        "frozenExercise": "SATISFACTORY_SETTLEMENT",
+        "outcome": "REACHED",
+        "detail": {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-IG4.418-601.1",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "propertyReviewDecision": "CONFIRM_PROPERTY",
+          "propertyAuthorityOutcome": "CONFIRMED",
+          "propertyAuthorityStateAfter": "CONFIRMED",
+          "evidenceAuthorityMinted": true,
+          "settlementApplied": true,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "SETTLED_BY_EVIDENCE",
+          "ledgerTransitions": 1,
+          "packetFieldsPresent": {
+            "observationSpan": true,
+            "proposedProperty": true,
+            "hazlenzExplanation": true,
+            "branchesAndDecisions": true,
+            "decisionWhileUnresolved": true,
+            "existingClarification": true,
+            "verifierDecisionControllingProperty": true,
+            "controls": true
+          },
+          "packetSnapshot": {
+            "observationSpan": "The operative who went down is back at street level now and the second man was seen at the traffic-management cones at the time. The crew are about to go down again for a second pull.",
+            "proposedProperty": "Whether a standby person is positioned at the chamber opening with the rescue tripod and winch rigged over the opening at the time of the next (second) entry",
+            "hazlenzExplanation": "The text states the operative is back at street level and that the second man was seen at the cones 'at the time', and that the crew are about to go down again; it does not state where the second man or the tripod/winch are positioned at the moment the next entry is made.",
+            "decisionWhileUnresolved": "Do not permit the second entry until it is confirmed the standby person is at the opening with the tripod and winch rigged, consistent with the crew's own stated rule",
+            "existingClarification": "Is the second man (standby person) posted at the top of the chamber with the rescue tripod and winch rigged over the opening before the crew goes down again for the second pull?",
+            "verifierDecisionControllingProperty": "Whether the standby person is positioned at the chamber opening with the tripod and winch rigged over the opening at the moment of the next entry",
+            "reviewerQuestion": "Is the property below the proposition whose truth actually decides this, or is it evidence for a different underlying condition that could be satisfactory or adverse either way? Confirm it, correct it, or leave it open.",
+            "confirmationIsNotSettlement": "Confirming the property says WHICH QUESTION MATTERS. It does not say the answer is satisfactory, does not say it is adverse, and does not settle the fact. The hold stands until the fact is separately settled by reviewed evidence."
+          }
+        }
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 2,
+        "unresolvedFactsRemaining": [
+          "FP.REQUIRED_CONTROL.OBS-IG4.418-601.1"
+        ],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": true,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "1 decision-critical unresolved fact(s) in the ledger, one of which was settled by recorded human authority. "
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": []
+    },
+    {
+      "caseId": "IG5",
+      "families": [
+        5
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 2077,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": 2,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "clarificationCount": 1,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-IG5.354-500.1"
+        ],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 1,
+        "outcome": "REACHED",
+        "perCall": [
+          {
+            "declarationId": "notification_status",
+            "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+            "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether the licensed removal notification was actually submitted to the enforcing authority and the required notice period has elapsed before work starts",
+            "propertyRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+            "propertyCodes": [],
+            "vocabularyCodes": [],
+            "scopeCodes": [],
+            "admitted": true,
+            "nominatedFactPresent": false,
+            "targetDeclaration": "BOUND_BY_CLARIFICATION"
+          }
+        ]
+      },
+      "propertyAuthority": {
+        "outcome": "REACHED",
+        "perFact": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-IG5.354-500.1",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED"
+          }
+        ]
+      },
+      "settlement": {
+        "frozenExercise": "KEEP_UNRESOLVED",
+        "outcome": "REACHED",
+        "detail": {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-IG5.354-500.1",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "propertyReviewDecision": "KEEP_UNRESOLVED",
+          "propertyAuthorityOutcome": "NO_AUTHORITY_MINTED",
+          "propertyAuthorityStateAfter": "DECLINED_KEEP_UNRESOLVED",
+          "evidenceAuthorityMinted": true,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [
+            "PROPERTY_AUTHORITY_NOT_OBTAINED"
+          ],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "packetFieldsPresent": {
+            "observationSpan": true,
+            "proposedProperty": true,
+            "hazlenzExplanation": true,
+            "branchesAndDecisions": true,
+            "decisionWhileUnresolved": true,
+            "existingClarification": true,
+            "verifierDecisionControllingProperty": true,
+            "controls": true
+          },
+          "packetSnapshot": {
+            "observationSpan": "the project manager believes the notification went in a fortnight ago but cannot find it on the system and the person who submits them is on leave",
+            "proposedProperty": "whether the notification to the enforcing authority was submitted and its notice period has run",
+            "hazlenzExplanation": "The observation states only a belief that the notification was sent, with no record found on the system and no one available to verify it; it does not state that the notification was actually submitted or that any notice period has elapsed.",
+            "decisionWhileUnresolved": "Hold operatives outside the airlock and do not begin strip-out until the notification and notice period are positively confirmed",
+            "existingClarification": "Can the notification to the enforcing authority, and the date it was submitted, be located or independently confirmed before work starts?",
+            "verifierDecisionControllingProperty": "Whether the licensed removal notification was actually submitted to the enforcing authority and the required notice period has elapsed before work starts",
+            "reviewerQuestion": "Is the property below the proposition whose truth actually decides this, or is it evidence for a different underlying condition that could be satisfactory or adverse either way? Confirm it, correct it, or leave it open.",
+            "confirmationIsNotSettlement": "Confirming the property says WHICH QUESTION MATTERS. It does not say the answer is satisfactory, does not say it is adverse, and does not settle the fact. The hold stands until the fact is separately settled by reviewed evidence."
+          }
+        }
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 2,
+        "unresolvedFactsRemaining": [
+          "FP.REQUIRED_CONTROL.OBS-IG5.354-500.1"
+        ],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "1 decision-critical unresolved fact(s) in the ledger. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": []
+    },
+    {
+      "caseId": "IG6",
+      "families": [
+        6
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 2913,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": 3,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "clarificationCount": 1,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-IG6.102-131.1"
+        ],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 1,
+        "outcome": "REACHED",
+        "perCall": [
+          {
+            "declarationId": "d1",
+            "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+            "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "propertyValidity": "VALID",
+            "decisionControllingProperty": "Whether the kiosk atmosphere is hazardous (toxic, oxygen-deficient, or flammable) at the time of entry",
+            "propertyRoute": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+            "propertyCodes": [],
+            "vocabularyCodes": [],
+            "scopeCodes": [],
+            "admitted": true,
+            "nominatedFactPresent": false,
+            "targetDeclaration": "BOUND_BY_CLARIFICATION"
+          }
+        ]
+      },
+      "propertyAuthority": {
+        "outcome": "REACHED",
+        "perFact": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-IG6.102-131.1",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED"
+          }
+        ]
+      },
+      "settlement": {
+        "frozenExercise": "NONE",
+        "outcome": "NOT_EXERCISED",
+        "detail": null
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 3,
+        "unresolvedFactsRemaining": [
+          "FP.REQUIRED_CONTROL.OBS-IG6.102-131.1"
+        ],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "1 decision-critical unresolved fact(s) in the ledger. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": []
+    },
+    {
+      "caseId": "IG7",
+      "families": [
+        7
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 3031,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": "NOT_AN_ARRAY",
+        "declarationsShape": "STRING",
+        "declarationCount": 0,
+        "clarificationCount": "NOT_AN_ARRAY",
+        "outcome": "DEFECTIVE"
+      },
+      "projection": {
+        "admittedFactKeys": [],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "NOT_EXERCISED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "NOT_EXERCISED",
+        "perFact": []
+      },
+      "settlement": {
+        "frozenExercise": "NONE",
+        "outcome": "NOT_EXERCISED",
+        "detail": null
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": "NOT_AN_ARRAY_OR_ABSENT",
+        "unresolvedFactsRemaining": [],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "a structurally defective first-pass result (DECLARATIONS_RETURNED_AS_A_STRING; HAZARD_CANDIDATES_RETURNED_AS_A_STRING). 0 owed fact(s) reached the ledger against 1 expected by the frozen truth. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [
+        {
+          "defect": "the provider returned unresolvedFactDeclarations as a JSON string, not an array",
+          "containment": "the executor failed closed and elided the verifier leg; the field was never parsed or repaired"
+        }
+      ],
+      "observedStructuralDefects": [
+        "DECLARATIONS_RETURNED_AS_A_STRING",
+        "HAZARD_CANDIDATES_RETURNED_AS_A_STRING"
+      ]
+    },
+    {
+      "caseId": "IG8",
+      "families": [
+        8
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 1652,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": 3,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "clarificationCount": 0,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "NOT_EXERCISED",
+        "perFact": []
+      },
+      "settlement": {
+        "frozenExercise": "NONE",
+        "outcome": "NOT_EXERCISED",
+        "detail": null
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 3,
+        "unresolvedFactsRemaining": [],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "hazard analysis with NO decision-critical unresolved fact recorded, against 1 expected by the frozen truth. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": []
+    },
+    {
+      "caseId": "IG9",
+      "families": [
+        9
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 732,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": 1,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "clarificationCount": 0,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "NOT_EXERCISED",
+        "perFact": []
+      },
+      "settlement": {
+        "frozenExercise": "NONE",
+        "outcome": "NOT_EXERCISED",
+        "detail": null
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": 1,
+        "unresolvedFactsRemaining": [],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "hazard analysis with no decision-critical unresolved facts, which is what the frozen truth expects for this case. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": []
+    },
+    {
+      "caseId": "IG10",
+      "families": [
+        10
+      ],
+      "firstPass": {
+        "failureClass": "NO_FAILURE",
+        "outputTokens": 2913,
+        "stopReason": "tool_use",
+        "hazardCandidateCount": "NOT_AN_ARRAY",
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "clarificationCount": 1,
+        "outcome": "REACHED"
+      },
+      "projection": {
+        "admittedFactKeys": [
+          "FP.REQUIRED_CONTROL.OBS-IG10.431-507.1"
+        ],
+        "refused": [],
+        "preservedIdentifiedFacts": 0,
+        "outcome": "REACHED"
+      },
+      "verifierStage": {
+        "calls": 0,
+        "outcome": "NOT_EXERCISED",
+        "perCall": []
+      },
+      "propertyAuthority": {
+        "outcome": "REACHED",
+        "perFact": [
+          {
+            "factKey": "FP.REQUIRED_CONTROL.OBS-IG10.431-507.1",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED"
+          }
+        ]
+      },
+      "settlement": {
+        "frozenExercise": "NONE",
+        "outcome": "NOT_EXERCISED",
+        "detail": null
+      },
+      "finalAuthoritativeState": {
+        "hazardsIdentified": "NOT_AN_ARRAY_OR_ABSENT",
+        "unresolvedFactsRemaining": [
+          "FP.REQUIRED_CONTROL.OBS-IG10.431-507.1"
+        ],
+        "preservedFailClosedRecords": 0,
+        "anythingSettled": false,
+        "anythingAuthorised": false,
+        "whatTheUserIsLeftWith": "1 decision-critical unresolved fact(s) in the ledger. Nothing was settled and nothing was authorised."
+      },
+      "containedProviderDefects": [],
+      "observedStructuralDefects": [
+        "HAZARD_CANDIDATES_RETURNED_AS_A_STRING"
+      ]
+    }
+  ],
+  "frozenExercises": {
+    "settlement": [
+      {
+        "exercise": "SATISFACTORY_SETTLEMENT",
+        "caseId": "IG4",
+        "outcome": "REACHED"
+      },
+      {
+        "exercise": "ADVERSE_SETTLEMENT",
+        "caseId": "IG2",
+        "outcome": "NOT_EXERCISED"
+      },
+      {
+        "exercise": "REFUSED_FOR_MISSING_PROPERTY_AUTHORITY",
+        "caseId": "IG3",
+        "outcome": "NOT_EXERCISED"
+      },
+      {
+        "exercise": "KEEP_UNRESOLVED",
+        "caseId": "IG5",
+        "outcome": "REACHED"
+      }
+    ],
+    "correctProperty": {
+      "outcome": "NOT_EXERCISED",
+      "reason": "IG3 produced no admitted owed fact, so the correction exercise had nothing to act on"
+    },
+    "rr7": {
+      "outcome": "REACHED",
+      "appliedBy": "THE_FROZEN_HARNESS_NOT_THE_PROVIDER",
+      "providerOutputEdited": false,
+      "fieldMalformed": "decisionIfB",
+      "originalPropertyIdentified": "Whether the plant room ventilation fan is currently running (cycling) on its run-on timer",
+      "admitted": false,
+      "refusalCodes": [
+        "NON_SEMANTIC_PLACEHOLDER_VALUE"
+      ],
+      "owedFactCreated": false,
+      "preservationResult": {
+        "version": "hazlenz.expert.205.declaration-preservation.v1",
+        "facts": [],
+        "preserved": [
+          {
+            "recordKind": "STRUCTURALLY_INVALID_DECLARATION",
+            "declarationId": "decl-vent-state",
+            "identifiedProperty": "Whether the plant room ventilation fan is currently running (cycling) on its run-on timer",
+            "absentRequiredFields": [],
+            "presentFields": {
+              "declarationId": "decl-vent-state",
+              "missingFact": "Whether the plant room ventilation fan is currently running (cycling) on its run-on timer",
+              "observationSourceId": "OBS-IG10",
+              "observationSpan": "the ventilation fan is on a run-on timer that nobody present has heard start",
+              "notEstablishedBecause": "The text states only that nobody present has heard the fan start, which establishes a lack of perception by those present, not that the fan is stopped, failed, or not running.",
+              "affectedDecision": "REQUIRED_CONTROL",
+              "branchA": "The fan is running and cycling normally per its run-on timer, providing active dilution of the room air",
+              "decisionIfA": "With the fan confirmed operating, some mechanical air change is present; entry can continue provided the taped-over detector is uncovered and functionally verified before further entries, without an additional full stop-work for ventilation",
+              "branchB": "The fan has failed, stopped, or is not cycling, so no active dilution of the room air is occurring",
+              "decisionIfB": "N/A",
+              "whyNecessaryNow": "Two operatives are currently entering and exiting the room during the shift with the primary detector already known to be defeated; whether any ventilation dilution is occurring materially changes the immediate exposure risk and what interim control is needed before the detector issue is resolved"
+            },
+            "refusalCodes": [
+              "NON_SEMANTIC_PLACEHOLDER_VALUE"
+            ],
+            "refusalDetail": [
+              "decisionIfB is \"N/A\", which states no branch or action"
+            ],
+            "admissible": false,
+            "mayBeSettled": false,
+            "mayCloseTheAnalysis": false,
+            "requiresUpstreamRepair": true
+          }
+        ],
+        "dispositions": [
+          {
+            "declarationId": "decl-vent-state",
+            "disposition": "PRESERVED_STRUCTURALLY_INVALID"
+          }
+        ],
+        "safetyStateComplete": false,
+        "totalLossOnThisRow": true
+      },
+      "deterministicCodeInventedAnyField": false,
+      "theIdentifiedPropertySurvivesTheRefusal": true
+    }
+  },
+  "elisions": [
+    {
+      "caseId": "IG1",
+      "leg": "VERIFIER",
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": []
+    },
+    {
+      "caseId": "IG2",
+      "leg": "VERIFIER",
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": []
+    },
+    {
+      "caseId": "IG3",
+      "leg": "VERIFIER",
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": []
+    },
+    {
+      "caseId": "IG2",
+      "leg": "VERIFIER",
+      "reason": "FIRST_PASS_DECLARATIONS_NOT_AN_ARRAY",
+      "observedType": "absent",
+      "note": "the malformed field is preserved exactly and is NEVER parsed or repaired"
+    },
+    {
+      "caseId": "IG3",
+      "leg": "VERIFIER",
+      "reason": "FIRST_PASS_DECLARATIONS_NOT_AN_ARRAY",
+      "observedType": "absent",
+      "note": "the malformed field is preserved exactly and is NEVER parsed or repaired"
+    },
+    {
+      "caseId": "IG7",
+      "leg": "VERIFIER",
+      "reason": "FIRST_PASS_DECLARATIONS_NOT_AN_ARRAY",
+      "observedType": "string",
+      "note": "the malformed field is preserved exactly and is NEVER parsed or repaired"
+    },
+    {
+      "caseId": "IG8",
+      "leg": "VERIFIER",
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": []
+    },
+    {
+      "caseId": "IG9",
+      "leg": "VERIFIER",
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": []
+    },
+    {
+      "caseId": "IG10",
+      "leg": "VERIFIER",
+      "reason": "ELIDED_BY_FROZEN_DESIGN",
+      "condition": "ELIDED BY DESIGN. RR-7 refuses the declaration before the verifier stage, so a verifier call would measure nothing. Recorded as a design decision, not an omission.",
+      "admittedDeclarations": 1
+    }
+  ]
+}

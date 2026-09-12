@@ -1,0 +1,72 @@
+{
+  "section": "252",
+  "generated": "2026-09-12",
+  "databaseOperations": 0,
+  "recordKind": "TRANSPORT SMOKE",
+  "notCapabilityEvidence": true,
+  "observationUsed": "SYNTHETIC — none of the six frozen §250 observations was transmitted",
+  "envelope": {
+    "envelopeVersion": "hazlenz.expert.request-envelope.v1",
+    "providerId": "anthropic:claude-sonnet-5",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "strictSchema": false,
+    "firstPassMaxTokens": 8000,
+    "verifierMaxTokens": 8000,
+    "thinking": "disabled",
+    "forceToolChoice": true
+  },
+  "strictEnforcement": false,
+  "request": {
+    "model": "claude-sonnet-5",
+    "maxTokens": 8000,
+    "toolName": "emit_expert_analysis",
+    "strictFlagOnTheWire": false,
+    "forcedToolChoice": true,
+    "systemPromptSha": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+    "userPromptSha": "cf4e6fe31826aa096e81644bdac52d63c0b4798483f8658542554e26441f6184",
+    "canonicalWireSchemaSha": "d8c360543c1755f00e7b044df57b0e2f1ed90536cb99f37c8d8145152456aa89",
+    "transmittedSchemaSha": "f4da087c89d2fe5ed7e6e9a7082f9cd99ebbe9ee0cef421312425ea3b1e2fee2",
+    "transmittedSchemaBytes": 39090
+  },
+  "response": {
+    "httpStatus": 200,
+    "reachedInference": true,
+    "stopReason": "tool_use",
+    "respondedModel": "claude-sonnet-5",
+    "inputTokens": 43698,
+    "outputTokens": 1446,
+    "toolUseBlockReturned": true,
+    "toolInputSha": "eb3480feef18030c7006b1c5e42f69a490ed925b7d92175c305f4ad916799b2f",
+    "toolInputRootKeys": [
+      "expertHazardCandidates",
+      "decisionCriticalClarifications",
+      "crossHazardInsights",
+      "disagreements",
+      "expertExplanation",
+      "uncertainty",
+      "outcome",
+      "unresolvedFactDeclarations",
+      "immediateSafetyPosture"
+    ]
+  },
+  "admission": {
+    "reachedTheDeterministicAdmissionPath": true,
+    "outcome": "ADMIT",
+    "status": "COMPLETE",
+    "conformanceViolationCount": 0,
+    "conformanceViolations": [],
+    "postureRefusalCodes": [],
+    "roleJustificationCodes": [],
+    "admittedFactCount": 0,
+    "declarationRefusals": [],
+    "semanticInventions": [],
+    "verifierReached": false,
+    "verifierNotReachedBecause": "NO_ADMITTED_DECLARATION"
+  },
+  "providerCalls": 1,
+  "spendUsd": 0.101856,
+  "verdict": "PASS",
+  "verdictMeans": "PASS means the complete canonical Expert request transmitted non-strict, the provider generated a tool call, and the deterministic admission path received it and reached a verdict. It says nothing about whether that verdict was ADMIT."
+}

@@ -1,0 +1,31 @@
+MAXIMUM ACHIEVABLE COMPOSITION -- no reserved observation was read
+
+  gauntlet.seed  OPENED  eligible 45  forbidden-truth 14  gaps 0  interactions 0  (no gap/interaction label exists in this corpus)
+  Population A  OPEN  rows 34  forbidden 13  zero-required 24  gaps 0
+  Population B  OPEN  rows 22  multi 21  life-critical 21  recognised-interaction 2  gaps 0
+  augmentation V2  REVIEWED  rows 16  forbidden 12  gaps 3  interactions 3
+  gauntlet.source (offsets 2+3)  RESERVED, NOT OPENED  forbidden-capability 16 (metadata)  gap-label false  interaction-label false
+
+  class                                   req  no-open  opened  verdict
+  GOVERNED_RECORD_SUPPLIED                 40       60      60  ok
+  NO_GOVERNED_RECORD                        8       60      60  ok
+  CLARIFICATION_NOT_OWED                   14       37      37  ok
+  CLARIFICATION_OWED                       20        3       3  BLOCKED
+  FORBIDDEN_FAMILY_NEGATIVE_CONTROL        48       39      55  ok
+  LIFE_CRITICAL_PRESENT                    10       47      47  ok
+  CROSS_HAZARD_INTERACTION                 10        5       5  BLOCKED
+  DETERMINISTIC_MISS_RECALL_OPPORTUNITY    10       45      45  ok
+  MULTI_HAZARD                             12       39      39  ok
+  NEGATED_OR_SAFE_STATE                    10       30      30  ok
+  DISAGREEMENT_OPPORTUNITY                  6       60      60  ok
+  DETERMINISTIC_HAZARD_PRESENT             30       81      81  ok
+
+  DOES OPENING OFFSETS 2 AND 3 CLOSE THE DEFICITS?
+    NO. These remain SHORT even after opening both offsets:
+      - CLARIFICATION_OWED 3 < 20 (short 17)
+      - CROSS_HAZARD_INTERACTION 5 < 10 (short 5)
+
+    Opening would therefore SPEND irreplaceable reserved material without
+    producing a freezable cohort. Offsets 2 and 3 are LEFT UNOPENED.
+
+RESERVED_MATERIAL_OPENED = FALSE   PROVIDER_INVOCATION_COUNT = 0

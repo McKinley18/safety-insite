@@ -1,0 +1,12 @@
+{
+  "//": "SECTION 204 EXPERIMENT SCOPE ONLY. Typechecks the §204 successor-closure development files and NOTHING ELSE. Not repository-wide, not SRC_TYPECHECK. Report results as EXPERIMENT_SCOPE_TYPECHECK (§204). Every include glob is §204-namespaced; §204 files are picked up automatically as they are created.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-204-*.ts",
+    "scripts/test-204-*.ts",
+    "scripts/verify-204-*.ts",
+    "scripts/generate-204-*.ts",
+    "scripts/record-204-*.ts"
+  ]
+}

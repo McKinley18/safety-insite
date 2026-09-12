@@ -1,0 +1,104 @@
+{
+  "artifact": "SECTION-237-CONTRACT-IDENTITY",
+  "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+  "baseContractVersion": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+  "supersedes": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment",
+  "contractIdentities237": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+    "baseVersions": {
+      "posture": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+      "rulesInheritedFrom": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment"
+    },
+    "driverRoleField": "driverRole",
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "postures": "d80f83678510f91cb1202e8859af993c56c34f23161a5a1be44222883576e5eb",
+    "driverRoles": "76d1049d612fb42633c435a1fc250f8c5f2284125f0eaf774742e66884648012",
+    "driverRoleDefinitions": "e8af37363abadb56eea067ff257e1ba413ca7ba8338149a2a287ed7c2a8ee76a",
+    "driverRoleRefKinds": "5c5806e165c86608b5518f0a74e96d38a64f072a7a6c21f9aadd984da9328c47",
+    "decisionControllingRoles": "8c9db6e6af48d4c61ea09a007d1f900e0d2d2740cf8751cdbca9913ceaca15d2",
+    "rulesRetainedFrom235": 8,
+    "rulesRemovedFrom235": 4,
+    "providerVisibleRules": "19e3e205766c7714a104f48f8bdfd25aeab100545fda644a421a33b055e27fd6",
+    "driverBlockLines": "01b069b6700c9938f1d4d38be6d3c1422e2de7b463534878ebb3dc83a0835044",
+    "postureSchemaProperty": "6a673ef292b5f5348f918aa216befe2726b6c3cbff757508b2f08cf5e61d3e79",
+    "systemPromptNoGoverned": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+    "systemPromptGoverned": "670dfdb16945dc64d788a12befda721a1faaed366879223a74a15b6df4583ccb",
+    "cessationDerivability": "NO"
+  },
+  "projectionIdentity237": {
+    "projectionVersion": "hazlenz.expert.237.posture-projection.v1",
+    "refusalCodes237": [
+      "POSTURE_DRIVER_ROLE_MISSING",
+      "POSTURE_DRIVER_ROLE_INVALID",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+    ],
+    "codeToInvariant237": {
+      "POSTURE_DRIVER_ROLE_MISSING": "D",
+      "POSTURE_DRIVER_ROLE_INVALID": "D",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND": "D",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE": "D",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER": "D",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE": "P8",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT": "P9"
+    },
+    "codesRetiredFrom235": [
+      "CESSATION_LIST_MISSING",
+      "CESSATION_LIST_NOT_AN_ARRAY",
+      "CESSATION_ITEM_MALFORMED",
+      "CESSATION_REF_UNRESOLVED",
+      "CESSATION_REF_NOT_A_CANDIDATE",
+      "CESSATION_CONDITION_NOT_IN_BASIS",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE"
+    ],
+    "delegatesTo233": true,
+    "section233CodesUnchanged": true,
+    "reusesSection235Normalizer": true,
+    "section235ModulesModified": false,
+    "cessationSetIsDerivedNotAuthored": true,
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false
+  },
+  "refusalCodes237": [
+    "POSTURE_DRIVER_ROLE_MISSING",
+    "POSTURE_DRIVER_ROLE_INVALID",
+    "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+    "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+    "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+    "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+    "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+  ],
+  "driverRoles": [
+    "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION",
+    "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+    "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+    "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+    "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+  ],
+  "moduleDigests237": {
+    "contract": "fe881d1360bc4f34a09e48f1db1df00fa3c01ba384f16eac4773af28bfbe6324",
+    "projection": "7a6df06203403df7e02f4a229d22f6bf22c9db5ffe4361c96c2b20a0a9d79b20",
+    "consistency": "aba79f5b3a6019c6aba24b174fbf12a4b7c2addd2bcf50831247cffed9634719",
+    "fixtures": "6dac24f5fb94e7b1e37ca5ce9a300055542faa79bd8206845985dae86dfffa9e",
+    "suite": "eb08d04b05ecf25bc0d5dcb8fbe37370d57c25bdf465760bab1d035c32f3be25",
+    "design238": "e4fd8fb78659175a1a06cbb4fbdd58e94ba034458faccb7c94eb6a2f70295d5f"
+  },
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb"
+}

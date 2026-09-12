@@ -1,0 +1,72 @@
+{
+  "artifact": "SECTION_187B_PRE_RESUME_INTEGRITY",
+  "date": "2026-09-05",
+  "allPass": true,
+  "checks": [
+    {
+      "id": "1 firstPass stimuli byte-identical (hash recomputed from persisted content)",
+      "ok": true,
+      "detail": "HR-01:OK HR-04:OK HR-06:OK HR-08:OK HR-09:OK"
+    },
+    {
+      "id": "2 firstPass hashes unchanged vs §187A verifier attempt records",
+      "ok": true,
+      "detail": "compared against the frozen §187A attempt records"
+    },
+    {
+      "id": "2b all five first-pass executions normalized VALID",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "3 §184 owed-fact truth byte-identical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "8 prompt version/model identical to §187A preregistration",
+      "ok": true,
+      "detail": "model=claude-sonnet-5"
+    },
+    {
+      "id": "9 owed-fact runtime source unchanged since §187A",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "9b verifier instruction and schema unchanged",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "9c preregistration itself unchanged",
+      "ok": true,
+      "detail": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82"
+    },
+    {
+      "id": "4 frozen verifier payloads unchanged",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "5 exactly one owed fact per execution",
+      "ok": true,
+      "detail": "1 per execution by construction"
+    },
+    {
+      "id": "6 no evaluation-only field provider-visible",
+      "ok": true,
+      "detail": "12 forbidden fields asserted absent, plus the §184 evaluationRationale"
+    },
+    {
+      "id": "7 acceptableEvidence exactly as frozen (null; no wire field exists)",
+      "ok": true,
+      "detail": "V3SuppliedOwedFact carries no acceptableEvidence field — not transmitted, as at §187A"
+    },
+    {
+      "id": "10 execution order and replicate assignment are the preregistered order",
+      "ok": true,
+      "detail": "identical to the order the §187A attempts followed"
+    }
+  ]
+}

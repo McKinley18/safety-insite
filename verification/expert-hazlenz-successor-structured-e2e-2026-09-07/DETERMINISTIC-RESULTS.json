@@ -1,0 +1,732 @@
+{
+  "artifact": "SECTION_199_DETERMINISTIC_RESULTS",
+  "preregistrationSha256": "ddd6f63d56de4e6e62037457bed06b3de59b1100d169ec1b28d427d6f3d4fea4",
+  "cohortVersion": "hazlenz.expert.structured-e2e-cohort.2026-09-07.v2",
+  "TRUTH_PROVENANCE": {
+    "AI_ASSISTED_SCENARIO_AND_EXPECTATION_AUTHORING": true,
+    "PRODUCT_OWNER_REVIEWED": false,
+    "FULLY_INDEPENDENT_HUMAN_AUTHORING": false,
+    "USED_AS_THE_SEMANTIC_ORACLE": false,
+    "role": "cohort design and adjudication-packet structure only. Every semantic verdict in §199 is produced by a human reviewer, not by comparison against this file.",
+    "neverDescribeAs": "independent human truth"
+  },
+  "emptyRunSafetyVersion": "hazlenz.expert.empty-run-safety.v1",
+  "SCOPE": "MECHANICAL AXES ONLY. No semantic verdict is produced anywhere in this file. Axes A–I, L, M, N(semantic), Q, R, S(semantic) and T are HUMAN_REQUIRED and appear only in ADJUDICATION-PACKET.json with null verdicts.",
+  "KEY_DISTINCTION": "0 DEFECTS OBSERVED is not BEHAVIOR PROVEN. A mechanical axis reporting no defect reports exactly that, over the denominator stated beside it.",
+  "execution": {
+    "model": "claude-sonnet-5",
+    "respondedModels": [
+      "claude-sonnet-5"
+    ],
+    "providerCallsAttempted": 20,
+    "providerCallsReachingInference": 18,
+    "providerCallsCompleted": 18,
+    "firstPassCalls": 12,
+    "verifierCalls": 8,
+    "HARD_TOTAL_CALL_CEILING": 36,
+    "preInferenceFailures": 2,
+    "inferenceTimeFailures": 0,
+    "providerErrorsByClass": {
+      "HTTP_CLIENT_ERROR": 2
+    },
+    "ACTUAL_PROVIDER_SPEND_USD": 0.81666,
+    "spendRule": "provider-returned usage only",
+    "inputTokens": 299671,
+    "outputTokens": 21732
+  },
+  "transportCanary": {
+    "rowId": "SF-01",
+    "disposable": false,
+    "executed": true,
+    "reachedInference": true,
+    "outcome": "INFERENCE_COMPLETED",
+    "preservedAsRealResult": true,
+    "diagnosticRepeatIssued": false
+  },
+  "circuitBreaker": {
+    "attemptsLogged": 12,
+    "tripped": false,
+    "trippedAt": null,
+    "maxConsecutive": 1,
+    "note": "no two consecutive pre-inference rejections shared a signature"
+  },
+  "declarations": {
+    "rawDeclarationCount": 9,
+    "admittedDeclarationCount": 8,
+    "rejectedDeclarationCount": 1,
+    "projectedOwedFactCount": 8,
+    "refusalCodesByKind": {
+      "REQUIRED_FIELD_MISSING": 2
+    }
+  },
+  "perRow": [
+    {
+      "rowId": "SF-01",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 1,
+      "refusedDeclarations": 0,
+      "clarifications": 1,
+      "hazardCandidates": 1,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-03",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "NO_REAL_GAP",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "NOTHING_TO_ADD",
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-05",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 0,
+      "refusedDeclarations": 1,
+      "clarifications": 1,
+      "hazardCandidates": 1,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-12",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "NO_REAL_GAP",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "NOTHING_TO_ADD",
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-06",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 1,
+      "refusedDeclarations": 0,
+      "clarifications": 1,
+      "hazardCandidates": 2,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-04",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "NO_REAL_GAP",
+        "TEMPORAL_SCOPE"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 1,
+      "refusedDeclarations": 0,
+      "clarifications": 1,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-02",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 1,
+      "refusedDeclarations": 0,
+      "clarifications": 1,
+      "hazardCandidates": 2,
+      "expectedGapCount": {
+        "min": 2,
+        "max": 2
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-07",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 1,
+      "refusedDeclarations": 0,
+      "clarifications": 1,
+      "hazardCandidates": 2,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-08",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "CONJUNCTIVE_FACT"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 2,
+      "admittedFacts": 2,
+      "refusedDeclarations": 0,
+      "clarifications": 2,
+      "hazardCandidates": 2,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 2
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SF-11",
+      "provenance": "REUSED_BEHAVIORALLY_UNSPENT",
+      "capability": "ABSENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "EXPOSURE_DECISION",
+        "NOT_OBSERVED_IS_NOT_ABSENT"
+      ],
+      "executed": true,
+      "reachedInference": true,
+      "completed": true,
+      "outcome": "ANALYZED",
+      "rawDeclarations": 1,
+      "admittedFacts": 1,
+      "refusedDeclarations": 0,
+      "clarifications": 1,
+      "hazardCandidates": 1,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SG-01",
+      "provenance": "REPLACED_PROTOCOL_EXPOSED",
+      "capability": "PRESENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION",
+        "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY"
+      ],
+      "executed": true,
+      "reachedInference": false,
+      "completed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    },
+    {
+      "rowId": "SG-02",
+      "provenance": "REPLACED_PROTOCOL_EXPOSED",
+      "capability": "PRESENT",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE",
+        "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+      ],
+      "executed": true,
+      "reachedInference": false,
+      "completed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property."
+    }
+  ],
+  "countsWithinPreregisteredRange": "7/10",
+  "countsNote": "the NUMBER of declared facts against the preregistered range. It says NOTHING about whether they are the right facts, whether the spans are relevant, or whether the branches are plausible.",
+  "K_FACTKEY_IDENTITY_INTEGRITY": {
+    "classification": "MECHANICAL",
+    "keysAudited": 8,
+    "derivationMatches": 8,
+    "derivationMismatches": 0,
+    "threeWayAgreement": 8,
+    "providerAuthoredFactKeyFieldAttempts": 0,
+    "result": "ALL_KEYS_DETERMINISTICALLY_DERIVED",
+    "method": "each key derived three times — by the projection, by the executor, and again here from the persisted declaration and observation alone — and all three must agree",
+    "findings": [
+      {
+        "rowId": "SF-01",
+        "declarationId": "third-mount-securement-fact",
+        "reportedFactKey": "FP.HAZARD_SEVERITY.OBS-SF-01.203-302.1",
+        "independentlyRecomputedFactKey": "FP.HAZARD_SEVERITY.OBS-SF-01.203-302.1",
+        "independentRecomputationInScorer": "FP.HAZARD_SEVERITY.OBS-SF-01.203-302.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-11",
+        "declarationId": "UFD-1",
+        "reportedFactKey": "FP.EXPOSURE.OBS-SF-11.357-406.1",
+        "independentlyRecomputedFactKey": "FP.EXPOSURE.OBS-SF-11.357-406.1",
+        "independentRecomputationInScorer": "FP.EXPOSURE.OBS-SF-11.357-406.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-04",
+        "declarationId": "DEC-1",
+        "reportedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-04.396-478.1",
+        "independentlyRecomputedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-04.396-478.1",
+        "independentRecomputationInScorer": "FP.REQUIRED_CONTROL.OBS-SF-04.396-478.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-08",
+        "declarationId": "decl-cap-discharge",
+        "reportedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-08.426-508.1",
+        "independentlyRecomputedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-08.426-508.1",
+        "independentRecomputationInScorer": "FP.REQUIRED_CONTROL.OBS-SF-08.426-508.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-08",
+        "declarationId": "decl-voltage-test",
+        "reportedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-08.324-424.1",
+        "independentlyRecomputedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-08.324-424.1",
+        "independentRecomputationInScorer": "FP.REQUIRED_CONTROL.OBS-SF-08.324-424.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-06",
+        "declarationId": "DECL-LOADTEST",
+        "reportedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-06.279-355.1",
+        "independentlyRecomputedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-06.279-355.1",
+        "independentRecomputationInScorer": "FP.REQUIRED_CONTROL.OBS-SF-06.279-355.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-02",
+        "declarationId": "decl-rescue-capability",
+        "reportedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-02.530-594.1",
+        "independentlyRecomputedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-02.530-594.1",
+        "independentRecomputationInScorer": "FP.REQUIRED_CONTROL.OBS-SF-02.530-594.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      },
+      {
+        "rowId": "SF-07",
+        "declarationId": "DECL-1",
+        "reportedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-07.493-604.1",
+        "independentlyRecomputedFactKey": "FP.REQUIRED_CONTROL.OBS-SF-07.493-604.1",
+        "independentRecomputationInScorer": "FP.REQUIRED_CONTROL.OBS-SF-07.493-604.1",
+        "derivationMatches": true,
+        "allThreeAgree": true,
+        "providerSuppliedAnyFactKeyField": false
+      }
+    ]
+  },
+  "J_PROJECTION_FIDELITY_BYTES": {
+    "classification": "MECHANICAL",
+    "factsChecked": 8,
+    "byteFaithful": 8,
+    "violations": 0,
+    "result": "NO_BYTE_ALTERATION_OBSERVED",
+    "limitation": "BYTE PRESERVATION ONLY. That the projection did not ALTER the semantics is proven here; that the semantics were right is axes C, E and F, and is human.",
+    "findings": [
+      {
+        "rowId": "SF-01",
+        "declarationId": "third-mount-securement-fact",
+        "factKey": "FP.HAZARD_SEVERITY.OBS-SF-01.203-302.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-11",
+        "declarationId": "UFD-1",
+        "factKey": "FP.EXPOSURE.OBS-SF-11.357-406.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-04",
+        "declarationId": "DEC-1",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-04.396-478.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-08",
+        "declarationId": "decl-cap-discharge",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-08.426-508.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-08",
+        "declarationId": "decl-voltage-test",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-08.324-424.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-06",
+        "declarationId": "DECL-LOADTEST",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-06.279-355.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-02",
+        "declarationId": "decl-rescue-capability",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-02.530-594.1",
+        "problems": []
+      },
+      {
+        "rowId": "SF-07",
+        "declarationId": "DECL-1",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-07.493-604.1",
+        "problems": []
+      }
+    ]
+  },
+  "S_FIRST_PASS_GOVERNED_SOURCE_ID_BINDING": {
+    "classification": "MECHANICAL (structural half only)",
+    "opportunityRowsByDesign": [
+      "SG-01",
+      "SG-02"
+    ],
+    "opportunityRowsThatReachedInference": [],
+    "opportunities": 0,
+    "opportunityRealised": false,
+    "whyNotRealised": "both capability-present rows were rejected BEFORE INFERENCE by the provider, so no model ever saw a governed-binding capability. S is NOT_EXERCISED — an axis whose opportunity was never realised may not pass.",
+    "bindingsAttempted": "NOT_EXERCISED — empty denominator",
+    "allNamedIdsWereSupplied": "NOT_EXERCISED — empty denominator",
+    "unsuppliedIdsAcceptedWithoutRefusal": 0,
+    "capabilityAbsentRowsThatNamedAnId": [],
+    "result": "NOT_EXERCISED — empty denominator; this axis is neither a pass nor a failure",
+    "findings": [],
+    "semanticHalfIsHuman": "whether naming a record was APPROPRIATE for the fact — and on the off-point row, whether naming it at all was wrong — is in the adjudication packet"
+  },
+  "T_FIRST_PASS_GOVERNED_EVIDENCE_SEMANTIC_GROUNDING": {
+    "classification": "HUMAN_REQUIRED, with a PRECONDITION",
+    "default": "NOT_EXERCISED / NOT_ESTABLISHED",
+    "precondition": "T may only be adjudicated if the PROVIDER-VISIBLE first-pass treatment actually contained semantic governed evidence sufficient to support the judgement.",
+    "providerVisibleTreatment": "the first pass sees the exact sourceId and the evidence text with citation-shaped tokens replaced by [citation withheld]",
+    "forbiddenInference": "correct sourceId selection alone is NOT evidence of semantic grounding. S and T are separate axes and are not collapsed anywhere in this package.",
+    "separateSurface": "the verifier receives { sourceId, text } with citations intact; that surface is axes N and O and is reported separately",
+    "result": "NOT_EXERCISED — adjudicable only if a human judges the redacted provider-visible text semantically sufficient for the row. Recorded per row in the packet."
+  },
+  "N_O_CITATION_BOUNDARY": {
+    "classification": "MECHANICAL",
+    "perVerifierCall": [
+      {
+        "rowId": "SF-01",
+        "factKey": "FP.HAZARD_SEVERITY.OBS-SF-01.203-302.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-11",
+        "factKey": "FP.EXPOSURE.OBS-SF-11.357-406.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-04",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-04.396-478.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-08",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-08.426-508.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-08",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-08.324-424.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-06",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-06.279-355.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-02",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-02.530-594.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      },
+      {
+        "rowId": "SF-07",
+        "factKey": "FP.REQUIRED_CONTROL.OBS-SF-07.493-604.1",
+        "reliance": "NONE",
+        "declaredSourceIds": [],
+        "citationTokensEmitted": [],
+        "tokensPresentInSuppliedSource": [],
+        "tokensNotInAnySuppliedSource": [],
+        "admitted": true,
+        "citationReuseAdmitted": false,
+        "unauthorisedCitations": [],
+        "admissionCodes": []
+      }
+    ],
+    "quotationOpportunityRows": [
+      "SG-01"
+    ],
+    "quotationOpportunitiesTaken": "NOT_EXERCISED — empty denominator",
+    "containmentOpportunityRows": [
+      "SG-02"
+    ],
+    "containmentOpportunitiesTaken": "NOT_EXERCISED — empty denominator",
+    "totalCitationTokensEmittedAcrossAllVerifierCalls": 0,
+    "O_unsuppliedCitationAdmitted": 0,
+    "O_result": "NOT_EXERCISED — empty denominator; this axis is neither a pass nor a failure",
+    "N_result": "NOT_EXERCISED — empty denominator; this axis is neither a pass nor a failure",
+    "opportunityNote": "BOTH engineered opportunity rows (SG-01 quotation, SG-02 containment) failed BEFORE INFERENCE and produced no projected fact, so neither reached the verifier. N and O were NOT EXERCISED. Zero citation tokens were emitted across the eight verifier calls that did run, which means the containment mechanism was never put to the test — that is not the same as containment holding.",
+    "denominatorRule": "reported against OPPORTUNITY rows, never against total executions. An opportunity the model did not take is reported as not taken, NEVER as a pass."
+  },
+  "P_SETTLEMENT_AUTHORITY": {
+    "classification": "MECHANICAL",
+    "ledger": {
+      "ledgerBuilt": true,
+      "transitions": 0,
+      "allUnresolved": true,
+      "factCount": 8
+    },
+    "verifierDeclarationsClaimingSettlement": 0,
+    "result": "NO_PROVIDER_OUTPUT_SETTLED_ANY_FACT",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER"
+  },
+  "verifierAdmission": {
+    "executions": 8,
+    "reachedInference": 8,
+    "admitted": 8,
+    "refused": 0,
+    "codesByKind": {},
+    "verdictDistribution": {
+      "VERIFIED_AS_IS": 7,
+      "NO_CLARIFICATION_REQUIRED": 1
+    },
+    "bindingAdmitted": 0,
+    "wrongKeyBound": 0,
+    "relianceDeclared": 0
+  },
+  "HARD_FAIL_EVALUATION": {
+    "EVALUABLE": true,
+    "anyTriggered": false,
+    "note": null,
+    "conditions": [
+      {
+        "id": "accepted provider-authored factKey",
+        "triggered": false,
+        "evidence": "0 declaration(s) carried a factKey field"
+      },
+      {
+        "id": "projection altered branch or divergence meaning",
+        "triggered": false,
+        "evidence": "0 projected fact(s) differ from their declaration"
+      },
+      {
+        "id": "factKey not deterministically derived",
+        "triggered": false,
+        "evidence": "0 of 8 keys mismatched"
+      },
+      {
+        "id": "unsupplied governed sourceId accepted",
+        "triggered": false,
+        "evidence": "0 row(s) named an unsupplied id without refusal"
+      },
+      {
+        "id": "v3.3 admitted unsupplied citation-shaped authority",
+        "triggered": false,
+        "evidence": "0 admitted verdict(s) carry an unsupplied token"
+      },
+      {
+        "id": "provider output settled an OwedFact",
+        "triggered": false,
+        "evidence": "transitions=0, settlement-claiming declarations=0"
+      },
+      {
+        "id": "provider-authored priority escalated UNRESOLVED_SAFETY_STATE",
+        "triggered": false,
+        "evidence": "every projected fact must carry priority OTHER"
+      },
+      {
+        "id": "provider-call ceiling exceeded",
+        "triggered": false,
+        "evidence": "20 calls against a ceiling of 36"
+      }
+    ]
+  },
+  "EMPTY_RUN_REPORTING_SELF_AUDIT": {
+    "completedExecutions": 18,
+    "violations": []
+  }
+}

@@ -1,0 +1,2870 @@
+[
+  {
+    "scenarioId": "SRC-MSHA-003",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Lifting & Rigging",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Walking/Working Surfaces",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "ground_control"
+    ],
+    "engineStates": [
+      {
+        "domainId": "ground_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "052bbf0ca6ef35cd8cf6e1dd2bb3e41f11db7d14b45073f4f2979b4df7c576c6",
+    "observation": "Miner suffered fatal injuries when a hook and strap assembly failed during longwall shield realignment."
+  },
+  {
+    "scenarioId": "SRC-MSHA-007",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Welding / Cutting / Hot Work"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Confined Space",
+      "Walking/Working Surfaces"
+    ],
+    "forbiddenFromUnacceptable": [
+      "confined_space"
+    ],
+    "forbiddenNet": [
+      "confined_space"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "7ddfa70ba3a6e824b58a54173125925cd35ec59d72e81a6c2c3af66a5daf6834",
+    "observation": "Contractor suffered fatal burns when a pressurized hydraulic line ruptured and ignited while performing hot work."
+  },
+  {
+    "scenarioId": "SRC-MSHA-011",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Explosives"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "c18d0d9daf22c4d93a87dd6c546a5107053541291f8a889c2c10c76c40decba0",
+    "observation": "Operator died in an explosion when explosives were handled improperly during a blasting sequence."
+  },
+  {
+    "scenarioId": "SRC-MSHA-015",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "ground_control"
+    ],
+    "engineStates": [
+      {
+        "domainId": "ground_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "ee52e9baa08d6522ff1d7e6ad6fff47f3c6fcf7dc975b4d5da66fe9c77dbbc25",
+    "observation": "Miner died when a section of the drift roof collapsed while setting timber supports."
+  },
+  {
+    "scenarioId": "SRC-MSHA-019",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Powered Mobile Equipment",
+    "rawSecondaryHazardFamilies": [
+      "Traffic Management"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "de2a4a12d8d1fe14cb5ecf70712b2b2bca944ae829775665a75012e4e756f64c",
+    "observation": "Miner struck by runaway rail car while setting track block."
+  },
+  {
+    "scenarioId": "SRC-MSHA-028",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "af09870521b114b97c613807cc851e628039662b1f9c03f9899655af1cdf8582",
+    "observation": "Battery charging bay caught fire due to short circuit in charging lead."
+  },
+  {
+    "scenarioId": "SRC-MSHA-032",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Drowning Hazards",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm fall distance, edge protection, and worker exposure."
+        ]
+      }
+    ],
+    "rowSha256": "7dc99a4a766d55b8ab21889601e74a5c712a6c40c06216d6a8919015419aa378",
+    "observation": "Worker drowned after falling into sediment pond; no personal flotation device available."
+  },
+  {
+    "scenarioId": "SRC-MSHA-036",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "5c78ed5a19b86b10a91d0442c6292c9949637c540f17114e4abb51f2ca2a44ea",
+    "observation": "Belt drive caught fire due to friction buildup during maintenance."
+  },
+  {
+    "scenarioId": "SRC-MSHA-041",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "70858a28afd74c206b38fe55033940c0b82b9a10a71c3af0e8958b8bbdde5a8b",
+    "observation": "Maintenance personnel contacted live bus bar without applying required lockout locks."
+  },
+  {
+    "scenarioId": "SRC-MSHA-045",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "9c54851d3b0cdc8eab84a0c2902740d732d8c061778c7b08ae1af93d754474ac",
+    "observation": "Worker crushed when bench scaling failure allowed massive rock face fall."
+  },
+  {
+    "scenarioId": "SRC-MSHA-049",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "95eade043ece0ed104b42d1f16ffc84c7d60cd12156026e7e1c0a24c36850b75",
+    "observation": "Electrician sustained arc flash injuries when opening an energized distribution cabinet without LOTO."
+  },
+  {
+    "scenarioId": "SRC-MSHA-053",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "e2ba4353e8bfde0b2b45d63270673ff66459d4e27cb1612688525f5224e988ab",
+    "observation": "Mechanic caught between moving pulley and frame during conveyor tracking."
+  },
+  {
+    "scenarioId": "SRC-MSHA-057",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Powered Mobile Equipment",
+    "rawSecondaryHazardFamilies": [
+      "Traffic Management"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "e93fa0343d1384679c171874fdb6d52dd4c87b02b3b4e8eecec247b5a3725d31",
+    "observation": "Haul truck struck a stationary vehicle at intersection due to blind spot speed."
+  },
+  {
+    "scenarioId": "SRC-MSHA-061",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "d99f3a56d05a269ed946015035f932c44159d1fc140e3dfa11f347518ad62809",
+    "observation": "Bench scaling operation triggered highwall fall of ground killing operator."
+  },
+  {
+    "scenarioId": "SRC-MSHA-065",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "84f01cc020920ae32b6dbe4fd2cb0576eda3cf3085a51b1d0d758c2321c32c97",
+    "observation": "Berm failure allowed haul truck to drive off highwall edge."
+  },
+  {
+    "scenarioId": "SRC-MSHA-069",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "d874ff8fcec58243ca0c7ae88ee36c5b63560ef9f38511373df70af8c7563518",
+    "observation": "Roof fall occurred in development section while drilling."
+  },
+  {
+    "scenarioId": "SRC-OSHA-001",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fall Protection",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Confined Space"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "confined_space"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "confined_space"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "05544f54654de0ac2d6ae6374ce78ce5d977dcfe9ea1a84de237e6f623df3ca5",
+    "observation": "Worker fell 20 feet from an elevated platform because the edge guardrails were not fully installed."
+  },
+  {
+    "scenarioId": "SRC-OSHA-005",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "machine_guarding"
+    ],
+    "rawPrimaryHazardFamily": "Lockout / Stored Energy",
+    "rawSecondaryHazardFamilies": [
+      "Machine Guarding"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Emergency Egress"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "2758e3c8f7bb3c5133e2d018c30e27cc12a207636d64a6d7557f6ddbc3e5178c",
+    "observation": "Maintenance worker attempted to repair a conveyor system without performing required energy isolation."
+  },
+  {
+    "scenarioId": "SRC-OSHA-009",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Walking/Working Surfaces",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "72e8e1be3bd6c48f2700fbfea85dc9db0728c303cab42b0a6bc47eceb0ac5d9f",
+    "observation": "Chemical labeling and safety training records were missing, leaving operators unaware of handling risks."
+  },
+  {
+    "scenarioId": "SRC-OSHA-013",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Scaffolds",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Hazard Communication"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "287210fcaeaa5b5666abcc1a22ef19018c20babbc671caa594d35ab49604a405",
+    "observation": "Scaffolding collapsed due to overloading during a concrete pouring phase, dropping two workers."
+  },
+  {
+    "scenarioId": "SRC-OSHA-017",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Chemical Storage",
+    "rawSecondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Fall Protection"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "fall_protection"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "d2bd76b4d3cfec020c4c7f35fa4005aa777a8bcc4c99546e08c2f9c71be7e009",
+    "observation": "Chemical burn sustained due to corrosive substance splashing while transferring between containers."
+  },
+  {
+    "scenarioId": "SRC-OSHA-021",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Fall Protection"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "fall_protection"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "environmental_spill",
+      "fire_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "environmental_spill",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "fire_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "bdbe281ea3c20efa9d526defb2842940f710d778c50cf9930640de55125e4c03",
+    "observation": "Lithium batteries charged in area with improper spill containment and lack of active fire extinguishers."
+  },
+  {
+    "scenarioId": "SRC-OSHA-025",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "092cd67df8ffce0b1d8d20385cce66e9b7627e125a6126b23c654a0ff150da2f",
+    "observation": "Lack of SDS access in chemical handling area led to worker confusion during leak response."
+  },
+  {
+    "scenarioId": "SRC-OSHA-029",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "33147e39ff31ac55e3368023c34b3717d7f317ed122baa1076d6395c8a0e66f2",
+    "observation": "Corrosive cleaning chemicals in drums lacked proper GHS hazard labeling in prep zone."
+  },
+  {
+    "scenarioId": "SRC-OSHA-033",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fall Protection",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "4bee3ac5ef6f2f8e9bf6e9a58633cb3266dfc845551c8089a791f2eaab95f755",
+    "observation": "Worker on roof installation without harness; edge protection missing at 20ft height."
+  },
+  {
+    "scenarioId": "SRC-OSHA-037",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Chemical Storage",
+    "rawSecondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "environmental_spill"
+    ],
+    "engineStates": [
+      {
+        "domainId": "environmental_spill",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "a44cbb134697408684324c314fd6b805185886bdb6b7db655d98e52b9be8dc98",
+    "observation": "Toxic ammonia vapor leak occurred; worker lacked respiratory protection in spill zone."
+  },
+  {
+    "scenarioId": "SRC-OSHA-041",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Chemical Storage",
+    "rawSecondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "3371e68bc6afcf6e04da42e1be3b6c18d6212b94b4b2380eb597a9b2fa6790db",
+    "observation": "Chemical spill uncontained in production floor drain area."
+  },
+  {
+    "scenarioId": "SRC-OSHA-045",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Housekeeping",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "forbiddenNet": [],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "0b8a28ad358b7fd1df71902b810701b7593e5bb34c3702fcabd3bc75e30e8718",
+    "observation": "Exposed terminal box live wires uncovered during panel maintenance."
+  },
+  {
+    "scenarioId": "SRC-OSHA-049",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fall Protection",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm fall distance, edge protection, and worker exposure."
+        ]
+      }
+    ],
+    "rowSha256": "6cacd2f769f1c5bd03f33102a16fc2acd70248ef89712a3f93c7dbd6459b5510",
+    "observation": "Floor opening without guardrails; worker fell 10ft."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1003",
+    "d86Offset": 2,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "material_handling"
+    ],
+    "engineStates": [
+      {
+        "domainId": "material_handling",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "f0a4a91745f4ad3fd1065e0a265d2d04151daf4cf8d2f6a45822c12e50023627",
+    "observation": "Corrosive chemical drums found in aisle storage without GHS labels."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1007",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Housekeeping",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the energized state, boundary, and employee approach/contact exposure."
+        ]
+      }
+    ],
+    "rowSha256": "976c6ced977eeee1e17b0ab9987020db198e1a33a24f6a55c1d9b6ec1917080e",
+    "observation": "Exposed live wiring in terminal box found during site safety audit."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1011",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fall Protection",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "b3862e4bb4a0577c0e8d6368a3054fc23482939acde23bba3d3f8af6c185a137",
+    "observation": "Employee installing roof panels 25 feet up without fall arrest systems."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1015",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Chemical Storage",
+    "rawSecondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "bfc5d7eac24fa67b4441c33237e6053d61fc433837f71246d2d3472da31920a9",
+    "observation": "Inadequate ventilation system allowed accumulation of vapors causing worker illness."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1019",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Trenching & Shoring",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Hazard Communication"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "ground_control",
+      "excavation_trenching"
+    ],
+    "engineStates": [
+      {
+        "domainId": "ground_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "excavation_trenching",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm depth, soil/ground conditions, protective system, access/egress, and nearby loads."
+        ]
+      }
+    ],
+    "rowSha256": "f73ffbaedb9826644add02d6333ded132df63a1abe85eedcdf47f053e5716a8e",
+    "observation": "Unprotected trench wall collapsed on worker during pipe maintenance."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1023",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Housekeeping",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "forbiddenNet": [],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "b8dbda093a3a0e3a05ca4a20d0f1fc393a186e6a791dd144de88a6ca8ead9d93",
+    "observation": "Panel box ungrounded in high-traffic work zone; exposed live contacts."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1027",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Trenching & Shoring",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "excavation_trenching"
+    ],
+    "engineStates": [
+      {
+        "domainId": "excavation_trenching",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "593970a5ebc0debf2680322ee02acc1cf66ca56695410110a8532bd86e88fb8d",
+    "observation": "7-foot deep trench excavation lacking required shoring."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1031",
+    "d86Offset": 2,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Housekeeping",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "48b5ab0e699d0ffb854fd4a0e84b86b13904a43df78534e655687476aeefd87a",
+    "observation": "Electrical panel ungrounded; live parts exposed."
+  },
+  {
+    "scenarioId": "SRC-MSHA-004",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Trenching & Shoring",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Hazard Communication",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "excavation_trenching"
+    ],
+    "engineStates": [
+      {
+        "domainId": "excavation_trenching",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "793b4d97abd2c24a8e290c908fec6fb249bdff1e7ceafa77b5d3cee0d2025a4e",
+    "observation": "Worker was replacing a discharge line in an excavation when the trench walls collapsed."
+  },
+  {
+    "scenarioId": "SRC-MSHA-008",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "f00a72ada4a8b6794e4fdf474be2d655fd76a59c7b1a1a14556116f71442a397",
+    "observation": "Miner was killed by a fall of roof material while working near the active mining face."
+  },
+  {
+    "scenarioId": "SRC-MSHA-012",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Compressed Gas Cylinders",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Fall Protection"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "fall_protection"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "compressed_gas",
+      "pressure_systems"
+    ],
+    "engineStates": [
+      {
+        "domainId": "compressed_gas",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "pressure_systems",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "43e5afb80867884336fd24482e1732f146552eecfb3e73fc3daed69e31e9c038",
+    "observation": "Worker was fatally injured when an unsecured gas cylinder fell and ruptured, creating a projectile."
+  },
+  {
+    "scenarioId": "SRC-MSHA-016",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Explosives"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Housekeeping"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "81ae431a1e16e8f68133f43fb29473c2aa5c3b0e8e38a525c6f75ba95a3a3739",
+    "observation": "Operator was struck during a blasting sequence due to premature detonation of misfired charge."
+  },
+  {
+    "scenarioId": "SRC-MSHA-020",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Housekeeping",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "forbiddenNet": [],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "66ae539ad8d7424863cabc624ced89dc1214240cec888eb2198477c658ceb068",
+    "observation": "Electrical arc flash during high voltage splice repair."
+  },
+  {
+    "scenarioId": "SRC-MSHA-029",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "efddd718d7e2c62c42c3217cc64c031007254b4bfd9ff5c96abcec6b3a93e168",
+    "observation": "Operator trapped after highwall face sloughed onto machinery path."
+  },
+  {
+    "scenarioId": "SRC-MSHA-033",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "electrical"
+    ],
+    "rawPrimaryHazardFamily": "Lockout / Stored Energy",
+    "rawSecondaryHazardFamilies": [
+      "Electrical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "guarding_interlocks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "guarding_interlocks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "438fde4d1484a9fdd02aef807adbe34eb70b9c66a8db7f6d4dabdfa35f5c5958",
+    "observation": "Maintenance worker bypassed LOTO and energized equipment during repairs."
+  },
+  {
+    "scenarioId": "SRC-MSHA-037",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "ground_control"
+    ],
+    "engineStates": [
+      {
+        "domainId": "ground_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "8a51654fe5faf393a41b6b72148f9d8f791b08ab7fe1880e2f99cc14132cdcc9",
+    "observation": "Operator trapped when highwall bench collapsed during scaling."
+  },
+  {
+    "scenarioId": "SRC-MSHA-042",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Falls",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "6d88a0c06add3d2ca2907e5d79f2bcb99be8852f1b1c2d24f81b40936431caa9",
+    "observation": "Operator fell into conveyor drive while performing routine cleaning without LOTO."
+  },
+  {
+    "scenarioId": "SRC-MSHA-046",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "machine_guarding"
+    ],
+    "rawPrimaryHazardFamily": "Lockout / Stored Energy",
+    "rawSecondaryHazardFamilies": [
+      "Machine Guarding"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "112a7da12c78fa27f3af817a6268af3d2d25429748c4b2f8e5a7be27a68e7208",
+    "observation": "Maintenance personnel crushed while working on unsecured equipment without LOTO."
+  },
+  {
+    "scenarioId": "SRC-MSHA-050",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "ground_control"
+    ],
+    "engineStates": [
+      {
+        "domainId": "ground_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "fa8e74d1b5ee391f1deada460532bf34fe498f03a9b9d46dce341dd2de70d4e8",
+    "observation": "Scaling operation on highwall triggered bench collapse, engulfing the scaling equipment operator."
+  },
+  {
+    "scenarioId": "SRC-MSHA-054",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "rawSecondaryHazardFamilies": [
+      "Geological"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "lockout_tagout"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "31090521590660a5f1e0b05009952583336bce5821cbc9ceae198547799cf48f",
+    "observation": "Miner fatal struck by roof section failure; roof bolting plan not followed."
+  },
+  {
+    "scenarioId": "SRC-MSHA-058",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Material Handling",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "48ecce591e1886d8963afc6e3c4249806340a0cd1adafa1a59b9de00edc5f6f0",
+    "observation": "Mechanic struck by loose conveyor pulley wheel during maintenance work."
+  },
+  {
+    "scenarioId": "SRC-MSHA-062",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Falls",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "ground_control"
+    ],
+    "engineStates": [
+      {
+        "domainId": "ground_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "73f3f6b4ed272ef9504a8ca3fcbb3427f72ab22c724b07f105bf54bde4d2eec8",
+    "observation": "Miner died when caught between longwall plow and chain assembly."
+  },
+  {
+    "scenarioId": "SRC-MSHA-066",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Explosives"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Falls",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "d9d5e9c76f61294a2cb8cb2b9901462b6e58b1dcd1cce4c3c95d80fd419844f1",
+    "observation": "Explosive handling sequence failed; detonator charge struck miner during setup."
+  },
+  {
+    "scenarioId": "SRC-MSHA-070",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Explosives"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "017f3011c15ab914e2a807fb6554044475a088a0f7d3f01bb2a60744fc953541",
+    "observation": "Unsecured explosives exploded during transport in mine vehicle."
+  },
+  {
+    "scenarioId": "SRC-OSHA-002",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Chemical Storage",
+    "rawSecondaryHazardFamilies": [
+      "Process Safety Management"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom",
+      "hydraulic_pneumatic_energy"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "hydraulic_pneumatic_energy",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm pressure status, exposure boundary, and effective relief or restraint."
+        ]
+      }
+    ],
+    "rowSha256": "4b529dc90ae7e36c4b28cc33924ecc58b85021ca615439768d4dd4be83b42f68",
+    "observation": "Pressure release valve failed during maintenance, resulting in toxic chemical release into the work area."
+  },
+  {
+    "scenarioId": "SRC-OSHA-006",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fire / Explosion",
+    "rawSecondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Confined Space",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "confined_space",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "confined_space",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "20b4d518af4fa39d76ef295a0f5662028bb603a5cd1251e2f268dc7662e0de83",
+    "observation": "Accumulation of fine wood dust in the shop creating a high risk of explosion during hot work."
+  },
+  {
+    "scenarioId": "SRC-OSHA-010",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Personal Protective Equipment",
+    "rawSecondaryHazardFamilies": [
+      "Machine Guarding"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Confined Space",
+      "Emergency Egress"
+    ],
+    "forbiddenFromUnacceptable": [
+      "confined_space"
+    ],
+    "forbiddenNet": [
+      "confined_space"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "personal_protective_equipment"
+    ],
+    "engineStates": [
+      {
+        "domainId": "personal_protective_equipment",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm task hazard, PPE requirement, equipment condition, availability, and use."
+        ]
+      }
+    ],
+    "rowSha256": "455553174a7590151e5b4259fe2597ad62b8a6b1d48c15771fc763349fd84050",
+    "observation": "Worker was not wearing safety glasses when a steel chip flew into their eye during machining."
+  },
+  {
+    "scenarioId": "SRC-OSHA-014",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "First Aid / Eyewash / Safety Shower Access",
+    "rawSecondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "emergency_egress"
+    ],
+    "engineStates": [
+      {
+        "domainId": "emergency_egress",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "f775325caa90f4dbde5c6b9c68f3a0c82a0cb95916d063d0e4f7502bd975b437",
+    "observation": "Safety eye wash and emergency shower station was blocked by crates and inoperative during a routine check."
+  },
+  {
+    "scenarioId": "SRC-OSHA-018",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Ladders",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Emergency Egress"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection",
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "1ef194b4f08e7c46f4dd1550246a350710b3fbc3d2e14e05aa00ec31507cc5ae",
+    "observation": "Worker fell from a ladder that was improperly placed and lacked non-slip feet."
+  },
+  {
+    "scenarioId": "SRC-OSHA-022",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Chemical Storage",
+    "rawSecondaryHazardFamilies": [
+      "Hazard Communication"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Emergency Egress"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "material_handling"
+    ],
+    "engineStates": [
+      {
+        "domainId": "material_handling",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "d48527d86d4ca30fa0ed60a5ad517b67cb0866c0eae8e70cfb9958088cdc6a09",
+    "observation": "Acid drums stored in work aisle without secondary containment or GHS labels."
+  },
+  {
+    "scenarioId": "SRC-OSHA-026",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Falls",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the energized state, boundary, and employee approach/contact exposure."
+        ]
+      }
+    ],
+    "rowSha256": "d9023e21b8bda8f5ce1039cf8c27e378187fd240a24857bdb380fc945a0676e4",
+    "observation": "Unprotected exposed wires in terminal box at construction site."
+  },
+  {
+    "scenarioId": "SRC-OSHA-030",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Scaffolds",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "f38859d612cbf57b236f1f10e4222e61db03ea10d7d69eb242d8213361a0072c",
+    "observation": "Scaffolding platform collapsed due to concrete load exceeding engineered limits."
+  },
+  {
+    "scenarioId": "SRC-OSHA-034",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "5263cc671937d5198c2ce5743e01ff455c517f9036dbccf9d1b7df02dbb74a1a",
+    "observation": "Ammonia storage containers found unlabelled in common area."
+  },
+  {
+    "scenarioId": "SRC-OSHA-038",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Housekeeping",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "b03c9e2c57f9e3cd555a6d2897b164aa55d4a57f2db504488dc2cc71643e26a6",
+    "observation": "Panel box ungrounded in active substation; shock risk."
+  },
+  {
+    "scenarioId": "SRC-OSHA-042",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Scaffolds",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "2ddf548ae82cf9b2e9379b86580fdd0df43cd15a51c596c0257d8aa9cc2aacb2",
+    "observation": "Scaffolding work platform overloaded beyond rated capacity causing deck failure."
+  },
+  {
+    "scenarioId": "SRC-OSHA-046",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "cecdbd10fd43a92115baf9ac1de6b3fdc9739caf4ae1123219e391bfac5b7e55",
+    "observation": "Rotating parts on milling machine lacked guarding; amputated worker thumb."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1000",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fall Protection",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "2562112020b15326767d678a12d667f24b47fbce72a11336ae6dddfaa3e34eee",
+    "observation": "Worker on roof installation without harness; edge protection missing at 15ft height."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1004",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Scaffolds",
+    "rawSecondaryHazardFamilies": [
+      "Falls"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "suspended_loads"
+    ],
+    "engineStates": [
+      {
+        "domainId": "suspended_loads",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm load stability, exclusion-zone integrity, and employee position."
+        ]
+      }
+    ],
+    "rowSha256": "ec9e4d444359b9075a0aad081e18420c0ab47460c4ec2b56fd44e175e64b6041",
+    "observation": "Scaffolding overloaded with materials collapsed under load."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1008",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "rowSha256": "6a4f200cf6a1f08a1a747e18e209bfa411bdc3f3202ce209e95df81a34397892",
+    "observation": "Milling machine operated without guard for rotating parts; worker suffered minor injury."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1012",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "6b121f0074c74e7e318cf6597f6d866478e017750f1e084a4c6f12f1c2aad231",
+    "observation": "Solvent containers in production area lacked required GHS identification labels."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1016",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Electrical",
+    "rawSecondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "50603b4a28bf3be3145a18dc58076d6895e171fdabab26d7644481e047333ffd",
+    "observation": "Electrical panel not grounded; live parts were exposed in active workspace."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1020",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Fall Protection",
+    "rawSecondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure",
+      "electrical"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "247832a3b686456a7580810ee2cfb4ded004c5281789691a8c4dcce8b576376a",
+    "observation": "Worker on unprotected roof edge at 25 feet without fall arrest."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1024",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "793d7ac530a3ee4d65762a6093c122b9a55b5480324a062361cc2e400a551da1",
+    "observation": "Unguarded rotating press caused entanglement injury to operator hand."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1028",
+    "d86Offset": 3,
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Hazard Communication",
+    "rawSecondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "forbiddenNet": [
+      "electrical",
+      "machine_guarding"
+    ],
+    "isForbiddenFamilyNegativeControl": true,
+    "selectedIntoEligibleSupply": true,
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "65bbb824efd8674fd0b2cd7ac935d44c3acbf28af7fc5091635cfab9be666642",
+    "observation": "Chemical drums labeled improperly in production prep zone."
+  },
+  {
+    "scenarioId": "SRC-OSHA-1032",
+    "d86Offset": 3,
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "rawPrimaryHazardFamily": "Machine Guarding",
+    "rawSecondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "rawUnacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "forbiddenNet": [
+      "chemical_exposure"
+    ],
+    "isForbiddenFamilyNegativeControl": false,
+    "selectedIntoEligibleSupply": false,
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "rowSha256": "b07541239dd38ff27279b5eddd8e5750cd0acfb666314b170ef8553952a88716",
+    "observation": "Operator entangled in unguarded rotating press."
+  }
+]

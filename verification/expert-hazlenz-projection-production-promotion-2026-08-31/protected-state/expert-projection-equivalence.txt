@@ -1,0 +1,165 @@
+
+A. the permanent projection derives the SAME rows as the frozen prototype
+PASS A.R6 permanent projection === prototype projection
+PASS A.V7 permanent projection === prototype projection
+PASS A.R6-I permanent projection === prototype projection
+PASS A.R6-H permanent projection === prototype projection
+PASS A.V8 permanent projection === prototype projection
+PASS A.V5 permanent projection === prototype projection
+
+B. FULL REQUEST EQUIVALENCE — prototype path vs permanent path
+PASS B.R6 full provider request body is byte-identical
+PASS B.R6.model identical
+PASS B.R6.max_tokens identical
+PASS B.R6.system identical
+PASS B.R6.tools identical
+PASS B.R6.tool_choice identical
+PASS B.R6.thinking identical
+PASS B.R6.userPrompt identical
+PASS B.V7 full provider request body is byte-identical
+PASS B.V7.model identical
+PASS B.V7.max_tokens identical
+PASS B.V7.system identical
+PASS B.V7.tools identical
+PASS B.V7.tool_choice identical
+PASS B.V7.thinking identical
+PASS B.V7.userPrompt identical
+PASS B.R6-I full provider request body is byte-identical
+PASS B.R6-I.model identical
+PASS B.R6-I.max_tokens identical
+PASS B.R6-I.system identical
+PASS B.R6-I.tools identical
+PASS B.R6-I.tool_choice identical
+PASS B.R6-I.thinking identical
+PASS B.R6-I.userPrompt identical
+PASS B.V1-CTRL full provider request body is byte-identical
+PASS B.V1-CTRL.model identical
+PASS B.V1-CTRL.max_tokens identical
+PASS B.V1-CTRL.system identical
+PASS B.V1-CTRL.tools identical
+PASS B.V1-CTRL.tool_choice identical
+PASS B.V1-CTRL.thinking identical
+PASS B.V1-CTRL.userPrompt identical
+PASS B.R6-H full provider request body is byte-identical
+PASS B.R6-H.model identical
+PASS B.R6-H.max_tokens identical
+PASS B.R6-H.system identical
+PASS B.R6-H.tools identical
+PASS B.R6-H.tool_choice identical
+PASS B.R6-H.thinking identical
+PASS B.R6-H.userPrompt identical
+PASS B.V8 full provider request body is byte-identical
+PASS B.V8.model identical
+PASS B.V8.max_tokens identical
+PASS B.V8.system identical
+PASS B.V8.tools identical
+PASS B.V8.tool_choice identical
+PASS B.V8.thinking identical
+PASS B.V8.userPrompt identical
+PASS B.V5 full provider request body is byte-identical
+PASS B.V5.model identical
+PASS B.V5.max_tokens identical
+PASS B.V5.system identical
+PASS B.V5.tools identical
+PASS B.V5.tool_choice identical
+PASS B.V5.thinking identical
+PASS B.V5.userPrompt identical
+
+C. R6 permanent-path structural proof
+PASS C.1 the permanent path derives a machine_guarding disposition for R6
+PASS C.2 it is NOT_APPLICABLE
+PASS C.3 confidence is 0.96
+PASS C.4 provenance is DERIVED_FROM_PRODUCTION_ENGINE (not hand-written)
+PASS C.5 the controlling fact "moving or accessible energy = CONTRADICTED" is carried
+PASS C.6 the derived rationale names the contradicted predicate
+PASS C.7 the rendered prompt states the disposition verbatim
+PASS C.8 the rendered prompt states the controlling fact
+PASS C.9 the prompt distinguishes EVALUATED from never-considered
+
+D. PROJECTION ABSENCE is distinguishable from EVALUATED-AND-NOT_APPLICABLE
+PASS D.1 undefined and [] both render NO section (neither fabricates a determination)
+PASS D.2 an absent projection renders no assessment section at all
+PASS D.3 an absent projection never synthesises a NOT_APPLICABLE state
+PASS D.4 a populated projection DOES render the section
+PASS D.5 projected and absent requests are distinguishable
+PASS D.6 a legacy input with no such field is byte-identical to the absent case
+
+E. anti-rubber-stamp: the corrected §117 states reach Expert, override survives
+PASS E.V7 a stated point-of-operation contact must NOT be projected as a false NOT_APPLICABLE
+PASS E.R6-I a machine returned to operation with the guard absent must not be projected as excluded
+PASS E.R6-H a stated re-energization transition must not be projected as excluded
+PASS E.V5 a merely-stopped machine must project UNKNOWN, which can carry a clarification
+PASS E.V8 chemical_exposure is absent from the projection, so Expert may still add it
+PASS E.V1-CTRL the CONTROLLED assessment is rendered for Expert to see
+PASS E.V1-CTRL the override licence is present
+PASS E.V1-CTRL high confidence is explicitly not a reason to defer
+PASS E.V1-CTRL the override channel is named
+
+F. the promotion changed no frozen vocabulary and added no suppression
+PASS F.1 normalization does not read the projection (no boundary suppression path exists)
+PASS F.2 EXPERT_PROMPT_VERSION is still v6 -- this is an input projection, not a prompt revision
+
+======================================================================
+{
+ "perCaseEquivalence": [
+  {
+   "caseId": "R6",
+   "identical": true,
+   "requestChars": 24897,
+   "dispositions": [
+    "machine_guarding=NOT_APPLICABLE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+   ]
+  },
+  {
+   "caseId": "V7",
+   "identical": true,
+   "requestChars": 24864,
+   "dispositions": [
+    "machine_guarding=ACTIVE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+   ]
+  },
+  {
+   "caseId": "R6-I",
+   "identical": true,
+   "requestChars": 25391,
+   "dispositions": [
+    "machine_guarding=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]",
+    "lockout_tagout=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]"
+   ]
+  },
+  {
+   "caseId": "V1-CTRL",
+   "identical": true,
+   "requestChars": 24829,
+   "dispositions": [
+    "lockout_tagout=CONTROLLED@0.94[CONSTRUCTED_FOR_DIAGNOSTIC]"
+   ]
+  },
+  {
+   "caseId": "R6-H",
+   "identical": true,
+   "requestChars": 24931,
+   "dispositions": [
+    "machine_guarding=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]"
+   ]
+  },
+  {
+   "caseId": "V8",
+   "identical": true,
+   "requestChars": 25055,
+   "dispositions": [
+    "machine_guarding=NOT_APPLICABLE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+   ]
+  },
+  {
+   "caseId": "V5",
+   "identical": true,
+   "requestChars": 24873,
+   "dispositions": [
+    "machine_guarding=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]"
+   ]
+  }
+ ]
+}
+
+88 passed, 0 failed

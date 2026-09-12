@@ -1,0 +1,83 @@
+{
+  "artifact": "EVIDENCE-PACKAGE-DIGEST-238",
+  "fileCount": 19,
+  "evidencePackageDigest": "224c7a555588a78228398a3e18fdc9d6be15728168c9068d35f4ba7436424ffe",
+  "files": [
+    {
+      "sha256": "d968745723411077acc63341b5fad64f6ebecfbe7c04eb31ab4fd1d0af7f9171",
+      "file": "CALL-LEDGER-238.jsonl"
+    },
+    {
+      "sha256": "595d41874c91e149cb395fe00b8715f409b2ffc9adcc8375ad169d2b5c9e357f",
+      "file": "PROTECTED-IDENTITIES-238-AT-EXECUTION.json"
+    },
+    {
+      "sha256": "306e3ca59e530ee01ec0d919f0b633c7473f6f731d47fc2c41ec4deb1be0833d",
+      "file": "PROTECTED-IDENTITIES-238-POST-EXECUTION.json"
+    },
+    {
+      "sha256": "e88eec94478912419fc6a409011715c0cc56a1689a0053461bf7400a9835558f",
+      "file": "PROTECTED-IDENTITIES-238-PRE-SPEND.json"
+    },
+    {
+      "sha256": "467a2662770eb376eff01873b8054db82fef600f1675b78526a516ea114b2bea",
+      "file": "RAW-238-FIRST-PASS.jsonl"
+    },
+    {
+      "sha256": "8698634f1871acdccc3108655c6f7b1b8e3c1474c425e350ead0d49af5d62fab",
+      "file": "SECTION-238-EXECUTION-SUMMARY.json"
+    },
+    {
+      "sha256": "4c1e9a196b6e7884b23532e6deaf26806dd1e394e2a8bb25d5cac6bb4549dc43",
+      "file": "SECTION-238-FAILURE-CLASSIFICATION.json"
+    },
+    {
+      "sha256": "84a3696f65b68f68bb5a026e7312e5cc81b351ef225eef1a0633d79818e3b3d7",
+      "file": "SECTION-238-FROZEN-PROTOCOL.json"
+    },
+    {
+      "sha256": "037b59ab50fca15e98ff8cadceff0d09971e4d183e5c1537afa3a9e2f255c77a",
+      "file": "SECTION-238-INSTRUMENT.json"
+    },
+    {
+      "sha256": "bc8807c8abef83bfe1103cf8d9961e5623786215f45a3d6660dc807431e72d86",
+      "file": "SECTION-238-JUDGMENT.json"
+    },
+    {
+      "sha256": "8950cc733f9be6ccef49564938bbf7c3a2cdcb516571e150456326d0cae1e184",
+      "file": "SECTION-238-JUDGMENT.sha256"
+    },
+    {
+      "sha256": "509ccc284f18a061e4c7f0dee3e322fd5dea09fc0ef85a80f6decfcf7e028f4f",
+      "file": "SECTION-238-PACKAGE-DIGEST.json"
+    },
+    {
+      "sha256": "116dea5c9ecdb69d7f1e6b0632d1455e362971fc5ce252101f5dddfcf9230ae3",
+      "file": "SECTION-238-POST-EXECUTION-FREEZE.json"
+    },
+    {
+      "sha256": "fba5622934bfb7843e92d1bcf035fbb63dea838aaa24787ce582246c1bfc7408",
+      "file": "SECTION-238-PRE-SPEND-IDENTITY.json"
+    },
+    {
+      "sha256": "3242ed3685a3ca155270ce73d90b2c432216b1f5c0d75c8d7a787ba6208e3599",
+      "file": "SECTION-238-PREREGISTERED-FAILURE-OPTIONS.json"
+    },
+    {
+      "sha256": "d04a9b60d0016b21ed775b4d61f5467410568784445a13f7c6e1f20812e0fdf3",
+      "file": "SECTION-238-REPORT.md"
+    },
+    {
+      "sha256": "e86af09c218aa89563e329a9c5e7ce1285e5c39de848e57e6d0d452eb091da0b",
+      "file": "SECTION-238-SCORING-RULES.json"
+    },
+    {
+      "sha256": "0e0de782730e3875be1e188c6e265bf9a73d0c652df89f710ce82957b45a3a1e",
+      "file": "SECTION-238-TRUTH-CONTRACT.json"
+    },
+    {
+      "sha256": "8aed453353696c62f125043781382f9c7a5c70cf3d19c55bbfb65010df1d4042",
+      "file": "SECTION-238-TRUTH-PREFLIGHT.json"
+    }
+  ]
+}

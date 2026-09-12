@@ -1,0 +1,272 @@
+{
+  "section": "251",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "adopted": false,
+  "adoptionNote": "the compacted representation is proved here but NOT wired into production, because the §250 C2 grammar-size limit blocks the base contract independently of this compaction",
+  "verdict": "PASS",
+  "admissiblePairs": [
+    "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+    "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+    "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE",
+    "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+    "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+    "UNRESOLVED_RESPONSE_OR_FOLLOW_UP|UNRESOLVED_DECLARATION"
+  ],
+  "inadmissiblePairsUnder239": [
+    "ESTABLISHED_CONDITION_REQUIRING_CESSATION|UNRESOLVED_DECLARATION",
+    "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|UNRESOLVED_DECLARATION",
+    "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|UNRESOLVED_DECLARATION",
+    "UNRESOLVED_RESPONSE_OR_FOLLOW_UP|HAZARD_CANDIDATE"
+  ],
+  "compactUnionPairs": [
+    "ESTABLISHED_CONDITION_REQUIRING_CESSATION|HAZARD_CANDIDATE",
+    "ESTABLISHED_CONDITION_REQUIRING_CONTROLS|HAZARD_CANDIDATE",
+    "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION|HAZARD_CANDIDATE",
+    "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|HAZARD_CANDIDATE",
+    "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION|UNRESOLVED_DECLARATION",
+    "UNRESOLVED_RESPONSE_OR_FOLLOW_UP|UNRESOLVED_DECLARATION"
+  ],
+  "compactUnionSha": "bfcf04b729f2aa534b0f4bc79505ab1318d04a9fa0491616334291138e51bba7",
+  "section247UnionSha": "5ce578f05cdaec12dacd229be5a9c5a8d6073d508082ec6fc3dd7040c0748e19",
+  "checks": [
+    {
+      "id": "K6-1",
+      "claim": "the compact union expresses exactly the six admissible pairs",
+      "pass": true,
+      "detail": "expressed=6 admissible=6"
+    },
+    {
+      "id": "K6-2",
+      "claim": "the compact union expresses none of the four inadmissible §239 pairs",
+      "pass": true,
+      "detail": "inadmissible checked=4"
+    },
+    {
+      "id": "K6-3",
+      "claim": "the compact union expresses the same pair set as the §247 union",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "K6-4",
+      "claim": "every branch pins its role with const and restricts refKind to that role only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "K6-5",
+      "claim": "every branch restricts epistemicCharacter to the characters its role admits",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "K6-6",
+      "claim": "no controlling role admits MANUFACTURED_OR_SPECULATIVE in the compact union",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "NORM-1",
+      "claim": "wire -> canonical -> wire is the identity on every admissible shape",
+      "pass": true,
+      "detail": "10 shapes"
+    },
+    {
+      "id": "NORM-2",
+      "claim": "every canonical justification subfield produced is a §247 subfield",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "NORM-3",
+      "claim": "normalization supplies no value the wire did not carry",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "roundTrips": [
+    {
+      "role": "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION",
+      "withUnresolved": false,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "epistemicCharacter"
+      ]
+    },
+    {
+      "role": "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION",
+      "withUnresolved": true,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "unresolvedElement",
+        "epistemicCharacter"
+      ]
+    },
+    {
+      "role": "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+      "withUnresolved": false,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "epistemicCharacter",
+        "dischargingControlRef"
+      ]
+    },
+    {
+      "role": "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+      "withUnresolved": true,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "unresolvedElement",
+        "epistemicCharacter",
+        "dischargingControlRef"
+      ]
+    },
+    {
+      "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "withUnresolved": false,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "epistemicCharacter",
+        "alongsideControlConsidered",
+        "whyAlongsideControlInsufficient"
+      ]
+    },
+    {
+      "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+      "withUnresolved": true,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "unresolvedElement",
+        "epistemicCharacter",
+        "alongsideControlConsidered",
+        "whyAlongsideControlInsufficient"
+      ]
+    },
+    {
+      "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+      "withUnresolved": false,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "epistemicCharacter"
+      ]
+    },
+    {
+      "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+      "withUnresolved": true,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "unresolvedElement",
+        "epistemicCharacter"
+      ]
+    },
+    {
+      "role": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP",
+      "withUnresolved": false,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "epistemicCharacter"
+      ]
+    },
+    {
+      "role": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP",
+      "withUnresolved": true,
+      "ok": true,
+      "canonicalKeys": [
+        "ref",
+        "refKind",
+        "driverRole",
+        "roleJustification"
+      ],
+      "justificationKeys": [
+        "factualBasis",
+        "whyDecisionMaterial",
+        "whyControllingNotFollowUp",
+        "unresolvedElement",
+        "epistemicCharacter"
+      ]
+    }
+  ]
+}

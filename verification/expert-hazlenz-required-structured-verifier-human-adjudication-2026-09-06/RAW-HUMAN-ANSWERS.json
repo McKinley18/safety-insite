@@ -1,0 +1,106 @@
+{
+  "artifact": "SECTION_189_RAW_HUMAN_ANSWERS",
+  "date": "2026-09-06",
+  "note": "Raw human selections exactly as supplied by the product owner during the §189 adjudication session, recorded slot by slot as they were given. This file is the primary record. It is never edited to satisfy scorer validation, and the completed ballot is derived from it rather than replacing it.",
+  "adjudicator": "PRODUCT_OWNER",
+  "answers": {
+    "188-HR-09-R1": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED"
+    },
+    "188-HR-01-R1": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED"
+    },
+    "188-HR-06-R1": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED"
+    },
+    "188-HR-04-R1": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED",
+      "HR04_CATEGORY": "A"
+    },
+    "188-HR-08-R1": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED"
+    },
+    "188-HR-06-R2": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED"
+    },
+    "188-HR-09-R2": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED"
+    },
+    "188-HR-08-R2": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED",
+      "contractRefusedExecution": true
+    },
+    "188-HR-04-R2": {
+      "OWED_FACT_PRESERVED": "PASS",
+      "FACTKEY_BINDING_CORRECT": "PASS",
+      "CLARIFICATION_TARGET_CORRECT": "PASS",
+      "CLARIFICATION_EVIDENCE_SUFFICIENT": "PASS",
+      "NO_NEARBY_PROPERTY_SUBSTITUTION": "PASS",
+      "ADJACENT_FACT_CONTAINED": "PASS",
+      "STRICT_SEMANTIC_VERDICT": "PRESERVED",
+      "HR04_CATEGORY": "A"
+    }
+  },
+  "completeness": {
+    "slotsAnswered": 65,
+    "slotsRequiredForTheFrozenGate": 112,
+    "HUMAN_ADJUDICATION_COMPLETENESS": "65 / 112",
+    "status": "INCOMPLETE — the product owner redirected to a model diagnostic review before completing the frozen instrument",
+    "consequence": "the frozen §189 human semantic gate remains UNMEASURED / NOT_COMPLETED_BY_A_HUMAN_REVIEWER. These 65 selections are preserved as historical evidence and are NOT a semantic result."
+  },
+  "executionsAnsweredInFrozenSequenceOrder": [
+    "188-HR-09-R1", "188-HR-01-R1", "188-HR-06-R1", "188-HR-04-R1", "188-HR-08-R1",
+    "188-HR-06-R2", "188-HR-09-R2", "188-HR-08-R2", "188-HR-04-R2"
+  ],
+  "executionsNeverReached": [
+    "188-HR-01-R2", "188-HR-09-R3", "188-HR-08-R3", "188-HR-01-R3", "188-HR-04-R3", "188-HR-06-R3"
+  ]
+}

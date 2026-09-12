@@ -1,0 +1,746 @@
+{
+  "generatedAt": "2026-08-31T15:26:48.264Z",
+  "note": "Analysis only. ZERO provider calls. Nothing repaired.",
+  "perArm": {
+    "baseline": {
+      "calls": 9,
+      "candidates": 11,
+      "clarifications": 20,
+      "insights": 5,
+      "disagreements": 0,
+      "states": {
+        "ACTIVE": 9,
+        "INSUFFICIENT_EVIDENCE": 1,
+        "CORRECTED": 1
+      },
+      "declared": {
+        "ADDITIONAL_TO_DETERMINISTIC": 8,
+        "AGREES_WITH_DETERMINISTIC": 1,
+        "REFINES_DETERMINISTIC": 2
+      },
+      "derived": {
+        "CROSS_FAMILY_ADDITION": 11
+      },
+      "supportedPathway": 2,
+      "unsupportedPathway": 9,
+      "routingOpportunities": 18,
+      "hits": 12,
+      "misses": 0,
+      "overRouted": 6,
+      "explanationOnlyLosses": 0,
+      "groundingOpportunities": 11,
+      "quotesEmitted": 11,
+      "exactBound": 11,
+      "unbindable": 0,
+      "evidenceOutOfBounds": 0,
+      "itemRejections": 0,
+      "analysisRejections": 0,
+      "malformed": 0,
+      "outcomeInconsistencies": 0,
+      "inputTokens": 82477,
+      "outputTokens": 11733,
+      "costUsd": 0.282284,
+      "latencyP50Ms": 14809,
+      "latencyMaxMs": 18884
+    },
+    "projected": {
+      "calls": 9,
+      "candidates": 8,
+      "clarifications": 16,
+      "insights": 6,
+      "disagreements": 1,
+      "states": {
+        "CONTROLLED": 1,
+        "ACTIVE": 7
+      },
+      "declared": {
+        "ADDITIONAL_TO_DETERMINISTIC": 3,
+        "CONTRADICTS_DETERMINISTIC": 4,
+        "REFINES_DETERMINISTIC": 1
+      },
+      "derived": {
+        "CROSS_FAMILY_ADDITION": 4,
+        "TRUE_DETERMINISTIC_CONTRADICTION": 3,
+        "UNSUPPORTED_CONTRADICTION": 1
+      },
+      "supportedPathway": 3,
+      "unsupportedPathway": 5,
+      "routingOpportunities": 18,
+      "hits": 18,
+      "misses": 0,
+      "overRouted": 0,
+      "explanationOnlyLosses": 0,
+      "groundingOpportunities": 8,
+      "quotesEmitted": 8,
+      "exactBound": 8,
+      "unbindable": 0,
+      "evidenceOutOfBounds": 0,
+      "itemRejections": 0,
+      "analysisRejections": 0,
+      "malformed": 0,
+      "outcomeInconsistencies": 0,
+      "inputTokens": 88186,
+      "outputTokens": 11297,
+      "costUsd": 0.289342,
+      "latencyP50Ms": 16736,
+      "latencyMaxMs": 21759
+    }
+  },
+  "perCase": {
+    "R6|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "IMPORTANT",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6|baseline|rep2": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": true,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6|baseline|rep3": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 4,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 2
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "LOW",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": true,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6|projected|rep1": {
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=NOT_APPLICABLE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [],
+      "issues": []
+    },
+    "R6|projected|rep2": {
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=NOT_APPLICABLE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [],
+      "issues": []
+    },
+    "R6|projected|rep3": {
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=NOT_APPLICABLE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [],
+      "issues": []
+    },
+    "V7|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "IMPORTANT",
+        "BLOCKING"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "lockout_tagout",
+          "state": "CORRECTED",
+          "confidence": "HIGH",
+          "declared": "AGREES_WITH_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V7|projected|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=ACTIVE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "lockout_tagout",
+          "state": "CONTROLLED",
+          "confidence": "MODERATE",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6-I|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": true,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6-I|projected|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT",
+        "BLOCKING"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]",
+        "lockout_tagout=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "CONTRADICTS_DETERMINISTIC",
+          "derived": "TRUE_DETERMINISTIC_CONTRADICTION",
+          "supportedCurrentPathway": true,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        },
+        {
+          "family": "lockout_tagout",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "declared": "CONTRADICTS_DETERMINISTIC",
+          "derived": "TRUE_DETERMINISTIC_CONTRADICTION",
+          "supportedCurrentPathway": true,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V1-CTRL|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": true,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V1-CTRL|projected|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "lockout_tagout=CONTROLLED@0.94[CONSTRUCTED_FOR_DIAGNOSTIC]"
+      ],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6-H|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        },
+        {
+          "family": "lockout_tagout",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "declared": "REFINES_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "R6-H|projected|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 1
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [
+        "CONDITION_STATE_INTERPRETATION"
+      ],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "CONTRADICTS_DETERMINISTIC",
+          "derived": "UNSUPPORTED_CONTRADICTION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V8|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "IMPORTANT",
+        "BLOCKING",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        },
+        {
+          "family": "chemical_exposure",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "REFINES_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V8|projected|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=NOT_APPLICABLE@0.96[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "chemical_exposure",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "REFINES_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        },
+        {
+          "family": "chemical_exposure",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V5|baseline|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "IMPORTANT",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "HIGH",
+          "declared": "ADDITIONAL_TO_DETERMINISTIC",
+          "derived": "CROSS_FAMILY_ADDITION",
+          "supportedCurrentPathway": false,
+          "hypotheticalMarkerPresent": false,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    },
+    "V5|projected|rep1": {
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "clarificationCriticalities": [
+        "BLOCKING",
+        "BLOCKING",
+        "IMPORTANT"
+      ],
+      "disagreementSurfaces": [],
+      "uncertaintyStatements": 0,
+      "projectedDispositions": [
+        "machine_guarding=UNKNOWN@0.45[DERIVED_FROM_PRODUCTION_ENGINE]"
+      ],
+      "routing": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "candidates": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "confidence": "MODERATE",
+          "declared": "CONTRADICTS_DETERMINISTIC",
+          "derived": "TRUE_DETERMINISTIC_CONTRADICTION",
+          "supportedCurrentPathway": true,
+          "hypotheticalMarkerPresent": true,
+          "quotes": 1
+        }
+      ],
+      "issues": []
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "operation": "§177 strict semantic closure and remediation reclassification",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_V14_POST_REMEDIATION_VALIDATION_COMPLETE — CONTROL_PROPERTY_SUFFICIENCY_REMEDIATION_AUTHORIZATION_REQUIRED",
+  "PRE_CLOSURE_INTEGRITY": "INTACT",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "sourceCodeChanges": 0,
+
+  "integrityVerification": {
+    "script": "verification/expert-hazlenz-post-remediation-validation-2026-09-05/section-177-strict-closure-recompute.py",
+    "howVerified": "every hash recomputed from the actual file bytes; no recorded value was trusted or copied",
+    "checks": {
+      "frozenRowText": "PASS — all ten row texts recomputed from BLINDED-HUMAN-REVIEW-PACKET.json agree with FROZEN-ROW-HASHES.json (hash and charCount), with the §174 HUMAN-ADJUDICATION-RECORD binding, and with the §177 preregistration textSha256",
+      "reviewPacketFiles": "PASS — BLINDED-HUMAN-REVIEW-PACKET.md 7dd2ea00ad1c0f64… and .json 85da35aa6552554f… unchanged since the §174 freeze, so ROW_TEXT_MUTATION_ALLOWED = FALSE has held",
+      "adjudicatedWordingIsTheExecutedWording": "PASS — each of the five REQUIRED-row observations in the strict packet hashes to the frozen row text, and each row's emittedClarifications are byte-identical to the run record's clarifications. The product owner adjudicated the exact artifact that was executed.",
+      "frozenTruth": "PASS — HUMAN_CLARIFICATION_REQUIRED in the §174 record, truthRequired in the §177 preregistration and truthRequired in the run records agree on 10/10 rows",
+      "runAggregates": "PASS — 10 records, $0.49406, 189830 prompt tokens, 11440 output tokens, mean latency 38455 ms all recompute from the per-row telemetry; 10/10 normalizationState VALID, 0 contract failures, raw provider output persisted on every row"
+    }
+  },
+
+  "promptIdentityVerification": {
+    "method": "EXPERT_SYSTEM_PROMPT imported from the live backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts and hashed in-process, matching how expertPromptIdentity() computes it",
+    "EXPERT_PROMPT_VERSION": "hazlenz.expert.prompt.v14",
+    "SYSTEM_PROMPT_SHA256_recomputed": "84aacb9d222d028b028aa22df1c3df85668b76022ac0c94ce50d3ff8e910d9fe",
+    "systemPromptChars": 34622,
+    "agreesWithPreregistration": true,
+    "promptFileSha256_recomputed": "70fbc0d3cf3b307ad52523c4fd34de710b20e0636f0d9665bc7fffbb180eedc4",
+    "agreesWithSection177PhaseA_promptFileSha256After": true,
+    "consequence": "the prompt that produced these ten rows is still the prompt on disk, byte for byte. No source drift occurred between §177 execution and this closure."
+  },
+
+  "strictAdjudications": {
+    "HR-01": true,
+    "HR-06": true,
+    "HR-08": true,
+    "HR-09": true
+  },
+  "strictAdjudicationConfidence": "HIGH for all four",
+  "HR-04_strict": {
+    "value": false,
+    "reason": "no clarification was emitted, so nothing could address the owed fact. This is not an adjudicable emission; it is an absence."
+  },
+  "adjudicationScope": "the four emissions listed above and nothing else. HR-04 is scored FALSE mechanically, not adjudicated.",
+
+  "AI_ASSISTED_STRICT_ADJUDICATION": true,
+  "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+  "aiAssistanceDisclosure": "GPT-5.6 Sol reviewed the exact §177 emitted clarification outputs before product-owner finalisation, and the product owner agrees with all four judgments. This disclosure travels with every figure derived from these verdicts and must never be described as AI-free independent human adjudication.",
+
+  "FINAL_METRICS": {
+    "REQUIRED_RECALL_STRICT": 0.8,
+    "SILENCE_PRECISION": 1.0,
+    "BALANCED_ACCURACY": 0.9,
+    "ROW_LEVEL_ACCURACY": 0.9
+  },
+  "metricReconciliation": {
+    "method": "recomputed from POST-REMEDIATION-RUN-RECORDS.jsonl plus the four recorded adjudications; the authorization's expected values were checked afterwards, never copied in",
+    "REQUIRED_RECALL_STRICT": { "fraction": "4/5", "expected": 0.8, "recomputed": 0.8, "agrees": true },
+    "SILENCE_PRECISION": { "fraction": "5/5", "expected": 1.0, "recomputed": 1.0, "agrees": true },
+    "BALANCED_ACCURACY": { "derivation": "(0.80 + 1.00) / 2", "expected": 0.9, "recomputed": 0.9, "agrees": true },
+    "ROW_LEVEL_ACCURACY": { "fraction": "9/10", "expected": 0.9, "recomputed": 0.9, "agrees": true }
+  },
+  "metricsReproduce": true,
+  "rowOutcomes": {
+    "strictHits": ["HR-01", "HR-06", "HR-08", "HR-09"],
+    "strictMisses": [{ "rowId": "HR-04", "reason": "NO_EMISSION" }],
+    "silenceCorrect": ["HR-02", "HR-03", "HR-05", "HR-07", "HR-10"],
+    "silenceWrong": []
+  },
+
+  "OBSERVED_RESULT_VS_CAUSAL_CLAIM": {
+    "rule": "the observed numeric result and any causal claim about what produced it are separate records and must stay separate",
+    "OBSERVED_NUMERIC_RESULT": "on the §177 v14 run against the frozen balanced instrument: 4/5 strict REQUIRED recall, 5/5 SILENCE precision, 9/10 row-level accuracy",
+    "PRECISION_IMPROVEMENT_CAUSALLY_ESTABLISHED": false,
+    "whyNot": [
+      "§175 attempt 2 and §177 phase B each executed ONE stochastic execution per row",
+      "nine of ten rows behaved identically across the two runs",
+      "exactly one row changed — HR-05, one clarification to zero",
+      "no replicate design exists at either identity, so nothing separates the §176 precision brake causing that change from ordinary sampling variance"
+    ],
+    "forbiddenStatement": "that §176 caused SILENCE precision to improve from 4/5 to 5/5",
+    "whatWouldEstablishIt": "replicates at a single fixed identity, following the §152–§154 hardened baseline/replicate2/replicate3 pattern — not one run either side of a prompt edit"
+  },
+
+  "SECTION_176_REMEDIATION_VERDICT": {
+    "TEMPORAL_RULE_PRESENT": true,
+    "TEMPORAL_REMEDIATION_BEHAVIORALLY_CONFIRMED": false,
+    "evidence": "HR-04 remained missed under v14, exactly as under v13: zero clarifications, uncertainty.statements empty, declaredOutcome ANALYZED",
+    "disposition": "the temporal rule REMAINS in the production prompt. It is not removed merely because HR-04 remained missed — no evidence shows it harmful, and 22 of its 28 lines are brakes. Removing a correct rule because a different defect stood in front of it would be a speculative change.",
+    "removalWouldRequire": "separate evidence that the rule itself causes harm, which does not exist"
+  },
+
+  "PROXIMAL_FAILURE_FROM_THE_§177_RAW_REASONING": {
+    "rowId": "HR-04",
+    "rowText": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter initialled the sheet, which covers belt tracking and lubrication; the fastenings were last torque-checked at the annual service. No tools rest on the guard.",
+    "whatTheModelEmitted": {
+      "candidate": "cand-conveyor-nip",
+      "assertedConditionState": "CONTROLLED",
+      "quotedEvidenceVerbatim": "The fixed guard over the head drum nip point is in position.",
+      "reasoningVerbatim": "The conveyor nip point is a well-known crush/entanglement hazard for a worker walking the adjacent gangway; the observation confirms the guard is currently in place, so this is a controlled hazard rather than an active exposure, but is included as it is a distinct hazard family (conveyors) not separately captured by the machine_guarding finding.",
+      "explanationVerbatim": "The observation reports the head drum nip point guard is currently in place and free of tools, and the pre-start check plus torque-check history is stated as completed, so no additional current gap is established beyond the guarding hazard already found deterministically. A conveyor-specific candidate is added to reflect the nip point exposure the operative walking the gangway would face if the guard were absent, but the stated current condition is that it is fitted, so it is recorded as controlled rather than active. No decision-critical facts are missing and no cross-hazard interaction is established on the facts given.",
+      "decisionCriticalClarifications": 0
+    },
+    "diagnosis": "the model treated present physical presence — the guard being in position — as sufficient to settle the guarding state relevant to the decision. Because it believed the state was settled, the temporal question about the annual-service torque check was never reached, and the §176 rule, which lives in the list of things that do not establish a fact, was never consulted on this path.",
+    "theDistinctionThisEstablishes": {
+      "CONTROL_PRESENCE": "the control exists and is physically in position",
+      "CONTROL_PROPERTY_SUFFICIENCY": "the property the current decision actually turns on — securement, functional operation, effectiveness, configuration, protective response",
+      "forHR04": "presence / in-position evidence does not by itself establish current securement of the fixed guard. Only once current securement remains unresolved does the temporal sufficiency of the historical torque verification become relevant at all."
+    },
+    "whatIsNOTConcluded": [
+      "that physical presence is generally insufficient — presence may completely establish a presence fact",
+      "that visual or physical evidence is generally insufficient",
+      "that historical records are generally insufficient",
+      "that the model should function-test or reverify by default"
+    ],
+    "theNarrowHypothesis": "evidence that establishes ONE property of a control must not automatically be treated as establishing a DIFFERENT decision-critical property of that control"
+  },
+
+  "REMEDIATION_HYPOTHESIS": {
+    "classification": "CONTROL_PROPERTY_CONFLATION_REMEDIATION_HYPOTHESIS",
+    "status": "HYPOTHESIS — NOT FORMALLY ESTABLISHED",
+    "relationToSection169": "consistent with, and more specific than, the §169 evidence-sufficiency weakness. §169 is NOT rewritten and NOT rescored; this names a narrower mechanism within the same territory.",
+    "developmentEvidenceSupportingIt": [
+      "§169 evidence-sufficiency observations — four of twelve human-reviewed bindings accepted evidence (visual inspection, a control-panel status indicator, physical inspection) consistent with a safeguard being present and non-functional",
+      "the §177 HR-04 raw reasoning quoted above, which closes the fact on presence in the model's own words",
+      "the repeated HR-04 miss across §175 and §177 — two runs, same row, same absence"
+    ],
+    "whyItIsNotEstablished": "n = 1 row, two single-sample runs, one model, a Claude-authored corpus evaluated against a Claude-family model. The mechanism is legible in the raw reasoning; it is not measured.",
+    "mustNotBeDescribedAs": [
+      "an established production defect",
+      "a formally identified root cause",
+      "evidence that the §176 repair was wrong"
+    ]
+  },
+
+  "NEXT_REMEDIATION_TARGET": {
+    "status": "RECOMMENDED — NOT IMPLEMENTED IN THIS SLICE",
+    "authorization": "requires new product-owner authorization before any implementation",
+    "narrowestTarget": "teach Expert that evidence establishing a control's existence, presence, or one observed property does not automatically establish another property the current decision requires.",
+    "mandatoryShape": {
+      "propertyRelative": "the rule must name which property the decision needs and which property the evidence establishes; it must not treat any evidence class as globally weak",
+      "evidenceRelative": "the same evidence may fully establish one property and say nothing about another; the rule must permit both readings"
+    },
+    "mustNotBecome": [
+      "physical inspection is insufficient",
+      "visual evidence is insufficient",
+      "old records are insufficient",
+      "always function-test",
+      "always reverify",
+      "ask whenever any property is unstated"
+    ],
+    "invariantsAnyFutureRemediationMustPreserve": [
+      "clarification precision — the SILENCE half of the instrument must not regress",
+      "the existing five-part decision-critical test",
+      "the §176 temporal rule, which stays in place"
+    ],
+    "measurementWarning": "the instrument is now spent twice at n=1 per row. A third single-sample run cannot distinguish a working repair from noise; any future remediation claim needs replicates at one identity."
+  },
+
+  "CLAIM_BOUNDARY": {
+    "singlePermittedClaim": "On the §177 v14 run against the frozen balanced development instrument, Expert HazLenz achieved 4/5 strict REQUIRED recall and 5/5 SILENCE precision, for 9/10 row-level accuracy.",
+    "mustNotClaim": [
+      "that clarification precision improved, or that §176 improved it",
+      "that the temporal remediation is behaviourally confirmed",
+      "production readiness, formal acceptance or customer readiness",
+      "independent-human validation",
+      "any general clarification accuracy percentage outside these ten frozen rows"
+    ],
+    "provenance": {
+      "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+      "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+      "AI_ASSISTED_STRICT_ADJUDICATION": true,
+      "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+      "corpusAuthoredBy": "Claude",
+      "evaluatedModelFamily": "Claude",
+      "consequence": "development evidence only, even at 9/10"
+    }
+  },
+
+  "ACCOUNTING": {
+    "SECTION_177": { "calls": 10, "costUsd": 0.49406 },
+    "CUMULATIVE_SECTION_175_177": { "calls": 30, "costUsd": 1.44358 },
+    "thisClosureSlice": { "calls": 0, "costUsd": 0.0 }
+  },
+
+  "worktree": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "productionSourceChanges": 0,
+    "sections167To176EvidencePreserved": "unchanged — verified by hash where hashes exist",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "//": "SECTION 208B EXPERIMENT SCOPE ONLY. This configuration typechecks the §208B verifier-leg recovery files and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. Report results as EXPERIMENT_SCOPE_TYPECHECK (§208B), never as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-208b-verifier-recovery.ts",
+    "scripts/preflight-208b-verifier-recovery.ts",
+    "scripts/execute-208b-verifier-recovery.ts",
+    "scripts/compare-208b-verifier.ts"
+  ]
+}

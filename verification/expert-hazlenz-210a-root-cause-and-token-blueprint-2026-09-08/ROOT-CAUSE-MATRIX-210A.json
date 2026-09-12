@@ -1,0 +1,614 @@
+{
+  "artifact": "ROOT_CAUSE_MATRIX_210A",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "section209Reinterpreted": false,
+  "note": "DERIVED_* fields are copied or counted from frozen evidence. ANALYSIS_* fields are the agent's reading of that evidence, downstream of the product owner's verdict, and carry an explicit confidence. No verdict was recomputed.",
+  "failingSlotCount": 29,
+  "familyCounts": {
+    "RC-B": 8,
+    "RC-A": 10,
+    "RC-D": 3,
+    "RC-E": 4,
+    "RC-C": 4
+  },
+  "sourcesRead": [
+    {
+      "label": "§209 worksheet",
+      "path": "verification/expert-hazlenz-frozen-cohort-adjudication-209-2026-09-08/ADJUDICATION-WORKSHEET-209.json",
+      "sha256": "50209475a5b7c532e2feebe71d79eb2ef19c82559fb2a29b23daace9000bd5ac"
+    },
+    {
+      "label": "§209 gate results",
+      "path": "verification/expert-hazlenz-frozen-cohort-adjudication-209-2026-09-08/GATE-RESULTS-209.json",
+      "sha256": "c52b69440fa24f1c056adf89e573559df91f1915852c9f5300e151b343c6d23a"
+    },
+    {
+      "label": "§208 first pass",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/RAW-FIRST-PASS-208.jsonl",
+      "sha256": "711dfa354a31bf0b22607ac6af3c0094ff665ab8e2a0e544ea5d64a827191614"
+    },
+    {
+      "label": "§208 corrected projection",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/PROJECTION-208-CORRECTED.jsonl",
+      "sha256": "78fb731b8fe2fe6687ee8dc7e20f0e786f56637868bf4b128d90e096af23df9e"
+    },
+    {
+      "label": "§208 governed stage",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/RAW-GOVERNED-208.jsonl",
+      "sha256": "40fc53f352b70df14cdc2bcc331aa1c00db1ec10db4000ddfc00f10de7ce3637"
+    },
+    {
+      "label": "§208 call ledger",
+      "path": "verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/CALL-LEDGER-208.jsonl",
+      "sha256": "bebce44762b2989765bca0e60354f1a6456659352ed1e2a8aa008f16236bd98a"
+    },
+    {
+      "label": "§208B call ledger",
+      "path": "verification/expert-hazlenz-verifier-recovery-208b-2026-09-08/CALL-LEDGER-208B.jsonl",
+      "sha256": "adfa069e4b27b51629f1ac2fb7c01c65217b99e76df0319bcb2138ece21f2248"
+    }
+  ],
+  "rows": [
+    {
+      "caseId": "AC-01",
+      "slotId": "AC-01.FACT1.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier directly evaluates the lanyard-attachment fact and recognizes the clarification as sufficient, but its verdict rationale also evaluates the separate duct-capacity fact and the row’s other possible contingencies, so it is not about this fact and no other.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-01",
+      "slotId": "AC-01.FACT2.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier directly evaluates the duct-capacity owed fact and correctly assesses its clarification, but it also discusses the independent lanyard fact and other row-level considerations, so exact single-fact binding is not maintained.",
+      "DERIVED_factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-02",
+      "slotId": "AC-02.FACT1.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier substantively reaches and evaluates the exact wheel-speed owed fact, but its rationale also evaluates the tongue-guard clarification, the PAT-label issue, and the row more generally; this is correct topic reach with adjacent-property drift rather than exact single-fact binding.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-02",
+      "slotId": "AC-02.FACT2.M",
+      "axis": "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "gates": [
+        "G7"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The clarification can be answered negatively on whether the gap was checked or adjusted without establishing the actual present clearance, so it can leave the frozen owed property unsettled.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "ANALYSIS_observedDefect": "the clarification asks whether the guard gap was CHECKED/ADJUSTED; a negative answer leaves the actual present clearance unestablished",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "PROCESS_FOR_STATE",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "the §208B verifier VERIFIED_AS_IS this clarification, so the verifier did not catch the process/state substitution either",
+      "ANALYSIS_candidateRemediation": "RC-A present-state rule; a process question is sufficient only when the process outcome is itself the frozen property",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-02",
+      "slotId": "AC-02.FACT2.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier reaches the guard-clearance fact, but its rationale also substantively discusses the separate wheel-speed and PAT-label properties rather than remaining exclusively bound to this fact.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-03",
+      "slotId": "AC-03.ROW.A",
+      "axis": "A FIRST_PASS_GAP_RECALL",
+      "gates": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The fan-operation gap was declared, but the independent pooled-liquid identity gap was not emitted as a structured declaration even though it changes the current response.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "the pooled-liquid identity gap was recognised and asked about but never emitted as a structured declaration",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_STRUCTURED_EMISSION",
+      "ANALYSIS_rootCauseFamily": "RC-D",
+      "ANALYSIS_subMode": "RECOGNISED_NOT_EMITTED",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "CAND-SPILL is INSUFFICIENT_EVIDENCE and names the identity question; CLAR-SPILL-ID asks it exactly; unresolvedFactDeclarations contains only DECL-FAN-STATE. Recognition succeeded; emission did not.",
+      "ANALYSIS_candidateRemediation": "emission completeness at the contract level -- an INSUFFICIENT_EVIDENCE candidate or a BLOCKING clarification that reaches no declaration is a structural defect the deterministic layer can DETECT AND REFUSE (never repair)",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-03",
+      "slotId": "AC-03.ROW.H",
+      "axis": "H MULTI_GAP_PRESERVATION",
+      "gates": [
+        "G2"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "Only the fan gap survived as a structured owed fact; the independent liquid-identity gap disappeared from the declaration set, so the two gaps were not preserved independently.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "only the fan gap survived as a structured owed fact, so the two independent gaps were not preserved independently",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_STRUCTURED_EMISSION",
+      "ANALYSIS_rootCauseFamily": "RC-D",
+      "ANALYSIS_subMode": "RECOGNISED_NOT_EMITTED",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "same emission gap as AC-03.ROW.A",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-D fix",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-03",
+      "slotId": "AC-03.FACT1.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier correctly reaches the fan-status fact but also evaluates the separate liquid-identity clarification and other row-level contingencies.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-05",
+      "slotId": "AC-05.ROW.B",
+      "axis": "B FIRST_PASS_GAP_PRECISION",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The model declared personal-versus-shared padlock ownership even though the fitter’s exclusive control of the only key is established and the frozen truth makes lock ownership decision-neutral today.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "padlock ownership was declared although the fitter's exclusive key control is established and lock ownership is decision-neutral today",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-E",
+      "ANALYSIS_subMode": "ESTABLISHED_TREATED_AS_OPEN",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "decl-lock-ownership is the row's only declaration and is the frozen false gap",
+      "ANALYSIS_candidateRemediation": "the precision half of the RC-A present-state rule: a property the text answers, or whose answers do not change today's action, is not an owed fact",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-05",
+      "slotId": "AC-05.ROW.I",
+      "axis": "I FALSE_GAP_SUPPRESSION",
+      "gates": [
+        "G4"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "An unnecessary owed fact was created for personal-versus-workshop lock ownership on a row whose decision-critical isolation and key-control state was already established.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "an unnecessary owed fact was created on a row whose decision-critical state was established",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-E",
+      "ANALYSIS_subMode": "ESTABLISHED_TREATED_AS_OPEN",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "same declaration",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-E fix",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-07",
+      "slotId": "AC-07.ROW.B",
+      "axis": "B FIRST_PASS_GAP_PRECISION",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The normal-panel-position fact is legitimate, but the model also declared a separate open-panel sound-level fact that the frozen truth does not require as an owed fact.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "an open-panel sound-level fact was declared that the frozen truth does not require",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-E",
+      "ANALYSIS_subMode": "ESTABLISHED_TREATED_AS_OPEN",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "d1 (sound level) is the surplus declaration; d2 (normal panel position) is the legitimate one",
+      "ANALYSIS_candidateRemediation": "same precision lever as AC-05",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-07",
+      "slotId": "AC-07.FACT1.F",
+      "axis": "F DECISION_DIVERGENCE_VALIDITY",
+      "gates": [
+        "G9"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The branches lead to different actions, but the positive branch overreaches from a limited sound-level measurement to a broader conclusion that no hearing-protection requirement is triggered.",
+      "DERIVED_factKey": "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+      "ANALYSIS_observedDefect": "decisionIfA generalises a limited sound-level measurement into a conclusion that no hearing-protection requirement is triggered",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-E",
+      "ANALYSIS_subMode": "DOWNSTREAM_OVERCLAIM",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "the F slot is bound to d1, the surplus declaration; the overclaim is in its decisionIfA",
+      "ANALYSIS_candidateRemediation": "RC-E removes the surplus declaration; independently, a decision statement may not claim more than its branch establishes (the frozen prohibitedDecisionClaims boundary)",
+      "ANALYSIS_confidence": "MEDIUM"
+    },
+    {
+      "caseId": "AC-08",
+      "slotId": "AC-08.FACT1.M",
+      "axis": "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "gates": [
+        "G7"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The question asks generally what traffic-management arrangements exist and can be satisfied by measures such as speed limits or right-of-way rules that do not establish whether pedestrians and trucks are prevented from occupying this crossing simultaneously.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1",
+      "ANALYSIS_observedDefect": "the clarification asks what traffic-management arrangements EXIST; it can be satisfied without establishing whether simultaneous pedestrian/truck occupancy is prevented",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "EXISTENCE_FOR_EFFECT",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "decl-traffic-mgmt.missingFact asks whether arrangements \"provide any operational control\"; clar-traffic-mgmt enumerates arrangement types rather than the effect required",
+      "ANALYSIS_candidateRemediation": "RC-A present-state rule extended to EFFECT: where the frozen property is an achieved effect, naming the mechanism is not the property",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-10",
+      "slotId": "AC-10.FACT1.C",
+      "axis": "C OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "gates": [
+        "G5"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The declaration identifies the correct absence-of-voltage verification issue, but its property statement does not fully preserve the frozen before-and-after proving sequence; that qualifier appears only later in the clarification.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "ANALYSIS_observedDefect": "the before-and-after proving sequence is absent from the declared property; it appears only in the clarification, which the projection does not carry",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_FIELD_ROUTING",
+      "ANALYSIS_rootCauseFamily": "RC-C",
+      "ANALYSIS_subMode": "QUALIFIER_IN_WRONG_FIELD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "q1 asks whether the proving unit was used \"before and after that test\"; d1.missingFact and branchA say only \"using a proving unit (perhaps since put away)\". The projected OwedFact carries neither missingFact nor the clarification, so the verifier never saw the qualifier.",
+      "ANALYSIS_candidateRemediation": "require every essential qualifier present anywhere in the declaration set to appear in the fields the projection carries; this is the D15 loss shape and is what axis Q measures",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-10",
+      "slotId": "AC-10.FACT1.E",
+      "axis": "E BRANCH_PLAUSIBILITY",
+      "gates": [
+        "G5"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The negative branch captures failed verification, but the positive branch says a proving unit was used without explicitly preserving that the indicator was proved both before and after the point-of-work test, so the exact verification state is underspecified.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "ANALYSIS_observedDefect": "branchA does not preserve that the indicator was proved both before and after the test, so the positive branch underspecifies the verification state",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_FIELD_ROUTING",
+      "ANALYSIS_rootCauseFamily": "RC-C",
+      "ANALYSIS_subMode": "QUALIFIER_IN_WRONG_FIELD",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "same declaration d1",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-C fix",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-18",
+      "slotId": "AC-18.FACT1.F",
+      "axis": "F DECISION_DIVERGENCE_VALIDITY",
+      "gates": [
+        "G9"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The positive decision to continue work does not follow from a rating for a person alone because the frozen fact also requires capacity for the materials being carried.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "ANALYSIS_observedDefect": "decisionIfA concludes work may continue from a rating for a person alone, while the frozen fact also requires capacity for the materials being carried",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-C",
+      "ANALYSIS_subMode": "MISSING_CONJUNCT",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "D1.missingFact, branchA and Q1 all say \"with a person on them\"; the materials load conjunct is absent from every field",
+      "ANALYSIS_candidateRemediation": "conjunct-completeness: where the frozen property is conjunctive, every conjunct must survive into the declared property, both branches and the clarification",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-18",
+      "slotId": "AC-18.FACT1.M",
+      "axis": "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "gates": [
+        "G7"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The clarification asks about the 1.8 metre span with a person but omits the materials load, so an answer can leave the actual-load property unresolved.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "ANALYSIS_observedDefect": "the clarification omits the materials load, so an answer can leave the actual-load property unresolved",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-C",
+      "ANALYSIS_subMode": "MISSING_CONJUNCT",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "Q1 asks about the 1.8 m span with a person only",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-C fix",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-19",
+      "slotId": "AC-19.ROW.A",
+      "axis": "A FIRST_PASS_GAP_RECALL",
+      "gates": [
+        "G1",
+        "G3"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The decision-critical fact is whether dressers actually wear RPE during abrasive cutting; the model instead declared only whether RPE is available in lockers, so the required fact was not declared.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "the decision-critical property \"do the dressers actually wear RPE during cutting\" was replaced by \"is RPE available in the lockers\"",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "AVAILABILITY_FOR_USE",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "DEC-1.missingFact names presence and accessibility in lockers; branchA/B and CL-1 carry the same availability framing. No candidate is INSUFFICIENT_EVIDENCE (CAND-1 CONTROLLED, CAND-2/3 UNKNOWN).",
+      "ANALYSIS_candidateRemediation": "first-pass instruction must require the declared property to be a PRESENT STATE of the work as observed, and must reject a capability/availability proxy for it",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-19",
+      "slotId": "AC-19.ROW.B",
+      "axis": "B FIRST_PASS_GAP_PRECISION",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The availability declaration substitutes an unobserved equipment-location question for the frozen current-control property of actual RPE use and is not a legitimate owed fact for this row.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "the availability declaration is not a legitimate owed fact for this row",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "AVAILABILITY_FOR_USE",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "same single declaration DEC-1 as AC-19.ROW.A; precision fails because the one declaration emitted is the substituted property",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-A fix; no separate lever",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-19",
+      "slotId": "AC-19.FACT1.M",
+      "axis": "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "gates": [
+        "G7"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "Asking whether RPE is available cannot establish whether the dressers actually wear it when abrasive cutting resumes, so the exact owed property remains open.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "ANALYSIS_observedDefect": "the clarification asks about availability and cannot settle actual use",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "AVAILABILITY_FOR_USE",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "CL-1 asks \"Is RPE actually available to the dressers ... for use when abrasive cutting resumes?\" -- the availability frame is inherited from the declaration",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-A fix; the clarification inherits the property frame",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-20",
+      "slotId": "AC-20.FACT1.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier correctly evaluates the three pre-start-condition fact but also substantively evaluates the independent combustible-core fact and row-level alternatives.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-20",
+      "slotId": "AC-20.FACT2.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier correctly evaluates the combustible-core fact but also substantively evaluates the separate pre-start-condition fact and other row-level gaps.",
+      "DERIVED_factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "ANALYSIS_observedDefect": "the verifier reached the correct owed fact but its rationale also evaluated sibling properties visible in the same payload, so the verdict is not bound to this fact and no other",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_PROPERTY_IN_PAYLOAD",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "every axis-L slot on a row carrying more than one admitted OwedFact drifted (6 of 6); no L slot passed on such a row. AC-03 carries one fact but two clarifications and drifted on the sibling clarification.",
+      "ANALYSIS_candidateRemediation": "single-fact verifier payload: supply exactly the target OwedFact, its own clarification and its own evidence span",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-22",
+      "slotId": "AC-22.ROW.A",
+      "axis": "A FIRST_PASS_GAP_RECALL",
+      "gates": [
+        "G1",
+        "G3"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The frozen fact asks what was actually done about both compressed-air and accumulator energy before entry; the model instead declared whether an accumulator bleed or blocking method exists.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "the frozen property (what was actually done about compressed-air AND accumulator energy before entry) was replaced by \"does a bleed/block method exist\", and the compressed-air conjunct was dropped",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "EXISTENCE_FOR_ACTION",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "UF-1.missingFact = \"Whether a physical means exists to bleed down or block the hydraulic accumulator's stored pressure\". Candidate pneumatic_energy_not_locked exists but is ACTIVE and never enters a declaration.",
+      "ANALYSIS_candidateRemediation": "RC-A present-state rule, plus a conjunct-completeness check when the frozen property is conjunctive",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-22",
+      "slotId": "AC-22.ROW.B",
+      "axis": "B FIRST_PASS_GAP_PRECISION",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The sole declaration substitutes downstream engineering-method availability for the current pre-entry stored-energy state and omits the compressed-air conjunct, so it is not a precise owed fact for this row.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "the sole declaration substitutes engineering-method availability for the pre-entry energy state and omits the compressed-air conjunct",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "EXISTENCE_FOR_ACTION",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "same UF-1 declaration",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-A fix",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-22",
+      "slotId": "AC-22.FACT1.L",
+      "axis": "L VERIFIER_TARGET_BINDING",
+      "gates": [
+        "G6"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "The verifier is bound to the projected accumulator-method fact, but its rationale also evaluates the unlocked air valve and incomplete procedure while failing to recognize that the projected fact substituted for the frozen pre-entry energy-state property.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "ANALYSIS_observedDefect": "the verifier evaluated the unlocked air valve and the incomplete procedure alongside the target fact, and did not detect that the projected fact had substituted for the frozen property",
+      "ANALYSIS_firstStageWhereDefectAppears": "VERIFIER_INPUT_COMPOSITION",
+      "ANALYSIS_rootCauseFamily": "RC-B",
+      "ANALYSIS_subMode": "SIBLING_CANDIDATE_IN_PAYLOAD",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "AC-22 has one admitted fact and one clarification but three hazard candidates; the two properties named in the adjudicator reason are exactly the other two candidates",
+      "ANALYSIS_candidateRemediation": "RC-B payload isolation covers the drift; the missed substitution is an RC-A consequence and is not repaired by isolation alone",
+      "ANALYSIS_confidence": "MEDIUM"
+    },
+    {
+      "caseId": "AC-22",
+      "slotId": "AC-22.FACT1.N",
+      "axis": "N GOVERNED_EVIDENCE_QUOTATION_BOUNDARY",
+      "gates": [
+        "G14"
+      ],
+      "DERIVED_verdict": "PARTIALLY_CORRECT",
+      "DERIVED_productOwnerReason": "GOV-ECP-01 legitimately concerns stored-energy control, but the bearing statement stretches that requirement into bearing on whether a physical method actually exists on this particular machine, which the record cannot establish.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "ANALYSIS_observedDefect": "a governed record stating a REQUIREMENT was declared to bear on whether a physical method EXISTS on this machine",
+      "ANALYSIS_firstStageWhereDefectAppears": "GOVERNED_STAGE_BINDING",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "REQUIREMENT_FOR_FACT",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "RAW-GOVERNED-208 AC-22 bearingStatement: \"...the requirement that stored or residual energy be dissipated or restrained ... which bears on whether such a method exists on the machine.\" The binding target was already an existence question (UF-1).",
+      "ANALYSIS_candidateRemediation": "RC-A fixes the bound property; additionally the governed contract should force the bearing statement to separate what the record REQUIRES from what it EVIDENCES",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-22",
+      "slotId": "AC-22.FACT1.T",
+      "axis": "T FIRST_PASS_GOVERNED_EVIDENCE_SEMANTIC_GROUNDING",
+      "gates": [
+        "G14"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The provider-visible governed text was sufficient to judge grounding, but the binding statement extends the record from a requirement to dissipate or restrain stored energy to the factual existence of a method on this machine; that factual proposition is not grounded by the record.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "ANALYSIS_observedDefect": "the binding extends a normative requirement into a factual proposition about this machine, which the record cannot ground",
+      "ANALYSIS_firstStageWhereDefectAppears": "GOVERNED_STAGE_BINDING",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "REQUIREMENT_FOR_FACT",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "same bearingStatement; the product owner recorded that the provider-visible governed text WAS sufficient to judge grounding, so this is not an evidence-supply defect",
+      "ANALYSIS_candidateRemediation": "same as AC-22.FACT1.N",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-22",
+      "slotId": "AC-22.FACT1.M",
+      "axis": "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "gates": [
+        "G7"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The clarification asks whether the accumulator can be bled or blocked; it does not establish what was actually done about both compressed air and accumulator energy before the technician entered, so it cannot settle the frozen fact.",
+      "DERIVED_factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "ANALYSIS_observedDefect": "the clarification asks whether the accumulator CAN be bled or blocked, not what was done before entry",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-A",
+      "ANALYSIS_subMode": "EXISTENCE_FOR_ACTION",
+      "ANALYSIS_status": "DOWNSTREAM_CONSEQUENCE",
+      "ANALYSIS_evidence": "CQ-1 is a capability question inherited from UF-1",
+      "ANALYSIS_candidateRemediation": "resolved by the RC-A fix",
+      "ANALYSIS_confidence": "HIGH"
+    },
+    {
+      "caseId": "AC-23",
+      "slotId": "AC-23.ROW.A",
+      "axis": "A FIRST_PASS_GAP_RECALL",
+      "gates": [
+        "G1",
+        "G3"
+      ],
+      "DERIVED_verdict": "INCORRECT",
+      "DERIVED_productOwnerReason": "The ladder base-slip property is decision-critical and unresolved, but the first pass produced no structured declaration for it.",
+      "DERIVED_factKey": null,
+      "ANALYSIS_observedDefect": "the ladder base-slip property is decision-critical and unresolved but produced no structured declaration",
+      "ANALYSIS_firstStageWhereDefectAppears": "FIRST_PASS_GENERATION",
+      "ANALYSIS_rootCauseFamily": "RC-D",
+      "ANALYSIS_subMode": "UNKNOWN_ASSERTED_AS_ESTABLISHED",
+      "ANALYSIS_status": "UPSTREAM_ROOT",
+      "ANALYSIS_evidence": "all four AC-23 candidates are ACTIVE, none INSUFFICIENT_EVIDENCE; zero clarifications and zero declarations were produced. The base-slip condition was framed as an established active hazard rather than an open question, so the unresolved-fact path was never entered.",
+      "ANALYSIS_candidateRemediation": "the first-pass instruction must separate \"this hazard is present\" from \"this decision-critical property is unknown\"; an ACTIVE hazard does not discharge an open property that still governs today's action",
+      "ANALYSIS_confidence": "MEDIUM"
+    }
+  ]
+}

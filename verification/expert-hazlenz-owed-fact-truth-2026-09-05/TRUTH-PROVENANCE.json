@@ -1,0 +1,42 @@
+{
+  "artifact": "SECTION_184_TRUTH_PROVENANCE",
+  "truthClassOnceApproved": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_OWED_FACT_TRUTH",
+  "AI_ASSISTED_OWED_FACT_AUTHORING": true,
+  "PRODUCT_OWNER_REVIEWED": true,
+  "FULLY_INDEPENDENT_HUMAN_AUTHORING": false,
+  "currentState": "RECORDED 2026-09-05 -- product-owner verdicts returned on all ten rows and recorded. PRODUCT_OWNER_REVIEWED is TRUE because the owner returned verdicts; this model did not set it on its own authority.",
+  "whoDidWhat": {
+    "Claude": "prepared candidate statements, branches, spans, rationales and mechanical checks.",
+    "GPT-5.6 Sol": "assisted the product owner during semantic review.",
+    "productOwner": "edited targetDecision and both decision branches across all five pairs and approved all other substantive fields across all ten rows."
+  },
+  "mustNeverBeDescribedAs": [
+    "independent human truth",
+    "AI-free authoring",
+    "validated safety truth",
+    "production truth",
+    "formal acceptance truth"
+  ],
+  "inputsConsulted": [
+    "frozen HR-01..HR-10 observation text (§173/§174, byte-unchanged)",
+    "§174 product-owner clarification verdicts (REQUIRED/SILENCE)",
+    "§173 PAIR-MAP factKeys and target decisions — AUTHORING-SIDE, used for consistency only, not truth",
+    "§181 governed alignment audit — for the governedEvidenceClass metadata only"
+  ],
+  "inputsDeliberatelyNotConsulted": [
+    "§175, §177 and §179 provider outputs — no run record was read by the generator",
+    "§181 A0 fixture wording — available as candidate material but not copied; the pair-shared statements were written fresh so HR-04 would not inherit the A0 phrasing that stated the discrimination"
+  ],
+  "ifTheOwnerEdits": "preserve the exact product-owner-approved text as the frozen truth; the candidate is superseded and retained only as provenance",
+  "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_OWED_FACT_TRUTH",
+  "recordedOn": "2026-09-05",
+  "whatTheOwnerEdited": {
+    "fields": [
+      "targetDecision",
+      "decisionIfEstablished",
+      "decisionIfNotEstablished"
+    ],
+    "scope": "all five pairs, therefore all ten rows",
+    "everythingElse": "approved as written -- factStatement, factKey, settled/unresolved classification, whyUnresolved, evidenceSpan, evaluationRationale, affectedDecision, governedEvidenceClass"
+  }
+}

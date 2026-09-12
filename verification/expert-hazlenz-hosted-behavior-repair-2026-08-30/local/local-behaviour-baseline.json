@@ -1,0 +1,1586 @@
+{
+  "provider": "local-ollama",
+  "model": "qwen3-coder:30b",
+  "repeats": 3,
+  "calls": 27,
+  "hostedCalls": 0,
+  "costUsd": 0,
+  "routing": {
+    "TYPED_ROUTING_OPPORTUNITIES": 54,
+    "TYPED_ROUTING_HITS": 54,
+    "TYPED_ROUTING_MISSES": 0,
+    "TYPED_ROUTING_OVER_ROUTED": 0,
+    "EXPLANATION_ONLY_LOSSES": 0,
+    "byCollection": {
+      "expertHazardCandidates": {
+        "opportunities": 18,
+        "hits": 18,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "decisionCriticalClarifications": {
+        "opportunities": 18,
+        "hits": 18,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "crossHazardInsights": {
+        "opportunities": 12,
+        "hits": 12,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "disagreements": {
+        "opportunities": 6,
+        "hits": 6,
+        "misses": 0,
+        "overRouted": 0
+      }
+    }
+  },
+  "outcomesByCase": {
+    "R1": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R2": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R3": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R4": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R5": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R6": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R7": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "H7": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "H8": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ]
+  },
+  "grounding": {
+    "EVIDENCE_OPPORTUNITIES": 6,
+    "EVIDENCE_QUOTES_EMITTED": 0,
+    "EVIDENCE_QUOTES_EXACTLY_BOUND": 0,
+    "EVIDENCE_QUOTES_UNBINDABLE": 0,
+    "QUOTES_SUPPORTING_ANCHOR": 0,
+    "GROUNDED_TYPED_OBJECTS": 0,
+    "UNGROUNDED_TYPED_OBJECTS": 6,
+    "iterationsWithSupportingQuote": 0,
+    "iterationsTotal": 6
+  },
+  "observations": [
+    {
+      "caseId": "R1",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R1",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R1",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R2",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R2",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R2",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R3",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R3",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R3",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R4",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R4",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R4",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R5",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R5",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R5",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "R6",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0
+    },
+    {
+      "caseId": "R6",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0
+    },
+    {
+      "caseId": "R6",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0
+    },
+    {
+      "caseId": "R7",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0
+    },
+    {
+      "caseId": "R7",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0
+    },
+    {
+      "caseId": "R7",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0
+    },
+    {
+      "caseId": "H7",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "H7",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 3
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "H7",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 3
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "H8",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "H8",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    },
+    {
+      "caseId": "H8",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 1
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "operation": "§175 ATTEMPT 2 — clean hosted rerun after probe repair",
+  "date": "2026-09-05",
+  "terminal": "BALANCED_CLARIFICATION_DEVELOPMENT_DEFECTS_OBSERVED — REMEDIATION_REVIEW_REQUIRED",
+  "MEASUREMENT_STATUS": "VALID",
+  "attempt1": {
+    "MEASUREMENT_STATUS": "VOID",
+    "ATTRIBUTION": "HARNESS_DEFECT",
+    "providerCalls": 10,
+    "costUsd": 0.47437,
+    "note": "no attempt-1 clarification-performance number may be cited, including its SILENCE_PRECISION"
+  },
+  "preflight": {
+    "checks": 20,
+    "failures": 0,
+    "providerCalls": 0,
+    "proved": [
+      "A valid payload with one clarification reads count 1 and recovers the question verbatim",
+      "B explicit NOTHING_TO_ADD is distinguishable from ANALYZED",
+      "C malformed payload is REJECTED and flagged CONTRACT_FAILURE, never silence",
+      "D raw output is persisted on the record and written to disk before any aggregate figure"
+    ],
+    "testedTheRealCodePath": "the preflight drives the exported deriveRowRecord that attempt 2 used, not a copy"
+  },
+  "preregistrationSha256": "397aed8f73cf47de7a585878d2cea97104ca4918d22ea84ed48b3e6d3cecc508",
+  "preregistrationUnchangedFromAttempt1": true,
+  "model": "claude-sonnet-5",
+  "systemPromptSha256Prefix": "c4b3162439988e74",
+  "ATTEMPT_2_PROVIDER_INVOCATION_COUNT": 10,
+  "ATTEMPT_2_TOTAL_ACTUAL_COST_USD": 0.47515,
+  "CUMULATIVE_SECTION_175_SPEND_USD": 0.94952,
+  "CUMULATIVE_SECTION_175_CALLS": 20,
+  "RETRY_COUNT": 0,
+  "PROVIDER_ERROR_COUNT": 0,
+  "CONTRACT_FAILURE_COUNT": 0,
+  "NORMALIZATION_REJECTED_COUNT": 0,
+  "allTenNormalizedVALID": true,
+  "rawOutputPersistedForAllRows": true,
+  "totalPromptTokens": 182140,
+  "totalOutputTokens": 11087,
+  "meanLatencyMs": 40306,
+  "SILENCE_PRECISION": {
+    "value": "4/5",
+    "exact": true,
+    "basis": "frozen truth owes nothing on a SILENCE row, so any clarification there is unnecessary by definition; no semantic judgement required"
+  },
+  "REQUIRED_RECALL": {
+    "loose": "4/5",
+    "looseIsUpperBound": true,
+    "strict": "PENDING_HUMAN_ADJUDICATION",
+    "strictRange": "0/5 to 4/5",
+    "definiteFailures": [
+      "HR-04"
+    ],
+    "whyStrictIsNotComputedHere": "the frozen §174 record carries MATERIAL_UNRESOLVED_FACTS = null on 10/10 rows, so no human-supplied target exists; the only per-row statement of the owed fact is the PAIR-MAP written by this model family in §173. The preregistration, frozen before spend, reserves this determination for a human and is honoured rather than revised after seeing results."
+  },
+  "BALANCED_ACCURACY": {
+    "range": [
+      0.4,
+      0.8
+    ],
+    "pointEstimateAvailable": false
+  },
+  "ROW_LEVEL_ACCURACY": {
+    "range": [
+      0.4,
+      0.8
+    ],
+    "pointEstimateAvailable": false
+  },
+  "NOT_TEN_OF_TEN": true,
+  "perfectScoreRuleNotTriggered": "attempt 2 is not 10/10, so PERFECT_DEVELOPMENT_CONCORDANCE does not apply",
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "pair": "PAIR-3",
+      "hazardFamily": "fire_explosion",
+      "frozenTruth": "REQUIRED",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18202,
+      "outputTokens": 1641,
+      "latencyMs": 56277,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 2,
+      "decisionCriticalClarificationsCount": 1,
+      "clarifications": [
+        {
+          "clarificationId": "flame_test_status",
+          "question": "Was the flame-failure device on the burner actually flame-tested during Monday's service, even though the certificate does not record it, and if not, has it been tested since?",
+          "whyItMatters": "If the flame-failure device was tested and functioning, the burner can continue to be operated as a normal, controlled ignition source; if it was not tested and its function is unconfirmed, the dryer is operating with an unverified critical safety interlock and should be flame-tested or shut down before continued use, especially given the combustible dust nearby.",
+          "evidenceGap": "The service certificate lists a nozzle change and filter clean but does not state whether the flame-failure device was tested, and the device cannot be visually verified from the walkway.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "semanticRowVerdict": "PENDING_HUMAN_ADJUDICATION",
+      "rationale": "a clarification was emitted, which satisfies the loose rule only. Whether it addresses the material unresolved fact is the human determination this model must not make."
+    },
+    {
+      "rowId": "HR-02",
+      "pair": "PAIR-1",
+      "hazardFamily": "machine_guarding",
+      "frozenTruth": "SILENCE",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18238,
+      "outputTokens": 879,
+      "latencyMs": 9783,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 1,
+      "decisionCriticalClarificationsCount": 0,
+      "clarifications": [],
+      "semanticRowVerdict": "PASS",
+      "rationale": "no clarification emitted on a row that owes none. Exact."
+    },
+    {
+      "rowId": "HR-03",
+      "pair": "PAIR-5",
+      "hazardFamily": "hazardous_energy",
+      "frozenTruth": "SILENCE",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18229,
+      "outputTokens": 854,
+      "latencyMs": 36865,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 1,
+      "decisionCriticalClarificationsCount": 0,
+      "clarifications": [],
+      "semanticRowVerdict": "PASS",
+      "rationale": "no clarification emitted on a row that owes none. Exact."
+    },
+    {
+      "rowId": "HR-04",
+      "pair": "PAIR-2",
+      "hazardFamily": "machine_guarding",
+      "frozenTruth": "REQUIRED",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18211,
+      "outputTokens": 717,
+      "latencyMs": 31036,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 1,
+      "decisionCriticalClarificationsCount": 0,
+      "clarifications": [],
+      "semanticRowVerdict": "FAIL",
+      "rationale": "a REQUIRED row with zero clarifications fails under both the loose and the strict rule; no target statement is needed to establish it"
+    },
+    {
+      "rowId": "HR-05",
+      "pair": "PAIR-4",
+      "hazardFamily": "hazardous_energy",
+      "frozenTruth": "SILENCE",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18195,
+      "outputTokens": 1516,
+      "latencyMs": 56074,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 2,
+      "decisionCriticalClarificationsCount": 1,
+      "clarifications": [
+        {
+          "clarificationId": "clr-1",
+          "question": "Are the drying fans and any other energy sources connected to or capable of moving the discharge auger or its surrounding equipment (e.g., shared drive train, airflow-driven components) while the auger drive isolator remains locked out?",
+          "whyItMatters": "If the fans are mechanically or electrically independent of the auger drive with no capacity to move the auger or expose the operative to a struck-by/entanglement hazard, the single-point lockout on the auger drive is a sufficient control for the auger itself; if the fans or associated systems can cause movement or release grain into the discharge point despite the auger being locked out, additional isolation of those systems would be required to protect the operative from residual hazardous energy at the point of work.",
+          "evidenceGap": "The observation states only that the auger drive was locked out and dead-tested; it does not state whether the running drying fans or connected material flow could still introduce hazardous energy or grain movement at the discharge auger blockage point.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "IMPORTANT"
+        }
+      ],
+      "semanticRowVerdict": "FAIL",
+      "rationale": "frozen truth owes nothing on this row, so any clarification is unnecessary by definition. Exact, no semantic judgement required."
+    },
+    {
+      "rowId": "HR-06",
+      "pair": "PAIR-1",
+      "hazardFamily": "machine_guarding",
+      "frozenTruth": "REQUIRED",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18202,
+      "outputTokens": 1087,
+      "latencyMs": 45503,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 1,
+      "decisionCriticalClarificationsCount": 1,
+      "clarifications": [
+        {
+          "clarificationId": "interlock_test_performed",
+          "question": "Was the guard door interlock switch functionally tested (verified to stop/prevent rotor operation when the door is opened) at any point during or after the tooth change and before the machine was returned to service?",
+          "whyItMatters": "If the interlock was tested and confirmed functional (even though not recorded in this particular log entry), the current guarding control is verified sound and no further action is needed. If it was not tested at all after the maintenance work disturbed the guarded area, the interlock's protective function is unverified and could have been left non-functional by the maintenance work, requiring the machine to be stopped and the interlock tested before continued operation.",
+          "evidenceGap": "Whether a functional interlock test was performed after the tooth change and before restart is not stated; the log records the tooth change but omits any interlock test result.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "semanticRowVerdict": "PENDING_HUMAN_ADJUDICATION",
+      "rationale": "a clarification was emitted, which satisfies the loose rule only. Whether it addresses the material unresolved fact is the human determination this model must not make."
+    },
+    {
+      "rowId": "HR-07",
+      "pair": "PAIR-3",
+      "hazardFamily": "fire_explosion",
+      "frozenTruth": "SILENCE",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18211,
+      "outputTokens": 758,
+      "latencyMs": 30544,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 1,
+      "decisionCriticalClarificationsCount": 0,
+      "clarifications": [],
+      "semanticRowVerdict": "PASS",
+      "rationale": "no clarification emitted on a row that owes none. Exact."
+    },
+    {
+      "rowId": "HR-08",
+      "pair": "PAIR-4",
+      "hazardFamily": "hazardous_energy",
+      "frozenTruth": "REQUIRED",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18194,
+      "outputTokens": 1777,
+      "latencyMs": 58463,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 2,
+      "decisionCriticalClarificationsCount": 1,
+      "clarifications": [
+        {
+          "clarificationId": "auger_isolator_state",
+          "question": "Is the auger drive's local isolator currently locked out and verified de-energized, or is it left in a state where the auger could start while the operative is clearing the discharge blockage?",
+          "whyItMatters": "If the local isolator is not locked out, the auger drive remains a live energy source at the exact point the operative has his hands clearing a blockage, creating an active entanglement/crushing exposure requiring immediate stop-work and application of lockout to that isolator; if it is in fact locked out (e.g., via a group lockout procedure not reflected in this particular log) then the exposure is controlled and no immediate intervention is needed beyond correcting the log entry.",
+          "evidenceGap": "Whether the auger drive's own local isolator has been locked out/verified de-energized is not stated; only that the log shows no entry against it.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "semanticRowVerdict": "PENDING_HUMAN_ADJUDICATION",
+      "rationale": "a clarification was emitted, which satisfies the loose rule only. Whether it addresses the material unresolved fact is the human determination this model must not make."
+    },
+    {
+      "rowId": "HR-09",
+      "pair": "PAIR-5",
+      "hazardFamily": "hazardous_energy",
+      "frozenTruth": "REQUIRED",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18227,
+      "outputTokens": 1171,
+      "latencyMs": 48769,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 1,
+      "decisionCriticalClarificationsCount": 1,
+      "clarifications": [
+        {
+          "clarificationId": "clar-1",
+          "question": "Has the accumulator gauge been read/verified to confirm zero stored hydraulic pressure before breaking the hose, or does it remain unread as stated?",
+          "whyItMatters": "If the gauge is read and confirms zero pressure, the hose can be broken with residual stored energy ruled out and work proceeds under the isolation already in place; if it remains unread and pressure cannot be ruled out, breaking the hose exposes the fitter to a high-pressure fluid injection or whip hazard from stored accumulator energy, and work must stop until the gauge is checked or the accumulator is independently bled and verified.",
+          "evidenceGap": "The current pressure reading on the accumulator gauge, and whether it has been checked at all since the dump valve was cycled.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "semanticRowVerdict": "PENDING_HUMAN_ADJUDICATION",
+      "rationale": "a clarification was emitted, which satisfies the loose rule only. Whether it addresses the material unresolved fact is the human determination this model must not make."
+    },
+    {
+      "rowId": "HR-10",
+      "pair": "PAIR-2",
+      "hazardFamily": "machine_guarding",
+      "frozenTruth": "SILENCE",
+      "providerCallStatus": "ok",
+      "modelIdentity": "claude-sonnet-5",
+      "promptTokens": 18231,
+      "outputTokens": 687,
+      "latencyMs": 29748,
+      "stopReason": "tool_use",
+      "declaredOutcome": "ANALYZED",
+      "rawOutputPersisted": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "hazardCandidateCount": 0,
+      "decisionCriticalClarificationsCount": 0,
+      "clarifications": [],
+      "semanticRowVerdict": "PASS",
+      "rationale": "no clarification emitted on a row that owes none. Exact."
+    }
+  ],
+  "definiteFailures": [
+    {
+      "rowId": "HR-04",
+      "truth": "REQUIRED",
+      "kind": "NO_CLARIFICATION_EMITTED",
+      "pair": "PAIR-2",
+      "target": "SILENCE states the fastenings were torque-checked and recorded tight this morning; REQUIRED states the same sheet covers other items and the fastenings were last torque-checked at the annual service",
+      "attribution": "MODEL_OR_CONTRACT_FAILURE_CANDIDATE"
+    },
+    {
+      "rowId": "HR-05",
+      "truth": "SILENCE",
+      "kind": "UNNECESSARY_CLARIFICATION_EMITTED",
+      "pair": "PAIR-4",
+      "unnecessaryQuestionTopic": "Are the drying fans and any other energy sources connected to or capable of moving the discharge auger or its surrounding equipment (e.g., shared drive train, airflow-driven components) while the auger drive isolator remains locked out?",
+      "attribution": "MODEL_OR_CONTRACT_FAILURE_CANDIDATE"
+    }
+  ],
+  "instrumentDefectDeclared": false,
+  "instrumentDefectNote": "no instrument-side defect is declared. Under the frozen rule that requires identifying a specific ambiguity or inadequate target in the wording, neither failing row has been shown to have one, and truth is not redefined because Expert disagreed with it.",
+  "provenanceLimitation": {
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "HUMAN_AI_AGREEMENT": "10 / 10",
+    "corpusAuthoredBy": "Claude",
+    "evaluatedModelFamily": "Claude",
+    "mustNotBeDescribedAs": "independent human adjudication"
+  },
+  "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+  "whatThisDoesNotEstablish": [
+    "formal acceptance",
+    "customer readiness",
+    "production validation",
+    "AI-free independent human truth",
+    "a strict REQUIRED_RECALL figure"
+  ],
+  "remediationAuthorized": false,
+  "worktree": {
+    "runtimeFilesChanged": 0,
+    "databaseOperations": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

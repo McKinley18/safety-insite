@@ -1,0 +1,102 @@
+FORMAL EXPERT HAZLENZ COHORT -- REVALIDATION AND FREEZE
+§135. Execution budget repaired and proven first. No provider request. Nothing spent.
+
+1. THE FROZEN EXECUTION BUDGET IS ENFORCEABLE
+
+   OK       budget internally consistent                         195 + 20 = 215, and 215 x $0.104000 = $22.36
+   OK       PLANNED_LOGICAL_CALLS = 195                          
+   OK       GLOBAL_RETRY_REQUEST_BUDGET = 20                     
+   OK       HARD_PROVIDER_REQUEST_CEILING = 215                  
+   OK       HARD_SPEND_CEILING_USD = 22.36                       
+   OK       max one retry per logical call, unchanged            
+   OK       retry causes are the six already implemented         TIMEOUT, NETWORK_ERROR, HTTP_SERVER_ERROR, MALFORMED_JSON, TRUNCATED_RESPONSE, EMPTY_RESPONSE
+
+   Enforcement is proven by scripts/test-expert-execution-budget.ts, which exercises the real
+   runner and the real harness against a scripted no-network provider. It is a REGRESSION
+   suite, not a demonstration: it fails if any of the four repairs is undone.
+
+2. SIZE POLICY
+
+   OK       frozen §122 origin policy still reads 60/60/48       
+   OK       amended targetRows = 65                              
+   OK       amended hardCeiling = 65                             
+   OK       MINIMUM_DEFENSIBLE_ROWS unchanged at 48              
+
+3. REVALIDATE THE EXISTING CANDIDATE -- NO RESELECTION
+
+   OK       selection produced no deficits                       
+   OK       row count = 65                                       65
+   OK       SELECTION HASH DID NOT DRIFT                         ee57d5dad456b900... vs recorded ee57d5dad456b900...
+   OK       forced structure unchanged (3 / 17 / 45)             3 / 17 / 45
+   OK       still reproducible from a reordered pool             
+   truth-key hash                                        290df2f78b66b41909c8d29db81ddac512afad46314b4512d6297bce842e702c
+
+4. GOVERNED-RECORD ATTACHMENT -- UNCHANGED RULE
+
+   OK       snapshot identity matches §126                       a2c5dc324ded4fee...
+   OK       64 records, review state untouched                   mechanically_validated
+   OK       40 records attached                                  40
+   OK       no APPROVED_* state was invented                     
+   attachment mapping hash                               f95d846f5881da334324c26f923cb5ae6c0f7a9cb0791fcf272139eeb6c589c3
+
+5. COMPOSITION -- BY THE AUTHORITATIVE CLASSIFIER
+
+   OK       row contract: 0 problems                             
+   OK       evaluateComposition: 0 gaps                          
+
+   class                                    req  have  margin
+   GOVERNED_RECORD_SUPPLIED                  40    40       0
+   NO_GOVERNED_RECORD                         8    25      17
+   CLARIFICATION_NOT_OWED                    14    45      31
+   CLARIFICATION_OWED                        20    20       0
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL         48    48       0
+   LIFE_CRITICAL_PRESENT                     10    27      17
+   CROSS_HAZARD_INTERACTION                  10    11       1
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY     10    38      28
+   MULTI_HAZARD                              12    20       8
+   NEGATED_OR_SAFE_STATE                     10    13       3
+   DISAGREEMENT_OPPORTUNITY                   6    40      34
+   DETERMINISTIC_HAZARD_PRESENT              30    49      19
+
+6. DISABLED DRY RUN THROUGH THE REAL PERMANENT PATH
+
+   OK       195 requests constructed (65 rows x 3 arms)          195
+   OK       TRUTH_LEAK = 0                                       0
+   OK       PROVIDER_INVOCATION_COUNT = 0                        0
+   OK       zero provider requests attempted                     
+
+7. EXECUTION IDENTITY, BOUND INTO THE MANIFEST
+
+   provider                       anthropic
+   model                          claude-sonnet-5
+   promptVersion                  hazlenz.expert.prompt.v6
+   inputContract                  hazlenz.expert.input.v1
+   analysisContract               hazlenz.expert.analysis.v2
+   validator                      hazlenz.expert.validator.v1
+   scorer                         hazlenz.expert.scorers.v1
+   measurementContract            hazlenz.expert.measurement.v1
+   rowContract                    hazlenz.expert.cohort.row.v1
+   harness                        hazlenz.expert.cohort.harness.v1
+   projection                     expert-deterministic-projection.ts (§119, promoted to the permanent path)
+   projectionPermanentPath        ENABLED
+
+   The model is BOUND, not inherited. The harness refuses to issue a request when the
+   provider's qualified model differs from the manifest's, so EXPERT_ANTHROPIC_MODEL can no
+   longer redirect a formal run. Proven by G.1-G.5 of the execution-budget regression.
+
+8. FREEZE DECISION
+
+   COHORT_ID          hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a
+   contentSha256      d7c8f9c15f0ad1d329e1ca6b6aeba721dcd518a42b4664ef6aaf8bbf8daa5e47
+   MANIFEST_SHA256    1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3
+
+   COHORT_STATUS             = FROZEN
+   PROVIDER_INVOCATION_COUNT = 0
+   FORMAL_COHORT_SPENT       = FALSE
+   P4_PRESPEND_AUTHORIZATION = FALSE
+
+   Freezing is not authorization to spend. A later P4 authorization must name the cohort id,
+   195 planned logical calls, a global retry budget of 20, a hard provider-request ceiling of
+   215 and a hard spend ceiling of $22.36 before the first hosted request.
+
+FORMAL_EXPERT_COHORT_FROZEN -- EXPLICIT_P4_EXECUTION_AUTHORIZATION_REQUIRED

@@ -1,0 +1,822 @@
+{
+  "artifact": "EXPERT_MEASUREMENT_CONTRACT_FROZEN",
+  "version": "hazlenz.expert.measurement.v1",
+  "planSource": "backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts",
+  "planSha256": "0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8",
+  "planAgreementProblems": [],
+  "measures": [
+    {
+      "id": "M01_ADDITIVE_HAZARD_RECALL",
+      "numerator": "Expert candidates whose `hazardFamily` is a member of the row's MISSED set, counted once per (row, family) so a model cannot inflate recall by raising the same family three times.",
+      "denominator": "The MISSED set summed over rows: for each row, `truth.presentHazardFamilies` MINUS the set of families the deterministic engine actually emitted for that row.",
+      "eligibleOpportunity": "A (row, family) pair where the family is genuinely present per encoded case truth AND the deterministic engine did not surface it. This is the only place Expert can add recall, which is the measure's whole subject.",
+      "exclusions": [
+        "Families the deterministic engine already emitted -- adding those is agreement, not recall.",
+        "Families in `truth.defensibleHazardFamilies` -- defensible is not the same as present, and counting them would let a plausible guess score as a save."
+      ],
+      "truthPrecedence": "ENCODED_CASE_TRUTH",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "REPORTED_AS_NO_OPPORTUNITY",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "UNMEASURED for that opportunity. The scorer records MISSING_TRUTH and, if the measure is gated, the gate fails. The benign reading is never assumed.",
+      "evidenceRetained": [
+        "PER_ROW_OPPORTUNITY_LEDGER",
+        "PER_ITEM_CLASSIFICATION"
+      ],
+      "computation": "recovered / missed. The word \"adjudicated\" in the plan is satisfied by an ANSWER KEY authored before the run, not by a judgement made after seeing the output -- which is the stronger reading of the same word.",
+      "frozen": {
+        "family": "SAFETY",
+        "disposition": "MEASURED_AND_REPORTED",
+        "direction": "MIN",
+        "threshold": null,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M02_EXPERT_CANDIDATE_FALSE_POSITIVES",
+      "numerator": "Expert candidates whose `hazardFamily` is a member of `truth.forbiddenHazardFamilies` for that row.",
+      "denominator": "All Expert candidates emitted across the cohort on rows with a PRESENT layer.",
+      "eligibleOpportunity": "Every emitted candidate. The row vocabulary is TOTAL by construction: `presentHazardFamilies`, `defensibleHazardFamilies` and `forbiddenHazardFamilies` partition `allowedHazardFamilies` exactly, and a row that fails to partition is an INVALID COHORT ROW rejected at freeze time rather than a scoring-time judgement call.",
+      "exclusions": [
+        "Candidates in `truth.defensibleHazardFamilies` are counted in the denominator but never in the numerator -- defensible is the plan's \"advisory noise is the cost of additive recall\".",
+        "Rows in `truth.negatedOrSafeStateFamilies` are reported as a SEPARATE count, exactly as the plan's method requires, and are not folded into this ratio."
+      ],
+      "truthPrecedence": "ENCODED_CASE_TRUTH",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "A candidate whose family is in NONE of the three truth sets is UNCLASSIFIED. It is recorded as MISSING_TRUTH and the gate fails. It cannot arise from a valid row; if it arises, the cohort is wrong and the evaluation must say so rather than pick a reading.",
+      "evidenceRetained": [
+        "PER_ITEM_CLASSIFICATION",
+        "PER_ROW_OPPORTUNITY_LEDGER"
+      ],
+      "computation": "forbidden / all, with the negated/safe-state count reported beside it.",
+      "frozen": {
+        "family": "SAFETY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0.2,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 10
+    },
+    {
+      "id": "M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY",
+      "numerator": "Merge-invariant violations returned by `verifyMergeInvariants()` across the whole cohort, every invariant, counted individually.",
+      "denominator": "None -- this is a COUNT with a zero ceiling, not a ratio.",
+      "eligibleOpportunity": "Every merged row, including rows where Expert produced nothing.",
+      "exclusions": [],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A REJECTED analysis still merges (as an empty advisory block) and its invariants are still verified. Rejection is not an excuse to skip the safety check.",
+      "providerFailure": "The row still merges with a PROVIDER_FAILED layer and its invariants are still verified.",
+      "missingTruth": "Not applicable: the invariants are checked against the merge inputs themselves.",
+      "evidenceRetained": [
+        "MERGE_INVARIANT_VIOLATIONS",
+        "PER_ROW_OPPORTUNITY_LEDGER"
+      ],
+      "computation": "count of violations. A single violation fails the SAFETY family.",
+      "frozen": {
+        "family": "SAFETY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0,
+        "unit": "count"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M04_LIFE_CRITICAL_RETENTION",
+      "numerator": "Life-critical deterministic findings present in `merged.authoritative` at the same position, with `findingKey`, `conditionState`, `isLifeCritical` and the full `requiredActions` list unchanged.",
+      "denominator": "Life-critical deterministic findings supplied to the merge, identified by `truth.lifeCriticalFindingKeys`, per row, summed.",
+      "eligibleOpportunity": "A row carrying at least one finding key the case truth marks life-critical. Life-criticality is a CORPUS label in this system -- `hazlenz-actionable-coverage-scorer.ts` reads `group.lifeCritical` from the Population-B corpus rather than from any engine output -- so level-2 truth is the existing authority, not a new invention.",
+      "exclusions": [],
+      "truthPrecedence": "ENCODED_CASE_TRUTH",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "Irrelevant to the numerator by design: a REJECTED analysis merges as an empty advisory block and every deterministic finding must still survive. That is the invariant being measured.",
+      "providerFailure": "Also still measured. `S09` vs `S10` in the no-call harness exists to prove an unavailable provider and a silent omission are indistinguishable at the merged output, and this measure is the numeric form of that.",
+      "missingTruth": "UNMEASURED for that opportunity. The scorer records MISSING_TRUTH and, if the measure is gated, the gate fails. The benign reading is never assumed.",
+      "evidenceRetained": [
+        "PER_ROW_OPPORTUNITY_LEDGER",
+        "MERGE_INVARIANT_VIOLATIONS"
+      ],
+      "computation": "survived / supplied, over the whole cohort. Floor 1.0 -- anything below fails.",
+      "frozen": {
+        "family": "SAFETY",
+        "disposition": "HARD_GATE",
+        "direction": "MIN",
+        "threshold": 1,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M05_FABRICATED_CITATIONS",
+      "numerator": "Normalizer issues with code `CITATION_SHAPED_TEXT_NOT_PERMITTED`, PLUS any string matching `CITATION_SHAPED_PATTERN` found anywhere inside the merged `expertAdvisory` block.",
+      "denominator": "None -- a COUNT with a zero ceiling.",
+      "eligibleOpportunity": "Every call that returned a payload, rejected or not.",
+      "exclusions": [
+        "Citations inside the SUPPLIED `governedStandards` -- those are records Expert was given, not strings it emitted, and they never appear in the advisory block."
+      ],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A rejection carrying this code is exactly what this measure counts. Rejection is the DETECTION, not an excuse -- the second half of the numerator then proves none survived.",
+      "providerFailure": "No payload, no opportunity to fabricate. Recorded in M13 only.",
+      "missingTruth": "Not applicable: the pattern is frozen in the contract.",
+      "evidenceRetained": [
+        "NORMALIZER_ISSUE_CODES",
+        "PER_ITEM_CLASSIFICATION"
+      ],
+      "computation": "count. Zero ceiling.",
+      "frozen": {
+        "family": "REGULATORY_INTEGRITY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0,
+        "unit": "count"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M06_UNSUPPORTED_REGULATORY_ASSERTIONS",
+      "numerator": "Detected regulatory statements that BOTH assert an obligation (level-1: the statement matched an obligation marker in the frozen `REGULATORY_OBLIGATION_MARKERS` lexicon) AND were adjudicated `NOT_SUPPORTED_BY_SUPPLIED_RECORD` under rubric `EXPERT_REG_SUPPORT_V1`.",
+      "denominator": "Rows carrying at least one governed record, i.e. `governedStandards.length > 0`.",
+      "eligibleOpportunity": "A row that supplied at least one governed record. A row that supplied none cannot produce an assertion \"not present in a supplied record\" in the sense the plan means, because there was no record to be absent from.",
+      "exclusions": [
+        "Statements in rows with no governed record -- excluded from the denominator by the plan's own wording, and reported separately so they are not invisible.",
+        "Citation-shaped strings -- those are M05's subject and the analysis carrying one is rejected whole, so they cannot also be counted here."
+      ],
+      "truthPrecedence": "PREREGISTERED_ADJUDICATION_RUBRIC",
+      "requiresAdjudication": true,
+      "rubricId": "EXPERT_REG_SUPPORT_V1",
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "An unadjudicated detected statement makes this measure UNMEASURED and the gate FAILS. The harness emits an exhaustive adjudication queue precisely so this cannot be reached by oversight; reaching it means the queue was not completed, which is a stop, not a score.",
+      "evidenceRetained": [
+        "ADJUDICATION_RECORD",
+        "PER_ITEM_CLASSIFICATION",
+        "PER_ROW_OPPORTUNITY_LEDGER"
+      ],
+      "computation": "unsupported obligation statements / rows with >= 1 governed record. The DETECTION half is level 1 and mechanical; only the SUPPORT half is judged, which is what the plan's own rationale (\"adjudicating paraphrase is judgement\") says it is.",
+      "frozen": {
+        "family": "REGULATORY_INTEGRITY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0.05,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 40
+    },
+    {
+      "id": "M07_GOVERNED_RECORD_GROUNDING",
+      "numerator": "Detected regulatory statements adjudicated `SUPPORTED_BY_SUPPLIED_RECORD` under rubric `EXPERT_REG_SUPPORT_V1`, with the supporting record id recorded.",
+      "denominator": "ALL detected regulatory statements in the cohort, on rows with a PRESENT layer -- the same detector output that feeds M06, so numerator and denominator come from one definition and cannot be tuned apart.",
+      "eligibleOpportunity": "Any Expert prose string in the merged advisory block -- candidate `reasoning` and `evidenceBasis`, clarification `whyItMatters` and `evidenceGap`, insight `reasoning`, disagreement `reasoning`, `explanation.summary`, `uncertainty.statements` -- that matches the frozen `REGULATORY_STATEMENT_MARKERS` lexicon.",
+      "exclusions": [
+        "Prose containing no regulatory marker. Expert is expected to reason about hazards without invoking regulation, and counting hazard prose as an ungrounded regulatory statement would make the floor unreachable for correct behaviour."
+      ],
+      "truthPrecedence": "PREREGISTERED_ADJUDICATION_RUBRIC",
+      "requiresAdjudication": true,
+      "rubricId": "EXPERT_REG_SUPPORT_V1",
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "Identical to M06: an unadjudicated statement makes the measure UNMEASURED and the gate FAILS.",
+      "evidenceRetained": [
+        "ADJUDICATION_RECORD",
+        "PER_ITEM_CLASSIFICATION"
+      ],
+      "computation": "supported / all detected. One adjudication per statement serves both M06 and M07; the obligation flag that separates them is mechanical.",
+      "frozen": {
+        "family": "REGULATORY_INTEGRITY",
+        "disposition": "HARD_GATE",
+        "direction": "MIN",
+        "threshold": 0.95,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 40
+    },
+    {
+      "id": "M08_GOVERNED_PROVENANCE_INTEGRITY",
+      "numerator": "Merge-invariant violations of `EXPERT_CANNOT_REBIND_KNOWLEDGE_RELEASE_ID`, `EXPERT_CANNOT_APPROVE_AN_UNAPPROVED_RECORD` and `EXPERT_CANNOT_FABRICATE_GOVERNED_PROVENANCE`, counted individually across the cohort.",
+      "denominator": "None -- a COUNT with a zero ceiling.",
+      "eligibleOpportunity": "Every merged row.",
+      "exclusions": [
+        "The other eight merge invariants -- those are M03's subject. Counting them twice would make one violation fail two families for one reason."
+      ],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "Still merged and still verified.",
+      "providerFailure": "Still merged and still verified.",
+      "missingTruth": "Not applicable.",
+      "evidenceRetained": [
+        "MERGE_INVARIANT_VIOLATIONS"
+      ],
+      "computation": "count. Zero ceiling.",
+      "frozen": {
+        "family": "REGULATORY_INTEGRITY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0,
+        "unit": "count"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M09_CLARIFICATION_QUALITY",
+      "numerator": "Emitted clarifications adjudicated under rubric `EXPERT_CLARIFICATION_MAPPING_V1` as addressing exactly one of the row's authored `decisionCriticalGaps`, where the mapped gap's `affectedDecision` also equals the clarification's own `affectedDecision`.",
+      "denominator": "All clarifications emitted across the cohort on rows with a PRESENT layer.",
+      "eligibleOpportunity": "Every emitted clarification.",
+      "exclusions": [
+        "Clarifications the normalizer already refused as `CLARIFICATION_NOT_DECISION_CRITICAL` -- those never reach the merged output and are counted as boundary rejections, not as quality misses, because the boundary already did the work."
+      ],
+      "truthPrecedence": "PREREGISTERED_ADJUDICATION_RUBRIC",
+      "requiresAdjudication": true,
+      "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "An unadjudicated clarification makes the measure UNMEASURED and the gate FAILS. Note the judgement is BOUNDED: the adjudicator maps to one of a small authored list or to NONE, and the useful/not-useful consequence is then mechanical.",
+      "evidenceRetained": [
+        "ADJUDICATION_RECORD",
+        "PER_ITEM_CLASSIFICATION"
+      ],
+      "computation": "mapped-and-decision-matched / all emitted. The `affectedDecision` agreement is level-1 over a closed vocabulary, so a question that names the right gap for the wrong decision is a miss without anyone having to argue about it.",
+      "frozen": {
+        "family": "REASONING_QUALITY",
+        "disposition": "HARD_GATE",
+        "direction": "MIN",
+        "threshold": 0.7,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 7
+    },
+    {
+      "id": "M10_UNNECESSARY_QUESTION_RATE",
+      "numerator": "Rows with an EMPTY `truth.decisionCriticalGaps` on which Expert emitted at least one clarification.",
+      "denominator": "Rows with an EMPTY `truth.decisionCriticalGaps` and a PRESENT layer.",
+      "eligibleOpportunity": "A row the case truth records as owing NO clarification. This is a whole class of cohort row that must be deliberately composed -- it is the negative control for the clarification capability, and a cohort without enough of them cannot measure this gate at all.",
+      "exclusions": [
+        "Rows owing one or more clarifications -- those are M09's subject."
+      ],
+      "truthPrecedence": "ENCODED_CASE_TRUTH",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "UNMEASURED for that opportunity. The scorer records MISSING_TRUTH and, if the measure is gated, the gate fails. The benign reading is never assumed.",
+      "evidenceRetained": [
+        "PER_ROW_OPPORTUNITY_LEDGER"
+      ],
+      "computation": "asking rows / zero-owed rows. Fully mechanical once the row is authored: no judgement is required to see that a question was asked where none was owed.",
+      "frozen": {
+        "family": "REASONING_QUALITY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0.15,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 14
+    },
+    {
+      "id": "M11_CROSS_HAZARD_REASONING",
+      "numerator": "Recorded interactions MATCHED by at least one emitted insight, where a match requires the insight's `interactionKind` to equal the recorded kind AND the insight's `participants` to contain every recorded participant.",
+      "denominator": "Rows whose `truth.recordedInteractions` is non-empty, counted per recorded interaction.",
+      "eligibleOpportunity": "A recorded interaction on a row with a PRESENT layer.",
+      "exclusions": [],
+      "truthPrecedence": "ENCODED_CASE_TRUTH",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "REPORTED_AS_NO_OPPORTUNITY",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "UNMEASURED for that opportunity. The scorer records MISSING_TRUTH and, if the measure is gated, the gate fails. The benign reading is never assumed.",
+      "evidenceRetained": [
+        "PER_ROW_OPPORTUNITY_LEDGER",
+        "PER_ITEM_CLASSIFICATION"
+      ],
+      "computation": "matched / recorded. `EXPERT_INTERACTION_KINDS` is a CLOSED vocabulary and participants are hazard families, so the plan's \"wrong-family insights counted as misses\" is a set comparison rather than a judgement. Wrong-kind and wrong-participant insights are also reported as a separate SPURIOUS count so a model cannot look good by emitting every kind.",
+      "frozen": {
+        "family": "REASONING_QUALITY",
+        "disposition": "MEASURED_AND_REPORTED",
+        "direction": "MIN",
+        "threshold": null,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M12_INTERNAL_INCOHERENCE",
+      "numerator": "Rows carrying BOTH at least one candidate with `assertedConditionState === \"ACTIVE\"` AND at least one clarification with `affectedDecision === \"HAZARD_EXISTENCE\"`.",
+      "denominator": "Rows with a PRESENT layer.",
+      "eligibleOpportunity": "Every row whose Expert layer produced a validated analysis.",
+      "exclusions": [],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A boundary-REJECTED analysis contributes NOTHING to any content numerator and its row still counts in every row-level denominator. Rejection must not be a way to score well by saying nothing, and it must not silently shrink a denominator either.",
+      "providerFailure": "A row whose provider call never returned is EXCLUDED from content denominators and recorded in M13. Scoring content the provider never produced would attribute a transport fault to the model; leaving it out of M13 would hide it entirely.",
+      "missingTruth": "Not applicable: both halves are read from the output over closed vocabularies.",
+      "evidenceRetained": [
+        "PER_ROW_OPPORTUNITY_LEDGER",
+        "PER_ITEM_CLASSIFICATION"
+      ],
+      "computation": "incoherent rows / rows. IMPLEMENTED LITERALLY as the plan words it, at ROW level. `DecisionCriticalClarification` carries no hazard family, so the contract offers no way to couple a question to the candidate it contradicts; the row-level reading is therefore the only one the type permits, and the 0.10 ceiling was set against this wording. Narrowing it to a family-coupled test would be WEAKENING a frozen gate, so it is recorded as a stated limitation instead.",
+      "frozen": {
+        "family": "REASONING_QUALITY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0.1,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 20
+    },
+    {
+      "id": "M13_PROVIDER_CALLABILITY",
+      "numerator": "Calls that reached the provider and returned a payload the boundary could parse -- layer status PRESENT or OUTPUT_REJECTED. A rejected payload still PROVES callability; conflating transport with content would let a content defect read as an outage.",
+      "denominator": "All attempted calls, every row, every repetition, retries included.",
+      "eligibleOpportunity": "Every attempted call.",
+      "exclusions": [],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "Counts as a SUCCESS here and as a failure in M05/M06/M07 where it belongs.",
+      "providerFailure": "Counts as a failure here, broken out by `ExpertProviderFailureKind` so a rate limit and an unexpected model identity are never summed into one uninformative number.",
+      "missingTruth": "Not applicable.",
+      "evidenceRetained": [
+        "RUN_METADATA"
+      ],
+      "computation": "reached / attempted, with a by-kind breakdown reported beside the ratio.",
+      "frozen": {
+        "family": "RELIABILITY",
+        "disposition": "HARD_GATE",
+        "direction": "MIN",
+        "threshold": 0.98,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 100
+    },
+    {
+      "id": "M14_ORDER_SENSITIVITY",
+      "numerator": "Rows whose SCORED FIELD PROJECTION differs between the base call and the permuted call. The projection is frozen as: the sorted multiset of candidate (hazardFamily, assertedConditionState, relationshipToDeterministic); the sorted multiset of clarification `affectedDecision`; the sorted multiset of insight (interactionKind, sorted participants); the sorted multiset of disagreement (target, disagreementType); and the `outcome`.",
+      "denominator": "Rows for which BOTH the base and the permuted call returned a PRESENT layer.",
+      "eligibleOpportunity": "A row run twice with `deterministicFindings`, `governedStandards` and `authoritativeSources` reordered by a frozen permutation and NOTHING else changed.",
+      "exclusions": [
+        "Free prose -- `summary`, `reasoning`, `whyItMatters` and the rest. Prose varies between two identical calls to a model with no determinism control, so counting it would measure sampling rather than order sensitivity and the gate would be unreachable by construction. That is the G9 error and this exclusion exists to avoid repeating it.",
+        "Item ids and keys, which the producer chooses freely."
+      ],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "UNMEASURED_GATE_FAILS",
+      "malformedOutput": "A row where either call was rejected is excluded and reported separately.",
+      "providerFailure": "Same treatment, and the failure is counted in M13.",
+      "missingTruth": "Not applicable.",
+      "evidenceRetained": [
+        "PERMUTATION_PAIR",
+        "PER_ROW_OPPORTUNITY_LEDGER"
+      ],
+      "computation": "differing rows / paired rows.",
+      "frozen": {
+        "family": "RELIABILITY",
+        "disposition": "HARD_GATE",
+        "direction": "MAX",
+        "threshold": 0.05,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": 40
+    },
+    {
+      "id": "M15_LATENCY_P95",
+      "numerator": "Not a ratio -- the p95 of end-to-end elapsed milliseconds, measured at the runner.",
+      "denominator": "None.",
+      "eligibleOpportunity": "Every call that returned a payload (PRESENT or OUTPUT_REJECTED).",
+      "exclusions": [
+        "Failed calls, whose latency is a timeout rather than a model latency."
+      ],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "REPORTED_AS_NO_OPPORTUNITY",
+      "malformedOutput": "Included -- the model still spent the time.",
+      "providerFailure": "Excluded, and reported separately.",
+      "missingTruth": "Not applicable.",
+      "evidenceRetained": [
+        "RUN_METADATA"
+      ],
+      "computation": "nearest-rank p95 over sorted latencies: index = ceil(0.95 * n) - 1. Frozen so two runs compute the same statistic. REPORTED only -- Expert is off the customer request path, so a latency threshold would gate a number nothing waits on.",
+      "frozen": {
+        "family": "RELIABILITY",
+        "disposition": "MEASURED_AND_REPORTED",
+        "direction": "MAX",
+        "threshold": null,
+        "unit": "ms"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M16_COST_PER_ROW",
+      "numerator": "Total provider spend across every attempted call in the run, in USD.",
+      "denominator": "Cohort rows attempted.",
+      "eligibleOpportunity": "Every attempted call contributes cost, including failures that billed.",
+      "exclusions": [],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "REPORTED_AS_NO_OPPORTUNITY",
+      "malformedOutput": "Included -- a rejected payload was still paid for.",
+      "providerFailure": "Included when the provider reported usage; otherwise recorded as zero and said so.",
+      "missingTruth": "Not applicable.",
+      "evidenceRetained": [
+        "RUN_METADATA"
+      ],
+      "computation": "spend / rows, recorded with the input and output token counts that produced it. Never estimated after the fact -- the plan says \"reported per run, never estimated\".",
+      "frozen": {
+        "family": "RELIABILITY",
+        "disposition": "MEASURED_AND_REPORTED",
+        "direction": "MAX",
+        "threshold": null,
+        "unit": "usd"
+      },
+      "sizingRuleMinimum": null
+    },
+    {
+      "id": "M17_CROSS_PROCESS_REPRODUCIBILITY",
+      "numerator": "Rows whose SCORED FIELD PROJECTION -- the same frozen projection M14 uses -- is identical between two independent OS processes given the same input and the same prompt.",
+      "denominator": "Rows for which both processes returned a PRESENT layer.",
+      "eligibleOpportunity": "A row called once in each of two processes with identical input.",
+      "exclusions": [
+        "Free prose and ids, for the reason stated in M14."
+      ],
+      "truthPrecedence": "DETERMINISTIC_MACHINE_DERIVED",
+      "requiresAdjudication": false,
+      "rubricId": null,
+      "zeroOpportunity": "REPORTED_AS_NO_OPPORTUNITY",
+      "malformedOutput": "A row where either process was rejected is excluded and reported separately.",
+      "providerFailure": "Same treatment; counted in M13.",
+      "missingTruth": "Not applicable.",
+      "evidenceRetained": [
+        "CROSS_PROCESS_PAIR"
+      ],
+      "computation": "identical / paired. REPORTED, NOT GATED, and this contract may not change that: `P2_DETERMINISM_CONTROL` is ABSENT for the qualified model -- no seed, and temperature, top_p and top_k unavailable -- so a hard gate here would be unreachable by construction. THAT IS THE G9 LESSON, and promoting this measure is a governance act with its own authorization, not something a harness may decide.",
+      "frozen": {
+        "family": "RELIABILITY",
+        "disposition": "MEASURED_AND_REPORTED",
+        "direction": "MIN",
+        "threshold": null,
+        "unit": "ratio"
+      },
+      "sizingRuleMinimum": null
+    }
+  ],
+  "rubrics": [
+    {
+      "rubricId": "EXPERT_REG_SUPPORT_V1",
+      "appliesTo": [
+        "M06_UNSUPPORTED_REGULATORY_ASSERTIONS",
+        "M07_GOVERNED_RECORD_GROUNDING"
+      ],
+      "question": "Is the regulatory content of this statement present in at least one governed record that was supplied to Expert on THIS row?",
+      "verdicts": [
+        "SUPPORTED_BY_SUPPLIED_RECORD",
+        "NOT_SUPPORTED_BY_SUPPLIED_RECORD"
+      ],
+      "decisionRule": "SUPPORTED only when a supplied record's `approvedText` states, in substance, the same obligation or the same regulatory fact the statement asserts. Paraphrase is permitted; extension is not. If the record establishes a NARROWER duty than the statement claims, the verdict is NOT_SUPPORTED -- the statement went beyond the record. If the row supplied no record, the verdict is NOT_SUPPORTED by definition and the statement is excluded from M06's denominator but not from M07's.",
+      "forbiddenInputs": [
+        "The adjudicator's own regulatory knowledge. The question is whether the SUPPLIED record supports it, not whether the claim happens to be true. A true claim with no supplied record is exactly the failure M06 exists to count.",
+        "Any other row's records.",
+        "Any knowledge of how the model scored on other measures, or of whether the gate is close."
+      ],
+      "recordRequirements": [
+        "The verbatim statement, its rowId and its source field path.",
+        "The citation of the supporting record when SUPPORTED, so the claim is re-checkable.",
+        "One sentence of reason. A verdict with no reason is not auditable."
+      ]
+    },
+    {
+      "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+      "appliesTo": [
+        "M09_CLARIFICATION_QUALITY"
+      ],
+      "question": "Which ONE of this row's authored decision-critical gaps, if any, does this clarification ask about?",
+      "verdicts": [
+        "MAPPED_TO_GAP",
+        "MAPPED_TO_NO_GAP"
+      ],
+      "decisionRule": "MAPPED_TO_GAP when the question, answered, would supply the fact the authored gap describes. At most one gap: where a question spans two, map it to the gap whose `affectedDecision` the question itself names. A question that would supply a genuinely useful fact NOT among the authored gaps is MAPPED_TO_NO_GAP -- the answer key is the standard, and a key that missed a good question is a finding about the key, to be recorded and reported, never repaired mid-run.",
+      "forbiddenInputs": [
+        "Whether the mapping helps or hurts the 0.70 floor.",
+        "The model's other clarifications on the same row, except to avoid mapping two clarifications to one gap without saying so."
+      ],
+      "recordRequirements": [
+        "The verbatim question, its rowId, and the chosen `gapId` or NONE.",
+        "Whether the clarification's own `affectedDecision` equals the mapped gap's. The scorer, not the adjudicator, applies that comparison.",
+        "One sentence of reason."
+      ]
+    }
+  ],
+  "regulatoryStatementMarkers": [
+    "/\\bOSHA\\b/i",
+    "/\\bMSHA\\b/i",
+    "/\\bregulation(s)?\\b/i",
+    "/\\bregulatory\\b/i",
+    "/\\bthe standard\\b/i",
+    "/\\bstandards? require/i",
+    "/\\bcode\\s+require/i",
+    "/\\blegally\\b/i",
+    "/\\bcompliance\\b/i",
+    "/\\bnon-?compliant\\b/i",
+    "/\\bcitation\\b/i",
+    "/\\bviolat(ion|es|e)\\b/i"
+  ],
+  "regulatoryObligationMarkers": [
+    "/\\brequire(s|d|ment|ments)?\\b/i",
+    "/\\bmust\\b/i",
+    "/\\bshall\\b/i",
+    "/\\bmandat(e|es|ed|ory)\\b/i",
+    "/\\bprohibit(s|ed)?\\b/i",
+    "/\\bnot permitted\\b/i",
+    "/\\bobligat(ed|ion|ions)\\b/i"
+  ],
+  "compositionRequirements": [
+    {
+      "measureId": "M01_ADDITIVE_HAZARD_RECALL",
+      "denominatorUnit": "present families the deterministic engine did not surface",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 10,
+      "preferredOpportunities": 15,
+      "suppliedBy": "DETERMINISTIC_MISS_RECALL_OPPORTUNITY",
+      "note": "REPORTED, so no sizing rule applies. Ten is stated so the headline number -- the reason to build Expert at all -- is not computed from two opportunities."
+    },
+    {
+      "measureId": "M02_EXPERT_CANDIDATE_FALSE_POSITIVES",
+      "denominatorUnit": "Expert candidates emitted",
+      "source": "MODEL_OUTPUT_DEPENDENT",
+      "minimumOpportunities": 10,
+      "preferredOpportunities": 20,
+      "suppliedBy": "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+      "note": "The cohort supplies forbidden families to be wrong about; it cannot make the model emit candidates. Every row must carry at least one forbidden family so the opportunity exists."
+    },
+    {
+      "measureId": "M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY",
+      "denominatorUnit": "merged rows (a zero-count gate)",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 60,
+      "suppliedBy": "ALL_ROWS",
+      "note": "Every row merges, so opportunity equals the cohort. Twenty is the floor at which the invariant is exercised across enough shapes to mean something."
+    },
+    {
+      "measureId": "M04_LIFE_CRITICAL_RETENTION",
+      "denominatorUnit": "life-critical deterministic findings supplied",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 10,
+      "preferredOpportunities": 15,
+      "suppliedBy": "LIFE_CRITICAL_PRESENT",
+      "note": "Floor 1.0, so the sizing rule does not apply and any single loss fails. The requirement is coverage: ten findings across distinct families, so retention is genuinely tested."
+    },
+    {
+      "measureId": "M05_FABRICATED_CITATIONS",
+      "denominatorUnit": "payloads inspected (a zero-count gate)",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 60,
+      "suppliedBy": "ALL_ROWS",
+      "note": "Rows supplying governed records raise the temptation to echo one, so the GOVERNED_RECORD_SUPPLIED class carries most of this measure's real risk."
+    },
+    {
+      "measureId": "M06_UNSUPPORTED_REGULATORY_ASSERTIONS",
+      "denominatorUnit": "rows carrying at least one governed record",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 40,
+      "preferredOpportunities": 48,
+      "suppliedBy": "GOVERNED_RECORD_SUPPLIED",
+      "note": "The binding constraint on cohort SIZE. 2/0.05 = 40 rows must supply a governed record."
+    },
+    {
+      "measureId": "M07_GOVERNED_RECORD_GROUNDING",
+      "denominatorUnit": "detected regulatory statements",
+      "source": "MODEL_OUTPUT_DEPENDENT",
+      "minimumOpportunities": 40,
+      "preferredOpportunities": 60,
+      "suppliedBy": "GOVERNED_RECORD_SUPPLIED",
+      "note": "Cannot be guaranteed: a model that never invokes regulation produces no statements. The cohort maximises the opportunity by supplying records widely; if the count still falls short, the measure is coarser or UNMEASURED, and either fact must be reported."
+    },
+    {
+      "measureId": "M08_GOVERNED_PROVENANCE_INTEGRITY",
+      "denominatorUnit": "merged rows (a zero-count gate)",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 60,
+      "suppliedBy": "ALL_ROWS",
+      "note": "Rows carrying an UNAPPROVED record are where an approval flip could occur, so the DISAGREEMENT_OPPORTUNITY class is what actually exercises this."
+    },
+    {
+      "measureId": "M09_CLARIFICATION_QUALITY",
+      "denominatorUnit": "clarifications emitted",
+      "source": "MODEL_OUTPUT_DEPENDENT",
+      "minimumOpportunities": 7,
+      "preferredOpportunities": 20,
+      "suppliedBy": "CLARIFICATION_OWED",
+      "note": "2/(1-0.70) = 7. The cohort supplies rows that genuinely owe a question; a silent model produces a zero denominator and the gate fails UNMEASURED, which is the correct outcome for a layer whose product requirement is to ask."
+    },
+    {
+      "measureId": "M10_UNNECESSARY_QUESTION_RATE",
+      "denominatorUnit": "rows owing NO clarification",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 14,
+      "preferredOpportunities": 20,
+      "suppliedBy": "CLARIFICATION_NOT_OWED",
+      "note": "2/0.15 = 14. These rows are the negative control for asking and must be deliberately authored -- a row is zero-owed only when every decision-critical fact is actually stated."
+    },
+    {
+      "measureId": "M11_CROSS_HAZARD_REASONING",
+      "denominatorUnit": "recorded interactions",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 10,
+      "preferredOpportunities": 15,
+      "suppliedBy": "CROSS_HAZARD_INTERACTION",
+      "note": "REPORTED. Ten so a new capability is not characterised from a handful of rows."
+    },
+    {
+      "measureId": "M12_INTERNAL_INCOHERENCE",
+      "denominatorUnit": "rows with a PRESENT layer",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 60,
+      "suppliedBy": "ALL_ROWS",
+      "note": "2/0.10 = 20."
+    },
+    {
+      "measureId": "M13_PROVIDER_CALLABILITY",
+      "denominatorUnit": "attempted calls",
+      "source": "RUN_TOPOLOGY",
+      "minimumOpportunities": 100,
+      "preferredOpportunities": 180,
+      "suppliedBy": "ALL_CALLS",
+      "note": "2/(1-0.98) = 100 calls. Satisfied by the three-arm topology at any admissible row count."
+    },
+    {
+      "measureId": "M14_ORDER_SENSITIVITY",
+      "denominatorUnit": "rows paired base/permuted",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 40,
+      "preferredOpportunities": 60,
+      "suppliedBy": "PAIRED_ROWS",
+      "note": "2/0.05 = 40. Every row is paired, so this is a second constraint on cohort SIZE and it agrees with M06's."
+    },
+    {
+      "measureId": "M15_LATENCY_P95",
+      "denominatorUnit": "calls returning a payload",
+      "source": "RUN_TOPOLOGY",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 180,
+      "suppliedBy": "ALL_CALLS",
+      "note": "REPORTED. A p95 over fewer than twenty samples is the maximum wearing a percentile's name."
+    },
+    {
+      "measureId": "M16_COST_PER_ROW",
+      "denominatorUnit": "rows attempted",
+      "source": "RUN_TOPOLOGY",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 60,
+      "suppliedBy": "ALL_ROWS",
+      "note": "REPORTED, and reported per run rather than estimated."
+    },
+    {
+      "measureId": "M17_CROSS_PROCESS_REPRODUCIBILITY",
+      "denominatorUnit": "rows paired across two processes",
+      "source": "COHORT_GUARANTEED",
+      "minimumOpportunities": 20,
+      "preferredOpportunities": 60,
+      "suppliedBy": "PAIRED_ROWS",
+      "note": "REPORTED under an ABSENT determinism control. Twenty is enough to characterise variation without pretending it is a gate."
+    }
+  ],
+  "requiredClassMinimums": {
+    "GOVERNED_RECORD_SUPPLIED": {
+      "minimum": 40,
+      "preferred": 48
+    },
+    "NO_GOVERNED_RECORD": {
+      "minimum": 8,
+      "preferred": 12
+    },
+    "CLARIFICATION_NOT_OWED": {
+      "minimum": 14,
+      "preferred": 20
+    },
+    "CLARIFICATION_OWED": {
+      "minimum": 20,
+      "preferred": 30
+    },
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": {
+      "minimum": 48,
+      "preferred": 60
+    },
+    "LIFE_CRITICAL_PRESENT": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "CROSS_HAZARD_INTERACTION": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "MULTI_HAZARD": {
+      "minimum": 12,
+      "preferred": 20
+    },
+    "NEGATED_OR_SAFE_STATE": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "DISAGREEMENT_OPPORTUNITY": {
+      "minimum": 6,
+      "preferred": 10
+    },
+    "DETERMINISTIC_HAZARD_PRESENT": {
+      "minimum": 30,
+      "preferred": 40
+    }
+  },
+  "minimumDefensibleRows": 48,
+  "preferredRows": 60,
+  "callTopology": {
+    "callsPerRow": 3,
+    "arms": [
+      "BASE",
+      "PERMUTED",
+      "CROSS_PROCESS"
+    ],
+    "repetitionsPerArm": 1,
+    "minimum": {
+      "rows": 48,
+      "plannedCalls": 144,
+      "expectedSpendUsd": 4.573008
+    },
+    "preferred": {
+      "rows": 60,
+      "plannedCalls": 180,
+      "expectedSpendUsd": 5.71626
+    },
+    "hardCallCeiling": 200,
+    "conservativeMaximumSpendUsd": 25,
+    "stopConditions": [
+      "attempted calls would exceed hardCallCeiling -- checked BEFORE each call",
+      "incurred spend has reached the spend ceiling -- checked BEFORE each call",
+      "a cohort row fails freeze-time validation -- the run stops before any request is built",
+      "the responding model identity differs from the qualified one -- the runner refuses the response rather than scoring it, and the run is invalidated rather than reinterpreted"
+    ]
+  },
+  "measuredCostModel": {
+    "source": "verification/expert-hazlenz-hosted-projection-ab-2026-08-31 (18 calls, exact fit)",
+    "inputUsdPerMillionTokens": 2,
+    "outputUsdPerMillionTokens": 10,
+    "observedMeanInputTokens": 9481,
+    "observedMeanOutputTokens": 1279,
+    "observedMeanCostUsd": 0.031757,
+    "observedMaxCostUsd": 0.039616,
+    "observedP95LatencyMs": 18942,
+    "maxOutputTokensConfigured": 8000
+  },
+  "conservativeMaximumSpendUsdComputed": 23,
+  "corpusPolicyUnchanged": {
+    "closed": [
+      "hazlenz-l3-sealed-acceptance-2026-08-25 (Run 1)",
+      "hazlenz-l3-run2-sealed-acceptance-2026-08-25 (Run 2, 93 rows)",
+      "GAUNTLET_OFFSET_1 (retired)",
+      "REALISM_OFFSET_0 (retired)"
+    ],
+    "reserved": [
+      "gauntlet offsets 2 and 3",
+      "realism offsets 1 and 2",
+      "the unopened 100-row gauntlet.seed"
+    ],
+    "development": [
+      "src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts",
+      "the development-l32*.json cohorts in the Level-3 reasoning tier eval/ directory"
+    ],
+    "rule": "A fix is demonstrated on development cohorts. A reserved offset is opened once, for one pre-registered exam, and is spent whether the result is good or bad."
+  }
+}

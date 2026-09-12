@@ -1,0 +1,707 @@
+{
+  "artifact": "SECTION-243-EXECUTION-SUMMARY",
+  "executorVersion": "hazlenz.expert.243.final-acceptance-execution.v1",
+  "assemblyVersion": "hazlenz.expert.243.assembly.v1",
+  "frozenInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "frozenPackageDigest": "486d9d7666bf6c58cba7a9d3392eebb56499667e19e358194a338939aecaf5ec",
+  "completedAt": "2026-09-12T16:26:14.917Z",
+  "casesExecuted": 24,
+  "casesTotal": 24,
+  "providerCalls": 30,
+  "primaryAuthorized": 32,
+  "maximumAuthorized": 34,
+  "contingencyCallsUsed": 0,
+  "actualSpendUsd": 3.0234,
+  "spendCeilingUsd": 3.6,
+  "ceilingReached": false,
+  "stoppedBecause": null,
+  "databaseOperations": 0,
+  "semanticRetries": 0,
+  "outputsRepaired": 0,
+  "verifierLegs": {
+    "G3": {
+      "ran": true,
+      "declarationId": "UFD-1",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-242A-G3.596-689.1",
+      "failureClass": "NO_FAILURE",
+      "propertyReview": {
+        "targetDeclarationId": "UFD-1",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether compactor 2's door interlock is currently intact and functional (stops the auger when the door opens) or has been defeated/bypassed like compactor 1's",
+        "propertyReviewReason": "The physical functional state of compactor 2's interlock is itself the condition that determines whether entanglement exposure exists after changeover; it is not a proxy for some other state — inspecting it is the direct way of finding out the state itself, and the two branches (intact vs defeated) exhaustively partition that state."
+      },
+      "siblingDeclarationsNotTargeted": 0,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "UFD-1",
+          "codes": []
+        }
+      ]
+    },
+    "G4": {
+      "ran": false,
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": [],
+      "projectionCodes": []
+    },
+    "G6": {
+      "ran": true,
+      "declarationId": "decl-destruct-performance",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-242A-G6.301-355.1",
+      "failureClass": "NO_FAILURE",
+      "propertyReview": {
+        "targetDeclarationId": "decl-destruct-performance",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the thermal destruct unit is actually breaking down ozone to a safe level in the offgas at and after restart",
+        "propertyReviewReason": "This is the physical condition that determines whether ozone reaches the plant room atmosphere at hazardous levels; it is not itself a test or record but the state the tests would confirm, and the decision (whether aquarists can safely resume work) turns directly on it."
+      },
+      "siblingDeclarationsNotTargeted": 0,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-destruct-performance",
+          "codes": []
+        }
+      ]
+    },
+    "C2": {
+      "ran": true,
+      "declarationId": "decl_current_exam",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C2.466-643.1",
+      "failureClass": "NO_FAILURE",
+      "propertyReview": {
+        "targetDeclarationId": "decl_current_exam",
+        "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the vacuum manipulator head currently has a valid, in-date thorough examination confirming it passed",
+        "propertyReviewReason": "A statutory thorough examination is a required act/certification whose completion and outcome is itself the substantive requirement for continued use of lifting equipment; there is no separate underlying condition being proxied for here beyond the examination having been done and passed, so the named property is the decision-controlling one."
+      },
+      "siblingDeclarationsNotTargeted": 2,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl_current_exam",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_seal_capability",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_pre_use_check_today",
+          "codes": []
+        }
+      ]
+    },
+    "C3": {
+      "ran": true,
+      "declarationId": "decl_head_position",
+      "factKey": "FP.HAZARD_SEVERITY.OBS-242A-C3.396-591.1",
+      "failureClass": "NO_FAILURE",
+      "propertyReview": {
+        "targetDeclarationId": "decl_head_position",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "The drill head's actual current depth/position relative to the potholed gas main location",
+        "propertyReviewReason": "This is not evidence for some other condition; the head's true position relative to a known live gas main is the direct physical fact that determines strike risk and whether advance may safely continue. Knowing it with certainty answers the safety question outright."
+      },
+      "siblingDeclarationsNotTargeted": 1,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl_head_position",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_calibration_basis",
+          "codes": []
+        }
+      ]
+    },
+    "C6": {
+      "ran": true,
+      "declarationId": "decl-lead-determination",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C6.224-359.1",
+      "failureClass": "NO_FAILURE",
+      "propertyReview": {
+        "targetDeclarationId": "decl-lead-determination",
+        "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the initial lead exposure determination required by 29 CFR 1926.62(d)(1)(i) has been made or is scheduled before coating disturbance begins",
+        "propertyReviewReason": "The regulation makes the determination itself the mandatory prerequisite act before disturbance; it is not evidence of some separate underlying condition but the compliance act that must occur, so the property named is the one that actually controls the decision."
+      },
+      "siblingDeclarationsNotTargeted": 1,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-lead-determination",
+          "codes": []
+        },
+        {
+          "declarationId": "decl-negative-pressure",
+          "codes": []
+        }
+      ]
+    },
+    "M2": {
+      "ran": true,
+      "declarationId": "df-diameter-measurement",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M2.290-424.1",
+      "failureClass": "NO_FAILURE",
+      "propertyReview": {
+        "targetDeclarationId": "df-diameter-measurement",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the measured diameter reduction combined with the broken-wire count meets the mine's rope management plan's discard criterion",
+        "propertyReviewReason": "The plan's discard rule is defined directly on the combination of broken-wire count and measured diameter reduction, so knowing this combined value with certainty answers the required-control question outright (discard or not) rather than merely providing evidence toward some other underlying condition."
+      },
+      "siblingDeclarationsNotTargeted": 0,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "df-diameter-measurement",
+          "codes": []
+        }
+      ]
+    },
+    "M5": {
+      "ran": false,
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": [],
+      "projectionCodes": []
+    }
+  },
+  "perCase": {
+    "G1": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_NARRATIVE_MISSING",
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38993,
+      "outputTokens": 4184,
+      "costUsd": 0.119826
+    },
+    "G2": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_NARRATIVE_MISSING",
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39827,
+      "outputTokens": 2949,
+      "costUsd": 0.109144
+    },
+    "G3": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "STOP",
+      "recommendationState": {
+        "posture": "STOP",
+        "postureRank": 3,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [
+          {
+            "control": "Remove the taped bypass magnet from compactor 1's door interlock and restore the interlock to functioning condition so the auger stops whenever the door is opened",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Establish a safe blockage-clearing procedure for compactor 1 that does not require reaching into the machine while the auger can turn (e.g. lockout/de-energize before clearing jams)",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Clean and dry the floor area around the compactor and implement housekeeping to prevent screenings build-up and standing water at the machine access point",
+            "timing": "BEFORE_WORK_RESUMES"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "UFD-1"
+          ],
+          "correctionsRequired": [
+            "Remove the interlock bypass on compactor 1 and confirm the interlock functions normally",
+            "Inspect and verify compactor 2's door interlock is intact and functional before it is placed into service",
+            "Clear the wet screenings build-up from the floor around the compactor and establish routine washdown"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 39862,
+      "outputTokens": 4060,
+      "costUsd": 0.120324
+    },
+    "G4": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39031,
+      "outputTokens": 4153,
+      "costUsd": 0.119592
+    },
+    "G5": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "postureRank": 2,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl-hold-to-run-usability"
+          ],
+          "correctionsRequired": [
+            "Confirm whether the hold-to-run film-load mode is functional and usable for the splice task; if usable, require its use for every splice; if not usable, implement an interim physical barrier, reach-limiting device, or equivalent control at the 120mm gap before splices continue in the current manner"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 38980,
+      "outputTokens": 4916,
+      "costUsd": 0.12712
+    },
+    "G6": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "postureRank": 2,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [
+          {
+            "control": "Use the calibrated handheld ozone monitor to check the plant room atmosphere at and immediately following generator restart, in place of the absent fixed monitor",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Restrict or supervise aquarist access to the plant room during and immediately after restart until an acceptable ozone reading is confirmed",
+            "timing": "BEFORE_WORK_RESUMES"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl-destruct-performance"
+          ],
+          "correctionsRequired": [
+            "Verify the thermal destruct unit's ozone-destruction performance (by outlet test or handheld ambient monitoring) at generator restart before normal, unsupervised aquarist occupancy of the plant room resumes"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 38997,
+      "outputTokens": 3940,
+      "costUsd": 0.117394
+    },
+    "G7": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "CONTINUE",
+      "recommendationState": {
+        "posture": "CONTINUE",
+        "postureRank": 0,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 39020,
+      "outputTokens": 2045,
+      "costUsd": 0.09849
+    },
+    "G8": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38998,
+      "outputTokens": 2626,
+      "costUsd": 0.104256
+    },
+    "C1": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39845,
+      "outputTokens": 3705,
+      "costUsd": 0.11674
+    },
+    "C2": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "postureRank": 2,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl_current_exam",
+            "decl_seal_capability",
+            "decl_pre_use_check_today"
+          ],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 39014,
+      "outputTokens": 5384,
+      "costUsd": 0.131868
+    },
+    "C3": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38996,
+      "outputTokens": 4776,
+      "costUsd": 0.125752
+    },
+    "C4": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39015,
+      "outputTokens": 4612,
+      "costUsd": 0.12415
+    },
+    "C5": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "STOP",
+      "recommendationState": {
+        "posture": "STOP",
+        "postureRank": 3,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": [
+            "Withdraw the raker from the area behind the material transfer vehicle while it reverses, or provide a banksman/spotter to direct the reversing movement",
+            "Take the material transfer vehicle out of service for reversing near personnel, or repair/replace the reversing camera monitor so the driver has a functioning means of detecting personnel behind the vehicle, before reversing operations resume with anyone on foot in that zone"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 38957,
+      "outputTokens": 3475,
+      "costUsd": 0.112664
+    },
+    "C6": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39772,
+      "outputTokens": 4454,
+      "costUsd": 0.124084
+    },
+    "C7": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38958,
+      "outputTokens": 2736,
+      "costUsd": 0.105276
+    },
+    "C8": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38974,
+      "outputTokens": 2980,
+      "costUsd": 0.107748
+    },
+    "M1": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "CONTINUE_WITH_CONTROLS",
+      "recommendationState": {
+        "posture": "CONTINUE_WITH_CONTROLS",
+        "postureRank": 1,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [
+          {
+            "control": "Assign a responsible person and near-term timing to replace the blocked ranging-arm dust suppression nozzle",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Maintain heightened awareness of dust conditions at the ranging arm while cutting continues with 13 of 14 sprays operating",
+            "timing": "DURING_CONTINUED_WORK"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 39044,
+      "outputTokens": 3194,
+      "costUsd": 0.110028
+    },
+    "M2": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38964,
+      "outputTokens": 3191,
+      "costUsd": 0.109838
+    },
+    "M3": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "STOP",
+      "recommendationState": {
+        "posture": "STOP",
+        "postureRank": 3,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": [
+            "De-energise the trailing cable at the switchhouse (or confirm it is de-energised) and lock out/isolate it before anyone approaches the damaged section",
+            "Withdraw the cable handler and all personnel from the standing water and damaged cable area until the cable is proven de-energised",
+            "Repair or replace the damaged 300mm section of cable, restoring sheath and phase insulation integrity, and test the cable before it is re-energised",
+            "Remove or address the standing water in the area before work resumes near the cable"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 38961,
+      "outputTokens": 2872,
+      "costUsd": 0.106642
+    },
+    "M4": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39927,
+      "outputTokens": 4538,
+      "costUsd": 0.125234
+    },
+    "M5": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 39010,
+      "outputTokens": 4572,
+      "costUsd": 0.12374
+    },
+    "M6": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": false,
+      "codes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "posture": null,
+      "recommendationState": null,
+      "inputTokens": 38990,
+      "outputTokens": 5372,
+      "costUsd": 0.1317
+    },
+    "M7": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "CONTINUE",
+      "recommendationState": {
+        "posture": "CONTINUE",
+        "postureRank": 0,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 38968,
+      "outputTokens": 791,
+      "costUsd": 0.085846
+    },
+    "M8": {
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "admitted": true,
+      "codes": [],
+      "posture": "CONTINUE_WITH_CONTROLS",
+      "recommendationState": {
+        "posture": "CONTINUE_WITH_CONTROLS",
+        "postureRank": 1,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [
+          {
+            "control": "Maintain barriered exclusion of the pattern with shot firer controlling the single access point during loading",
+            "timing": "DURING_CONTINUED_WORK"
+          },
+          {
+            "control": "Shot firer to continue active monitoring of the tracked storm cell and compare its position against the documented lightning trigger distance on an ongoing basis",
+            "timing": "DURING_CONTINUED_WORK"
+          },
+          {
+            "control": "Be prepared to immediately invoke the written lightning evacuation procedure and halt loading if the cell reaches the trigger distance",
+            "timing": "DURING_CONTINUED_WORK"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "inputTokens": 38992,
+      "outputTokens": 3776,
+      "costUsd": 0.115744
+    }
+  }
+}

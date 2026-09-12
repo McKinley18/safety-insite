@@ -1,0 +1,343 @@
+{
+  "operation": "§153 Expert HazLenz bounded hosted settlement-threshold + affectedDecision routing probe",
+  "capturedAt": "2026-09-03T20:47:05.606Z",
+  "isFormalEvaluation": false,
+  "hashes": {
+    "probeScriptSha256": "f1a9f270d7baee59f52af9f9d9ede79a978bd8fa78f320c144fbb5a5d965525b",
+    "fixtureManifestSha256": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+    "systemPromptSha256": "c4b3162439988e74186c36f75ee1f14875835e1cc832251a8d7365a4b158e3f3",
+    "wireSchemaSha256": "15e2b80947355954f105f8b34bf8cf00c6c1153a82c2255b9e8151ccd66c4a97",
+    "normalizationSha256": "606dd1a7d468eecf00de773fd322f2018b00888dc18544c7894f4e5b0082d4ae",
+    "contractTypesSha256": "456d736f2fb291cc405494b19e9380e82f5a2904b0c692ea02911374d6dc7e8a"
+  },
+  "execution": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "promptVersion": "hazlenz.expert.prompt.v13",
+    "analysisContractVersion": "hazlenz.expert.analysis.v2"
+  },
+  "budget": {
+    "targetLogicalCalls": 16,
+    "hardProviderRequestCeiling": 16,
+    "retryRequestBudget": 0,
+    "enforcedSpendCeilingUsd": 1.664,
+    "worstCaseRequestUsd": 0.104
+  },
+  "extra": {
+    "git": {
+      "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+      "branch": "main",
+      "upstream": "origin/main",
+      "dirty": "2331"
+    },
+    "historicalProviderInvocationCount": 195,
+    "operation": "hardened-v9-v13-baseline-replicate-2",
+    "relationToPriorRun": "REPLICATE_OF §152 expert-hazlenz-hardened-v13-baseline-2026-09-03",
+    "THIS_RUN_IS_NOT_DETERMINISTIC": true,
+    "NO_SEED_IS_AVAILABLE": true,
+    "PURPOSE": "RUN-TO-RUN VARIANCE CHARACTERIZATION, NOT EXACT REPRODUCTION. No exact reproduction is possible or attempted; a row that differs between replicates is evidence of variance, because nothing else changed.",
+    "adjudicationSidecarSha256": "38de42ab951653dcf7c0d84ee3bb3e7fbbf8b648492fc46eaa31dba50f23062e",
+    "degenerateDetectorVersion": "hazlenz.expert.degenerate-output-detector.v1",
+    "familyComparisonMapVersion": "hazlenz.expert.family-comparison-map.v1",
+    "retryPolicy": "NONE — zero retries, and no rerun of a degenerate row under any circumstance",
+    "fixtureSetVersion": "hazlenz.expert.hardened-development.fixtures.v9",
+    "fixtureSetDigest": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+    "fixtureFileSha256": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+    "fixtureDigestCoversSignatures": true,
+    "samplingDeterminism": {
+      "temperature": "NOT_SENT — removed on Claude Sonnet 5; sending it returns HTTP 400",
+      "top_p": "NOT_SENT — same",
+      "top_k": "NOT_SENT — same",
+      "seed": "NOT_AVAILABLE — the model has no seed parameter",
+      "reproducibility": "THIS RUN IS NOT REPRODUCIBLE BY SEED. No repeat-run variance is controlled or measured, and a single replicate cannot separate model behaviour from sampling noise."
+    },
+    "isRemediationRun": false,
+    "v14Implemented": false,
+    "promptFrozenSince": "§151",
+    "promptModuleSha256": "02977c309f6d3e377d97b31836f9fc6e8af8dfd64fa28d81d1a53f605a266efa",
+    "contractVersions": {
+      "input": "hazlenz.expert.input.v1",
+      "validator": "hazlenz.expert.validator.v1",
+      "measurement": "hazlenz.expert.measurement.v1",
+      "harness": "hazlenz.expert.cohort.harness.v1",
+      "runRecordStore": "hazlenz.expert.run-record-store.v1",
+      "probeMeasures": "hazlenz.expert.probe-measures.v1",
+      "fixtureSet": "hazlenz.expert.hardened-development.fixtures.v9"
+    },
+    "arms": [
+      "BASE"
+    ],
+    "m14RemediationStatus": "NOT_ATTEMPTED",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "frozenGates": {
+      "strictRequiredRecall": 1,
+      "maxForbiddenViolations": 0,
+      "maxRetainedButNotAsked": 0,
+      "maxUnsupportedSettlements": 0,
+      "affectedDecisionSurvival": 1,
+      "maxAcceptedInvalidLinkages": 0,
+      "rawLinkageReconciliationRequired": true,
+      "trueContradictionDeterministicProofRequired": true,
+      "hostedTrueContradictionIsObservational": true,
+      "maxInvalidClarificationObjects": 0,
+      "maxCitationContainmentViolations": 0,
+      "maxProtectedAuthorityContradictions": 0
+    },
+    "rawWireCapture": "DEVELOPMENT-ONLY provider decorator in this script; production runner, normalizer and customer path are byte-unchanged and offendingText is NOT broadened",
+    "gate": [
+      {
+        "id": "A.1 sixteen logical calls, matching the authorization",
+        "ok": true,
+        "detail": "16 rows (request ceiling 16)"
+      },
+      {
+        "id": "A.2 every row is structurally scoreable",
+        "ok": true,
+        "detail": "0 problems"
+      },
+      {
+        "id": "A.3 ids are fresh HS-* development ids",
+        "ok": true,
+        "detail": "HS-A1 HS-B1 HS-C1 HS-D1 HS-E1 HS-F1 HS-G1 HS-H1 HS-J1 HS-K1 HS-L1 HS-M1 HS-N1 HS-P1 HS-Q1 HS-R1"
+      },
+      {
+        "id": "A.4 sixteen distinct domains",
+        "ok": true,
+        "detail": "16"
+      },
+      {
+        "id": "A.5 THE v9 DIGEST MATCHES §151 EXACTLY — this run is against the reviewed material",
+        "ok": true,
+        "detail": "434c127c44a8d6d8592c1b6e…"
+      },
+      {
+        "id": "A.5b and the fixture FILE is byte-identical to its §151 state",
+        "ok": true,
+        "detail": "09195af8fb7ce07c693c8d05…"
+      },
+      {
+        "id": "A.5c the set is declared UNSPENT with no prior hosted authorization",
+        "ok": true,
+        "detail": "authored under hazlenz.expert.prompt.v13"
+      },
+      {
+        "id": "B.1 the fixture linter PASSES live, at $0.00",
+        "ok": true,
+        "detail": "16 rows, 0 mechanical, 0 unsigned"
+      },
+      {
+        "id": "B.2 eight REQUIRED and eight FORBIDDEN",
+        "ok": true,
+        "detail": "8 / 8"
+      },
+      {
+        "id": "B.3 every row carries its full signature set, none re-signed to a hollow value",
+        "ok": true,
+        "detail": "all sixteen complete"
+      },
+      {
+        "id": "B.4 every REQUIRED row enumerates at least two acceptable selectors",
+        "ok": true,
+        "detail": "the §151 selector-over-specification repair"
+      },
+      {
+        "id": "B.5 the CONSEQUENCE-MAGNITUDE probe row is present, owed SILENCE, and declares its own falsifier BEFORE the run",
+        "ok": true,
+        "detail": "HS-R1"
+      },
+      {
+        "id": "B.5b and NO row authors HAZARD_SEVERITY or HAZARD_EXISTENCE as an expected label — §151 measured HAZARD_SEVERITY correct 0 of 7, so it is not a label to expect",
+        "ok": true,
+        "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION, APPLICABILITY"
+      },
+      {
+        "id": "B.6 v11, v12 and v13 each keep a non-regression row in the set",
+        "ok": true,
+        "detail": "16 forms"
+      },
+      {
+        "id": "B.7 all sixteen forms appear exactly once — a result names its own mechanism",
+        "ok": true,
+        "detail": "16 of 16"
+      },
+      {
+        "id": "B.8 THE ADJUDICATION SIDECAR IS FROZEN and hashes to its pre-registered value — no denominator can be chosen after seeing the data",
+        "ok": true,
+        "detail": "38de42ab951653dcf7c0d84e…"
+      },
+      {
+        "id": "B.8b and its denominators are exactly the §152 dispositions the authorization fixed",
+        "ok": true,
+        "detail": "REQUIRED 7 (HS-F1 excluded, HS-H1 and HS-A1 included); FORBIDDEN 7 (HS-M1 excluded)"
+      },
+      {
+        "id": "B.9 the degenerate-output detector is armed and versioned",
+        "ok": true,
+        "detail": "hazlenz.expert.degenerate-output-detector.v1"
+      },
+      {
+        "id": "B.9b the family comparison map is armed and versioned",
+        "ok": true,
+        "detail": "hazlenz.expert.family-comparison-map.v1"
+      },
+      {
+        "id": "B.10 replicate 1 artifacts are present and readable for the row-by-row comparison",
+        "ok": true,
+        "detail": "the §152 evidence directory"
+      },
+      {
+        "id": "C.1 every REQUIRED row states BOTH answers and BOTH DIFFERENT current outcomes",
+        "ok": true,
+        "detail": "8 complete counterfactuals"
+      },
+      {
+        "id": "C.2 exactly one authored gap per REQUIRED row, none on any FORBIDDEN row",
+        "ok": true,
+        "detail": "retention is unambiguous per row"
+      },
+      {
+        "id": "C.3 every FORBIDDEN row states the tempting question AND a per-row reason",
+        "ok": true,
+        "detail": "no blanket labels; each names the value, the basis and the side"
+      },
+      {
+        "id": "C.4 every authored affectedDecision is in the frozen vocabulary",
+        "ok": true,
+        "detail": "REQUIRED_CONTROL, REGULATORY_INTERPRETATION, APPLICABILITY"
+      },
+      {
+        "id": "C.5 REGULATORY_INTERPRETATION is never claimed without a SUPPLIED record",
+        "ok": true,
+        "detail": "checked"
+      },
+      {
+        "id": "C.6 and NO row authors HAZARD_EXISTENCE as the owed label — on a row whose hazard the text establishes, an existence question IS the contradiction",
+        "ok": true,
+        "detail": "checked"
+      },
+      {
+        "id": "D.1 no formal-cohort, reserved or SPENT-probe path is imported",
+        "ok": true,
+        "detail": "clean — and the spent v5 fixture set is not reused either"
+      },
+      {
+        "id": "E.1 model bound exactly",
+        "ok": true,
+        "detail": "claude-sonnet-5"
+      },
+      {
+        "id": "E.2 vendor endpoint",
+        "ok": true,
+        "detail": "https://api.anthropic.com"
+      },
+      {
+        "id": "E.3 thinking disabled",
+        "ok": true,
+        "detail": "disabled"
+      },
+      {
+        "id": "E.4 credential present (never logged or persisted)",
+        "ok": true,
+        "detail": "set"
+      },
+      {
+        "id": "F.1 built one request per row, called nothing",
+        "ok": true,
+        "detail": "16 built, 0 invocations"
+      },
+      {
+        "id": "F.2 ONE ARM ONLY — M14 not attempted",
+        "ok": true,
+        "detail": "BASE"
+      },
+      {
+        "id": "F.2b v14 IS UNIMPLEMENTED — v13 is the shipped version and no v14 block exists",
+        "ok": true,
+        "detail": "this is a baseline, not a remediation"
+      },
+      {
+        "id": "F.2c and the §139 collision rule §151 proposes to amend is UNTOUCHED",
+        "ok": true,
+        "detail": "the baseline measures shipped behaviour, not an edited contract"
+      },
+      {
+        "id": "F.3 the prospective repaired prompt is v13",
+        "ok": true,
+        "detail": "hazlenz.expert.prompt.v13"
+      },
+      {
+        "id": "F.4 the analysis contract is UNCHANGED at v2 — the schema gained no field",
+        "ok": true,
+        "detail": "hazlenz.expert.analysis.v2"
+      },
+      {
+        "id": "F.5 THE RETENTION BRIDGE is in the system prompt this probe will send, and placed LAST",
+        "ok": true,
+        "detail": "present and after the settlement check in all requests"
+      },
+      {
+        "id": "F.5b with the distinction from the settlement check stated — RESOLVED versus left OPEN",
+        "ok": true,
+        "detail": "the diagnosis, in one sentence, in every request"
+      },
+      {
+        "id": "F.5c and all four retention channels named",
+        "ok": true,
+        "detail": "candidate state, reasoning, summary, uncertainty"
+      },
+      {
+        "id": "F.6 THE ANTI-OVERFIRE CLAUSE is present — the state alone is never a reason to ask",
+        "ok": true,
+        "detail": "the conjunction and the deference to the counterfactual test, in all requests"
+      },
+      {
+        "id": "F.6b and the no-duplicate rule",
+        "ok": true,
+        "detail": "present in all requests"
+      },
+      {
+        "id": "F.7 NOTHING from v9-v12 was dropped from the text being sent — §149's closure especially",
+        "ok": true,
+        "detail": "v12 settlement, v11 threshold and routing, v10 checks, v9 precision and the INSUFFICIENT_EVIDENCE state all intact"
+      },
+      {
+        "id": "G.1 no truth-key-only string reaches any request",
+        "ok": true,
+        "detail": "16 scanned"
+      },
+      {
+        "id": "G.2 no built prompt carries citation-shaped text",
+        "ok": true,
+        "detail": "16 scanned"
+      },
+      {
+        "id": "G.3 redaction is exercised",
+        "ok": true,
+        "detail": "4 supplied record fields carried a citation pre-render"
+      },
+      {
+        "id": "H.1 spend ceiling is the LOWER of authorized and model-priced",
+        "ok": true,
+        "detail": "authorized $2.50, priced $1.6640 -> enforcing $1.6640"
+      },
+      {
+        "id": "H.1b the retry allowance is ZERO, and a retry would be refused rather than overspend",
+        "ok": true,
+        "detail": "0 retry requests against a 16-request cap"
+      },
+      {
+        "id": "H.2 store is empty or absent",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "H.3 PRE-SPEND-IDENTITY.json does not already exist",
+        "ok": true,
+        "detail": "clean"
+      }
+    ]
+  }
+}

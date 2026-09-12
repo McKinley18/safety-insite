@@ -1,0 +1,350 @@
+{
+  "type": "object",
+  "properties": {
+    "expertHazardCandidates": {
+      "type": "array",
+      "description": "Plausible hazards NOT already present in the deterministic findings. Include uncertain ones with LOW confidence rather than omitting them. A possible confined space, chemical exposure, stored energy or struck-by exposure belongs HERE, not in the summary. ONE ENTRY PER DISTINCT HAZARD: if the observation supports two different hazards, emit two candidates. Do not merge them into one entry and do not leave the second one to the summary.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "candidateKey": {
+            "type": "string",
+            "description": "Short stable id, unique within this response."
+          },
+          "hazardFamily": {
+            "type": "string",
+            "enum": [
+              "electrical",
+              "lockout_tagout",
+              "fall_protection",
+              "confined_space",
+              "machine_guarding",
+              "chemical_exposure",
+              "mobile_equipment",
+              "wet_environment"
+            ]
+          },
+          "assertedConditionState": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "CONTROLLED",
+              "CORRECTED",
+              "REMOVED_FROM_SERVICE",
+              "NEGATED",
+              "HYPOTHETICAL",
+              "INSUFFICIENT_EVIDENCE",
+              "UNKNOWN"
+            ]
+          },
+          "groundingStatus": {
+            "type": "string",
+            "enum": [
+              "EXACT_QUOTE_SUPPLIED",
+              "NO_EXACT_QUOTE_AVAILABLE"
+            ],
+            "description": "Say which case this candidate is in. EXACT_QUOTE_SUPPLIED when the observation contains words that support it — then evidence MUST carry at least one verbatim quote. NO_EXACT_QUOTE_AVAILABLE only when the observation genuinely contains no supporting span, for instance when the hazard is inferred from context rather than stated — then evidence MUST be empty. Choosing NO_EXACT_QUOTE_AVAILABLE is a claim ABOUT THE OBSERVATION and it can be checked against it, so do not choose it to save effort."
+          },
+          "evidence": {
+            "type": "array",
+            "description": "Exact verbatim quotes copied from the observation text, character for character. Required to be NON-EMPTY when groundingStatus is EXACT_QUOTE_SUPPLIED, and required to be EMPTY when it is NO_EXACT_QUOTE_AVAILABLE. Copy the shortest span that actually supports the candidate. Never invent a quote and never paraphrase one.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sourceId": {
+                  "type": "string",
+                  "enum": [
+                    "obs-1"
+                  ]
+                },
+                "quotedText": {
+                  "type": "string",
+                  "description": "Copied character-for-character from the named source, including case and punctuation. ONE SHORT CONTIGUOUS SPAN — the few words that actually support the candidate, not the whole observation."
+                }
+              },
+              "required": [
+                "sourceId",
+                "quotedText"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "evidenceBasis": {
+            "type": "string",
+            "description": "What in the observation supports this."
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Why this constitutes a hazard."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MODERATE",
+              "HIGH"
+            ]
+          },
+          "relationshipToDeterministic": {
+            "type": "string",
+            "enum": [
+              "ADDITIONAL_TO_DETERMINISTIC",
+              "AGREES_WITH_DETERMINISTIC",
+              "REFINES_DETERMINISTIC",
+              "CONTRADICTS_DETERMINISTIC"
+            ]
+          },
+          "requiresUserConfirmation": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "candidateKey",
+          "hazardFamily",
+          "assertedConditionState",
+          "groundingStatus",
+          "evidence",
+          "evidenceBasis",
+          "reasoning",
+          "confidence",
+          "relationshipToDeterministic",
+          "requiresUserConfirmation"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "decisionCriticalClarifications": {
+      "type": "array",
+      "description": "Missing facts whose answer could change whether a hazard exists, its severity, exposure, applicability, the required control, or readiness to proceed. \"Is it de-energized?\", \"was lockout/tagout applied?\", \"is it isolated?\", \"what PPE?\" belong HERE. Independent of hazards: populate this even when the hazard list is empty. Distinct from uncertainty — if it can be asked as a decision-changing question, it is a clarification, not an uncertainty.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "clarificationId": {
+            "type": "string",
+            "description": "Short stable id, unique within this response."
+          },
+          "question": {
+            "type": "string",
+            "description": "One question, asked plainly."
+          },
+          "whyItMatters": {
+            "type": "string",
+            "description": "What the answer changes."
+          },
+          "affectedDecision": {
+            "type": "string",
+            "enum": [
+              "HAZARD_EXISTENCE",
+              "HAZARD_SEVERITY",
+              "EXPOSURE",
+              "APPLICABILITY",
+              "REQUIRED_CONTROL",
+              "REGULATORY_INTERPRETATION"
+            ]
+          },
+          "criticality": {
+            "type": "string",
+            "enum": [
+              "ROUTINE",
+              "IMPORTANT",
+              "BLOCKING"
+            ]
+          },
+          "evidenceGap": {
+            "type": "string",
+            "description": "What is missing, stated as a fact rather than a question."
+          }
+        },
+        "required": [
+          "clarificationId",
+          "question",
+          "whyItMatters",
+          "affectedDecision",
+          "criticality",
+          "evidenceGap"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "crossHazardInsights": {
+      "type": "array",
+      "description": "Two or more conditions that are worse together than separately — wet plus electrical, excavation plus utilities, confined space plus atmosphere, stored energy plus lockout/tagout, mobile equipment plus pedestrians. A real interaction belongs HERE, not only in the summary.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "insightId": {
+            "type": "string",
+            "description": "Short stable id."
+          },
+          "interactionKind": {
+            "type": "string",
+            "enum": [
+              "ELECTRICAL_WET_ENVIRONMENT",
+              "EXCAVATION_UTILITIES",
+              "CONFINED_SPACE_ATMOSPHERIC",
+              "FALL_EXPOSURE_ANCHORAGE",
+              "LOTO_STORED_ENERGY",
+              "CHEMICAL_PPE_VENTILATION",
+              "MOBILE_EQUIPMENT_PEDESTRIAN",
+              "OTHER"
+            ]
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "At least TWO hazard families or candidate keys — an interaction needs both sides named. One participant is not an interaction."
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Why these are worse together."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MODERATE",
+              "HIGH"
+            ]
+          }
+        },
+        "required": [
+          "insightId",
+          "interactionKind",
+          "participants",
+          "reasoning",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "disagreements": {
+      "type": "array",
+      "description": "ONLY where you challenge the deterministic result or a supplied governed record as wrong, incomplete or needing review. Adding new context is NOT a disagreement — that is a candidate or an insight.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disagreementId": {
+            "type": "string",
+            "description": "Short stable id."
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "DETERMINISTIC_RESULT",
+              "GOVERNED_STANDARD",
+              "AVAILABLE_EVIDENCE"
+            ]
+          },
+          "surface": {
+            "type": "string",
+            "enum": [
+              "HAZARD_RECOGNITION",
+              "HAZARD_DECOMPOSITION",
+              "DANGEROUS_AND_LIFE_CRITICAL_RETENTION",
+              "CONDITION_STATE_INTERPRETATION",
+              "NEGATION_AND_SAFE_STATE",
+              "ACTIONABLE_CLASSIFICATION",
+              "RISK_BEHAVIOUR",
+              "JURISDICTION_HANDLING",
+              "GOVERNED_REGULATORY_CITATION",
+              "KNOWLEDGE_RELEASE_PROVENANCE",
+              "CORRECTIVE_ACTION_AND_WORKFLOW",
+              "FAIL_CLOSED_AND_FALLBACK"
+            ]
+          },
+          "targetRef": {
+            "type": "string",
+            "description": "Which object you mean, or an empty string."
+          },
+          "disagreementType": {
+            "type": "string",
+            "enum": [
+              "MAY_BE_INCOMPLETE",
+              "MAY_BE_OVERINCLUSIVE",
+              "MAY_REQUIRE_CLOSER_REVIEW",
+              "EVIDENCE_INSUFFICIENT"
+            ]
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Why you disagree."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MODERATE",
+              "HIGH"
+            ]
+          },
+          "recommendsReview": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "disagreementId",
+          "target",
+          "surface",
+          "targetRef",
+          "disagreementType",
+          "reasoning",
+          "confidence",
+          "recommendsReview"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "expertExplanation": {
+      "type": "object",
+      "description": "A SUPPLEMENT that synthesises what is already in the typed lists. Never the only place a hazard, a question or an interaction appears.",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Two or three sentences an inspector could read, synthesising the lists above."
+        }
+      },
+      "required": [
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "uncertainty": {
+      "type": "object",
+      "description": "Residual ambiguity ONLY — what could not be turned into a candidate, a question or an insight. Not an overflow channel. Anything phrasable as a decision-changing question belongs in decisionCriticalClarifications instead.",
+      "properties": {
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "statements"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "ANALYZED",
+        "NOTHING_TO_ADD",
+        "INSUFFICIENT_EVIDENCE",
+        "EXPERT_UNAVAILABLE"
+      ],
+      "description": "Decide this LAST, from what you actually put in the lists above. NOTHING_TO_ADD is correct only when every list above is empty."
+    }
+  },
+  "required": [
+    "expertHazardCandidates",
+    "decisionCriticalClarifications",
+    "crossHazardInsights",
+    "disagreements",
+    "expertExplanation",
+    "uncertainty",
+    "outcome"
+  ],
+  "additionalProperties": false
+}

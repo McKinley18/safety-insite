@@ -1,0 +1,656 @@
+{
+  "frozenAt": "2026-09-05T03:16:27.298Z",
+  "version": "hazlenz.expert.v3-falsification-cases.2026-09-04",
+  "model": "claude-sonnet-5",
+  "maxTokens": 4000,
+  "instruction": {
+    "version": "hazlenz.expert.verifier-instruction.v3",
+    "sha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88"
+  },
+  "responseSchemaSha256": "1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a",
+  "contract": "hazlenz.expert.verifier.v3",
+  "drawPlan": [
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "draw": 1
+    },
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "draw": 2
+    },
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "draw": 3
+    },
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "draw": 4
+    },
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "draw": 5
+    },
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "draw": 6
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "draw": 1
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "draw": 2
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "draw": 3
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "draw": 4
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "draw": 5
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "draw": 6
+    }
+  ],
+  "suppliedOwedFacts": {
+    "VC-08": [
+      {
+        "factKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation states the safeguard cannot be seen from the walkway and states nothing about its functional status",
+        "branchA": "the safeguard is functional",
+        "branchB": "the safeguard is bypassed, failed or otherwise nonfunctional",
+        "decisionDivergence": {
+          "ifA": "drying continues under the existing controls",
+          "ifB": "the burner is shut down and the safeguard restored before drying continues"
+        },
+        "evidenceSpan": "the flame-failure device and its wiring are behind that shroud and cannot be seen"
+      }
+    ],
+    "VC-04": [
+      {
+        "factKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation states the machine was returned to service and states nothing about whether the guard interlock protective function was verified after reassembly",
+        "branchA": "the interlock protective function was verified before return to service",
+        "branchB": "the interlock protective function was not verified before return to service",
+        "decisionDivergence": {
+          "ifA": "the debarker continues to run as observed",
+          "ifB": "the protective function is verified before the debarker continues to run"
+        },
+        "evidenceSpan": "The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift."
+      }
+    ]
+  },
+  "owedTargetKey": {
+    "VC-08": "owed:hs-a1:flame_failure_safeguard_functional_status",
+    "VC-04": "owed:hs-e1:rotor_guard_interlock_function_verified"
+  },
+  "requests": [
+    {
+      "caseId": "VC-08",
+      "semanticRequestSha256": "c1e5407a121c60b7e395e6e7b4f9b1ebc866b79a40911f2397bea534e5c02bb6",
+      "requestBytes": 16217,
+      "body": {
+        "model": "claude-sonnet-5",
+        "max_tokens": 4000,
+        "system": "You are reviewing ONE decision that another safety analysis already made: whether to ask a\nclarifying question about something the observation left unresolved.\n\nYou are given an observation of a workplace, whatever governed regulatory evidence was supplied\nwith it, the result of a deterministic hazard engine, the first-pass analysis, and the specific\nunresolved facts that analysis left open. Your jurisdiction is EXACTLY ONE THING: whether the\nclarification set is right. You do not re-analyse the hazards.\n\nEACH UNRESOLVED FACT YOU ARE GIVEN CARRIES A factKey. Those keys are fixed, and they are the only\nway to refer to those facts. Copy a key exactly when you use one: a key you invent, abbreviate or\nrespell is not a key, and a verdict carrying one is discarded whole.\n\nWORK THROUGH THE STEPS IN ORDER.\n\n1. WHAT IS ACTUALLY UNRESOLVED. Read the observation for what it states, not for what it\n   implies. A fact is unresolved when the text does not establish it -- not when the text\n   establishes something you would like to know more about, and not when a stated fact is merely\n   uncomfortable. If the observation states a condition, that condition is established.\n\n2. WOULD THE ANSWER CHANGE WHAT IS DONE NOW. This is the whole question, and it is a test with\n   two branches. Take the unresolved fact and answer it BOTH WAYS. If the two answers lead to\n   the SAME thing being done at this workplace today -- the same controls, the same corrective\n   action, the same decision to continue or to stop -- then the fact does not matter to this\n   decision, however interesting it is. If one answer means work continues and the other means\n   work stops now, or means a different control is required, then it matters.\n\n   TWO SHAPES THAT LOOK DECISION-CRITICAL AND ARE NOT:\n     - MAGNITUDE. How long, how often, how many, how large. These scale exposure. They select a\n       different action only when a stated threshold turns on them. If every control the\n       magnitude would govern is already stated present and in use, the answer changes nothing.\n     - A DETAIL WITH ITS CONTROL ALREADY IN PLACE. If the observation states the control that\n       answers the contingency either way, the contingency is not a decision.\n\n   AND ONE THAT LOOKS SETTLED AND IS NOT:\n     - A CONTROL THAT CANNOT BE SEEN IS NOT A CONTROL THAT WAS CHECKED. An obstructed sightline,\n       a completed job nobody watched, an alarm that did not sound: each is equally consistent\n       with the control working and with it having failed. If the two are consistent with the\n       same observation and lead to different actions, the fact is unresolved and it matters.\n\n3. IS IT ALREADY ASKED. If the first pass emitted a question that would actually reach the fact\n   in step 2, the work is done. A question that reaches a DIFFERENT unresolved fact does not\n   count, however well posed it is: the test is whether an answer to the question as written\n   would settle the fact that changes the decision.\n\n4. NOW ASK ONE MORE QUESTION, AND ASK IT HONESTLY.\n\n   The unresolved facts you were handed came from the first-pass analysis. They are what it\n   NOTICED it did not know. An analysis can be entirely reasonable about the fact it noticed and\n   still have missed the one that actually governs the decision -- and if that has happened, every\n   step above will have reasoned correctly about the wrong thing.\n\n   So ask: IS THERE ONE OTHER FACT, NOT AMONG THOSE SUPPLIED, WHOSE ANSWER IS NECESSARY TO\n   DETERMINE A SAFETY, REGULATORY OR REQUIRED-CONTROL DECISION BEING MADE AT THIS WORKPLACE NOW?\n\n   >>> THE ANSWER IS USUALLY NO, AND NO IS A GOOD ANSWER. Most observations contain many facts\n   >>> nobody wrote down, and almost none of them change what is done. You are not looking for\n   >>> something wrong, you are not completing the analysis, and you are not improving it. You\n   >>> are checking for ONE specific failure: that the decision turns on a fact nobody raised.\n\n   DO NOT nominate a fact because information is missing, because severity could be calculated\n   more precisely, because documentation could be more complete, because another control might\n   conceivably exist, because an inspector could gather more evidence, because a candidate was\n   left at INSUFFICIENT_EVIDENCE, because the first-pass analysis is empty or uncertain, or\n   because the fact is interesting. NONE of those is a reason. The ONLY reason is that answering\n   it one way and the other way leads to DIFFERENT THINGS BEING DONE TODAY.\n\n   If you do nominate, you may nominate EXACTLY ONE fact, and you must prove it:\n     - quote the span of the OBSERVATION, copied word for word, that leaves the fact open;\n     - say why that span leaves it open rather than settling it;\n     - state one plausible answer, and what is done today under it;\n     - state the other plausible answer, and what is done today under it;\n     - those two must be DIFFERENT, and if you cannot make them different, do not nominate;\n     - say why the answer is needed now rather than at a later review.\n\n   A nominated fact must not require inventing a hazard the observation does not support.\n\n   A NOMINATION IS ADDED TO THE FACTS YOU WERE GIVEN. It never replaces one and never answers\n   one. You may nominate at the same time as answering a supplied fact, and doing both is the\n   right answer whenever both are genuinely needed now.\n\n5. DECIDE. Return exactly one verdict:\n\n   VERIFIED_AS_IS\n     The first pass asked a question that reaches the decision-changing fact, or it correctly\n     asked nothing.\n\n   ADD_OR_REPLACE_CLARIFICATION\n     A fact that would change what is done now is not asked about. Supply the question. If it\n     answers one of the facts you were given, put that fact's key in bindingFactKey. You may ALSO\n     nominate one fact of your own in the same answer.\n\n   NO_CLARIFICATION_REQUIRED\n     Something is genuinely unresolved AND the answer would not change what is done now. This is\n     an assertion, and it is a normal, frequent and correct answer. Asking anyway costs a real\n     person real time and buries the questions that matter.\n\n     THIS VERDICT RESOLVES NOTHING. It says only that YOU propose no question. It does not mark\n     any fact you were given as answered, and it never removes one from the list.\n\n   ABSTAIN\n     You cannot tell which of the above holds. This asserts nothing. Use it when you genuinely\n     cannot decide -- never as a softer way of saying the situation is fine, because those are\n     different statements and they are recorded differently.\n\n6. NOW ACCOUNT FOR EVERY FACT YOU WERE GIVEN, ONE LINE EACH, BY ITS factKey.\n\n   This is bookkeeping, not a second judgement. For each fact say exactly one of:\n\n   BOUND_BY_CLARIFICATION\n     The question you are supplying answers THIS fact. At most one fact may carry this, and its\n     key must be the key you put in bindingFactKey.\n\n   STILL_UNRESOLVED\n     You are not answering this fact. That is a normal and frequent answer, and it is the right\n     one whenever you are unsure. The fact stays open.\n\n   CHALLENGE_FACT_VALIDITY\n     You believe this fact should not have been raised: the observation already settles it, or\n     answering it either way leads to the same thing being done today. Give your reason.\n     THIS IS A REQUEST, NOT A DECISION. The fact stays open until it is reviewed, and nothing\n     you write here removes it.\n\n   Every key must appear exactly once. A fact you do not mention is not thereby handled.\n\n   AND ONE FACT DOES NOT COVER ANOTHER. Answering the fact keyed A leaves the fact keyed B\n   exactly where it was, however closely related the two sound.\n\nWHEN YOU ADD OR REPLACE A QUESTION it must be answerable by someone standing at that workplace,\nit must name the fact rather than gesture at the topic, and it must be the fact whose answer\nchanges the action. State which decision it affects, using exactly one of: HAZARD_EXISTENCE,\nHAZARD_SEVERITY, EXPOSURE, APPLICABILITY, REQUIRED_CONTROL, REGULATORY_INTERPRETATION.\n\nYOU MAY NOT: add, remove or rewrite hazard candidates; change a candidate state; change the\ndeterministic result; cite or quote a regulation; alter risk or corrective actions; add\ncross-hazard insights or disagreements; or rewrite the analysis. A nominated fact changes ONE\nthing and one thing only -- which clarification is asked. If you return any of the above, the\nwhole verdict is discarded.\n\nYOU ALSO MAY NOT mark a supplied fact answered by any route other than bindingFactKey. Saying in\nyour reasoning that a fact is covered does not cover it.\n\nThere is no expected number of questions, no expected number of silences, and no expected number\nof nominations. Judge each case on its own facts.\n\nThere is no expected number of bindings and no expected number of challenges either.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "CASE VC-08\nJURISDICTION: osha-general-industry\n\nOBSERVATION\nA grain dryer is running on the farm drying floor. The burner unit sits at the far end of the plenum behind a steel shroud, and from the walkway the flame-failure device and its wiring are behind that shroud and cannot be seen. Grain dust has settled on the horizontal surfaces of the walkway and on the motor housings. An operative is clearing a blockage at the discharge auger with the dryer running.\n\nGOVERNED REGULATORY EVIDENCE SUPPLIED WITH THIS OBSERVATION\n(none was supplied)\n\nDETERMINISTIC HAZARD ENGINE RESULT\nhazard families emitted: (none)\nlife-critical finding keys: (none)\n\nFIRST-PASS ANALYSIS — HAZARD CANDIDATES\n- auger_entanglement [machine_guarding] state=ACTIVE\n    basis: The text states an operative is actively clearing a blockage at the discharge auger while the dryer, and by implication its driven components, remain running.\n    reasoning: Clearing a blockage at an auger while it and the associated equipment are running exposes the operative to entanglement/caught-in injury from the moving auger flighting or drive components. This is a current, ongoing exposure, not a hypothetical.\n- combustible_dust_accumulation [combustible_dust] state=ACTIVE\n    basis: The text states grain dust has settled on horizontal surfaces of the walkway and on motor housings.\n    reasoning: Accumulated grain dust on horizontal surfaces, including on motor housings near a heat source (the dryer/burner), is a recognized combustible dust hazard that can propagate a secondary dust explosion or ignite from hot equipment surfaces.\n- flame_failure_device_unverifiable [fire_explosion] state=INSUFFICIENT_EVIDENCE\n    basis: The text states the flame-failure device and its wiring cannot be seen from the walkway due to the shroud.\n    reasoning: The flame-failure device is a critical safety control preventing unburned fuel accumulation and explosion in the burner/plenum. Its condition and function cannot be visually confirmed from the walkway, so whether it is operating correctly cannot be determined from this observation alone.\n\nFIRST-PASS ANALYSIS — CLARIFICATIONS ASKED\n(none asked)\n\nFIRST-PASS ANALYSIS — STATED UNCERTAINTY\n- Whether the flame-failure device is currently functioning correctly cannot be determined from the observation, as it is physically obscured from view; no stated fact indicates it has failed or is out of service.\n\nFIRST-PASS ANALYSIS — SUMMARY\nAn operative is clearing a blockage at the discharge auger while the dryer continues to run, creating an active entanglement hazard. Grain dust has settled on walkway surfaces and motor housings, a combustible dust accumulation that is worsened by proximity to heat-generating equipment near the burner. The flame-failure device and its wiring cannot be visually confirmed from the walkway, so its current functional status is unverifiable from this observation alone, though this alone does not establish a decision-changing gap without further stated facts.\n\nUNRESOLVED FACTS IDENTIFIED FOR YOUR REVIEW\nEach carries a factKey. Account for EVERY key in owedFactDeclarations, and copy any\nkey you use exactly as written here.\n\n  factKey: owed:hs-a1:flame_failure_safeguard_functional_status\n    affects: REQUIRED_CONTROL\n    unresolved because: the observation states the safeguard cannot be seen from the walkway and states nothing about its functional status\n    observation span: the flame-failure device and its wiring are behind that shroud and cannot be seen\n    one possible answer: the safeguard is functional\n      what is done today under it: drying continues under the existing controls\n    the other possible answer: the safeguard is bypassed, failed or otherwise nonfunctional\n      what is done today under it: the burner is shut down and the safeguard restored before drying continues\n\nReturn your verdict as JSON matching the required schema."
+          }
+        ],
+        "tools": [
+          {
+            "name": "emit_verifier_verdict",
+            "description": "Emit the clarification verification verdict. This is the ONLY way to answer.",
+            "input_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "verdict",
+                "rationale",
+                "clarificationSourceMode",
+                "proposedClarification",
+                "bindingFactKey",
+                "nominatedFact",
+                "owedFactDeclarations"
+              ],
+              "properties": {
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "VERIFIED_AS_IS",
+                    "ADD_OR_REPLACE_CLARIFICATION",
+                    "NO_CLARIFICATION_REQUIRED",
+                    "ABSTAIN"
+                  ]
+                },
+                "rationale": {
+                  "type": "string"
+                },
+                "clarificationSourceMode": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "SUPPLIED_FACT",
+                    "NOMINATED_FACT",
+                    "SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION",
+                    null
+                  ],
+                  "description": "Required on ADD_OR_REPLACE_CLARIFICATION, null otherwise. Must agree with which of bindingFactKey and nominatedFact are present."
+                },
+                "proposedClarification": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "required": [
+                    "question",
+                    "whyItMatters",
+                    "affectedDecision",
+                    "evidenceGap"
+                  ],
+                  "properties": {
+                    "question": {
+                      "type": "string"
+                    },
+                    "whyItMatters": {
+                      "type": "string"
+                    },
+                    "affectedDecision": {
+                      "type": "string",
+                      "enum": [
+                        "HAZARD_EXISTENCE",
+                        "HAZARD_SEVERITY",
+                        "EXPOSURE",
+                        "APPLICABILITY",
+                        "REQUIRED_CONTROL",
+                        "REGULATORY_INTERPRETATION"
+                      ]
+                    },
+                    "evidenceGap": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "bindingFactKey": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "The factKey of the supplied unresolved fact this question answers, copied EXACTLY. Must be one of the supplied keys. Null when the question answers no supplied fact."
+                },
+                "nominatedFact": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "required": [
+                    "missingFact",
+                    "observationSpan",
+                    "notEstablishedBecause",
+                    "affectedDecision",
+                    "branchA",
+                    "decisionIfA",
+                    "branchB",
+                    "decisionIfB",
+                    "whyNecessaryNow"
+                  ],
+                  "description": "At most one, ever. ADDITIVE: it may accompany a bindingFactKey and never replaces a supplied fact.",
+                  "properties": {
+                    "missingFact": {
+                      "type": "string"
+                    },
+                    "observationSpan": {
+                      "type": "string",
+                      "description": "Copied WORD FOR WORD from the observation. Checked by exact match."
+                    },
+                    "notEstablishedBecause": {
+                      "type": "string"
+                    },
+                    "affectedDecision": {
+                      "type": "string",
+                      "enum": [
+                        "HAZARD_EXISTENCE",
+                        "HAZARD_SEVERITY",
+                        "EXPOSURE",
+                        "APPLICABILITY",
+                        "REQUIRED_CONTROL",
+                        "REGULATORY_INTERPRETATION"
+                      ]
+                    },
+                    "branchA": {
+                      "type": "string"
+                    },
+                    "decisionIfA": {
+                      "type": "string",
+                      "description": "What is done TODAY if branchA holds."
+                    },
+                    "branchB": {
+                      "type": "string"
+                    },
+                    "decisionIfB": {
+                      "type": "string",
+                      "description": "What is done TODAY if branchB holds. MUST DIFFER from decisionIfA."
+                    },
+                    "whyNecessaryNow": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "owedFactDeclarations": {
+                  "type": "array",
+                  "description": "EXACTLY ONE ENTRY PER SUPPLIED FACT, in any order. Every supplied key appears once and no other key appears at all.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "factKey",
+                      "declaration",
+                      "challengeReason"
+                    ],
+                    "properties": {
+                      "factKey": {
+                        "type": "string",
+                        "description": "Copied EXACTLY from the supplied fact."
+                      },
+                      "declaration": {
+                        "type": "string",
+                        "enum": [
+                          "BOUND_BY_CLARIFICATION",
+                          "STILL_UNRESOLVED",
+                          "CHALLENGE_FACT_VALIDITY"
+                        ]
+                      },
+                      "challengeReason": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Required for CHALLENGE_FACT_VALIDITY, null otherwise. A challenge is a REQUEST for review and never settles the fact."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tool_choice": {
+          "type": "tool",
+          "name": "emit_verifier_verdict"
+        },
+        "thinking": {
+          "type": "adaptive"
+        }
+      }
+    },
+    {
+      "caseId": "VC-04",
+      "semanticRequestSha256": "94b47273776d37942cbd8b0588c28ac26ad8573b052dda27fc4ba15ff2474ab3",
+      "requestBytes": 14909,
+      "body": {
+        "model": "claude-sonnet-5",
+        "max_tokens": 4000,
+        "system": "You are reviewing ONE decision that another safety analysis already made: whether to ask a\nclarifying question about something the observation left unresolved.\n\nYou are given an observation of a workplace, whatever governed regulatory evidence was supplied\nwith it, the result of a deterministic hazard engine, the first-pass analysis, and the specific\nunresolved facts that analysis left open. Your jurisdiction is EXACTLY ONE THING: whether the\nclarification set is right. You do not re-analyse the hazards.\n\nEACH UNRESOLVED FACT YOU ARE GIVEN CARRIES A factKey. Those keys are fixed, and they are the only\nway to refer to those facts. Copy a key exactly when you use one: a key you invent, abbreviate or\nrespell is not a key, and a verdict carrying one is discarded whole.\n\nWORK THROUGH THE STEPS IN ORDER.\n\n1. WHAT IS ACTUALLY UNRESOLVED. Read the observation for what it states, not for what it\n   implies. A fact is unresolved when the text does not establish it -- not when the text\n   establishes something you would like to know more about, and not when a stated fact is merely\n   uncomfortable. If the observation states a condition, that condition is established.\n\n2. WOULD THE ANSWER CHANGE WHAT IS DONE NOW. This is the whole question, and it is a test with\n   two branches. Take the unresolved fact and answer it BOTH WAYS. If the two answers lead to\n   the SAME thing being done at this workplace today -- the same controls, the same corrective\n   action, the same decision to continue or to stop -- then the fact does not matter to this\n   decision, however interesting it is. If one answer means work continues and the other means\n   work stops now, or means a different control is required, then it matters.\n\n   TWO SHAPES THAT LOOK DECISION-CRITICAL AND ARE NOT:\n     - MAGNITUDE. How long, how often, how many, how large. These scale exposure. They select a\n       different action only when a stated threshold turns on them. If every control the\n       magnitude would govern is already stated present and in use, the answer changes nothing.\n     - A DETAIL WITH ITS CONTROL ALREADY IN PLACE. If the observation states the control that\n       answers the contingency either way, the contingency is not a decision.\n\n   AND ONE THAT LOOKS SETTLED AND IS NOT:\n     - A CONTROL THAT CANNOT BE SEEN IS NOT A CONTROL THAT WAS CHECKED. An obstructed sightline,\n       a completed job nobody watched, an alarm that did not sound: each is equally consistent\n       with the control working and with it having failed. If the two are consistent with the\n       same observation and lead to different actions, the fact is unresolved and it matters.\n\n3. IS IT ALREADY ASKED. If the first pass emitted a question that would actually reach the fact\n   in step 2, the work is done. A question that reaches a DIFFERENT unresolved fact does not\n   count, however well posed it is: the test is whether an answer to the question as written\n   would settle the fact that changes the decision.\n\n4. NOW ASK ONE MORE QUESTION, AND ASK IT HONESTLY.\n\n   The unresolved facts you were handed came from the first-pass analysis. They are what it\n   NOTICED it did not know. An analysis can be entirely reasonable about the fact it noticed and\n   still have missed the one that actually governs the decision -- and if that has happened, every\n   step above will have reasoned correctly about the wrong thing.\n\n   So ask: IS THERE ONE OTHER FACT, NOT AMONG THOSE SUPPLIED, WHOSE ANSWER IS NECESSARY TO\n   DETERMINE A SAFETY, REGULATORY OR REQUIRED-CONTROL DECISION BEING MADE AT THIS WORKPLACE NOW?\n\n   >>> THE ANSWER IS USUALLY NO, AND NO IS A GOOD ANSWER. Most observations contain many facts\n   >>> nobody wrote down, and almost none of them change what is done. You are not looking for\n   >>> something wrong, you are not completing the analysis, and you are not improving it. You\n   >>> are checking for ONE specific failure: that the decision turns on a fact nobody raised.\n\n   DO NOT nominate a fact because information is missing, because severity could be calculated\n   more precisely, because documentation could be more complete, because another control might\n   conceivably exist, because an inspector could gather more evidence, because a candidate was\n   left at INSUFFICIENT_EVIDENCE, because the first-pass analysis is empty or uncertain, or\n   because the fact is interesting. NONE of those is a reason. The ONLY reason is that answering\n   it one way and the other way leads to DIFFERENT THINGS BEING DONE TODAY.\n\n   If you do nominate, you may nominate EXACTLY ONE fact, and you must prove it:\n     - quote the span of the OBSERVATION, copied word for word, that leaves the fact open;\n     - say why that span leaves it open rather than settling it;\n     - state one plausible answer, and what is done today under it;\n     - state the other plausible answer, and what is done today under it;\n     - those two must be DIFFERENT, and if you cannot make them different, do not nominate;\n     - say why the answer is needed now rather than at a later review.\n\n   A nominated fact must not require inventing a hazard the observation does not support.\n\n   A NOMINATION IS ADDED TO THE FACTS YOU WERE GIVEN. It never replaces one and never answers\n   one. You may nominate at the same time as answering a supplied fact, and doing both is the\n   right answer whenever both are genuinely needed now.\n\n5. DECIDE. Return exactly one verdict:\n\n   VERIFIED_AS_IS\n     The first pass asked a question that reaches the decision-changing fact, or it correctly\n     asked nothing.\n\n   ADD_OR_REPLACE_CLARIFICATION\n     A fact that would change what is done now is not asked about. Supply the question. If it\n     answers one of the facts you were given, put that fact's key in bindingFactKey. You may ALSO\n     nominate one fact of your own in the same answer.\n\n   NO_CLARIFICATION_REQUIRED\n     Something is genuinely unresolved AND the answer would not change what is done now. This is\n     an assertion, and it is a normal, frequent and correct answer. Asking anyway costs a real\n     person real time and buries the questions that matter.\n\n     THIS VERDICT RESOLVES NOTHING. It says only that YOU propose no question. It does not mark\n     any fact you were given as answered, and it never removes one from the list.\n\n   ABSTAIN\n     You cannot tell which of the above holds. This asserts nothing. Use it when you genuinely\n     cannot decide -- never as a softer way of saying the situation is fine, because those are\n     different statements and they are recorded differently.\n\n6. NOW ACCOUNT FOR EVERY FACT YOU WERE GIVEN, ONE LINE EACH, BY ITS factKey.\n\n   This is bookkeeping, not a second judgement. For each fact say exactly one of:\n\n   BOUND_BY_CLARIFICATION\n     The question you are supplying answers THIS fact. At most one fact may carry this, and its\n     key must be the key you put in bindingFactKey.\n\n   STILL_UNRESOLVED\n     You are not answering this fact. That is a normal and frequent answer, and it is the right\n     one whenever you are unsure. The fact stays open.\n\n   CHALLENGE_FACT_VALIDITY\n     You believe this fact should not have been raised: the observation already settles it, or\n     answering it either way leads to the same thing being done today. Give your reason.\n     THIS IS A REQUEST, NOT A DECISION. The fact stays open until it is reviewed, and nothing\n     you write here removes it.\n\n   Every key must appear exactly once. A fact you do not mention is not thereby handled.\n\n   AND ONE FACT DOES NOT COVER ANOTHER. Answering the fact keyed A leaves the fact keyed B\n   exactly where it was, however closely related the two sound.\n\nWHEN YOU ADD OR REPLACE A QUESTION it must be answerable by someone standing at that workplace,\nit must name the fact rather than gesture at the topic, and it must be the fact whose answer\nchanges the action. State which decision it affects, using exactly one of: HAZARD_EXISTENCE,\nHAZARD_SEVERITY, EXPOSURE, APPLICABILITY, REQUIRED_CONTROL, REGULATORY_INTERPRETATION.\n\nYOU MAY NOT: add, remove or rewrite hazard candidates; change a candidate state; change the\ndeterministic result; cite or quote a regulation; alter risk or corrective actions; add\ncross-hazard insights or disagreements; or rewrite the analysis. A nominated fact changes ONE\nthing and one thing only -- which clarification is asked. If you return any of the above, the\nwhole verdict is discarded.\n\nYOU ALSO MAY NOT mark a supplied fact answered by any route other than bindingFactKey. Saying in\nyour reasoning that a fact is covered does not cover it.\n\nThere is no expected number of questions, no expected number of silences, and no expected number\nof nominations. Judge each case on its own facts.\n\nThere is no expected number of bindings and no expected number of challenges either.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "CASE VC-04\nJURISDICTION: osha-general-industry\n\nOBSERVATION\nA sawmill debarker is running and a sawyer is standing at the infeed deck rolling logs onto the chain. The machine's guard door over the rotor is closed and its interlock switch is in place. The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift. The sawyer is working from the deck and is not reaching into the throat.\n\nGOVERNED REGULATORY EVIDENCE SUPPLIED WITH THIS OBSERVATION\n(none was supplied)\n\nDETERMINISTIC HAZARD ENGINE RESULT\nhazard families emitted: (none)\nlife-critical finding keys: (none)\n\nFIRST-PASS ANALYSIS — HAZARD CANDIDATES\n(none raised)\n\nFIRST-PASS ANALYSIS — CLARIFICATIONS ASKED\n(none asked)\n\nFIRST-PASS ANALYSIS — STATED UNCERTAINTY\n(none stated)\n\nFIRST-PASS ANALYSIS — SUMMARY\nThe observation describes a debarker with its guard door closed and interlock in place while the sawyer works from the deck without reaching into the throat — a controlled, current state with no stated gap. The overnight rotor tooth change is a resolved historical event: the machine was returned to service, the guard is confirmed closed with the interlock engaged, and no failure, bypass, or residual exposure from that maintenance is stated. The lockout/tagout question already flagged by the deterministic engine concerns that completed maintenance activity, not a live hazard, and nothing in the text gives reason to believe the machine is not properly restored to normal operation.\n\nUNRESOLVED FACTS IDENTIFIED FOR YOUR REVIEW\nEach carries a factKey. Account for EVERY key in owedFactDeclarations, and copy any\nkey you use exactly as written here.\n\n  factKey: owed:hs-e1:rotor_guard_interlock_function_verified\n    affects: REQUIRED_CONTROL\n    unresolved because: the observation states the machine was returned to service and states nothing about whether the guard interlock protective function was verified after reassembly\n    observation span: The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift.\n    one possible answer: the interlock protective function was verified before return to service\n      what is done today under it: the debarker continues to run as observed\n    the other possible answer: the interlock protective function was not verified before return to service\n      what is done today under it: the protective function is verified before the debarker continues to run\n\nReturn your verdict as JSON matching the required schema."
+          }
+        ],
+        "tools": [
+          {
+            "name": "emit_verifier_verdict",
+            "description": "Emit the clarification verification verdict. This is the ONLY way to answer.",
+            "input_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "verdict",
+                "rationale",
+                "clarificationSourceMode",
+                "proposedClarification",
+                "bindingFactKey",
+                "nominatedFact",
+                "owedFactDeclarations"
+              ],
+              "properties": {
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "VERIFIED_AS_IS",
+                    "ADD_OR_REPLACE_CLARIFICATION",
+                    "NO_CLARIFICATION_REQUIRED",
+                    "ABSTAIN"
+                  ]
+                },
+                "rationale": {
+                  "type": "string"
+                },
+                "clarificationSourceMode": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "SUPPLIED_FACT",
+                    "NOMINATED_FACT",
+                    "SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION",
+                    null
+                  ],
+                  "description": "Required on ADD_OR_REPLACE_CLARIFICATION, null otherwise. Must agree with which of bindingFactKey and nominatedFact are present."
+                },
+                "proposedClarification": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "required": [
+                    "question",
+                    "whyItMatters",
+                    "affectedDecision",
+                    "evidenceGap"
+                  ],
+                  "properties": {
+                    "question": {
+                      "type": "string"
+                    },
+                    "whyItMatters": {
+                      "type": "string"
+                    },
+                    "affectedDecision": {
+                      "type": "string",
+                      "enum": [
+                        "HAZARD_EXISTENCE",
+                        "HAZARD_SEVERITY",
+                        "EXPOSURE",
+                        "APPLICABILITY",
+                        "REQUIRED_CONTROL",
+                        "REGULATORY_INTERPRETATION"
+                      ]
+                    },
+                    "evidenceGap": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "bindingFactKey": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "The factKey of the supplied unresolved fact this question answers, copied EXACTLY. Must be one of the supplied keys. Null when the question answers no supplied fact."
+                },
+                "nominatedFact": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "required": [
+                    "missingFact",
+                    "observationSpan",
+                    "notEstablishedBecause",
+                    "affectedDecision",
+                    "branchA",
+                    "decisionIfA",
+                    "branchB",
+                    "decisionIfB",
+                    "whyNecessaryNow"
+                  ],
+                  "description": "At most one, ever. ADDITIVE: it may accompany a bindingFactKey and never replaces a supplied fact.",
+                  "properties": {
+                    "missingFact": {
+                      "type": "string"
+                    },
+                    "observationSpan": {
+                      "type": "string",
+                      "description": "Copied WORD FOR WORD from the observation. Checked by exact match."
+                    },
+                    "notEstablishedBecause": {
+                      "type": "string"
+                    },
+                    "affectedDecision": {
+                      "type": "string",
+                      "enum": [
+                        "HAZARD_EXISTENCE",
+                        "HAZARD_SEVERITY",
+                        "EXPOSURE",
+                        "APPLICABILITY",
+                        "REQUIRED_CONTROL",
+                        "REGULATORY_INTERPRETATION"
+                      ]
+                    },
+                    "branchA": {
+                      "type": "string"
+                    },
+                    "decisionIfA": {
+                      "type": "string",
+                      "description": "What is done TODAY if branchA holds."
+                    },
+                    "branchB": {
+                      "type": "string"
+                    },
+                    "decisionIfB": {
+                      "type": "string",
+                      "description": "What is done TODAY if branchB holds. MUST DIFFER from decisionIfA."
+                    },
+                    "whyNecessaryNow": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "owedFactDeclarations": {
+                  "type": "array",
+                  "description": "EXACTLY ONE ENTRY PER SUPPLIED FACT, in any order. Every supplied key appears once and no other key appears at all.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "factKey",
+                      "declaration",
+                      "challengeReason"
+                    ],
+                    "properties": {
+                      "factKey": {
+                        "type": "string",
+                        "description": "Copied EXACTLY from the supplied fact."
+                      },
+                      "declaration": {
+                        "type": "string",
+                        "enum": [
+                          "BOUND_BY_CLARIFICATION",
+                          "STILL_UNRESOLVED",
+                          "CHALLENGE_FACT_VALIDITY"
+                        ]
+                      },
+                      "challengeReason": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Required for CHALLENGE_FACT_VALIDITY, null otherwise. A challenge is a REQUEST for review and never settles the fact."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tool_choice": {
+          "type": "tool",
+          "name": "emit_verifier_verdict"
+        },
+        "thinking": {
+          "type": "adaptive"
+        }
+      }
+    }
+  ],
+  "budget": {
+    "hardProviderRequestCap": 12,
+    "retryBudget": 0,
+    "replacementBudget": 0,
+    "firstPassInvocations": 0,
+    "hardProspectiveCostCapUsd": 0.68,
+    "conservativeInputTokenBound": 8000,
+    "maxTokensPerCall": 4000,
+    "worstCaseCallUsd": 0.056,
+    "prospectiveWorstCaseTotalUsd": 0.672
+  },
+  "preSpendGate": [
+    {
+      "id": "A.1 verifier-v3 instruction hash matches the authorization",
+      "ok": true,
+      "detail": "hazlenz.expert.verifier-instruction.v3 678160c95bc7db385d49f3b4…"
+    },
+    {
+      "id": "A.2 verifier-v3 response schema hash matches the authorization",
+      "ok": true,
+      "detail": "1bddc1a51fb2d1cad43a7444…"
+    },
+    {
+      "id": "A.3 verifier-v3 contract is the one under test",
+      "ok": true,
+      "detail": "hazlenz.expert.verifier.v3"
+    },
+    {
+      "id": "A.4 verifier-v2 instruction remains BYTE-UNCHANGED",
+      "ok": true,
+      "detail": "immutable"
+    },
+    {
+      "id": "A.5 the §156 blinded packet is unchanged",
+      "ok": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "A.6 the v13 first-pass prompt module is unchanged — no first-pass call will occur",
+      "ok": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "A.7 the hardened v9 fixture is unchanged",
+      "ok": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "B.1 both request bodies rebuild to the §166 preflight hashes, byte for byte",
+      "ok": true,
+      "detail": "VC-08 c1e5407a121c60b7…  VC-04 94b47273776d3794…"
+    },
+    {
+      "id": "B.2 the case allocation is PREREGISTERED and frozen — 2 cases × 6 draws, in order",
+      "ok": true,
+      "detail": "hazlenz.expert.v3-falsification-cases.2026-09-04; draws are never rebalanced and never replaced"
+    },
+    {
+      "id": "B.3 exactly one owed fact is supplied per case, and each names the frozen owed target",
+      "ok": true,
+      "detail": "flame_failure_safeguard_functional_status · rotor_guard_interlock_function_verified"
+    },
+    {
+      "id": "B.4 HS-A1 is NOT told about the auger gap — the displacement question stays open",
+      "ok": true,
+      "detail": "supplying it would answer the question instead of measuring it"
+    },
+    {
+      "id": "C.VC-08 no human truth leaks into the provider-visible payload",
+      "ok": true,
+      "detail": "12 patterns, 0 matches"
+    },
+    {
+      "id": "C.VC-04 no human truth leaks into the provider-visible payload",
+      "ok": true,
+      "detail": "12 patterns, 0 matches"
+    },
+    {
+      "id": "D.1 frozen human targets match §162 and are not satisfied by the observations themselves",
+      "ok": true,
+      "detail": "deep-equal to §162; cues not satisfied by either observation"
+    },
+    {
+      "id": "D.2 the two authoritative rows and no others",
+      "ok": true,
+      "detail": "HS-A1, HS-E1"
+    },
+    {
+      "id": "D.3 no ineligible row is used anywhere in this experiment",
+      "ok": true,
+      "detail": "FALSIFIER_D_TESTABLE = FALSE; no silence-control denominator is manufactured"
+    },
+    {
+      "id": "E.1 12 requests, 0 retries, 0 replacements, 0 first-pass invocations",
+      "ok": true,
+      "detail": "no retry path exists in this script"
+    },
+    {
+      "id": "E.2 the prospective worst case fits inside the $0.68 cap",
+      "ok": true,
+      "detail": "12 × $0.05600 = $0.67200 of $0.68"
+    },
+    {
+      "id": "E.3 max_tokens is 4000 and was not lowered",
+      "ok": true,
+      "detail": "4000"
+    },
+    {
+      "id": "E.4 no sampling or determinism control is introduced",
+      "ok": true,
+      "detail": "none present"
+    },
+    {
+      "id": "E.5 an API credential is present",
+      "ok": true,
+      "detail": "set"
+    },
+    {
+      "id": "E.6 the append-only record store is empty or absent",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "id": "E.7 the frozen formal invocation count is intact",
+      "ok": true,
+      "detail": "195, immutable"
+    },
+    {
+      "id": "E.8 this script imports nothing from src/ — no first-pass entry point is reachable",
+      "ok": true,
+      "detail": "14 imports, 0 from src/"
+    },
+    {
+      "id": "E.9 the §166 preflight artifact is present and its hashes agree with this run",
+      "ok": true,
+      "detail": "the payload spent against is the payload preflighted"
+    }
+  ]
+}

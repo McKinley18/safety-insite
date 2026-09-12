@@ -1,0 +1,174 @@
+{
+  "artifact": "SECTION-228-PRESPEND-DEFICIENCY",
+  "section": 228,
+  "authoredAt": "2026-09-11",
+  "outcome": "STOPPED_BEFORE_PROVIDER_SPEND",
+  "stopClause": "§228 AUTHORIZATION: 'If the design does not already specify them unambiguously: STOP before provider spend and report the deficiency.'",
+  "providerCallsExecuted": 0,
+  "databaseOperations": 0,
+  "spendUsd": 0,
+  "architectureChanged": false,
+  "promptChanged": false,
+  "schemaChanged": false,
+  "casesFrozen": false,
+  "semanticPreferenceRetries": 0,
+  "commitPushTagDeploy": "NONE",
+
+  "designLocated": {
+    "exists": "SCOPE_STATEMENT_ONLY",
+    "source": "verification/expert-hazlenz-227-hosted-semantic-capability-confirmation-2026-09-11/SECTION-227-REPORT.md",
+    "sectionHeading": "Recommended next phase — DESIGNED, NOT EXECUTED, NOT AUTHORIZED",
+    "form": "A ten-bullet prose scope list. It names the paths to exercise. It is not an executable frozen design.",
+    "searchPerformed": [
+      "verification/expert-hazlenz-228* — does not exist",
+      "backend/scripts/lib/expert-228-*.ts — does not exist",
+      "backend/scripts/*228* — does not exist",
+      "SECTION-227-FROZEN-PROTOCOL.json — contains no next-phase, design, call-plan or spend block for §228",
+      "grep 'revalidation' across docs/ and backend/scripts/ — only hit is the §227 report prose",
+      "git status across docs/, backend/scripts/, verification/ — no untracked §228 material"
+    ]
+  },
+
+  "mandatoryParametersCheck": {
+    "rule": "§228 AUTHORIZATION requires the frozen design to supply the exact call count, the projected spend and the hard ceiling.",
+    "providerCallCount": { "specified": false, "value": null },
+    "projectedSpendUsd": { "specified": false, "value": null },
+    "hardCeilingUsd": { "specified": false, "value": null },
+    "caseCount": { "specified": false, "value": null },
+    "verdict": "NOT_SPECIFIED_UNAMBIGUOUSLY",
+    "substitutionRefused": {
+      "candidate": "§221 constants — MAX_PROVIDER_CALLS_221=22, PROJECTED_SPEND_USD_221=1.3127, SPEND_CEILING_USD_221=1.78, 10 cases, 19 planned calls",
+      "refusedBecause": "Those are §221's frozen numbers for §221's cohort. Adopting them would substitute a prior instrument's authorization for a design that was never authored, and would set the very parameters the §228 order reserved to the frozen design. Invariant 21 — preregistration precedes execution."
+    }
+  },
+
+  "coverageVerification": {
+    "note": "Pre-spend verification the §228 order requires: does the §227 design cover every required path? Assessed against the ten-bullet §227 scope as written.",
+    "paths": [
+      { "id": 1, "requirement": "DECLARATION → OWEDFACT PROJECTION", "coveredByS227Scope": "YES", "s227Bullet": "declaration → owed-fact projection, on a declaration that now actually arrives", "gap": null },
+      { "id": 2, "requirement": "EXACT-PROPERTY PRESERVATION through verifier, review packet, authority and settlement", "coveredByS227Scope": "PARTIAL", "s227Bullet": "exact-property preservation through projection into the ledger", "gap": "The §227 bullet stops at the ledger. §228 requires the same safety proposition to be traced through verifier, review packet, authority AND settlement." },
+      { "id": 3, "requirement": "VERIFIER ROUTING — valid underlying safety state; legitimate required act or artifact; evidence/proxy challenge", "coveredByS227Scope": "PARTIAL", "s227Bullet": "verifier routing over an admitted declaration", "gap": "No routes enumerated. §228 names three minimum routes; the design assigns none of them to a case." },
+      { "id": 4, "requirement": "KR-1 PROPERTY AUTHORITY end to end — A missing authority, B attempted settlement, C refusal, D fact remains unresolved, E zero unauthorized transition", "coveredByS227Scope": "PARTIAL", "s227Bullet": "KR-1 property authority, including a live property mistake reaching the boundary", "gap": "The five-step A–E sequence is not decomposed into preregistered steps or judgment slots. This is the path §221 did NOT exercise, so it carries the least existing machinery and the most authoring risk." },
+      { "id": 5, "requirement": "HUMAN CONFIRM_PROPERTY grants property authority ONLY — must not approve evidence, settle, or authorize work", "coveredByS227Scope": "PARTIAL", "s227Bullet": "human property confirmation and human property correction", "gap": "The three negative limbs are not stated as checks. Confirming a property is easy to observe; proving it did NOT approve evidence, settle or authorize work requires explicit negative assertions against end state." },
+      { "id": 6, "requirement": "HUMAN CORRECT_PROPERTY — authoritative state follows the corrected property; the original must not settle merely because it existed earlier", "coveredByS227Scope": "YES", "s227Bullet": "human property confirmation and human property correction", "gap": "Covered in scope. The negative limb (original property must not settle) is not separately stated." },
+      { "id": 7, "requirement": "EVIDENCE AUTHORITY distinct from property confirmation", "coveredByS227Scope": "YES", "s227Bullet": "evidence authority, held distinct from property authority", "gap": null },
+      { "id": 8, "requirement": "SATISFACTORY SETTLEMENT — valid, human-authorized", "coveredByS227Scope": "YES", "s227Bullet": "satisfactory settlement and adverse settlement, each moving exactly one fact on one transition", "gap": null },
+      { "id": 9, "requirement": "ADVERSE / KEEP-UNRESOLVED outcome; sibling unresolved property remains intact", "coveredByS227Scope": "PARTIAL", "s227Bullet": "satisfactory settlement and adverse settlement, each moving exactly one fact on one transition", "gap": "KEEP_UNRESOLVED is not named in the §227 scope at all. Sibling intactness is implied by 'exactly one fact' but not stated as a required observation." },
+      { "id": 10, "requirement": "RR-7 — deterministic refusal, unresolved truth preserved, no invented repair, preserved malformed state cannot settle", "coveredByS227Scope": "PARTIAL", "s227Bullet": "RR-7 preservation through a refusal", "gap": "The fourth limb — that the preserved malformed record cannot settle — is not stated. §221 carries an RR7_MALFORMATION_221 fixture that a successor can build from." },
+      { "id": 11, "requirement": "SAFE / NEGATED RESTRAINT — no manufactured decision-critical fact or unnecessary hold", "coveredByS227Scope": "YES", "s227Bullet": "safe and negated restraint end to end", "gap": null },
+      { "id": 12, "requirement": "GOVERNED REGULATORY GROUNDING — only authorized supplied source carries authority; off-point source not controlling; no invented citation; no unsupported paraphrase; citation cannot settle a physical property", "coveredByS227Scope": "PARTIAL", "s227Bullet": "governed grounding where a supplied authoritative record is appropriate", "gap": "Five sub-requirements; the §227 bullet states none of them. The off-point-source limb in particular needs a deliberately off-point supplied record in the payload, which is case-authoring work, not scoring work." }
+    ],
+    "summary": { "covered": 5, "partial": 7, "absent": 0, "ofTotal": 12 }
+  },
+
+  "requirementsAbsentFromTheS227DesignEntirely": [
+    {
+      "id": "S227_RESIDUAL_CONTAINMENT",
+      "requirement": "§228 REQUIRED: determine, where naturally exercised, whether the five §227 residual branch/decision defects (A UNKNOWN folded into a branch; B adverse branch routing to a secondary act; C adverse branch permitting an unnotified licensed asbestos job to continue; D branch semantics not representing the consequence of the controlling property; E assertedConditionState contradicting the model's own reasoning) can propagate into an unsafe or incorrect authoritative outcome, classified CONTAINED or UNCONTAINED.",
+      "presentInS227Design": false,
+      "why": "§227 recorded these defects after the design paragraph was written. No observation slot, classification rule or judgment slot exists for them anywhere."
+    },
+    {
+      "id": "GATE_COVERAGE_AUTHORING_REPAIR",
+      "requirement": "§227 stated: 'The gate-coverage authoring gap that produced §221's six COVERAGE_INSUFFICIENT results must be repaired in that instrument before it is frozen, not in a later report.'",
+      "presentInS227Design": false,
+      "why": "Named as a precondition; no repaired denominator scheme authored. Measured evidence that the gap is real and unrepaired is in gateCoverageEvidence below.",
+      "consequence": "Freezing a §228 instrument without repairing this reproduces COVERAGE_INSUFFICIENT, and invariant 23 makes that neither a pass nor repairable afterwards."
+    },
+    {
+      "id": "PREREGISTERED_HUMAN_ACTIONS",
+      "requirement": "§228 EXECUTION DISCIPLINE: 'Human actions required by the frozen exercises must be preregistered.'",
+      "presentInS227Design": false,
+      "why": "No human action is assigned to any case, because no cases exist. §221 supplies the HumanJudgmentSlot221 and SettlementExercise221 shapes an additive successor would build from."
+    },
+    {
+      "id": "PRESPEND_TRUTH_PREFLIGHT_INPUTS",
+      "requirement": "§228 PRE-SPEND TRUTH INTEGRITY requires, per case: established facts, unresolved properties, non-facts, prohibited adjacent/proxy properties, expected declaration count, exact controlling property, required act/artifact status, human-review action, evidence-authority action, expected settlement outcome, expected final authoritative state.",
+      "presentInS227Design": false,
+      "why": "The preflight is a function over authored cases. With zero cases authored it has nothing to check. It cannot be run, and therefore cannot pass."
+    }
+  ],
+
+  "gateCoverageEvidence": {
+    "note": "Measured from backend/scripts/lib/expert-221-integrated-instrument.ts at 0 provider calls and 0 database operations. Shows the §221 authoring gap is real and still unrepaired.",
+    "cases": 10,
+    "humanJudgmentSlots": 62,
+    "callPlan": { "firstPassCalls": 10, "verifierCalls": 9, "contingencyCalls": 2, "totalPlanned": 19, "ceiling": 22 },
+    "gates": [
+      { "gate": "IG1", "casesListing": 9, "judgmentSlotsFeeding": 1, "underAuthored": true },
+      { "gate": "IG2", "casesListing": 1, "judgmentSlotsFeeding": 3, "underAuthored": false },
+      { "gate": "IG3", "casesListing": 1, "judgmentSlotsFeeding": 2, "underAuthored": false },
+      { "gate": "IG4", "casesListing": 4, "judgmentSlotsFeeding": 2, "underAuthored": true },
+      { "gate": "IG5", "casesListing": 8, "judgmentSlotsFeeding": 6, "underAuthored": true },
+      { "gate": "IG6", "casesListing": 5, "judgmentSlotsFeeding": 9, "underAuthored": false },
+      { "gate": "IG7", "casesListing": 1, "judgmentSlotsFeeding": 3, "underAuthored": false },
+      { "gate": "IG8", "casesListing": 7, "judgmentSlotsFeeding": 8, "underAuthored": false },
+      { "gate": "IG9", "casesListing": 3, "judgmentSlotsFeeding": 6, "underAuthored": false },
+      { "gate": "IG10", "casesListing": 4, "judgmentSlotsFeeding": 4, "underAuthored": false },
+      { "gate": "IG11", "casesListing": 3, "judgmentSlotsFeeding": 5, "underAuthored": false },
+      { "gate": "IG12", "casesListing": 10, "judgmentSlotsFeeding": 1, "underAuthored": true }
+    ],
+    "worstCases": "IG12 is listed as exercised on all 10 cases and is fed by 1 judgment slot. IG1 is listed on 9 cases and is fed by 1.",
+    "settlementExercisesRequired221": [
+      { "exercise": "SATISFACTORY_SETTLEMENT", "caseId": "IG4" },
+      { "exercise": "ADVERSE_SETTLEMENT", "caseId": "IG2" },
+      { "exercise": "REFUSED_FOR_MISSING_PROPERTY_AUTHORITY", "caseId": "IG3" },
+      { "exercise": "KEEP_UNRESOLVED", "caseId": "IG5" }
+    ]
+  },
+
+  "assertedConditionStateFinding": {
+    "question": "§228 asks: is assertedConditionState load-bearing downstream in current runtime logic?",
+    "method": "Static inspection of the modules on the §221/§228 integrated authority path. 0 provider calls, 0 database operations, no code changed.",
+    "deterministicAuthorityPath": {
+      "verdict": "NO — not load-bearing",
+      "modulesWithZeroOccurrences": [
+        "backend/scripts/lib/expert-210j-declaration-projection.ts",
+        "backend/scripts/lib/expert-212-verifier-payload.ts",
+        "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts",
+        "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts",
+        "backend/src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts",
+        "backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts",
+        "backend/src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts"
+      ],
+      "assemblyPath": "backend/scripts/lib/expert-221-assembly.ts references neither assertedConditionState nor the selective-verification trigger.",
+      "meaning": "No deterministic step in the integrated path infers safety truth from the label. Projection, admission, authority and settlement are all blind to it."
+    },
+    "qualification": {
+      "verdict": "IT IS TRANSMITTED TO THE SECOND MODEL PASS AS PROSE",
+      "location": "backend/scripts/lib/expert-verifier-instruction-v3.ts:371 renders `- ${candidateKey} [${hazardFamily}] state=${assertedConditionState}` into the verifier user prompt.",
+      "consequence": "The verifier model sees the label. §227 recorded on K7 that the label can contradict the model's own reasoning. A §228 cohort should therefore observe whether a wrong label visibly moves the verifier's nomination — but the verifier is advisory and cannot settle, so this is an observation, not a new gate.",
+      "boundary": "Reported, not modified. §228 forbids changing it."
+    },
+    "residualsCarryingTheLabel": "A structurally separate trigger, backend/scripts/lib/expert-selective-verification-trigger.ts, does branch on assertedConditionState (UNRESOLVED_STATES). It is imported only by expert-verifier-contract.ts and by test/probe scripts. It is NOT on the §221/§228 integrated path."
+  },
+
+  "whatIsRequiredBeforeS228CanSpend": [
+    "A product-owner decision fixing the §228 case count, exact provider call count, projected spend and hard ceiling. The §228 order reserved these to the frozen design and the design does not carry them.",
+    "A §228 instrument authored as an additive successor to expert-221-integrated-instrument.ts (invariant 26), assigning every one of the twelve required paths to a named case, and decomposing KR-1 into its five preregistered steps A–E.",
+    "A repaired denominator scheme: every gate a case lists as exercised must be fed by at least one authored judgment slot. §221's IG1 and IG12 show what happens otherwise.",
+    "Observation slots and a CONTAINED/UNCONTAINED classification rule for the five §227 residual branch/decision defects.",
+    "Preregistered human actions per case: CONFIRM_PROPERTY, CORRECT_PROPERTY, evidence approval, and the settlement or KEEP_UNRESOLVED outcome, each with its expected authoritative end state.",
+    "A supplied governed-evidence payload carrying both an on-point authorized record and a deliberately off-point one, so requirement 12 has a genuine opportunity to fail.",
+    "The §226/§227 truth-consistency preflight run over the authored cases, passing, before the freeze and before the hash."
+  ],
+
+  "outputsNotProduced": {
+    "files": [
+      "SECTION-228-FROZEN-PROTOCOL.json",
+      "SECTION-228-RAW-RESULTS.json",
+      "SECTION-228-INTEGRATED-RESULTS.json",
+      "SECTION-228-AUTHORITY-TRACE.md",
+      "SECTION-228-RESIDUAL-CONTAINMENT.md",
+      "SECTION-228-REPORT.md"
+    ],
+    "why": "Each is a record of an executed run. No run occurred. Authoring a frozen protocol here would mean choosing the call count, spend and ceiling the §228 order reserved to the product owner's design, and a results file with no execution behind it would be a fabricated record. Invariant 27: an authored artifact is never evidence of behaviour."
+  },
+
+  "classification": {
+    "result": "INCONCLUSIVE",
+    "notAFailure": "No integrated hard requirement failed. None was exercised. Invariant 23: NOT_EXERCISED is never a pass, and it is not a failure either.",
+    "cause": "INSTRUMENT_NOT_AUTHORED — a governance/authoring deficiency, not a system defect.",
+    "terminal": "EXPERT_HAZLENZ_TARGETED_INTEGRATED_REVALIDATION_INCONCLUSIVE — PRODUCT_OWNER_REVIEW_REQUIRED"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "artifact": "SECTION_187A_RUN_SUMMARY",
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "PROVIDER_INVOCATION_COUNT_TOTAL": 20,
+  "firstPassCalls": 5,
+  "verifierCalls": 15,
+  "TOTAL_ACTUAL_COST_USD": 1.22255,
+  "recordsOnDisk": 15,
+  "stopReason": null,
+  "MECHANICAL": {
+    "providerErrors": 15,
+    "contractInvalid": 15,
+    "wrongKeyDeclarations": 0,
+    "unauthorizedSettlementTransitions": 0,
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "challengeBearingExecutions": 0,
+    "clarificationBearingExecutions": 0
+  },
+  "STRICT_SEMANTIC_GATE": "PENDING_HUMAN_ADJUDICATION — this script does not decide it",
+  "perRow": [
+    {
+      "rowId": "HR-01",
+      "executions": 3,
+      "contractValid": 0,
+      "declarationModes": [
+        "",
+        "",
+        ""
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "wrongKeyDeclared": 0,
+      "challengeEmitted": 0,
+      "clarificationEmitted": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-04",
+      "executions": 3,
+      "contractValid": 0,
+      "declarationModes": [
+        "",
+        "",
+        ""
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "wrongKeyDeclared": 0,
+      "challengeEmitted": 0,
+      "clarificationEmitted": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-06",
+      "executions": 3,
+      "contractValid": 0,
+      "declarationModes": [
+        "",
+        "",
+        ""
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "wrongKeyDeclared": 0,
+      "challengeEmitted": 0,
+      "clarificationEmitted": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-08",
+      "executions": 3,
+      "contractValid": 0,
+      "declarationModes": [
+        "",
+        "",
+        ""
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "wrongKeyDeclared": 0,
+      "challengeEmitted": 0,
+      "clarificationEmitted": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-09",
+      "executions": 3,
+      "contractValid": 0,
+      "declarationModes": [
+        "",
+        "",
+        ""
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "wrongKeyDeclared": 0,
+      "challengeEmitted": 0,
+      "clarificationEmitted": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    }
+  ]
+}

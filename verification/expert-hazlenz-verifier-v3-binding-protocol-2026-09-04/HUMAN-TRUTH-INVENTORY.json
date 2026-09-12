@@ -1,0 +1,45 @@
+{
+  "source": "verification/expert-hazlenz-verifier-row-truth-reconciliation-2026-09-04/ROW-TRUTH-DISPOSITIONS.json",
+  "sourceSha256": "3c9466fc002a67bd4444e90843131a44e7eb4f28e5861426c749deeba97ec50d",
+  "totalRows": 7,
+  "humanAuthoritativeRequired": [
+    {
+      "rowId": "HS-A1",
+      "disposition": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS"
+    },
+    {
+      "rowId": "HS-E1",
+      "disposition": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS"
+    }
+  ],
+  "humanAuthoritativeSilence": [],
+  "ineligible": [
+    {
+      "rowId": "HS-H1",
+      "authoredClass": "REQUIRED",
+      "disposition": "AUTHORING_AMBIGUOUS"
+    },
+    {
+      "rowId": "HS-J1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_INVALID"
+    },
+    {
+      "rowId": "HS-N1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_INVALID"
+    },
+    {
+      "rowId": "HS-P1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_INVALID"
+    },
+    {
+      "rowId": "HS-R1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_AMBIGUOUS"
+    }
+  ],
+  "FALSIFIER_D_TESTABLE": false,
+  "consequence": "NO human-valid silence row survives §162. Falsifier D — does binding manufacture questions where silence was right — has no denominator. HS-J1, HS-N1 and HS-P1 are AUTHORING_INVALID and HS-R1 is AUTHORING_AMBIGUOUS; none may be reused as authoritative silence truth, and none appears in any request the harness builds. The experiment claim is NARROWED accordingly rather than the falsifier being weakened."
+}

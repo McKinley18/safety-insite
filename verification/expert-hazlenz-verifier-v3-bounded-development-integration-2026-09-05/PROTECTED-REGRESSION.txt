@@ -1,0 +1,66 @@
+§170 PROTECTED REGRESSION — executed 2026-09-05T04:18:50Z
+=======================================================================
+
+--- SOURCE_PROJECT_TSC: npx tsc --noEmit
+exit 0 — clean
+
+--- npm run test:expert-v3-development-integration
+  40/40 PASS  ·  0 FAIL
+
+--- npm run test:expert-verifier-v3-protocol
+  49/49 PASS  ·  0 FAIL
+
+--- npm run test:expert-bounded-reliability
+  44/44 PASS  ·  0 FAIL
+
+--- npm run test:expert-nocall-harness
+ok    C.10 with nothing measured, every gated family fails -- an unmeasured gate is not a passed one
+141 passed, 0 failed
+
+--- npm run test:expert-contract-foundation
+56 passed, 0 failed
+
+--- npm run test:expert-reliability-architecture
+69 passed, 0 failed
+
+--- npm run test:expert-verifier-v2-contract
+46 passed, 0 failed
+PROVIDER_CALLS = 0   FIRST_PASS_INVOCATIONS = 0   PRODUCTION_FILES_CHANGED = 0
+
+--- npm run test:expert-routing-contract
+67 passed, 0 failed
+
+--- npm run test:expert-measurement-layer
+66 passed, 0 failed
+
+--- npm run test:expert-fixture-hardening
+76 passed, 0 failed
+
+--- npm run test:expert-clarification-settlement
+148 passed, 0 failed
+
+--- npm run test:expert-affected-decision-arbitration
+41 passed, 0 failed
+
+--- npm run test:expert-unsupported-settlement
+129 passed, 0 failed
+
+--- npm run test:expert-retention-bridge
+123 passed, 0 failed
+
+--- npm run test:hazlenz-level1-recall
+  [PASS] HE-08 Equipment named as stored stock — no energy, no exposure
+PASS HazLenz Level-1 recall gate (17 checks)
+
+--- npm run test:hazlenz-actionable-coverage
+  [PASS] A-12 classifier said Unclassified @0.25 low; emitted=[]
+PASS HazLenz actionable-coverage gate (17 checks)
+
+--- npm run test:hazlenz-guarding-applicability
+cases: 16   failures: 0   dangerous failures: 0
+HazLenz machine-guarding applicability precedence regression: all invariants passed, 0 failed
+
+--- npm run test:governed-kill-switch-authority
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> no durable write attempted — expected 0, got 0
+PASS — 115 passed, 0 failed
+

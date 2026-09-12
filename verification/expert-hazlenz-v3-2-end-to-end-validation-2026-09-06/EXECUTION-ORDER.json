@@ -1,0 +1,224 @@
+{
+  "artifact": "SECTION_195_EXECUTION_ORDER",
+  "seedHex": "f2522995",
+  "method": "three interleaved blocks; Fisher-Yates under mulberry32 seeded from the v3.2 system prompt sha256; a block opening on the previous block's closing row is rotated left",
+  "frozenOrder": [
+    {
+      "sequencePosition": 1,
+      "rowId": "EE-08",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 2,
+      "rowId": "EE-06",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 3,
+      "rowId": "EE-10",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 4,
+      "rowId": "EE-01",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 5,
+      "rowId": "EE-07",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 6,
+      "rowId": "EE-12",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 7,
+      "rowId": "EE-02",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 8,
+      "rowId": "EE-03",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 9,
+      "rowId": "EE-04",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 10,
+      "rowId": "EE-05",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 11,
+      "rowId": "EE-09",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 12,
+      "rowId": "EE-11",
+      "replicateNumber": 1,
+      "block": 1
+    },
+    {
+      "sequencePosition": 13,
+      "rowId": "EE-04",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 14,
+      "rowId": "EE-02",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 15,
+      "rowId": "EE-06",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 16,
+      "rowId": "EE-01",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 17,
+      "rowId": "EE-09",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 18,
+      "rowId": "EE-08",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 19,
+      "rowId": "EE-10",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 20,
+      "rowId": "EE-05",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 21,
+      "rowId": "EE-12",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 22,
+      "rowId": "EE-07",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 23,
+      "rowId": "EE-03",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 24,
+      "rowId": "EE-11",
+      "replicateNumber": 2,
+      "block": 2
+    },
+    {
+      "sequencePosition": 25,
+      "rowId": "EE-05",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 26,
+      "rowId": "EE-01",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 27,
+      "rowId": "EE-03",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 28,
+      "rowId": "EE-07",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 29,
+      "rowId": "EE-06",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 30,
+      "rowId": "EE-02",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 31,
+      "rowId": "EE-08",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 32,
+      "rowId": "EE-11",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 33,
+      "rowId": "EE-04",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 34,
+      "rowId": "EE-10",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 35,
+      "rowId": "EE-09",
+      "replicateNumber": 3,
+      "block": 3
+    },
+    {
+      "sequencePosition": 36,
+      "rowId": "EE-12",
+      "replicateNumber": 3,
+      "block": 3
+    }
+  ],
+  "EXECUTED": false
+}

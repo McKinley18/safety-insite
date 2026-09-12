@@ -1,0 +1,388 @@
+{
+  "budget": {
+    "targetLogicalCalls": 24,
+    "hardProviderRequestCeiling": 32,
+    "retryRequestBudget": 8,
+    "enforcedSpendCeilingUsd": 3.328,
+    "worstCaseRequestUsd": 0.104
+  },
+  "stopReason": "COMPLETED",
+  "identityViolation": null,
+  "accounting": {
+    "callsAttempted": 24,
+    "callsCompleted": 24,
+    "providerRequestsAttempted": 24,
+    "retryRequestsAttempted": 0,
+    "inputTokens": 309373,
+    "outputTokens": 29609,
+    "spendUsd": 0.9148359999999998,
+    "callCeiling": 24,
+    "requestCeiling": 32,
+    "retryRequestBudget": 8,
+    "spendCeilingUsd": 3.328
+  },
+  "retryCauses": [],
+  "retriesSuppressed": [],
+  "attemptsByCall": [
+    {
+      "rowId": "EV-A1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 20458,
+      "inputTokens": 12707,
+      "outputTokens": 1635,
+      "costUsd": 0.041763999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 18504,
+      "inputTokens": 12722,
+      "outputTokens": 1428,
+      "costUsd": 0.039724,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 23524,
+      "inputTokens": 12718,
+      "outputTokens": 2054,
+      "costUsd": 0.045976,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 15946,
+      "inputTokens": 13287,
+      "outputTokens": 1044,
+      "costUsd": 0.037014,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A5",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 17785,
+      "inputTokens": 12700,
+      "outputTokens": 1365,
+      "costUsd": 0.03905,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A6",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 8901,
+      "inputTokens": 12846,
+      "outputTokens": 419,
+      "costUsd": 0.029882,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A7",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 16857,
+      "inputTokens": 12708,
+      "outputTokens": 1258,
+      "costUsd": 0.037996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-A8",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 22732,
+      "inputTokens": 12718,
+      "outputTokens": 1755,
+      "costUsd": 0.042985999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-B1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 5334,
+      "inputTokens": 13296,
+      "outputTokens": 376,
+      "costUsd": 0.030352,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-B2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 14290,
+      "inputTokens": 13312,
+      "outputTokens": 1070,
+      "costUsd": 0.037323999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-B3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 18903,
+      "inputTokens": 12759,
+      "outputTokens": 1412,
+      "costUsd": 0.039638,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-B4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 12501,
+      "inputTokens": 12675,
+      "outputTokens": 718,
+      "costUsd": 0.03253,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-B5",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 12315,
+      "inputTokens": 13361,
+      "outputTokens": 740,
+      "costUsd": 0.034122,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-B6",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 20512,
+      "inputTokens": 12679,
+      "outputTokens": 1661,
+      "costUsd": 0.041968,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-C1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 28421,
+      "inputTokens": 12728,
+      "outputTokens": 2494,
+      "costUsd": 0.050395999999999996,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-C2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 17587,
+      "inputTokens": 13393,
+      "outputTokens": 1264,
+      "costUsd": 0.039426,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-C3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 13650,
+      "inputTokens": 12689,
+      "outputTokens": 994,
+      "costUsd": 0.035318,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-C4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 11937,
+      "inputTokens": 12669,
+      "outputTokens": 705,
+      "costUsd": 0.032388,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-C5",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 9900,
+      "inputTokens": 12705,
+      "outputTokens": 372,
+      "costUsd": 0.02913,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-C6",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 22959,
+      "inputTokens": 12694,
+      "outputTokens": 1926,
+      "costUsd": 0.044648,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-D1",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 12722,
+      "inputTokens": 13470,
+      "outputTokens": 1160,
+      "costUsd": 0.03854,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-D2",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 17775,
+      "inputTokens": 12901,
+      "outputTokens": 1220,
+      "costUsd": 0.038001999999999994,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-D3",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 15617,
+      "inputTokens": 12698,
+      "outputTokens": 1296,
+      "costUsd": 0.038356,
+      "modelIdentity": "claude-sonnet-5"
+    },
+    {
+      "rowId": "EV-D4",
+      "attempts": [
+        {
+          "index": 0,
+          "ok": true,
+          "failureKind": null
+        }
+      ],
+      "latencyMs": 17312,
+      "inputTokens": 12938,
+      "outputTokens": 1243,
+      "costUsd": 0.038306,
+      "modelIdentity": "claude-sonnet-5"
+    }
+  ]
+}

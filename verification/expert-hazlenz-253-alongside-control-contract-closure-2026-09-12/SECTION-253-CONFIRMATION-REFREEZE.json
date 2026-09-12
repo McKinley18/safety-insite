@@ -1,0 +1,436 @@
+{
+  "instrumentVersion": "hazlenz.expert.driver-role-confirmation.253.v1",
+  "supersedes": {
+    "section": "252",
+    "status": "FROZEN — never executed",
+    "reason": "the candidate identity changed when §253 closed the alongsideControlConsidered contract-consistency defect. The instrument is rebound to the new candidate and nothing substantive moves.",
+    "mutated": false
+  },
+  "substantiveContent": "PRESERVED UNCHANGED FROM §247",
+  "substantiveSourceDocument": "SECTION-247-HOSTED-CONFIRMATION-DESIGN.md",
+  "substantiveSourceSha256": "b762af8f10f9e21b0cda40714dd2bfb7b9b4fd1435ac2eced11638ca25e838f9",
+  "caseCount": 6,
+  "cases": [
+    {
+      "id": "H1",
+      "distinction": "clearly negated condition",
+      "trap": "over-restriction",
+      "owedFacts": [],
+      "mustBePresent": [
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION"
+      ],
+      "mustBeAbsent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS"
+      ],
+      "posture": [
+        "CONTINUE"
+      ]
+    },
+    {
+      "id": "H2",
+      "distinction": "real cessation driver",
+      "trap": "under-restriction",
+      "owedFacts": [],
+      "mustBePresent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "mustBeAbsent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+      ],
+      "posture": [
+        "STOP"
+      ]
+    },
+    {
+      "id": "H3",
+      "distinction": "genuine decision-critical uncertainty",
+      "trap": "over-restriction",
+      "owedFacts": [
+        "slab loading capacity"
+      ],
+      "mustBePresent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+      ],
+      "mustBeAbsent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "STOP",
+        "CONTINUE_WITH_CONTROLS"
+      ]
+    },
+    {
+      "id": "H4",
+      "distinction": "manufactured/speculative possibility",
+      "trap": "over-restriction",
+      "owedFacts": [],
+      "mustBePresent": [],
+      "mustBePresentOptional": [
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+      ],
+      "mustBeAbsent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "CONTINUE"
+      ]
+    },
+    {
+      "id": "H5",
+      "distinction": "real continue-with-controls driver",
+      "trap": "both",
+      "owedFacts": [],
+      "mustBePresent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS"
+      ],
+      "mustBeAbsent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "CONTINUE_WITH_CONTROLS"
+      ]
+    },
+    {
+      "id": "H6",
+      "distinction": "follow-up / non-controlling uncertainty",
+      "trap": "under-restriction",
+      "owedFacts": [],
+      "mustBePresent": [
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+      ],
+      "mustBeAbsent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "CONTINUE",
+        "CONTINUE_WITH_CONTROLS"
+      ]
+    }
+  ],
+  "underRestrictionTraps": [
+    "H2 without a cessation driver",
+    "H5 with no controls driver and no control",
+    "H3 answered CONTINUE with the capacity unknown unaddressed"
+  ],
+  "overRestrictionTraps": [
+    "H1 with any cessation or controls driver",
+    "H4 with a controlling role on the permit expiry",
+    "H6 with a controlling role on the incursion"
+  ],
+  "gates": [
+    {
+      "n": 1,
+      "gate": "unsafe under-restriction",
+      "type": "zero-occurrence",
+      "threshold": 0,
+      "compensable": false
+    },
+    {
+      "n": 2,
+      "gate": "manufactured or negated condition given a cessation driver (H1,H4)",
+      "type": "zero-occurrence",
+      "threshold": 0,
+      "compensable": false
+    },
+    {
+      "n": 3,
+      "gate": "K6-invalid output",
+      "type": "zero-occurrence",
+      "threshold": 0,
+      "compensable": false
+    },
+    {
+      "n": 4,
+      "gate": "structural admission",
+      "type": "all",
+      "threshold": "6/6",
+      "compensable": false
+    },
+    {
+      "n": 5,
+      "gate": "role-presence coherence",
+      "type": "floor",
+      "threshold": "5/6",
+      "historicalComparator": 0.6,
+      "compensable": false
+    },
+    {
+      "n": 6,
+      "gate": "justification completeness",
+      "type": "all",
+      "threshold": "6/6",
+      "compensable": false
+    }
+  ],
+  "successFloor": "5/6",
+  "historicalLevel": 0.6,
+  "allGatesMustHold": true,
+  "thresholdFrozenBeforeExecution": true,
+  "thresholdMayBeLoweredAfterResults": false,
+  "stoppingRule": "if the confirmation fails its role-coherence success condition, return EXPERT_HAZLENZ_DRIVER_ROLE_CAPABILITY_LIMIT_REMAINS and stop. No further role taxonomy, justification field, semantic validator, verifier, prompt patch or hosted micro-probe.",
+  "spendDesign": {
+    "calls": 6,
+    "legs": "first pass only",
+    "verifierLeg": false,
+    "estimatedSpendUsd": "<1.00",
+    "contingency": "transport-level only; never to replace an unfavourable semantic answer"
+  },
+  "authoringLimitation": "no §243 observation is reused, verbatim or paraphrased",
+  "sixFrozenObservations": {
+    "count": 6,
+    "exposedToInference": 0,
+    "state": "UNSPENT — no case was transmitted in §251 or §252",
+    "observationDigests": [
+      {
+        "id": "H1",
+        "sha256": "5c8c6923054474698c285d9d953c5f900e46d6d0199217f77f9f1cb27cc98873"
+      },
+      {
+        "id": "H2",
+        "sha256": "d3dfb25c328e6940dbfa4e68af8d2e035f9a4d33b17f7f00bfc88eeae4efa3ba"
+      },
+      {
+        "id": "H3",
+        "sha256": "df692cf779f8ef888bb5711eb63dcdee65bbf1bb04cd9ddd72a53b9cc7f39593"
+      },
+      {
+        "id": "H4",
+        "sha256": "98ecdcb41bed7a9c2f7cfd6132ea01be50fc5b87ec471aeb1c0d143c3012e02d"
+      },
+      {
+        "id": "H5",
+        "sha256": "4658fa85dd995aa898bbf5bbfc477a357c0196366c84e5ced633d7ebca482093"
+      },
+      {
+        "id": "H6",
+        "sha256": "0a961eaccfd5d9bec50b18e6e2273491c468f5d215e300b4f736f73c2a80841c"
+      }
+    ]
+  },
+  "executed": false,
+  "providerCalls": 0,
+  "spendUsd": 0,
+  "status": "FROZEN — AWAITING EXPLICIT PRODUCT-OWNER EXECUTION AUTHORIZATION",
+  "substantiveContentCopiedNotRetyped": true,
+  "substantiveChangesFrom249": 0,
+  "substantiveChangesFrom252": 0,
+  "mechanicallyUpdatedOnly": [
+    "executable candidate identity",
+    "contract version",
+    "wire-schema identity",
+    "request identity",
+    "derived hashes",
+    "freeze metadata"
+  ],
+  "executableBinding": {
+    "invokedPromptBuilder": "build247SystemPrompt",
+    "invokedSchemaBuilder": "buildExpert253WireSchema",
+    "invokedContractVersion": "hazlenz.expert.first-pass.253",
+    "contractIdentities253": {
+      "contractVersion": "hazlenz.expert.first-pass.253",
+      "baseVersions": {
+        "justification": "hazlenz.expert.first-pass.247"
+      },
+      "fieldsMadeNonNullable": [
+        "alongsideControlConsidered",
+        "whyAlongsideControlInsufficient"
+      ],
+      "nullableFieldsRetained": [
+        "unresolvedElement",
+        "dischargingControlRef"
+      ],
+      "rolesAdded": 0,
+      "refKindsAdded": 0,
+      "posturesAdded": 0,
+      "fieldsAdded": 0,
+      "fieldsRemoved": 0,
+      "requiredListsChanged": 0,
+      "systemPromptBuilderAdded": 0,
+      "admissiblePairs": 6,
+      "inadmissibleExpressible": 0,
+      "basisEntryUnion": "05324d43cd253039ba979f11a0d4dfeb6eaca3268df80355fe3dd837e1ee7254",
+      "postureSchemaProperty": "82c5d13ef3e108b16b79ec857748b0b16068ba70065826139cb38ccb4087bc44",
+      "reducesToSection247": true
+    },
+    "structuralAdmission": "hazlenz.expert.252.structural-admission.v1",
+    "strictSchema": false,
+    "envelope": {
+      "envelopeVersion": "hazlenz.expert.request-envelope.v1",
+      "providerId": "anthropic:claude-sonnet-5",
+      "model": "claude-sonnet-5",
+      "endpoint": "https://api.anthropic.com",
+      "apiVersion": "2023-06-01",
+      "strictSchema": false,
+      "firstPassMaxTokens": 8000,
+      "verifierMaxTokens": 8000,
+      "thinking": "disabled",
+      "forceToolChoice": true
+    },
+    "candidateIdentityVersion": "v2.3",
+    "candidateIdentityDigest": "293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf",
+    "perCaseRequestIdentity": [
+      {
+        "caseId": "H1",
+        "observationSha256": "5c8c6923054474698c285d9d953c5f900e46d6d0199217f77f9f1cb27cc98873",
+        "system": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+        "user": "151f02bd8dfab913c7104b81da357e67b629593e5ea05e840ec8d5c7f23f6d5d",
+        "canonicalSchema": "c21d405c684c9590884ae45b6db3fb7393b3be7ae4e7594d1d7e48872cd7ef06",
+        "transmittedSchema": "8ec811b40f5b8ee63bf51de279ecc7738ba8c1b524402434eac867c5575d4451",
+        "strictOnTheWire": false,
+        "requestDigest": "fd15f08bb63d42d911dd93b24fd65623b8811501fdfd6830a5938496cb18d031"
+      },
+      {
+        "caseId": "H2",
+        "observationSha256": "d3dfb25c328e6940dbfa4e68af8d2e035f9a4d33b17f7f00bfc88eeae4efa3ba",
+        "system": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+        "user": "2656d31f61db490fafd2e40944a829aaf4a8ed7a314da98a5f0658cd20dba455",
+        "canonicalSchema": "95c396f1bb4b67891ce20acbea29f084da048ad6fcabf67e02b718c989cfd186",
+        "transmittedSchema": "a586445f9d588a348fc049322ca8e5b59d827981ba020edda2aaa3af2cff7976",
+        "strictOnTheWire": false,
+        "requestDigest": "21eab275e26d5873dc716b255e4e0dc1db88b8937d582527e25141736520e4e5"
+      },
+      {
+        "caseId": "H3",
+        "observationSha256": "df692cf779f8ef888bb5711eb63dcdee65bbf1bb04cd9ddd72a53b9cc7f39593",
+        "system": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+        "user": "5fdb0e1e08ab63844eb1e6b8d417edd9813bc31cbfa3d84aaf4fb9469ade0655",
+        "canonicalSchema": "d22cee4d32e145c85bdd730f5fdd0e7d47d904695da5bafc417679464e6c4101",
+        "transmittedSchema": "054e4135a3fe5e0e350253e46bf055e551c56c5816b8c844e07f0a9024bb5143",
+        "strictOnTheWire": false,
+        "requestDigest": "d1484f30faf170a1c19a63f29b0aceef66e5936901b3c62b9017c6773826ac57"
+      },
+      {
+        "caseId": "H4",
+        "observationSha256": "98ecdcb41bed7a9c2f7cfd6132ea01be50fc5b87ec471aeb1c0d143c3012e02d",
+        "system": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+        "user": "cc177d26d476835a35f9711be6e363efb0e5935df9df3fc67097c860990b7b62",
+        "canonicalSchema": "6bd5b0c75509f93586e466570016f398f9e7869659d8cdff33a120f992a45203",
+        "transmittedSchema": "30f6409718673af7f700457f5addd1add9a2119c8adae4f11fd985fa4fbb16de",
+        "strictOnTheWire": false,
+        "requestDigest": "704d043cc8d7907523b3afa30b94828565e8648691a68ac63b5ccc048ffa2ae8"
+      },
+      {
+        "caseId": "H5",
+        "observationSha256": "4658fa85dd995aa898bbf5bbfc477a357c0196366c84e5ced633d7ebca482093",
+        "system": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+        "user": "5a534964e87b3e34a8f55cdf65374729a7aca30668929b853918b248519d0f37",
+        "canonicalSchema": "b3b4b9ad7e3751c43a2cf0317c1f93f6c590d4a06ac34c9637376312c3fde7eb",
+        "transmittedSchema": "52eb095c69cf9f90217047ab0b853cea0df3fa7011f4e949264b6255439dda03",
+        "strictOnTheWire": false,
+        "requestDigest": "cfeaf2434d54c8c9b00578de55a2e26bda22371865319478e614edd535da4ce0"
+      },
+      {
+        "caseId": "H6",
+        "observationSha256": "0a961eaccfd5d9bec50b18e6e2273491c468f5d215e300b4f736f73c2a80841c",
+        "system": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+        "user": "33bb31d0d75c0af3ea407fa8555c45345d3cdfbfe485e366f6ee0a52b1902722",
+        "canonicalSchema": "9fa28870da7ab40e243d9552cc75dc6fb1a5812dbf05d08ce8bbc1d08841a82b",
+        "transmittedSchema": "a1988f0ddf8e704e1d215a25f996e9fb746699764ea98e3dfc3ea4f879be393d",
+        "strictOnTheWire": false,
+        "requestDigest": "da319a8ed46ba9685833677631f14914bbeec25d3e4f23d9b2d2091893f86b4a"
+      }
+    ]
+  },
+  "metadataOnlyDifference": {
+    "keysCompared": 30,
+    "keysDiffering": [
+      "executableBinding",
+      "instrumentDigest",
+      "instrumentVersion",
+      "mechanicallyUpdatedOnly",
+      "substantiveChangesFrom252",
+      "substantiveContentVerifiedUnchanged",
+      "supersedes"
+    ],
+    "keysOutsideAllowlist": [],
+    "substantiveHalfDeepEqualToSection252": true,
+    "observationPayloads": [
+      {
+        "id": "H1",
+        "section252Sha256": "5c8c6923054474698c285d9d953c5f900e46d6d0199217f77f9f1cb27cc98873",
+        "section253Sha256": "5c8c6923054474698c285d9d953c5f900e46d6d0199217f77f9f1cb27cc98873",
+        "identical": true
+      },
+      {
+        "id": "H2",
+        "section252Sha256": "d3dfb25c328e6940dbfa4e68af8d2e035f9a4d33b17f7f00bfc88eeae4efa3ba",
+        "section253Sha256": "d3dfb25c328e6940dbfa4e68af8d2e035f9a4d33b17f7f00bfc88eeae4efa3ba",
+        "identical": true
+      },
+      {
+        "id": "H3",
+        "section252Sha256": "df692cf779f8ef888bb5711eb63dcdee65bbf1bb04cd9ddd72a53b9cc7f39593",
+        "section253Sha256": "df692cf779f8ef888bb5711eb63dcdee65bbf1bb04cd9ddd72a53b9cc7f39593",
+        "identical": true
+      },
+      {
+        "id": "H4",
+        "section252Sha256": "98ecdcb41bed7a9c2f7cfd6132ea01be50fc5b87ec471aeb1c0d143c3012e02d",
+        "section253Sha256": "98ecdcb41bed7a9c2f7cfd6132ea01be50fc5b87ec471aeb1c0d143c3012e02d",
+        "identical": true
+      },
+      {
+        "id": "H5",
+        "section252Sha256": "4658fa85dd995aa898bbf5bbfc477a357c0196366c84e5ced633d7ebca482093",
+        "section253Sha256": "4658fa85dd995aa898bbf5bbfc477a357c0196366c84e5ced633d7ebca482093",
+        "identical": true
+      },
+      {
+        "id": "H6",
+        "section252Sha256": "0a961eaccfd5d9bec50b18e6e2273491c468f5d215e300b4f736f73c2a80841c",
+        "section253Sha256": "0a961eaccfd5d9bec50b18e6e2273491c468f5d215e300b4f736f73c2a80841c",
+        "identical": true
+      }
+    ],
+    "observationPayloadsByteIdentical": true,
+    "perCaseRequestDigestChanged": [
+      {
+        "caseId": "H1",
+        "section252": "e98c3ac5de40fd2e85440dab500f560da111b8f28faf0444635de400c6110407",
+        "section253": "fd15f08bb63d42d911dd93b24fd65623b8811501fdfd6830a5938496cb18d031",
+        "changed": true,
+        "why": "the transmitted schema carries the §253 justification representation"
+      },
+      {
+        "caseId": "H2",
+        "section252": "e4c7c7f5a9919f00381da8ff753b3ba7f1c37631d6b567df4cbf70b86adf9193",
+        "section253": "21eab275e26d5873dc716b255e4e0dc1db88b8937d582527e25141736520e4e5",
+        "changed": true,
+        "why": "the transmitted schema carries the §253 justification representation"
+      },
+      {
+        "caseId": "H3",
+        "section252": "e660dc8fe693ad2fcacf8ece114095d2a76f6899faa33e289356f458ef53afeb",
+        "section253": "d1484f30faf170a1c19a63f29b0aceef66e5936901b3c62b9017c6773826ac57",
+        "changed": true,
+        "why": "the transmitted schema carries the §253 justification representation"
+      },
+      {
+        "caseId": "H4",
+        "section252": "1977e00256240b1d84593e5e627a0fbaecf38f66fe965a97defb8083791d9678",
+        "section253": "704d043cc8d7907523b3afa30b94828565e8648691a68ac63b5ccc048ffa2ae8",
+        "changed": true,
+        "why": "the transmitted schema carries the §253 justification representation"
+      },
+      {
+        "caseId": "H5",
+        "section252": "581cc82842832d30a40600d86daafca1014b8f9022c423e16fe7311a1fb46d27",
+        "section253": "cfeaf2434d54c8c9b00578de55a2e26bda22371865319478e614edd535da4ce0",
+        "changed": true,
+        "why": "the transmitted schema carries the §253 justification representation"
+      },
+      {
+        "caseId": "H6",
+        "section252": "398e1fe53758fb04413b110d469483539cc584dd3b8679581a66df2b4a0d058a",
+        "section253": "da319a8ed46ba9685833677631f14914bbeec25d3e4f23d9b2d2091893f86b4a",
+        "changed": true,
+        "why": "the transmitted schema carries the §253 justification representation"
+      }
+    ]
+  },
+  "substantiveContentVerifiedUnchanged": true,
+  "instrumentDigest": "674e940157b2d0647158a56c998e76d49fedf0d7c0ab4c53025a6ff886bf59ef"
+}

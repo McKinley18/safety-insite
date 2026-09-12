@@ -1,0 +1,1177 @@
+{
+  "artifact": "SECTION_210F_FINAL_CONFIRMATION_PREREGISTRATION",
+  "probeVersion": "hazlenz.expert.210f.final-confirmation.v1",
+  "writtenBeforeAnyProviderCall": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "isAcceptanceEvidence": false,
+  "note": "DEVELOPMENT evidence only. Frozen before execution. Once presented for product-owner review this file is not edited; a truth defect found later is recorded as a PREREGISTRATION_DEFECT beside the frozen text, never silently repaired.",
+  "purpose": "Determine whether the §210E remediations for R4, R5, R6 and R7 work in actual hosted model behaviour WITHOUT breaking the behaviour §210D already produced. NOT a cohort, NOT capability characterization, NOT an accuracy measurement.",
+  "residualIssuesUnderTest": [
+    {
+      "rule": "R4",
+      "gate": "GATE 8",
+      "defect": "owed-property contamination by evidence, history or process elements conjoined into the property",
+      "primaryCase": "E1",
+      "narrowingCase": "E4"
+    },
+    {
+      "rule": "R5",
+      "gate": "GATE 9",
+      "defect": "a BLOCKING clarification emitted without the required authored declaration binding",
+      "primaryCase": "E2",
+      "narrowingCase": null
+    },
+    {
+      "rule": "R6",
+      "gate": "GATE 10",
+      "defect": "positive decision overreach while an independent sibling fact remained open",
+      "primaryCase": "E3",
+      "narrowingCase": "E4"
+    },
+    {
+      "rule": "R7",
+      "gate": "GATE 11",
+      "defect": "non-semantic placeholder branch and decision values satisfying structural transport",
+      "primaryCase": "E2",
+      "narrowingCase": null
+    }
+  ],
+  "instructionUnderTest": {
+    "version": "hazlenz.expert.first-pass-instruction.210e-R4-R7",
+    "plainIdentitySha256": "874d26d4d036ca419dd0ffaee2a43f89ecec26f6b6bfba93e7a423a10658d831",
+    "governedIdentitySha256": "e6794aaf894df3dbc186ce38d0c16b2fc69e6a0fa758c1a110ac1e640d7e7c2f",
+    "plainBytes": 52443,
+    "governedBytes": 53782,
+    "plainChars": 52409,
+    "governedChars": 53746,
+    "estimatedPlainTokens": 18361,
+    "estimatedGovernedTokens": 18829,
+    "basedOn": {
+      "version": "hazlenz.expert.first-pass-instruction.210c-R1-R3",
+      "plainIdentitySha256": "b243c323af82031c6f733af80f456c4bc61d52efafd89b5c25806a5d8a83b0e6",
+      "governedIdentitySha256": "f386a198b960991104cf9631b7877921038eccc127c59bc122d4a923a1ec8048",
+      "note": "the §210C prompt is the exact prompt §210D tested. §210E is an appended continuation of the declaration gate; no prose was removed and no earlier sentence rewritten."
+    },
+    "gatesUnderTest": [
+      {
+        "heading": "GATE 8. THE PROPERTY IS THE STATE, NOT THE PROCESS THAT WOULD ESTABLISH IT.",
+        "rule": "R4",
+        "addresses": "D1 conjoined \"was measured\" into an otherwise correct sufficiency property, and branchB's and/or then let a missing record alone drive the stop decision"
+      },
+      {
+        "heading": "GATE 9. A BLOCKING QUESTION MUST NAME THE ENTRY IT SETTLES.",
+        "rule": "R5",
+        "addresses": "D2 marked a clarification BLOCKING and left answersUnresolvedFactDeclarationId unwritten while the declaration it settles existed"
+      },
+      {
+        "heading": "GATE 10. A POSITIVE DECISION CLEARS ITS OWN FACT, NOT THE WORK.",
+        "rule": "R6",
+        "addresses": "D4 preserved two independent facts and then let each positive decision authorize the whole task while the sibling fact was open"
+      },
+      {
+        "heading": "GATE 11. EVERY BRANCH AND EVERY DECISION MUST SAY SOMETHING.",
+        "rule": "R7",
+        "addresses": "D2 emitted decisionIfA \"unused\", branchB \"placeholder\", decisionIfB \"placeholder\", which passed every existing structural check"
+      }
+    ],
+    "narrowings": {
+      "R4": {
+        "risk": "forbidding process vocabulary absolutely would break the cases where performing a required act is itself the decision-critical property",
+        "guard": "the counterfactual test, which is unsatisfied in the pictured world exactly when the act itself is what is owed"
+      },
+      "R6": {
+        "risk": "requiring every positive decision to be hedged would be a new defect where the entry is the only thing standing in the way",
+        "guard": "the containment is conditioned on a sibling entry actually being open"
+      }
+    },
+    "tokenEstimateBasis": "derived from the frozen §208 first-pass leg (69,968 body bytes / 24,512 input tokens). An estimate from real cohort data, not a tokenizer result.",
+    "governedVariantUsedInThisProbe": false,
+    "governedVariantNote": "every §210F case is capability-ABSENT, so only the plain identity is transmitted. The governed identity is frozen for the record, not for use."
+  },
+  "providerConfiguration": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 4000,
+    "thinking": "disabled",
+    "strictTool": true,
+    "toolChoice": "forced single tool",
+    "promptCaching": "CACHING_DISABLED",
+    "promptCachingBasis": "TBR-20. The provider cache prefix is ordered tools -> system -> messages and this architecture sends a per-case tool schema, so the stable system prompt can never be read across cases. Caching may only be enabled if a separately proven semantics-preserving provider-visible prefix architecture exists BEFORE execution. §210F is not redesigned for caching.",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "executionProtocol": {
+    "calls": 4,
+    "leg": "FIRST_PASS",
+    "callsPerStimulus": 1,
+    "drawsPerCase": "exactly one",
+    "verifierCalls": 0,
+    "governedStageCalls": 0,
+    "semanticRetries": 0,
+    "rescueCalls": 0,
+    "replacementCases": 0,
+    "postOutputTruthEdits": 0,
+    "databaseOperations": 0,
+    "capabilityAbsentOnEveryCase": true,
+    "requiresSeparateProductOwnerExecutionAuthorization": true,
+    "onStructuralRejection": "record, do not retry, do not re-draw. A structural transport failure is never converted into a semantic verdict.",
+    "evidenceToPersist": [
+      "case ID",
+      "exact request identity",
+      "instruction identity",
+      "model/provider identity",
+      "HTTP/transport status",
+      "raw structured response",
+      "provider usage block",
+      "output tokens",
+      "calculated cost",
+      "failure classification",
+      "the authored answersUnresolvedFactDeclarationId on every clarification"
+    ],
+    "executorDefectGuard": "the back-reference is read through CLARIFICATION_DECLARATION_BACKREF_FIELD from the contract module, never a retyped literal. EXECUTOR_DEFECT_1 from §210D is corrected in code and regression tested in the §210E suite."
+  },
+  "stimuli": [
+    {
+      "caseId": "E1",
+      "primaryTarget": "R4_GATE_8_PROPERTY_PURITY",
+      "targets": [
+        "R4"
+      ],
+      "observation": "A precast works casts wall panels on heated beds overnight and lifts them out of the moulds in the morning using anchors cast into the top edge of each panel. The panel in bed four went in yesterday afternoon. The heating circuit under that bed tripped at some point during the night and the boiler was found shut down when the early shift arrived; nobody can say how long the bed was without heat, and the hall itself was cold. Two companion cubes were taken from the same batch and went across to the laboratory first thing, and a maturity probe has been sitting in the panel since the concrete went in, but the handheld reader that interrogates the probe has a flat battery and there is no spare on site. The gantry is over bed four with the lifting beam hooked on and the crew are standing by to take the panel out.",
+      "suppliedContext": {
+        "location": "precast concrete works, panel casting hall, heated bed four",
+        "task": "lifting a cast wall panel out of its mould on anchors cast into the panel"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "lifting_operations",
+        "structural_failure",
+        "material_handling"
+      ],
+      "governedEvidence": [],
+      "decisionUnderAnalysis": "whether the panel in bed four may be lifted out of its mould now",
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether the concrete in this panel has actually reached the compressive strength the cast-in anchors need in order to carry the panel out of the mould"
+      ],
+      "prohibitedProxyProperties": [
+        "whether a compressive strength test has been carried out, returned or recorded",
+        "whether the cube results are available or have come back from the laboratory",
+        "whether the maturity probe has been read or interrogated",
+        "whether a working reader or a spare battery is available",
+        "whether the duration of the heating interruption is known, logged or recorded",
+        "whether the strength has been verified, confirmed, evidenced or documented",
+        "ANY property that joins one of the above to the strength with \"and\", \"and whether\", or an equivalent conjunction. Conjoining does not make it the state."
+      ],
+      "processOrHistoryRole": "EVIDENCE_FOR_THE_PROPERTY",
+      "processOrHistoryRoleBasis": "the cubes, the probe log and the heating record are ways of ESTABLISHING the strength. None of them is the safety state. They belong in notEstablishedBecause and in the copied span.",
+      "counterfactualTest": "picture this panel having genuinely reached the strength the anchors need, with nobody having read the probe and no cube result back. The owed property is SATISFIED in that world. Therefore the property is the strength, and any property still unsatisfied in that world has written the process instead.",
+      "branchAMeaning": [
+        "the concrete in the panel has reached the compressive strength the cast-in anchors require"
+      ],
+      "branchBMeaning": [
+        "the concrete in the panel is still below that strength, the heat having been off long enough to hold the strength gain back"
+      ],
+      "requiredDecisionIfA": [
+        "the panel may be lifted out of the mould. An unqualified authorization is CORRECT here because no other entry is open; a decision confined to concrete strength is equally acceptable. This case does not adjudicate containment either way."
+      ],
+      "requiredDecisionIfB": [
+        "do not lift the panel; leave it in the bed until the concrete has reached the strength the anchors require"
+      ],
+      "requiredClarification": "a question that would settle the actual strength of the concrete in this panel now: a cube result at the panel's present age, a maturity reading read against the mix's strength-maturity relationship, or a direct in-situ strength determination on the panel. A clarification may legitimately name the evidence needed; the DECLARATION may not be about the evidence.",
+      "requiredClarificationCriticality": "BLOCKING_NOT_REQUIRED",
+      "requiredDeclarationBinding": "if a clarification about the strength is marked BLOCKING it must carry an authored answersUnresolvedFactDeclarationId naming the strength declaration. If no clarification is marked BLOCKING, axis D is recorded NOT_EXERCISED for this case.",
+      "prohibitedFillerValues": [
+        "placeholder",
+        "unused",
+        "tbd",
+        "to be determined",
+        "n/a",
+        "na",
+        "not applicable",
+        "unknown",
+        "none",
+        "same",
+        "other",
+        "see above",
+        "as above",
+        "no change",
+        "null",
+        "-",
+        "--",
+        "..."
+      ],
+      "siblingUnresolvedFacts": [],
+      "factLocalContainmentBoundary": "NOT ADJUDICATED. There is no open sibling entry, so GATE 10 imposes nothing here and axes G and H are frozen NOT_APPLICABLE for E1.",
+      "overallAuthorizationPermitted": true,
+      "overallAuthorizationBasis": "the strength entry is the only thing in the way, so authorizing the lift is a correct consequence. It is PERMITTED, not REQUIRED, and is not adjudicated on this case.",
+      "acceptableEvidence": [
+        "a compressive strength result for this panel's concrete at its present age, from the companion cubes or from the maturity log read against the mix's strength-maturity relationship",
+        "a direct in-situ strength determination taken on the panel itself"
+      ],
+      "insufficientEvidence": [
+        "confirmation that companion cubes were taken",
+        "confirmation that a maturity probe is installed in the panel",
+        "the duration of the heating interruption on its own, with no strength determination",
+        "the fact that a panel of the same age was lifted successfully on a previous day",
+        "a signature, a record or a sign-off that the curing cycle was followed"
+      ],
+      "prohibitedDeclarations": [
+        "a declaration about whether the bed heating tripped, which the text establishes",
+        "a declaration about whether the boiler was shut down, which the text establishes",
+        "a declaration about whether the handheld reader has a working battery, which the text establishes",
+        "a declaration about whether cubes were taken or sent to the laboratory, which the text establishes"
+      ],
+      "evaluationQuestions": [
+        {
+          "id": "E1.Q1",
+          "axis": "A",
+          "mandatory": false,
+          "question": "Was the concrete-strength property emitted as a declaration, rather than surviving only as a clarification, a hazard candidate or narrative?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q2",
+          "axis": "B",
+          "mandatory": false,
+          "question": "Does the declared property name the strength the cast-in anchors need to carry the panel out of the mould, rather than concrete strength in general or the condition of the panel in general?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q3",
+          "axis": "C",
+          "mandatory": true,
+          "question": "MANDATORY. Does the property remain true or false according to the underlying state, the actual strength of the concrete now, rather than according to whether evidence-gathering has occurred: whether anyone has tested, read the probe, received a result or recorded anything?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q4",
+          "axis": "C",
+          "mandatory": false,
+          "question": "Is missingFact free of a conjoined process element, so that the world in which the strength is adequate but unmeasured does NOT fall into branchB and does not drive the decision not to lift?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q5",
+          "axis": "E",
+          "mandatory": false,
+          "question": "Do branchA and branchB state two different actual strength states of the concrete, rather than two different states of the evidence?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q6",
+          "axis": "F",
+          "mandatory": false,
+          "question": "Do decisionIfA and decisionIfB state real and different consequences for the lift, neither field consisting of filler?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q7",
+          "axis": "D",
+          "mandatory": false,
+          "question": "CONDITIONAL. Is every clarification marked BLOCKING carrying an authored answersUnresolvedFactDeclarationId naming an entry that exists in this output? Recorded NOT_EXERCISED if no clarification is marked BLOCKING.",
+          "expected": "PASS"
+        },
+        {
+          "id": "E1.Q8",
+          "axis": "J",
+          "mandatory": false,
+          "question": "Was any fact the text establishes, in particular the heating trip, the shut-down boiler, the flat reader battery or the cubes having gone to the laboratory, declared as an owed fact?",
+          "expected": "PASS: not declared"
+        }
+      ]
+    },
+    {
+      "caseId": "E2",
+      "primaryTarget": "R5_GATE_9_BINDING_AND_R7_GATE_11_BRANCH_SEMANTICS",
+      "targets": [
+        "R5",
+        "R7"
+      ],
+      "observation": "A fitter at a dairy is about to go into a thirty-thousand-litre balance tank through its side manway to change a spray ball. The tank's agitator is isolated at the local switch and the fitter has his own lock on it, the manway has stood open since first light and the vessel is at ambient temperature, and a standby man is posted at the opening with a tripod and winch rigged over it. An atmosphere test taken at the manway ten minutes ago read normal for oxygen and showed no flammable vapour. The cleaning set ran a caustic circuit on this tank overnight. The panel in the plant room shows its cycle-complete lamp lit, but a technician reset that panel this morning while clearing an unrelated alarm, and the operator who set the overnight cycle finished at six and has left site. There is a sample cock on the tank's drain line and the fitter is at the manway with his tools.",
+      "suppliedContext": {
+        "location": "dairy processing plant, balance tank bay and plant room",
+        "task": "entering a balance tank through the side manway to change a spray ball"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "confined_space",
+        "chemical_exposure",
+        "corrosive_substances"
+      ],
+      "governedEvidence": [],
+      "decisionUnderAnalysis": "whether the fitter may enter the balance tank now",
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether the inside of the tank is actually clear of caustic, so that going into it will not put the fitter in contact with caustic film or pooled caustic liquid"
+      ],
+      "prohibitedProxyProperties": [
+        "whether the cleaning cycle is recorded, logged or shown as complete",
+        "whether the panel lamp is lit, which the text establishes",
+        "whether the operator who set the cycle can be contacted",
+        "whether a sample has been drawn from the drain line",
+        "whether the tank was cleaned at all, which the text establishes"
+      ],
+      "processOrHistoryRole": "EVIDENCE_FOR_THE_PROPERTY",
+      "processOrHistoryRoleBasis": "the panel lamp, the reset and the absent operator are how anyone would find out what state the tank interior is in. The safety state is the tank interior.",
+      "counterfactualTest": "picture a tank whose final rinse genuinely ran through, with the panel reset and the operator gone. The owed property is SATISFIED in that world.",
+      "branchAMeaning": [
+        "the final rinse ran through after the caustic circuit and the tank interior is clear of caustic"
+      ],
+      "branchBMeaning": [
+        "the caustic circuit was not followed by a completed rinse, and caustic remains on the tank's internal surfaces or standing in its bottom"
+      ],
+      "requiredDecisionIfA": [
+        "entry to the tank may go ahead. An unqualified authorization is CORRECT here because no other entry is open; a decision confined to caustic residue is equally acceptable. This case does not adjudicate containment either way."
+      ],
+      "requiredDecisionIfB": [
+        "do not enter the tank; rinse it through and confirm it is clear of caustic before anyone goes in"
+      ],
+      "requiredClarification": "a question that would settle whether the tank interior is clear of caustic: the result of a rinse-water sample drawn from the drain cock, or confirmation from the operator who set the overnight cycle that the rinse ran through after the caustic circuit.",
+      "requiredClarificationCriticality": "BLOCKING_REQUIRED",
+      "requiredDeclarationBinding": "the BLOCKING clarification MUST carry answersUnresolvedFactDeclarationId set to the declarationId of the caustic-residue declaration, authored by the model on the record. A BLOCKING clarification naming no entry is a FAIL on axis D, and remains a FAIL whether or not the declaration itself is correct.",
+      "prohibitedFillerValues": [
+        "placeholder",
+        "unused",
+        "tbd",
+        "to be determined",
+        "n/a",
+        "na",
+        "not applicable",
+        "unknown",
+        "none",
+        "same",
+        "other",
+        "see above",
+        "as above",
+        "no change",
+        "null",
+        "-",
+        "--",
+        "..."
+      ],
+      "siblingUnresolvedFacts": [],
+      "factLocalContainmentBoundary": "NOT ADJUDICATED. There is no open sibling entry, so GATE 10 imposes nothing here and axes G and H are frozen NOT_APPLICABLE for E2.",
+      "overallAuthorizationPermitted": true,
+      "overallAuthorizationBasis": "the caustic entry is the only thing in the way, so authorizing entry is a correct consequence. PERMITTED, not REQUIRED, and not adjudicated on this case.",
+      "acceptableEvidence": [
+        "the pH or conductivity of a rinse-water sample drawn from the tank's drain cock now",
+        "a direct look into the tank confirming no standing liquid and no caustic film on the internal surfaces",
+        "confirmation from the operator who set the overnight cycle that the rinse step ran through after the caustic circuit"
+      ],
+      "insufficientEvidence": [
+        "the cycle-complete lamp on a panel that has since been reset",
+        "confirmation that the cleaning set is capable of running a rinse step",
+        "confirmation that a caustic circuit was run, which is the reason for the question",
+        "a general statement that the tank is cleaned every night"
+      ],
+      "prohibitedDeclarations": [
+        "a declaration about the agitator isolation, which the text establishes is locked off with the fitter's own lock",
+        "a declaration about the atmosphere in the tank, which the text establishes was tested ten minutes ago and read normal",
+        "a declaration about the standby arrangement, which the text establishes is posted and rigged",
+        "a declaration about whether the panel was reset, which the text establishes"
+      ],
+      "evaluationQuestions": [
+        {
+          "id": "E2.Q1",
+          "axis": "A",
+          "mandatory": false,
+          "question": "Was the caustic-residue property emitted as a declaration, rather than surviving only as a clarification, a hazard candidate or narrative?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q2",
+          "axis": "B",
+          "mandatory": false,
+          "question": "Does the property concern the actual condition of the tank interior before entry, rather than the cleaning cycle, the panel or the absent operator?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q3",
+          "axis": "D",
+          "mandatory": true,
+          "question": "MANDATORY. Is every BLOCKING clarification explicitly bound using answersUnresolvedFactDeclarationId, naming an entry that exists in this output?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q4",
+          "axis": "D",
+          "mandatory": false,
+          "question": "EVASION CHECK. Was the question that settles this fact actually marked BLOCKING, rather than downgraded in criticality so that no binding was owed? A model that stops using BLOCKING to avoid the binding has not satisfied R5.",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q5",
+          "axis": "E",
+          "mandatory": true,
+          "question": "MANDATORY. Are branchA and branchB genuine semantic content rather than filler: two real and different conditions of the tank, each a statement a reader could act on, neither field consisting wholly of a frozen filler value?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q6",
+          "axis": "F",
+          "mandatory": true,
+          "question": "MANDATORY. Are decisionIfA and decisionIfB genuine semantic content rather than filler: two real and different consequences for the entry, neither field consisting wholly of a frozen filler value?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q7",
+          "axis": "C",
+          "mandatory": false,
+          "question": "Does the property turn on the state of the tank interior rather than on whether the cleaning cycle is recorded, shown or confirmed as complete?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E2.Q8",
+          "axis": "J",
+          "mandatory": false,
+          "question": "Was any fact the text establishes, in particular the agitator isolation, the atmosphere test, the standby arrangement or the panel reset, declared as an owed fact?",
+          "expected": "PASS: not declared"
+        }
+      ]
+    },
+    {
+      "caseId": "E3",
+      "primaryTarget": "R6_GATE_10_FACT_LOCAL_CONTAINMENT",
+      "targets": [
+        "R6"
+      ],
+      "observation": "A counterbalance lift truck is about to drive into a curtain-sided trailer at bay six of a distribution centre to bring out a load of drummed lubricant. The bay's trailer lock has been swung up against the trailer's rear underrun bar, but the lamps that show whether the hook has actually taken hold have been dark since the bay's control box was struck by a reversing vehicle last month, and the trailer driver has stayed in his cab with the engine running. Separately, the driver who brought the previous load out of this trailer reported a soft area in the deck about a third of the way down, and the deck is covered end to end with protective board laid over it, so none of it can be seen. The lift truck carries a little over four tonnes on its front axle when loaded. Unloading is due to start straight away.",
+      "suppliedContext": {
+        "location": "distribution centre, loading bay six, curtain-sided trailer",
+        "task": "driving a counterbalance lift truck into a trailer to bring out drummed lubricant"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "mobile_equipment",
+        "loading_dock",
+        "structural_failure"
+      ],
+      "governedEvidence": [],
+      "decisionUnderAnalysis": "whether the lift truck may drive into the trailer at bay six and begin unloading now",
+      "expectedDeclarationCount": 2,
+      "requiredOwedProperties": [
+        "FACT A: whether the bay's trailer lock has actually taken hold on the underrun bar, so that the trailer cannot move away from the bay while the truck is inside it",
+        "FACT B: whether the trailer deck at the reported soft area will actually carry the loaded truck's front axle"
+      ],
+      "prohibitedProxyProperties": [
+        "whether the indicator lamps work or the control box has been repaired, which the text establishes is not the case",
+        "whether the trailer lock has been inspected, checked or tested",
+        "whether the deck has been examined or the protective board lifted",
+        "whether the previous driver's report was recorded, passed on or acted on",
+        "whether the trailer carries a deck capacity plate"
+      ],
+      "processOrHistoryRole": "EVIDENCE_FOR_THE_PROPERTY",
+      "processOrHistoryRoleBasis": "the dark lamps and the previous driver's report are how anyone would find out. The safety states are whether the hook has taken hold and whether the deck will carry the axle.",
+      "counterfactualTest": "picture a lock that has genuinely taken hold and a deck that will genuinely carry the axle, with the lamps still dark and nobody having lifted the board. Both owed properties are SATISFIED in that world.",
+      "branchAMeaning": [
+        "FACT A branchA: the lock has taken hold on the underrun bar and the trailer is held against the bay",
+        "FACT B branchA: the deck at the soft area will carry the loaded truck's front axle"
+      ],
+      "branchBMeaning": [
+        "FACT A branchB: the lock has not taken hold, and nothing but the parked trailer is keeping it against the bay",
+        "FACT B branchB: the deck at the soft area will not carry the loaded truck's front axle"
+      ],
+      "requiredDecisionIfA": [
+        "FACT A decisionIfA MUST stop at Fact A. Acceptable meanings: the trailer moving away no longer blocks; nothing further is needed on the lock; what follows is subject to the deck entry still open. Any wording carrying one of those meanings is acceptable and no exact form is required.",
+        "FACT B decisionIfA MUST stop at Fact B. Acceptable meanings: the deck no longer blocks; nothing further is needed on the deck; what follows is subject to the lock entry still open.",
+        "FAIL on axis H if either positive decision, on its own and while the other entry is open, says unloading may proceed, the truck may drive in, the trailer is safe to enter, work may resume, or the task may continue, without qualification."
+      ],
+      "requiredDecisionIfB": [
+        "FACT A decisionIfB: do not drive into the trailer; prove the lock has taken hold, or hold the trailer against the bay by another means, first",
+        "FACT B decisionIfB: do not take the loaded truck onto the deck; bring the load out by another means or work from the bay edge"
+      ],
+      "requiredClarification": "one question per entry: what would settle whether the lock has taken hold on this trailer now, and what would settle whether the deck at the reported soft area will carry the loaded axle.",
+      "requiredClarificationCriticality": "BLOCKING_NOT_REQUIRED",
+      "requiredDeclarationBinding": "each clarification marked BLOCKING must carry an authored answersUnresolvedFactDeclarationId, and must bind to the RIGHT one of the two entries. A binding that names the other entry is a FAIL on axis D. If no clarification is marked BLOCKING, axis D is recorded NOT_EXERCISED for this case.",
+      "prohibitedFillerValues": [
+        "placeholder",
+        "unused",
+        "tbd",
+        "to be determined",
+        "n/a",
+        "na",
+        "not applicable",
+        "unknown",
+        "none",
+        "same",
+        "other",
+        "see above",
+        "as above",
+        "no change",
+        "null",
+        "-",
+        "--",
+        "..."
+      ],
+      "siblingUnresolvedFacts": [
+        "FACT A has FACT B open beside it throughout first pass",
+        "FACT B has FACT A open beside it throughout first pass"
+      ],
+      "factLocalContainmentBoundary": "the two facts are entirely independent: the lock does not bear on the deck and the deck does not bear on the lock. Settling either one leaves the other exactly as unresolved as it was. The containment is owed in BOTH directions, and settling B must not silently settle A any more than settling A may settle B.",
+      "overallAuthorizationPermitted": false,
+      "overallAuthorizationBasis": "neither entry alone may authorize the unloading, because the other entry independently blocks it. Overall authorization would only be correct once both are settled, which does not happen at first pass.",
+      "acceptableEvidence": [
+        "a direct look at the hook and the underrun bar confirming the lock has taken hold, or a wheel chock and a communicated key control applied as an alternative hold",
+        "lifting the protective board at the reported area and examining the deck, or a deck capacity determination for the loaded axle at that point"
+      ],
+      "insufficientEvidence": [
+        "the trailer driver saying he will stay in his cab",
+        "the fact that the lock was swung up, which is what is in question",
+        "the previous driver's report on its own, which raises the deck question rather than settling it",
+        "a general statement that trailers of this type carry lift trucks routinely"
+      ],
+      "prohibitedDeclarations": [
+        "a declaration about whether the indicator lamps are dark, which the text establishes",
+        "a declaration about whether the control box was damaged, which the text establishes",
+        "a declaration about whether the deck is covered with board, which the text establishes",
+        "a declaration about the weight of the loaded truck, which the text establishes",
+        "a single merged declaration covering both the lock and the deck: that is a FAIL on axis G, not an acceptable compression"
+      ],
+      "evaluationQuestions": [
+        {
+          "id": "E3.Q1",
+          "axis": "A",
+          "mandatory": false,
+          "question": "Were BOTH properties declared, the trailer lock and the deck, as two entries?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q2",
+          "axis": "G",
+          "mandatory": false,
+          "question": "Are the two facts kept independent: two separate entries, neither merged into the other and neither dropped?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q3",
+          "axis": "H",
+          "mandatory": true,
+          "question": "MANDATORY. Does clearing Fact A remain local while Fact B is still unresolved: does the trailer-lock entry's positive decision stop at the trailer lock, rather than authorizing the truck to drive in or unloading to begin?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q4",
+          "axis": "H",
+          "mandatory": false,
+          "question": "SYMMETRIC. Does settling Fact B avoid silently settling Fact A: does the deck entry's positive decision stop at the deck, rather than authorizing entry while the trailer-lock entry is still open?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q5",
+          "axis": "C",
+          "mandatory": false,
+          "question": "Does each property turn on the physical state, whether the hook has taken hold and whether the deck will carry the axle, rather than on the dark lamps, an absent inspection or an unfollowed report?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q6",
+          "axis": "B",
+          "mandatory": false,
+          "question": "Does each property name its own subject at the right scope: one about the trailer being held at the bay, one about the deck carrying the loaded front axle?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q7",
+          "axis": "E",
+          "mandatory": false,
+          "question": "Do all four branch fields across the two entries carry real and different content, none consisting wholly of a frozen filler value?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q8",
+          "axis": "F",
+          "mandatory": false,
+          "question": "Do all four decision fields across the two entries carry real content, none consisting wholly of a frozen filler value?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q9",
+          "axis": "D",
+          "mandatory": false,
+          "question": "CONDITIONAL. Is every clarification marked BLOCKING bound by an authored answersUnresolvedFactDeclarationId to the correct one of the two entries? Recorded NOT_EXERCISED if no clarification is marked BLOCKING.",
+          "expected": "PASS"
+        },
+        {
+          "id": "E3.Q10",
+          "axis": "J",
+          "mandatory": false,
+          "question": "Was any fact the text establishes, in particular the dark lamps, the damaged control box, the covered deck or the truck's weight, declared as an owed fact?",
+          "expected": "PASS: not declared"
+        }
+      ]
+    },
+    {
+      "caseId": "E4",
+      "primaryTarget": "R4_AND_R6_NARROWING_INTEGRITY",
+      "targets": [
+        "R4",
+        "R6"
+      ],
+      "observation": "A robot welding cell on an appliance line was reprogrammed overnight after the pressing shop changed the blank size, and the programmer went home at the end of the night shift. The standing method on this cell after any program change is a full cycle at reduced speed with the fixture empty and the cell in single step, watched from the panel, before any production part is loaded; the cell has twice driven a torch into a clamp after a change, once hard enough to bend the fixture and put the cell out for a week. The day-shift team leader has the cell in automatic with a first part already in the fixture. He said the programmer had told him the new path was good, but he could not say whether the reduced-speed cycle was actually run. Everything else about the restart was settled during the visit: the perimeter gates and their interlocks were function checked at the start of the shift and proved sound, the clamps and locating pins for the new blank size were fitted and checked by the toolroom, the team leader and the operator are both signed off on the cell, and the torch and wire feed were changed, set and proved on test coupons before the night shift ended.",
+      "suppliedContext": {
+        "location": "appliance factory, body line, robot welding cell 3",
+        "task": "returning a reprogrammed robot welding cell to production and welding the first part"
+      },
+      "jurisdiction": "osha-general-industry",
+      "hazardFamilies": [
+        "robotics",
+        "machine_guarding",
+        "automated_systems"
+      ],
+      "governedEvidence": [],
+      "decisionUnderAnalysis": "whether the cell may be put back into production and the first part welded now",
+      "expectedDeclarationCount": 1,
+      "requiredOwedProperties": [
+        "whether the reduced-speed cycle with the fixture empty required after a program change was actually run on this cell before a production part is welded"
+      ],
+      "prohibitedProxyProperties": [
+        "whether the reduced-speed cycle is recorded, signed for or logged. The ACT is the property here; the RECORD of the act is still evidence, and a property about the record is the same defect GATE 8 names",
+        "whether the programmer can be contacted or is available",
+        "whether the perimeter interlocks work, which the text establishes",
+        "whether the operator is trained, which the text establishes"
+      ],
+      "processOrHistoryRole": "IS_THE_PROPERTY_ITSELF",
+      "processOrHistoryRoleBasis": "running the reduced-speed cycle is not a way of finding out about some separate state; it IS the control. A program that happens to be correct but was never run down at reduced speed leaves the cell in exactly the condition the standing method exists to prevent, and this cell has twice produced that outcome. No reading, record or inspection substitutes for having run it.",
+      "counterfactualTest": "picture a new path that is genuinely clear of the clamps, with nobody having run the reduced-speed cycle. The owed property is STILL UNSATISFIED in that world, because the act has not happened. GATE 8's own test therefore permits naming the act, and this is the case it names as different and not rare.",
+      "branchAMeaning": [
+        "the reduced-speed cycle was run on this cell after the program change and the path ran clear of the fixture"
+      ],
+      "branchBMeaning": [
+        "no reduced-speed cycle was run after the program change, so the first motion at production speed would be the first time the new path has been driven"
+      ],
+      "requiredDecisionIfA": [
+        "the cell may be put back into production and the first part welded. UNQUALIFIED AUTHORIZATION IS REQUIRED TO BE AVAILABLE HERE: no other entry is open, so GATE 10 asks for no hedge.",
+        "FAIL on axis I if decisionIfA makes the restart conditional on further unresolved matters, refers to other open entries or outstanding checks that do not exist in this case, or declines to say the work may go ahead while naming no actual open blocker.",
+        "NOT A FAIL: naming what the decision follows from, for example saying that with the cycle run the cell may go back into production. Attribution is not qualification."
+      ],
+      "requiredDecisionIfB": [
+        "do not weld a production part; run the reduced-speed cycle with the fixture empty first and correct the path if it fouls"
+      ],
+      "requiredClarification": "a question that would settle whether the reduced-speed cycle was run on this cell after the program change: confirmation from the programmer or from the cell's own cycle history.",
+      "requiredClarificationCriticality": "BLOCKING_NOT_REQUIRED",
+      "requiredDeclarationBinding": "if a clarification about the reduced-speed cycle is marked BLOCKING it must carry an authored answersUnresolvedFactDeclarationId naming that declaration. If no clarification is marked BLOCKING, axis D is recorded NOT_EXERCISED for this case.",
+      "prohibitedFillerValues": [
+        "placeholder",
+        "unused",
+        "tbd",
+        "to be determined",
+        "n/a",
+        "na",
+        "not applicable",
+        "unknown",
+        "none",
+        "same",
+        "other",
+        "see above",
+        "as above",
+        "no change",
+        "null",
+        "-",
+        "--",
+        "..."
+      ],
+      "siblingUnresolvedFacts": [],
+      "factLocalContainmentBoundary": "THERE IS NO SIBLING. Every other condition bearing on the restart is established in the observation. GATE 10's containment is owed to an open sibling, and there is none, so no qualification is owed.",
+      "overallAuthorizationPermitted": true,
+      "overallAuthorizationBasis": "REQUIRED TO BE AVAILABLE. This entry is the only thing in the way, so authorizing the restart is the frozen correct consequence of the positive branch. This is one of the two overcorrection controls the case carries.",
+      "acceptableEvidence": [
+        "confirmation from the programmer that the reduced-speed cycle was run after the change",
+        "the cell controller's own cycle history showing a reduced-speed run after the program was written",
+        "running the reduced-speed cycle now, which settles the fact by performing the act"
+      ],
+      "insufficientEvidence": [
+        "the programmer's statement that the new path was good, which is what the cycle exists to test",
+        "confirmation that a standing method requiring the cycle exists",
+        "the fact that the clamps and locating pins were checked by the toolroom",
+        "a signature on a program change sheet"
+      ],
+      "prohibitedDeclarations": [
+        "a declaration about the perimeter gates or their interlocks, which the text establishes were function checked and proved",
+        "a declaration about the clamps or locating pins, which the text establishes were fitted and checked",
+        "a declaration about operator training or sign-off, which the text establishes",
+        "a declaration about the torch or wire feed, which the text establishes were changed, set and proved",
+        "a second declaration invented to give the positive decision something to be contained against"
+      ],
+      "evaluationQuestions": [
+        {
+          "id": "E4.Q1",
+          "axis": "A",
+          "mandatory": false,
+          "question": "Was the reduced-speed cycle property emitted as a declaration, rather than surviving only as a clarification, a hazard candidate or narrative?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q2",
+          "axis": "B",
+          "mandatory": false,
+          "question": "Does the property name the cycle required after a program change on THIS cell, before a production part is welded, rather than a general commissioning or checking requirement?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q3",
+          "axis": "I",
+          "mandatory": true,
+          "question": "MANDATORY. Does the model correctly allow the act to BE the owed property when the act itself is what matters: does missingFact name performance of the reduced-speed cycle, rather than being rewritten into a state-only property such as whether the new path clears the fixture? FAIL if GATE 8 was applied as an absolute prohibition on words such as tested, checked, run, performed or verified.",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q4",
+          "axis": "I",
+          "mandatory": true,
+          "question": "MANDATORY. When this sole fact resolves positively and no sibling blocker remains, does the model allow the overall task to proceed without unnecessary qualification: does decisionIfA authorize the cell back into production rather than hedging against open entries or outstanding checks that do not exist? FAIL if GATE 10 was applied as an absolute requirement to hedge every positive decision.",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q5",
+          "axis": "E",
+          "mandatory": false,
+          "question": "Do branchA and branchB state two real and different states of affairs about the cycle, neither field consisting wholly of a frozen filler value?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q6",
+          "axis": "F",
+          "mandatory": false,
+          "question": "Do decisionIfA and decisionIfB state real and different consequences for the restart, neither field consisting wholly of a frozen filler value?",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q7",
+          "axis": "D",
+          "mandatory": false,
+          "question": "CONDITIONAL. Is every clarification marked BLOCKING carrying an authored answersUnresolvedFactDeclarationId naming an entry that exists in this output? Recorded NOT_EXERCISED if no clarification is marked BLOCKING.",
+          "expected": "PASS"
+        },
+        {
+          "id": "E4.Q8",
+          "axis": "J",
+          "mandatory": false,
+          "question": "Was any fact the text establishes, in particular the interlocks, the clamps and pins, the training or the torch and wire feed, declared as an owed fact; and was any second entry invented for the positive decision to be contained against?",
+          "expected": "PASS: not declared and none invented"
+        }
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "id": "A",
+      "name": "REQUIRED_FACT_RECALL",
+      "question": "Did every frozen owed property emit as a declaration in its own right?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "notApplicableBasis": "every §210F case expects at least one declaration."
+    },
+    {
+      "id": "B",
+      "name": "EXACT_PROPERTY",
+      "question": "Does each declaration target the frozen property at the frozen scope, rather than a broader, narrower or different one?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "notApplicableBasis": "every case names an exact owed property."
+    },
+    {
+      "id": "C",
+      "name": "PROPERTY_PURITY",
+      "question": "Does the property turn on the underlying state rather than on whether evidence-gathering occurred, with no process element conjoined into it?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "E4"
+      ],
+      "notApplicableBasis": "on E4 the act IS the property, so there is no defect-direction opportunity to fail on purity. The overcorrection direction, whether GATE 8 was applied as a word ban, is adjudicated on axis I instead. Recording a PASS here would be vacuous."
+    },
+    {
+      "id": "D",
+      "name": "CLARIFICATION_BINDING",
+      "question": "Is every clarification marked BLOCKING bound by an authored answersUnresolvedFactDeclarationId to an entry that exists, and to the right entry where there is more than one?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "notApplicableBasis": "unconditionally exercised on E2, where the frozen truth requires a BLOCKING clarification. CONDITIONALLY exercised on E1, E3 and E4: recorded NOT_EXERCISED for a case that emits no BLOCKING clarification, because there is then no genuine opportunity to fail. This conditional rule is frozen before execution."
+    },
+    {
+      "id": "E",
+      "name": "BRANCH_SEMANTIC_COMPLETENESS",
+      "question": "Do branchA and branchB each carry genuine semantic content, two real and different states of affairs, with neither field consisting wholly of a frozen filler value?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "notApplicableBasis": "every case expects declarations, so every case has branches."
+    },
+    {
+      "id": "F",
+      "name": "DECISION_SEMANTIC_COMPLETENESS",
+      "question": "Do decisionIfA and decisionIfB each state a real fact-local consequence, with neither field consisting wholly of a frozen filler value?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "notApplicableBasis": "every case expects declarations, so every case has decisions."
+    },
+    {
+      "id": "G",
+      "name": "INDEPENDENT_FACT_PRESERVATION",
+      "question": "Are independent facts kept independent, all preserved, and none merged into another?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "notApplicableBasis": "E1, E2 and E4 each carry exactly one owed fact by frozen design, so there is no independence to preserve and no genuine opportunity to fail."
+    },
+    {
+      "id": "H",
+      "name": "FACT_LOCAL_DECISION_CONTAINMENT",
+      "question": "Does settling one fact avoid claiming overall authorization while an independent sibling fact remains unresolved?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "notApplicableBasis": "containment is owed to an OPEN SIBLING. E1, E2 and E4 have none, so GATE 10 imposes nothing and a PASS here would be vacuous. On E4 the opposite property, that unqualified authorization remains possible, is adjudicated on axis I."
+    },
+    {
+      "id": "I",
+      "name": "OVERCORRECTION_CONTROL",
+      "question": "Did the R4 and R6 narrowings survive: may an act still BE the owed property when the act itself is what matters, and may a positive decision still authorize the work unqualified when no sibling blocker exists?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "notApplicableBasis": "E4 is the case constructed to carry both overcorrection controls. E1, E2 and E3 have no act-shaped property and no frozen requirement for unqualified authorization, so neither control has a genuine opportunity to fail on them."
+    },
+    {
+      "id": "J",
+      "name": "FALSE_GAP_RESTRAINT",
+      "question": "Did any fact the observation ESTABLISHES, or any invented entry, become an owed declaration?",
+      "vocabulary": [
+        "PASS",
+        "FAIL"
+      ],
+      "notApplicableFrozenFor": [],
+      "notApplicableBasis": "every case carries established facts that could be over-declared.",
+      "beyondTheAuthorizedMinimum": true
+    }
+  ],
+  "adjudicationRules": {
+    "conditionalBindingExercise": "Axis D is exercised on a case only if that case's output contains at least one clarification with criticality BLOCKING, except on E2 where the frozen truth REQUIRES one and its absence is itself a FAIL through E2.Q4. Where no BLOCKING clarification is emitted on E1, E3 or E4 the axis is recorded NOT_EXERCISED for that case, never PASS.",
+    "missingDeclarationRule": "If a frozen required declaration is absent, axis A FAILS for that case and axes B, C, E and F for that MISSING entry are recorded NOT_EXERCISED, never PASS. An axis with no genuine opportunity to fail is never scored as correct.",
+    "placeholderRefusalRule": "If the deterministic projection refuses a declaration with NON_SEMANTIC_PLACEHOLDER_VALUE, that is a SEMANTIC FAIL on axis E or axis F for that case, whichever field carried the filler. It is model-authored filler detected deterministically, NOT a structural or transport failure, and it is not converted into one.",
+    "structuralFailureRule": "A transport, HTTP, schema or tooling failure is RECORDED as a structural failure and is NEVER converted into a model semantic verdict. A case that does not reach inference is recorded as not executed and its axes are NOT_EXERCISED.",
+    "noPostOutputTruthEdits": "Once execution begins no frozen truth in this file changes. A truth defect discovered after execution is recorded beside the frozen text as a PREREGISTRATION_DEFECT and is never silently repaired.",
+    "noPartialCredit": "PASS or FAIL only. No partial credit, no aggregate compensation, no post-hoc axes, no axis introduced after output is seen.",
+    "countIsNotValidation": "Reaching four of four executed cases is instrument completion, not validation and not acceptance. Only the frozen questions decide the terminal."
+  },
+  "passRule": {
+    "rule": "Every exercised frozen evaluation question must PASS. There is no partial credit and no aggregate compensation.",
+    "mandatoryQuestions": [
+      "E1.Q3",
+      "E2.Q3",
+      "E2.Q5",
+      "E2.Q6",
+      "E3.Q3",
+      "E4.Q3",
+      "E4.Q4"
+    ],
+    "mandatoryRule": "All mandatory questions must PASS. A mandatory question is never NOT_EXERCISED: its case is constructed so the question has a genuine opportunity to fail.",
+    "onOneSubstantiveFailure": "EXPERT_HAZLENZ_FINAL_FIRST_PASS_REMEDIATION_REQUIRES_REVIEW",
+    "onCleanResult": "EXPERT_HAZLENZ_FIRST_PASS_DEVELOPMENT_CONFIRMED — TARGETED_VERIFIER_VALIDATION_REQUIRED",
+    "onCleanResultStoppingCondition": "a clean §210F result is the stopping condition for first-pass semantic prompt remediation. Do NOT continue tuning the first-pass prompt without new contrary evidence.",
+    "whyStrict": "four cases aimed directly at four named final mechanisms and two narrowings. A failure on a case built to expose exactly that mechanism is information, not noise.",
+    "notApplicableRule": "NOT_APPLICABLE is valid only where this file freezes it for that case, before execution. NOT_EXERCISED is valid only under the frozen conditional rules above.",
+    "retries": 0,
+    "postOutputTruthEdits": 0,
+    "isAcceptance": false,
+    "isNot": [
+      "Expert HazLenz acceptance",
+      "production validation",
+      "an accuracy percentage",
+      "proof of verifier remediation",
+      "evidence about S6"
+    ]
+  },
+  "overcorrectionControls": {
+    "R4_PROCESS_AS_PROPERTY": {
+      "question": "Did GATE 8 become an absolute prohibition on process vocabulary?",
+      "answeredBy": "E4.Q3",
+      "pairedWith": "E1.Q3",
+      "rule": "BOTH must PASS. E1 alone can be passed by a model that refuses every act-shaped property; E4 alone can be passed by a model that never narrows one. Only the pair distinguishes a correctly narrowed GATE 8 from either degenerate strategy."
+    },
+    "R6_UNQUALIFIED_AUTHORIZATION": {
+      "question": "Did GATE 10 become an absolute requirement to hedge every positive decision?",
+      "answeredBy": "E4.Q4",
+      "pairedWith": "E3.Q3",
+      "rule": "BOTH must PASS. E3 alone can be passed by a model that hedges everything; E4 alone can be passed by a model that contains nothing. Only the pair distinguishes correctly contained behaviour from either degenerate strategy."
+    }
+  },
+  "prohibitedFillerValues": [
+    "placeholder",
+    "unused",
+    "tbd",
+    "to be determined",
+    "n/a",
+    "na",
+    "not applicable",
+    "unknown",
+    "none",
+    "same",
+    "other",
+    "see above",
+    "as above",
+    "no change",
+    "null",
+    "-",
+    "--",
+    "..."
+  ],
+  "s6Status": {
+    "rule": "S6",
+    "status": "NOT_EXERCISED",
+    "reason": "every §210F case is capability-ABSENT and the capability-PRESENT first-pass grammar remains refused by the provider. §210F does not attempt to validate S6.",
+    "architecturalRecommendation": "retain the separate governed stage",
+    "prohibition": "do not weaken first-pass grammar validation merely to make governed evidence fit"
+  },
+  "tokenAndSpendProjection": {
+    "basis": "the §210B-3B measured median input of 24034 tokens (produced by the §210B-2 prompt) plus the measured §210C static delta used by §210D, plus the measured §210E static delta, with output taken from the §210B-3B measured median. Input figures are projections; only the §210B-3B medians are measurements.",
+    "section210b3bMedianInputTokens": 24034,
+    "section210b3bMedianOutputTokens": 2824,
+    "section210b3bMaxObservedOutputTokens": 3241,
+    "section210cStaticDeltaChars": 2858,
+    "section210cStaticDeltaTokensEstimated": 1001,
+    "section210eStaticDeltaChars": 3279,
+    "section210eStaticDeltaTokensEstimated": 1149,
+    "cumulativeStaticDeltaTokensEstimated": 2150,
+    "projectedInputTokensPerCall": 26184,
+    "projectedOutputTokensPerCall": 2824,
+    "projectedTotalInputTokens": 104736,
+    "projectedTotalOutputTokens": 11296,
+    "projectedSpendUsd": 0.3224,
+    "worstCaseSpendUsd": 0.3775,
+    "worstCaseBasis": "every call runs to the 4000-token output allowance on an input 1,000 tokens above projection",
+    "recommendedHardCeilingUsd": 0.45,
+    "ceilingRationale": "above the worst case, so all four frozen cases can complete without the ceiling forcing a stop. Coverage is preserved over minor cost reduction: no case is cut, no output limit is reduced, no context is removed and no valid structured output is truncated to hit a target. If execution would exceed the ceiling the ceiling is raised, not the coverage reduced.",
+    "perCaseRequestSizes": [
+      {
+        "caseId": "E1",
+        "observationChars": 819,
+        "userPromptBytes": 2690,
+        "schemaAsSentBytes": 18686,
+        "requestBodyBytes": 74970,
+        "capabilityAbsent": true,
+        "carriesBackrefField": true
+      },
+      {
+        "caseId": "E2",
+        "observationChars": 878,
+        "userPromptBytes": 2740,
+        "schemaAsSentBytes": 18684,
+        "requestBodyBytes": 75018,
+        "capabilityAbsent": true,
+        "carriesBackrefField": true
+      },
+      {
+        "caseId": "E3",
+        "observationChars": 814,
+        "userPromptBytes": 2686,
+        "schemaAsSentBytes": 18679,
+        "requestBodyBytes": 74959,
+        "capabilityAbsent": true,
+        "carriesBackrefField": true
+      },
+      {
+        "caseId": "E4",
+        "observationChars": 1171,
+        "userPromptBytes": 3032,
+        "schemaAsSentBytes": 18674,
+        "requestBodyBytes": 75300,
+        "capabilityAbsent": true,
+        "carriesBackrefField": true
+      }
+    ]
+  },
+  "integrityAtFreeze": {
+    "section210b3PreregistrationSha256": "7b2e292f5fc2ddd61368b4adc8f4416c11b1925ecd514a589169f0118fec20b5",
+    "section210b3CallLedgerSha256": "4eacfd832cc23b4444d5f9061504fb17c01fa21e897871ff65eabd0a94809943",
+    "section210dPreregistrationSha256": "55510f9cc4e9424d543332e1c2f5db5a86d26757adba28d21730cc882420f30f",
+    "section210dRawFirstPassSha256": "7d78804dbeb3f0cf77f31be80169bb63c8ae1e1e74dfd959e968c0f228fdfb44",
+    "section210dCallLedgerSha256": "58473797a8f88a1f4d678c63156ee5cfaf182b50a89b67f0ff84266ae2f5a01e",
+    "pinnedV15PromptSha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+    "suitesGreenAtFreeze": {
+      "section-205-remediation": "92 passed, 0 failed",
+      "section-207-preregistration": "144 passed, 0 failed",
+      "section-209-batch-recorder": "116 passed, 0 failed",
+      "section-210b1-structural": "55 passed, 0 failed",
+      "section-210b2-semantic": "36 passed, 0 failed",
+      "section-210c-residual": "92 passed, 0 failed",
+      "section-210e-final": "103 passed, 0 failed",
+      "total": "638 passed, 0 failed"
+    },
+    "historicalEvidenceUnchanged": "the §210D preregistration still reproduces its frozen digest and no §210B-3 or §210D raw provider evidence was read for writing or rewritten."
+  },
+  "totals": {
+    "stimuli": 4,
+    "expectedDeclarationsAcrossProbe": 5,
+    "evaluationQuestions": 34,
+    "mandatoryQuestions": 7,
+    "twoDeclarationCases": [
+      "E3"
+    ],
+    "actIsThePropertyCases": [
+      "E4"
+    ],
+    "blockingRequiredCases": [
+      "E2"
+    ],
+    "unqualifiedAuthorizationPermittedCases": [
+      "E1",
+      "E2",
+      "E4"
+    ],
+    "axisExerciseMatrix": [
+      {
+        "axis": "A",
+        "name": "REQUIRED_FACT_RECALL",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "notApplicableFrozenFor": []
+      },
+      {
+        "axis": "B",
+        "name": "EXACT_PROPERTY",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "notApplicableFrozenFor": []
+      },
+      {
+        "axis": "C",
+        "name": "PROPERTY_PURITY",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "notApplicableFrozenFor": [
+          "E4"
+        ]
+      },
+      {
+        "axis": "D",
+        "name": "CLARIFICATION_BINDING",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "notApplicableFrozenFor": []
+      },
+      {
+        "axis": "E",
+        "name": "BRANCH_SEMANTIC_COMPLETENESS",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "notApplicableFrozenFor": []
+      },
+      {
+        "axis": "F",
+        "name": "DECISION_SEMANTIC_COMPLETENESS",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "notApplicableFrozenFor": []
+      },
+      {
+        "axis": "G",
+        "name": "INDEPENDENT_FACT_PRESERVATION",
+        "exercisedOn": [
+          "E3"
+        ],
+        "notApplicableFrozenFor": [
+          "E1",
+          "E2",
+          "E4"
+        ]
+      },
+      {
+        "axis": "H",
+        "name": "FACT_LOCAL_DECISION_CONTAINMENT",
+        "exercisedOn": [
+          "E3"
+        ],
+        "notApplicableFrozenFor": [
+          "E1",
+          "E2",
+          "E4"
+        ]
+      },
+      {
+        "axis": "I",
+        "name": "OVERCORRECTION_CONTROL",
+        "exercisedOn": [
+          "E4"
+        ],
+        "notApplicableFrozenFor": [
+          "E1",
+          "E2",
+          "E3"
+        ]
+      },
+      {
+        "axis": "J",
+        "name": "FALSE_GAP_RESTRAINT",
+        "exercisedOn": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "notApplicableFrozenFor": []
+      }
+    ]
+  },
+  "frozenAt": "2026-09-09T00:00:00.000Z"
+}

@@ -1,0 +1,1292 @@
+{
+ "fixtureSetVersion": "hazlenz.expert.hardened-development.fixtures.v9",
+ "fixtureFileSha256": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+ "rows": [
+  {
+   "rowId": "HS-A1",
+   "domain": "grain dryer burner",
+   "form": "NOT_VISIBLE",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The observation says the device is behind the shroud and unseen; it never states whether one is fitted or working."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "No sentence implies a flame-failure device exists or does not; the shroud is described as an obstruction only, with no definite article naming the device as present."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "A dryer running normally looks identical with a working device, a failed one, or none fitted; no stated fact discriminates."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "Fitted and functioning, or absent/defeated — both are ordinary on farm dryers of this kind."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "With the device working the finding is dust housekeeping and the auger interlock; without it, an unburnt-fuel accumulation in a dust-laden plenum means the dryer stops now."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No governed record is supplied and nothing in the text sets a default for the device state."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Two selectors reach the same decision and both are enumerated: the device state itself, and whether the burner has been proved to shut off on flame loss."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether a specific safety control is present and effective, which is REQUIRED_CONTROL rather than a magnitude question."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "MULTI_HAZARD",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "combustible_dust",
+     "machine_guarding"
+    ],
+    "defensibleHazardFamilies": [
+     "fire_explosion"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "machine_guarding"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-A1-G1",
+      "description": "whether the burner's flame-failure device is fitted and functioning, which the shroud prevents the observer from seeing",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "v12 NON-REGRESSION on fresh facts. The observation states a VISIBILITY limit and states its cause (the shroud). \"Not visible\" must not become \"not fitted\". The settled dust and the auger clearance are separately established hazards and must still be raised."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the grain dryer burner has a functioning flame-failure device",
+     "answerA": "the device is fitted and proved to shut the burner off on flame loss",
+     "outcomeA": "drying continues and the finding is the dust accumulation and the auger being cleared while running",
+     "answerB": "no device is fitted, or it has been bypassed",
+     "outcomeB": "the dryer must be shut down now, because unburnt fuel discharging into a dust-laden plenum is an explosion sequence with no interruption",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation establishes only that the device and its wiring are behind a shroud and cannot be seen from the walkway; an obstructed sightline is not an inspection of what is behind it",
+     "acceptableSelectors": [
+      "whether a flame-failure device is fitted to the burner and is functioning",
+      "whether the burner has been proved to shut off on loss of flame"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-B1",
+   "domain": "theatre counterweight flying",
+   "form": "RETAINED_CANDIDATE_SHAPED",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The observation gives the rope lock state and the positions of everyone present, and never states the balance condition of the line set."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "No sentence presupposes balance or imbalance; \"the rope lock is engaged\" is a state of the lock, not of the load, and I chose that wording deliberately after the US-D1 defect."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "An engaged rope lock is consistent with a balanced set and with an out-of-balance one being held by friction alone; deriving balance needs the added premise that the lock is rated for the imbalance."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "Loading in progress means the set is either already matched to the bar or deliberately unmatched mid-operation; both are routine."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Balanced, the finding is the loading method and the unattended pin rail; badly out of balance, the deck under the bar must be cleared before another weight goes on."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No record is supplied and no stated fact sets a default balance condition."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Three selectors reach the same decision and all three are enumerated: the balance condition, whether the bar is loaded to match, and whether the deck below is controlled during loading."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether a specific control — clearing the deck — is required before work continues, not how bad a fall of scenery would be."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "suspended_loads"
+    ],
+    "defensibleHazardFamilies": [
+     "material_handling_storage",
+     "fall_protection"
+    ],
+    "forbiddenHazardFamilies": [
+     "excavation_trenching"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "suspended_loads"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-B1-G1",
+      "description": "whether the bar stage-side is currently balanced against the weight already on the cradle, which decides whether the deck below must be cleared before loading continues",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "v13 RETENTION-BRIDGE ROW. The unknown is CANDIDATE-SHAPED -- does an out-of-balance condition exist? -- so INSUFFICIENT_EVIDENCE is an available parking place and only the bridge can carry it to a question. No governed record, so v11's threshold limb cannot carry it either. The engaged rope lock is the distractor: it holds a balanced set and is not designed to hold a badly out-of-balance one."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the line set is currently balanced against the weight already loaded on the cradle",
+     "answerA": "the set is balanced and the loading is a matched transfer",
+     "outcomeA": "loading continues and the finding is the manual handling of weights and the unattended pin rail",
+     "answerB": "the bar is loaded and the cradle is not yet matched, so the set is badly out of balance",
+     "outcomeB": "the deck beneath the bar must be cleared before another weight is placed, because the rope lock is the only thing restraining a runaway",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the rope-lock state and everyone's position are stated; the relationship between the weight on the cradle and the load on the bar is never given, and the lock being engaged says nothing about what it is restraining",
+     "acceptableSelectors": [
+      "whether the line set is balanced between the cradle and the bar",
+      "whether the bar stage-side is loaded to match the counterweights being added",
+      "whether the deck below the bar is kept clear while the set is being loaded"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-C1",
+   "domain": "MRI ferromagnetic screening",
+   "form": "OBSERVER_CANNOT_DETERMINE",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The text states that the questionnaire was completed and has not arrived; what it recorded is never given."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "Nothing presupposes the result either way. I avoided writing that the patient \"has no implants\", which would have settled it."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "A completed questionnaire held elsewhere carries no derivable content; concluding the patient is safe to enter needs a premise about what it said."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "The screening cleared the patient, or it flagged an implant or retained fragment — both are ordinary outcomes of the form."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Cleared, the scan proceeds now and the finding is the notes-handling process; flagged, the trolley must be moved back from the door before anything else, so the two answers change what happens in the next minute."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No record is supplied, and the interlock and signage control the AREA rather than supplying a default for this patient."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Two selectors are enumerated: what the screening recorded, and whether the patient has been screened by any means available in the suite now."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether a control — exclusion from the controlled area — is required for this patient, not the magnitude of any consequence."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "emergency_equipment"
+    ],
+    "defensibleHazardFamilies": [
+     "material_handling_storage",
+     "training_procedure_supervision"
+    ],
+    "forbiddenHazardFamilies": [
+     "hot_work"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "emergency_equipment"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-C1-G1",
+      "description": "what the ferromagnetic screening recorded for this patient, which decides whether the patient may cross into the controlled area at all",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The absence is ANNOUNCED and it is announced about DETERMINABILITY: a named person said nobody present can confirm it. That establishes ignorance, not absence -- the screening exists and was completed; its CONTENT is what is unavailable. The working interlock and the signage are stated distractors: both are about controlling the area, neither about this patient."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "what the ferromagnetic screening recorded for this patient",
+     "answerA": "the screening cleared the patient with no implanted or retained ferromagnetic material",
+     "outcomeA": "the scan proceeds and the finding is the failure of the paperwork to travel with the patient",
+     "answerB": "the screening flagged an implant or a retained fragment",
+     "outcomeB": "the patient must not cross into the controlled area, and the trolley must be moved back from the door now",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation establishes that the form was completed elsewhere and that nobody present knows its contents; nobody in the room knowing a fact is not evidence about the fact",
+     "acceptableSelectors": [
+      "what the ferromagnetic screening questionnaire recorded for this patient",
+      "whether this patient has been screened for ferromagnetic implants by any means available now"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-D1",
+   "domain": "pool plant chemical store",
+   "form": "AGGREGATION_AGAINST_A_RECORD",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "Two drums are given; the observation says in terms that the number of further containers is not recorded, so the total is absent."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "Nothing implies the total is above or below 25 gallons. I deliberately did not write \"only a few\" or \"a large stock\", either of which would have settled it."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "Two part-full 25 litre drums plus an uncounted number of further containers cannot be summed; no arithmetic reaches the record's quantity."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "The aggregate is under 25 gallons, or over it — a pool plant room routinely holds either."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Under, the finding is segregation from the chlorine and acid; over, the excess must be removed from the fire area or put into a cabinet today."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "The record sets a limit, not a default; it supplies no presumption about what is present, and states positively that no cabinet or storage room exists here."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Two selectors are enumerated: the aggregate quantity in the fire area, and the number and size of the containers on the racking."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides how the supplied record's stated condition applies to this room, which is REGULATORY_INTERPRETATION. It is not HAZARD_SEVERITY: it does not grade a consequence, it decides whether a limit is exceeded."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "chemical_release",
+     "chemical_inhalation_contact"
+    ],
+    "forbiddenHazardFamilies": [
+     "fall_protection"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-D1-G1",
+      "description": "the aggregate quantity of Class IA liquid present in this fire area, which the record defines as the total of all containers and which the observation never totals",
+      "affectedDecision": "REGULATORY_INTERPRETATION"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "v11 AGGREGATION NON-REGRESSION on fresh facts. The record defines the compared quantity as the TOTAL of all containers in the fire area; the observation gives two drums and says the rest are not counted. The comparison quantity cannot be assembled from the text. This is also the row most likely to attract HAZARD_SEVERITY under v13, because the question opens on a quantity -- and the correct label is REGULATORY_INTERPRETATION."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "the aggregate quantity of Class IA liquid present in this fire area, counting every container",
+     "answerA": "the aggregate is within the 25 gallon limit the record states",
+     "outcomeA": "storage continues and the finding is the segregation of solvent from the chlorine and acid dosing lines",
+     "answerB": "the aggregate exceeds 25 gallons",
+     "outcomeB": "the excess must be removed from the fire area or placed in a storage cabinet now, which the room does not have",
+     "affectedDecision": "REGULATORY_INTERPRETATION",
+     "whyNotEstablished": "the record's quantity is the total of all containers in the fire area, and the observation gives two drums while stating that the further containers are not counted; one side of the comparison is simply absent",
+     "acceptableSelectors": [
+      "the aggregate quantity of Class IA liquid in this fire area",
+      "the number and size of the further containers on the racking"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-E1",
+   "domain": "sawmill debarker",
+   "form": "PRIOR_EVENT",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The text says the guard door is closed and the switch is in place, and that the machine was returned to service; it never says the interlock was tested."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "\"Returned to service\" is a statement about the machine running again, not about a test having been passed, and I avoided writing \"signed back into service\" which would have implied one."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "A switch being physically in place does not entail that it opens the circuit; deriving that needs a premise about post-maintenance testing that the text does not supply."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "The fitter function-tested it before handing back, or he refitted the guard and left without testing — both are ordinary overnight outcomes."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Tested, the machine keeps running now and the finding is the infeed method; untested, it stops today until the interlock is proved, because a defeated interlock on a debarker rotor is not survivable."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No record is supplied and nothing in the text sets a default about post-maintenance testing."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Two selectors are enumerated: whether the interlock was function-tested after the work, and whether the rotor was proved to stop with the guard opened."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether a specific control has been verified before use, which is REQUIRED_CONTROL."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "machine_guarding"
+    ],
+    "defensibleHazardFamilies": [
+     "lockout_tagout",
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "chemical_release"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "machine_guarding"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-E1-G1",
+      "description": "whether the guard interlock was function-tested after the overnight rotor work, without which its being \"in place\" says nothing about whether it stops the rotor",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE UNKNOWN IS A PAST EVENT and nothing visible now can settle it: an interlock proved on test and one never re-tested look identical from the deck. The fitter having gone off shift is a stated fact that makes the answer unobtainable on the spot, without making the test's absence a fact."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the guard interlock was function-tested after the overnight rotor tooth change",
+     "answerA": "the interlock was proved to stop the rotor before the machine was handed back",
+     "outcomeA": "the machine runs and the finding is the infeed method and the sawyer working the deck alone",
+     "answerB": "no function test was made after the guard was refitted",
+     "outcomeB": "the debarker must come out of service until the interlock is proved, because nothing else stands between an opened guard and a turning rotor",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the guard being closed and the switch being present are both visible now and are equally consistent with a tested interlock and an untested one; a test performed overnight leaves nothing at the deck that its absence would not also leave",
+     "acceptableSelectors": [
+      "whether the guard interlock was function-tested after the rotor work",
+      "whether the rotor was proved to stop when the guard is opened"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-F1",
+   "domain": "bridge hydro-demolition",
+   "form": "LIKELY_BUT_UNESTABLISHED",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The lance, the pressure, the crew positions and the PPE are all stated; the lance's control arrangement is never mentioned."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "There is no negative sentence anywhere in the row, so nothing presupposes the control's presence or absence in either direction."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "A hand-held lance in use is consistent with a working dead-man, a defeated one and none fitted; no stated fact discriminates."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "Fitted and working, or absent or tied back — the second is a well-known field practice on jetting lances."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Working, the finding is the open footpath and the exclusion below; absent, the jetting stops now because a dropped lance at that pressure is uncontrolled."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No record is supplied and no stated fact supplies a default for the lance control."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Two selectors are enumerated: whether a dead-man or dump valve is fitted and working, and whether the jet stops when the trigger is released."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether a specific engineering control is in place, not how severe an injury would be."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "walking_working_surfaces"
+    ],
+    "defensibleHazardFamilies": [
+     "personal_protective_equipment",
+     "noise_exposure"
+    ],
+    "forbiddenHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-F1-G1",
+      "description": "whether a dump valve or dead-man control is fitted to the lance and is functioning, which decides whether the jet stops when the operative lets go",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE LIKELIHOOD ROW. The observation contains NO negative sentence at all -- nothing is said to be missing, unseen or unknown. The pull toward \"there is no dead-man control\" comes entirely from the circumstances. Likelihood establishes nothing. The PPE listed is deliberately complete so that the doubt cannot be sourced from an obvious omission."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the lance has a functioning dead-man or dump-valve control",
+     "answerA": "a dead-man control is fitted and the jet stops when the trigger is released",
+     "outcomeA": "jetting continues and the finding is the unclosed footpath beneath and the exclusion arrangements",
+     "answerB": "no dead-man is fitted, or it has been tied back",
+     "outcomeB": "the jetting must stop now, because a lance released at that pressure travels and nothing interrupts the jet",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "nothing in the observation touches the lance's control arrangement in either direction; the scene is equally consistent with a compliant lance and a defeated one, and finding the worse one easy to picture is not being told which it is",
+     "acceptableSelectors": [
+      "whether the lance is fitted with a functioning dead-man or dump-valve control",
+      "whether the jet stops when the operative releases the trigger"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-G1",
+   "domain": "depot battery storage container",
+   "form": "SYSTEM_COVERAGE",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The drawing is stated to show the previous layout; whether the strategy itself was reassessed is never stated."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "An out-of-date drawing on a wall does not presuppose that no assessment was done — drawings lag assessments routinely — and I chose that wording rather than \"no assessment has been carried out\"."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "Concluding from a stale drawing that the strategy was never revisited needs the added premise that drawings are always updated when strategies are."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "The strategy was reassessed for the container and the drawing simply lags, or the container was placed without any reassessment."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Reassessed, the finding is the drawing revision; not reassessed, the separation from a door and a window has never been evaluated and the container's position must be reviewed before it stays in service."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No governed record is supplied; the louvres and the detection head describe the container and set no default for the site strategy."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Two selectors are enumerated: whether the fire strategy was reassessed for the container, and what separation the strategy requires from workshop openings."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether the site's existing fire strategy governs the changed configuration at all, which is scope — APPLICABILITY — rather than which control to apply."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "emergency_equipment",
+     "electrical"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-G1-G1",
+      "description": "whether the depot fire strategy has been reassessed for the container's separation from the workshop openings, or still reflects the yard as it was",
+      "affectedDecision": "APPLICABILITY"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE SYSTEM-COVERAGE ROW. The unknown is whether the site's fire strategy REACHES the changed configuration -- candidate-shaped and parkable. The two stated reassurances (louvres, detection head) are both about the container's OWN condition and neither is about the separation distance or the strategy. The out-of-date drawing is stated as a fact about the drawing, not as evidence that no reassessment happened."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the depot fire strategy was reassessed for the container's position relative to the workshop openings",
+     "answerA": "the strategy was reassessed for the container and the separation was evaluated",
+     "outcomeA": "the container stays and the finding is that the displayed drawing has not been revised",
+     "answerB": "the container was placed without the strategy being revisited",
+     "outcomeB": "a lithium installation four metres from a door and a window is operating outside any assessed fire strategy, and its position must be reviewed before it remains in service",
+     "affectedDecision": "APPLICABILITY",
+     "whyNotEstablished": "the louvres and the detection head are facts about the container's own condition and the drawing is a fact about the drawing; none of the three says whether the site strategy was revisited when the yard changed",
+     "acceptableSelectors": [
+      "whether the depot fire strategy was reassessed when the container was installed",
+      "what separation the fire strategy requires between such a container and workshop openings"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-H1",
+   "domain": "laboratory autoclave",
+   "form": "WORST_CASE_TEMPTATION",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "NOT_ALREADY_STATED",
+     "note": "The gauge reading, the interlock release and the alarm silence are all stated; whether a cooling hold was applied to this load is not."
+    },
+    {
+     "claim": "NO_PRESUPPOSITION",
+     "note": "Nothing presupposes the hold either way. \"The door interlock released\" is a statement about the interlock's own logic, not about the load's temperature."
+    },
+    {
+     "claim": "NOT_DETERMINISTICALLY_DERIVABLE",
+     "note": "Chamber pressure at zero does not entail that liquid inside sealed bottles is below boiling; deriving that needs a premise linking chamber pressure to load temperature that is false for liquid loads."
+    },
+    {
+     "claim": "TWO_PLAUSIBLE_VALUES",
+     "note": "A liquid cycle with its cooling hold completed, or a cycle opened as soon as the interlock allowed — both are ordinary."
+    },
+    {
+     "claim": "BRANCHES_CHANGE_A_CURRENT_DECISION",
+     "note": "Held, the finding is the door-opening stance and glove selection; not held, the door must be closed again now because superheated liquid can boil violently on disturbance."
+    },
+    {
+     "claim": "NO_HIDDEN_DEFAULT",
+     "note": "No record is supplied, and neither the gauge nor the interlock supplies a default about the load's thermal state."
+    },
+    {
+     "claim": "SELECTOR_IS_UNIQUE_OR_ALTERNATIVES_ENUMERATED",
+     "note": "Three selectors are enumerated: whether a cooling hold ran, whether the cycle was a liquid cycle, and whether the load temperature was checked before opening."
+    },
+    {
+     "claim": "AFFECTED_DECISION_JUSTIFIED",
+     "note": "The answer decides whether opening the door now is permissible — a control decision — and not how badly a scald would injure."
+    }
+   ],
+   "denominators": [
+    "STRICT_REQUIRED_RECALL",
+    "RETAINED_BUT_NOT_ASKED",
+    "UNSUPPORTED_SETTLEMENT",
+    "AFFECTED_DECISION_ACCURACY"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "thermal_burn"
+    ],
+    "defensibleHazardFamilies": [
+     "pressure_systems",
+     "personal_protective_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "HS-H1-G1",
+      "description": "whether the load has been given its cooling hold before the door was opened, which a zero pressure gauge does not establish for a liquid load",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE WORST-CASE ROW, with the bait inverted as in §149's US-E1: a silent alarm is what a HEALTHY cycle sounds like, and equally what a dead alarm sounds like. The zero gauge is the second distractor -- chamber pressure returning to zero does not mean a bottled liquid load has cooled below its boiling point. The adverse branch is dramatic, which is the pull toward writing it down as fact."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the load was given a cooling hold appropriate to its contents before the door was opened",
+     "answerA": "the cycle included a liquid cooling hold and the load is below boiling",
+     "outcomeA": "unloading continues and the finding is the stance at the door and the glove specification",
+     "answerB": "no cooling hold ran, or the door was opened as soon as the interlock allowed",
+     "outcomeB": "the door must be closed again and the load left to cool, because superheated liquid in sealed containers can boil violently when moved",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the alarm not sounding is what a correct cycle and a dead alarm both produce, and a chamber gauge at zero is a statement about the chamber rather than about liquid inside sealed bottles; neither reaches the cooling hold",
+     "acceptableSelectors": [
+      "whether the load was given a cooling hold before the door was opened",
+      "whether this was a liquid cycle requiring a cooling hold",
+      "whether the load temperature was checked before the door was opened"
+     ]
+    }
+   }
+  },
+  {
+   "rowId": "HS-J1",
+   "domain": "paint spray booth",
+   "form": "EXPLICITLY_PRESENT",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "Extract running, interlock proved by demonstration, air-fed hood in use and its filter record current — every control the task depends on is stated and three were verified in person."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "The interlock conclusion rests on a demonstrated test rather than on an inference from the equipment being fitted."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered the breathing-air quality itself as a sibling gap and closed it: the filter is stated as fitted and its change record is stated as current, so the one fact that would decide it is given."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "No sentence introduces an entity whose state is left open; the compressor, the filter and the interlock each carry their state in the same sentence that introduces them."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "The row contains no advertised-absence wording at all, so the RB-F1 weakness cannot arise here."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "chemical_inhalation_contact",
+     "respiratory_protection",
+     "fire_explosion"
+    ],
+    "forbiddenHazardFamilies": [
+     "excavation_trenching"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "chemical_inhalation_contact",
+     "respiratory_protection"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "EXPLICITLY PRESENT, and every control is VERIFIED IN THE OBSERVER'S PRESENCE rather than merely described: the airflow band was watched, the interlock was demonstrated by test, and the filter record was seen. §151 F3 was applied deliberately -- I searched the row for a sibling gap and record below the one candidate I considered and why it closes."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is the breathing air actually clean, and has the booth extract been quantitatively tested rather than just indicated?",
+     "whyNotDecisionCritical": "the filter is stated as fitted with a current change record, and the extract was watched in the green band with the interlock proved by an actual switch-off test. Neither answer changes what is done in the booth today.",
+     "whatMakesItSettled": "three of the four controls were verified by the observer in person and the fourth carries a stated, current record; nothing a decision turns on is left open."
+    }
+   }
+  },
+  {
+   "rowId": "HS-K1",
+   "domain": "abrasive blast enclosure",
+   "form": "EXPLICITLY_ABSENT",
+   "hazardEstablished": true,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "The absent light and viewing panel are stated by the operator, and the propped door and escaping media were directly observed."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "Nothing is derived; the exposure is what the observer saw — media crossing into a bay occupied by two unscreened workers."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered the blast media type as a sibling gap and closed it: the finding is that an enclosure is being run open into an occupied bay, and that is the action on any media."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "The air supply to the helmet is stated as present; I deliberately did not leave its filtration open, which would have created a second gap of the RB-H1 kind."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "The absences here are operator-stated facts about what has never existed, not observer-side \"not recorded\" wording, and the consequence is directly observed rather than inferred."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "MULTI_HAZARD",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "chemical_inhalation_contact",
+     "personal_protective_equipment"
+    ],
+    "defensibleHazardFamilies": [
+     "respiratory_protection"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "v12 NON-REGRESSION: the absences are POSITIVELY ESTABLISHED and by two routes -- the operator states the light and viewing panel have never existed, and the propped door and escaping media were SEEN. A stated absence IS established, and the action is the same on any further answer: the enclosure is open and media is reaching an occupied shop floor."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "could a light or viewing panel be fitted, and what blast media is in use?",
+     "whyNotDecisionCritical": "the operator stated positively that neither has ever existed and the escaping media was seen crossing into a bay where two unscreened workers are at benches. Stopping the open-door working and screening the bay is the action on any media and whatever fitting is possible later.",
+     "whatMakesItSettled": "an explicit operator statement of absence plus direct observation of the propped door, the escaping media and the exposed workers."
+    }
+   }
+  },
+  {
+   "rowId": "HS-L1",
+   "domain": "passenger lift machine room",
+   "form": "TRUE_DETERMINISTIC_DERIVATION",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "The energy sources are each closed positively: electrical supply isolated under a personal lock with the sole key held, no second supply, no suspended load, and the counterweight mechanically pinned."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "This is the US-I1 repair applied at authoring time. US-I1 needed the premise that nobody reconnects a removed cable; here the sole key is on the person at risk, so no premise about anyone else's conduct is required."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I searched for a stored-energy sibling and closed each: gravity is closed by the car resting on compressed buffers with slack ropes, and the counterweight by the stated pin, which was seen."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "No entity is introduced without its state. I specifically did not mention a second engineer or a landing-door key, either of which would have opened a real gap."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "No advertised-absence wording is used; every absence is a positive statement about the installation rather than about what was not recorded."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "lockout_tagout",
+     "suspended_loads",
+     "machine_guarding"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "lockout_tagout",
+     "suspended_loads"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "A TRUE DETERMINISTIC DERIVATION, authored against the US-I1 defect. Every premise the conclusion needs is IN THE TEXT and none concerns anyone's future conduct: the sole supply is isolated, the only key is on the person doing the work, no second supply exists, the car is landed on buffers with the ropes slack so no suspended load remains, and the counterweight is mechanically pinned. Nobody can restore energy that has one key and that key is on the engineer."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "has the lift been locked out and tagged, and is the counterweight secured against movement?",
+     "whyNotDecisionCritical": "both are answered in the observation. The supply is isolated under the engineer's own lock with the only key on his belt, there is no second supply, the car is landed on its buffers with the ropes slack, and the counterweight is pinned with the manufacturer's device which was seen in place.",
+     "whatMakesItSettled": "deterministic derivation from stated facts with no added premise: no supply path, no second supply, no suspended load, and the one remaining mass mechanically restrained — each stated, none assumed, and none depending on anyone's future conduct."
+    }
+   }
+  },
+  {
+   "rowId": "HS-M1",
+   "domain": "anaerobic digester sludge tank",
+   "form": "SETTLED_THRESHOLD",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "Both of the record's stated conditions are measured, recorded and plainly satisfied, on the instrument type the record names."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "The comparison is arithmetic between two stated figures and the record's two stated bands; no premise is added."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered toxic contaminants as a sibling gap, since the record names three test categories: the row states testing at three depths with a direct-reading instrument and continuous monitoring on the man, so the during-entry limb is closed rather than left open."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "The calibration currency is stated rather than left implied, which was the obvious way this row could have leaked a second question."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "No advertised-absence wording is used anywhere in the row."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "confined_space_entry",
+     "atmospheric_hazard",
+     "emergency_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "machine_guarding"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "atmospheric_hazard"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "v11 SETTLED-THRESHOLD NON-REGRESSION. Value: 20.8 percent oxygen and 2 percent LFL. Basis: calibrated direct-reading instrument, which the record names in the same words. Side: inside 19.5-23.5 and well below 10 percent LFL. Every element the v11 affirmative rule requires is present, and continuous monitoring closes the during-entry limb the record also states."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "were the readings taken close enough to the entry, and is 2 percent of the lower flammable limit really safe in a digester?",
+     "whyNotDecisionCritical": "the record states its own acceptance criteria and its own instrument type, and the observation reports both figures on that basis with the calibration in date. 20.8 percent is mid-band and 2 percent LFL is a fifth of the stated limit, with continuous monitoring running during the entry.",
+     "whatMakesItSettled": "value = 20.8 percent oxygen and 2 percent LFL; basis = calibrated direct-reading instrument at three depths, named identically by both texts; side = inside both stated bands with margin, and the during-entry condition covered by continuous monitoring."
+    }
+   }
+  },
+  {
+   "rowId": "HS-N1",
+   "domain": "tyre fitting restraint cage",
+   "form": "DECISION_INVARIANT_UNKNOWN",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "The throughput is genuinely unknown and genuinely irrelevant: the control is a physical restraint cage that is in use correctly, and it works identically at one tyre a shift or fifty."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "The invariance is observed rather than argued — the cage is stated as fitted and bolted with the wheel inside and the fitter outside."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered whether the cage is rated for this wheel size and closed it: the row states the wheel is fully within the cage, which is the acceptance condition an inspector applies on the spot."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "The fitter's position, the airline arrangement and the bay occupancy are each stated, so none is left as an open question."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "This is the §151 J-class requirement met explicitly: the advertised absence is paired with a control observed working in the same observation, which is exactly what RB-F1 lacked and US-J1 had."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "mobile_equipment",
+     "material_handling_storage",
+     "noise_exposure"
+    ],
+    "forbiddenHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "mobile_equipment"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "DECISION-INVARIANT UNKNOWN, authored to the §151 J-class rule: the advertised absence is present (\"does not record how many tyres in a shift\") AND the invariance is DEMONSTRATED IN THE SAME OBSERVATION -- the cage is fitted and bolted, the wheel is inside it, the fitter is outside and to one side, and the bay is clear. That is what §150's RB-F1 lacked, and the difference is the point of the row."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "how many tyres does this fitter change in a shift, and does the frequency warrant a different control?",
+     "whyNotDecisionCritical": "the control is a physical restraint cage, in use correctly, with the operator outside and to one side and the bay clear. Frequency scales exposure but selects no different action: the cage is the control at any rate, and no plausible figure makes the current arrangement inadequate or suggests a different one.",
+     "whatMakesItSettled": "no threshold is in play, the unknown is real, and both branches converge on the same thing being done at this bay today."
+    }
+   }
+  },
+  {
+   "rowId": "HS-P1",
+   "domain": "school kitchen fryer",
+   "form": "NON_DECISION_CRITICAL_DETAIL",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "The fryer is stated to be off and cold and the drain is being used as designed with the bin positioned and the area coned; the unknown detail is identification, not condition."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "\"Off and cold\" is stated directly rather than inferred from the fryer being switched off, which is the premise I would otherwise have needed."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered whether the bin is rated for hot oil and closed it: the row states the oil is cold, which removes the condition that would make the bin material decision-critical."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "The hose, the bin position, the coning and the PPE are each stated with their state, so none is left open."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "The advertised absence concerns the make and capacity, and the invariance is demonstrated by the fryer being stated as cold and the drain method being observed in use."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "thermal_burn",
+     "walking_working_surfaces",
+     "personal_protective_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "hot_work"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "thermal_burn"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "NON-DECISION-CRITICAL DETAIL. The make and capacity are genuinely absent and no decision turns on either. Every fact that matters is stated: the fryer is off and COLD, the drain is being used as designed, the bin is positioned, the area is coned and the PPE is worn. The high-limit record is a currency fact, not an open question."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "what is the fryer's oil capacity, and is the bin adequate for that volume?",
+     "whyNotDecisionCritical": "the oil is stated as cold and the drain is being used as designed into a positioned bin in a coned area, with gauntlets and apron worn. Capacity scales the volume but selects no different action here, and the thermal condition that would make the bin material decision-critical is stated absent.",
+     "whatMakesItSettled": "the fryer's state, the drain method, the bin position, the area control and the PPE are each stated and observed; the unknown is a nameplate detail."
+    }
+   }
+  },
+  {
+   "rowId": "HS-Q1",
+   "domain": "school science prep room",
+   "form": "EVIDENCE_RESOLVES_THE_GAP",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "Both controls a decision could turn on were tested in the observer's presence: the fume cupboard drew fully on a smoke tube and the eyewash was run and flowed clear."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "Nothing is derived; both conclusions rest on witnessed tests rather than on the equipment being present."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered the sash height as a sibling gap and closed it: the row states the sash is at the marked working height and that the draw was checked at that opening, so the condition is stated rather than assumed."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "The PPE, the sash, the airflow and the eyewash each carry their verified state in the sentence that introduces them."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "No advertised-absence wording appears; every relevant fact is asserted positively."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "chemical_inhalation_contact",
+     "personal_protective_equipment",
+     "emergency_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "chemical_inhalation_contact",
+     "emergency_equipment"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE EVIDENCE RESOLVES THE APPARENT GAP. The question a coverage habit reaches for -- is the extraction working, is the eyewash working -- is the one the observation answers by DIRECT TEST in the observer's presence, twice. Asking it back is disregarding evidence already given, which the prompt names explicitly."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is the fume cupboard actually extracting adequately, and does the eyewash work?",
+     "whyNotDecisionCritical": "both were tested in the inspector's presence — the cupboard drew a smoke tube fully at the sash opening in use, and the eyewash was run and flowed clear. The facts are established, so there is nothing to ask.",
+     "whatMakesItSettled": "two witnessed functional tests plus the stated sash position and PPE; the apparent gaps are closed by direct evidence in the observation itself."
+    }
+   }
+  },
+  {
+   "rowId": "HS-R1",
+   "domain": "kerb cutting with water suppression",
+   "form": "SEVERITY_REFINEMENT_ONLY",
+   "hazardEstablished": false,
+   "review": [
+    {
+     "claim": "ESTABLISHED_OR_DECISION_INVARIANT",
+     "note": "Duration is genuinely unknown and every control it would bear on is stated as present and in use, so the answer selects no different action."
+    },
+    {
+     "claim": "NO_UNSTATED_PREMISE",
+     "note": "The invariance rests on stated facts — suppression running with visible water, FFP3 fitted, open air, fifteen metres of separation — not on an assumption about exposure limits."
+    },
+    {
+     "claim": "NO_SIBLING_DECISION_CRITICAL_GAP",
+     "note": "I considered whether the FFP3 is face-fitted and closed it deliberately by writing \"fitted\"; leaving that open would have created a real RB-H1-class gap and invalidated the control."
+    },
+    {
+     "claim": "WORDING_CREATES_NO_OPPORTUNITY",
+     "note": "Every control carries its state in the same sentence that introduces it, and no entity is named whose condition is left open."
+    },
+    {
+     "claim": "ADVERTISED_ABSENCE_INVARIANCE_DEMONSTRATED",
+     "note": "The advertised absence is duration, and the invariance is demonstrated in the same observation by the suppression running with visible water and the FFP3 being fitted and worn — the §151 J-class condition RB-F1 failed."
+    }
+   ],
+   "denominators": [
+    "FORBIDDEN_SILENCE",
+    "UNSUPPORTED_SETTLEMENT"
+   ],
+   "expectedToFailUnderV13": "EXPECTED FAIL under v13. §151 established CONSEQUENCE-MAGNITUDE ROUTING as the residual defect: §147 CR-G1 asked shift throughput and §150 RB-F1 asked rated payload, both on rows where the control was settled, and both were labelled HAZARD_SEVERITY by the model itself. This row is that shape on fresh facts. A speaking result CONFIRMS the diagnosis; a silent result FALSIFIES it and v14 should not be built.",
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "chemical_inhalation_contact",
+     "respiratory_protection",
+     "noise_exposure"
+    ],
+    "forbiddenHazardFamilies": [
+     "fall_protection"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "chemical_inhalation_contact"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE §151 RESIDUAL-DEFECT PROBE. Duration and quantity are the archetypal magnitude unknown, and the seven NOT-DECISION-CRITICAL shapes name severity refinement explicitly. Every control that duration would bear on -- water suppression, FFP3, hearing protection, open air, distance from others -- is stated as PRESENT AND IN USE, so no duration changes what is done at this cut today. THIS IS THE ROW A v14 CONSEQUENCE-MAGNITUDE REPAIR MUST MOVE, and under v13 it is EXPECTED TO FAIL on the CR-G1 / RB-F1 pattern. Recording that expectation here means a failure confirms the §151 diagnosis rather than surprising it."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "how many kerbs is he cutting and for how long, and does the duration change the control required?",
+     "whyNotDecisionCritical": "every control duration would bear on is already in place and observed: water suppression running with visible water at the blade, a fitted FFP3, hearing protection, open air and fifteen metres to the nearest person. A longer or shorter task selects no different action at this cut, and the corrective step at any duration is the same as the current arrangement.",
+     "whatMakesItSettled": "the unknown is duration alone, which is magnitude; the seven NOT-DECISION-CRITICAL shapes name severity refinement that does not change what is done now, and every control the magnitude would govern is stated as present and in use."
+    }
+   }
+  }
+ ]
+}

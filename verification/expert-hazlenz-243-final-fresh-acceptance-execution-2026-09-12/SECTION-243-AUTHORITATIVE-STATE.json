@@ -1,0 +1,2198 @@
+{
+  "artifact": "SECTION-243-AUTHORITATIVE-STATE",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "derivedAt": "2026-09-12T16:31:04.880Z",
+  "frozenInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "everyStageRanThroughTheRealModules": true,
+  "nothingRepairedOrReconstructed": true,
+  "cases": [
+    {
+      "caseId": "G1",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "STOP",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, zero ledger entries, an authoritative STOP posture driven by the established condition, and a resume condition naming the isolation.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4184,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_NARRATIVE_MISSING",
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 2,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [
+        {
+          "declarationId": "UF-2",
+          "reason": "REQUIRED_FIELD_MISSING"
+        }
+      ],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "UF-1",
+          "codes": []
+        },
+        {
+          "declarationId": "UF-2",
+          "codes": [
+            "REQUIRED_FIELD_MISSING"
+          ]
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.EXPOSURE.OBS-242A-G1.198-258.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.EXPOSURE.OBS-242A-G1.198-258.1",
+          "declaredMissingFact": "Whether the active silo 3 CIP circuit's caustic flow path currently includes the outlet/mixproof valve being opened"
+        }
+      ],
+      "preservedRecordCount": 1,
+      "preservedRecords": [
+        {
+          "recordKind": "STRUCTURALLY_INVALID_DECLARATION",
+          "declarationId": "UF-2",
+          "identifiedProperty": "Whether the upstream manual isolation valve will be locked out and tagged before the mixproof valve is opened",
+          "absentRequiredFields": [
+            "branchB"
+          ],
+          "presentFields": {
+            "declarationId": "UF-2",
+            "missingFact": "Whether the upstream manual isolation valve will be locked out and tagged before the mixproof valve is opened",
+            "observationSourceId": "OBS-242A-G1",
+            "observationSpan": "The manual isolation valve upstream of the outlet is open and carries no lock or tag.",
+            "notEstablishedBecause": "The observation states the current condition of the valve (open, no lock or tag) at the moment observed, but does not state whether lockout/tagout will be applied before the fitter proceeds to break into the mixproof valve.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "Lockout/tagout is applied to the isolation valve before the valve is opened",
+            "decisionIfA": "The line is positively isolated against reintroduction of flow during the work; this control gap no longer stands between the fitter and the point of work",
+            "decisionIfB": "The isolation valve remains open, unlocked and untagged while the mixproof valve is disassembled",
+            "whyNecessaryNow": "The fitter is already positioned with tools laid out and is about to break into the valve, so isolation must be confirmed before that step, not after"
+          },
+          "refusalCodes": [
+            "REQUIRED_FIELD_MISSING"
+          ],
+          "refusalDetail": [
+            "branchB is empty"
+          ],
+          "admissible": false,
+          "mayBeSettled": false,
+          "mayCloseTheAnalysis": false,
+          "requiresUpstreamRepair": true
+        }
+      ],
+      "preservationDispositions": [
+        {
+          "declarationId": "UF-2",
+          "disposition": "PRESERVED_STRUCTURALLY_INVALID"
+        }
+      ],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:POSTURE_NARRATIVE_MISSING,UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE,ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_NARRATIVE_MISSING,UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE,ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "G2",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE_WITH_CONTROLS posture, one required control tagged DURING_CONTINUED_WORK, and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 2949,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_NARRATIVE_MISSING",
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "UFD-1",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.EXPOSURE.OBS-242A-G2.547-665.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.EXPOSURE.OBS-242A-G2.547-665.1",
+          "declaredMissingFact": "Whether the drench shower can be reached promptly from the bench through the north doorway despite the pallet occupying about half its width"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:POSTURE_NARRATIVE_MISSING,UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_NARRATIVE_MISSING,UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "G3",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "STOP",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for G3-P1, UNRESOLVED, property authority CORRECTED, zero ledger transitions, no evidence authority minted, settlement refused on PROPERTY_AUTHORITY_NOT_OBTAINED, alongside an authoritative STOP posture for compactor 1.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4060,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "STOP",
+      "recommendationState": {
+        "posture": "STOP",
+        "postureRank": 3,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [
+          {
+            "control": "Remove the taped bypass magnet from compactor 1's door interlock and restore the interlock to functioning condition so the auger stops whenever the door is opened",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Establish a safe blockage-clearing procedure for compactor 1 that does not require reaching into the machine while the auger can turn (e.g. lockout/de-energize before clearing jams)",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Clean and dry the floor area around the compactor and implement housekeeping to prevent screenings build-up and standing water at the machine access point",
+            "timing": "BEFORE_WORK_RESUMES"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "UFD-1"
+          ],
+          "correctionsRequired": [
+            "Remove the interlock bypass on compactor 1 and confirm the interlock functions normally",
+            "Inspect and verify compactor 2's door interlock is intact and functional before it is placed into service",
+            "Clear the wet screenings build-up from the floor around the compactor and establish routine washdown"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "defeated-interlock-entanglement",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "UFD-1",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "compactor2-interlock-status",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        }
+      ],
+      "derivedCessationDrivers": [
+        {
+          "ref": "defeated-interlock-entanglement",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "UFD-1",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-G3.596-689.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-G3.596-689.1",
+          "declaredMissingFact": "Whether compactor 2's door interlock is intact and functional or has been defeated in the same manner as compactor 1's"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": true,
+      "verifierPropertyReview": {
+        "targetDeclarationId": "UFD-1",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether compactor 2's door interlock is currently intact and functional (stops the auger when the door opens) or has been defeated/bypassed like compactor 1's",
+        "propertyReviewReason": "The physical functional state of compactor 2's interlock is itself the condition that determines whether entanglement exposure exists after changeover; it is not a proxy for some other state — inspecting it is the direct way of finding out the state itself, and the two branches (intact vs defeated) exhaustively partition that state."
+      },
+      "verifierConsistency": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+        "review": {
+          "targetDeclarationId": "UFD-1",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether compactor 2's door interlock is currently intact and functional (stops the auger when the door opens) or has been defeated/bypassed like compactor 1's",
+          "propertyReviewReason": "The physical functional state of compactor 2's interlock is itself the condition that determines whether entanglement exposure exists after changeover; it is not a proxy for some other state — inspecting it is the direct way of finding out the state itself, and the two branches (intact vs defeated) exhaustively partition that state."
+        },
+        "representationReviewMayProceed": true
+      },
+      "scopeContainment": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "multiFactRequested": false
+      },
+      "exercises": [
+        {
+          "exerciseId": "G3-E1",
+          "shape": "HR-CATCH-IMPERFECTION",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-242A-G3.596-689.1",
+          "targetDeclaredProperty": "Whether compactor 2's door interlock is intact and functional or has been defeated in the same manner as compactor 1's",
+          "frozenControllingProperty": "whether the access-door interlock on standby compactor 2 is intact and functioning, so that opening its door stops the auger",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CORRECT_PROPERTY",
+          "humanPropertyActionApplied": "CORRECT_PROPERTY",
+          "propertyAuthorityOutcome": "CORRECTED",
+          "propertyAuthorityAfter": "CORRECTED",
+          "correctedControllingProperty": "whether the access-door interlock on standby compactor 2 is intact and functioning, so that opening its door stops the auger",
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "whether the access-door interlock on standby compactor 2 is intact and functioning, so that opening its door stops the auger"
+          },
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "07fb8308de88350e070a1adad06d6050803fa98a6cc120b8a61539e8f9e7671c",
+            "observationSpanPresent": true,
+            "observationSpan": "nobody on site can say whether compactor 2's door interlock has been modified in the same way",
+            "proposedPropertyPresent": true,
+            "proposedProperty": "Whether compactor 2's door interlock is intact and functional or has been defeated in the same manner as compactor 1's",
+            "branchesPresent": true,
+            "branchA": "Compactor 2's door interlock is intact and functions normally, stopping the auger when the door is opened",
+            "branchB": "Compactor 2's door interlock has also been defeated or modified so the door can be opened with the auger running",
+            "decisionsPresent": true,
+            "decisionIfA": "The end-of-shift changeover to compactor 2 may proceed with the interlock providing its intended protection; separately, compactor 1's defeated interlock must still be corrected before it returns to service.",
+            "decisionIfB": "The changeover must not proceed onto compactor 2 until its interlock is restored to functioning condition, since switching to it would simply transfer the same entanglement exposure to the standby unit with no interruption in risk.",
+            "existingClarification": "Has compactor 2's door interlock been inspected to confirm it has not been defeated with a taped magnet or similar bypass in the same way as compactor 1?",
+            "hazlenzExplanation": "The observation states plainly that nobody on site could say either way, so the interlock's actual condition on compactor 2 is not stated.",
+            "decisionWhileUnresolved": null,
+            "verifierDecisionControllingProperty": "Whether compactor 2's door interlock is currently intact and functional (stops the auger when the door opens) or has been defeated/bypassed like compactor 1's",
+            "verifierPropertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "verifierPropertyValidity": "VALID",
+            "reviewerQuestion": "Is the property below the proposition whose truth actually decides this, or is it evidence for a different underlying condition that could be satisfactory or adverse either way? Confirm it, correct it, or leave it open.",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED",
+            "confirmationIsNotSettlement": "Confirming the property says WHICH QUESTION MATTERS. It does not say the answer is satisfactory, does not say it is adverse, and does not settle the fact. The hold stands until the fact is separately settled by reviewed evidence.",
+            "packetFieldNames": [
+              "packetId",
+              "analysisId",
+              "factKey",
+              "observationSpan",
+              "proposedProperty",
+              "hazlenzExplanation",
+              "branchA",
+              "branchB",
+              "decisionIfA",
+              "decisionIfB",
+              "decisionWhileUnresolved",
+              "existingClarification",
+              "verifierDecisionControllingProperty",
+              "verifierPropertySemanticRole",
+              "verifierPropertyValidity",
+              "reviewerQuestion",
+              "availableDecisions",
+              "propertyDigest",
+              "requirement",
+              "state",
+              "confirmationIsNotSettlement"
+            ]
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": [],
+          "ranOnCarriedState": false,
+          "refusalCodesNotExercised": [
+            "PROPERTY_AUTHORITY_NOT_OBTAINED"
+          ],
+          "refusalCodeAxisNotExercisedBecause": "the frozen exercise names no human evidence action, so no settlement was attempted and the refusal could not be observed. The claim state that would produce it is recorded in propertyAuthorityAtClaim."
+        }
+      ],
+      "reviewPacketMustSurface": [
+        "the verbatim observation span that holds the compactor 2 question open",
+        "the proposed property as the first pass worded it",
+        "both branches and the decision under each",
+        "the fact that compactor 1's interlock was found defeated, because that is what makes an assurance about compactor 2 worthless and is the reason a reviewer would correct an evidence proxy to the underlying state",
+        "what the clarification demands as settling evidence"
+      ]
+    },
+    {
+      "caseId": "G4",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for G4-P1, UNRESOLVED, property authority CONFIRMED, zero ledger transitions, no evidence authority minted, alongside an authoritative HOLD_PENDING_VERIFICATION posture whose resume condition is the test.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4153,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "emittedPosture": null,
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ABSENT",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD",
+        "POSTURE_PROJECTION_REFUSED:POSTURE_MISSING,WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "a required schema field never arrived in the tool_use input",
+          "containment": "the field was never parsed or reconstructed; no fact was admitted"
+        },
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_MISSING,WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [
+        {
+          "exerciseId": "G4-E1",
+          "shape": "HR-CONFIRM",
+          "ran": false,
+          "notExercisedBecause": "NO ADMITTED FACT — the upstream first pass produced nothing for this stage to act on",
+          "targetFactKey": null,
+          "targetDeclaredProperty": null,
+          "frozenControllingProperty": "whether the traction system is actually dead where the hose runs beside the busbar, demonstrated by measurement with an instrument of established accuracy",
+          "propertyAuthorityRequirement": null,
+          "propertyAuthorityAtClaim": null,
+          "humanPropertyActionFrozen": "CONFIRM_PROPERTY",
+          "humanPropertyActionApplied": null,
+          "propertyAuthorityOutcome": null,
+          "propertyAuthorityAfter": null,
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": null,
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": null,
+          "matchesFrozenExpectation": null,
+          "mismatches": []
+        }
+      ],
+      "reviewPacketMustSurface": [
+        "the verbatim observation span recording that no voltage-absence test has been made",
+        "the proposed property as the first pass worded it, so a reviewer can see whether it names the proven-dead state or the withdrawn plug",
+        "both branches and the decision under each",
+        "that the only proven meter is off site, because that is what makes the branch B decision real rather than theoretical"
+      ]
+    },
+    {
+      "caseId": "G5",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE_WITH_CONTROLS posture, named controls, and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4916,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "postureRank": 2,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl-hold-to-run-usability"
+          ],
+          "correctionsRequired": [
+            "Confirm whether the hold-to-run film-load mode is functional and usable for the splice task; if usable, require its use for every splice; if not usable, implement an interim physical barrier, reach-limiting device, or equivalent control at the 120mm gap before splices continue in the current manner"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "decl-hold-to-run-usability",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        }
+      ],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 2,
+      "declarationsAdmitted": 2,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl-hold-to-run-usability",
+          "codes": []
+        },
+        {
+          "declarationId": "decl-noise-level",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-G5.670-750.1",
+        "FP.HAZARD_SEVERITY.OBS-242A-G5.751-809.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-G5.670-750.1",
+          "declaredMissingFact": "Whether the hold-to-run film-load mode is currently available and functional for use during the splice task"
+        },
+        {
+          "factKey": "FP.HAZARD_SEVERITY.OBS-242A-G5.751-809.1",
+          "declaredMissingFact": "The current measured noise level at the operator's working position in the packing hall"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "G6",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for G6-P1, UNRESOLVED, property authority REQUIRED_NOT_OBTAINED, zero ledger transitions, alongside an authoritative HOLD_PENDING_VERIFICATION posture whose resume condition is the measurement.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 3940,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "postureRank": 2,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [
+          {
+            "control": "Use the calibrated handheld ozone monitor to check the plant room atmosphere at and immediately following generator restart, in place of the absent fixed monitor",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Restrict or supervise aquarist access to the plant room during and immediately after restart until an acceptable ozone reading is confirmed",
+            "timing": "BEFORE_WORK_RESUMES"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl-destruct-performance"
+          ],
+          "correctionsRequired": [
+            "Verify the thermal destruct unit's ozone-destruction performance (by outlet test or handheld ambient monitoring) at generator restart before normal, unsupervised aquarist occupancy of the plant room resumes"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "destruct-unit-untested",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "decl-destruct-performance",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "aquarist-ozone-exposure",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        }
+      ],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl-destruct-performance",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-G6.301-355.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-G6.301-355.1",
+          "declaredMissingFact": "Whether the thermal destruct unit will effectively break down ozone in the offgas once the generator is restarted"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": true,
+      "verifierPropertyReview": {
+        "targetDeclarationId": "decl-destruct-performance",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the thermal destruct unit is actually breaking down ozone to a safe level in the offgas at and after restart",
+        "propertyReviewReason": "This is the physical condition that determines whether ozone reaches the plant room atmosphere at hazardous levels; it is not itself a test or record but the state the tests would confirm, and the decision (whether aquarists can safely resume work) turns directly on it."
+      },
+      "verifierConsistency": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+        "review": {
+          "targetDeclarationId": "decl-destruct-performance",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether the thermal destruct unit is actually breaking down ozone to a safe level in the offgas at and after restart",
+          "propertyReviewReason": "This is the physical condition that determines whether ozone reaches the plant room atmosphere at hazardous levels; it is not itself a test or record but the state the tests would confirm, and the decision (whether aquarists can safely resume work) turns directly on it."
+        },
+        "representationReviewMayProceed": true
+      },
+      "scopeContainment": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "multiFactRequested": false
+      },
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "G7",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "CONTINUE",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE posture, zero required controls and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 2045,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "CONTINUE",
+      "recommendationState": {
+        "posture": "CONTINUE",
+        "postureRank": 0,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "G8",
+      "domain": "OSHA_GENERAL_INDUSTRY",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for G8-P1, UNRESOLVED, property authority REQUIRED_NOT_OBTAINED, zero ledger transitions, subordinated to an authoritative CONTINUE_WITH_CONTROLS posture that it does not drive.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 2626,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "emittedPosture": null,
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ABSENT",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD",
+        "POSTURE_PROJECTION_REFUSED:POSTURE_MISSING,WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "a required schema field never arrived in the tool_use input",
+          "containment": "the field was never parsed or reconstructed; no fact was admitted"
+        },
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_MISSING,WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "C1",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE_WITH_CONTROLS posture, named controls tagged DURING_CONTINUED_WORK, and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 3705,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "emittedPosture": "CONTINUE_WITH_CONTROLS",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "UFD-1",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-C1.506-531.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C1.506-531.1",
+          "declaredMissingFact": "whether the labourer's mortar-clearing task is a Table 1 task requiring specified respiratory protection, or whether his silica exposure has otherwise been assessed and limited"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "C2",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for C2-P1, UNRESOLVED, property authority REQUIRED_NOT_OBTAINED, an ADMISSIBLE_EVIDENCE authority minted, settlement attempted and REFUSED on PROPERTY_AUTHORITY_NOT_OBTAINED, zero ledger transitions.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 5384,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "postureRank": 2,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl_current_exam",
+            "decl_seal_capability",
+            "decl_pre_use_check_today"
+          ],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "expired_thorough_examination_report",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "vacuum_head_scuffed_seals",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "missing_pre_use_check_cards",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "decl_current_exam",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "decl_seal_capability",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "decl_pre_use_check_today",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        }
+      ],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 3,
+      "declarationsAdmitted": 3,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl_current_exam",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_seal_capability",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_pre_use_check_today",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-C2.466-643.1",
+        "FP.HAZARD_SEVERITY.OBS-242A-C2.397-441.1",
+        "FP.REQUIRED_CONTROL.OBS-242A-C2.645-794.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C2.466-643.1",
+          "declaredMissingFact": "Whether the vacuum manipulator head currently has a valid, in-date thorough examination confirming it is fit to lift the intended load"
+        },
+        {
+          "factKey": "FP.HAZARD_SEVERITY.OBS-242A-C2.397-441.1",
+          "declaredMissingFact": "Whether the scuffed pad seals can still achieve and hold sufficient vacuum to safely lift the 380 kg unit"
+        },
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C2.645-794.1",
+          "declaredMissingFact": "Whether a documented pre-use check of the vacuum head has been completed and passed for today, before this lift"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": true,
+      "verifierPropertyReview": {
+        "targetDeclarationId": "decl_current_exam",
+        "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the vacuum manipulator head currently has a valid, in-date thorough examination confirming it passed",
+        "propertyReviewReason": "A statutory thorough examination is a required act/certification whose completion and outcome is itself the substantive requirement for continued use of lifting equipment; there is no separate underlying condition being proxied for here beyond the examination having been done and passed, so the named property is the decision-controlling one."
+      },
+      "verifierConsistency": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+        "review": {
+          "targetDeclarationId": "decl_current_exam",
+          "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether the vacuum manipulator head currently has a valid, in-date thorough examination confirming it passed",
+          "propertyReviewReason": "A statutory thorough examination is a required act/certification whose completion and outcome is itself the substantive requirement for continued use of lifting equipment; there is no separate underlying condition being proxied for here beyond the examination having been done and passed, so the named property is the decision-controlling one."
+        },
+        "representationReviewMayProceed": true
+      },
+      "scopeContainment": {
+        "admitted": false,
+        "codes": [
+          "NOMINATION_OUTSIDE_TARGET_SCOPE",
+          "SOURCE_MODE_CLAIMS_A_NOMINATION_OUTSIDE_SCOPE",
+          "CLARIFICATION_BOUND_TO_A_NOMINATION_OUTSIDE_SCOPE"
+        ],
+        "detail": [
+          "the request supplied one fact and did not ask for linked-fact validation, so a structured nomination is outside the review scope. Mentioning another issue in reasoning is legal; raising it as a fact here is not.",
+          "SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION",
+          "a proposed clarification that answers a nominated fact cannot be the correction for the target fact"
+        ],
+        "multiFactRequested": false
+      },
+      "exercises": [
+        {
+          "exerciseId": "C2-E1",
+          "shape": "HR-REFUSE-UNSUPPORTED",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-242A-C2.466-643.1",
+          "targetDeclaredProperty": "Whether the vacuum manipulator head currently has a valid, in-date thorough examination confirming it is fit to lift the intended load",
+          "frozenControllingProperty": "whether a current report of thorough examination is in force for this vacuum lifting head",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "NONE",
+          "humanPropertyActionApplied": "NONE",
+          "propertyAuthorityOutcome": null,
+          "propertyAuthorityAfter": "REQUIRED_NOT_OBTAINED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "APPROVE_SETTLEMENT",
+          "evidenceAuthorityMinted": true,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": true,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [
+            "PROPERTY_AUTHORITY_NOT_OBTAINED"
+          ],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [
+            {
+              "factKey": "FP.HAZARD_SEVERITY.OBS-242A-C2.397-441.1",
+              "status": "UNRESOLVED"
+            },
+            {
+              "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C2.645-794.1",
+              "status": "UNRESOLVED"
+            }
+          ],
+          "packetFields": null,
+          "matchesFrozenExpectation": true,
+          "mismatches": [],
+          "ranOnCarriedState": false,
+          "refusalCodesNotExercised": [],
+          "refusalCodeAxisNotExercisedBecause": null
+        }
+      ],
+      "reviewPacketMustSurface": [
+        "the verbatim observation span recording that the current report is not on site",
+        "the proposed property as the first pass worded it",
+        "both branches and the decision under each",
+        "that the report in the site file is eight months old, because a reviewer needs the interval to judge whether the artifact named is the right one",
+        "that the property authority has NOT been obtained, shown distinctly from the evidence approval, so the reviewer cannot mistake approving a document for confirming the property"
+      ]
+    },
+    {
+      "caseId": "C3",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "STOP",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for C3-P1, UNRESOLVED, property authority REQUIRED_NOT_OBTAINED, zero ledger transitions, alongside an authoritative STOP posture driven by the established condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4776,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 2,
+      "declarationsAdmitted": 2,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl_head_position",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_calibration_basis",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.HAZARD_SEVERITY.OBS-242A-C3.396-591.1",
+        "FP.REQUIRED_CONTROL.OBS-242A-C3.592-685.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.HAZARD_SEVERITY.OBS-242A-C3.396-591.1",
+          "declaredMissingFact": "the drill head's actual current depth/position relative to the potholed gas main location"
+        },
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C3.592-685.1",
+          "declaredMissingFact": "whether the tracking/locator system has any verified accurate calibration basis to arbitrate between the conflicting depth readings"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": true,
+      "verifierPropertyReview": {
+        "targetDeclarationId": "decl_head_position",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "The drill head's actual current depth/position relative to the potholed gas main location",
+        "propertyReviewReason": "This is not evidence for some other condition; the head's true position relative to a known live gas main is the direct physical fact that determines strike risk and whether advance may safely continue. Knowing it with certainty answers the safety question outright."
+      },
+      "verifierConsistency": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+        "review": {
+          "targetDeclarationId": "decl_head_position",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "The drill head's actual current depth/position relative to the potholed gas main location",
+          "propertyReviewReason": "This is not evidence for some other condition; the head's true position relative to a known live gas main is the direct physical fact that determines strike risk and whether advance may safely continue. Knowing it with certainty answers the safety question outright."
+        },
+        "representationReviewMayProceed": true
+      },
+      "scopeContainment": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "multiFactRequested": false
+      },
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "C4",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE_WITH_CONTROLS posture, named controls, and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4612,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl-dead-end-exclusion",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-C4.359-506.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C4.359-506.1",
+          "declaredMissingFact": "Whether the carpenter working near the dead end anchorages will be removed from the line of the tendons or protected by an exclusion zone before stressing of the remaining tendons proceeds"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "C5",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE_WITH_CONTROLS posture, named controls, and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 3475,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "STOP",
+      "recommendationState": {
+        "posture": "STOP",
+        "postureRank": 3,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": [
+            "Withdraw the raker from the area behind the material transfer vehicle while it reverses, or provide a banksman/spotter to direct the reversing movement",
+            "Take the material transfer vehicle out of service for reversing near personnel, or repair/replace the reversing camera monitor so the driver has a functioning means of detecting personnel behind the vehicle, before reversing operations resume with anyone on foot in that zone"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "raker-struckby-no-banksman",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "reversing-camera-defeated",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "derivedCessationDrivers": [
+        {
+          "ref": "raker-struckby-no-banksman",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "reversing-camera-defeated",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl-duty-officer-notified",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.APPLICABILITY.OBS-242A-C5.615-732.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.APPLICABILITY.OBS-242A-C5.615-732.1",
+          "declaredMissingFact": "Whether the highway authority duty officer was informed of the extended closure"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "C6",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedDeclarationCount": 2,
+      "frozenExpectedFinalAuthoritativeState": "two owed facts. C6-P1 UNRESOLVED with property authority DECLINED_KEEP_UNRESOLVED and zero transitions; C6-P2 UNRESOLVED with property authority REQUIRED_NOT_OBTAINED, untouched, zero transitions. An authoritative HOLD_PENDING_VERIFICATION posture whose resume condition names both.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4454,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 2,
+      "declarationsAdmitted": 2,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl-lead-determination",
+          "codes": []
+        },
+        {
+          "declarationId": "decl-negative-pressure",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-C6.224-359.1",
+        "FP.REQUIRED_CONTROL.OBS-242A-C6.642-709.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C6.224-359.1",
+          "declaredMissingFact": "Whether an initial determination of employee lead exposure potential has been made or is scheduled to be completed before coating disturbance begins"
+        },
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C6.642-709.1",
+          "declaredMissingFact": "Whether the containment enclosure's negative pressure and filtration system is functioning effectively"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_BASIS_REF_DUPLICATED",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": true,
+      "verifierPropertyReview": {
+        "targetDeclarationId": "decl-lead-determination",
+        "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the initial lead exposure determination required by 29 CFR 1926.62(d)(1)(i) has been made or is scheduled before coating disturbance begins",
+        "propertyReviewReason": "The regulation makes the determination itself the mandatory prerequisite act before disturbance; it is not evidence of some separate underlying condition but the compliance act that must occur, so the property named is the one that actually controls the decision."
+      },
+      "verifierConsistency": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+        "review": {
+          "targetDeclarationId": "decl-lead-determination",
+          "propertySemanticRole": "REQUIRED_ACT_ITSELF",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether the initial lead exposure determination required by 29 CFR 1926.62(d)(1)(i) has been made or is scheduled before coating disturbance begins",
+          "propertyReviewReason": "The regulation makes the determination itself the mandatory prerequisite act before disturbance; it is not evidence of some separate underlying condition but the compliance act that must occur, so the property named is the one that actually controls the decision."
+        },
+        "representationReviewMayProceed": true
+      },
+      "scopeContainment": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "multiFactRequested": false
+      },
+      "exercises": [
+        {
+          "exerciseId": "C6-E1",
+          "shape": "HR-REVIEWABLE-UNCERTAINTY",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-242A-C6.224-359.1",
+          "targetDeclaredProperty": "Whether an initial determination of employee lead exposure potential has been made or is scheduled to be completed before coating disturbance begins",
+          "frozenControllingProperty": "whether employees may be exposed to lead at or above the action level when this coating is removed",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "KEEP_UNRESOLVED",
+          "humanPropertyActionApplied": "KEEP_UNRESOLVED",
+          "propertyAuthorityOutcome": "NO_AUTHORITY_MINTED:DECISION_MINTS_NO_AUTHORITY",
+          "propertyAuthorityAfter": "DECLINED_KEEP_UNRESOLVED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "LEAVE_UNRESOLVED",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [
+            "DECISION_DOES_NOT_APPROVE_SETTLEMENT"
+          ],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [
+            {
+              "factKey": "FP.REQUIRED_CONTROL.OBS-242A-C6.642-709.1",
+              "status": "UNRESOLVED"
+            }
+          ],
+          "packetFields": {
+            "packetId": "b652ee1690d3f85885743d79a8cf08a34be9c0e879ac9e160d25baa04ced0602",
+            "observationSpanPresent": true,
+            "observationSpan": "No initial determination of whether employees may be exposed to lead has been made and no sample of the existing coating has been taken",
+            "proposedPropertyPresent": true,
+            "proposedProperty": "Whether an initial determination of employee lead exposure potential has been made or is scheduled to be completed before coating disturbance begins",
+            "branchesPresent": true,
+            "branchA": "An initial exposure determination is completed (by sampling or objective data) before coating disturbance begins",
+            "branchB": "No initial exposure determination is completed before coating disturbance begins",
+            "decisionsPresent": true,
+            "decisionIfA": "The determination result sets the applicable control level (respiratory protection, monitoring, compliance program) proportionate to actual exposure potential before disturbance starts",
+            "decisionIfB": "Coating disturbance would begin without any basis for selecting exposure controls, requiring the work to be held until the determination is made",
+            "existingClarification": "Has an initial determination of employee lead exposure potential been made (or scheduled) before coating removal begins, given the specification assumes a lead-based system?",
+            "hazlenzExplanation": "The observation states the determination has not been made and no sample has been taken, but does not say whether one is planned or scheduled before work starts, nor what the actual lead content is.",
+            "decisionWhileUnresolved": null,
+            "verifierDecisionControllingProperty": "Whether the initial lead exposure determination required by 29 CFR 1926.62(d)(1)(i) has been made or is scheduled before coating disturbance begins",
+            "verifierPropertySemanticRole": "REQUIRED_ACT_ITSELF",
+            "verifierPropertyValidity": "VALID",
+            "reviewerQuestion": "Is the property below the proposition whose truth actually decides this, or is it evidence for a different underlying condition that could be satisfactory or adverse either way? Confirm it, correct it, or leave it open.",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED",
+            "confirmationIsNotSettlement": "Confirming the property says WHICH QUESTION MATTERS. It does not say the answer is satisfactory, does not say it is adverse, and does not settle the fact. The hold stands until the fact is separately settled by reviewed evidence.",
+            "packetFieldNames": [
+              "packetId",
+              "analysisId",
+              "factKey",
+              "observationSpan",
+              "proposedProperty",
+              "hazlenzExplanation",
+              "branchA",
+              "branchB",
+              "decisionIfA",
+              "decisionIfB",
+              "decisionWhileUnresolved",
+              "existingClarification",
+              "verifierDecisionControllingProperty",
+              "verifierPropertySemanticRole",
+              "verifierPropertyValidity",
+              "reviewerQuestion",
+              "availableDecisions",
+              "propertyDigest",
+              "requirement",
+              "state",
+              "confirmationIsNotSettlement"
+            ]
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": [],
+          "ranOnCarriedState": false,
+          "refusalCodesNotExercised": [
+            "PROPERTY_AUTHORITY_NOT_OBTAINED"
+          ],
+          "refusalCodeAxisNotExercisedBecause": "the frozen exercise names no human evidence action, so no settlement was attempted and the refusal could not be observed. The claim state that would produce it is recorded in propertyAuthorityAtClaim."
+        }
+      ],
+      "reviewPacketMustSurface": [
+        "the verbatim observation span recording that no determination has been made",
+        "the proposed property as the first pass worded it, so a reviewer can see whether it names the exposure determination or the document that would record it",
+        "both branches and the decision under each",
+        "that the specification ASSUMPTION exists, because that is the thing a reviewer must be able to see is not a determination",
+        "that a second, independent property about the extraction unit is open, and that it is a different fact, so a reviewer cannot believe that deciding one disposes of the other"
+      ]
+    },
+    {
+      "caseId": "C7",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "STOP",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative STOP posture driven by the established condition, and a resume condition naming the props, the straps and the check.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 2736,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "emittedPosture": null,
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ABSENT",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD",
+        "POSTURE_PROJECTION_REFUSED:POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "a required schema field never arrived in the tool_use input",
+          "containment": "the field was never parsed or reconstructed; no fact was admitted"
+        },
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_BASIS_REF_DUPLICATED",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "C8",
+      "domain": "OSHA_CONSTRUCTION",
+      "frozenExpectedPosture": "CONTINUE",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE posture, zero required controls, no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 2980,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "emittedPosture": "CONTINUE",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_BASIS_REF_DUPLICATED",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M1",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "CONTINUE",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE posture, zero required controls, no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 3194,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "CONTINUE_WITH_CONTROLS",
+      "recommendationState": {
+        "posture": "CONTINUE_WITH_CONTROLS",
+        "postureRank": 1,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [
+          {
+            "control": "Assign a responsible person and near-term timing to replace the blocked ranging-arm dust suppression nozzle",
+            "timing": "BEFORE_WORK_RESUMES"
+          },
+          {
+            "control": "Maintain heightened awareness of dust conditions at the ranging arm while cutting continues with 13 of 14 sprays operating",
+            "timing": "DURING_CONTINUED_WORK"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "DECL-1",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-M1.852-964.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M1.852-964.1",
+          "declaredMissingFact": "Whether a corrective action (nozzle replacement or an interim dust control measure) has been assigned and scheduled for the blocked ranging-arm spray"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M2",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for M2-P1. After stage one: UNRESOLVED, property authority CONFIRMED, zero transitions, no evidence authority. After stage two: SETTLED_BY_EVIDENCE on exactly one transition with both authorities recorded.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 3191,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "df-diameter-measurement",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-M2.290-424.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M2.290-424.1",
+          "declaredMissingFact": "Whether the diameter reduction at the location of the three broken wires meets the mine's rope management plan's combined discard criterion"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": true,
+      "verifierPropertyReview": {
+        "targetDeclarationId": "df-diameter-measurement",
+        "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+        "propertyValidity": "VALID",
+        "decisionControllingProperty": "Whether the measured diameter reduction combined with the broken-wire count meets the mine's rope management plan's discard criterion",
+        "propertyReviewReason": "The plan's discard rule is defined directly on the combination of broken-wire count and measured diameter reduction, so knowing this combined value with certainty answers the required-control question outright (discard or not) rather than merely providing evidence toward some other underlying condition."
+      },
+      "verifierConsistency": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+        "review": {
+          "targetDeclarationId": "df-diameter-measurement",
+          "propertySemanticRole": "UNDERLYING_SAFETY_STATE",
+          "propertyValidity": "VALID",
+          "decisionControllingProperty": "Whether the measured diameter reduction combined with the broken-wire count meets the mine's rope management plan's discard criterion",
+          "propertyReviewReason": "The plan's discard rule is defined directly on the combination of broken-wire count and measured diameter reduction, so knowing this combined value with certainty answers the required-control question outright (discard or not) rather than merely providing evidence toward some other underlying condition."
+        },
+        "representationReviewMayProceed": true
+      },
+      "scopeContainment": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "multiFactRequested": false
+      },
+      "exercises": [
+        {
+          "exerciseId": "M2-E1",
+          "shape": "HR-CONFIRM",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-242A-M2.290-424.1",
+          "targetDeclaredProperty": "Whether the diameter reduction at the location of the three broken wires meets the mine's rope management plan's combined discard criterion",
+          "frozenControllingProperty": "whether the front rope meets the discard criterion in the mine's rope management plan, which requires the measured diameter at the damaged point as well as the broken wire count",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "REQUIRED_NOT_OBTAINED",
+          "humanPropertyActionFrozen": "CONFIRM_PROPERTY",
+          "humanPropertyActionApplied": "CONFIRM_PROPERTY",
+          "propertyAuthorityOutcome": "CONFIRMED",
+          "propertyAuthorityAfter": "CONFIRMED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": {
+            "impliesFactSettled": false,
+            "impliesSatisfactorySettlement": false,
+            "impliesAdverseSettlement": false,
+            "impliesWorkRelease": false,
+            "scope": "SINGLE_FACT_SINGLE_PACKET_SINGLE_USE",
+            "controllingProperty": "Whether the diameter reduction at the location of the three broken wires meets the mine's rope management plan's combined discard criterion"
+          },
+          "humanEvidenceActionFrozen": "NONE",
+          "evidenceAuthorityMinted": false,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": false,
+          "settlementApplied": false,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "UNRESOLVED",
+          "ledgerTransitions": 0,
+          "transitions": [],
+          "siblingsStillUnresolved": [],
+          "packetFields": {
+            "packetId": "f1ff3709fc2a7b41f6ee7f8aa80e29d19904696054e3400b4c1f6e2091da73e0",
+            "observationSpanPresent": true,
+            "observationSpan": "discards a rope on a combination of broken wires and measured diameter reduction, and the diameter at that point has not been measured",
+            "proposedPropertyPresent": true,
+            "proposedProperty": "Whether the diameter reduction at the location of the three broken wires meets the mine's rope management plan's combined discard criterion",
+            "branchesPresent": true,
+            "branchA": "The measured diameter reduction, combined with the broken-wire count, meets or exceeds the plan's discard criterion",
+            "branchB": "The measured diameter reduction, combined with the broken-wire count, falls below the plan's discard criterion",
+            "decisionsPresent": true,
+            "decisionIfA": "The rope must be discarded and replaced before the hoist returns to man-riding or material hoisting service",
+            "decisionIfB": "The rope is not required to be discarded on this defect under the plan, and the hoist may be evaluated for return to service on other grounds (subject to normal inspection sign-off)",
+            "existingClarification": "What is the diameter reduction measured at the location of the three broken wires, using the mine's rope management plan's measurement basis?",
+            "hazlenzExplanation": "The observation states plainly that the diameter at that point has not been measured, so the value needed to apply the plan's own discard criterion is not stated anywhere in the text.",
+            "decisionWhileUnresolved": null,
+            "verifierDecisionControllingProperty": "Whether the measured diameter reduction combined with the broken-wire count meets the mine's rope management plan's discard criterion",
+            "verifierPropertySemanticRole": "UNDERLYING_SAFETY_STATE",
+            "verifierPropertyValidity": "VALID",
+            "reviewerQuestion": "Is the property below the proposition whose truth actually decides this, or is it evidence for a different underlying condition that could be satisfactory or adverse either way? Confirm it, correct it, or leave it open.",
+            "requirement": "REQUIRED",
+            "state": "REQUIRED_NOT_OBTAINED",
+            "confirmationIsNotSettlement": "Confirming the property says WHICH QUESTION MATTERS. It does not say the answer is satisfactory, does not say it is adverse, and does not settle the fact. The hold stands until the fact is separately settled by reviewed evidence.",
+            "packetFieldNames": [
+              "packetId",
+              "analysisId",
+              "factKey",
+              "observationSpan",
+              "proposedProperty",
+              "hazlenzExplanation",
+              "branchA",
+              "branchB",
+              "decisionIfA",
+              "decisionIfB",
+              "decisionWhileUnresolved",
+              "existingClarification",
+              "verifierDecisionControllingProperty",
+              "verifierPropertySemanticRole",
+              "verifierPropertyValidity",
+              "reviewerQuestion",
+              "availableDecisions",
+              "propertyDigest",
+              "requirement",
+              "state",
+              "confirmationIsNotSettlement"
+            ]
+          },
+          "matchesFrozenExpectation": true,
+          "mismatches": [],
+          "ranOnCarriedState": false,
+          "refusalCodesNotExercised": [],
+          "refusalCodeAxisNotExercisedBecause": null
+        },
+        {
+          "exerciseId": "M2-E2",
+          "shape": "HR-CONFIRM",
+          "ran": true,
+          "notExercisedBecause": null,
+          "targetFactKey": "FP.REQUIRED_CONTROL.OBS-242A-M2.290-424.1",
+          "targetDeclaredProperty": "Whether the diameter reduction at the location of the three broken wires meets the mine's rope management plan's combined discard criterion",
+          "frozenControllingProperty": "whether the front rope meets the discard criterion in the mine's rope management plan, which requires the measured diameter at the damaged point as well as the broken wire count",
+          "propertyAuthorityRequirement": "REQUIRED",
+          "propertyAuthorityAtClaim": "CONFIRMED",
+          "humanPropertyActionFrozen": "NONE",
+          "humanPropertyActionApplied": "NONE",
+          "propertyAuthorityOutcome": null,
+          "propertyAuthorityAfter": "CONFIRMED",
+          "correctedControllingProperty": null,
+          "authorityLiterals": null,
+          "humanEvidenceActionFrozen": "APPROVE_SETTLEMENT",
+          "evidenceAuthorityMinted": true,
+          "evidenceRefusedBecause": [],
+          "settlementAttempted": true,
+          "settlementApplied": true,
+          "settlementRefusedBecause": [],
+          "factStatusAfter": "SETTLED_BY_EVIDENCE",
+          "ledgerTransitions": 1,
+          "transitions": [
+            {
+              "seq": 1,
+              "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M2.290-424.1",
+              "from": "UNRESOLVED",
+              "to": "SETTLED_BY_EVIDENCE",
+              "authority": "ADMISSIBLE_EVIDENCE",
+              "justification": "human review authorized safety reviewer approved settlement: recorded evidence rationale for the frozen §242A exercise",
+              "whyUnresolvedAtTransition": "The observation states plainly that the diameter at that point has not been measured, so the value needed to apply the plan's own discard criterion is not stated anywhere in the text."
+            }
+          ],
+          "siblingsStillUnresolved": [],
+          "packetFields": null,
+          "matchesFrozenExpectation": true,
+          "mismatches": [],
+          "ranOnCarriedState": true,
+          "refusalCodesNotExercised": [],
+          "refusalCodeAxisNotExercisedBecause": null
+        }
+      ],
+      "reviewPacketMustSurface": [
+        "the verbatim observation span recording that the diameter has not been measured",
+        "the proposed property as the first pass worded it, so a reviewer can see whether it names the discard evaluation or the broken wire count alone",
+        "both branches and the decision under each",
+        "that the rope management plan requires diameter as well as wire count, because that is what makes the broken wire count a proxy rather than an answer",
+        "that the property authority and the evidence approval are two distinct decisions, shown separately at both stages"
+      ]
+    },
+    {
+      "caseId": "M3",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "STOP",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative STOP posture driven by the established condition, and a resume condition naming the isolation and the repair.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 2872,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "STOP",
+      "recommendationState": {
+        "posture": "STOP",
+        "postureRank": 3,
+        "workMayContinue": false,
+        "operationalConsequenceRequired": true,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": [
+            "De-energise the trailing cable at the switchhouse (or confirm it is de-energised) and lock out/isolate it before anyone approaches the damaged section",
+            "Withdraw the cable handler and all personnel from the standing water and damaged cable area until the cable is proven de-energised",
+            "Repair or replace the damaged 300mm section of cable, restoring sheath and phase insulation integrity, and test the cable before it is re-energised",
+            "Remove or address the standing water in the area before work resumes near the cable"
+          ]
+        },
+        "protectiveSequence": [
+          "HOLD_OR_STOP",
+          "VERIFY_OR_CORRECT",
+          "ESTABLISH_REQUIRED_SAFE_STATE",
+          "RESUME_IF_AUTHORIZED"
+        ],
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "exposed-conductor-water-worker",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "damaged-trailing-cable-mechanical",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "derivedCessationDrivers": [
+        {
+          "ref": "exposed-conductor-water-worker",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "damaged-trailing-cable-mechanical",
+          "refKind": "HAZARD_CANDIDATE",
+          "driverRole": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M4",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "STOP",
+      "frozenExpectedDeclarationCount": 1,
+      "frozenExpectedFinalAuthoritativeState": "one owed fact for M4-P1, UNRESOLVED, property authority REQUIRED_NOT_OBTAINED, zero ledger transitions, alongside an authoritative STOP posture driven by the established condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4538,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "emittedPosture": "HOLD_PENDING_VERIFICATION",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 2,
+      "declarationsAdmitted": 2,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "UFD-1",
+          "codes": []
+        },
+        {
+          "declarationId": "UFD-2",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.HAZARD_SEVERITY.OBS-242A-M4.540-635.1",
+        "FP.REQUIRED_CONTROL.OBS-242A-M4.480-538.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.HAZARD_SEVERITY.OBS-242A-M4.540-635.1",
+          "declaredMissingFact": "whether the ball charge was fully drawn from the mill before it was stopped"
+        },
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M4.480-538.1",
+          "declaredMissingFact": "whether the shell is blocked against rotation or the inching drive isolated before the fitter enters"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M5",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedDeclarationCount": 2,
+      "frozenExpectedFinalAuthoritativeState": "two owed facts. M5-P1 and M5-P2 both UNRESOLVED with property authority REQUIRED_NOT_OBTAINED and zero transitions each, held separately, alongside an authoritative HOLD_PENDING_VERIFICATION posture whose resume condition names both.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 4572,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "emittedPosture": null,
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ABSENT",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "DECLARATIONS_FIELD_ABSENT_FROM_A_REQUIRED_SCHEMA_FIELD",
+        "POSTURE_PROJECTION_REFUSED:POSTURE_MISSING,WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "a required schema field never arrived in the tool_use input",
+          "containment": "the field was never parsed or reconstructed; no fact was admitted"
+        },
+        {
+          "defect": "the §239 projection refused the posture: POSTURE_MISSING,WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M6",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE_WITH_CONTROLS posture, named controls, and no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 5372,
+      "projectionAdmitted": false,
+      "projectionCodesPosture": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "emittedPosture": "CONTINUE_WITH_CONTROLS",
+      "recommendationState": null,
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 2,
+      "declarationsAdmitted": 2,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl_gauge_datum",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_south_crest_traffic",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.HAZARD_SEVERITY.OBS-242A-M6.725-804.1",
+        "FP.REQUIRED_CONTROL.OBS-242A-M6.608-638.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.HAZARD_SEVERITY.OBS-242A-M6.725-804.1",
+          "declaredMissingFact": "whether the staff gauge reading is currently referenced to the correct, current design datum"
+        },
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M6.608-638.1",
+          "declaredMissingFact": "whether haul truck traffic over the rutted, water-holding depression on the south crest is currently continuing or has been stopped/rerouted"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [
+        "POSTURE_PROJECTION_REFUSED:RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "containedComponentErrors": [
+        {
+          "defect": "the §239 projection refused the posture: RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+          "containment": "the posture was not admitted, may not close the analysis and requires upstream repair. The preserved record names the codes. Nothing downstream consumed it."
+        }
+      ],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M7",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "CONTINUE",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE posture, zero required controls, no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 791,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "CONTINUE",
+      "recommendationState": {
+        "posture": "CONTINUE",
+        "postureRank": 0,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 0,
+      "declarationsAdmitted": 0,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [],
+      "admittedFactKeys": [],
+      "declaredProperties": [],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    },
+    {
+      "caseId": "M8",
+      "domain": "MSHA",
+      "frozenExpectedPosture": "CONTINUE",
+      "frozenExpectedDeclarationCount": 0,
+      "frozenExpectedFinalAuthoritativeState": "no owed fact. Zero declarations, an authoritative CONTINUE posture, zero required controls, no resume condition.",
+      "firstPassFailureClass": "NO_FAILURE",
+      "firstPassStopReason": "tool_use",
+      "outputTokens": 3776,
+      "projectionAdmitted": true,
+      "projectionCodesPosture": [],
+      "emittedPosture": "CONTINUE_WITH_CONTROLS",
+      "recommendationState": {
+        "posture": "CONTINUE_WITH_CONTROLS",
+        "postureRank": 1,
+        "workMayContinue": true,
+        "operationalConsequenceRequired": false,
+        "requiredControls": [
+          {
+            "control": "Maintain barriered exclusion of the pattern with shot firer controlling the single access point during loading",
+            "timing": "DURING_CONTINUED_WORK"
+          },
+          {
+            "control": "Shot firer to continue active monitoring of the tracked storm cell and compare its position against the documented lightning trigger distance on an ongoing basis",
+            "timing": "DURING_CONTINUED_WORK"
+          },
+          {
+            "control": "Be prepared to immediately invoke the written lightning evacuation procedure and halt loading if the cell reaches the trigger distance",
+            "timing": "DURING_CONTINUED_WORK"
+          }
+        ],
+        "resumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "protectiveSequence": null,
+        "derivedFrom": "AUTHORITATIVE_POSTURE",
+        "proseParticipatedInDerivation": false
+      },
+      "derivedControllingDrivers": [
+        {
+          "ref": "decl-lightning-distance",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        }
+      ],
+      "derivedCessationDrivers": [],
+      "declarationShape": "ARRAY",
+      "declarationsEmitted": 1,
+      "declarationsAdmitted": 1,
+      "declarationsRefused": [],
+      "declarationProjectionCodes": [
+        {
+          "declarationId": "decl-lightning-distance",
+          "codes": []
+        }
+      ],
+      "admittedFactKeys": [
+        "FP.REQUIRED_CONTROL.OBS-242A-M8.645-740.1"
+      ],
+      "declaredProperties": [
+        {
+          "factKey": "FP.REQUIRED_CONTROL.OBS-242A-M8.645-740.1",
+          "declaredMissingFact": "Whether the tracked storm cell's current distance is within the site's documented lightning trigger distance for evacuation"
+        }
+      ],
+      "preservedRecordCount": 0,
+      "preservedRecords": [],
+      "preservationDispositions": [],
+      "structuralDefects": [],
+      "containedComponentErrors": [],
+      "verifierRan": false,
+      "verifierPropertyReview": null,
+      "verifierConsistency": null,
+      "scopeContainment": null,
+      "exercises": [],
+      "reviewPacketMustSurface": []
+    }
+  ]
+}

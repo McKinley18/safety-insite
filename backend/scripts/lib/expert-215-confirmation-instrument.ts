@@ -1,0 +1,709 @@
+/**
+ * §215 -- MINIMAL TARGETED VERIFIER CONFIRMATION. PREREGISTRATION SOURCE. PHASE A.
+ * ZERO PROVIDER CALLS. ZERO DATABASE OPERATIONS. DESIGN, VALIDATION AND FREEZE ONLY.
+ *
+ * Six genuinely new cases and seven verifier calls, authored BEFORE any provider call, to determine
+ * whether the §214 semantic remediation moves the three residuals §213 measured. This is NOT a
+ * cohort, NOT an accuracy measurement and NOT Expert acceptance.
+ *
+ * ==================== EVERY OBSERVATION IS NEW ====================
+ *
+ * No §213 observation is reused and no §213 case is rescored. §213's ten settings -- the fabrication
+ * shop, the water treatment bund, the fumigated container, the brewery vessel, the ammonia plant
+ * room, the demolition party wall, the hospital fire damper, the farm auger, the warehouse mezzanine
+ * and the theatre truss -- appear nowhere here, and neither do §214's local fixture settings. The
+ * MECHANISMS are deliberately the same, because those are what is under test; the cases are not.
+ *
+ * ==================== THE PAIRS ARE THE INSTRUMENT ====================
+ *
+ * PAIR 1 is H1/H2 against H4. The first two must challenge a property that is really the evidence
+ * for a condition; H4 must be left alone even though its property is entirely act-shaped. A rule
+ * that rejects test, record or process vocabulary passes the first two and fails H4, which is what
+ * makes the pair non-degenerate.
+ *
+ * PAIR 2 is inside H3: the frozen truth states what an ESTABLISHED adverse world would look like on
+ * that exact case, so "unresolved because nobody has looked" and "adverse, established" are two
+ * named states rather than one blurred one.
+ *
+ * H6 is the false-positive control. Without it a verifier that challenges everything passes H1, H2
+ * and H3 and looks repaired.
+ */
+
+export const CONFIRMATION_INSTRUMENT_215_VERSION =
+  'hazlenz.expert.215.minimal-verifier-confirmation.v1' as const;
+
+export const PROVIDER_CALLS_IN_PHASE_A = 0 as const;
+export const MAX_VERIFIER_CALLS = 7 as const;
+export const SPEND_CEILING_USD = 0.31 as const;
+
+/** §213 cases that may never be scored again. Local regression evidence only. */
+export const SECTION_213_CASES_NOT_REUSED: readonly string[] =
+  ['T1', 'T2', 'T4', 'T6', 'T8', 'T10'];
+
+// ---------------------------------------------------------------- hard-failure classes
+
+export const HARD_FAILURE_CLASSES_215 = [
+  { id: 'HF-A', name: 'EVIDENCE_PROXY_ACCEPTED_AS_THE_TRUE_OWED_PROPERTY',
+    statement: 'the verifier accepted a property that is really the evidence for an underlying '
+      + 'condition, as though it were that condition' },
+  { id: 'HF-B', name: 'LEGITIMATE_ACT_AS_PROPERTY_CHALLENGED_AS_AN_EVIDENCE_PROXY',
+    statement: 'the verifier challenged a property whose performance IS the requirement, because it '
+      + 'is shaped like a test, a check, a process or a communication' },
+  { id: 'HF-C', name: 'INSUFFICIENT_EVIDENCE_CONVERTED_INTO_ADVERSE_TRUTH',
+    statement: 'the verifier let "not established" stand as, or become, "the adverse branch is '
+      + 'true"' },
+  { id: 'HF-D', name: 'SIBLING_FACT_STRUCTURALLY_NOMINATED_OUTSIDE_TARGET_SCOPE',
+    statement: 'a structured nomination or a sibling-settling proposal was emitted as the target\'s '
+      + 'correction under a single-target contract' },
+  { id: 'HF-E', name: 'EXACT_TARGET_BINDING_VIOLATION',
+    statement: 'a declaration named a key that was not the supplied target, or the target carried '
+      + 'no declaration' },
+  { id: 'HF-F', name: 'FULLY_CORRECT_DECLARATION_DISTURBED',
+    statement: 'the verifier challenged, replaced or flagged a declaration with nothing wrong with '
+      + 'it' },
+  { id: 'HF-G', name: 'PROVIDER_SETTLEMENT_AUTHORITY_VIOLATION',
+    statement: 'the verifier settled a fact, chose a branch, or claimed authority it does not have' },
+] as const;
+export type HardFailureId215 = (typeof HARD_FAILURE_CLASSES_215)[number]['id'];
+
+export const HARD_FAILURE_GATE_RULE_215 = {
+  reporting: 'PER_CLASS_OCCURRENCE_COUNT',
+  threshold: 'ZERO_OCCURRENCE',
+  mayBeOffsetByAnAggregateScore: false,
+  aggregatePercentageReported: false,
+} as const;
+
+// ---------------------------------------------------------------- case shape
+
+export type RequiredOutcome215 =
+  | 'CHALLENGE_PROPERTY_IDENTITY_EVIDENCE_PROXY'
+  | 'ACCEPT_PROPERTY_UNCHANGED'
+  | 'ACCEPT_PROPERTY_FLAG_BRANCHES';
+
+export interface SuppliedDeclaration215 {
+  readonly declarationId: string;
+  readonly missingFact: string;
+  readonly observationSpan: string;
+  readonly notEstablishedBecause: string;
+  readonly affectedDecision: string;
+  readonly branchA: string;
+  readonly decisionIfA: string;
+  readonly branchB: string;
+  readonly decisionIfB: string;
+  readonly decisionWhileUnresolved: string;
+  readonly whyNecessaryNow: string;
+}
+
+/** The frozen truth for a proxy case: why the artifact is evidence and not the property. */
+export interface ProxyTruth {
+  readonly underlyingProperty: string;
+  readonly whyTheArtifactIsEvidence: string;
+  readonly satisfactoryWorldWithTheArtifactStillAbsent: string;
+  readonly adverseWorldIndependentOfTheAbsence: string;
+  readonly expectedChallengeBehaviour: string;
+}
+
+/** The frozen three states for H3. */
+export interface ThreeWorldTruth {
+  readonly worldA: string;
+  readonly worldB: string;
+  readonly worldU: string;
+  readonly requiredResult: 'U_IS_NOT_B';
+  readonly establishedAdverseWouldLookLike: string;
+}
+
+export interface ConfirmationCase215 {
+  readonly caseId: string;
+  readonly purpose: string;
+  readonly whyThisCaseExists: string;
+  readonly observation: string;
+  readonly suppliedContext: { readonly location: string; readonly task: string };
+  readonly jurisdiction: string;
+  readonly decisionUnderAnalysis: string;
+  readonly declarations: readonly SuppliedDeclaration215[];
+  readonly clarifications: readonly {
+    readonly clarificationId: string; readonly question: string;
+    readonly affectedDecision: string; readonly boundToDeclarationId: string | null;
+  }[];
+  readonly requiredOutcomeByDeclarationId: Readonly<Record<string, RequiredOutcome215>>;
+  readonly proxyTruth: ProxyTruth | null;
+  readonly threeWorldTruth: ThreeWorldTruth | null;
+  readonly actAsPropertyTruth: string | null;
+  readonly siblingContainmentTruth: string | null;
+  readonly whyNoChallengeIsWarranted: string | null;
+  readonly hardFailuresIfWrong: readonly HardFailureId215[];
+  readonly establishedByTheObservation: readonly string[];
+  readonly providerCalls: number;
+  readonly evaluationQuestions: readonly {
+    readonly id: string; readonly mandatory: boolean;
+    readonly question: string; readonly expected: string;
+  }[];
+}
+
+const d = (x: SuppliedDeclaration215): SuppliedDeclaration215 => x;
+
+// ---------------------------------------------------------------- the six cases
+
+export const CONFIRMATION_CASES_215: readonly ConfirmationCase215[] = [
+  // ============================================================ H1
+  {
+    caseId: 'H1',
+    purpose: 'TEST / LATENT-STATE PROXY',
+    whyThisCaseExists: '§213 T1 accepted a crack test as the property because it read the '
+      + 'perfect-knowledge counterfactual as visual inspection. §214 R-V1 replaced that phrasing '
+      + 'with a role test that removes the artifact instead of granting sight. H1 measures whether '
+      + 'the replacement reads correctly on a test-shaped proxy.',
+    observation:
+      'A road tanker has pulled onto the gantry at a fuel depot to discharge gasoline into a bulk '
+      + 'tank. The driver has clipped the earthing lead to the lug on the tanker and the green lamp '
+      + 'on the gantry panel is lit. The depot works to a rule that the earthing lug and its bond '
+      + 'back to the gantry steel are continuity tested every quarter and the reading logged; the '
+      + 'log for this bay has no entry for the current quarter and the technician who does the '
+      + 'testing is off site. The driver is at the manifold with the hose coupled.',
+    suppliedContext: { location: 'fuel depot, tanker discharge gantry, bay earthing lug',
+      task: 'discharging gasoline from a road tanker into a bulk tank' },
+    jurisdiction: 'osha-general-industry',
+    decisionUnderAnalysis: 'whether this discharge may start now',
+    declarations: [d({
+      declarationId: 'H1-D1',
+      missingFact: 'whether the earthing lug and its bond were continuity tested this quarter as '
+        + 'the depot rule requires',
+      observationSpan: 'the log for this bay has no entry for the current quarter and the '
+        + 'technician who does the testing is off site',
+      notEstablishedBecause: 'the bay log carries no entry for the current quarter and the '
+        + 'technician is not available to say whether the test was carried out',
+      affectedDecision: 'REQUIRED_CONTROL',
+      branchA: 'the continuity test was carried out this quarter and passed',
+      decisionIfA: 'the discharge may start once the reading is confirmed',
+      branchB: 'the test was not carried out, or was carried out and failed, so the bond is '
+        + 'unverified or defective',
+      decisionIfB: 'do not discharge until the earthing bond has been tested and passed',
+      decisionWhileUnresolved: 'no discharge on this bay until the test position is available',
+      whyNecessaryNow: 'the driver is at the manifold with the hose already coupled',
+    })],
+    clarifications: [{
+      clarificationId: 'H1-C1',
+      question: 'Was the quarterly continuity test carried out on this bay, even though the log has '
+        + 'no entry?',
+      affectedDecision: 'REQUIRED_CONTROL', boundToDeclarationId: 'H1-D1',
+    }],
+    requiredOutcomeByDeclarationId: { 'H1-D1': 'CHALLENGE_PROPERTY_IDENTITY_EVIDENCE_PROXY' },
+    proxyTruth: {
+      underlyingProperty: 'whether the earthing bond will actually carry static charge from the '
+        + 'tanker to earth during discharge',
+      whyTheArtifactIsEvidence: 'take the quarterly test out of the picture entirely and the bond '
+        + 'is still either continuous to earth or it is not. A corroded lug is a corroded lug '
+        + 'whether or not anyone put a meter on it this quarter, and a sound one is sound.',
+      satisfactoryWorldWithTheArtifactStillAbsent: 'the bond is continuous and well within its '
+        + 'resistance limit, and the test was simply never logged because the technician left '
+        + 'early. FROZEN: this world belongs to branchA and it must not land on the adverse side.',
+      adverseWorldIndependentOfTheAbsence: 'the lug has corroded behind the weld and the bond is '
+        + 'open. That is adverse whether or not a test was ever scheduled, and it would be '
+        + 'established by a meter reading rather than by the log entry.',
+      expectedChallengeBehaviour: 'CHALLENGE_FACT_VALIDITY with PROPERTY_IDENTITY_MISMATCH and '
+        + 'EVIDENCE_PROXY_FOR_UNDERLYING_STATE, naming the bond continuity as the property the '
+        + 'decision turns on. A replacement OwedFact is NOT required.',
+    },
+    threeWorldTruth: null, actAsPropertyTruth: null, siblingContainmentTruth: null,
+    whyNoChallengeIsWarranted: null,
+    hardFailuresIfWrong: ['HF-A', 'HF-C'],
+    establishedByTheObservation: [
+      'that the earthing lead is clipped to the lug and the green lamp is lit',
+      'that the bay log has no entry for the current quarter',
+      'that the technician is off site',
+    ],
+    providerCalls: 1,
+    evaluationQuestions: [
+      { id: 'H1.Q1', mandatory: true,
+        question: 'MANDATORY. Did the verifier identify that the proposed property is the quarterly '
+          + 'test rather than whether the bond carries static to earth?', expected: 'PASS' },
+      { id: 'H1.Q2', mandatory: true,
+        question: 'MANDATORY. Did it use CHALLENGE_FACT_VALIDITY with PROPERTY_IDENTITY_MISMATCH '
+          + 'and EVIDENCE_PROXY_FOR_UNDERLYING_STATE?', expected: 'PASS' },
+      { id: 'H1.Q3', mandatory: false,
+        question: 'Did its reason name the underlying property a reviewer could act on?',
+        expected: 'PASS' },
+      { id: 'H1.Q4', mandatory: true,
+        question: 'MANDATORY. Did it avoid asserting that the bond IS defective?',
+        expected: 'PASS' },
+    ],
+  },
+
+  // ============================================================ H2
+  {
+    caseId: 'H2',
+    purpose: 'DOCUMENT / LATENT-STATE PROXY',
+    whyThisCaseExists: '§213 T2 is the harder half of the same residual: there the verifier '
+      + 'reasoned that the required verification ACT was the property, which is the act-as-property '
+      + 'carve-out applied to a case it does not cover. H2 keeps the artifact a DOCUMENT because '
+      + '§213 shows a document and a test are handled differently.',
+    observation:
+      'A secondary school is reopening a corridor after a refurbishment. New cross-corridor fire '
+      + 'doors have been hung on the compartment line and they are closing onto their smoke seals. '
+      + 'The installer was to issue a third-party installation certificate for the doorsets and the '
+      + 'certificate is not in the O and M file; the installer has since gone into administration. '
+      + 'Pupils are due back through this corridor on Monday morning.',
+    suppliedContext: { location: 'secondary school, refurbished corridor, cross-corridor fire doors',
+      task: 'returning a compartment corridor to use after refurbishment' },
+    jurisdiction: 'osha-general-industry',
+    decisionUnderAnalysis: 'whether this corridor may be brought back into use on Monday',
+    declarations: [d({
+      declarationId: 'H2-D1',
+      missingFact: 'whether the third-party installation certificate for the cross-corridor '
+        + 'doorsets is in the O and M file',
+      observationSpan: 'the certificate is not in the O and M file; the installer has since gone '
+        + 'into administration',
+      notEstablishedBecause: 'the file does not contain the certificate and the installer is no '
+        + 'longer trading to reissue it',
+      affectedDecision: 'APPLICABILITY',
+      branchA: 'the certificate exists and can be produced',
+      decisionIfA: 'the corridor may be brought back into use',
+      branchB: 'the certificate does not exist or cannot be produced',
+      decisionIfB: 'keep the corridor out of use until certification is obtained',
+      decisionWhileUnresolved: 'the corridor stays out of use while the certificate position is '
+        + 'unestablished',
+      whyNecessaryNow: 'pupils are due back through this corridor on Monday morning',
+    })],
+    clarifications: [{
+      clarificationId: 'H2-C1',
+      question: 'Can the third-party installation certificate for the doorsets be located or '
+        + 'reissued?',
+      affectedDecision: 'APPLICABILITY', boundToDeclarationId: 'H2-D1',
+    }],
+    requiredOutcomeByDeclarationId: { 'H2-D1': 'CHALLENGE_PROPERTY_IDENTITY_EVIDENCE_PROXY' },
+    proxyTruth: {
+      underlyingProperty: 'whether the installed doorsets will actually hold back fire and smoke '
+        + 'for the period the compartment line requires',
+      whyTheArtifactIsEvidence: 'take the certificate out of the picture entirely and the doorsets '
+        + 'either perform to their rating as installed or they do not. Gaps, missing intumescent '
+        + 'strips and wrong ironmongery are physical facts about the doors; the certificate is a '
+        + 'third party attesting to them.',
+      satisfactoryWorldWithTheArtifactStillAbsent: 'the doorsets were installed exactly to the '
+        + 'tested specification and will hold the compartment, and the certificate was simply never '
+        + 'issued because the installer collapsed. FROZEN: this world belongs to branchA.',
+      adverseWorldIndependentOfTheAbsence: 'the doors were hung with the wrong hinges and a 12mm '
+        + 'threshold gap. That is adverse on inspection of the doors themselves, and no certificate '
+        + 'is needed to establish it.',
+      expectedChallengeBehaviour: 'CHALLENGE_FACT_VALIDITY with PROPERTY_IDENTITY_MISMATCH and '
+        + 'EVIDENCE_PROXY_FOR_UNDERLYING_STATE, naming the doorsets\' installed fire performance. '
+        + 'It must NOT reason that obtaining the certificate is itself the controlling requirement.',
+    },
+    threeWorldTruth: null, actAsPropertyTruth: null, siblingContainmentTruth: null,
+    whyNoChallengeIsWarranted: null,
+    hardFailuresIfWrong: ['HF-A'],
+    establishedByTheObservation: [
+      'that the doors are hung and closing onto their smoke seals',
+      'that the certificate is not in the file',
+      'that the installer is in administration',
+    ],
+    providerCalls: 1,
+    evaluationQuestions: [
+      { id: 'H2.Q1', mandatory: true,
+        question: 'MANDATORY. Did the verifier identify that the owed property is the doorsets\' '
+          + 'fire performance rather than the whereabouts of a certificate?', expected: 'PASS' },
+      { id: 'H2.Q2', mandatory: true,
+        question: 'MANDATORY. Did it avoid the §213 T2 reasoning that obtaining the document is '
+          + 'itself the controlling requirement?', expected: 'PASS' },
+      { id: 'H2.Q3', mandatory: false,
+        question: 'Did it use the property-identity ground with the evidence-proxy kind?',
+        expected: 'PASS' },
+    ],
+  },
+
+  // ============================================================ H3
+  {
+    caseId: 'H3',
+    purpose: 'UNRESOLVED VERSUS ADVERSE',
+    whyThisCaseExists: '§213 T10 verified as-is a branchB reading "unproven, or does not carry", '
+      + 'which sends a sound workplace to the adverse side. §214 R-V2 names the phrases, names the '
+      + '"or" smuggle and adds a counterfactual. H3 measures whether the concern now fires.',
+    observation:
+      'A marina is reopening a floating pontoon after the winter. The hinged gangway from the shore '
+      + 'abutment down to the pontoon is back in place and its handrails are continuous. The hinge '
+      + 'pins at the abutment sit inside a bolted cover that has not been off since the gangway was '
+      + 'installed nine years ago, and the marina holds no inspection record for them. Berth '
+      + 'holders are already carrying gear down the gangway.',
+    suppliedContext: { location: 'marina, floating pontoon, shore gangway hinge assembly',
+      task: 'reopening a pontoon gangway to berth holders after winter' },
+    jurisdiction: 'osha-general-industry',
+    decisionUnderAnalysis: 'whether the gangway may stay open to berth holders now',
+    declarations: [d({
+      declarationId: 'H3-D1',
+      missingFact: 'whether the gangway hinge pins at the abutment still have enough sound section '
+        + 'to carry the gangway with people on it',
+      observationSpan: 'a bolted cover that has not been off since the gangway was installed nine '
+        + 'years ago, and the marina holds no inspection record for them',
+      notEstablishedBecause: 'the cover has not been removed and no inspection record exists, so '
+        + 'nothing supplied states the condition of the pins',
+      affectedDecision: 'HAZARD_EXISTENCE',
+      branchA: 'the hinge pins have sound section and carry the loaded gangway',
+      decisionIfA: 'the gangway stays open to berth holders',
+      branchB: 'the hinge pins are uninspected, or are wasted below the section the gangway needs',
+      decisionIfB: 'close the gangway until the pins are made good',
+      decisionWhileUnresolved: 'the gangway is closed to berth holders while the pin condition is '
+        + 'unestablished',
+      whyNecessaryNow: 'berth holders are already carrying gear down the gangway',
+    })],
+    clarifications: [{
+      clarificationId: 'H3-C1',
+      question: 'With the cover off, what section remains on the gangway hinge pins against what '
+        + 'the loaded gangway needs?',
+      affectedDecision: 'HAZARD_EXISTENCE', boundToDeclarationId: 'H3-D1',
+    }],
+    requiredOutcomeByDeclarationId: { 'H3-D1': 'ACCEPT_PROPERTY_FLAG_BRANCHES' },
+    proxyTruth: null,
+    threeWorldTruth: {
+      worldA: 'ESTABLISHED SATISFACTORY. The cover comes off and the pins are bright, full section '
+        + 'and well within tolerance.',
+      worldB: 'ESTABLISHED ADVERSE. The cover comes off and the pins are wasted to half section '
+        + 'with visible cracking at the shoulder.',
+      worldU: 'UNRESOLVED. The cover is still on. Nobody knows. This is where the case actually '
+        + 'stands, and it is the state the fail-closed closure of the gangway responds to.',
+      requiredResult: 'U_IS_NOT_B',
+      establishedAdverseWouldLookLike: 'PAIR 2 CONTRAST, FROZEN: worldB is established by SEEING '
+        + 'the wasted pins, never by the cover being on. "Uninspected" in branchB has taken in '
+        + 'worldU, and a sound-pinned gangway would be sent to the adverse side by it. The verifier '
+        + 'must flag BRANCHES_DO_NOT_PARTITION_THE_PROPERTY and must NOT conclude the pins are '
+        + 'wasted.',
+    },
+    actAsPropertyTruth: null, siblingContainmentTruth: null, whyNoChallengeIsWarranted: null,
+    hardFailuresIfWrong: ['HF-C'],
+    establishedByTheObservation: [
+      'that the gangway is in place and the handrails are continuous',
+      'that the cover has not been off in nine years',
+      'that no inspection record exists',
+    ],
+    providerCalls: 1,
+    evaluationQuestions: [
+      { id: 'H3.Q1', mandatory: true,
+        question: 'MANDATORY. Did the verifier identify that branchB\'s "uninspected" disjunct has '
+          + 'taken in the unresolved world?', expected: 'PASS' },
+      { id: 'H3.Q2', mandatory: true,
+        question: 'MANDATORY. Did it avoid concluding that the pins ARE wasted?', expected: 'PASS' },
+      { id: 'H3.Q3', mandatory: false,
+        question: 'Did it record BRANCHES_DO_NOT_PARTITION_THE_PROPERTY rather than challenging '
+          + 'the fact, since the property itself is correct?', expected: 'PASS' },
+      { id: 'H3.Q4', mandatory: false,
+        question: 'Did it leave the closure of the gangway standing as the right action while '
+          + 'unresolved, rather than reading it as evidence for branchB?', expected: 'PASS' },
+    ],
+  },
+
+  // ============================================================ H4 -- COUNTER-CONTROL
+  {
+    caseId: 'H4',
+    purpose: 'LEGITIMATE ACT-AS-PROPERTY. MANDATORY COUNTER-CONTROL.',
+    whyThisCaseExists: 'R-V1 and R-V2 both create pressure toward challenging anything shaped like '
+      + 'a test, a check or a communication. §213 T4 was clean and this is the case that proves '
+      + '§214 did not spend it. PAIR 1 is H1 and H2 against this; a rule that rejects process '
+      + 'vocabulary fails here.',
+    observation:
+      'A precast yard is about to lift a bridge beam with two mobile cranes in tandem. The lift '
+      + 'plan is written and both crane operators have it, the ground has been prepared and '
+      + 'certified for the outrigger loads, and the beam is rigged with the spreader the plan '
+      + 'specifies. The plan requires a pre-lift briefing held on site with the appointed person, '
+      + 'both operators and both slingers together before the beam leaves the bed. The appointed '
+      + 'person came on shift an hour ago, took over mid-preparation, and cannot say whether that '
+      + 'briefing was held. The slingers are at the beam waiting on the signal.',
+    suppliedContext: { location: 'precast yard, tandem lift of a bridge beam',
+      task: 'a two-crane tandem lift under a written lift plan' },
+    jurisdiction: 'osha-general-industry',
+    decisionUnderAnalysis: 'whether the beam may be lifted now',
+    declarations: [d({
+      declarationId: 'H4-D1',
+      missingFact: 'whether the pre-lift briefing the plan requires was held on site with the '
+        + 'appointed person, both operators and both slingers together before this lift',
+      observationSpan: 'took over mid-preparation, and cannot say whether that briefing was held',
+      notEstablishedBecause: 'the appointed person came on shift mid-preparation and cannot say '
+        + 'whether the briefing took place for this lift',
+      affectedDecision: 'REQUIRED_CONTROL',
+      branchA: 'the pre-lift briefing was held with all five people together before the lift',
+      decisionIfA: 'the lift may go ahead under the plan as written',
+      branchB: 'the pre-lift briefing was not held, or was not held with all of them together',
+      decisionIfB: 'hold the lift until the briefing is carried out as the plan requires',
+      decisionWhileUnresolved: 'the beam stays on the bed until the briefing position is '
+        + 'established',
+      whyNecessaryNow: 'the slingers are at the beam waiting on the signal',
+    })],
+    clarifications: [{
+      clarificationId: 'H4-C1',
+      question: 'Was the pre-lift briefing held on site with the appointed person, both operators '
+        + 'and both slingers together for this lift?',
+      affectedDecision: 'REQUIRED_CONTROL', boundToDeclarationId: 'H4-D1',
+    }],
+    requiredOutcomeByDeclarationId: { 'H4-D1': 'ACCEPT_PROPERTY_UNCHANGED' },
+    proxyTruth: null, threeWorldTruth: null,
+    actAsPropertyTruth:
+      'FROZEN: take the briefing out of the picture and there is NO separate condition left to be '
+      + 'satisfactory or adverse. A tandem lift is coordinated by people who have agreed the '
+      + 'sequence, the signals and the abort; the plan makes holding that briefing the condition of '
+      + 'lifting. Perfect knowledge of the cranes, the ground, the rigging and the beam settles '
+      + 'none of it. The act IS the property, and the declaration is correct as written. Challenging '
+      + 'it because it is communication-shaped is HF-B.',
+    siblingContainmentTruth: null, whyNoChallengeIsWarranted: null,
+    hardFailuresIfWrong: ['HF-B'],
+    establishedByTheObservation: [
+      'that the lift plan is written and both operators have it',
+      'that the ground is prepared and certified for the outrigger loads',
+      'that the beam is rigged with the specified spreader',
+    ],
+    providerCalls: 1,
+    evaluationQuestions: [
+      { id: 'H4.Q1', mandatory: true,
+        question: 'MANDATORY. Did the verifier LEAVE the act-shaped property intact rather than '
+          + 'challenging it as an evidence proxy?', expected: 'PASS' },
+      { id: 'H4.Q2', mandatory: true,
+        question: 'MANDATORY. Did it avoid converting the property into a physical state such as '
+          + 'the rigging, the ground or the cranes?', expected: 'PASS' },
+      { id: 'H4.Q3', mandatory: false,
+        question: 'Did it avoid raising the plan, the ground certification or the rigging, which '
+          + 'the observation establishes?', expected: 'PASS: not raised' },
+    ],
+  },
+
+  // ============================================================ H5 -- two calls
+  {
+    caseId: 'H5',
+    purpose: 'MULTI-FACT SIBLING CONTAINMENT',
+    whyThisCaseExists: '§213 T6 bound both targets correctly and then nominated the sibling '
+      + 'additively. §214 R-V3 added an instruction paragraph permitting a prose mention and '
+      + 'refusing a structured nomination, plus a deterministic scope rule. H5 measures the '
+      + 'instruction half; the deterministic half will refuse the shape if it appears.',
+    observation:
+      'A steel frame for a distribution shed is up to second-floor level and the erection gang are '
+      + 'about to start the next tier. The temporary bracing to the erected bays is in place, but '
+      + 'the design for it assumed a hold on the frame until the permanent bracing goes in, and '
+      + 'nobody on site can say what wind speed the temporary arrangement was designed to hold '
+      + 'against, with a front forecast for tonight. Separately, the safety netting slung under the '
+      + 'leading edge was rigged by a subcontractor who has left, and the tie-off points it is hung '
+      + 'from are the same top-flange clamps used for the handrail. Both the gang and the netting '
+      + 'are staying up overnight.',
+    suppliedContext: { location: 'distribution shed steel frame, second-floor level',
+      task: 'steel erection with temporary bracing and leading-edge safety netting' },
+    jurisdiction: 'osha-general-industry',
+    decisionUnderAnalysis: 'whether erection may continue on this frame and whether the netting may '
+      + 'be relied on tonight',
+    declarations: [
+      d({
+        declarationId: 'H5-D1',
+        missingFact: 'whether the temporary bracing will hold the erected frame against the wind '
+          + 'forecast for tonight',
+        observationSpan: 'nobody on site can say what wind speed the temporary arrangement was '
+          + 'designed to hold against',
+        notEstablishedBecause: 'the text records that nobody on site can state the design wind '
+          + 'speed for the temporary arrangement',
+        affectedDecision: 'HAZARD_EXISTENCE',
+        branchA: 'the temporary bracing holds the frame against tonight\'s forecast wind',
+        decisionIfA: 'erection continues and the frame is left braced overnight',
+        branchB: 'the temporary bracing will not hold the frame against tonight\'s forecast wind',
+        decisionIfB: 'stop erection and add bracing or tie the frame down before the front arrives',
+        decisionWhileUnresolved: 'no further tier goes on and the area below the frame is kept '
+          + 'clear until the bracing capacity is established',
+        whyNecessaryNow: 'the front is forecast for tonight and the frame is staying up',
+      }),
+      d({
+        declarationId: 'H5-D2',
+        missingFact: 'whether the top-flange clamps the safety netting is hung from will hold a '
+          + 'person falling into the net',
+        observationSpan: 'the tie-off points it is hung from are the same top-flange clamps used '
+          + 'for the handrail',
+        notEstablishedBecause: 'the text records what the netting is hung from and says nothing '
+          + 'about what those clamps will take as a fall-arrest anchorage',
+        affectedDecision: 'REQUIRED_CONTROL',
+        branchA: 'the clamps will hold a person falling into the net',
+        decisionIfA: 'the netting may be relied on as the leading-edge measure',
+        branchB: 'the clamps will not hold a person falling into the net',
+        decisionIfB: 'do not rely on the netting until it is hung from anchorages rated for fall '
+          + 'arrest',
+        decisionWhileUnresolved: 'nobody works the leading edge relying on the netting alone while '
+          + 'the anchorage capacity is unestablished',
+        whyNecessaryNow: 'the gang are about to start the next tier at the leading edge',
+      }),
+    ],
+    clarifications: [
+      { clarificationId: 'H5-C1',
+        question: 'What wind speed was the temporary bracing arrangement designed to hold the frame '
+          + 'against?',
+        affectedDecision: 'HAZARD_EXISTENCE', boundToDeclarationId: 'H5-D1' },
+      { clarificationId: 'H5-C2',
+        question: 'What are the top-flange clamps rated to take as a fall-arrest anchorage, and '
+          + 'what does the net impose on them?',
+        affectedDecision: 'REQUIRED_CONTROL', boundToDeclarationId: 'H5-D2' },
+    ],
+    requiredOutcomeByDeclarationId: {
+      'H5-D1': 'ACCEPT_PROPERTY_UNCHANGED', 'H5-D2': 'ACCEPT_PROPERTY_UNCHANGED',
+    },
+    proxyTruth: null, threeWorldTruth: null, actAsPropertyTruth: null,
+    siblingContainmentTruth:
+      'FROZEN: two genuinely independent properties. Call 1 targets H5-D1, the bracing; call 2 '
+      + 'targets H5-D2, the netting anchorage. Neither property is evidence for the other and '
+      + 'settling one leaves the other exactly where it was. Each call must declare ONLY its own '
+      + 'target. Mentioning the other in reasoning is PERMITTED and is not scored against the '
+      + 'verifier. Emitting the other as a structured nomination, or proposing a clarification that '
+      + 'settles the other in place of the target\'s own, is HF-D. Binding to the wrong key is the '
+      + 'separate HF-E and is scored separately.',
+    whyNoChallengeIsWarranted: null,
+    hardFailuresIfWrong: ['HF-D', 'HF-E'],
+    establishedByTheObservation: [
+      'that the temporary bracing is in place',
+      'that the netting was rigged by a subcontractor who has left',
+      'that the netting hangs from the same top-flange clamps as the handrail',
+    ],
+    providerCalls: 2,
+    evaluationQuestions: [
+      { id: 'H5.Q1', mandatory: true,
+        question: 'MANDATORY. On the bracing call, did the structured output declare ONLY H5-D1 '
+          + 'and emit no nomination?', expected: 'PASS' },
+      { id: 'H5.Q2', mandatory: true,
+        question: 'MANDATORY. On the netting call, did the structured output declare ONLY H5-D2 '
+          + 'and emit no nomination?', expected: 'PASS' },
+      { id: 'H5.Q3', mandatory: true,
+        question: 'MANDATORY. Was the target key correct on both calls, with no foreign key?',
+        expected: 'PASS' },
+      { id: 'H5.Q4', mandatory: false,
+        question: 'Where a proposed clarification was emitted, does it settle the TARGET property '
+          + 'rather than the sibling?', expected: 'PASS' },
+      { id: 'H5.Q5', mandatory: false,
+        question: 'Recorded, NOT scored against the verifier: did the reasoning mention the sibling?',
+        expected: 'EITHER — a prose mention is permitted' },
+    ],
+  },
+
+  // ============================================================ H6 -- CONTROL
+  {
+    caseId: 'H6',
+    purpose: 'FULLY CORRECT CONTROL',
+    whyThisCaseExists: 'without it a verifier that challenges everything passes H1, H2 and H3 and '
+      + 'looks repaired. §213 T8 was clean and the same risk applies to every §214 change.',
+    observation:
+      'A commercial laundry has a heated roller ironer on the finishing line. The finger guard bar '
+      + 'across the feed is fitted and moves freely on its pivots, and the machine is running at '
+      + 'feed speed. The bar was taken off and refitted during a belt change on the night shift, '
+      + 'and nobody on days saw whether the microswitch behind it was reconnected. An operator is '
+      + 'about to feed sheets in by hand.',
+    suppliedContext: { location: 'commercial laundry, heated roller ironer feed',
+      task: 'hand-feeding sheets into a heated roller ironer' },
+    jurisdiction: 'osha-general-industry',
+    decisionUnderAnalysis: 'whether the operator may hand-feed this ironer now',
+    declarations: [d({
+      declarationId: 'H6-D1',
+      missingFact: 'whether pressing the finger guard bar stops the ironer rollers',
+      observationSpan: 'nobody on days saw whether the microswitch behind it was reconnected',
+      notEstablishedBecause: 'the text records that the bar was removed and refitted and that '
+        + 'nobody saw the microswitch reconnected; it does not state whether the bar stops the '
+        + 'rollers',
+      affectedDecision: 'HAZARD_EXISTENCE',
+      branchA: 'pressing the bar stops the rollers',
+      decisionIfA: 'hand feeding may continue as it is',
+      branchB: 'pressing the bar does not stop the rollers',
+      decisionIfB: 'stop the ironer and reconnect the guard before anyone feeds it by hand',
+      decisionWhileUnresolved: 'the rollers are stopped before anyone puts a hand to the feed, '
+        + 'until the guard response is established',
+      whyNecessaryNow: 'an operator is about to feed sheets in by hand with the rollers turning',
+    })],
+    clarifications: [{
+      clarificationId: 'H6-C1',
+      question: 'What do the rollers do when the finger guard bar is pressed?',
+      affectedDecision: 'HAZARD_EXISTENCE', boundToDeclarationId: 'H6-D1',
+    }],
+    requiredOutcomeByDeclarationId: { 'H6-D1': 'ACCEPT_PROPERTY_UNCHANGED' },
+    proxyTruth: null, threeWorldTruth: null, actAsPropertyTruth: null, siblingContainmentTruth: null,
+    whyNoChallengeIsWarranted:
+      'FROZEN: nothing is wrong with it. The property is the physical response of the guard, which '
+      + 'a direct test settles. The branches partition that response and nothing else. Both '
+      + 'decisions follow from their branch being true. What is done meanwhile presumes neither '
+      + 'branch. The bound question asks what the rollers DO, which settles the property. Any '
+      + 'challenge, any replacement of the clarification, or any representation concern other than '
+      + 'NONE is HF-F.',
+    hardFailuresIfWrong: ['HF-F'],
+    establishedByTheObservation: [
+      'that the guard bar is fitted and moves freely',
+      'that the machine is running at feed speed',
+      'that the bar was removed and refitted on the night shift',
+    ],
+    providerCalls: 1,
+    evaluationQuestions: [
+      { id: 'H6.Q1', mandatory: true,
+        question: 'MANDATORY. Did the verifier leave a correct declaration alone — no challenge, no '
+          + 'replaced clarification, representation concern NONE?', expected: 'PASS' },
+      { id: 'H6.Q2', mandatory: false,
+        question: 'Did it avoid raising the guard bar\'s presence or the belt change, which the '
+          + 'observation establishes?', expected: 'PASS: not raised' },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------- frozen execution order
+
+/**
+ * Frozen before any call. The order creates no selection: the spend guard stops the WHOLE run and
+ * returns for review rather than continuing selectively, so no case is favoured by its position.
+ */
+export const EXECUTION_ORDER: readonly { caseId: string; declarationId: string }[] = [
+  { caseId: 'H1', declarationId: 'H1-D1' },
+  { caseId: 'H2', declarationId: 'H2-D1' },
+  { caseId: 'H3', declarationId: 'H3-D1' },
+  { caseId: 'H4', declarationId: 'H4-D1' },
+  { caseId: 'H5', declarationId: 'H5-D1' },
+  { caseId: 'H5', declarationId: 'H5-D2' },
+  { caseId: 'H6', declarationId: 'H6-D1' },
+];
+
+// ---------------------------------------------------------------- mandatory contrast pairs
+
+export const CONTRAST_PAIRS = [
+  {
+    id: 'PAIR_1',
+    members: ['H1', 'H2', 'H4'],
+    claim: 'H1 and H2 must be challenged as evidence proxies; H4 must be left alone even though its '
+      + 'property is entirely communication-shaped.',
+    degenerateStrategyThatFails: 'a rule that rejects test, record, certificate or process '
+      + 'vocabulary challenges H4 and fails the pair',
+    otherDegenerateStrategyThatFails: 'a rule that never challenges anything passes H4 and fails '
+      + 'H1 and H2',
+  },
+  {
+    id: 'PAIR_2',
+    members: ['H3'],
+    claim: 'within H3, unresolved-because-nobody-has-looked must be distinguished from '
+      + 'adverse-actually-established. The frozen truth names what worldB would look like: SEEING '
+      + 'the wasted pins, never the cover being on.',
+    degenerateStrategyThatFails: 'treating the absence of an inspection record as establishing the '
+      + 'adverse branch',
+    otherDegenerateStrategyThatFails: 'refusing ever to allow an adverse branch, which the frozen '
+      + 'worldB explicitly permits when it is established by observation',
+  },
+] as const;
+
+// ---------------------------------------------------------------- derived
+
+export function providerCallCount215(): number {
+  return CONFIRMATION_CASES_215.reduce((n, c) => n + c.providerCalls, 0);
+}
+
+export function hardFailureCoverage215(): Readonly<Record<string, readonly string[]>> {
+  const out: Record<string, string[]> = {};
+  for (const h of HARD_FAILURE_CLASSES_215) out[h.id] = [];
+  for (const c of CONFIRMATION_CASES_215) for (const h of c.hardFailuresIfWrong) out[h].push(c.caseId);
+  // HF-E and HF-G are standing gates on every call, not case-specific.
+  out['HF-E'] = [...new Set([...out['HF-E'], 'EVERY_CALL'])];
+  out['HF-G'] = [...new Set([...out['HF-G'], 'EVERY_CALL'])];
+  return out;
+}
+
+/** KR-1 may move only on this exact condition. Recorded before execution. */
+export const KR1_MOVEMENT_RULE = {
+  before: 'OPEN',
+  mayMoveTo: 'TARGETEDLY_MITIGATED_IN_VERIFIER_DEVELOPMENT',
+  onlyIf: 'every frozen evidence-proxy case (H1 and H2) passes with zero HF-A occurrences AND the '
+    + 'act-as-property counter-control H4 also passes',
+  mayNotMoveTo: 'CLOSED',
+  whyNotClosed: 'six cases are targeted development evidence, not universal proof',
+} as const;
+
+export const ACCEPTANCE_CHARACTER_215 = {
+  kind: 'TARGETED_DEVELOPMENT_CONFIRMATION',
+  isExpertAcceptance: false,
+  isProductionValidation: false,
+  aggregatePercentageReported: false,
+} as const;

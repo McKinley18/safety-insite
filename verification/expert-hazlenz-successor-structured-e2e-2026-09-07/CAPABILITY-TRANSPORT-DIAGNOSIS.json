@@ -1,0 +1,156 @@
+{
+  "artifact": "SECTION_199_CAPABILITY_TRANSPORT_DIAGNOSIS",
+  "providerCallsMadeByThisDiagnosis": 0,
+  "observedProviderError": {
+    "httpStatus": 400,
+    "type": "invalid_request_error",
+    "message": "The compiled grammar is too large, which would cause performance issues. Simplify your tool schemas or reduce the number of strict tools.",
+    "occurrences": 2,
+    "rows": [
+      "SG-01",
+      "SG-02"
+    ],
+    "outputTokens": 0,
+    "actualSpendUsd": 0,
+    "classification": "PRE-INFERENCE EXECUTION/INFRASTRUCTURE EVENT — not model behaviour, and not scored as any."
+  },
+  "measurement": {
+    "capabilityAbsentSentSchemaBytes": {
+      "min": 18617,
+      "max": 18624
+    },
+    "capabilityPresentSentSchemaBytes": {
+      "min": 19057,
+      "max": 19062
+    },
+    "marginBytes": 433,
+    "allTenAbsentRowsAccepted": true,
+    "bothPresentRowsRejected": true,
+    "note": "the capability-PRESENT schema is only ~440 bytes larger than the capability-ABSENT one, and one is accepted while the other is rejected. BYTE SIZE IS NOT THE PROVIDER METRIC — grammar complexity is, and an enum-constrained array of strings adds disproportionately to it. The vNext first-pass schema is sitting at the edge of the provider grammar budget and the governed-binding capability does not fit inside what is left."
+  },
+  "whatThisDoesNotShow": "that the capability contract is WRONG. §198 case C proved it is well formed and §199 case H proved every supplied id is visible. What is shown is that the resulting request is not transportable to THIS provider under strict tool-schema mode.",
+  "candidateDirectionsForTheSuccessor": [
+    {
+      "option": "A",
+      "change": "materially shorten the vNext schema descriptions — they are the bulk of the grammar",
+      "effect": "buys headroom for the capability without changing any contract",
+      "cost": "the descriptions are load-bearing prompt engineering; §104/§105/§138 each measured behaviour changes from description wording, so shortening them is a TREATMENT change requiring its own validation"
+    },
+    {
+      "option": "B",
+      "change": "represent governedEvidenceSourceIds as an unconstrained string array rather than an enum, and rely on the boundary alone",
+      "effect": "removes the enum grammar entirely; the projection already refuses an unsupplied id by exact set membership",
+      "cost": "gives up the transport-level closed set — the same trade §198 made for the empty case, now for the nonempty one"
+    },
+    {
+      "option": "C",
+      "change": "split the first pass into two calls, one of which carries the governed binding",
+      "effect": "each request stays inside the grammar budget",
+      "cost": "doubles first-pass calls and makes the analysis non-atomic"
+    },
+    {
+      "option": "D",
+      "change": "drop strict tool-schema mode for the first pass",
+      "effect": "removes the grammar constraint",
+      "cost": "loses transport-level validation entirely and would be a large protocol change"
+    }
+  ],
+  "perRow": [
+    {
+      "rowId": "SF-01",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15198,
+      "vnextSentSchemaBytes": 18617,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-03",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15198,
+      "vnextSentSchemaBytes": 18617,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-05",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15198,
+      "vnextSentSchemaBytes": 18617,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-12",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15198,
+      "vnextSentSchemaBytes": 18617,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-06",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15204,
+      "vnextSentSchemaBytes": 18623,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-04",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15204,
+      "vnextSentSchemaBytes": 18623,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-02",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15204,
+      "vnextSentSchemaBytes": 18623,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-07",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15205,
+      "vnextSentSchemaBytes": 18624,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-08",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15198,
+      "vnextSentSchemaBytes": 18617,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SF-11",
+      "capability": "ABSENT",
+      "v15SentSchemaBytes": 15205,
+      "vnextSentSchemaBytes": 18624,
+      "deltaBytes": 3419,
+      "reachedInference": true
+    },
+    {
+      "rowId": "SG-01",
+      "capability": "PRESENT",
+      "v15SentSchemaBytes": 15205,
+      "vnextSentSchemaBytes": 19062,
+      "deltaBytes": 3857,
+      "reachedInference": false
+    },
+    {
+      "rowId": "SG-02",
+      "capability": "PRESENT",
+      "v15SentSchemaBytes": 15202,
+      "vnextSentSchemaBytes": 19057,
+      "deltaBytes": 3855,
+      "reachedInference": false
+    }
+  ]
+}

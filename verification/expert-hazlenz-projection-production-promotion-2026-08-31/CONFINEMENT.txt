@@ -1,0 +1,46 @@
+CONFINEMENT — §119 projection promotion into the permanent Expert path (2026-08-31)
+
+ZERO hosted calls. 2 LOCAL Ollama calls (non-authoritative integration smoke). $0.00.
+
+--- git ---
+37a5d1b50abe836eb19dd24ee18ad10557bda131
+main
+origin/main: de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+ahead/behind: 0	1
+stashes: 4 (unchanged)  tags: 24 (unchanged)
+
+--- PRODUCTION-CAPABLE FILES CHANGED BY THIS PHASE (exhaustive) ---
+  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts   (type + optional input field)
+  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts           (renderer + append; v6 UNCHANGED)
+  backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts  (NEW, promoted)
+  backend/package.json                                               (+1 line: equivalence gate script)
+
+--- SHA-256 of changed/new production files ---
+b1d68e3458e87d37978a1daea85e6404cb90706f23941af1b06775acd474af82  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+f1cc7a61cf957a45449274eaa1763fece0bd9cfee095a636421cd5a0ff88e467  backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts
+
+--- FROZEN, must be byte-unchanged this phase ---
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+4b36490ac01d4f19646d4f7a16fdf347b71eabc00ff1629dec8968e1174c484c  backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+14adf05ba77e01851fcb2281ef179395ee67f2140c2dfd09223173def4deab45  backend/src/safescope-v2/evidence/evidence-foundation.ts
+ff6df3bdd6404c1f6f9461a06c443cd8d9ea32b91fd377288b05781682ab6f29  backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+e444b6920454a9d5cee6d72eece1aadddde141b7f84ead54ea42efe6f85c70cf  backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts
+
+--- prompt semantic version ---
+export const EXPERT_PROMPT_VERSION = 'hazlenz.expert.prompt.v6' as const;
+export const EXPERT_ANALYSIS_CONTRACT_VERSION = 'hazlenz.expert.analysis.v2' as const;
+
+--- NON-INVOLVEMENT (must all be 0) ---
+  controller/service/module changed: 0
+  auth/billing/stripe/report/pdf files changed: 0
+  frontend changed (excl. pre-existing tsconfig): 0
+  migrations changed: 0
+  governed-release / standards corpus changed: 0
+  runExpertAnalysis callers in src/ (customer activation): 0
+0
+
+--- PRESERVED pre-existing unrelated work ---
+ M frontend-next/tsconfig.json
+ D verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml

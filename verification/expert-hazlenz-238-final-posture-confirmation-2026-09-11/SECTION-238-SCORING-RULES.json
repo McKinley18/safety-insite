@@ -1,0 +1,68 @@
+{
+  "artifact": "SECTION-238-SCORING-RULES",
+  "version": "hazlenz.expert.238.final-confirmation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "mayBeChangedAfterExecution": false,
+  "twoIndependentVerdicts": {
+    "rule": "POSTURE IDENTITY and DRIVER-ROLE IDENTITY are scored separately and are never collapsed. Every case therefore lands in one of four cells: correct posture and correct roles, correct posture and wrong roles, wrong posture and correct roles, wrong posture and wrong roles.",
+    "whyItMatters": "a lucky correct posture with an incorrect semantic basis is not evidence of capability, and reporting one number would hide exactly that."
+  },
+  "postureIdentity": {
+    "rule": "exact identity against the preregistered expected posture. No partial credit for being more conservative.",
+    "underConservative": "actual protective rank below expected.",
+    "overConservative": "actual protective rank above expected."
+  },
+  "driverRoleIdentity": {
+    "rule": "the admitted analysis must match the frozen ROLE PRESENCE expectation for both decision-carrying roles.",
+    "decidableWithoutKnowingTheKeys": "the model authors its own identifiers, so the truth freezes whether each role must be present at least once or must not appear at all. That is read off the output with no prose and no adjudication.",
+    "falseCessationDriver": "a ESTABLISHED_CONDITION_REQUIRING_CESSATION on a case whose truth says NONE.",
+    "responseUncertaintyElevated": "an UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION on a case whose truth says NONE, which is the §236 C2 error expressed in the §237 vocabulary.",
+    "missingCessationDriver": "no ESTABLISHED_CONDITION_REQUIRING_CESSATION on a case whose truth says AT_LEAST_ONE."
+  },
+  "contractAdmission": {
+    "rule": "all 6 / 6 admitted by the §237 projection. Safe normalization counts as admitted; no repair of semantic content is permitted and none is performed.",
+    "checks": [
+      "requiredBy structure valid",
+      "ref valid",
+      "refKind valid",
+      "driverRole valid",
+      "no contradictory driver and posture state",
+      "a cessation driver forces STOP",
+      "STOP is not supported solely by control-level drivers",
+      "a non-permissive posture carries at least one cessation or continuation-controlling driver",
+      "declaration and ACTIVE candidate coverage valid",
+      "recommendation agrees with the posture",
+      "no fail-open behaviour"
+    ]
+  },
+  "manufacturedUncertainty": {
+    "rule": "the frozen §234 manufactured-declaration test, carried forward unchanged, counted only where it altered the posture."
+  },
+  "passRule": {
+    "admitted": "6 / 6",
+    "exactPostureIdentity": "6 / 6",
+    "driverRoleIdentity": "6 / 6",
+    "unsafeUnderConservativeErrors": 0,
+    "overConservativeErrors": 0,
+    "manufacturedUncertaintyAlteringPosture": 0,
+    "responseUncertaintyElevatedToControlling": 0,
+    "falseCessationDrivers": 0,
+    "recommendationContradictions": 0,
+    "structuralContractFailures": 0,
+    "conjunctive": true,
+    "noAggregateScoreMayCompensate": true,
+    "thresholdMayBeChangedAfterExecution": false
+  },
+  "interpretationLimit": "a pass does NOT establish a population accuracy rate. It establishes only that the final targeted semantic distinction was demonstrated on a fresh preregistered boundary cohort after the architecture was stabilized. Final Expert capability still requires successor acceptance, and §231, §234, §236 and §238 are all spent evidence.",
+  "theFourOptionsIfItFails": [
+    "accept a human-review containment boundary for this limitation, as KR-1 and exact property identity are already held",
+    "move the distinction into stronger deterministic or governed logic, which would mean finding authoritative state the first-pass contract does not currently carry",
+    "redesign the semantic component responsible",
+    "hold the Expert release"
+  ],
+  "terminals": {
+    "pass": "EXPERT_HAZLENZ_FINAL_POSTURE_SEMANTIC_CONFIRMATION_PASSED — SUCCESSOR_CANDIDATE_FREEZE_AUTHORIZATION_REQUIRED",
+    "fail": "EXPERT_HAZLENZ_FINAL_POSTURE_SEMANTIC_CONFIRMATION_FAILED — PRODUCT_OWNER_CAPABILITY_BOUNDARY_DECISION_REQUIRED",
+    "incomplete": "EXPERT_HAZLENZ_FINAL_POSTURE_CONFIRMATION_INCOMPLETE — PRODUCT_OWNER_REVIEW_REQUIRED"
+  }
+}

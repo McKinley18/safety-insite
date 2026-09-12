@@ -1,0 +1,120 @@
+{
+  "artifact": "SECTION-230-TRUTH-PREFLIGHT",
+  "version": "hazlenz.expert.230.final-fresh-acceptance.v1",
+  "machineChecked": true,
+  "ranBeforeFreeze": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "result": "PASS",
+  "passed": 17,
+  "total": 17,
+  "checks": [
+    {
+      "id": "P1",
+      "rule": "no unresolved property is already established by an enumerated fact",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P2",
+      "rule": "the observation holds every owed property open, proven by a verbatim anchor, and a case owing nothing carries no anchor",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P3",
+      "rule": "branches divide the property rather than known from unknown, and the two decisions differ",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P4",
+      "rule": "expected declaration count equals the enumerated owed properties",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P5",
+      "rule": "no prohibited adjacent or proxy property is the controlling property, and every owed property enumerates at least one proxy so the identity axis has an annotated way to fail",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P6",
+      "rule": "a required act or artifact is not mislabelled as evidence, and an evidence proxy is not labelled as the controlling property",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P7",
+      "rule": "a safe or negated case contains no owed property and books no verifier call",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P8",
+      "rule": "each preregistered human action can produce the expected authority and settlement state, and every expected state is a real runtime enum member",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P9",
+      "rule": "no settlement is expected without the required property and evidence authority; a settlement moves exactly one fact on exactly one transition; no evidence approval is assumed from a property confirmation and no confirmation from an approval",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P10",
+      "rule": "no corrective direction is written as itself resolving the owed property, and a case expecting a corrective direction actually owes or establishes something to correct",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P11",
+      "rule": "a governed record is expected to support only what its approved text supports; an off-point record may never carry authority; a case supplying records names its allowed set",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P12",
+      "rule": "the frozen immediate decision is consistent with the declared posture, and every case names an unsafe outcome to look for",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P13",
+      "rule": "unique ids, real enum members, elisions justified, malformation well formed, and the cohort size within the authorized range",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P14",
+      "rule": "every case family, hard gate, quality measure and measurement obligation has at least one case and at least one judgment slot",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P15",
+      "rule": "judgment slots fall within the authorized 100 to 180 substantive judgments, every slot is mandatory and predefined, and none is created after execution",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P16",
+      "rule": "the call plan is derived from the finished cohort, carries no semantic contingency, and its ceiling covers the worst case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P17",
+      "rule": "the manifest declares its path convention explicitly, excludes living documents, and no case expects both a settlement and a preserved unresolved state for the same property",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "repairsMadeBeforeFreeze": [
+    "The first run failed P12 and P15. P12 found three cases whose frozen immediate decision did not clearly stop or hold work despite a STOP_OR_HOLD posture. Two were detector gaps and were fixed by broadening the stop-language check. The third, G11, was a genuine authoring error: its frozen decision clears the vent path and keeps people off the walkway while the shop keeps running, which is CONTINUE_WITH_CONTROLS. The posture was corrected to match the decision rather than the decision loosened to match the posture.",
+    "P15 found 190 judgment slots against an authorized 100 to 180. The dedicated regulatory-grounding slot was folded into the whole-output read on the 24 cases supplying no governed record, which keeps the invention check and removes 27 slots. A dedicated grounding slot remains on every case that supplies a record.",
+    "Both repairs were made in the development instrument before the freeze and before any spend, which is the only point at which repair is permitted."
+  ]
+}

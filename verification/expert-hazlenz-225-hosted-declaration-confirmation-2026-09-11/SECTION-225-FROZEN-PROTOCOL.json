@@ -1,0 +1,585 @@
+{
+  "artifact": "SECTION-225-FROZEN-PROTOCOL",
+  "instrumentVersion": "hazlenz.expert.225.hosted-confirmation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "preflight": {
+    "checks": [
+      {
+        "check": "P1. case count = 8",
+        "ok": true,
+        "detail": "8 cases"
+      },
+      {
+        "check": "P2. planned calls = 18 (16 planned + 2 contingency, ceiling 18)",
+        "ok": true,
+        "detail": "8 predecessor + 8 remediated = 16 planned, ceiling 18"
+      },
+      {
+        "check": "P3. frozen truth exists for every scored case",
+        "ok": true,
+        "detail": "7 cases carry a §224-frozen controlling proposition verbatim; 1 restraint case carries a written basis"
+      },
+      {
+        "check": "P4. both arms are defined exactly as designed",
+        "ok": true,
+        "detail": "PREDECESSOR_210J / REMEDIATED_224"
+      },
+      {
+        "check": "P5. prompt and schema identities are pinned",
+        "ok": true,
+        "detail": "predecessor instruction 4ac0b5d5b95502a1…, remediated b1e381794efb6336…"
+      },
+      {
+        "check": "P6. the remediated arm uses the §224 successor contract",
+        "ok": true,
+        "detail": "hazlenz.expert.first-pass-contract.224-declaration-capability"
+      },
+      {
+        "check": "P7. the comparison arm uses the intended frozen predecessor",
+        "ok": true,
+        "detail": "hazlenz.expert.first-pass-contract.210j-epistemic"
+      },
+      {
+        "check": "P8. the two arms differ ONLY in the system prompt",
+        "ok": true,
+        "detail": "user prompt and wire schema byte-identical across arms on all 8 cases; instruction differs"
+      },
+      {
+        "check": "P9. no case is derived by merely copying IG1, IG8 or IG10",
+        "ok": true,
+        "detail": "H1..H8 use settings, hazard families and spans that appear in no §221 case. H1, H2 and H3 reproduce the SHAPE of the IG1, IG8 and IG10 traps, which is what the frozen design requires, on entirely different facts."
+      },
+      {
+        "check": "P10. no post-execution truth editing is possible",
+        "ok": true,
+        "detail": "the frozen protocol and its digest are written before the first call; the scorer reads truth from the digested file and aborts if the digest moves"
+      },
+      {
+        "check": "P11. the §224 instrument-authoring defect does not affect §225 truth or gates",
+        "ok": true,
+        "detail": "the §225 cases are H1..H8, authored separately, and the §225 gates are transcribed from the §224 design document's Acceptance section, which makes no reference to the local instrument's per-case expected table. No §225 truth, denominator, threshold or gate reads any C-case expectation."
+      },
+      {
+        "check": "P12. the frozen §224 design is unchanged",
+        "ok": true,
+        "detail": "design sha256 6ae09802edfc5b112ee9c819e01f2a1ca0acc195b5e27af90559a64da8629c66"
+      },
+      {
+        "check": "P13. no evidence file already exists: a re-invocation may not silently re-spend",
+        "ok": true,
+        "detail": "no raw or ledger file present"
+      },
+      {
+        "check": "P14. caching is disabled and no cache_control is constructed",
+        "ok": true,
+        "detail": "every call is an independent draw, as §221"
+      },
+      {
+        "check": "P15. the API key is present",
+        "ok": true,
+        "detail": "ANTHROPIC_API_KEY resolved from .env"
+      }
+    ],
+    "passed": true
+  },
+  "authorship": {
+    "frozenBySection224": "case identity, setting, trap, controlling property, arms, model, caching posture, call count, projected spend, ceiling, judgment structure, acceptance criteria",
+    "authoredInSection225": "observation text, supplied context, jurisdiction, hazard families, decision under analysis, near-neighbour annotation",
+    "STATED_PRE_EXECUTION_RISK": "The §225 case bodies were authored by the same session that wrote the §224 remediation. The paired design means authoring bias cannot manufacture a DIFFERENCE between arms — both receive byte-identical observations, context, schema and parameters and differ only in the system prompt. But the primary gates are absolute on the remediated arm, not on the difference, so authoring bias could in principle manufacture a pass there. Recorded before execution rather than discovered after it. Not mitigated away.",
+    "propertyIdentityScoredAgainst": "the §224-frozen controlling proposition alone. The near-neighbour lists are §225 diagnostic annotation and are NOT truth."
+  },
+  "arms": [
+    "PREDECESSOR_210J",
+    "REMEDIATED_224"
+  ],
+  "contracts": {
+    "PREDECESSOR_210J": "hazlenz.expert.first-pass-contract.210j-epistemic",
+    "REMEDIATED_224": "hazlenz.expert.first-pass-contract.224-declaration-capability"
+  },
+  "instructionIdentities": {
+    "PREDECESSOR_210J": {
+      "plain": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "perCase": {
+        "H1": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H2": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H3": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H4": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H5": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H6": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H7": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+        "H8": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed"
+      }
+    },
+    "REMEDIATED_224": {
+      "plain": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "governed": "4c3b6edc923938a42550660229ca80a3e3f3aa56d80662a762f589d3e2de9134",
+      "perCase": {
+        "H1": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H2": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H3": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H4": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H5": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H6": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H7": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+        "H8": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e"
+      }
+    }
+  },
+  "wireSchemaIdentitiesPerCase": {
+    "H1": "8d68a9723d730ca27085e6ff079ed8c79217a0a1abe6c76ee8198cc9492a907b",
+    "H2": "cfa6edf8ccd09b6ae5f53a1a85dedcc8acb7448a6006238dd30362b8a4249f7b",
+    "H3": "c9c4f226c3b7dccb6cc12b8f570ae25e8e4af094eff720a6b2e2d85fc9bcf137",
+    "H4": "6d607cb38cc638f70caceb36dd63be08a289f41e7a820746de36aba69270b3a2",
+    "H5": "00f7be3446a50939202b8691db5c6978df0a1a529cad60365e7ced732d70ddaa",
+    "H6": "fddb63eca5703bfe96462980fca6ab12e2d2127d901fa9d45659e4d83393c083",
+    "H7": "837e67111aac47bd4b53c37517038f5c5b721a14242accc9c06b490aeb706583",
+    "H8": "dc3e544cdf05915e71cb8823f8f3a33eeaddff75ee79f9c53f1ca462d0146cba"
+  },
+  "userPromptIdentitiesPerCase": {
+    "H1": "037e59b027b35ffc9dae2cfbd0c326dac8b50b5fc50c21787710e238f64723b8",
+    "H2": "509887b8e52dd4e671cf01843b82b6b1e3fa82423a81e6da3377ccb0ef1ced72",
+    "H3": "ea2c55f99e86536e8aa01d8ccae608dd3ffbdb953e5d8eb0ab8c971f11a779a1",
+    "H4": "85dc4acb89f64dc3ed5862211647d939df288f2be6b375be7fa3780d86fd3488",
+    "H5": "34422ad5d2302dea7210bffd9141dba38aaf6f74e145d54629b8753dd85913a7",
+    "H6": "8d90b781013d5f143b34959a55d055734cae970cb82b779b76ba41d28e67fc39",
+    "H7": "29c3afc63354912ea8ecdd440c7adc5744ab521452be441030c3852e87f9ceef",
+    "H8": "31b3682b0a5c38e17e15cb625387986502d3cb5e4224c6179dc87989f81fda19"
+  },
+  "callPlan": {
+    "cases": 8,
+    "arms": 2,
+    "plannedCalls": 16,
+    "contingencyCalls": 2,
+    "ceiling": 18,
+    "verifierCalls": 0,
+    "retriesAuthorized": 0,
+    "databaseOperations": 0
+  },
+  "spend": {
+    "projectedUsd": 1.4002,
+    "hardCeilingUsd": 1.76
+  },
+  "model": "claude-sonnet-5",
+  "cachingPosture": "DISABLED — no cache_control constructed anywhere",
+  "primaryGates": [
+    {
+      "id": "G1",
+      "name": "DECLARATION_RECALL",
+      "statement": "recall of the frozen owed properties is 100%, with zero silent omissions",
+      "threshold": "ZERO_OMISSION",
+      "scoredOn": "REMEDIATED_224"
+    },
+    {
+      "id": "G2",
+      "name": "PROPERTY_IDENTITY",
+      "statement": "controlling-property identity is 100%, with zero substitutions of any forbidden kind",
+      "threshold": "ZERO_SUBSTITUTION",
+      "scoredOn": "REMEDIATED_224"
+    },
+    {
+      "id": "G3",
+      "name": "INDEPENDENCE",
+      "statement": "independence is 100% on H5",
+      "threshold": "ZERO_JOINED_FACTS",
+      "scoredOn": "REMEDIATED_224"
+    },
+    {
+      "id": "G4",
+      "name": "RESTRAINT",
+      "statement": "zero declarations on H8",
+      "threshold": "ZERO_FALSE_DECLARATION",
+      "scoredOn": "REMEDIATED_224"
+    },
+    {
+      "id": "G5",
+      "name": "REQUIRED_ACT_CONTROL",
+      "statement": "H6 retains its act-shaped property",
+      "threshold": "ZERO_OVER_CORRECTION",
+      "scoredOn": "REMEDIATED_224"
+    },
+    {
+      "id": "G6",
+      "name": "REQUIRED_ARTIFACT_CONTROL",
+      "statement": "H7 retains its artifact-shaped property",
+      "threshold": "ZERO_OVER_CORRECTION",
+      "scoredOn": "REMEDIATED_224"
+    },
+    {
+      "id": "G7",
+      "name": "INSTRUMENT_DISCRIMINATES",
+      "statement": "the §210J arm reproduces at least one of the three §221 failure shapes, without which the instrument has not demonstrated that it can discriminate at all",
+      "threshold": "AT_LEAST_ONE",
+      "scoredOn": "PREDECESSOR_210J"
+    }
+  ],
+  "gateRule": {
+    "reporting": "PER_GATE_OCCURRENCE_COUNT",
+    "mayBeOffsetByAnAggregateScore": false,
+    "mayBeOffsetByAnotherGate": false,
+    "predecessorArmMayWeakenARemediatedGate": false,
+    "headlineAccuracyPercentageReported": false,
+    "notExercisedIsNeverAPass": true
+  },
+  "section224DefectDependency": {
+    "defect": "the §224 LOCAL instrument's per-case `expected` table understated which measures cases C3..C8 exercise; seven of forty conformance checks mismatched, every one resolving to COMPLIANT",
+    "affectedArtifact": "SECTION-224-LOCAL-INSTRUMENT.json, cases C1..C10",
+    "doesSection225DependOnIt": false,
+    "why": "the §225 cases are H1..H8, authored separately, and the §225 gates are transcribed from the §224 design document's Acceptance section, which makes no reference to the local instrument's per-case expected table. No §225 truth, denominator, threshold or gate reads any C-case expectation.",
+    "actionTaken": "the frozen §224 instrument is preserved exactly and is not repaired or rewritten"
+  },
+  "caseFreshness": {
+    "everyCaseDerivedFromAnIgCase": false,
+    "igObservationsReused": 0,
+    "igSpansReused": 0,
+    "igHazardFamiliesReused": 0,
+    "note": "H1..H8 use settings, hazard families and spans that appear in no §221 case. H1, H2 and H3 reproduce the SHAPE of the IG1, IG8 and IG10 traps, which is what the frozen design requires, on entirely different facts."
+  },
+  "cases": [
+    {
+      "caseId": "H1",
+      "frozenBySection224": {
+        "setting": "Mezzanine edge protection removed for a delivery, reinstatement state unrecorded; drop height not measured",
+        "trap": "IG1-type: hazard ACTIVE under both branches, so the unknown looks to change nothing",
+        "frozenControllingProperty": "what edge protection this opening requires, which turns on the drop height"
+      },
+      "authoredIn225": {
+        "observation": "A section of the mezzanine edge protection in the parts store was taken out last Thursday so a pallet of shelving could be craned up. The guardrail and toeboard are stacked against the wall and have not gone back. Stores staff walk past the open edge several times a day to reach the racking beyond it. The deck and the remaining rails are in good order and firmly fixed. Nobody has measured the drop from the mezzanine deck to the floor below, and the mezzanine was installed by a contractor who has since ceased trading.",
+        "suppliedContext": {
+          "location": "agricultural machinery dealership, parts store mezzanine",
+          "task": "walking past an unprotected mezzanine edge to reach racking"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "work_at_height",
+          "structural_failure"
+        ],
+        "decisionUnderAnalysis": "whether stores staff may continue to use the mezzanine today, and under what protection"
+      },
+      "owedProperties": [
+        {
+          "key": "H1-P1",
+          "proposition": "what edge protection this opening requires, which turns on the drop height",
+          "kind": "HAZARD_STATE",
+          "nearNeighbours": [
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the drop height has been measured"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the mezzanine installation drawings can be obtained"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the guardrail has been put back"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "DECLARATION_RECALL",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H2",
+      "frozenBySection224": {
+        "setting": "Portable appliance in a wet area, no test record and no visible damage",
+        "trap": "IG8-type: model concludes nothing is missing while carrying its own INSUFFICIENT_EVIDENCE candidate",
+        "frozenControllingProperty": "whether the appliance is in a condition safe for use in a wet location"
+      },
+      "authoredIn225": {
+        "observation": "A 240 volt submersible pump is being used to clear standing water from the wash bay floor drain. The operator is standing in the water while the pump runs. The lead and plug look sound with no cuts or scorching visible, and the pump body is not damaged. There is no test label on the pump and the maintenance office has no record of it ever being tested. The supply is a wall socket in the wash bay; nobody on site can say whether that circuit has residual current protection.",
+        "suppliedContext": {
+          "location": "commercial vehicle depot, vehicle wash bay",
+          "task": "clearing standing water with a portable submersible pump while standing in it"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "electrical",
+          "slips_trips_falls"
+        ],
+        "decisionUnderAnalysis": "whether the pump may continue to be used in the wash bay today"
+      },
+      "owedProperties": [
+        {
+          "key": "H2-P1",
+          "proposition": "whether the appliance is in a condition safe for use in a wet location",
+          "kind": "HAZARD_STATE",
+          "nearNeighbours": [
+            {
+              "kind": "DOCUMENT",
+              "text": "whether a portable appliance test record exists for the pump"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the pump has been tested"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the socket circuit has residual current protection"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "DECLARATION_RECALL",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H3",
+      "frozenBySection224": {
+        "setting": "Paint spray booth, extraction fan audible but no airflow indication, operator inside",
+        "trap": "IG10-type: control state substituted for condition",
+        "frozenControllingProperty": "whether the booth atmosphere is safe to occupy without respiratory protection"
+      },
+      "authoredIn225": {
+        "observation": "A sprayer is inside the booth applying two-pack primer to a tailgate. He is wearing overalls and gloves but no respirator. The extraction fan can be heard running and the booth door is closed. The airflow indicator gauge on the booth wall reads zero and the sprayer says it has read zero for months and that everyone ignores it. The filters were last changed at an unknown date; the booth log ends in March.",
+        "suppliedContext": {
+          "location": "accident repair centre, spray booth",
+          "task": "applying two-pack primer inside the booth without respiratory protection"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "chemical_exposure",
+          "respiratory"
+        ],
+        "decisionUnderAnalysis": "whether the sprayer may continue working in the booth as he is"
+      },
+      "owedProperties": [
+        {
+          "key": "H3-P1",
+          "proposition": "whether the booth atmosphere is safe to occupy without respiratory protection",
+          "kind": "HAZARD_STATE",
+          "nearNeighbours": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the extraction fan is running"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the airflow indicator is working"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the booth airflow has been measured"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the booth log is up to date"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "PROPERTY_IDENTITY",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H4",
+      "frozenBySection224": {
+        "setting": "Scaffold handed over with a green tag dated before the last high wind",
+        "trap": "evidence-proxy trap: the tag is the obvious observable",
+        "frozenControllingProperty": "whether the scaffold is in a condition fit to be worked from now"
+      },
+      "authoredIn225": {
+        "observation": "Bricklayers are loading out onto the third lift of an independent scaffold this morning. The scafftag at the base is green and signed off eleven days ago. The storm on Sunday night took slates off the roof of the building opposite. Nobody has been up the scaffold since, and the scaffolding contractor is not due back on site until Thursday. From the ground the scaffold looks upright and the ties that are visible are in place.",
+        "suppliedContext": {
+          "location": "housing refurbishment site, rear elevation scaffold",
+          "task": "loading out bricks and mortar onto the third lift"
+        },
+        "jurisdiction": "osha-construction",
+        "hazardFamilies": [
+          "work_at_height",
+          "structural_failure"
+        ],
+        "decisionUnderAnalysis": "whether the bricklayers may load out and work from the scaffold today"
+      },
+      "owedProperties": [
+        {
+          "key": "H4-P1",
+          "proposition": "whether the scaffold is in a condition fit to be worked from now",
+          "kind": "HAZARD_STATE",
+          "nearNeighbours": [
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the scafftag is current"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the scaffold has been inspected since the storm"
+            },
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether the scaffolding contractor can attend"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "PROPERTY_IDENTITY",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H5",
+      "frozenBySection224": {
+        "setting": "Excavation with a battery-powered pump running and a supply cable crossing the spoil",
+        "trap": "multi-gap: two independent unknowns, invited to be joined",
+        "frozenControllingProperty": "(a) whether the excavation sides are stable; (b) whether the cable is protected from damage"
+      },
+      "authoredIn225": {
+        "observation": "A drainage trench about shoulder deep runs across the yard. A groundworker is in it connecting a gully. The sides are unsupported and the spoil is heaped along the top edge; the ground is made up and nobody has recorded what it consists of or had it assessed. A pump sits at the bottom of the trench running off a generator at the yard gate, and its supply cable runs up the trench side, over the spoil heap and across the haul route where the telehandler turns. The cable is not ducted, covered or slung.",
+        "suppliedContext": {
+          "location": "builders merchant yard, drainage works",
+          "task": "connecting a gully in an unsupported trench with a pump cable crossing the haul route"
+        },
+        "jurisdiction": "osha-construction",
+        "hazardFamilies": [
+          "excavation_collapse",
+          "electrical"
+        ],
+        "decisionUnderAnalysis": "whether the groundworker may continue working in the trench today"
+      },
+      "owedProperties": [
+        {
+          "key": "H5-P1",
+          "proposition": "whether the excavation sides are stable",
+          "kind": "HAZARD_STATE",
+          "nearNeighbours": [
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the ground conditions have been assessed"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether trench support has been installed"
+            }
+          ]
+        },
+        {
+          "key": "H5-P2",
+          "proposition": "whether the cable is protected from damage",
+          "kind": "HAZARD_STATE",
+          "nearNeighbours": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the generator has residual current protection"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the cable has been inspected"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "INDEPENDENCE",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H6",
+      "frozenBySection224": {
+        "setting": "Lift shaft work where the permit requires a second isolation to be proved, and nobody can say it was",
+        "trap": "required-act control: the act IS the property; must not be over-corrected into a condition",
+        "frozenControllingProperty": "whether the second isolation was applied and proved before entry"
+      },
+      "authoredIn225": {
+        "observation": "Two engineers are working on the car top in a goods lift shaft. The permit for this job requires two isolations before anyone enters the shaft: the main supply disconnector locked off, and a second isolation of the door operator circuit locked off and proved dead at the point of work. The main disconnector is visibly locked with two padlocks and a tag. The permit box for the second isolation is blank, the engineer who set up the job has gone to another site, and neither man on the car top can say whether the second isolation was applied and proved before they went in.",
+        "suppliedContext": {
+          "location": "distribution centre, goods lift shaft",
+          "task": "working on the lift car top under a two-isolation permit"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "electrical",
+          "machinery_entanglement"
+        ],
+        "decisionUnderAnalysis": "whether the engineers may remain on the car top and continue working"
+      },
+      "owedProperties": [
+        {
+          "key": "H6-P1",
+          "proposition": "whether the second isolation was applied and proved before entry",
+          "kind": "REQUIRED_ACT",
+          "nearNeighbours": [
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the permit box was filled in"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "REQUIRED_ACT_CONTROL",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H7",
+      "frozenBySection224": {
+        "setting": "Pressure vessel due for periodic examination with no report on site",
+        "trap": "required-artifact control: the artifact IS the statutory precondition",
+        "frozenControllingProperty": "whether a current examination report exists for this vessel"
+      },
+      "authoredIn225": {
+        "observation": "The bakery runs a steam-raising boiler feeding the proving cabinets. It is in service and firing now. The written scheme of examination requires a periodic examination every fourteen months. The last report in the plant room folder is dated nineteen months ago. The engineering manager believes an examination was carried out in the spring but cannot produce a report, and the insurer that carries out the examinations has not been contacted. The boiler itself shows no leaks, the gauges read normally and the safety valve was lifted manually last week without incident.",
+        "suppliedContext": {
+          "location": "commercial bakery, boiler plant room",
+          "task": "operating a steam-raising boiler in service"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "pressure_systems",
+          "thermal"
+        ],
+        "decisionUnderAnalysis": "whether the boiler may remain in service today"
+      },
+      "owedProperties": [
+        {
+          "key": "H7-P1",
+          "proposition": "whether a current examination report exists for this vessel",
+          "kind": "REQUIRED_ARTIFACT",
+          "nearNeighbours": [
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether the boiler appears to be in good condition"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the safety valve lifts"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "primaryGate": "REQUIRED_ARTIFACT_CONTROL",
+      "derivedFromIgCase": null
+    },
+    {
+      "caseId": "H8",
+      "frozenBySection224": {
+        "setting": "Fume cupboard with a current airflow certificate, sash at the marked height, alarm silent and tested this week",
+        "trap": "restraint: every control stated present and current",
+        "frozenControllingProperty": "none — no declaration is correct"
+      },
+      "authoredIn225": {
+        "observation": "A technician is decanting solvent inside a fume cupboard in the QC laboratory. The sash is down to the marked working height and the marker is clearly visible. The airflow certificate taped to the frame is dated five weeks ago and states a face velocity within the specified range. The low-flow alarm is silent and the laboratory log records that it was function-tested on Monday and sounded correctly. The technician is wearing the issued gloves and safety spectacles and the solvent container is closed between pours.",
+        "suppliedContext": {
+          "location": "contract laboratory, quality control room",
+          "task": "decanting solvent inside a fume cupboard"
+        },
+        "jurisdiction": "osha-general-industry",
+        "hazardFamilies": [
+          "chemical_exposure",
+          "respiratory"
+        ],
+        "decisionUnderAnalysis": "whether the technician may continue decanting as she is"
+      },
+      "owedProperties": [],
+      "restraintBasis": "every control the hazard turns on is stated as present and current: the sash is at the marked height, the face velocity is certified within range five weeks ago, the low-flow alarm was function-tested this week and is silent, and personal protection is worn. No answer to any remaining unknown changes what is done today.",
+      "primaryGate": "RESTRAINT",
+      "derivedFromIgCase": null
+    }
+  ],
+  "designSha256": "6ae09802edfc5b112ee9c819e01f2a1ca0acc195b5e27af90559a64da8629c66",
+  "instrumentModuleSha256": "cb5c68b7c41ee94474337a81030361e0a8f19a77df5029f74ccc37df1a2210ae",
+  "frozenAt": "2026-09-11"
+}

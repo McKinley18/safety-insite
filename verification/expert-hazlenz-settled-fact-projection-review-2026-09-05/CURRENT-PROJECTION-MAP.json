@@ -1,0 +1,162 @@
+{
+  "artifact": "SECTION_186_CURRENT_PROJECTION_MAP",
+  "date": "2026-09-05",
+  "twoDistinctMechanisms": {
+    "runtimeProjector": {
+      "fn": "projectOwedFactsForVerifier (verifier-v3-development-boundary.ts)",
+      "filter": "unresolvedFacts()",
+      "settledFactsCarried": 0,
+      "usedByHostedPath": false,
+      "note": "no hosted experiment calls it; it is exercised by the §170 local proof suite"
+    },
+    "hostedSupplyPath": {
+      "builder": "buildVerifierV3UserPrompt (scripts/lib/expert-verifier-instruction-v3.ts)",
+      "inputType": "V3SuppliedOwedFact[] -- hand-built per case by the harness",
+      "callers": [
+        "preflight-binding-falsification-harness-v3-2026-09-04.ts",
+        "lib/expert-v3-experiment-cases-2026-09-04.ts",
+        "test-expert-verifier-v3-binding-protocol.ts"
+      ],
+      "whyUnresolvedType": "string (NOT nullable) -- §185 did not change this type",
+      "promptHeading": "UNRESOLVED FACTS IDENTIFIED FOR YOUR REVIEW",
+      "perFactLine": "unresolved because: <whyUnresolved>",
+      "note": "the filter is NOT what keeps settled facts out of the hosted prompt; the harness simply never builds one, and the template could not express one if it did"
+    }
+  },
+  "projectedFields": [
+    "factKey",
+    "affectedDecision",
+    "whyUnresolved",
+    "branchA",
+    "branchB",
+    "decisionDivergence",
+    "evidenceSpan",
+    "acceptableEvidence"
+  ],
+  "statusProjected": false,
+  "factStatementProjected": false,
+  "targetDecisionProjected": false,
+  "fullLedgerCarriers": {
+    "runOwedFactCoverageStage attachment": "carries ledger.facts UNFILTERED, including settled facts -- but it attaches to a merged RESULT and is gated behind the literal false. It is not a provider input.",
+    "OwedFactObservabilityRecord.initialOwedFacts": "carries the full initial set, including settled facts. It is an append-only development RECORD, not a provider input."
+  },
+  "conclusion": "NO existing path carries a settled owed fact to a provider. The two full-ledger carriers are both outputs/records, never request inputs.",
+  "findings": [
+    {
+      "id": "A1",
+      "question": "does the standard projection carry a settled fact?",
+      "observed": "settled ledger projects 0 facts; unresolved ledger projects 1",
+      "verdict": "CONFIRMED: settled facts are filtered out entirely"
+    },
+    {
+      "id": "B1",
+      "question": "if a settled fact is supplied and the provider declares BOUND_BY_CLARIFICATION, what happens?",
+      "observed": "RETURNED {\"admittedDeclarations\":0,\"refused\":1,\"statusAfter\":\"SETTLED_BY_EVIDENCE\",\"transitions\":0}",
+      "verdict": "the terminal-status guard is the thing that fires"
+    },
+    {
+      "id": "B1b",
+      "question": "what does each declaration mode do to a SUPPLIED SETTLED fact?",
+      "observed": "{\"BOUND_BY_CLARIFICATION\":{\"codes\":[\"BOUND_FACT_NOT_UNRESOLVED\"],\"admitted\":0,\"statusAfter\":\"SETTLED_BY_EVIDENCE\",\"transitions\":0},\"STILL_UNRESOLVED\":{\"codes\":[\"BOUND_FACT_NOT_UNRESOLVED\"],\"admitted\":0,\"statusAfter\":\"SETTLED_BY_EVIDENCE\",\"transitions\":0},\"CHALLENGE_FACT_VALIDITY\":{\"codes\":[\"BOUND_FACT_NOT_UNRESOLVED\"],\"admitted\":0,\"statusAfter\":\"SETTLED_BY_EVIDENCE\",\"transitions\":0}}",
+      "verdict": "no exception is thrown and no status moves. The declaration is REFUSED WHOLE, which is a safety property rather than a crash -- but it also means a provider cannot say anything admissible about a settled fact through the existing protocol."
+    },
+    {
+      "id": "B2",
+      "question": "does every supplied key carry a mandatory declaration obligation?",
+      "observed": "checkBindingAdmission raises OWED_FACT_NOT_DECLARED for any supplied key without a declaration (owed-fact-binding.ts:300-302), so supplying a settled fact COMPELS the provider to declare on it",
+      "verdict": "CONFIRMED by source; a settled fact cannot be supplied passively"
+    },
+    {
+      "id": "B3",
+      "question": "can a provider declaration reach SETTLED_BY_EVIDENCE?",
+      "observed": "applyAdmittedDeclarations mints only to COVERED under ADMITTED_BINDING (owed-fact-binding.ts:352-357). SETTLED_BY_EVIDENCE requires ADMISSIBLE_EVIDENCE, which no provider path mints.",
+      "verdict": "CONFIRMED: provider settlement authority remains NEVER"
+    },
+    {
+      "id": "C1",
+      "question": "if a settled fact were passed to the prompt builder, what does the provider read?",
+      "observed": "\"UNRESOLVED FACTS IDENTIFIED FOR YOUR REVIEW |     unresolved because: null\"",
+      "verdict": "DECISIVE: the template hard-codes the heading \"UNRESOLVED FACTS IDENTIFIED FOR YOUR REVIEW\" and the line \"unresolved because: <value>\". A settled fact is represented AS UNRESOLVED, and its null renders as the literal \"null\". No existing text path can say \"already settled\"."
+    },
+    {
+      "id": "D1",
+      "question": "what distinguishes a settled from an unresolved member in the projected eight fields?",
+      "observed": "{\"rows\":[\"HR-04\",\"HR-10\"],\"settlementDiffers\":true,\"projectedFieldsThatDiffer\":[\"whyUnresolved\",\"evidenceSpan\"],\"note\":\"only whyUnresolved and evidenceSpan differ; factKey, branches and decisionDivergence are identical\"}",
+      "verdict": "whyUnresolved (null vs sentence) and evidenceSpan differ. Nothing else does, and neither field NAMES the settlement state -- a null is an absence, not an assertion."
+    },
+    {
+      "id": "D2",
+      "question": "can the owed property be identified from the projected fields without factStatement?",
+      "observed": "branchA=\"established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation\"",
+      "verdict": "YES for these fixtures, but only because branchA/branchB were DERIVED from the factStatement at §185 and therefore carry it verbatim. That is a property of the derivation, not of the schema: a fact whose branches were authored independently would not carry it."
+    },
+    {
+      "id": "E1",
+      "question": "does direct terminal-status construction create an unauthorized RUNTIME path?",
+      "observed": "RETURNED {\"admitted\":1,\"status\":\"SETTLED_BY_EVIDENCE\",\"transitions\":0}",
+      "verdict": "A PRODUCTION ledger WILL admit a model-sourced fact constructed directly as SETTLED_BY_EVIDENCE, with zero transition records. No provider can do this -- provider output flows through applyAdmittedDeclarations, which mints COVERED only -- so it is a CONSTRUCTION-SIDE gap, not a provider authority gap. For §183 it is inert: fixtures are built by the harness, not the model."
+    }
+  ],
+  "pairDiscriminability": {
+    "PAIR-1": {
+      "rows": [
+        "HR-02",
+        "HR-06"
+      ],
+      "settlementDiffers": true,
+      "projectedFieldsThatDiffer": [
+        "whyUnresolved",
+        "evidenceSpan"
+      ],
+      "note": "only whyUnresolved and evidenceSpan differ; factKey, branches and decisionDivergence are identical"
+    },
+    "PAIR-2": {
+      "rows": [
+        "HR-04",
+        "HR-10"
+      ],
+      "settlementDiffers": true,
+      "projectedFieldsThatDiffer": [
+        "whyUnresolved",
+        "evidenceSpan"
+      ],
+      "note": "only whyUnresolved and evidenceSpan differ; factKey, branches and decisionDivergence are identical"
+    },
+    "PAIR-3": {
+      "rows": [
+        "HR-01",
+        "HR-07"
+      ],
+      "settlementDiffers": true,
+      "projectedFieldsThatDiffer": [
+        "whyUnresolved",
+        "evidenceSpan"
+      ],
+      "note": "only whyUnresolved and evidenceSpan differ; factKey, branches and decisionDivergence are identical"
+    },
+    "PAIR-4": {
+      "rows": [
+        "HR-05",
+        "HR-08"
+      ],
+      "settlementDiffers": true,
+      "projectedFieldsThatDiffer": [
+        "whyUnresolved",
+        "evidenceSpan"
+      ],
+      "note": "only whyUnresolved and evidenceSpan differ; factKey, branches and decisionDivergence are identical"
+    },
+    "PAIR-5": {
+      "rows": [
+        "HR-03",
+        "HR-09"
+      ],
+      "settlementDiffers": true,
+      "projectedFieldsThatDiffer": [
+        "whyUnresolved",
+        "evidenceSpan"
+      ],
+      "note": "only whyUnresolved and evidenceSpan differ; factKey, branches and decisionDivergence are identical"
+    }
+  }
+}

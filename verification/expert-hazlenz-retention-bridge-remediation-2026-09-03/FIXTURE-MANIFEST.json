@@ -1,0 +1,491 @@
+{
+ "fixtureSetVersion": "hazlenz.expert.retention-bridge.fixtures.v8",
+ "fixtureFileSha256": "eac7f42fa464e11f0847d1dc201bc53a894fe3496961bd95bbb1d16ffee4b452",
+ "rows": [
+  {
+   "rowId": "RB-A1",
+   "domain": "lone pipeline patrol",
+   "retentionForm": "UNKNOWN_IS_THE_CANDIDATE",
+   "hazardEstablished": true,
+   "unknownIsCandidateShaped": true,
+   "retention": {
+    "retainedFact": "whether any lone-worker monitoring or check-in arrangement covers this visit",
+    "retentionChannel": "expected parking place: a candidate left INSUFFICIENT_EVIDENCE for a lone-working or supervision family, and/or reasoning describing it as a possible gap"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "lone_working"
+    ],
+    "defensibleHazardFamilies": [
+     "chemical_release",
+     "hydraulic_pneumatic_energy"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "lone_working"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "RB-A1-G1",
+      "description": "whether a lone-worker check-in arrangement is running for this visit — a monitored device, a call schedule or a supervisor expecting him at a known time",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE REPAIRED US-D1. The unresolved fact is CANDIDATE-SHAPED -- does a lone-worker monitoring arrangement exist? -- so the model can legally park the doubt as an INSUFFICIENT_EVIDENCE candidate and never ask. That is exactly the bridge test. CRITICALLY, AND UNLIKE US-D1, NOTHING IN THE TEXT PRESUPPOSES THE ANSWER: every sentence describes what is at the valve itself -- the vehicle, the detector, the fence, the track -- and \"there is no other person at the site\" is a statement about PRESENCE at the location, which says nothing either way about a remote check-in. The gas detector is a deliberate distractor: it detects, it does not summon."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether a lone-worker check-in or monitoring arrangement is running for this visit",
+     "answerA": "a monitored lone-worker device or an agreed call schedule is in force, with someone expecting him at a known time",
+     "outcomeA": "the work continues and the finding is limited to the breaking-containment method and the detector's alarm settings",
+     "answerB": "no monitoring or check-in arrangement covers this visit",
+     "outcomeB": "a man breaking containment alone two miles from a road with nobody expecting him has no route to rescue at all, and the work must stop until monitoring is arranged",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation describes only what is present AT the valve; a check-in arrangement is a remote and administrative thing that would leave nothing to see there, and \"no other person at the site\" is about presence at the location rather than about who is monitoring it",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "RB-B1",
+   "domain": "catering steam oven",
+   "retentionForm": "UNKNOWN_IS_A_PROGRAMME_EXISTENCE",
+   "hazardEstablished": true,
+   "unknownIsCandidateShaped": true,
+   "retention": {
+    "retainedFact": "whether this oven has a steam-purge or delayed-release interlock at all",
+    "retentionChannel": "expected parking place: an INSUFFICIENT_EVIDENCE thermal or guarding candidate, or reasoning calling the purge \"possible\" or \"not confirmed\""
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "thermal_burn"
+    ],
+    "defensibleHazardFamilies": [
+     "ventilation_air_quality",
+     "personal_protective_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "RB-B1-G1",
+      "description": "whether the oven has a working steam-purge or delayed-release interlock that vents the cavity before the door can be opened",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The unknown is whether an ENGINEERING CONTROL EXISTS on this machine -- candidate-shaped, and a model can park it as an INSUFFICIENT_EVIDENCE guarding or thermal candidate. The observed steam discharge is consistent with BOTH branches: a purge that has failed or been defeated, and a machine that never had one. Which it is decides whether the answer is a repair or a change of method, and those are different actions today."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the oven is fitted with a functioning steam-purge or delayed-release interlock",
+     "answerA": "a purge exists and has failed or been bypassed",
+     "outcomeA": "the machine is taken out of service for repair and the finding is a maintenance defect",
+     "answerB": "the machine has no purge feature at all",
+     "outcomeB": "no repair will fix it, and the control must be a changed opening method plus face and arm protection now, which is a different corrective action",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "a face-height steam discharge on door opening is stated, and it is equally consistent with a defeated purge and with a machine that never had one; nothing in the observation distinguishes them, and the two lead to different work today",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "RB-C1",
+   "domain": "mobile crane outrigger mats",
+   "retentionForm": "UNKNOWN_IS_A_PRIOR_EVENT",
+   "hazardEstablished": true,
+   "unknownIsCandidateShaped": true,
+   "retention": {
+    "retainedFact": "whether a ground bearing assessment was carried out for this set-up position",
+    "retentionChannel": "expected parking place: an INSUFFICIENT_EVIDENCE ground or lifting candidate, or reasoning noting that the assessment \"is not stated\""
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "suspended_loads"
+    ],
+    "defensibleHazardFamilies": [
+     "mobile_equipment",
+     "excavation_trenching"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "suspended_loads"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "RB-C1-G1",
+      "description": "whether the ground bearing capacity beside the backfilled trench was assessed and the mats sized for it before the crane was set up",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE UNKNOWN IS A PAST EVENT, and nothing visible now can settle it -- a completed ground assessment leaves timber mats and a level machine, and so does an omitted one. That makes INSUFFICIENT_EVIDENCE an especially natural parking place: the model can note that the assessment \"is not stated\" and move on. The lift has NOT started, which is what makes the two branches lead to different actions today rather than to the same one."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the ground beside the backfilled trench was assessed and the mats sized to the assessed bearing pressure before set-up",
+     "answerA": "an assessment was done and the mats are sized to it",
+     "outcomeA": "the lift proceeds and the finding is limited to the exclusion zone and the plan's wind limits",
+     "answerB": "no assessment was made, or it did not consider the backfilled trench",
+     "outcomeB": "the crane must not lift from this position until the ground is assessed, because an outrigger settling into poorly compacted backfill under load is how a crane goes over",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "mats, full extension and a level machine are all stated and all consistent with an assessment having been made AND with none having been made; a past assessment leaves no trace at the set-up that its absence would not also leave",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "RB-D1",
+   "domain": "pharmacy cleanroom gowning",
+   "retentionForm": "UNKNOWN_IS_AN_AUTHORISATION_STATE",
+   "hazardEstablished": true,
+   "unknownIsCandidateShaped": true,
+   "retention": {
+    "retainedFact": "whether the pass-through hatch is interlocked and isolated from the isolator chamber",
+    "retentionChannel": "expected parking place: an INSUFFICIENT_EVIDENCE exposure candidate for the second person, or reasoning calling the hatch arrangement unclear"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "chemical_inhalation_contact"
+    ],
+    "defensibleHazardFamilies": [
+     "personal_protective_equipment",
+     "hazcom"
+    ],
+    "forbiddenHazardFamilies": [
+     "fall_protection"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "RB-D1-G1",
+      "description": "whether the pass-through hatch is an airlock interlocked against the isolator chamber, which decides whether the second person is reaching into a contaminated space",
+      "affectedDecision": "EXPOSURE"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The unresolved fact is whether the hatch is INTERLOCKED -- a property of the installation, candidate-shaped, and parkable as an INSUFFICIENT_EVIDENCE exposure candidate. The cleaning record and the in-band gauge are deliberate distractors: both are stated, both are reassuring, and neither bears on the hatch. Note the authored label is EXPOSURE, not REQUIRED_CONTROL, so the set does not test a single label repeatedly."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the pass-through hatch is an interlocked airlock sealed from the isolator chamber",
+     "answerA": "the hatch is an interlocked airlock and cannot be open to the chamber during the transfer",
+     "outcomeA": "the second person is not exposed and the finding is limited to gowning discipline at the hatch",
+     "answerB": "the hatch is open to the chamber, or its interlock is not in use",
+     "outcomeB": "a person in a laboratory coat is reaching bare-armed into a cytotoxic containment space and the transfer must stop now",
+     "affectedDecision": "EXPOSURE",
+     "whyNotEstablished": "the gauge reading and the cleaning record are stated and neither concerns the hatch; the observation describes the transfer happening but never says what the hatch is connected to",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "RB-E1",
+   "domain": "cold-store sprinkler coverage",
+   "retentionForm": "UNKNOWN_IS_A_SYSTEM_COVERAGE",
+   "hazardEstablished": false,
+   "unknownIsCandidateShaped": true,
+   "retention": {
+    "retainedFact": "whether the sprinkler design basis covers the new, higher storage configuration",
+    "retentionChannel": "expected parking place: an INSUFFICIENT_EVIDENCE fire or emergency-equipment candidate, or reasoning noting that the design basis is not stated"
+   },
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "material_handling_storage",
+     "emergency_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "RB-E1-G1",
+      "description": "whether the sprinkler system was designed or re-assessed for the new storage height and configuration, or whether it remains designed for the previous, lower one",
+      "affectedDecision": "APPLICABILITY"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The unknown is whether the PROTECTION SYSTEM COVERS the changed use -- candidate-shaped and parkable. The two stated reassurances are both about the system's CONDITION (heads clear, gauge normal) and neither is about its DESIGN BASIS, which is what the re-racking put in question. No governed record is supplied, so v11's threshold limb cannot carry this row; only the bridge can. Authored label APPLICABILITY, a third distinct value."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the sprinkler installation was designed or re-assessed for the raised storage height and the current commodity, or is still on the previous lower configuration",
+     "answerA": "the system was re-assessed and covers the new height and commodity",
+     "outcomeA": "the store operates normally and the finding is limited to the 700 millimetre clearance being maintained as stock moves",
+     "answerB": "the system is still designed for the previous, lower racking",
+     "outcomeB": "the store is operating outside the fire protection it actually has, and the top level must be de-stocked until the design is re-assessed",
+     "affectedDecision": "APPLICABILITY",
+     "whyNotEstablished": "the heads being clear and the gauge reading normal are both statements about the system's CONDITION; neither says anything about the DESIGN BASIS, and it is the design basis that the change in racking height put in question",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "RB-F1",
+   "domain": "quarry haul road",
+   "retentionForm": "DECISION_INVARIANT_INSUFFICIENCY",
+   "hazardEstablished": true,
+   "unknownIsCandidateShaped": false,
+   "retention": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "mobile_equipment"
+    ],
+    "defensibleHazardFamilies": [
+     "material_handling_storage",
+     "walking_working_surfaces"
+    ],
+    "forbiddenHazardFamilies": [
+     "hot_work"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "mobile_equipment"
+    ],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ROW THAT DECIDES WHETHER THE BRIDGE OVER-FIRES. The rated payload is genuinely unknown and the observation says so in terms, so the model will very reasonably leave something INSUFFICIENT_EVIDENCE here -- and a bridge misread as \"INSUFFICIENT_EVIDENCE means ask\" fires immediately. IT MUST NOT. The defect is STATED AND OBSERVED: material spilling onto a haul road used by light vehicles in both directions. Stop loading to the sideboards and clear the road -- and that is the same action at any rated payload, because the load is over the sideboards whatever the plate says. The two answers converge."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "what is the truck's rated payload, and what did this load actually weigh?",
+     "whyNotDecisionCritical": "the observed defect is material standing proud of the sideboards and falling onto a shared haul road, which is a spillage and struck-by exposure established by observation rather than by weight. No rated payload makes an over-the-sideboards load acceptable, and the corrective action — stop overfilling, clear the road — is identical on every answer.",
+     "whatMakesItSettled": "the unknown is real and the observation admits it, but both branches converge on the same action today. This is the invariance limb of the counterfactual test, and the bridge explicitly defers to it."
+    }
+   }
+  },
+  {
+   "rowId": "RB-G1",
+   "domain": "print-room guillotine",
+   "retentionForm": "NON_DECISION_CRITICAL_DETAIL",
+   "hazardEstablished": false,
+   "unknownIsCandidateShaped": false,
+   "retention": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "machine_guarding",
+     "walking_working_surfaces",
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "machine_guarding"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "Insufficiency about a genuinely absent DETAIL that no decision turns on. The guard, the two-hand operation, the enclosure and the service currency are each observed and stated. A year of manufacture changes nothing that is done at this machine today, and it is the documentation/history shape the seven NOT-DECISION-CRITICAL entries already name."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "what year was the guillotine manufactured, and what is its serial number?",
+     "whyNotDecisionCritical": "the point-of-operation control is observed working as designed with both hands on the buttons and the finger guard down, and the service is in date. Neither the age nor the serial number selects any different action at this machine today; they are record details.",
+     "whatMakesItSettled": "every fact a decision turns on — guard state, mode of operation, enclosure, service currency — is stated and observed. The unknown is real and is about identification rather than about a decision."
+    }
+   }
+  },
+  {
+   "rowId": "RB-H1",
+   "domain": "plate heat exchanger",
+   "retentionForm": "EXPLICITLY_ABSENT",
+   "hazardEstablished": true,
+   "unknownIsCandidateShaped": false,
+   "retention": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "MULTI_HAZARD",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "chemical_release",
+     "lockout_tagout"
+    ],
+    "defensibleHazardFamilies": [
+     "thermal_burn"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "chemical_release"
+    ],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE §149 NON-REGRESSION CONTROL, and it is the mirror of RB-A1. Here the absence is POSITIVELY ESTABLISHED by the operator's own statement -- there are no blank flanges and never have been -- and the isolation method, the valve states and the tags were all seen. v12 says a stated absence IS established and should be used. Everything a decision turns on is stated: valve-only isolation on a shared caustic header is the finding, and it is the finding whatever else is asked."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "are blank flanges genuinely unavailable, or could a set be obtained — and were the valves actually proved closed rather than just turned?",
+     "whyNotDecisionCritical": "the operator affirmatively stated that no blank flange set exists on site, and both closed valves and both tags were seen. The finding — that a shared caustic header is isolated by valves and tags alone while a man is inside the exchanger — is established by what was observed, and no answer changes what is done at this exchanger today.",
+     "whatMakesItSettled": "an explicit operator statement of absence plus direct observation of the valve states and the tags. These are the \"positively established absence\" cases v12 names as establishing the fact."
+    }
+   }
+  },
+  {
+   "rowId": "RB-I1",
+   "domain": "guillotine two-hand safety distance",
+   "retentionForm": "SETTLED_THRESHOLD",
+   "hazardEstablished": false,
+   "unknownIsCandidateShaped": false,
+   "retention": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "machine_guarding",
+     "walking_working_surfaces",
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "machine_guarding"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE §148 THRESHOLD NON-REGRESSION CONTROL. Value 1,150 mm, basis \"nearest edge of each control to the nearest point of the danger zone along the reach path\" named identically by the record and the observation, and side plainly above the 620 mm requirement. Every element v11 requires for a SETTLED reading is present. If this row asks, §148 has regressed under §150."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is 1,150 millimetres measured the way the supplied record requires, and is the stopping time still valid?",
+     "whyNotDecisionCritical": "the observation states the measurement method in the record's own terms — nearest edge of each control to the nearest point of the danger zone, along the reach path — and states that the required distance was derived from the machine's measured stopping time by the same method. 1,150 is not close to 620 and there is no competing basis in play.",
+     "whatMakesItSettled": "value = 1,150 mm; basis = nearest edge to nearest danger point along the reach path, named identically by both texts; side = far above the 620 mm requirement derived from the measured stopping time."
+    }
+   }
+  },
+  {
+   "rowId": "RB-J1",
+   "domain": "wind-driven roof extractor",
+   "retentionForm": "TRUE_DETERMINISTIC_DERIVATION",
+   "hazardEstablished": false,
+   "unknownIsCandidateShaped": false,
+   "retention": null,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "machine_guarding",
+     "lockout_tagout",
+     "fall_protection"
+    ],
+    "forbiddenHazardFamilies": [
+     "chemical_release"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "machine_guarding",
+     "lockout_tagout"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE REPAIRED US-I1, AND THE REPAIR IS THE POINT. §149's version claimed that a cable removed at both ends made isolation deterministically derivable; it did not, because reconnection needed only the unstated premise that nobody reconnects it, and the row itself placed a second fitter at the door. HERE THERE IS NOTHING TO RECONNECT. The motive power is WIND acting on a rotor, the rotor is off the shaft and lying three metres away, the text states there is no motor, no supply and no other drive, and the observer photographed it. \"The shaft cannot turn\" follows from stated facts with NO ADDITIONAL PREMISE -- no lock could add anything, because no reconnection path exists to be secured. The two roofers are the deliberate echo of US-I1's second fitter, and they change nothing, because a person cannot restore a drive that is not there."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "has the extractor been locked out and tagged so nobody can start it while the technician is inside the housing?",
+     "whyNotDecisionCritical": "there is nothing to lock. The observation states the unit is wind-driven with no motor, no electrical supply and no other drive of any kind, and that the rotor — the only thing that can turn the shaft — has been physically removed and is lying three metres away and was photographed there. A lock secures a reconnection path; here no reconnection path exists, and nearby workers cannot restore a drive the unit does not have.",
+     "whatMakesItSettled": "deterministic derivation from stated facts with NO added premise: the sole motive element is physically absent and its location is stated, and the text states positively that no other drive exists. Unlike §149's US-I1, no premise about anyone's future conduct is required."
+    }
+   }
+  }
+ ]
+}

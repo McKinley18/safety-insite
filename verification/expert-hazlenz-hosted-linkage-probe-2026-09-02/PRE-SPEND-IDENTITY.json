@@ -1,0 +1,194 @@
+{
+  "operation": "§142 Expert HazLenz hosted linkage validation probe",
+  "capturedAt": "2026-09-03T03:25:52.491Z",
+  "isFormalEvaluation": false,
+  "hashes": {
+    "probeScriptSha256": "ccb89a92e5968304975067275abe81066cf19058a9ebc6947e16757d19aec29e",
+    "fixtureManifestSha256": "348113c7e9594d60da37bf718c4a39d49048ec1c8ae61cca4ed046b6b96d1580",
+    "systemPromptSha256": "7f143cb69b36a8969b588b0d104ca795b74776e55f4a6a53aed68eba0c1208fb",
+    "wireSchemaSha256": "614311db7a5e2c98a0f787a23b2d9f733431b13c72e5b9be592053014844773f",
+    "normalizationSha256": "a12b478d80111ac570d1f7660f7f119dc86def251045520ee5fa17522dca1d9b",
+    "contractTypesSha256": "d05f2f7c1abb1997fcb1b8240d256a81a05f9f0893ed21ff4618b57291a271ea"
+  },
+  "execution": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "promptVersion": "hazlenz.expert.prompt.v8",
+    "analysisContractVersion": "hazlenz.expert.analysis.v2"
+  },
+  "budget": {
+    "targetLogicalCalls": 16,
+    "hardProviderRequestCeiling": 20,
+    "retryRequestBudget": 4,
+    "enforcedSpendCeilingUsd": 2.08,
+    "worstCaseRequestUsd": 0.104
+  },
+  "extra": {
+    "git": {
+      "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+      "branch": "main",
+      "upstream": "origin/main",
+      "dirty": "2291 paths"
+    },
+    "providerInvocationCountHistoricalFormal": 195,
+    "contractVersions": {
+      "input": "hazlenz.expert.input.v1",
+      "validator": "hazlenz.expert.validator.v1",
+      "measurement": "hazlenz.expert.measurement.v1",
+      "harness": "hazlenz.expert.cohort.harness.v1",
+      "runRecordStore": "hazlenz.expert.run-record-store.v1",
+      "probeMeasures": "hazlenz.expert.probe-measures.v1",
+      "fixtureSet": "hazlenz.expert.dev-probe.fixtures.v2"
+    },
+    "arms": [
+      "BASE"
+    ],
+    "m14RemediationStatus": "NOT_ATTEMPTED",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "gate": [
+      {
+        "id": "A.1 fixture count is the frozen v8 manifest size",
+        "ok": true,
+        "detail": "16 rows"
+      },
+      {
+        "id": "A.2 every row is structurally scoreable",
+        "ok": true,
+        "detail": "0 problems"
+      },
+      {
+        "id": "A.3 row ids are v2 development ids",
+        "ok": true,
+        "detail": "LP-A1 LP-A2 LP-A3 LP-A4 LP-B1 LP-B2 LP-B3 LP-B4 LP-L1 LP-L2 LP-L3 LP-L4 LP-G1 LP-G2 LP-G3 LP-G4"
+      },
+      {
+        "id": "A.4 >=4 NO-GAP controls",
+        "ok": true,
+        "detail": "4"
+      },
+      {
+        "id": "A.5 >=4 TRUE-GAP controls",
+        "ok": true,
+        "detail": "4"
+      },
+      {
+        "id": "A.6 >=4 REQUIRED-linkage controls",
+        "ok": true,
+        "detail": "LP-B1 LP-L1 LP-L2 LP-L3"
+      },
+      {
+        "id": "A.7 >=4 FORBIDDEN-linkage controls",
+        "ok": true,
+        "detail": "10 rows"
+      },
+      {
+        "id": "A.8 governed quartet retained",
+        "ok": true,
+        "detail": "relevant 1 unrelated 1 none 1 narrower 1"
+      },
+      {
+        "id": "A.9 >=1 citation adversarial case",
+        "ok": true,
+        "detail": "1"
+      },
+      {
+        "id": "A.10 no fixture commissions a contradiction",
+        "ok": true,
+        "detail": "a contradiction is a MODEL ERROR and is never a positive control"
+      },
+      {
+        "id": "A.11 TRUE-GAP rows carry exactly one gap each",
+        "ok": true,
+        "detail": "unambiguous retention"
+      },
+      {
+        "id": "B.1 no formal-cohort, reserved-material or prior-probe fixture path is imported",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "B.2 rows come from exactly one v2 fixture module",
+        "ok": true,
+        "detail": "hazlenz.expert.dev-probe.fixtures.v2"
+      },
+      {
+        "id": "C.1 model is exactly the bound model",
+        "ok": true,
+        "detail": "claude-sonnet-5"
+      },
+      {
+        "id": "C.2 endpoint is the vendor API host",
+        "ok": true,
+        "detail": "https://api.anthropic.com"
+      },
+      {
+        "id": "C.3 thinking disabled",
+        "ok": true,
+        "detail": "disabled"
+      },
+      {
+        "id": "C.4 credential present (value never read, logged or persisted)",
+        "ok": true,
+        "detail": "ANTHROPIC_API_KEY set"
+      },
+      {
+        "id": "D.1 built one request per row, called nothing",
+        "ok": true,
+        "detail": "16 built, 0 invocations"
+      },
+      {
+        "id": "D.2 ONE ARM ONLY — M14 is not attempted",
+        "ok": true,
+        "detail": "BASE"
+      },
+      {
+        "id": "D.3 the prompt is the v8 linkage contract",
+        "ok": true,
+        "detail": "hazlenz.expert.prompt.v8"
+      },
+      {
+        "id": "E.1 no truth-key-only string reaches any request",
+        "ok": true,
+        "detail": "16 scanned"
+      },
+      {
+        "id": "F.1 system prompt carries no citation-shaped text",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "F.2 no built user prompt carries citation-shaped text",
+        "ok": true,
+        "detail": "16 scanned"
+      },
+      {
+        "id": "F.3 redaction is EXERCISED, not assumed",
+        "ok": true,
+        "detail": "5 supplied record fields carried a citation pre-render"
+      },
+      {
+        "id": "G.1 spend ceiling is the LOWER of authorized and model-priced",
+        "ok": true,
+        "detail": "authorized $3.00, priced $2.0800 -> enforcing $2.0800"
+      },
+      {
+        "id": "G.2 request ceiling covers target plus retry allowance",
+        "ok": true,
+        "detail": "16 + 4 = 20"
+      },
+      {
+        "id": "H.1 the append-only run-record store is empty or absent",
+        "ok": true,
+        "detail": "verification/expert-hazlenz-hosted-linkage-probe-2026-09-02/RUN-RECORDS.jsonl"
+      },
+      {
+        "id": "H.2 PRE-SPEND-IDENTITY.json does not already exist for this probe run",
+        "ok": true,
+        "detail": "verification/expert-hazlenz-hosted-linkage-probe-2026-09-02/PRE-SPEND-IDENTITY.json"
+      }
+    ]
+  }
+}

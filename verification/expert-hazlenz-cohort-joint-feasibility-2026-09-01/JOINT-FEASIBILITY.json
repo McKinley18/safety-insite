@@ -1,0 +1,226 @@
+{
+  "frozenRequirements": {
+    "GOVERNED_RECORD_SUPPLIED": {
+      "minimum": 40,
+      "preferred": 48
+    },
+    "NO_GOVERNED_RECORD": {
+      "minimum": 8,
+      "preferred": 12
+    },
+    "CLARIFICATION_NOT_OWED": {
+      "minimum": 14,
+      "preferred": 20
+    },
+    "CLARIFICATION_OWED": {
+      "minimum": 20,
+      "preferred": 30
+    },
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": {
+      "minimum": 48,
+      "preferred": 60
+    },
+    "LIFE_CRITICAL_PRESENT": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "CROSS_HAZARD_INTERACTION": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "MULTI_HAZARD": {
+      "minimum": 12,
+      "preferred": 20
+    },
+    "NEGATED_OR_SAFE_STATE": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "DISAGREEMENT_OPPORTUNITY": {
+      "minimum": 6,
+      "preferred": 10
+    },
+    "DETERMINISTIC_HAZARD_PRESENT": {
+      "minimum": 30,
+      "preferred": 40
+    }
+  },
+  "cohortSizePolicy": {
+    "targetRows": 60,
+    "minimumDefensibleRows": 48,
+    "supplementalCount": "EXACTLY 60 minus the number of eligible reserved rows selected",
+    "hardCeiling": 60,
+    "onInsufficiency": "If 60 rows cannot satisfy every frozen composition requirement, STOP and report the exact reason. The cohort is NEVER silently enlarged and a requirement is NEVER relaxed."
+  },
+  "openPoolRows": 152,
+  "openPoolSupply": {
+    "CLARIFICATION_OWED": 25,
+    "CLARIFICATION_NOT_OWED": 127,
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": 44,
+    "CROSS_HAZARD_INTERACTION": 17,
+    "MULTI_HAZARD": 61,
+    "LIFE_CRITICAL_PRESENT": 72,
+    "NEGATED_OR_SAFE_STATE": 45,
+    "DETERMINISTIC_HAZARD_PRESENT": 123,
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": 33
+  },
+  "absoluteBlockersOpenOnly": [
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL: supply 44 < minimum 48 (short 4)"
+  ],
+  "lowerBoundOpenOnly": 65,
+  "minimumAdditionalForbidden": 4,
+  "overlapAvailable": 3,
+  "tradeoffSurface": [
+    {
+      "newDualClassRows": 0,
+      "newNonOwedForbiddenRows": 4,
+      "forbiddenSupply": 48,
+      "overlap": 3,
+      "analyticLowerBound": 65,
+      "exactMinimumH": 67,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 1,
+      "newNonOwedForbiddenRows": 3,
+      "forbiddenSupply": 48,
+      "overlap": 4,
+      "analyticLowerBound": 64,
+      "exactMinimumH": 66,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 2,
+      "newNonOwedForbiddenRows": 2,
+      "forbiddenSupply": 48,
+      "overlap": 5,
+      "analyticLowerBound": 63,
+      "exactMinimumH": 65,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 3,
+      "newNonOwedForbiddenRows": 1,
+      "forbiddenSupply": 48,
+      "overlap": 6,
+      "analyticLowerBound": 62,
+      "exactMinimumH": 64,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 4,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 48,
+      "overlap": 7,
+      "analyticLowerBound": 61,
+      "exactMinimumH": 63,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 5,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 49,
+      "overlap": 8,
+      "analyticLowerBound": 60,
+      "exactMinimumH": 62,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 6,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 50,
+      "overlap": 9,
+      "analyticLowerBound": 59,
+      "exactMinimumH": 61,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 7,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 51,
+      "overlap": 10,
+      "analyticLowerBound": 58,
+      "exactMinimumH": 60,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 8,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 52,
+      "overlap": 11,
+      "analyticLowerBound": 57,
+      "exactMinimumH": 59,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 9,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 53,
+      "overlap": 12,
+      "analyticLowerBound": 56,
+      "exactMinimumH": 59,
+      "minimalityProven": true,
+      "witnessVerified": true
+    },
+    {
+      "newDualClassRows": 10,
+      "newNonOwedForbiddenRows": 0,
+      "forbiddenSupply": 54,
+      "overlap": 13,
+      "analyticLowerBound": 55,
+      "exactMinimumH": 59,
+      "minimalityProven": false,
+      "witnessVerified": true
+    }
+  ],
+  "reserve": {
+    "ownerResolvedScheme": "D-86 retirement registry, i % 4",
+    "knownEligibleContribution": 16,
+    "knownSource": "expert-corpus-retirement-registry.ts evidence fields: 8 + 8",
+    "labelOnlyUpperBound": 71,
+    "unknownUntilOpened": [
+      "which specific rows are eligible",
+      "all non-forbidden class memberships",
+      "confirmation the 16 survive the §122 eligibility rule"
+    ],
+    "contributesToOwedOverlap": 0,
+    "reasonZeroOverlap": "the artifact carries no gap label and no interaction label"
+  },
+  "options": {
+    "A_ceilingOnly": {
+      "works": false,
+      "blockers": [
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL: supply 44 < minimum 48 (short 4)"
+      ]
+    },
+    "B_ceilingPlusReserve": {
+      "minimumReserveContribution": 4,
+      "registryRecordedAvailable": 16,
+      "minimumFeasibleH": 65,
+      "witnessVerified": true
+    },
+    "C_dualClassRowsAtCeiling60": {
+      "newDualRowsRequired": 5,
+      "minimumFeasibleH": 60,
+      "witnessVerified": true
+    },
+    "D_mixed": "each dual-class row buys exactly one row of ceiling headroom; see tradeoffSurface"
+  },
+  "reservedMaterialOpened": false,
+  "providerInvocationCount": 0,
+  "formalCohortSpent": false,
+  "p4PrespendAuthorization": false
+}

@@ -1,0 +1,9 @@
+{
+  "//": "SECTION 205 EXPERIMENT SCOPE ONLY. This configuration typechecks the §205 post-120 remediation files and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. `tsc -p tsconfig.json` covers src/** only; `scripts/**` under the project's own compiler options carries pre-existing diagnostics across unrelated legacy files. Report results as EXPERIMENT_SCOPE_TYPECHECK (§205), never as `tsc clean`. Every include glob is §205-namespaced, so no pre-existing file enters the scope.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-205-*.ts",
+    "scripts/test-205-*.ts"
+  ]
+}

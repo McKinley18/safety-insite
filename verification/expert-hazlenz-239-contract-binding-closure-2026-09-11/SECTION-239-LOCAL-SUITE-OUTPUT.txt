@@ -1,0 +1,13 @@
+§239 UNRESOLVED DRIVER BINDING CLOSURE — LOCAL SUITE
+0 provider calls · 0 database operations
+
+336 passed, 0 failed
+
+contract     7224b69a57b7c10a…
+consistency  a9e093b494c78ce9…
+projection   hazlenz.expert.239.posture-projection.v1
+
+This file proves a DETERMINISTIC ADMISSION RULE, and nothing else. §238 already showed
+that a provider produces the B1 representation; §239 shows that the contract now
+admits it and still refuses the B2 and C1 contradictions. No semantic claim is made
+here and none may be read from it.

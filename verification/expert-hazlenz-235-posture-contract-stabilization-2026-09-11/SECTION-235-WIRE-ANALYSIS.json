@@ -1,0 +1,381 @@
+{
+  "artifact": "SECTION-235-WIRE-ANALYSIS",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "purpose": "classify all six §234 wire-shape anomalies and measure, without a provider call, how many of the ten §234 refusals the normalization alone would have carried to the projection.",
+  "classificationOfTheSixAnomalies": [
+    {
+      "cases": [
+        "F4",
+        "S4"
+      ],
+      "class": "INERT_WRAPPER_ENVELOPE",
+      "detail": "the whole analysis wrapped in a \"parameters\" or \"parameter name\" object",
+      "normalized": true
+    },
+    {
+      "cases": [
+        "E1"
+      ],
+      "class": "REQUIRED_ROOT_FIELD_ABSENT",
+      "detail": "four required root fields, the posture among them, simply not emitted",
+      "normalized": false
+    },
+    {
+      "cases": [
+        "F3"
+      ],
+      "class": "SELF_NAMED_FIELD_WRAPPER",
+      "detail": "three structured fields each transported as a JSON string holding an object keyed by the field's own name",
+      "normalized": true
+    },
+    {
+      "cases": [
+        "E3",
+        "F1"
+      ],
+      "class": "MALFORMED_JSON_STRING",
+      "detail": "the posture transported as a JSON string carrying a trailing brace, so the string does not parse. F1 also stringified its candidate array, malformed as well.",
+      "normalized": false
+    },
+    {
+      "cases": [
+        "E3"
+      ],
+      "class": "OTHER",
+      "detail": "an invented near-duplicate root key, crossHazardInsights2. Not normalized: an invented key is content, not encoding.",
+      "normalized": false
+    }
+  ],
+  "replayOfTheSection234Outputs": {
+    "important": "THIS IS NOT A RESCORE AND NOT A PREDICTION. These outputs were produced under the §233 contract. The model was never told the three alignment rules and never had the cessation field, so only the CONTAINER handling is measurable here. The frozen §234 5/16 stands untouched.",
+    "section234Refusals": 10,
+    "ofWhichHadAWireShapeAnomaly": [
+      "E1",
+      "E3",
+      "F1",
+      "F3",
+      "F4",
+      "S4"
+    ],
+    "ofWhichWereRefusedOnAContentRuleWithNoWireAnomaly": [
+      "D1",
+      "D2",
+      "D4",
+      "S1"
+    ],
+    "wireCasualtiesReachingTheProjectionIntactUnderSection235Normalization": 3,
+    "admittedAfterNormalizationUnderTheSection233Rules": [
+      "F4"
+    ],
+    "stillFailClosed": [
+      "E1",
+      "E3",
+      "F1"
+    ],
+    "whatTheRecoveredOnesNowFailOn": [
+      {
+        "caseId": "F3",
+        "codes": [
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ]
+      },
+      {
+        "caseId": "S4",
+        "codes": [
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ]
+      }
+    ],
+    "reading": "three of the six wire-shape casualties reach the projection intact. One is then admitted outright. The other two fail on a coverage rule that §234 never stated and §235 now does, which is the alignment work item rather than the normalization one. The three that stay refused are the absent-field case and the two malformed strings, and they are refused by design.",
+    "perCase": [
+      {
+        "caseId": "D1",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "D2",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [
+          "POSTURE_BASIS_REF_DUPLICATED"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "D3",
+        "wasAdmittedUnder233": true,
+        "section234Codes": [],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "D4",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "DECLARATION_NOT_COVERED"
+        ],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [
+          "DECLARATION_NOT_COVERED"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "E1",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_MISSING"
+        ],
+        "anomaliesObserved": [
+          "REQUIRED_ROOT_FIELD_ABSENT"
+        ],
+        "normalizationActions": [
+          "LEFT_UNTOUCHED"
+        ],
+        "normalizationFailsClosed": true,
+        "reachesTheProjectionIntact": false,
+        "codesAfterNormalizationUnder233": [
+          "POSTURE_MISSING"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "E2",
+        "wasAdmittedUnder233": true,
+        "section234Codes": [],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "E3",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_NOT_AN_OBJECT"
+        ],
+        "anomaliesObserved": [
+          "STRUCTURED_FIELD_ENCODED_AS_JSON_STRING",
+          "MALFORMED_JSON_STRING"
+        ],
+        "normalizationActions": [
+          "REFUSED_MALFORMED_JSON_STRING"
+        ],
+        "normalizationFailsClosed": true,
+        "reachesTheProjectionIntact": false,
+        "codesAfterNormalizationUnder233": [
+          "POSTURE_NOT_AN_OBJECT"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "E4",
+        "wasAdmittedUnder233": true,
+        "section234Codes": [],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "F1",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_NOT_AN_OBJECT"
+        ],
+        "anomaliesObserved": [
+          "STRUCTURED_FIELD_ENCODED_AS_JSON_STRING",
+          "MALFORMED_JSON_STRING"
+        ],
+        "normalizationActions": [
+          "REFUSED_MALFORMED_JSON_STRING",
+          "REFUSED_MALFORMED_JSON_STRING"
+        ],
+        "normalizationFailsClosed": true,
+        "reachesTheProjectionIntact": false,
+        "codesAfterNormalizationUnder233": [
+          "POSTURE_NOT_AN_OBJECT"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "F2",
+        "wasAdmittedUnder233": true,
+        "section234Codes": [],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "F3",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_BASIS_REF_UNRESOLVED",
+          "RESUME_CONDITION_REF_UNRESOLVED"
+        ],
+        "anomaliesObserved": [
+          "STRUCTURED_FIELD_ENCODED_AS_JSON_STRING",
+          "SELF_NAMED_FIELD_WRAPPER"
+        ],
+        "normalizationActions": [
+          "UNWRAPPED_SELF_NAMED_FIELD_WRAPPER",
+          "UNWRAPPED_SELF_NAMED_FIELD_WRAPPER",
+          "UNWRAPPED_SELF_NAMED_FIELD_WRAPPER"
+        ],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "F4",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_MISSING"
+        ],
+        "anomaliesObserved": [
+          "INERT_WRAPPER_ENVELOPE"
+        ],
+        "normalizationActions": [
+          "UNWRAPPED_INERT_ENVELOPE"
+        ],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "S1",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      },
+      {
+        "caseId": "S2",
+        "wasAdmittedUnder233": true,
+        "section234Codes": [],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "S3",
+        "wasAdmittedUnder233": true,
+        "section234Codes": [],
+        "anomaliesObserved": [],
+        "normalizationActions": [],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [],
+        "admittedAfterNormalizationUnder233": true
+      },
+      {
+        "caseId": "S4",
+        "wasAdmittedUnder233": false,
+        "section234Codes": [
+          "POSTURE_MISSING"
+        ],
+        "anomaliesObserved": [
+          "INERT_WRAPPER_ENVELOPE"
+        ],
+        "normalizationActions": [
+          "UNWRAPPED_INERT_ENVELOPE"
+        ],
+        "normalizationFailsClosed": false,
+        "reachesTheProjectionIntact": true,
+        "codesAfterNormalizationUnder233": [
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ],
+        "admittedAfterNormalizationUnder233": false
+      }
+    ]
+  },
+  "normalizationIdentity": {
+    "version": "hazlenz.expert.235.wire-normalization.v1",
+    "anomalyClasses": [
+      "INERT_WRAPPER_ENVELOPE",
+      "SELF_NAMED_FIELD_WRAPPER",
+      "REQUIRED_ROOT_FIELD_ABSENT",
+      "STRUCTURED_FIELD_ENCODED_AS_JSON_STRING",
+      "MALFORMED_JSON_STRING",
+      "OTHER"
+    ],
+    "actions": [
+      "UNWRAPPED_INERT_ENVELOPE",
+      "PARSED_JSON_STRING_FIELD",
+      "UNWRAPPED_SELF_NAMED_FIELD_WRAPPER",
+      "REFUSED_AMBIGUOUS_ENVELOPE",
+      "REFUSED_MALFORMED_JSON_STRING",
+      "REFUSED_PARSED_VALUE_DOES_NOT_SATISFY_TRANSMITTED_SCHEMA",
+      "LEFT_UNTOUCHED"
+    ],
+    "knownInertWrapperKeys": [
+      "parameters",
+      "parameter",
+      "parameter name",
+      "parameter_name",
+      "parameterName",
+      "input",
+      "arguments",
+      "args"
+    ],
+    "normalizableFields": [
+      "expertHazardCandidates",
+      "unresolvedFactDeclarations",
+      "decisionCriticalClarifications",
+      "immediateSafetyPosture"
+    ],
+    "unwrapsSelfNamedFieldWrapperInsideAJsonStringOnly": true,
+    "unwrapsUnstringifiedSelfNamedField": false,
+    "repairsMalformedJson": false,
+    "inventsSemanticFields": false,
+    "readsProseForMeaning": false,
+    "acceptsAParseOnlyIfItExactlySatisfiesTheTransmittedSchema": true
+  }
+}

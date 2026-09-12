@@ -1,0 +1,50 @@
+PRE- AND POST-OPERATION WORKTREE STATE — 2026-08-31
+This operation modified NO source file. Only docs and this evidence directory were written.
+
+HEAD:      37a5d1b50abe836eb19dd24ee18ad10557bda131
+BRANCH:    main
+UPSTREAM:  origin/main
+ORIGIN:    de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+AHEAD/BEHIND vs origin/main (left=origin, right=HEAD): 0	1
+
+STAGED:    0
+STASHES:   4
+TAGS:      24
+
+== TRACKED MODIFIED (pre-existing permanent-projection work, PRESERVED UNTOUCHED) ==
+backend/package.json
+backend/scripts/probe-expert-routing.ts
+backend/scripts/test-expert-contract-foundation.ts
+backend/scripts/test-expert-routing-contract.ts
+backend/src/safescope-v2/evidence/evidence-foundation.ts
+backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts
+docs/INSITE_CURRENT_STATE.json
+docs/INSITE_ENGINEERING_BLUEPRINT.md
+frontend-next/tsconfig.json
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+
+== TRACKED DELETED (pre-existing, PRESERVED AS-IS) ==
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+
+== STASHES (untouched) ==
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== AUTHORITATIVE EXPERT FILE HASHES AT THIS HEAD ==
+8814f67bec9ec42e565d44bd895059c63c3f47553f6ef0139ffbe6a21c3ff6f2  backend/src/safescope-v2/expert-hazlenz/expert-authority-matrix.ts
+db5ffe30722cc7181f46e06b4e5b1efb5fddcdcba736177f23bc1483f3f57c04  backend/src/safescope-v2/expert-hazlenz/expert-authority-merge.ts
+b1d68e3458e87d37978a1daea85e6404cb90706f23941af1b06775acd474af82  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+f1cc7a61cf957a45449274eaa1763fece0bd9cfee095a636421cd5a0ff88e467  backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts
+0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+c79c0cfb3c5f8c6103999e7a0820afb10296c47c7682487685e4a6d393769a99  backend/src/safescope-v2/expert-hazlenz/expert-provider.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+698c052473cdd01abfa59d3405b8ee56deb7c01956db77bf964e739af9346e10  backend/src/safescope-v2/expert-hazlenz/expert-runner.ts
+9ecd69eadfab9619987df38c9277badf5a5e716dd63b989229aba3965761d1b2  backend/src/safescope-v2/expert-hazlenz/replay-expert-provider.ts

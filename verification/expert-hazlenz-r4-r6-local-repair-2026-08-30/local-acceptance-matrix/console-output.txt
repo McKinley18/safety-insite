@@ -1,0 +1,52 @@
+EXPERT HAZLENZ — LOCAL BEHAVIOUR PROBE (zero cost)
+provider   local-ollama   model qwen3-coder:30b
+cases      10   repeats 3   total calls 30
+hosted     NONE — this script imports no hosted adapter
+
+  R1 #1  outcome=ANALYZED  cand=2 clar=3 ins=1 dis=0
+  R1 #2  outcome=ANALYZED  cand=2 clar=3 ins=1 dis=0
+  R1 #3  outcome=ANALYZED  cand=2 clar=3 ins=1 dis=0
+  R2 #1  outcome=FAILED  cand=0 clar=0 ins=0 dis=0  issues=EVIDENCE_OUT_OF_BOUNDS
+  R2 #2  outcome=FAILED  cand=0 clar=0 ins=0 dis=0  issues=EVIDENCE_OUT_OF_BOUNDS
+  R2 #3  outcome=FAILED  cand=0 clar=0 ins=0 dis=0  issues=EVIDENCE_OUT_OF_BOUNDS
+  R3 #1  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0
+  R3 #2  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0
+  R3 #3  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0
+  R4 #1  outcome=ANALYZED  cand=1 clar=3 ins=2 dis=0
+  R4 #2  outcome=ANALYZED  cand=1 clar=3 ins=1 dis=0
+  R4 #3  outcome=ANALYZED  cand=1 clar=3 ins=1 dis=0
+  R5 #1  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0
+  R5 #2  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0
+  R5 #3  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0
+  R6 #1  outcome=NOTHING_TO_ADD  cand=0 clar=0 ins=0 dis=0
+  R6 #2  outcome=NOTHING_TO_ADD  cand=0 clar=0 ins=0 dis=0
+  R6 #3  outcome=NOTHING_TO_ADD  cand=0 clar=0 ins=0 dis=0
+  R7 #1  outcome=NOTHING_TO_ADD  cand=0 clar=0 ins=0 dis=0
+  R7 #2  outcome=NOTHING_TO_ADD  cand=0 clar=0 ins=0 dis=0
+  R7 #3  outcome=NOTHING_TO_ADD  cand=0 clar=0 ins=0 dis=0
+  H7 #1  outcome=ANALYZED  cand=1 clar=2 ins=1 dis=0  quotes=1 bound=1 supporting=0
+  H7 #2  outcome=ANALYZED  cand=1 clar=3 ins=1 dis=0  quotes=1 bound=1 supporting=0
+  H7 #3  outcome=ANALYZED  cand=1 clar=3 ins=1 dis=0  quotes=1 bound=1 supporting=0
+  H8 #1  outcome=ANALYZED  cand=0 clar=2 ins=1 dis=0  quotes=0 bound=0 supporting=0  issues=GROUNDING_CLAIM_UNSUPPORTED
+  H8 #2  outcome=ANALYZED  cand=0 clar=3 ins=1 dis=0  quotes=0 bound=0 supporting=0  issues=GROUNDING_CLAIM_UNSUPPORTED
+  H8 #3  outcome=ANALYZED  cand=0 clar=3 ins=1 dis=0  quotes=0 bound=0 supporting=0  issues=GROUNDING_CLAIM_UNSUPPORTED
+  G1 #1  outcome=ANALYZED  cand=1 clar=2 ins=0 dis=0
+  G1 #2  outcome=ANALYZED  cand=1 clar=2 ins=0 dis=0
+  G1 #3  outcome=ANALYZED  cand=1 clar=2 ins=0 dis=0
+
+---------------- ROUTING ----------------
+opportunities 48  hits 45  misses 3  over-routed 0  explanation-only losses 5
+---------------- GROUNDING ----------------
+{
+ "EVIDENCE_OPPORTUNITIES": 6,
+ "EVIDENCE_QUOTES_EMITTED": 3,
+ "EVIDENCE_QUOTES_EXACTLY_BOUND": 3,
+ "EVIDENCE_QUOTES_UNBINDABLE": 0,
+ "QUOTES_SUPPORTING_ANCHOR": 0,
+ "GROUNDED_TYPED_OBJECTS": 3,
+ "UNGROUNDED_TYPED_OBJECTS": 0,
+ "iterationsWithSupportingQuote": 0,
+ "iterationsTotal": 6
+}
+
+written  local/local-behaviour-r4-r6-local-repair-acceptance.json

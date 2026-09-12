@@ -1,0 +1,53 @@
+CONFINEMENT — R6 HAZARD-ACTUALITY / CONTROLLED-EXPOSURE LOCAL REPAIR, 2026-08-30
+
+A. controllers/services/modules referencing the Expert module:
+   NONE (0 matches).
+
+B. frontend references:
+   NONE (0 matches).
+
+C. importers of the HOSTED (Anthropic) adapter (construct match):
+backend/scripts/test-expert-anthropic-adapter-repair.ts
+backend/scripts/diagnose-anthropic-schema-compatibility.ts
+backend/scripts/diagnose-r4-r6-local-repair.ts
+backend/scripts/probe-expert-hosted-transport.ts
+backend/scripts/probe-expert-hosted-r4-r6-targeted-confirmation.ts
+backend/scripts/probe-expert-hosted-v5-temporal-state-confirmation.ts
+   Identical set to the prior (§112) phase. This phase added NO new importer and made ZERO hosted
+   calls of any kind (explicitly prohibited by this operation's authorization).
+
+D. did this phase modify any production/customer or Expert-core file beyond the prompt?
+   Only `expert-prompt.ts` changed among Expert-core files this phase (254 insertions / 31
+   deletions cumulative with the pre-existing §105-111 working-tree diff; this phase's own
+   contribution is the "A HAZARD-RELEVANT FACT IS NOT YET A CURRENT HAZARD" system-prompt section,
+   the matching user-prompt reinforcement line, and the v5->v6 version bump). `expert-contract.
+   types.ts`, `expert-normalization.ts`, and `fixtures/no-call-scenarios.ts` carry ONLY the
+   pre-existing diff -- this phase did not touch them, per the explicit "do not reopen grounding/
+   evidence architecture" instruction.
+
+   New files added this phase, all probe/fixture-only, zero production reference:
+     backend/src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures.ts
+       (U-A..U-H contrastive corpus, V1-V8 adversarial recall corpus)
+     backend/scripts/diagnose-expert-hazard-actuality-repair.ts
+       (local-only harness, Ollama, $0.00)
+
+   One literal re-anchor in an existing protected suite (not a weakening -- the property asserted
+   is unchanged, only the version string moved, same pattern as every prior prompt-version bump):
+     backend/scripts/test-expert-routing-contract.ts  (A.2: 'hazlenz.expert.prompt.v5' -> '...v6')
+
+E. hosted calls made this phase:
+   ZERO, as required. Every diagnostic run this phase used `OllamaExpertProvider`
+   (localhost:11434, $0.00).
+
+F. evidence/grounding architecture:
+   UNCHANGED. `expert-normalization.ts`, the quote-binding logic in `expert-prompt.ts`'s
+   `bindWireAnalysis`, `groundingStatus` semantics, and `EVIDENCE_OUT_OF_BOUNDS` scope were not
+   modified. Local-only artifacts observed during iteration (verbatim-quote corruption and an
+   empty-evidence-array grounding mismatch on the `T5` fixture) were diagnosed, attributed to
+   pre-existing local-provider fragility already documented as `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN`,
+   and resolved entirely through PROMPT wording changes and one fixture-text simplification (`U-H`)
+   -- never by touching the evidence/grounding code.
+
+G. commit/push/tag/deploy status:
+   Nothing committed, pushed, tagged, or deployed. Working tree carries this phase's changes on
+   top of the pre-existing uncommitted §105-112 diff.

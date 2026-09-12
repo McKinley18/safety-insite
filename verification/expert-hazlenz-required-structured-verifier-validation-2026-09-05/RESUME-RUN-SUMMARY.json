@@ -1,0 +1,120 @@
+{
+  "artifact": "SECTION_187B_RESUME_RUN_SUMMARY",
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "RESUME_CALLS_ATTEMPTED": 15,
+  "BEHAVIORAL_EXECUTIONS": 15,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.27927,
+  "spendAccounting": "ACTUAL provider-returned usage only. A failed call adds zero. The §187A synthetic failure charge is NOT reproduced here.",
+  "resumeCallCap": 15,
+  "resumeSpendCeilingUsd": 1.25,
+  "stopReason": null,
+  "recordsOnDisk": 15,
+  "MECHANICAL": {
+    "providerErrorsAmongBehavioral": 0,
+    "contractInvalid": 15,
+    "wrongKeyDeclarations": 0,
+    "unauthorizedSettlementTransitions": 0,
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "challengeBearing": 1,
+    "clarificationBearing": 0,
+    "bindingEmitted": 2,
+    "declarationModeCounts": {
+      "STILL_UNRESOLVED": 12,
+      "BOUND_BY_CLARIFICATION": 2,
+      "CHALLENGE_FACT_VALIDITY": 1
+    }
+  },
+  "STRICT_SEMANTIC_GATE": "PENDING_HUMAN_ADJUDICATION — this script does not decide it",
+  "perRow": [
+    {
+      "rowId": "HR-01",
+      "behavioralExecutions": 3,
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        "owed:fire:burner_flame_failure_safeguard_function_verified"
+      ],
+      "clarificationEmitted": 0,
+      "challengeEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-04",
+      "behavioralExecutions": 3,
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "clarificationEmitted": 0,
+      "challengeEmitted": 1,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-06",
+      "behavioralExecutions": 3,
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "clarificationEmitted": 0,
+      "challengeEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-08",
+      "behavioralExecutions": 3,
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "BOUND_BY_CLARIFICATION",
+        "STILL_UNRESOLVED"
+      ],
+      "bindingKeys": [
+        null,
+        "owed:energy:auger_drive_isolation_verified_before_work",
+        null
+      ],
+      "clarificationEmitted": 0,
+      "challengeEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    },
+    {
+      "rowId": "HR-09",
+      "behavioralExecutions": 3,
+      "declarationModes": [
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED",
+        "STILL_UNRESOLVED"
+      ],
+      "bindingKeys": [
+        null,
+        null,
+        null
+      ],
+      "clarificationEmitted": 0,
+      "challengeEmitted": 0,
+      "wrongKeyDeclared": 0,
+      "STRICT_SEMANTIC_SCORE": "PENDING_HUMAN_ADJUDICATION"
+    }
+  ]
+}

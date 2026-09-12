@@ -1,0 +1,117 @@
+{
+  "artifact": "SECTION_210B3B_TOKEN_REPORT",
+  "executorVersion": "hazlenz.expert.210b3b.uncached-probe-execution.v1",
+  "authorizationReference": "SECTION-210B-3B-PRODUCT-OWNER-AUTHORIZATION-2026-09-09",
+  "preregistrationSha256": "7b2e292f5fc2ddd61368b4adc8f4416c11b1925ecd514a589169f0118fec20b5",
+  "cachingEnabled": false,
+  "cacheCreationInputTokens": "NOT_APPLICABLE — CACHING_DISABLED",
+  "cacheReadInputTokens": "NOT_APPLICABLE — CACHING_DISABLED",
+  "cacheNote": "Caching was deliberately disabled. Absent or zero provider cache fields in this run are NOT evidence about cache effectiveness and may not be read as such.",
+  "model": "claude-sonnet-5",
+  "respondedModels": [
+    "claude-sonnet-5",
+    null
+  ],
+  "callsCompleted": 8,
+  "callsSucceeded": 7,
+  "callsAuthorized": 8,
+  "retries": 0,
+  "verifierCalls": 0,
+  "governedStageCalls": 0,
+  "databaseOperations": 0,
+  "structurallyBlockedCases": [
+    "PB-02"
+  ],
+  "perCall": [
+    {
+      "caseId": "PB-01",
+      "inputTokens": 24026,
+      "outputTokens": 2332,
+      "costUsd": 0.071372,
+      "latencyMs": 65524,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "PB-02",
+      "inputTokens": null,
+      "outputTokens": null,
+      "costUsd": 0,
+      "latencyMs": 393,
+      "stopReason": null,
+      "failureClass": "TRANSPORT_STRUCTURAL"
+    },
+    {
+      "caseId": "PB-03",
+      "inputTokens": 24030,
+      "outputTokens": 2544,
+      "costUsd": 0.0735,
+      "latencyMs": 67939,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "PB-04",
+      "inputTokens": 24049,
+      "outputTokens": 2937,
+      "costUsd": 0.077468,
+      "latencyMs": 35392,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "PB-05",
+      "inputTokens": 24041,
+      "outputTokens": 3241,
+      "costUsd": 0.080492,
+      "latencyMs": 35015,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "PB-06",
+      "inputTokens": 24042,
+      "outputTokens": 1815,
+      "costUsd": 0.066234,
+      "latencyMs": 23957,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "PB-07",
+      "inputTokens": 24020,
+      "outputTokens": 2824,
+      "costUsd": 0.07628,
+      "latencyMs": 33223,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "PB-08",
+      "inputTokens": 24034,
+      "outputTokens": 3215,
+      "costUsd": 0.080218,
+      "latencyMs": 72019,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    }
+  ],
+  "logicalInputTokensTotal": 168242,
+  "outputTokensTotal": 18908,
+  "medianInputTokens": 24034,
+  "medianOutputTokens": 2824,
+  "cumulativeCostUsd": 0.525564,
+  "costPerCaseUsd": 0.065696,
+  "hardCeilingUsd": 0.65,
+  "withinCeiling": true,
+  "priorProjectionUncachedUsd": 0.5779,
+  "section208FirstPassMedianInputTokens": 24440,
+  "medianInputDeltaVs208": -406,
+  "staticTokenIncreaseAttributableTo210B2": {
+    "estimatedFromChars": 1220,
+    "basis": "derived from the frozen §208 first-pass leg (69,968 body bytes / 24,512 input tokens). An estimate from real cohort data, not a tokenizer result.",
+    "measuredNote": "The observed median-input delta against the §208 median is the measurable quantity. It is NOT purely the §210B-2 static delta: the §210B-3A stimuli are different observations from the §208 cohort, so per-case input varies for that reason too."
+  },
+  "stopped": null,
+  "timestamp": "2026-09-09T19:49:11.095Z"
+}

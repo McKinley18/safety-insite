@@ -1,0 +1,48 @@
+{
+  "artifact": "SECTION_182_DISPLACED_FACT_PROOFS",
+  "shapes": "HR-05 and HR-07 — owed fact A settled, adjacent fact B introduced",
+  "providerCalls": 0,
+  "1_settledA_notReopenedByClaimAboutB": {
+    "aStatus": "SETTLED_BY_EVIDENCE",
+    "bClaimAccepted": true,
+    "ledgerUnchangedByConsumption": true
+  },
+  "2_B_cannotInheritAsClaimOrAuthority": {
+    "applied": false,
+    "refusedBecause": [
+      "AUTHORITY_NOT_FOR_THIS_CLAIM",
+      "AUTHORITY_NOT_FOR_THIS_FACT",
+      "AUTHORITY_EVIDENCE_DIGEST_MISMATCH"
+    ]
+  },
+  "3_B_mustBeSeparatelyReviewed": {
+    "bAuthorityMinted": true,
+    "note": "a separate human review was required for B"
+  },
+  "4_authorityForA_cannotSettleB": {
+    "refusedBecause": [
+      "AUTHORITY_NOT_FOR_THIS_CLAIM",
+      "AUTHORITY_NOT_FOR_THIS_FACT",
+      "AUTHORITY_EVIDENCE_DIGEST_MISMATCH"
+    ]
+  },
+  "5_authorityForB_cannotAlterA": {
+    "applied": false,
+    "refusedBecause": [
+      "AUTHORITY_NOT_FOR_THIS_CLAIM",
+      "AUTHORITY_NOT_FOR_THIS_FACT",
+      "AUTHORITY_EVIDENCE_DIGEST_MISMATCH"
+    ],
+    "aStatusAfterAttempt": "UNRESOLVED"
+  },
+  "6_challengeAgainstIneligibleFact": {
+    "refused": [
+      {
+        "factKey": "owed:not:in:ledger",
+        "codes": [
+          "FACT_NOT_IN_LEDGER"
+        ]
+      }
+    ]
+  }
+}

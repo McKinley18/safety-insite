@@ -1,0 +1,5 @@
+# path convention: BARE_FILENAME — verify with: cd <this directory> && shasum -a 256 -c REPORT-232.sha256
+# contents: FROZEN EVIDENCE ONLY. No living document is listed here.
+944ea8b43bf4ed42575245e8b650f7a657b60d0e586ee46d8c3f984beb757e07  SECTION-232-ROOT-CAUSE.json
+1ba206233639e44fc2014ef441d36a13da1e0c14b10ec0d529092e3d1a74c31f  SECTION-232-REMEDIATION-DESIGN.json
+cc50ac0cb0d3ca69422af5a9544f7f6e86ba6f963f4695dbcacb81954c03d8bb  SECTION-232-REPORT.md

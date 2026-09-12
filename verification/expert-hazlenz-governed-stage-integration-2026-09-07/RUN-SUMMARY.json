@@ -1,0 +1,220 @@
+{
+  "artifact": "SECTION_202_RUN_SUMMARY",
+  "date": "2026-09-07",
+  "operation": "§202 — parallel semantic-adjudication facilitation, separate governed-binding stage development integration, and systematic authority-boundary sweep, across five concurrent agents.",
+  "TERMINAL": "EXPERT_HAZLENZ_GOVERNED_STAGE_INTEGRATED_DEVELOPMENT_ONLY — PRODUCT_OWNER_DECISIONS_REQUIRED",
+  "EXPERIMENT_PROVIDER_CALLS": 0,
+  "EXPERIMENT_PROVIDER_SPEND_USD": 0.0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "commit": "NOT PERFORMED",
+  "push": "NOT PERFORMED",
+  "tag": "NOT PERFORMED",
+  "branchCreated": "NOT PERFORMED",
+  "deploy": "NOT PERFORMED",
+  "hostedGovernedStageCanary": "NOT PERFORMED",
+  "agentsLaunched": 5,
+  "ranConcurrently": true,
+  "concurrencyEvidence": "all five dispatched in one message; completion order A, B2, D, B1, C does not match dispatch order A, B1, B2, C, D",
+  "conflictsDetected": 0,
+  "existingFilesModifiedByAgents": 0,
+  "ownershipMapWrittenBeforeAnyAgentBegan": true,
+  "ADJUDICATION": {
+    "totalSlots": 152,
+    "structurallyPrefilled": 24,
+    "excludedByProductOwnerDecision": 8,
+    "answerableDenominator": 120,
+    "productOwnerVerdictsSupplied": 0,
+    "remaining": 120,
+    "supplementaryDeferred": 58,
+    "status": "PENDING_HUMAN_ADJUDICATION",
+    "whyZero": "the judgments require the product owner in the loop and a subagent has no channel to them. Workstream A delivered the machinery and review unit U01 was presented; no verdict was returned. Reported as 0 of 120, not softened.",
+    "reviewUnits": 21,
+    "productOwnerDecisionsTakenThisSlice": [
+      "THE 8 SG-01/SG-02 ROW-AXIS SLOTS ARE EXCLUDED, denominator 120 not 128. Section 200 recorded that no semantic judgement is possible or permitted on those rows while counting their slots as open. Recorded as OUT_OF_SCOPE_NO_MODEL_OUTPUT with the section 200 reason quoted. Section 200 unedited. NO VERDICT SUPPLIED. Verified: the operation touched zero verdict and zero attribution fields.",
+      "THE THREE R_PRIORITY_FLOOR_IMPACT VOCABULARY MEMBERS ARE CONFIRMED: FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE, FLOOR_WOULD_NOT_MATERIALLY_UNDER_ESCALATE, INDETERMINATE. Section 200 enumerated none.",
+      "THE 58 SUPPLEMENTARY FIELDS ARE DEFERRED, carried with their own counters, not counted in the headline."
+    ],
+    "section200InstrumentDefectsFound": [
+      "THE 128 FIGURE PUBLISHED IN SECTION 201 CONTAINED 8 UNANSWERABLE SLOTS. SG-01 and SG-02 carry ADJUDICABLE=false with a recorded reason that no semantic judgement is possible or permitted, yet their 4 row-axis slots each sat inside the open 128.",
+      "R_PRIORITY_FLOOR_IMPACT HAD NO VOCABULARY. Axis R is two slots per fact and the axis declaration carries the scale for the classification half only, which is why 8 facts x 13 keys = 104 while factAxes declares 12.",
+      "AXIS O DOES NOT EXIST. Section 200 prose says axes N, O, S and T; the worksheet defines N, S and T. Agent A reproduced the worksheet rather than the sentence, which is why the count is 24 and not 32."
+    ],
+    "noSemanticSelfGrading": "recordVerdict refuses any attribution but the exact string PRODUCT_OWNER, checked before the slot is resolved, so a model-authored verdict is not representable. It also refuses writes into the 24 structural slots and any out-of-vocabulary value, and preserves the supplied string verbatim."
+  },
+  "GOVERNED_BINDING_STAGE": {
+    "placement": "after deterministic validation and identity, before enrichment, as its own call on governed rows only",
+    "ordinaryFirstPass": "stays capability-ABSENT on every row and is byte-unchanged",
+    "whyThisPlacement": "least provider authority: at this point BOTH sides of the relation are HazLenz-owned closed sets, a minted request-scoped factRef and the exact supplied sourceId set. The model selects and never names.",
+    "enforcedByCallGraphNotComment": "the nominator is typed to receive Governed202Request only: no facts, no factKey, no seal",
+    "rejectedAlternatives": [
+      "inside the first pass: addresses binding by model-chosen declarationId against an identity that does not yet exist, and is the shape section 199 refused",
+      "before projection: makes addressing end-to-end model-authored and orphans bindings the 17 projection refusal codes discard",
+      "in the verifier: conflates relied-on-R with bound-to-R and inherits whole-verdict refusal",
+      "deterministic text matching: the section 160 retired semantic matcher again"
+    ],
+    "grammarMeasuredAsSent": {
+      "note": "real OBS-<rowId> shape; the section 201 12-character placeholder error deliberately not repeated",
+      "section199_ABSENT_accepted": "17 enums / 74 alts / 54 props / 18,679 schema B / 63,691 total B",
+      "section199_PRESENT_rejected": "18 / 75 / 55 / 19,124 / 67,086",
+      "section202_stage_1_record": "3 / 5 / 5 / 1,538 / 6,074"
+    },
+    "B20_CAVEAT": "B20 IS DIAGNOSTIC EVIDENCE AND IS NOT PROVIDER ACCEPTANCE. Labelled so in code via GRAMMAR_MEASUREMENT_CLAIMS_202 with five flags false, in the suite banner and in the memo. Only a hosted canary can establish acceptance.",
+    "testsB1toB20": "all 20 PASS within 54/54",
+    "preservationHashes": "six modules recomputed identical before and after; 10/10 frozen section 199 row schemas reproduce with 0 drift; zero backend/src imports of any section 202 module",
+    "governedTextConclusion": "the first-pass prohibition does NOT automatically apply to a separate stage: it lives in v15's system prompt and section 196's projection boundary, neither in this stage's path, and the verifier already receives unredacted governed text. Both exposures were built; default stays REDACTED; SUPPLIED_VERBATIM throws without an explicit verbatimExposureRuling string.",
+    "AUTHORIZATION_POSTURE": "DO NOT GRANT THE SUPPLIED_VERBATIM RULING YET. Red-team BYPASS-1 shows it would authorize a weaker mechanism than the one described. Cost of deferring is zero."
+  },
+  "EFFECTIVE_GRAMMAR_IDENTITY": {
+    "principle": "classification is by schema keyword, never by value shape; that distinction IS the correction",
+    "rules": 7,
+    "limitsRecorded": 6,
+    "validatedBeforeUse": "the reconstruction reproduces section 199's own recorded contract ids exactly (SG-01 d0713f36696e8bea, SG-02 243bb6766c05599f), so findings are about the run and not a fixture",
+    "measuredPartition": "10 capability-ABSENT rows to one identity, 2 PRESENT rows to another, on both the sent and the wire schema",
+    "section200DefectDemonstrated": "replaying the recorded 12-step order with a requestContractId-keyed cache issues 12 and skips 0: SG-02 goes through. Adjacency misses it independently (positions 3 and 8, four completed inferences between). Under the section 202 key SG-02 is suppressed.",
+    "correctionsToSection201Function": [
+      "section 201's grammarShapeOf erased grammar-RELEVANT leaf scalars, collapsing {type:string} with {type:number}, additionalProperties:false with :true, and pattern:^a$ with ^[0-9]{40}$ - false equivalences IN THE DANGEROUS DIRECTION, declaring a DIFFERENT grammar already-rejected",
+      "section 201 split on annotation PRESENCE while collapsing annotation CONTENT, the wrong way round",
+      "the key omitted provider/model scope and the rejection signature, and required requestContractClass so a harness that forgot it silently disabled the memory",
+      "there was no accounting at all"
+    ],
+    "IT_IS_A_PROXY": "the disclaimer is a code constant returned as a field. Agreement with provider behaviour is measured on ONE cohort of twelve: agreement, not equality."
+  },
+  "CIRCUIT_BREAKER": {
+    "stopVsSkipResolved": "both dispositions implemented; which applies is read from a frozen FrozenCapabilityRequirement table. Nothing inspects class name, counts or position. A totality check at construction refuses a table not covering every planned (stage, class), so the question can never arrive undecided mid-spend.",
+    "threeStateAccounting": "ATTEMPTED / SKIPPED_DUE_TO_KNOWN_DETERMINISTIC_REJECTION / NOT_EXERCISED, per-row ledger, accountingViolations proves the arithmetic",
+    "skippedRowNeverCountedAsFailure": "recordAttempt is never called for a skipped row, so the section 198 breaker never learns it existed",
+    "replayNOT_REQUIRED": "11 attempted / 1 skipped / 0 not-exercised; attempt denominator 11, provider-failure numerator 1",
+    "section199AsExecuted": "12 / 0 / 0; denominator 12, numerator 2",
+    "replayREQUIRED": "3 / 0 / 9",
+    "NOT_WIRED": "not wired into any executor; behaviour against a live provider is INFERRED FROM REPLAY, NOT MEASURED, and the two section 199 rejections are two observations, not a rate"
+  },
+  "AUTHORITY_BOUNDARY_SWEEP": {
+    "findings": 11,
+    "categoryA": 5,
+    "categoryB": 5,
+    "categoryC": 0,
+    "categoryD": 1,
+    "reproducedByExecutingRealProductionFunction": "10 of 11",
+    "THE_STRUCTURAL_FINDING": "EVERY category-A fix lands on a file whose sha256 is FROZEN. Section 187's owedFactSourceHashes pins four modules, re-asserted by ELEVEN verify-19x-source-integrity scripts, plus expert-prompt.ts and expert-verifier-contract-v3.ts. THE SECTION 202 CATEGORY-A HARDENING AUTHORIZATION AND THE SECTION 187 PIN ARE IN DIRECT CONFLICT and only the product owner can resolve it.",
+    "callSiteInsertionsApplied": 0,
+    "guardsWrittenAsPureFunctions": 5,
+    "pinnedHashesRecomputedIdentical": 6,
+    "highestConsequenceNewFinding": "ABF-5: a nomination colliding with a TERMINAL-STATUS key is admitted, addOwedFact then silently no-ops, and preservationViolations AND bindingSideEffects BOTH report nothing. A genuine new safety fact vanishes while a question is still projected against the key.",
+    "categoryAFindings": [
+      "ABF-1 declaring-stage membership validation claimed at OWED_FACT_FIELD_PROVENANCE:253 and performed nowhere; a non-member is refused only by a key-shape accident under a misnamed code",
+      "ABF-2 supplied acceptableEvidence copied verbatim with provenance unchecked, so MODEL_SELF_AUTHORED reaches a DEVELOPMENT ledger (PRODUCTION does fail closed)",
+      "ABF-3 the forbidden-field scan tests d and never d.nomination",
+      "ABF-7 the projection's governance scan is TOP-LEVEL ONLY where the canonical boundary recurses depth-8; extra:{citation,approved} admitted with zero codes, held shut only by the provider honouring additionalProperties:false",
+      "ABF-8 the nomination ceiling is a bare default parameter with no named constant"
+    ],
+    "categoryBFindings": [
+      "ABF-4 provider priority reaches OwedFact.priority AND two published contracts in one directory contradict each other",
+      "ABF-5 the vanished-safety-fact finding above",
+      "ABF-6 HIGH-4 confirmed and extended: a fourth-argument blob returned verbatim with ZERO merge-invariant violations because it bypasses normalisation entirely",
+      "ABF-9 a provider-escalated question measured as SELECTED while the deterministic life-critical one is SUPPRESSED_BY_BUDGET",
+      "ABF-10 citation blind spots measured and DELIBERATELY NOT REPAIRED, because broadening the regex is semantic inference"
+    ],
+    "HIGH_1": {
+      "classification": "B - ARCHITECTURE/POLICY DECISION REQUIRED",
+      "implemented": false,
+      "confirmed": true,
+      "driftIsBidirectional": "the runtime gained AcceptableEvidence, nullable whyUnresolved and the forbidden-field scan, while the prototype still holds COVERAGE_DECISION_FORBIDDEN_INPUTS which the promotion dropped",
+      "measured": "the SAME declaration is refused by the runtime and ADMITTED WITH ZERO CODES by the prototype",
+      "why": "fails four of five category-A gate clauses and is explicitly withheld by section 202's own no-final-OwedFact-policy stop condition",
+      "registerCorrection": "the section 201 citation at expert-verifier-contract-v3.ts:519 is a doc comment, not an import"
+    },
+    "HIGH_2": {
+      "classification": "B - ARCHITECTURE/POLICY DECISION REQUIRED",
+      "implemented": false,
+      "conclusionConfirmed": true,
+      "framingCorrectedTwice": [
+        "there ARE two producers and parseOwedFactDeclarations IS type-compatible; it is simply never wired",
+        "THE INCOMPATIBILITY IS COMPILE-TIME ONLY: measured, consumeSettlementClaims accepts a requestedBy:VERIFIER_V3 object and produces a claim, because it never reads that field"
+      ],
+      "readingTooStrongly": "anyone reading HIGH-2 as 'the types make this unreachable' is reading it wrongly",
+      "stillHolds": "PROVIDER_SETTLEMENT_AUTHORITY = NEVER holds structurally, on a real module-private unique symbol"
+    }
+  },
+  "RED_TEAM": {
+    "evidencedBypasses": 5,
+    "high": 2,
+    "BYPASS_1": "HIGH, and it gates a ruling. The entire SUPPLIED_VERBATIM citation contract is gated behind CITATION_SHAPED_PATTERN. VERIFIED INDEPENDENTLY BY THE ORCHESTRATOR BY EXECUTING THE PATTERN: '29 CFR 1910.147' fires; '29 C.F.R. 1910.147', '1910.147(c)(4)', 'NFPA 70E' and 'OSHA 1926.1153' ALL MISS. The mode's safety argument rests on a detector that recognises one spelling. The input-side redactor uses the same pattern, so it leaks in both directions.",
+    "BYPASS_2": "HIGH, with an orchestrator correction that STRENGTHENS it. The red team reported additionalProperties:false 'count 0 in both'. Binary-safe measurement: section 201 has ONE occurrence, IN A COMMENT, asserting that it refuses fields at the boundary. No schema anywhere sets it. The true finding is a cleaner instance of the systemic class than stated: not an absent feature but a COMMENT CLAIMING A PROTECTION LAYER THAT WAS NEVER BUILT. Agent B1 measured the consequence from the other side: section 201's own boundary ADMITS {affectedDecision:APPLICABILITY} as BOUND.",
+    "BYPASS_3": "MED-HIGH, a model-authored value enters a closed vocabulary through a TypeScript cast whose validation sits inside a caller-gated branch; with enabled=[] a hostile verdict flips from refused to admitted:true",
+    "BYPASS_4_AND_8": "MED, reporting-integrity findings: Agent C's guards have 0 external call sites, and the evidence guard covers 6 of 97 directories, has no production call site and is defeated by a symlink because resolve is lexical rather than realpath",
+    "ORCHESTRATOR_DOES_NOT_ACCEPT": "the red team's 'apply both or neither' framing on ABF-3/ABF-4. Agent C does not exempt priority, it ROUTES it, reporting PROVIDER_AUTHORED_NOMINATION_PRIORITY separately and not as a violation, because NominationPayload.priority is a REQUIRED field of the published nomination contract and scanning it as forbidden would refuse every well-formed nomination. That contradiction IS ABF-4 and is why it is category B. C's handling is more careful than the challenge implies.",
+    "whatHeld": "the customer-inactive boundary was ATTACKED rather than re-verified and held four ways, decisively via backend/tsconfig.json include:[src/**/*] which places every expert-20x module outside the production build. A model-authored factKey could NOT reach a verifier declaration under any enabled list. Agent B1 genuinely closed the section 201 cross-analysis hole.",
+    "declaredCoverageGaps": "Agent C's two disposition documents and Agent B1's and B2's memos were ALL ABSENT when the red team finished; it read none and claims nothing about them. AGENT B2'S REJECTION-CACHE KEY DERIVATION IS UNCHALLENGED BY THIS RED TEAM."
+  },
+  "ORCHESTRATOR_FIX": {
+    "what": "Agent B1's contract module contained a RAW NUL BYTE used as a hash-join delimiter: sound intent, unsafe encoding. It made grep treat the file as binary and it SILENTLY RETURNED NOTHING DURING THE ORCHESTRATOR'S OWN VERIFICATION, which is how it was caught.",
+    "fix": "replaced with the escape sequence; the runtime string is identical so every hash that function computes is unchanged",
+    "hashes": "a254e4bc... -> 2d0b0f86..., +5 bytes",
+    "reVerified": "B1 suite re-run 54/54",
+    "gateBehaviour": "Agent C's 193 auditability gate independently FAILED on the same byte while it was present and PASSED after repair. The gate worked. 193 now reports 46/46.",
+    "attributionCorrection": "Agent C's report attributes the repair to Agent B1; it was the ORCHESTRATOR",
+    "selfReproduction": "the section 202 integration report ITSELF first contained a raw NUL byte in the sentence documenting this defect. Found by sweep, fixed, and RECORDED RATHER THAN QUIETLY CORRECTED. A full sweep confirms 0 raw NUL bytes across every section 202 file."
+  },
+  "VERIFICATION": {
+    "test-202-adjudication-grouping": "137/137 PASS",
+    "test-202-governed-binding-stage": "54/54 PASS",
+    "test-202-grammar-identity-and-cache": "80/80 PASS",
+    "test-202-authority-boundary-guards": "83 passed, 0 failed",
+    "newSection202Assertions": 354,
+    "test-196": "92/92",
+    "test-198": "89/89",
+    "test-199": "43/43",
+    "test-201-governed-binding-stage": "59/59",
+    "test-201-owed-property-representation": "59/59",
+    "test-201-verifier-vnext-candidates": "216 passed",
+    "test-201-harness-hardening": "67/67",
+    "test-expert-193-hardening": "46 passed",
+    "test-expert-194-regulatory-basis": "48 passed",
+    "test-expert-verifier-v3-binding-protocol": "49/49",
+    "test-expert-v3-development-integration": "40/40",
+    "allReExecutedByOrchestrator": "agent test claims were not taken on trust",
+    "SRC_TYPECHECK": "PASS (tsconfig.json - src/** only)",
+    "EXPERIMENT_SCOPE_TYPECHECK_202": "PASS (11 files)",
+    "neitherIsRepositoryWide": "backend/scripts carries 181 pre-existing diagnostics under the project's own options; the ~2011 figure published in section 198 was measured with an ad-hoc --strict false invocation and is WRONG",
+    "PRESERVATION": "1,177 / 1,177 baseline files BYTE-UNCHANGED across 96 expert-hazlenz-* evidence directories plus the runtime module; 0 historical-evidence violations; 0 runtime src/ violations"
+  },
+  "filesCreated": {
+    "code": 11,
+    "documents": 9
+  },
+  "orchestratorOnlyEdits": [
+    "backend/package.json (6 script entries, prior bytes preserved verbatim)",
+    "backend/tsconfig.scripts-202.json (new)",
+    "the single NUL-byte repair described above"
+  ],
+  "AUTHORIZATIONS_REQUESTED": [
+    "RESOLVE THE SECTION 187 PIN VS CATEGORY-A HARDENING CONFLICT. Five guards are written, tested and unapplied; every one lands on a pinned file re-asserted by eleven integrity scripts. THIS IS THE BLOCKING ITEM.",
+    "DO NOT GRANT THE SUPPLIED_VERBATIM RULING YET - BYPASS-1 means it would authorize a weaker mechanism than the one described. Default stays REDACTED; cost of deferring is zero.",
+    "ABF-5 repair choice - both candidates contradict published design, and a vanished safety fact reported by nothing is the worst finding in this slice",
+    "ABF-4 contract contradiction - NominationPayload.priority required vs PROVIDER_FORBIDDEN_OWED_FACT_FIELDS",
+    "ABF-6 placement, ABF-9 fallback chain, ABF-10 citation representation - three separate rulings",
+    "HIGH-1 - which owed-fact implementation is canonical",
+    "HIGH-2 - whether the settlement consumer is meant to have a producer",
+    "CITATION-PATTERN WIDENING - recommend a SEPARATE broader routing pattern leaving the frozen scoring constant untouched, so sections 195-201 citation measures keep meaning what they meant",
+    "THE 120 ADJUDICATION VERDICTS - everything semantic stays blocked until these exist",
+    "wiring the rejection cache into an executor; authoring a real FrozenCapabilityRequirement table; any provider call including a hosted canary"
+  ],
+  "MUST_NOT_CLAIM": [
+    "that any semantic axis has been measured - 0 of 120 product-owner verdicts supplied",
+    "that the governed-binding stage fits the provider's grammar limit - B20 is diagnostic evidence, NOT provider acceptance",
+    "that the effective grammar identity equals the provider's compiled-grammar identity - it is a proxy agreeing on one cohort of twelve",
+    "that the rejection cache has been exercised - all results are replays of the recorded section 199 log",
+    "that any authority boundary has been HARDENED - five guards exist with ZERO call sites and zero insertions applied",
+    "that HIGH-1 or HIGH-2 has been resolved - both are category B and untouched",
+    "that the customer-inactive boundary being intact means the system is sound",
+    "production readiness, formal acceptance, or M14"
+  ],
+  "nextGate": "PRODUCT-OWNER DECISIONS. The section 187 pin conflict blocks all category-A hardening; the 120 verdicts block everything semantic; ABF-5, ABF-4, HIGH-1 and HIGH-2 need architecture rulings; and the SUPPLIED_VERBATIM ruling should be WITHHELD until BYPASS-1 closes. NO PROTOTYPE WAS INTEGRATED INTO THE ACTIVE EXPERT PATH and none is reachable from production.",
+  "worktree": {
+    "branch": "main",
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "unrelatedUncommittedWork": "PRESERVED - no reset, checkout, restore, stash or clean was performed"
+  }
+}

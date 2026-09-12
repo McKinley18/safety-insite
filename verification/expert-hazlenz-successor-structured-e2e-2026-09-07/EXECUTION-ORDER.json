@@ -1,0 +1,70 @@
+{
+  "artifact": "SECTION_199_EXECUTION_ORDER",
+  "seedHex": "bdb3af04",
+  "method": "the transport canary FIRST, then a Fisher-Yates shuffle of the other eleven under mulberry32 seeded from the capability-absent vNext prompt sha256, re-drawn until no matched pair is adjacent",
+  "transportCanary": "SF-01",
+  "frozenOrder": [
+    {
+      "sequencePosition": 1,
+      "rowId": "SF-01",
+      "isCanary": true
+    },
+    {
+      "sequencePosition": 2,
+      "rowId": "SF-05",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 3,
+      "rowId": "SG-01",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 4,
+      "rowId": "SF-11",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 5,
+      "rowId": "SF-04",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 6,
+      "rowId": "SF-08",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 7,
+      "rowId": "SF-03",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 8,
+      "rowId": "SG-02",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 9,
+      "rowId": "SF-06",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 10,
+      "rowId": "SF-02",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 11,
+      "rowId": "SF-12",
+      "isCanary": false
+    },
+    {
+      "sequencePosition": 12,
+      "rowId": "SF-07",
+      "isCanary": false
+    }
+  ],
+  "verifierOrderRule": "verifier calls follow the first-pass phase, in first-pass execution order and then declaration order within a row. The COUNT is an observed outcome of successfully projected owed facts and is deliberately NOT preregistered.",
+  "EXECUTED": false
+}

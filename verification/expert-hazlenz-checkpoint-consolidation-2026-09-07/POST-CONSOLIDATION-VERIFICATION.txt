@@ -1,0 +1,55 @@
+CHECKPOINT CONSOLIDATION -- POST-EDIT VERIFICATION (2026-09-07)
+
+BACKUP
+  path                        : /Users/mckinley/Desktop/Safety_InSite_PRE_CONSOLIDATION_2026-09-07_150109
+  regular files               : 91,714 = 91,714 (source = backup)
+  total bytes (per-file stat) : 9,135,604,705 = 9,135,604,705
+  full rsync --checksum       : 0 file-content differences (57 directory-mtime
+                                metadata lines only); verified BEFORE any edit
+  result                      : PASS
+
+PRESERVATION (2,512-file pre-consolidation baseline, re-hashed post-edit)
+  byte-identical              : 2,510
+  changed (both INTENTIONAL)  : docs/INSITE_ENGINEERING_BLUEPRINT.md
+                                docs/INSITE_CURRENT_STATE.json
+  missing                     : 0
+  section-187 pinned files    : unchanged (also asserted by
+                                verify:203-source-integrity ancestor pins 7/7)
+  section-195..203 evidence   : unchanged
+  section-203 successor srcs  : unchanged (verify:203-source-integrity PASS,
+                                0 successor drift, 0 ancestor drift)
+  runtime behavior files      : none modified
+  result                      : PASS
+
+NEW / EDITED DOCUMENTATION
+  raw-NUL byte scan (byte-safe, fs reads): 11 files, 0 violations
+  verify:203-text-integrity              : PASS (23 files, 0 violations)
+  link resolution                        : every repository path referenced by
+    the new docs/expert-hazlenz package resolves; the only two non-resolving
+    matches are intentional glob/prefix mentions (expert-203-*.ts and an
+    {a,b,c} brace pattern). 12 additional non-resolving paths exist in
+    HISTORICAL blueprint sections and PREDATE this slice (e.g. backend/.env.local,
+    the deleted ecfr-1910-146.xml); deliberately not repaired here.
+  cross-document consistency             : successor contract string, 0/120,
+    152/24/8/120 accounting, and D01-D15 identical across
+    CURRENT-EXPERT-HAZLENZ-STATE.md, the decision register, the validation
+    matrix, the blueprint section-203 addendum, and INSITE_CURRENT_STATE.json.
+  INSITE_CURRENT_STATE.json              : parses as valid JSON after targeted
+    edits (checkpoint, nextSlice, expertHazlenzPackage, lastTargetedUpdate).
+
+POST-EDIT DOCUMENT HASHES (sha256)
+  155b6283486b9af5c0d6806713ec2f1291411690ce10bf43bd1247a08999d023  docs/expert-hazlenz/CURRENT-EXPERT-HAZLENZ-STATE.md
+  20d4ac02977a3e5f2cde1af23abf58af00f2b1bbd8b972b8cfb0b1121f0a6463  docs/expert-hazlenz/EXPERT-HAZLENZ-ARCHITECTURE-MAP.md
+  a99b3f4f4e1bdb8d4e92447e771d153369b3e5eec4d1b285da860b258e3b01c8  docs/expert-hazlenz/EXPERT-HAZLENZ-DECISION-REGISTER.md
+  ce5788c22cde7390370d0b9d852271b06e5c3608f48bb23ef41da991c4ecf4f9  docs/expert-hazlenz/EXPERT-HAZLENZ-EVIDENCE-INDEX.md
+  9027bb6684a76f31ee20de6183ee0adea29e1d2a7c682e70cc51916ff93bbba8  docs/expert-hazlenz/EXPERT-HAZLENZ-NEXT-WORK.md
+  5d339c8b76541c4c73c7a805215a7f3e6b0751c6864dd66de43513683abc3679  docs/expert-hazlenz/EXPERT-HAZLENZ-VALIDATION-MATRIX.md
+  5b108a7caef89a81344f5117582e2da4668ee0679ccadfc48f4bf1d8621b13f5  docs/INSITE_ENGINEERING_BLUEPRINT.md
+  a42397365206edc0f5a56885dbb31b0c00e3423f3b1c6c3622a9d24f7e3c2f30  docs/INSITE_CURRENT_STATE.json
+
+SLICE ACCOUNTING
+  provider calls = 0 · database operations = 0 · no commit / push / tag /
+  deploy · no runtime behavior change · no historical evidence modification ·
+  no semantic adjudication (remains 0 / 120)
+
+RESULT: PASS

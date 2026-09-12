@@ -1,0 +1,3115 @@
+{
+  "artifact": "FORMAL_EXPERT_COHORT_65_CANDIDATE_NOT_FROZEN",
+  "sizePolicy": {
+    "version": "hazlenz.expert.cohort.size.policy.v2",
+    "targetRows": 65,
+    "hardCeiling": 65,
+    "minimumDefensibleRows": 48,
+    "supplementalCount": "EXACTLY 65 minus the number of eligible reserved rows selected. The formula is unchanged; only the constant it references moved with the target.",
+    "onInsufficiency": "If 65 rows cannot satisfy every frozen composition requirement, STOP and report the exact reason. The cohort is NEVER silently enlarged and a requirement is NEVER relaxed.",
+    "amendedFrom": {
+      "version": "hazlenz.expert.cohort.supplemental.policy.v1 (COHORT_SIZE_POLICY)",
+      "targetRows": 60,
+      "hardCeiling": 60,
+      "minimumDefensibleRows": 48,
+      "supersededAt": "2026-09-01",
+      "supersededBy": "hazlenz.expert.cohort.size.policy.v2",
+      "status": "HISTORICAL -- preserved, still the authority for every analysis performed before the amendment (§121, §122, §126, §130, §131, §132, §133). Re-running those analyses must still reproduce their recorded output, so they continue to read the frozen module."
+    },
+    "rationale": "The previously frozen 60-row target/hard ceiling was proven jointly unsatisfiable under the frozen class minima and actual available class overlap. After D-86 offsets 2 and 3 were opened under owner authorization, exact analysis established a lower bound of 65 and produced a valid 65-row witness. Therefore the formal cohort build target and hard ceiling are amended to 65.",
+    "basis": {
+      "eligibleForbiddenSupplyBeforeReserve": 44,
+      "eligibleForbiddenSupplyFromReserve": 16,
+      "eligibleForbiddenSupplyTotal": 60,
+      "forbiddenMinimumRequired": 48,
+      "owedMinimumRequired": 20,
+      "wholePoolOwedAndForbiddenOverlap": 3,
+      "lowerBoundDerivation": "|R| >= |OWED| + |FORBIDDEN| - |OWED n FORBIDDEN| >= 20 + 48 - 3 = 65",
+      "lowerBound": 65,
+      "witnessExists": true,
+      "witnessVerifiedAgainstEveryIntrinsicClass": true,
+      "evidence": "verification/expert-hazlenz-real-supply-feasibility-2026-09-01/",
+      "amendmentIsNotAGateRelaxation": "No class minimum, scorer, threshold or measurement-contract field was changed, and no formal evaluation had begun when the amendment was made. Nothing a model is scored against moved."
+    }
+  },
+  "selectionRule": {
+    "canonicalOrder": "source rank, then rowId ascending",
+    "sourceRank": [
+      "gauntlet.seed",
+      "Population A",
+      "augmentation V2",
+      "semantic §129",
+      "D-86 offset 2",
+      "D-86 offset 3"
+    ],
+    "classPriority": [
+      "LIFE_CRITICAL_PRESENT",
+      "CROSS_HAZARD_INTERACTION",
+      "DETERMINISTIC_MISS_RECALL_OPPORTUNITY",
+      "MULTI_HAZARD",
+      "NEGATED_OR_SAFE_STATE",
+      "DETERMINISTIC_HAZARD_PRESENT"
+    ],
+    "phases": [
+      "take every OWED-and-FORBIDDEN row (forced)",
+      "close each class deficit in frozen class order with the next canonical row",
+      "fill each bucket to its forced size in canonical order"
+    ],
+    "forcedStructure": {
+      "both": 3,
+      "owedOnly": 17,
+      "forbiddenOnly": 45
+    }
+  },
+  "rowCount": 65,
+  "rows": [
+    {
+      "index": 0,
+      "rowId": "GAUNTLET-002",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical",
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.101",
+          "title": "Compressed gases (general requirements)",
+          "approvedText": "The employer must determine that compressed gas cylinders under its control are in a safe condition to the extent visual inspection can establish it (29 CFR 1910.101(a)), and in-plant handling, storage and utilisation of all compressed gases must follow Compressed Gas Association Pamphlet P-1-1965, incorporated by reference (29 CFR 1910.101(b)). Because the operative handling rules are incorporated by reference rather than stated in the section, the specific cylinder-securing and valve-cap duties for oxygen-fuel gas work are usually cited from 29 CFR 1910.253(b).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "rowId": "GAUNTLET-004",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.1053",
+          "title": "Respirable crystalline silica (general industry)",
+          "approvedText": "The employer must ensure no employee is exposed to respirable crystalline silica above the permissible exposure limit of 50 micrograms per cubic metre as an 8-hour time-weighted average (29 CFR 1910.1053(c)), must assess exposures (paragraph (d)), and must use engineering and work practice controls to reduce exposure to or below the PEL, supplementing with respiratory protection only where those controls cannot achieve it (paragraph (f)). Construction work is covered by the parallel standard at 29 CFR 1926.1153, which specifies control methods by task rather than by exposure assessment.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "rowId": "GAUNTLET-005",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "confined_space"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.120",
+          "title": "Hazardous waste operations and emergency response",
+          "approvedText": "Paragraph (q) governs emergency response to releases of hazardous substances without regard to location: the employer must have an emergency response plan, responders must be trained to the level of their duties, and employees must not engage in emergency response beyond that training (29 CFR 1910.120(q)(1)-(6)). Employees engaged in an incidental spill cleanup that can be safely handled by workers in the immediate release area are NOT emergency responders under paragraph (q), so establishing which of the two situations occurred is what determines whether this section applies at all.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "rowId": "GAUNTLET-007",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.1200",
+          "title": "Hazard communication",
+          "approvedText": "Employers must ensure that each container of hazardous chemicals in the workplace is labeled, tagged or marked with either the full shipped-container information required by 29 CFR 1910.1200(f)(1)(i)-(v), or with the product identifier plus words, pictures or symbols giving at least general information about the chemical's hazards which, together with the other information available under the employer's hazard communication program, conveys the specific physical and health hazards (1910.1200(f)(6)). This workplace-labeling duty is distinct from 1910.1200(f)(1), which places the duty to label containers leaving the workplace on the chemical manufacturer, importer or distributor. Employers may use signs, placards, process sheets, batch tickets, operating procedures or other written materials in lieu of affixing labels to individual stationary process containers, provided the alternative identifies the containers and conveys the required information (1910.1200(f)(7)), and portable containers into which chemicals are transferred for the immediate use of the employee performing the transfer need not be labeled (1910.1200(f)(8)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "rowId": "GAUNTLET-015",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.133",
+          "title": "Eye and face protection",
+          "approvedText": "The employer must ensure that each affected employee uses appropriate eye or face protection when exposed to eye or face hazards from flying particles, molten metal, liquid chemicals, acids or caustic liquids, chemical gases or vapours, or potentially injurious light radiation (29 CFR 1910.133(a)(1)). Side protection is required where there is a hazard from flying objects (paragraph (a)(2)), and protectors must meet the consensus standards the section incorporates (paragraph (b)). The general PPE selection and hazard-assessment duty is stated separately at 29 CFR 1910.132.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "rowId": "GAUNTLET-019",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.134",
+          "title": "Respiratory protection",
+          "approvedText": "Where engineering controls are not feasible, or while they are being instituted, appropriate respirators must be provided by the employer and used by employees (29 CFR 1910.134(a)(1)-(2)). The employer must establish and maintain a written respiratory protection programme with worksite-specific procedures, covering selection, medical evaluation, fit testing, proper use, maintenance and training, whenever respirators are necessary or required (29 CFR 1910.134(c)(1)). Providing a respirator without the programme, the medical evaluation and the fit test does not satisfy the section.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "rowId": "GAUNTLET-022",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.146",
+          "title": "Permit-required confined spaces",
+          "approvedText": "Employers must evaluate the workplace to determine whether any spaces are permit-required confined spaces (29 CFR 1910.146(c)(1)). If the workplace contains permit spaces, the employer must inform exposed employees of their existence, location and danger by posting danger signs or other equally effective means (1910.146(c)(2)). If the employer decides employees will not enter permit spaces, it must take effective measures to prevent entry and still comply with 1910.146(c)(1), (c)(2), (c)(6) and (c)(8) (1910.146(c)(3)). If the employer decides employees will enter, it must develop and implement a written permit space program complying with this section, available for inspection by employees and their authorized representatives (1910.146(c)(4)); the required program elements — permits, atmospheric testing, attendants, entry supervisors, and rescue and emergency services — are set out in 1910.146(d) through (k). Alternate procedures are available under 1910.146(c)(5) only where the employer can demonstrate that the sole hazard is an actual or potential hazardous atmosphere and that continuous forced air ventilation alone will keep the space safe for entry. This section does not apply to agriculture, construction, or shipyard employment (1910.146(a)); confined spaces in construction are governed by 29 CFR part 1926 subpart AA.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "rowId": "GAUNTLET-023",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.147",
+          "title": "The control of hazardous energy (lockout/tagout)",
+          "approvedText": "Before any employee performs servicing or maintenance on a machine or equipment where unexpected energizing, start up, or release of stored energy could occur and cause injury, the employer must establish an energy control program consisting of energy control procedures, employee training and periodic inspections, and the machine or equipment must be isolated from its energy source and rendered inoperative (29 CFR 1910.147(c)(1)). Where an energy isolating device is capable of being locked out, the program must use lockout unless the employer can demonstrate that a tagout system provides full employee protection as set out in 1910.147(c)(3); where the device cannot be locked out, a tagout system must be used (1910.147(c)(2)). The standard covers servicing and maintenance, not normal production operations: work during normal production is covered only if an employee must remove or bypass a guard or other safety device, or must place part of the body into the point of operation or an associated danger zone (1910.147(a)(2)(ii)). Minor tool changes and adjustments and other minor servicing activities that are routine, repetitive and integral to production are excepted when performed under alternative measures providing effective protection (Note to 1910.147(a)(2)(ii)), and work on cord-and-plug connected equipment is excepted where unplugging controls the hazard and the plug is under the exclusive control of the employee performing the work (1910.147(a)(2)(iii)(A)). This standard does not cover construction or agriculture employment (1910.147(a)(1)(ii)(A)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "rowId": "GAUNTLET-032",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.157",
+          "title": "Portable fire extinguishers",
+          "approvedText": "Where the employer provides portable fire extinguishers for employee use, they must be mounted, located and identified so that they are readily accessible without subjecting employees to injury (29 CFR 1910.157(c)(1)), selected and distributed by hazard class and travel distance (paragraph (d)), and inspected, maintained and annually tested (paragraph (e)). The section's own scope paragraph (a) makes the requirements conditional: they apply to extinguishers provided for employee use, and paragraphs (b)(1)-(2) describe the exemptions where a written fire-safety policy requires total evacuation instead.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "rowId": "GAUNTLET-033",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.176",
+          "title": "Handling materials — general",
+          "approvedText": "Storage of material must not create a hazard: bags, containers and bundles stored in tiers must be stacked, blocked, interlocked and limited in height so they are stable and secure against sliding or collapse (29 CFR 1910.176(b)). Aisles and passageways where mechanical handling equipment is used must be kept clear, in good repair and appropriately marked, with sufficient safe clearances (paragraph (a)), and storage areas must be kept free of accumulations that create tripping, fire, explosion or pest hazards (paragraph (c)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "rowId": "GAUNTLET-045",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.178(p)(1)",
+          "title": "Powered industrial trucks - Operation of the truck: removing unsafe or defective trucks from service",
+          "approvedText": "If at any time a powered industrial truck is found to be in need of repair, defective, or in any way unsafe, the truck must be taken out of service until it has been restored to safe operating condition (29 CFR 1910.178(p)(1)). The remaining paragraphs of 1910.178(p) address fuelling and fuel-system hazards: fuel tanks must not be filled while the engine is running and spillage must be avoided ((p)(2)); spilled oil or fuel must be carefully washed away or completely evaporated and the fuel tank cap replaced before restarting the engine ((p)(3)); no truck may be operated with a leak in the fuel system until the leak has been corrected ((p)(4)); and open flames must not be used for checking electrolyte level in storage batteries or gasoline level in fuel tanks ((p)(5)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "rowId": "GAUNTLET-054",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.179",
+          "title": "Overhead and gantry cranes",
+          "approvedText": "The operator must not carry loads over people, and must not leave the controls while a load is suspended (29 CFR 1910.179(n)(3)(vi) and (n)(3)(v)). The section also states running-rope inspection, hoist-limit testing and periodic inspection duties (paragraphs (j) and (m)). Sling condition and keeping employees clear of loads are stated separately at 29 CFR 1910.184; a suspended-load exposure often engages both.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "rowId": "GAUNTLET-062",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.184",
+          "title": "Slings",
+          "approvedText": "Employees must be kept clear of loads about to be lifted and of suspended loads (29 CFR 1910.184(c)(9)). Slings must be inspected each day before use and removed from service if damaged or defective (paragraphs (d) and (e)(3)), and a sling must not be loaded beyond its rated capacity (paragraph (c)(1)). A cut, torn or otherwise damaged synthetic web sling must be removed from service immediately; the specific web-sling removal criteria are at paragraph (i)(9).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "rowId": "GAUNTLET-082",
+      "source": "gauntlet.seed",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": [
+        {
+          "citation": "1910.212(a)(1)",
+          "title": "Machine guarding - types of guarding methods",
+          "approvedText": "One or more methods of machine guarding must be provided to protect the operator and other employees in the machine area from hazards such as those created by point of operation, ingoing nip points, rotating parts, and flying chips and sparks; the rule gives barrier guards, two-hand tripping devices and electronic safety devices as examples of guarding methods (29 CFR 1910.212(a)(1)). Guards must be affixed to the machine where possible and secured elsewhere if attachment to the machine is not possible, and the guard must not itself offer an accident hazard (1910.212(a)(2)). Point-of-operation guarding requirements are addressed separately at 1910.212(a)(3).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "rowId": "POPA-A-12",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-12 (barrier vocabulary/descriptive site feature) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.22(a)",
+          "title": "General requirements — Surface conditions",
+          "approvedText": "Employers must ensure that all places of employment, passageways, storerooms, service rooms and walking-working surfaces are kept in a clean, orderly and sanitary condition (29 CFR 1910.22(a)(1)); that the floor of each workroom is maintained in a clean and, to the extent feasible, dry condition, with drainage maintained and, to the extent feasible, dry standing places such as false floors, platforms and mats provided where wet processes are used (1910.22(a)(2)); and that walking-working surfaces are maintained free of hazards such as sharp or protruding objects, loose boards, corrosion, leaks, spills, snow and ice (1910.22(a)(3)). The separate duties to support the maximum intended load, to provide safe means of access and egress, and to inspect, maintain and repair walking-working surfaces are at 1910.22(b), (c) and (d) respectively, not in this paragraph.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "rowId": "POPA-A-13",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-13 (vehicle vocabulary/location descriptor only) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.252",
+          "title": "Welding, cutting and brazing — General requirements",
+          "approvedText": "Before welding or cutting begins the area must be inspected and the object moved to a safe location, or, where it cannot be moved, movable fire hazards must be removed and immovable ones shielded (29 CFR 1910.252(a)(2)(i)-(ii)). A fire watch is REQUIRED whenever welding or cutting is performed where other than a minor fire might develop, including where appreciable combustibles are within 35 feet of the point of operation, and the fire watch must be maintained for at least a half hour after the work finishes (29 CFR 1910.252(a)(2)(iii)). Ventilation requirements for the same operations are stated separately in paragraph (c).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "rowId": "POPA-A-14",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-14 (vehicle and pressure vocabulary/location descriptor only) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.253",
+          "title": "Oxygen-fuel gas welding and cutting",
+          "approvedText": "Cylinders must be kept away from radiators and other heat sources, stored in well-protected, well-ventilated, dry locations, and valve protection caps must be in place where the cylinder is designed to accept one (29 CFR 1910.253(b)(2)). Oxygen cylinders in storage must be separated from fuel-gas cylinders and from combustible materials — especially oil or grease — by a minimum of 20 feet, or by a non-combustible barrier at least 5 feet high with a half-hour fire-resistance rating (29 CFR 1910.253(b)(4)(ii)). The general compressed-gas duty at 29 CFR 1910.101 also applies to the same cylinders.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "rowId": "POPA-A-15",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-15 (vehicle vocabulary/possessive descriptor only) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.28",
+          "title": "Duty to have fall protection and falling object protection",
+          "approvedText": "Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets the protection required for each situation. For stairways, 1910.28(b)(11) requires that each employee exposed to an unprotected side or edge of a stairway landing 4 feet (1.2 m) or more above a lower level be protected by a guardrail or stair rail system (1910.28(b)(11)(i)), and that each flight of stairs having at least 3 treads and at least 4 risers be equipped with stair rail systems and handrails (1910.28(b)(11)(ii)) — so the number of treads and risers is part of establishing whether the handrail requirement applies to a particular flight. Ship stairs and alternating tread type stairs must have handrails on both sides (1910.28(b)(11)(iii)). Construction and dimensional requirements for stairways themselves are at 29 CFR 1910.25, and the criteria for stair rail systems and handrails are at 1910.29, not in this section. Fall protection for employees on scaffolds is governed by 29 CFR part 1926 subpart L (1910.28(b)(12)(i)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "rowId": "POPA-A-16",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-16 (vehicle vocabulary/verified-safe administrative record) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.303",
+          "title": "Electrical - general requirements",
+          "approvedText": "Section 1910.303 sets OSHA's general requirements for electric equipment and installations in general industry. Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees (29 CFR 1910.303(b)(1)), and listed or labeled equipment must be installed and used in accordance with any instructions included in the listing or labeling (1910.303(b)(2)). For equipment operating at 600 volts, nominal, or less to ground: sufficient access and working space must be provided and maintained about all electric equipment to permit ready and safe operation and maintenance (1910.303(g)(1)); live parts of electric equipment operating at 50 volts or more must be guarded against accidental contact by approved cabinets or other approved enclosures, or by the other means that paragraph allows (1910.303(g)(2)(i)); and entrances to rooms and other guarded locations containing exposed live parts must be marked with conspicuous warning signs forbidding unqualified persons to enter (1910.303(g)(2)(iii)). Installations over 600 volts, nominal, are addressed separately at 1910.303(h).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "rowId": "POPA-A-20",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-20 (pneumatic vocabulary/energy verified at zero) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.303(b)(1)",
+          "title": "Examination, installation, and use of equipment — Examination",
+          "approvedText": "Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees, and the safety of equipment is determined using the considerations listed in 29 CFR 1910.303(b)(1)(i)-(viii): suitability for installation and use in conformity with subpart S; mechanical strength and durability, including the adequacy of protection provided by parts designed to enclose and protect other equipment; wire-bending and connection space; electrical insulation; heating effects under all conditions of use; arcing effects; classification by type, size, voltage, current capacity and specific use; and other factors contributing to the practical safeguarding of employees using or likely to come into contact with the equipment. This paragraph is the EXAMINATION requirement. It is not the guarding requirement: the duty to guard live parts operating at 50 volts or more against accidental contact is a separate rule at 29 CFR 1910.303(g)(2)(i), which applies only to installations operating at 600 volts, nominal, or less to ground.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "rowId": "POPA-A-24",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-24 (grinding vocabulary/verified compliant condition) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "approvedText": "Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a street, walkway, refuge area, public way or open space large enough for the occupants likely to use it (1910.36(c)); employees must be able to open an exit route door from the inside at all times without keys, tools or special knowledge (1910.36(d)(1)); and exit routes must meet minimum capacity, height and width requirements (1910.36(f), (g)). The separate requirement that exit routes be kept free and unobstructed is at 29 CFR 1910.37(a)(3), not in this section.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "rowId": "POPA-A-26",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-26 (trench vocabulary/completed and backfilled) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.94",
+          "title": "Ventilation",
+          "approvedText": "This section states local exhaust ventilation duties for specific operations — abrasive blasting (paragraph (a)), grinding, polishing and buffing (paragraph (b)), spray finishing (paragraph (c)) and open-surface tanks (paragraph (d)). It is operation-specific rather than a general duty to ventilate: a ventilation deficiency for an operation NOT listed here is not covered by this section, and welding ventilation in particular is stated at 29 CFR 1910.252(c) rather than here.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "rowId": "POPA-A-27",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-27 (opening vocabulary/effectively covered) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1910.95",
+          "title": "Occupational noise exposure",
+          "approvedText": "Protection against the effects of noise exposure must be provided when sound levels exceed those in Table G-16 of 29 CFR 1910.95, measured on the A scale at slow response — Table G-16 permits 90 dBA for 8 hours, 92 dBA for 6 hours, 95 dBA for 4 hours, and so on (1910.95(a)). Where employees are subjected to sound exceeding those levels, feasible administrative or engineering controls must be used first, and personal protective equipment is required only if those controls fail to bring exposure within the table (1910.95(b)(1)). Separately and at a lower threshold, the employer must administer a continuing, effective hearing conservation program whenever employee noise exposure equals or exceeds an 8-hour time-weighted average of 85 dBA, or equivalently a dose of fifty percent, computed without regard to any attenuation from hearing protectors (1910.95(c)(1)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "rowId": "POPA-A-28",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-28 (fall vocabulary/unrelated sense of the word) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.102",
+          "title": "Eye and face protection (construction)",
+          "approvedText": "The employer must ensure that each affected employee uses appropriate eye or face protection when exposed to eye or face hazards from flying particles, molten metal, liquid chemicals, acids or caustic liquids, chemical gases or vapours, or potentially injurious light radiation (29 CFR 1926.102(a)(1)). Side protection is required where there is a hazard from flying objects, and filter lenses of the appropriate shade number are required for welding, cutting and brazing operations (paragraphs (a)(2) and (b)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "rowId": "POPA-A-29",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-29 (handrail vocabulary/verified sound) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.103",
+          "title": "Respiratory protection (construction)",
+          "approvedText": "The requirements applicable to construction work under this section are identical to those set forth at 29 CFR 1910.134 (29 CFR 1926.103). The section is a cross-reference and carries no independent text, so the operative duties — programme, selection, medical evaluation, fit testing, use and maintenance — are those of 1910.134 applied to construction work. Citing this section rather than 1910.134 is what keeps the citation in the correct part for a construction inspection.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "rowId": "POPA-A-32",
+      "source": "Population A",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-32 (energy-state clause supporting a guarding hazard) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.1153",
+          "title": "Respirable crystalline silica",
+          "approvedText": "For each employee engaged in a task identified on Table 1 of 29 CFR 1926.1153, the employer must fully and properly implement the engineering controls, work practices and respiratory protection that Table 1 specifies for that task, unless the employer instead assesses and limits exposure under 1926.1153(d) (1926.1153(c)(1)). For stationary masonry saws (Table 1 entry (i)) and for handheld power saws of any blade diameter (Table 1 entry (ii)), Table 1 requires a saw equipped with an integrated water delivery system that continuously feeds water to the blade, operated and maintained in accordance with the manufacturer's instructions to minimize dust emissions; the handheld entry additionally requires respiratory protection with an assigned protection factor of 10 when used indoors or in an enclosed area, and for more than four hours per shift outdoors. Where a task is not listed on Table 1, or where the employer does not fully and properly implement the Table 1 controls, the employer must instead ensure no employee is exposed above the permissible exposure limit of 50 micrograms per cubic metre of respirable crystalline silica as an 8-hour time-weighted average, and must assess exposures accordingly (1926.1153(d)(1)-(2)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "rowId": "POPA-A-33",
+      "source": "Population A",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical projection of frozen precision-corpus Population A row A-33 (observer-position clause, no hazard stated) through the §122 supplemental policy. present = requiredDomains, forbidden = forbiddenDomains, both mapped through the frozen toExpertFamily and restricted to the accepted taxonomy; defensible is the remainder. No semantic field is authored: the corpus was frozen 2026-08-27, before any Expert provider output existed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.1204",
+          "title": "Permit-required confined space program (construction)",
+          "approvedText": "Each entry employer must implement measures to prevent unauthorised entry, identify and evaluate permit-space hazards before employees enter, and develop the procedures for safe entry — including specifying acceptable entry conditions, isolating the space and its physical hazards, purging or ventilating to control atmospheric hazards, and verifying acceptable conditions for the duration of the entry (29 CFR 1926.1204(a)-(c)). The employer must also provide an attendant outside the space and the equipment needed for safe entry, testing, communication and rescue (paragraphs (d)-(f)). General-industry permit spaces are governed separately by 29 CFR 1910.146.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "rowId": "AUG-01",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment",
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "An ordinary abrasive-wheel finding. The missing tongue guard and the oversized work-rest gap are both stated, and the operator is engaged with the wheel, so a reviewer has what a decision needs. The forklift and the panel are the kind of incidental detail real notes carry, and each is defeated in the same clause that introduces it."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.1425",
+          "title": "Cranes and derricks — Keeping clear of the load",
+          "approvedText": "While the operator is not moving a suspended load, no employee may be within the fall zone except employees engaged in hooking, unhooking or guiding the load, in the initial attachment of the load, or operating a concrete hopper or bucket (29 CFR 1926.1425(b)). Where employees are in the fall zone for those permitted reasons, the materials must be rigged to prevent unintentional displacement, hooks with self-closing latches or equivalent must be used, and the materials must be rigged by a qualified rigger (paragraph (c)). Hoisting routes that minimise employee exposure to hoisted loads must be used where available (paragraph (a)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "rowId": "AUG-02",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A correctly executed isolation. This row exists because a layer that flags the removed guard here has not understood the task -- the guard being off is what the permit is for. Nothing decision-critical is missing: the energy state is verified and recorded."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.150",
+          "title": "Fire protection",
+          "approvedText": "The employer must develop a fire protection programme followed throughout all phases of construction, with firefighting equipment provided, conspicuously located and available at all times (29 CFR 1926.150(a)). A fire extinguisher rated at least 2A must be provided for each 3,000 square feet of protected building area, with travel distance from any point not exceeding 100 feet (29 CFR 1926.150(c)(1)(i)). Fire-hazard-specific requirements for welding and cutting are stated separately at 29 CFR 1926.352.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "rowId": "AUG-03",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A plain unprotected-edge exposure at a height where a fall is life-threatening. The distance from the edge, the absence of every listed protection and the height are all stated, so no clarification is owed. The service drop is a real feature of such a building and is defeated by its stated distance from the work."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.201",
+          "title": "Signaling (construction traffic control)",
+          "approvedText": "Signalling by flaggers and the use of flaggers, including the warning garments flaggers wear, must conform to Part 6 of the Manual on Uniform Traffic Control Devices, incorporated by reference (29 CFR 1926.201(a)). Crane and hoist signalling is governed by the applicable ANSI standards rather than by this section (paragraph (b)). Because the operative requirements are incorporated by reference, this section establishes the duty but not the specific device or placement criteria; barricades are addressed separately at 29 CFR 1926.202.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "rowId": "AUG-04",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure",
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "AUG-04-G1",
+            "description": "whether the tank atmosphere was tested before entry, and with what result",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "CONFINED_SPACE_ATMOSPHERIC",
+            "participants": [
+              "confined_space",
+              "chemical_exposure"
+            ]
+          }
+        ],
+        "authoringRationale": "Caustic aerosol generated inside an enclosed vessel is a genuine interaction rather than two adjacent facts, which is why an interaction is recorded. One decision-critical fact really is missing -- whether the atmosphere was tested -- and it decides which controls the entry requires, so this row legitimately owes a clarification."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.250",
+          "title": "General requirements for storage (construction)",
+          "approvedText": "All materials stored in tiers must be stacked, racked, blocked, interlocked or otherwise secured to prevent sliding, falling or collapse (29 CFR 1926.250(a)(1)). Stored material must not exceed maximum safe floor load limits, which must be conspicuously posted in storage areas (paragraph (a)(2)), and aisles and passageways must be kept clear and in good repair for the free and safe movement of material handling equipment or employees (paragraph (a)(3)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "rowId": "AUG-05",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection",
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Travelling with an elevated load and no working horn is a stated, decision-complete finding. The ladder-braced uprights are the natural lure here -- they look climbable in a note -- and the row defeats them explicitly."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.251",
+          "title": "Rigging equipment for material handling",
+          "approvedText": "Rigging equipment must be inspected before use on each shift and as necessary during use, and defective rigging equipment must be removed from service (29 CFR 1926.251(a)(1) and (a)(6)). Rigging equipment must not be loaded beyond its recommended safe working load (paragraph (a)(2)), and synthetic web slings must be immediately removed from service where the section's damage criteria are met, including acid or caustic burns, melting, snags, punctures, tears or cuts, and broken or worn stitching (paragraph (i)(6)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "rowId": "AUG-06",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A damaged energized cord set beside a correctly isolated press. The press is the lure: a reader scanning for hazards in a die shop reaches for the press, and the row defeats it twice over. The cord defect itself is fully stated."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.300(b)(2)",
+          "title": "Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact",
+          "approvedText": "Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "rowId": "AUG-07",
+      "source": "augmentation V2",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment",
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A clean area at a quiet moment. Rows like this are why the evaluation can measure restraint at all: everything a decision needs is stated, nothing is wrong, and a candidate raised here is a false positive rather than diligence."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.34(a)",
+          "title": "Means of egress - General",
+          "approvedText": "In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other emergency (1926.34(c)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "rowId": "AUG-08",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "confined_space",
+          "lockout_tagout",
+          "fall_protection"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A permit entry done properly, and the hardest kind of row for an eager layer: every element that would be a finding if missing is present. Monitoring, retrieval, attendant and isolation are all stated, so nothing is owed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.350",
+          "title": "Gas welding and cutting",
+          "approvedText": "On construction work valve protection caps must be in place and secured when cylinders are transported, moved or stored (29 CFR 1926.350(a)(1)), and compressed gas cylinders must be secured in an upright position at all times except, if necessary, for short periods while actually being hoisted or carried (29 CFR 1926.350(a)(9)). Cylinders must be kept far enough from welding or cutting operations that sparks, hot slag or flame will not reach them, or be protected by shielding (paragraph (a)(10)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "rowId": "AUG-09",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "confined_space"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A defect that was real last week and is verifiably corrected now, confirmed by direct observation rather than by the work order alone. The open grate is the lure and is defeated by its stated size and the barricade."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.352",
+          "title": "Welding and cutting — Fire prevention",
+          "approvedText": "On construction work the object to be welded, cut or heated must be moved to a designated safe location where practical; where it cannot be moved, movable fire hazards must be taken to a safe place or otherwise protected, and where neither is possible positive means must confine the heat, sparks and slag (29 CFR 1926.352(a)-(b)). Suitable fire extinguishing equipment must be immediately available in the work area and maintained ready for instant use (29 CFR 1926.352(d)), and additional personnel must be assigned to guard against fire whenever normal precautions are not sufficient (29 CFR 1926.352(e)). Welding, cutting or heating is prohibited outright where flammable paints or compounds, or heavy dust concentrations, create a hazard (29 CFR 1926.352(c)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "rowId": "AUG-10",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure",
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "confined_space"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "AUG-10-G1",
+            "description": "whether the two-part epoxy contains isocyanates, which decides whether a half-face cartridge respirator is adequate or supplied air is required",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Two independent exposures in one scene, and one genuinely missing fact that a reviewer could not resolve on site. The isocyanate question is decision-critical because it changes the required respiratory protection outright, not merely its rating."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.353",
+          "title": "Ventilation and protection in welding, cutting, and heating",
+          "approvedText": "Welding, cutting or heating in a confined space must be adequately ventilated by mechanical means to prevent accumulation of toxic materials or possible oxygen deficiency (29 CFR 1926.353(b)(1)); where that is not feasible, airline respirators must be used and an attendant with a pre-planned rescue capability must be stationed outside (29 CFR 1926.353(b)(2)). General mechanical or local exhaust ventilation is required for welding in confined spaces and for indoor work on the toxic metals the section enumerates (paragraphs (a) and (c)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "rowId": "AUG-11",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "AUG-11-G1",
+            "description": "whether the hydraulic accumulator was bled to zero stored energy after the disconnect was opened",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Electrical isolation is stated and stored hydraulic energy is not, which is the classic incomplete isolation. The gap is real rather than manufactured: the observer says plainly why the fact could not be established."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.416(a)(1)",
+          "title": "Electrical safety-related work practices - General requirements: protection of employees from contact with electric power circuits",
+          "approvedText": "No employer may permit an employee to work in such proximity to any part of an electric power circuit that the employee could contact the circuit in the course of work, unless the employee is protected against electric shock by deenergizing the circuit and grounding it, or by guarding it effectively by insulation or other means (29 CFR 1926.416(a)(1)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "rowId": "AUG-12",
+      "source": "augmentation V2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical",
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space",
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [
+          {
+            "interactionKind": "ELECTRICAL_WET_ENVIRONMENT",
+            "participants": [
+              "electrical",
+              "confined_space"
+            ]
+          }
+        ],
+        "authoringRationale": "An unsealed energized connection lying in standing water inside an enclosed space is a real interaction: the water and the enclosure each make the electrical exposure worse than it would be alone. Both the missing atmospheric test and the unsealed connection are stated, so nothing is owed."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.417",
+          "title": "Lockout and tagging of circuits (construction)",
+          "approvedText": "Controls that are to be deactivated during work on energized or deenergized equipment or circuits must be tagged; deenergized equipment or circuits must be rendered inoperative and have tags attached at all points where they can be energized; and tags must plainly identify the equipment or circuits being worked on (29 CFR 1926.417(a)-(c)). This is construction's electrical lockout and tagging duty and is materially narrower than the general-industry hazardous-energy standard at 29 CFR 1910.147: it addresses tagging of circuits rather than a full energy-control programme with written procedures, periodic inspection and employee training.",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "rowId": "AUG-16",
+      "source": "augmentation V2",
+      "classes": [
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection",
+          "machine_guarding",
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A genuinely unremarkable space, recorded because inspections cover them and an evaluation needs them. The two exclusions are explicit statements by the observer rather than mere silence, which is what makes them usable as forbidden truth under the frozen rule."
+      },
+      "governedStandards": [
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "title": "General requirements — Fall protection",
+          "approvedText": "Each employee on a scaffold more than 10 feet (3.1 m) above a lower level must be protected from falling to that lower level (29 CFR 1926.451(g)(1)). The type of protection required depends on the type of scaffold: 1926.451(g)(1)(i)-(vii) prescribe personal fall arrest systems, guardrail systems, or a combination, for each scaffold type, and fall protection for scaffold erectors and dismantlers is addressed separately at 1926.451(g)(2). Fall protection for employees installing suspension scaffold support systems on floors, roofs and other elevated surfaces is governed by subpart M rather than this paragraph (Note to 1926.451(g)(1)).",
+          "backingState": "UNAPPROVED_RECORD"
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "rowId": "SEM-01",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-01-G1",
+            "description": "the actual pre-entry atmospheric readings, specifically whether hydrogen sulphide and methane were below action levels and oxygen was within range",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "CONFINED_SPACE_ATMOSPHERIC",
+            "participants": [
+              "confined_space",
+              "chemical_exposure"
+            ]
+          }
+        ],
+        "authoringRationale": "A permit entry where the paperwork is present and the decisive fact is not. The gap is real rather than manufactured -- the observer says why the readings could not be established -- and the interaction is the mechanism that makes those readings matter."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 41,
+      "rowId": "SEM-02",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-02-G1",
+            "description": "whether the saw arbor was mechanically pinned or blocked against the gravity return the millwright described, after electrical isolation",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "LOTO_STORED_ENERGY",
+            "participants": [
+              "lockout_tagout",
+              "machine_guarding"
+            ]
+          }
+        ],
+        "authoringRationale": "The classic incomplete isolation, authored so the incompleteness is stated by the worker rather than inferred by the reader. Nothing about the electrical isolation is deficient."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 42,
+      "rowId": "SEM-03",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical",
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical",
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-03-G1",
+            "description": "whether the receptacle feeding the portable sump pump is GFCI protected",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "ELECTRICAL_WET_ENVIRONMENT",
+            "participants": [
+              "electrical",
+              "confined_space"
+            ]
+          }
+        ],
+        "authoringRationale": "Both hazards are stated in the text and neither is inferred. The gap is a fact that exists somewhere in the building but not in the observation, which is what makes it askable."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 43,
+      "rowId": "SEM-04",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-04-G1",
+            "description": "the load rating of the trench cover plate relative to the scissor lift wheel load",
+            "affectedDecision": "HAZARD_EXISTENCE"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "FALL_EXPOSURE_ANCHORAGE",
+            "participants": [
+              "fall_protection",
+              "mobile_equipment"
+            ]
+          }
+        ],
+        "authoringRationale": "An interaction where the stability of the platform governs the exposure the observed control is meant to address. The gap changes whether a hazard exists at all, which is why it is HAZARD_EXISTENCE rather than a control question."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 44,
+      "rowId": "SEM-05",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure",
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "chemical_exposure",
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-05-G1",
+            "description": "the solvent constituents of the liner product, specifically whether it contains a substance with poor warning properties or an IDLH low enough to prohibit air-purifying respirators",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "CHEMICAL_PPE_VENTILATION",
+            "participants": [
+              "chemical_exposure",
+              "confined_space"
+            ]
+          }
+        ],
+        "authoringRationale": "The missing fact is a document, not an observation, which is a realistic and common gap. The interaction is between the exposure and the enclosure that shapes it."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 45,
+      "rowId": "SEM-07",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-07-G1",
+            "description": "whether the nitrogen dosing header was isolated and bled before the guard door was opened",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "LOTO_STORED_ENERGY",
+            "participants": [
+              "machine_guarding",
+              "lockout_tagout"
+            ]
+          }
+        ],
+        "authoringRationale": "Uses a genuine and common substitution error -- E-stop as isolation -- and pairs it with a second energy the substitution cannot reach."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 46,
+      "rowId": "SEM-08",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-08-G1",
+            "description": "the oxygen concentration inside the fermenter after primary fermentation and before the operator put his head through the manway",
+            "affectedDecision": "HAZARD_EXISTENCE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A hazard that is invisible, odourless and routine, where the missing fact decides whether a hazard exists at all rather than which control applies. No interaction is recorded: the atmospheric hazard is deliberately unresolved by this row's own clarification truth, so chemical exposure cannot simultaneously remain defensible and participate in a present interaction."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 47,
+      "rowId": "SEM-09",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure",
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-09-G1",
+            "description": "whether the corded shop light in use is a rated explosion-proof or intrinsically safe fitting for a Class I location",
+            "affectedDecision": "HAZARD_EXISTENCE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A row where a correct control for one hazard worsens another. The interaction is deliberately NOT recorded because the closed vocabulary cannot name it -- see the note above. The gap and the family partition stand on their own."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 48,
+      "rowId": "SEM-10",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical",
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical",
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-10-G1",
+            "description": "whether the cord reel feeding the pump and work light provides GFCI protection to the worker standing in water",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "ELECTRICAL_WET_ENVIRONMENT",
+            "participants": [
+              "electrical",
+              "confined_space"
+            ]
+          }
+        ],
+        "authoringRationale": "A second wet-electrical confined space deliberately set in a different industry and geometry from SEM-03, so the pair tests the relationship rather than a memorised scene."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 49,
+      "rowId": "SEM-15",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure",
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-15-G1",
+            "description": "the regulated outlet pressure of the compressed-air wand being used to blow down silica dust",
+            "affectedDecision": "APPLICABILITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A gap that changes which rule applies rather than which control is chosen, so the affected decision is APPLICABILITY. The forklift and the guard are ordinary scene detail; the guard being fitted and bolted is recorded as an observed controlled condition rather than as affirmative exclusion of the machine-guarding family."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 50,
+      "rowId": "SEM-16",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-16-G1",
+            "description": "whether the proportioner is actually delivering the sanitiser at its intended labelled use dilution",
+            "affectedDecision": "HAZARD_SEVERITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A severity gap rather than an existence gap: the chemical exposure is real either way, and the missing fact moves how serious it is and what protection follows."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 51,
+      "rowId": "SEM-17",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-17-G1",
+            "description": "whether this disconnect is capable of accepting a lockout device, which determines whether tagout alone is permissible here",
+            "affectedDecision": "APPLICABILITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A gap about equipment capability that decides which regulatory path applies. The open hatch is deliberately left DEFENSIBLE rather than forbidden -- nothing in the text rules it out."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 52,
+      "rowId": "SEM-18",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [
+          "fall_protection"
+        ],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-18-G1",
+            "description": "whether the crusher drive was isolated at its disconnect or only stopped at the local control station",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "LOTO_STORED_ENERGY",
+            "participants": [
+              "machine_guarding",
+              "lockout_tagout"
+            ]
+          }
+        ],
+        "authoringRationale": "A stopped-versus-isolated ambiguity that a reviewer genuinely cannot resolve from the observation point, which is what makes it a real gap rather than an omission. The same ambiguity governs the recorded interaction: machine access creates the exposure and the energy-isolation state decides whether it is acceptable."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 53,
+      "rowId": "SEM-19",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-19-G1",
+            "description": "the exact identity and applicable concentration of the benzidine-family dye, sufficient to determine whether it is one of the substances or mixtures actually covered by 29 CFR 1910.1003, and, if covered, whether the weighing operation is being conducted within the required regulated-area and control regime applicable to that operation",
+            "affectedDecision": "REGULATORY_INTERPRETATION"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "The gap is whether the standard covers this specific material at all, and if so whether the operation is being conducted within the regime it requires -- a REGULATORY_INTERPRETATION question rather than a control question. No family is forbidden: nothing in the text affirmatively rules anything out."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 54,
+      "rowId": "SEM-21",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-21-G1",
+            "description": "whether the previously applied coating being sanded contains lead or hexavalent chromium",
+            "affectedDecision": "HAZARD_SEVERITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A common and genuinely unresolvable-on-sight question in repair work. No family is forbidden: the compressor behind a screen is incidental but nothing states it is inaccessible, so machine_guarding stays defensible rather than being ruled out."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 55,
+      "rowId": "SEM-24",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-24-G1",
+            "description": "whether the steam header connection was double-blocked and bled rather than only valved closed, before the manway is opened for entry",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [
+          {
+            "interactionKind": "LOTO_STORED_ENERGY",
+            "participants": [
+              "lockout_tagout",
+              "confined_space"
+            ]
+          }
+        ],
+        "authoringRationale": "A pre-entry isolation gap where the paperwork exists and its execution is unverified. Entry has not yet occurred, which is exactly when the question is worth asking, and the same isolation state is what governs whether the entry itself can proceed safely."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 56,
+      "rowId": "SEM-30",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding",
+          "chemical_exposure"
+        ],
+        "lifeCriticalHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "SEM-30-G1",
+            "description": "whether the ammonia detector heads are currently within their applicable calibration or functional-verification interval and are considered reliable for service",
+            "affectedDecision": "EXPOSURE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "The gap attacks the credibility of an instrument reading rather than a physical condition. A green panel that nobody can vouch for is one of the more consequential silent gaps in plant safety, and it is a fact that exists in a file rather than in the room."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 57,
+      "rowId": "SEM-31",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical",
+          "mobile_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "chemical_exposure",
+          "electrical"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A CLARIFICATION_NOT_OWED control. Hydrogen evolution during charging is a real hazard and it is stated as controlled -- ventilation running and proven in range, emergency equipment tested. Everything a decision needs is present, so a question raised here is a false positive rather than diligence."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 58,
+      "rowId": "SEM-32",
+      "source": "semantic §129",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "chemical_exposure",
+          "lockout_tagout"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding",
+          "chemical_exposure"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A second CLARIFICATION_NOT_OWED control, and an interaction-negative control: the interlock was demonstrated rather than assumed, which is the fact that makes the guarding claim verifiable rather than a presumption."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 59,
+      "rowId": "SEM-33",
+      "source": "semantic §129",
+      "classes": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "chemical_exposure"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A clean area at a quiet moment with nothing present. Rows like this are how the evaluation measures restraint at all: everything a decision needs is stated and nothing is wrong."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 60,
+      "rowId": "SEM-34",
+      "source": "semantic §129",
+      "classes": [
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "missRecallOpportunity": false,
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection",
+          "machine_guarding",
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A genuinely unremarkable space, recorded because inspections cover them. The exclusions are explicit statements by the observer rather than silence, which is what makes them usable as forbidden truth under the frozen rule."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 61,
+      "rowId": "SRC-MSHA-019",
+      "source": "D-86 offset 2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 62,
+      "rowId": "SRC-MSHA-041",
+      "source": "D-86 offset 2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 63,
+      "rowId": "SRC-MSHA-057",
+      "source": "D-86 offset 2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": []
+    },
+    {
+      "index": 64,
+      "rowId": "SRC-OSHA-005",
+      "source": "D-86 offset 2",
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "missRecallOpportunity": true,
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "governedStandards": []
+    }
+  ],
+  "classCounts": {
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": 38,
+    "DETERMINISTIC_HAZARD_PRESENT": 49,
+    "MULTI_HAZARD": 20,
+    "GOVERNED_RECORD_SUPPLIED": 40,
+    "CLARIFICATION_NOT_OWED": 45,
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": 48,
+    "DISAGREEMENT_OPPORTUNITY": 40,
+    "LIFE_CRITICAL_PRESENT": 27,
+    "NEGATED_OR_SAFE_STATE": 13,
+    "CROSS_HAZARD_INTERACTION": 11,
+    "CLARIFICATION_OWED": 20,
+    "NO_GOVERNED_RECORD": 25
+  },
+  "governedAttachment": [
+    {
+      "rowId": "GAUNTLET-002",
+      "citationKey": "29cfr1910.101",
+      "recordChecksum": "d8355719ec90a1b3b6d09ab89a50b05b8c8f62cea63135acaee559e8957b6474",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-004",
+      "citationKey": "29cfr1910.1053",
+      "recordChecksum": "d81e2029aaeac3a320077990a4ab9eca7239c304177c904be6efcb70d0a8cac0",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-005",
+      "citationKey": "29cfr1910.120",
+      "recordChecksum": "0c2cdc9c7e7ac613ccee4ae2bd97963a8f0127d7e0ef42082e7171f6cb33ebac",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-007",
+      "citationKey": "29cfr1910.1200",
+      "recordChecksum": "a53f33a13d3155eb6d07e8fa06099b86274c746dd2fa4658a86efbebf4e1fd63",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-015",
+      "citationKey": "29cfr1910.133",
+      "recordChecksum": "7f72b71e9257d861bc03295fd0107efb2912f6c286d9381100bac92dae171b05",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-019",
+      "citationKey": "29cfr1910.134",
+      "recordChecksum": "469b0e67c53cf5dcf5d60f234c71e940dd2d1a8da060edb370af9bac98b16e73",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-022",
+      "citationKey": "29cfr1910.146",
+      "recordChecksum": "64e95d964d97871c19380657d3b9418c53125c264052aefcc66c55791514791e",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-023",
+      "citationKey": "29cfr1910.147",
+      "recordChecksum": "003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-032",
+      "citationKey": "29cfr1910.157",
+      "recordChecksum": "53a3330695b5fb2a36f2daa9005fbba5d8579e108f352c11e827208614adba8c",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-033",
+      "citationKey": "29cfr1910.176",
+      "recordChecksum": "b662e6c006bb6da24d29dbb2f32ba56299e2543362b254d0d7ba7ad4ecb6ed8b",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-045",
+      "citationKey": "29cfr1910.178(p)(1)",
+      "recordChecksum": "c45d1cc6c23d6987698b4cebea21ce7994fc5df0c3bf9aa81a70f08c3c36d7ae",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-054",
+      "citationKey": "29cfr1910.179",
+      "recordChecksum": "55c38d449b9a12ad893af264170471da98c32f244c7f61ac9c6d7fbd007f3a00",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-062",
+      "citationKey": "29cfr1910.184",
+      "recordChecksum": "282969d348c50a2818e348733f70ca1cd8befb1471def0f99c0ce71b27cddaad",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "GAUNTLET-082",
+      "citationKey": "29cfr1910.212(a)(1)",
+      "recordChecksum": "96627e0b577e2b9c92353fdfca71ec964156bbf6a245b1714025c19fd6519a94",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-12",
+      "citationKey": "29cfr1910.22(a)",
+      "recordChecksum": "02516502072c4d6149cd29d518a99b714f8204be2fdbc5369da23516921ce4aa",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-13",
+      "citationKey": "29cfr1910.252",
+      "recordChecksum": "ae911dfb0463a1f73dce2142ad0b04992b1104158c9ff266cec0ed49dbb1ccdb",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-14",
+      "citationKey": "29cfr1910.253",
+      "recordChecksum": "ada7abf531f6e1460767bdcd4e4862b3039652be08f356527a27894f4be4aa91",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-15",
+      "citationKey": "29cfr1910.28",
+      "recordChecksum": "328727df1602f48e203ddfa510b8b392411f52ea4d07e251fc9bd2e5976b8fb6",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-16",
+      "citationKey": "29cfr1910.303",
+      "recordChecksum": "e210f940c808a12bec28ca53146235ee5c30a6bd3e973e0d120206411642dee6",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-20",
+      "citationKey": "29cfr1910.303(b)(1)",
+      "recordChecksum": "d39c7beeda19d1b7227a97744f37f69d2d155c131a47affc7662d82fb60ce877",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-24",
+      "citationKey": "29cfr1910.36",
+      "recordChecksum": "0e13180d1ff835069294987e4ec819343cf6bd7c147ab1cb6a20f9ac02dd003d",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-26",
+      "citationKey": "29cfr1910.94",
+      "recordChecksum": "14eb982c6d188389d7848a21d1851cce2902b7ea7dbdccbd6212de9a9e0374b2",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-27",
+      "citationKey": "29cfr1910.95",
+      "recordChecksum": "e5632e7e16402cc65c97acc939b08d72edf48b72140bb92ea21c4e9a4f07590a",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-28",
+      "citationKey": "29cfr1926.102",
+      "recordChecksum": "b4df9d4bb9cd76966e205ab4423bf3db988575bfaf6b0f451d1eb33424ee5cbe",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-29",
+      "citationKey": "29cfr1926.103",
+      "recordChecksum": "20f33242770e7a5ebccdaa9a5129e6d1ed8ace615eff99657eacc8036877b902",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-32",
+      "citationKey": "29cfr1926.1153",
+      "recordChecksum": "a92e4e554f2ef66c1837c32e18d6e930832d378dc03d81a3caa140263be874ef",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "POPA-A-33",
+      "citationKey": "29cfr1926.1204",
+      "recordChecksum": "40bb93330eb223ada3273da99e56f5729583dd6cd1828b7ff55be29ec0df6489",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-01",
+      "citationKey": "29cfr1926.1425",
+      "recordChecksum": "e57edbdc6704ea9649d7a539a8e69a0ec11ef857830b00bedd278eed787527f2",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-02",
+      "citationKey": "29cfr1926.150",
+      "recordChecksum": "2a479a457d19b75e391b1dbdae37c4256ca62a0a383a8c74ef439bd1dcc000f3",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-03",
+      "citationKey": "29cfr1926.201",
+      "recordChecksum": "b8beea87f62cb2b30fbd16a4b4be748be57a39e987d8f6dbd6f780a278645a2e",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-04",
+      "citationKey": "29cfr1926.250",
+      "recordChecksum": "1b53bb739afb2a89ce22dc528a84cacc14a2600f1bc8da3d9e30258437ddbedf",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-05",
+      "citationKey": "29cfr1926.251",
+      "recordChecksum": "eeb3dda09617e7b431d972d1bb230d1af0c1df350debcdb98c8d934828d7890d",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-06",
+      "citationKey": "29cfr1926.300(b)(2)",
+      "recordChecksum": "b94bc1e035549d90a77f53e0a0ecccdf421340c15fdf1e7f3c5e74a816399416",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-07",
+      "citationKey": "29cfr1926.34(a)",
+      "recordChecksum": "dbf18c496390d9daa1185cbc5d5199a7aae2b5bd8ba415bc7e1067efddc1926a",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-08",
+      "citationKey": "29cfr1926.350",
+      "recordChecksum": "dd1cfce2e92500cabbfa421da6d370718384234c4654afc0966c20fe6be4cbac",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-09",
+      "citationKey": "29cfr1926.352",
+      "recordChecksum": "2067cd5646897f99336e87b562c7c48306f08b025b70b7fabd4bb4a2fbeaa05e",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-10",
+      "citationKey": "29cfr1926.353",
+      "recordChecksum": "a27360dcdd9fb19ee86ad0326cee9bcd6ddf3edb8278cb82b6ff4d717951ae75",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-11",
+      "citationKey": "29cfr1926.416(a)(1)",
+      "recordChecksum": "e449db0edb582c8b653a64334fcb8214d9a1ee8c8adfbeadaa4bcb05638ca63a",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-12",
+      "citationKey": "29cfr1926.417",
+      "recordChecksum": "cd060d8bce4ecf6c3f5231b0a36bbdb72e379dc016cfe7305c7f23f98e660b98",
+      "backingState": "UNAPPROVED_RECORD"
+    },
+    {
+      "rowId": "AUG-16",
+      "citationKey": "29cfr1926.451(g)(1)",
+      "recordChecksum": "5ffd58c7429b14ba66363abe21e131c2a3645ba7ffc09398ec833bf9ce9bb6b4",
+      "backingState": "UNAPPROVED_RECORD"
+    }
+  ],
+  "snapshotSha256": "a2c5dc324ded4fee8689982785682cec0f21c4ed0ce2b1128afd8f902c4d5cd3",
+  "executionIdentity": {
+    "provider": "anthropic",
+    "providerModule": "backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts",
+    "modelFoundInAdapter": "claude-sonnet-5",
+    "modelIsEnvironmentOverridable": true,
+    "promptVersion": "hazlenz.expert.prompt.v6",
+    "inputContract": "hazlenz.expert.input.v1",
+    "analysisContract": "hazlenz.expert.analysis.v2",
+    "measurementContract": "hazlenz.expert.measurement.v1",
+    "rowContract": "hazlenz.expert.cohort.row.v1",
+    "harness": "hazlenz.expert.cohort.harness.v1",
+    "sizePolicy": "hazlenz.expert.cohort.size.policy.v2"
+  },
+  "plannedLogicalCalls": 195,
+  "truthLeak": 0,
+  "providerInvocationCount": 0,
+  "frozen": false
+}

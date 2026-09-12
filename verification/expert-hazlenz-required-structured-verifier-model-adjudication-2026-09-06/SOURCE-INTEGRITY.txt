@@ -1,0 +1,73 @@
+§190 SOURCE INTEGRITY GATE — MODEL SEMANTIC ADJUDICATION
+recomputed 2026-09-06T23:48:09.255Z from the files on disk
+
+RESULT: PASS   19/19
+
+OK    PREREGISTRATION.json
+        expected  9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82
+OK    expert-prompt.ts (file)
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    EXPERT_SYSTEM_PROMPT (string)
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    owed-facts/owed-fact.types.ts
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    EXPERT_VERIFIER_V3_SYSTEM_PROMPT (string)
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    VERIFIER_V3_RESPONSE_SCHEMA (canonical JSON)
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    verifier instruction version
+        expected  hazlenz.expert.verifier-instruction.v3
+OK    §184 OWED-FACT-TRUTH-CANDIDATES.json
+        expected  649a17df3730b1d67f20bda9b6231d0a5461902c985ce87fb7b2659e67798b0b
+OK    §184 SECTION-184-INTEGRITY.json
+        expected  172aaba1fbd22b95259a1bdef3d76a8d5dbd32b27d69b9784532d60a36ebeb36
+OK    §188 neutral ballot still PENDING_HUMAN_ADJUDICATION
+        expected  PENDING_HUMAN_ADJUDICATION
+OK    §188 neutral ballot verdict slots all null
+        expected  112 null / 0 filled
+OK    §188 frozen scorer unmodified
+        expected  48979797770506be722b7645dabdafde9ea6697aae1831ef47f9e62ed56c1c98
+OK    §189 human answers preserved and INCOMPLETE
+        expected  65 / 112
+OK    §189 adjudicator unchanged
+        expected  PRODUCT_OWNER
+OK    §190 labelled as MODEL, not human
+        expected  MODEL_SEMANTIC_ADJUDICATION
+OK    §190 disclaims being the frozen human adjudication
+        expected  false
+
+EVIDENCE HASHES — §187, §188, §189 unchanged by this review
+
+  79129ae849cd54be2e73ba9cf84bda2d7ae4ce62003c4ea1ac127149c386cda9  §187 RESUMED-VERIFIER-EXECUTIONS.jsonl
+  aa6f249753126abe35e16d2449f44d6b243e7475503c88255620c81d26269129  §187 FIRST-PASS-STIMULI.json
+  14d131f27097c5f53d39b39f32055fc0a4e07361c75b4aeb095cdb93b9a67a00  §187 RUN-SUMMARY.json
+  0d83b0999f632876a1cbfb66781e21b286c0687c36c8859ea4c249c9bfc9bf47  §187 RESUME-RUN-SUMMARY.json
+  ccbb0678421b500a66386a6aa8fe7852a8fba4f69a59dd388aeddd2d2efe5532  §187 ADMISSION-RECOMPUTE.json
+  9a71ddaa7b22fa4ceb40a375748ea7f39df5e43233d2cdd80d7e0f8ad7be73ec  §187 SECTION-187B-INTEGRITY.json
+  3953592a8ce9a70b87c9070b8418622b37724c2b70004b9de82cff6ea63b4014  §187 STRICT-SEMANTIC-REVIEW-PACKET-187B.md
+  39eb9513f8e1c4f718bbcdc86fdf9735827e4f5fd1468bd7ce06234d929471a8  §188 HUMAN-ADJUDICATION.json
+  cfe79a15bd56b94ee2c2bc47073554cbfccfc50af802d4a50fb65bdd07acfa56  §188 STRICT-SEMANTIC-GATE.json
+  d3e2cf743e034233c480e75a1d2272bdb7ddf479292bc5cb4fd75f76ac447977  §188 REMEDIATION-REVIEW.md
+  91167245663ee5d6f2ba54567ea434a9b149666df1222dafa3ed167da8803edc  §188 RUN-SUMMARY.json
+  cde83faffbd4f8b3566cfe73966d9785890281b4ac16d17f6f027e4f83f4564d  §189 RAW-HUMAN-ANSWERS.json
+
+PROMPT_CHANGES = 0   SCHEMA_CHANGES = 0   VERIFIER_CONTRACT_CHANGES = 0
+PRODUCT_RUNTIME_CHANGES = 0   DATABASE_OPERATIONS = 0   PROVIDER_CALLS = 0
+FROZEN_SCORER_CHANGES = 0
+
+§190 added, all diagnostic/harness, none product runtime:
+  backend/scripts/lib/expert-model-adjudication-2026-09-06.ts   (model judgements)
+  backend/scripts/build-model-adjudication-2026-09-06.ts        (builder + model scorer)
+  backend/scripts/verify-190-source-integrity-2026-09-06.ts     (this gate)
+  backend/scripts/present-189-adjudication-item-2026-09-06.ts   (read-only presenter)
+
+GOVERNANCE: the frozen §189 human semantic gate remains UNMEASURED /
+NOT_COMPLETED_BY_A_HUMAN_REVIEWER at 65/112. The §188 neutral ballot is unanswered.
+No §190 artifact is a human verdict.
+

@@ -1,0 +1,96 @@
+ok    A1. an empty declaration list projects to zero owed facts  — 0 facts, 0 refusals, nothing fabricated
+ok    A2. zero facts is not an error state and produces no placeholder
+ok    B1. a well-formed declaration projects to exactly one owed fact  — FP.REQUIRED_CONTROL.OBS-1.95-144.1
+ok    B2. the projected fact survives createOwedFactLedger unchanged
+ok    B3. the provenance table covers the projected OwedFact exactly — no field without a row, no row without a field  — 12 fields
+ok    B4. every EXPLICIT_UPSTREAM_FIELD is byte-equal to the declaration field it names
+ok    B5. every MECHANICAL_DERIVATION is the stated constant or the stated computation  — OTHER · UNRESOLVED · modelAuthored=true
+ok    B6. the computed factKey is reproducible from the declaration alone  — FP.REQUIRED_CONTROL.OBS-1.95-144.1
+ok    B7. the projection is byte-stable across repeated calls
+ok    B8. the wire carries no factKey field, so identity cannot be provider-chosen  — identity computed, never accepted
+ok    B9. a declaration that sends a factKey is refused rather than silently stripped
+ok    C1. two independent declarations project to two facts
+ok    C2. the two facts carry distinct identities and distinct affected decisions  — FP.REQUIRED_CONTROL.OBS-1.95-144.1 · FP.EXPOSURE.OBS-1.233-259.1
+ok    C3. neither fact borrowed a field from the other
+ok    C4. a refused declaration does not destroy its well-formed siblings  — per-declaration refusal, never whole-response
+ok    D1.missingFact. a declaration missing missingFact is refused, not inferred
+ok    D1.observationSourceId. a declaration missing observationSourceId is refused, not inferred
+ok    D1.observationSpan. a declaration missing observationSpan is refused, not inferred
+ok    D1.notEstablishedBecause. a declaration missing notEstablishedBecause is refused, not inferred
+ok    D1.affectedDecision. a declaration missing affectedDecision is refused, not inferred
+ok    D1.branchA. a declaration missing branchA is refused, not inferred
+ok    D1.decisionIfA. a declaration missing decisionIfA is refused, not inferred
+ok    D1.branchB. a declaration missing branchB is refused, not inferred
+ok    D1.decisionIfB. a declaration missing decisionIfB is refused, not inferred
+ok    D1.whyNecessaryNow. a declaration missing whyNecessaryNow is refused, not inferred
+ok    D2. a refused declaration yields no partial fact
+ok    D3. a declaration missing branchB is not repaired from branchA
+ok    E1. a paraphrased span is refused
+ok    E2. a span from a source that was not supplied is refused
+ok    E3. a span joined from two fragments is refused, because it is not contiguous
+ok    E4. surrounding whitespace is trimmed, and trimming is the only normalisation
+ok    F1. two declarations sharing a declarationId — the second is refused
+ok    F2. a restatement of the same fact — same decision, same span, same branches — is refused
+ok    F3. two genuinely different facts anchored to the SAME span both survive, with distinct keys  — multi-gap on one sentence is preserved, not deduplicated away
+ok    F4. a malformed declarationId is refused
+ok    F5. every admitted key is unique within the analysis
+ok    G1. an A AND B branch survives projection with both conjuncts intact  — no conjunct dropped, no split on a conjunction
+ok    G2. nothing in the projection splits a branch on a conjunction  — one declaration, one fact — never two halves
+ok    H1. both decisions survive byte-exactly
+ok    H2. a declaration whose two decisions agree is refused rather than given a difference
+ok    H3. two branches stating the same thing are refused
+ok    I1. a HazLenz-held criterion reaches the projected fact unaltered
+ok    I2. null acceptableEvidence is the normal case and stays valid
+ok    I3. the declaration may NAME a governed id but may not carry a criterion  — acceptableEvidence is HazLenz task state projected INTO a request, never back out of one
+ok    I4. naming a governed id HazLenz holds no criterion for leaves the fact with null
+ok    J1. projected facts enter the verifier projection with no harness augmentation
+ok    J2. every semantic string in the verifier projection is byte-equal to the declaration that produced it — nothing was authored between the two stages  — 2 facts, 7 fields each, all upstream
+ok    J3. no forbidden field reaches the verifier projection
+ok    J4. a verifier verdict binding a PROJECTED key is admitted by v3.2 unchanged  — bound FP.REQUIRED_CONTROL.OBS-1.95-144.1
+ok    J5. a computed key satisfies the v3 closed-set binding shape
+ok    K1. a governed sourceId nobody supplied is refused
+ok    K2. with no governed evidence supplied, naming any id is refused
+ok    K3. with no governed evidence supplied, the wire schema forbids naming one at all  — transport refuses it, and the boundary refuses it again
+ok    K4. a duplicated governed id is refused
+ok    L1. §195 collision reproduced — v3.2 refuses a citation copied from the supplied source  — unchanged: v3.2 is byte-identical and still refuses
+ok    L2. v3.3 admits the same verdict as authorised supplied-source reuse  — 29CFR1910.215(A)(4)
+ok    L3. the withdrawal restores the v3-layer outcomes the refusal had suppressed
+ok    L4. a paraphrasing verdict is still admitted — the paraphrase route is not closed
+ok    L5. whitespace and case differences do not defeat the match, and nothing else is normalised
+ok    M1. a citation absent from every authorised source is refused  — 29CFR1910.147
+ok    M2. an ALTERED citation — a paragraph the source does not carry — is refused  — exact comparison over the whole identifier, never a prefix
+ok    M3. one authorised token beside one invented token refuses the verdict whole
+ok    M4. reuse is never assessed when any non-citation code stands  — an invalid reliance declaration can never authorise its own citation
+ok    N1. reliance NONE with a citation is refused  — no authorised source text exists, so every token is refused
+ok    N2. NONE with sourceIds is still refused by v3.2 before reuse is considered
+ok    N3. the first pass gets NO reuse allowance — a citation in a declaration is refused  — v15 HARD PROHIBITIONS is not weakened by vNext
+ok    O1. every projected fact enters UNRESOLVED
+ok    O2. the projection records no transition and confers no authority
+ok    O3. the projection effect is false on every axis  — factsMayBeSettled, coverageMayChange, citationsMayBeCreated, regulatoryTruthMayBeCreated, questionWordingMayBeInvented
+ok    O4. a declaration cannot claim to settle, resolve or cover anything
+ok    O5. a model-authored fact is flagged as such and cannot be mistaken for a derived one
+ok    P1. vNext minus its prompt block reproduces v15 byte-identically  — 20979d90c0fe0b81
+ok    P2. vNext minus its two schema additions reproduces v15 byte-identically
+ok    P3. the vNext prompt is strictly longer than v15 and contains it in order
+ok    P4. expert-prompt.ts is untouched by §196 — vNext composes and never mutates
+ok    P5. the change ledger names exactly the edits made
+ok    Q1. unresolvedFactDeclarations is a top-level sibling, not a candidate-owned field  — no carrier hung off a hazard candidate — D-56 is not reintroduced
+ok    Q2. a declaration projects with zero hazard candidates and zero clarifications present
+ok    Q3. the clarification back-reference is optional and never in `required`
+ok    Q4. a back-reference naming a real declaration resolves to its computed factKey
+ok    Q5. a back-reference naming nothing is recorded unresolved and the question survives
+ok    Q6. a clarification with no back-reference is not treated as broken
+ok    R1. every token the comparison pattern matches is also matched by the canonical detector  — the comparison pattern only ever extends a canonical match rightwards
+ok    R2. the comparison pattern carries /g, so a fresh instance is used per call  — no lastIndex carry-over between calls
+ok    R3. text with no citation is clean and admits nothing  — clean is not the same as reuse-admitted
+ok    R4. an empty authorised set refuses every token
+ok    R5. the admission matrix and the quotation boundary are recorded as data
+ok    S1. cross-analysis semantic identity is explicitly NOT claimed
+ok    S2. the residual limits are recorded, including the LIFE_CRITICAL gap and the owed property
+ok    S3. every non-projecting declaration field has a recorded reason
+ok    S4. the protocol declares its own version and its base
+
+====================================================================================================
+  91/91 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0   CUSTOMER ACTIVATION: NONE
+====================================================================================================

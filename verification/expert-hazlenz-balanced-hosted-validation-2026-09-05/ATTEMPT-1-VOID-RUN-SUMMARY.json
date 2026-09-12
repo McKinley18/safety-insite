@@ -1,0 +1,105 @@
+{
+  "preregistrationSha256": "397aed8f73cf47de7a585878d2cea97104ca4918d22ea84ed48b3e6d3cecc508",
+  "model": "claude-sonnet-5",
+  "promptIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v13",
+    "contractVersion": "hazlenz.expert.analysis.v2",
+    "systemPromptSha256": "c4b3162439988e74186c36f75ee1f14875835e1cc832251a8d7365a4b158e3f3",
+    "wireSchemaSha256": "96ceed875bc2ff8af2a67b171b2e1fddc4eaae9932ac18f30a9e81202ea80bf5"
+  },
+  "PROVIDER_INVOCATION_COUNT": 10,
+  "TOTAL_ACTUAL_COST_USD": 0.47437,
+  "retries": 0,
+  "stopReason": null,
+  "rowsExecuted": 10,
+  "recordsOnDisk": 10,
+  "contractFailures": [],
+  "totalPromptTokens": 182140,
+  "totalOutputTokens": 11009,
+  "meanLatencyMs": 41864,
+  "SILENCE_PRECISION": {
+    "correct": 5,
+    "of": 5,
+    "exact": true
+  },
+  "REQUIRED_RECALL_LOOSE": {
+    "emitted": 0,
+    "of": 5,
+    "isUpperBound": true
+  },
+  "REQUIRED_RECALL_STRICT": "PENDING_HUMAN_ADJUDICATION",
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "truth": "REQUIRED",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "NO CLARIFICATION (fail)"
+    },
+    {
+      "rowId": "HR-02",
+      "truth": "SILENCE",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "SILENT (pass)"
+    },
+    {
+      "rowId": "HR-03",
+      "truth": "SILENCE",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "SILENT (pass)"
+    },
+    {
+      "rowId": "HR-04",
+      "truth": "REQUIRED",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "NO CLARIFICATION (fail)"
+    },
+    {
+      "rowId": "HR-05",
+      "truth": "SILENCE",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "SILENT (pass)"
+    },
+    {
+      "rowId": "HR-06",
+      "truth": "REQUIRED",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "NO CLARIFICATION (fail)"
+    },
+    {
+      "rowId": "HR-07",
+      "truth": "SILENCE",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "SILENT (pass)"
+    },
+    {
+      "rowId": "HR-08",
+      "truth": "REQUIRED",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "NO CLARIFICATION (fail)"
+    },
+    {
+      "rowId": "HR-09",
+      "truth": "REQUIRED",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "NO CLARIFICATION (fail)"
+    },
+    {
+      "rowId": "HR-10",
+      "truth": "SILENCE",
+      "clarificationCount": 0,
+      "ok": true,
+      "mechanicalOutcome": "SILENT (pass)"
+    }
+  ],
+  "MEASUREMENT_STATUS": "VOID — HARNESS_DEFECT",
+  "doNotCite": "every figure in this file is a harness artifact. The probe could not read the provider output. See ATTEMPT-1-VOID-AND-HARNESS-DEFECT.json."
+}

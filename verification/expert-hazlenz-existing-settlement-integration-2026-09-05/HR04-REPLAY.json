@@ -1,0 +1,80 @@
+{
+  "artifact": "SECTION_182_HR04_STATE_MACHINE_REPLAY",
+  "disclaimer": "STATE-MACHINE AND AUTHORITY PROOF ONLY. This does NOT claim a human ought to approve HR-04. The frozen product-owner truth for HR-04 remains REQUIRED, and the approval branch exists solely to prove the architecture can reach the state.",
+  "providerCalls": 0,
+  "initial": {
+    "securement": "UNRESOLVED",
+    "presence": "UNRESOLVED"
+  },
+  "providerClaim": {
+    "origin": "CHALLENGE_FACT_VALIDITY",
+    "factKey": "owed:guarding:current_securement_of_fixed_guard",
+    "claimId": "3e3691c07da0d07b…",
+    "providerReason": "the observation states the guard is in position and the fastenings were torque-checked at the annual service, so the guarding state is settled",
+    "evidenceDigest": "5296f98436f8c2a2…"
+  },
+  "afterConsumptionBeforeReview": {
+    "securement": "UNRESOLVED",
+    "reviewState": "AWAITING_HUMAN_REVIEW",
+    "ledgerUnchanged": true
+  },
+  "settlementGuidanceShownToReviewer": {
+    "acceptableEvidence": {
+      "requirement": "Evidence establishing guarding_status by a verification method the governed record for 1910.212 recognises.",
+      "examples": [
+        "physical_inspection"
+      ],
+      "insufficientExamples": [
+        "training_only"
+      ]
+    },
+    "absent": false,
+    "caveat": "acceptableEvidence states what the governed record recognises as verification. It does NOT state that this evidence settles this property. §181 found the governed registry contains no functional-test verification method, so a criterion shown here may be incapable of settling a protective-function fact. Deciding that is the reviewer's judgement."
+  },
+  "BRANCH_A_HUMAN_REJECTS": {
+    "decision": "REJECT_SETTLEMENT",
+    "authorityMinted": false,
+    "refusedBecause": [
+      "DECISION_DOES_NOT_APPROVE_SETTLEMENT"
+    ],
+    "securementAfter": "UNRESOLVED"
+  },
+  "BRANCH_B_HUMAN_APPROVES": {
+    "decision": "APPROVE_SETTLEMENT",
+    "authorityMinted": true,
+    "authorityScope": "SINGLE_FACT_SINGLE_CLAIM_SINGLE_USE",
+    "impliesFutureSufficiency": false,
+    "applied": true,
+    "securementAfter": "SETTLED_BY_EVIDENCE",
+    "presenceAfter": "UNRESOLVED",
+    "transitionAuthority": "ADMISSIBLE_EVIDENCE"
+  },
+  "observation": {
+    "version": "hazlenz.expert.settlement-review.v1",
+    "analysisId": "HR-04",
+    "factKey": "owed:guarding:current_securement_of_fixed_guard",
+    "claimId": "3e3691c07da0d07bcd9bca110ac1b913e9d5540fefe7ef17ede69478e12f6d89",
+    "claimOrigin": "CHALLENGE_FACT_VALIDITY",
+    "providerReason": "the observation states the guard is in position and the fastenings were torque-checked at the annual service, so the guarding state is settled",
+    "acceptableEvidence": {
+      "requirement": "Evidence establishing guarding_status by a verification method the governed record for 1910.212 recognises.",
+      "examples": [
+        "physical_inspection"
+      ],
+      "insufficientExamples": [
+        "training_only"
+      ]
+    },
+    "acceptableEvidenceAbsent": false,
+    "factStatusBeforeReview": "UNRESOLVED",
+    "reviewerProvenance": "HUMAN_REVIEW",
+    "reviewDecision": "APPROVE_SETTLEMENT",
+    "authorityMinted": true,
+    "authorityRefusedBecause": [],
+    "transitionAttempted": true,
+    "applicationRefusedBecause": [],
+    "factStatusAfterReview": "SETTLED_BY_EVIDENCE",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "GOVERNED_FUNCTIONAL_TEST_METHOD_PRESENT": false
+  }
+}

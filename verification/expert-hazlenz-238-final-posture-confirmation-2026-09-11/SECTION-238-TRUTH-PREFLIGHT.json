@@ -1,0 +1,106 @@
+{
+  "artifact": "SECTION-238-TRUTH-PREFLIGHT",
+  "version": "hazlenz.expert.238.final-confirmation.v1",
+  "machineChecked": true,
+  "ranBeforeFreeze": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "result": "PASS",
+  "passed": 15,
+  "total": 15,
+  "checks": [
+    {
+      "id": "P1",
+      "rule": "six cases, two per category, unique identifiers",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P2",
+      "rule": "every truth anchor is a verbatim substring of its observation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P3",
+      "rule": "every expected posture and driver role is a member of the frozen vocabularies",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P4",
+      "rule": "HOLD if and only if the controlling property is UNRESOLVED",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P5",
+      "rule": "the expected controlling driver role is the one the expected posture requires",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P6",
+      "rule": "the frozen role-presence expectation agrees with the expected posture and with the §237 rules",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P7",
+      "rule": "CONTINUE owes no new control, CONTINUE_WITH_CONTROLS names at least one, and a non-permitting posture names a resume condition and no continuation controls",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P8",
+      "rule": "each case refutes exactly the three postures it did not choose, substantively",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P9",
+      "rule": "the composition the authorization requires is present",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P10",
+      "rule": "the cohort can fail by over-labelling as easily as by under-labelling",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P11",
+      "rule": "no case reuses an excluded subject term",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P12",
+      "rule": "no §238 observation overlaps any §230/§231, §234 or §236 observation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P13",
+      "rule": "no §238 case is a paraphrase of another",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P14",
+      "rule": "every case books one first-pass call, no verifier call, no governed record, and carries a complete transmitted context",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P15",
+      "rule": "the frozen §233 continuation table agrees with the truth on every case",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "repairsMadeBeforeFreeze": [
+    "The first run failed P8 on C2, whose refutation of STOP was a single short clause too thin to adjudicate against. It was written out properly in the development instrument before the freeze and before any spend. No observation, expected posture, expected role or truth field was changed."
+  ]
+}

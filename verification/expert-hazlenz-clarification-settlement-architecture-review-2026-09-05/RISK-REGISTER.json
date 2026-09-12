@@ -1,0 +1,150 @@
+{
+  "artifact": "SECTION_180_RISK_REGISTER",
+  "date": "2026-09-05",
+  "scope": "risks of the RECOMMENDED architecture (structured settlement representation), and risks of not doing it",
+
+  "risks": [
+    {
+      "id": "R1",
+      "risk": "DETERMINISTIC SEMANTIC CREEP — a structural check quietly becomes a semantic one",
+      "shape": "someone adds 'and evidenceEstablishes must mention the requirement's key terms', or a similarity score 'just as a warning'. It starts as observability and ends as a gate.",
+      "severity": "HIGH — this is the failure the whole architecture exists to prevent",
+      "precedent": "the B_selectorAccuracy keyword scorer, retired at §160/§161 after being satisfied by the observation text itself on 3 of 4 REQUIRED cases",
+      "mitigation": [
+        "CLARIFICATION_EVIDENCE_SUFFICIENCY stays a named constant that cannot quietly acquire an implementation",
+        "a proof asserting no comparison of evidenceEstablishes against requirement exists anywhere in the new code",
+        "COVERAGE_DECISION_INPUTS stays a whitelist and the new fields are NOT added to it"
+      ],
+      "residual": "a determined future edit can still do it. The proofs make it loud, not impossible."
+    },
+    {
+      "id": "R2",
+      "risk": "CLOSED PROPERTY ONTOLOGY REAPPEARS",
+      "shape": "settlementAssessment reasons harden into a property vocabulary, or a requiredProperty enum is added 'for consistency'. §178 already refused this once.",
+      "severity": "HIGH",
+      "mitigation": [
+        "Q1 selects reuse of acceptableEvidence.requirement — a SENTENCE — over any new property field",
+        "status stays closed and authority-bearing; reasons stay open text",
+        "the v15 prompt already states the property vocabulary is 'EXAMPLES ... never a list to choose from', and a proof asserts no property enum exists in the module"
+      ],
+      "residual": "observability reason codes are the likeliest entry point and should be reviewed as such"
+    },
+    {
+      "id": "R3",
+      "risk": "FALSE SETTLEMENT BECOMES ACTIONABLE",
+      "shape": "a provider claim of SETTLED suppresses a clarification, and a real hazard question is never asked because a fluent model said it was handled",
+      "severity": "CRITICAL — this is a safety risk, not a measurement risk",
+      "mitigation": [
+        "a settlement claim is typed like CHALLENGE_FACT_VALIDITY: settles:false, factStatusUnchanged:true",
+        "the fact stays UNRESOLVED and its clarification entitlement is unchanged",
+        "SETTLED_BY_EVIDENCE is reachable only by an ADMISSIBLE_EVIDENCE transition, and the only proposed producer is a recorded human review in the DEVELOPMENT population",
+        "stage E must prove the negative case explicitly"
+      ],
+      "residual": "none while the gate holds — but this is the invariant to check first in any future review"
+    },
+    {
+      "id": "R4",
+      "risk": "RUBBER-STAMPED REVIEW SURFACE",
+      "shape": "stage D builds the queue consumer, and a reviewer facing many claims approves them in bulk. The human authority becomes a formality and R3 arrives through the front door.",
+      "severity": "HIGH, and underrated",
+      "mitigation": [
+        "show the owed requirement and the claimed property side by side, so the comparison is the unit of review",
+        "surface the SETTLEMENT_CLAIMED_WITHOUT_GOVERNED_CRITERION flag prominently",
+        "record reviewer, timestamp and rationale per claim, and treat a null rationale as not reviewed",
+        "keep the volume small by scope: development population only"
+      ],
+      "residual": "real. Volume is the enemy of review quality and no type prevents fatigue."
+    },
+    {
+      "id": "R5",
+      "risk": "DECLARATION BURDEN CHANGES BEHAVIOUR ON OTHER AXES",
+      "shape": "asking for a per-fact settlement justification makes the model more verbose, more cautious, or more inclined to declare things unresolved — improving recall while quietly costing precision",
+      "severity": "MODERATE",
+      "precedent": "§167's large movement was confounded by three bundled changes and the design could not attribute it",
+      "mitigation": [
+        "stage F must measure BOTH recall and precision; a recall gain with a precision regression is not success",
+        "change one thing per validation where possible",
+        "preregister the comparator problem rather than discovering it afterwards"
+      ],
+      "residual": "high measurement cost. Each axis needs replicates."
+    },
+    {
+      "id": "R6",
+      "risk": "GOVERNED CRITERIA ARE TOO COARSE TO SUPPORT SETTLEMENT, AND GET STRENGTHENED TO FIT",
+      "shape": "the architecture works better with sharper criteria, so someone sharpens approved records to make it work — authoring safety truth to fit a tool",
+      "severity": "HIGH",
+      "precedent": "§171 — seven of nine distinct verification methods across twenty approved records are looking-based, the exact class §169 ruled insufficient for a protective-function fact",
+      "mitigation": [
+        "governed record changes require their own knowledge-governance authorization and are explicitly outside this sequence",
+        "the architecture must behave identically where the criterion is null, so it never DEPENDS on sharper records",
+        "the alignment audit reports the gap rather than closing it"
+      ],
+      "residual": "the incentive persists as long as the architecture looks better with better records"
+    },
+    {
+      "id": "R7",
+      "risk": "SETTLEMENT STATE USED TO JUSTIFY COMPOUND QUESTIONS",
+      "shape": "'these two facts share a settlement target, so one question can cover both' — reintroducing the compound-question defect §169 adjudicated UNACCEPTABLE on two draws",
+      "severity": "MODERATE",
+      "mitigation": [
+        "StructuralQuestion.bindingFactKey stays a single string with no array anywhere in the interface",
+        "settlement state must not be an input to mayCombine()"
+      ],
+      "residual": "low while the type holds"
+    },
+    {
+      "id": "R8",
+      "risk": "ADJACENT-HAZARD SUPPRESSION",
+      "shape": "an over-eager entitlement rule stops the model raising a genuinely new hazard because the owed fact was settled — trading a precision gain for a recall loss on the axis that matters most",
+      "severity": "HIGH — a missed new hazard is worse than an unnecessary question",
+      "mitigation": [
+        "nomination stays additive and structurally cannot express replacement",
+        "the review explicitly rejects any rule of the form 'a settled owed fact suppresses adjacent nominations'",
+        "a nomination passes a STRUCTURAL burden, never a test of importance"
+      ],
+      "residual": "must be checked in stage F's precision analysis, which currently has no silence-control rows beyond the frozen ten"
+    },
+    {
+      "id": "R9",
+      "risk": "ADJUDICATION FEEDBACK LOOP",
+      "shape": "a recorded human settlement review becomes task state that is projected back to the provider, closing the loop the evaluation depends on being open",
+      "severity": "HIGH",
+      "mitigation": [
+        "ADJUDICATION_LABEL and DEVELOPMENT_HUMAN_TRUTH are already in PRODUCTION_FORBIDDEN_EVIDENCE_PROVENANCES",
+        "the existing proof suite already asserts human dispositions, pass/fail status, historical rates and expected questions are absent from the projection",
+        "stage D's review output must be typed so that it is not an AcceptableEvidence"
+      ],
+      "residual": "low, but the temptation grows once reviews accumulate"
+    },
+    {
+      "id": "R10",
+      "risk": "BUILDING THE WRONG THING BECAUSE THE EXISTING ARCHITECTURE WAS NEVER TESTED",
+      "shape": "the settlement declaration is built, and it turns out an explicit owed fact with the existing three-token declaration would have changed the failing path on its own",
+      "severity": "MODERATE — wasted work rather than unsafe work",
+      "mitigation": ["stage A0 exists precisely for this and costs nothing", "A0 can overturn the recommendation before any new field is written"],
+      "residual": "A0 is local; a hosted confirmation is still a separate authorization"
+    },
+    {
+      "id": "R11",
+      "risk": "DOING NOTHING — the risk of the null option",
+      "shape": "prompt-only continuation, a fourth identity, another replicated validation, and the same inability to say why a row failed",
+      "severity": "MODERATE, and cumulative",
+      "evidence": "three prompt identities have failed to move HR-04; §179 cost 30 calls and $1.53991 to learn that one row did not move and could not report the reason structurally",
+      "mitigation": ["not applicable — this is the risk the recommendation exists to address"],
+      "note": "this remains a legitimate choice. PROMPT_ENGINEERING_CANNOT_SOLVE_SETTLEMENT is not established and v15 was one wording at one placement."
+    },
+    {
+      "id": "R12",
+      "risk": "INSTRUMENT EXHAUSTION",
+      "shape": "the frozen ten-row instrument has now been spent at v13, v14 and v15 (three replicates). Continued reuse invites overfitting to ten rows of Claude-authored, AI-assisted development truth.",
+      "severity": "MODERATE",
+      "mitigation": [
+        "stage F's authorization must decide explicitly whether the instrument can carry another comparison or whether fresh material is required",
+        "the provenance-independent challenge remains outstanding regardless of architecture"
+      ],
+      "residual": "real and growing with each reuse"
+    }
+  ],
+
+  "riskOfTheRecommendationOverall": "MODERATE. The safety-critical risk (R3) is closed by construction — a provider claim cannot move the ledger. The most likely real-world failures are R1 semantic creep, R4 rubber-stamping and R6 record-strengthening, all of which are governance failures rather than design failures, and all of which are visible if the proofs and provenance rules are kept."
+}

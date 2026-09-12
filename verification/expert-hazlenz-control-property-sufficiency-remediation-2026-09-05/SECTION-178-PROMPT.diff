@@ -1,0 +1,149 @@
+--- /private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/ea2730de-fab3-4817-bcf8-064f57bd3d50/scratchpad/prompt-v14-reconstructed.ts	2026-09-05 13:57:46
++++ /private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/ea2730de-fab3-4817-bcf8-064f57bd3d50/scratchpad/prompt-v15.ts	2026-09-05 13:57:46
+@@ -54,7 +54,74 @@
+  * recorded probe names the prompt version it ran under, and §112's hosted R6 evidence (0/3 clean)
+  * was measured under v5.
+  */
+-export const EXPERT_PROMPT_VERSION = 'hazlenz.expert.prompt.v14' as const;
++export const EXPERT_PROMPT_VERSION = 'hazlenz.expert.prompt.v15' as const;
++
++/**
++ * v15. §178 CONTROL-PROPERTY SUFFICIENCY. ONE idea, in two places, and the second place is the
++ * point of it: *evidence establishing one property of a control does not establish a different
++ * property the decision needs.*
++ *
++ * ==================== WHY THE §176 RULE DID NOT FIRE ====================
++ *
++ * §176 added a temporal-sufficiency rule for exactly the row that §175 missed, and §177 measured
++ * the row again under v14 and found it missed in the same way. The raw output says why, and the
++ * answer is placement rather than wording. The model closed the guarding fact on PRESENCE -- the
++ * control was stated to be in position -- and concluded that nothing decision-critical was missing.
++ * Having decided the fact was settled, it never reached a question about WHEN the earlier
++ * verification spoke for, so a correct rule sitting in the established-facts list was never
++ * consulted on that path. A rule only fires where the reasoning actually passes through it.
++ *
++ * The unresolved property was not that the control existed. It was whether the control presently
++ * had the property the decision turned on. Presence and securement are different properties of the
++ * same object, and evidence for one is silent about the other.
++ *
++ * ==================== THE TWO INSERTIONS, AND WHY BOTH ====================
++ *
++ * 1. WHICH PROPERTY THE DECISION NEEDS (~40 lines), at the HEAD of `WHAT COUNTS AS ESTABLISHED`,
++ *    ahead of the "STATES it" rule and its particulars. This is the determination of whether a
++ *    fact is established, so the property comparison runs AS PART OF that determination rather
++ *    than downstream of it. Five ordered steps: name the owed decision and its fact; name the
++ *    property the decision needs; name the property the evidence establishes; compare; and only
++ *    then let the timing rule apply. Step (v) hands off to §176 explicitly, so the two rules
++ *    compose in the order the failure requires -- property first, then moment.
++ *
++ * 2. A second qualification inside `CURRENT STATE, NOT HISTORICAL STATE` (6 lines), beside §176's.
++ *    That section is read BEFORE 1 and 2 and can close a fact on its own ("never ask a question
++ *    the observation already answered"), which is precisely the premature-closure surface §177
++ *    identified. Placing the rule only in the established-facts list would repeat the §176 mistake.
++ *    It states the property qualification and defers the working of it to insertion 1.
++ *
++ * ==================== THE BRAKES, WHICH ARE MOST OF IT ====================
++ *
++ * The rule cuts every way and rules NO evidence class weak. A stated presence establishes a
++ * presence fact COMPLETELY, and asking further is re-litigating a stated fact. A functional test
++ * establishes function completely -- and is silent about a configuration the decision may
++ * separately need, which is the same rule pointed the other direction. Physical inspection, visual
++ * observation, documents, records, instrument readings and witness accounts are each named as
++ * capable of establishing the property they speak to. Nothing here calls any of them insufficient
++ * or stale, requires a test or a re-check for its own sake, or makes an unstated property into a
++ * question: a property mismatch is a reason a fact is unsettled, never permission to ask, and the
++ * five-part counterfactual test still gates every question on its own.
++ *
++ * The property vocabulary is EXAMPLES, explicitly "never a list to choose from", so no closed
++ * taxonomy is created and the model is told to name the decisive property in its own words.
++ *
++ * ==================== IDENTITY, AND WHAT IS NOT CLAIMED ====================
++ *
++ * `EXPERT_PROMPT_VERSION` v14 -> v15 because the prompt TEXT changed semantically this time, unlike
++ * the v13 -> v14 alignment in §177 which left `SYSTEM_PROMPT_SHA256` byte-identical. Every live
++ * version pin moves with it; historical records that correctly state v13 or v14 do not. The wire
++ * schema is untouched -- no field, enum or `required` entry moved -- so
++ * `EXPERT_ANALYSIS_CONTRACT_VERSION` stays `analysis.v2`.
++ *
++ * NOTHING HERE IS TUNED TO A ROW. No frozen-instrument row id, hazard family, equipment, fastening,
++ * verification activity or scenario wording from §173-§177 appears in this file. The proofs check
++ * that, and static proofs are all they are: they show the rule is present, general, ordered and
++ * braked. **They cannot show the model behaves differently.** Whether the repair changes behaviour
++ * is answerable only by a hosted run, and §178 explicitly does not perform one -- the next
++ * validation must be a preregistered REPLICATE design, because the §175 and §177 one-shot runs
++ * cannot separate a remediation effect from sampling variance.
++ */
+ 
+ /**
+  * v13. §150 THE RETENTION BRIDGE. ONE addition, and it is a BRIDGE rather than a rule about when to
+@@ -497,12 +564,18 @@
+   'question merely because you can imagine it. And never ask a question the observation already',
+   'answered: re-litigating a stated, verified fact ("was it verified at zero?" when the text says it',
+   'was verified at zero) is not a clarification — it is disregarding evidence you were given.',
+-  'One qualification, and only this one: a stated verification answers the question for the moment',
+-  'it describes. Where the decision depends on the state at a LATER moment, check that what you',
+-  'were given reaches that moment before treating the question as closed -- if it does not, the',
++  'Two qualifications, and only these two. FIRST, a stated verification answers the question for the',
++  'moment it describes. Where the decision depends on the state at a LATER moment, check that what',
++  'you were given reaches that moment before treating the question as closed -- if it does not, the',
+   'question was never answered rather than answered and re-litigated. This does not reopen a',
+   'remediation the observation reports as holding, and it is not a reason to ask whether anything',
+   'might have changed since; it applies only where the decision itself turns on a later moment.',
++  'SECOND, and of the same shape: a stated fact answers the question for the PROPERTY it states, and',
++  'says nothing either way about a DIFFERENT property of the same thing. Where the decision turns on',
++  'that other property, the question was never answered rather than answered and re-litigated.',
++  'Both qualifications are worked in full under WHAT COUNTS AS ESTABLISHED in 2 below, and settle it',
++  'there rather than here. NEITHER is a licence to reopen a fact whose property AND moment both',
++  'match what the decision needs: where they match, the fact is closed, and you say so and move on.',
+   '',
+   'This is a rule about CURRENT vs PAST, never about tense or wording. Do not implement it as "the',
+   'text uses past tense" or "the text contains the word removed / corrected / restored" — apply the',
+@@ -572,7 +645,48 @@
+   '',
+   '   WHAT COUNTS AS ESTABLISHED. Settle this BEFORE the test below. The test asks what is missing,',
+   '   and you cannot answer that while treating your own reasoning as evidence.',
++  '',
++  '   WHICH PROPERTY THE DECISION NEEDS. Work this FIRST, before you ask whether anything was',
++  '   stated, and again whenever you are about to write that something is settled. A fact is never',
++  '   established in the abstract: it is established FOR A PROPERTY. Evidence about one property of',
++  '   a thing is SILENT about a different property of that same thing -- it neither establishes that',
++  '   other property nor rules it out -- so what you were given can be true, stated, and directly',
++  '   relevant, and still leave the decision unresolved.',
++  '',
++  '   Work these in order, and stop at the step that answers you:',
++  '     (i)   name the current decision you owe, and the fact it turns on;',
++  '     (ii)  name the specific PROPERTY of that fact the decision depends on. Existence, presence,',
++  '           securement, functional operation, effectiveness, configuration, protective response',
++  '           and verified state are EXAMPLES of what a property can be -- never a list to choose',
++  '           from. Name the property this decision actually makes decisive, in your own words, even',
++  '           when nothing above fits it;',
++  '     (iii) name the property the supplied evidence actually establishes, read for exactly what it',
++  '           says and not one step further;',
++  '     (iv)  compare (ii) with (iii). SAME PROPERTY: the fact IS established -- say so, move on, no',
++  '           hedge and no question. DIFFERENT PROPERTY: what you were given is silent on the',
++  '           property the decision needs, so that property stands unresolved unless something else',
++  '           states it -- and look for that something else, in the observation, the deterministic',
++  '           findings, a supplied governed record or an answered clarification, before you treat it',
++  '           as missing;',
++  '     (v)   only once (iv) matches does timing arise. The right property shown for the wrong',
++  '           moment is handled by the verification-time rule below, not by this one.',
+   '',
++  '   THIS CUTS EVERY WAY, AND IT RULES NO KIND OF EVIDENCE WEAK. Where the decision turns on',
++  '   presence, a stated presence establishes it COMPLETELY and asking further is re-litigating a',
++  '   stated fact. Where it turns on function, a stated functional test establishes it completely --',
++  '   and that same test is silent about a configuration, a scope or a securement the decision may',
++  '   separately need. Physical inspection, visual observation, a document, a record, an instrument',
++  '   reading and a witness account are each capable of establishing the property they speak to;',
++  '   nothing here calls any of them insufficient, weak, stale or in need of a better method, and',
++  '   nothing here requires a test, a re-check or a second source for its own sake.',
++  '',
++  '   AND IT NEVER MANUFACTURES A QUESTION. A property mismatch is a reason a fact is not yet',
++  '   settled. It is not permission to ask. The unresolved property must be one THIS decision',
++  '   genuinely turns on, and the question must still pass all five parts of the test below on its',
++  '   own. A property you merely noticed nobody stated, one the decision does not depend on, or one',
++  '   whose answer would only raise your confidence, stays unasked -- that is silence, exactly as it',
++  '   was before this paragraph existed.',
++  '',
+   '   A fact is ESTABLISHED only if the observation, the deterministic findings above, a supplied',
+   '   governed record, or an answered clarification STATES it. Your own inference does not establish',
+   '   it, however sound the inference is. In particular:',

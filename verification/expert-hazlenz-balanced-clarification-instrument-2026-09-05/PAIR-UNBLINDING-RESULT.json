@@ -1,0 +1,172 @@
+{
+  "UNBLINDED_AFTER_FREEZE": true,
+  "verdictRecordHashAtUnblinding": "4412990912bef4e91c23286823bc685520c1d124259abb59acb9431e30dac2ff",
+  "unblindingOrder": [
+    "verify frozen hashes",
+    "record verdicts",
+    "freeze and hash record",
+    "run preregistered scan",
+    "open PAIR-MAP",
+    "compute pair outcomes"
+  ],
+  "rowMapping": [
+    {
+      "REVIEW_ROW_ID": "HR-01",
+      "candidateId": "PAIR-3-R",
+      "PAIR_ID": "PAIR-3",
+      "TARGET_HAZARD_FAMILY": "fire_explosion",
+      "INTENDED_CLASS": "REQUIRED",
+      "HUMAN_VERDICT": "REQUIRED",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-02",
+      "candidateId": "PAIR-1-S",
+      "PAIR_ID": "PAIR-1",
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "INTENDED_CLASS": "SILENCE",
+      "HUMAN_VERDICT": "SILENCE",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-03",
+      "candidateId": "PAIR-5-S",
+      "PAIR_ID": "PAIR-5",
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "INTENDED_CLASS": "SILENCE",
+      "HUMAN_VERDICT": "SILENCE",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-04",
+      "candidateId": "PAIR-2-R",
+      "PAIR_ID": "PAIR-2",
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "INTENDED_CLASS": "REQUIRED",
+      "HUMAN_VERDICT": "REQUIRED",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-05",
+      "candidateId": "PAIR-4-S",
+      "PAIR_ID": "PAIR-4",
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "INTENDED_CLASS": "SILENCE",
+      "HUMAN_VERDICT": "SILENCE",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-06",
+      "candidateId": "PAIR-1-R",
+      "PAIR_ID": "PAIR-1",
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "INTENDED_CLASS": "REQUIRED",
+      "HUMAN_VERDICT": "REQUIRED",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-07",
+      "candidateId": "PAIR-3-S",
+      "PAIR_ID": "PAIR-3",
+      "TARGET_HAZARD_FAMILY": "fire_explosion",
+      "INTENDED_CLASS": "SILENCE",
+      "HUMAN_VERDICT": "SILENCE",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-08",
+      "candidateId": "PAIR-4-R",
+      "PAIR_ID": "PAIR-4",
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "INTENDED_CLASS": "REQUIRED",
+      "HUMAN_VERDICT": "REQUIRED",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-09",
+      "candidateId": "PAIR-5-R",
+      "PAIR_ID": "PAIR-5",
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "INTENDED_CLASS": "REQUIRED",
+      "HUMAN_VERDICT": "REQUIRED",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    },
+    {
+      "REVIEW_ROW_ID": "HR-10",
+      "candidateId": "PAIR-2-S",
+      "PAIR_ID": "PAIR-2",
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "INTENDED_CLASS": "SILENCE",
+      "HUMAN_VERDICT": "SILENCE",
+      "AGREES_WITH_AUTHORING_INTENT": true
+    }
+  ],
+  "pairs": [
+    {
+      "PAIR_ID": "PAIR-1",
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "TARGET_DECISION": "whether the debarker may continue to run as observed",
+      "TARGET_FACTKEY": "owed:guarding:interlock_function_verified_before_return_to_service",
+      "INTENDED_SILENCE_ROW": "HR-02",
+      "INTENDED_REQUIRED_ROW": "HR-06",
+      "HUMAN_VERDICT_SILENCE_ROW": "SILENCE",
+      "HUMAN_VERDICT_REQUIRED_ROW": "REQUIRED",
+      "PAIR_CONCORDANCE": "FULLY_CONCORDANT",
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — the approved record app-mg-01 lists verificationMethods ['physical_inspection'] only, which cannot support a function-verified criterion for this factKey"
+    },
+    {
+      "PAIR_ID": "PAIR-2",
+      "TARGET_HAZARD_FAMILY": "machine_guarding",
+      "TARGET_DECISION": "whether the conveyor may keep running with an operative on the adjacent gangway",
+      "TARGET_FACTKEY": "owed:guarding:fixed_guard_fastenings_secure",
+      "INTENDED_SILENCE_ROW": "HR-10",
+      "INTENDED_REQUIRED_ROW": "HR-04",
+      "HUMAN_VERDICT_SILENCE_ROW": "SILENCE",
+      "HUMAN_VERDICT_REQUIRED_ROW": "REQUIRED",
+      "PAIR_CONCORDANCE": "FULLY_CONCORDANT",
+      "governedKnowledgeFlag": "MACHINE_GUARDING_GOVERNED_VOCABULARY_LIMITATION — same record, same limitation"
+    },
+    {
+      "PAIR_ID": "PAIR-3",
+      "TARGET_HAZARD_FAMILY": "fire_explosion",
+      "TARGET_DECISION": "whether drying may continue under the existing controls",
+      "TARGET_FACTKEY": "owed:fire:flame_failure_safeguard_function_verified",
+      "INTENDED_SILENCE_ROW": "HR-07",
+      "INTENDED_REQUIRED_ROW": "HR-01",
+      "HUMAN_VERDICT_SILENCE_ROW": "SILENCE",
+      "HUMAN_VERDICT_REQUIRED_ROW": "REQUIRED",
+      "PAIR_CONCORDANCE": "FULLY_CONCORDANT",
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    },
+    {
+      "PAIR_ID": "PAIR-4",
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "TARGET_DECISION": "whether the blockage-clearing work may continue as observed",
+      "TARGET_FACTKEY": "owed:energy:auger_drive_isolation_verified_before_work",
+      "INTENDED_SILENCE_ROW": "HR-05",
+      "INTENDED_REQUIRED_ROW": "HR-08",
+      "HUMAN_VERDICT_SILENCE_ROW": "SILENCE",
+      "HUMAN_VERDICT_REQUIRED_ROW": "REQUIRED",
+      "PAIR_CONCORDANCE": "FULLY_CONCORDANT",
+      "governedKnowledgeFlag": "none identified — app-loto-01 lists zero_energy_verification, which would support this factKey, but no criterion was derived or attached here"
+    },
+    {
+      "PAIR_ID": "PAIR-5",
+      "TARGET_HAZARD_FAMILY": "hazardous_energy",
+      "TARGET_DECISION": "whether the hydraulic hose may be broken as planned",
+      "TARGET_FACTKEY": "owed:energy:stored_energy_dissipated_before_line_break",
+      "INTENDED_SILENCE_ROW": "HR-03",
+      "INTENDED_REQUIRED_ROW": "HR-09",
+      "HUMAN_VERDICT_SILENCE_ROW": "SILENCE",
+      "HUMAN_VERDICT_REQUIRED_ROW": "REQUIRED",
+      "PAIR_CONCORDANCE": "FULLY_CONCORDANT",
+      "governedKnowledgeFlag": "none identified — no approved record was consulted for this factKey and none is claimed"
+    }
+  ],
+  "FULLY_CONCORDANT_PAIRS": 5,
+  "NONCONCORDANT_PAIRS": 0,
+  "rowLevelAgreementWithAuthoringIntent": "10/10",
+  "HUMAN_AUTHORITATIVE_REQUIRED_ROWS": 5,
+  "HUMAN_AUTHORITATIVE_SILENCE_ROWS": 5,
+  "concordanceCaveat": "Authoring intent came from this model and the verdicts were AI-assisted (GPT-5.6 Sol reviewed the same rows before the product owner finalised). Concordance here measures agreement between two AI systems and a human who had seen one of them. It is NOT independent confirmation that the authored truth is correct, and must not be reported as such."
+}

@@ -1,0 +1,9 @@
+PRESERVED CONSTRUCTION RECORD — NOT A RECORD OF THE §154 REPLICATE-3 RUN.
+This file was written by DRY-RUN pre-spend executions while the §154 measurement layer was still
+being wired: the probe still carried §153's sidecar hash constant and still required detector v1.
+Both gates blocked at $0.00, which is the behaviour they exist for. Renamed rather than deleted so
+the blocked attempts remain visible. HOSTED_CALLS_AT_THE_TIME_OF_THESE_BLOCKS = 0.
+
+EXPERT_HAZLENZ_THRESHOLD_ARBITRATION_PROBE_BLOCKED — PRESPEND_REGRESSION_OR_HARNESS_FAILURE
+B.8 THE ADJUDICATION SIDECAR IS FROZEN and hashes to its pre-registered value — no denominator can be chosen after seeing the data: 591a027d67232fdd246e87d6…
+B.9 the degenerate-output detector is armed and versioned: hazlenz.expert.degenerate-output-detector.v2

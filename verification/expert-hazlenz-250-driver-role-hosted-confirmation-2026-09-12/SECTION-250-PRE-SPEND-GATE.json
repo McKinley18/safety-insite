@@ -1,0 +1,77 @@
+{
+  "section": "250",
+  "generated": "2026-09-12",
+  "verdict": "PASS",
+  "frozen": {
+    "package249": "39ba3940b2512e7fa184fcc7375a068eec469405ecf845ffd0e8b9c394ae9cfa",
+    "identity": "e59cbf26b67a030068a091e8df84f57333c7b19dda28c8718a749d757c8993e6",
+    "instrument": "e45fc33843e71b778b0f2af8c41356855bf670de80e719b8371f21f894269b9f"
+  },
+  "checks": [
+    {
+      "id": "G1 §249 package members verify",
+      "verdict": "PASS",
+      "detail": "9 files"
+    },
+    {
+      "id": "G2 §249 package digest matches the authorization",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G3 the frozen confirmation instrument digest is unchanged",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G4 substantive confirmation changes since re-freeze are zero",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G5 Candidate Identity v2 resolves 17/17 with zero declarations",
+      "verdict": "PASS",
+      "detail": "17/17"
+    },
+    {
+      "id": "G6 the live executable identity digest equals the frozen value",
+      "verdict": "PASS",
+      "detail": "e59cbf26b67a030068a091e8df84f57333c7b19dda28c8718a749d757c8993e6"
+    },
+    {
+      "id": "G7 the executable prompt builder is build247SystemPrompt",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G8 the executable schema builder is buildExpert247WireSchema",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G9 roleJustification is present on the transmitted schema",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G10 K6 is 6 admissible / 0 inadmissible",
+      "verdict": "PASS",
+      "detail": "union=true admissible=6 inadmissible=0"
+    },
+    {
+      "id": "G11 strict schema is enabled",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "G12 zero unsupported provider keywords survive",
+      "verdict": "PASS",
+      "detail": "0"
+    },
+    {
+      "id": "G13 production/adapter semantic parity",
+      "verdict": "PASS",
+      "detail": ""
+    }
+  ]
+}

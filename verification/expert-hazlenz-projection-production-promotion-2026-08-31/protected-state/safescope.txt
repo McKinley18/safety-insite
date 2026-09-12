@@ -1,0 +1,29 @@
+✅ Unguarded rotating shaft stays Machine Guarding
+   Risk: 16 High (Standard 5x5)
+✅ Blocked electrical disconnect classifies as Electrical
+   Risk: 12 High (Standard 5x5)
+✅ Exposed live wire classifies as Electrical
+   Risk: 20 Critical (Standard 5x5)
+✅ Missing guardrail classifies as Fall Protection
+   Risk: 16 High (Standard 5x5)
+✅ Oil spill in walkway classifies as Walking/Working Surfaces
+   Risk: 6 Moderate (Standard 5x5)
+✅ Forklift pedestrian exposure classifies as Mobile Equipment / Traffic
+   Risk: 12 High (Standard 5x5)
+✅ Unlabeled chemical container classifies as Hazard Communication
+   Risk: 6 Moderate (Standard 5x5)
+✅ Confined space entry classifies as Confined Space
+   Risk: 20 Critical (Standard 5x5)
+✅ Flammable vapor hot work classifies as Fire / Explosion
+   Risk: 12 High (Standard 5x5)
+❌ Maintenance without lockout classifies as Lockout / Stored Energy
+   Expected: Lockout / Stored Energy / high
+   Received: Lockout / Stored Energy / low
+   Evidence: maintenance
+   Risk: 12 High (Standard 5x5)
+✅ Visible silica dust classifies as Respirable Dust / Silica
+   Risk: 6 Moderate (Standard 5x5)
+✅ Blocked emergency exit classifies as Emergency Egress
+   Risk: 12 High (Standard 5x5)
+
+SafeScope golden tests: 11 passed, 1 failed

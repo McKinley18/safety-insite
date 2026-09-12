@@ -1,0 +1,124 @@
+{
+  "artifact": "SECTION-236-TRUTH-PREFLIGHT",
+  "version": "hazlenz.expert.236.stabilized-confirmation.v1",
+  "machineChecked": true,
+  "ranBeforeFreeze": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "result": "PASS",
+  "passed": 18,
+  "total": 18,
+  "checks": [
+    {
+      "id": "P1",
+      "rule": "nine cases, three per category, unique identifiers",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P2",
+      "rule": "every truth anchor is a verbatim substring of its case observation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P3",
+      "rule": "every expected posture is a member of the frozen §233 vocabulary",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P4",
+      "rule": "HOLD_PENDING_VERIFICATION if and only if the controlling property is UNRESOLVED",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P5",
+      "rule": "CONTINUE owes no new control; CONTINUE_WITH_CONTROLS names at least one that is not already in effect; HOLD and STOP carry their requirement in the resume condition",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P6",
+      "rule": "a posture that does not permit continued work names a resume condition, and one that does names none",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P7",
+      "rule": "HOLD verifies BEFORE continuation; CONTINUE and STOP record no concurrent verification",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P8",
+      "rule": "establishedConditionsRequiringCessation is expected populated if and only if the expected posture is STOP, and a populated expectation names its driver",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P9",
+      "rule": "each case refutes exactly the three postures it did not choose, in substantive terms",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P10",
+      "rule": "no case reuses an excluded prior-cohort or prior-fixture subject term",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P11",
+      "rule": "no §236 observation overlaps any §230/§231 observation above the threshold",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P12",
+      "rule": "no §236 observation overlaps any §234 observation above the threshold. §234 is spent evidence and may not be replayed",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P13",
+      "rule": "no §236 case is a paraphrase of another §236 case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P14",
+      "rule": "the trap slot carries at least two STOP cases and at least one mandatory HOLD guard, and the degree slot spans three distinct neighbouring decisions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P15",
+      "rule": "the wire-arrival slot is structurally demanding on every case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P16",
+      "rule": "each case books one first-pass call and no verifier call, supplies no governed record and carries a complete transmitted context",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P17",
+      "rule": "the frozen §233 continuation table agrees with the frozen truth on every case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P18",
+      "rule": "all four postures appear, and a clear majority of cases expect the cessation list to be EMPTY so over-escalation is detectable",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "repairsMadeBeforeFreeze": [
+    "The first run failed P10 on A2 for the excluded term \"racking\", which appears in this cohort only inside the word \"tracking\". The FRESHNESS CHECKER was tightened to whole-word matching on the normalized text; no case, observation or expected answer was changed. §234 used a bare substring test, which over-flags and never under-flags, so it produced no false pass there and is left alone as frozen evidence."
+  ]
+}

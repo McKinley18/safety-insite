@@ -1,0 +1,39 @@
+§108 STEP 1A/1B -- ANTHROPIC ADAPTER COMPATIBILITY STRIP, deterministic, zero provider calls
+
+--- 1A. immutability, isolation, determinism ---
+ok    A.1 the CANONICAL schema object is byte-identical before and after the strip runs (source immutability)
+ok    A.2 the canonical schema still carries minLength/minItems -- untouched by the strip
+ok    A.3 the canonical schema still carries no additionalProperties -- the strict wrapper is separate and did not mutate it either
+ok    A.4 the wrapped (pre-strip) schema carries the exact §107-measured count: 14 minLength, 1 minItems (got 14/1)
+ok    A.5 every minLength is removed from the stripped copy
+ok    A.6 every minItems is removed from the stripped copy
+ok    A.7 the WRAPPED schema is also unmutated by the strip (the input the strip actually receives)
+ok    A.8 two independent strips of the same input produce byte-identical output (deterministic)
+ok    A.9 EVERY leaf value at EVERY path is preserved except minLength/minItems entries (first violation, if any: )
+ok    A.10 the stripped schema genuinely has fewer leaf paths (the removal actually happened, this is not a no-op)
+ok    A.11 top-level property names are identical and in the same order
+ok    A.12 the top-level required array is byte-identical
+ok    A.13 the candidate-level required array is byte-identical (groundingStatus, evidence both still required)
+ok    A.14 groundingStatus (name, type, enum) is byte-identical
+ok    A.15 enums are byte-identical
+ok    A.16 additionalProperties:false survives on both -- the strict wrapper is untouched by this transform
+ok    A.17 the strict flag / structure (top-level type) is unaffected
+
+--- 1A continued: the permanent adapter path actually uses the strip ---
+ok    A.18 buildAnthropicRequestBody -- the PERMANENT adapter path -- now sends a schema with zero minLength/minItems
+ok    A.19 strict mode is unaffected
+ok    A.20 model is unaffected
+ok    A.21 thinking setting is unaffected
+ok    A.22 tool name is unaffected
+
+--- 1B. the application boundary is authoritative regardless of what the wire schema says ---
+ok    B.1 an empty required string is STILL refused at the boundary (minLength absence on the wire changes nothing)
+ok    B.2 a one-participant insight is STILL refused (minItems absence on the wire changes nothing)
+ok    B.3 a structurally malformed candidate is STILL refused
+ok    B.4 an invalid groundingStatus value is STILL refused
+ok    B.5 a contradicted grounding declaration (claims a quote, supplies none) is STILL refused
+ok    B.6 a malformed evidence object (missing quotedText) is STILL refused -- as an analysis-fatal EVIDENCE_OUT_OF_BOUNDS via the binder, a stronger protection than item-level rejection
+ok    B.7 the normalized contract the boundary enforces is UNCHANGED
+ok    B.8 the fatal-reason list is exactly what §105 left it -- authority did not move from the boundary to the provider
+
+30 passed, 0 failed

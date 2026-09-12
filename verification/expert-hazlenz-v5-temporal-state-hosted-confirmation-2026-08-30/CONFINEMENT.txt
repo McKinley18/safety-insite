@@ -1,0 +1,34 @@
+CONFINEMENT — PROMPT v5 BOUNDED HOSTED TEMPORAL-STATE CONFIRMATION, 2026-08-30
+
+A. controllers/services/modules referencing the Expert module:
+   NONE (0 matches).
+
+B. frontend references:
+   NONE (0 matches).
+
+C. importers of the HOSTED (Anthropic) adapter (construct match):
+backend/scripts/test-expert-anthropic-adapter-repair.ts
+backend/scripts/diagnose-anthropic-schema-compatibility.ts
+backend/scripts/diagnose-r4-r6-local-repair.ts
+backend/scripts/probe-expert-hosted-transport.ts
+backend/scripts/probe-expert-hosted-r4-r6-targeted-confirmation.ts
+backend/scripts/probe-expert-hosted-v5-temporal-state-confirmation.ts   <- new this phase
+   +1 importer vs §111 (this phase's own probe script). No other new importer.
+
+D. did this phase modify any production/customer/Expert-core file?
+   ZERO. `git diff --stat` on `expert-hazlenz/` and `expert-hazlenz-adapters/` is byte-identical to
+   §111's diff (all four listed files carry only the pre-existing §105-109 working-tree diff).
+   `expert-prompt.ts`, `expert-contract.types.ts`, `expert-normalization.ts`,
+   `fixtures/no-call-scenarios.ts` were NOT touched this phase. This was a frozen measurement, per
+   the authorization's explicit "do not repair anything discovered during this measurement."
+
+   One new file, probe-only, zero production reference:
+     backend/scripts/probe-expert-hosted-v5-temporal-state-confirmation.ts
+
+E. hosted calls made this phase:
+   7 attempted, 7 completed clean (HTTP 200), $0.198238 spent of a $3.00 ceiling (worst-case
+   pre-flight estimate from real request bodies: $0.6524 for all 7 — see
+   preflight/preflight.json).
+
+F. commit/push/tag/deploy status:
+   Nothing committed, pushed, tagged, or deployed.

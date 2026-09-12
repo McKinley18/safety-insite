@@ -1,0 +1,497 @@
+{
+  "artifact": "SECTION-212-VERIFIER-ARCHITECTURE-REMEDIATION-RECORD",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "protocolVersionClaimed": null,
+  "whyNoVersionIsClaimed": "a version number is earned by a preregistered hosted run. §212 is an architecture slice and has made none.",
+  "rA_payload": {
+    "requiredFields": [
+      "declarationId",
+      "owedProperty",
+      "branchA",
+      "branchB",
+      "decisionIfA",
+      "decisionIfB",
+      "decisionWhileUnresolved",
+      "notEstablishedBecause",
+      "acceptableEvidence",
+      "boundClarification",
+      "targetFactKey"
+    ],
+    "provenance": {
+      "declarationId": "NEW_IN_212 — declaration.declarationId, copied verbatim",
+      "owedProperty": "§210J view.owedProperty — declaration.missingFact via the §210B-1 sidecar, byte-exact",
+      "branchA": "§210J view.truthBranchA — the pinned projectOwedFact, unchanged",
+      "branchB": "§210J view.truthBranchB — the pinned projectOwedFact, unchanged",
+      "decisionIfA": "§210J view.decisionIfA — the pinned decisionDivergence.ifA, unchanged",
+      "decisionIfB": "§210J view.decisionIfB — the pinned decisionDivergence.ifB, unchanged",
+      "decisionWhileUnresolved": "§210J view.decisionWhileUnresolved — declaration.decisionWhileUnresolved via the §210J sidecar, byte-exact",
+      "notEstablishedBecause": "§210J view.verificationGap — the pinned whyUnresolved, unchanged",
+      "acceptableEvidence": "§210J view.evidenceNeededToSettle.acceptableEvidence — the pinned projection, unchanged",
+      "boundClarification": "§210J view.evidenceNeededToSettle.clarification — supplied by the caller from the model-authored back-reference",
+      "targetFactKey": "§210J view.factKey — the computed fact identity"
+    },
+    "neverReconstructedFrom": [
+      "branchA or branchB",
+      "notEstablishedBecause",
+      "affectedDecision",
+      "the observation span",
+      "the rationale or any other prose"
+    ],
+    "ancillaryContextDefault": "EXCLUDED",
+    "refusalCodes": [
+      "OWED_PROPERTY_ABSENT",
+      "TARGET_FACT_KEY_ABSENT",
+      "DECLARATION_ID_ABSENT",
+      "DECLARATION_DOES_NOT_MATCH_THE_TARGET_FACT"
+    ],
+    "effect": {
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "reconstructsAMissingProperty": false,
+      "composesAnyField": false,
+      "restoresBroadRowContextByDefault": false,
+      "addsAKeywordClassifier": false
+    }
+  },
+  "rB_remit": {
+    "artifact": "hazlenz.expert.212.verifier-protocol-successor",
+    "blockLines": 62,
+    "blockToRule": [
+      {
+        "heading": "BEFORE ANY OF THAT, THE FACT ITSELF",
+        "rule": "R-B",
+        "serves": "widens the remit from clarification selection to semantic validity of the fact"
+      },
+      {
+        "heading": "Do not reconstruct the property from the branches",
+        "rule": "R-A",
+        "serves": "the architecture principle: judge the representation supplied, never rebuild it"
+      },
+      {
+        "heading": "THE TEST FOR THE PROPERTY",
+        "rule": "R-B",
+        "serves": "V1 and V2 — property identity, and state against evidence"
+      },
+      {
+        "heading": "THAT SECOND CASE IS COMMON AND YOU MUST NOT SPEND IT",
+        "rule": "R-B_NARROWING",
+        "serves": "V3 — the mandatory act-as-property anti-overcorrection control"
+      },
+      {
+        "heading": "WHERE THE PROPERTY IS WRONG",
+        "rule": "R-C",
+        "serves": "the property-identity ground and its two kinds"
+      },
+      {
+        "heading": "A CHALLENGE IS A REQUEST FOR HUMAN REVIEW",
+        "rule": "NON_AUTHORITY",
+        "serves": "V10 — reviewability, and the settlement boundary"
+      },
+      {
+        "heading": "AND WHERE THE PROPERTY IS RIGHT BUT A FIELD IS NOT",
+        "rule": "R-C",
+        "serves": "V4 and V7 — branch alignment and the unresolved action, without invalidating the fact"
+      },
+      {
+        "heading": "TWO THINGS ABOUT WHAT IS DONE WHILE THE FACT IS OPEN",
+        "rule": "R-C_NARROWING",
+        "serves": "the two §212 must-nots: similarity to decisionIfB is not a defect, and the unresolved action is not proof branchB is true"
+      },
+      {
+        "heading": "YOUR AUTHORITY IS UNCHANGED BY ANY OF THIS",
+        "rule": "NON_AUTHORITY",
+        "serves": "the verifier does not settle, does not choose a branch and does not authorise work"
+      }
+    ],
+    "overcorrectionGuard": {
+      "risk": "a remit to challenge evidence-proxy properties will make a model challenge every property that mentions a test, a permit or a procedure — including the cases where performing the act IS the owed property",
+      "guard": "the perfect-knowledge counterfactual, plus a paragraph naming three legitimate act properties, plus the explicit statement that deciding on words rather than role is the worse error",
+      "guardIsInTheSameBlock": true,
+      "deterministicKeywordClassifierAdded": false,
+      "protects": "SECTION_211_T4 and SECTION_210H_G3"
+    },
+    "identities": {
+      "baseVersion": "hazlenz.expert.verifier-instruction.v3.2",
+      "successorArtifact": "hazlenz.expert.212.verifier-protocol-successor",
+      "protocolVersionClaimed": null,
+      "prompt": {
+        "baseSha256": "f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f",
+        "successorSha256": "cad728b58920f4fa1ae3d64b619424830f683aa80f7e16ac90d107e4926c4fde",
+        "baseChars": 12998,
+        "successorChars": 16901,
+        "addedChars": 3903,
+        "netProseRemoved": 0
+      },
+      "schema": {
+        "baseSha256": "83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e",
+        "successorSha256": "571dadaf51751e390363e302868cff72450a8825e5ac74f406305d1520a6d4e8",
+        "baseBytes": 4994,
+        "successorBytes": 6094,
+        "addedBytes": 1100,
+        "baseNodes": 35,
+        "successorNodes": 38,
+        "addedNodes": 3,
+        "baseEnums": 6,
+        "successorEnums": 9,
+        "addedEnums": 3,
+        "baseEnumMembers": 25,
+        "successorEnumMembers": 35,
+        "addedEnumMembers": 10
+      },
+      "grammarCostCaveat": "the provider's stated metric is COMPILED GRAMMAR COMPLEXITY and the threshold is undocumented. An enum expands far beyond its serialised length, so byte size alone establishes nothing. §199 was refused at ~19,060 first-pass bytes and accepted at ~18,620; the verifier schema is a different, much smaller request with visible headroom, and that headroom is the reason this is proposed rather than a claim that it will pass."
+    }
+  },
+  "rC_vocabulary": {
+    "challengeGrounds": [
+      "THE_OBSERVATION_ALREADY_ESTABLISHES_IT",
+      "BOTH_ANSWERS_LEAD_TO_THE_SAME_ACTION",
+      "PROPERTY_IDENTITY_MISMATCH"
+    ],
+    "propertyMismatchKinds": [
+      "EVIDENCE_PROXY_FOR_UNDERLYING_STATE",
+      "ADJACENT_PROPERTY_SUBSTITUTED"
+    ],
+    "representationConcerns": [
+      "NONE",
+      "BRANCHES_DO_NOT_PARTITION_THE_PROPERTY",
+      "UNRESOLVED_ACTION_PRESUMES_A_BRANCH"
+    ],
+    "addedDeclarationProperties": [
+      "challengeGround",
+      "propertyMismatchKind",
+      "representationConcern"
+    ],
+    "justification": [
+      {
+        "member": "PROPERTY_IDENTITY_MISMATCH",
+        "field": "challengeGround",
+        "capability": "V1_EXACT_PROPERTY_IDENTITY",
+        "hardFailure": "HF-1",
+        "frozen211Case": "T1, T2, T3"
+      },
+      {
+        "member": "EVIDENCE_PROXY_FOR_UNDERLYING_STATE",
+        "field": "propertyMismatchKind",
+        "capability": "V2_STATE_VERSUS_EVIDENCE",
+        "hardFailure": "HF-1",
+        "frozen211Case": "T1, T2, T3"
+      },
+      {
+        "member": "ADJACENT_PROPERTY_SUBSTITUTED",
+        "field": "propertyMismatchKind",
+        "capability": "V8_ADJACENT_FACT_DRIFT",
+        "hardFailure": "HF-3",
+        "frozen211Case": "T5, T6"
+      },
+      {
+        "member": "BRANCHES_DO_NOT_PARTITION_THE_PROPERTY",
+        "field": "representationConcern",
+        "capability": "V4_BRANCH_ALIGNMENT",
+        "hardFailure": "HF-4",
+        "frozen211Case": "T1, T10"
+      },
+      {
+        "member": "UNRESOLVED_ACTION_PRESUMES_A_BRANCH",
+        "field": "representationConcern",
+        "capability": "V7_DECISION_WHILE_UNRESOLVED",
+        "hardFailure": "HF-6",
+        "frozen211Case": "T9"
+      }
+    ],
+    "refusedMembers": [
+      {
+        "member": "CLARIFICATION_CANNOT_SETTLE_THE_PROPERTY",
+        "refusedBecause": "it is not a challenge to the FACT. The property is right and the question is wrong, which is exactly what ADD_OR_REPLACE_CLARIFICATION already expresses. Adding it as a challenge ground would let a verifier invalidate a correct fact over a weak question."
+      },
+      {
+        "member": "PROPERTY_TOO_BROAD / PROPERTY_TOO_NARROW",
+        "refusedBecause": "no §211 capability or hard-failure class targets breadth as distinct from identity, and a breadth judgement with no frozen case behind it is a vocabulary a verifier would force-fit. §176 spent a remediation on exactly that failure mode."
+      },
+      {
+        "member": "LOW_CONFIDENCE / UNCERTAIN",
+        "refusedBecause": "ABSTAIN already exists as a verdict and STILL_UNRESOLVED as a declaration. A confidence member turns a verdict into a score, and confidence is never authority here."
+      }
+    ],
+    "noReplacementPropertyField": {
+      "added": false,
+      "instructedBy": "PRODUCT_OWNER_212 — do not require a complete replacement OwedFact, and avoid turning the verifier into a second unrestricted first pass",
+      "consequence": "a challenge names the defect and the ground; the repair is a first-pass act or a human one, and neither is this contract's job"
+    },
+    "admissionCodes": [
+      "CHALLENGE_GROUND_MISSING",
+      "CHALLENGE_GROUND_NOT_A_MEMBER",
+      "CHALLENGE_GROUND_WITHOUT_A_CHALLENGE",
+      "PROPERTY_MISMATCH_KIND_MISSING",
+      "PROPERTY_MISMATCH_KIND_NOT_A_MEMBER",
+      "PROPERTY_MISMATCH_KIND_WITHOUT_A_MISMATCH_GROUND",
+      "CHALLENGE_REASON_MISSING",
+      "REPRESENTATION_CONCERN_NOT_A_MEMBER",
+      "CHALLENGE_TARGET_FACT_KEY_MISSING"
+    ],
+    "challengeIsNeverASettlement": {
+      "settles": false,
+      "factStatusUnchanged": true,
+      "requiresHumanAuthorization": true,
+      "note": "R-C widens what a challenge can SAY. It does not widen what a challenge can DO, and the v3 admission already refuses CHALLENGE_CLAIMS_TO_SETTLE_THE_FACT."
+    },
+    "kr1Representable": true
+  },
+  "c6aSuccessorDecision": {
+    "decision": "ADOPT_C6A_STRUCTURE_WITH_A_THIRD_GROUND",
+    "basis": {
+      "whatC6aDoesWell": "a challenge is the one verifier output whose entire purpose is to be reviewed, and C6a makes it carry the evidence its own stated ground requires. §212 keeps that: the ground is declared, the target fact key is required, and the reason is required.",
+      "whatChangedSince201": "the verifier remit. §201 scored C6a against a clarification-selection verifier; §212 R-B widens the remit to the semantic validity of the proposed fact.",
+      "whyTwoMembersIsNowInsufficient": "neither inherited ground can express that the named property is the evidence used to establish the real property. Under a two-member closed enum that finding becomes unrepresentable, where today it can at least be written in free text — so adopting C6a unchanged would move KR-1 backwards.",
+      "whatIsAddedAndWhyItIsTheSmallestChange": "one ground, and one two-member subcase beneath it. No existing member is renamed, reworded or removed, so a C6a-shaped verdict remains valid under the successor vocabulary."
+    },
+    "section201Preserved": {
+      "registry": "backend/scripts/lib/expert-201-verifier-vnext-candidates.ts",
+      "build": "PROTOTYPED",
+      "rank": "highest in the registry",
+      "historicalRecordModified": false,
+      "scoreRestated": false,
+      "candidateRescored": false,
+      "note": "§201 explicitly names no candidate a protocol version, and this record claims none either."
+    },
+    "inheritedUnchanged": {
+      "inherited": [
+        "THE_OBSERVATION_ALREADY_ESTABLISHES_IT",
+        "BOTH_ANSWERS_LEAD_TO_THE_SAME_ACTION"
+      ],
+      "added": [
+        "PROPERTY_IDENTITY_MISMATCH"
+      ],
+      "total": 3,
+      "anyInheritedMemberRenamed": false,
+      "anyInheritedMemberRemoved": false
+    },
+    "partsNotAdopted": [
+      {
+        "part": "challengeObservationSpan",
+        "reason": "evidence for the ALREADY_ESTABLISHES ground. Good, and outside the bounded §212 gap."
+      },
+      {
+        "part": "commonActionUnderBothBranches",
+        "reason": "evidence for the SAME_ACTION ground. Good, and outside the bounded §212 gap."
+      }
+    ]
+  },
+  "pm1": {
+    "dispositions": [
+      {
+        "site": "backend/scripts/lib/expert-203-successor-identity.ts — ANCESTOR_PINS",
+        "assertedBy": "backend/scripts/verify-203-source-integrity.ts",
+        "intent": "exact file ancestry",
+        "classification": "CLASS_1_ANCESTRY",
+        "action": "SUCCESSOR_PINNED_AND_LEFT_HISTORICAL_ONLY",
+        "detail": "the historical assertion and its hash are preserved untouched. SUCCESSOR_ANCESTRY_PIN_212 records prior hash, modifying section, current hash, reason and evidence, and verify-212-projection-ancestry gates the current state. verify-203-source-integrity continues to assert the historical state and continues to report it as diverged, which is CORRECT: it is a historical gate and the file has legitimately moved since."
+      },
+      {
+        "site": "backend/scripts/test-201-governed-binding-stage.ts — A4",
+        "assertedBy": "itself",
+        "intent": "§201 changed nothing in the projection module",
+        "classification": "CLASS_2_BOUNDARY_INVARIANT",
+        "action": "NARROWED",
+        "detail": "the whole-file hash is replaced by the six narrowed invariants, which say the intended thing more accurately: a hash would also have passed a file edited and reverted, and fails when a different authorized section advances it. The §199 hash is retained in the assertion as a documented historical reference and is not erased."
+      },
+      {
+        "site": "backend/scripts/test-202-governed-binding-stage.ts — B18",
+        "assertedBy": "itself",
+        "intent": "the first-pass protocol files are byte-unchanged by §202",
+        "classification": "CLASS_2_BOUNDARY_INVARIANT",
+        "action": "NARROWED",
+        "detail": "only the projection sub-clause is narrowed. The vNext module, expert-prompt.ts and the capability-absent system prompt remain whole-file hash assertions, because those files have NOT legitimately moved and the blunt instrument is still telling the truth there."
+      },
+      {
+        "site": "backend/scripts/verify-196/197/198/199-source-integrity — report lines",
+        "assertedBy": null,
+        "intent": "record the protocol identities of a run",
+        "classification": "REPORT_ONLY",
+        "action": "LEFT_UNCHANGED_NO_CORRECTION_NEEDED",
+        "detail": "these print the projection hash under PROTOCOL IDENTITIES FOR THIS RUN. They assert a byte-level property instead — no transition() call — which still holds, and they do not label the hash as drift. They exit non-zero for an unrelated pre-existing audit-sweep finding on backend/scripts/execute-208-acceptance-cohort.ts. No additive correction is needed because nothing there treats legitimate evolution as unexplained."
+      }
+    ],
+    "successorAncestryPin": {
+      "subjectPath": "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts",
+      "priorSha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+      "priorPinnedBy": "FROZEN_BY_RECORDED_EVIDENCE: not hash-pinned against a frozen expectation, but its sha256 is recorded inside §196/§197/§198 evidence, and verify-197:248 / verify-199:255 assert a byte-level property of it",
+      "modifyingSection": "§210E",
+      "reasonForChange": "the R7 deterministic half added the NON_SEMANTIC_PLACEHOLDER_VALUE refusal code, the NON_SEMANTIC_FILLER closed set, isNonSemanticFiller, and the SEMANTIC_BRANCH_FIELDS check",
+      "currentSha256": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+      "evidenceOfLegitimateTransition": [
+        "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+        "backend/scripts/lib/expert-210j-ancestry-successor.ts — verifies the marks at call time",
+        "verification/expert-hazlenz-211-first-pass-freeze-and-verifier-validation-design-2026-09-09/DESIGN-REPORT-211.md §7"
+      ],
+      "priorHashWasWrong": false,
+      "historicalAssertionPreserved": true,
+      "section210jDeclinedToPinBecause": "a later edit must surface as a new divergence, not be absorbed by a pin that slice wrote on its own authority",
+      "section212IsThatAuthorization": true
+    },
+    "successorPinHolds": {
+      "holds": true,
+      "observed": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+      "expected": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+      "drifted": false
+    },
+    "narrowedInvariants": [
+      {
+        "id": "N1_NO_FOREIGN_SECTION_EDITED_THE_MODULE",
+        "holds": true,
+        "means": "neither §201 nor §202 left a mark in the projection module, which is what \"my slice changed nothing here\" actually asserts",
+        "detail": "markers checked: §201, §202"
+      },
+      {
+        "id": "N2_IDENTITY_SHAPE_UNCHANGED",
+        "holds": true,
+        "means": "the identity shape the governed-binding stages import is byte-identical to the frozen value, so which ids are admissible has not moved",
+        "detail": "^[A-Za-z0-9][A-Za-z0-9_:.\\-]{0,127}$"
+      },
+      {
+        "id": "N3_NO_SETTLEMENT_AUTHORITY_IN_THE_PROJECTION",
+        "holds": true,
+        "means": "the projection still cannot move an owed fact out of UNRESOLVED. This is the authority boundary verify-197 and verify-199 already assert, and it is the invariant that actually matters",
+        "detail": "no transition() call in code"
+      },
+      {
+        "id": "N4_NO_RETIRED_SEMANTIC_MATCHER",
+        "holds": true,
+        "means": "the content-overlap matcher §160 retired has not reappeared. A lexical threshold over safety prose is a free-text semantic gate and this architecture does not run one",
+        "detail": "signatures checked: 6"
+      },
+      {
+        "id": "N5_PROVIDER_OWNED_FIELDS_STILL_REFUSED",
+        "holds": true,
+        "means": "a provider still cannot send a HazLenz-owned field, and the refusal code still exists",
+        "detail": "31 forbidden fields"
+      },
+      {
+        "id": "N6_IDENTITY_IS_COMPUTED_NEVER_ACCEPTED",
+        "holds": true,
+        "means": "the wire has no factKey field and the key is computed, so a provider cannot name, collide with or impersonate a fact",
+        "detail": "computeFactKey present; factKey forbidden on the wire"
+      }
+    ],
+    "effect": {
+      "editsFrozenEvidence": false,
+      "erasesTheOldExpectedHash": false,
+      "callsTheStalePinABehaviouralFailure": false,
+      "usesCurrentHashAsProofOfCorrectness": false,
+      "narrowedInvariantsAreProvedByTests": true
+    }
+  },
+  "frozenInstrument": {
+    "adaptationLedger": [
+      {
+        "field": "observationSourceId",
+        "suppliedBy": "ADAPTER",
+        "rule": "the literal `OBS-` followed by the case id, which is the convention §210H used for the same purpose",
+        "isSemantic": false,
+        "why": "the §210J projection checks the span against a NAMED source. §211 described a declaration rather than a wire payload, so it carried no source selector."
+      },
+      {
+        "field": "governedEvidenceSourceIds",
+        "suppliedBy": "NOT_SUPPLIED",
+        "rule": "omitted. Every §211 case is capability-ABSENT, so the property does not exist on the wire at all and an empty array would be a different request.",
+        "isSemantic": false,
+        "why": "§198 capability omission: a field that is absent cannot be populated by a compliant producer."
+      }
+    ],
+    "adaptedCases": [
+      {
+        "caseId": "T1",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 5
+      },
+      {
+        "caseId": "T2",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T3",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T4",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T5",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T6",
+        "refused": [],
+        "facts": 2,
+        "requests": 2,
+        "allBuilt": true,
+        "frozenQuestions": 4
+      },
+      {
+        "caseId": "T7",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T8",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T9",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 3
+      },
+      {
+        "caseId": "T10",
+        "refused": [],
+        "facts": 1,
+        "requests": 1,
+        "allBuilt": true,
+        "frozenQuestions": 4
+      }
+    ],
+    "adaptedProviderCallCount": 11,
+    "frozen211ProviderCallCount": 11,
+    "countsAgree": true,
+    "effect": {
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "modifiesTheFrozenInstrument": false,
+      "rewritesAnyFrozenExpectation": false,
+      "dropsOrReordersACase": false,
+      "inventsASemanticField": false
+    }
+  },
+  "kr1Status": "OPEN — architecture now able to express the finding; no behavioural mitigation claimed",
+  "generatedAt": "2026-09-09"
+}

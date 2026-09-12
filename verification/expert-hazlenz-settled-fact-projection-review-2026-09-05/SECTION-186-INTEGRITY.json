@@ -1,0 +1,56 @@
+{
+  "artifact": "SECTION_186_INTEGRITY",
+  "date": "2026-09-05",
+  "operation": "§186 -- settled-fact projection architecture review",
+  "terminal": "EXPERT_HAZLENZ_SETTLED_FACT_PROJECTION_REVIEW_COMPLETE -- STRUCTURED_SETTLEMENT_REPRESENTATION_DESIGN_REQUIRED",
+  "terminalReason": "No existing path safely carries a settled fact to a provider, and no narrow local projection correction is justified: option C would require relaxing the BOUND_FACT_NOT_UNRESOLVED authority boundary and changing the verifier prompt text, buying a cue-confounded measurement. The two axes that genuinely need settled-fact visibility need a declaration vocabulary that does not exist (option E). The other three axes need no code change at all.",
+  "reviewOnly": true,
+  "sourceFilesModified": 0,
+  "promptChanges": 0,
+  "schemaChanges": 0,
+  "governedRecordChanges": 0,
+  "section182ArtifactChanges": 0,
+  "section184TruthChanges": 0,
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "section183Executed": false,
+  "primaryQuestionAnswer": "NO -- the existing inactive architecture cannot expose a truthfully settled owed fact to a provider without representing it as unresolved.",
+  "threeIndependentObstacles": [
+    "projectOwedFactsForVerifier filters through unresolvedFacts(): settled ledger projects 0 facts",
+    "buildVerifierV3UserPrompt hard-codes the heading 'UNRESOLVED FACTS IDENTIFIED FOR YOUR REVIEW' and the line 'unresolved because: <value>'; a settled fact renders as unresolved with a literal null, and V3SuppliedOwedFact.whyUnresolved is typed string, not nullable",
+    "the binding protocol refuses every declaration mode on a settled fact with the explicit code BOUND_FACT_NOT_UNRESOLVED, so a provider cannot say anything admissible about one"
+  ],
+  "dormantPathFound": false,
+  "fullLedgerCarriersAreOutputsNotInputs": [
+    "runOwedFactCoverageStage attachment (gated behind the literal false)",
+    "OwedFactObservabilityRecord.initialOwedFacts (append-only development record)"
+  ],
+  "recommendation": "Option A -- keep the unresolved-only projection and re-scope the five settled rows as zero-supplied-fact silence controls. No code change. Option E remains design-only and unauthorized.",
+  "tenRowDesignClassification": "INVALID_FOR_SETTLED_CONTROL_AXES",
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "No existing path carries a settled owed fact to a provider.",
+      "The unresolved-only restriction is a deliberate authority boundary, evidenced by the named admission code BOUND_FACT_NOT_UNRESOLVED rather than inferred from a function name.",
+      "The projected eight fields cannot express settlement state; status, factStatement and targetDecision are not projected.",
+      "Three of the five settled-control axes are measurable today with no code change."
+    ],
+    "mustNotClaim": [
+      "§183 passed",
+      "HazLenz behavior improved",
+      "HR-04 fixed",
+      "settlement behavior validated",
+      "human reviewability validated",
+      "governed evidence is sufficient",
+      "automatic semantic settlement",
+      "customer readiness",
+      "production readiness",
+      "formal acceptance"
+    ]
+  },
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

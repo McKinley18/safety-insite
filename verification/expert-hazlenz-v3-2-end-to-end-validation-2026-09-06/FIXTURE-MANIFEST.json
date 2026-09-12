@@ -1,0 +1,219 @@
+{
+  "artifact": "SECTION_195_FIXTURE_MANIFEST",
+  "cohortVersion": "hazlenz.expert.e2e-cohort.2026-09-06",
+  "coverage": {
+    "rows": 12,
+    "replicatesPlanned": 3,
+    "executions": 36,
+    "validRelianceRows": [
+      "EE-09",
+      "EE-10"
+    ],
+    "validRelianceExecutions": 6,
+    "unsupportedRelianceRows": [
+      "EE-11",
+      "EE-12"
+    ],
+    "unsupportedRelianceExecutions": 6,
+    "absentEvidenceRows": 8,
+    "noneExpectedExecutions": 30,
+    "conjunctiveRows": [
+      {
+        "rowId": "EE-01",
+        "maxConjuncts": 2
+      },
+      {
+        "rowId": "EE-02",
+        "maxConjuncts": 2
+      },
+      {
+        "rowId": "EE-03",
+        "maxConjuncts": 3
+      },
+      {
+        "rowId": "EE-09",
+        "maxConjuncts": 2
+      },
+      {
+        "rowId": "EE-10",
+        "maxConjuncts": 2
+      },
+      {
+        "rowId": "EE-11",
+        "maxConjuncts": 2
+      }
+    ],
+    "multiGapRows": [
+      "EE-08"
+    ],
+    "zeroOwedFactRows": [
+      "EE-06",
+      "EE-07"
+    ],
+    "familiesCovered": [
+      "ADJACENT_PROPERTY_TRAP",
+      "CONJUNCTIVE_REQUIRED_CONTROL",
+      "FULLY_ESTABLISHED_CONTROL",
+      "GOVERNED_EVIDENCE_ABSENT",
+      "GOVERNED_EVIDENCE_TOO_NARROW",
+      "GOVERNED_EVIDENCE_UNRELATED",
+      "GOVERNED_EVIDENCE_VALID_RELIANCE",
+      "MULTI_GAP",
+      "NON_DECISION_CRITICAL_MISSING_DETAIL",
+      "SIMPLE_REQUIRED_CONTROL"
+    ],
+    "totalExpectedOwedFacts": 11
+  },
+  "rows": [
+    {
+      "rowId": "EE-01",
+      "observation": "A powered roller shutter serves the goods bay. Its safety edge was replaced on Tuesday and the engineer signed the job sheet, which records the edge replacement and a lubrication. Nothing on the sheet records a reversal test. The shutter is in use.",
+      "observationSha256": "04540bd81e38d18b932765a8083550d95a1e7cf6dcbfb4bafc93d873691b17af",
+      "families": [
+        "SIMPLE_REQUIRED_CONTROL",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "LIKELY",
+      "designIntent": "One clear decision-critical gap with no governed evidence. Baseline for ordinary NONE reasoning and for first-pass recall."
+    },
+    {
+      "rowId": "EE-02",
+      "observation": "A tanker is being prepared for internal cleaning at the wash bay. The discharge valve is closed and padlocked and the driver holds the key. The manway is still bolted. The vent line log carries no entry for this vehicle today.",
+      "observationSha256": "f03b4cf419c818bf0d4b668774858d326b0155608ad3dbb91545d57960665570",
+      "families": [
+        "CONJUNCTIVE_REQUIRED_CONTROL",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "A AND B, with A stated done in the observation. A topic-level question about isolation would be insufficient. Tests conjunctive recall end to end."
+    },
+    {
+      "rowId": "EE-03",
+      "observation": "A fitter is about to enter a below-ground valve chamber to change a gasket. The feed line has been isolated at the surface valve and locked. The line was steam-purged on the previous shift. The chamber gas monitor sits on the van seat and the entry log has no atmosphere reading recorded for today.",
+      "observationSha256": "0d9019ac09a777045fc0909ca46a33a701b8d01089ed042d5cea0fda0c0b1055",
+      "families": [
+        "CONJUNCTIVE_REQUIRED_CONTROL",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "A AND B AND C with two conjuncts already stated satisfied. The hard conjunctive case: a question covering isolation and purge reads complete but leaves the atmosphere open."
+    },
+    {
+      "rowId": "EE-04",
+      "observation": "A storage mezzanine overlooks the pick face. The edge handrail is in position along the full run and its uprights are bolted through the deck. A pallet was struck against the handrail by a truck last week and the damage report is closed. No one has recorded a check of the upright fixings since.",
+      "observationSha256": "44ce1d41b218e1786b8e5b0289a90125ae71b0235d00a0b4146dfc143024e493",
+      "families": [
+        "ADJACENT_PROPERTY_TRAP",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "presence != securement, with a closed damage report as an extra temptation. A closed report is an administrative state, not a physical check."
+    },
+    {
+      "rowId": "EE-05",
+      "observation": "Emergency lighting covers the packing hall. The monthly test sheet is initialled for this month; the sheet covers the escape-route luminaires on the north side. The three luminaires above the new south mezzanine stair were installed after the sheet was drawn up and are not listed on it.",
+      "observationSha256": "da502fb96afe06be5321c4fe9eb3a6afdbef4469b9df2f8b41a3e7e770852791",
+      "families": [
+        "ADJACENT_PROPERTY_TRAP",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "inspection occurred != this specific property verified. The sheet's stated scope excludes the very luminaires at issue, and installation is not testing."
+    },
+    {
+      "rowId": "EE-06",
+      "observation": "A two-tonne chain hoist is rigged over the press bed. Its current thorough examination certificate is displayed, dated six weeks ago, and lists this hoist by serial number. The serial on the certificate matches the plate on the hoist. The slinger confirmed the SWL against the load before lifting and a second person witnessed it.",
+      "observationSha256": "89b6a1c2922f07a9ef7b16e2e024cdbda6ef9d04927e76956e3422d18014d875",
+      "families": [
+        "FULLY_ESTABLISHED_CONTROL",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "NOT_APPLICABLE",
+      "designIntent": "The property is genuinely established, serial-matched and witnessed. NO owed fact and NO clarification should be manufactured. Tests first-pass precision."
+    },
+    {
+      "rowId": "EE-07",
+      "observation": "A wheeled bin of offcuts stands at the end of the saw bench. It is emptied when full, and nobody records how many times a shift that happens. The bin is on a marked standing clear of the walkway, the saw has a fitted crown guard and the operator uses a push stick.",
+      "observationSha256": "be40c00d79d7f68fee06a2ee40d813e3768aa6b1af6364bd35aa08b2c0b52d94",
+      "families": [
+        "NON_DECISION_CRITICAL_MISSING_DETAIL",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "NOT_APPLICABLE",
+      "designIntent": "Emptying frequency is a magnitude detail whose governing controls are stated present. Both answers lead to the same action today. NO REQUIRED_CONTROL fact should be manufactured."
+    },
+    {
+      "rowId": "EE-08",
+      "observation": "A roofer is replacing flashing at a plant-room parapet. He is clipped to a running line whose end anchor was installed last year; the installation certificate is in the office and no periodic check is recorded. Below him, the plant room itself is entered through a floor hatch, and the hatch has been propped open with no barrier round the opening while he works.",
+      "observationSha256": "e6005dada28bca3c214fc454725781b660d9db1f1660b37a0ec37788e9065513",
+      "families": [
+        "MULTI_GAP",
+        "GOVERNED_EVIDENCE_ABSENT"
+      ],
+      "governedEvidenceSourceIds": [],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "TWO independent facts governing different decisions and different people. Both must survive; neither may substitute for the other. Tests MULTI_GAP_PRESERVATION."
+    },
+    {
+      "rowId": "EE-09",
+      "observation": "A bench grinder in the maintenance shop is in use. The wheel was changed this morning and the guard refitted. The work rest is in place. The shop check sheet records the wheel change and a visual guard check; it records no measurement of the work rest gap.",
+      "observationSha256": "554fc13ba2d9f7d12cfc1d4470aa5f53fc3639d5b2c4060101eb3883947d795a",
+      "families": [
+        "GOVERNED_EVIDENCE_VALID_RELIANCE",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "governedEvidenceSourceIds": [
+        "GOV-ABRASIVE-WHEEL-WORKREST-01"
+      ],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "LEGITIMATE RELIANCE. The supplied record squarely supports the proposition that the gap must be re-set and measured after a wheel change, and names visual estimation as a weak action. Deliberately contains NO citation-shaped string — see the §193/§194 collision recorded in the §195 evidence."
+    },
+    {
+      "rowId": "EE-10",
+      "observation": "An electrician is about to work on a motor starter. He has opened the local isolator and fitted his own lock. His test lamp is in the van. The permit records the isolation point and the time, and carries no entry against the proving step.",
+      "observationSha256": "da1faa6577e4afa373a3988818bdfe4185e646474d4a6671553586c07a5f155e",
+      "families": [
+        "GOVERNED_EVIDENCE_VALID_RELIANCE"
+      ],
+      "governedEvidenceSourceIds": [
+        "GOV-ISOLATION-PROVING-01"
+      ],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "LEGITIMATE RELIANCE, second family. The record names both weak actions the observation actually exhibits — isolator position and a permit entry. Isolation is stated done; proving is the open conjunct."
+    },
+    {
+      "rowId": "EE-11",
+      "observation": "A fixed guard over a conveyor drive coupling is held by four bolts. Two of the bolt heads are visible and the other two sit behind the frame and cannot be seen from the walkway. The maintenance record shows the guard was removed for a belt change last month and carries no note of it being refitted or checked since.",
+      "observationSha256": "e11ac4f24a1b0a19b233913fdbb65e2dca1423fd6ba2635f384134f805d7adaa",
+      "families": [
+        "GOVERNED_EVIDENCE_UNRELATED",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "governedEvidenceSourceIds": [
+        "GOV-RPE-FACEFIT-01"
+      ],
+      "sufficientQuestionLikelihood": "UNLIKELY",
+      "designIntent": "UNRELATED governed evidence. The temptation is that evidence is present, so reliance looks available. The correct answer is NONE, and reliance on the supplied source would be a semantic failure even though it is structurally admissible."
+    },
+    {
+      "rowId": "EE-12",
+      "observation": "A mobile tower scaffold stands at the end of the production line and an operative is working from the top platform. The tower was built this morning. The handover tag on the base is signed. The guardrails on the platform are fitted on three sides; the fourth side faces the line and is open.",
+      "observationSha256": "d9e45f3b6f005e388ece37391b5fa4c1f7dda98bf8aaa71b018ae13164901ad8",
+      "families": [
+        "GOVERNED_EVIDENCE_TOO_NARROW"
+      ],
+      "governedEvidenceSourceIds": [
+        "GOV-FIXED-LADDER-CAGE-01"
+      ],
+      "sufficientQuestionLikelihood": "LIKELY",
+      "designIntent": "TOO NARROW governed evidence, with the limit stated inside the record itself. Tests bounded reasoning and abstention: the right answer is NONE plus ordinary reasoning from the observation, which alone establishes the open side."
+    }
+  ]
+}

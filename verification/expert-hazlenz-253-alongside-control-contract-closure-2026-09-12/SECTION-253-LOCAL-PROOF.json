@@ -1,0 +1,189 @@
+{
+  "section": "253",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "admittedThrough": "runExpertHazLenzAnalysis, the production entry point",
+  "contractIdentities253": {
+    "contractVersion": "hazlenz.expert.first-pass.253",
+    "baseVersions": {
+      "justification": "hazlenz.expert.first-pass.247"
+    },
+    "fieldsMadeNonNullable": [
+      "alongsideControlConsidered",
+      "whyAlongsideControlInsufficient"
+    ],
+    "nullableFieldsRetained": [
+      "unresolvedElement",
+      "dischargingControlRef"
+    ],
+    "rolesAdded": 0,
+    "refKindsAdded": 0,
+    "posturesAdded": 0,
+    "fieldsAdded": 0,
+    "fieldsRemoved": 0,
+    "requiredListsChanged": 0,
+    "systemPromptBuilderAdded": 0,
+    "admissiblePairs": 6,
+    "inadmissibleExpressible": 0,
+    "basisEntryUnion": "05324d43cd253039ba979f11a0d4dfeb6eaca3268df80355fe3dd837e1ee7254",
+    "postureSchemaProperty": "82c5d13ef3e108b16b79ec857748b0b16068ba70065826139cb38ccb4087bc44",
+    "reducesToSection247": true
+  },
+  "fieldsMadeNonNullable": [
+    "alongsideControlConsidered",
+    "whyAlongsideControlInsufficient"
+  ],
+  "nullableFieldsRetained": [
+    {
+      "field": "unresolvedElement",
+      "why": "the §247 design record blesses null for this field explicitly (\"the one open thing, or null\"), no deterministic rule reads it, and the schema and the projection do not disagree about it. There is no contradiction to close."
+    },
+    {
+      "field": "dischargingControlRef",
+      "why": "its schema admits null and checkRoleJustification247 refuses null, but its description never invites null, so it is a different and lesser shape than the contradiction §253 was authorized to resolve. KNOWINGLY RETAINED and reported for a separate decision."
+    }
+  ],
+  "summary": {
+    "passed": 27,
+    "failed": 0,
+    "failures": []
+  },
+  "checks": [
+    {
+      "id": "J1 the frozen §247 fixture reads a null pair as a confrontation that did not happen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J2 the §247 design record says a cessation driver must NAME both fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J3 the §247 design record marks unresolvedElement, and only it, as nullable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J4 the §247 report says a cessation driver must name the alongside control",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J5 the §247 projection refuses null and is left untouched by §253",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "R1 the cessation fields no longer admit null",
+      "pass": true,
+      "detail": "alongsideControlConsidered,whyAlongsideControlInsufficient"
+    },
+    {
+      "id": "R2 the transmitted description no longer instructs the model to write null",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "R3 §253 reduces back to §247 byte for byte",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "R4 the whole wire schema reduces back to §247 byte for byte",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "R5 the system prompt is byte-identical -- §253 introduces no prompt",
+      "pass": true,
+      "detail": "a2f53370753526ad"
+    },
+    {
+      "id": "R6 no role, carrier, field, required list or vocabulary changed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "R7 K6 remains 6 admissible / 0 inadmissible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "R8 unresolvedElement and dischargingControlRef keep their null, deliberately",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A1 a cessation driver stating that the observation names no alongside control is ADMITTED",
+      "pass": true,
+      "detail": "ADMIT / COMPLETE"
+    },
+    {
+      "id": "A2 it carries no justification refusal code",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A3 a cessation driver that names a real alongside control is still ADMITTED",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B1 the null pair is REFUSED -- the C5 escape route is not writable",
+      "pass": true,
+      "detail": "REFUSE / FIRST_PASS_REFUSED"
+    },
+    {
+      "id": "B2 the refusal is structural: the transmitted contract no longer admits the value",
+      "pass": true,
+      "detail": "NO_UNION_BRANCH_SATISFIED"
+    },
+    {
+      "id": "B3 a whitespace-only value is REFUSED by the projection, which §253 did not touch",
+      "pass": true,
+      "detail": "CESSATION_DRIVER_WITHOUT_ALONGSIDE_CONTROL_ASSESSMENT"
+    },
+    {
+      "id": "B4 an absent field is REFUSED",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "C1 no probe produced a semantic invention",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "C2 nothing was supplied for the refused field on any refusal",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "D1 an owed unresolved fact is preserved even while the cessation driver is refused",
+      "pass": true,
+      "detail": "PRESERVE_UNRESOLVED"
+    },
+    {
+      "id": "D2 the admitted-fact set is unchanged for a well-formed declaration under the repair",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "D3 preservation invented nothing",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "Z1 the transmitted contract now REFUSES the value the projection refuses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "Z2 the transmitted contract ADMITS the value the projection admits",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

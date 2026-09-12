@@ -1,0 +1,16 @@
+{
+  "//": "SECTION 212 EXPERIMENT SCOPE ONLY. Typechecks the §212 verifier-remediation and PM-1 files plus the §210i/§210j/§211 modules they build on, and NOTHING ELSE. Not repository-wide and not SRC_TYPECHECK. Report results as EXPERIMENT_SCOPE_TYPECHECK (§212), never as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-210i-*.ts",
+    "scripts/lib/expert-210j-*.ts",
+    "scripts/lib/expert-211-*.ts",
+    "scripts/lib/expert-212-*.ts",
+    "scripts/test-210i-*.ts",
+    "scripts/test-210j-*.ts",
+    "scripts/test-211-*.ts",
+    "scripts/test-212-*.ts",
+    "scripts/verify-212-*.ts"
+  ]
+}

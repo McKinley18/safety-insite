@@ -1,0 +1,82 @@
+{
+  "artifact": "SECTION-235-CONTRACT-IDENTITY",
+  "contractVersion": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment",
+  "baseContractVersion": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+  "contractIdentities235": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment",
+    "baseVersions": {
+      "posture": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture"
+    },
+    "cessationField": "establishedConditionsRequiringCessation",
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow",
+      "establishedConditionsRequiringCessation"
+    ],
+    "postures": "d80f83678510f91cb1202e8859af993c56c34f23161a5a1be44222883576e5eb",
+    "refKinds": "821dd271fdad2353297b18d5d4f1ee7ee49463030687d35c7ebef91d28a796be",
+    "providerVisibleRules": "28d358c9f72b5f4bba4e0fb53333800aa60c3776f61ff34e491fd035e7be9859",
+    "cessationBlockLines": "c7bc9846788c4e37920e8609072daaf81ed83bbc549f53ab817cac214d8f9432",
+    "schemaDescriptionSuffixes": "f0af844f73aaf59f2927cde0f931138532459f0586e9652302079abdd337d979",
+    "postureSchemaProperty": "7acb8724f30363c1a6e4b9a5946c7166d16f32577259e5344db14affebe13325",
+    "systemPromptNoGoverned": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+    "systemPromptGoverned": "07f7069b65bf86fd4b6c4ec408e863e6db80549285890a9f86921493f0b71578"
+  },
+  "projectionIdentity235": {
+    "projectionVersion": "hazlenz.expert.235.posture-projection.v1",
+    "refusalCodes235": [
+      "CESSATION_LIST_MISSING",
+      "CESSATION_LIST_NOT_AN_ARRAY",
+      "CESSATION_ITEM_MALFORMED",
+      "CESSATION_REF_UNRESOLVED",
+      "CESSATION_REF_NOT_A_CANDIDATE",
+      "CESSATION_CONDITION_NOT_IN_BASIS",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+    ],
+    "codeToInvariant235": {
+      "CESSATION_LIST_MISSING": "P7",
+      "CESSATION_LIST_NOT_AN_ARRAY": "P7",
+      "CESSATION_ITEM_MALFORMED": "P7",
+      "CESSATION_REF_UNRESOLVED": "P7",
+      "CESSATION_REF_NOT_A_CANDIDATE": "P7",
+      "CESSATION_CONDITION_NOT_IN_BASIS": "P7",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE": "P7",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE": "P8",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT": "P9"
+    },
+    "delegatesTo233": true,
+    "section233CodesUnchanged": true,
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false,
+    "normalizesContainerOnly": true
+  },
+  "refusalCodes235": [
+    "CESSATION_LIST_MISSING",
+    "CESSATION_LIST_NOT_AN_ARRAY",
+    "CESSATION_ITEM_MALFORMED",
+    "CESSATION_REF_UNRESOLVED",
+    "CESSATION_REF_NOT_A_CANDIDATE",
+    "CESSATION_CONDITION_NOT_IN_BASIS",
+    "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE",
+    "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+    "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+  ],
+  "moduleDigests235": {
+    "normalization": "e895ff214a6ba1e76a2812d573f2c8dfb6847cc18d1e0414422650db1c66d5fb",
+    "contract": "4faee904803b582c54eafab636ce910dd83fcd98346088dc8b6556736e3f6201",
+    "projection": "b742b124947ffbfc31a0d4cc8f885cb17427393346682ccfacc1ccf2588533d3",
+    "consistency": "b9ed6339d28b8e8d4224286b0b13b60898c8b695525206977fe9838040696cfb",
+    "fixtures": "465bf58c13102131e654b88a5ed13fac8371f625459eb3506eed3027a7bc4fab",
+    "suite": "f5fdcc973afcc7cc3e6437be5fe47767aa63f9e24b66907e7b705ca0ec11d958",
+    "design236": "8fff2542cde8ef0e35f4d843e4f060bd600ec4ad7b2df8533e554f46c4a26d79"
+  },
+  "section233ImplementationDigest": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+  "scenarioCount": 24
+}

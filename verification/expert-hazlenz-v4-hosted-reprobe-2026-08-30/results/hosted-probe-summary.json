@@ -1,0 +1,451 @@
+{
+  "provider": "anthropic",
+  "modelRequested": "claude-sonnet-5",
+  "modelResponded": [],
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "promptVersion": "hazlenz.expert.prompt.v4",
+  "thinking": "disabled",
+  "determinismControl": "NONE — temperature/top_p/top_k are removed on this model and there is no seed",
+  "callsAttempted": 7,
+  "callsCompletedClean": 0,
+  "ceilingCalls": 8,
+  "ceilingCostUsd": 3,
+  "stoppedEarly": null,
+  "inputTokens": 0,
+  "outputTokens": 0,
+  "latencyP50Ms": 148,
+  "latencyMaxMs": 433,
+  "actualCostUsd": 0,
+  "routing": {
+    "TYPED_ROUTING_OPPORTUNITIES": 0,
+    "TYPED_ROUTING_HITS": 0,
+    "TYPED_ROUTING_MISSES": 0,
+    "TYPED_ROUTING_OVER_ROUTED": 0,
+    "EXPLANATION_ONLY_LOSSES": 0,
+    "byCollection": {
+      "expertHazardCandidates": {
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "decisionCriticalClarifications": {
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "crossHazardInsights": {
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "disagreements": {
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0
+      }
+    }
+  },
+  "grounding": {
+    "EVIDENCE_OPPORTUNITIES": 2,
+    "EVIDENCE_QUOTES_EMITTED": 0,
+    "EVIDENCE_QUOTES_EXACTLY_BOUND": 0,
+    "EVIDENCE_QUOTES_UNBINDABLE": 0,
+    "EVIDENCE_QUOTES_FABRICATED": 0,
+    "GROUNDED_TYPED_OBJECTS": 0,
+    "UNGROUNDED_TYPED_OBJECTS": 0
+  },
+  "groundingFixturesWithSupportingExactQuote": 0,
+  "groundingReady": false,
+  "gates": [
+    {
+      "id": "HG01",
+      "label": "hosted credential usable",
+      "verdict": "FAIL",
+      "note": "0/7 calls authenticated"
+    },
+    {
+      "id": "HG02",
+      "label": "exact model callable",
+      "verdict": "FAIL",
+      "note": "requested claude-sonnet-5"
+    },
+    {
+      "id": "HG03",
+      "label": "provider identity from response body",
+      "verdict": "PASS",
+      "note": "responded —"
+    },
+    {
+      "id": "HG04",
+      "label": "transport errors = 0 on intended-success calls",
+      "verdict": "FAIL",
+      "note": "7 failures"
+    },
+    {
+      "id": "HG05",
+      "label": "responses parse",
+      "verdict": "PASS",
+      "note": "no MALFORMED_JSON"
+    },
+    {
+      "id": "HG06",
+      "label": "responses normalize through the adapter",
+      "verdict": "PASS",
+      "note": "forced tool_choice emit_expert_analysis"
+    },
+    {
+      "id": "HG07",
+      "label": "responses validate at the Expert boundary",
+      "verdict": "PASS",
+      "note": "—"
+    },
+    {
+      "id": "HG08",
+      "label": "zero-candidate clarification survives",
+      "verdict": "FAIL",
+      "note": "R1 clar=0 cand=0"
+    },
+    {
+      "id": "HG09",
+      "label": "typed cross-hazard routing survives",
+      "verdict": "FAIL",
+      "note": "R2 insights=0"
+    },
+    {
+      "id": "HG10",
+      "label": "candidate routing survives",
+      "verdict": "FAIL",
+      "note": "R4 candidates=0"
+    },
+    {
+      "id": "HG11",
+      "label": "multi-collection sibling routing survives",
+      "verdict": "FAIL",
+      "note": "R5 cand=0 clar=0 ins=0"
+    },
+    {
+      "id": "HG12",
+      "label": "negative control not materially over-routed",
+      "verdict": "NOT_MEASURED",
+      "note": "R6 over-routed=—"
+    },
+    {
+      "id": "HG13",
+      "label": "protected merge halves invariant",
+      "verdict": "PASS",
+      "note": "7/7 byte-identical, 0 invariant violations"
+    },
+    {
+      "id": "HG14",
+      "label": "token usage measurable",
+      "verdict": "PASS",
+      "note": "0 in / 0 out (provider-reported)"
+    },
+    {
+      "id": "HG15",
+      "label": "latency measured",
+      "verdict": "PASS",
+      "note": "p50 148ms, max 433ms"
+    },
+    {
+      "id": "HG16",
+      "label": "cost below cap",
+      "verdict": "PASS",
+      "note": "$0.0000 of $3.00"
+    },
+    {
+      "id": "HG17",
+      "label": "fabricated/unbindable evidence cannot cross as grounded",
+      "verdict": "PASS",
+      "note": "unbindable=0 fabricated=0 — VACUOUS: no malformed quote arose"
+    },
+    {
+      "id": "HG18",
+      "label": "production/customer path untouched",
+      "verdict": "PASS",
+      "note": "no file outside expert-hazlenz* references the module"
+    }
+  ],
+  "terminal": "EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_BLOCKED — HOSTED_PROVIDER_ACCOUNT_OR_CREDENTIAL_REMEDIATION_REQUIRED",
+  "EXPERT_HAZLENZ_PROVIDER_VALIDATED": false,
+  "EXPERT_HAZLENZ_CUSTOMER_ACTIVE": false,
+  "rows": [
+    {
+      "hostedCase": "H1+H2 basic structure + zero-candidate clarification",
+      "id": "R1",
+      "title": "ZERO-CANDIDATE CLARIFICATION",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu39kysTGZZ9KBajxG",
+      "latencyMs": 315,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R1",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H3 cross-hazard",
+      "id": "R2",
+      "title": "WET + ELECTRICAL",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu3xP8AASb4iHRdW5a",
+      "latencyMs": 147,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R2",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H4 additional plausible hazard",
+      "id": "R4",
+      "title": "EXTRA PLAUSIBLE HAZARD",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu4bpy3RdUjiztS1AE",
+      "latencyMs": 433,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R4",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H5 multi-collection",
+      "id": "R5",
+      "title": "MULTI-COLLECTION",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu6RiLgDeaGmd5BBPs",
+      "latencyMs": 144,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R5",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H6 negative control",
+      "id": "R6",
+      "title": "EXPLANATION-ONLY NEGATIVE CONTROL",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu74fDxY9HdUYq1vEV",
+      "latencyMs": 154,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R6",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H7 exact evidence grounding",
+      "id": "H7",
+      "title": "EXACT EVIDENCE GROUNDING — overdue fall-protection anchor",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu7jazXD7DS5dU29dY",
+      "latencyMs": 148,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "H7",
+        "isGroundingFixture": true,
+        "opportunities": 1,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": false,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H8 second grounding control",
+      "id": "H8",
+      "title": "SECOND GROUNDING CONTROL — ventilation offline during vessel entry",
+      "ran": true,
+      "httpStatus": 400,
+      "failureKind": "HTTP_CLIENT_ERROR",
+      "layerStatus": "PROVIDER_FAILED",
+      "respondedModel": null,
+      "stopReason": null,
+      "requestId": "req_011CeZeu8KpAUAoT4hUohdfA",
+      "latencyMs": 136,
+      "promptTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "costUsd": null,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "H8",
+        "isGroundingFixture": true,
+        "opportunities": 1,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": false,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    }
+  ]
+}

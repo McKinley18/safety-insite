@@ -1,0 +1,51 @@
+{
+  "artifact": "SECTION-242A-PAYLOAD-PRESERVATION",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "question": "do the provider-visible M4 payload bytes remain identical to the corrected pre-freeze version, apart from the unavoidable opaque identifier substitution?",
+  "answer": "YES. Exactly one line differs, and it is the opaque governed-record identifier.",
+  "method": "a temporary read-only script imported the REAL functions — renderAvailableGovernedEvidence and GOVERNED_SOURCE_ID_SHAPE from the first-pass vNext module, redactCitationTokens from expert-prompt and CITATION_SHAPED_PATTERN from expert-contract.types — rendered the M4 governed evidence block before and after the substitution, and diffed them line by line. The script was deleted immediately. No module was modified.",
+  "findings": {
+    "renderedLinesBefore": 10,
+    "renderedLinesAfter": 10,
+    "differingLines": 1,
+    "difference": {
+      "before": "  - sourceId: GOV-MSHA-57-15005",
+      "after": "  - sourceId: GOV-MSHA-56-15005"
+    },
+    "renderedByteLengthBefore": 1106,
+    "renderedByteLengthAfter": 1106,
+    "quotedTextUnchangedByRedaction": true,
+    "titleRendersAs": "Safety belts and lines",
+    "approvedTextContainsNoCitationToken": true,
+    "newIdentifierLegalShape": true,
+    "newIdentifierIsCitationShaped": false,
+    "oldIdentifierWasCitationShaped": false
+  },
+  "designPreserved": {
+    "transmittedJurisdictionFieldUnchanged": true,
+    "transmittedJurisdictionValue": "US, identical for all 24 cases",
+    "citationTokensRemainRedactedFromFirstPass": true,
+    "partHintInjected": false,
+    "opaqueHandleMechanismUnchanged": true,
+    "whyNoPartHint": "the jurisdiction fact lives in the truth contract, in the case setting and three explicit non-transmitted fields. Writing a CFR part into the inspection context would put the forbidden citation token class back into the model context that the design removed it from, and would give M4 alone a richer transmitted context than its peers."
+  },
+  "stopConditionTriggered": false,
+  "rawOutput": [
+    "LINE_COUNT_BEFORE 10 AFTER 10",
+    "DIFFERING_LINES 1",
+    "  line 3",
+    "    before:   - sourceId: GOV-MSHA-57-15005",
+    "    after :   - sourceId: GOV-MSHA-56-15005",
+    "BASE_PROMPT_TITLE_REDACTION_IDENTICAL true",
+    "BASE_PROMPT_TITLE_RENDERS_AS \"Safety belts and lines\"",
+    "BASE_PROMPT_TEXT_RENDERS_AS \"Safety belts and lines shall be worn when persons work where there is danger of falling; a second person shall tend the lifeline when bins, tanks, or other dangerous areas are entered.\"",
+    "OFF_TEXT_CONTAINS_CITATION_TOKEN false",
+    "ON_TEXT_CONTAINS_CITATION_TOKEN false",
+    "TEXT_UNCHANGED_BY_REDACTION true",
+    "NEW_ID_LEGAL_SHAPE true",
+    "NEW_ID_IS_CITATION_SHAPED false",
+    "OLD_ID_IS_CITATION_SHAPED false",
+    "BYTES_BEFORE 1106 BYTES_AFTER 1106"
+  ]
+}

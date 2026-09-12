@@ -1,0 +1,219 @@
+{
+  "instrumentVersion": "hazlenz.expert.silence-control-adjudication.v1",
+  "createdAt": "2026-09-05",
+  "STATUS": "ADJUDICATION_INSTRUMENT_READY_VERDICTS_UNFILLED",
+  "INSTRUCTIONS": "A human reviewer fills CLARIFICATION_REQUIRED, SILENCE_CONTROL_VALID and CONFIDENCE for each row. A row left null is NOT thereby valid -- absence of adjudication is not adjudication. No count in the control-corpus check may be computed while any row is null.",
+  "adjudicationMayNotBeDecidedBy": [
+    "any model, including the one that drafted these rows",
+    "prior model output",
+    "the §162 cue instrument",
+    "length, format or vocabulary balance"
+  ],
+  "whyNoVerdictsArePrefilled": "these five rows were DRAFTED by a model. A model scoring them valid would be adjudicating its own output, which is the closed loop this programme has repeatedly refused, and would make report item 29 -- 'no model/provider adjudicated truth' -- unconfirmable. §162 established that five of seven rows of model-authored evaluation truth did not survive human review.",
+  "readBeforeAdjudicating": "the instrument these rows sit in is MATERIALLY CONFOUNDED on vocabulary and decision category (see CONFOUND-MEASUREMENTS.json). Adjudicating this exact wording now risks wasted review effort, because repairing the confounds will change the wording and the standing rule is that the FINAL exact wording is what gets adjudicated.",
+  "rows": [
+    {
+      "controlId": "SC-1",
+      "length": 398,
+      "domain": "electrical / hazardous energy control",
+      "observation": "An electrician is replacing a contactor in a motor control cabinet, wearing safety glasses and insulated gloves. The line disconnect is open and padlocked with their own lock, and they are the only person working on the circuit. They tested their meter on a known live source, read zero volts at the terminals, then retested the meter. The line is stopped and a supervisor stands at the disconnect.",
+      "targetDecision": "whether hazardous energy is controlled for the work in progress",
+      "factsAssertedAsSettledByTheDraft": [
+        {
+          "fact": "isolation under the worker's own exclusive lock",
+          "span": "The line disconnect is open and padlocked with their own lock, and they are the only person working on the circuit."
+        },
+        {
+          "fact": "absence of voltage verified at the point of work",
+          "span": "They tested their meter on a known live source, read zero volts at the terminals, then retested the meter."
+        },
+        {
+          "fact": "equipment at rest",
+          "span": "The line is stopped"
+        },
+        {
+          "fact": "the disconnect is attended",
+          "span": "a supervisor stands at the disconnect"
+        },
+        {
+          "fact": "personal protection in use",
+          "span": "wearing safety glasses and insulated gloves"
+        }
+      ],
+      "reviewerMustDecide": [
+        "whether 'a supervisor stands at the disconnect' is a CONTROL or merely an observed presence -- an attendant who is not instructed to prevent re-energisation settles nothing",
+        "whether the live-dead-live description establishes absence of voltage for the WHOLE work, or only at the instant tested",
+        "whether the absent written energy-control procedure is decision-critical for the work in progress"
+      ],
+      "ANY_FACT_MERELY_MENTIONED_NOT_SETTLED": null,
+      "ANY_FACT_WITH_INSUFFICIENT_EVIDENCE": null,
+      "TEMPORAL_SCOPE_ADEQUATE": null,
+      "COUNTERFACTUAL_ALTERNATIVE_THAT_WOULD_CHANGE_DECISION": null,
+      "CLARIFICATION_REQUIRED": null,
+      "SILENCE_CONTROL_VALID": null,
+      "RATIONALE": null,
+      "CONFIDENCE": null
+    },
+    {
+      "controlId": "SC-2",
+      "length": 409,
+      "domain": "respiratory / solvent vapour",
+      "observation": "A technician is wiping two circuit assemblies with isopropyl alcohol at a downdraft bench in the electronics repair room. The bench extraction runs and its airflow indicator sits in the green band, checked and initialled at shift start. About 50 millilitres is used from a closed bottle over four minutes. Nitrile gloves and safety glasses are worn. No other solvent is in use and the corridor door is closed.",
+      "targetDecision": "whether inhalation exposure is controlled for the task in progress",
+      "factsAssertedAsSettledByTheDraft": [
+        {
+          "fact": "engineering control verified at the point of use",
+          "span": "The bench extraction runs and its airflow indicator sits in the green band, checked and initialled at shift start."
+        },
+        {
+          "fact": "quantity and duration",
+          "span": "About 50 millilitres is used from a closed bottle over four minutes."
+        },
+        {
+          "fact": "no other solvent source",
+          "span": "No other solvent is in use and the corridor door is closed."
+        },
+        {
+          "fact": "skin and eye protection in use",
+          "span": "Nitrile gloves and safety glasses are worn."
+        }
+      ],
+      "reviewerMustDecide": [
+        "whether an airflow INDICATOR in a green band establishes extraction FUNCTION, or is a status indication of the kind §169 found may not establish protective function",
+        "whether 'checked and initialled at shift start' is temporally sufficient for a task occurring later in the shift",
+        "whether the absence of any exposure measurement leaves the governed decision open"
+      ],
+      "ANY_FACT_MERELY_MENTIONED_NOT_SETTLED": null,
+      "ANY_FACT_WITH_INSUFFICIENT_EVIDENCE": null,
+      "TEMPORAL_SCOPE_ADEQUATE": null,
+      "COUNTERFACTUAL_ALTERNATIVE_THAT_WOULD_CHANGE_DECISION": null,
+      "CLARIFICATION_REQUIRED": null,
+      "SILENCE_CONTROL_VALID": null,
+      "RATIONALE": null,
+      "CONFIDENCE": null
+    },
+    {
+      "controlId": "SC-3",
+      "length": 382,
+      "domain": "fall protection / work at height",
+      "observation": "Two joiners fix cladding rails from a mobile tower scaffold at a platform height of four metres. The platform is fully boarded with guard rails on all four sides at 1.1 metres, a mid-rail and a toe board. The wheels are locked and outriggers deployed on concrete. A scaffold tag dated this morning hangs at the ladder. Both work within the footprint and the apron below is cordoned.",
+      "targetDecision": "whether fall and falling-object exposure is controlled for the work in progress",
+      "factsAssertedAsSettledByTheDraft": [
+        {
+          "fact": "collective fall protection on every open side",
+          "span": "The platform is fully boarded with guard rails on all four sides at 1.1 metres, a mid-rail and a toe board."
+        },
+        {
+          "fact": "tower stable",
+          "span": "The wheels are locked and outriggers deployed on concrete."
+        },
+        {
+          "fact": "inspection current",
+          "span": "A scaffold tag dated this morning hangs at the ladder."
+        },
+        {
+          "fact": "work within the footprint and falling-object exposure controlled",
+          "span": "Both work within the footprint and the apron below is cordoned."
+        }
+      ],
+      "reviewerMustDecide": [
+        "whether a scaffold TAG establishes that an inspection was performed and passed, or is a status indication -- the §169 lesson applies directly to a hanging tag",
+        "whether 'dated this morning' establishes the inspection preceded THIS work",
+        "whether the tower's rated load matters given no accumulation is described"
+      ],
+      "ANY_FACT_MERELY_MENTIONED_NOT_SETTLED": null,
+      "ANY_FACT_WITH_INSUFFICIENT_EVIDENCE": null,
+      "TEMPORAL_SCOPE_ADEQUATE": null,
+      "COUNTERFACTUAL_ALTERNATIVE_THAT_WOULD_CHANGE_DECISION": null,
+      "CLARIFICATION_REQUIRED": null,
+      "SILENCE_CONTROL_VALID": null,
+      "RATIONALE": null,
+      "CONFIDENCE": null
+    },
+    {
+      "controlId": "SC-4",
+      "length": 387,
+      "domain": "noise exposure",
+      "observation": "An operator tends two CNC routers in the joinery shop and wears earmuffs from the dispenser at the entrance. A survey last month by an occupational hygienist, posted on the notice board, records 84 dBA at this workstation over a full shift with both routers cutting. The operator is present the whole shift, no other noise source is present, and the routers are at the settings surveyed.",
+      "targetDecision": "whether noise exposure requires a change of control for the shift in progress",
+      "factsAssertedAsSettledByTheDraft": [
+        {
+          "fact": "measured full-shift level by a qualified assessor",
+          "span": "A survey last month by an occupational hygienist, posted on the notice board, records 84 dBA at this workstation over a full shift with both routers cutting."
+        },
+        {
+          "fact": "surveyed conditions still hold",
+          "span": "the routers are at the settings surveyed"
+        },
+        {
+          "fact": "full-shift duration and no additional source",
+          "span": "The operator is present the whole shift, no other noise source is present"
+        },
+        {
+          "fact": "hearing protection in use",
+          "span": "wears earmuffs from the dispenser at the entrance"
+        }
+      ],
+      "reviewerMustDecide": [
+        "whether a survey from LAST MONTH establishes today's exposure, given the row also asserts conditions are unchanged -- this is the temporal-scope axis §169 flagged on VC-04-1",
+        "whether 84 dBA, being below the 85 dBA action level but close to it, leaves a decision open that measurement uncertainty would change",
+        "whether this row's decision turns on a stated numeric threshold in a way the other four do not"
+      ],
+      "ANY_FACT_MERELY_MENTIONED_NOT_SETTLED": null,
+      "ANY_FACT_WITH_INSUFFICIENT_EVIDENCE": null,
+      "TEMPORAL_SCOPE_ADEQUATE": null,
+      "COUNTERFACTUAL_ALTERNATIVE_THAT_WOULD_CHANGE_DECISION": null,
+      "CLARIFICATION_REQUIRED": null,
+      "SILENCE_CONTROL_VALID": null,
+      "RATIONALE": null,
+      "CONFIDENCE": null
+    },
+    {
+      "controlId": "SC-5",
+      "length": 389,
+      "domain": "powered industrial truck / pedestrian separation",
+      "observation": "A counterbalance forklift moves banded pallets from the dock to racking in aisle four. The aisle is closed to pedestrians by hinged barriers at both ends, both shut, and an operative outside the barrier directs the movement by radio. Today's pre-use check sheet hangs in the cab, the load is at travel height with the mast tilted back, the operator is belted, and the floor is dry and lit.",
+      "targetDecision": "whether pedestrian and load-stability exposure is controlled for the movement in progress",
+      "factsAssertedAsSettledByTheDraft": [
+        {
+          "fact": "pedestrians physically separated",
+          "span": "The aisle is closed to pedestrians by hinged barriers at both ends, both shut"
+        },
+        {
+          "fact": "the only person near the movement is outside the separation",
+          "span": "an operative outside the barrier directs the movement by radio"
+        },
+        {
+          "fact": "truck checked for the shift",
+          "span": "Today's pre-use check sheet hangs in the cab"
+        },
+        {
+          "fact": "stable travel configuration and operator restrained",
+          "span": "the load is at travel height with the mast tilted back, the operator is belted"
+        }
+      ],
+      "reviewerMustDecide": [
+        "whether a pre-use check SHEET hanging in the cab establishes the check was performed and passed, or is a document-presence indication",
+        "whether barriers being 'shut' establishes they are secured against a pedestrian opening them",
+        "whether the racking's inspection status bears on the movement being assessed"
+      ],
+      "ANY_FACT_MERELY_MENTIONED_NOT_SETTLED": null,
+      "ANY_FACT_WITH_INSUFFICIENT_EVIDENCE": null,
+      "TEMPORAL_SCOPE_ADEQUATE": null,
+      "COUNTERFACTUAL_ALTERNATIVE_THAT_WOULD_CHANGE_DECISION": null,
+      "CLARIFICATION_REQUIRED": null,
+      "SILENCE_CONTROL_VALID": null,
+      "RATIONALE": null,
+      "CONFIDENCE": null
+    }
+  ],
+  "corpusCheck": {
+    "VALID_SILENCE_ROWS": null,
+    "INVALID_SILENCE_ROWS": null,
+    "AMBIGUOUS_SILENCE_ROWS": null,
+    "computableOnlyWhenEveryRowIsAdjudicated": true
+  },
+  "reviewer": null,
+  "reviewedAt": null,
+  "notedForEveryRow": "the §169 sufficiency lesson applies throughout: physical inspection, visual confirmation and status indication may fail to establish actual protective function. Four of the five rows rest at least one settled fact on an indicator, a tag or a document -- SC-2's airflow indicator, SC-3's scaffold tag, SC-5's check sheet, and arguably SC-1's attending supervisor. Whether those settle their facts is precisely the human question."
+}

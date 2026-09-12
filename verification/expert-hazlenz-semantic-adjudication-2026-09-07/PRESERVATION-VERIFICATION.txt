@@ -1,0 +1,75 @@
+§200 EVIDENCE PRESERVATION AND ZERO-CALL VERIFICATION
+recomputed 2026-09-07T14:27:13.791Z from the files on disk
+
+RESULT: PASS   25/25
+
+OK    §196 evidence file count
+        expected  14
+OK    §197 evidence file count
+        expected  14
+OK    §198 evidence file count
+        expected  11
+OK    §199 evidence file count
+        expected  19
+OK    §197 terminal unchanged
+        expected  EXPERT_HAZLENZ_STRUCTURED_PIPELINE_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED
+OK    §197 12 attempted / 0 completed / 0 tokens / $0.00
+        expected  12|0|0|0
+OK    §197 every axis still NOT_EXERCISED
+        expected  true
+OK    §198 terminal unchanged
+        expected  EXPERT_HAZLENZ_STRUCTURED_PIPELINE_TRANSPORT_REMEDIATED — SUCCESSOR_HOSTED_PROTOCOL_AUTHORIZATION_REQUIRED
+OK    §198 provider calls still 0
+        expected  0
+OK    §199 terminal unchanged
+        expected  EXPERT_HAZLENZ_STRUCTURED_PIPELINE_EXECUTED — SEMANTIC_REMEDIATION_REQUIRED
+OK    §199 execution figures unchanged
+        expected  20|18|18|2|0.81666
+OK    §199 S/N/O axis keys present
+        expected  3
+OK    §199 S/N/O still NOT_EXERCISED
+        expected  true
+OK    §199 axis T still NOT_EXERCISED
+        expected  true
+OK    §199 raw first-pass records untouched
+        expected  12
+OK    §199 raw verifier records untouched
+        expected  8
+OK    §196 historical 91/91 output preserved
+        expected  true
+OK    NO SEMANTIC VERDICT SUPPLIED BY ANY §200 SCRIPT
+        expected  0
+OK    worksheet status
+        expected  PENDING_HUMAN_ADJUDICATION
+OK    worksheet adjudicable rows
+        expected  10
+OK    worksheet facts
+        expected  8
+OK    worksheet refused declarations
+        expected  1
+OK    TRUTH_SPECIFICATION_DEFECT is a first-class outcome
+        expected  true
+OK    SRC_TYPECHECK
+        expected  PASS
+OK    EXPERIMENT_SCOPE_TYPECHECK
+        expected  PASS
+
+PROVIDER CALLS MADE BY §200: 0
+DATABASE OPERATIONS BY §200: 0
+§199 ROWS RE-RUN BY §200: 0
+TREATMENT ARTIFACTS MODIFIED BY §200: 0
+
+TYPECHECK REPORTING — explicit names, as the §200 authorization requires
+  SRC_TYPECHECK               PASS   (tsconfig.json — src/** only)
+  EXPERIMENT_SCOPE_TYPECHECK  PASS   (tsconfig.scripts-200.json — the §196-§200 file set)
+  NEITHER IS A REPOSITORY-WIDE CHECK. Unrelated legacy scripts under backend/scripts carry
+  pre-existing type errors outside both scopes; that fact is established and unchanged.
+
+EVIDENCE PACKAGE DIGESTS — preservation proven by hashing, not by re-deriving
+  §196  14 files  4134cdb3b6de3ee90d46d5354b4a758468fe02b509f12306e6bedb8cdb657825
+  §197  14 files  4f492539bba982b9ffa3123504a4825683391a7bac80bccd91a16166428012c0
+  §198  11 files  4d9d0f5e53ace6bc7355937b7b21582d69d2cb3cff4afe58513babde373561ff
+  §199  19 files  2d550bfd1ad5a0c2fed2014c7d11b06c7551449cb0197e1c3929d2ecc29a4549
+
+  The §196-§199 gates were NOT re-run: each writes into its own evidence directory.
+

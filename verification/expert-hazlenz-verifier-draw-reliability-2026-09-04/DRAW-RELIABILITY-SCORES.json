@@ -1,0 +1,164 @@
+{
+  "scoredAt": "2026-09-04T18:05:02.298Z",
+  "label": "BOUNDED_DEVELOPMENT_RELIABILITY_SAMPLE — NOT a production error-rate estimate, NOT an accuracy percentage, NOT a reliability or safety claim",
+  "providerCallsThisScript": 0,
+  "truthBasis": "frozen §162 human-reviewed semantic targets; no model graded any output",
+  "intentClusteringNote": "INTENT_CLUSTERS is DESCRIPTIVE and is used only to count unique intents. It never decides semantic success and does not make any clustered fact acceptable truth.",
+  "perCase": {
+    "HS-A1": {
+      "caseId": "VC-08",
+      "draws": 10,
+      "semanticRequestSha256": "d9ba1dc6fb7e45590e747111d855a3d0d4bd0190b7c227e3256bb51fb7351809",
+      "executionValid": 10,
+      "semanticSuccess": "3/10",
+      "settledSilenceCount": 0,
+      "wrongFactCount": 7,
+      "wrongAffectedDecisionCount": 0,
+      "contractInvalidCount": 0,
+      "degenerateCount": 0,
+      "forbiddenFieldCount": 0,
+      "verdictDistribution": {
+        "ADD_OR_REPLACE_CLARIFICATION": 10
+      },
+      "sourceModeDistribution": {
+        "NOMINATED_FACT": 7,
+        "SUPPLIED_FACT": 3
+      },
+      "affectedDecisionDistribution": {
+        "REQUIRED_CONTROL": 10
+      },
+      "uniqueClarificationIntents": {
+        "discharge auger lockout / de-energisation": 7,
+        "flame-failure safeguard functional status": 3
+      },
+      "uniqueQuestionStrings": 10,
+      "modalSemanticOutcome": "WRONG_FACT_CLARIFICATION",
+      "modalShare": "7/10",
+      "pairwiseSemanticAgreement": "24/45 (53.3%)",
+      "outcomeDistribution": {
+        "WRONG_FACT_CLARIFICATION": 7,
+        "SEMANTIC_SUCCESS": 3
+      },
+      "medianLatencyMs": 16278,
+      "meanCostUsd": 0.024838,
+      "meanOutputTokens": 1437
+    },
+    "HS-E1": {
+      "caseId": "VC-04",
+      "draws": 10,
+      "semanticRequestSha256": "f89ec76bbaa7430df4e4be6ed738ee221b87f59b4073247d8454802c8ad791e3",
+      "executionValid": 10,
+      "semanticSuccess": "1/10",
+      "settledSilenceCount": 8,
+      "wrongFactCount": 1,
+      "wrongAffectedDecisionCount": 0,
+      "contractInvalidCount": 0,
+      "degenerateCount": 0,
+      "forbiddenFieldCount": 0,
+      "verdictDistribution": {
+        "NO_CLARIFICATION_REQUIRED": 8,
+        "ADD_OR_REPLACE_CLARIFICATION": 2
+      },
+      "sourceModeDistribution": {
+        "(none)": 8,
+        "NOMINATED_FACT": 2
+      },
+      "affectedDecisionDistribution": {
+        "(none)": 8,
+        "REQUIRED_CONTROL": 2
+      },
+      "uniqueClarificationIntents": {
+        "(no clarification)": 8,
+        "guard interlock protective function verified": 1,
+        "rotor tooth change workmanship verified / signed off": 1
+      },
+      "uniqueQuestionStrings": 2,
+      "modalSemanticOutcome": "SETTLED_SILENCE",
+      "modalShare": "8/10",
+      "pairwiseSemanticAgreement": "28/45 (62.2%)",
+      "outcomeDistribution": {
+        "SETTLED_SILENCE": 8,
+        "SEMANTIC_SUCCESS": 1,
+        "WRONG_FACT_CLARIFICATION": 1
+      },
+      "medianLatencyMs": 7623,
+      "meanCostUsd": 0.017214,
+      "meanOutputTokens": 802
+    }
+  },
+  "acrossCases": {
+    "totalDraws": 20,
+    "executionValid": 20,
+    "semanticSuccesses": 4,
+    "humanValidatedSemanticMisses": 16,
+    "executionFailures": 0,
+    "withinCasePairwiseAgreement": "52/90 (57.8%)",
+    "betweenCaseDifference": "HS-A1 reached the target 3/10 and never fell silent; HS-E1 reached it 1/10 and fell silent 8/10"
+  },
+  "CLEAN_DRAW_VARIANCE_ESTABLISHED": true,
+  "cleanVarianceEvidence": [
+    "HS-A1: 10 execution-valid draws of one frozen request produced 2 materially different semantic outcomes — WRONG_FACT_CLARIFICATION | SEMANTIC_SUCCESS",
+    "HS-E1: 10 execution-valid draws of one frozen request produced 3 materially different semantic outcomes — SETTLED_SILENCE | SEMANTIC_SUCCESS | WRONG_FACT_CLARIFICATION"
+  ],
+  "RELIABILITY_INTEGRATION_JUSTIFIED": true,
+  "policyComparison": [
+    {
+      "id": "A. SINGLE_DRAW",
+      "calls": "1.00",
+      "cost": "$0.0210",
+      "latency": "15175 ms",
+      "addresses": "nothing — this is the current behaviour and the measured baseline",
+      "reachesTarget": "HS-A1 30%, HS-E1 10%",
+      "residue": "all observed failure modes remain",
+      "reconciliation": "none",
+      "failClosed": "first-pass result stands unchanged"
+    },
+    {
+      "id": "B. TWO_DRAW_CONFIRMATION",
+      "calls": "2.00 when the selective trigger fires",
+      "cost": "$0.0421",
+      "latency": "15175 ms if parallel, 30350 ms if serial",
+      "addresses": "settled-silence variance — raises the chance that SOMETHING is asked",
+      "reachesTarget": "at least one draw reaching target: HS-A1 51%, HS-E1 19%",
+      "residue": "target displacement is untouched: two draws that both ask about the wrong fact agree with each other and look like consensus",
+      "reconciliation": "DETERMINISTIC RULE REQUIRED: clarification vs silence must resolve toward ASKING, because asking costs a person time and not asking costs the control. Two different clarifications cannot be reconciled deterministically and must both surface or the case must escalate.",
+      "failClosed": "on disagreement, surface the clarification; never silently drop one"
+    },
+    {
+      "id": "C. CONDITIONAL_SECOND_DRAW",
+      "calls": "1.80 on a case like HS-E1, 1.00 on a case like HS-A1",
+      "cost": "$0.0378 worst observed",
+      "latency": "15175 ms typical, 30350 ms when the second draw fires",
+      "addresses": "the modal-silence failure specifically, at roughly half the cost of B",
+      "reachesTarget": "HS-E1 18% — the second draw is drawn from the same distribution, so it inherits the same low reach",
+      "residue": "target displacement untouched; a wrong-fact clarification on the first draw stops the escalation entirely because it is not a silence",
+      "reconciliation": "trivial — only silence triggers the second draw",
+      "failClosed": "if the second draw is also silent, the first-pass result stands"
+    },
+    {
+      "id": "D. THREE_DRAW_MAJORITY",
+      "calls": "3.00",
+      "cost": "$0.0631",
+      "latency": "15175 ms parallel, 45525 ms serial",
+      "addresses": "NOTHING THAT MATTERS HERE, AND IT ACTIVELY HARMS. Majority voting converges on the MODAL outcome. The modal outcome is WRONG on both measured cases — settled silence 8/10 on HS-E1 and wrong-fact clarification 7/10 on HS-A1 — so a majority of three would entrench the error and present it with more confidence than a single draw.",
+      "reachesTarget": "HS-A1 ~0% by majority (the wrong fact wins), HS-E1 ~0% by majority (silence wins)",
+      "residue": "everything, plus a false impression of consensus",
+      "reconciliation": "majority — which is exactly the defect",
+      "failClosed": "n/a — not recommended for development comparison beyond this refutation"
+    },
+    {
+      "id": "E. BOUNDED_SPECIALIST_ESCALATION",
+      "calls": "n/a",
+      "cost": "n/a",
+      "latency": "n/a",
+      "addresses": "in principle, target displacement — the failure repetition cannot fix",
+      "reachesTarget": "unknown and unmeasurable today",
+      "residue": "NOT SUPPORTABLE NOW. It requires a second qualified model or provider, and no second provider has been qualified. Introducing an unqualified one to adjudicate a safety clarification would place an unvalidated component on the decision path, which the architecture prohibits.",
+      "reconciliation": "n/a",
+      "failClosed": "n/a"
+    }
+  ],
+  "semanticResidue": "THE DECISIVE LIMIT. On HS-A1, 7 of 10 draws asked a well-formed, plausible safety question about a DIFFERENT fact — auger lockout — rather than the human target. On HS-E1, 8 of 10 fell silent. Neither failure is a reliability failure that repetition can fix: repeating a draw resamples the same distribution, and that distribution is centred on the wrong answer on BOTH cases. Reliability policy can raise the chance that something is asked; it cannot make the verifier ask the right thing. A bounded reliability policy is therefore worth having and is NOT sufficient on its own.",
+  "recommendedPolicy": "C. CONDITIONAL_SECOND_DRAW as the bounded starting point — it targets the modal-silence failure at ~1.8 calls per triggered analysis and has a trivial deterministic reconciliation. RECOMMENDED FOR DESIGN, NOT SELECTED FOR PRODUCTION: on the measured distribution it would lift HS-E1 target reach only from 10% to ~18%, which is not a decision boundary anyone should rely on. D is refuted outright. E is not supportable without a qualified second provider.",
+  "degeneratePolicyComposition": "The existing degenerate-output policy is UNCHANGED and composes cleanly: it operates on RESPONSE STATE (degenerate vs usable) and fires at most one bounded reissue before failing closed to deterministic HazLenz. Any reliability policy here operates one layer up, on SEMANTIC OUTCOME among usable responses. The ordering is: transport -> degenerate policy (at most one reissue, then fail closed) -> contract admission -> semantic reliability policy. No loops, and the reliability policy never reissues a degenerate response — that remains the degenerate policy's single bounded retry."
+}

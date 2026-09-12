@@ -1,0 +1,90 @@
+{
+  "artifact": "SUCCESSOR-SOURCE-MANIFEST-204",
+  "closureContractVersion": "hazlenz.expert.204-successor-closure.v1",
+  "lineage": "hazlenz.expert.203-successor-boundary.v1 -> hazlenz.expert.204-successor-closure.v1",
+  "note": "Frozen identity of the §204 closure contract. Ancestor hashes are recorded as ANCESTOR EVIDENCE covering both the §203 successor modules and the inherited §187/§192 pins -- they mirror, never replace, those freezes. Deterministic: no timestamp, sorted keys, actual file bytes.",
+  "closureSourceHashes": {
+    "backend/scripts/generate-204-source-manifest.ts": "bc9516c7823fee04fb92f1b22d1083e46572732263267e9a101a4eca9f6af9fb",
+    "backend/scripts/lib/expert-204-bounded-scan.ts": "e086fd1fbe49c308c072822722dcd909f9ab85375dbc2ee33677c22aaacb1b32",
+    "backend/scripts/lib/expert-204-closure-binding.ts": "d55584936d544b5feebbf794f1c9ce82be53a983572bce8243ced69ee8cc1dd0",
+    "backend/scripts/lib/expert-204-closure-identity.ts": "68d8913abc32db33d61ceec89987f272c570c7216885e48bb0208678688555d5",
+    "backend/scripts/lib/expert-204-closure-projection.ts": "1228e3670940fcddca054b57fb4fa3cf0a986e532390ed29cb50719e516fd4e3",
+    "backend/scripts/test-204-value-shape-closure.ts": "d5816a8cc08da4f98973f545ab6f7b9bd1c8d989c71fde20ea2f86da4eccec5e",
+    "backend/scripts/verify-204-source-integrity.ts": "d99b6a2ae40ac68b6dc4577eb547d4b2416819a3c459fe127deb638fe6f9c35c",
+    "backend/scripts/verify-204-text-integrity.ts": "967eed56678fea54755d597d839d6284b2d788e1e42c3dbc072e380be298e93c"
+  },
+  "modulePlan": [
+    {
+      "path": "backend/scripts/lib/expert-204-closure-identity.ts",
+      "lineage": "NEW",
+      "composesOnto": null
+    },
+    {
+      "path": "backend/scripts/lib/expert-204-bounded-scan.ts",
+      "lineage": "NEW",
+      "composesOnto": null
+    },
+    {
+      "path": "backend/scripts/lib/expert-204-closure-binding.ts",
+      "lineage": "COMPOSES",
+      "composesOnto": "backend/scripts/lib/expert-203-successor-binding.ts"
+    },
+    {
+      "path": "backend/scripts/lib/expert-204-closure-projection.ts",
+      "lineage": "COMPOSES",
+      "composesOnto": "backend/scripts/lib/expert-203-successor-projection.ts"
+    }
+  ],
+  "plannedButAbsent": [],
+  "unplannedPresent": [],
+  "ancestorPins": {
+    "backend/scripts/lib/expert-203-effective-grammar-identity.ts": {
+      "sha256": "a641fb1488ea5be7957f441b9b56c16c8a84fecc2269652e8fa3a5703335baef",
+      "pinnedBy": "§203 SUCCESSOR-SOURCE-MANIFEST.json, re-asserted by verify-203-source-integrity"
+    },
+    "backend/scripts/lib/expert-203-fact-identity-collision.ts": {
+      "sha256": "b50fc3a0bbbdd78e11a2bc8397fc5744afabd1ce3aed7f96c8ab9c6ff5ad683d",
+      "pinnedBy": "§203 SUCCESSOR-SOURCE-MANIFEST.json, re-asserted by verify-203-source-integrity"
+    },
+    "backend/scripts/lib/expert-203-successor-binding.ts": {
+      "sha256": "144b32cf643e945c3a48bcc25e423c38639d2eb11bf9fcdc463319848de6bd29",
+      "pinnedBy": "§203 SUCCESSOR-SOURCE-MANIFEST.json, re-asserted by verify-203-source-integrity"
+    },
+    "backend/scripts/lib/expert-203-successor-identity.ts": {
+      "sha256": "8b44025566a52050189fb1ef950c28a0d834d51e60b5b8a2d80c439e13e9f225",
+      "pinnedBy": "§203 SUCCESSOR-SOURCE-MANIFEST.json, re-asserted by verify-203-source-integrity"
+    },
+    "backend/scripts/lib/expert-203-successor-projection.ts": {
+      "sha256": "aae50ab06db4a4766ee1607bd338bdf99dcb17d6790998969b440cc30e14e92d",
+      "pinnedBy": "§203 SUCCESSOR-SOURCE-MANIFEST.json, re-asserted by verify-203-source-integrity"
+    },
+    "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts": {
+      "sha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+      "pinnedBy": "FROZEN_BY_RECORDED_EVIDENCE: not hash-pinned against a frozen expectation, but its sha256 is recorded inside §196/§197/§198 evidence, and verify-197:248 / verify-199:255 assert a byte-level property of it (no transition() call). Changing it would diverge the recorded historical evidence, so §203 treats it exactly as pinned"
+    },
+    "backend/scripts/lib/expert-verifier-contract-v3.ts": {
+      "sha256": "475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc",
+      "pinnedBy": "§192 verifierIdentity.admissionValidatorSha256, asserted by verify-193/194/195/196/199"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts": {
+      "sha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+      "pinnedBy": "§187 PREREGISTRATION.json firstPassIdentity.promptFileSha256"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts": {
+      "sha256": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts": {
+      "sha256": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts": {
+      "sha256": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes (verification/expert-hazlenz-required-structured-verifier-validation-2026-09-05), re-asserted by the verify-188..199 source-integrity scripts"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts": {
+      "sha256": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199"
+    }
+  }
+}

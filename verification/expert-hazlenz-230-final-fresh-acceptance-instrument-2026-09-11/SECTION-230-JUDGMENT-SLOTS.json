@@ -1,0 +1,2670 @@
+{
+  "artifact": "SECTION-230-JUDGMENT-SLOTS",
+  "version": "hazlenz.expert.230.final-fresh-acceptance.v1",
+  "slotCount": 163,
+  "authorizedRange": "100 to 180 substantive judgments",
+  "verdictVocabulary": [
+    "PASS",
+    "FAIL",
+    "AMBIGUOUS",
+    "NOT_EXERCISED"
+  ],
+  "adjudicationRules": {
+    "slotsPredefined": true,
+    "slotsCreatedAfterViewingOutput": false,
+    "onlyExercisedAxesScored": true,
+    "runningGateResultsShownDuringAdjudication": false,
+    "whyBlinded": "seeing a gate approach failure while judging later cases biases the later judgments. Slots are judged in case order and gates are computed only after every mandatory slot is filled.",
+    "productOwnerJudgments": "the genuinely semantic professional judgments — hazard identification, property identity, immediate decision quality, branch and clarification quality, grounding, explanation usefulness",
+    "deterministicJudgments": "authority state, settlement outcome, transition counts, refusal codes and RR-7 record literals, all compared field by field against the frozen expectation",
+    "verdictVocabulary": [
+      "PASS",
+      "FAIL",
+      "AMBIGUOUS",
+      "NOT_EXERCISED"
+    ]
+  },
+  "productOwnerSlots": 139,
+  "deterministicSlots": 24,
+  "slots": [
+    {
+      "id": "G1-J1",
+      "caseId": "G1",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G1-J2",
+      "caseId": "G1",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G1-J3",
+      "caseId": "G1",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G2-J1",
+      "caseId": "G2",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G2-J2",
+      "caseId": "G2",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_UNCHANGED. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G2-J3",
+      "caseId": "G2",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G3-J1",
+      "caseId": "G3",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G3-J2",
+      "caseId": "G3",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G3-J3",
+      "caseId": "G3",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G3-J4",
+      "caseId": "G3",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G3-J5",
+      "caseId": "G3",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G3-J6",
+      "caseId": "G3",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G4-J1",
+      "caseId": "G4",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G4-J2",
+      "caseId": "G4",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G4-J3",
+      "caseId": "G4",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G4-J4",
+      "caseId": "G4",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G4-J5",
+      "caseId": "G4",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G4-J6",
+      "caseId": "G4",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G5-J1",
+      "caseId": "G5",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G5-J2",
+      "caseId": "G5",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G5-J3",
+      "caseId": "G5",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G5-J4",
+      "caseId": "G5",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G5-J5",
+      "caseId": "G5",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G5-J6",
+      "caseId": "G5",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G6-J1",
+      "caseId": "G6",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G6-J2",
+      "caseId": "G6",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G6-J3",
+      "caseId": "G6",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G6-J4",
+      "caseId": "G6",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G6-J5",
+      "caseId": "G6",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G6-J6",
+      "caseId": "G6",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G7-J1",
+      "caseId": "G7",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G7-J2",
+      "caseId": "G7",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G7-J3",
+      "caseId": "G7",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G7-J4",
+      "caseId": "G7",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G7-J5",
+      "caseId": "G7",
+      "axis": "REGULATORY_GROUNDING",
+      "question": "Does every regulatory authority claim trace to GOV-OSHA-1910-147 and is the stated requirement supported by that record's approved text? Does any supplied off-point record enter controlling reasoning or get cited for this decision? Does any citation outside the supplied set appear anywhere?",
+      "feedsHardGates": [
+        "HS7",
+        "HS8"
+      ],
+      "feedsQualityMeasures": [
+        "Q9"
+      ],
+      "mandatory": true,
+      "whatToRead": "the supplied sourceIds and approvedText, against every governed reference in both legs",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G7-J6",
+      "caseId": "G7",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are CONFIRM_PROPERTY/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G7-J7",
+      "caseId": "G7",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G8-J1",
+      "caseId": "G8",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G8-J2",
+      "caseId": "G8",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G8-J3",
+      "caseId": "G8",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_WITH_CONTROLS. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS3",
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G8-J4",
+      "caseId": "G8",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G8-J5",
+      "caseId": "G8",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G8-J6",
+      "caseId": "G8",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G9-J1",
+      "caseId": "G9",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G9-J2",
+      "caseId": "G9",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G9-J3",
+      "caseId": "G9",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G9-J4",
+      "caseId": "G9",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G9-J5",
+      "caseId": "G9",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G9-J6",
+      "caseId": "G9",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G10-J1",
+      "caseId": "G10",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G10-J2",
+      "caseId": "G10",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G10-J3",
+      "caseId": "G10",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G10-J4",
+      "caseId": "G10",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G10-J5",
+      "caseId": "G10",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/APPROVE_SETTLEMENT. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6",
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G10-J6",
+      "caseId": "G10",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G11-J1",
+      "caseId": "G11",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G11-J2",
+      "caseId": "G11",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G11-J3",
+      "caseId": "G11",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_WITH_CONTROLS. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS3",
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G11-J4",
+      "caseId": "G11",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "G11-J5",
+      "caseId": "G11",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G11-J6",
+      "caseId": "G11",
+      "axis": "RR7_PRESERVATION",
+      "question": "Was the malformed declaration refused whole with no field partially rescued and no value invented? Does the preserved record carry the identified property VERBATIM, and is it the frozen pre-malformation controlling property? Is the record incapable of settling? Can a reader tell the analysis did not produce a usable result, rather than that it found no gap?",
+      "feedsHardGates": [
+        "HS9",
+        "HS10",
+        "HS14"
+      ],
+      "feedsQualityMeasures": [],
+      "mandatory": true,
+      "whatToRead": "the persisted raw output before malformation, the projection refusal codes, and the STRUCTURALLY_INVALID_DECLARATION record literals",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "G11-J7",
+      "caseId": "G11",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C1-J1",
+      "caseId": "C1",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C1-J2",
+      "caseId": "C1",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C1-J3",
+      "caseId": "C1",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C1-J4",
+      "caseId": "C1",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C1-J5",
+      "caseId": "C1",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C1-J6",
+      "caseId": "C1",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C2-J1",
+      "caseId": "C2",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C2-J2",
+      "caseId": "C2",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C2-J3",
+      "caseId": "C2",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C2-J4",
+      "caseId": "C2",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C2-J5",
+      "caseId": "C2",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C2-J6",
+      "caseId": "C2",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C3-J1",
+      "caseId": "C3",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C3-J2",
+      "caseId": "C3",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C3-J3",
+      "caseId": "C3",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C3-J4",
+      "caseId": "C3",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C3-J5",
+      "caseId": "C3",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C3-J6",
+      "caseId": "C3",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C4-J1",
+      "caseId": "C4",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C4-J2",
+      "caseId": "C4",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C4-J3",
+      "caseId": "C4",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C4-J4",
+      "caseId": "C4",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C4-J5",
+      "caseId": "C4",
+      "axis": "REGULATORY_GROUNDING",
+      "question": "Does every regulatory authority claim trace to GOV-OSHA-1926-451 and is the stated requirement supported by that record's approved text? Does any supplied off-point record enter controlling reasoning or get cited for this decision? Does any citation outside the supplied set appear anywhere?",
+      "feedsHardGates": [
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q9"
+      ],
+      "mandatory": true,
+      "whatToRead": "the supplied sourceIds and approvedText, against every governed reference in both legs",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C4-J6",
+      "caseId": "C4",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C4-J7",
+      "caseId": "C4",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C5-J1",
+      "caseId": "C5",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C5-J2",
+      "caseId": "C5",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C5-J3",
+      "caseId": "C5",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C5-J4",
+      "caseId": "C5",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C5-J5",
+      "caseId": "C5",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are CONFIRM_PROPERTY/NONE then CONFIRM_PROPERTY/APPROVE_SETTLEMENT. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6",
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C5-J6",
+      "caseId": "C5",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C6-J1",
+      "caseId": "C6",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C6-J2",
+      "caseId": "C6",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C6-J3",
+      "caseId": "C6",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C6-J4",
+      "caseId": "C6",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C6-J5",
+      "caseId": "C6",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are CORRECT_PROPERTY/APPROVE_SETTLEMENT. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6",
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C6-J6",
+      "caseId": "C6",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C7-J1",
+      "caseId": "C7",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C7-J2",
+      "caseId": "C7",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C7-J3",
+      "caseId": "C7",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C7-J4",
+      "caseId": "C7",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C7-J5",
+      "caseId": "C7",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are KEEP_UNRESOLVED/REJECT_SETTLEMENT. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6",
+        "HS11"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "C7-J6",
+      "caseId": "C7",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C8-J1",
+      "caseId": "C8",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C8-J2",
+      "caseId": "C8",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C8-J3",
+      "caseId": "C8",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C9-J1",
+      "caseId": "C9",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C9-J2",
+      "caseId": "C9",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_WITH_CONTROLS. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS3",
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C9-J3",
+      "caseId": "C9",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C10-J1",
+      "caseId": "C10",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C10-J2",
+      "caseId": "C10",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_UNCHANGED. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "C10-J3",
+      "caseId": "C10",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M1-J1",
+      "caseId": "M1",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M1-J2",
+      "caseId": "M1",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M1-J3",
+      "caseId": "M1",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M1-J4",
+      "caseId": "M1",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M1-J5",
+      "caseId": "M1",
+      "axis": "REGULATORY_GROUNDING",
+      "question": "Does every regulatory authority claim trace to GOV-MSHA-56-3401 and is the stated requirement supported by that record's approved text? Does any supplied off-point record enter controlling reasoning or get cited for this decision? Does any citation outside the supplied set appear anywhere?",
+      "feedsHardGates": [
+        "HS7",
+        "HS8"
+      ],
+      "feedsQualityMeasures": [
+        "Q9"
+      ],
+      "mandatory": true,
+      "whatToRead": "the supplied sourceIds and approvedText, against every governed reference in both legs",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M1-J6",
+      "caseId": "M1",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M1-J7",
+      "caseId": "M1",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M2-J1",
+      "caseId": "M2",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M2-J2",
+      "caseId": "M2",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M2-J3",
+      "caseId": "M2",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M2-J4",
+      "caseId": "M2",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M2-J5",
+      "caseId": "M2",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M2-J6",
+      "caseId": "M2",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M3-J1",
+      "caseId": "M3",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M3-J2",
+      "caseId": "M3",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_UNCHANGED. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M3-J3",
+      "caseId": "M3",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M4-J1",
+      "caseId": "M4",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, and were ZERO decision-critical declarations emitted? This case owes nothing; a declaration here is a manufactured gap.",
+      "feedsHardGates": [
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q3",
+        "Q12"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M4-J2",
+      "caseId": "M4",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M4-J3",
+      "caseId": "M4",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M5-J1",
+      "caseId": "M5",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M5-J2",
+      "caseId": "M5",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M5-J3",
+      "caseId": "M5",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is CONTINUE_WITH_CONTROLS. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS3",
+        "HS12"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M5-J4",
+      "caseId": "M5",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M5-J5",
+      "caseId": "M5",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M5-J6",
+      "caseId": "M5",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M6-J1",
+      "caseId": "M6",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M6-J2",
+      "caseId": "M6",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M6-J3",
+      "caseId": "M6",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M6-J4",
+      "caseId": "M6",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M6-J5",
+      "caseId": "M6",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M6-J6",
+      "caseId": "M6",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M7-J1",
+      "caseId": "M7",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M7-J2",
+      "caseId": "M7",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M7-J3",
+      "caseId": "M7",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M7-J4",
+      "caseId": "M7",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M7-J5",
+      "caseId": "M7",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M7-J6",
+      "caseId": "M7",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M8-J1",
+      "caseId": "M8",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M8-J2",
+      "caseId": "M8",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M8-J3",
+      "caseId": "M8",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M8-J4",
+      "caseId": "M8",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M8-J5",
+      "caseId": "M8",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are NONE/NONE. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M8-J6",
+      "caseId": "M8",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M9-J1",
+      "caseId": "M9",
+      "axis": "HAZARD_RECALL_AND_RESTRAINT",
+      "question": "Is the hazard the frozen truth names identified, is EVERY owed property emitted as a STRUCTURED declaration, and is nothing declared that the frozen truth does not owe? Nothing is credited from prose, a candidate, an uncertainty statement, a clarification or the explanation.",
+      "feedsHardGates": [
+        "HS1"
+      ],
+      "feedsQualityMeasures": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen owedProperties and nonFacts for this case, against the declarations array and the hazard candidates",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M9-J2",
+      "caseId": "M9",
+      "axis": "EXACT_PROPERTY_IDENTITY",
+      "question": "For each declaration matched to an owed property: is the declared proposition the decision-controlling one, and is it none of the annotated prohibited proxies? If a wrong property was declared, did it reach authoritative settlement?",
+      "feedsHardGates": [
+        "HS2"
+      ],
+      "feedsQualityMeasures": [
+        "Q4"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen controllingProperty and prohibitedProxies for each owed property, against each declaration's missingFact, and then the end state",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M9-J3",
+      "caseId": "M9",
+      "axis": "IMMEDIATE_DECISION_QUALITY",
+      "question": "The frozen immediate posture is STOP_OR_HOLD. Does the output, taken as a whole, clearly say what must happen NOW, what remains unresolved, what must be verified, whether work may continue, and what escalation is secondary? Vague language such as \"continued operation should be reviewed\" where a clear hold, stop or continue-with-controls decision is required does NOT meet the standard. On a STOP_OR_HOLD case, does anything in the output — including silence in decisionWhileUnresolved — leave a competent reader concluding that work may continue?",
+      "feedsHardGates": [
+        "HS13",
+        "HS3"
+      ],
+      "feedsQualityMeasures": [
+        "Q7",
+        "Q8"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen correctImmediateDecision and acceptableCorrectiveDirection, against decisionWhileUnresolved, both branch decisions and the explanation",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M9-J4",
+      "caseId": "M9",
+      "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+      "question": "Do branchA and branchB correspond to the controlling property rather than dividing known from unknown? Are the branch consequences materially correct, and does each branch state what changes in the safety decision? Does the clarification demand evidence CAPABLE OF SETTLING the property, rather than evidence that merely looks like it? Decision usefulness, not stylistic perfection.",
+      "feedsHardGates": [],
+      "feedsQualityMeasures": [
+        "Q5",
+        "Q6"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen branchA, branchB, decisionIfA, decisionIfB and clarificationMustDemand for each owed property, against what was emitted",
+      "adjudicator": "PRODUCT_OWNER"
+    },
+    {
+      "id": "M9-J5",
+      "caseId": "M9",
+      "axis": "AUTHORITY_AND_SETTLEMENT",
+      "question": "The preregistered human actions are KEEP_UNRESOLVED/REJECT_SETTLEMENT. Did authoritative state match the frozen expectation exactly at every field — authority at claim, authority after, evidence authority minted, settlement applied, refusal codes, fact status, transition count and sibling status? Did any property confirmation approve evidence, or any evidence approval supply property authority? Is the review packet sufficient for a reviewer to answer the one question it asks?",
+      "feedsHardGates": [
+        "HS4",
+        "HS5",
+        "HS6",
+        "HS11"
+      ],
+      "feedsQualityMeasures": [
+        "Q11"
+      ],
+      "mandatory": true,
+      "whatToRead": "the frozen exercise expectations for this case, against the derived end state",
+      "adjudicator": "DETERMINISTIC"
+    },
+    {
+      "id": "M9-J6",
+      "caseId": "M9",
+      "axis": "EXPLANATION_AND_COMPLETENESS",
+      "question": "NO GOVERNED RECORD IS SUPPLIED FOR THIS CASE. Does any citation, regulation number, agency name, section reference or quoted regulatory text appear anywhere in the output? Naming the hazard and the control requires no citation. THEN: Is the explanation faithful to the observation, does it state the basis in the model's own words, and would it help rather than mislead a competent person? Is the response structurally complete — declarations field an array, required fields present and semantic, observation span verbatim, no truncation? Where a candidate assertedConditionState contradicts its own reasoning, did that contradiction distort the first-pass conclusion, the verifier nomination or the human review packet?",
+      "feedsHardGates": [
+        "HS14",
+        "HS7"
+      ],
+      "feedsQualityMeasures": [
+        "Q10",
+        "Q13"
+      ],
+      "mandatory": true,
+      "whatToRead": "the full output searched for any regulatory reference, then the explanation, the uncertainty statements, the candidate block with its reasoning, the output shape observation, and the verifier propertyReview",
+      "adjudicator": "PRODUCT_OWNER"
+    }
+  ]
+}

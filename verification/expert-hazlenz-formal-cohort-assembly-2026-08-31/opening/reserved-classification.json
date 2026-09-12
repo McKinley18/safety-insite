@@ -1,0 +1,2305 @@
+[
+  {
+    "scenarioId": "GAUNTLET-001",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "fire_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fire_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "missing fire extinguisher in haul truck"
+  },
+  {
+    "scenarioId": "GAUNTLET-002",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unguarded conveyor tail pulley"
+  },
+  {
+    "scenarioId": "GAUNTLET-003",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [
+      "machine_guarding"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "exposed live electrical wiring on packaging machine"
+  },
+  {
+    "scenarioId": "GAUNTLET-004",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "open floor edge without guardrails or fall arrest at six feet height"
+  },
+  {
+    "scenarioId": "GAUNTLET-005",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "confined_space"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unlabeled chemical storage tank containing corrosive liquid"
+  },
+  {
+    "scenarioId": "GAUNTLET-006",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "machine_guarding"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "conveyors"
+    ],
+    "engineStates": [
+      {
+        "domainId": "conveyors",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "performing cleanout of crusher drive belt pulley while machine is running without lockout applied"
+  },
+  {
+    "scenarioId": "GAUNTLET-007",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unauthorized employee entry into permit required confined space sewer tank without supervisor or attendant present"
+  },
+  {
+    "scenarioId": "GAUNTLET-008",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "confined_space"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "mobile_equipment",
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "mobile_equipment",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm traffic controls, pedestrian separation, operator status, and equipment condition."
+        ]
+      }
+    ],
+    "observation": "missing steel toe boots and hard hat in active warehouse loading dock area with heavy forklift traffic"
+  },
+  {
+    "scenarioId": "GAUNTLET-009",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "medium",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "environmental_spill"
+    ],
+    "engineStates": [
+      {
+        "domainId": "environmental_spill",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "spillage of fine coal material and mud accumulation on transfer tower travelway catwalk"
+  },
+  {
+    "scenarioId": "GAUNTLET-010",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "emergency_egress"
+    ],
+    "engineStates": [
+      {
+        "domainId": "emergency_egress",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "blocked emergency exit door locked from the inside in packaging bay area during active shift"
+  },
+  {
+    "scenarioId": "GAUNTLET-011",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "chemical_exposure"
+    ],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "excavation_trenching"
+    ],
+    "engineStates": [
+      {
+        "domainId": "excavation_trenching",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "workers digging an eight-foot deep excavation trench without shoring or sloping system in sandy clay soil"
+  },
+  {
+    "scenarioId": "GAUNTLET-012",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "rigging_lifting"
+    ],
+    "engineStates": [
+      {
+        "domainId": "rigging_lifting",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "damaged and frayed wire rope sling used for overhead crane steel plate lifting"
+  },
+  {
+    "scenarioId": "GAUNTLET-013",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "compressed_gas"
+    ],
+    "engineStates": [
+      {
+        "domainId": "compressed_gas",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unsecured gas cylinder standing upright without chain or cap near oxygen manifold"
+  },
+  {
+    "scenarioId": "GAUNTLET-014",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "mobile_equipment",
+      "traffic_control",
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "mobile_equipment",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "traffic_control",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm route, movement, exposed persons, and the effectiveness of separation, signaling, or spotter controls."
+        ]
+      },
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm traffic controls, pedestrian separation, operator status, and equipment condition."
+        ]
+      }
+    ],
+    "observation": "operator operating forklift without wearing seatbelt near pedestrian walkway intersection"
+  },
+  {
+    "scenarioId": "GAUNTLET-015",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "haul truck backup alarm inoperative while operating in pit loading area"
+  },
+  {
+    "scenarioId": "GAUNTLET-016",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "silica_respirable_dust"
+    ],
+    "engineStates": [
+      {
+        "domainId": "silica_respirable_dust",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "visible thick white dust cloud from quarry secondary impact crusher circuit"
+  },
+  {
+    "scenarioId": "GAUNTLET-017",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "combustible wood shavings and dust piled on top of electrical conduit and junction boxes in mill room"
+  },
+  {
+    "scenarioId": "GAUNTLET-018",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "medium",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "hydraulic_pneumatic_energy"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hydraulic_pneumatic_energy",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm pressure status, exposure boundary, and effective relief or restraint."
+        ]
+      }
+    ],
+    "observation": "lack of safety chain or secure wire rope connector on high pressure air line from mobile compressor"
+  },
+  {
+    "scenarioId": "GAUNTLET-019",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding",
+      "electrical"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "damaged structural rungs on portable aluminum extension ladder leaning against scaffold frame"
+  },
+  {
+    "scenarioId": "GAUNTLET-020",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "guarding_interlocks",
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "guarding_interlocks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the machine, the required guard or rest, its adjustment tolerance, and employee access to the point of operation."
+        ]
+      }
+    ],
+    "observation": "machine operator bypassed safety light curtain on milling machine using reflective tape to expedite feeding"
+  },
+  {
+    "scenarioId": "GAUNTLET-021",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "the operator of the packaging machine reported that the emergency stop button was not functioning"
+  },
+  {
+    "scenarioId": "GAUNTLET-022",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "HISTORICAL",
+        "correctionStatus": "reported",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "truck driver reported missing seatbelt buckle assembly inside the cab of the utility vehicle"
+  },
+  {
+    "scenarioId": "GAUNTLET-023",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "chemical reaction vessel cleanout requires worker entry but the electrical lock box was damaged"
+  },
+  {
+    "scenarioId": "GAUNTLET-024",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "fire in the computer server cabinet was extinguished but the cooling fan guards were not reinstalled"
+  },
+  {
+    "scenarioId": "GAUNTLET-025",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding",
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the stairway/handrail condition, location, and worker exposure."
+        ]
+      }
+    ],
+    "observation": "catwalk handrail loose near the belt conveyor drive motor assembly"
+  },
+  {
+    "scenarioId": "GAUNTLET-026",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "electrical panel clear working space obstructed by heavy wooden shipping crates"
+  },
+  {
+    "scenarioId": "GAUNTLET-027",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "mobile_equipment"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "chemical_transfer"
+    ],
+    "engineStates": [
+      {
+        "domainId": "chemical_transfer",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm substance, transfer path, connection integrity, containment, controls, and exposed persons."
+        ]
+      }
+    ],
+    "observation": "forklift fuel tank cap leaking liquid petroleum gas during refueling station transfer"
+  },
+  {
+    "scenarioId": "GAUNTLET-028",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "fall_protection"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "scaffold erection supervisor failed to wear safety glasses during bolt tensioning walkthrough"
+  },
+  {
+    "scenarioId": "GAUNTLET-029",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "dust suppression water hose leaking on the stairs of the secondary crusher floor"
+  },
+  {
+    "scenarioId": "GAUNTLET-030",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "maintenance lock missing from electrical switch room door containing 480v switchgear"
+  },
+  {
+    "scenarioId": "GAUNTLET-031",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical",
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the energized state, boundary, and employee approach/contact exposure."
+        ]
+      },
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm hot-work controls, combustibles, and fire-watch status."
+        ]
+      }
+    ],
+    "observation": "welding generator lead cable insulation damaged exposing bare copper wire near structural steel"
+  },
+  {
+    "scenarioId": "GAUNTLET-032",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "fall_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fall_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "missing self-closing safety gate on vertical ladderway platform opening at 15 feet height"
+  },
+  {
+    "scenarioId": "GAUNTLET-033",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "mobile_equipment",
+      "suspended_loads",
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "mobile_equipment",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "suspended_loads",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm load stability, exclusion-zone integrity, and employee position."
+        ]
+      },
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm traffic controls, pedestrian separation, operator status, and equipment condition."
+        ]
+      }
+    ],
+    "observation": "forklift forks left suspended in the air two feet above floor level while operator walked away"
+  },
+  {
+    "scenarioId": "GAUNTLET-034",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "loose guardrails and missing toe boards on high screen deck access travelway"
+  },
+  {
+    "scenarioId": "GAUNTLET-035",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "combustible trash and oil soaked rags stored in open cardboard boxes in machining shop"
+  },
+  {
+    "scenarioId": "GAUNTLET-036",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "machine_guarding"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "lockout_tagout"
+    ],
+    "engineStates": [
+      {
+        "domainId": "lockout_tagout",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm all hazardous energy sources and isolation/zero-energy verification."
+        ]
+      }
+    ],
+    "observation": "worker cleared jammed cardboard folder without isolating air power or locking electrical panels"
+  },
+  {
+    "scenarioId": "GAUNTLET-037",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "material_handling"
+    ],
+    "engineStates": [
+      {
+        "domainId": "material_handling",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "safety shower and eye wash station blocked by plastic chemical drum storage pallet in mixing bay"
+  },
+  {
+    "scenarioId": "GAUNTLET-038",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "medium",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "loose coal and spillage piled under conveyor drive belt assembly on primary screen floor"
+  },
+  {
+    "scenarioId": "GAUNTLET-039",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "emergency_egress"
+    ],
+    "engineStates": [
+      {
+        "domainId": "emergency_egress",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "missing exit sign and direction indicators in back warehouse distribution aisle"
+  },
+  {
+    "scenarioId": "GAUNTLET-040",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "no secondary container labels on spray bottles containing solvent cleaner used in lathe maintenance"
+  },
+  {
+    "scenarioId": "GAUNTLET-041",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "broken latch on emergency fire door in logistics storage room preventing positive closure during alarm test"
+  },
+  {
+    "scenarioId": "GAUNTLET-042",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "grinder tool rest opening clearance measured at one-half inch from grinding wheel face"
+  },
+  {
+    "scenarioId": "GAUNTLET-043",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "oxygen and acetylene manifolds stored touching without fire barrier wall inside gas cylinder yard"
+  },
+  {
+    "scenarioId": "GAUNTLET-044",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "excavation_trenching"
+    ],
+    "engineStates": [
+      {
+        "domainId": "excavation_trenching",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "excavation_trenching",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm depth, soil/ground conditions, protective system, access/egress, and nearby loads."
+        ]
+      }
+    ],
+    "observation": "excavation dirt and stone spoil piles placed right on the edge of six-foot trench wall"
+  },
+  {
+    "scenarioId": "GAUNTLET-045",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "mobile_equipment",
+      "powered_industrial_trucks"
+    ],
+    "engineStates": [
+      {
+        "domainId": "mobile_equipment",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm traffic controls, pedestrian separation, operator status, and equipment condition."
+        ]
+      }
+    ],
+    "observation": "forklift truck warning horn does not sound when pressed at blind aisle intersection"
+  },
+  {
+    "scenarioId": "GAUNTLET-046",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the energized state, boundary, and employee approach/contact exposure."
+        ]
+      }
+    ],
+    "observation": "open face electrical breaker box door exposing internal energized bus bar at 240v in assembly line floor"
+  },
+  {
+    "scenarioId": "GAUNTLET-047",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "cranes_hoists"
+    ],
+    "engineStates": [
+      {
+        "domainId": "cranes_hoists",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "lack of lock or safety latch hook on hoisting hook used with shop mobile crane lifting engine blocks"
+  },
+  {
+    "scenarioId": "GAUNTLET-048",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "chemical_exposure"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "atmospheric_hazard"
+    ],
+    "engineStates": [
+      {
+        "domainId": "atmospheric_hazard",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "employees entering acid digester pit without testing atmospheric concentration of toxic hydrogen sulfide gas"
+  },
+  {
+    "scenarioId": "GAUNTLET-049",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls",
+      "suspended_loads"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "suspended_loads",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm load stability, exclusion-zone integrity, and employee position."
+        ]
+      }
+    ],
+    "observation": "oil leak from overhead compressor crane dripping on active metal cutting lathe operator floor area"
+  },
+  {
+    "scenarioId": "GAUNTLET-050",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fire_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fire_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "lack of monthly visual check tags on portable class a fire extinguishers in machining shop office aisle"
+  },
+  {
+    "scenarioId": "GAUNTLET-051",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "electrical"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "missing lock on the high voltage disconnect box inside crusher substation during cleanout work"
+  },
+  {
+    "scenarioId": "GAUNTLET-052",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "damaged protective cover plate on industrial sewing machine v-belt drive assembly exposing nip point"
+  },
+  {
+    "scenarioId": "GAUNTLET-053",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm hot-work controls, combustibles, and fire-watch status."
+        ]
+      }
+    ],
+    "observation": "cracked structural weld on structural steel spreader bar lifting frame hook ring"
+  },
+  {
+    "scenarioId": "GAUNTLET-054",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "fall_protection",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "masonry wall scaffold frame erected on loose dirt floor using stack bricks instead of mudsills"
+  },
+  {
+    "scenarioId": "GAUNTLET-055",
+    "eligible": false,
+    "reason": "SECONDARY_OUTSIDE_TAXONOMY",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "pedestrian walkway line in logistics warehouse warehouse path obstructed by stack conveyor pallets"
+  },
+  {
+    "scenarioId": "GAUNTLET-056",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unguarded high-voltage electrical contacts inside elevator machinery access cabinet door unlocked"
+  },
+  {
+    "scenarioId": "GAUNTLET-057",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "unsafe employee entry into high-voltage switch room without rubber hazard-insulated protective gloves"
+  },
+  {
+    "scenarioId": "GAUNTLET-058",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space",
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "employee entering mixing vessel cleanout hatch without permit, chemical isolation blanking or air testing"
+  },
+  {
+    "scenarioId": "GAUNTLET-059",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "uncoiled electrical cords and grease stains creating trip slip hazard on production conveyor floor passageway"
+  },
+  {
+    "scenarioId": "GAUNTLET-060",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "missing portable carbon dioxide fire extinguisher next to primary electrical distribution board panel board"
+  },
+  {
+    "scenarioId": "GAUNTLET-061",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "crusher feed conveyor v-belt drive guard loose hanging off structural mounting frame"
+  },
+  {
+    "scenarioId": "GAUNTLET-062",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "powered_industrial_trucks",
+      "hydraulic_pneumatic_energy"
+    ],
+    "engineStates": [
+      {
+        "domainId": "powered_industrial_trucks",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "hydraulic_pneumatic_energy",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm pressure status, exposure boundary, and effective relief or restraint."
+        ]
+      }
+    ],
+    "observation": "haul truck steering hydraulic leak dripping fluid on front brake disc assembly"
+  },
+  {
+    "scenarioId": "GAUNTLET-063",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "electrical"
+    ],
+    "engineStates": [
+      {
+        "domainId": "electrical",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "broken structural hinge on electrical panel safety cabinet exposing inner live switches to rain in quarry yard"
+  },
+  {
+    "scenarioId": "GAUNTLET-064",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls",
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "packaging room floor cluttered with scrap cardboard cuttings and plastic wrap creating trip hazard near conveyors"
+  },
+  {
+    "scenarioId": "GAUNTLET-065",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm hot-work controls, combustibles, and fire-watch status."
+        ]
+      }
+    ],
+    "observation": "missing safety glasses and face shield on machinist grinding steel blades on bench grinder"
+  },
+  {
+    "scenarioId": "GAUNTLET-066",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "cranes_hoists"
+    ],
+    "engineStates": [
+      {
+        "domainId": "cranes_hoists",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "lack of lock or safety latch hook on hoisting hook used with shop mobile crane lifting engine blocks"
+  },
+  {
+    "scenarioId": "GAUNTLET-067",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unlabeled safety data sheet folder missing files for chemical cleaners used in machining shop"
+  },
+  {
+    "scenarioId": "GAUNTLET-068",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "employees entering paint mixer vessel cleanout hatch without permit, air testing or helper present"
+  },
+  {
+    "scenarioId": "GAUNTLET-069",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "grease puddle and wet spot under conveyor drive gearbox creating slip hazard in main passageway"
+  },
+  {
+    "scenarioId": "GAUNTLET-070",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "emergency_egress"
+    ],
+    "engineStates": [
+      {
+        "domainId": "emergency_egress",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "lack of exit door signage over back packaging room emergency double door"
+  },
+  {
+    "scenarioId": "GAUNTLET-071",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "walking_working_surfaces"
+    ],
+    "engineStates": [
+      {
+        "domainId": "walking_working_surfaces",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "loose catwalk floor grating creating hole exposure on head pulley access tower"
+  },
+  {
+    "scenarioId": "GAUNTLET-072",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "missing rubber insulating mat in front of 480v distribution panels in motor control center MCC room"
+  },
+  {
+    "scenarioId": "GAUNTLET-073",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "acid transfer piping secondary containment outer jacket cracked in chemical packaging vault"
+  },
+  {
+    "scenarioId": "GAUNTLET-074",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "material_handling"
+    ],
+    "engineStates": [
+      {
+        "domainId": "material_handling",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "exit route pathway in warehouse shipping aisle obstructed by wood pallet stack"
+  },
+  {
+    "scenarioId": "GAUNTLET-075",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "machining shop lathe operator failing to wear safety glasses during high speed turning cuts"
+  },
+  {
+    "scenarioId": "GAUNTLET-076",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding",
+      "powered_haulage"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "powered_haulage",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm the powered-haulage equipment, route, operating state, and exposed persons."
+        ]
+      }
+    ],
+    "observation": "unguarded pinch point on cardboard box palletizer conveyor return pulley under assembly line"
+  },
+  {
+    "scenarioId": "GAUNTLET-077",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "heavy industrial crane hook used for lifting mold plates missing safety locking latch in foundry shop"
+  },
+  {
+    "scenarioId": "GAUNTLET-078",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space",
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      },
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm hot-work controls, combustibles, and fire-watch status."
+        ]
+      }
+    ],
+    "observation": "workers executing internal tank weld repairs without permit validation or attendant stand-by outside"
+  },
+  {
+    "scenarioId": "GAUNTLET-079",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "water condensation leak on logistics warehouse warehouse path creating wet slip hazard in walkway"
+  },
+  {
+    "scenarioId": "GAUNTLET-080",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fire_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fire_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "broken visual pressure dial gage on carbon dioxide fire extinguisher next to primary server bay"
+  },
+  {
+    "scenarioId": "GAUNTLET-081",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "quarry conveyor drive gear mesh exposed without structural guarding plate near motor housing"
+  },
+  {
+    "scenarioId": "GAUNTLET-082",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "mobile_equipment",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "service utility vehicle parking brakes inoperative during quarry pit operation"
+  },
+  {
+    "scenarioId": "GAUNTLET-083",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "cracked safety cover casing on primary substation transformer bus exposing copper lead wire at 4160v"
+  },
+  {
+    "scenarioId": "GAUNTLET-084",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "logistics corridor floor passageway obstructed by loose pallet wrap and plastic strap bands near dock doors"
+  },
+  {
+    "scenarioId": "GAUNTLET-085",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hot_work"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hot_work",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": [
+          "Confirm hot-work controls, combustibles, and fire-watch status."
+        ]
+      }
+    ],
+    "observation": "machining bench grinder wheel rest opening clearance measured at five-eighths inch from grinding face"
+  },
+  {
+    "scenarioId": "GAUNTLET-086",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "lockout_tagout",
+    "secondaries": [
+      "electrical"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "MSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "lack of Lockout tag and padlock on primary screen disconnect during screen motor repair"
+  },
+  {
+    "scenarioId": "GAUNTLET-087",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "missing hazardous chemical material safety data sheets SDS folder for solvent cleaners in maintenance room"
+  },
+  {
+    "scenarioId": "GAUNTLET-088",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "employees executing internal chemical mixer vessel cleanout work without permit check or standby attendant present"
+  },
+  {
+    "scenarioId": "GAUNTLET-089",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "grease accumulation gearbox leakage creating slip trip hazard on production conveyor floor travelway"
+  },
+  {
+    "scenarioId": "GAUNTLET-090",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "emergency_egress"
+    ],
+    "engineStates": [
+      {
+        "domainId": "emergency_egress",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "lack of exit door signage over back packaging room emergency double doors path"
+  },
+  {
+    "scenarioId": "GAUNTLET-091",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "MSHA",
+    "engineFamilies": [
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "loose catwalk floor grating creating hole fall hazard on head pulley access tower"
+  },
+  {
+    "scenarioId": "GAUNTLET-092",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "electrical",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "missing rubber insulating matting in front of 480v distribution panels mcc room"
+  },
+  {
+    "scenarioId": "GAUNTLET-093",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "chemical_exposure",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "hazcom"
+    ],
+    "engineStates": [
+      {
+        "domainId": "hazcom",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "acid transfer piping secondary containment outer jacket cracked chemical packaging vault"
+  },
+  {
+    "scenarioId": "GAUNTLET-094",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "emergency_egress"
+    ],
+    "engineStates": [
+      {
+        "domainId": "emergency_egress",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "exit route shipping path logistics warehouse warehouse path pallet stack"
+  },
+  {
+    "scenarioId": "GAUNTLET-095",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [],
+    "engineStates": [],
+    "observation": "machining shop lathe operator failing safety glasses high speed turning"
+  },
+  {
+    "scenarioId": "GAUNTLET-096",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "machine_guarding",
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "machine_guarding"
+    ],
+    "engineStates": [
+      {
+        "domainId": "machine_guarding",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "unguarded return pulley conveyor packaging belt vbelt secondary belt under packaging assembly line"
+  },
+  {
+    "scenarioId": "GAUNTLET-097",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical",
+      "fall_protection"
+    ],
+    "severityExpectation": "high",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "cranes_hoists"
+    ],
+    "engineStates": [
+      {
+        "domainId": "cranes_hoists",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "heavy crane hook structural hoist hook missing safety locking latch foundry shop mold plate lifting"
+  },
+  {
+    "scenarioId": "GAUNTLET-098",
+    "eligible": true,
+    "reason": "ELIGIBLE",
+    "primary": "confined_space",
+    "secondaries": [
+      "lockout_tagout"
+    ],
+    "forbiddenFromUnacceptable": [],
+    "severityExpectation": "critical",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "confined_space"
+    ],
+    "engineStates": [
+      {
+        "domainId": "confined_space",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "workers executing internal mixer tank repairs no permit validation continuous attendant outside"
+  },
+  {
+    "scenarioId": "GAUNTLET-099",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "electrical"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "slips_trips_falls"
+    ],
+    "engineStates": [
+      {
+        "domainId": "slips_trips_falls",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "grease accumulation wet spot gearbox leak slip trip hazard production floor passageway path"
+  },
+  {
+    "scenarioId": "GAUNTLET-100",
+    "eligible": false,
+    "reason": "PRIMARY_OUTSIDE_TAXONOMY",
+    "primary": null,
+    "secondaries": [],
+    "forbiddenFromUnacceptable": [
+      "machine_guarding"
+    ],
+    "severityExpectation": "medium",
+    "agency": "OSHA",
+    "engineFamilies": [
+      "fire_protection"
+    ],
+    "engineStates": [
+      {
+        "domainId": "fire_protection",
+        "conditionState": "ACTIVE",
+        "correctionStatus": "not_stated",
+        "evidenceGaps": []
+      }
+    ],
+    "observation": "broken visual pressure dial gage carbon dioxide fire extinguisher server bay mcc room"
+  }
+]

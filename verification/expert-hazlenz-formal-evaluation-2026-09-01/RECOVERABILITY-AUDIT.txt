@@ -1,0 +1,70 @@
+POST-RUN EVIDENCE-RECOVERABILITY AUDIT -- M06 / M07 / M09
+Zero provider calls. The frozen scorer is READ, never modified.
+
+  runId                       formal-run-65523fbb-eea3-4322-a47b-632fa2eae341
+  cohortId                    hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a
+  adjudication queue items    174  (REG 9, CLR 165)
+  attempt-ledger calls        195
+  CohortRunRecord[] persisted false   <-- THE DEFECT
+
+
+M06_UNSUPPORTED_REGULATORY_ASSERTIONS
+
+   scorer expression                                        origin                 orig  present
+   buildAdjudicationQueue(records).filter(kind===REGULATOR  ADJUDICATION_QUEUE      yes  yes
+      the queue itself is persisted verbatim, so the scorer's own derived population is available without re-deriving it from analysis
+   byItem.get(q.itemId).verdict                             HUMAN_VERDICT           yes  yes
+      supplied by the human reviewer; required by the frozen contract
+   q.assertsObligation !== true -> skip                     ADJUDICATION_QUEUE      yes  yes
+      mechanical flag computed at queue-build time and persisted ON the item
+   q.rowId                                                  ADJUDICATION_QUEUE      yes  yes
+   deriveRowLedger(r).contentEligible                       ATTEMPT_LEDGER          yes  yes
+      the ledger persists layerStatus per (rowId, arm); CONTENT_SCORING_ARM = BASE
+   deriveRowLedger(r).hasGovernedRecord                     GOVERNED_ATTACHMENT     yes  yes
+      frozen in the cohort manifest before the run
+   eligibleRowIds.size (DENOMINATOR)                        ATTEMPT_LEDGER          yes  yes
+      computed over ALL rows, including rows with no queue item -- the ledger covers all 65
+
+   VERDICT: EXACTLY_RECOVERABLE
+
+M07_GOVERNED_RECORD_GROUNDING
+
+   scorer expression                                        origin                 orig  present
+   buildAdjudicationQueue(records).filter(kind===REGULATOR  ADJUDICATION_QUEUE      yes  yes
+      denominator is exactly the persisted queue length
+   byItem.get(q.itemId).verdict === SUPPORTED_BY_SUPPLIED_  HUMAN_VERDICT           yes  yes
+      NUMERATOR
+   q.rowId / q.fieldPath / q.subject                        ADJUDICATION_QUEUE      yes  yes
+      evidence only; does not enter the ratio
+
+   VERDICT: EXACTLY_RECOVERABLE
+
+M09_CLARIFICATION_QUALITY
+
+   scorer expression                                        origin                 orig  present
+   buildAdjudicationQueue(records).filter(kind===CLARIFICA  ADJUDICATION_QUEUE      yes  yes
+   byItem.get(q.itemId).verdict / .mappedGapId              HUMAN_VERDICT           yes  yes
+   (q.candidateGaps).find(g => g.gapId === verdict.mappedG  ADJUDICATION_QUEUE      yes  yes
+      the row's authored gaps are carried ON the queue item
+   gap.affectedDecision !== q.clarificationAffectedDecisio  ADJUDICATION_QUEUE      yes  yes
+      BOTH sides of the scorer's own comparison are on the item; the adjudicator never makes this comparison and the scorer needs no analysis to make it
+
+   VERDICT: EXACTLY_RECOVERABLE
+
+WHAT IS GENUINELY LOST, STATED PLAINLY
+
+   CohortRunRecord[] -- and with it every validated ExpertAnalysis and merged block -- was
+   NOT persisted. The frozen end-to-end buildScoringReport path is therefore permanently
+   unavailable for this run, and that does not change even if the three measures above are
+   recoverable. The 14 mechanically scored measures were computed ONCE, during the formal
+   run, by the unchanged frozen scorer; their stage-2 values are preserved and are the only
+   values that will ever exist for them.
+
+   Adjudication provably cannot alter those 14: scoreAllMeasures passes `adjudications` to
+   scoreM06, scoreM07 and scoreM09 ONLY. That is why a recovery limited to these three is a
+   complete recovery of everything adjudication could have changed, rather than a partial
+   score assembled from two different runs.
+
+AUDIT RESULT: ALL THREE EXACTLY_RECOVERABLE
+CohortRunRecord[] was NOT fabricated, reconstructed or synthesized.
+PROVIDER_INVOCATION_COUNT unchanged by this audit: it makes no call.

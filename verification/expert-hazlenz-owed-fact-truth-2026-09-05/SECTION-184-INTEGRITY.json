@@ -1,0 +1,114 @@
+{
+  "artifact": "SECTION_184_INTEGRITY",
+  "date": "2026-09-05",
+  "operation": "§184 -- product-owner owed-fact truth: RECORDED",
+  "terminal": "EXPERT_HAZLENZ_PRODUCT_OWNER_OWED_FACT_TRUTH_RECORDED -- SETTLED_FIXTURE_COMPATIBILITY_CORRECTION_AUTHORIZATION_REQUIRED",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "sourceChanges": 0,
+  "promptChanges": 0,
+  "schemaChanges": 0,
+  "governedRecordChanges": 0,
+  "frozenRowTextChanges": 0,
+  "existingTruthChanges": 0,
+  "rowsPrepared": 10,
+  "rowsBlocked": 0,
+  "AUTHORITATIVE_FACT_NOT_CONSTRUCTIBLE": [],
+  "qualityChecks": {
+    "total": 23,
+    "allPass": true,
+    "detail": "13 original checks plus 10 §184 recording checks; listed in OWED-FACT-TRUTH-CANDIDATES.json"
+  },
+  "frozenRowHashesUnchanged": true,
+  "frozenRowHashes": {
+    "HR-01": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d",
+    "HR-02": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722",
+    "HR-03": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622",
+    "HR-04": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274",
+    "HR-05": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f",
+    "HR-06": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb",
+    "HR-07": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b",
+    "HR-08": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0",
+    "HR-09": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef",
+    "HR-10": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed"
+  },
+  "instrumentFileHashes": {
+    "HUMAN-ADJUDICATION-RECORD.json": "4412990912bef4e91c23286823bc685520c1d124259abb59acb9431e30dac2ff",
+    "BLINDED-HUMAN-REVIEW-PACKET.json": "85da35aa6552554fd9675d450c362d92df66cfffcef8e1f04f5de417ebf6c627",
+    "PAIR-MAP.json": "adc34192579e1f8fc1fcf9156e799f74db407c1409a8baddd24a4ad88ff8b91f"
+  },
+  "runtimeHashesUnchanged": {
+    "expert-prompt.ts": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+    "owed-fact.types.ts": "f77c7febb55a056271174c4efd4375506145344bd0748e5d56f93c698074c1d1",
+    "owed-fact-binding.ts": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+    "settlement-review.ts": "1c300ff178638b11c677aef1091f777a7a4e3ae71e5137383013105863891bd2"
+  },
+  "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED": "false = false, unchanged",
+  "OWED_FACT_TRUTH_CONSTRUCTION": "RECORDED",
+  "PRODUCT_OWNER_REVIEWED": true,
+  "verdictsFilledByThisModel": 0,
+  "SETTLED_FIXTURE_TYPE_MISMATCH": true,
+  "settledFixtureNote": "owedFactDefects() requires a non-blank whyUnresolved regardless of status, and projectOwedFact sends that field to the provider. For the five SILENCE rows any such sentence would be false and would actively mislead the model on exactly the rows that exist as settled controls. Three handling options are set out in RUNTIME-FIXTURE-DERIVATION.md; none is taken.",
+  "governedEvidenceClassification": {
+    "HR-01": "ABSENT",
+    "HR-02": "INCAPABLE_FOR_TARGET",
+    "HR-03": "ADEQUATE",
+    "HR-04": "COARSE",
+    "HR-05": "ADEQUATE",
+    "HR-06": "INCAPABLE_FOR_TARGET",
+    "HR-07": "ABSENT",
+    "HR-08": "ADEQUATE",
+    "HR-09": "ADEQUATE",
+    "HR-10": "COARSE"
+  },
+  "governedClassificationIsMetadataOnly": "it does not determine owed-fact truth. HR-04 has a constructible owed fact even though the governed vocabulary cannot express securement proof — which is exactly why the layers are kept separate.",
+  "sections167To183EvidencePreserved": "unchanged",
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "The frozen ten-row balanced clarification instrument now has product-owner-reviewed development owed-fact truth defining the specific decision-critical fact associated with each row, with AI-assisted authoring and review provenance preserved.",
+      "The ten rows now provide five matched settled/unresolved owed-fact pairs for development evaluation."
+    ],
+    "mustNotClaim": [
+      "HazLenz behaviour improved",
+      "settlement behaviour validated",
+      "HR-04 fixed",
+      "§183 passed",
+      "customer readiness",
+      "production readiness",
+      "automated semantic sufficiency",
+      "formal acceptance",
+      "governed evidence adequacy"
+    ],
+    "nextGate": "ONE bounded local settled-fixture compatibility correction implementing UNRESOLVED -> nonblank whyUnresolved, otherwise null, preserving provider semantics and proving no false uncertainty text is manufactured. The full ten-row §183 hosted validation is re-authorizable only after that gate passes."
+  },
+  "worktree": {
+    "filesChanged": [
+      "verification/expert-hazlenz-owed-fact-truth-2026-09-05/OWED-FACT-TRUTH-CANDIDATES.json",
+      "verification/expert-hazlenz-owed-fact-truth-2026-09-05/PRODUCT-OWNER-REVIEW-PACKET.json",
+      "verification/expert-hazlenz-owed-fact-truth-2026-09-05/PRODUCT-OWNER-REVIEW-PACKET.md",
+      "verification/expert-hazlenz-owed-fact-truth-2026-09-05/TRUTH-PROVENANCE.json",
+      "verification/expert-hazlenz-owed-fact-truth-2026-09-05/SECTION-184-INTEGRITY.json",
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md",
+      "docs/INSITE_CURRENT_STATE.json",
+      "docs/EXPERT-EVALUATION-TRUTH-AUTHORITY.md"
+    ],
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  },
+  "recordedOn": "2026-09-05",
+  "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_OWED_FACT_TRUTH",
+  "verdictsReturnedByProductOwner": 10,
+  "productOwnerVerdictDistribution": {
+    "EDIT": 10,
+    "APPROVE": 0,
+    "REJECT": 0
+  },
+  "settledFixtureDirection": {
+    "PRODUCT_OWNER_SETTLED_FIXTURE_DIRECTION": "WHY_UNRESOLVED_NULL_WHEN_NOT_UNRESOLVED",
+    "IMPLEMENTATION_NOT_YET_AUTHORIZED": true,
+    "notImplementedHere": true
+  }
+}

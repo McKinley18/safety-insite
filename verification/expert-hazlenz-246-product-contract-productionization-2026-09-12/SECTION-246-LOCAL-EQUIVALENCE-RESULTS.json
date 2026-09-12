@@ -1,0 +1,244 @@
+{
+  "section": "246",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "instrument": "backend/scripts/test-246-productionization.ts",
+  "summary": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0
+  },
+  "relocationEquivalence": {
+    "modules": 39,
+    "byteIdentical": 26,
+    "importPathLineOnly": 13,
+    "otherChange": 0,
+    "rule": "a promoted module may differ from its pre-move bytes ONLY on lines whose sole change is '../../src/safescope-v2/expert-hazlenz/' -> '../'"
+  },
+  "productionBuild": {
+    "command": "npx tsc",
+    "emitted": 1110,
+    "priorEmitted": 1071,
+    "delta": 39,
+    "errors": 1,
+    "errorsAllowed": 1,
+    "allowedError": "src/safescope-v2/expert-hazlenz/contract/expert-237-posture-contract.ts(193,47) TS2552 POSTURE_REF_KINDS_237",
+    "allowedBecause": "frozen known technical debt disclosed by §239 and recorded in TYPESCRIPT_PROVENANCE_240; erased at emit, no runtime effect",
+    "emitSucceeded": true
+  },
+  "suites": [
+    {
+      "suite": "test-expert-nocall-harness",
+      "passed": 141,
+      "failed": 0,
+      "note": "D.2 now scans 84 files including the promoted contract; D.3/D.4 clean"
+    },
+    {
+      "suite": "test-235-posture-stabilization",
+      "passed": 209,
+      "failed": 0
+    },
+    {
+      "suite": "test-237-posture-closure",
+      "passed": 204,
+      "failed": 0,
+      "note": "run transpile-only; the frozen TS2552 is a type-annotation artifact"
+    },
+    {
+      "suite": "test-239-contract-binding-closure",
+      "passed": 336,
+      "failed": 0,
+      "note": "run transpile-only, same reason"
+    },
+    {
+      "suite": "test-220-kr1-property-authority",
+      "passed": 43,
+      "failed": 0,
+      "note": "property authority and KR-1 intact"
+    },
+    {
+      "suite": "test-224-declaration-capability",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "suite": "test-226-property-selection-capability",
+      "passed": 31,
+      "failed": 0
+    },
+    {
+      "suite": "test-218-structured-property-verifier",
+      "passed": 106,
+      "failed": 7,
+      "note": "all 7 failures are source-PATH scans, not semantics: 6 are module digest pins on relocated files and C15 fails only on its third conjunct, a regex over the concatenated source at the historical paths. The rule itself (isNonSemanticFiller) is present and unchanged in the promoted module, asserted by §246 G2."
+    },
+    {
+      "suite": "test-246-productionization",
+      "passed": 31,
+      "failed": 0
+    }
+  ],
+  "knownConsequences": [
+    "the 29-module protected composite recomputes to a different digest because 8 of its members now resolve through shims; this is the NEW lineage the authorization creates and is not a rewrite of the frozen 37ce9eb8 value",
+    "tsconfig.scripts-239.json and tsconfig.scripts-240.json scope by glob over scripts/lib and now match shims rather than the implementation",
+    "scripts/test-218-structured-property-verifier.ts pins module digests by historical path and needs repointing to the production tree"
+  ],
+  "checks": [
+    {
+      "verdict": "PASS",
+      "id": "A1 the production contract tree exists",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "A2 the promoted semantic set is present",
+      "detail": "39 modules"
+    },
+    {
+      "verdict": "PASS",
+      "id": "A3 every promoted module is byte-identical or differs ONLY on a repaired import path",
+      "detail": "26 identical, 13 import-only, 0 other"
+    },
+    {
+      "verdict": "PASS",
+      "id": "B1 every promoted module has a shim at its historical path",
+      "detail": "39/39"
+    },
+    {
+      "verdict": "PASS",
+      "id": "B2 no shim carries logic -- each is exactly one re-export",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "C1 no production module imports from scripts/ -- direction is scripts/ -> src/",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "D1 the promoted contract carries no network primitive, endpoint or credential",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "D2 the promoted contract names no vendor in module code",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E1 the production entry point exports a callable analysis function",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E2 it declares the §239 contract version, not a private one",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E3 the entry point composes expert-239-posture-contract from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E3 the entry point composes expert-239-posture-projection from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E3 the entry point composes expert-210j-declaration-projection from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E3 the entry point composes expert-212-verifier-payload from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E3 the entry point composes expert-218-property-review-contract from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E3 the entry point composes expert-first-pass-instruction-vnext from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "E4 the entry point reaches no harness module",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F1 the canonical envelope binds the strict-schema setting, and it is ON",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F2 every declared bound key is present in the envelope",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F3 the envelope declares no key it does not bind",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F4 an assembled first-pass request carries strict: true -- the §243 omission is unexpressible",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F5 the request is forced to the tool, so prose cannot be scored as a schema failure",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F6 the verifier leg is bound by the same envelope and is also strict",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F7 the two legs carry their own bound token limits",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "F8 the transport never assembles a tool block itself",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "G1 the §218 property consistency check resolves from the production tree",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "G2 the §210E whole-field filler rule survived relocation",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "G3 the §239 driver-role binding still admits exactly 6 role/carrier pairs",
+      "detail": "6 pairs"
+    },
+    {
+      "verdict": "PASS",
+      "id": "G4 K6 is UNCHANGED by this migration -- 4 inadmissible pairs remain expressible",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "H1 the base contract module is retained -- the §239 chain extends it, so it is not a rival",
+      "detail": null
+    },
+    {
+      "verdict": "PASS",
+      "id": "H2 the validated chain is rooted in that same base module",
+      "detail": null
+    }
+  ]
+}

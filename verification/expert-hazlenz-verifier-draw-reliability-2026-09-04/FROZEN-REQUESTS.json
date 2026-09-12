@@ -1,0 +1,23 @@
+{
+  "frozenAt": "2026-09-04T17:58:12.820Z",
+  "model": "claude-sonnet-5",
+  "maxTokens": 4000,
+  "verifierInstruction": "hazlenz.expert.verifier-instruction.v2",
+  "verifierInstructionSha256": "ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+  "verifierContract": "hazlenz.expert.verifier.v2",
+  "packetSha256": "75d64197583092ed8ac826a1c3c85d86666fd36d7eca52737d1d6eec942afc5a",
+  "humanSemanticTargetsVersion": "hazlenz.expert.human-semantic-targets.2026-09-04",
+  "requests": [
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "semanticRequestSha256": "d9ba1dc6fb7e45590e747111d855a3d0d4bd0190b7c227e3256bb51fb7351809"
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "semanticRequestSha256": "f89ec76bbaa7430df4e4be6ed738ee221b87f59b4073247d8454802c8ad791e3"
+    }
+  ],
+  "note": "every draw of a case re-sends these exact bytes; identity is re-asserted per draw"
+}

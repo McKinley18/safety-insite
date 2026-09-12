@@ -1,0 +1,91 @@
+{
+  "artifact": "SECTION_179_HR04_DIAGNOSTIC",
+  "purpose": "The targeted row's three v15 executions, recorded verbatim, as evidence for the remediation review. This is observation, not a repair and not a cause.",
+  "rowId": "HR-04",
+  "frozenTruth": "REQUIRED",
+  "observation": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter initialled the sheet, which covers belt tracking and lubrication; the fastenings were last torque-checked at the annual service. No tools rest on the guard.",
+  "promptIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v15",
+    "systemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979"
+  },
+  "result": {
+    "clarificationsEmitted": [
+      0,
+      0,
+      0
+    ],
+    "strictPassAtBest": "0/3",
+    "priorRuns": {
+      "§175 (v13)": "missed, 0 clarifications",
+      "§177 (v14)": "missed, 0 clarifications"
+    },
+    "note": "three consecutive prompt identities, five single executions plus three replicates, and the row has never emitted a clarification"
+  },
+  "executions": [
+    {
+      "replicateNumber": 1,
+      "sequencePosition": 10,
+      "declaredOutcome": "ANALYZED",
+      "clarificationCount": 0,
+      "uncertaintyStatements": [],
+      "candidates": [
+        {
+          "candidateKey": "cand-conveyor-1",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "quotedEvidenceVerbatim": "an operative walks the gangway alongside",
+          "reasoningVerbatim": "A worker routinely walking beside a running conveyor is a distinct conveyor hazard (pinch/entanglement/struck-by along the belt run, not solely the head drum nip point already covered by haz-2) that exists as an ongoing exposure independent of the guard over the nip point."
+        }
+      ],
+      "summaryVerbatim": "The fixed guard over the head drum nip point is in position and fastenings were torque-checked at the last annual service, with pre-start checks current, so no gap is established for the guarded nip point itself. A separate, additional exposure exists in that an operative routinely walks the gangway alongside the running belt, which is a conveyor hazard distinct from the guarded nip point and worth noting alongside the existing machine-guarding finding. No missing fact here would change a current decision, so no clarifications are raised."
+    },
+    {
+      "replicateNumber": 2,
+      "sequencePosition": 17,
+      "declaredOutcome": "ANALYZED",
+      "clarificationCount": 0,
+      "uncertaintyStatements": [],
+      "candidates": [
+        {
+          "candidateKey": "cand-conveyor-gangway",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW",
+          "quotedEvidenceVerbatim": "an operative walks the gangway alongside",
+          "reasoningVerbatim": "A worker regularly walking alongside a running conveyor is a conveyor hazard (entanglement/contact exposure along the belt path) distinct from the nip-point guarding already captured in the deterministic finding, since it concerns exposure along the belt run and gangway rather than the head drum nip point specifically."
+        }
+      ],
+      "summaryVerbatim": "The deterministic finding of an active machine-guarding hazard is consistent with the observation, and the fixed guard over the head drum nip point is stated to be in position, so no gap is identified there. A lower-confidence, additional conveyor-related consideration is the operative's routine walking alongside the running belt on the gangway, which is a distinct exposure pathway from the nip point itself. No decision-critical facts are missing and no cross-hazard interaction is established by the text."
+    },
+    {
+      "replicateNumber": 3,
+      "sequencePosition": 24,
+      "declaredOutcome": "ANALYZED",
+      "clarificationCount": 0,
+      "uncertaintyStatements": [],
+      "candidates": [
+        {
+          "candidateKey": "conv-nip-1",
+          "assertedConditionState": "CONTROLLED",
+          "confidence": "MODERATE",
+          "quotedEvidenceVerbatim": "The fixed guard over the head drum nip point is in position.",
+          "reasoningVerbatim": "The conveyor nip point hazard is the same underlying condition as deterministic haz-2 (machine_guarding), refined here to conveyor-specific context: a gangway walkway runs alongside a belt conveyor with a nip point at the head drum. This is additional detail on the already-active guarding hazard rather than a separate hazard, but flagged as a conveyor-family candidate since guarding alone doesn't capture the pedestrian proximity to a moving belt."
+        }
+      ],
+      "summaryVerbatim": "The guard over the head drum nip point is confirmed in position and was included in the fitter's pre-start check, with fastenings last verified at the annual torque check, so the machine_guarding hazard already flagged as ACTIVE by the deterministic engine appears currently controlled by a physical guard rather than unguarded. No additional ungrounded hazard, missing fact meeting the decision-critical test, or cross-hazard interaction was identified from this observation."
+    }
+  ],
+  "whatTheThreeExecutionsShow": {
+    "replicate1": "pivoted to a DIFFERENT hazard — an operative walking the gangway beside the running belt, raised ACTIVE — and closed the guard question with 'no gap is established for the guarded nip point itself'",
+    "replicate2": "the same pivot at LOW confidence, and stated outright that 'the fixed guard over the head drum nip point is stated to be in position, so no gap is identified there'",
+    "replicate3": "did not pivot; raised the nip point as CONTROLLED and stated that the guard 'is confirmed in position and was included in the fitter's pre-start check, with fastenings last verified at the annual torque check, so the machine_guarding hazard ... appears currently controlled by a physical guard rather than unguarded'",
+    "theCommonMove": "in every execution the guarding fact was closed. Two executions closed it on presence alone; the third named the historical torque check and treated it as establishing the CURRENT controlled state.",
+    "whyReplicate3MattersMost": "it is the case both the §176 temporal rule and the §178 property rule were written for, and neither fired. The model reached the historical verification, did not ask when it speaks for, and did not distinguish the property it establishes from the property the decision needs. This is a placement-independent failure: the reasoning passed through the territory and still closed the fact.",
+    "whatIsNOTEstablished": [
+      "that the §178 rule is wrong",
+      "that the property distinction is the wrong hypothesis",
+      "any cause for the failure",
+      "that a differently worded rule would succeed"
+    ],
+    "openQuestionForReview": "whether a prompt-level rule can reach this behaviour at all, or whether the model's closure happens before any instruction about establishment is consulted — three prompt identities have now failed to move this row."
+  }
+}

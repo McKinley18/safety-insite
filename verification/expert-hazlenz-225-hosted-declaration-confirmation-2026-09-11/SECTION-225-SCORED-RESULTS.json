@@ -1,0 +1,538 @@
+{
+  "artifact": "SECTION-225-SCORED-RESULTS",
+  "frozenProtocolDigest": "4ebc81b73a6df5c7a60d2a6051abb5bd2450ebf49ad49e428c77293920e3572e",
+  "scoredJudgmentsOnly": true,
+  "aggregateScoreComputed": false,
+  "gateRule": {
+    "reporting": "PER_GATE_OCCURRENCE_COUNT",
+    "mayBeOffsetByAnAggregateScore": false,
+    "mayBeOffsetByAnotherGate": false,
+    "predecessorArmMayWeakenARemediatedGate": false,
+    "headlineAccuracyPercentageReported": false,
+    "notExercisedIsNeverAPass": true
+  },
+  "outputShapeReliability": {
+    "callsExecuted": 16,
+    "transportFailures": 0,
+    "outputTruncated": 0,
+    "outputUnparseable": 0,
+    "noFailure": 16,
+    "stringifiedStructuredFields": 0,
+    "malformedOutputSilentlyErasingADecisionCriticalFact": 0,
+    "perArm": {
+      "PREDECESSOR_210J": {
+        "noFailure": 8,
+        "calls": 8
+      },
+      "REMEDIATED_224": {
+        "noFailure": 8,
+        "calls": 8
+      }
+    }
+  },
+  "declarationCounts": {
+    "H1": {
+      "owedProperties": 1,
+      "PREDECESSOR_210J": 0,
+      "REMEDIATED_224": 1
+    },
+    "H2": {
+      "owedProperties": 1,
+      "PREDECESSOR_210J": 1,
+      "REMEDIATED_224": 1
+    },
+    "H3": {
+      "owedProperties": 1,
+      "PREDECESSOR_210J": 0,
+      "REMEDIATED_224": 1
+    },
+    "H4": {
+      "owedProperties": 1,
+      "PREDECESSOR_210J": 1,
+      "REMEDIATED_224": 1
+    },
+    "H5": {
+      "owedProperties": 2,
+      "PREDECESSOR_210J": 0,
+      "REMEDIATED_224": 0
+    },
+    "H6": {
+      "owedProperties": 1,
+      "PREDECESSOR_210J": 1,
+      "REMEDIATED_224": 1
+    },
+    "H7": {
+      "owedProperties": 1,
+      "PREDECESSOR_210J": 1,
+      "REMEDIATED_224": 1
+    },
+    "H8": {
+      "owedProperties": 0,
+      "PREDECESSOR_210J": 0,
+      "REMEDIATED_224": 0
+    }
+  },
+  "judgments": [
+    {
+      "caseId": "H1",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "zero declarations; the drop height was raised only as an uncertainty statement saying the hazard is established regardless. The IG1 failure shape, reproduced"
+    },
+    {
+      "caseId": "H1",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "NOT_EXERCISED",
+      "borderline": false,
+      "reason": "no declaration was emitted, so no property was selected to judge"
+    },
+    {
+      "caseId": "H1",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one declaration emitted for the single owed property; the predecessor arm emitted none on the same observation"
+    },
+    {
+      "caseId": "H1",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "PASS",
+      "borderline": true,
+      "reason": "the frozen proposition is what edge protection this opening requires, WHICH TURNS ON the drop height. The declaration names the drop height and the branches divide substantial from minor, which is the determinant the requirement is a function of, not evidence about it. It survives GATE 8 (the height exists whether or not measured) and GATE 13 (granting branchA settles what protection is required). BORDERLINE: it names the dimension rather than the requirement, and a product owner could score this FAIL",
+      "frozenProposition": "what edge protection this opening requires, which turns on the drop height",
+      "declaredProperty": "The vertical drop distance from the mezzanine deck to the floor below at the open edge section",
+      "overlapWithProposition": 0.133,
+      "nearestNeighbour": {
+        "kind": "VERIFICATION_ACT",
+        "text": "whether the drop height has been measured",
+        "overlap": 0.083
+      }
+    },
+    {
+      "caseId": "H2",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "a declaration was emitted"
+    },
+    {
+      "caseId": "H2",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "names the supply circuit residual current protection — a control state. The IG10 substitution shape, reproduced",
+      "frozenProposition": "whether the appliance is in a condition safe for use in a wet location",
+      "declaredProperty": "Whether the circuit supplying the wash bay wall socket has functioning residual current (ground-fault) protection",
+      "overlapWithProposition": 0,
+      "nearestNeighbour": {
+        "kind": "CONTROL_STATE",
+        "text": "whether the socket circuit has residual current protection",
+        "overlap": 0.455
+      }
+    },
+    {
+      "caseId": "H2",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "a declaration was emitted; whether it names the right property is scored separately"
+    },
+    {
+      "caseId": "H2",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the appliance is in a condition safe for use in a wet location. The declaration names whether the supply circuit has functioning residual current protection — a CONTROL STATE, and one of the annotated near neighbours. Granting branchA, that the circuit has RCD protection, does not settle whether an untested pump run submerged while the operator stands in the water is fit for use. GATE 13 refuses it and the model made the substitution anyway",
+      "frozenProposition": "whether the appliance is in a condition safe for use in a wet location",
+      "declaredProperty": "Whether the wall socket circuit supplying the pump has functioning residual current (ground-fault) protection",
+      "overlapWithProposition": 0,
+      "nearestNeighbour": {
+        "kind": "CONTROL_STATE",
+        "text": "whether the socket circuit has residual current protection",
+        "overlap": 0.5
+      }
+    },
+    {
+      "caseId": "H3",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "zero declarations and zero clarifications on a case where the frozen truth owes a property. The IG8 failure shape, reproduced"
+    },
+    {
+      "caseId": "H3",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "NOT_EXERCISED",
+      "borderline": false,
+      "reason": "no declaration was emitted, so no property was selected to judge"
+    },
+    {
+      "caseId": "H3",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one declaration emitted where the predecessor arm emitted none"
+    },
+    {
+      "caseId": "H3",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the booth atmosphere is safe to occupy WITHOUT RESPIRATORY PROTECTION. The declaration names whether the extraction system is moving sufficient air — the subject of the proposition is the control, and branchA reads \"the fan and ductwork are functioning\". Granting it does not settle the frozen question: two-pack primer requires respiratory protection irrespective of extraction performance. This is the IG10 substitution on a fresh case, and it is the case H3 exists to test",
+      "frozenProposition": "whether the booth atmosphere is safe to occupy without respiratory protection",
+      "declaredProperty": "Whether the booth extraction system is currently moving sufficient air through the booth to control overspray and vapour concentration during spraying",
+      "overlapWithProposition": 0.053,
+      "nearestNeighbour": {
+        "kind": "CONTROL_STATE",
+        "text": "whether the extraction fan is running",
+        "overlap": 0.067
+      }
+    },
+    {
+      "caseId": "H4",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "emitted"
+    },
+    {
+      "caseId": "H4",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "names whether the scaffold HAS BEEN ASSESSED by a competent person — a verification act, which GATE 8 already forbade and which the predecessor contract did not prevent",
+      "frozenProposition": "whether the scaffold is in a condition fit to be worked from now",
+      "declaredProperty": "Whether the scaffold's structural condition (ties, bracing, standards, boards) has been assessed by a competent person following Sunday night's storm",
+      "overlapWithProposition": 0.125,
+      "nearestNeighbour": {
+        "kind": "VERIFICATION_ACT",
+        "text": "whether the scaffold has been inspected since the storm",
+        "overlap": 0.125
+      }
+    },
+    {
+      "caseId": "H4",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "emitted"
+    },
+    {
+      "caseId": "H4",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the scaffold is in a condition fit to be worked from now, and missingFact names the structural components being \"currently sound\" following the storm. That is the condition. The predecessor arm on the same observation declared whether the scaffold HAS BEEN ASSESSED by a competent person, which is a verification act. SEPARATELY RECORDED DEFECT: the remediated branches still divide inspected from not-inspected, which GATE 12 forbids; the property moved and the branches did not",
+      "frozenProposition": "whether the scaffold is in a condition fit to be worked from now",
+      "declaredProperty": "Whether the scaffold's structural components (ties, boards, couplers, standards) are currently sound following Sunday night's storm",
+      "overlapWithProposition": 0.067,
+      "nearestNeighbour": {
+        "kind": "VERIFICATION_ACT",
+        "text": "whether the scaffold has been inspected since the storm",
+        "overlap": 0.143
+      }
+    },
+    {
+      "caseId": "H5",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "zero declarations against two owed properties"
+    },
+    {
+      "caseId": "H5",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "NOT_EXERCISED",
+      "borderline": false,
+      "reason": "no declaration was emitted, so no property was selected to judge"
+    },
+    {
+      "caseId": "H5",
+      "arm": "PREDECESSOR_210J",
+      "measure": "INDEPENDENCE",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "two independent owed properties, zero declarations"
+    },
+    {
+      "caseId": "H5",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "ZERO declarations against two owed properties. The model asserted every concern as an ACTIVE candidate with HIGH confidence — including unassessed_ground_conditions, whose own reasoning says the soil classification \"cannot be relied upon to judge whether the unsupported sides will hold\". Because the §224 trigger is keyed on candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, asserting ACTIVE routes around the trigger entirely. The predecessor arm marked the same concern INSUFFICIENT_EVIDENCE with requiresUserConfirmation true and also declared nothing"
+    },
+    {
+      "caseId": "H5",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "NOT_EXERCISED",
+      "borderline": false,
+      "reason": "no declaration was emitted, so no property was selected to judge"
+    },
+    {
+      "caseId": "H5",
+      "arm": "REMEDIATED_224",
+      "measure": "INDEPENDENCE",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "two independent owed properties, zero declarations. Nothing was joined because nothing was declared; the measure cannot pass"
+    },
+    {
+      "caseId": "H6",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "emitted"
+    },
+    {
+      "caseId": "H6",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "PASS",
+      "borderline": true,
+      "reason": "names the circuit as currently isolated and proved dead; the act is carried in the parenthetical and the branches",
+      "frozenProposition": "whether the second isolation was applied and proved before entry",
+      "declaredProperty": "Whether the door operator circuit is currently isolated (locked off and proved dead) at the point of work",
+      "overlapWithProposition": 0.071,
+      "nearestNeighbour": {
+        "kind": "DOCUMENT",
+        "text": "whether the permit box was filled in",
+        "overlap": 0
+      }
+    },
+    {
+      "caseId": "H6",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "emitted"
+    },
+    {
+      "caseId": "H6",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "PASS",
+      "borderline": true,
+      "reason": "the frozen proposition is the REQUIRED ACT: whether the second isolation was applied and proved before entry. missingFact leads with the condition, \"currently de-energized\", but carries \"(isolated and proved dead)\" and branchA requires the act to have happened \"before entry, even though this was not recorded\". The act survives. BORDERLINE: the headline moved one step toward the condition relative to the predecessor arm",
+      "frozenProposition": "whether the second isolation was applied and proved before entry",
+      "declaredProperty": "Whether the door operator circuit at the point of work is currently de-energized (isolated and proved dead)",
+      "overlapWithProposition": 0.077,
+      "nearestNeighbour": {
+        "kind": "DOCUMENT",
+        "text": "whether the permit box was filled in",
+        "overlap": 0
+      }
+    },
+    {
+      "caseId": "H7",
+      "arm": "PREDECESSOR_210J",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "emitted"
+    },
+    {
+      "caseId": "H7",
+      "arm": "PREDECESSOR_210J",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "names whether the examination was carried out rather than whether a current report exists",
+      "frozenProposition": "whether a current examination report exists for this vessel",
+      "declaredProperty": "Whether a periodic examination of the boiler was actually carried out within the fourteen-month scheme interval",
+      "overlapWithProposition": 0.071,
+      "nearestNeighbour": {
+        "kind": "ADJACENT_CONDITION",
+        "text": "whether the boiler appears to be in good condition",
+        "overlap": 0.077
+      }
+    },
+    {
+      "caseId": "H7",
+      "arm": "REMEDIATED_224",
+      "measure": "DECLARATION_RECALL",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "emitted"
+    },
+    {
+      "caseId": "H7",
+      "arm": "REMEDIATED_224",
+      "measure": "PROPERTY_IDENTITY",
+      "verdict": "FAIL",
+      "borderline": false,
+      "reason": "the frozen proposition is the REQUIRED ARTIFACT: whether a current examination report exists for this vessel, the artifact itself being the statutory precondition. The declaration names whether an examination \"was actually carried out and passed\" — the underlying act, one step deeper than the artifact. The predecessor arm made the same move, so this is NOT introduced by the remediation; but the gate is absolute on the remediated arm and it is not met",
+      "frozenProposition": "whether a current examination report exists for this vessel",
+      "declaredProperty": "Whether a competent periodic examination of the boiler was actually carried out and passed within the scheme's required window (specifically, one that would supersede the report now nineteen months old).",
+      "overlapWithProposition": 0.087,
+      "nearestNeighbour": {
+        "kind": "ADJACENT_CONDITION",
+        "text": "whether the boiler appears to be in good condition",
+        "overlap": 0.043
+      }
+    },
+    {
+      "caseId": "H8",
+      "arm": "PREDECESSOR_210J",
+      "measure": "RESTRAINT",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "zero declarations, no witnessed negative recorded"
+    },
+    {
+      "caseId": "H8",
+      "arm": "REMEDIATED_224",
+      "measure": "RESTRAINT",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "zero declarations where the frozen truth owes none, and the set-aside is witnessed: one uncertainty statement records that no fact indicates the certificate, alarm test, sash position, PPE or container practice have lapsed. The §224 witnessed-negative requirement fired and did not push the model into declaring"
+    }
+  ],
+  "borderlineJudgments": [
+    "H1|REMEDIATED_224|PROPERTY_IDENTITY",
+    "H6|PREDECESSOR_210J|PROPERTY_IDENTITY",
+    "H6|REMEDIATED_224|PROPERTY_IDENTITY"
+  ],
+  "primaryGates": [
+    {
+      "id": "G1",
+      "name": "DECLARATION_RECALL",
+      "statement": "recall of the frozen owed properties is 100%, with zero silent omissions",
+      "threshold": "ZERO_OMISSION",
+      "scoredOn": "REMEDIATED_224",
+      "arm": "REMEDIATED_224",
+      "status": "FAIL",
+      "detail": "6 pass / 1 fail / 0 not exercised",
+      "failing": [
+        "H5"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "PROPERTY_IDENTITY",
+      "statement": "controlling-property identity is 100%, with zero substitutions of any forbidden kind",
+      "threshold": "ZERO_SUBSTITUTION",
+      "scoredOn": "REMEDIATED_224",
+      "arm": "REMEDIATED_224",
+      "status": "FAIL",
+      "detail": "3 pass / 3 fail / 1 not exercised",
+      "failing": [
+        "H2",
+        "H3",
+        "H7"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "INDEPENDENCE",
+      "statement": "independence is 100% on H5",
+      "threshold": "ZERO_JOINED_FACTS",
+      "scoredOn": "REMEDIATED_224",
+      "arm": "REMEDIATED_224",
+      "status": "FAIL",
+      "detail": "0 pass / 1 fail / 0 not exercised",
+      "failing": [
+        "H5"
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "RESTRAINT",
+      "statement": "zero declarations on H8",
+      "threshold": "ZERO_FALSE_DECLARATION",
+      "scoredOn": "REMEDIATED_224",
+      "arm": "REMEDIATED_224",
+      "status": "PASS",
+      "detail": "1 pass / 0 fail / 0 not exercised",
+      "failing": []
+    },
+    {
+      "id": "G5",
+      "name": "REQUIRED_ACT_CONTROL",
+      "statement": "H6 retains its act-shaped property",
+      "threshold": "ZERO_OVER_CORRECTION",
+      "scoredOn": "REMEDIATED_224",
+      "arm": "REMEDIATED_224",
+      "status": "PASS",
+      "detail": "the frozen proposition is the REQUIRED ACT: whether the second isolation was applied and proved before entry. missingFact leads with the condition, \"currently de-energized\", but carries \"(isolated and proved dead)\" and branchA requires the act to have happened \"before entry, even though this was not recorded\". The act survives. BORDERLINE: the headline moved one step toward the condition relative to the predecessor arm",
+      "failing": []
+    },
+    {
+      "id": "G6",
+      "name": "REQUIRED_ARTIFACT_CONTROL",
+      "statement": "H7 retains its artifact-shaped property",
+      "threshold": "ZERO_OVER_CORRECTION",
+      "scoredOn": "REMEDIATED_224",
+      "arm": "REMEDIATED_224",
+      "status": "FAIL",
+      "detail": "the frozen proposition is the REQUIRED ARTIFACT: whether a current examination report exists for this vessel, the artifact itself being the statutory precondition. The declaration names whether an examination \"was actually carried out and passed\" — the underlying act, one step deeper than the artifact. The predecessor arm made the same move, so this is NOT introduced by the remediation; but the gate is absolute on the remediated arm and it is not met",
+      "failing": [
+        "H7"
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "INSTRUMENT_DISCRIMINATES",
+      "statement": "the §210J arm reproduces at least one of the three §221 failure shapes, without which the instrument has not demonstrated that it can discriminate at all",
+      "threshold": "AT_LEAST_ONE",
+      "scoredOn": "PREDECESSOR_210J",
+      "arm": "PREDECESSOR_210J",
+      "status": "PASS",
+      "detail": "5 of the three §221 failure shapes reproduced on fresh cases; the instrument discriminates",
+      "shapes": [
+        {
+          "caseId": "H1",
+          "shape": "IG1 — recognised concern, zero declarations",
+          "reproduced": true
+        },
+        {
+          "caseId": "H3",
+          "shape": "IG8 — zero declarations and zero clarifications",
+          "reproduced": true
+        },
+        {
+          "caseId": "H2",
+          "shape": "IG10 — control-state substituted for the condition",
+          "reproduced": true
+        },
+        {
+          "caseId": "H4",
+          "shape": "verification act substituted for the condition",
+          "reproduced": true
+        },
+        {
+          "caseId": "H5",
+          "shape": "zero declarations against two owed properties",
+          "reproduced": true
+        }
+      ],
+      "failing": []
+    }
+  ],
+  "allPrimaryGatesPassOnRemediatedArm": false,
+  "interpretation": "B_REMEDIATION_PARTIALLY_EFFECTIVE",
+  "providerCalls": 16,
+  "databaseOperations": 0
+}

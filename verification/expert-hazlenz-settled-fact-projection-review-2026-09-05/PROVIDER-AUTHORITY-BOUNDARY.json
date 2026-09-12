@@ -1,0 +1,49 @@
+{
+  "artifact": "SECTION_186_PROVIDER_AUTHORITY_BOUNDARY",
+  "date": "2026-09-05",
+  "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+  "verifiedByExecution": true,
+  "evidence": {
+    "mintableByProviderOutput": [
+      "COVERED via ADMITTED_BINDING (owed-fact-binding.ts:352-357)"
+    ],
+    "notMintableByProviderOutput": [
+      "SETTLED_BY_EVIDENCE requires ADMISSIBLE_EVIDENCE",
+      "REJECTED_BY_ARBITRATION requires RECORDED_ARBITRATION"
+    ],
+    "transitionAuthorities": [
+      "ADMITTED_BINDING",
+      "ADMISSIBLE_EVIDENCE",
+      "RECORDED_ARBITRATION"
+    ],
+    "noModelAuthorityMember": true,
+    "forgedAuthorityThrows": true,
+    "challengeIsNotSettlement": "ArbitrationRequest is typed settles: false and factStatusUnchanged: true",
+    "declarationOnSettledFactRefused": {
+      "BOUND_BY_CLARIFICATION": "BOUND_FACT_NOT_UNRESOLVED",
+      "STILL_UNRESOLVED": "BOUND_FACT_NOT_UNRESOLVED",
+      "CHALLENGE_FACT_VALIDITY": "BOUND_FACT_NOT_UNRESOLVED"
+    }
+  },
+  "providerCannot": [
+    "mint ADMISSIBLE_EVIDENCE",
+    "call transition()",
+    "change fact status to a settled state",
+    "suppress a fact deterministically",
+    "authorize settlement",
+    "rewrite product-owner truth"
+  ],
+  "sectionBoundaryDistinction": {
+    "section182Claim": "a human-authorized route to SETTLED_BY_EVIDENCE exists while provider claims alone cannot settle -- a statement about WHO MAY SETTLE",
+    "section185Claim": "settled and unresolved facts are both representable without false whyUnresolved text -- a statement about INTERNAL REPRESENTATION",
+    "neitherImplies": "that a provider can see a settled fact. It cannot. Neither claim should be cited as if it did."
+  },
+  "directConstructionObservation": {
+    "observed": "a PRODUCTION ledger admits a FIRST_PASS_MODEL-sourced fact constructed directly as SETTLED_BY_EVIDENCE with zero transition records",
+    "classification": "CONSTRUCTION_SIDE_GAP, not a provider authority gap",
+    "why": "provider output flows through applyAdmittedDeclarations, which mints COVERED only; no provider can reach direct construction",
+    "impactOnSection183": "INERT -- fixtures are built by the harness, not by the model",
+    "recordedNotRedesigned": true,
+    "wouldMatterIf": "production owed facts were ever constructed from an untrusted source"
+  }
+}

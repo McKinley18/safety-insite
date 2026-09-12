@@ -1,0 +1,240 @@
+{
+  "section": "252",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "version": "v2.2",
+  "supersedes": "SECTION-249-CANDIDATE-IDENTITY.json (v2), which bound strict=TRUE as a resolution condition and remains a true statement about the pre-§252 architecture",
+  "derivation": "EXECUTION_DERIVED",
+  "boundStrictSchema": false,
+  "envelope": {
+    "envelopeVersion": "hazlenz.expert.request-envelope.v1",
+    "providerId": "anthropic:claude-sonnet-5",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "strictSchema": false,
+    "firstPassMaxTokens": 8000,
+    "verifierMaxTokens": 8000,
+    "thinking": "disabled",
+    "forceToolChoice": true
+  },
+  "admissionVersion": "hazlenz.expert.252.structural-admission.v1",
+  "resolved": 23,
+  "required": 23,
+  "declarationsUsed": 0,
+  "failures": [],
+  "identityDigest": "39e9ed9b4e5f93f7d39b9805d5fc2f00ab94588155930743eb8baccf13631abb",
+  "behaviouralProof": {
+    "undeclaredPropertyRefused": true,
+    "undeclaredPropertyCode": "PROPERTY_NOT_DECLARED_BY_CONTRACT",
+    "inadmissibleK6PairRefused": true,
+    "inadmissibleK6PairCode": "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+    "missingJustificationMemberRefused": true,
+    "missingJustificationMemberCode": "NO_UNION_BRANCH_SATISFIED",
+    "rr7PreservedUnresolvedTruth": true,
+    "validOutputAdmitted": true,
+    "zeroSemanticInventions": true
+  },
+  "elements": [
+    {
+      "n": 1,
+      "element": "production Expert entry point",
+      "resolved": true,
+      "resolvedTo": "src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts",
+      "evidence": "the assembled request was produced by driving this entry point",
+      "sha256": "b3f0325193652573e664e194d1f07eec69a532620fec375fcb39170f5eb773a7"
+    },
+    {
+      "n": 2,
+      "element": "compatibility adapter entry point",
+      "resolved": true,
+      "resolvedTo": "src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts",
+      "evidence": "the adapter request was produced by driving the compatibility builder",
+      "sha256": "2f2a3f51754520d7d7c3fe09c8c0a58926a82689eb6df4b9ecbc0d5416bced7b"
+    },
+    {
+      "n": 3,
+      "element": "semantic-path identity across both paths",
+      "resolved": true,
+      "resolvedTo": "build247SystemPrompt + buildExpert247WireSchema, both paths",
+      "evidence": "production invoked build247SystemPrompt/buildExpert247WireSchema; adapter invoked build247SystemPrompt/buildExpert247WireSchema"
+    },
+    {
+      "n": 4,
+      "element": "canonical semantic contract closure",
+      "resolved": true,
+      "resolvedTo": "b0ce4a0effe9c2db67c9f21508ee33f9800ae7c4acd053538bc10398acca7980",
+      "evidence": "digest over the production contract tree",
+      "sha256": "b0ce4a0effe9c2db67c9f21508ee33f9800ae7c4acd053538bc10398acca7980"
+    },
+    {
+      "n": 5,
+      "element": "production prompt",
+      "resolved": true,
+      "resolvedTo": "build247SystemPrompt",
+      "evidence": "the assembled system prompt reproduces exactly",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 6,
+      "element": "non-strict provider schema",
+      "resolved": true,
+      "resolvedTo": "buildExpert247WireSchema",
+      "evidence": "the assembled wire schema reproduces exactly",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 7,
+      "element": "driver-role / posture contract",
+      "resolved": true,
+      "resolvedTo": "expert-247-posture-contract.ts",
+      "evidence": "resolved from the builders the assembled bytes reproduce",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 8,
+      "element": "verifier prompt",
+      "resolved": true,
+      "resolvedTo": "expert-218-property-instruction.ts",
+      "evidence": "reachable from the entry point verifier leg",
+      "sha256": "c253e900c83b63a0e8340cd85fe999380a8d773357f56b82395fd9ea771ffe4a"
+    },
+    {
+      "n": 9,
+      "element": "verifier schema",
+      "resolved": true,
+      "resolvedTo": "expert-218-property-review-contract.ts",
+      "evidence": "reachable from the entry point verifier leg",
+      "sha256": "35c766fcfa82454c53b7d1523e38484b101c124b7f158069f81362fb220bc7fb"
+    },
+    {
+      "n": 10,
+      "element": "actual request envelope",
+      "resolved": true,
+      "resolvedTo": "expert-request-envelope.ts",
+      "evidence": "the assembled body was produced by buildEnvelopeRequestBody",
+      "sha256": "d74f70aa72bc88954fed6f017f023317eccde586165ba461b44cc27cc448629f"
+    },
+    {
+      "n": 11,
+      "element": "provider / model identity",
+      "resolved": true,
+      "resolvedTo": "claude-sonnet-5",
+      "evidence": "read off the assembled request"
+    },
+    {
+      "n": 12,
+      "element": "token limits",
+      "resolved": true,
+      "resolvedTo": "8000",
+      "evidence": "read off the assembled request"
+    },
+    {
+      "n": 13,
+      "element": "strict-schema setting, bound as a value",
+      "resolved": true,
+      "resolvedTo": "false",
+      "evidence": "assembled request strict=false; envelope binds false; this candidate is declared against false. A flip in either direction changes the identity."
+    },
+    {
+      "n": 14,
+      "element": "property authority",
+      "resolved": true,
+      "resolvedTo": "owed-facts/property-authority.ts",
+      "evidence": "the authority boundary the entry point defers to",
+      "sha256": "04287e83fce963e3a63e3c43e89e023fd6fa8a75d01a5e35a20d3d1aeb5bf4fc"
+    },
+    {
+      "n": 15,
+      "element": "evidence authority",
+      "resolved": true,
+      "resolvedTo": "owed-facts/settlement-review.ts",
+      "evidence": "the evidence review surface",
+      "sha256": "4f300ae7cd5db1ebfdb8ab24985a455b63c627a224121508d5147191cf37e86e"
+    },
+    {
+      "n": 16,
+      "element": "settlement review",
+      "resolved": true,
+      "resolvedTo": "owed-facts/settlement-review.ts",
+      "evidence": "mintSettlementAuthority",
+      "sha256": "4f300ae7cd5db1ebfdb8ab24985a455b63c627a224121508d5147191cf37e86e"
+    },
+    {
+      "n": 17,
+      "element": "review artifacts",
+      "resolved": true,
+      "resolvedTo": "expert-218-property-consistency.ts",
+      "evidence": "the review-artifact surface §247 improved",
+      "sha256": "a3d5502124188d163435ea06ffb44df6df614dc527b8fedc3056074a9fbcdd13"
+    },
+    {
+      "n": 18,
+      "element": "K6 representation on the wire",
+      "resolved": true,
+      "resolvedTo": "anyOf + const, 6 admissible / 0 inadmissible",
+      "evidence": "transmitted schema: union=true, admissible=6, inadmissible=0, roleJustification=true",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 19,
+      "element": "structural admission implementation",
+      "resolved": true,
+      "resolvedTo": "hazlenz.expert.252.structural-admission.v1",
+      "evidence": "the entry point was driven with an output carrying a property the contract does not declare, and the result was refused with PROPERTY_NOT_DECLARED_BY_CONTRACT. No pre-§252 check refuses that shape, so a refusal proves the gate ran.",
+      "sha256": "3d5f3e0ad19a829ac9ac6faf79fe94fbec8fe78a5e901e76a3d2b582eb139af9"
+    },
+    {
+      "n": 20,
+      "element": "K6 admission, enforced deterministically",
+      "resolved": true,
+      "resolvedTo": "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "evidence": "the entry point was driven with one of the four inadmissible role/carrier pairs and refused it without the provider being asked to enforce anything",
+      "sha256": "c730ab25638b2d2f2cf14f16bc5794b2eda12922ee4a301d3e578be12b6a9072"
+    },
+    {
+      "n": 21,
+      "element": "roleJustification validation",
+      "resolved": true,
+      "resolvedTo": "NO_UNION_BRANCH_SATISFIED",
+      "evidence": "the entry point was driven with a justification missing a required member and refused it",
+      "sha256": "aac1c01670940322007ae26aa186508858ed4d98c7da2af883b7f85d965cba34"
+    },
+    {
+      "n": 22,
+      "element": "RR-7 unresolved-truth preservation",
+      "resolved": true,
+      "resolvedTo": "PRESERVE_UNRESOLVED",
+      "evidence": "the entry point was driven with a malformed declaration that had identified a property, and the property was preserved rather than dropped",
+      "sha256": "3d5f3e0ad19a829ac9ac6faf79fe94fbec8fe78a5e901e76a3d2b582eb139af9"
+    },
+    {
+      "n": 23,
+      "element": "the guarantees are not vacuous over-refusal",
+      "resolved": true,
+      "resolvedTo": "ADMIT on a valid complete output",
+      "evidence": "a valid complete output was admitted; semantic inventions across all probes: 0"
+    }
+  ],
+  "moduleDigests": {
+    "entryPoint": "b3f0325193652573e664e194d1f07eec69a532620fec375fcb39170f5eb773a7",
+    "adapter": "2f2a3f51754520d7d7c3fe09c8c0a58926a82689eb6df4b9ecbc0d5416bced7b",
+    "envelope": "d74f70aa72bc88954fed6f017f023317eccde586165ba461b44cc27cc448629f",
+    "postureContract": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15",
+    "postureProjection": "c730ab25638b2d2f2cf14f16bc5794b2eda12922ee4a301d3e578be12b6a9072",
+    "roleJustificationProjection": "aac1c01670940322007ae26aa186508858ed4d98c7da2af883b7f85d965cba34",
+    "structuralAdmission": "3d5f3e0ad19a829ac9ac6faf79fe94fbec8fe78a5e901e76a3d2b582eb139af9",
+    "verifierInstruction": "c253e900c83b63a0e8340cd85fe999380a8d773357f56b82395fd9ea771ffe4a",
+    "verifierSchema": "35c766fcfa82454c53b7d1523e38484b101c124b7f158069f81362fb220bc7fb",
+    "reviewArtifacts": "a3d5502124188d163435ea06ffb44df6df614dc527b8fedc3056074a9fbcdd13",
+    "propertyAuthority": "04287e83fce963e3a63e3c43e89e023fd6fa8a75d01a5e35a20d3d1aeb5bf4fc",
+    "settlementReview": "4f300ae7cd5db1ebfdb8ab24985a455b63c627a224121508d5147191cf37e86e",
+    "closureDigest": "b0ce4a0effe9c2db67c9f21508ee33f9800ae7c4acd053538bc10398acca7980"
+  },
+  "suite": {
+    "passed": 25,
+    "failed": 0,
+    "failures": []
+  }
+}

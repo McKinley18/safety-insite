@@ -1,0 +1,173 @@
+FORMAL EXPERT HAZLENZ COHORT -- PRE-SPEND PREFLIGHT
+READ-ONLY. NO PROVIDER CALL. NOTHING SELECTED, AUTHORED OR FROZEN.
+
+1. INSTRUMENT IDENTITIES -- what WOULD execute, if a cohort existed
+
+   provider adapter                               src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+   provider                                       anthropic
+   model (default; EXPERT_ANTHROPIC_MODEL overridable) claude-sonnet-5
+   prompt version                                 hazlenz.expert.prompt.v6
+   input contract                                 hazlenz.expert.input.v1
+   analysis contract                              hazlenz.expert.analysis.v2
+   validator                                      hazlenz.expert.validator.v1
+   canonical input builder                        hazlenz.expert.input.builder.v1
+   scorer                                         hazlenz.expert.scorers.v1
+   measurement contract                           hazlenz.expert.measurement.v1
+   cohort row contract                            hazlenz.expert.cohort.row.v1
+   cohort composition                             hazlenz.expert.cohort.composition.v1
+   cohort harness                                 hazlenz.expert.cohort.harness.v1
+
+   measurement contract vs frozen plan : 0 problem(s)
+   HARD_GATEs : 12   REPORTED : 5
+     M02_EXPERT_CANDIDATE_FALSE_POSITIVES         MAX 0.2
+     M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY   MAX 0
+     M04_LIFE_CRITICAL_RETENTION                  MIN 1
+     M05_FABRICATED_CITATIONS                     MAX 0
+     M06_UNSUPPORTED_REGULATORY_ASSERTIONS        MAX 0.05
+     M07_GOVERNED_RECORD_GROUNDING                MIN 0.95
+     M08_GOVERNED_PROVENANCE_INTEGRITY            MAX 0
+     M09_CLARIFICATION_QUALITY                    MIN 0.7
+     M10_UNNECESSARY_QUESTION_RATE                MAX 0.15
+     M12_INTERNAL_INCOHERENCE                     MAX 0.1
+     M13_PROVIDER_CALLABILITY                     MIN 0.98
+     M14_ORDER_SENSITIVITY                        MAX 0.05
+
+2. REVIEWED SEMANTIC CORPUS -- unchanged since the 46/0 POST_HUMAN_REVIEW validation?
+
+   identifier      FORMAL_EXPERT_SEMANTIC_AUGMENTATION_V1_CANDIDATE
+   lifecycle       POST_HUMAN_REVIEW
+   seal status     REVIEWED -- HUMAN ADJUDICATION COMPLETE, SEALED, FORMAL EVALUATION UNSPENT
+   manifest        6a2c564c81c79acb5c267963f0b12483684a2a5ce8ad0173c9af663332b0dfdf  MATCHES SEAL
+   truth keys      2e4377ead15a8c349bdecb389371015185b3023bab706768d32356d333ce9812  MATCHES SEAL
+   provenance      16b76f48e77dc93933e595da50803d0c2de8ba2a69fe62b94b80b5ea62ff13ac  MATCHES SEAL
+
+3. THE FROZEN FORMAL COHORT -- searched for, not assumed
+
+   only cohort artifact found : FORMAL_EXPERT_COHORT_CANDIDATE_NOT_FROZEN
+   path                       : verification/expert-hazlenz-formal-cohort-assembly-2026-08-31/manifest/candidate-rows.json
+   rows                       : 45
+   rows carrying a gap        : 0
+   rows carrying an interaction: 0
+   rows carrying a governed record: 0
+   contains the reviewed semantic corpus? NO -- it predates it (§122 vs §127-§129)
+
+4. P4_PRESPEND_AUTHORIZATION -- the frozen requirement, quoted
+
+   requirement   "an explicit owner authorization naming the cohort, the call count and the ceiling"
+   establishedBy "a recorded authorization; this phase does not grant one and does not imply one"
+   blocksIfUnmet SAFETY, REGULATORY_INTEGRITY, REASONING_QUALITY, RELIABILITY
+
+   The authorization must name THREE things. Measured against this repository:
+     the cohort      -- NOT NAMEABLE: no frozen cohort exists to name
+     the call count  -- NOT NAMED: no call count is preregistered anywhere
+     the ceiling     -- NOT NAMED: no cost or call ceiling is preregistered anywhere
+
+5. MAXIMUM ACHIEVABLE COMPOSITION -- now including the reviewed semantic corpus
+   per-class UPPER BOUNDS, computed independently. A real <=60-row selection must satisfy
+   every class simultaneously, so achievable <= these numbers.
+
+   gauntlet.seed        OPENED §122   eligible 45   forbidden 14   gaps 0   interactions 0
+   Population A         OPEN         rows 34   forbidden 13   zero-required 24   gaps 0
+   Population B         OPEN         rows 22   multi 21   life-critical 21   recognised-interaction 2   gaps 0
+   augmentation V2      rows  16   forbidden 12   gaps 3   interactions 3
+   semantic aug (§129)  rows  35   forbidden 5   gaps 22   interactions 12
+
+   governed release definition  federal-core-2026-08-28.1   members 64
+   member fields                citationKey, citation
+   carries approvedText/title?  NO
+   GovernedStandardView requires { citation, title, approvedText, backingState }. The release
+   definition supplies citation and citationKey only, so it cannot populate one.
+
+   STATED FAIRLY, BECAUSE THIS IS NOT A DEAD END:
+     The record payloads exist. The owner produced a read-only snapshot of all 64 records
+     from federal-core-2026-08-28.1, reconciled in §126 (snapshot a2c5dc32..., manifest
+     680540d9...), and reconcile-governed-snapshot.ts reads approvedText and reviewState from
+     it. That snapshot lives OUTSIDE the repository at the owner's choice, is not part of any
+     cohort artifact, and is not within this operation's authorization.
+     All 64 are reviewState=mechanically_validated -> UNAPPROVED_RECORD, so if they were
+     attached, GOVERNED_RECORD_SUPPLIED and DISAGREEMENT_OPPORTUNITY would both be satisfied,
+     and REVIEWER_APPROVED_GOVERNED_RECORDS would remain 0 (M07 approved-text axis
+     unexercised -- a limitation already on record).
+   Counted as 0 here because a class is supplied by what a FROZEN COHORT ROW carries, and no
+   cohort artifact carries a governed record. This is a WIRING gap, not an impossibility.
+
+   class                                   req  supply  verdict
+   GOVERNED_RECORD_SUPPLIED                 40       0  BLOCKED
+   NO_GOVERNED_RECORD                        8      60  ok
+   CLARIFICATION_NOT_OWED                   14      50  ok
+   CLARIFICATION_OWED                       20      25  ok
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL        48      44  BLOCKED
+   LIFE_CRITICAL_PRESENT                    10      72  ok
+   CROSS_HAZARD_INTERACTION                 10      17  ok
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY    10      45  ok
+   MULTI_HAZARD                             12      61  ok
+   NEGATED_OR_SAFE_STATE                    10      45  ok
+   DISAGREEMENT_OPPORTUNITY                  6       0  BLOCKED
+   DETERMINISTIC_HAZARD_PRESENT             30     113  ok
+
+   distinct rows available across all authorized sources : 152
+   cohort size policy: target 60, minimum defensible 48, hard ceiling 60
+
+   CLASSES STILL SHORT even at the upper bound:
+     - GOVERNED_RECORD_SUPPLIED 0 < 40 (short 40)
+     - FORBIDDEN_FAMILY_NEGATIVE_CONTROL 44 < 48 (short 4)
+     - DISAGREEMENT_OPPORTUNITY 0 < 6 (short 6)
+
+6. REMAINING PRE-SPEND BITS
+
+
+   TRUE      SCORER_MATCHES_PREREGISTRATION
+             scorer/gates match the frozen preregistration
+             assertContractMatchesPlan(): 0 problems; scorer hazlenz.expert.scorers.v1
+   TRUE      CORPUS_TRUTH_UNCHANGED
+             no corpus truth changed since the successful POST_HUMAN_REVIEW validation
+             all three sealed hashes recomputed from the fixture and compared
+   FALSE     FROZEN_COHORT_EXISTS
+             formal cohort definition matches the frozen preregistration
+             the only cohort artifact in the repository declares itself "FORMAL_EXPERT_COHORT_CANDIDATE_NOT_FROZEN"
+   FALSE     COHORT_RUN_IDENTIFIER_PREREGISTERED
+             an exact cohort/run identifier is preregistered
+             no cohort identifier and no run identifier exist in any repository artifact
+   FALSE     CALL_AND_COST_CAP_PREREGISTERED
+             an exact call count and cost/call hard cap are already preregistered
+             callCeiling and spendCeilingUsd are caller-supplied HarnessOptions parameters with no frozen value anywhere; COHORT_SIZE_POLICY states row counts only (target 60, hard ceiling 60)
+   FALSE     P4_PRESPEND_AUTHORIZATION_COMPLETE
+             P4 as frozen: an owner authorization naming the cohort, the call count and the ceiling
+             the authorization declares the bit TRUE but names none of the three required elements, and the cohort it points at does not exist
+   FALSE     COMPOSITION_SUPPLY_SUFFICIENT
+             every frozen composition minimum is reachable from authorized sources
+             short at the upper bound: GOVERNED_RECORD_SUPPLIED 0 < 40 (short 40); FORBIDDEN_FAMILY_NEGATIVE_CONTROL 44 < 48 (short 4); DISAGREEMENT_OPPORTUNITY 0 < 6 (short 6). GOVERNED_RECORD_SUPPLIED and DISAGREEMENT_OPPORTUNITY are wiring gaps with an authorized source available; FORBIDDEN_FAMILY_NEGATIVE_CONTROL is a genuine supply shortfall unless gauntlet offsets 2+3 are opened (+16 capability, §124 label metadata), which is its own authorization.
+   TRUE      PROVIDER_CREDENTIAL_AVAILABLE
+             provider credential available
+             ANTHROPIC_API_KEY present in backend/.env (presence and length only; never read or printed)
+   TRUE      PROJECTION_ENABLED_IN_EVALUATED_PATH
+             permanent deterministic -> Expert projection enabled in the evaluated path
+             D-131 / §119: projectDeterministicDispositions is on the permanent path and the harness calls buildExpertAnalysisInputFromAnalysis + runExpertAnalysis, not a copy
+   AMBIGUOUS MODEL_CALLABLE_WITHOUT_SPENDING_COHORT
+             the exact intended provider/model is callable by the configured adapter
+             prior hosted probes established transport and adapter callability, but no frozen model is preregistered FOR THIS COHORT, so there is no "exact intended model" to confirm. No hosted call was made by this preflight.
+
+7. PRE-SPEND GATE VERDICT
+
+   bits evaluated 10   TRUE 4   NOT TRUE 6
+
+   PRE_SPEND_GATE = FAILED. THE COHORT IS NOT SPENT.
+     FALSE     FROZEN_COHORT_EXISTS
+     FALSE     COHORT_RUN_IDENTIFIER_PREREGISTERED
+     FALSE     CALL_AND_COST_CAP_PREREGISTERED
+     FALSE     P4_PRESPEND_AUTHORIZATION_COMPLETE
+     FALSE     COMPOSITION_SUPPLY_SUFFICIENT
+     AMBIGUOUS MODEL_CALLABLE_WITHOUT_SPENDING_COHORT
+
+PROVIDER_INVOCATION_COUNT = 0   FORMAL_COHORT_SPENT = FALSE
+RESERVED_MATERIAL_OPENED = FALSE   PRODUCTION_ACCESS = FALSE   DATABASE_ACCESS = FALSE
+
+ARTIFACT HASHES
+   e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+   bec26908b814bf80d6da4f563a83d57759c49d619c75d233325b8dbf71bb41cc  backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts
+   022fb9db7e55a05db0870405bcccd4ba1140c41ae4750371143d93e3fdd5f330  backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts
+   0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+   96f6c84895ece2bad0750a4ef0194433b5e1f116cea4a034269328b7c7cf7323  backend/src/safescope-v2/expert-hazlenz/expert-cohort-composition.ts
+   a6c9a36f1d85db5fd25819f5fd1e764055cc486d85f226aa6c7a26388568a3fa  backend/src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1.ts
+   b4ea8b750afc5f4c88fb7f2892e71d894767427a7310b4b4314c6687e65e0fcd  backend/scripts/lib/expert-cohort-harness.ts
+   6d6472abe8776141037b2c5f15c369075dc118f0e1f33de59fb9bb66dcb6796d  backend/scripts/preflight-formal-cohort-execution.ts

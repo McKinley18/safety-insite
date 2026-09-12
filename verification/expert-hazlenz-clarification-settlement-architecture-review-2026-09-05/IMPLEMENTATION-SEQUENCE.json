@@ -1,0 +1,149 @@
+{
+  "artifact": "SECTION_180_IMPLEMENTATION_SEQUENCE",
+  "date": "2026-09-05",
+  "status": "PROPOSED ONLY — NOTHING IMPLEMENTED, NO STAGE AUTHORIZED",
+  "rule": "each stage is separately authorized. No stage may be started because the previous one succeeded; the product owner authorizes each one.",
+  "gateInvariant": "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED stays the literal false through every stage below. Customer activation is not in this sequence at all.",
+
+  "A0": {
+    "name": "EXERCISE THE EXISTING ARCHITECTURE ON THE FROZEN ROWS",
+    "why": "Finding 4 — the §179 failures occurred on the first-pass path, where no ledger, factKey or binding exists. The architecture that would make a displaced question structurally refusable was not running, so §179 is not evidence against it. This is the cheapest experiment that could overturn the whole recommendation.",
+    "providerCalls": 0,
+    "scope": [
+      "construct owed facts for the ten frozen §179 rows from the DETERMINISTIC decomposition only",
+      "derive acceptableEvidence where a governed record backs a finding; expect null on most",
+      "project the request with projectOwedFact() and hash it",
+      "record how many facts each row yields, how many carry a criterion, and what the projection looks like for HR-04, HR-05 and HR-07"
+    ],
+    "prohibited": [
+      "authoring owed facts by hand for these rows — that would re-author the frozen instrument",
+      "any provider call",
+      "any change to the frozen truth, row text or the §179 evidence"
+    ],
+    "decisionItInforms": "whether a settlement declaration is needed at all, or whether an explicit owed fact plus the existing three-token declaration already changes the failing path",
+    "exitCriteria": "a written record of what the existing architecture would have shown the model on HR-04, and whether a governed criterion exists for its guarding fact"
+  },
+
+  "A": {
+    "name": "TYPES + OBSERVABILITY ONLY",
+    "providerCalls": 0,
+    "scope": [
+      "the settlement declaration shape as types, with no producer and no consumer",
+      "the observability record from Q9 — factKey, target, provenance class, evidence observed, property claimed, assessment, reason, admission codes, final status and authority, binding, nomination origin, coverage state",
+      "the SETTLEMENT_CLAIMED_WITHOUT_GOVERNED_CRITERION flag as a type"
+    ],
+    "prohibited": ["any behaviour change", "any new transition authority producer", "any status set change"],
+    "exitCriteria": "types compile, nothing calls them, existing suites unchanged"
+  },
+
+  "B": {
+    "name": "PROVIDER PROJECTION / DECLARATION SCHEMA",
+    "providerCalls": 0,
+    "scope": [
+      "extend the verifier-v3 request schema and instruction with the per-fact settlement declaration",
+      "keep the existing three-token bookkeeping declaration unchanged and additive to it",
+      "project the settlement target from acceptableEvidence.requirement, or explicit absence"
+    ],
+    "prohibited": [
+      "sending a request",
+      "projecting provenance to the model",
+      "projecting any adjudication label, human disposition, pass/fail status, historical rate or expected question"
+    ],
+    "exitCriteria": "the request is byte-stable and hashable before it is sent, as the current projection already is"
+  },
+
+  "C": {
+    "name": "STRUCTURAL VERIFIER CHECKS",
+    "providerCalls": 0,
+    "scope": [
+      "new admission codes for the settlement declaration, each a property of FORM",
+      "verbatim-span byte equality; exactly one declaration per supplied fact; field presence; enum membership; the settled-and-bound contradiction; the null-criterion flag; the existing forbidden-field echo check",
+      "a settlement claim mints an ArbitrationRequest-shaped object with settles:false and factStatusUnchanged:true"
+    ],
+    "prohibited": [
+      "ANY comparison of evidenceEstablishes against requirement — similarity, embedding, keyword, overlap, regex or property matcher",
+      "any code path that lets a provider claim move the ledger",
+      "adding a member to OWED_FACT_STATUSES"
+    ],
+    "exitCriteria": "a provider claim of SETTLED demonstrably leaves the fact UNRESOLVED and its clarification entitlement unchanged"
+  },
+
+  "D": {
+    "name": "INACTIVE SETTLEMENT PIPELINE + THE HUMAN REVIEW SURFACE",
+    "providerCalls": 0,
+    "scope": [
+      "wire the stage end to end behind the literal-false gate",
+      "build the review surface that drains the arbitration/settlement-claim queue — the consumer that has never existed",
+      "the ADMISSIBLE_EVIDENCE transition producer, reachable ONLY from a recorded human review, in the DEVELOPMENT population"
+    ],
+    "prohibited": [
+      "a provider or deterministic producer of ADMISSIBLE_EVIDENCE",
+      "admitting DEVELOPMENT_HUMAN_TRUTH or ADJUDICATION_LABEL provenance into a production ledger",
+      "feeding a recorded review back into provider input"
+    ],
+    "note": "this is the stage that makes SETTLED_BY_EVIDENCE reachable for the first time. It is also the stage most likely to be got wrong, because a review surface that is tedious will be rubber-stamped.",
+    "exitCriteria": "SETTLED_BY_EVIDENCE is reachable by exactly one route and that route requires a recorded human act"
+  },
+
+  "E": {
+    "name": "ZERO-CALL SYNTHETIC PROOFS",
+    "providerCalls": 0,
+    "scope": [
+      "drive every structural check through the REAL admission path with synthetic payloads whose answers are known in advance, in the style of the §177 and §179 preflights",
+      "prove the negative cases explicitly: a SETTLED claim does not move the ledger; a non-verbatim span is refused; a null-criterion claim is flagged and cannot reach SETTLED_BY_EVIDENCE; no forbidden field is projected",
+      "prove no deterministic semantic comparison exists anywhere in the new code"
+    ],
+    "prohibited": ["testing a duplicate of the derivation rather than the derivation itself — the §175 attempt-1 lesson"],
+    "exitCriteria": "the suite fails loudly if any structural guarantee is removed"
+  },
+
+  "F": {
+    "name": "HOSTED DEVELOPMENT VALIDATION",
+    "providerCalls": "> 0 — SEPARATELY AUTHORIZED, NOT PART OF THIS SEQUENCE'S AUTHORIZATION",
+    "designRequirements": [
+      "preregistered REPLICATE design at one frozen identity, per the §179 pattern that worked",
+      "replicate count fixed before any output is seen",
+      "per-row rates reported before any pooled figure; a disagreeing row has a RATE, not a pass",
+      "BOTH recall and precision must be preserved — a recall gain with a precision regression is not success",
+      "the comparator problem must be stated: without a replicated control at the previous identity, no causal effect size is available in either direction"
+    ],
+    "note": "the frozen ten-row instrument has now been spent three times. Whether it can carry another comparison, or whether a fresh instrument is required, is itself a question for that authorization."
+  },
+
+  "G": {
+    "name": "CUSTOMER ACTIVATION CONSIDERATION",
+    "status": "OUT OF SCOPE AND FAR OFF",
+    "blockedBy": [
+      "HUMAN_AUTHORITATIVE_SILENCE_ROWS beyond the current frozen ten",
+      "CUSTOMER_QUESTION_BUDGET remains REQUIRES_REMEDIATION",
+      "the customer-visible question surface is not designed and its burden is unmeasurable",
+      "a provenance-independent challenge to the Claude-authored, AI-assisted development truth",
+      "FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED"
+    ]
+  },
+
+  "PARALLEL_TRACK": {
+    "name": "EVIDENCE_QUESTION_TO_VERIFICATION_METHOD_ALIGNMENT",
+    "classification": "PARALLEL REMEDIATION — not a prerequisite to stage A0/A/B/C",
+    "auditHalf": {
+      "scope": "enumerate approved knowledge records where an evidenceQuestion demands property P while verificationMethods establish only property Q",
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "whyEarly": "it tells you how often a settlement claim will be unverifiable by construction, which directly sizes the value of stage C over stage B",
+      "knownInstance": "app-mg-01 asks both whether a guard is present and whether it is functional, while its verification method may establish only physical inspection and presence",
+      "recommendedTiming": "alongside stage A0"
+    },
+    "remediationHalf": {
+      "scope": "changing approved governed records",
+      "authorization": "a separate governed-knowledge authorization; NOT part of this sequence",
+      "warning": "records must never be strengthened to make this architecture work. That would be authoring safety truth to fit a tool."
+    }
+  },
+
+  "stopConditions": [
+    "A0 shows the failure does not survive the existing architecture — then the settlement declaration may be unnecessary and the sequence should be re-argued before stage A",
+    "any stage requires a deterministic semantic comparison to work — stop and re-review, because that is constraint 2",
+    "any stage requires an environment flag, settings toggle or runtime activation path — stop, because that is constraint 1",
+    "any stage requires strengthening a governed record to function — stop, because that is authoring safety truth to fit a tool"
+  ]
+}

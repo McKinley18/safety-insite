@@ -1,0 +1,440 @@
+{
+  "artifact": "SECTION-243-PRE-SPEND-IDENTITY",
+  "executorVersion": "hazlenz.expert.243.final-acceptance-execution.v1",
+  "assemblyVersion": "hazlenz.expert.243.assembly.v1",
+  "capturedAt": "2026-09-12T16:11:26.926Z",
+  "recomputedBeforeAnyProviderCall": true,
+  "providerCallsSoFar": 0,
+  "databaseOperations": 0,
+  "frozenInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "frozenInstrumentDigestAuthorized": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "frozenInstrumentDigestMatches": true,
+  "frozenPackageDigest": "486d9d7666bf6c58cba7a9d3392eebb56499667e19e358194a338939aecaf5ec",
+  "frozenPackageDigestAuthorized": "486d9d7666bf6c58cba7a9d3392eebb56499667e19e358194a338939aecaf5ec",
+  "frozenPackageDigestMatches": true,
+  "frozenPackageManifestFiles": 24,
+  "frozenPackageManifestMismatches": 0,
+  "successorCandidateDigest": "b22e43957625afe696b417253ac46031f62b763a52e52b3eb9464ace0a81676e",
+  "candidateDigestRecomputed": false,
+  "candidateDigestRecomputationRefusedBecause": "the only path that recomputes it is build-240-freeze.ts, which writes into the frozen §240 directory. §243 forbids invoking the destructive builder. The authorised non-mutating protected-input verification was performed instead.",
+  "protectedIdentity": {
+    "compositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "moduleCount": 29,
+    "modulesByteIdentical": 29,
+    "mismatches": 0,
+    "unauthorizedMutations": 0
+  },
+  "providerIdentity": {
+    "endpoint": "https://api.anthropic.com",
+    "requestedModel": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "frozenExecutionConfiguration": {
+    "arm": "SINGLE",
+    "legs": [
+      "FIRST_PASS",
+      "VERIFIER"
+    ],
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "firstPassMaxTokens": 8000,
+    "verifierMaxTokens": 4000,
+    "semanticRetries": 0,
+    "transportRetriesAuthorized": 0,
+    "contingencyCalls": 2,
+    "primaryCalls": 32,
+    "maximumTotalCalls": 34,
+    "spendCeilingUsd": 3.6,
+    "perCallGuardUsd": 0.16,
+    "databaseOperations": 0
+  },
+  "contractIdentities": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+    "baseVersions": {
+      "posture": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+      "driverRoles": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure"
+    },
+    "driverRoleField": "driverRole",
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "driverRoles": "76d1049d612fb42633c435a1fc250f8c5f2284125f0eaf774742e66884648012",
+    "driverRoleDefinitions": "e8af37363abadb56eea067ff257e1ba413ca7ba8338149a2a287ed7c2a8ee76a",
+    "driverRoleRefKinds": "3a16d967db300b092e5e95c57658f00f2229c06100f77fb564c931bb12c60899",
+    "candidateStateRequirement": "0cbecf24219dc34ce8d890c403284cfe755aa2d9e325f9d363a32434683f0d8c",
+    "unresolvedCandidateStates": [
+      "INSUFFICIENT_EVIDENCE",
+      "UNKNOWN"
+    ],
+    "settledCandidateStates": [
+      "ACTIVE",
+      "CONTROLLED",
+      "CORRECTED",
+      "REMOVED_FROM_SERVICE",
+      "NEGATED",
+      "HYPOTHETICAL"
+    ],
+    "bindingsBroadened": 1,
+    "rolesAdded": 0,
+    "refKindsAdded": 0,
+    "posturesAdded": 0,
+    "postureSubfieldsAdded": 0,
+    "basisEntrySubfieldsAdded": 0,
+    "rulesRetainedFrom237": 11,
+    "rulesReplacedFrom237": 1,
+    "rulesAdded": 1,
+    "providerVisibleRules": "8df382fb9837bd43a600fe98e6b3beb9c1d070cba63bae4a10362a25e953720c",
+    "driverBlockLines": "dc374b186b5f857b3cb4dd4e806582ec4ff523ee3ee098d3faad87e313f31fe8",
+    "postureSchemaProperty": "a246f97c3828214a1b31dee81260c3ee80d85d26dc727c7276181aee5a593993",
+    "systemPromptNoGoverned": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+    "systemPromptGoverned": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+    "residualNarrowness": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+  },
+  "projectionIdentity": {
+    "projectionVersion": "hazlenz.expert.239.posture-projection.v1",
+    "refusalCodes239": [
+      "POSTURE_DRIVER_ROLE_MISSING",
+      "POSTURE_DRIVER_ROLE_INVALID",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+    ],
+    "codeToInvariant239": {
+      "POSTURE_DRIVER_ROLE_MISSING": "D",
+      "POSTURE_DRIVER_ROLE_INVALID": "D",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND": "D",
+      "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE": "D",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE": "D",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER": "D",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE": "P8",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT": "P9"
+    },
+    "codesRetiredFrom237": [],
+    "codesAddedBy239": [
+      "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+    ],
+    "behaviourChangedFrom237": {
+      "admitsThatSection237Refused": "a requiredBy entry whose driverRole is UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION and whose refKind is HAZARD_CANDIDATE, where that candidate's own assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN. §237 refused it as DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND. This is the §238 B1 shape.",
+      "stillRefusesUnderANewCode": "the same entry where the candidate's state is ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL. §237 refused it as DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND; §239 refuses it as UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE, so the two shapes are never again counted as one defect. This is the §238 B2 shape.",
+      "refusesNothingSection237Admitted": true,
+      "changesNoOtherCheck": true
+    },
+    "delegatesTo233": true,
+    "section233CodesUnchanged": true,
+    "reusesSection235Normalizer": true,
+    "section233ModulesModified": false,
+    "section235ModulesModified": false,
+    "section237ModulesModified": false,
+    "cessationSetIsDerivedNotAuthored": true,
+    "controllingSetIsDerivedNotAuthored": true,
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false,
+    "repairsContradictoryModelState": false
+  },
+  "assemblyPathDisclosure": "governedStandards is EMPTY in the transmitted input and the governed records travel only in the appended AVAILABLE GOVERNED EVIDENCE block, exactly as the protected §228b assembly does it. The base prompt therefore prints \"(none supplied)\" in its own records section while the appended block lists the sourceIds and their citation-redacted text. This is the frozen path, preserved deliberately, and it is disclosed here because HS8 and Q9 are read against it.",
+  "verifierBearingCases": [
+    "G3",
+    "G4",
+    "G6",
+    "C2",
+    "C3",
+    "C6",
+    "M2",
+    "M5"
+  ],
+  "perCaseAssembledIdentity": [
+    {
+      "caseId": "G1",
+      "ordinal": 1,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G1",
+      "observationSourceId": "OBS-242A-G1",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "ffc2fdc50eb29ef0510798a5a50e85e47cb2ae458cdd4f92bc5a563942d8c274",
+      "wireSchemaDigest": "aded52fae53fb25389ab5a54f22a66f5474d39cbedb1d19929db0374116ba7ea"
+    },
+    {
+      "caseId": "G2",
+      "ordinal": 2,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G2",
+      "observationSourceId": "OBS-242A-G2",
+      "governedRecordIds": [
+        "GOV-OSHA-1910-151C"
+      ],
+      "systemPromptDigest": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+      "userPromptDigest": "bde46ebe46234cfba49767facee5816cfb76240d7afaa8bc055428cc385e4e6c",
+      "wireSchemaDigest": "8a0733b2af26398240e4edb2092b0d809772d3d799441d3696e1c062c864cfc2"
+    },
+    {
+      "caseId": "G3",
+      "ordinal": 3,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G3",
+      "observationSourceId": "OBS-242A-G3",
+      "governedRecordIds": [
+        "GOV-OSHA-1910-212A1",
+        "GOV-OSHA-1910-141A3I"
+      ],
+      "systemPromptDigest": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+      "userPromptDigest": "22088bfcb6716958da6508c370a49e1f2f50c07b57723285bd8ebff7253c7438",
+      "wireSchemaDigest": "8a507c3b152387b1be8f84bfe8bfa08695fcd846e09f912240168ceed070a159"
+    },
+    {
+      "caseId": "G4",
+      "ordinal": 4,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G4",
+      "observationSourceId": "OBS-242A-G4",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "60e95f4b7f0cacb5f3f3c810cb0a2d318904eb55e5394bcc7115433e667344c3",
+      "wireSchemaDigest": "741fb17176669e70c5df5b465c44c987b48afbb7a73cad18522bdcc09729fefc"
+    },
+    {
+      "caseId": "G5",
+      "ordinal": 5,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G5",
+      "observationSourceId": "OBS-242A-G5",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "b6f622e8949427f900a9e50109b44d21b238ddca404a40d0a9f42ed933dbbf59",
+      "wireSchemaDigest": "2513385ad5aa3dfc4c4e49deea00f24c94cf4542a76ee2eb23fbfd0e379c2398"
+    },
+    {
+      "caseId": "G6",
+      "ordinal": 6,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G6",
+      "observationSourceId": "OBS-242A-G6",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "7b2ca969e95e8d6511ad31a1147731cab21149966fce35378a581493a226e96f",
+      "wireSchemaDigest": "599d5e96dfe6d451e873babeff5950ed0ad644bc80c323daa117248c4c2678ef"
+    },
+    {
+      "caseId": "G7",
+      "ordinal": 7,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G7",
+      "observationSourceId": "OBS-242A-G7",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "85e38853d89b3b26b361f15bfce82c1a2483f055c8535504c19f0c86929be675",
+      "wireSchemaDigest": "5f0226bcda09be68c7f57e1e02a6ded11c63a6eb3c302f3f8df840c56adec6dc"
+    },
+    {
+      "caseId": "G8",
+      "ordinal": 8,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-G8",
+      "observationSourceId": "OBS-242A-G8",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "f95384957863cc411541644ae646b2ed38832ba526bc029022d8f5fb2bfcb3a7",
+      "wireSchemaDigest": "d3631d76390cc45a206935b1d74315572905d37c58156ad1fd40d9b42abdd747"
+    },
+    {
+      "caseId": "C1",
+      "ordinal": 9,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C1",
+      "observationSourceId": "OBS-242A-C1",
+      "governedRecordIds": [
+        "GOV-OSHA-1926-1153C1"
+      ],
+      "systemPromptDigest": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+      "userPromptDigest": "ac2b5b7a29e6950780acedd7d89fe73f9d71a2c50711328cca534f16e52421c3",
+      "wireSchemaDigest": "e5170bba0cfe5761eee3b81ee1090ff2d2cba47f4cdea309ce468b965ac2644f"
+    },
+    {
+      "caseId": "C2",
+      "ordinal": 10,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C2",
+      "observationSourceId": "OBS-242A-C2",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "05b70d324b49531793f15e3ea7d749b8b9088bcec0495941e74a001ecd9bed2c",
+      "wireSchemaDigest": "79060c036321dfe6f2c154a13514ec0c790f92cfcb0aa6c47e633778954897df"
+    },
+    {
+      "caseId": "C3",
+      "ordinal": 11,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C3",
+      "observationSourceId": "OBS-242A-C3",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "d71de4527d8bee15838c7d3d151b14f61e0f7f1039a4b969597a717d9e50b6e3",
+      "wireSchemaDigest": "51a662940a5782817b83d93fa140e3ae73fa93449e363f93c4ea63ab3e3ccdae"
+    },
+    {
+      "caseId": "C4",
+      "ordinal": 12,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C4",
+      "observationSourceId": "OBS-242A-C4",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "93d429e9be1c14b168298d7e14b16dd1d19140ef5d18b37bae3375494e792156",
+      "wireSchemaDigest": "7f281531a178c52bdc14cb4daebdd9dbd72730e8d707f04dc5d4361ef9a13987"
+    },
+    {
+      "caseId": "C5",
+      "ordinal": 13,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C5",
+      "observationSourceId": "OBS-242A-C5",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "5afd1af54088b837a404082431375e954c7a6df826b6910ba6d30f1839ec7494",
+      "wireSchemaDigest": "8b1412b05baca56cfd0e269212c3866b26cf5445008eaf0cdded73b8c1f453e2"
+    },
+    {
+      "caseId": "C6",
+      "ordinal": 14,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C6",
+      "observationSourceId": "OBS-242A-C6",
+      "governedRecordIds": [
+        "GOV-OSHA-1926-62D1I"
+      ],
+      "systemPromptDigest": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+      "userPromptDigest": "e997bf2687eae0477e747998b0949ab5d1133b63a64f0ae80c961f6af8a40744",
+      "wireSchemaDigest": "3589591440a3100efd01997144a299191f94659f3fc0bb2ec9670dcf7edbc937"
+    },
+    {
+      "caseId": "C7",
+      "ordinal": 15,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C7",
+      "observationSourceId": "OBS-242A-C7",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "2aaaedc7ef95b55d0935af64cd7c262cf6bde979da7864e89427ab8837f2cee2",
+      "wireSchemaDigest": "7750f3d1e04dfda327a5f7ee4200496e4264341a003c38260bb90a419cbc4c95"
+    },
+    {
+      "caseId": "C8",
+      "ordinal": 16,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-C8",
+      "observationSourceId": "OBS-242A-C8",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "362f304505fcf2179ab3deeef913d421c406898817c0f5cad521dc69c091e526",
+      "wireSchemaDigest": "fb637eb2482ebe8253946d0f8f789c34307dbf0c1d991df08791eb40596546c1"
+    },
+    {
+      "caseId": "M1",
+      "ordinal": 17,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M1",
+      "observationSourceId": "OBS-242A-M1",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "ab6e987d69fe525afc473a87447163e37d6fa8a2555669702ae9accb236305f4",
+      "wireSchemaDigest": "fc5a0f7b6abec8b3c3da0d56151387bdcd12d6a8adaaec4d964ebfce276e5570"
+    },
+    {
+      "caseId": "M2",
+      "ordinal": 18,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M2",
+      "observationSourceId": "OBS-242A-M2",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "ca8106f21342949ca9bac6d9a93b311419537b9e443def060e5b7345c64e4caa",
+      "wireSchemaDigest": "a14b237f60454e52442be19b64257b50bac934739f6b69b7ac08db1e1594f00d"
+    },
+    {
+      "caseId": "M3",
+      "ordinal": 19,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M3",
+      "observationSourceId": "OBS-242A-M3",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "f2fe2f2b579851b6bafe621bd52918c9098fab86eb89371dd4aca48558803cf6",
+      "wireSchemaDigest": "baa3d8860aeb4579bfac0609190f169a72c8cc8f47afd3ae4c6185f000ce2d9c"
+    },
+    {
+      "caseId": "M4",
+      "ordinal": 20,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M4",
+      "observationSourceId": "OBS-242A-M4",
+      "governedRecordIds": [
+        "GOV-MSHA-56-14105",
+        "GOV-MSHA-56-15005"
+      ],
+      "systemPromptDigest": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+      "userPromptDigest": "4e9053177543906548f22f63df03a101e20b370ea917fbb44d1d4b6ec0afdee2",
+      "wireSchemaDigest": "4c35d7c58c389da56b4f5596ac41438aaafae19b4a2315871c4cd79fbfa760f3"
+    },
+    {
+      "caseId": "M5",
+      "ordinal": 21,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M5",
+      "observationSourceId": "OBS-242A-M5",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "2fd1b34cbdc610be4b1631d6702405035186995a789d342b58c4d61018a978f7",
+      "wireSchemaDigest": "ed9b1305009a5b69bf080987512d3dfaf43b518f92c2bc756bfe2bd3bc6bda0c"
+    },
+    {
+      "caseId": "M6",
+      "ordinal": 22,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M6",
+      "observationSourceId": "OBS-242A-M6",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "706c9c7ecff0c8a37a738da2130b372c99de2de864061d2b0031780a5c982536",
+      "wireSchemaDigest": "df4576a2ca3874b3ca6ecc91b5c6d35c24413a720dc29ab5d33d3979255aedd6"
+    },
+    {
+      "caseId": "M7",
+      "ordinal": 23,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M7",
+      "observationSourceId": "OBS-242A-M7",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "e1029840475ad06165c901f0f34bfcc9806cb10eeadcf4954e716f57f3aaa099",
+      "wireSchemaDigest": "7c595cb7f850ffa9d970611adb0aafb12dbcebb20f7385b5111c6c460fdd8e59"
+    },
+    {
+      "caseId": "M8",
+      "ordinal": 24,
+      "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+      "analysisId": "ANL-242A-M8",
+      "observationSourceId": "OBS-242A-M8",
+      "governedRecordIds": [],
+      "systemPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+      "userPromptDigest": "e8eb22e3980f6ddb23c18c976ebe278d3b7d7c50dc545b4bf446be1d99e3c2ee",
+      "wireSchemaDigest": "98f74e1b18693b48fd805ce40b5c1a820ba911a627f66e2d26cac0491af62ddc"
+    }
+  ]
+}

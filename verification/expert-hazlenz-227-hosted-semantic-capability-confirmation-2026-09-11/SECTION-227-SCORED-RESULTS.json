@@ -1,0 +1,463 @@
+{
+  "artifact": "SECTION-227-SCORED-RESULTS",
+  "frozenProtocolDigest": "d0cda04c6a40a257997c0e70c4dffde80d62f179e64fc143fd9d1b47d7b1a338",
+  "scoredJudgmentsOnly": true,
+  "aggregateScoreComputed": false,
+  "gateRule": {
+    "aggregateCompensationPermitted": false,
+    "rule": "Each gate is pass/fail at the stated occurrence. No gate may be offset by another gate, by an aggregate score, by a headline accuracy figure, or by the size of the improvement over §224 or §225 (HAZLENZ_INVARIANTS 22).",
+    "notExercised": "A gate with no genuine opportunity to fail on any case is recorded NOT_EXERCISED, which is never CORRECT and never a pass (invariant 23).",
+    "ambiguous": "AMBIGUOUS on a hard-gate judgment means the gate cannot pass from that judgment, and may not be resolved after the fact to obtain a terminal (invariant 24).",
+    "structuralFailures": "A structural, contract or tooling failure is recorded as such and is never converted into a semantic verdict about the model (invariant 25).",
+    "borderline": "A close judgment is marked BORDERLINE and flagged for re-adjudication. A borderline judgment does not change a gate outcome by itself.",
+    "recallDefinition": "A decision-critical property counts as recalled ONLY when the required structured declaration exists. Prose, candidate reasoning, uncertainty, clarification and summary do not substitute for it."
+  },
+  "authoringLimitation": {
+    "singleArm": true,
+    "statedBeforeSpend": true,
+    "limitation": "This is a single-arm confirmation. A pass cannot independently separate contract capability from case-authoring effects: the cases were authored by the same session that wrote the §226 remediation, and no paired leg constrains that here.",
+    "whyAccepted": "§225 already supplied controlled paired-arm evidence, on eight byte-identical paired cases, that the instruction is what moved the targeted behaviour. §227 answers only whether the current candidate contract satisfies the frozen capability requirements on these fresh cases.",
+    "notMitigated": true,
+    "mustNotBeConcealedOrRetrospectivelyMitigated": true
+  },
+  "measures": [
+    "DECLARATION_RECALL",
+    "PROPERTY_IDENTITY",
+    "INDEPENDENCE",
+    "RESTRAINT",
+    "REQUIRED_ACT_CONTROL",
+    "REQUIRED_ARTIFACT_CONTROL",
+    "CANDIDATE_STATE_BYPASS"
+  ],
+  "declarationCounts": [
+    {
+      "caseId": "K1",
+      "expected": 1,
+      "emitted": 1,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 2984
+    },
+    {
+      "caseId": "K2",
+      "expected": 1,
+      "emitted": 1,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 1820
+    },
+    {
+      "caseId": "K3",
+      "expected": 1,
+      "emitted": 1,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 2954
+    },
+    {
+      "caseId": "K4",
+      "expected": 1,
+      "emitted": 1,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 2496
+    },
+    {
+      "caseId": "K5",
+      "expected": 1,
+      "emitted": 1,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 1874
+    },
+    {
+      "caseId": "K6",
+      "expected": 2,
+      "emitted": 2,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 3287
+    },
+    {
+      "caseId": "K7",
+      "expected": 0,
+      "emitted": 0,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 839
+    },
+    {
+      "caseId": "K8",
+      "expected": 0,
+      "emitted": 0,
+      "failureClass": "NO_FAILURE",
+      "outputTokens": 953
+    }
+  ],
+  "outputShapeReliability": {
+    "cleanCalls": 8,
+    "totalCalls": 8,
+    "truncated": 0,
+    "unparseable": 0,
+    "transportFailures": 0,
+    "declarationsFieldNotAnArray": 0,
+    "stringifiedStructuredFields": 0,
+    "declarationsStructurallyComplete": "7/7 complete with an exact observation span"
+  },
+  "judgments": [
+    {
+      "caseId": "K1",
+      "measure": "DECLARATION_RECALL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one structured declaration for the one owed property. The controlling candidate unknown-residue-ignition was asserted ACTIVE at MODERATE confidence and the entry was emitted anyway, which is the §225 H5 failure shape not taken"
+    },
+    {
+      "caseId": "K1",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K1-P1",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the residue inside the pipe can ignite or explode when the pipe is cut. missingFact names whether flammable, combustible or reactive residue is present inside the pipe being hot-cut, and BOTH branches carry the capability limb \"capable of ignition or harmful release\". It is the condition, not the fire watch (control state), not whether the pipe has been tested (verification act), and not whether the product records can be found (document). Granting branchA settles the decision: standard hot-work precautions suffice",
+      "frozenProposition": "whether the residue remaining inside this pipe can ignite or explode when the pipe is cut",
+      "declaredProperty": "Whether flammable, combustible, or reactive residue is currently present inside the pipe being hot-cut",
+      "overlapWithProposition": 0.214,
+      "nearestNeighbour": {
+        "kind": "VERIFICATION_ACT",
+        "text": "whether the pipe has been tested for residue",
+        "overlap": 0.2
+      }
+    },
+    {
+      "caseId": "K1",
+      "measure": "CANDIDATE_STATE_BYPASS",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": true,
+      "reason": "zero bypasses. The candidate carrying the owed property, unknown-residue-ignition, was asserted ACTIVE — the §225 H5 state, and the state under which §224's trigger would not have enumerated it — and the structured declaration was emitted regardless. The declaration analysis ran on an ACTIVE candidate, which is the behaviour under test. BORDERLINE, and this is the most important qualification in the run: the same candidate also carried requiresUserConfirmation true, which is a separate §224 trigger limb, so this single draw does not isolate the state-label limb and does not establish that the §226 block is what prevented the bypass. A product owner could reasonably hold that the axis was not exercised in its strongest form, and NOT_EXERCISED is never a pass"
+    },
+    {
+      "caseId": "K2",
+      "measure": "DECLARATION_RECALL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one structured declaration for the one owed property; whether it names the right property is scored separately"
+    },
+    {
+      "caseId": "K2",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K2-P1",
+      "verdict": "PASS",
+      "borderline": true,
+      "reason": "the frozen proposition is whether the noise these operators are actually exposed to AT THE EAR is within the exposure limit value. missingFact names the current noise level at the workstations with the new press running. That is the source term the ear exposure is a function of given the attenuation, which the observation states and which is therefore not open; it is none of the annotated near neighbours, which are all control state, verification act or document. Granting branchA settles the decision and decisionIfA says so. BORDERLINE, and a product owner could score this FAIL: the declaration names the ambient level rather than the exposure at the ear, and this is the same shape §225 scored PASS-BORDERLINE on H1. SEPARATELY RECORDED DEFECT: decisionIfB routes to \"a new noise survey to be completed promptly and re-evaluation\" rather than naming what changes today, and affectedDecision is HAZARD_SEVERITY rather than a control decision",
+      "frozenProposition": "whether the noise these operators are actually exposed to at the ear is within the exposure limit value",
+      "declaredProperty": "The current noise level (dB(A)) at the blanking line workstations with the newly installed larger press in operation",
+      "overlapWithProposition": 0.05,
+      "nearestNeighbour": {
+        "kind": "DOCUMENT",
+        "text": "whether the previous noise survey report is available",
+        "overlap": 0.067
+      }
+    },
+    {
+      "caseId": "K3",
+      "measure": "DECLARATION_RECALL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one structured declaration for the one owed property, emitted alongside two ACTIVE HIGH candidates that could have absorbed it"
+    },
+    {
+      "caseId": "K3",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K3-P1",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the damaged upright will still carry the loads on the bay. missingFact names whether the bow EXCEEDS the manufacturer's allowable deflection criteria for continued loading — the state of the damaged member against the criterion that governs its capacity, not whether anyone has inspected or measured it. The case exists to bait \"whether the racking has been inspected since the impact\" and the model did not take it. branchA and branchB divide the magnitude of the bow, not known from unknown, and decisionIfA keeps the bay loaded while decisionIfB unloads it immediately",
+      "frozenProposition": "whether this damaged upright will still carry the loads that are on the bay",
+      "declaredProperty": "Whether the upright's bow exceeds the manufacturer's allowable deflection criteria for continued loading",
+      "overlapWithProposition": 0.071,
+      "nearestNeighbour": {
+        "kind": "VERIFICATION_ACT",
+        "text": "whether the damage has been measured against the manufacturer's criteria",
+        "overlap": 0.167
+      }
+    },
+    {
+      "caseId": "K4",
+      "measure": "DECLARATION_RECALL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one structured declaration for the one owed property"
+    },
+    {
+      "caseId": "K4",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K4-P1",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "the frozen proposition is the REQUIRED ACT: whether the tightness test and purge were carried out before the installation was put back into use. missingFact names exactly that, and branchA requires them \"completed and passed before the ranges were lit\". The act survives and was not abstracted into whether the pipework is gas tight. SEPARATELY RECORDED DEFECT: branchB reads \"were not completed, or their outcome is unknown\", which folds not-known into a branch; GATE 12 requires the branches to divide the property, not known from unknown",
+      "frozenProposition": "whether the tightness test and purge were carried out on this installation before it was put back into use",
+      "declaredProperty": "Whether the tightness test and purge were completed on the replaced pipework before the ranges were first used this morning",
+      "overlapWithProposition": 0.176,
+      "nearestNeighbour": {
+        "kind": "DOCUMENT",
+        "text": "whether a tightness test certificate has been issued",
+        "overlap": 0.167
+      }
+    },
+    {
+      "caseId": "K4",
+      "measure": "REQUIRED_ACT_CONTROL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "no over-correction. The act IS the governing requirement here and the declaration names the act. The annotated over-correction, \"whether the replaced pipework is actually gas tight\", was available and was not taken, and decisionIfA reads \"the precondition for return to service has been met\" rather than treating tightness as the property"
+    },
+    {
+      "caseId": "K5",
+      "measure": "DECLARATION_RECALL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "one structured declaration for the one owed property"
+    },
+    {
+      "caseId": "K5",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K5-P1",
+      "verdict": "PASS",
+      "borderline": true,
+      "reason": "the frozen proposition is the REQUIRED ARTIFACT: whether a valid statutory notification exists and was given the required period of notice. missingFact carries BOTH limbs — whether it was sent, AND whether it was sent with the required lead time before work commenced — and branchB covers \"never sent, or sent but not with the required lead time\". A notification is constituted by being sent, so unlike an examination report there is no gap between the act and the artifact; the notice-period limb is the currency limb GATE 14 requires. This is materially unlike §225 H7, which named the underlying examination and dropped the report entirely. BORDERLINE: the headline leads with the act verb \"was sent\" rather than the artifact, and a product owner could score it FAIL on the reasoning that scored H7 FAIL. SEPARATELY RECORDED DEFECT: decisionIfB permits escalation \"before or while work continues\", where an unnotified licensed job should not start",
+      "frozenProposition": "whether a valid statutory notification of this work exists and was given the required period of notice",
+      "declaredProperty": "Whether the statutory notification of the asbestos removal work was sent to the enforcing authority, and if sent, whether it was sent with the required lead time before work commenced",
+      "overlapWithProposition": 0.235,
+      "nearestNeighbour": {
+        "kind": "UNDERLYING_ACT_BENEATH_ARTIFACT",
+        "text": "whether the enforcing authority was actually told about this work",
+        "overlap": 0.2
+      }
+    },
+    {
+      "caseId": "K5",
+      "measure": "REQUIRED_ARTIFACT_CONTROL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "no over-correction in either direction. The declaration did not abstract upward into whether the enclosure will contain the fibres (the annotated adjacent condition, and the one every physical fact in the case invites), and it did not drop the notice-period limb that makes the record a requirement rather than evidence. decisionIfB names the unmet precondition as the thing at issue"
+    },
+    {
+      "caseId": "K6",
+      "measure": "DECLARATION_RECALL",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "two structured declarations for the two owed properties; neither was left in prose"
+    },
+    {
+      "caseId": "K6",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K6-P1",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the slab contains post-tensioned tendons or reinforcement on the line of the core. The second declaration names whether the slab at the specific drilling location contains post-tensioned cables, critical reinforcement or embedded services within the drilling path. The frozen limb is present and the addition of embedded services widens it rather than substituting for it. It is not whether the slab has been scanned (verification act) and not whether drawings can be obtained (document)",
+      "frozenProposition": "whether this slab contains post-tensioned tendons or reinforcement on the line of the core",
+      "declaredProperty": "Whether the slab at the specific drilling location contains post-tensioned cables, critical reinforcement, or embedded services within the drilling path",
+      "overlapWithProposition": 0.25,
+      "nearestNeighbour": {
+        "kind": "VERIFICATION_ACT",
+        "text": "whether the slab has been scanned",
+        "overlap": 0.071
+      }
+    },
+    {
+      "caseId": "K6",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K6-P2",
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "the frozen proposition is whether the space directly beneath the core position is clear of people for the duration of the cut. The first declaration names whether anyone is or will be present in the office directly beneath the drilling position while the core is cut. That is the condition, not whether a barrier has been put up (control state) and not whether the office was notified (process step)",
+      "frozenProposition": "whether the space directly beneath the core position is clear of people for the duration of the cut",
+      "declaredProperty": "Whether anyone is or will be present in the open-plan office directly beneath the drilling position while the core is cut",
+      "overlapWithProposition": 0.313,
+      "nearestNeighbour": {
+        "kind": "PROCESS_STEP",
+        "text": "whether the office below has been notified of the work",
+        "overlap": 0.067
+      }
+    },
+    {
+      "caseId": "K6",
+      "measure": "INDEPENDENCE",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "two owed properties, two separate structured declarations, each with its own branches and its own decisions. Neither was absorbed into the other and neither was collapsed into a single \"core drilling\" entry, which is what the case invites. The order is reversed against the frozen enumeration, which is immaterial"
+    },
+    {
+      "caseId": "K7",
+      "measure": "RESTRAINT",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "zero declarations where the frozen truth owes none. The explanation states the basis correctly and in the model's own words: the examination is three months into a twelve month interval \"so not overdue\", the pre-use check is done, the load is within capacity and pedestrians are segregated. No gap was manufactured. SEPARATELY RECORDED DEFECT: the single candidate is keyed overdue-thorough-examination and asserted ACTIVE, while its own reasoning and the explanation both say the examination is current. The label contradicts the text beside it. It produced no declaration, so restraint is unaffected, but candidate-state labelling is shown to be unreliable in the opposite direction to §225 H5"
+    },
+    {
+      "caseId": "K8",
+      "measure": "RESTRAINT",
+      "propertyKey": null,
+      "verdict": "PASS",
+      "borderline": false,
+      "reason": "zero declarations where the frozen truth owes none, and the set-aside is witnessed: one uncertainty statement records that the cause and duration of the drip are unknown and that this \"does not change the current assessment\", naming the tray containment and the dry floor. The §224 witnessed-negative requirement fired without pushing the model into declaring. The explanation does also assert \"No decision-critical facts are missing\", but no candidate stands at UNKNOWN or INSUFFICIENT_EVIDENCE to contradict it and the witnessed negative was written, so it is not the blanket negative §224 refuses"
+    }
+  ],
+  "borderlineJudgments": [
+    {
+      "caseId": "K1",
+      "measure": "CANDIDATE_STATE_BYPASS",
+      "propertyKey": null
+    },
+    {
+      "caseId": "K2",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K2-P1"
+    },
+    {
+      "caseId": "K5",
+      "measure": "PROPERTY_IDENTITY",
+      "propertyKey": "K5-P1"
+    }
+  ],
+  "separatelyRecordedDefects": [
+    {
+      "caseId": "K7",
+      "defect": "CANDIDATE_STATE_LABEL_CONTRADICTS_ITS_OWN_REASONING",
+      "detail": "the single candidate is keyed overdue-thorough-examination and asserted ACTIVE, while its own reasoning and the explanation both state the examination is three months into a twelve month interval and therefore current. The label contradicts the text beside it.",
+      "gated": false,
+      "whyItMatters": "it produced no declaration, so restraint held, but it shows candidate-state labelling remains unreliable — in the opposite direction to §225 H5, where an ACTIVE label suppressed a declaration."
+    },
+    {
+      "caseId": "K4",
+      "defect": "BRANCH_FOLDS_UNKNOWN_INTO_A_BRANCH",
+      "detail": "branchB reads \"The tightness test and purge were not completed, or their outcome is unknown, before the ranges were lit\".",
+      "gated": false,
+      "whyItMatters": "GATE 12 requires the branches to divide the property, not known from unknown. This is the same family as the §225 H4 branch-drift defect, which §226 deliberately did not act on."
+    },
+    {
+      "caseId": "K5",
+      "defect": "COUNTERFACTUAL_DOES_NOT_STOP_THE_WORK_ON_AN_UNMET_STATUTORY_PRECONDITION",
+      "detail": "decisionIfB escalates \"before or while work continues\" and decisionWhileUnresolved leaves the physical controls in place without halting the start of work.",
+      "gated": false,
+      "whyItMatters": "the property is correct and the gate is met, but the action under the adverse branch is weaker than an unnotified licensed removal warrants. Counterfactual quality is not a §227 gate and is not scored here."
+    },
+    {
+      "caseId": "K2",
+      "defect": "ADVERSE_BRANCH_ROUTES_TO_A_VERIFICATION_ACT",
+      "detail": "decisionIfB requires \"a new noise survey to be completed promptly and re-evaluation of the protection provided\" rather than naming what changes today, and affectedDecision is HAZARD_SEVERITY rather than a control decision.",
+      "gated": false,
+      "whyItMatters": "this is the RC2 shape — a threshold answered at the level of whether to act rather than what must be done — surviving into the decisions after the property itself was chosen acceptably."
+    },
+    {
+      "caseId": "K1",
+      "defect": "SECOND_SELF_REPORTED_UNRESOLVED_CANDIDATE_WITH_NO_SEPARATE_RECORD",
+      "detail": "unknown-residue-chemical-exposure stands at INSUFFICIENT_EVIDENCE with requiresUserConfirmation true, and there is no second declaration and no uncertainty statement naming it.",
+      "gated": false,
+      "whyItMatters": "EXPLAINED, NOT A LOSS: both branches of the emitted declaration read \"capable of ignition or harmful release\", so the chemical-release limb is carried inside the declared property. The frozen truth owes one property on K1 and it was declared."
+    }
+  ],
+  "gateResults": [
+    {
+      "gate": "G1",
+      "measure": "DECLARATION_RECALL",
+      "requirement": "decision-critical declaration recall 100%",
+      "judgments": 6,
+      "passed": 6,
+      "failed": 0,
+      "borderline": 0,
+      "status": "PASS",
+      "failingCases": []
+    },
+    {
+      "gate": "G2",
+      "measure": "PROPERTY_IDENTITY",
+      "requirement": "exact controlling-property identity 100%",
+      "judgments": 7,
+      "passed": 7,
+      "failed": 0,
+      "borderline": 2,
+      "status": "PASS",
+      "failingCases": []
+    },
+    {
+      "gate": "G3",
+      "measure": "INDEPENDENCE",
+      "requirement": "independent property preservation 100%",
+      "judgments": 1,
+      "passed": 1,
+      "failed": 0,
+      "borderline": 0,
+      "status": "PASS",
+      "failingCases": []
+    },
+    {
+      "gate": "G4",
+      "measure": "RESTRAINT",
+      "requirement": "false decision-critical declarations on a restraint case 0",
+      "judgments": 2,
+      "passed": 2,
+      "failed": 0,
+      "borderline": 0,
+      "status": "PASS",
+      "failingCases": []
+    },
+    {
+      "gate": "G5",
+      "measure": "REQUIRED_ACT_CONTROL",
+      "requirement": "required-act over-corrections 0",
+      "judgments": 1,
+      "passed": 1,
+      "failed": 0,
+      "borderline": 0,
+      "status": "PASS",
+      "failingCases": []
+    },
+    {
+      "gate": "G6",
+      "measure": "REQUIRED_ARTIFACT_CONTROL",
+      "requirement": "required-artifact over-corrections 0",
+      "judgments": 1,
+      "passed": 1,
+      "failed": 0,
+      "borderline": 0,
+      "status": "PASS",
+      "failingCases": []
+    },
+    {
+      "gate": "G7",
+      "measure": "CANDIDATE_STATE_BYPASS",
+      "requirement": "candidate-state bypasses 0",
+      "judgments": 1,
+      "passed": 1,
+      "failed": 0,
+      "borderline": 1,
+      "status": "PASS",
+      "failingCases": []
+    }
+  ],
+  "gatesPassed": "7 / 7",
+  "allCapabilityGatesPass": true,
+  "overallCapabilityResult": "CONFIRMED",
+  "execution": {
+    "primaryCalls": 8,
+    "contingencyCalls": 0,
+    "contingencyLog": [],
+    "totalCalls": 8,
+    "spendUsd": 0.685892,
+    "spendCeilingUsd": 1.1,
+    "semanticPreferenceRetries": 0,
+    "databaseOperations": 0,
+    "promptChangedDuringExecution": false,
+    "schemaChanged": false,
+    "caseChangedAfterFreeze": false,
+    "malformedOutputRepaired": false,
+    "stringifiedFieldsParsed": false
+  },
+  "providerCalls": 8,
+  "databaseOperations": 0
+}

@@ -1,0 +1,116 @@
+{
+  "artifact": "SECTION_195_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "\u00a7195 fresh end-to-end Expert HazLenz pipeline validation using verifier-v3.2",
+  "TERMINAL": "EXPERT_HAZLENZ_V3_2_END_TO_END_VALIDATION_INCONCLUSIVE \u2014 EXECUTION_REVIEW_REQUIRED",
+  "terminalReason": "The OWED-FACT / TASK-STATE CONSTRUCTION stage of the specified pipeline does not exist as an executable component. No code reads an Expert first-pass analysis and produces owed facts; every owed fact this programme has verified was authored. The authorization forbids hand-authoring that state, so a valid end-to-end cohort cannot be produced. STOPPED BEFORE ANY SPEND.",
+  "terminalChoiceNote": "INCONCLUSIVE \u2014 EXECUTION_REVIEW_REQUIRED is the closest frozen terminal. The cause is a MISSING PIPELINE STAGE, not provider or infrastructure failure, and that distinction is stated rather than smoothed over.",
+  "EXECUTED": false,
+  "PROVIDER_CALLS": 0,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "SOURCE_INTEGRITY": "PASS 21/21",
+  "existingRuntimeFilesModified": 0,
+  "THE_BLOCKER": {
+    "missingStage": "EXPERT FIRST PASS -> OWED-FACT / TASK-STATE CONSTRUCTION",
+    "evidence": [
+      "no deriveOwedFact / owedFactsFrom / fromAnalysis exists anywhere in the repository",
+      "every caller of owedFact() and createOwedFactLedger() is a test or harness building from authored data",
+      "projectOwedFact(f: OwedFact) takes an ALREADY-CONSTRUCTED fact \u2014 it is a firewall, not a constructor",
+      "every owed-facts/ module is INTEGRATED AND INACTIVE and NOT ONE imports or references ExpertAnalysis",
+      "zero owed-fact usage in the production service layer",
+      "shape gap: the first pass emits DecisionCriticalClarification (clarificationId, question, whyItMatters, affectedDecision, criticality, evidenceGap) while OwedFact requires factKey, a VERBATIM evidenceSpan, branchA, branchB and decisionDivergence.ifA/.ifB \u2014 all absent"
+    ],
+    "whyNotBuilt": "constructing branches and a verbatim span from model prose is authoring safety truth deterministically \u2014 the exact inference structural-questions.ts and governed-evidence-derivation.ts explicitly refuse. It is also a substantial architectural integration, and \u00a7195 forbids remediating or integrating in the same authorization.",
+    "whyNotRunAnyway": "running with hand-authored owed facts would reproduce \u00a7192 with a fresh cohort and call it an end-to-end validation. That is the misleading outcome, not the stop."
+  },
+  "QUESTIONS_ANSWERABILITY": {
+    "A_B_C_D_first_pass": "partially answerable today, but only against CLARIFICATIONS, not owed facts. Question C (owed-property decomposition) has no artifact to measure.",
+    "E_task_state_transfer": "UNANSWERABLE \u2014 there is no transfer; the state is hand-built",
+    "F_G_H_I_verifier_and_regulatory_basis": "answerable only against a hand-authored state, which is what \u00a7192 did and what \u00a7195 was convened to stop doing",
+    "J_end_to_end_union_quality": "UNANSWERABLE"
+  },
+  "SECOND_FINDING_ZERO_SPEND": {
+    "name": "\u00a7193 / \u00a7194 citation-reliance collision",
+    "what": "a verifier legitimately relying on supplied governed evidence and quoting the citation FROM THAT SUPPLIED SOURCE is refused whole with PROHIBITED_REGULATORY_CITATION; only a paraphrase is admitted",
+    "demonstrated": "deterministically, zero provider calls",
+    "whyItMatters": "real governed records DO carry citations (ApprovedKnowledgeRecord.authority.citation, substituted into the requirement template). A cohort built from live governed records would hit this, and its legitimate-reliance arm could fail for the wrong reason.",
+    "tension": "the current behaviour is defensible \u2014 the sourceId is the authority and allowing quoted citations re-opens the laundering route \u2014 but the repair a model must learn is 'paraphrase rather than quote', which pushes toward LESS faithful representation of governed material in a programme that elsewhere copies governed vocabulary unaltered",
+    "actionTaken": "NONE to the code \u2014 \u00a7195 is a validation authorization. Fixtures avoid forcing the collision and the freeze script ABORTS if supplied governed text contains a citation-shaped string.",
+    "recordedNotDesignedAround": "a cohort that quietly avoids a collision has not shown it is absent; it has shown it was designed around",
+    "preferredOption": "exempt only citation strings appearing VERBATIM in the supplied source text \u2014 the only option that separates quoting the supplied source from producing a citation from memory. Requires the admission input to carry governed text, not just ids. NOT implemented."
+  },
+  "DELIVERED_AND_REUSABLE": {
+    "cohort": "12 fresh rows, frozen; nothing reused from \u00a7187 or \u00a7192",
+    "executions_planned": 36,
+    "validRelianceExecutions": "6 (floor 6) across 2 hazard families \u2014 abrasive wheels, electrical isolation",
+    "unsupportedRelianceExecutions": "6 (floor 6) \u2014 unrelated and too-narrow",
+    "noneExpectedExecutions": 30,
+    "familiesCovered": [
+      "ADJACENT_PROPERTY_TRAP",
+      "CONJUNCTIVE_REQUIRED_CONTROL",
+      "FULLY_ESTABLISHED_CONTROL",
+      "GOVERNED_EVIDENCE_ABSENT",
+      "GOVERNED_EVIDENCE_TOO_NARROW",
+      "GOVERNED_EVIDENCE_UNRELATED",
+      "GOVERNED_EVIDENCE_VALID_RELIANCE",
+      "MULTI_GAP",
+      "NON_DECISION_CRITICAL_MISSING_DETAIL",
+      "SIMPLE_REQUIRED_CONTROL"
+    ],
+    "conjunctive": "EE-02 A^B, EE-03 A^B^C, plus EE-09/EE-10/EE-01/EE-11 two-conjunct facts",
+    "multiGap": "EE-08 \u2014 two independent facts governing different decisions and different people",
+    "zeroOwedFactRows": "EE-06 fully established, EE-07 non-decision-critical magnitude",
+    "expectedOwedFacts": 11,
+    "spansVerbatim": "all expected evidenceSpans verified verbatim against their observations",
+    "thresholds": "all fourteen preregistered, not derived from any observed output",
+    "executionOrder": "frozen, interleaved across replicates",
+    "budget": "worst case $7.056 against a $7.5 ceiling (ceiling corrected upward PRE-SPEND after the freeze script exposed an internal inconsistency; zero calls had occurred)"
+  },
+  "DESIGN_FINDING_TWO_FAMILIES_CANNOT_BE_GUARANTEED": "EXISTING-SUFFICIENT-FIRST-PASS-QUESTION and FIRST-PASS-INSUFFICIENT-QUESTION are OUTCOMES in a genuine end-to-end run, not fixture properties \u2014 the first pass writes its own question and nobody may author it. \u00a7192 could guarantee them only because its first-pass sets were hand-authored, which \u00a7195 forbids. Rows carry sufficientQuestionLikelihood as design intent, and scoring must record what actually happened rather than assume the family was hit.",
+  "PRESERVED": {
+    "v3": "historical development protocol \u2014 \u00a7187B",
+    "v3_1": "\u00a7192 prospectively validated \u2014 PASS, immutable",
+    "v3_2": "\u00a7194 regulatory-basis protocol \u2014 48/48 deterministic, ZERO hosted evidence, unchanged by \u00a7195",
+    "section189_human_gate": "UNMEASURED at 65/112",
+    "section193_nul_audit_repair": "COMPLETE",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "populations": "v3 / v3.1 / v3.2 remain analytically separate"
+  },
+  "artifactsNotProducedBecauseNoExecution": [
+    "RAW-FIRST-PASS-OUTPUTS.jsonl",
+    "FIRST-PASS-SCORES.json",
+    "TRANSFER-SCORES.json",
+    "RAW-VERIFIER-OUTPUTS.jsonl",
+    "VERIFIER-ADMISSION.json",
+    "MECHANICAL-GATES.json",
+    "MODEL-SEMANTIC-ADJUDICATION.json",
+    "REGULATORY-BASIS-RESULTS.md",
+    "CLARIFICATION-POLICY-RESULTS.md",
+    "END-TO-END-STRICT-RESULTS.md",
+    "COST-ACCOUNTING.md"
+  ],
+  "artifactsNotProducedNote": "these require execution. Listing them as absent is deliberate: an evidence package that silently omitted them could be mistaken for a completed run.",
+  "filesAdded": [
+    "backend/scripts/lib/expert-e2e-cohort-2026-09-06.ts",
+    "backend/scripts/freeze-195-cohort-2026-09-06.ts",
+    "backend/scripts/verify-195-source-integrity-2026-09-06.ts"
+  ],
+  "priorEvidenceModified": 0,
+  "mustNotClaim": [
+    "any end-to-end pipeline result",
+    "first-pass owed-fact recall or precision measured",
+    "transfer fidelity measured",
+    "v3.2 hosted validated",
+    "Expert HazLenz accepted or customer-ready",
+    "the \u00a7189 human gate measured"
+  ],
+  "decisionRequired": "how owed facts come to exist from a real first pass. Three shapes: (1) the first pass emits structured unresolved facts directly \u2014 a new first-pass protocol version plus fresh first-pass validation, the only option that makes the specified pipeline real; (2) a deterministic constructor over first-pass prose \u2014 rejected on this architecture's own stated grounds; (3) accept that owed facts are human-authored and rescope the end-to-end claim. A product-architecture decision, not an engineering one.",
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

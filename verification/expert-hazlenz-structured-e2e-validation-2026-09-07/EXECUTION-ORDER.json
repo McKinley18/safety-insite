@@ -1,0 +1,57 @@
+{
+  "artifact": "SECTION_197_EXECUTION_ORDER",
+  "seedHex": "05e1ad22",
+  "method": "one pass over the twelve rows; Fisher-Yates under mulberry32 seeded from the vNext system prompt sha256, re-drawn until no matched pair is adjacent",
+  "frozenOrder": [
+    {
+      "sequencePosition": 1,
+      "rowId": "SF-08"
+    },
+    {
+      "sequencePosition": 2,
+      "rowId": "SF-09"
+    },
+    {
+      "sequencePosition": 3,
+      "rowId": "SF-10"
+    },
+    {
+      "sequencePosition": 4,
+      "rowId": "SF-01"
+    },
+    {
+      "sequencePosition": 5,
+      "rowId": "SF-04"
+    },
+    {
+      "sequencePosition": 6,
+      "rowId": "SF-02"
+    },
+    {
+      "sequencePosition": 7,
+      "rowId": "SF-03"
+    },
+    {
+      "sequencePosition": 8,
+      "rowId": "SF-05"
+    },
+    {
+      "sequencePosition": 9,
+      "rowId": "SF-11"
+    },
+    {
+      "sequencePosition": 10,
+      "rowId": "SF-06"
+    },
+    {
+      "sequencePosition": 11,
+      "rowId": "SF-12"
+    },
+    {
+      "sequencePosition": 12,
+      "rowId": "SF-07"
+    }
+  ],
+  "verifierOrderRule": "verifier calls follow the first-pass phase, in first-pass execution order and then declaration order within a row. The COUNT is an observed outcome and is deliberately not frozen.",
+  "EXECUTED": false
+}

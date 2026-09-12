@@ -1,0 +1,282 @@
+{
+  "formVersion": "hazlenz.expert.v3-binding-adjudication.v1",
+  "createdAt": "2026-09-05T03:48:07.167Z",
+  "INSTRUCTIONS": "A human reviewer fills `disposition` and the six answers for every pair. A pair left null is NOT thereby correct — absence of adjudication is not adjudication. No count in PHASE 6 may be computed while any pair is null.",
+  "allowedDispositions": [
+    "BINDING_SEMANTICALLY_CORRECT",
+    "BINDING_PARTIALLY_CORRECT",
+    "BINDING_INCORRECT",
+    "BINDING_AMBIGUOUS"
+  ],
+  "questions": {
+    "A": "Does the clarification actually ask for the supplied owed fact?",
+    "B": "Would an answer to the clarification resolve that owed fact?",
+    "C": "Is the affectedDecision appropriate?",
+    "D": "Does the clarification introduce an unsupported assumption?",
+    "E": "Does the question materially distort or narrow the owed fact?",
+    "F": "If compound, can each factual component be answered independently?"
+  },
+  "adjudicationMayNotBeDecidedBy": [
+    "keyword or lexical similarity",
+    "the evaluated model",
+    "the §167 scorer output",
+    "agreement between the two §167 columns"
+  ],
+  "pairs": [
+    {
+      "pairId": "VC-08-1",
+      "rowId": "HS-A1",
+      "bindingFactKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+      "proposedQuestion": "Can the flame-failure device and its wiring be visually or functionally verified as operating correctly (e.g., via inspection panel, test signal, or maintenance log), or is its status currently unknown?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": true,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_PARTIALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Partially",
+        "C": "Correct",
+        "D": "Yes, minor",
+        "E": "Yes, minor",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": "EVIDENCE_SUFFICIENCY"
+    },
+    {
+      "pairId": "VC-08-2",
+      "rowId": "HS-A1",
+      "bindingFactKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+      "proposedQuestion": "Is the flame-failure device confirmed to be functional (e.g., via a recent test, remote indicator, or maintenance log), and separately, has the discharge auger's drive been locked out or de-energized for the operative currently clearing the blockage, or is the auger flighting still powered/live during that clearing operation?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": true,
+      "compoundShapeFlagged": true,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No material assumption",
+        "E": "No material distortion",
+        "F": "Yes"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": "COMPOUND_QUESTION_REPRESENTATION = UNACCEPTABLE (separate axis; does NOT downgrade the semantic disposition)",
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-08-3",
+      "rowId": "HS-A1",
+      "bindingFactKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+      "proposedQuestion": "Is the flame-failure device confirmed to be functional (e.g., through a recent test or verification log), and separately, has the discharge auger drive been locked out/de-energized before the operative began clearing the blockage?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": true,
+      "compoundShapeFlagged": true,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No",
+        "E": "No",
+        "F": "Yes"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": "COMPOUND_QUESTION_REPRESENTATION = UNACCEPTABLE (separate axis; does NOT downgrade the semantic disposition)",
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-08-4",
+      "rowId": "HS-A1",
+      "bindingFactKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+      "proposedQuestion": "Is the flame-failure device confirmed to be functional (e.g., via a recent test, maintenance log, or control-panel status indicator), or is its operability unverified since it cannot be visually inspected from the walkway?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": true,
+      "compoundShapeFlagged": true,
+      "disposition": "BINDING_PARTIALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Partially",
+        "C": "Correct",
+        "D": "Yes, minor",
+        "E": "Yes, minor",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": "EVIDENCE_SUFFICIENCY"
+    },
+    {
+      "pairId": "VC-08-5",
+      "rowId": "HS-A1",
+      "bindingFactKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+      "proposedQuestion": "Has the flame-failure device's functional status been verified (e.g., via inspection, test log, or maintenance record) since it cannot be visually confirmed from the walkway due to the shroud?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": true,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No material assumption",
+        "E": "No material distortion",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-08-6",
+      "rowId": "HS-A1",
+      "bindingFactKey": "owed:hs-a1:flame_failure_safeguard_functional_status",
+      "proposedQuestion": "Can facility personnel confirm, by physical inspection or functional test (not visual sighting from the walkway), whether the flame-failure device on the burner is currently functional and properly wired, since it cannot be seen from the walkway due to the shroud?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_PARTIALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Partially",
+        "C": "Correct",
+        "D": "Yes, minor",
+        "E": "Yes, minor",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": "EVIDENCE_SUFFICIENCY"
+    },
+    {
+      "pairId": "VC-04-1",
+      "rowId": "HS-E1",
+      "bindingFactKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+      "proposedQuestion": "Was the rotor guard interlock's protective function (not just its physical closure) tested and confirmed to actually stop/prevent rotor operation when the guard is opened, following this morning's return to service after the overnight rotor tooth change?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_PARTIALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Partially",
+        "C": "Correct",
+        "D": "No",
+        "E": "Yes — temporal ambiguity",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": "TEMPORAL_SCOPE"
+    },
+    {
+      "pairId": "VC-04-2",
+      "rowId": "HS-E1",
+      "bindingFactKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+      "proposedQuestion": "Was the rotor guard interlock's protective function (i.e., that opening/actuating the guard door actually stops or de-energizes the rotor) functionally tested and verified after the overnight rotor tooth change and before the debarker was returned to service this morning, or was only the physical closure/positioning of the guard and switch confirmed?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": true,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No",
+        "E": "No",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-04-3",
+      "rowId": "HS-E1",
+      "bindingFactKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+      "proposedQuestion": "Was the rotor guard interlock's protective function (i.e., that opening the guard actually stops or prevents rotor operation) tested and confirmed after the overnight rotor tooth change and before the debarker was returned to service this morning?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No",
+        "E": "No",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-04-4",
+      "rowId": "HS-E1",
+      "bindingFactKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+      "proposedQuestion": "Was the guard-door interlock's protective function (i.e., that the rotor stops/de-energizes when the guard is opened) functionally tested after the overnight rotor tooth change and before the debarker was returned to service this morning?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No",
+        "E": "No",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-04-5",
+      "rowId": "HS-E1",
+      "bindingFactKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+      "proposedQuestion": "Was the rotor guard interlock's protective function (i.e., that opening/disturbing the guard actually stops or de-energizes the rotor) functionally tested and verified after the overnight rotor tooth change and before the debarker was returned to service this morning?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No",
+        "E": "No",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": null
+    },
+    {
+      "pairId": "VC-04-6",
+      "rowId": "HS-E1",
+      "bindingFactKey": "owed:hs-e1:rotor_guard_interlock_function_verified",
+      "proposedQuestion": "Was the rotor guard interlock's protective function (i.e., that it actually cuts power/stops the rotor when the guard is opened) tested and verified before the debarker was returned to service this morning, following the overnight rotor tooth change?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominationPresent": false,
+      "compoundShapeFlagged": false,
+      "disposition": "BINDING_SEMANTICALLY_CORRECT",
+      "answers": {
+        "A": "Yes",
+        "B": "Yes",
+        "C": "Correct",
+        "D": "No",
+        "E": "No",
+        "F": "N/A"
+      },
+      "reviewerNote": null,
+      "compoundRepresentation": null,
+      "weaknessClass": null
+    }
+  ],
+  "reviewer": "PRODUCT_OWNER",
+  "reviewedAt": "2026-09-04",
+  "provenance": "returned by the product owner and transcribed verbatim; no model assigned, inferred or adjusted any verdict"
+}

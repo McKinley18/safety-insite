@@ -1,0 +1,143 @@
+
+--- A. the taxonomy
+ok    A.1 fourteen provider failure kinds declared
+ok    A.2 TIMEOUT is a declared failure kind
+ok    A.2 NETWORK_ERROR is a declared failure kind
+ok    A.2 HTTP_CLIENT_ERROR is a declared failure kind
+ok    A.2 HTTP_SERVER_ERROR is a declared failure kind
+ok    A.2 RATE_LIMITED is a declared failure kind
+ok    A.2 CREDITS_EXHAUSTED is a declared failure kind
+ok    A.2 MALFORMED_JSON is a declared failure kind
+ok    A.2 SCHEMA_INVALID_STRUCTURED_OUTPUT is a declared failure kind
+ok    A.2 EMPTY_RESPONSE is a declared failure kind
+ok    A.2 TRUNCATED_RESPONSE is a declared failure kind
+ok    A.2 PROVIDER_REFUSAL is a declared failure kind
+ok    A.2 UNEXPECTED_MODEL_IDENTITY is a declared failure kind
+ok    A.3 PROVIDER_NOT_CALLABLE is declared -- the L3 readiness-gate failure, remembered
+ok    A.4 a refusal is not retried -- it is a decision, not an accident
+ok    A.5 configuration facts are not retried
+ok    A.6 transport accidents are retried
+ok    A.7 the retryable set is a subset of the taxonomy
+
+--- B. every failure kind, through the real runner and the real merge
+ok    B.1 TIMEOUT: no Expert analysis is synthesized
+ok    B.2 TIMEOUT: the failure kind is preserved for the operator
+ok    B.3 TIMEOUT: the failure is observable in the merged layer detail
+ok    B.4 TIMEOUT: the protected halves are identical to the no-Expert merge
+ok    B.5 TIMEOUT: no merge invariant is violated
+ok    B.6 TIMEOUT: the advisory block is empty rather than partially filled
+ok    B.7 TIMEOUT: 2 attempt(s) made (ceiling respected)
+ok    B.1 NETWORK_ERROR: no Expert analysis is synthesized
+ok    B.2 NETWORK_ERROR: the failure kind is preserved for the operator
+ok    B.3 NETWORK_ERROR: the failure is observable in the merged layer detail
+ok    B.4 NETWORK_ERROR: the protected halves are identical to the no-Expert merge
+ok    B.5 NETWORK_ERROR: no merge invariant is violated
+ok    B.6 NETWORK_ERROR: the advisory block is empty rather than partially filled
+ok    B.7 NETWORK_ERROR: 2 attempt(s) made (ceiling respected)
+ok    B.1 HTTP_CLIENT_ERROR: no Expert analysis is synthesized
+ok    B.2 HTTP_CLIENT_ERROR: the failure kind is preserved for the operator
+ok    B.3 HTTP_CLIENT_ERROR: the failure is observable in the merged layer detail
+ok    B.4 HTTP_CLIENT_ERROR: the protected halves are identical to the no-Expert merge
+ok    B.5 HTTP_CLIENT_ERROR: no merge invariant is violated
+ok    B.6 HTTP_CLIENT_ERROR: the advisory block is empty rather than partially filled
+ok    B.7 HTTP_CLIENT_ERROR: 1 attempt(s) made (ceiling respected)
+ok    B.1 HTTP_SERVER_ERROR: no Expert analysis is synthesized
+ok    B.2 HTTP_SERVER_ERROR: the failure kind is preserved for the operator
+ok    B.3 HTTP_SERVER_ERROR: the failure is observable in the merged layer detail
+ok    B.4 HTTP_SERVER_ERROR: the protected halves are identical to the no-Expert merge
+ok    B.5 HTTP_SERVER_ERROR: no merge invariant is violated
+ok    B.6 HTTP_SERVER_ERROR: the advisory block is empty rather than partially filled
+ok    B.7 HTTP_SERVER_ERROR: 2 attempt(s) made (ceiling respected)
+ok    B.1 RATE_LIMITED: no Expert analysis is synthesized
+ok    B.2 RATE_LIMITED: the failure kind is preserved for the operator
+ok    B.3 RATE_LIMITED: the failure is observable in the merged layer detail
+ok    B.4 RATE_LIMITED: the protected halves are identical to the no-Expert merge
+ok    B.5 RATE_LIMITED: no merge invariant is violated
+ok    B.6 RATE_LIMITED: the advisory block is empty rather than partially filled
+ok    B.7 RATE_LIMITED: 1 attempt(s) made (ceiling respected)
+ok    B.1 CREDITS_EXHAUSTED: no Expert analysis is synthesized
+ok    B.2 CREDITS_EXHAUSTED: the failure kind is preserved for the operator
+ok    B.3 CREDITS_EXHAUSTED: the failure is observable in the merged layer detail
+ok    B.4 CREDITS_EXHAUSTED: the protected halves are identical to the no-Expert merge
+ok    B.5 CREDITS_EXHAUSTED: no merge invariant is violated
+ok    B.6 CREDITS_EXHAUSTED: the advisory block is empty rather than partially filled
+ok    B.7 CREDITS_EXHAUSTED: 1 attempt(s) made (ceiling respected)
+ok    B.1 MALFORMED_JSON: no Expert analysis is synthesized
+ok    B.2 MALFORMED_JSON: the failure kind is preserved for the operator
+ok    B.3 MALFORMED_JSON: the failure is observable in the merged layer detail
+ok    B.4 MALFORMED_JSON: the protected halves are identical to the no-Expert merge
+ok    B.5 MALFORMED_JSON: no merge invariant is violated
+ok    B.6 MALFORMED_JSON: the advisory block is empty rather than partially filled
+ok    B.7 MALFORMED_JSON: 2 attempt(s) made (ceiling respected)
+ok    B.1 SCHEMA_INVALID_STRUCTURED_OUTPUT: no Expert analysis is synthesized
+ok    B.2 SCHEMA_INVALID_STRUCTURED_OUTPUT: the failure kind is preserved for the operator
+ok    B.3 SCHEMA_INVALID_STRUCTURED_OUTPUT: the failure is observable in the merged layer detail
+ok    B.4 SCHEMA_INVALID_STRUCTURED_OUTPUT: the protected halves are identical to the no-Expert merge
+ok    B.5 SCHEMA_INVALID_STRUCTURED_OUTPUT: no merge invariant is violated
+ok    B.6 SCHEMA_INVALID_STRUCTURED_OUTPUT: the advisory block is empty rather than partially filled
+ok    B.7 SCHEMA_INVALID_STRUCTURED_OUTPUT: 1 attempt(s) made (ceiling respected)
+ok    B.1 EMPTY_RESPONSE: no Expert analysis is synthesized
+ok    B.2 EMPTY_RESPONSE: the failure kind is preserved for the operator
+ok    B.3 EMPTY_RESPONSE: the failure is observable in the merged layer detail
+ok    B.4 EMPTY_RESPONSE: the protected halves are identical to the no-Expert merge
+ok    B.5 EMPTY_RESPONSE: no merge invariant is violated
+ok    B.6 EMPTY_RESPONSE: the advisory block is empty rather than partially filled
+ok    B.7 EMPTY_RESPONSE: 2 attempt(s) made (ceiling respected)
+ok    B.1 TRUNCATED_RESPONSE: no Expert analysis is synthesized
+ok    B.2 TRUNCATED_RESPONSE: the failure kind is preserved for the operator
+ok    B.3 TRUNCATED_RESPONSE: the failure is observable in the merged layer detail
+ok    B.4 TRUNCATED_RESPONSE: the protected halves are identical to the no-Expert merge
+ok    B.5 TRUNCATED_RESPONSE: no merge invariant is violated
+ok    B.6 TRUNCATED_RESPONSE: the advisory block is empty rather than partially filled
+ok    B.7 TRUNCATED_RESPONSE: 2 attempt(s) made (ceiling respected)
+ok    B.1 PROVIDER_REFUSAL: no Expert analysis is synthesized
+ok    B.2 PROVIDER_REFUSAL: the failure kind is preserved for the operator
+ok    B.3 PROVIDER_REFUSAL: the failure is observable in the merged layer detail
+ok    B.4 PROVIDER_REFUSAL: the protected halves are identical to the no-Expert merge
+ok    B.5 PROVIDER_REFUSAL: no merge invariant is violated
+ok    B.6 PROVIDER_REFUSAL: the advisory block is empty rather than partially filled
+ok    B.7 PROVIDER_REFUSAL: 1 attempt(s) made (ceiling respected)
+ok    B.1 UNEXPECTED_MODEL_IDENTITY: no Expert analysis is synthesized
+ok    B.2 UNEXPECTED_MODEL_IDENTITY: the failure kind is preserved for the operator
+ok    B.3 UNEXPECTED_MODEL_IDENTITY: the failure is observable in the merged layer detail
+ok    B.4 UNEXPECTED_MODEL_IDENTITY: the protected halves are identical to the no-Expert merge
+ok    B.5 UNEXPECTED_MODEL_IDENTITY: no merge invariant is violated
+ok    B.6 UNEXPECTED_MODEL_IDENTITY: the advisory block is empty rather than partially filled
+ok    B.7 UNEXPECTED_MODEL_IDENTITY: 1 attempt(s) made (ceiling respected)
+ok    B.1 PROVIDER_NOT_CALLABLE: no Expert analysis is synthesized
+ok    B.2 PROVIDER_NOT_CALLABLE: the failure kind is preserved for the operator
+ok    B.3 PROVIDER_NOT_CALLABLE: the failure is observable in the merged layer detail
+ok    B.4 PROVIDER_NOT_CALLABLE: the protected halves are identical to the no-Expert merge
+ok    B.5 PROVIDER_NOT_CALLABLE: no merge invariant is violated
+ok    B.6 PROVIDER_NOT_CALLABLE: the advisory block is empty rather than partially filled
+ok    B.7 PROVIDER_NOT_CALLABLE: 1 attempt(s) made (ceiling respected)
+ok    B.1 NOT_CONFIGURED: no Expert analysis is synthesized
+ok    B.2 NOT_CONFIGURED: the failure kind is preserved for the operator
+ok    B.3 NOT_CONFIGURED: the failure is observable in the merged layer detail
+ok    B.4 NOT_CONFIGURED: the protected halves are identical to the no-Expert merge
+ok    B.5 NOT_CONFIGURED: no merge invariant is violated
+ok    B.6 NOT_CONFIGURED: the advisory block is empty rather than partially filled
+ok    B.7 NOT_CONFIGURED: 1 attempt(s) made (ceiling respected)
+
+--- C. the shapes a taxonomy entry alone does not cover
+ok    C.1 a thrown transport error is caught and classified, never propagated
+ok    C.2 an abort is classified as TIMEOUT rather than as a network error
+ok    C.3 runExpertAnalysis does not throw, ever
+ok    C.4 a response from an unqualified model is refused, not scored
+ok    C.5 the identity that actually answered is recorded
+ok    C.6 schema-invalid structured output produces OUTPUT_REJECTED
+ok    C.7 a rejected output is NOT retried -- a validator must not be talked out of a refusal
+ok    C.8 the rejection carries its reason code
+ok    C.9 one retryable failure then success recovers in two attempts
+ok    C.10 the recovered analysis carries its clarification
+ok    C.11 UnavailableExpertProvider reports NOT_CONFIGURED and synthesizes nothing
+
+--- D. no stale substitution
+ok    D.1 the first run succeeds
+ok    D.2 the second run FAILS -- no stale response is substituted
+ok    D.3 the merged result carries no leftover clarification and says the layer failed
+
+--- E. determinism of a replay
+ok    E.1 two identical replays produce byte-identical validated objects
+
+131 passed, 0 failed

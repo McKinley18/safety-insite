@@ -1,0 +1,73 @@
+§182 SETTLEMENT REVIEW INTEGRATION — provider calls: 0   database operations: 0
+
+--- 1. FEATURE-OFF AND CURRENT-PATH INVARIANTS
+ok    P1 the inactive boundary is unchanged and is still a literal false
+ok    P1b the current path is unchanged — a bound declaration still produces COVERED only  [COVERED via ADMITTED_BINDING, exactly as before §182]
+ok    P1c the §181 knowledge findings travel with the mechanism
+
+--- 2. THE AUTHORITY BOUNDARY: PROVIDER_SETTLEMENT_AUTHORITY = NEVER
+ok    P2 a provider claim alone mints no authority — every non-human provenance is refused  [PROVIDER_DECLARATION, MODEL_ADJUDICATION, HISTORICAL_EVALUATION_LABEL, AUTOMATED_MATCHER, DERIVED_HEURISTIC]
+ok    P3 consuming a claim changes no status — the fact is still UNRESOLVED
+ok    P2b PROVIDER_SETTLEMENT_AUTHORITY is recorded as NEVER
+
+--- 3. REVIEW DECISIONS
+ok    P4 APPROVE_SETTLEMENT by a human mints a narrowly scoped authority
+ok    P5 REJECT_SETTLEMENT mints nothing  [DECISION_DOES_NOT_APPROVE_SETTLEMENT]
+ok    P6 LEAVE_UNRESOLVED mints nothing
+ok    P6b the decision vocabulary is small, closed, and has exactly one approving member  [APPROVE_SETTLEMENT|REJECT_SETTLEMENT|LEAVE_UNRESOLVED]
+ok    P6c a missing rationale or reviewer identity fails closed
+
+--- 4. AUTHORITY BINDING AND SCOPE
+ok    P7 authority is factKey-bound — a decision naming another fact is refused
+ok    P8 authority is claim-bound — a decision naming another claim is refused
+ok    P8b a decision over edited evidence is refused (digest mismatch)
+ok    P9 a sibling fact cannot consume an authority minted for another fact  [both facts untouched]
+
+--- 5. LIFECYCLE, STALENESS AND REPLAY
+ok    P14 the approval branch reaches the EXISTING SETTLED_BY_EVIDENCE state
+ok    P10 a duplicate application fails closed and does not widen the authority  [CLAIM_ALREADY_APPLIED + FACT_NOT_UNRESOLVED]
+ok    P11 a wrong claim/fact binding at application time fails closed
+ok    P11b an authority replayed against edited claim evidence fails closed
+ok    P11c an already-resolved fact cannot be settled again
+ok    P11d a claim against a fact absent from the ledger fails closed
+ok    P11e the consumer refuses a claim on a fact that is not UNRESOLVED
+ok    P11f the consumer refuses a claim whose type says it settles something
+
+--- 6. HR-04 REPLAY: BOTH BRANCHES
+ok    P12 before review the securement fact is UNRESOLVED and the claim is reviewable
+ok    P13 BRANCH A — human rejects: no authority, fact stays UNRESOLVED
+ok    P14b BRANCH B — human approves: SETTLED_BY_EVIDENCE, and the PRESENCE sibling is untouched  [architecture proof only — the frozen HR-04 truth remains REQUIRED]
+
+--- 7. DISPLACED-FACT PROOFS (HR-05 / HR-07 SHAPES)
+ok    D1 a settled fact A is not reopened by a claim about adjacent fact B
+ok    D2 B cannot inherit A's claim or authority
+ok    D3 B must be separately reviewed to be settled  [each fact needs its own review]
+ok    D4 an authority minted for A cannot settle B  ·  D5 an authority for B cannot alter A
+ok    D6 a challenge against an ineligible fact is structurally refused, not quarantined silently
+
+--- 8. acceptableEvidence INTERACTION
+ok    P16 acceptableEvidence = null remains supported, and its absence is VISIBLE
+ok    P16b review remains possible with a null criterion  [the human decides; the absence of a criterion does not block them]
+ok    P17 a coarse criterion does not auto-settle anything  [consuming a claim beside a criterion settles nothing]
+ok    P17b the criterion is preserved verbatim and carries a caveat rather than being strengthened
+
+--- 9. SEMANTIC BOUNDARY AND FEEDBACK BAN
+ok    P18 no semantic matcher, scorer or threshold was introduced
+ok    P18b nothing compares the provider reason to the criterion
+ok    P18c CLARIFICATION_EVIDENCE_SUFFICIENCY is untouched
+ok    P19 no review decision or adjudication label is projected to a provider  [reviewDecision,reviewerProvenance,reviewerId,rationale,authorityMinted,factStatusAfterReview]
+ok    P19b the observation reconstructs the whole decision
+
+--- 10. INACTIVE AND GOVERNED BOUNDARIES
+ok    P1d no customer route reaches the consumer or the producer
+ok    P1e nothing in the module reads configuration or an environment flag
+ok    P1f the module performs no database or network operation
+ok    P20 no governed record was modified  [three registry files byte-identical to their §181 values]
+ok    P20b expert-prompt.ts was not modified
+ok    P20c no existing owed-facts module was modified  [§182 is one NEW file; nothing existing changed]
+
+--- 11. RESIDUAL, REPORTED RATHER THAN HIDDEN
+ok    R1 transition() remains directly callable in-process with ADMISSIBLE_EVIDENCE  [PRE-EXISTING and unchanged by §182 — see SECTION-182-RESULT.json residual R1]
+ok    R1b but no PROVIDER input can reach that call — the provider path mints ADMITTED_BINDING only
+
+ALL §182 PROOFS PASSED — provider calls: 0   database operations: 0

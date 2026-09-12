@@ -1,0 +1,1772 @@
+{
+  "artifact": "FORMAL_EXPERT_COHORT_CANDIDATE_NOT_FROZEN",
+  "note": "CANDIDATE ONLY. Not frozen, not named, not authorized. Semantic truth fields are deliberately empty and governed records are absent -- see the operation report.",
+  "rowCount": 45,
+  "order": "scenarioId ASCENDING",
+  "rows": [
+    {
+      "rowId": "GAUNTLET-002",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical",
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-003",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical",
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-004",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-005",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "confined_space"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-006",
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-007",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-015",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-019",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-020",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-021",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-022",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-023",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-032",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-033",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-036",
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-040",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-042",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-045",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-046",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-048",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-051",
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-052",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-054",
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-056",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-058",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-061",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-062",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-063",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-067",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-068",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-072",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-073",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-076",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-078",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-081",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-082",
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-083",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-085",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-086",
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-087",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-088",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-092",
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-093",
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_exposure"
+        ],
+        "defensibleHazardFamilies": [
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-096",
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "confined_space",
+          "electrical",
+          "fall_protection",
+          "lockout_tagout",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ]
+    },
+    {
+      "rowId": "GAUNTLET-098",
+      "truth": {
+        "presentHazardFamilies": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_exposure",
+          "electrical",
+          "fall_protection",
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "confined_space"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Mechanical candidate row from the opened reserve. Present and forbidden families are corpus labels mapped through the frozen toExpertFamily; defensible is the remainder of the accepted taxonomy, meaning the corpus said neither required nor unacceptable; negated/safe-state is read from the deterministic engine's own condition states. Semantic truth fields are deliberately EMPTY -- this is a candidate, not a frozen key."
+      },
+      "provenance": {
+        "presentHazardFamilies": "LEVEL_2_CORPUS_LABEL (primaryHazardFamily + secondaryHazardFamilies)",
+        "forbiddenHazardFamilies": "LEVEL_2_CORPUS_LABEL (unacceptableStandardFamilies, mapped)",
+        "defensibleHazardFamilies": "LEVEL_1_DERIVED (accepted taxonomy minus present minus forbidden)",
+        "negatedOrSafeStateFamilies": "LEVEL_1_DETERMINISTIC (engine conditionState)",
+        "lifeCriticalHazardFamilies": "LEVEL_2_CORPUS_LABEL_PROXY (severityExpectation === critical)",
+        "decisionCriticalGaps": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "recordedInteractions": "NOT_AUTHORED -- requires level-3 authoring, deliberately withheld",
+        "governedStandards": "UNAVAILABLE -- no authorized file-based governed-record source exists"
+      },
+      "classes": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ]
+    }
+  ]
+}

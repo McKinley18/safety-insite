@@ -1,0 +1,15 @@
+{
+  "executorVersion": "hazlenz.expert.219.final-structured-confirmation-execution.v1",
+  "frozenDigest": "491bf18a1094c99c22a80719001c207c7d72e92c1f547086284b3331d5918d56",
+  "callsAuthorized": 5,
+  "callsAttempted": 5,
+  "spendCeilingUsd": 0.28,
+  "cumulativeSpendUsd": 0.206368,
+  "projectedSpendUsd": 0.2051,
+  "stopped": null,
+  "retriesUsed": 0,
+  "databaseOperations": 0,
+  "schemaCanaryOutcome": "REACHED_INFERENCE",
+  "cachingPosture": "DISABLED",
+  "completedAt": "2026-09-10T22:27:29.642Z"
+}

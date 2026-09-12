@@ -85,6 +85,7 @@ const candidate = (over: Record<string, unknown> = {}) => ({
   candidateKey: 'e1',
   hazardFamily: 'electrical',
   assertedConditionState: 'ACTIVE',
+  groundingStatus: 'EXACT_QUOTE_SUPPLIED',
   evidence: [span('the cabinet door open')],
   evidenceBasis: 'the door is open',
   reasoning: 'exposed energized parts are reachable',

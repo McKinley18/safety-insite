@@ -1,0 +1,43 @@
+{
+  "artifact": "SECTION_186_SETTLED_CONTROL_MEASUREMENT_VALIDITY",
+  "date": "2026-09-05",
+  "tenRowDesignClassification": "INVALID_FOR_SETTLED_CONTROL_AXES",
+  "why": "the five settled rows project zero owed facts, so any containment or restraint result attributed to them under the current projection would be a property of projectOwedFactsForVerifier's unresolvedFacts() filter rather than of the model.",
+  "requiredRowsStatus": "the five REQUIRED rows remain valid on the axes §183 already identified as constructible; §186 does not revisit the §183 construction analysis.",
+  "axes": [
+    {
+      "axis": "unnecessary clarification suppression",
+      "needsSettledFactVisibility": false,
+      "measurableNow": true,
+      "how": "supply zero owed facts for the property and measure whether the model invents one"
+    },
+    {
+      "axis": "settled-fact restraint",
+      "needsSettledFactVisibility": false,
+      "measurableNow": true,
+      "how": "same; and measured this way it is a STRONGER test, because no cue is supplied"
+    },
+    {
+      "axis": "adjacent-fact containment",
+      "needsSettledFactVisibility": false,
+      "measurableNow": true,
+      "how": "§182 already proved the structural half with no provider"
+    },
+    {
+      "axis": "false settlement challenge behaviour",
+      "needsSettledFactVisibility": true,
+      "measurableNow": false,
+      "why": "a provider cannot challenge a fact it was never shown"
+    },
+    {
+      "axis": "CHALLENGE_FACT_VALIDITY on an already-settled fact",
+      "needsSettledFactVisibility": true,
+      "measurableNow": false,
+      "why": "executed: refused whole with BOUND_FACT_NOT_UNRESOLVED. No admissible declaration about a settled fact exists."
+    }
+  ],
+  "cueConfoundWarning": "telling a model a fact is already settled is a cue that makes restraint easier. Settled-fact visibility would therefore confound IN THE DIRECTION OF FLATTERING THE MODEL. Exposing settled facts is not self-evidently an improvement to measurement validity, and the §185 stop report's framing should be read with that in mind.",
+  "silenceRowEquivalence": "the five §184 settled rows are the §174 SILENCE rows: the correct behaviour is to ask nothing. Zero-supplied-fact rows measure exactly that.",
+  "minimumArchitectureCondition": "EITHER re-scope the settled rows as zero-supplied-fact silence controls (no code change) OR add a declaration vocabulary in which a provider can respond admissibly to a settled fact (option E, unauthorized).",
+  "acceptableEvidenceNull": "uniformly null across all ten rows, so it distinguishes nothing between pair members and is orthogonal to the projection question. §171/§181 governed-evidence findings preserved separately and untouched."
+}

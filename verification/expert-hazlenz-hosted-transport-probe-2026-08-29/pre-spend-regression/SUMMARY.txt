@@ -1,0 +1,22 @@
+PRE-SPEND REGRESSION — run BEFORE any hosted request, at the tree carrying the Anthropic adapter
+measured: 2026-08-30T02:29:22Z
+HEAD    : 37a5d1b50abe836eb19dd24ee18ad10557bda131
+
+test:expert-contract-foundation    56 passed, 0 failed
+test:expert-authority-merge        51 passed, 0 failed
+test:expert-provider-failure       131 passed, 0 failed
+test:expert-nocall-harness         141 passed, 0 failed  <- CORE STILL PURE with a hosted adapter in the tree
+test:expert-routing-contract       57 passed, 0 failed
+test:l32i-clarification-carrier    61 passed, 0 failed
+test:l32j-carrier-activation       37 passed, 0 failed
+test:kg4a-cutover-contract         146 passed, 0 failed
+test:kg4a-default-off              52 passed, 0 failed
+test:kg4d-default-off              121 passed, 0 failed
+backend tsc --noEmit               exit 0
+scripts typecheck (project opts)   exit 0 (probe-expert-hosted-transport.ts, probe-expert-routing.ts)
+probe:expert-routing (local)       14/14 gates PASS, 7 calls, $0.00 — G14 corrected and re-verified
+
+LOCAL BASELINE RECONFIRMED, unchanged by the hosted adapter:
+  TYPED_ROUTING_OPPORTUNITIES 16 / HITS 16 / MISSES 0 / OVER_ROUTED 0 / EXPLANATION_ONLY_LOSSES 0
+  candidates 4/4  clarifications 6/6  insights 4/4  disagreements 2/2
+  identical to the section 101 record, field for field, on a fresh run.

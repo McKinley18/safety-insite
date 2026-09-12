@@ -1,0 +1,138 @@
+{
+  "artifact": "SECTION_185_PROOFS",
+  "date": "2026-09-05",
+  "allPass": true,
+  "passed": 21,
+  "total": 21,
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "statusVocabularyNote": "The authorization named SETTLED_BY_OBSERVATION and NOT_APPLICABLE. Neither exists in this repository. Per the instruction to use the exact existing four statuses and add none, proofs 5 and 6 were run against COVERED and REJECTED_BY_ARBITRATION instead.",
+  "results": [
+    {
+      "id": "1 UNRESOLVED_NULL_WHY_REFUSED",
+      "ok": true,
+      "detail": "defect + ledger admission throws"
+    },
+    {
+      "id": "2 UNRESOLVED_BLANK_WHY_REFUSED",
+      "ok": true,
+      "detail": "empty and whitespace-only both refused"
+    },
+    {
+      "id": "3 UNRESOLVED_NONBLANK_WHY_ACCEPTED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "4 SETTLED_BY_EVIDENCE_NULL_WHY_ACCEPTED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "5 COVERED_NULL_WHY_ACCEPTED",
+      "ok": true,
+      "detail": "stands in for the authorization's SETTLED_BY_OBSERVATION: no such status exists"
+    },
+    {
+      "id": "6 REJECTED_BY_ARBITRATION_NULL_WHY_ACCEPTED",
+      "ok": true,
+      "detail": "stands in for the authorization's NOT_APPLICABLE: no such status exists"
+    },
+    {
+      "id": "7 NON_UNRESOLVED_NONBLANK_WHY_REFUSED",
+      "ok": true,
+      "detail": "nonblank AND empty-string both refused on all three terminal statuses; only null passes"
+    },
+    {
+      "id": "7b INVARIANT_TABLE_COVERS_EVERY_STATUS",
+      "ok": true,
+      "detail": "4 statuses, no status added"
+    },
+    {
+      "id": "8 TEN_ROW_FIXTURE_STRUCTURALLY_REPRESENTABLE",
+      "ok": true,
+      "detail": "10 / 10 admitted, one DEVELOPMENT ledger per row"
+    },
+    {
+      "id": "9 SETTLED_FIXTURE_TYPE_MISMATCH = FALSE",
+      "ok": true,
+      "detail": "all five SILENCE rows admit to a ledger with whyUnresolved null"
+    },
+    {
+      "id": "10 FALSE_UNCERTAINTY_TEXT_MANUFACTURED = 0",
+      "ok": true,
+      "detail": "0 non-null on settled · 0 synthetic stand-ins"
+    },
+    {
+      "id": "11 PAIR_SHARED_FACT_SEMANTICS_IDENTICAL",
+      "ok": true,
+      "detail": "5 / 5"
+    },
+    {
+      "id": "12 §184_PRODUCT_OWNER_TRUTH_BYTE_IDENTICAL",
+      "ok": true,
+      "detail": "5 / 5 artifacts"
+    },
+    {
+      "id": "13 PROVIDER_PROJECTION_WITHHELD_EVALUATION_FIELDS",
+      "ok": true,
+      "detail": "10 / 10 clean"
+    },
+    {
+      "id": "14 HR04_PROVIDER_PAYLOAD_CONTAINS_NO_EVALUATION_RATIONALE",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "15 SETTLED_ROWS_PROVIDER_PAYLOAD_CONTAINS_NO_FALSE_WHY_UNRESOLVED",
+      "ok": true,
+      "detail": "5 / 5 project null"
+    },
+    {
+      "id": "16 UNRESOLVED_ROWS_RETAIN_APPROVED_WHY_UNRESOLVED",
+      "ok": true,
+      "detail": "5 / 5 byte-identical to §184 text"
+    },
+    {
+      "id": "17 PROVIDER_SETTLEMENT_AUTHORITY = NEVER",
+      "ok": true,
+      "detail": "no model authority member exists and a forged one throws"
+    },
+    {
+      "id": "18 FEATURE_OFF_CURRENT_PATH_INVARIANT",
+      "ok": true,
+      "detail": "gate is the literal false; the stage attaches nothing"
+    },
+    {
+      "id": "T1 transition nulls whyUnresolved so the settled fact stays valid",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "T2 the sentence is PRESERVED on the transition record, not destroyed",
+      "ok": true,
+      "detail": "append-only ledger keeps the evidence the fact was once unresolved and why"
+    }
+  ],
+  "sourceHashes": {
+    "note": "owed-facts/ is entirely untracked in git and no prior artifact pinned owed-fact-ledger.ts or verifier-v3-development-boundary.ts, so their PRE hashes were RECONSTRUCTED by inverting the recorded §185 edits rather than measured before the change. The method is validated: the same inversion reproduces owed-fact.types.ts at exactly the hash §184 recorded independently.",
+    "pre": {
+      "owed-fact.types.ts": "f77c7febb55a056271174c4efd4375506145344bd0748e5d56f93c698074c1d1",
+      "owed-fact.types.ts_source": "MEASURED -- recorded by §184 and re-verified before the edit",
+      "owed-fact-ledger.ts": "8b5ce40e33f54272082f121b06c84b618e933d76504eec39ec5f63f7c88d0486",
+      "owed-fact-ledger.ts_source": "RECONSTRUCTED by inverting the §185 edits",
+      "verifier-v3-development-boundary.ts": "e9b20d034dd91e7a37df6bc129367ef255ae5d4ae652ede90c0dcb5efa9645fc",
+      "verifier-v3-development-boundary.ts_source": "RECONSTRUCTED by inverting the §185 edits"
+    },
+    "post": {
+      "owed-fact.types.ts": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+      "owed-fact-ledger.ts": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+      "verifier-v3-development-boundary.ts": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245"
+    },
+    "unchanged": {
+      "owed-fact-binding.ts": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+      "settlement-review.ts": "1c300ff178638b11c677aef1091f777a7a4e3ae71e5137383013105863891bd2",
+      "expert-prompt.ts": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694"
+    }
+  }
+}

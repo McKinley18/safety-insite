@@ -1,0 +1,267 @@
+{
+  "derivedAt": "2026-09-04T17:40:34.221Z",
+  "measure": "hazlenz.expert.verifier.human-reviewed-subset.v1",
+  "RELATIONSHIP_TO_HISTORICAL_SCORES": "A NEW MEASURE REPORTED BESIDE THE ORIGINALS. VERIFIER-SCORES.json (§156) and VERIFIER-V2-SCORES.json (§157) are UNTOUCHED and remain the record of what was measured under the standard in force at the time.",
+  "dispositionLedger": [
+    {
+      "rowId": "HS-H1",
+      "authoredClass": "REQUIRED",
+      "disposition": "AUTHORING_AMBIGUOUS",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [
+        "A_decisionCriticalRecall",
+        "B_selectorAccuracy",
+        "C_legitimateSilenceSpecificity",
+        "E_nominationAccuracy"
+      ],
+      "note": "General concern valid; the cooling-hold selector is not uniquely supported because the observation does not establish load type, cycle type, manufacturer/SOP unload criteria, or that a cooling hold is the applicable safe-unloading mechanism.",
+      "prospectiveStrictSemanticTruthEligibility": "INELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": false,
+        "PLAUSIBLE_ALTERNATIVE_STATES": false,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": false,
+        "NECESSARY_NOW": false,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": false
+      }
+    },
+    {
+      "rowId": "HS-A1",
+      "authoredClass": "REQUIRED",
+      "disposition": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [],
+      "note": null,
+      "prospectiveStrictSemanticTruthEligibility": "ELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": true,
+        "PLAUSIBLE_ALTERNATIVE_STATES": true,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": true,
+        "NECESSARY_NOW": true,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": true
+      },
+      "humanSemanticTarget": "the functional status/effectiveness of the burner flame-failure safeguard",
+      "acceptableEquivalents": [
+        "whether the flame-failure safeguard is functional",
+        "whether loss-of-flame shutdown has been function-tested",
+        "whether the burner automatically shuts fuel off on flame loss",
+        "whether the safeguard is bypassed, defeated, failed, or otherwise nonfunctional"
+      ],
+      "mustNotRequire": "the literal phrase \"flame-failure device\""
+    },
+    {
+      "rowId": "HS-E1",
+      "authoredClass": "REQUIRED",
+      "disposition": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [],
+      "note": null,
+      "prospectiveStrictSemanticTruthEligibility": "ELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": true,
+        "PLAUSIBLE_ALTERNATIVE_STATES": true,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": true,
+        "NECESSARY_NOW": true,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": true
+      },
+      "humanSemanticTarget": "whether the rotor-guard interlock protective function was verified after reassembly / before return to service",
+      "acceptableEquivalents": [
+        "whether the interlock was function-tested after reassembly",
+        "whether opening the guard stops or prevents rotor operation",
+        "whether safeguarding function was verified before return to service"
+      ],
+      "mustNotRequire": "the literal phrase \"function-tested after the rotor tooth change\"",
+      "mustNotEncode": "that OSHA requires a specific post-maintenance test after every rotor tooth change — HS-E1 was supplied NO governed evidence, so no such requirement is independently established"
+    },
+    {
+      "rowId": "HS-J1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_INVALID",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [
+        "A_decisionCriticalRecall",
+        "B_selectorAccuracy",
+        "C_legitimateSilenceSpecificity",
+        "E_nominationAccuracy"
+      ],
+      "note": null,
+      "prospectiveStrictSemanticTruthEligibility": "INELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": false,
+        "PLAUSIBLE_ALTERNATIVE_STATES": false,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": false,
+        "NECESSARY_NOW": false,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": false
+      }
+    },
+    {
+      "rowId": "HS-N1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_INVALID",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [
+        "A_decisionCriticalRecall",
+        "B_selectorAccuracy",
+        "C_legitimateSilenceSpecificity",
+        "E_nominationAccuracy"
+      ],
+      "note": null,
+      "prospectiveStrictSemanticTruthEligibility": "INELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": false,
+        "PLAUSIBLE_ALTERNATIVE_STATES": false,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": false,
+        "NECESSARY_NOW": false,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": false
+      }
+    },
+    {
+      "rowId": "HS-P1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_INVALID",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [
+        "A_decisionCriticalRecall",
+        "B_selectorAccuracy",
+        "C_legitimateSilenceSpecificity",
+        "E_nominationAccuracy"
+      ],
+      "note": null,
+      "prospectiveStrictSemanticTruthEligibility": "INELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": false,
+        "PLAUSIBLE_ALTERNATIVE_STATES": false,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": false,
+        "NECESSARY_NOW": false,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": false
+      }
+    },
+    {
+      "rowId": "HS-R1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": "AUTHORING_AMBIGUOUS",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [
+        "A_decisionCriticalRecall",
+        "B_selectorAccuracy",
+        "C_legitimateSilenceSpecificity",
+        "E_nominationAccuracy"
+      ],
+      "note": null,
+      "prospectiveStrictSemanticTruthEligibility": "INELIGIBLE",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": false,
+        "PLAUSIBLE_ALTERNATIVE_STATES": false,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": false,
+        "NECESSARY_NOW": false,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": false
+      }
+    }
+  ],
+  "gates": {
+    "v1 (§156)": {
+      "A_decisionCriticalRecall": "2/2",
+      "A_distinctRows": [
+        "HS-E1",
+        "HS-A1"
+      ],
+      "B_selectorAccuracy": "RETIRED_NOT_EMITTED — B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY = RETIRED (§161). No replacement scorer is authorized.",
+      "B_eligibleCasesHadItBeenEmitted": [
+        "VC-04",
+        "VC-08"
+      ],
+      "B_distinctRows": [
+        "HS-E1",
+        "HS-A1"
+      ],
+      "C_legitimateSilenceSpecificity": "INSUFFICIENT — denominator is zero",
+      "C_distinctRows": [],
+      "excludedCases": [
+        "VC-01",
+        "VC-02",
+        "VC-03",
+        "VC-05",
+        "VC-06",
+        "VC-07",
+        "VC-09",
+        "VC-10",
+        "VC-11",
+        "VC-12",
+        "VC-13",
+        "VC-14",
+        "VC-15"
+      ],
+      "percentagesSuppressedBelow": 10
+    },
+    "v2 (§157)": {
+      "A_decisionCriticalRecall": "1/1",
+      "A_distinctRows": [
+        "HS-A1"
+      ],
+      "B_selectorAccuracy": "RETIRED_NOT_EMITTED — B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY = RETIRED (§161). No replacement scorer is authorized.",
+      "B_eligibleCasesHadItBeenEmitted": [
+        "VC-08"
+      ],
+      "B_distinctRows": [
+        "HS-A1"
+      ],
+      "C_legitimateSilenceSpecificity": "INSUFFICIENT — denominator is zero",
+      "C_distinctRows": [],
+      "excludedCases": [
+        "VC-01",
+        "VC-02",
+        "VC-03",
+        "VC-05",
+        "VC-06",
+        "VC-07",
+        "VC-09",
+        "VC-10",
+        "VC-11",
+        "VC-12",
+        "VC-13",
+        "VC-14",
+        "VC-15"
+      ],
+      "percentagesSuppressedBelow": 10
+    },
+    "section158Repair": {
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "foldedIntoArms": false,
+      "reason": "a second draw of one case is not a replacement for the first; both are preserved"
+    }
+  },
+  "reportingRule": "denominators below 10 are reported as counts, never as rates",
+  "policy161": {
+    "B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY": "RETIRED",
+    "OBSERVATION_ONLY_TRUTH_ALLOWED": true,
+    "OBSERVATION_ONLY_TRUTH_REQUIREMENTS": [
+      "HUMAN_REVIEWED",
+      "FACT_GENUINELY_UNRESOLVED",
+      "PLAUSIBLE_ALTERNATIVE_STATES",
+      "MATERIAL_CURRENT_DECISION_DIVERGENCE",
+      "NECESSARY_NOW",
+      "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP"
+    ],
+    "admissionIsConjunctive": true,
+    "unrecordedConditionCountsAs": "NOT_ESTABLISHED",
+    "historicalSelectorFiguresUnchanged": "§156 B 1/3 and §157 B 1/3 stand, immutable",
+    "historicalScorersNotEdited": [
+      "score-expert-verifier-accuracy.ts",
+      "score-expert-verifier-v2.ts"
+    ],
+    "replacementScorerAuthorized": false
+  }
+}

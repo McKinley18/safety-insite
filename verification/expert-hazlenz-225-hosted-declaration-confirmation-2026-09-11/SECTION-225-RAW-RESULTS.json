@@ -1,0 +1,924 @@
+{
+  "artifact": "SECTION-225-RAW-RESULTS",
+  "derivedFrom": "RAW-225.jsonl",
+  "rawLedgerSha256": "b1307dae46ab446c792b3e0fb11947864c8f34449ef266d48a75ef034045c67d",
+  "note": "Provider output is recorded exactly. No malformed field was repaired and no stringified structured field was parsed. This file is a readable projection of the raw ledger and is never a substitute for it.",
+  "frozenProtocolDigest": "4ebc81b73a6df5c7a60d2a6051abb5bd2450ebf49ad49e428c77293920e3572e",
+  "callsExecuted": 16,
+  "spendUsd": 1.29936,
+  "calls": [
+    {
+      "callIndex": 1,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H1",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "037e59b027b35ffc9dae2cfbd0c326dac8b50b5fc50c21787710e238f64723b8",
+      "wireSchemaIdentity": "8d68a9723d730ca27085e6ff079ed8c79217a0a1abe6c76ee8198cc9492a907b",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27581,
+      "outputTokens": 1634,
+      "costUsd": 0.071502,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ABSENT"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "unprotected-mezzanine-edge",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "unknown-fall-distance",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "mezzanine-structural-provenance-unknown",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": false
+        }
+      ],
+      "uncertaintyStatements": [
+        "The exact drop height from the mezzanine deck to the floor below is not stated, though the open edge hazard itself is established regardless of this figure.",
+        "No information is given on whether any interim measure (barrier tape, warning signage, rerouting) has been put in place at the open edge since the guardrail was removed."
+      ],
+      "summary": "The observation establishes a current, active fall hazard: a section of mezzanine edge protection was removed to allow crane access and has not been reinstated, and stores staff routinely walk past this open edge to reach racking. The deck and remaining rails are stated to be sound and firmly fixed, so there is no evidence of a current structural deficiency, though the unmeasured drop height and the ceased-trading installer are noted as residual points of low-grade uncertainty that do not change the immediate priority of restoring the missing guardrail and toeboard."
+    },
+    {
+      "callIndex": 2,
+      "arm": "REMEDIATED_224",
+      "caseId": "H1",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "037e59b027b35ffc9dae2cfbd0c326dac8b50b5fc50c21787710e238f64723b8",
+      "wireSchemaIdentity": "8d68a9723d730ca27085e6ff079ed8c79217a0a1abe6c76ee8198cc9492a907b",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29424,
+      "outputTokens": 2596,
+      "costUsd": 0.084808,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "UF-1",
+          "missingFact": "The vertical drop distance from the mezzanine deck to the floor below at the open edge section",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "branchA": "The drop is a substantial height capable of causing serious injury on a fall",
+          "branchB": "The drop is minor and unlikely to cause serious injury on a fall",
+          "decisionIfA": "Treat the open edge as a serious fall hazard requiring immediate exclusion of the walking route or reinstatement of physical edge protection before staff are permitted to pass that section again",
+          "decisionIfB": "A lighter interim control, such as a temporary barrier or cordon with signage, may be sufficient until the permanent guardrail is reinstalled",
+          "decisionWhileUnresolved": "Restrict or closely control staff movement past the open edge and treat it as a high-severity fall exposure until the drop height is established, since the consequence is currently unknown and the exposure is ongoing"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "unprotected_edge_fall",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "fall_distance_severity_unknown",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "mezzanine_structural_integrity_unknown",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [
+        "The mention that the installing contractor has ceased trading raises a latent question about future access to design/inspection records, but does not itself indicate a current structural deficiency and does not change what should be done today given the deck and remaining rails are reported sound."
+      ],
+      "summary": "The removed guardrail section has left a currently open mezzanine edge that stores staff repeatedly walk past to reach racking, which is an active fall exposure with no compensating control described. The drop distance to the floor below has never been measured, so the severity of that exposure cannot yet be judged, which affects what interim control (barricade vs. full stop of the route) is appropriate right now. The note that the original installing contractor has ceased trading is provenance information only, and, absent any stated defect, does not by itself establish a current structural concern given the deck and remaining rails are described as sound."
+    },
+    {
+      "callIndex": 3,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H2",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "509887b8e52dd4e671cf01843b82b6b1e3fa82423a81e6da3377ccb0ef1ced72",
+      "wireSchemaIdentity": "cfa6edf8ccd09b6ae5f53a1a85dedcc8acb7448a6006238dd30362b8a4249f7b",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27559,
+      "outputTokens": 3265,
+      "costUsd": 0.087768,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 2,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-rcd-protection",
+          "missingFact": "Whether the circuit supplying the wash bay wall socket has functioning residual current (ground-fault) protection",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The circuit has functioning residual current protection that would interrupt a fault current quickly",
+          "branchB": "The circuit has no residual current protection, or protection is present but not functioning",
+          "decisionIfA": "The presence of functioning protection substantially reduces (though does not eliminate) the risk of a sustained lethal shock; the immediate action is to confirm the protection is in service and remove the operator from standing in the water as a precaution while confirmation is obtained",
+          "decisionIfB": "With no protection, a fault in the pump or lead could deliver an uninterrupted shock through the operator's body via the water; work must stop immediately, the pump be de-energized and removed, and the operator withdrawn from the water until protection is verified or installed",
+          "decisionWhileUnresolved": "Treat the circuit as unprotected: stop the pumping task, remove the operator from contact with the standing water, and de-energize the pump until the protection status is confirmed"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "electrical-immersion-contact",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "untested-pump-no-ground-fault-verification",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "wet-floor-slip-hazard",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The operator is currently standing in standing water while a 240V submersible pump runs in that same water, creating an active electrical contact hazard made significantly worse by the conductive wet environment (a genuine cross-hazard interaction), alongside an independent slip hazard from the standing water itself. Whether the supply circuit has residual current (ground-fault) protection, and whether the pump has ever been electrically tested, are both unresolved facts the site could not answer, and both are decision-critical because their answers determine whether work must stop now or can continue with existing controls. No regulatory record was supplied, so no citation or governed obligation is asserted here."
+    },
+    {
+      "callIndex": 4,
+      "arm": "REMEDIATED_224",
+      "caseId": "H2",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "509887b8e52dd4e671cf01843b82b6b1e3fa82423a81e6da3377ccb0ef1ced72",
+      "wireSchemaIdentity": "cfa6edf8ccd09b6ae5f53a1a85dedcc8acb7448a6006238dd30362b8a4249f7b",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29402,
+      "outputTokens": 3188,
+      "costUsd": 0.090684,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 4,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-rcd-status",
+          "missingFact": "Whether the wall socket circuit supplying the pump has functioning residual current (ground-fault) protection",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The circuit has functioning residual current protection covering the socket in use",
+          "branchB": "The circuit has no residual current protection, or protection status cannot be confirmed as functioning",
+          "decisionIfA": "The automatic disconnection safeguard is in place; confirm the device trips correctly and the operator may continue provided this and other identified gaps are addressed",
+          "decisionIfB": "There is no confirmed automatic disconnection safeguard against a fault reaching the operator through the water; stop the pump, remove the operator from the water, and do not resume until protected supply is confirmed or an equivalent safeguard is put in place",
+          "decisionWhileUnresolved": "Treat the circuit as unprotected: stop using the pump while standing in the water and remove the operator from the water until the protection status is confirmed"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "electrical-immersion-contact",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "no-rcd-protection-unknown",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "untested-pump-unknown-condition",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "slip-fall-standing-water",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        }
+      ],
+      "uncertaintyStatements": [
+        "The pump's internal insulation and earth continuity condition cannot be determined from visual inspection alone and no test record exists, though this does not on its own change today's immediate action beyond what the RCD question already governs."
+      ],
+      "summary": "The operator is currently standing in standing water while a 240 volt submersible pump runs, which is an active electrical shock exposure through the conductive water path, compounded by a wet-floor slip hazard. The pump has never been tested and nobody can confirm whether the supply circuit has residual current protection, and the RCD status specifically is decision-critical because it determines whether the current setup has any automatic disconnection safeguard against a fault reaching the operator. The visible good condition of the lead, plug and pump body is reassuring but does not establish internal insulation integrity given the total absence of test history."
+    },
+    {
+      "callIndex": 5,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H3",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "ea2c55f99e86536e8aa01d8ccae608dd3ffbdb953e5d8eb0ab8c971f11a779a1",
+      "wireSchemaIdentity": "c9c4f226c3b7dccb6cc12b8f570ae25e8e4af094eff720a6b2e2d85fc9bcf137",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27541,
+      "outputTokens": 2195,
+      "costUsd": 0.077032,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 4,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "resp-no-respirator",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "chem-two-pack-primer",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "vent-extraction-ineffective",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "filter-maintenance-unknown",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "A sprayer is currently applying two-pack primer inside a spray booth with no respirator, while the booth's airflow indicator reads zero and has reportedly done so for months without action. Because the extraction fan's effectiveness cannot be confirmed by the gauge reading, and filter maintenance history is unknown beyond March, the sprayer may be unprotected against airborne isocyanate/solvent exposure with no verified engineering control and no PPE substituting for it. This is a compounding failure of ventilation, filtration uncertainty, and absent respiratory protection acting together on an active chemical exposure task."
+    },
+    {
+      "callIndex": 6,
+      "arm": "REMEDIATED_224",
+      "caseId": "H3",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "ea2c55f99e86536e8aa01d8ccae608dd3ffbdb953e5d8eb0ab8c971f11a779a1",
+      "wireSchemaIdentity": "c9c4f226c3b7dccb6cc12b8f570ae25e8e4af094eff720a6b2e2d85fc9bcf137",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29384,
+      "outputTokens": 3284,
+      "costUsd": 0.091608,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ABSENT",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-airflow-state",
+          "missingFact": "Whether the booth extraction system is currently moving sufficient air through the booth to control overspray and vapour concentration during spraying",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "branchA": "The extraction system is actually moving adequate air through the booth (the fan and ductwork are functioning; the gauge itself is faulty or miscalibrated)",
+          "branchB": "The extraction system is not moving adequate air through the booth (blocked ductwork, closed damper, or clogged filters despite the fan running)",
+          "decisionIfA": "The engineering control for vapour/overspray removal is functioning; the immediate corrective action is to repair or replace the airflow indicator and require respirator use for isocyanate exposure, without needing to halt booth use for ventilation failure",
+          "decisionIfB": "The booth provides no effective engineering control against airborne primer vapours/overspray; spraying must stop immediately until airflow is restored and verified, in addition to any respirator requirement",
+          "decisionWhileUnresolved": "Treat the ventilation as unverified and do not rely on it as an effective control; spraying should not continue without respiratory protection and the airflow status should be checked before further use of the booth"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "respiratory-exposure-no-respirator",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "inadequate-booth-extraction",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "filter-maintenance-uncertain",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": null,
+      "summary": null
+    },
+    {
+      "callIndex": 7,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H4",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "85dc4acb89f64dc3ed5862211647d939df288f2be6b375be7fa3780d86fd3488",
+      "wireSchemaIdentity": "6d607cb38cc638f70caceb36dd63be08a289f41e7a820746de36aba69270b3a2",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27542,
+      "outputTokens": 2995,
+      "costUsd": 0.085034,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "UF1",
+          "missingFact": "Whether the scaffold's structural condition (ties, bracing, standards, boards) has been assessed by a competent person following Sunday night's storm",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "A competent person has inspected the scaffold since the storm and found it structurally sound",
+          "branchB": "No competent-person inspection of the scaffold has occurred since the storm",
+          "decisionIfA": "Loading out onto the third lift may continue, as the storm-damage concern for this scaffold has been checked and cleared",
+          "decisionIfB": "Loading out onto the third lift should stop, or be restricted to safe access only, until a competent person inspects and clears the scaffold following the storm",
+          "decisionWhileUnresolved": "Work should be paused or restricted pending confirmation that the scaffold has been checked since the storm, given the ground-level visual check alone does not confirm full structural integrity"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "storm_damage_uninspected_scaffold",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "scafftag_predates_storm",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "visual_ground_check_limited",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "Bricklayers are loading out bricks and mortar onto the third lift of a scaffold whose green tag was signed off eleven days ago, but a storm on Sunday night damaged the roof of a nearby building and nobody has since been up the scaffold to check it, with the scaffolding contractor not due back until Thursday. The ground-level visual check described only confirms the scaffold looks upright and that visible ties are in place, which is limited assurance following a storm event, and does not establish the current structural condition of the whole structure. The key open question is whether a competent-person inspection has occurred since the storm; without it, continuing to load material onto the third lift relies on an assessment that predates the storm, and the added loading itself increases the consequence of any storm-induced weakness that has not yet been identified."
+    },
+    {
+      "callIndex": 8,
+      "arm": "REMEDIATED_224",
+      "caseId": "H4",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "85dc4acb89f64dc3ed5862211647d939df288f2be6b375be7fa3780d86fd3488",
+      "wireSchemaIdentity": "6d607cb38cc638f70caceb36dd63be08a289f41e7a820746de36aba69270b3a2",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29385,
+      "outputTokens": 2706,
+      "costUsd": 0.08583,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-post-storm-inspection",
+          "missingFact": "Whether the scaffold's structural components (ties, boards, couplers, standards) are currently sound following Sunday night's storm",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "A competent person has closely inspected the scaffold since the storm and confirmed the ties, boards and couplers remain sound",
+          "branchB": "No close inspection of the scaffold's structural components has taken place since the storm",
+          "decisionIfA": "Loading out on the third lift may continue, as the storm-related structural concern for this scaffold is resolved",
+          "decisionIfB": "Loading out on the third lift should stop and the scaffold should be closely inspected by a competent person before work resumes, since its post-storm condition is unverified",
+          "decisionWhileUnresolved": "Treat the scaffold's post-storm structural condition as unconfirmed; do not rely on the ground-level visual check alone to justify continued loading, and arrange for a competent-person inspection before further loading proceeds"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "storm-damage-unverified-scaffold-integrity",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "ground-level-visual-inspection-limitation",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "Work is proceeding on the third lift under a scaffold tag signed off eleven days ago, but a storm capable of removing roof slates from a nearby building has since occurred and nobody has physically checked the scaffold; the scaffolding contractor is not due back until Thursday. The ground-level visual check described does not amount to a close inspection capable of detecting tie, coupler or board damage from wind loading, so the scaffold's current structural adequacy is unconfirmed while bricklayers actively load material onto it. This combination of unverified post-storm structural integrity and continued loading at height is the key concern, and whether a competent-person inspection has occurred since the storm is the fact that determines whether work should continue or stop."
+    },
+    {
+      "callIndex": 9,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H5",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "34422ad5d2302dea7210bffd9141dba38aaf6f74e145d54629b8753dd85913a7",
+      "wireSchemaIdentity": "00f7be3446a50939202b8691db5c6978df0a1a529cad60365e7ced732d70ddaa",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27575,
+      "outputTokens": 2245,
+      "costUsd": 0.0776,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "excavation-unsupported-trench",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "electrical-cable-haul-route",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "unassessed-ground-conditions",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The observation describes two active, current hazards not captured in any deterministic finding: an unsupported, shoulder-deep trench with surcharged spoil at the edge occupied by a groundworker, and an unducted, unprotected pump supply cable running across an active haul route where a telehandler turns. A third, lower-confidence issue is the unassessed made-up ground, which bears on how severe the collapse hazard is but is not itself confirmed. The trench and cable hazards interact: instability at the unsupported wall or spoil heap could damage the exposed cable, and plant movement across the cable could in turn disturb the trench edge, compounding cave-in and electrical risk at the same location."
+    },
+    {
+      "callIndex": 10,
+      "arm": "REMEDIATED_224",
+      "caseId": "H5",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "34422ad5d2302dea7210bffd9141dba38aaf6f74e145d54629b8753dd85913a7",
+      "wireSchemaIdentity": "00f7be3446a50939202b8691db5c6978df0a1a529cad60365e7ced732d70ddaa",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29418,
+      "outputTokens": 2680,
+      "costUsd": 0.085636,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 4,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "unsupported_trench_collapse",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "unassessed_ground_conditions",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "exposed_pump_cable_haul_route",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "pump_in_trench_water_ingress",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [
+        "Whether standing water or wet conditions are actually present at the bottom of the trench where the pump and worker are located is not stated, but this would not change the current corrective actions already indicated by the unsupported trench and exposed cable findings, so it is not raised as a decision-critical clarification."
+      ],
+      "summary": "A groundworker is currently inside an unsupported, shoulder-deep trench in made ground of unassessed composition, with spoil heaped at the unprotected edge, which is a live excavation collapse exposure. Separately, the pump's electrical supply cable runs from the trench bottom, over the spoil heap and unprotected across the haul route where a telehandler turns, creating a current electrical damage/shock exposure at that crossing. These two hazards interact because damage to the unprotected cable at the haul route crossing or disturbance near the spoil heap could aggravate the collapse exposure to the worker below, and the unassessed ground condition compounds the uncertainty of whether the unsupported sides will hold."
+    },
+    {
+      "callIndex": 11,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H6",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "8d90b781013d5f143b34959a55d055734cae970cb82b779b76ba41d28e67fc39",
+      "wireSchemaIdentity": "fddb63eca5703bfe96462980fca6ab12e2d2127d901fa9d45659e4d83393c083",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27573,
+      "outputTokens": 2201,
+      "costUsd": 0.077156,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "ufd-second-isolation",
+          "missingFact": "Whether the door operator circuit is currently isolated (locked off and proved dead) at the point of work",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The door operator circuit was in fact locked off and proved dead before entry and remains isolated now",
+          "branchB": "The door operator circuit was not isolated, or isolation cannot be confirmed, and it may currently be capable of energizing",
+          "decisionIfA": "The dual-isolation requirement is met; the engineers may continue work on the car top, subject to no other open issues",
+          "decisionIfB": "The engineers must stop work and withdraw from the car top until the second isolation is applied, locked off, and proved dead at the point of work",
+          "decisionWhileUnresolved": "Treat the second isolation as not confirmed; halt or do not proceed with car-top work until the isolation status is established and, if not already isolated, apply and prove it before re-entry"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "unverified-second-isolation",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "door-operator-mechanical-motion",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The main disconnector isolation is confirmed locked and tagged, but the second required isolation—the door operator circuit lock-off and prove-dead—has a blank permit record, and neither engineer currently on the car top can confirm it was ever applied. This leaves genuinely open whether a second energy source at the point of work is isolated while two workers occupy the car top, which is a decision-critical gap given the permit explicitly requires both isolations before entry. Until this is resolved, the safe course is to treat the second isolation as unconfirmed and not rely on it."
+    },
+    {
+      "callIndex": 12,
+      "arm": "REMEDIATED_224",
+      "caseId": "H6",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "8d90b781013d5f143b34959a55d055734cae970cb82b779b76ba41d28e67fc39",
+      "wireSchemaIdentity": "fddb63eca5703bfe96462980fca6ab12e2d2127d901fa9d45659e4d83393c083",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29416,
+      "outputTokens": 2351,
+      "costUsd": 0.082342,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-second-isolation",
+          "missingFact": "Whether the door operator circuit at the point of work is currently de-energized (isolated and proved dead)",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The door operator circuit was in fact isolated and proved dead at the point of work before entry, even though this was not recorded on the permit",
+          "branchB": "The door operator circuit was not isolated, or was isolated but not proved dead, and remains capable of energization at the point of work",
+          "decisionIfA": "Once independently verified now, work on the car top may continue under the two-isolation permit for this specific gap, though the permit documentation should still be corrected to reflect the verified state",
+          "decisionIfB": "Work must stop immediately, the engineers must be withdrawn from the car top or moved to a position of safety, and the second isolation must be applied and proved dead before re-entry",
+          "decisionWhileUnresolved": "Work on the car top should be halted and the engineers should not proceed with tasks that assume the door operator circuit is dead until the isolation state is independently verified at the point of work"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "second-isolation-unconfirmed",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": true
+        },
+        {
+          "candidateKey": "door-operator-unexpected-movement",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The main disconnector isolation is confirmed locked and tagged, but the second required isolation of the door operator circuit is unconfirmed: the permit record is blank, the responsible engineer has left site, and neither worker on the car top can say whether it was applied and proved dead before entry. Because the two engineers are already on the car top, this is a present, unresolved exposure to a potentially energized door operator circuit rather than a hypothetical one, and it should be treated as a stop-work condition until the second isolation is verified. A related but lower-confidence concern is that an unconfirmed door operator isolation could also leave associated moving parts capable of unexpected motion near the workers."
+    },
+    {
+      "callIndex": 13,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H7",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "29c3afc63354912ea8ecdd440c7adc5744ab521452be441030c3852e87f9ceef",
+      "wireSchemaIdentity": "837e67111aac47bd4b53c37517038f5c5b721a14242accc9c06b490aeb706583",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27566,
+      "outputTokens": 2334,
+      "costUsd": 0.078472,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-exam-performed",
+          "missingFact": "Whether a periodic examination of the boiler was actually carried out within the fourteen-month scheme interval",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "An examination was in fact carried out in spring within the fourteen-month interval and this can be confirmed by the insurer or a reconstructed record",
+          "branchB": "No qualifying examination was carried out within the fourteen-month interval, or it cannot be confirmed to have occurred",
+          "decisionIfA": "The boiler has current examination coverage under its scheme for this hazard; no additional examination-related restriction is needed beyond normal scheme compliance",
+          "decisionIfB": "The boiler is being operated beyond its written scheme's examination interval with no verified examination; operation should not continue without arranging an examination or otherwise addressing the lapse",
+          "decisionWhileUnresolved": "Continue efforts to confirm examination status with the insurer or through records while treating the boiler as not having a confirmed current examination for scheme-compliance purposes"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "overdue-examination",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "thermal-contact-inservice-boiler",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The boiler is currently in service and firing while its written scheme's fourteen-month examination interval appears exceeded — the last report on file is nineteen months old, and a claimed spring examination cannot be documented or confirmed by the insurer. Good operating signs (no leaks, normal gauges, a manual safety valve lift last week) speak to functional condition but do not establish that the required periodic structural/pressure examination occurred within scheme, so the examination-status gap remains a live, decision-relevant unknown. A secondary, lower-confidence thermal contact exposure exists simply because the unit is firing now, though no specific proximity or work-on-boiler fact was stated."
+    },
+    {
+      "callIndex": 14,
+      "arm": "REMEDIATED_224",
+      "caseId": "H7",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "29c3afc63354912ea8ecdd440c7adc5744ab521452be441030c3852e87f9ceef",
+      "wireSchemaIdentity": "837e67111aac47bd4b53c37517038f5c5b721a14242accc9c06b490aeb706583",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29409,
+      "outputTokens": 2479,
+      "costUsd": 0.083608,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-spring-exam",
+          "missingFact": "Whether a competent periodic examination of the boiler was actually carried out and passed within the scheme's required window (specifically, one that would supersede the report now nineteen months old).",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "A competent examination was in fact carried out in the spring and the boiler passed it, so a current valid examination exists even though its report is misplaced.",
+          "branchB": "No such examination was carried out (or it was carried out but the boiler did not clearly pass), so the boiler has gone well beyond the scheme's fourteen-month interval with no competent verification of its condition.",
+          "decisionIfA": "Treat the examination requirement as met pending recovery or reissue of the paperwork from the insurer; continued firing is supported by a confirmed recent competent examination, subject to obtaining written confirmation.",
+          "decisionIfB": "Treat the boiler as operating without a current periodic examination; arrange an urgent examination by the insurer/competent examiner and reassess whether firing should continue until that examination is completed.",
+          "decisionWhileUnresolved": "Contact the insurer immediately to confirm whether an examination was performed and what it found; until that is confirmed, do not rely on the unconfirmed belief as satisfying the scheme, and treat the examination status as outstanding."
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "overdue-examination",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "unverified-spring-examination",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The boiler is being fired and operated in service while the written scheme's periodic examination is overdue: the last report on file is nineteen months old against a fourteen-month required interval. The engineering manager's unverified belief that an examination happened in spring, with no report and no contact yet made with the insurer who performs the examinations, leaves genuinely open whether the vessel has in fact been competently examined more recently than the paper trail shows — that question is decision-critical because it changes whether this is a documentation gap or an unverified pressure vessel running with no recent competent check at all. Normal gauge readings, absence of visible leaks and a successful manual safety-valve lift last week are surface indications only and do not substitute for the scheme's periodic examination, which is intended to detect internal deterioration those checks cannot reveal."
+    },
+    {
+      "callIndex": 15,
+      "arm": "PREDECESSOR_210J",
+      "caseId": "H8",
+      "contractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "instructionIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "userPromptIdentity": "31b3682b0a5c38e17e15cb625387986502d3cb5e4224c6179dc87989f81fda19",
+      "wireSchemaIdentity": "dc3e544cdf05915e71cb8823f8f3a33eeaddff75ee79f9c53f1ca462d0146cba",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 27561,
+      "outputTokens": 1244,
+      "costUsd": 0.067562,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "solvent-vapor-exposure",
+          "assertedConditionState": "CONTROLLED",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "skin-contact-splash",
+          "assertedConditionState": "CONTROLLED",
+          "confidence": "LOW",
+          "requiresUserConfirmation": false
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The task of decanting solvent in a fume cupboard is a chemical/vapor exposure hazard by nature, but the observation describes the relevant controls as currently in their intended state: the sash is at the marked working height, the airflow certificate states face velocity within range, the low-flow alarm was function-tested and sounded correctly, and the technician is using gloves, spectacles, and closing the container between pours. No stated gap, failure, or current effect undermines any of these controls, so no candidate is raised as an active uncontrolled hazard and no decision-critical question arises from this observation."
+    },
+    {
+      "callIndex": 16,
+      "arm": "REMEDIATED_224",
+      "caseId": "H8",
+      "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+      "instructionIdentity": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+      "userPromptIdentity": "31b3682b0a5c38e17e15cb625387986502d3cb5e4224c6179dc87989f81fda19",
+      "wireSchemaIdentity": "dc3e544cdf05915e71cb8823f8f3a33eeaddff75ee79f9c53f1ca462d0146cba",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 29404,
+      "outputTokens": 1391,
+      "costUsd": 0.072718,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "solvent-vapor-inhalation-controlled",
+          "assertedConditionState": "CONTROLLED",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": false
+        },
+        {
+          "candidateKey": "dermal-eye-contact-solvent",
+          "assertedConditionState": "CONTROLLED",
+          "confidence": "LOW",
+          "requiresUserConfirmation": false
+        }
+      ],
+      "uncertaintyStatements": [
+        "No fact in the observation indicates the ventilation certificate, alarm test, sash position, PPE use, or container closure practice have failed or lapsed since being stated, so no current gap in these controls is established."
+      ],
+      "summary": "The observation describes a solvent-decanting task inside a fume cupboard with the sash at correct working height, a face velocity certificate within range, a low-flow alarm recently function-tested and currently silent, and the technician wearing gloves and spectacles with the container closed between pours. Each of these facts, as stated, indicates the relevant chemical/respiratory exposure controls are currently in their intended state rather than absent or failed, so no current uncontrolled hazard is established. No deterministic findings or governed records were supplied, and nothing in the text raises a decision-critical gap that would change what should be done today."
+    }
+  ]
+}

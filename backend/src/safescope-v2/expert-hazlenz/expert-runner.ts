@@ -34,10 +34,35 @@
 import {
   isRetryableExpertFailure,
   type ExpertProvider, type ExpertProviderFailureKind, type ExpertProviderResult,
+  type ExpertRequestUsage,
 } from './expert-provider';
 import type { ExpertAnalysisInput, ExpertTrace } from './expert-contract.types';
 import { normalizeExpertOutput, type ExpertNormalizationIssue } from './expert-normalization';
 import type { ExpertLayerInput } from './expert-authority-merge';
+
+/**
+ * One PROVIDER REQUEST, recorded immutably. §135 (R3).
+ *
+ * The retry replaces the RESPONSE the logical call uses. It must not erase the evidence that the
+ * first request happened: that request reached the provider, may have billed, and its failure kind
+ * is the only observation of how often the permanent path actually needs a retry. Before this
+ * existed, `trace.attempts` was a bare integer and the harness discarded even that, so
+ * `M13_PROVIDER_CALLABILITY` -- whose frozen denominator is "All attempted calls, every row, every
+ * repetition, retries included" -- could not be computed as specified.
+ */
+export interface ExpertAttemptRecord {
+  /** 0-based. Index 1 is by definition a retry, because the ceiling is one. */
+  attemptIndex: number;
+  isRetry: boolean;
+  ok: boolean;
+  failureKind: ExpertProviderFailureKind | null;
+  detail: string | null;
+  /** What the provider said it was, on THIS request. */
+  modelIdentity: string | null;
+  /** Set on the attempt that CAUSED a retry, so the cause survives the replacement. */
+  causedRetry: ExpertProviderFailureKind | null;
+  usage: ExpertRequestUsage | null;
+}
 
 export interface ExpertRunResult {
   /** Exactly what `mergeExpertIntelligence` consumes. */
@@ -47,6 +72,15 @@ export interface ExpertRunResult {
   /** Present when the boundary ran. Item-level issues appear even on a PRESENT layer. */
   issues: ExpertNormalizationIssue[];
   trace: ExpertTrace;
+  /** EVERY provider request this logical call issued, in order. Never fewer than one. */
+  attempts: ExpertAttemptRecord[];
+  /**
+   * Set when a retry was EARNED but not issued because a budget refused it.
+   *
+   * The first attempt's real outcome is preserved and returned unchanged. Nothing is fabricated
+   * into a success, and the suppression is visible rather than looking like a non-retryable failure.
+   */
+  retrySuppressed: { cause: ExpertProviderFailureKind; reason: string } | null;
 }
 
 export interface ExpertRunOptions {
@@ -57,6 +91,18 @@ export interface ExpertRunOptions {
   nowIso: string;
   /** Injected for the same reason: elapsed time must not vary between identical replays. */
   elapsedMs?: number;
+  /**
+   * Consulted BEFORE a retry request is issued. §135 (R1).
+   *
+   * ABSENT MEANS UNBOUNDED, which is the production default and leaves customer-path behaviour
+   * exactly as it was. The formal harness passes a gate that consults the frozen request ceiling,
+   * the global retry budget and the spend ceiling, so no formal retry can be issued outside them.
+   *
+   * The INITIAL request is not gated here: the harness owns the request counter and checks before
+   * it invokes this function at all. Between the two, every provider request in a formal run passes
+   * a check before it is issued.
+   */
+  mayIssueRetry?: () => { allowed: boolean; reason: string };
 }
 
 /** Classify a thrown transport error without letting it escape. */
@@ -82,6 +128,8 @@ export async function runExpertAnalysis(
   provider: ExpertProvider, input: ExpertAnalysisInput, options: ExpertRunOptions,
 ): Promise<ExpertRunResult> {
   let attempts = 0;
+  const attemptRecords: ExpertAttemptRecord[] = [];
+  let retrySuppressed: ExpertRunResult['retrySuppressed'] = null;
   const trace = (): ExpertTrace => ({
     providerId: provider.providerId,
     providerModelIdentity: null,
@@ -89,12 +137,37 @@ export async function runExpertAnalysis(
     totalMs: options.elapsedMs ?? 0,
   });
 
+  const record = (r: ExpertProviderResult, attemptIndex: number): void => {
+    attemptRecords.push({
+      attemptIndex,
+      isRetry: attemptIndex > 0,
+      ok: r.ok,
+      failureKind: r.ok ? null : r.kind,
+      detail: r.ok ? null : r.detail,
+      modelIdentity: r.ok ? r.modelIdentity : (r.usage?.modelIdentity ?? null),
+      causedRetry: null,
+      usage: r.usage ?? null,
+    });
+  };
+
   let result = await callOnce(provider, input);
   attempts += 1;
+  record(result, 0);
 
   if (!result.ok && isRetryableExpertFailure(result.kind)) {
-    result = await callOnce(provider, input);
-    attempts += 1;
+    const cause = result.kind;
+    const gate = options.mayIssueRetry?.() ?? { allowed: true, reason: '' };
+    // The cause is stamped on attempt 0 whether or not the retry is issued, so a suppressed retry
+    // and a taken one leave the same evidence about WHY one was earned.
+    attemptRecords[0].causedRetry = cause;
+    if (gate.allowed) {
+      result = await callOnce(provider, input);
+      attempts += 1;
+      record(result, 1);
+    } else {
+      // The first attempt's real outcome stands. Nothing is fabricated into a success.
+      retrySuppressed = { cause, reason: gate.reason };
+    }
   }
 
   if (!result.ok) {
@@ -106,6 +179,8 @@ export async function runExpertAnalysis(
       failure: { kind: result.kind, detail: result.detail },
       issues: [],
       trace: trace(),
+      attempts: attemptRecords,
+      retrySuppressed,
     };
   }
 
@@ -120,6 +195,8 @@ export async function runExpertAnalysis(
       failure: { kind: 'UNEXPECTED_MODEL_IDENTITY', detail },
       issues: [],
       trace: { ...trace(), providerModelIdentity: result.modelIdentity },
+      attempts: attemptRecords,
+      retrySuppressed,
     };
   }
 
@@ -136,6 +213,8 @@ export async function runExpertAnalysis(
       failure: null,
       issues: normalized.issues,
       trace: { ...trace(), providerModelIdentity: result.modelIdentity },
+      attempts: attemptRecords,
+      retrySuppressed,
     };
   }
 
@@ -144,5 +223,7 @@ export async function runExpertAnalysis(
     failure: null,
     issues: normalized.issues,
     trace: { ...trace(), providerModelIdentity: result.modelIdentity },
+    attempts: attemptRecords,
+    retrySuppressed,
   };
 }

@@ -1,0 +1,701 @@
+{
+  "provider": "anthropic",
+  "modelRequested": "claude-sonnet-5",
+  "modelResponded": [
+    "claude-sonnet-5"
+  ],
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "promptVersion": "hazlenz.expert.prompt.v4",
+  "thinking": "disabled",
+  "determinismControl": "NONE — temperature/top_p/top_k are removed on this model and there is no seed",
+  "callsAttempted": 7,
+  "callsCompletedClean": 7,
+  "ceilingCalls": 8,
+  "ceilingCostUsd": 3,
+  "stoppedEarly": null,
+  "inputTokens": 48424,
+  "outputTokens": 11466,
+  "latencyP50Ms": 20079,
+  "latencyMaxMs": 25589,
+  "actualCostUsd": 0.211508,
+  "routing": {
+    "TYPED_ROUTING_OPPORTUNITIES": 13,
+    "TYPED_ROUTING_HITS": 8,
+    "TYPED_ROUTING_MISSES": 2,
+    "TYPED_ROUTING_OVER_ROUTED": 3,
+    "EXPLANATION_ONLY_LOSSES": 0,
+    "byCollection": {
+      "expertHazardCandidates": {
+        "opportunities": 5,
+        "hits": 2,
+        "misses": 2,
+        "overRouted": 1
+      },
+      "decisionCriticalClarifications": {
+        "opportunities": 4,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 1
+      },
+      "crossHazardInsights": {
+        "opportunities": 3,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 1
+      },
+      "disagreements": {
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0
+      }
+    }
+  },
+  "grounding": {
+    "EVIDENCE_OPPORTUNITIES": 2,
+    "EVIDENCE_QUOTES_EMITTED": 9,
+    "EVIDENCE_QUOTES_EXACTLY_BOUND": 9,
+    "EVIDENCE_QUOTES_UNBINDABLE": 0,
+    "EVIDENCE_QUOTES_FABRICATED": 0,
+    "GROUNDED_TYPED_OBJECTS": 9,
+    "UNGROUNDED_TYPED_OBJECTS": 3
+  },
+  "groundingFixturesWithSupportingExactQuote": 1,
+  "groundingReady": false,
+  "gates": [
+    {
+      "id": "HG01",
+      "label": "hosted credential usable",
+      "verdict": "PASS",
+      "note": "7/7 calls authenticated"
+    },
+    {
+      "id": "HG02",
+      "label": "exact model callable",
+      "verdict": "PASS",
+      "note": "requested claude-sonnet-5"
+    },
+    {
+      "id": "HG03",
+      "label": "provider identity from response body",
+      "verdict": "PASS",
+      "note": "responded claude-sonnet-5"
+    },
+    {
+      "id": "HG04",
+      "label": "transport errors = 0 on intended-success calls",
+      "verdict": "PASS",
+      "note": "0 failures"
+    },
+    {
+      "id": "HG05",
+      "label": "responses parse",
+      "verdict": "PASS",
+      "note": "no MALFORMED_JSON"
+    },
+    {
+      "id": "HG06",
+      "label": "responses normalize through the adapter",
+      "verdict": "PASS",
+      "note": "forced tool_choice emit_expert_analysis"
+    },
+    {
+      "id": "HG07",
+      "label": "responses validate at the Expert boundary",
+      "verdict": "PASS",
+      "note": "PRESENT"
+    },
+    {
+      "id": "HG08",
+      "label": "zero-candidate clarification survives",
+      "verdict": "PASS",
+      "note": "R1 clar=4 cand=3"
+    },
+    {
+      "id": "HG09",
+      "label": "typed cross-hazard routing survives",
+      "verdict": "PASS",
+      "note": "R2 insights=2"
+    },
+    {
+      "id": "HG10",
+      "label": "candidate routing survives",
+      "verdict": "FAIL",
+      "note": "R4 candidates=0"
+    },
+    {
+      "id": "HG11",
+      "label": "multi-collection sibling routing survives",
+      "verdict": "PASS",
+      "note": "R5 cand=3 clar=4 ins=3"
+    },
+    {
+      "id": "HG12",
+      "label": "negative control not materially over-routed",
+      "verdict": "FAIL",
+      "note": "R6 over-routed=3"
+    },
+    {
+      "id": "HG13",
+      "label": "protected merge halves invariant",
+      "verdict": "PASS",
+      "note": "7/7 byte-identical, 0 invariant violations"
+    },
+    {
+      "id": "HG14",
+      "label": "token usage measurable",
+      "verdict": "PASS",
+      "note": "48424 in / 11466 out (provider-reported)"
+    },
+    {
+      "id": "HG15",
+      "label": "latency measured",
+      "verdict": "PASS",
+      "note": "p50 20079ms, max 25589ms"
+    },
+    {
+      "id": "HG16",
+      "label": "cost below cap",
+      "verdict": "PASS",
+      "note": "$0.2115 of $3.00"
+    },
+    {
+      "id": "HG17",
+      "label": "fabricated/unbindable evidence cannot cross as grounded",
+      "verdict": "PASS",
+      "note": "unbindable=0 fabricated=0"
+    },
+    {
+      "id": "HG18",
+      "label": "production/customer path untouched",
+      "verdict": "PASS",
+      "note": "no file outside expert-hazlenz* references the module"
+    }
+  ],
+  "terminal": "EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_INCONCLUSIVE — NO_EVALUATION_COHORT_SPEND_AUTHORIZED",
+  "EXPERT_HAZLENZ_PROVIDER_VALIDATED": false,
+  "EXPERT_HAZLENZ_CUSTOMER_ACTIVE": false,
+  "rows": [
+    {
+      "hostedCase": "H1+H2 basic structure + zero-candidate clarification",
+      "id": "R1",
+      "title": "ZERO-CANDIDATE CLARIFICATION",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZh8uXVfJajKDk6hrD43",
+      "latencyMs": 24895,
+      "promptTokens": 6875,
+      "outputTokens": 2658,
+      "cacheReadTokens": 0,
+      "costUsd": 0.040330000000000005,
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 4,
+        "insights": 2,
+        "disagreements": 1
+      },
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 4,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R1",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 2,
+        "exactlyBound": 2,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 2,
+        "ungroundedObjects": 1
+      }
+    },
+    {
+      "hostedCase": "H3 cross-hazard",
+      "id": "R2",
+      "title": "WET + ELECTRICAL",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZhAjUooahpiqBverekH",
+      "latencyMs": 20079,
+      "promptTokens": 6928,
+      "outputTokens": 2118,
+      "cacheReadTokens": 0,
+      "costUsd": 0.035036,
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 3,
+        "insights": 2,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R2",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 2,
+        "exactlyBound": 2,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 2,
+        "ungroundedObjects": 1
+      }
+    },
+    {
+      "hostedCase": "H4 additional plausible hazard",
+      "id": "R4",
+      "title": "EXTRA PLAUSIBLE HAZARD",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZhCDS6VYSEW17QKBhWr",
+      "latencyMs": 10134,
+      "promptTokens": 6922,
+      "outputTokens": 439,
+      "cacheReadTokens": 0,
+      "costUsd": 0.018234,
+      "issues": [
+        "CANDIDATE_MALFORMED",
+        "EXPLANATION_MALFORMED"
+      ],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 0,
+            "verdict": "INCORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 0,
+        "misses": 1,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R4",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H5 multi-collection",
+      "id": "R5",
+      "title": "MULTI-COLLECTION",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZhCxfsAcJXKm2XRHnKq",
+      "latencyMs": 25589,
+      "promptTokens": 6926,
+      "outputTokens": 2694,
+      "cacheReadTokens": 0,
+      "costUsd": 0.040792,
+      "issues": [],
+      "counts": {
+        "candidates": 3,
+        "clarifications": 4,
+        "insights": 3,
+        "disagreements": 1
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 4,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R5",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 2,
+        "exactlyBound": 2,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 2,
+        "ungroundedObjects": 1
+      }
+    },
+    {
+      "hostedCase": "H6 negative control",
+      "id": "R6",
+      "title": "EXPLANATION-ONLY NEGATIVE CONTROL",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZhEr63Y3pQEU86HX8yR",
+      "latencyMs": 14311,
+      "promptTokens": 6912,
+      "outputTokens": 1363,
+      "cacheReadTokens": 0,
+      "costUsd": 0.027454,
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 2,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 3,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "R6",
+        "isGroundingFixture": false,
+        "opportunities": 0,
+        "emitted": 1,
+        "exactlyBound": 1,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": null,
+        "groundedObjects": 1,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H7 exact evidence grounding",
+      "id": "H7",
+      "title": "EXACT EVIDENCE GROUNDING — overdue fall-protection anchor",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZhFuRFBD4yDjkQCbBLw",
+      "latencyMs": 20178,
+      "promptTokens": 6934,
+      "outputTokens": 1921,
+      "cacheReadTokens": 0,
+      "costUsd": 0.033077999999999996,
+      "issues": [],
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "H7",
+        "isGroundingFixture": true,
+        "opportunities": 1,
+        "emitted": 2,
+        "exactlyBound": 2,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": true,
+        "groundedObjects": 2,
+        "ungroundedObjects": 0
+      }
+    },
+    {
+      "hostedCase": "H8 second grounding control",
+      "id": "H8",
+      "title": "SECOND GROUNDING CONTROL — ventilation offline during vessel entry",
+      "ran": true,
+      "httpStatus": 200,
+      "failureKind": null,
+      "layerStatus": "PRESENT",
+      "respondedModel": "claude-sonnet-5",
+      "stopReason": "tool_use",
+      "requestId": "req_011CeZhHPcQvXx2gvkqNy4is",
+      "latencyMs": 7511,
+      "promptTokens": 6927,
+      "outputTokens": 273,
+      "cacheReadTokens": 0,
+      "costUsd": 0.016584,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 0,
+            "verdict": "INCORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 0,
+        "misses": 1,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "grounding": {
+        "fixtureId": "H8",
+        "isGroundingFixture": true,
+        "opportunities": 1,
+        "emitted": 0,
+        "exactlyBound": 0,
+        "unbindable": 0,
+        "fabricated": 0,
+        "supportsClaim": false,
+        "groundedObjects": 0,
+        "ungroundedObjects": 0
+      }
+    }
+  ]
+}

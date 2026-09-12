@@ -1,0 +1,311 @@
+{
+ "perCall": [
+  {
+   "rowId": "TR-A1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15498,
+      "outputTokens": 2332,
+      "costUsd": 0.054316,
+      "latencyMs": 29393,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 29393,
+   "costUsd": 0.054316,
+   "inputTokens": 15498,
+   "outputTokens": 2332,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-B1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 16395,
+      "outputTokens": 1154,
+      "costUsd": 0.04433,
+      "latencyMs": 17452,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17453,
+   "costUsd": 0.04433,
+   "inputTokens": 16395,
+   "outputTokens": 1154,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-B2",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15764,
+      "outputTokens": 866,
+      "costUsd": 0.040188,
+      "latencyMs": 13856,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 13857,
+   "costUsd": 0.040188,
+   "inputTokens": 15764,
+   "outputTokens": 866,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-B3",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15767,
+      "outputTokens": 764,
+      "costUsd": 0.039174,
+      "latencyMs": 12727,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 12727,
+   "costUsd": 0.039174,
+   "inputTokens": 15767,
+   "outputTokens": 764,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-B4",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15803,
+      "outputTokens": 865,
+      "costUsd": 0.040256,
+      "latencyMs": 13399,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 13399,
+   "costUsd": 0.040256,
+   "inputTokens": 15803,
+   "outputTokens": 865,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-C1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15746,
+      "outputTokens": 1592,
+      "costUsd": 0.047411999999999996,
+      "latencyMs": 20166,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 20167,
+   "costUsd": 0.047411999999999996,
+   "inputTokens": 15746,
+   "outputTokens": 1592,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-C2",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15764,
+      "outputTokens": 1256,
+      "costUsd": 0.044088,
+      "latencyMs": 17286,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17287,
+   "costUsd": 0.044088,
+   "inputTokens": 15764,
+   "outputTokens": 1256,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [
+    {
+     "code": "CLARIFICATION_LINK_UNRESOLVED",
+     "collection": "decisionCriticalClarifications",
+     "index": 0,
+     "detail": "decisionCriticalClarifications[0]: relatesToCandidateKey \"haz-2\" names no candidate emitted in this analysis; the link is stripped and the question is kept"
+    }
+   ],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-D1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15551,
+      "outputTokens": 2039,
+      "costUsd": 0.051491999999999996,
+      "latencyMs": 25166,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 25167,
+   "costUsd": 0.051491999999999996,
+   "inputTokens": 15551,
+   "outputTokens": 2039,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-E1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 15534,
+      "outputTokens": 1679,
+      "costUsd": 0.047858,
+      "latencyMs": 20889,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 20890,
+   "costUsd": 0.047858,
+   "inputTokens": 15534,
+   "outputTokens": 1679,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "TR-F1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 16206,
+      "outputTokens": 1197,
+      "costUsd": 0.044382000000000005,
+      "latencyMs": 16572,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 16572,
+   "costUsd": 0.044382000000000005,
+   "inputTokens": 16206,
+   "outputTokens": 1197,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  }
+ ]
+}

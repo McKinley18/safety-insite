@@ -1,0 +1,203 @@
+{
+  "operation": "§165 pre-spend preflight for the §164 12-call binding falsification experiment",
+  "ranAt": "2026-09-05T02:07:50.726Z",
+  "providerCalls": 0,
+  "costUsd": 0,
+  "FALSIFICATION_HARNESS_READY": false,
+  "experiment": {
+    "cases": [
+      {
+        "rowId": "HS-A1",
+        "caseId": "VC-08"
+      },
+      {
+        "rowId": "HS-E1",
+        "caseId": "VC-04"
+      }
+    ],
+    "drawsPerCase": 6,
+    "maxProviderRequests": 12,
+    "maxTokensPerCall": 4000,
+    "spendCeilingUsd": 0.3,
+    "retryBudget": 0,
+    "rerunBudget": 0,
+    "baseline": "§163's 20 draws, frozen — no new baseline is purchased"
+  },
+  "frozenRequests": [
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "semanticRequestSha256": "d9ba1dc6fb7e45590e747111d855a3d0d4bd0190b7c227e3256bb51fb7351809"
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "semanticRequestSha256": "f89ec76bbaa7430df4e4be6ed738ee221b87f59b4073247d8454802c8ad791e3"
+    }
+  ],
+  "worstCaseSpendUsd": 0.59798,
+  "expectedSpendUsdAtSection163MeasuredMean": 0.25231,
+  "costCapFinding": "The §164 design states ≈$0.30 for 12 calls, which is the EXPECTED cost at §163's measured mean ($0.25231). The prospective worst case at the 4000-token output ceiling is $0.59798. Every spend gate on this programme is evaluated BEFORE a request against the worst case that request could cost, so the published cap is not a usable prospective ceiling. Raising it to at least $0.60, or lowering the output ceiling, is a product-owner decision and is not taken here.",
+  "gates": [
+    {
+      "id": "A.1 the §156 blinded packet is reused UNCHANGED",
+      "pass": true,
+      "detail": "75d64197583092ed8ac826a1…"
+    },
+    {
+      "id": "A.2 verifier instruction v2 is BYTE-IDENTICAL — no prompt experiment, no v3",
+      "pass": true,
+      "detail": "hazlenz.expert.verifier-instruction.v2 ffc63119b5a30ec88e09a078…"
+    },
+    {
+      "id": "A.3 verifier contract v2 is the one under test",
+      "pass": true,
+      "detail": "hazlenz.expert.verifier.v2"
+    },
+    {
+      "id": "A.4 the v13 first-pass prompt module is byte-identical — no v14, no v15",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "A.5 the hardened v9 fixture is byte-identical",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "A.6 both authoritative cases are present and are the only two",
+      "pass": true,
+      "detail": "HS-A1/VC-08, HS-E1/VC-04"
+    },
+    {
+      "id": "B.1 frozen human targets match §162 and their cues are not satisfied by the observations",
+      "pass": true,
+      "detail": "hazlenz.expert.human-semantic-targets.2026-09-04; deep-equal to §162; cues not satisfied by either observation"
+    },
+    {
+      "id": "B.2 truth is not broadened — the two authoritative rows and no others",
+      "pass": true,
+      "detail": "HS-A1, HS-E1"
+    },
+    {
+      "id": "C.1 no draw is shown another draw's output to judge",
+      "pass": true,
+      "detail": "8 verdict/output tokens, 0 present in either case payload"
+    },
+    {
+      "id": "C.2 the displaced/invalid split is unassignable by code",
+      "pass": true,
+      "detail": "hazlenz.expert.verifier.semantic-outcome.v2; 4 members require human authority"
+    },
+    {
+      "id": "C.3 owed-target recall is independent of clarification validity",
+      "pass": true,
+      "detail": "VALID_BUT_TARGET_DISPLACED is a recall MISS and not a precision defect"
+    },
+    {
+      "id": "D.VC-08 no evaluation-truth artefact anywhere in the request",
+      "pass": true,
+      "detail": "9 patterns, 0 matches"
+    },
+    {
+      "id": "D.VC-04 no evaluation-truth artefact anywhere in the request",
+      "pass": true,
+      "detail": "9 patterns, 0 matches"
+    },
+    {
+      "id": "D.3 each case has ONE frozen semantic request hash, reused for all six of its draws",
+      "pass": true,
+      "detail": "VC-08 d9ba1dc6fb7e4559…  VC-04 f89ec76bbaa7430d…"
+    },
+    {
+      "id": "D.4 no sampling or determinism control is introduced",
+      "pass": true,
+      "detail": "none present"
+    },
+    {
+      "id": "E.1 12 requests, zero retries, zero reruns",
+      "pass": true,
+      "detail": "2 cases × 6 draws; no retry path is designed"
+    },
+    {
+      "id": "E.2 the PROSPECTIVE worst case is inside the design's $0.30 cap",
+      "pass": false,
+      "detail": "worst case $0.59798 vs cap $0.30; §163-measured expected cost $0.25231. §164's $0.30 is the EXPECTED figure, not a prospective worst-case bound"
+    },
+    {
+      "id": "E.3 the output ceiling is adequate and unchanged from §158/§163",
+      "pass": true,
+      "detail": "4000; the largest completed verifier-v2 output observed is 1525 tokens"
+    },
+    {
+      "id": "E.4 the runtime call cap this experiment exercises is the bounded one",
+      "pass": true,
+      "detail": "2 draws per analysis inside a 5-call bounded path"
+    },
+    {
+      "id": "E.5 the raw-preservation store is empty or absent",
+      "pass": true,
+      "detail": "clean"
+    },
+    {
+      "id": "E.6 the frozen formal invocation count is intact",
+      "pass": true,
+      "detail": "195, immutable"
+    },
+    {
+      "id": "E.7 this preflight cannot issue a request",
+      "pass": true,
+      "detail": "no network call, no credential read, no HTTP client"
+    },
+    {
+      "id": "F.1 the frozen v2 contract REFUSES an additive verdict (bind + nominate together)",
+      "pass": true,
+      "detail": "refused with [NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE]"
+    },
+    {
+      "id": "F.2 the frozen v2 response schema has no field in which to declare a binding",
+      "pass": true,
+      "detail": "schema fields: verdict, rationale, aboutUnresolvedFactRef, clarificationSourceMode, proposedClarification, nominatedFact"
+    },
+    {
+      "id": "F.3 the frozen v2 instruction contains no binding step to execute",
+      "pass": true,
+      "detail": "7 binding tokens, 0 present"
+    },
+    {
+      "id": "F.4 the binding-enabled arm is deliverable under frozen material",
+      "pass": false,
+      "detail": "NOT DELIVERABLE — the manipulation requires a schema field and an instruction step that do not exist in frozen v2, and Phase 13 forbids creating them in this operation"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "E.2 the PROSPECTIVE worst case is inside the design's $0.30 cap",
+      "detail": "worst case $0.59798 vs cap $0.30; §163-measured expected cost $0.25231. §164's $0.30 is the EXPECTED figure, not a prospective worst-case bound"
+    },
+    {
+      "id": "F.4 the binding-enabled arm is deliverable under frozen material",
+      "detail": "NOT DELIVERABLE — the manipulation requires a schema field and an instruction step that do not exist in frozen v2, and Phase 13 forbids creating them in this operation"
+    }
+  ],
+  "expressibilityFinding": {
+    "additiveVerdictAdmitted": false,
+    "additiveVerdictRefusalCodes": [
+      "NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE"
+    ],
+    "additiveVerdictRefusalDetail": [
+      "SUPPLIED_FACT mode may not carry a nomination"
+    ],
+    "schemaFields": [
+      "verdict",
+      "rationale",
+      "aboutUnresolvedFactRef",
+      "clarificationSourceMode",
+      "proposedClarification",
+      "nominatedFact"
+    ],
+    "instructionBindingTokensPresent": [],
+    "conclusion": "the frozen v2 contract and schema cannot express a clarification that binds a supplied owed fact AND carries an additional nomination. Falsifier C — additive nomination retention — is therefore not measurable under frozen material, and neither is the \"binding required\" manipulation falsifier B depends on.",
+    "remediationRequired": "an authorized revision of the verifier instruction and response schema that adds a binding declaration and permits an additive nomination. §165 Phase 13 explicitly forbids changing verifier instruction v2 or creating a v3 in this operation, so the remediation is the next authorization rather than a step this operation may take."
+  }
+}

@@ -1,0 +1,435 @@
+{
+  "section": "252",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "admissionIdentity": {
+    "version": "hazlenz.expert.252.structural-admission.v1",
+    "outcomes": [
+      "ADMIT",
+      "REFUSE",
+      "PRESERVE_UNRESOLVED"
+    ],
+    "conformanceCodes": [
+      "OUTPUT_NOT_AN_OBJECT",
+      "REQUIRED_FIELD_ABSENT",
+      "FIELD_TYPE_DOES_NOT_MATCH_CONTRACT",
+      "NULL_WHERE_CONTRACT_FORBIDS_NULL",
+      "ENUM_VALUE_NOT_A_MEMBER",
+      "CONST_VALUE_MISMATCH",
+      "PROPERTY_NOT_DECLARED_BY_CONTRACT",
+      "NO_UNION_BRANCH_SATISFIED",
+      "STRING_SHORTER_THAN_CONTRACT_REQUIRES",
+      "ARRAY_SHORTER_THAN_CONTRACT_REQUIRES",
+      "UNRECOGNISED_CONTRACT_NODE"
+    ],
+    "validatesWholeOutputAgainstTheContract": true,
+    "validatesUnionBranches": true,
+    "validatesNullability": true,
+    "closesEveryObjectNode": true,
+    "delegatesNormalizationTo235": true,
+    "composesNoProjectionOfItsOwn": true,
+    "onePipelineCompositionSharedByProductionAndValidation": true,
+    "editsNoProtectedModule": true,
+    "inventsSemanticFields": false,
+    "selectsADriverRole": false,
+    "infersAProperty": false,
+    "createsARequiredControl": false,
+    "readsProseForMeaning": false,
+    "repairsMalformedOutput": false
+  },
+  "admittedThrough": "runExpertHazLenzAnalysis, the production entry point",
+  "wireSchemaSha": "5bebad3e2a06fafb43b31f3d040311a6770b8fa468eaaa30af4a410b2624998c",
+  "closedSchemaSha": "d6e39c3dcc69712b48f9876ffc83818813eb9b1a11ce82f7cb2253d3e5b0e768",
+  "closureMatchesTransportStrictWrapper": true,
+  "validatorAgreementWithSection235": {
+    "probes": 18,
+    "disagreements": [],
+    "note": "run against the §239 schema, which carries no union and no nullable field, so it is entirely inside the subset §235 models. A disagreement would mean §252 is a second and laxer standard rather than a superset."
+  },
+  "summary": {
+    "fixtures": 18,
+    "passed": 18,
+    "failed": 0,
+    "unsafeMalformedOutputsAdmitted": 0,
+    "semanticInventionEvents": 0,
+    "allGreen": true
+  },
+  "rows": [
+    {
+      "id": "F00",
+      "shape": "valid complete output",
+      "expected": "ADMIT",
+      "observed": "ADMIT",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "the baseline every other fixture mutates; if this does not admit the matrix proves nothing",
+      "status": "COMPLETE",
+      "conformanceCodes": [],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "7832fbf80a2fe146bd3f76b174ecb9e605879b27d6143cd475b3292a480299fa"
+    },
+    {
+      "id": "F01",
+      "shape": "missing required top-level field",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a required root field is absent; nothing is supplied for it",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "REQUIRED_FIELD_ABSENT"
+      ],
+      "postureCodes": [
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "1cf6a11061c7cc7a78990deee7cf1ad4cb3bfcadb8070a69fc23d2ba88aa59be"
+    },
+    {
+      "id": "F02",
+      "shape": "null where forbidden",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "the contract declares a string and the output carries null",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "NULL_WHERE_CONTRACT_FORBIDS_NULL"
+      ],
+      "postureCodes": [
+        "POSTURE_NARRATIVE_MISSING"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "1149850674b3e88d6e5dfbbc38884456a3eb1a1ea7842da88c9e66882b570794"
+    },
+    {
+      "id": "F03",
+      "shape": "wrong primitive type",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a boolean field arrives as a string",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "FIELD_TYPE_DOES_NOT_MATCH_CONTRACT"
+      ],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "a5fa5024a79ada55d7710580d1402be6ea6b72956fce52221cab43e4975083e4"
+    },
+    {
+      "id": "F04",
+      "shape": "unknown enum member",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a candidate state outside the governed vocabulary",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "ENUM_VALUE_NOT_A_MEMBER"
+      ],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "536aa11ed082bf57ccd2f534216e29dda8d2925e33918d8514983b85df9877b4"
+    },
+    {
+      "id": "F05",
+      "shape": "invalid K6 role/carrier pair",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "the follow-up role on a hazard candidate is one of the four inadmissible pairs",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "NO_UNION_BRANCH_SATISFIED"
+      ],
+      "postureCodes": [
+        "DECLARATION_NOT_COVERED",
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "272610ff6f73a35bdfc5e2364561401b99261462423fc873afd6bfa83a7eba0f"
+    },
+    {
+      "id": "F06",
+      "shape": "malformed roleJustification",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "the justification is a string rather than the structured object the contract declares",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "NO_UNION_BRANCH_SATISFIED"
+      ],
+      "postureCodes": [],
+      "roleJustificationCodes": [
+        "ROLE_JUSTIFICATION_MALFORMED"
+      ],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "5d5eebf5bd95e2aa5f417669e07fbf732ad5f0a0ef7571d00662e4f718408309"
+    },
+    {
+      "id": "F07",
+      "shape": "missing decision-critical justification member",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "whyDecisionMaterial is absent from a justification the contract requires it in",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "NO_UNION_BRANCH_SATISFIED"
+      ],
+      "postureCodes": [],
+      "roleJustificationCodes": [
+        "JUSTIFICATION_REQUIRED_FIELD_EMPTY"
+      ],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "0488e7092a136feb9465133ab33423aed79428a85261b98da0cce174ee7cc481"
+    },
+    {
+      "id": "F08",
+      "shape": "invalid driver-role reference",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a basis entry names a candidateKey and a declarationId that do not exist",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [],
+      "postureCodes": [
+        "POSTURE_BASIS_REF_UNRESOLVED",
+        "ACTIVE_CANDIDATE_NOT_COVERED"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "b049081b36157e62008c2913589a10478f077e6b0210fcb724edb0b9b2096155"
+    },
+    {
+      "id": "F09",
+      "shape": "inconsistent posture / driver relation",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a cessation driver under a posture that permits continued work",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [],
+      "postureCodes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "d847288dfeb9f9673fd2d3575c6f97ce44f1225bed002d0f1043852140e42ac2"
+    },
+    {
+      "id": "F10",
+      "shape": "missing required-control target",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a controls driver names a discharging control that is not among the model's own controls",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [],
+      "postureCodes": [],
+      "roleJustificationCodes": [
+        "DISCHARGING_CONTROL_NOT_IN_REQUIRED_CONTROLS"
+      ],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "8fe444317e8b4342e4c97cb774605c8e850fa2ef52ac3418217e10a31f059bec"
+    },
+    {
+      "id": "F11",
+      "shape": "duplicate declaration identity",
+      "expected": "ADMIT",
+      "observed": "ADMIT",
+      "expectedContainedDeclarationRefusals": 1,
+      "observedContainedDeclarationRefusals": 1,
+      "pass": true,
+      "why": "the second copy is refused as DUPLICATE_DECLARATION_ID and contained; the first copy already carries the identified property into canonical state, so nothing is lost and nothing is preserved",
+      "status": "COMPLETE",
+      "conformanceCodes": [],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [
+        "DUPLICATE_DECLARATION_ID"
+      ],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "cad58e8ba06eda7646be6229b2b1d9a247246bae15947d3fe0780c6871917ed1"
+    },
+    {
+      "id": "F12",
+      "shape": "malformed evidence relationship",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a candidate evidence member is missing its quotedText",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "REQUIRED_FIELD_ABSENT"
+      ],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "181e0afacf52ff255ff96a15904b6332236545e058f5b2a8395b3562c9bf64c2"
+    },
+    {
+      "id": "F13",
+      "shape": "malformed authority-bearing field",
+      "expected": "PRESERVE_UNRESOLVED",
+      "observed": "PRESERVE_UNRESOLVED",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 1,
+      "pass": true,
+      "why": "the declaration names a source id no supplied source carries, so the declaration cannot be admitted; the identified property survives",
+      "status": "COMPLETE",
+      "conformanceCodes": [],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [
+        "EVIDENCE_SPAN_NOT_VERBATIM"
+      ],
+      "semanticInventions": [],
+      "admittedFactCount": 0,
+      "fixtureSha": "a6ea8da2793c6521d23452e9c07cbe1e5a62d90ab9fe7acc6f1201e39d07fe0e"
+    },
+    {
+      "id": "F14",
+      "shape": "placeholder / no-content result",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "the §243 C7 and M5 shape: a tool input whose only key is a schema artifact",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "REQUIRED_FIELD_ABSENT",
+        "PROPERTY_NOT_DECLARED_BY_CONTRACT"
+      ],
+      "postureCodes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 0,
+      "fixtureSha": "b542f07829c475dbefba0e72c3bb4c948afe5636dca646baa9133fd30c3031c4"
+    },
+    {
+      "id": "F15",
+      "shape": "truncated partial object",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "generation stopped mid-analysis; the posture and three root fields never arrived",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "REQUIRED_FIELD_ABSENT"
+      ],
+      "postureCodes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 0,
+      "fixtureSha": "38b3c6522f806b8b43260d328d9f4fcadbde6ce97fe2c910f14e5be2682e5902"
+    },
+    {
+      "id": "F16",
+      "shape": "undeclared property injected",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a property the contract does not declare, which non-strict transport no longer refuses",
+      "status": "FIRST_PASS_REFUSED",
+      "conformanceCodes": [
+        "PROPERTY_NOT_DECLARED_BY_CONTRACT"
+      ],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "5c1c6e44f4c8bffbb2fafe8b5831d68f95d9c217a7fb57a33b1c1b2ab94ccc35"
+    },
+    {
+      "id": "F17",
+      "shape": "structured field transported as a JSON string",
+      "expected": "ADMIT",
+      "observed": "ADMIT",
+      "expectedContainedDeclarationRefusals": null,
+      "observedContainedDeclarationRefusals": 0,
+      "pass": true,
+      "why": "a container anomaly §235 can undo with certainty; the content is untouched and the unwrapped value satisfies the contract exactly",
+      "status": "COMPLETE",
+      "conformanceCodes": [],
+      "postureCodes": [],
+      "roleJustificationCodes": [],
+      "declarationRefusalCodes": [],
+      "semanticInventions": [],
+      "admittedFactCount": 1,
+      "fixtureSha": "6cdc5477a8881377fc95f16dedfee663158122f38b867076b2cb04f0fd912845"
+    }
+  ]
+}

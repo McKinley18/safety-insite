@@ -1,0 +1,315 @@
+{
+  "manifestVersion": "hazlenz.expert.verifier-truth.v1",
+  "frozenBeforeAnyProviderRequest": true,
+  "derivedFrom": "the frozen hardened v9 authored truth (digest 434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194), reviewed in §151, plus what the stored first pass actually did",
+  "LIMITATION": "AUTHORED BY THE SAME MODEL FAMILY THAT WILL BE GRADED. Errors may be correlated. Deriving from frozen authored truth limits this and does not eliminate it. Every accuracy figure in §156 carries this caveat.",
+  "primaryDenominator": 11,
+  "primaryDecisionCriticalCases": 4,
+  "primaryLegitimateSilenceCases": 7,
+  "excludedFromPrimaryDenominator": 4,
+  "abstainConvention": "ABSTAIN is never the correct verdict on a primary case. It is reported separately, counted as a failure to recover on the decision-critical side, and NOT counted as a manufactured question on the legitimate-silence side.",
+  "entries": [
+    {
+      "caseId": "VC-08",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "semanticallyEquivalentVerdicts": [],
+      "missingFact": "whether the burner has a functioning flame-failure device",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "acceptableSelectors": [
+        "whether a flame-failure device is fitted to the burner and is functioning",
+        "whether the burner has been proved to shut off on loss of flame"
+      ],
+      "selectorKeywordSets": [
+        [
+          "flame",
+          "fail"
+        ],
+        [
+          "shut",
+          "flame"
+        ],
+        [
+          "flame-failure"
+        ]
+      ],
+      "whyDecisionCritical": "If no device is fitted or it has been bypassed, the dryer must be shut down now: unburnt fuel discharging into a dust-laden plenum is an explosion sequence with no interruption. If it is fitted and proved, drying continues. The observation establishes only that the device is behind a shroud and cannot be SEEN, and an obstructed sightline is not an inspection.",
+      "whyNotDecisionCritical": null,
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-04",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "semanticallyEquivalentVerdicts": [],
+      "missingFact": "whether the guard interlock was function-tested after the overnight rotor tooth change",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "acceptableSelectors": [
+        "whether the guard interlock was function-tested after the rotor work",
+        "whether the rotor was proved to stop when the guard is opened"
+      ],
+      "selectorKeywordSets": [
+        [
+          "interlock",
+          "test"
+        ],
+        [
+          "interlock",
+          "prov"
+        ],
+        [
+          "rotor",
+          "stop"
+        ],
+        [
+          "function",
+          "test"
+        ]
+      ],
+      "whyDecisionCritical": "If no function test was made after the guard was refitted, the debarker must come out of service until the interlock is proved, because nothing else stands between an opened guard and a turning rotor. A closed guard and a present switch look identical whether the interlock was tested or not.",
+      "whyNotDecisionCritical": null,
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-02",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "semanticallyEquivalentVerdicts": [],
+      "missingFact": "whether the load was given a cooling hold appropriate to its contents before the door opened",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "acceptableSelectors": [
+        "whether the load was given a cooling hold before the door was opened",
+        "whether this was a liquid cycle requiring a cooling hold",
+        "whether the load temperature was checked before the door was opened"
+      ],
+      "selectorKeywordSets": [
+        [
+          "cooling",
+          "hold"
+        ],
+        [
+          "liquid",
+          "cycle"
+        ],
+        [
+          "load",
+          "temperature"
+        ],
+        [
+          "cool",
+          "before"
+        ]
+      ],
+      "whyDecisionCritical": "If no cooling hold ran, the door must be closed again and the load left to cool, because superheated liquid in sealed containers can boil violently when moved. A chamber gauge at zero is a statement about the CHAMBER, not about liquid inside sealed bottles.",
+      "whyNotDecisionCritical": null,
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-13",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "semanticallyEquivalentVerdicts": [],
+      "missingFact": "whether the load was given a cooling hold appropriate to its contents before the door opened",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "acceptableSelectors": [
+        "whether the load was given a cooling hold before the door was opened",
+        "whether this was a liquid cycle requiring a cooling hold",
+        "whether the load temperature was checked before the door was opened"
+      ],
+      "selectorKeywordSets": [
+        [
+          "cooling",
+          "hold"
+        ],
+        [
+          "liquid",
+          "cycle"
+        ],
+        [
+          "load",
+          "temperature"
+        ],
+        [
+          "cool",
+          "before"
+        ]
+      ],
+      "whyDecisionCritical": "Same observation as VC-02, a different draw. The alarm not sounding is what a correct cycle and a dead alarm both produce; neither reaches the cooling hold.",
+      "whyNotDecisionCritical": null,
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-09",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "The retained unknown is how many tyres are changed per shift. The control is a physical restraint cage in correct use, with the operator outside and to one side and the bay clear. Frequency scales exposure but selects no different action: the cage is the control at any rate, and no plausible figure makes the current arrangement inadequate.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-12",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "The retained unknown is the fryer make and oil capacity. The oil is stated cold, the drain is used as designed into a positioned bin in a coned area, with gauntlets and apron worn. Capacity scales volume but selects no different action, and the thermal condition that would make bin capacity decision-critical is stated absent.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-07",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "The retained unknown is whether oil has spilled onto the floor. The control for exactly that contingency — a coned area around the drain point — is stated present and observed, so the answer selects no different action at this task.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-01",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "The retained unknowns are whether the drained oil retains residual heat and whether the coning reflects a realised spill. The first is settled by the observation itself, which states the fryer is switched off and cold; the second is answered by a control already in place whichever way it falls.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-05",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "The retained unknown is cutting duration and quantity. Every control duration would bear on is already observed in use: water suppression running with visible water at the blade, a fitted FFP3, hearing protection, open air, fifteen metres to the nearest person. A longer or shorter task selects no different action at this cut.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-10",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "Same observation as VC-05, a different draw. Duration alone is magnitude; every control it would govern is stated present and in use.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-15",
+      "inPrimaryDenominator": true,
+      "correctVerdict": "NO_CLARIFICATION_REQUIRED",
+      "semanticallyEquivalentVerdicts": [
+        "VERIFIED_AS_IS"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": "Same observation as VC-05, a different draw. The retained unknown is cumulative exposure duration, which refines severity and changes nothing about what is done now.",
+      "exclusionReason": null
+    },
+    {
+      "caseId": "VC-03",
+      "inPrimaryDenominator": false,
+      "correctVerdict": "ABSTAIN_ACCEPTABLE",
+      "semanticallyEquivalentVerdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "VERIFIED_AS_IS",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": null,
+      "exclusionReason": "The model retained the ABSENCE OF A NAMED CONTROL — ignition-source and vapour-concentration controls in a spray booth — which the authored FORBIDDEN rationale never considered (it addresses breathing air and extract testing). Concluding the answer changes nothing would require judging that a verified extract renders ignition-source control non-decision-critical, which the observation text does not establish and the standard governing spray areas names specifically."
+    },
+    {
+      "caseId": "VC-14",
+      "inPrimaryDenominator": false,
+      "correctVerdict": "ABSTAIN_ACCEPTABLE",
+      "semanticallyEquivalentVerdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "VERIFIED_AS_IS",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": null,
+      "exclusionReason": "Same observation and same retained control-absence as VC-03, a different draw."
+    },
+    {
+      "caseId": "VC-11",
+      "inPrimaryDenominator": false,
+      "correctVerdict": "ABSTAIN_ACCEPTABLE",
+      "semanticallyEquivalentVerdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "VERIFIED_AS_IS",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": null,
+      "exclusionReason": "Same observation and same retained control-absence as VC-03, a different draw. This draw also retains the coating type (solvent- vs water-based), which bears on the same unadjudicated question."
+    },
+    {
+      "caseId": "VC-06",
+      "inPrimaryDenominator": false,
+      "correctVerdict": "ABSTAIN_ACCEPTABLE",
+      "semanticallyEquivalentVerdicts": [
+        "NO_CLARIFICATION_REQUIRED",
+        "VERIFIED_AS_IS",
+        "ADD_OR_REPLACE_CLARIFICATION"
+      ],
+      "missingFact": null,
+      "affectedDecision": null,
+      "acceptableSelectors": null,
+      "selectorKeywordSets": null,
+      "whyDecisionCritical": null,
+      "whyNotDecisionCritical": null,
+      "exclusionReason": "The model retained whether the inflation airline carries a pressure-limiting or shutoff device. The authored FORBIDDEN rationale addresses task FREQUENCY, not this equipment. The standard governing rim-wheel servicing names in-line inflation equipment specifically, so asserting that its absence changes no current action would exceed both the authored truth and the observation text."
+    }
+  ]
+}

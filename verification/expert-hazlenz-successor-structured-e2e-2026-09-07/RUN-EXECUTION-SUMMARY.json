@@ -1,0 +1,26 @@
+{
+  "artifact": "SECTION_199_RUN_EXECUTION_SUMMARY",
+  "preregistrationSha256": "ddd6f63d56de4e6e62037457bed06b3de59b1100d169ec1b28d427d6f3d4fea4",
+  "firstPassCallsMade": 12,
+  "projectedFactsAvailableForVerification": 8,
+  "verifierCallsAttempted": 8,
+  "totalProviderCallsAttempted": 20,
+  "HARD_TOTAL_CALL_CEILING": 36,
+  "stopReason": null,
+  "circuitBreaker": {
+    "tripped": false,
+    "trippedOnSignature": null
+  },
+  "unverifiedProjectedFacts": [],
+  "unverifiedNote": "every projected fact was verified",
+  "verifierPhaseSpendAccounting": {
+    "actualProviderSpendUsd": 0.19872,
+    "budgetReservedUsd": 0.19872,
+    "callsAttempted": 8,
+    "callsWithNoProviderUsage": 0,
+    "syntheticReservationUsd": 0,
+    "accountingRule": "ACTUAL SPEND = provider-returned usage only; a call reporting no usage adds zero. BUDGET RESERVED = actual spend plus the frozen worst case for every call that reported no usage. The reserved figure governs the ceiling and is never reported as money spent."
+  },
+  "VERIFIER_PHASE_ACTUAL_SPEND_USD": 0.19872,
+  "note": "this summary covers the VERIFIER phase ledger only. First-pass spend is in FIRST-PASS-EXECUTION-SUMMARY.json and the two are added in RUN-SUMMARY.json."
+}

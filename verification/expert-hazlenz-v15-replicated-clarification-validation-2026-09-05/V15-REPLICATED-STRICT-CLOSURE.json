@@ -1,0 +1,189 @@
+{
+  "operation": "§179 strict adjudication closure",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_V15_REPLICATED_VALIDATION_CLOSED — CLARIFICATION_SETTLEMENT_ARCHITECTURE_REVIEW_AUTHORIZATION_REQUIRED",
+  "PRE_CLOSURE_INTEGRITY": "INTACT",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "sourceCodeChanges": 0,
+
+  "integrityVerification": {
+    "script": "section-179-strict-closure-recompute.py",
+    "howVerified": "every hash recomputed from the actual file bytes; the authorization's expected values compared only after recomputation and never used as inputs",
+    "frozenRowHashes": "PASS — all ten row texts recomputed from the blinded packet agree with the §174 freeze (hash and charCount), the §174 adjudication binding and the §179 preregistration",
+    "reviewPacketFiles": "PASS — both blinded packets unchanged since the §174 freeze",
+    "frozenTruth": "PASS — the §174 record, the §179 preregistration and all thirty run records agree on 10/10 rows; five REQUIRED, five SILENCE",
+    "preregistrationHash": "PASS — 8ea7e8499d1eda68616af937be250bb3cf25c01bf434b90f44bcbe7a4e6870f9 unchanged",
+    "v15PromptIdentity": "PASS — every one of the thirty executions carries hazlenz.expert.prompt.v15 and SYSTEM_PROMPT_SHA256 20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979, matching the preregistration",
+    "executedOrder": "PASS — the executed sequence is exactly the preregistered frozen order, position by position",
+    "rawRunRecords": "PASS — 30 executions, all normalized VALID, 0 contract failures, 0 provider errors, raw output persisted on every execution; cost, prompt tokens and output tokens all recompute from per-execution telemetry",
+    "strictPacket": "PASS — every packet observation hashes to the frozen row text and every packet question is byte-identical to its run record, so the product owner adjudicated exactly what was executed",
+    "verdictScope": "PASS — a verdict was recorded for exactly the twelve emitting REQUIRED executions and no others",
+    "mechanicalSilenceResults": "PASS — recomputed independently and unchanged from the run summary"
+  },
+
+  "strictAdjudications": {
+    "basis": "one verdict per EXECUTION, not per row, because replicates of the same row produced textually different questions",
+    "HR-01": { "replicate1": true, "replicate2": true, "replicate3": true },
+    "HR-06": { "replicate1": true, "replicate2": true, "replicate3": true },
+    "HR-08": { "replicate1": true, "replicate2": true, "replicate3": true },
+    "HR-09": { "replicate1": true, "replicate2": true, "replicate3": true },
+    "confidence": "HIGH for all twelve",
+    "HR-04": {
+      "value": false,
+      "replicates": [1, 2, 3],
+      "reason": "no clarification was emitted on any replicate, so nothing could address the owed fact. These are mechanical strict failures, not adjudicated emissions."
+    }
+  },
+  "AI_ASSISTED_STRICT_ADJUDICATION": true,
+  "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+  "aiAssistanceDisclosure": "GPT-5.6 Sol reviewed all twelve exact REQUIRED execution outputs before product-owner finalization, and the product owner agrees with these judgments. This disclosure travels with every figure derived from these verdicts and must never be described as AI-free independent human adjudication.",
+
+  "FINAL_METRICS": {
+    "REQUIRED_STRICT_PASS": { "fraction": "12/15", "decimal": 0.8 },
+    "SILENCE_PASS": { "fraction": "12/15", "decimal": 0.8, "exact": true },
+    "OVERALL_EXECUTION_ACCURACY": { "fraction": "24/30", "decimal": 0.8 },
+    "reconciliation": "all three recomputed from the thirty execution records plus the recorded verdicts, then compared with the authorization's expected values; agreement is exact",
+    "warning": "these three figures are not a summary of the instrument's behaviour. See stabilityClasses — collapsing seven stable-correct rows, one stable-incorrect row and two unstable rows into 0.80 hides the only findings that matter."
+  },
+
+  "perRowSemanticCorrectness": {
+    "HR-01": "3/3", "HR-02": "3/3", "HR-03": "3/3", "HR-04": "0/3", "HR-05": "1/3",
+    "HR-06": "3/3", "HR-07": "2/3", "HR-08": "3/3", "HR-09": "3/3", "HR-10": "3/3",
+    "WITHIN_ROW_DISAGREEMENT_COUNT": 2,
+    "disagreeingRows": ["HR-05", "HR-07"]
+  },
+
+  "stabilityClasses": {
+    "instruction": "recorded separately and never collapsed into a single accuracy percentage",
+    "STABLE_CORRECT_ROWS": ["HR-01", "HR-02", "HR-03", "HR-06", "HR-08", "HR-09", "HR-10"],
+    "STABLE_INCORRECT_ROW": ["HR-04"],
+    "STOCHASTICALLY_UNSTABLE_ROWS": ["HR-05", "HR-07"],
+    "whyThisMatters": "seven rows behaved identically on all three executions and are correct; one behaved identically on all three and is wrong; two vary at a fixed identity. Those are three different engineering situations and only the middle one is a defect with a stable signature."
+  },
+
+  "PREREGISTERED_CRITERIA_FINAL": {
+    "1_HR04_strict_at_least_2_of_3": { "verdict": "FAIL", "observed": "0/3" },
+    "2_REQUIRED_STRICT_at_least_12_of_15": { "verdict": "PASS", "observed": "12/15", "note": "met exactly at the floor — every one of the twelve emitting executions was adjudicated correct, so there was no margin" },
+    "3_SILENCE_at_least_13_of_15": { "verdict": "FAIL", "observed": "12/15" },
+    "4_no_SILENCE_row_fails_2_or_more": { "verdict": "FAIL", "observed": { "HR-05": "2 of 3 failed" } },
+    "5_no_recovered_REQUIRED_row_below_2_of_3": { "verdict": "PASS", "observed": { "HR-01": "3/3", "HR-06": "3/3", "HR-08": "3/3", "HR-09": "3/3" } },
+    "6_contract_failures_zero": { "verdict": "PASS", "observed": 0 },
+    "7_normalization_rejected_zero": { "verdict": "PASS", "observed": 0 },
+    "8_evidence_interpretable": { "verdict": "PASS" },
+    "overall": "FAILS INDEPENDENTLY ON MULTIPLE AXES — criteria 1, 3 and 4"
+  },
+
+  "FINAL_INTERPRETATION": {
+    "V15_REMEDIATION_BEHAVIORALLY_CONFIRMED": false,
+    "SILENCE_PRECISION_FLOOR_MET": false,
+    "HR05_PER_ROW_PRECISION_RULE_MET": false,
+    "HR04_classification": {
+      "result": "0/3 strict",
+      "reading": "this is no longer reasonably characterized as an isolated stochastic miss at the tested v15 identity. It is a REPLICATED DEVELOPMENT DEFECT on this instrument.",
+      "basis": "three replicates at one frozen identity, all silent, consistent with the v13 and v14 single draws — the row has never emitted a clarification under any prompt identity"
+    }
+  },
+
+  "HR04_ARCHITECTURAL_IMPLICATION": {
+    "PROMPT_ONLY_CONTROL_PROPERTY_REPAIR_CONFIRMED_EFFECTIVE": false,
+    "whatV15Taught": [
+      "property-relative evidence sufficiency",
+      "temporal sufficiency (§176, preserved)",
+      "placement before premature settlement"
+    ],
+    "andYet": "HR-04 remained 0/3. In replicate 3 Expert explicitly reasoned through the guard being in position, the morning pre-start context and the historical fastener torque verification, and still concluded the guard was presently controlled.",
+    "classification": "PROMPT_ONLY_SETTLEMENT_CONTROL_RELIABILITY = NOT_ESTABLISHED",
+    "explicitlyNotConcluded": "PROMPT_ENGINEERING_CAN_NEVER_FIX_THIS. That claim is not supported and must not be made.",
+    "nextDevelopmentQuestionIsArchitectural": "whether the determination of WHAT FACT IS OWED, WHAT PROPERTY MUST BE ESTABLISHED, and WHAT EVIDENCE ACTUALLY SETTLES THAT PROPERTY should be represented explicitly in structured state / verifier reasoning rather than left primarily to free-form prompt semantics",
+    "noPromptRepairAuthorizedHere": "no further prompt-only semantic repair is authorized in this closure, and v16 is not begun"
+  },
+
+  "PRECISION_FINDINGS": {
+    "HR-05": {
+      "result": "2/3 precision failures",
+      "pattern": "DISPLACED_VALID_FACT — strengthened, not newly discovered",
+      "detail": "both emissions introduced adjacent plausible hazards after the frozen auger energy fact had already been settled: whether the running drying fans are interconnected with the locked-out auger (replicate 1, REQUIRED_CONTROL/BLOCKING) and whether the fans and heat source are isolated and the task involves reaching into the housing while heated airflow continues (replicate 2, HAZARD_EXISTENCE/IMPORTANT)",
+      "truthUnchanged": "the frozen SILENCE truth is NOT reinterpreted. A plausible safety question on a settled row is still a precision failure."
+    },
+    "HR-07": {
+      "result": "1/3 precision failure",
+      "detail": "Expert pivoted from the settled flame-failure fact to dust housekeeping and severity, asking how extensive dust accumulation is beyond the handrails and whether a housekeeping/dust-control programme has been applied",
+      "principle": "plausible safety relevance is not decision-critical clarification entitlement",
+      "recordedAs": "additional evidence that adjacent-hazard generation can leak into the clarification carrier",
+      "explicitlyNotInferred": "a general dust-specific defect. One execution on one row supports no family-specific conclusion."
+    },
+    "commonShape": "on both rows the owed fact was settled and the model reached for an adjacent concern anyway — the same carrier leak, on two different hazard domains"
+  },
+
+  "CAUSAL_BOUNDARY": {
+    "established": ["V15_REPLICATED_BEHAVIOR"],
+    "notEstablished": [
+      "CAUSAL_EFFECT_SIZE_V14_TO_V15",
+      "PRECISION_IMPROVEMENT_CAUSED_BY_V15",
+      "PRECISION_REGRESSION_CAUSED_BY_V15"
+    ],
+    "why": "no replicated v14 comparator exists. §175 and §177 were one execution per row, so this is a v15 rate against single draws, which is not a controlled comparison.",
+    "sectionOneSevenSevenReading": "the §177 SILENCE_PRECISION = 5/5 rested entirely on HR-05 being silent in one draw, and HR-05 is now measured emitting on 2 of 3 at a fixed identity. That retrospectively supports the §177 caveat; it establishes nothing about HR-05's rate under v14, which was never replicated."
+  },
+
+  "NEXT_GATE": {
+    "recommended": "BOUNDED CLARIFICATION SETTLEMENT ARCHITECTURE REVIEW, before any v16 prompt change",
+    "status": "RECOMMENDATION ONLY — no architecture implementation in this closure, and none is authorized",
+    "scope": "determine whether the existing INACTIVE owed-fact / acceptableEvidence / verifier-v3 architecture can support a more explicit settlement step",
+    "questionsForTheReview": [
+      "1. Can owed facts carry an explicit requiredProperty / settlementTarget without introducing a brittle closed ontology?",
+      "2. Can acceptableEvidence express what would settle the owed property while remaining governed-source guidance rather than deterministic semantic truth?",
+      "3. Can the model be required to declare, per owed fact — property owed, evidence observed, property the evidence establishes, whether settlement is sufficient, unresolved reason — before clarification suppression?",
+      "4. Can exact factKey coverage remain deterministic while semantic settlement remains model/human-reviewed?",
+      "5. Can adjacent hazards remain additive candidates rather than displacing or creating clarification obligations for already-settled owed facts?",
+      "6. Can this be integrated behind the existing inactive development boundary without changing customer behaviour?"
+    ],
+    "existingConstraintsTheReviewInherits": [
+      "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED = false as a literal type; verifier-v3 is not active for any customer",
+      "CLARIFICATION_EVIDENCE_SUFFICIENCY = SEMANTIC_JUDGMENT_REQUIRED — no automated gate exists or may be built",
+      "the governed verification vocabulary is coarser than protective-function facts require (§171)",
+      "a closed property ontology was explicitly refused at §178 and question 1 must not quietly reintroduce one"
+    ]
+  },
+
+  "CLAIM_BOUNDARY": {
+    "permitted": "At frozen Expert v15, the §179 three-replicate development validation produced 12/15 strict REQUIRED passes and 12/15 SILENCE passes. HR-04 failed 0/3, while HR-05 and HR-07 showed within-row precision instability.",
+    "mustNotClaim": [
+      "generalized 80% Expert accuracy",
+      "production readiness",
+      "formal acceptance",
+      "a causal v14 -> v15 effect",
+      "independent-human validation",
+      "that prompt engineering is categorically incapable of solving the defect"
+    ],
+    "provenance": {
+      "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+      "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+      "AI_ASSISTED_STRICT_ADJUDICATION": true,
+      "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+      "corpusAuthoredBy": "Claude",
+      "evaluatedModelFamily": "Claude",
+      "consequence": "development evidence only; a provenance-independent challenge remains required"
+    }
+  },
+
+  "ACCOUNTING": {
+    "SECTION_179_RUN": { "calls": 30, "costUsd": 1.53991 },
+    "thisClosureSlice": { "calls": 0, "costUsd": 0.0 },
+    "CUMULATIVE_175_177_179": { "calls": 60, "costUsd": 2.98349 }
+  },
+
+  "worktree": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "sourceCodeChanges": 0,
+    "sections167To178EvidencePreserved": "unchanged",
+    "sectionOneSevenNineArtifactsPreserved": "the run records, run summary, preregistration and strict packet are unchanged; the packet's verdict fields remain null and the verdicts are recorded here instead, following the §175 and §177 closure pattern",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

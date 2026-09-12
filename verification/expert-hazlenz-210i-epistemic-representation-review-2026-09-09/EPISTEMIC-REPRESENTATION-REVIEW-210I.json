@@ -1,0 +1,336 @@
+{
+  "version": "hazlenz.expert.210i.epistemic-representation.prototype.v1",
+  "section": "210I",
+  "terminal": "EXPERT_HAZLENZ_EPISTEMIC_REPRESENTATION_GAP_CONFIRMED — BOUNDED_SCHEMA_REMEDIATION_REQUIRED",
+  "terminalCaveat": "the representation is expressively SUFFICIENT (§210H G2 and G3 prove the correct entry is writable with the existing fields) and structurally INCOMPLETE (two core concepts have no first-class carrier). Neither offered terminal states both halves; the gap and the G1 defect are related but not identical.",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "conceptsWithNoFirstClassCarrier": [
+    "OPERATIONAL_CONSEQUENCE_WHILE_UNRESOLVED",
+    "ESTABLISHED_TRUTH_OUTCOME_AT_SETTLEMENT"
+  ],
+  "carrierAudit": [
+    {
+      "concept": "SAFETY_PROPERTY",
+      "layer": "FIRST_PASS_DECLARATION",
+      "field": "missingFact",
+      "verdict": "FIRST_CLASS",
+      "note": "required, model-authored, one plain phrase, one fact per entry"
+    },
+    {
+      "concept": "SAFETY_PROPERTY",
+      "layer": "OWED_FACT_RUNTIME",
+      "field": null,
+      "verdict": "ABSENT",
+      "note": "no OwedFact field exists. §196 NON_PROJECTING_DECLARATION_FIELDS records the drop and PROJECTION_RESIDUAL_LIMITS states it: \"OwedFact has no field for the owed property itself\". The property survives only implicitly across whyUnresolved and the two branches."
+    },
+    {
+      "concept": "SAFETY_PROPERTY",
+      "layer": "VERIFIER_FACING",
+      "field": "the §210B-1 O4 sidecar",
+      "verdict": "SIDECAR_ONLY",
+      "note": "projectOwedFact cannot carry what OwedFact does not hold. §210B-1 attaches the property beside the pinned projection, byte-exact. That closes it on the §210B path only; a consumer handed the fact alone silently sees the old behaviour rather than failing."
+    },
+    {
+      "concept": "SUBSTANTIVE_TRUTH_BRANCHES",
+      "layer": "FIRST_PASS_DECLARATION",
+      "field": "branchA / branchB / decisionIfA / decisionIfB",
+      "verdict": "FIRST_CLASS",
+      "note": "all four required, all four non-blank-checked, branches checked distinct and decisions checked divergent"
+    },
+    {
+      "concept": "SUBSTANTIVE_TRUTH_BRANCHES",
+      "layer": "OWED_FACT_RUNTIME",
+      "field": "branchA / branchB / decisionDivergence",
+      "verdict": "FIRST_CLASS",
+      "note": "projected explicitly by name, and owedFactDefects refuses a fact whose two branches state the same thing"
+    },
+    {
+      "concept": "SUBSTANTIVE_TRUTH_BRANCHES",
+      "layer": "VERIFIER_FACING",
+      "field": "branchA / branchB / decisionDivergence",
+      "verdict": "FIRST_CLASS",
+      "note": "carried by projectOwedFact unchanged, and the only concept of the five that survives every layer intact"
+    },
+    {
+      "concept": "EVIDENCE_SUFFICIENCY_VERIFICATION_STATE",
+      "layer": "FIRST_PASS_DECLARATION",
+      "field": "notEstablishedBecause",
+      "verdict": "PROSE_ONLY",
+      "note": "carries WHY the fact is not established by what was supplied. It is a reason, not a state, and §196 forbids composing anything else into it. It cannot carry what evidence would settle the fact, and it cannot carry an action."
+    },
+    {
+      "concept": "EVIDENCE_SUFFICIENCY_VERIFICATION_STATE",
+      "layer": "FIRST_PASS_DECLARATION",
+      "field": "the collection itself",
+      "verdict": "CONSTANT_BY_CONSTRUCTION",
+      "note": "every member of unresolvedFactDeclarations is unresolved by the collection's own definition. At this layer an epistemic state has exactly one legal value."
+    },
+    {
+      "concept": "EVIDENCE_SUFFICIENCY_VERIFICATION_STATE",
+      "layer": "OWED_FACT_RUNTIME",
+      "field": "status",
+      "verdict": "FIRST_CLASS",
+      "note": "UNRESOLVED / COVERED / SETTLED_BY_EVIDENCE / REJECTED_BY_ARBITRATION, each gated by a named transition authority. This IS the verification state, and it varies here."
+    },
+    {
+      "concept": "EVIDENCE_SUFFICIENCY_VERIFICATION_STATE",
+      "layer": "OWED_FACT_RUNTIME",
+      "field": "acceptableEvidence",
+      "verdict": "PRESENT_BUT_CLOSED_TO_THE_AUTHOR",
+      "note": "the structurally correct home for \"what evidence is still required\", already projected to the verifier and already null-valid. But acceptableEvidence is in PROVIDER_FORBIDDEN_OWED_FACT_FIELDS and MODEL_SELF_AUTHORED is in PRODUCTION_FORBIDDEN_EVIDENCE_PROVENANCES, so on a capability-absent first pass it is null every time. The field exists; the model may not fill it."
+    },
+    {
+      "concept": "EVIDENCE_SUFFICIENCY_VERIFICATION_STATE",
+      "layer": "VERIFIER_FACING",
+      "field": "whyUnresolved + acceptableEvidence",
+      "verdict": "PROSE_ONLY",
+      "note": "status is in PROJECTION_FORBIDDEN_FIELDS and is deliberately never shown. The verifier infers unresolvedness from being handed the fact at all."
+    },
+    {
+      "concept": "OPERATIONAL_CONSEQUENCE_WHILE_UNRESOLVED",
+      "layer": "FIRST_PASS_DECLARATION",
+      "field": null,
+      "verdict": "ABSENT",
+      "note": "decisionIfA and decisionIfB are both conditioned on a branch BEING TRUE -- the schema description says \"What is done TODAY if branchA holds\". No field carries what is done while neither holds."
+    },
+    {
+      "concept": "OPERATIONAL_CONSEQUENCE_WHILE_UNRESOLVED",
+      "layer": "OWED_FACT_RUNTIME",
+      "field": null,
+      "verdict": "ABSENT",
+      "note": "decisionDivergence mirrors the two truth-conditioned decisions and adds no third slot"
+    },
+    {
+      "concept": "OPERATIONAL_CONSEQUENCE_WHILE_UNRESOLVED",
+      "layer": "VERIFIER_FACING",
+      "field": null,
+      "verdict": "ABSENT",
+      "note": "nothing to project, because nothing upstream carries it. The verifier is told what is unresolved and what would settle it, and never what to do meanwhile."
+    },
+    {
+      "concept": "ESTABLISHED_TRUTH_OUTCOME_AT_SETTLEMENT",
+      "layer": "OWED_FACT_RUNTIME",
+      "field": "OwedFactTransition.justification",
+      "verdict": "PROSE_ONLY",
+      "note": "SETTLED_BY_EVIDENCE records that admissible evidence arrived and an authority was minted. It does not record whether branchA or branchB was established. At the type level a settled-satisfactory fact and a settled-adverse fact are the same value."
+    },
+    {
+      "concept": "ESTABLISHED_TRUTH_OUTCOME_AT_SETTLEMENT",
+      "layer": "VERIFIER_FACING",
+      "field": null,
+      "verdict": "ABSENT",
+      "note": "settled facts are not projected at all; projectOwedFactsForVerifier filters to unresolved"
+    }
+  ],
+  "recommendedChanges": [
+    {
+      "id": "C1_ACTION_WHILE_UNRESOLVED",
+      "gap": "OPERATIONAL_CONSEQUENCE_WHILE_UNRESOLVED",
+      "layer": "FIRST_PASS_DECLARATION",
+      "shape": "one REQUIRED string on the declaration item: what must happen now, given that neither branch is established",
+      "required": true,
+      "authoredBy": "MODEL",
+      "touchesPinnedFile": false,
+      "mechanism": "the declaration item schema is built by unresolvedFactDeclarationItemSchema in scripts/lib/expert-first-pass-instruction-vnext.ts, which is a development-side builder and is not among the §187 pins. Required rather than optional because every entry in the collection is unresolved, so there is no entry for which the field is vacuous -- and an optional field would be omitted exactly on the entries under pressure.",
+      "rejectedAlternatives": [
+        "a third truth branch -- would break the two-branch model the authorization protects",
+        "widening branchB to admit the unresolved world -- this IS the defect",
+        "folding it into whyNecessaryNow -- that field answers why the fact must be settled now, not what is done meanwhile, and overloading it is the semantic overloading forbidden here",
+        "folding it into notEstablishedBecause -- backward-looking by definition; §196 forbids composing anything into it"
+      ]
+    },
+    {
+      "id": "C2_ESTABLISHED_BRANCH_AT_SETTLEMENT",
+      "gap": "ESTABLISHED_TRUTH_OUTCOME_AT_SETTLEMENT",
+      "layer": "OWED_FACT_RUNTIME",
+      "shape": "an additive successor carrying establishedBranch: 'A' | 'B' | null on the settlement record, non-null exactly when the decision approves settlement",
+      "required": false,
+      "authoredBy": "HUMAN_REVIEWER",
+      "touchesPinnedFile": false,
+      "mechanism": "owed-fact.types.ts is sha256-pinned by §187 and re-asserted by the verify-188..199 source-integrity scripts, so the O5 additive-successor discipline applies: a separate module widens the type and the pinned file is not edited. The value is authored by the human reviewer who already mints the SettlementAuthority, so no provider gains settlement authority and no deterministic code decides which branch the evidence established.",
+      "rejectedAlternatives": [
+        "a new OWED_FACT_STATUSES member such as SETTLED_SATISFACTORY -- would need a transition authority that does not exist, and would break WHY_UNRESOLVED_STATUS_INVARIANT, which is a `satisfies Readonly<Record<OwedFactStatus, ...>>` and stops compiling on a new member",
+        "reading the branch out of OwedFactTransition.justification -- parsing model or reviewer prose for a safety outcome is the semantic matcher the architecture forbids"
+      ]
+    }
+  ],
+  "refused": {
+    "firstPassVerificationStateEnum": {
+      "proposal": "add a verificationState enum to the first-pass declaration",
+      "refused": true,
+      "reasons": [
+        "at the first pass the value is a CONSTANT: unresolvedFactDeclarations is defined as one entry per UNRESOLVED fact, so every entry would carry the same member and the field would carry no information",
+        "downstream the concept already varies and is already first-class: OwedFact.status moves only through a recorded transition carrying a named authority, which is a stronger guarantee than a model-authored enum would be",
+        "a model-authored epistemic state would additionally be a settlement-adjacent claim, and PROVIDER_SETTLEMENT_AUTHORITY is the literal string NEVER"
+      ]
+    },
+    "divergenceRuleAgainstDecisionIfB": {
+      "proposed": false,
+      "reason": "a fail-closed unresolved action legitimately resembles the adverse-branch action; demanding a difference would demand an invention",
+      "whatDistinguishesThemInstead": "the CONDITION, which is semantic and model-authored: decisionIfB follows from branchB being TRUE, the unresolved action follows from neither branch being established. Deterministic code does not and may not adjudicate that."
+    },
+    "semanticMatcher": {
+      "hasKeywordRuleOverSafetyProse": false,
+      "reason": "deciding whether a phrase names a state or its evidence requires reading it AS safety semantics. §210G recorded the same refusal for R4B and this slice does not reverse it. Everything validated below is presence, membership, linkage or closed-set filler.",
+      "whatDeterministicCodeMayCheckOnTheProposedField": [
+        "the field is present",
+        "the field is a non-blank string",
+        "the field is not a member of the existing closed NON_SEMANTIC_FILLER set"
+      ],
+      "whatDeterministicCodeMayNotCheck": [
+        "that the action is fail-closed",
+        "that the action is appropriate to the property",
+        "that the action differs meaningfully from decisionIfB"
+      ]
+    }
+  },
+  "twoBranchModel": {
+    "branchCount": 2,
+    "unresolvedIsNotABranch": true,
+    "where": "unresolved lives in OwedFact.status (UNRESOLVED asserts neither branch) and, for the action it implies, in a separate non-truth-conditioned field",
+    "neverDone": "no branchC, no third decisionIfC, no widening of branchB to admit the unresolved world"
+  },
+  "conceptADeferred": {
+    "concept": "SAFETY_PROPERTY",
+    "decidedHere": false,
+    "owner": "§201 REPRESENTATION_OPTIONS O1..O5, recommendation NOT_MADE pending §200 axis Q",
+    "partialClosure": "§210B-1 O4_EQUIVALENT_SIDECAR, verifier-facing, on the §210B path only",
+    "consequenceIfLeftOpen": "the authorization's verifier requirement -- that the verifier receive the exact owed safety property explicitly -- is met only where the §210B-1 sidecar is assembled. A verifier handed a bare ProjectedOwedFact still cannot see the property."
+  },
+  "gate12": {
+    "action": "PRESERVED_UNCHANGED",
+    "classification": "USEFUL_BUT_INSUFFICIENT_FOR_LATENT_STATE_EVIDENCE_SEPARATION_CASES",
+    "evidence": "§210H: GATE 12 held on G2 and on G3, and both §210G narrowings survived. It failed on G1 only. It is an ALIGNMENT gate -- it asks whether the fields agree with each other -- and G1's fields did agree with each other, around the wrong anchor.",
+    "gate13Added": false,
+    "gate13Reason": "the architecture review did NOT prove that no representational change is needed, so the authorization's precondition for adding Gate 13 is not met"
+  },
+  "truthByVerificationMatrix": [
+    {
+      "truth": "A",
+      "verification": "SUFFICIENT",
+      "representable": true,
+      "fixture": "F1_SAFE_STATE_SUFFICIENT_EVIDENCE"
+    },
+    {
+      "truth": "B",
+      "verification": "SUFFICIENT",
+      "representable": true,
+      "fixture": "F2_ADVERSE_STATE_SUFFICIENT_EVIDENCE"
+    },
+    {
+      "truth": "UNRESOLVED",
+      "verification": "INSUFFICIENT",
+      "representable": true,
+      "fixture": "F3_POTENTIALLY_SATISFACTORY_INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "truth": "A",
+      "verification": "INSUFFICIENT",
+      "representable": false,
+      "fixture": null
+    },
+    {
+      "truth": "B",
+      "verification": "INSUFFICIENT",
+      "representable": false,
+      "fixture": null
+    }
+  ],
+  "settledBranchDiscrimination": {
+    "sameStatus": true,
+    "differentBranch": true,
+    "distinguishableToday": false
+  },
+  "fixtures": [
+    {
+      "id": "F1_SAFE_STATE_SUFFICIENT_EVIDENCE",
+      "title": "property satisfactory, verification sufficient, positive consequence permitted",
+      "mustExpress": "a settled fact whose established branch is the satisfactory one, distinguishable from a settled fact whose established branch is the adverse one",
+      "declarations": 1,
+      "checks": 10,
+      "allHeld": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "F2_ADVERSE_STATE_SUFFICIENT_EVIDENCE",
+      "title": "property adverse, verification sufficient, adverse consequence",
+      "mustExpress": "the same settled status as F1 carrying the OPPOSITE established branch, so the two are distinguishable at the type level rather than only in prose",
+      "declarations": 1,
+      "checks": 10,
+      "allHeld": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "F3_POTENTIALLY_SATISFACTORY_INSUFFICIENT_EVIDENCE",
+      "title": "the state may well be satisfactory; the evidence cannot establish it; the work holds",
+      "mustExpress": "INSUFFICIENT EVIDENCE without asserting the adverse property. The world in which the ties are sound and the test sheet was never found must belong to branchA, and the hold must be carried by a field that makes no truth claim.",
+      "declarations": 1,
+      "checks": 11,
+      "allHeld": true,
+      "mustNotAssert": "the ties lack sufficient holding capacity"
+    },
+    {
+      "id": "F4_TEST_RESULT_AS_EVIDENCE",
+      "title": "the physical state is the property; a measurement settles it",
+      "mustExpress": "a test named as the SETTLING EVIDENCE while the property stays the physical state, so that a satisfactory-but-unmeasured world still belongs to branchA",
+      "declarations": 1,
+      "checks": 11,
+      "allHeld": true,
+      "mustNotAssert": "the atmosphere is outside the breathable range"
+    },
+    {
+      "id": "F5_REQUIRED_ACT_AS_PROPERTY",
+      "title": "whether the act occurred IS the property",
+      "mustExpress": "an act-shaped property with act-shaped branches, surviving unchanged. The representation must not push this toward a physical state.",
+      "declarations": 1,
+      "checks": 11,
+      "allHeld": true,
+      "mustNotAssert": "the second crane was not booked off"
+    },
+    {
+      "id": "F6_EVIDENCE_CONTRADICTS_ASSUMED_STATE",
+      "title": "evidence arrives and establishes the ADVERSE branch",
+      "mustExpress": "that evidence PRESENCE is not satisfactory truth. The settled fact here carries branch B, and it is the same status value F1 carries with branch A.",
+      "declarations": 1,
+      "checks": 10,
+      "allHeld": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "F7_MULTIPLE_INDEPENDENT_PROPERTIES",
+      "title": "two properties, two verification states, no cross-binding",
+      "mustExpress": "each property carrying its own verification state independently, with one settled and one unresolved on the same analysis",
+      "declarations": 2,
+      "checks": 20,
+      "allHeld": true,
+      "mustNotAssert": "the extraction does not capture dust at the breathing zone"
+    },
+    {
+      "id": "F8_VERIFIER_FACING_PROJECTION",
+      "title": "the property and the gap both survive to the verifier without reconstruction",
+      "mustExpress": "the exact owed property and the exact verification gap reaching the verifier as their own fields, byte-identical to what the model authored",
+      "declarations": 1,
+      "checks": 11,
+      "allHeld": true,
+      "mustNotAssert": "the trench sides are unsupported"
+    }
+  ],
+  "whatThisDoesNotEstablish": [
+    "that the representational gap CAUSED §210H G1. G2 met the same shape with the same fields and did not collapse, which falsifies any claim that the schema made correctness impossible.",
+    "that closing the gap would move R4. That is a behavioural question and no provider was called.",
+    "that the proposed representation DETECTS the G1 defect. It does not, and it is not built to: a declaration whose property is evidence-shaped would still be structurally valid under it, exactly as it was under the current contract.",
+    "anything about the verifier, about G6, or about S6. No verifier call was made and S6 remains NOT_EXERCISED.",
+    "anything general from three cases, or from any single case."
+  ],
+  "statusEnumUnchanged": {
+    "members": [
+      "UNRESOLVED",
+      "COVERED",
+      "SETTLED_BY_EVIDENCE",
+      "REJECTED_BY_ARBITRATION"
+    ],
+    "count": 4,
+    "addedHere": []
+  }
+}

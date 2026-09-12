@@ -70,6 +70,27 @@ export function isRetryableExpertFailure(kind: ExpertProviderFailureKind): boole
   return RETRYABLE_EXPERT_FAILURES.includes(kind);
 }
 
+/**
+ * What ONE provider request cost, reported by the adapter that made it. §135 (R2/R3).
+ *
+ * Attached to BOTH success and failure, because a request that failed after generation was still
+ * billed. A truncated or malformed response is the clearest case: the tokens were produced and
+ * charged, and the run's accounting must see them even though the logical call is later retried.
+ *
+ * Every field is nullable because not every transport reports usage, and a null must stay a null:
+ * substituting an estimate here would put a guess into `M16_COST_PER_ROW`, whose frozen contract
+ * says cost is "reported per run, never estimated".
+ */
+export interface ExpertRequestUsage {
+  inputTokens: number | null;
+  outputTokens: number | null;
+  costUsd: number | null;
+  latencyMs: number | null;
+  httpStatus: number | null;
+  /** What the provider said it was, for this individual request. */
+  modelIdentity: string | null;
+}
+
 export interface ExpertProviderFailure {
   ok: false;
   kind: ExpertProviderFailureKind;
@@ -77,6 +98,8 @@ export interface ExpertProviderFailure {
   detail: string;
   /** Present when the transport produced one. Kept out of business logic on purpose. */
   httpStatus?: number;
+  /** Present when the request billed. A failure is not the same as a free request. */
+  usage?: ExpertRequestUsage;
 }
 
 export interface ExpertProviderSuccess {
@@ -91,6 +114,8 @@ export interface ExpertProviderSuccess {
   raw: unknown;
   /** What the provider says it is. Compared against the qualified identity by the runner. */
   modelIdentity: string | null;
+  /** What this individual request cost. See `ExpertRequestUsage`. */
+  usage?: ExpertRequestUsage;
 }
 
 export type ExpertProviderResult = ExpertProviderSuccess | ExpertProviderFailure;

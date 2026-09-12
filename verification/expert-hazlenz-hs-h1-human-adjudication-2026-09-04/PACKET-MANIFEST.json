@@ -1,0 +1,42 @@
+{
+  "builtAt": "2026-09-04T15:48:17.012Z",
+  "packet": "HS-H1-HUMAN-ADJUDICATION-PACKET.md",
+  "packetSha256": "8182cb4e324a5ac24049b1aaef1e6298b78c61e8949b510f06cc86d07e84a63f",
+  "bytes": 53954,
+  "providerCalls": 0,
+  "truthAuthorityStatus": "AUTHORED_BY_EVALUATED_MODEL_FAMILY — humanReviewStatus: PENDING",
+  "adjudicationChosen": null,
+  "sourceArtifacts": {
+    "backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts": "09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+    "verification/expert-hazlenz-hardened-v13-baseline-2026-09-03/RUN-RECORDS.jsonl": "09167f8710c13eea781685484e41377be74bbcca76a66b26b9f134c29b199289",
+    "verification/expert-hazlenz-hardened-v13-replicate2-2026-09-03/RUN-RECORDS.jsonl": "521dc515c0c9c2d821b4bfbbe444cfecbe6a5336241a4da6ea901abc70d3650a",
+    "verification/expert-hazlenz-hardened-v13-replicate3-2026-09-03/RUN-RECORDS.jsonl": "9e2328b93523adc92c07b767bc8bbf05a5037f129f324579e1ac7bb7d38a8bed",
+    "verification/expert-hazlenz-verifier-accuracy-2026-09-03/VERIFIER-PACKET.json": "75d64197583092ed8ac826a1c3c85d86666fd36d7eca52737d1d6eec942afc5a",
+    "verification/expert-hazlenz-verifier-accuracy-2026-09-03/TRUTH-MANIFEST.json": "dbbe3361a3c407af6a06446024c8de6f78d8d15540a349702b9c1eac4855617c",
+    "verification/expert-hazlenz-verifier-accuracy-2026-09-03/SEALED-CASE-KEY.json": "e05b2cc145f72635a4fb472a740ead118f681516f5eff3f41faa64072f414c45",
+    "verification/expert-hazlenz-verifier-accuracy-2026-09-03/VERIFIER-RESULTS.json": "0dadc9228007484f5c7d991547976992d3ccccaf0fa02fe37a7f3ec2a6c61926",
+    "verification/expert-hazlenz-verifier-v2-remediation-2026-09-04/VERIFIER-V2-RESULTS.json": "969d7ba69bd969438f0e7c3d74907513f4b1ea0eb9c2ee1934107e30b24e8479"
+  },
+  "neutralityCheck": {
+    "prohibitedConstructionsScanned": 12,
+    "found": 0
+  },
+  "completeness": {
+    "1 exact observation": true,
+    "2 deterministic result": true,
+    "3 governed evidence stated": true,
+    "4 authored missing fact": true,
+    "5 authored affectedDecision": true,
+    "6 branch A": true,
+    "7 branch B": true,
+    "8 all acceptable selectors": true,
+    "9 three first-pass outputs": true,
+    "10 four verifier outputs": true,
+    "11 chronology": true,
+    "12 term scan": true,
+    "13 regulatory text": true,
+    "14 competing facts": true,
+    "questions A–H": true,
+    "five dispositions": true
+  }
+}

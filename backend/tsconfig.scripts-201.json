@@ -1,0 +1,19 @@
+{
+  // §201. SCOPED typecheck for the four §201 prototype modules and their suites.
+  //
+  // Scoped deliberately: `scripts/**` under the project's own compiler options produces 181
+  // diagnostics across unrelated legacy scripts, which would make the gate unusable. This is the
+  // EXPERIMENT_SCOPE_TYPECHECK and is NEVER a repository-wide check.
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "files": [
+    "scripts/lib/expert-201-governed-binding-stage.ts",
+    "scripts/test-201-governed-binding-stage.ts",
+    "scripts/lib/expert-201-owed-property-representation.ts",
+    "scripts/test-201-owed-property-representation.ts",
+    "scripts/lib/expert-201-verifier-vnext-candidates.ts",
+    "scripts/test-201-verifier-vnext-candidates.ts",
+    "scripts/lib/expert-201-harness-hardening.ts",
+    "scripts/test-201-harness-hardening.ts"
+  ]
+}

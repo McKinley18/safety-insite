@@ -1,0 +1,425 @@
+{
+  "artifact": "SECTION-231-EXECUTION-SUMMARY",
+  "executorVersion": "hazlenz.expert.231.final-acceptance-execution.v1",
+  "assemblyVersion": "hazlenz.expert.231.assembly.v1",
+  "candidateBaseline": "48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200",
+  "frozenInstrumentDigest": "bbde6ca0a1d1253ea8dc78d46bef8a26b3ef75ac2d59f72ed051e9e8fbe06844",
+  "frozenPackageDigest": "4bb37d515e142902254e1ebb6cb7e67c8899f6f776f3625c7ec7ff8e9f626d1f",
+  "preSpendIdentity": "PASS",
+  "plannedPrimaryCalls": 52,
+  "callsExecuted": 49,
+  "contingencyCallsExecuted": 0,
+  "contingencyCallsAuthorized": 2,
+  "contingencyLog": [],
+  "maxAuthorizedCalls": 54,
+  "spendUsd": 3.490622,
+  "spendCeilingUsd": 4.28,
+  "projectedSpendUsd": 3.6328,
+  "semanticPreferenceRetries": 0,
+  "databaseOperations": 0,
+  "stoppedEarly": null,
+  "promptChangedDuringExecution": false,
+  "schemaChanged": false,
+  "caseChangedAfterFreeze": false,
+  "malformedOutputRepaired": false,
+  "stringifiedFieldsParsed": false,
+  "earlyResultsUsedToAlterLaterExecution": false,
+  "verifierAssembly": {
+    "G1": {
+      "elided": true,
+      "frozen": true,
+      "reason": "nothing is owed, so nothing is admitted for the verifier to review. Frozen before execution."
+    },
+    "G2": {
+      "elided": true,
+      "frozen": true,
+      "reason": "no declaration is expected. If one arrives the leg stays elided and the declaration is itself the HS12 or Q12 finding. Frozen before execution."
+    },
+    "G3": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "UF1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "77b7c18b3379b1f393b2f10e571aa5181cd7e35a8bc75accc44cb8c6474f58b2",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "G4": {
+      "elided": true,
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": [],
+      "projectionCodes": [],
+      "admittedCount": 0,
+      "identities": null
+    },
+    "G5": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-relief-valve-lift",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "9d5bc9bb21aebb7a3c47df88d6f1ebaee24cbb7b3de9b37ff248fb9d913e114b",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "G6": {
+      "elided": true,
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": [],
+      "projectionCodes": [],
+      "admittedCount": 0,
+      "identities": null
+    },
+    "G7": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "D1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "7faf65b7eaf5858d5518b3349d0e287fdfc205b2e198240042004281bee66256",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "G8": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "ufd-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "17e299dac96dd6fd3a3f4211828ea9a1449e1e64a52d14bcd553265cc7529e49",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "G9": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-brake-inservice",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "bdae3ac588056e19b44223ebb88502fd6258791725e1c19d4ef27521fefae4b4",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "G10": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "ufd-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "681bdefa31752a4d69c1a40bb8202b39f61a8c7154ecc78c62c5852e57f24700",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "G11": {
+      "elided": true,
+      "frozen": true,
+      "reason": "the verifier reviews an ADMITTED declaration and nothing is admitted here by construction. Frozen before execution."
+    },
+    "C1": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-min-bolts",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "a420a2326a93dcfc0719a753729506e7ee65450fb987f1504a3fda7a81f5e769",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C2": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "38d25a53d2521ff04b708f8c11b45e444be585b3a53760a52d4e7e3e514e173d",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C3": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "D1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "57efc021d945e4eb3cb2ce9e41afd81bd8cf121e6f00aca9fb03b9e8845d5bd3",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C4": {
+      "elided": true,
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": [],
+      "projectionCodes": [],
+      "admittedCount": 0,
+      "identities": null
+    },
+    "C5": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "ufd-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "9a35b8ab6011e5aeefc8ed3ab56bae2b713d47ae153b005cc8a78b96d123a36b",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C6": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-gfci-verified-post-water",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "70281e8878d657343817d43b020b3b8173fc71c7ac57588de2af05913e6f9281",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C7": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "UF-1",
+          "codes": []
+        },
+        {
+          "declarationId": "UF-2",
+          "codes": []
+        }
+      ],
+      "admittedCount": 2,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "8caa04eb2b136415827a54342b1a7074c115bc235d6d9540413c31cad6ac29ca",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C8": {
+      "elided": true,
+      "frozen": true,
+      "reason": "nothing is owed, so nothing is admitted. Frozen before execution."
+    },
+    "C9": {
+      "elided": true,
+      "frozen": true,
+      "reason": "nothing is owed, so nothing is admitted. Frozen before execution."
+    },
+    "C10": {
+      "elided": true,
+      "frozen": true,
+      "reason": "no declaration is expected. If one arrives the leg stays elided and the declaration is itself the finding. Frozen before execution."
+    },
+    "M1": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "UFD-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "750465893f5f1dbaf595815f29afeae6127c3b1e68c5e1bed6b7a0b2d135d319",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "M2": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "ufd-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "970df7342b5c7b1446e939bc699272e2e918d62f3f8735d1449a9fb1907f04d3",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "M3": {
+      "elided": true,
+      "frozen": true,
+      "reason": "no declaration is expected. If one arrives the leg stays elided and the declaration is itself the finding. Frozen before execution."
+    },
+    "M4": {
+      "elided": true,
+      "frozen": true,
+      "reason": "nothing is owed, so nothing is admitted. Frozen before execution."
+    },
+    "M5": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "45272fe10deca2e7a38b36f95dc7b350aab0220ba0833998cd0e1a5cf71229ab",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "M6": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-detection-coverage",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "d6c3c728cbcf2320a9e4fcc54ae8017a3c8f4a59ada5fed10bcc49f136243312",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "M7": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "ufd1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "6710d962b807d0902a518aceabb2952908f605cfce8055552ef278713a86997a",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "M8": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "UF-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "5241c641fc179a1d1af67b47dc3d25e97d6bad9b2f497571ffb6f18885b09738",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "M9": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl_ground_exam_currency",
+          "codes": []
+        },
+        {
+          "declarationId": "decl_vent_quantity",
+          "codes": []
+        }
+      ],
+      "admittedCount": 2,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "44bb822e94ecbb73d93e49ad87c747ed46f64b60b99a819ad3228fb64893d02d",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    }
+  },
+  "completedAt": "2026-09-11T22:28:18.228Z"
+}

@@ -2098,6 +2098,41 @@ describes the customer's actual result.
 | D-111 | EXPERT-HAZLENZ | **THE EXPERT FOUNDATION IS EXECUTABLE, AND IT IS NOT A FEATURE.** Nine source files under `backend/src/safescope-v2/expert-hazlenz/` and four deterministic suites totalling **379 assertions, 0 failed**, with **0 provider calls and $0.00**. `EXPERT_HAZLENZ_IMPLEMENTATION_BEGUN = TRUE`, but `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE` and `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`: nothing on the customer path imports the module and no provider exists behind the interface. **Three things are settled as structure rather than as rules.** (1) The protection matrix holds twelve behavioural surfaces, every one of §98.6's twelve frozen contracts is claimed by one, and **no surface permits SUPPRESS or MUTATE**. (2) The clarification carrier defect is removed as a POSSIBILITY -- four sibling collections, no candidate-owned clarification field -- and the brief's premise was corrected from evidence: Run-2 measured **13 of 13** clarification misses expressed in NEITHER carrier, so coupling was not what lost the questions. (3) The merge copies both protected authorities verbatim and appends the advisory one, so Expert failure, timeout, malformed output, contradiction and omission all leave the protected halves **byte-identical** to a merge with no Expert layer. **A protected guard was broken by this work and the NEW CODE was changed, never the guard**: the L3 containment assertions (`l32i` F3, `l32j` D5) failed on an import from a tier that FAILED its sealed acceptance, so the Expert module was made self-contained; both are green at 61/0 and 37/0. The first provider evaluation is **pre-registered and not run** -- seventeen measures, four independent families, no aggregate score, and reproducibility REPORTED rather than gated until a determinism control is measured, which is the G9 lesson. Two server-dependent suites (`hazlenz-clarification-gauntlet`, `kg4b-default-off`) failed at ECONNREFUSED and are recorded as NOT EXECUTED, not as passes. | **ACTIVE — PROTECTED_DECISION** | §99, `verification/expert-hazlenz-contract-foundation-2026-08-29/STATUS.md` |
 | D-112 | EXPERT-HAZLENZ | **THE TRANSPORT WORKS, THE PROVIDER QUESTION DOES NOT CLOSE, AND THE ONE REAL DEFECT FOUND IS OURS.** Six real provider calls, all local (`qwen3-coder:30b` on loopback), **$0.00**, ceiling 12, no early stop. **All fourteen hard transport gates PASSED** -- 6/6 HTTP 200, 6/6 parsed, 6/6 validated through the boundary, 6/6 protected halves byte-identical, 0 merge-invariant violations, model identity read from the provider's own response body, tokens and latency captured. **G06 has live evidence twice**: a real model returned a decision-critical clarification with ZERO hazard candidates and it survived adapter, boundary and merge. **G13 passed VACUOUSLY and is labelled so** -- no malformed output arose in six calls. Provider choice was FORCED, not made: no hosted credential is resolvable (`ANTHROPIC_API_KEY` absent, Gemini absent, `OPENAI_API_KEY` an 11-character stub), which is `D-92`'s position again. **The verdict is INCONCLUSIVE anyway, for two independent reasons.** First, five of six responses returned empty typed collections, and one diagnostic call proved that reading wrong: the model DID reason -- the wet/electrical interaction, four decision-critical missing facts and an extra plausible hazard were all present, but landed in `expertExplanation` and `uncertainty` instead of `decisionCriticalClarifications`, `crossHazardInsights` and `expertHazardCandidates`. That is a PROMPT/SCHEMA defect of ours -- the same representation-loses-the-reasoning class the L3 programme kept hitting -- and evaluating now would score M09/M11 near zero and bill our bug to the provider while burning a reserved cohort. Second, no HOSTED provider's transport was measured at all. **Not FAILED (nothing failed); not PASSED (a PASS requests evaluation spend).** The adapter lives in a SIBLING directory because the §99 no-call guard forbids vendor names in the core -- a guard written before the adapter existed decided the architecture. | **ACTIVE — PROTECTED_DECISION** | §100, `verification/expert-hazlenz-provider-transport-probe-2026-08-29/STATUS.md` |
 | D-113 | EXPERT-HAZLENZ | **THE ROUTING DEFECT WAS STRUCTURAL, THE FIRST FIX FAILED, AND THE SECOND ONE IS MEASURED.** §100's free-text drainage had a cause in the schema, not the model: `whatIsMissing`, `howConditionsInteract` and `whatMatters` were free-text TWINS of three typed collections, and a model asked to fill both fills the easier one. The twins were DELETED rather than discouraged (contract -> `analysis.v2`), because an instruction competes with a field and an absent field does not. **Attempt 1 failed 8 of 14 gates** and is recorded, not absorbed. Its two measurements found the real gate: `expertHazardCandidates` empty on **13 of 13** live calls while other collections began to populate, and **`quotes = 0/0`** on every call -- and candidates were the ONLY collection whose schema listed `evidence` as required. **The gate on the collection was a quote the model could not produce.** Attempt 2 made the quote optional (empty evidence has been contract-legal since §99; only the wire schema demanded it) and narrowed `NOTHING_TO_ADD`. **The validator did not move** -- a supplied quote is still checked by exact equality and a fabricated one still rejected, so this changed what is ASKED FOR, not what is ACCEPTED. Result: **16/16 routing opportunities, 0 misses, 0 over-routing, `EXPLANATION_ONLY_LOSSES = 0`, 14/14 gates**. The load-bearing evidence is the NEGATIVE CONTROLS: R6 and R7 returned every collection empty at ~110 output tokens, so the repair taught placement rather than chattiness. The metric was validated BEFORE use (57/0), including that correctly-typed content scores zero losses even when the summary repeats it. `G14` first reported a FALSE FAILURE by grepping the adapter's own comment about absent credentials -- **the third content-grep-matches-prose incident in this programme** -- and the instrument was fixed, not the result. A routing pass is NOT provider validation: 14 local calls, **$0.00**, 0 hosted calls, and `EXPERT_HAZLENZ_PROVIDER_VALIDATED` / `EXPERT_HAZLENZ_CUSTOMER_ACTIVE` both stay FALSE. New debt: the model has still never produced an evidence quote, so every Expert candidate so far is UNGROUNDED. | **ACTIVE — PROTECTED_DECISION** | §101, `verification/expert-hazlenz-typed-routing-repair-2026-08-29/STATUS.md` |
+| D-114 | EXPERT-HAZLENZ | **THE EXPERT FOUNDATION IS PRESERVED IN GIT LOCALLY, AND THE HOSTED PROBE IS BLOCKED ON A CREDENTIAL RATHER THAN ON ENGINEERING.** One local commit `37a5d1b5`, parent `de655d2f`, **75 files, +12,783 / -43**, message `feat(hazlenz): establish and repair expert routing foundation`. **NOT pushed, NOT deployed** -- `autoDeploy=yes` on `main` makes a push a production deployment, so `origin/main` is deliberately left unmoved at `de655d2f` and production still contains no Expert code. The commit carries the sections 99-101 Expert core, its sibling adapter directory, five suites, three `probe:` scripts, 51 evidence files and `backend/package.json` (**+8 script lines, the only tracked production file**). **It also carries sections 94-98 and D-109/D-110, and that is stated rather than hidden**: those were equally uncommitted, are contiguous with sections 99-101 inside the same two documents, and describe work ALREADY DEPLOYED as `de655d2f` -- splitting the block would have committed a blueprint jumping from section 93 to section 99 while sections 99-101 cite section 98 throughout. No code came in with them. Excluded and left untouched: `frontend-next/tsconfig.json` at sha256 **`73990cd1...`**, byte-identical to the section 99 record; the pre-existing unstaged deletion of `kg-3e/source-evidence/ecfr-1910-146.xml`; compiled `scripts/lib` artifacts; and **2,156 further untracked entries**. Four stashes and 24 tags unmoved; no reset, restore, clean or stash. The staged diff was scanned for secrets before committing -- **six matches, all benign**: three are the substring inside `validate-ri`**`sk-a`**`ssessment-adapter` and three are the public `onrender.com` URL already at HEAD. **THE HOSTED PROBE STOPPED AT PHASE 2, BEFORE ANY SPEND.** `ANTHROPIC_API_KEY` absent, `OPENAI_API_KEY` an 11-character stub, Gemini/Google absent, nine further hosted vendors absent, `AI_GATEWAY_API_KEY` absent. The one non-stub credential found was evaluated properly rather than dismissed, because a Vercel OIDC token authenticates AI Gateway and `vercel whoami` confirms an authenticated CLI -- and its own claims killed it: `exp 1781793601` against now `1788055244`, **EXPIRED by 1,739 hours**. Two further reasons hold against a fresh one: minting it is a Vercel account operation this phase is not authorized to make and would rewrite untracked user work, and its scope is the FRONTEND project's development environment, so its AI Gateway balance cannot be established and **`MAX_HOSTED_COST_USD = 3.00` could not be bounded before the first call** -- which Phase 3 forbids. **Ollama was NOT substituted** although it is reachable, and **no speculative hosted adapter was written** for a candidate that could not be selected. **0 provider calls of any kind, $0.00.** The `quotes = 0/0` grounding question is therefore **exactly as open as D-113 left it**: the five evidence metrics are NOT MEASURED, not zero. Verified at the preserved commit: Expert suites **56/51/131/141/57**, Level-3 quarantine **61/0** and **37/0**, `kg4a` **146/0** and **52/0**, `kg4d` **121/0**, HazLenz precision **100.0%** with 0 dangerous and 0 life-critical omissions, backend `tsc` exit 0, and confinement re-proved -- ten files reference the module and **no controller, service or module is among them**. | **ACTIVE -- PROTECTED_DECISION** | §102, `verification/expert-hazlenz-hosted-transport-probe-2026-08-29/STATUS.md` |
+| D-115 | EXPERT-HAZLENZ | **THE HOSTED ADAPTER IS BUILT AND THE PROBE IS ARMED; THE BLOCKER IS NOW A CREDENTIAL THAT DOES NOT REACH THIS SESSION, NOT A MISSING ONE.** The owner provisioned a credential and authorized the resume, and the finding is narrower than D-114's: `ANTHROPIC_API_KEY` is **ABSENT** in the process environment, `backend/.env`, `.env`, `.env.local`, `~/.zshrc`, `~/.zprofile`, `~/.profile`, the file `.zshrc` sources, and both Claude settings `env` blocks — recorded as PRESENT/ABSENT only, with no value, prefix, length or hash read. **A control measurement makes that a diagnosis rather than a shrug**: `OPENAI_API_KEY` from `~/.zshrc` IS visible to this session's subprocesses, so the environment is not filtered wholesale and the ordinary cause fits — the key was exported in another terminal after this session started. **0 hosted calls, 0 provider calls of any kind, $0.00, and the 8-call / $3.00 ceiling never touched.** Ollama was reachable and was NOT substituted. Everything not depending on the credential WAS delivered. Phase 2: `claude-sonnet-5` confirmed current, structured output supported, usage reported, pricing **$2/$10 per 1M** confirmed independently rather than assumed, and the ceiling bounded FROM THE REAL PROMPT at **$0.0883/call, $0.7062 for eight** against `$3.00`. Phase 3: `anthropic-expert-provider.ts` in the SIBLING directory the §99 guard dictates, with three decisions stated because each could have been worse — the contract is NOT reshaped for the vendor (the only provider-native step injects `additionalProperties: false`, adding no field and editing no `required` list); structured output is a FORCED tool call, so a prose answer is recorded as a schema failure rather than salvaged; and **there is no `temperature` and no `seed`, which is a FINDING** — both are removed on Sonnet 5 and return 400, so §100's cheap repeatability DOES NOT TRANSFER and `P2_DETERMINISM_CONTROL` must be pre-registered as ABSENT rather than discovered mid-evaluation the way G9 was. Raw `fetch` was used over `@anthropic-ai/sdk` because installing it would add a package to the dependency tree of an auto-deploying service for probe-only code. Two grounding fixtures make a CANDIDATE the groundable object, because `evidence` exists on exactly one collection and a clarification-based fixture would have measured nothing; both anchors are asserted verbatim before any spend so a typo cannot read as a model failure. The probe keeps `UNBINDABLE` and `FABRICATED` apart, converts neither into "no evidence", and reports `NOT MEASURED` distinctly from `FAIL`. **G14 was corrected, not weakened** — its old assertion went STALE when a hosted adapter was authorized, and it now proves TWO things where it proved one, so nothing that used to fail now passes. **The first correction was itself wrong and is recorded rather than absorbed**: it matched the script's own `require('fs')` and its own naming constant — **the FOURTH content-grep-matches-its-own-text incident in this programme** — and was re-anchored to import syntax and proved falsifiable against five samples. Pre-spend regression: Expert **56/51/131/141/57**, and the **141/0** is the load-bearing one because it proves the core is STILL PURE with a hosted adapter in the tree; quarantine **61/0** and **37/0**; `kg4a` **146/0** and **52/0**; `kg4d` **121/0**; `tsc` exit 0; and a local `probe:expert-routing` re-run at **14/14 gates** reproducing §101 EXACTLY (16/16, 0 misses, 0 over-routing, 0 losses) — **the hosted adapter perturbed nothing**. Everything about the hosted provider stays **NOT MEASURED, which is not zero**, and the eighteen gates are **0 of 18 EVALUATED, not 0 passed**. | **ACTIVE — PROTECTED_DECISION** | §103, `verification/expert-hazlenz-hosted-transport-probe-2026-08-29/ADDENDUM-RESUME.md` |
+| D-116 | EXPERT-HAZLENZ | **THE CREDENTIAL WAS NOT WRITTEN WHERE THE PROBE READS, AND A NEW CONTROL PROVES THIS IS NOT A VISIBILITY PROBLEM.** Third attempt on the same question, blocked at a third, narrower point. The authorization stated `ANTHROPIC_API_KEY` had been provisioned into the gitignored backend environment. It has not been: it is **ABSENT** in `backend/.env`, the process environment, `.env`, `.env.local`, `~/.zshrc`, `~/.zprofile`, `~/.profile`, the file `.zshrc` sources, and both Claude settings `env` blocks; there is no `.envrc`. Recorded as PRESENT/ABSENT only — no value, prefix, suffix, length, hash or encoded form was read at any point. **Two measurements make it a diagnosis.** D-115's control still holds: `OPENAI_API_KEY` is PRESENT in this session's process environment, so the environment is not filtered wholesale. **And a NEW control closes D-115's own explanation** — D-115 attributed the absence to a key exported in another terminal after this session started, and a **fresh login shell** (`zsh -lc`), which reads the profile from scratch exactly as a newly-opened terminal does, ALSO reports `ANTHROPIC_API_KEY` ABSENT while reporting `OPENAI_API_KEY` PRESENT. The key is in no persistent location a new terminal would read, so **the remedy is a file write, not an environment or tooling fix.** The decisive fact is narrower still: `probe-expert-hosted-transport.ts:66` loads **exactly one file**, `backend/.env`, deliberately, so the credential path stays auditable — and that file's mtime is **2026-08-16 23:08:53**, two weeks before this authorization, carrying 19 keys with no Anthropic-, Claude-, model- or gateway-related name and no near-miss. **The file §103.8 named as the route in was never written to.** **The probe was EXECUTED and its own gate fired at `$0.00`** (exit 3, credential check at line 273 precedes the request loop): **0 hosted calls, 0 provider calls of any kind, the 8-call / $3.00 ceiling never approached.** Two things in that output are kept: the **pre-flight passed**, re-verifying both H7/H8 grounding anchors verbatim in their own observations before the gate, so a future grounding failure reads as a model failure rather than a typo; and the probe **recomputed cost from the real prompt** rather than carrying the authorization's estimate — **$0.0900/call and $0.6300 for the seven planned**, below the stated ~$0.71 and far under the cap. `P2_DETERMINISM_CONTROL = ABSENT` was **pre-registered before the gate**, as §103.7 required, and per the authorization is NOT a probe failure by itself — hosted reproducibility is OBSERVED/REPORTED, not a deterministic hard gate, and the distinction is preserved for the 17-measure cohort. **Everything not depending on the credential WAS delivered.** Pre-call gate green at `37a5d1b5`, reproducing §102.6 and §103.5 field for field: Expert **56/51/131/141/57**, quarantine **61/0** and **37/0**, backend `tsc` exit 0, hosted adapter + probe typecheck exit 0 — and the **141/0** again carries the most, because the core is still provably pure with a hosted adapter in the tree. Confinement re-proved: **12** files reference the Expert module (§102's ten plus the hosted adapter and hosted probe — an expected +2, not a regression), **no** controller, service or module among them, **no** frontend reference, and the hosted adapter has **exactly one importer, the probe itself**, matched as a CONSTRUCT rather than a bare word per §103.4. **Four workarounds were available and all four refused**: no credential written by this operation, no value read, `OPENAI_API_KEY` not substituted despite being present, Ollama not substituted despite being free and reachable. Every hosted measurement stays **NOT MEASURED, which is not zero**, the eighteen gates are **0 of 18 EVALUATED, not 0 passed** — including **HG18, which is NOT promoted to PASS** although its underlying invariant was independently proved, because the gate asserts it AFTER seven hosted calls that did not happen — and §101's `quotes = 0/0` stands, so every Expert candidate remains ungrounded. **$0.00 spent. Nothing committed, pushed, tagged or deployed.** | **ACTIVE — PROTECTED_DECISION** | §104, `verification/expert-hazlenz-hosted-transport-probe-2026-08-29/ADDENDUM-THIRD-ATTEMPT.md` |
+| D-117 | EXPERT-HAZLENZ | **HOSTED TRANSPORT IS VALIDATED, THE EXPERT BEHAVIOUR DEFECTS HAD A STRUCTURAL CAUSE, AND TWO FAILURES ARE LEFT STANDING RATHER THAN ARGUED AWAY.** The owner ran the armed probe: **7/7 HTTP 200, 15 of 18 gates, `HG08`/`HG11`/`HG12` failed, `GROUNDING_READY = FALSE`, 0/2 supporting quotes, 10 ungrounded objects, $0.1710** -- read from the artifact, not from the summary handed over. Correct reading: **transport VALIDATED, behaviour NOT**. **Three of the four defects had a structural cause and it was measured, not guessed.** `outcome` was the FIRST wire property, so structured decoding made the producer answer "is there anything to add?" BEFORE enumerating anything -- hosted `R1`/`R5` returned every collection empty in **635** and **254** output tokens, and the local baseline returned **`NOTHING_TO_ADD` on 27 of 27 calls INCLUDING calls that populated three collections**, a field answered before the answer existed and invisible since §99 because nothing checked the two against each other. The wire schema was WEAKER THAN THE BOUNDARY in three places: no `minLength` (an empty string passed strict transport validation then failed as `CANDIDATE_MALFORMED` -- §105.0's `R6`), no `minItems` on `participants` (refused insights emptied the collection and left the interaction in the summary, an **EXPLANATION_ONLY_LOSS manufactured by an under-specified schema rather than by a model that failed to reason**), and `evidence` not required at all. And grounding was not merely optional -- **the contract ACTIVELY INSTRUCTED OMISSION** ("BUT A QUOTE IS OPTIONAL... raise the candidate anyway with an empty evidence list"), which is why every producer since §100 returned `quotes = 0`; **this was NOT model incapacity**, proved by the same local model emitting exactly-bound quotes once the contract stopped inviting it not to. **`HG12`'s over-routing has NO structural cause established and is NOT claimed as repaired.** Repairs: `outcome` moved LAST; `minLength: 1`; `minItems: 2`; a required `groundingStatus` with `evidence` required beside it, enforced at the BOUNDARY in both directions; three new reason codes. `NO_EXACT_QUOTE_AVAILABLE` stays a fully legal candidate that reaches the reviewer ungrounded, which is what stops §101's collection-wide suppression returning -- what is no longer legal is SILENCE, which now costs a falsifiable claim about the observation. `analysis.v2` is UNCHANGED (only the wire moved) and `groundingStatus` is deliberately NOT added to the internal type, so grounded/ungrounded has no second copy to drift. **`A.13`/`A.15` were RE-ANCHORED, not loosened** -- stale exactly as `G14` was in §103.4 -- and now assert the property DIRECTLY; suite 57 -> 58, nothing that used to fail passes. **TWO DECISIONS WERE REVERSED BY MEASUREMENT AND ARE RECORDED RATHER THAN ABSORBED**: `GROUNDING_CLAIM_UNSUPPORTED` was fatal first and cost **9 of 10 grounding iterations returning nothing at all**, so it is now item-level (the lying candidate still does not cross; the authorization names both options); and `maxLength: 120` on `quotedText` produced not a shorter span but a **TRUNCATED** one with stray characters appended, binding less often than what it replaced, so it was removed. Local: 50 calls, $0.00, `outcome` inconsistency **27/27 -> 0/50**, over-routing **0**, unbindable **0**, fabricated **0**, and **EVIDENCE_QUOTES_EXACTLY_BOUND 0 -> 5** -- **the grounding question moved for the first time in this programme**. **Local acceptance is 6 of 8 and the terminal is INCOMPLETE.** `H8` declares a quote and supplies none 5/5 (boundary correctly drops both candidates), and **`R5` is REJECTED 5/5 -- the model is NOT paraphrasing, it copies the whole observation verbatim but lower-cases the sentence-initial letter and drops the period, so `EVIDENCE_OUT_OF_BOUNDS` fires and the ANALYSIS-FATAL rule kills the whole response.** **§105 exposed that cliff rather than creating it**: under v3 nobody ever quoted so the rule was dormant, and requiring a declaration makes every attempt a chance to lose the analysis. **It was deliberately NOT repaired** -- the only repair weakens a pre-existing protected rule asserted in three places, which is this phase's own stop condition, and case-insensitive binding was rejected as approximate matching. Regression all green: Expert **56/51/131/141/58**, new `expert-grounding-contract` **40/0**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with **0 dangerous and 0 life-critical omissions**, `tsc` 0, confinement re-proved with **no §105 script importing a hosted adapter at all**. **0 hosted calls, $0.00, nothing committed, pushed or deployed.** | **ACTIVE — PROTECTED_DECISION** | §105, `verification/expert-hazlenz-hosted-behavior-repair-2026-08-30/SUMMARY.md` |
+| D-118 | EXPERT-HAZLENZ | **THE v4 HOSTED RE-PROBE WAS BLOCKED AT TRANSPORT, BEFORE A SINGLE CALL REACHED GENERATION, AND A SEPARATE EVIDENCE-DESTRUCTION INCIDENT WAS FOUND AND CORRECTED ALONG THE WAY.** Running the frozen probe (`npm run probe:expert-hosted-transport`, unmodified) overwrote the raw evidence file for the real hosted run §105 was built on -- its output path was a fixed, date-stamped directory rather than run-scoped, so this run silently destroyed `results/hosted-probe-summary.json` and `transport/hosted-probe.jsonl` from that earlier run. The directory was never committed to git, so nothing else recovered it. **All AGGREGATE figures survived** because they had already been transcribed into §105.0 (a new corrective preface added this phase), `INSITE_CURRENT_STATE.json` and the §105 SUMMARY.md before the loss; two rows (`R2`, `R4`) lost nested verdict detail that was never fully transcribed and is not recovered. **A separate, pre-existing defect was found while investigating**: §105's original text cited "section 104" nine times to mean that real hosted run, but section 104 documents a DIFFERENT, earlier event the same day -- the credential-blocked attempt. Both are corrected: the probe's output path now diverts to a timestamped sibling directory when prior evidence exists rather than overwriting it (a tooling fix, zero Expert-behaviour change), and the nine citations (plus one in D-117) now point at the new section 105.0 preface, which also carries the reconstructed figures. **The substantive result of this phase's actual assignment**: 7 calls planned and attempted, **0 completed clean -- all 7 returned HTTP 400 in 136-433ms**, far faster than section 105.0's real 6.6-32s generation calls, with **$0.0000 billed** (transport rejections are not billed). Every behaviour question this phase was asked -- HG08, HG11, HG12, both grounding fixtures, and above all **whether Sonnet 5 exhibits the local model's EVIDENCE_OUT_OF_BOUNDS copying error** -- is **NOT MEASURED, not PASS or FAIL**, because no call ever reached generation. **The diagnosis is an inference, not a lab-confirmed result**, built entirely from an offline, $0, no-network reconstruction of the exact request body: `strict: true` plus 15 `minLength` and 1 `minItems` constraints -- precisely section 105's RC2 additions -- are plausibly unsupported keywords in Anthropic's strict tool-schema mode, consistent with the uniform sub-second rejection profile. **It was reported as a finding and NOT repaired**, per this operation's explicit prohibition on schema changes during the hosted measurement. Terminal: `EXPERT_HAZLENZ_V4_HOSTED_REPROBE_BLOCKED -- HOSTED_PROVIDER_OR_TRANSPORT_REMEDIATION_REQUIRED`, selected because the credential worked (the request reached the provider and got a substantive response) and no Expert behaviour failed (none was exercised) -- the defect is transport-format incompatibility. Protected regression re-run fresh and all green: Expert **56/51/131/141/58**, new grounding suite **40/0**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with **0 dangerous and 0 life-critical omissions**, `tsc` 0, confinement unchanged with **zero regression suites importing the hosted adapter**. **0 completed hosted calls, $0.00 spend, nothing committed, pushed or deployed.** | **ACTIVE — PROTECTED_DECISION** | §106, `verification/expert-hazlenz-v4-hosted-reprobe-2026-08-30/REPORT.md`, `.../INCIDENT.md` |
+| D-119 | EXPERT-HAZLENZ | **THE §106 TRANSPORT BLOCKER IS CONFIRMED, NOT INFERRED: REMOVING ONLY `minLength`/`minItems` FROM THE ANTHROPIC-FACING SCHEMA RESTORED CALLABILITY ON ONE ISOLATED, HARD-CEILINGED CALL.** §106's diagnosis was an offline inference from schema inspection plus a timing profile; this phase isolated it. The diagnostic schema was never hand-authored -- built by taking the EXACT production request body (`buildAnthropicRequestBody`, the same function the real adapter uses), extracting `tools[0].input_schema`, deep-cloning it, and recursively deleting only `minLength`/`minItems` keys, leaving every other field of the request byte-identical by construction. **A deterministic tree-diff proved the isolation BEFORE any network call**, and was itself self-tested against three injected-corruption cases first, to confirm it would catch contamination rather than rubber-stamp it: **14 `minLength` removals, 1 `minItems` removal, 0 unexpected differences** -- refining §106's "15 minLength" phrasing into its precise per-keyword split (14+1=15, the total was right, the split wasn't spelled out). **A first script execution reached zero network calls and cost \$0** -- it forgot to load `backend/.env` and correctly self-blocked at its own credential gate; preserved as `attempt1-no-network-call-made/` rather than discarded, then fixed (mirroring the frozen probe's own env-loading pattern) and re-run once. **The one authorized call**: fixture `R2` ("WET + ELECTRICAL" -- non-adversarial, non-grounding, non-negative-control, chosen for a clean callability read), worst-case cost computed and bounded at \$0.0910 against a \$1.00 ceiling before sending, no retry, no substitute fixture, no second call. **Result: HTTP 200, `stop_reason: tool_use`, latency 28,087ms** -- in §105.0's real 6.6-32s generation range, nothing like §106's uniform 136-433ms rejection profile -- **6,928 input / 2,264 output tokens, \$0.036496 actual**, and a normal populated analysis (3 candidates, 3 clarifications, 2 insights), not an empty or malformed one. Terminal: `EXPERT_HAZLENZ_ANTHROPIC_SCHEMA_COMPATIBILITY_CONFIRMED -- ADAPTER_WRAPPER_REPAIR_AUTHORIZATION_REQUIRED`. **What this does NOT establish**: one fixture is a callability proof, not a behaviour measurement -- `HG08`/`HG11`/`HG12`, grounding, and above all whether Sonnet 5 hits the local model's `EVIDENCE_OUT_OF_BOUNDS` copying error (§105 §7) remain entirely UNMEASURED; nor is `minLength`/`minItems` proven to be the ONLY incompatibility, only a SUFFICIENT one on this request. **Boundary invariance proved, not assumed**: the stripped schema existed only in this diagnostic's memory for one request; `expert-prompt.ts` and `expert-normalization.ts` were never touched; regression re-run fresh and all green -- Expert **56/51/131/141/58**, `expert-grounding-contract` **40/0** (including its own direct empty-string, malformed-candidate and invalid/contradicted-grounding-declaration refusal assertions), quarantine **61/0** and **37/0**, HazLenz floors exit 0 with **0 dangerous and 0 life-critical omissions**, `tsc` 0, and **no regression suite imports the hosted adapter**. Confinement: 16 files, still **no** controller/service/module, **no** frontend reference; the hosted adapter now has two importers, both probe-only. Evidence-directory collision checked and clear before creation. **1 hosted call made, \$0.036496 spent, nothing committed, pushed or deployed. A permanent adapter fix and the seven-call v4 behaviour re-probe both remain separately authorized, not performed here.** | **ACTIVE — PROTECTED_DECISION** | §107, `verification/expert-hazlenz-anthropic-schema-diagnostic-2026-08-30/` |
+| D-120 | EXPERT-HAZLENZ | **THE PERMANENT ANTHROPIC ADAPTER IS REPAIRED, HOSTED TRANSPORT IS FULLY CLEAN FOR THE FIRST TIME UNDER v4, AND THE PROGRAMME'S MOST CONSEQUENTIAL OPEN QUESTION IS ANSWERED: THE LOCAL MODEL'S EVIDENCE-CLIFF DOES NOT TRANSFER TO SONNET 5.** Step 1: `stripAnthropicUnsupportedKeywords()` added to `anthropic-expert-provider.ts`, clones before mutating, removes only `minLength`/`minItems` at any depth, wired into `buildAnthropicRequestBody()`'s schema pipeline as the LAST stage after the canonical schema and the strict-mode wrapper -- `buildExpertWireSchema()`, shared with the boundary and the local adapter, is never touched. **22/0 immutability tests**: canonical schema sha256-identical before/after, wrapped schema carries the exact §107-measured 14 minLength + 1 minItems, stripped output carries zero, two independent strips are byte-identical, every leaf preserved except the two named keys (walked and diffed programmatically). **8/0 trusted-boundary tests**: an empty required string, an under-populated participants array, a malformed candidate, an invalid groundingStatus, a contradicted grounding declaration, and a malformed evidence object (which resolves through the binder to the ANALYSIS-FATAL `EVIDENCE_OUT_OF_BOUNDS` -- a STRONGER protection than the item-level rejection this test originally assumed, and the true behaviour of the real production path) are ALL still refused; the fatal-reason list is unchanged from §105 -- authority did not move from the boundary to the provider. All protected suites green, no regression suite calls the network, `ANTHROPIC_SCHEMA_WRAPPER_REPAIR_READY = TRUE`. **Step 2, through the repaired PERMANENT adapter (the frozen probe, unmodified -- NOT the §107 diagnostic)**: **7/7 calls completed clean, 0 HTTP failures** -- §106's 7/7 pre-generation HTTP 400 is gone, cost **\$0.211508**, latency in the real-generation range. **`EVIDENCE_OUT_OF_BOUNDS` fired ZERO times across all 7 calls and `ANALYSES_LOST_TO_EVIDENCE_CLIFF = 0`** -- every call stayed `layerStatus: PRESENT` -- so §105 §7's local copying-error cliff (verbatim-copy with a corrupted leading capital and trailing period) did NOT transfer to this hosted model, on any fixture including both grounding controls. **Grounding is the best result of the whole programme**: 9 quotes emitted, 9 exactly bound, 0 unbindable, 0 fabricated -- `H7` achieved `supportsClaim: true` (2/2 bound); `H8` produced ZERO candidates (an empty response, not a fabrication), so `GROUNDING_READY = FALSE` (1/2, short of the required >=2). §100/§101/§104's `quotes = 0/0` finding is decisively closed for this model on fixtures where it engages. **TWO INDEPENDENT BEHAVIOURAL HARD-GATE FAILURES, NEITHER THE EVIDENCE-BOUNDARY ARCHITECTURE**: `HG10` FAIL -- `R4` (required a candidate under v3, produced 3) now produces ZERO candidates with `CANDIDATE_MALFORMED` AND `EXPLANATION_MALFORMED`, 439 output tokens, `stop_reason: tool_use` (not truncation) -- a genuine regression with no precedent in this programme; `HG12` FAIL and WORSE than v3 -- the negative control `R6` over-routed on 3 of 4 collections (candidates, clarifications AND now insights too, up from 2 of 4 under v3). **NEITHER REPAIRED, per this operation's explicit prohibition, and NEITHER inferred to be caused or cured by the §105 local repair** -- reported exactly as measured. Terminal: `EXPERT_HAZLENZ_V4_HOSTED_BEHAVIOR_FAILED -- FURTHER_LOCAL_BEHAVIOR_REPAIR_REQUIRED` -- not Terminal D (transport clean), not Terminal A (two hard gates failed), not Terminal B (its own trigger, evidence-boundary analysis-level loss, fired zero times) -- Terminal C's condition (routing/negative-control failure independent of the evidence-boundary question) is met precisely. `HG08` passed its literal condition but `R1` also produced 3 candidates this run, so the zero-candidate property is left to stand on its deterministic proof (`expert-grounding-contract` A.1-A.3) rather than this one hosted call; `HG11` passed cleanly, all three collections populated simultaneously on `R5`. 18/18 gates evaluated both runs, 0 NOT_MEASURED. Post-run regression all green, no controller/service/module or frontend reference, `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. **7 hosted calls made total this phase, \$0.211508 spent, nothing committed, pushed or deployed. The 17-measure evaluation cohort remains BLOCKED -- this result calls for further local repair, not cohort authorization.** | **ACTIVE — PROTECTED_DECISION** | §108, `verification/expert-hazlenz-anthropic-adapter-repair-2026-08-30/`, `verification/expert-hazlenz-v4-hosted-behavior-reprobe-2026-08-30/` |
+| D-121 | EXPERT-HAZLENZ | **NEITHER OF §108'S TWO BEHAVIOURAL DEFECTS REPRODUCES LOCALLY, AND THAT NON-REPRODUCTION IS ITSELF MEASURED, NOT ASSUMED.** Zero hosted calls this phase. `R4` (the `HG10` candidate/explanation failure): 10 repetitions against the local provider, seed varied `20260829 + i` per repetition because a fixed seed at temperature 0 would have printed one draw ten times and characterized nothing -- **10/10 `CANDIDATE_SURVIVED`**, 0 reproductions of any kind (`MODEL_DID_NOT_PRODUCE_CANDIDATE`, `MODEL_PRODUCED_CANDIDATE_BOUNDARY_REJECTED`, `MODEL_REASONED_ONLY_IN_EXPLANATION` and `STRUCTURED_OUTPUT_MALFORMED` all zero). Per this operation's own Phase 3, no local prompt change was invented to chase the one hosted sample. **What was built instead is a structural proof, offline, \$0.00, no network call**: the real `buildAnthropicRequestBody()` carries `minLength=0, minItems=0` on the Anthropic-facing schema against `minLength=14, minItems=1` on the local/canonical one -- `stripAnthropicUnsupportedKeywords()` (§108, unmodified and unauthorized to modify this phase) removes the ONLY wire-level defense against an empty required string, for the Anthropic transport only. A synthetic wire object satisfying every `required` entry with three fields left as empty strings -- legal under the Anthropic-facing schema, illegal only under the boundary's `isNonEmptyString` check -- run through the real, unmodified `normalizeExpertOutput()` reproduces the hosted `R4` issue signature EXACTLY: `layerStatus PRESENT`, 0 surviving candidates, `CANDIDATE_MALFORMED` **and** `EXPLANATION_MALFORMED` together, matching the hosted transport JSONL field for field. **Root cause: schema-generation failure specific to the Anthropic transport, interacting with boundary rejection that fired exactly as designed** (item-level, not analysis-fatal -- nothing beyond the one candidate and the one explanation was lost, hosted or synthetic). `R6` (the `HG12` negative control): same 10 varied seeds -- **10/10 fully clean**, 0 over-routed items of any kind, re-confirmed independently at 3/3 in a separate re-run of the frozen, protected §105 evidence script `probe-expert-grounding-repair.ts` (unmodified) -- **13/13 clean local repetitions across two scripts and two seed sets.** Unlike `R4`, no schema-keyword asymmetry has any bearing on over-routing (stripping affects under-filled fields, not extra well-formed ones), so no structural mechanism was found or invented; the finding is a clean negative that positively rules out the shared prompt/schema/boundary as the cause, narrowing `R6` to a hosted-model-specific reasoning tendency. **NEITHER DEFECT WAS REPAIRED** -- there was no local defect to repair, and inventing a prompt change unfalsifiable at zero local reproductions was explicitly what Phase 3 forbade for exactly this situation. No production code changed: `EXPERT_PROMPT_VERSION` stays `v4`, `expert-prompt.ts`/`expert-normalization.ts`/`expert-contract.types.ts`/both adapters untouched. Two new probe-only, zero-network scripts added (`diagnose-r4-r6-local-repair.ts`, `diagnose-r4-anthropic-strip-boundary-proof.ts`). Local acceptance matrix re-run (10 fixtures × 3 repeats, the frozen §105 script): routing opportunities 48/hits 45/misses 3/**over-routed 0**; `H7` 3/3 exactly bound, `H8` 0/3 with `GROUNDING_CLAIM_UNSUPPORTED` fail-closed matching the pre-existing §108 record, not a new regression. **One observation outside this phase's mandate, reported and NOT chased**: `R2` failed closed on `EVIDENCE_OUT_OF_BOUNDS` 3/3 in this run, the local evidence-copying cliff previously measured on `R5`, now seen on a different fixture -- predates this session, no code this phase touched could have caused it. Post-run regression all green and unchanged from §108's own baseline: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, no controller/service/module or frontend reference, no regression suite makes a network call. Terminal: `EXPERT_HAZLENZ_R4_HOSTED_ONLY_DEFECT_NOT_LOCALLY_REPRODUCED -- TARGETED_HOSTED_CONFIRMATION_DESIGN_REQUIRED` (Terminal B), read explicitly: `R6` is treated as "understood" rather than "repaired," on the strength of its own 13/13 clean local negative result: Terminal C was considered and rejected because neither defect is unexplained. **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. The 17-measure evaluation cohort remains BLOCKED.** | **ACTIVE — PROTECTED_DECISION** | §109, `verification/expert-hazlenz-r4-r6-local-repair-2026-08-30/` |
+| D-122 | EXPERT-HAZLENZ | **R6'S OVER-ROUTING IS NOW A CONFIRMED, REPEATABLE HOSTED DEFECT; R4'S §108 FAILURE IS NOT -- BOTH ANSWERED ON REAL HOSTED CALLS, NOT INFERRED.** Seven calls planned (`R4`×3, `R6`×3, `R5`/`HG11` control×1), 7 attempted, **7 completed clean, 0 transport failures**, cost **\$0.2353** of a \$3.00 ceiling bounded from the real request body before any call. `R4`: **3/3 `CANDIDATE_SURVIVED`** -- every call produced multiple well-formed candidates (3 each, output tokens 2,692-3,008, roughly 6-7× §108's single-sample 439), zero `CANDIDATE_MALFORMED`, zero `EXPLANATION_MALFORMED`. Verdict `R4_HOSTED_FAILURE_NOT_REPRODUCED`, consistent with §109's structural finding that the loss point needs the model to emit multiple empty required strings under the Anthropic-only `minLength`/`minItems` strip -- evidently rare on this fixture, not systematic, and consistent with §108's own recorded absence of `temperature`/`seed` control on this provider. `R6`: **3/3 over-routed, in the SAME conceptual shape every time** -- a `machine_guarding` candidate about the removed press guard, plus two clarifications about guard reinstatement and residual stored energy, despite the observation stating the isolation was locked out, tagged, bled down, verified at zero, and second-person verified. Wording varied call to call; the concept and the two-collection shape (`expertHazardCandidates`, `decisionCriticalClarifications`, `crossHazardInsights`/`disagreements` correctly empty all 3 calls -- narrower than §108's single v4 sample's 3-of-4) did not. Verdict `R6_HOSTED_OVERROUTING_REPRODUCED`. **The control is the load-bearing fact separating a fixture-specific defect from general degradation**: `R5`/`HG11`, in the same session against the same model, produced all three required collections simultaneously and correctly (3 candidates, 3 clarifications, 2 insights) -- the provider was NOT generally unreliable this run; it specifically over-generalised on `R6`. Root-cause reading: the model reasons forward from "a guard is currently off" to "eventual reinstallation is an open question," a generically true statement about machine guarding not specific to what THIS observation actually leaves undetermined -- the Phase-4 "generic commentary" failure mode this operation's own authorization named. **No repair made, per this operation's explicit terms** -- it is a confirmation, not a repair phase. New script added, probe-only, real permanent adapter path unmodified: `probe-expert-hosted-r4-r6-targeted-confirmation.ts` (bypasses `runExpertAnalysis`'s retry-on-transport-failure by design, per this operation's own "stop rather than burn calls" instruction; the identity check and boundary normalization it replicates inline are otherwise unchanged). Post-run regression all green, matching §108/§109's baseline exactly: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, no controller/service/module or frontend reference, no production/Expert-core file changed. Quarantined local `R2` evidence-cliff debt (§109) untouched, not investigated. Terminal: `EXPERT_HAZLENZ_R6_HOSTED_OVERROUTING_CONFIRMED -- HOSTED_NEGATIVE_CONTROL_REPAIR_REQUIRED` -- selected because `R6` reproduced while `R4` did not and no other independent material defect appeared, per this operation's own decision table. **7 hosted calls made, \$0.2353 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. The 17-measure evaluation cohort remains BLOCKED -- this result calls for hosted negative-control repair, not cohort authorization.** | **ACTIVE — PROTECTED_DECISION** | §110, `verification/expert-hazlenz-r4-r6-targeted-hosted-confirmation-2026-08-31/` |
+| D-123 | EXPERT-HAZLENZ | **THE R6 TEMPORAL-STATE OVER-ROUTING DEFECT IS REPAIRED AT THE PROMPT LAYER, LOCALLY VERIFIED ACROSS A PURPOSE-BUILT CONTRASTIVE CORPUS, WITH ONE NARROW RESIDUAL HONESTLY DISCLOSED RATHER THAN CHASED TO ZERO.** Zero hosted calls. §110/D-122's three R6 hosted transcripts were read in full and the failure characterized as a state-transition error: the model reasons FORWARD from a stated, verified, resolved condition (a guard removed under a completed, second-person-verified zero-energy isolation) to a hypothetical future transition (eventual re-energization), then treats that transition's contingencies as PRESENT, decision-critical unknowns -- in one instance directly re-asking a question ("is any residual stored energy present") the observation had already answered. A 6-fixture contrastive corpus (`temporal-state-fixtures.ts`, `T1`-`T6`) was built spanning `electrical`/`machine_guarding`/`lockout_tagout`/`mobile_equipment`/`confined_space` specifically to make an over-correction fail as loudly as the original defect: historical+resolved (must suppress), historical+unresolved (must survive), remediation-uncertain (clarification may survive without a candidate), resolved-primary+current-secondary (suppress only the resolved part), a true current positive with ZERO historical framing (must survive, no over-suppression), and a clean negative in a family R6 does not share. **Baseline (pre-repair, local Ollama qwen3-coder:30b, $0.00, 10 fixtures × 5 reps)**: `T1` (historical+resolved) over-routed **5/5** -- the local reproduction of R6's defect class, absent from R6 itself locally exactly as §109 recorded; every other fixture clean. **Repair**: a new "CURRENT STATE, NOT HISTORICAL STATE" system-prompt section plus one user-prompt reinforcement line -- prompt-only, no wire-schema change, no `EXPERT_ANALYSIS_CONTRACT_VERSION` change, bumped `EXPERT_PROMPT_VERSION` `v4`->`v5` on the same reasoning `v3`->`v4` recorded (a recorded probe names the prompt version it ran under). **Three intermediate wordings were tried and rejected before acceptance**: v1 fixed `T1` but suppressed `T5` (a true current positive, 5/5->0/5, an over-correction caught BY the corpus doing exactly what it was built to do); a compaction pass aimed at reducing prompt length re-broke `T1` and caused broader collateral suppression on `T2`/`T3`/`T5`/`T6`, demonstrating the local model pattern-matches surface phrasing rather than the underlying principle -- chasing new wording gave it new vocabulary to riff on, not a fix. The retained wording is the fuller, explicit version, measured more stable than every shorter variant tried. **Final accepted result (10 fixtures × 10 reps)**: `TYPED_ROUTING_OPPORTUNITIES=200 HITS=199 MISSES=1 OVER_ROUTED=0` -- `T1` now **10/10 clean**; `R5`/`R6`/`R7`/`T1`-`T4`/`T6` all **10/10 clean**; `R4` **9/10** candidate-present, one miss at a single fixed seed (`20260829`), corroborated as a narrow, pre-existing single-sample sensitivity by the SAME seed's flakiness in the frozen `probe:expert-routing` single-shot gate (`attempt1-console.txt`, predating this operation); `T5` (unscored, `OPTIONAL`) shows the same single-seed narrowing. **This residual is disclosed, not hidden or argued away** -- it is the explicit reason this phase's terminal requires bounded hosted confirmation rather than declaring unconditional success. Post-run regression identical to §108/§109/§110's baseline, zero deltas: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, no controller/service/module or frontend reference, only `expert-prompt.ts` changed among Expert-core files (plus one literal re-anchor in `test-expert-routing-contract.ts` A.2, same pattern as §105's A.13/A.15, and one comment-accuracy edit in `anthropic-expert-provider.ts`). Two new files, both probe/fixture-only: `temporal-state-fixtures.ts`, `diagnose-expert-temporal-state-repair.ts`. Terminal: `EXPERT_HAZLENZ_TEMPORAL_STATE_REPAIR_ACCEPTED -- BOUNDED_HOSTED_NEGATIVE_CONTROL_CONFIRMATION_AUTHORIZATION_REQUIRED`, selected per this operation's own decision table because the corpus fixture built to reproduce R6's defect class went from 5/5 failing to 10/10 clean, every protected negative control stayed perfectly clean, and the one real residual is narrow, characterized, and does not touch a protected negative control. **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. The 17-measure evaluation cohort remains BLOCKED -- this result calls for a bounded hosted confirmation proving BOTH `OVERROUTING_REMOVED` and `CURRENT_HAZARD_RECALL_PRESERVED`, not cohort authorization.** | **ACTIVE — PROTECTED_DECISION** | §111, `verification/expert-hazlenz-temporal-state-repair-2026-08-30/` |
+| D-124 | EXPERT-HAZLENZ | **THE FROZEN HOSTED CONFIRMATION OF THE v5 REPAIR SHOWS GENUINE PARTIAL PROGRESS AND A PERSISTING DEFECT, MEASURED RATHER THAN ROUNDED IN EITHER DIRECTION.** 7 calls planned, 7 attempted, **7 completed clean, 0 transport failures**, cost **\$0.198238** of a \$3.00 ceiling (worst-case pre-flight estimate \$0.6524, computed from the real request bodies before any call). Plan: `R6`×3 (direct reproduction), `T1` (historical/resolved generalization control, electrical), `T5` (true current-positive recall control, hard gate), `T3` (current-state uncertainty control, hard gate), `R4`×1 (optional spot-check, authorized because all six primary calls completed cleanly). **`R6`: `R6_ALL_CLEAN = FALSE`, 0/3 clean, not averaged** -- all three reps produced the same shape: one `machine_guarding` candidate and two clarifications, one of them always about reinstatement/re-energization timing. **One real improvement measured**: the exact §110 sub-pattern of re-asking an already-answered fact (residual stored energy, "bled down and verified at zero") did NOT recur in any of the 3 reps -- `REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT = false` all three times, though rep 2 substituted a different instance of the same underlying move (asking whether a *lock*, not just a tag, was applied, when the observation already describes a completed, second-person-verified isolation). **The persisting defect changed shape, not just wording**: the hosted model now explicitly argues the removed guard is "a distinct hazard family from lockout/tagout itself" that must be "tracked... until reinstated and verified," independent of the fully-controlled energy state -- a more sophisticated restatement of the same forward-reasoning-to-future-transition error that the current "CURRENT STATE, NOT HISTORICAL STATE" rule does not yet address, because that rule stops a hazard being INVENTED FROM a resolved history but does not yet stop an ANCILLARY true-but-controlled fact (the guard happens to still be physically off) from being asserted as independently hazard-worthy while the causally relevant safety state remains fully controlled. **Every recall/generalization control held**: `T1_RESOLVED_STATE_CLEAN = TRUE` (clean generalization to a different family/wording than R6 itself); `T5_CURRENT_HAZARD_RECALLED = TRUE` (the exact regression class caught during local v1 prompt iteration did not reproduce hosted); `CURRENT_STATE_CLARIFICATION_SURVIVED = TRUE` (T3's load-bearing question, "has the isolation lock been reapplied," survived intact); `R4_HOSTED_CANDIDATE_SURVIVAL = PASS` (3 candidates, stronger than §110's 3/3 `R4_HOSTED_FAILURE_NOT_REPRODUCED`). Grounding/boundary: 8 quotes emitted, **8/8 exactly bound**, 0 unbindable, 0 fabricated, 0 `EVIDENCE_OUT_OF_BOUNDS`, 0 malformed responses, 0 outcome/content inconsistencies -- no new regression anywhere in the evidence architecture. **No repair made, per this operation's explicit terms** -- it is a frozen measurement. New script added, probe-only, real permanent adapter path unmodified, no diagnostic bypass: `probe-expert-hosted-v5-temporal-state-confirmation.ts`. Post-run regression all green, matching §108-§111's baseline exactly: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, no controller/service/module or frontend reference, zero Expert-core files changed this phase. Terminal: `EXPERT_HAZLENZ_V5_TEMPORAL_STATE_REPAIR_FAILED -- HOSTED_OVERROUTING_REMAINS` -- Terminal B selected per the authorization's own decision gate, precisely because R6 still exhibits the repaired overreach while every recall/uncertainty control remained intact (ruling out Terminals C, D and E). **7 hosted calls made, \$0.198238 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. The 17-measure evaluation cohort remains BLOCKED -- this result calls for a further LOCAL repair iteration targeting the newly-isolated "ancillary fact vs. current hazard" pattern, not cohort authorization.** | **ACTIVE — PROTECTED_DECISION** | §112, `verification/expert-hazlenz-v5-temporal-state-hosted-confirmation-2026-08-30/` |
+| D-125 | EXPERT-HAZLENZ | **THE HAZARD-ACTUALITY REPAIR CONVERGES TO A PERFECT LOCAL ACCEPTANCE RESULT AFTER NINE MEASURED ITERATIONS, WITH THE ONE RESIDUAL TRACED TO THREE INDEPENDENT PRE-EXISTING ARCHITECTURAL ARTIFACTS, NONE SEMANTIC.** Zero hosted calls. §112/D-124's persisting defect -- `machine_guarding` independently raised from a removed guard under a FULLY VERIFIED zero-energy isolation, justified only by hedged hypotheticals ("if re-energization occurs") -- was traced from the raw transcripts to `HAZARD_FAMILY_INDEPENDENCE_MISTAKEN_FOR_CURRENT_EXPOSURE_INDEPENDENCE`: the model correctly names the hazard family a fact belongs to and then treats that naming as proof of current exposure, without ever establishing a current hazardous state. A 16-fixture corpus was built: 8 contrastive fixtures (`U-A`-`U-H`, one per this operation's own Phase-3 class, spanning `electrical`/`machine_guarding`/`lockout_tagout`/`wet_environment`/`chemical_exposure`/`mobile_equipment`/`fall_protection`/`confined_space`) and 8 adversarial recall fixtures (`V1`-`V8`, each flipping exactly one fact of the canonical R6 sentence from controlled to hazardous -- zero energy not verified, stored energy remaining, no lock/tag at all, a second uncontrolled source, merely stopped, auto-restart capable, a worker actually exposed, an active task creating a new exposure). **Repair**: a new "A HAZARD-RELEVANT FACT IS NOT YET A CURRENT HAZARD" system-prompt section added AFTER (not replacing) §111's "CURRENT STATE, NOT HISTORICAL STATE" section; prompt `v5`->`v6`, no wire-schema/contract/normalization change. **Nine iterations, each measured and rejected or refined before acceptance**: (1) an explicit "current facts that support exposure" trigger list was echoed back verbatim as a rote re-questioning checklist, breaking `T1`/`U-A`/`U-G`/`R6` 5/5 even on `T1`, which never mentions LOTO at all; (2) rewritten as an abstract principle, fixing those four but surfacing `T5`/`U-H` failures traced to the pre-existing `LOCAL_R2_EVIDENCE_CLIFF_DEBT` (verbatim-quote corruption) and a triple-conjunction fixture splitting into three under-quoted candidates; (3)-(4) isolated the exact triggering phrase ("the equipment IS capable of moving," lexically priming a mis-quote of `T5`'s near-identical wording) by direct A/B test across 5 default AND 5 far-outside-default seeds (fully deterministic, not noise), removed it, and simplified `U-H`'s fixture text; (5) full corpus re-run showed `U-A` had been quietly relying on the removed paragraph and re-regressed 4/5; (6)-(8) three further attempts (a trimmed positive-example paragraph, an explicit NO-LOSS bridge with `T5`-matching lexical examples, a nuanced "pathway to harm is live" test) each fixed one of `T5`/`U-A` while re-breaking the other -- a genuine two-sided tension, not a single bug; (9) **final**: replaced the nuanced judgment-call test with the SAME mechanical, already-proven-stable carve-out from §111's own "CURRENT STATE" section ("if the observation describes NO isolation/control at all, this section does not apply"), fixing `U-A`/`U-G`/`T1`/`R6`/`U-H` cleanly; `T5`'s remaining intermittent non-candidate behavior was traced to a THIRD independent, pre-existing artifact (a candidate declaring `EXACT_QUOTE_SUPPLIED` with an empty `evidence` array, correctly refused by the untouched `GROUNDING_CLAIM_UNSUPPORTED` boundary rule) -- at which point wording iteration was deliberately stopped, since three independent local-only architectural artifacts (none semantic, all previously proven in §110/§112 not to transfer to the hosted target model, 0/14 hosted `EVIDENCE_OUT_OF_BOUNDS`/malformed responses under both v4 and v5) is strong evidence that continuing to chase this specific local 30B model's fragility would not be a genuine repair. **Final 350-call acceptance matrix (23 fixtures × 10 reps): 350/350 routing opportunities correct, 0 misses, 0 over-routed** -- `U-A` (the primary defect-reproduction fixture) 10/10 clean; all 8 adversarial recall fixtures 10/10 clean, the hard safety gate this operation named explicitly; `R4`/`R5`/`R6`/`R7`/`T1`/`T3` all clean or fully populated; `T5` and `U-C` (recalibrated from REQUIRED-candidate to REQUIRED-clarification, the same discipline applied to `T4` in §111) route their danger through `decisionCriticalClarifications` 10/10 reliably with precisely-targeted question text -- disclosed as a measured, safety-preserving residual, not a suppression: recall is 100% via the calibrated collection. Post-run regression all green, matching §108-§112's baseline exactly: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, no controller/service/module or frontend reference, only `expert-prompt.ts` changed among Expert-core files, evidence/grounding architecture completely untouched throughout (the local-only artifacts encountered during iteration were resolved via prompt wording and one fixture-text simplification, never via evidence-code changes, per this operation's explicit prohibition). Two new files, both probe/fixture-only: `hazard-actuality-fixtures.ts`, `diagnose-expert-hazard-actuality-repair.ts`. Terminal: `EXPERT_HAZLENZ_HAZARD_ACTUALITY_REPAIR_ACCEPTED -- BOUNDED_HOSTED_R6_CONFIRMATION_AUTHORIZATION_REQUIRED`, selected because local acceptance is unconditional across every protected fixture and the full adversarial hard gate, and the one disclosed residual does not touch dangerous-hazard recall. **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. The 17-measure evaluation cohort remains BLOCKED -- this result calls for a bounded hosted confirmation proving BOTH `R6_OVERROUTING_REMOVED` and `CURRENT_HAZARD_RECALL_PRESERVED`, not cohort authorization.** | **ACTIVE — PROTECTED_DECISION** | §113, `verification/expert-hazlenz-hazard-actuality-repair-2026-08-30/` |
+| D-126 | EXPERT-HAZLENZ | **A PERFECT 350/350 LOCAL RESULT PREDICTED NOTHING: HOSTED `R6` IS 0/3 FOR THE THIRD CONSECUTIVE MEASUREMENT, AND THE LOCAL INSTRUMENT IS NOW MEASURED NON-PREDICTIVE FOR THIS DEFECT CLASS.** 9 calls planned (`R6`×3, `U-A`, `U-B`, `U-C`, `U-F`, then `T5`/`R4` optional -- authorized only because all 7 primaries completed cleanly, never used as retries), 9 attempted, **9 completed clean, 0 transport failures**, cost **\$0.284080** against a pre-flight worst-case projection of **\$0.8587** and a \$3.00 ceiling. Prompt v6 **frozen throughout**; nothing discovered was repaired. **`R6`: `R6_ALL_CLEAN = FALSE`, 0/3** -- `MACHINE_GUARDING_CANDIDATE_PRESENT` 3/3, `REINSTATEMENT_TIMING_CLARIFICATION_PRESENT` 3/3, the same 2-of-4 collection shape as v4 (§110) and v5 (§112). **The defect is now stated MORE explicitly, in the repair's own vocabulary**: rep 2 writes "Guarding and energy control are **distinct hazard families** -- the guard removal is a current physical exposure," which is verbatim the `HAZARD_FAMILY_INDEPENDENCE_MISTAKEN_FOR_CURRENT_EXPOSURE_INDEPENDENCE` reasoning §113's new section was written to interdict, restated and then acted on anyway; rep 3 goes further and *invents an unstated mechanism* ("gravity-fed components, unexpected motion... not addressed by electrical/stored-energy lockout alone") to justify `ACTIVE`. **`U-A` FAIL, but only on one half**: the candidate half PASSED -- the removed dead-front cover was NOT promoted to a current `electrical` hazard, and the model's own summary reads "well-controlled electrical task... No new current" -- while one clarification re-litigated a stated step ("was the lockout applied using a documented procedure... **or only verified with a meter**?" when the text already states locked out, meter-tested at zero, and independently second-person verified), the exact failure mode v6 forbids in as many words. **EVERY recall control PASSED, several better than locally**: `U_B_CURRENT_HAZARD_RECALL` PASS (correctly refused to treat "merely stopped" as isolation), `U_C_DANGER_PRESERVED` PASS via `candidate+clarification+insight`, `U_F_CLARIFICATION_PRESERVED` PASS with the load-bearing question intact ("Is the area exhaust fan currently running?") and both supporting candidates correctly `UNKNOWN` not `ACTIVE`, `T5_DANGER_REPRESENTED` PASS, `R4_HOSTED_CANDIDATE_SURVIVAL` PASS. **§113's two disclosed local residuals are now CONFIRMED local-only by direct hosted measurement rather than inferred**: `T5` and `U-C`, which routed through clarification only on the local model (candidate 0/10), both produce full `ACTIVE` candidates hosted. **Routing: 18 opportunities, 11 hits, ZERO misses, 7 over-routed** -- all 7 on the two FORBIDDEN fixtures (`R6` 6, `U-A` 1); no `REQUIRED` collection came back empty anywhere. **Grounding/boundary is the cleanest profile of the programme**: 10 grounding opportunities, 10 quotes emitted, **10/10 exactly bound**, 0 unbindable, 0 fabricated, 0 `EVIDENCE_OUT_OF_BOUNDS`, 0 item-level and 0 analysis-level rejections, 0 malformed, 0 outcome/content inconsistencies, 0 explanation-only losses. **The load-bearing methodological finding**: §113's local instrument scored **350/350** on v6 and predicted none of this -- the local 30B model and Sonnet 5 diverge structurally on exactly this reasoning pattern, so local acceptance is no longer evidence about hosted behaviour for this defect class, and further local iteration would cost real time to produce a signal now *measured* not to transfer. Post-run regression all green, matching §108-§113 exactly: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, no controller/service/module or frontend reference, **zero** Expert-core files changed. Terminal: `EXPERT_HAZLENZ_V6_HAZARD_ACTUALITY_REPAIR_FAILED -- HOSTED_OVERROUTING_REMAINS` (Terminal B) -- C and D ruled out by measurement (every recall/clarification control passed), E ruled out (no new defect), A unavailable (primary gate 0/3). **9 hosted calls, \$0.284080 spent, nothing committed, pushed, tagged or deployed, nothing repaired. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. The 17-measure evaluation cohort remains BLOCKED -- this result calls for a PRODUCT-OWNER STRATEGY DECISION (re-examine the R6 expectation itself / move enforcement to the boundary / accept the current state), explicitly NOT another prompt iteration and NOT another local repair phase.** | **ACTIVE — PROTECTED_DECISION** | §114, `verification/expert-hazlenz-v6-hazard-actuality-hosted-confirmation-2026-08-30/` |
+| D-127 | EXPERT-HAZLENZ | **THE `R6` ORACLE IS CONFIRMED CORRECT ON FOUR INDEPENDENT SURFACES, AND THE TWO THINGS THAT ARE ACTUALLY WRONG ARE THE MEASURING INSTRUMENT AND THE MODEL'S INPUT.** Zero hosted calls, zero local provider calls, \$0.00. Prompt v6, normalization, the wire contract, the routing scorer and all three fixture files byte-unchanged (SHA-256 recorded); nothing repaired, nothing suppressed. §114.8 required a product-owner strategy decision and named re-examining the `R6` expectation first, noting it "was written before any hosted evidence existed". **POSITION A selected: the oracle stands.** The removed guard under R6's stated facts is a TRUE PHYSICAL CONDITION THAT IS NOT A CURRENT ACTIONABLE MACHINE-GUARDING HAZARD WHILE THE VERIFIED CONTROLLED STATE PERSISTS, with reinstatement correctly classified as a FUTURE PREREQUISITE on a re-energization the observation never states is occurring; the `machine_guarding` candidate is invalid (emphatically at `ACTIVE`) and the reinstatement clarification is invalid, because BOTH answers to "is the guard still off?" leave the current classification unchanged. **The expectation was NOT invented for this test sequence**, established mechanically rather than by interpretation: (1) the PRODUCTION deterministic engine already implements the doctrine -- `evidence-foundation.ts:220-231` computes `notApplicable = guardPresent OR energySafe` for `29 CFR 1910.212(a)(1)`, and running the real extractor on the exact R6 sentence this phase yields `energyIsolationState = isolated_and_verified` + `guardState = absent_or_ineffective`, so the engine resolves machine guarding to **`NOT_APPLICABLE` at 0.96 confidence**; `git log -L` dates that block to `6a593fd2` (2026-08-18) against the fixtures' `37a5d1b5` (2026-08-29), **eleven days earlier and on the customer-authoritative path**; (2) protected golden scenario 7 is *named* "LOTO energized maintenance (**Not Guarding alone**)"; (3) the Expert corpus already encodes the boundary as the `R6`(FORBIDDEN)/`V7`(REQUIRED, "a technician is currently reaching into the point of operation with both hands") contrast pair, plus `V6` requiring `machine_guarding` recall from the energy side -- discriminating, not a family suppression; (4) the repository's own quarantined `osha-1910-212` record lists as a `nonApplicabilityQuestion` "Is the task service or maintenance where **lockout/tagout may be the more specific controlling standard**?" (both governing records are `approvedForUse: false`, so they inform this adjudication and **may not be cited to a customer**). **THE FINDING THAT CHANGES THE RECORD**: extracting `assertedConditionState` from all nine frozen hosted R6 candidates gives v4 = **`UNKNOWN`×3**, v5 = **`ACTIVE`×3**, v6 = **`ACTIVE`×3**. Under v4 the model raised a hedged, confirmation-flagged advisory explicitly framed as a restoration prerequisite (rep 3: "a decision-relevant gap rather than a settled hazard"); under v5/v6 it asserts a PRESENT exposure on a machine stated to be at independently verified zero energy. **The two repair phases moved the model in the WRONG direction on the one axis the scorer cannot see**: `expert-routing-metrics.ts` `verdictFor()` receives only `(expectation, count)` and never `assertedConditionState`/`confidence`/`requiresUserConfirmation`, so `UNKNOWN`/LOW and `ACTIVE`/MODERATE score identically as `INCORRECT_POPULATED` -- §114.2's "no movement" table is true at cardinality level and concealed an adverse semantic regression, and §114.6's "local instrument non-predictive" is correct but incomplete because the HOSTED instrument is partially blind here too (§113's 350/350 and §114's 0/3 came from the same cardinality-only scorer). The mechanism is offered as a HYPOTHESIS, not a measurement; the regression itself is measured from the frozen transcripts. **ROOT CAUSE NO PRIOR PHASE IDENTIFIED**: R6's Expert input carries ONLY `lockout_tagout`/`CONTROLLED` and `governedStandards: []` -- it does NOT carry the `1910.212(a)(1)` `NOT_APPLICABLE` determination the real engine produces, while prompt instruction 1 says to raise any hazard "NOT already in the deterministic findings above... even if you are unsure". All nine reps set `requiresUserConfirmation: true` and `ADDITIONAL_TO_DETERMINISTIC`. **The model is substantially COMPLYING with instruction 1 on an incomplete input, and three prompt generations tried to instruct around a missing input rather than supply it.** `grep -rn "DeterministicFindingView" src/` returns only the type declaration and its use in `ExpertAnalysisInput` -- no production projection exists yet, so this is an open design decision, not a regression. Position B ruled out (the `ACTIVE` claim is false with `UNKNOWN`/`INSUFFICIENT_EVIDENCE` instructed and available; every consequence across all nine reps is hedged on a self-supplied condition, one -- v6 rep 3's "gravity-fed components" -- contradicting a stated fact; and it would require overturning a production predicate, a protected golden expectation and the `R6`/`V7` pair simultaneously). Position C ruled out ON ITS PREMISE -- the category is not missing: `EXPERT_CONDITION_STATES` already carries `CONTROLLED`/`HYPOTHETICAL`/`INSUFFICIENT_EVIDENCE`/`UNKNOWN`, so the CONTRACT can represent a controlled non-current condition and the SCORER cannot. Sonnet's case was built at full strength and §114.8's instinct endorsed as far as it goes; the model's own v6 rep 3 summary ("raised as a low-confidence candidate pending confirmation **rather than an active finding**", beside a candidate labelled `ACTIVE`) agrees with the oracle on the state and disagrees only in the field. **Counterfactual matrix**: 6 of 9 variants already exist as frozen fixtures and all are consistent with the oracle (`R6-B`→`V5`, `R6-C`→`V4`/`U-C`, `R6-D`→`V2`, `R6-E`→`V1`, `R6-F`→`V6`, `R6-G`→`V7`/`V8`), generated by one rule: a guard that is off is a current hazard exactly when the observation states a live pathway to harm -- motion available, or a person in contact range. **`R6-H` and `R6-I` have no fixtures and are precisely the two that separate a future prerequisite from a current hazard**; every existing counterfactual flips an ENERGY-CONTROL fact, none flips a RESTORATION-TRANSITION fact. Grounding independently re-verified: all nine hosted quotes bind exactly at `[106,134)`/`[113,134)` -- this was never a grounding defect. One corpus note carried forward, not acted on: "locked out with **the supervisor tag** applied" leaves personal-device ownership genuinely undetermined, a `lockout_tagout` question raised by 1 of 9 reps that does nothing for a `machine_guarding` candidate. Post-run protected state all green, identical to §108-§114: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, zero controller/service/module or frontend reference, zero Expert-core files changed, no importer and no script added, every created file under `verification/`. Terminal: `EXPERT_HAZLENZ_R6_ORACLE_CONFIRMED -- PRODUCT_ENFORCEMENT_STRATEGY_DECISION_REQUIRED`. **Next operation (NOT authorized here): complete the deterministic→Expert input projection, then re-measure** -- explicitly NOT another prompt iteration, NOT boundary suppression yet (highest-risk change shape in this programme; do not reach for it while a lower-risk additive mechanism on a demonstrated root cause is untried), NOT acceptance yet while the false `ACTIVE` claim stands. Sequence: (1) \$0.00 design + local diagnostic on projecting negated/`NOT_APPLICABLE`/`CONTROLLED` determinations (needs a contract decision -- `DeterministicFindingView.conditionState` has no member meaning "evaluated and excluded"); (2) scorer INSTRUMENTATION, recording-only, regardless of (1) -- changing what `verdictFor()` scores would alter a frozen protected metric and needs its own authorization; (3) add `R6-H`/`R6-I`; (4) only then a bounded hosted re-measurement. Falsifiable by construction. **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed, nothing repaired. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. The 17-measure evaluation cohort remains BLOCKED.** | **ACTIVE — PROTECTED_DECISION** | §115, `verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/` |
+| D-128 | EXPERT-HAZLENZ | **THE MISSING-PROJECTION HYPOTHESIS IS CONFIRMED AND THE GAP IS TOTAL; THE ENGINE THAT WOULD BE PROJECTED IS ITSELF PARTLY WRONG; AND THE PROJECTION MAKES EXPERT A MORE EXPLICIT REVIEWER RATHER THAN A QUIETER ONE.** Zero hosted calls, 108 LOCAL calls (Ollama qwen3-coder:30b, localhost only), \$0.00. Prompt v6, normalization, the wire contract, the routing scorer and all three prior fixture files byte-unchanged (SHA-256 recorded); no production or customer behaviour changed; every artifact this phase added is diagnostic-only. **(1) THE GAP IS TOTAL, not a dropped field.** Nothing in `src/` constructs an `ExpertAnalysisInput` -- every `deterministicFindings` array in the repository is hand-written in a fixture -- so the deterministic layer computes `applicabilityDecisions` on the customer path today and discards all of it at a boundary that does not yet exist. `buildExpertUserPrompt` renders only a positive finding or "(none -- the deterministic engine established no finding)", so **a family evaluated and excluded renders identically to a family never considered**. For R6 the engine knows `machine_guarding = NOT_APPLICABLE @ 0.96` because `moving or accessible energy = CONTRADICTED`; Expert sees `lockout_tagout / CONTROLLED` and is then told by instruction 1 to raise hazards "NOT already in the deterministic findings above". **(2) A PRE-EXISTING PRODUCTION DEFECT, REPORTED NOT REPAIRED: `DETERMINISTIC_MACHINE_GUARDING_EXCLUSION_SHORT_CIRCUIT`.** `decision()` sets `status = notApplicable ? 'NOT_APPLICABLE' : ...` BEFORE consulting predicate statuses, and `notApplicable = guardPresent OR energySafe` is unconditional, so once `isolated_and_verified` is extracted anywhere in the text machine guarding is excluded at 0.96 regardless of every other fact. Measured on the corpus's own frozen fixtures: `V2` (accumulator left charged), `V4` (second circuit on live shop air), `V7` (**a technician's hands in the point of operation**) and `R6-I` (**the press running unguarded**) ALL return `NOT_APPLICABLE @ 0.96`; `V4` is internally contradictory, carrying that status with **all four** of its own required predicates reading `SUPPORTED`. This is customer-authoritative and a fix touches 1910.212 applicability for every observation, so it needs its own authorization and re-baselining and was deliberately NOT attempted. It also turned Phase 7's anti-rubber-stamp controls from CONSTRUCTED into REAL -- the "deliberately incomplete deterministic view" did not need inventing. **(3) DESIGN.** Six extension points compared; `DeterministicFindingView` REJECTED despite the convenient name, per this operation's explicit instruction -- a `NOT_APPLICABLE` determination is not a finding, `EXPERT_CONDITION_STATES` has no member meaning "evaluated and excluded" and adding one breaks the foundation suite's byte-identity assertion against the Level-3 vocabulary, and it cannot carry a predicate-level rationale. Reusing `governedStandards` rejected (carries citations, would make an ungoverned output look governed); an `authoritativeSources` entry rejected as DANGEROUS (sources are the quote-binding surface -- Expert could "quote" the rationale as observation text). Selected: a new sibling array `deterministicFamilyDispositions[]` carrying family, disposition, actionable, confidence, the engine's OWN `controllingFacts[]` predicate names and statuses, a derived rationale, evidence quotes and provenance. **Citation-free by necessity**: `CITATION_SHAPED_PATTERN` refuses `\d{2} CFR \d+` in Expert output including prose, so projecting `ApplicabilityDecision.citation` would invite an echo and get the ENTIRE analysis rejected. **(4) CONTRACT SUFFICIENT, NOTHING ADDED.** `expertDisagreements` ALONE is insufficient -- `ExpertDisagreement` has no `evidence` field and no `groundingStatus`, so it is structurally ungrounded and cannot supply the exact observation evidence an override requires. The pair suffices and both halves already exist: the grounded half on `ExpertHazardCandidate` (`evidence`, `groundingStatus`, and the already-legal `relationshipToDeterministic: CONTRADICTS_DETERMINISTIC`), the authority-challenge half on `ExpertDisagreement` with surface `NEGATION_AND_SAFE_STATE` / `CONDITION_STATE_INTERPRETATION`. **(5) LOCAL A/B, 2 runs x 9 cases x 2 arms x 3 reps, one variable.** `silentAgreementReps = 0/3` on every case except `R6`, both arms, both runs -- the projection never silenced Expert anywhere danger was present. Headline: `relationshipToDeterministic` across every raw-wire candidate went `CONTRADICTS_DETERMINISTIC` **3/27 (11%) baseline -> 23/29 (79%) projected**, `REFINES` 10->0, `ADDITIONAL` 13->6, with **candidate volume RISING 27->29** -- the projection did not quieten Expert, it re-routed disagreement into the contract's explicit auditable override channel. `R6-I` went **0 candidates baseline -> 3 projected**, overriding a `NOT_APPLICABLE @ 0.96` by quoting the observation directly; `V7` held 3/3 with the override formally expressed 2/3; `V1-CTRL` (a CONSTRUCTED `CONTROLLED` on an observation stating energy was NOT bled) produced `CONTRADICTS_DETERMINISTIC` **3/3** at the wire naming the defeating fact; `V8` (a family the engine never assessed) unchanged; `V5` (`UNKNOWN`) rose 3->5. **The ONE genuine suppression was found and fixed**: run 1 measured `V4`'s `machine_guarding` candidate disappearing 3/3 under projection, caused by projecting `V4`'s internally contradictory exclusion; a projection-side guard (`isExclusionPredicateJustified` -- an exclusion is projectable only when at least one required predicate is actually `CONTRADICTED`) restored parity, changed ONLY `V4` in run 2, and did NOT modify the engine. Grounding IMPROVED: 3 `GROUNDING_CLAIM_UNSUPPORTED` rows projected vs 6 baseline, 26/26 quotes bound vs 21/21, 0 unbindable both, 27/27 `VALID` both -- the remaining apparent losses are that pre-existing local-only artifact, not projection effects. **THE BOUNDING LIMITATION, STATED PLAINLY: `R6` is clean in BOTH arms locally, so this diagnostic carries NO information about the primary defect.** R6 has never reproduced locally (§109/§110/§113) and §114.6 measured the local model and Sonnet 5 as structurally divergent on exactly this pattern. What is proven here is SAFETY, not EFFICACY. **(6) INSTRUMENTATION IS RECORDING-ONLY.** `expert-routing-metrics.ts` byte-unchanged, `verdictFor` unchanged, **no pass/fail gate changed and no historical score rewritten**. It distinguishes the nine frozen hosted `R6` candidates as `UNKNOWN`x3 / `ACTIVE`x3 / `ACTIVE`x3 -- nine responses the frozen cardinality scorer records identically. Two limitations disclosed rather than tuned away: `overridePathwaySupplied` under-counts on an incomplete lexical marker set, and the model OVER-APPLIES `CONTRADICTS_DETERMINISTIC` under projection (`V8` labels an addition a contradiction), so 79% overstates true disagreement -- conservative in direction, named as a calibration item. **(7)** `R6-H` (CURRENT TRANSITION, clarification REQUIRED) and `R6-I` (CURRENT ACTIVE EXPOSURE, candidate REQUIRED, hard recall gate) established in a NEW file; `routing-fixtures.ts` byte-unchanged and `R6` untouched. Post-run protected state identical to §108-§115, zero deltas: Expert **56/58/40/30/51/131/141**, quarantine **61/0** and **37/0**, HazLenz floors exit 0 with 0 dangerous/life-critical omissions, `tsc` 0, zero controller/service/module or frontend reference, **zero references to the prototype from `src/`**. Pre-existing unrelated work (the `frontend-next/tsconfig.json` modification, the `ecfr-1910-146.xml` deletion, 4 stashes, 24 tags) preserved untouched. Terminal: `EXPERT_HAZLENZ_DETERMINISTIC_PROJECTION_DESIGN_ACCEPTED -- BOUNDED_HOSTED_PROJECTION_TEST_AUTHORIZATION_REQUIRED` (Terminal A) -- B ruled out because the existing contract IS sufficient, C ruled out because the projection neither failed to address the defect nor required unsafe suppression (it increased candidate volume and improved grounding). **Next operation, NOT authorized here: a bounded hosted projection test**, both arms, real unmodified `AnthropicExpertProvider`: `R6`x3 plus `V7`/`R6-I` (anti-rubber-stamp hard gates), `R6-H`, `V8`, `V5`; falsification condition per the authorization. Two prerequisites to record, neither a blocker: the exclusion short-circuit defect needs its own adjudication phase, and the `CONTRADICTS_DETERMINISTIC` over-application needs block-wording calibration. **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. The 17-measure evaluation cohort remains BLOCKED.** | **ACTIVE — PROTECTED_DECISION** | §116, `verification/expert-hazlenz-deterministic-projection-design-2026-08-31/` |
+| D-129 | HAZLENZ-DETERMINISTIC | **A CUSTOMER-AUTHORITATIVE FALSE-NEGATIVE CLASS IS CLOSED: 8 DANGEROUS SUPPRESSIONS -> 0, WITH THE R6 PRECISION ANCHOR UNMOVED — AND THE FIRST, OBVIOUS FIX WAS PROVEN IMPOSSIBLE BEFORE THE REAL ONE WAS BUILT.** Zero hosted calls; 108 local Ollama calls for the projection revalidation, localhost only; \$0.00. Exactly THREE production files changed. **ROOT CAUSE CONFIRMED**: `ENERGY_SAFE_SHORT_CIRCUITS_EXPOSURE_PREDICATES`. `decision()` resolves `status = notApplicable ? 'NOT_APPLICABLE' : ...` as its FIRST branch, before `contradictoryEvidence`/`missingPredicates` are consulted, and the guarding rule passed `guardPresent OR energySafe` — so one `isolated_and_verified` fact excluded the family at 0.96 before any predicate was read. Confined to ONE rule: MSHA `56.14107(a)` and Construction `1926.300(b)(2)` carry no `energySafe` term. **AND CONFIRMED INSUFFICIENT — the phase's most important finding.** The extracted fact sets for `A` (exact R6, must stay NOT_APPLICABLE) and for `B`/`C`/`G`/`H`/`I` (must survive) are **BYTE-IDENTICAL**, so no function of the extracted facts could ever separate the R6 sentence from "a technician is currently reaching into the point of operation with both hands". Measured, not argued: the precedence repair ALONE moved dangerous false negatives **8 -> 7**. The defect had two layers — a precedence error AND a representational gap in the extractor. **PRE-REPAIR BASELINE (frozen before any edit): 8 dangerous false negatives of 16 cases, 0 precision failures.** `A`(R6) correct; `C`(V2 accumulator charged), `D`(V4 second circuit on live shop air — NOT_APPLICABLE@0.96 with **all four of its own predicates SUPPORTED**), `H`(V7 hands in the point of operation), `B`(working in the die area), `F`(V6 auto power-restoration), `G`(V1 not verified), `I`(R6-H removing the lock to restart), `J`(R6-I running production unguarded) ALL suppressed at NOT_APPLICABLE@0.96. **PRECEDENCE RULE ADOPTED**: a verified safe-energy state is EVIDENCE FOR non-applicability, NOT AN OVERRIDE OF an exposure the same observation independently establishes — `notApplicable = guardPresent OR (energySafe AND NOT guardingExposureEstablished)`. `energySafe` is RETAINED as the authorization required, because §115/D-127 confirmed the R6 determination partly on it. **REPAIR, 4 substantive changes**: (1) the precedence rule, plus contact exposure satisfying the predicate's own second disjunct ("moving OR ACCESSIBLE" — isolated energy makes parts non-moving, a person in the opening makes them accessible); (2) `ISOLATION_INCOMPLETE_OR_WITHDRAWN`, a second WITHHOLD-ONLY guard beside the existing `ISOLATION_UNVERIFIED_OR_CONTRADICTED` at the same single call site, covering three concepts (a dissipation step reported not done, a source left connected, an isolation stated as being or already withdrawn) and never asserting `not_isolated`, so a defeated claim leaves the state honestly UNKNOWN; (3) `correctedBeforeReview` narrowed `guard(?:ed)?` -> `guarded`, because the bare noun matched "now running production parts with the guard still off" as "now guarded" and negated the current hazard state on an observation saying the opposite; (4) a NEW fact type `machineContactExposure` read by exactly one predicate — new rather than a value on `employeeExposure`, which already carries three meanings for the fall and excavation rules. No fixture-specific logic, no phrase matching against corpus sentences, no confidence lowering to hide errors, and machine guarding is NOT always applicable when a guard is absent. **AN ATTEMPT MEASURED AND REJECTED**: stage 4 added `employee in the guarded zone` as a fifth REQUIRED predicate; `test:hazlenz-core` went **0 -> 1** because that predicate is UNKNOWN whenever no person is mentioned, so `decision()` downgraded EVERY ordinary unguarded-machine finding from SUPPORTED to UNKNOWN — caught on "The point of operation on the punch press is unguarded and the operator's hands enter the die area while it is running". Removed; contact exposure folded into the existing predicate; punch-press restored to SUPPORTED@0.96. A protected suite caught a regression introduced by this phase and its answer was taken. **TWO-SIDED GATE, POST-REPAIR: 16/16, 0 dangerous false negatives, 0 precision failures.** Precision: `A` stays NOT_APPLICABLE@**0.96** with the same substantive rationale and is now predicate-coherent; `K`(guard present) and `L`(historical/resolved) unchanged. Recall: `B`/`H` -> **SUPPORTED@0.96**; `C`/`D`/`F`/`G`/`I`/`J` -> **UNKNOWN@0.45** ("Candidate only; missing: ..."); `E` unchanged; `M`/`N`/`O`/`P` cross-jurisdiction and cross-family controls unchanged. **CONFIDENCE**: no model change made or needed — the derivation is a pure function of `status` and the `status` was the defect. 0.96 is no longer attached to a short-circuit contradicting its own predicates, and the new gate asserts no decision anywhere reports NOT_APPLICABLE while a hazard predicate reads SUPPORTED. **PROJECTION REVALIDATION (Phase 8, §116 diagnostic re-run unchanged against corrected outputs)**: all six required confirmations hold; `unsupportedSameFamilyActive` 3->0 (`R6-H`), 3->0 (`R6-I`), 1->0 (`V7`), while `V1-CTRL` — the CONSTRUCTED wrong-view control — still overrides 3/3, preserving the anti-rubber-stamp property; `silentAgreementReps = 0/3` everywhere except `R6`. `V4`'s candidate drop 6->3 is the design working: the deterministic layer now carries the `machine_guarding` hazard itself, so Expert contributes the adjacent `electrical` exposure and two clarifications instead. **PHASE 9 CALIBRATION (recording-only, no gate, no prompt or contract change)**: of declared `CONTRADICTS_DETERMINISTIC`, **17 of 26 (65%) were mislabelled pre-repair and 26 of 29 (90%) post-repair** — the label is unreliable and must NOT be read as a disagreement rate; most are cross-family additions or detail added beside an assessment the model agrees with. The load-bearing number is that **`UNSUPPORTED_CONTRADICTION`, the §115 R6 defect shape, went 3 -> 0**. **PROTECTED REGRESSION**: `evidence-foundation` 0; `hazlenz-core` 0; precision/level1-recall/actionable-coverage 0; the new `hazlenz-guarding-applicability` gate 0; Expert **56/58/40/30/51/131/141**; quarantine **61/0** and **37/0**; **0 dangerous and 0 life-critical omissions**; **Population A case-level precision 100.0%**; `tsc` 0. Eight pre-existing suite failures are IDENTICAL before and after, measured against a true HEAD baseline captured this phase by temporarily restoring the two files, running them, then restoring the repair and verifying by SHA-256. `test:classify` fails because `src/test-classify.ts` does not exist in HEAD either. **CONFINEMENT**: 3 production files. Zero controller/service/module, authentication/account, billing/Stripe, report/PDF, frontend, migration, governed-release, standards-corpus or production-DB involvement. Pre-existing unrelated work (frontend tsconfig, the ecfr-1910-146.xml deletion, 4 stashes, 24 tags) preserved untouched. Terminal: `HAZLENZ_MACHINE_GUARDING_APPLICABILITY_PRECEDENCE_REPAIRED -- BOUNDED_HOSTED_EXPERT_PROJECTION_TEST_AUTHORIZATION_REQUIRED` (Terminal A) — B ruled out (R6 unmoved), C ruled out (every dangerous case survives), D ruled out (the repair WAS achievable inside the applicability/evidence foundation, though it required the extraction layer and not the decision logic alone). **Bounded hosted projection testing is now justified and is the next authorization.** **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. The 17-measure evaluation cohort remains BLOCKED.** | **ACTIVE — PROTECTED_DECISION** | §117, `verification/hazlenz-machine-guarding-applicability-precedence-2026-08-31/` |
+| D-130 | EXPERT-HAZLENZ | **THE R6 DEFECT IS CAUSALLY ESTABLISHED AS AN INPUT-COMPLETENESS DEFECT, NOT A MODEL-COMPLIANCE DEFECT: CONTEMPORARY BASELINE 0/3 CLEAN vs PROJECTED 3/3 CLEAN, WITH ZERO ROUTING MISSES IN EITHER ARM.** 18 planned, 18 attempted, **18 completed clean, 0 transport failures, 0 retries**. Projected worst-case spend \$1.833378 (from the REAL request bodies, with the chars-per-token assumption CALIBRATED against §114's measured 9,163 avg input tokens rather than guessed -- an initial 3.0 assumption was corrected to 2.2 because it would have UNDER-estimated), actual **\$0.571626**, ceiling \$3.00. Provider anthropic, model claude-sonnet-5, prompt v6, contract analysis.v2, thinking disabled, max_output 8000, `P2_DETERMINISM_CONTROL = ABSENT`. **Pre-run and post-run SHA-256 of prompt, contract, normalization, scorer, the §117 deterministic repair, the §116 projection and every fixture are BYTE-IDENTICAL** -- the measurement was frozen and stayed frozen, and nothing was repaired during or after it. **PRIMARY RESULT.** R6 baseline (contemporary control, NOT inherited from v4/v5/v6 history): **3/3 reproduced the defect** -- a `machine_guarding` candidate (ACTIVE, INSUFFICIENT_EVIDENCE, ACTIVE) declared `ADDITIONAL_TO_DETERMINISTIC` with the familiar "distinct hazard family from lockout/tagout" reasoning, plus a reinstatement-timing clarification every rep; 2 of 4 collections over-routed each rep. R6 projected: **3/3 `NOTHING_TO_ADD`** -- zero candidates, zero clarifications, zero insights, zero disagreements, zero uncertainty; output tokens fell 921-1,112 -> 381-398 and latency halved. **`R6_BASELINE_CLEAN_RATE = 0/3`, `R6_PROJECTED_CLEAN_RATE = 3/3`.** **THE PROJECTED ARM DID NOT MERELY GO QUIET -- IT REASONED**: its summary reads "Machine guarding is correctly excluded because **no moving or accessible energy is established**, and no other hazard family is supported by any fact in the text" -- the deterministic layer's OWN controlling predicate (`moving or accessible energy = CONTRADICTED`) read and reused, satisfying causal criterion 2. **ANTI-RUBBER-STAMP: ALL SIX GATES PRESERVED, ZERO ROUTING MISSES IN BOTH ARMS.** Routing baseline **18 opportunities / 12 hits / 0 misses / 6 over-routed**; projected **18 / 18 / 0 / 0** -- the projection eliminated over-routing WITHOUT costing a single recall opportunity. `V7` (deterministic now `machine_guarding=ACTIVE@0.96` after §117, so Expert correctly does not duplicate it) gained a BLOCKING clarification naming the technician reaching into the point of operation. `R6-I` and `R6-H` each OVERRODE their projected disposition with a verbatim-quoted concrete current fact; `R6-H` additionally filed a formal `disagreements` entry on surface `CONDITION_STATE_INTERPRETATION`/`MAY_BE_INCOMPLETE` -- the proof that projection supplies CONTEXT, not AUTHORITY. `V1-CTRL` refused the deliberately constructed `lockout_tagout=CONTROLLED` with a BLOCKING clarification challenging the un-bled stored energy (identifies the failure YES, grounded evidence YES, formal disagreement channel PARTIAL -- it used candidate+clarification instead, disclosed as calibration not gate failure). `V8`'s cross-family danger survived and STRENGTHENED from one candidate to two. `V5` survived with two BLOCKING clarifications. **TWO THINGS RECORDED PLAINLY RATHER THAN BURIED**: (1) `V8`'s `machine_guarding` candidate present in Arm A disappeared in Arm B -- judged CORRECT suppression (verified isolation, technician grinding on the ram surface, nobody stated in the point of operation per the §115/§117 test) and the ONLY case where projection removed baseline content; (2) the derived classifier flagged 1 `UNSUPPORTED_CONTRADICTION` which **manual adjudication OVERTURNS** -- it fired on `R6-H`, whose candidate quotes the observation verbatim and states in terms "which is a current machine guarding hazard, not a hypothetical one"; the regex simply lacked that phrasing. **Automated 1, adjudicated 0, both reported.** Baseline's derived column is definitionally all `CROSS_FAMILY_ADDITION` (Arm A carries no dispositions) and is NOT comparable across arms. **GROUNDING PERFECT IN BOTH ARMS**: 19 evidence opportunities, 19 quotes emitted, **19/19 exactly bound**, 0 unbindable, 0 fabricated, 0 `EVIDENCE_OUT_OF_BOUNDS`, 0 item-level and 0 analysis-level rejections, 0 malformed, 0 outcome/content inconsistencies, 0 explanation-only losses. Declared `CONTRADICTS_DETERMINISTIC` 4x projected, of which 3 derive as `TRUE_DETERMINISTIC_CONTRADICTION`. **CAUSAL CONCLUSION**: all five evidentiary requirements met and no counter-condition holds -- the arms are not equally wrong, not equally clean, and no dangerous control regressed. **`DETERMINISTIC_DECISION_NOT_PROJECTED_TO_EXPERT` is SUPPORTED.** The R6 over-routing that survived three prompt generations and two dedicated repair phases was substantially an INPUT-COMPLETENESS defect, not a model-compliance defect -- exactly what §116 predicted and could not prove locally. **POST-RUN PROTECTED STATE, \$0.00, nothing repaired**: Expert **56/58/40/30/51/131/141**; quarantine **61/0** and **37/0**; floors exit 0 with **0 dangerous and 0 life-critical omissions**; **Population-A case-level precision 100.0%**; §117 deterministic corpus **16/16, 0 dangerous false negatives, 0 precision failures**; `evidence-foundation`, `hazlenz-guarding-applicability`, grounding and Anthropic-adapter suites all 0; `tsc` 0. **`PRE_EXISTING_BASELINE_FAILURE_UNCHANGED`** -- eight suites fail identically at the true HEAD baseline and now (`hazlenz-field-gauntlet` 92, `hazlenz-authentic-gauntlet` 92, `hazlenz-authentic-reasoning` 21, `hazlenz-clarification-gauntlet`, `hazlenz-independent-standards-audit`, `safescope`, `safescope-standards`, `standards-corpus-integrity` 1); they are NOT described as passing, are not attributable to §117 or §118, and were not investigated. **RESIDUAL LIMITATIONS RETAINED**: n=3 on the primary with no determinism control on this provider; the deterministic extraction layer remains PATTERN-BASED and §117's repair does NOT prove universal wording coverage (no vocabulary was expanded during this measurement); and the disclosed transport deviation -- the HTTP call is issued by the probe rather than `AnthropicExpertProvider.analyze()` because `analyze()` offers no seam for Arm B's appended block, but the body comes from the REAL `buildAnthropicRequestBody` (canonical schema -> strict wrapper -> Anthropic strip), endpoint/headers/version are verbatim, the model-identity check and the real binder and normalizer are used, and the SAME transport serves BOTH arms so it cannot confound the comparison. **CONFINEMENT**: ZERO production files changed by this phase; the 6 files under `backend/src` carry only the pre-existing §105-§117 diff. Zero controller/service/module, frontend or migration involvement. Pre-existing unrelated work (frontend tsconfig, the `ecfr-1910-146.xml` deletion, 4 stashes, 24 tags) preserved untouched. Terminal: `EXPERT_HAZLENZ_DETERMINISTIC_PROJECTION_HOSTED_CONFIRMED -- FORMAL_EVALUATION_COHORT_AUTHORIZATION_DECISION_REQUIRED` (Terminal A) -- B refuted by 3/3 clean, C ruled out (no control regressed, 0 misses), D ruled out (the control arm DID reproduce 3/3), E ruled out (the result is not mixed), F/G not reached (spend within ceiling, 18/18 transport-clean). **Next: a PRODUCT-OWNER DECISION on whether to authorize the formal 17-measure evaluation cohort. This terminal neither executes nor authorizes it.** Note before that decision: the projection still has NO production implementation -- `ExpertAnalysisInput` carries no `deterministicFamilyDispositions` field, §116's design remains a `scripts/` prototype, and promoting it needs its own authorization. **18 hosted calls, \$0.571626 spent, nothing committed, pushed, tagged or deployed, nothing repaired. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. The 17-measure evaluation cohort remains BLOCKED.** | **ACTIVE — PROTECTED_DECISION** | §118, `verification/expert-hazlenz-hosted-projection-ab-2026-08-31/` |
+| D-131 | EXPERT-HAZLENZ | **THE HOSTED-CONFIRMED PROJECTION NOW LIVES ON THE PERMANENT EXPERT PATH, AND THE PERMANENT PATH EMITS THE EXACT REQUESTS §118 MEASURED — BYTE FOR BYTE, ON ALL SEVEN CASES.** Zero hosted calls; 2 local Ollama calls (non-authoritative integration smoke); \$0.00. Exactly THREE production-capable files changed plus one `package.json` line. **No customer activation** -- `runExpertAnalysis` still has ZERO callers in `src/`. **THE GAP CLOSED**: `grep` confirmed `ExpertAnalysisInput` had only CONSUMERS and no production constructor, and `runExpertAnalysis` had zero callers, so the deterministic layer computed `applicabilityDecisions` on the customer path and discarded them at a boundary that did not exist; `buildExpertUserPrompt` rendered only a positive finding or "(none)", so **a family EVALUATED AND EXCLUDED rendered identically to a family never considered** -- the §116 root cause §118 confirmed. **PROMOTED**: (1) `expert-contract.types.ts` gains `DETERMINISTIC_DISPOSITIONS`, `DeterministicControllingFact`, `DeterministicFamilyDisposition` and one OPTIONAL `deterministicFamilyDispositions?` field; (2) NEW `expert-deterministic-projection.ts`, the prototype promoted unchanged in meaning -- a PURE projection over decisions the deterministic layer already produced, evaluating no predicate and reading no observation text, with a structural parameter so it carries no dependency on the evidence foundation (**no second applicability engine, no state reconstruction inside Expert**); (3) `expert-prompt.ts` gains `renderDeterministicDispositionBlock`, BYTE-IDENTICAL to the §118-confirmed prototype text, appended after the closing instructions with the same separator. **NOT TOUCHED, DELIBERATELY**: `EXPERT_CONDITION_STATES` -- `test-expert-contract-foundation.ts` E.3 asserts it byte-identical to the Level-3 vocabulary read as data, so `NOT_APPLICABLE` may not be forced into it; the disposition vocabulary is separate and smaller, describing what the DETERMINISTIC layer said rather than what Expert asserts. The projection is CITATION-FREE by necessity because `CITATION_SHAPED_PATTERN` refuses a CFR-shaped string anywhere in Expert output including prose. **PROMPT SEMANTIC VERSION UNCHANGED (`v6`); PERMANENT INPUT PROJECTION NOW POPULATED.** `EXPERT_SYSTEM_PROMPT` is byte-unchanged and gate `F.2` asserts the version literal mechanically. A previously-discarded piece of the deterministic RESULT is now rendered into the per-request input beside the observation, the findings and the governed records -- the same class of thing as those. This is NOT a behavioural prompt revision and is not described as one. **THE CENTRAL GATE**: new protected suite `test:expert-projection-equivalence`, **88 assertions / 0 failed**. Both paths compared through `buildAnthropicRequestBody` -- the REAL provider request including system prompt, user prompt, wire schema, strict wrapper and Anthropic compatibility strip. **All seven §118 projected-arm cases produce a BYTE-IDENTICAL request body. `SEMANTIC_REQUEST_EQUIVALENCE = 100%`, with NO differences to justify.** Confirmed TWICE independently: within the phase by `JSON.stringify` identity with `model`/`max_tokens`/`system`/`tools`/`tool_choice`/`thinking`/user-prompt each asserted separately; and ACROSS RUNS, because every permanent request byte-count matches the §118 preflight measurement of the request actually sent to Anthropic (`R6` 24,897; `V7` 24,864; `R6-I` 25,391; `V1-CTRL` 24,829; `R6-H` 24,931; `V8` 25,055; `V5` 24,873). **The permanent path reproduces the exact requests the hosted measurement was taken on, so §118's evidence transfers.** **STRUCTURAL PROOFS**: `R6` derives `machine_guarding = NOT_APPLICABLE @ 0.96`, provenance `DERIVED_FROM_PRODUCTION_ENGINE`, controlling fact `moving or accessible energy = CONTRADICTED`, rationale naming the contradicted predicate -- from the repaired §117 engine, not hand-written (`C.1`-`C.9`). **Projection absence stays distinguishable from evaluated-and-excluded** (`D.1`-`D.6`): `undefined` and `[]` both render NO section and are byte-identical to a pre-§119 request, `D.3` asserts an absent projection NEVER synthesises a `NOT_APPLICABLE` state, and a legacy input lacking the field is byte-identical to the absent case. Anti-rubber-stamp (`E.*`): `V7` projects `ACTIVE@0.96` so a stated point-of-operation contact is NOT a false exclusion; `R6-I`/`R6-H` project `UNKNOWN@0.45`; `V5` projects `UNKNOWN` which can carry a clarification; `V8` leaves `chemical_exposure` ABSENT so Expert may still add it; `V1-CTRL` renders the `CONTROLLED` assessment with the override licence verbatim. **NO boundary suppression exists** -- `F.1` asserts mechanically that `expert-normalization.ts` does not so much as mention the field. **DELIBERATELY NOT PROMOTED**: the state-aware scorer stays in `scripts/lib/`. The authorization permits promoting recording instrumentation only IF it belongs in the permanent evaluation harness; that harness does not exist, so promoting it would be speculative production surface. No formal pass/fail threshold changed, no historical score rewritten, `expert-routing-metrics.ts` byte-unchanged. **REGRESSION**: Expert **56/58/40/30/51/131/141** plus the new **88/0** gate; quarantine **61/0** and **37/0**; deterministic corpus **16/16, 0 dangerous false negatives**; **0 dangerous and 0 life-critical omissions**; **Population-A precision 100.0%**; 0 forbidden emissions; grounding, Anthropic-adapter and standards/applicability suites all 0; `tsc` 0; **no new failing suite**. `PRE_EXISTING_BASELINE_FAILURE_UNCHANGED` -- the eight known suites report counts IDENTICAL to §118 and are NOT described as passing. **CONFINEMENT**: three production-capable files plus one `package.json` line. Zero controller/service/module, auth, billing, report/PDF, frontend, migration, governed-release or database involvement; `expert-normalization.ts`, `expert-routing-metrics.ts`, the Anthropic adapter, `evidence-foundation.ts`, `shared-evidence-facts.ts` and `routing-fixtures.ts` byte-unchanged. Retained limitations: `P2_DETERMINISTIC_CONTROL = ABSENT` and n=3 per §118 R6 arm; pattern-based deterministic extraction with no proof of universal wording coverage; `CONTRADICTS_DETERMINISTIC` NOT authoritative. Terminal: `EXPERT_HAZLENZ_DETERMINISTIC_PROJECTION_PRODUCTION_PATH_ACCEPTED -- FORMAL_EVALUATION_COHORT_AUTHORIZATION_REQUIRED` (Terminal A) -- B ruled out (equivalence is 100% byte-identical), C ruled out (override structurally preserved, no suppression path exists), D ruled out (no residual integration problem). **Next: a product-owner decision on the formal 17-measure cohort. Two things belong in it -- the cohort harness does not exist and would need building, and Expert remains OFF the customer path with zero callers, so cohort evaluation would measure a layer that is still not customer-reachable.** **0 hosted calls, \$0.00 spent, nothing committed, pushed, tagged or deployed, no customer activation. `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. The 17-measure evaluation cohort remains BLOCKED.** | **ACTIVE — PROTECTED_DECISION** | §119, `verification/expert-hazlenz-projection-production-promotion-2026-08-31/` |
+| D-132 | EXPERT-HAZLENZ | **THE COHORT WAS AUTHORIZED AND STILL COULD NOT BE SPENT: THE SEVENTEEN MEASURES ARE COMPLETE, BUT THE EXAM THEY MEASURE DOES NOT EXIST.** 0 provider calls attempted, 0 completed, \$0.00, `FORMAL_COHORT_SPENT = FALSE`, no source file modified. `expert-evaluation-plan.ts` (`0b9b273a…`, §99.7) was recovered in full and IS authoritative — 17 measures, 4 families, 12 HARD_GATEs, 5 reported, 4 zero-tolerance gates, no aggregate field, an unmeasured hard gate counted FAILED, preconditions `P1`–`P4`, and a corpus policy. **Five independent gaps block execution.** (1) No cohort artifact exists anywhere; the policy names reserved material but never designates which is the Expert cohort, and states no rowcount and no case identities. (2) **No function in the repository computes any M-value**; nine measures are executable from their frozen `method` and `M04` becomes so once rows carry deterministic findings, but seven need a criterion that does not exist — and **five of those seven are HARD_GATEs** (`M02` 0.20, `M06` 0.05, `M07` 0.95, `M09` 0.70, `M10` 0.15), whose denominators could only be authored AFTER §104–§118 exposed the model's behaviour on exactly those axes. (3) `P4_PRESPEND_AUTHORIZATION` requires an owner authorization naming **the cohort, the call count and the ceiling**; none was named, and its `blocksIfUnmet` is all four families — dispositive alone. (4) The only Expert-shaped material is development fixtures, which the policy makes "**never a source of a gate result**"; the reserved material is raw Level-3 observation text carrying no key for any of the seventeen. (5) No production `ExpertAnalysisInput` constructor exists and `runExpertAnalysis` still has **zero callers**, so cohort rows could only be built by authoring a path whose per-row choices would be measured alongside the model. **What is NOT the blocker:** `ANTHROPIC_API_KEY` is PRESENT in `backend/.env` (presence/absence only), closing the §104 blocker, and §119's byte-equivalence holds — transport, credential and projection are all ready. **The missing thing is the exam, not the instrument.** Nothing was invented to close the gap: no harness, no preregistration, no scorer, no threshold, no rewritten history. `PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE` (uninvestigated as instructed). **The 17-measure evaluation cohort remains BLOCKED — now for a stated and enumerated reason rather than an unbuilt harness.** | **ACTIVE — PROTECTED_DECISION** | §120, `verification/expert-hazlenz-formal-cohort-definition-recovery-2026-08-31/` |
+| D-133 | EXPERT-HAZLENZ | **THE EXAMINATION INSTRUMENT IS BUILT, VALIDATED AND FROZEN BEFORE ANY RESERVED MATERIAL IS OPENED — AND THE THREE MEASURES THAT GENUINELY NEED HUMAN JUDGEMENT ARE NAMED RATHER THAN FAKED.** 0 provider calls, \$0.00, `RESERVED_MATERIAL_OPENED = FALSE`, `FORMAL_COHORT_SPENT = FALSE`, **146 assertions / 0 failed**. All seventeen measures now have an executable specification: **fourteen resolve at truth-precedence level 1 or 2, and EXACTLY THREE (`M06`, `M07`, `M09`) need a level-3 rubric** — each keeping a mechanical detector and denominator so only the irreducibly semantic half is judged. `M10`, `M11` and `M01` turned out FULLY MECHANICAL, and `M02` became mechanical via a **totality rule**: a row's present/defensible/forbidden buckets must PARTITION its vocabulary exactly, checked at freeze time. **No threshold, disposition or measure changed** — the contract stores no threshold, reads every immutable field from the plan, and DERIVES each zero-opportunity treatment from the plan's own disposition, so no entry exists that a later edit could flip. **Fail-closed is proved, not promised:** a hard gate with zero opportunity, an incomplete adjudication queue, or an unclassified candidate is UNMEASURED, and UNMEASURED FAILS; a silent model cannot score 1.00 on clarification quality. **ONE canonical `ExpertAnalysisInput` constructor** now exists and is what a future customer caller would use — no evaluation-only variant — preserving §119's projection semantics exactly and keeping `undefined` distinguishable from `[]`. **`TRUTH_LEAK = 0`, measured**: the model is shown NO life-criticality (production establishes none) while the corpus label reaches only the merge side, so `M04` is measurable without telling the model what to protect. **`expert-prompt.ts` is BYTE-UNCHANGED at `v6`.** The harness REFUSES a provider in DISABLED mode, checks ceilings BEFORE each call, produces NO score on development material, and its own counter reads **0 invocations**. **Composition and topology are DERIVED**: sizing rule `N >= ceil(2/t)` / `ceil(2/(1-f))` stated before use, giving **48 rows minimum / 60 preferred**, **3 calls per row**, **180 calls**, ceiling **200**, expected **\$5.72**, conservative maximum **\$25.00** from a cost model FITTED TO THE 18 REAL §118 CALLS with a **zero residual**. **Three denominators (`M02`, `M07`, `M09`) are model-output-dependent and cannot be guaranteed by composition — stated, not hidden.** **`RESERVED_MATERIAL_SUFFICIENT_WITHOUT_OPENING = FALSE`**, determined from metadata alone: only **45 of 100** `gauntlet.seed` rows map into the Expert taxonomy (3 short of the minimum), the realism pack labels only **2** zero-owed rows against a minimum of **14**, and five truth-key fields have no label in either corpus — so authoring the key requires reading the rows, which IS opening the offset. Regression identical to §119 (**56/51/131/141/58/88/40/30**, quarantine **61/0**, **37/0**, 0 dangerous and 0 life-critical omissions, `tsc` 0). `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, `runExpertAnalysis` still ZERO callers, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`, `P4` UNMET BY DESIGN. | **ACTIVE — PROTECTED_DECISION** | §121, `verification/expert-hazlenz-formal-cohort-infrastructure-2026-08-31/` |
+| D-134 | EXPERT-HAZLENZ | **THE RESERVE WAS OPENED CORRECTLY AND THE MACHINERY WORKS ON REAL ROWS — BUT THE COHORT COULD NOT BE FROZEN, AND THE REASON IS NOT THE ROW COUNT.** 0 provider calls, `PROVIDER_INVOCATION_COUNT = 0`, \$0.00, `TRUTH_LEAK = 0`, `FORMAL_COHORT_SPENT = FALSE`. Pre-exposure freeze re-proved all nine §121 hashes with ZERO drift, and the supplemental construction policy (`cc69d28e…`) was written and hashed BEFORE `gauntlet.seed` was read — it imports no provider, probe artifact or run record, so "selection may not be driven by observed model behaviour" is structural. **The reserve was opened ONCE**, all 100 rows, pre-open `49aa40fd…` matching the §7785 record and post-operation UNCHANGED; **0 of 100 scenarioIds appear in any prior artifact**; gauntlet offsets 2–3 and realism offsets 1–2 were NOT opened. **`HISTORICAL` IS RESOLVED, AND §121'S PROVISIONAL READING WAS WRONG:** four of the engine's five HISTORICAL branches stamp `correctionStatus: 'reported'` and say the current status is NOT established, so mapping them to `CORRECTED` — whose frozen definition requires the observation to assert the hazard was PUT RIGHT — would have told Expert the hazard was fixed exactly where the engine said it did not know. The engine supplies its own discriminator: **`verified` → CORRECTED, otherwise INSUFFICIENT_EVIDENCE**. **`PLANNED_FUTURE` REMAINS UNRESOLVED AND WAS NOT GUESSED** — the engine asserts a SCHEDULED activity while `HYPOTHETICAL` is defined as CONTINGENT framing, and no member of the eight-state vocabulary means "scheduled but not yet begun"; both alternatives are returned, and **ZERO of the 45 eligible rows exercise it** (92 ACTIVE, 1 HISTORICAL, no PLANNED_FUTURE across all 100). **45 real reserved rows built with mechanical truth passed validation 0/45 and produced 135 CONSTRUCTED requests through the canonical constructor and permanent prompt builder with 0 SENT**, so `CANONICAL_EXPERT_INPUT_CONSTRUCTOR_PROVEN` now holds on real rows. **TWO BLOCKERS, NEITHER ABOUT ROW COUNT** (the pool is 77 against a 60 target). **(1) NO AUTHORIZED GOVERNED-RECORD SOURCE EXISTS**: the approved-knowledge registry holds ZERO records, the governed release is in the database this authorization may not touch, `standards_master` is recorded COMPATIBILITY_EVIDENCE_ONLY and explicitly not the authority, and turning raw eCFR source-evidence into a backed `GovernedStandardView` would fabricate governed provenance — `GOVERNED_RECORD_SUPPLIED` 40 required / **0** achievable, `DISAGREEMENT_OPPORTUNITY` 6 / **0**, cascading to `M06` and `M07` so **REGULATORY_INTEGRITY would fail BY CONSTRUCTION rather than on the model's behaviour**, the §100.4 failure already paid for once. **(2) THE FROZEN TAXONOMY LIMITS THE NEGATIVE CONTROL**: only 14 of 45 eligible rows have an `unacceptableStandardFamilies` entry that maps into the accepted seven families, plus 13 from Population A = **27 against a frozen requirement of 48**; closing it needs either widening `toExpertFamily` (prohibited by name) or labelling families forbidden where no corpus says so (fabricating truth for a hard gate's numerator) — **neither was done**. Spend RECALCULATED from the 45 real request bodies: mean **23,406 bytes ≈ 8,913 input tokens**, **\$0.0306–\$0.0318 per call**, **\$5.51–\$5.72 at 180 calls**, conservative maximum **\$22.88**, so **\$25.00 remains sufficient**. Regression identical to §121 (**56/51/131/141/58/88/40/30**, instrument **150/0**, quarantine **61/0** and **37/0**, 0 dangerous and 0 life-critical omissions, `tsc` 0). ONLY `expert-input-constructor.ts` changed (`2210cbe6…` → `c28c2d9f…`); prompt, projection, plan, measurement contract, scorers, composition and harness BYTE-UNCHANGED. `PROVIDER_VALIDATED = FALSE`, `CUSTOMER_ACTIVE = FALSE`, `P4` UNMET, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. | **ACTIVE — PROTECTED_DECISION** | §122, `verification/expert-hazlenz-formal-cohort-assembly-2026-08-31/` |
+| D-135 | EXPERT-HAZLENZ | **BOTH CONDITION MAPPINGS ARE FROZEN, THE CONSTRUCTOR DRIFT IS PROVEN CLEAN BY REVERSION — AND THE NEGATIVE-CONTROL REQUIREMENT IS UNREACHABLE BY EXACTLY THREE ROWS, ESTABLISHED WITHOUT SPENDING ANY RESERVE.** 0 provider calls, \$0.00, no production mutation, NO reserved material opened this phase, `FORMAL_COHORT_SPENT = FALSE`. **CONSTRUCTOR DRIFT PROVEN, NOT INSPECTED:** reverting only the five §122 edits reproduces the §121 frozen `2210cbe6…` BYTE FOR BYTE, so those edits are the complete diff and there is ZERO unrelated semantic drift; prompt and projection byte-unchanged, `TRUTH_LEAK = 0` re-measured, no evaluation-only behaviour (the added parameter is the PRODUCTION field `HazardDecomposition.correctionStatus`), §119 equivalence **88/0**, instrument **155/0**. New authoritative constructor hash **`72dab946…`**. **`PLANNED_FUTURE -> HYPOTHETICAL` FROZEN** on the owner's decision with **`PLANNED_FUTURE_REPRESENTATION_DEBT = TRUE` recorded IN CODE**: the engine ASSERTS a scheduled activity while HYPOTHETICAL means CONTINGENT framing, the foreseeable failure is Expert under-weighting a hazard that IS going to occur, and resolving it needs a new member in a vocabulary frozen byte-identical to the Level-3 one — a governance act. The vocabulary was NOT expanded. **THE GOVERNED RELEASE IS NOT REACHABLE FROM THIS MACHINE**: `DATABASE_URL` is localhost and MALFORMED (`pg` resolves its host to the literal `base`), the discrete `DB_*` point at the LOCAL DEV `safescope`, no production host exists in configuration, and locally `regulatory_releases` has **0 rows** with `regulatory_release_records` and `knowledge_release_events` **ABSENT** — so, under the owner's standing instruction that the production `DATABASE_URL` is never handled by the assistant, the deliverable is a GUARDED READ-ONLY RUNBOOK the owner executes. Read-only enforcement was PROVEN achievable (`SQLSTATE 25006` refusing a `WHERE false` write probe inside `BEGIN TRANSACTION READ ONLY`), with the honest caveat that the local ROLE is a superuser so only the TRANSACTION is constrained. `standards_master` was NOT used as authority and no eCFR evidence became invented governed records. **NEGATIVE CONTROL = 45 vs the frozen 48**, counted from LABEL METADATA ONLY so gauntlet offsets 2–3 and realism offsets 1–2 remain **UNSPENT**: seed 14 + Population A 13 + offset 2 nine + offset 3 nine + realism **0** = 45. Realism contributes nothing structurally — it carries `forbiddenTerms` (citations and phrases), NOT forbidden FAMILIES, and family truth may not be inferred from a term. **Phase 4's STOP fired**: no synthetic labels, `toExpertFamily` NOT widened, 48 NOT reinterpreted. The material that would close it — source-pool offsets 0 and 4, **15** further capable rows, total **60** — is in NEITHER the closed nor the reserved list, so designating it is the owner's governance act. **Open-once compliance SHARPENED**: a follow-up sweep's 110 hits were an artifact of two generic short fragments; over the 98 DISTINCTIVE (≥40 char) fragments across 6,400 files the count is **0**, confirming §122. Regression **56/51/131/141/58/88/40/30**, instrument **155/0**, quarantine **61/0** and **37/0**, 0 dangerous and 0 life-critical omissions, `tsc` 0. **`FORMAL_EXPERT_COHORT_V1` NOT frozen, no identifier claimed, no P4 proposal returned.** `PROVIDER_VALIDATED = FALSE`, `CUSTOMER_ACTIVE = FALSE`, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`. | **ACTIVE — PROTECTED_DECISION** | §123, `verification/expert-hazlenz-cohort-source-blockers-2026-08-31/` |
+| D-136 | EXPERT-HAZLENZ | **THE MANDATORY PRE-OPEN IDENTITY CHECK FIRED: THE AUGMENTATION ROUTE DOES NOT EXIST, `GAUNTLET_OFFSET_0` IS RETIRED, AND THE NEGATIVE-CONTROL CEILING IS LOWER THAN §123 REPORTED.** 0 provider calls, \$0.00, no production mutation, **NO reserved material opened, NO source file changed**, `FORMAL_COHORT_SPENT = FALSE`. **THE AUTHORITATIVE PARTITION IS `i %% 4`, NOT `i %% 5`:** D-86 specifies `gauntlet.source.v1` sorted by `scenarioId` UTF-8 byte-wise ascending, 0-based, **m = 4**, `k = parseInt(sha256.slice(-8),16) %% 4 = parseInt('22f0adb4',16) %% 4 = 0`, giving 38 rows and partitions **38/38/37/37** — reproduced live against `a95e5480…` as an EXACT match, so the stride is verified rather than assumed. **§123 WAS WRONG FOUR WAYS** — wrong modulus, wrong order (it indexed the file's natural order instead of a scenarioId sort), wrong designation, and it invoked a non-existent offset 4. **COLLISION CONFIRMED: `GAUNTLET_OFFSET_0` = RETIRED** by §61's Run 1 sealed acceptance (`L3_ACCEPTANCE_INVALID — PROVIDER_CALLABILITY_FAILURE_AFTER_SPEND`, corpus spent and measurement NOT obtained), under the rule **'A FAILED ACCEPTANCE RUN SPENDS THE STRIDE. IT DOES NOT RETURN IT'** — so `RETIRED = RETIRED`, it was NOT reopened and NOT redesignated, and no augmentation designation was created because **no undesignated source-pool material exists**. **A FROZEN ARTIFACT UNDER-REPORTS RETIREMENTS**: `EVALUATION_CORPUS_POLICY.closed` names only `GAUNTLET_OFFSET_1` and `REALISM_OFFSET_0`, OMITTING `GAUNTLET_OFFSET_0` and `REALISM_OFFSET_3` retired by Run 1 — the very incompleteness that invited §123's error; the plan file was NOT modified (it is frozen and `closed.length === 4` is asserted by a protected suite), and amending it needs its own authorization. **COUNT: seed 14 + Population A 13 + offset 2 eight + offset 3 eight + realism 0 = 43 against a frozen 48, shortfall 5**, and the only material that would close it (offsets 0 and 1, 12 and 13 capable) is PERMANENTLY RETIRED. **NOTHING WAS OPENED** — metadata already proves the end state with offsets 2 and 3 FULLY COUNTED is 43, so opening would spend two single-use reserves, still miss 48, and burn them for nothing, which is §61's outcome exactly. Realism contributes 0 structurally: it has NO hazard-family field at all. No fabricated forbidden truth, `toExpertFamily` NOT widened, 48 NOT reinterpreted. **Governed extraction NOT executed** — Part B is the owner's to run and no sanitized output was provided, so `GOVERNED_RECORD_SUPPLIED = 0` and nothing was reconciled; the production credential was neither requested nor handled. **`FORMAL_EXPERT_COHORT_V1` NOT frozen, no identifier claimed, no P4 block returned.** All ten frozen artifacts re-verified unchanged including the constructor at `72dab946…`; regression **56/51/131/141/58/88/40/30**, instrument **155/0**, quarantine **61/0** and **37/0**, 0 dangerous and 0 life-critical omissions, `tsc` 0. | **ACTIVE — PROTECTED_DECISION** | §124, `verification/expert-hazlenz-final-source-blockers-2026-08-31/` |
+| D-137 | EXPERT-HAZLENZ | **THE NEGATIVE-CONTROL BLOCKER IS CLOSED WITH A MARGIN OF 9 — BY AUTHORING NEW MATERIAL, NOT BY REOPENING RETIRED MATERIAL, WIDENING THE TAXONOMY OR WEAKENING THE FROZEN 48.** 0 provider calls, \$0.00, no production access, **NO reserved material opened**, `FORMAL_COHORT_SPENT = FALSE`, **29 validation assertions / 0 failed**. A **RETIREMENT REGISTRY** (`cd1a114d…`) now records 13 partitions with 6 permanently retired, and `assertMayOpen()` consults BOTH the frozen plan AND the registry, **failing closed on any conflict** — retired gauntlet offsets 0 and 1 REFUSED, retired realism offset 3 REFUSED, UNKNOWN offset 4 REFUSED, reserved 2 and 3 permitted. It reports that the frozen plan under-reports **exactly three** retirements, **reported and NOT silently reconciled** because `closed.length === 4` is a protected assertion. The **construction policy** (`9865e7d0…`) was frozen BEFORE a single case existed and imports no provider, probe artifact or run record, so the prohibition on provider-informed construction is enforced by the DEPENDENCY GRAPH; it states the purpose as **COVERAGE, NOT CHALLENGE**, and requires every forbidden family to carry a **LURE plus a DEFEATING FACT**, verified MECHANICALLY against a per-family lexicon. **Sixteen rows meet every distribution target** — forbidden-family 14/10, safe-resolved 6/4, active 8/4, multi-family 4/4, clarification-not-owed 13/4, owed 3/2, governed-matchable 14/4, plus 3 closed-vocabulary interactions. **THE REVIEW'S LIMITATION IS STATED, NOT SMOOTHED OVER: it was performed by the same agent that authored the cases and is NOT an independent human safety review**, which matters because this corpus feeds `M02`, a HARD GATE at 0.20, where a disputed forbidden label would score a CORRECT model observation as a false positive — a qualified safety professional should review the fourteen forbidden determinations before a gate result. The review's substantive output was **TWO REJECTIONS**: `AUG-04` `lockout_tagout` (isolating lines into a vessel before entry is a real requirement) and `AUG-15` `electrical` (a carton sealer is electrically powered, so unisolated electrical energy is a genuine second source) — both downgraded to DEFENSIBLE, costing two opportunities, and **neither row was rewritten to restore one**. **CAPABILITY: seed 14 + Population A 13 + offset2 8 + offset3 8 + realism 0 = 43, + augmentation 14 = 57 >= 48, margin 9** — with offsets 2 and 3 counted from METADATA ONLY so single-use reserve is preserved. `KNOWN_PROVIDER_CASE_COPY = FALSE` (0 matches for all 16 distinctive fragments across verification, docs, safescope-data and every §104–§119 fixture a provider has seen); `TRUTH_LEAK = 0` across 48 constructed requests; `PROVIDER_INVOCATION_COUNT = 0`. **`FORMAL_EXPERT_NEGATIVE_CONTROL_AUGMENTATION_V1` SEALED** — manifest `b2e96cc5…`, truth keys `51afb054…`, provenance `e33fb8df…` — now formal RESERVED material, NOT yet spent. All frozen artifacts unchanged, constructor still `72dab946…`. Regression **56/51/131/141/58/88/40/30**, instrument **155/0**, augmentation **29/0**, quarantine **61/0** and **37/0**, 0 dangerous and 0 life-critical omissions, `tsc` 0. **`GOVERNED_RECORD_SUPPLIED = 0` remains the ONE open cohort blocker.** | **ACTIVE — PROTECTED_DECISION** | §125, `verification/expert-hazlenz-negative-control-augmentation-2026-08-31/` |
+| D-138 | EXPERT-HAZLENZ | **THE INDEPENDENT SAFETY REVIEW OVERTURNED 3 OF 14 FORBIDDEN DETERMINATIONS, THE GOVERNED SNAPSHOT RECONCILED CLEANLY, AND THE COHORT STILL CANNOT BE FROZEN — BECAUSE TWO COMPOSITION MINIMUMS HAVE NO AUTHORIZED SOURCE AT ALL.** 0 provider calls, \$0.00, **no production access by Claude**, **NO reserved material opened**, `FORMAL_COHORT_SPENT = FALSE`, nothing committed/pushed/deployed. **THE PRODUCT OWNER'S INDEPENDENT REVIEW IS NOW THE APPROVAL OF RECORD**, superseding §125's authoring self-review: 13 APPROVE, **3 REJECT/CORRECT** — `AUG-08` `fall_protection`, `AUG-13` `electrical`, `AUG-14` `fall_protection`, all corrected to DEFENSIBLE verbatim. **A 21% ERROR RATE ON LEVEL-3 SAFETY JUDGEMENT BY THE AUTHORING AGENT**, which is precisely what the review existed to catch. `AUG-08` keeps `lockout_tagout` forbidden and REMAINS a negative control; `AUG-13`/`AUG-14` lose their only forbidden family and LEAVE the population. **NOTHING was substituted, restored or added to recover the two lost opportunities and NO row was rewritten**; the stale `authoringRationale` on `AUG-13`/`AUG-14` is DELIBERATELY LEFT AS AUTHORED so the overruled disagreement stays visible. Corpus re-identified as **`FORMAL_EXPERT_NEGATIVE_CONTROL_AUGMENTATION_V2`** — truth keys `29a0c38e…`, provenance `5f0b5338…`, manifest `b2e96cc5…` UNCHANGED (no observation moved); V1's seal preserved and restored byte-exact at `97bb5e67…`. **CAPABILITY 14 -> 12, total 57 -> 55 >= 48, margin 7.** **PRODUCTION READ-ONLY EXTRACTION EXECUTED BY THE OWNER, NOT BY CLAUDE**, over the **DIRECT** Neon endpoint after §126 found the v1 runbook would have FAILED AT THE SERVER (it projected `title`/`approvedText`/`backingState`, none of which are columns — they live in `payload` jsonb) and found that a `PGOPTIONS` read-only preflight through Neon's **POOLER** risks the §81.11.1 leak onto backends serving live customers. Read-only proven server-side: `25006` on a `WHERE false` probe, `neondb`/`neondb_owner`/`txn_read_only = on`. **RECONCILED: `federal-core-2026-08-28.1`, status `active`, 64 records, 64 distinct checksums, 64 distinct citations, manifest `680540d9…`, snapshot `a2c5dc32…`, 65 lines = 1 header + 64.** **BACKING STATE RESOLVED FROM PRODUCTION TRUTH, NOT ASSUMED: all 64 are `mechanically_validated` -> `UNAPPROVED_RECORD`; NO `APPROVED_*` STATE WAS INVENTED**, because `review-state.ts` forbids upgrading the three states into one another and doing so would re-commit KG-3A defect B. **THE FROZEN CONTRACT IS NOT DEFECTIVE** — `expert-cohort-composition.ts:144` states that rows carrying an UNAPPROVED record are exactly what exercises **M08**; M06/M07 key off `governedStandards.length > 0` and are unaffected; grounding preserved; `TRUTH_LEAK = 0`. **LIMITATION PRESERVED: `REVIEWER_APPROVED_GOVERNED_RECORDS = 0`, `APPROVED_RECORD_GROUNDING_EXERCISED = FALSE`** — one axis of M07 CANNOT be exercised by this cohort and no green result may imply it was. **THE BLOCKER, MEASURED RATHER THAN ASSERTED: `CLARIFICATION_OWED` 3 against 20 (short 17) and `CROSS_HAZARD_INTERACTION` 5 against 10 (short 5), AND OPENING GAUNTLET OFFSETS 2 AND 3 DOES NOT CHANGE EITHER NUMBER** — field-name inventory proves `gauntlet.source.v1` carries NO gap label and NO interaction label, so opening would spend two irreplaceable open-once partitions and still leave the cohort unfreezable, which is §61's outcome exactly. **THE RESERVE WAS THEREFORE LEFT INTACT** under `COHORT_SIZE_POLICY.onInsufficiency`. The 22 missing Level-3 judgements were **NOT AUTHORED**: doing so unreviewed, days after this same authoring process erred on 3 of 14, and feeding M09/M10 with M02 a HARD GATE at 0.20, would repeat the caught error inside the frozen key. No threshold, scorer, disposition or minimum was changed. Regression **56/51/131/141/58/88/40/155**, augmentation **29/0**, reconciliation **13/0**. **`FORMAL_EXPERT_COHORT_V1` NOT FROZEN; no P4 block issued.** | **ACTIVE — PROTECTED_DECISION** | §126, `verification/expert-hazlenz-formal-cohort-final-assembly-2026-08-31/` |
+| D-139 | EXPERT-HAZLENZ | **THE TWO MEASURED SEMANTIC SHORTAGES ARE CLOSED BY AUTHORING NEW MATERIAL — AS CANDIDATE TRUTH ONLY, WITH THE FROZEN MINIMA UNTOUCHED AND THE RESERVE STILL SEALED.** 0 provider calls, \$0.00, no production access, **NO reserved material opened**, `FORMAL_COHORT_SPENT = FALSE`, nothing committed/pushed/deployed. **37 validation assertions, 0 failed.** `CLARIFICATION_OWED >= 20` and `CROSS_HAZARD_INTERACTION >= 10` were **NOT relaxed**; `GAUNTLET_OFFSET_2`/`_3` and `REALISM_OFFSET_1`/`_2` remain **RESERVED and unopened**; no retired material was reopened; M09/M10 were **NOT** marked UNMEASURED to make the cohort executable. A construction policy was **frozen before a single case existed** (`2eff227f…`) and imports no provider, probe artifact or run record, so provider-free construction is enforced by the dependency graph; it defines a four-part gap packet (missing fact / why absent / decision affected / how plausible answers diverge), a five-part interaction packet, a forbidden-generic-question list, and **five FORBIDDEN-family prohibitions written directly from what the §126 independent review caught** — absence is never evidence of absence, one control never eliminates every related hazard, a resolved state extends only as far as the text establishes it, FORBIDDEN is never broadened because a row exists for M09/M11, and anything a competent professional could legitimately raise is DEFENSIBLE. **THE POLICY FREEZE WAS AMENDED AFTER AUTHORING AND THAT IS RECORDED RATHER THAN HIDDEN**: it failed to compile (TS1355, `as const` on a concatenated string), the fix was `: string` with byte-identical rule text, and BOTH hashes are on file (`2eff227f…` original, `c7dc1c68…` effective). **35 rows, `SEM-01`..`SEM-35`**: **27 CLARIFICATION_OWED candidates** (target 26), **14 CROSS_HAZARD_INTERACTION candidates** (target 14), **8 clarification-NOT-owed controls**, **12 interaction-negative controls** (two or more present families deliberately recorded as co-occurrence), **10 rows carrying both**, 11 rows carrying a forbidden family. **A FROZEN-CONTRACT DEFECT WAS FOUND AND REPORTED RATHER THAN ENGINEERED AROUND**: `SEM-09` (flammable vapour plus an unrated energised fitting with the exhaust locked out) is a genuine interaction the closed vocabulary **cannot name**, and its only catch-all `OTHER` is **simultaneously a legal Expert output value**, so recording it as truth trips `truthOnlyStrings` — the detector reads the token in the rendered request and cannot distinguish the two uses. The detector was **NOT weakened** and the relationship was **NOT mislabelled** as `CHEMICAL_PPE_VENTILATION` to buy a count; the interaction is left unrecorded, the limitation is stated on the row, and `SEM-35` was authored to restore the fourteenth. `KNOWN_PROVIDER_CASE_COPY = FALSE` (0 matches for 35 distinctive fragments across verification, docs, safescope-data and every Expert fixture); **`TRUTH_LEAK = 0` across 105 constructed requests**; `PROVIDER_INVOCATION_COUNT = 0`. **THIS IS CANDIDATE TRUTH, NOT FORMAL TRUTH** — `FORMAL_EXPERT_SEMANTIC_AUGMENTATION_V1_CANDIDATE` SEALED (manifest `6a2c564c…`, truth keys `1628f2e4…`, provenance `272cf02b…`) and **nothing enters the formal cohort until independent product-owner review accepts it**; four rows carry explicit author-uncertainty flags. **CURRENT INDEPENDENTLY AUTHORIZED: owed 3, interaction 5. CANDIDATE MAXIMUM IF EVERY VERDICT WERE ACCEPTED (not assumed): owed 30, interaction 19.** Prior seals preserved byte-exact — AUG V1 `97bb5e67…`, V2 post-review `480c7bdd…`. `REVIEWER_APPROVED_GOVERNED_RECORDS = 0` and `APPROVED_RECORD_GROUNDING_EXERCISED = FALSE` remain structurally true and unchanged. Regression **56/51/131/141/58/88/40/155**, augmentation **29/0**, semantic **37/0**, `tsc` 0. Cohort **NOT** assembled, **NOT** frozen; no prespend wording produced. | **SUPERSEDED BY D-140 — the review D-139 required is now complete and applied** | §127, `verification/expert-hazlenz-semantic-augmentation-2026-08-31/` |
+| D-140 | EXPERT-HAZLENZ | **ALL 35 ROWS ARE INDEPENDENTLY HUMAN-REVIEWED, EVERY RECORDED ADJUDICATION IS APPLIED, AND BOTH FROZEN MINIMA STILL HOLD WITH MARGIN — BUT VALIDATION TERMINATES BLOCKED ON A VALIDATOR THAT HAS NO POST-REVIEW MODE.** 0 provider calls, no production or database access, **NO reserved material opened**, `FORMAL_COHORT_SPENT = FALSE`, `P4_PRESPEND_AUTHORIZATION = FALSE`, nothing committed/pushed/deployed. The independent product-owner safety review of `FORMAL_EXPERT_SEMANTIC_AUGMENTATION_V1_CANDIDATE` is **COMPLETE for 35 of 35 rows** across four verdict batches plus three owner-call supplements, and every recorded decision has been applied in three controlled passes (open item 7b; SEM-27; then the consolidated pass over open items 2–8 and all Batch 1–3 corrections). **REVIEWED ACCOUNTING — clarification: 27 authored OWED, 5 withdrawn, 22 surviving; +3 independently authorized = 25 against a frozen minimum of 20, margin +5. Interaction: 14 authored PRESENT, 3 withdrawn, 2 promoted, 2 blocked by frozen-vocabulary gaps, 12 countable; +5 independently authorized = 17 against a frozen minimum of 10, margin +7.** Neither minimum was relaxed and neither needed to be. **THE FORBIDDEN-FAMILY PATTERN SPLIT ON ONE LINE, NOW STATED AS A CORPUS RULE**: 15 determinations authored across 11 rows, **6 overturned, 9 surviving**, and the distinguishing property is whether the observation *expressly asserts* the fact rather than whether the sentence is phrased positively — an expressly stated negative fact ("the room contains no process equipment") is valid affirmative evidence; "no damaged cord *is described*" is the author reading silence. Seven rationales were tightened under explicit owner call with **no classification changed**; all 9 survivors were re-audited after application and none rests on absence-of-description. **THREE FROZEN-VOCABULARY LIMITATIONS ARE CARRIED FORWARD, REPORTED AND NOT REPAIRED**: `SEM-09` and `SEM-35` are genuine interactions `ACCEPTED_INTERACTION_TAXONOMY` cannot name (flammable-atmosphere ignition; vehicle-movement/platform-position-dependency/drive-away), both left **unrecorded rather than mislabelled** — `OTHER` remains unusable because the token occurs in `EXPERT_SYSTEM_PROMPT` as ordinary English and trips the substring truth-leak guard, which was **NOT weakened**; and `SEM-27`'s actual hazard is thermal/hot-process, which `ACCEPTED_EXPERT_TAXONOMY` cannot name, so **the row intentionally carries NO PRESENT family** rather than being routed through a `chemical_exposure` or `machine_guarding` proxy. **The corpus has now lost two interaction counts to one vocabulary defect, and the second loss was the repair attempt for the first.** `manifestSha256` is **byte-identical at every stage** (`6a2c564c…`) across a review that rewrote nine partitions, five gaps and eleven rationales — mechanical proof that no observation was edited and the array was never reordered; truth keys `1628f2e4…` → `2e4377ea…`, provenance `272cf02b…` → `16b76f48…`. Array order is `SEM-01..SEM-30, SEM-35, SEM-31..SEM-34` with SEM-35 at index 30, and the manifest-order **description** was corrected in both locations without reordering the fixture. `TRUTH_LEAK = 0` across 105 constructed requests. **VALIDATION: 35 assertions PASS, 2 FAIL — F.1 and F.2 only.** Those two assert the frozen construction policy's `CANDIDATE_TARGETS` (26/14), which the policy itself defines as *"margin ABOVE the frozen minimums so that independent review can reject determinations"* and explicitly *"NOT THE FROZEN MINIMUMS"*. The review consumed exactly that margin, so **a post-review corpus cannot arithmetically satisfy them**. Making them pass would require editing a verification gate to obtain a green result; **it was not done** — the validator retains every assertion, threshold and semantic, its only edit being the manifest-order description string. **TERMINAL: BLOCKED — the reviewed corpus needs a product-owner decision on which verification surface governs it, because the validator was built to seal a pre-review candidate and has no post-review mode.** Cohort **NOT** assembled, **NOT** frozen, **NOT** authorized. | **SUPERSEDED BY D-141 — the blocker D-140 named is resolved by an explicit phase model, not by relaxation** | §128, `verification/expert-hazlenz-semantic-augmentation-2026-08-31/review/OWNER-CALL-APPLICATION-PASS.md`, `…/PROVENANCE-CHAIN.md` |
+| D-141 | EXPERT-HAZLENZ | **THE BLOCKER WAS A VERIFICATION-PHASE MODEL DEFECT, AND IT IS REPAIRED BY MAKING THE PHASE EXPLICIT — NOT BY LOWERING A SINGLE TARGET.** 0 provider calls, no production or database access, **NO reserved material opened**, `FORMAL_COHORT_SPENT = FALSE`, `P4_PRESPEND_AUTHORIZATION = FALSE`, nothing committed/pushed/tagged/deployed. **ROOT CAUSE, ESTABLISHED FROM THE FROZEN POLICY ITSELF**: `validate-semantic-augmentation.ts` was built to seal ONE moment — a pre-review candidate corpus — and its `F.1`/`F.2` assertions encoded `CANDIDATE_TARGETS` (26/14) as if they were acceptance criteria, when the policy defines them as *margin ABOVE the frozen minimums so independent review can reject determinations* and states they are *NOT the frozen minimums*. Review spent exactly that margin, so **F.1/F.2 are arithmetically unsatisfiable for ANY reviewed corpus** and a single-phase validator can only ever report a reviewed corpus as failed. **THE REPAIR IS A PHASE DISTINCTION, NOT A RELAXATION.** `PRE_REVIEW_CANDIDATE` enforces 26/14 unchanged, read straight from the frozen policy; `POST_HUMAN_REVIEW` enforces the frozen cohort minimums 20/10 — **imported from `REQUIRED_CLASS_MINIMUMS` rather than re-typed**, so the phase model cannot drift from the contract it claims to enforce — against COUNTABLE REVIEWED CASES. **`POST_HUMAN_REVIEW` IS NOT A WEAKER VALIDATOR: it runs 13 composition gates against the candidate phase's 5**, and sections A–E and G–J are phase-independent and identical in both. **PHASE IS EXPLICIT AND AUDITABLE, NEVER INFERRED FROM COUNTS** — an explicit `--phase` argument, or the DECLARED corpus lifecycle state; an unrecognised phase is a hard error; and the seal is written ONLY under the governing phase, so a diagnostic run cannot overwrite it. **MECHANICAL SURVIVING ROW COUNTS ARE NOT COUNTABLE CASES**: clarification 3 authorized + 22 surviving = **25 against 20, margin +5**; interaction 5 authorized + 12 recorded = **17 against 10, margin +7**. The independently authorized 3 and 5 are §126-measured, live in other corpora, and are **referenced, not duplicated into row truth**. **THE REVIEW METADATA IS RECONCILED, NOT TRUSTED**: it is stored as row-id SETS and gates `F.6`–`F.13` check it against the applied fixture row-for-row — ledgers must close, withdrawn material must be genuinely absent, vocabulary-blocked rows must be counted NOWHERE, and the owner's declared totals must equal the totals derived from the fixture. The regression proves each of those gates FAILS when the record is inflated by one row. **PROOF THAT 26/14 SURVIVE, WITHOUT MUTATING THE REVIEWED CORPUS**: 40 regression assertions, 0 failed — 25/14 fails F.1, 26/13 fails F.2, the post-review shape 22/12 fails both, and merely meeting 20/10 fails both; and the REAL reviewed corpus run under `--phase=PRE_REVIEW_CANDIDATE` still reports **36 passed / 2 failed, exit 1**, failing exactly F.1 and F.2. **POST_HUMAN_REVIEW VALIDATION: 46 assertions, 0 failed**, `TRUTH_LEAK = 0` across 105 constructed requests. **SEAL STATUS CORRECTED UNDER AUTHORIZATION**: the stale `CANDIDATE -- SEALED, AWAITING INDEPENDENT PRODUCT-OWNER SAFETY REVIEW` is now the phase-keyed `REVIEWED -- HUMAN ADJUDICATION COMPLETE, SEALED, FORMAL EVALUATION UNSPENT`, and the seal carries `statusDoesNotImply` stating in the artifact that no cohort ran, no provider validated anything, and no customer or production authorization exists; the sealed IDENTIFIER still ends in `_CANDIDATE` because renaming it would break every artifact that references the seal. **SEM-08's life-critical overlay adjustment is accepted and recorded as a CONTRACT-CONSEQUENTIAL application effect** — `chemical_exposure` stays out, forced by `LIFE_CRITICAL_NOT_PRESENT`, not restored. All three taxonomy limitations (`SEM-09`, `SEM-27`, `SEM-35`) carried forward unrepaired and uncounted. **ROW TRUTH DID NOT CHANGE — MEASURED, NOT ASSUMED**: manifest `6a2c564c…`, truth keys `2e4377ea…`, provenance `16b76f48…` and corpus module `a6c9a36f…` are all byte-identical; the frozen construction policy file still hashes to `c7dc1c68…`, matching POLICY-FREEZE, and **`POLICY-FREEZE.txt` was not edited**. Validator `ad98ca70…` → `288111c0…`, seal `68c1e175…` → `7f559c02…`. **TERMINAL: `SEMANTIC_AUGMENTATION_POST_HUMAN_REVIEW_VALIDATED — FORMAL_EVALUATION_COHORT_AUTHORIZATION_DECISION_REQUIRED`.** Cohort **NOT** assembled, **NOT** frozen, **NOT** authorized; no evaluation begun. | **ACTIVE — PROTECTED_DECISION** | §129, `verification/expert-hazlenz-semantic-augmentation-2026-08-31/review/OWNER-CALL-VERIFICATION-PHASE-MODEL.md`, `…/PROVENANCE-CHAIN.md` |
+| D-142 | EXPERT-HAZLENZ | **THE COHORT WAS AUTHORIZED FOR THE SECOND TIME AND STILL COULD NOT BE SPENT — BECAUSE THE EXAM IT NAMES HAS NEVER BEEN ASSEMBLED.** 0 provider calls attempted, 0 completed, \$0.00, **no hosted callability probe**, `FORMAL_COHORT_SPENT = FALSE`, `PROVIDER_INVOCATION_COUNT = 0`, no production or database access, **NO reserved material opened**, nothing committed/pushed/tagged/deployed. The authorization directs execution of *"the exact already-frozen formal Expert HazLenz evaluation cohort and its preregistered execution/scoring plan"*. **THE SCORING PLAN EXISTS AND IS FROZEN; THE COHORT DOES NOT EXIST.** Preflight measured 10 pre-spend bits: **4 TRUE, 5 FALSE, 1 AMBIGUOUS**. TRUE — scorer/gates match the frozen plan (`assertContractMatchesPlan()` 0 problems, 12 HARD_GATEs + 5 REPORTED, plan hash `0b9b273a…` **unchanged**), reviewed corpus truth unchanged (manifest `6a2c564c…`, truth keys `2e4377ea…`, provenance `16b76f48…` all recomputed and matching the seal), credential present, deterministic→Expert projection on the permanent path (D-131). FALSE — **no frozen cohort** (the only cohort artifact in the repository declares itself `FORMAL_EXPERT_COHORT_CANDIDATE_NOT_FROZEN`, 45 rows, **0 gaps, 0 interactions, 0 governed records**, a §122 artifact that predates the §127–§129 reviewed corpus and contains **not one SEM row**); **no cohort or run identifier anywhere**; **no preregistered call count and no cost/call ceiling** — `callCeiling`/`spendCeilingUsd` are caller-supplied `HarnessOptions` parameters with no frozen value, and `COHORT_SIZE_POLICY` states row counts only; **P4 incomplete as frozen** — `expert-evaluation-plan.ts` requires *"an explicit owner authorization naming **the cohort, the call count and the ceiling**"* and the authorization sets the bit while naming **none of the three**, because the object it points at does not exist; and **composition still short**. AMBIGUOUS — there is no cohort-frozen model to confirm callable (adapter default `claude-sonnet-5`, `EXPERT_ANTHROPIC_MODEL`-overridable), and **no probe was fired to resolve it**, because resolving an ambiguity is not a reason to make a hosted call under a gate that had already failed. **THE §127–§129 WORK DID EXACTLY WHAT IT WAS AUTHORED TO DO**: re-measured with the reviewed corpus included, `CLARIFICATION_OWED` is **3 → 25 against 20** and `CROSS_HAZARD_INTERACTION` is **5 → 17 against 10**. Both §126 blockers are **CLOSED**. **THREE CLASSES REMAIN SHORT AND THEY ARE NOT THE SAME KIND OF PROBLEM**: `GOVERNED_RECORD_SUPPLIED` **0/40** and `DISAGREEMENT_OPPORTUNITY` **0/6** are a **WIRING gap, not an impossibility** — the 64 payloads exist, the owner's §126-reconciled read-only snapshot (`a2c5dc32…`) carries `approvedText` and `reviewState`, but it sits outside the repository by the owner's choice, is in no cohort artifact, and is outside this authorization; the in-repo release definition carries `citationKey`/`citation` only while `GovernedStandardView` needs `{citation,title,approvedText,backingState}`; counted 0 because a class is supplied by what a **frozen cohort row carries**. Attaching them would satisfy both at once and still leave `REVIEWER_APPROVED_GOVERNED_RECORDS = 0`. `FORBIDDEN_FAMILY_NEGATIVE_CONTROL` **44/48** is a **genuine supply shortfall** — §124 puts +16 capability in gauntlet offsets 2 and 3, which remain **RESERVED and unopened**, opening being its own authorization. **CLASSIFIED AS AN INFRASTRUCTURE / PREREGISTRATION BLOCK — NOT MODEL FAILURE (no model was asked anything) AND NOT EVALUATION INVALIDITY (no evaluation began).** Nothing was repaired to reach a runnable state: no cohort assembled, no row authored, no governed record wired, no reserve opened, no threshold moved, no model frozen by default. `tsc` 0; post-review corpus validation re-run **46/0** with `G.2` still PASS after the new evidence was written. | **ACTIVE — PROTECTED_DECISION** | §130, `verification/expert-hazlenz-formal-cohort-execution-2026-09-01/EXECUTION-BLOCKER.md` |
+| D-143 | EXPERT-HAZLENZ | **THE COHORT CANNOT BE ASSEMBLED, AND THE AUTHORIZED OPEN-ONCE RESERVE WAS PROVED USELESS BEFORE IT WAS SPENT — SO IT WAS NOT SPENT.** 0 provider calls, \$0.00, **`RESERVED_MATERIAL_OPENED = FALSE`**, `GAUNTLET_OFFSET_2` and `_3` still RESERVED, `FORMAL_COHORT_SPENT = FALSE`, `P4_PRESPEND_AUTHORIZATION = FALSE`, cohort never advanced past CANDIDATE, nothing committed/pushed/tagged/deployed. **EVERY CLASS IS INDIVIDUALLY SATISFIABLE AND NO SELECTION SATISFIES THEM SIMULTANEOUSLY.** Prior operations (§126, §130) measured supply **per class independently** — the right instrument for proving a block, useless for proving feasibility, because a real cohort must satisfy every class inside ONE row set bounded by `COHORT_SIZE_POLICY.hardCeiling`. By inclusion-exclusion over one selected set `R`: `H >= |R| >= |OWED| + |FORBIDDEN| - |OWED n FORBIDDEN|`, hence **`|OWED n FORBIDDEN| >= O + F - H`**. With the frozen values `O = 20`, `F = 48`, `H = 60` that is **8 required**; the entire authorized pool contains **3** — `AUG-10`, `AUG-11`, `SEM-30`. **3 < 8: NO COHORT EXISTS AT ANY SELECTION.** Equivalently the most FORBIDDEN rows reachable in a 60-row cohort also carrying 20 OWED rows is `3 + min(60-20, non-OWED forbidden) = 43` against a required 48, **short by 5**. **OPENING OFFSETS 2 AND 3 CANNOT CHANGE IT**: the binding term is the OVERLAP and those partitions contribute **ZERO** to it — field-name inventory shows `gap label = false` and `interaction label = false`, so no row from that artifact can ever be `CLARIFICATION_OWED` without Level-3 authoring; and the non-OWED side is already saturated, because only `H - O = 40` slots exist while the **already-open** pool supplies 41 non-OWED forbidden rows. **The maximum is 43 with or without the reserve, so opening would have burned two irreplaceable open-once partitions to reach the identical number** — the §126 outcome exactly, and `COHORT_SIZE_POLICY.onInsufficiency` governs. **A SECOND, INDEPENDENTLY BLOCKING FINDING: THE RECORD CARRIES TWO DIFFERENT PARTITION SCHEMES FOR "OFFSET 2/3".** The retirement registry states D-86 `i % 4`, `k = 0`, sizes **38/38/37/37**; §123's `NEGATIVE-CONTROL-DETERMINATION.json` states `i % 5`, *"offset 2 (i % 5 == 2) … rows 30"*, sizes **30/30/30/30/30**. Both are internally consistent with the artifact's 150 rows, and the two "offset 2" sets **share only 8 rows** (offset 3 likewise). **An open-once instruction naming "offset 2 and 3" therefore does not designate a determinate row set, and opening the wrong one is irreversible** — resolvable only by the owner. **STEP 3 GOVERNED-RECORD DETERMINATION, MEASURED NOT ASSUMED: there is no frozen `REVIEWER_APPROVED_GOVERNED_RECORDS` requirement to satisfy or fail.** Neither `REQUIRED_CLASS_MINIMUMS` nor `COHORT_CASE_CLASSES` contains an approved-record class; M06 keys off record presence, M07's denominator is detected statements, and M08 is **exercised by** unapproved records — already adjudicated in §126 as *"a reported limitation, not a failed gate"*. **Nothing was self-approved and no `reviewState` was converted**: snapshot `a2c5dc32…` unchanged, 64 records, `approvedText` 64/64, `mechanically_validated` 64/64 -> `UNAPPROVED_RECORD` 64/64. `REVIEWER_APPROVED_GOVERNED_RECORDS = 0` and `APPROVED_RECORD_GROUNDING_EXERCISED = FALSE` carried forward. **If the owner intended that counter to be a GATE, that is a deliberate governance change to the frozen contract — not something to discover by having 0 treated as passing.** **A RECORDED NUMBER WAS CORRECTED RATHER THAN INHERITED**: the reserved forbidden capability measured here from labels is an **upper bound with no eligibility filter** (35+36=71) and is **NOT comparable** to §123's `9+9=18` or §126's `16`, both eligibility-filtered by a rule not reproducible from labels alone (in `gauntlet.seed` only 45 of 100 rows were eligible, and 8 rows carry a mappable primary family yet are marked ineligible). **The verdict does not rest on that number** — the 40-slot count binds either way. Corpus artifacts byte-unchanged: gauntlet source `a95e5480…`, semantic corpus `a6c9a36f…`. `tsc` 0; post-review corpus validation re-run **46/0**, `G.2` still PASS. **TERMINAL: `FORMAL_COHORT_ASSEMBLY_BLOCKED — FROZEN_COMPOSITION_MINIMA_JOINTLY_UNSATISFIABLE_AT_HARD_CEILING`.** No minimum relaxed, no ceiling raised, no row authored, no reserve opened, no requirement reinterpreted to reach a freezable cohort. | **ACTIVE — PROTECTED_DECISION** | §131, `verification/expert-hazlenz-formal-cohort-assembly-2026-09-01/ASSEMBLY-BLOCKER.md` |
+| D-144 | EXPERT-HAZLENZ | **THE JOINT MINIMUM WAS SOLVED EXACTLY, AND IT CORRECTS §131's OWN ARITHMETIC: THE INCLUSION-EXCLUSION BOUND IS NOT TIGHT.** 0 provider calls, \$0.00, **`RESERVED_MATERIAL_OPENED = FALSE`**, `FORMAL_COHORT_SPENT = FALSE`, `P4_PRESPEND_AUTHORIZATION = FALSE`, no minimum changed, no ceiling changed, no row authored, nothing committed/pushed/tagged/deployed. **THE DOMINANT FINDING IS AN ABSOLUTE SUPPLY BLOCKER, NOT A SIZE PROBLEM**: `FORBIDDEN_FAMILY_NEGATIVE_CONTROL` supply is **44 against a minimum of 48**, so **NO hard ceiling, however large, admits a valid cohort from currently open material**. Option A — raise the ceiling only — **can never work**; ceiling arithmetic cannot manufacture a case that does not exist. **AT LEAST 4 ADDITIONAL ELIGIBLE FORBIDDEN-NEGATIVE ROWS ARE REQUIRED REGARDLESS OF H.** **THE ANALYTIC BOUND WAS REPLACED BY AN EXACT SOLVER.** §131 offered `H >= O + F - |O n F|` as necessary; it is not sufficient, and a greedy witness proves nothing about minimality. Rows were grouped into types by class vector and the set-multicover minimised by exhaustive branch and bound with admissible bounds (`max_c deficit_c`, plus the additive bound over the mutually exclusive OWED/NOT_OWED pair) and exact capacity pruning. **THE EXACT MINIMUM SITS 2 ROWS ABOVE THE ANALYTIC BOUND ACROSS THE WHOLE SURFACE**, because `NEGATED_OR_SAFE_STATE` and `DETERMINISTIC_MISS_RECALL_OPPORTUNITY` must also be covered and the rows carrying them are not all forbidden-bearing — every such row is invisible to an OWED/FORBIDDEN union bound. At the optimum the tight classes are `CLARIFICATION_OWED` (20), `FORBIDDEN_FAMILY_NEGATIVE_CONTROL` (48) and `DETERMINISTIC_MISS_RECALL_OPPORTUNITY` (10), with **2 rows that are neither OWED nor FORBIDDEN**. **MEASURED TRADEOFF SURFACE (all PROVEN minimal for d = 0..9):** `d` new dual-class OWED+FORBIDDEN rows -> exact minimum H: **0 -> 67, 1 -> 66, 2 -> 65, 3 -> 64, 4 -> 63, 5 -> 62, 6 -> 61, 7 -> 60, 8 -> 59, 9 -> 59**. **THIS CORRECTS §131's OPTION C FIGURE: 5 dual-class rows do NOT preserve the ceiling — they yield an exact minimum of 62. SEVEN are required to keep H = 60**, and a 60-row witness at `d = 7` was constructed and verified against every class (OWED 20/20, FORBIDDEN 48/48, INTERACTION 11/10, MULTI 16/12, LIFE-CRITICAL 20/10, NEGATED 22/10, DET-PRESENT 40/30, MISS-RECALL 10/10, attachment 40/8/40). **OPTION B, ceiling + reserve: exact minimum H = 67 (PROVEN)**; the reserve supplies only non-OWED rows, closes the absolute shortfall and moves the ceiling not at all. **OWNER RESOLUTION RECORDED**: "gauntlet offset 2/3" now authoritatively means the D-86 registry scheme `i % 4` (37 rows each), not §123's `i % 5` (30 rows each, sharing only 8); under that scheme the registry's own recorded eligible contribution is **8 + 8 = 16**, agreeing with §126 and superseding §123's 18 for governance purposes, while §131's raw `35 + 36 = 71` stands only as a label-only upper bound. **KNOWN / UPPER BOUND / UNKNOWN kept separate**: unknown until opened are which specific rows are eligible, every non-forbidden class those rows carry, and whether all 16 survive the §122 eligibility rule — which §131 showed is not reproducible from labels alone. `REVIEWER_APPROVED_GOVERNED_RECORDS = 0` remains a **reported limitation and was NOT promoted to a required class**; governed attachment satisfies `GOVERNED_RECORD_SUPPLIED`/`NO_GOVERNED_RECORD`/`DISAGREEMENT_OPPORTUNITY` at any H >= 48 with no record read, modified or approved. `tsc` 0; post-review corpus validation re-run **46/0**, `G.2` still PASS. **TERMINAL: `FORMAL_COHORT_JOINT_FEASIBILITY_MEASURED — PRODUCT_OWNER_COMPOSITION_POLICY_DECISION_REQUIRED`.** | **ACTIVE — PROTECTED_DECISION** | §132, `verification/expert-hazlenz-cohort-joint-feasibility-2026-09-01/` |
+| D-145 | EXPERT-HAZLENZ | **THE AUTHORIZED RESERVE WAS OPENED, IT RECONCILED EXACTLY WITH THE REGISTRY, AND THE MEASURED MINIMUM CAME IN TWO ROWS BELOW THE PREDICTION — 65, NOT 67.** 0 provider calls, \$0.00, **`RESERVED_MATERIAL_OPENED = TRUE`**, scope **`D86_GAUNTLET_OFFSETS_2_AND_3_ONLY`**, `FORMAL_COHORT_SPENT = FALSE`, `P4_PRESPEND_AUTHORIZATION = FALSE`, `COHORT_STATUS = CANDIDATE`, **no policy value changed**, no row authored, nothing committed/pushed/tagged/deployed. **THE OPENING IS IRREVERSIBLE AND WAS RECORDED BEFORE IT HAPPENED.** Opened `2026-09-01T17:04:34Z` under the owner's OPTION B authorization; the complete pre-open record — timestamps, `assertMayOpen` verdicts, partition rule, prior state of all four partitions, expected counts and every relevant hash — was flushed to disk before any observation was read, because a run that dies mid-open still spends the material. Artifact `a95e5480…22f0adb4` **byte-identical before and after** the read; realism pack `6f6897f1…` untouched and its hash recorded as proof. **74 rows exposed (37 + 37), matching the registry's D-86 `i % 4` sizes 38/38/37/37 exactly**, with byte-wise CMP and JS relational sort proven to agree. **REGISTRY RECONCILIATION: EXACT. 8 + 8 = 16 recorded, 8 + 8 = 16 measured**, and all 16 are forbidden-family negative controls. The registry's figure was a **label-only** count taken *"without reading any observation"*; §131 had shown that count is not generally reproducible from labels, so agreement was verified, not assumed. **58 of the 74 opened rows are INELIGIBLE** under the frozen §122 rule (`PRIMARY_OUTSIDE_TAXONOMY` 32, `SECONDARY_OUTSIDE_TAXONOMY` 26) and are counted in **no** class. **FORBIDDEN SUPPLY: 44 open + 16 opened = 60 against a minimum of 48 — the absolute supply blocker of §132 is CLOSED with a surplus of 12.** **THE OPENED ROWS ARE RICHER THAN §132 COULD MODEL**: of the 16, `DETERMINISTIC_MISS_RECALL_OPPORTUNITY` **16/16**, `DETERMINISTIC_HAZARD_PRESENT` 16/16, `LIFE_CRITICAL_PRESENT` 8, `MULTI_HAZARD` 6; `CLARIFICATION_OWED`, `CROSS_HAZARD_INTERACTION` and `NEGATED_OR_SAFE_STATE` are **structurally 0** — the artifact carries no gap, interaction or negation label, and authoring one was not authorized. **EXACT MINIMUM JOINTLY FEASIBLE `H = 65`, PROVEN — BUT NOT BY THE SOLVER.** The branch-and-bound search **hit its 20,000,000-node ceiling** on the wider real supply, so its 65 is only an incumbent and **proves nothing about minimality on its own**; that is reported rather than presented as a proof. Minimality is established instead by an argument needing no search: every admissible `R` has `|OWED n R| >= 20` and `|FORBIDDEN n R| >= 48`, the **whole pool contains only 3 rows that are both**, so `|R| >= 20 + 48 - 3 = 65` — a property of the pool no selection can evade — and a **verified 65-row witness of real rows** meets it. **THE §132 PREDICTION OF 67 DID NOT HOLD, AND THE CAUSE WAS MEASURED RATHER THAN ARGUED.** Re-solving with the pool restricted to the **first four** opened forbidden rows — §132's modelled quantity, real class vectors — still gives **65**, so **richness, not quantity, is the entire difference**: §132's synthetic rows covered nothing beyond FORBIDDEN and needed two extra rows to reach the `NEGATED_OR_SAFE_STATE` and `MISS_RECALL` minimums, while the real rows carry MISS_RECALL 16/16 and LIFE_CRITICAL 8/16 themselves. **§132 was conservative in the safe direction and was 2 rows pessimistic.** **FIRST REAL DIAGNOSTIC WITNESS (NOT FROZEN, NOT A SELECTION): 65 rows** — gauntlet.seed 14, semantic §129 19, augmentation V2 11, D-86 offset 2 **8**, D-86 offset 3 **8**, Population A 5; **all 16 newly opened rows participate**. Every class verified with margins: OWED 20/20 (tight), FORBIDDEN 48/48 (tight), INTERACTION 11/10, MULTI 27/12, LIFE-CRITICAL 31/10, NEGATED 17/10, DET-PRESENT 61/30, MISS-RECALL 24/10; attachment 40 governed / 25 remaining vs 8 required / 40 disagreement vs 6. **GOVERNANCE IMPACT REPORTED, NOT APPLIED: `hardCeiling` 60 -> at least 65, AND `targetRows` 60 -> at least 65.** Both, because `hardCeiling` is a refusal threshold while `targetRows` is the size the cohort is built to and `supplementalCount` is pinned to it by the policy text; raising only the ceiling yields a policy that permits 65 while still instructing a 60-row build — the build proven infeasible. They need not be equal. **Evidence, not inference: a repository-wide search shows `targetRows` is only ever PRINTED — no assembler reads it — so the 60-row build is enforced by policy text and operator, not by code.** `MINIMUM_DEFENSIBLE_ROWS` (48) and `PREFERRED_ROWS` (60) are **derived from the measure sizing rule and need no change**; 48 remains a correct floor that is simply no longer attainable, and tuning it to match H was explicitly not proposed. **COST, FROM LOCALLY AUTHORITATIVE PRICING** (`MEASURED_COST_MODEL`, fitted to 18 recorded §118 calls at 0.00000000 USD residual): 65 rows x 3 arms = **195 calls, ~\$6.19 mean / \$20.28 worst**, against 180 calls / \$5.72 / \$18.72 for the infeasible 60-row reference — **delta 15 calls and ~\$0.48**. **A SECOND POLICY VALUE THE OWNER SHOULD SEE: 195 planned calls leaves only 5 under the frozen `hardCallCeiling` of 200, and `runExpertAnalysis` retries once and that retry BILLS** — so a worst case of 390 attempted calls would be stopped by the ceiling, which is correct behaviour but makes the ceiling a live constraint at H = 65. **THE REGISTRY WAS AMENDED TO RECORD THE IRREVERSIBLE FACT**: `GAUNTLET_OFFSET_2` and `_3` moved `RESERVED` -> **`OPENED`** with evidence, following the existing `gauntlet.seed` precedent (`mayEverReopen` stays true, meaning *permitted to THIS exam*, while `reopenRule` records SPENT). Leaving them as RESERVED would have recreated the exact §124 trap the registry exists to prevent. Three now-stale confinement strings in live validators were made scope-precise (`RESERVED_OFFSETS_OPENED_BY_THIS_RUN`, `RESERVED_MATERIAL_OPENED_BY_THIS_CORPUS`); **no assertion, count, threshold or gate was altered**. `REVIEWER_APPROVED_GOVERNED_RECORDS = 0` remains a **reported limitation, not promoted to a required class**; snapshot `a2c5dc32…` identity re-verified, 64 records, none read for content, modified or approved. Verification re-run green: augmentation **29/0**, semantic **46/0** (`SEAL_STATUS` REVIEWED), phase contract **40/0**, cohort instrument **155/0**, no-call harness **141/0**. **TERMINAL: `FORMAL_COHORT_REAL_SUPPLY_FEASIBLE — COHORT_SIZE_POLICY_GOVERNANCE_DECISION_REQUIRED`.** No cohort frozen, no ceiling raised, no minimum relaxed, no provider called. | **ACTIVE — PROTECTED_DECISION** | §133, `verification/expert-hazlenz-d86-reserved-open-2026-09-01/`, `verification/expert-hazlenz-real-supply-feasibility-2026-09-01/` |
+| D-146 | EXPERT-HAZLENZ | **THE 65-ROW COHORT ASSEMBLES AND VALIDATES COMPLETELY — AND THE FREEZE IS BLOCKED BY THE EXECUTION BUDGET, NOT BY THE COHORT.** 0 provider calls, \$0.00, `PROVIDER_INVOCATION_COUNT = 0`, `TRUTH_LEAK = 0`, `FORMAL_COHORT_SPENT = FALSE`, `P4_PRESPEND_AUTHORIZATION = FALSE`, **`COHORT_STATUS = CANDIDATE` — NOT FROZEN**, no additional reserve opened, nothing committed/pushed/tagged/deployed. **POLICY AMENDED AS AUTHORIZED: `targetRows` 60 -> 65, `hardCeiling` 60 -> 65.** `MINIMUM_DEFENSIBLE_ROWS` (48), `PREFERRED_ROWS` (60) and **every one of the twelve `REQUIRED_CLASS_MINIMUMS` entries are UNCHANGED**, printed live from the frozen contract as proof. **THE AMENDMENT IS AN OVERLAY, NOT AN EDIT.** The original `COHORT_SIZE_POLICY` lives in `expert-cohort-supplemental-policy.ts`, whose sha256 `cc69d28e…` is cited as evidence in **two immutable opening records** (§122's and §133's) that the eligibility rule predates the material it selected. Editing a size constant there would change that hash and leave a later verifier unable to distinguish a benign amendment from a tampered eligibility rule, so the amendment lives in a new `expert-cohort-size-policy.ts` (v2) that supersedes two fields, preserves the 60-row policy as history, and calls `assertFrozenOriginUnchanged()` at runtime to fail loudly if the frozen origin ever drifts — the same overlay move §125 made rather than amending the frozen evaluation plan. **THE COMPOSITION AT 65 IS FORCED, NOT CHOSEN.** Equality in `65 = |R| >= |OWED| + |FORBIDDEN| - |both| >= 20 + 48 - 3` fixes the structure exactly: **3 rows OWED-and-FORBIDDEN (every one that exists), 17 OWED-only, 45 FORBIDDEN-only, 0 neither.** The declared selection rule therefore only decides *which*, and it decides by canonical order (source provenance rank, then rowId ascending) and the frozen contract's own class declaration order — never by anything about a row's content. **REPRODUCIBILITY PROVEN, NOT CLAIMED**: re-running the rule against a reversed pool yields the identical selection in the identical order; selection-order sha256 `ee57d5da…`. The §133 solver witness was deliberately NOT frozen, because it was a property of a branch-and-bound traversal order no reader could reproduce from frozen inputs. **COMPOSITION VALID — measured by the AUTHORITATIVE `classifyRow`/`evaluateComposition`, not by the §132/§133 analysis proxy.** 65 rows, **0 row-contract problems**, `evaluateComposition` gaps **none**: OWED 20/20 (tight), FORBIDDEN 48/48 (tight), NOT_OWED 45/14, LIFE_CRITICAL 27/10, INTERACTION 11/10, MISS_RECALL 38/10, MULTI 20/12, NEGATED 13/10, DET_PRESENT 49/30, GOVERNED 40/40, NO_GOVERNED 25/8, DISAGREEMENT 40/6. Sources: gauntlet.seed 14, Population A 13, augmentation V2 13, semantic §129 21, D-86 offset 2 **4**. **TWO SOURCE FINDINGS THE FEASIBILITY MODEL HAD OBSCURED.** (1) **Population A is REQUIRED**: without it forbidden supply is 47 against a minimum of 48, and the owner's accepted 44-row pre-reserve basis counts it — it enters by the mapping §122's `SUPPLEMENTAL_PRIORITY` already declares (*"`forbiddenDomains` IS the negative control"*), as a mechanical projection of a corpus frozen 2026-08-27, and its rows are **suppressed from `DETERMINISTIC_MISS_RECALL_OPPORTUNITY`** because §122 forbids the precision corpus as an M01 source. (2) **Population B is STRUCTURALLY EXCLUDED** — its rows carry no `forbiddenDomains` and no gaps, so they are neither OWED nor FORBIDDEN and the forced structure admits none. **Only 4 of the 16 opened D-86 rows are used**, which is the correct outcome rather than a waste: the measured shortfall was exactly 4, and a reserved partition is opened whole rather than row by row. They are NOT preferred into the cohort to justify having spent them; no frozen policy contains a sunk-cost rule. **GOVERNED ATTACHMENT FROZEN-READY**: snapshot `a2c5dc32…` identity re-verified, 64 records, `reviewState` set `{mechanically_validated}` **unmodified and unapproved**; records sorted by `citationKey` ascending, paired by index to the first 40 rows of the cohort order. **No family-relevance matching was performed and that is deliberate** — the snapshot carries no hazard-family column, the frozen measures key off record PRESENCE (M06), detected statements (M07) and are exercised BY unapproved records (M08), so inventing a citation->family mapping would author contract that does not exist. `REVIEWER_APPROVED_GOVERNED_RECORDS = 0` preserved as a reported limitation, **not promoted to a gate**. **CALL COUNT MEASURED FROM THE HARNESS, NOT ASSUMED: 195 requests actually constructed — 65 BASE + 65 PERMUTED + 65 CROSS_PROCESS.** **THE FREEZE IS BLOCKED, AND STEP 7 IS WHY. FOUR DEFECTS IN THE EXECUTION-BUDGET SURFACE, ALL MEASURED FROM CODE.** (1) **`hardCallCeiling` counts LOGICAL calls, not provider requests.** `callsAttempted` increments once per arm at harness:283-287; `executeCall` then invokes `runExpertAnalysis`, which may issue **two** HTTP requests. **Retries bypass the ceiling entirely**, so `MAXIMUM_BILLABLE_PROVIDER_REQUESTS = 390` is unbounded by a ceiling of 200. **This corrects the §121 `RECOMMENDED_CALL_TOPOLOGY` comment claiming the ceiling "covers a full retry on every planned call plus margin" — false about the mechanism — and corrects §133, which inherited that error and reported a 390-request worst case "would be stopped by the ceiling". It would not be.** (2) **The spend ceiling is INERT.** `spendUsd` accrues only from `options.usageOf` (harness:289), and a repository-wide search finds **no implementation of `usageOf` anywhere** — it is an optional hook no caller supplies, so spend stays 0, the ceiling can never fire, and `M16_COST_PER_ROW` would report \$0.00/row against a contract requiring it be "reported per run, never estimated". (3) **Even wired, the adapter keeps only `lastTelemetry`** (anthropic-expert-provider.ts:242), overwritten per HTTP request, so a retried call under-reports its first billed request. (4) **`CallRecord` discards `trace.attempts`**, so M13's frozen denominator — *"All attempted calls, every row, every repetition, retries included"* — **cannot be computed as specified**; reported as a contract/implementation defect rather than repaired, since repairing `scoreM13` would be a scorer change. **A FIFTH, INDEPENDENT OF THE CEILING: THE MODEL IS NOT BOUND.** `model: process.env.EXPERT_ANTHROPIC_MODEL || 'claude-sonnet-5'` and `qualifiedModelIdentity = config.model`, so the runner's `UNEXPECTED_MODEL_IDENTITY` guard compares the response against **whatever the environment said**, not against the cohort's frozen identity — it protects against a provider substituting a model, not against the operator doing so. **RETRY SEMANTICS, FULLY DETERMINED**: max 1 retry / 2 attempts, structural (an `if`, not a loop); retryable = TIMEOUT, NETWORK_ERROR, HTTP_SERVER_ERROR, MALFORMED_JSON, TRUNCATED_RESPONSE, EMPTY_RESPONSE; **not** RATE_LIMITED, HTTP_CLIENT_ERROR, CREDITS_EXHAUSTED, PROVIDER_REFUSAL, SCHEMA_INVALID, PROVIDER_NOT_CALLABLE, NOT_CONFIGURED, UNEXPECTED_MODEL_IDENTITY, or a boundary rejection; a retry **replaces** the call and creates **no** additional scored observation; the frozen plan defines **no** retry budget and **no** ceiling formula. Reaching the ceiling does not invalidate a run — it leaves rows unanswered, which the measurement contract turns into UNMEASURED hard gates that **FAIL**. **FOUR CEILING OPTIONS COSTED FROM LOCALLY AUTHORITATIVE PRICING** (fitted to 18 §118 calls, residual 0.00000000 USD): **O1 195 / 0 retries / \$20.28 worst** — first transient failure fails the run, predictably fragile; **O2 200 / 5 / \$20.80** — tolerates a 2.6% failure rate, a number chosen when the ceiling was believed to cover retries; **O3 215 / 20 / \$22.36** — a 10% allowance, the only option derived from a figure the frozen cost model already commits to; **O4 390 / 195 / \$40.56** — never stops early but doubles authorized spend against an unmeasured failure rate. **Engineering recommendation O3; the choice is the owner's.** Every option requires repair R1 (count requests) and R2 (implement `usageOf`) before a ceiling means anything; R3 and R4 are required regardless. `tsc` 0; augmentation **29/0**, semantic **46/0**, phase contract **40/0**, instrument **155/0**, no-call harness **141/0**. **TERMINAL: `FORMAL_COHORT_READY_EXCEPT_PROVIDER_REQUEST_CEILING — PRODUCT_OWNER_RETRY_BUDGET_DECISION_REQUIRED`.** No cohortId minted, no manifest hash published, nothing partially frozen. | **ACTIVE — PROTECTED_DECISION** | §134, `verification/expert-hazlenz-formal-cohort-65-2026-09-01/` |
+| D-147 | EXPERT-HAZLENZ | **THE EXECUTION BUDGET IS NOW ENFORCEABLE, AND THE COHORT IS FROZEN.** `COHORT_ID = hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a`, `MANIFEST_SHA256 = 1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3`, `COHORT_STATUS = FROZEN`. 0 provider requests, \$0.00, `PROVIDER_INVOCATION_COUNT = 0`, `TRUTH_LEAK = 0`, `FORMAL_COHORT_SPENT = FALSE`, **`P4_PRESPEND_AUTHORIZATION = FALSE`** — freezing an object is not authorization to spend it. Nothing committed/pushed/tagged/deployed. **OWNER DECISION O3 EXECUTED**: `PLANNED_LOGICAL_CALLS = 195`, `GLOBAL_RETRY_REQUEST_BUDGET = 20`, `HARD_PROVIDER_REQUEST_CEILING = 215`, `HARD_SPEND_CEILING_USD = \$22.36`. **THE THREE NUMBERS AGREE BY CONSTRUCTION, PROVEN NOT ASSERTED**: 195 + 20 = 215, and 215 x \$0.104 worst-case-per-request = \$22.36 exactly, so the spend ceiling IS the request ceiling priced at the frozen worst case rather than a second limit that could disagree with it; `assertBudgetInternallyConsistent()` fails loudly if either is edited alone. **R1 — THE CEILING NOW COUNTS PROVIDER REQUESTS.** `providerRequestsAttempted` and `retryRequestsAttempted` are distinct counters; the initial request is gated by the harness, which owns the counter, and the RETRY is gated inside the runner by a new opt-in `mayIssueRetry` hook, so **every** provider request in a formal run passes a check before it is issued. **ABSENT MEANS UNBOUNDED**, which is the production default — customer-path behaviour is untouched. **R2 — SPEND ACCOUNTING IS REAL AND FAIL-CLOSED.** `ExpertRequestUsage` now rides back on the provider result for success AND failure, because a truncated or malformed response billed for the tokens it produced; usage accumulates across EVERY attempt including one later replaced by a retry. Enforcement is PROSPECTIVE — `spendUsd + worstCaseRequestUsd <= ceiling`, evaluated BEFORE each request — because final usage is unknowable beforehand and a ceiling checked afterwards can always be overshot by one request. **R3 — PER-ATTEMPT TELEMETRY IS IMMUTABLE.** `ExpertAttemptRecord[]` records every request with its index, retry flag, outcome, failure kind, model identity, usage and the `causedRetry` cause stamped on attempt 0 — **the retry replaces the RESPONSE, never the EVIDENCE**. The adapter's `attemptTelemetry` array is append-only, replacing the `lastTelemetry` single slot that silently dropped a retried call's first billed request. `CallRecord.attempts` persists it. **M13 IS NOW COMPUTED AS ITS FROZEN CONTRACT ALWAYS SAID**: the denominator counts PROVIDER REQUESTS *"every row, every repetition, retries included"*; the NUMERATOR semantics are deliberately unchanged, and a retried run now scores BELOW a clean one (0.9750 vs 1.0000) where before the two were indistinguishable. `M16` reports `providerRequests` alongside logical calls and no longer returns \$0.00 when usage exists. **NO SCORER THRESHOLD, DISPOSITION OR CLASS MINIMUM MOVED — the implementation was brought to the contract, not the contract to the implementation.** **R4 — THE MODEL IS BOUND.** `FrozenExecutionIdentity` is asserted before a single request; a substituted model or vendor returns `EXECUTION_IDENTITY_MISMATCH` with **zero provider invocations**. The previous guard compared the response against `qualifiedModelIdentity`, which `EXPERT_ANTHROPIC_MODEL` also resolved — it protected against a provider substituting a model, never against an operator doing so. Binding is scoped to the formal harness; ordinary runtime configurability is untouched. **RETRY SEMANTICS ARE UNCHANGED AND ASSERTED SO**: the same six causes (TIMEOUT, NETWORK_ERROR, HTTP_SERVER_ERROR, MALFORMED_JSON, TRUNCATED_RESPONSE, EMPTY_RESPONSE), max one retry per logical call, structural. A REFUSAL is still not retried. **BUDGET EXHAUSTION PRESERVES THE TRUTH**: the 21st retry is refused, the first attempt's real `PROVIDER_FAILED`/`TIMEOUT` outcome stands, nothing is fabricated into a success, and the suppression is recorded with its cause. Exhaustion is classified BY CAUSE — transport-only -> `FORMAL_EVALUATION_INVALID — PROVIDER_RELIABILITY_EXCEEDED_FROZEN_RETRY_BUDGET`; model-behaviour -> preserved as evidence; mixed -> the exact ledger returned rather than a classification the evidence does not support. **ZERO-PROVIDER REGRESSION: 66 passed, 0 failed**, against the real runner and real harness via a scripted no-network provider — 195 no-retry calls => 195 requests; 5 retried => 200; 20 retried => **exactly 215**; the 21st retry refused; **the 216th request unreachable**; retries billed; first-attempt telemetry and cause survive; the spend gate stops at exactly the request its formula forbids; model override blocked before invocation; exact `claude-sonnet-5` binding passes. **THE COHORT WAS REVALIDATED, NOT RESELECTED**: the selection rule was extracted to ONE shared module so assembly and freeze cannot drift apart, and the selection-order sha256 **`ee57d5da…` is unchanged** after the repairs — a drift there would have failed the freeze rather than been re-recorded. 65 rows, forced structure 3/17/45 intact, 0 row-contract problems, 0 composition gaps, all twelve class minima met, truth-key hash `290df2f7…`, attachment hash unchanged, 40 governed records still `UNAPPROVED_RECORD` and unmodified, `REVIEWER_APPROVED_GOVERNED_RECORDS = 0` still a reported limitation and still not a gate. **THE FREEZE IS DETERMINISTIC**: re-running produces the identical cohortId and manifest hash. Corpus hashes unchanged, and the frozen §122 provenance file still hashes `cc69d28e…`. `tsc` 0; execution budget **66/0**, no-call harness **141/0**, instrument **155/0**, provider-failure **131/0**, contract foundation **56/0**, routing **58/0**, grounding **40/0**, projection equivalence **88/0**, authority merge **51/0**, augmentation **29/0**, semantic **46/0**, phase contract **40/0**. **TERMINAL: `FORMAL_EXPERT_COHORT_FROZEN — EXPLICIT_P4_EXECUTION_AUTHORIZATION_REQUIRED`.** A later P4 authorization must name the cohort id, 195 planned logical calls, a retry budget of 20, a request ceiling of 215 and a spend ceiling of \$22.36 before the first hosted request. | **ACTIVE — PROTECTED_DECISION** | §135, `verification/expert-hazlenz-formal-cohort-frozen-2026-09-01/` |
+| D-148 | EXPERT-HAZLENZ | **THE FORMAL EVALUATION WAS EXECUTED. THE MODEL FAILED FOUR FULLY-MEASURED HARD GATES, AND ACCEPTANCE IS ALREADY UNREACHABLE INDEPENDENTLY OF THE PENDING ADJUDICATION.** P4 authorized; `FORMAL_COHORT_SPENT = TRUE` from `2026-09-02T00:41:23Z`, irreversible. Run `formal-run-65523fbb-eea3-4322-a47b-632fa2eae341`, cohort `hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a`, manifest `1da79ff3…`. **PRE-SPEND GATE 28/28 PASS**, executed once at zero cost via `--gate-only` and again in-process immediately before the first request; the four functional checks (request ceiling, prospective spend, per-attempt telemetry, model-override block) were exercised against the replay provider, which touches no network. **EXECUTION WAS FLAWLESS: 195/195 logical calls, 195 provider requests, ZERO retries, ZERO provider failures of any kind, `stopReason = COMPLETED`, every response from `claude-sonnet-5`, integrity hashes identical before and after.** \$6.9302 of a \$22.36 ceiling (margin \$15.43); 1,846,749 input + 323,674 output tokens; latency p50 17,896ms / p95 31,203ms / max 168,183ms. No ceiling, budget or stop condition fired. **FIVE MEASURED HARD GATES PASS**: M02 candidate false positives 0.1250 (max 0.20), M03 contradiction 0 (max 0), M04 life-critical retention 1.0000 (min 1.0), M08 provenance integrity 0 (max 0), M13 callability 1.0000 (min 0.98). **FOUR MEASURED HARD GATES FAIL, AND THESE ARE GENUINE MODEL FAILURES, NOT INFRASTRUCTURE**: **M14_ORDER_SENSITIVITY 0.9219 against a 0.05 ceiling** — 59 of 64 rows changed their scored field projection when the input order was permuted, an 18x breach and the most severe finding in the run; **M10_UNNECESSARY_QUESTION_RATE 0.8444 against 0.15** — the model asked a decision-critical clarification on 38 of the 45 rows whose answer key owes none; **M12_INTERNAL_INCOHERENCE 0.1719 against 0.10** — 11 of 64 rows assert an ACTIVE candidate while simultaneously questioning whether the hazard exists; **M05_FABRICATED_CITATIONS 2 against a zero ceiling** — both from one row, `POPA-A-28`, whose BASE and PERMUTED payloads were boundary-rejected (`source: BOUNDARY_REJECTION`), the single row of 65 that failed normalization. **THREE HARD GATES ARE UNMEASURED PENDING HUMAN ADJUDICATION, WHICH IS A PROCEDURAL STATE AND NOT A MODEL VERDICT**: M06 and M07 (9 detected regulatory statements) and M09 (165 emitted clarifications), 174 queue items across 57 rows. **M17 is NO_OPPORTUNITY**: the frozen harness runs all three arms in ONE OS process, so all 64 candidate pairs were rejected for `sameProcess` and `P2_DETERMINISM_CONTROL = ABSENT` — a REPORTED measure, never gated, and a structural limitation of harness v1 rather than a result. REPORTED measures: M01 additive recall **0.8462** (44/52), M11 cross-hazard reasoning **0.4545** (5/11) with **50 spurious insights**, M15, M16 \$0.1066/row. **A DEFECT IN THE EXECUTION SCRIPT WAS FOUND MID-RUN AND DISCLOSED BEFORE THE RESULT: `CohortRunRecord[]` WAS NEVER PERSISTED**, so every validated `ExpertAnalysis` and merged block was lost at process exit and the frozen end-to-end `buildScoringReport` path is **permanently unavailable for this run**. Classified by the owner as an EVALUATION EVIDENCE-PERSISTENCE DEFECT, not a model failure and not evaluation invalidity. The run was NOT stopped, restarted, patched or instrumented: stopping would have destroyed the only measurement this cohort can ever produce, since a second execution is unauthorized and would in any case measure memorization. **THE POST-RUN RECOVERABILITY AUDIT CERTIFIES ALL THREE ADJUDICATED MEASURES `EXACTLY_RECOVERABLE`** from persisted artifacts plus the human verdicts the frozen contract already requires — M07 from the queue alone; M09 because **both sides of the scorer's own `affectedDecision` comparison ride on the queue item**; M06 additionally from base-call `layerStatus` in the attempt ledger (all 65 rows) and `governedStandards.length` frozen in the manifest. The structural fact making a three-measure recovery COMPLETE rather than a patchwork: `scoreAllMeasures` passes `adjudications` to M06/M07/M09 **only**, so adjudication provably cannot alter the other fourteen. **NO `CohortRunRecord` WAS FABRICATED, RECONSTRUCTED OR SYNTHESIZED; the frozen scorer was not modified and no fallback path was added to it.** A bounded 174-item adjudication packet was emitted with the frozen rubrics verbatim, no preselected answer, and **no measure value, threshold or gate state**, because the rubric's own `forbiddenInputs` bar the adjudicator from knowing whether a gate is close. **ACCEPTANCE IS ALREADY UNREACHABLE: even if M06, M07 and M09 all pass adjudication, M05, M10, M12 and M14 have failed on complete measured evidence and no adjudication outcome can change them.** `PROVIDER_INVOCATION_COUNT = 195` and no provider call occurred after execution completed. **TERMINAL: `FORMAL_EXPERT_PROVIDER_EXECUTION_COMPLETE — HUMAN_ADJUDICATION_REQUIRED_WITH_EXACT_EVIDENCE_RECOVERY_PATH`.** No commit, push, tag, deploy or customer activation. | **ACTIVE — PROTECTED_DECISION** | §136, `verification/expert-hazlenz-formal-evaluation-2026-09-01/` |
 
 ---
 
@@ -17442,12 +17477,11288 @@ access, no Stripe action, and no commit, push, tag or deploy.
 
 ---
 
+## 102 — EXPERT HAZLENZ PRESERVATION CHECKPOINT AND BLOCKED HOSTED TRANSPORT PROBE (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_BLOCKED — VALID_HOSTED_PROVIDER_CREDENTIAL_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-hosted-transport-probe-2026-08-29/STATUS.md`. Predecessor: §101.
+Provider calls of any kind: **0**. Hosted calls: **0**. API cost: **$0.00**. Production untouched.
+**One local commit was created and NOT pushed**; nothing was tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+EXPERT_PROVIDER_SELECTED          = FALSE
+EXPERT_EVALUATION_EXECUTED        = FALSE
+```
+
+Two operations were authorized. **The first was completed. The second stopped at Phase 2, before
+any spend, and the reason is a credential rather than an engineering gap.**
+
+### 102.1 The preservation commit — 75 files, and what it deliberately leaves behind
+
+`37a5d1b5`, parent `de655d2f`, **75 files, +12,783 / −43**, message
+`feat(hazlenz): establish and repair expert routing foundation`. It carries the twelve Expert core
+files, the sibling adapter directory the §99 no-call guard forced into existence, five `test:expert-*`
+suites, three `probe:*` scripts, the 51 evidence files of §§99–101, and `backend/package.json` —
+**+8 script lines, still the only tracked production file touched by the whole Expert programme.**
+
+**It also carries §§94–98 and D-109/D-110, and that is stated rather than hidden.** They were equally
+uncommitted, they sit contiguously with §§99–101 inside the same two documents, and they describe
+work **already deployed as `de655d2f`**. Splitting the appended block would have produced a blueprint
+jumping from §93 to §99 while §§99–101 cite §98 throughout — an incoherent document for no gain.
+**No code came in with them:** every source file in the commit is Expert.
+
+Excluded and left exactly as found: `frontend-next/tsconfig.json`, hashed after the commit at
+**`73990cd1…`** and byte-identical to the value §99 recorded, so the known `NEXT_DIST_DIR`
+contamination is neither committed nor disturbed; the pre-existing unstaged deletion of
+`kg-3e/source-evidence/ecfr-1910-146.xml`; the compiled `scripts/lib` artifacts whose `.ts` source is
+already tracked; and **2,156 further untracked entries**. Four stashes and 24 tags unmoved. No reset,
+restore, clean, stash, rebase or force-push.
+
+**The staged diff was scanned before the commit, not after.** Seventy-five files against secret
+prefixes, private-key headers, valued `Authorization` / `x-api-key` headers, credentialed connection
+strings, cookies and `process.env` dumps. **Six matches, every one checked by hand and benign:**
+three are the substring inside `validate-ri`**`sk-a`**`ssessment-adapter`, three are the public
+`onrender.com` URL already present at HEAD in both documents. **This is the fourth time in this
+programme a content grep has matched prose** (§99.5, §100, §101.6, now this) — and the lesson each
+time is the same: a match is a question, not a finding.
+
+### 102.2 The commit is not a deployment, and on this repository that is load-bearing
+
+`autoDeploy=yes` with `autoDeployTrigger=commit` on `main` means **pushing to `origin/main` IS a
+production deployment**. `origin/main` is deliberately left unmoved at `de655d2f`, so **production
+still runs code containing no Expert layer at all**. Preserving work in git and deploying it are not
+separable on this repository by a push; they are separated by *not pushing*.
+
+### 102.3 The hosted probe stopped at Phase 2 — no candidate was selectable
+
+| credential | state |
+|---|---|
+| `ANTHROPIC_API_KEY` · `CLAUDE_API_KEY` | **ABSENT** |
+| `OPENAI_API_KEY` | **OBVIOUS_STUB** — 11 characters, the same stub §100.1 measured |
+| Gemini · Google · Vertex · Azure OpenAI | **ABSENT** |
+| Mistral · Groq · Together · DeepSeek · xAI · Cohere · OpenRouter · Fireworks · Perplexity | **ABSENT** |
+| `AI_GATEWAY_API_KEY` | **ABSENT** |
+| `VERCEL_OIDC_TOKEN` | **PRESENT → UNUSABLE (EXPIRED)** |
+
+**No credential value was printed, logged, hashed or persisted** — presence, length, and for the one
+JWT its own `exp` claim. `backend/.env` holds nineteen variables and **not one provider key name**.
+
+Phase 2 forbids selecting on history, so the one non-stub credential was evaluated properly rather
+than dismissed: a Vercel OIDC token authenticates Vercel AI Gateway, and `vercel whoami` confirms the
+CLI is authenticated as `mckinley18`. **Its own claims killed it** — `iat 1781750401`, `exp
+1781793601`, now `1788055244`: a twelve-hour build token **expired by 1,739 hours, about 72 days**.
+
+**Two further reasons hold against a freshly minted one**, and they are the ones that would still
+apply tomorrow. Minting it is a Vercel account operation this phase is not authorized to perform, and
+`vercel env pull` would rewrite `.env.local`, which is untracked user work. And its scope is
+`owner:…:project:safety-insite:environment:development` — the **frontend** project's development
+environment, provisioned for builds rather than for Expert inference, with an AI Gateway balance and
+billing posture that cannot be established from here. **`MAX_HOSTED_COST_USD = 3.00` therefore could
+not be bounded before the first call, and Phase 3 forbids a call whose maximum possible spend cannot
+be bounded.**
+
+### 102.4 The two things that were NOT done to manufacture a result
+
+**Ollama was not substituted.** It is reachable on `127.0.0.1:11434` and it is the §§100–101 provider,
+and calling it a hosted probe is exactly what the authorization forbids. It was not called: **0
+provider calls of any kind.**
+
+**No hosted adapter was written.** Phase 4 authorizes the smallest adapter *for the selected
+candidate*, and no candidate could be selected — so an adapter would have been written against a
+guessed provider-native transport, unexercised, sitting in the tree looking like progress it is not.
+The repository's own standing rule against speculative work decided this, not convenience.
+
+### 102.5 The grounding question is exactly as open as §101 left it
+
+§101 recorded `quotes = 0/0` across all fourteen local calls, so **every Expert candidate produced so
+far is ungrounded**. Fixtures H7 and H8 were specified to answer whether a production-class hosted
+model can emit an exactly-bindable quote without fabricating one — and they did not run.
+`EVIDENCE_OPPORTUNITIES`, `EVIDENCE_QUOTES_EMITTED`, `EVIDENCE_QUOTES_EXACTLY_BOUND`,
+`EVIDENCE_QUOTES_UNBINDABLE`, `EVIDENCE_QUOTES_FABRICATED`, `GROUNDED_TYPED_OBJECTS` and
+`UNGROUNDED_TYPED_OBJECTS` are **NOT MEASURED — which is not the same as zero**, and the eighteen
+hosted gates are **0 of 18 evaluated**, not 0 passed.
+
+### 102.6 Verification actually executed, at the preserved commit
+
+Run **after** the commit, at `37a5d1b5`, so the checkpoint is proved to be the verified state rather
+than assumed to be. Every figure matches §101 field for field.
+
+| suite | result |
+|---|---|
+| `expert-contract-foundation` · `expert-authority-merge` | **56 / 0** · **51 / 0** |
+| `expert-provider-failure` · `expert-nocall-harness` | **131 / 0** · **141 / 0** |
+| `expert-routing-contract` | **57 / 0** |
+| `l32i-clarification-carrier` · `l32j-carrier-activation` | **61 / 0** · **37 / 0** — Level-3 quarantine intact |
+| `kg4a-cutover-contract` · `kg4a-default-off` · `kg4d-default-off` | **146 / 0** · **52 / 0** · **121 / 0** |
+| HazLenz recall · actionable coverage | exit 0 · exit 0 |
+| HazLenz precision | **100.0 %**, required-hazard omissions **0**, dangerous **0**, life-critical **0** |
+| backend `tsc --noEmit` | **exit 0** |
+
+**Confinement re-proved at this HEAD:** `grep -rl expert-hazlenz` over `backend/src`,
+`backend/scripts` and `frontend-next` returns **ten** files — eight scripts, the adapter, one core
+file — and a direct check against `*.controller.ts`, `*.service.ts` and `*.module.ts` returns
+**none**. No frontend source was touched.
+
+### 102.7 Residual debt
+
+**Unchanged:** hosted-provider transport unmeasured · every Expert candidate ungrounded · routing
+measured on one local model only · live malformed-output behaviour unobserved ·
+`test:kg5b-operator-cli` 64/65 · the unresolved-jurisdiction ranking ·
+`directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER` · `LIVE_PAYMENT_PROOF = FALSE`.
+
+**New, and it is a narrowing rather than an addition:** the hosted question is now **entirely a
+credential question**. No engineering work stands between this checkpoint and a hosted probe — both
+probe scripts would run against a hosted adapter unchanged, the eight fixtures including the two
+grounding controls are specified, and the eighteen gates are written.
+
+### 102.8 Exact next operation
+
+**The account owner provisions ONE hosted provider credential**, in their own terminal, for a
+provider whose current published pricing lets an eight-call probe be bounded under $3.00. Phases 3–13
+then run unchanged. Until then the probe cannot start, and no amount of local work moves it.
+
+No provider selection, no customer activation, no evaluation corpus, no Render or Vercel change, no
+production access, no Stripe action, and **no push, tag or deploy**. The one commit is local.
+
+---
+
+## 103 — EXPERT HAZLENZ HOSTED ADAPTER BUILT, PROBE ARMED, STILL CREDENTIAL-BLOCKED (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_BLOCKED — VALID_HOSTED_PROVIDER_CREDENTIAL_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-hosted-transport-probe-2026-08-29/ADDENDUM-RESUME.md`.
+Predecessor: §102. Hosted calls: **0**. Provider calls of any kind: **0** (the local re-confirmation
+in §103.5 excepted, at `$0.00`). API cost: **$0.00**. Production untouched. **Nothing committed**,
+pushed, tagged or deployed — §102's preservation commit `37a5d1b5` is still the only commit and is
+still local.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+The owner provisioned a credential and authorized the resume. **The blocker is now different and
+much narrower than §102's**, and the difference is the whole content of this section: §102 found
+that no credential existed anywhere; §103 finds that one may well exist on this machine but **does
+not reach this session's process environment** — and that inventing a way around that is not
+something this operation may do.
+
+### 103.1 The credential finding, and the control measurement that makes it a diagnosis
+
+Phase 1 permits recording **`PRESENT` or `ABSENT` only** — no value, prefix, suffix, length or hash.
+`ANTHROPIC_API_KEY` is **ABSENT** in the process environment, in `backend/.env`, in `.env` and
+`.env.local`, in `~/.zshrc`, `~/.zprofile`, `~/.profile` and the file `.zshrc` sources, and in both
+Claude settings `env` blocks. There is no `.envrc`.
+
+**One control measurement turns that from a shrug into a diagnosis.** `OPENAI_API_KEY` lives in
+`~/.zshrc` and **is** visible to this session's subprocesses — so the environment is not filtered
+wholesale, and "the tool cannot see keys" is not the explanation. The ordinary cause fits: the key
+was exported in a different terminal after this session started, so it never entered this session's
+environment. The owner chose `backend/.env` as the route in; it is **gitignored at `.gitignore:22`**,
+so the credential cannot be committed by accident.
+
+### 103.2 The provider question closed, and the spend bounded, before any code was written
+
+`claude-sonnet-5` is a current model id, structured output is supported, per-response token usage is
+reported, and published pricing is **$2.00 / 1M input and $10.00 / 1M output** — matching the
+figures the authorization stated, from an independent reference rather than by assuming them.
+
+The ceiling was then bounded from the REAL prompt rather than estimated: system 4,896 chars, worst
+user prompt 1,020, worst wire schema 6,490 — **12,406 chars, 4,136 tokens** at a deliberately
+pessimistic 3 chars/token — giving **$0.0883 worst case per call** and **$0.7062 for eight**, against
+a `$3.00` cap. Bounded, with room.
+
+### 103.3 The adapter, and the three decisions in it that could each have been made worse
+
+`expert-hazlenz-adapters/anthropic-expert-provider.ts`, in the SIBLING directory, because the §99
+no-call guard forbids network primitives, endpoints, credentials and vendor names in the core. The
+same guard that placed the local adapter placed this one.
+
+1. **The contract is not reshaped for the vendor.** `analysis.v2` and `prompt.v3` are used exactly
+   as the core defines them. The single provider-native transformation injects
+   `additionalProperties: false`, which Anthropic's strict tool schema requires — it adds no field,
+   removes none, and edits no description or `required` list. A wrapper, which is where §100's
+   architecture says vendor concerns belong.
+2. **Structured output is a FORCED tool call**, not prose parsing. A model that answers any other
+   way yields `SCHEMA_INVALID_STRUCTURED_OUTPUT` rather than having JSON salvaged out of text —
+   salvaging would conceal precisely what the probe measures.
+3. **There is no `temperature` and no `seed`, and that is a FINDING rather than an omission.** On
+   Sonnet 5 `temperature`, `top_p` and `top_k` are removed and return 400, and no seed exists. The
+   local transport forwards both, which is why §100 could record cheap repeatability. **That property
+   does not transfer**, and `P2_DETERMINISM_CONTROL` must record NO determinism control on this
+   provider — the same shape of fact that made L3's G9 reproducibility gate unreachable.
+
+Raw `fetch` is used rather than `@anthropic-ai/sdk`, and the reason is stated rather than assumed:
+the SDK is not installed, and installing it would add a package to `backend/package.json` and
+`package-lock.json` — the dependency tree of a service where `autoDeploy=yes` on `main` makes a push
+a production deployment — for code imported by nothing on the customer path. If this adapter is ever
+promoted to a customer path, that decision should carry the SDK with it.
+
+**Two grounding fixtures** (`H7`, `H8`) make an **additional hazard candidate** the groundable
+object, because `evidence` exists on exactly one collection and `bindWireAnalysis` binds nothing
+else — a grounding fixture built around a clarification would have measured nothing. Each hands the
+model a short exact phrase, and the probe asserts **before any spend** that each anchor is verbatim
+in its own observation, so a typo in an answer key can never be misread as a model failure.
+
+**The probe** (`probe:expert-hosted-transport`) plans seven calls under an eight-call ceiling,
+enforces the cost cap **before** each request against that request's worst case, evaluates the
+eighteen hard gates, and reports `NOT MEASURED` distinctly from `FAIL`. Grounding keeps `UNBINDABLE`
+and `FABRICATED` apart — the second a strict subset of the first, absent from every source even
+after aggressive normalization — because collapsing them would hide the one that matters. Neither is
+converted into "no evidence"; the unbindable quote is still bound to `[-1,-1)` and refused by the
+core validator, unchanged.
+
+### 103.4 One gate was corrected — and the FIRST correction was itself wrong
+
+`G14` in the local routing probe asserted *"no hosted client exists anywhere in the adapter
+directory."* A hosted adapter now exists **by authorization**, so that assertion became **stale** in
+the precise sense the repository's rule names. Deleting it or loosening its pattern would both have
+been wrong. It keeps its strength and gains precision, and now proves **two** things where it proved
+one: every adapter except the explicitly named authorized one is free of hosted clients, endpoints
+and credential reads; **and this probe does not import the hosted adapter at all** — a check the old
+gate never made, and the one that actually backs its `$0.00` claim. Nothing that used to fail now
+passes.
+
+**The first rewrite FAILED, and it is recorded rather than absorbed.** Its check tested
+`require\(|from ...` as an alternation and separately asked whether the file *contained* the
+adapter's name — so it matched the script's own `require('fs')` and its own
+`AUTHORIZED_HOSTED_ADAPTER` constant and reported an import that does not exist. **That is the
+FOURTH content-grep-matches-its-own-text incident in this programme** (§99.5, §100, §101.6, now
+this), and the correction is the one that has worked every time: **match the CONSTRUCT, not the
+WORD** — a module name means an import only inside a quoted specifier introduced by `from` or
+`require(`. It was then proved falsifiable against five samples, including the two that had
+false-matched.
+
+### 103.5 Phase 4 pre-spend regression — executed, and the local baseline is unperturbed
+
+Expert suites **56 / 51 / 131 / 141 / 57**, all 0 failed — and the **141/0** matters most: the core
+is **still provably pure with a hosted adapter in the tree**, because `test:expert-nocall-harness`
+scans `expert-hazlenz/` and the adapter is not in it. Level-3 quarantine **61/0** and **37/0**.
+`kg4a-cutover-contract` **146/0**, `kg4a-default-off` **52/0**, `kg4d-default-off` **121/0**. Backend
+`tsc --noEmit` exit 0, and both probe scripts typecheck under project options.
+
+`probe:expert-routing` re-run locally at `$0.00`: **14/14 gates PASS**, and the routing totals
+reproduce §101 **exactly** — `OPPORTUNITIES 16 · HITS 16 · MISSES 0 · OVER_ROUTED 0 ·
+EXPLANATION_ONLY_LOSSES 0`, candidates 4/4, clarifications 6/6, insights 4/4, disagreements 2/2.
+**Adding a hosted adapter perturbed nothing.** Those artifacts are filed under
+`local-baseline-reconfirmation/` and deliberately NOT written into the accepted §101 directory.
+
+### 103.6 Everything about the hosted provider remains NOT MEASURED
+
+0 hosted calls attempted and completed; HTTP failures, schema validity, all four routing collections,
+the negative control, hosted `EXPLANATION_ONLY_LOSSES`, all five evidence-grounding metrics, grounded
+and ungrounded object counts, tokens and latency are **NOT MEASURED — which is not zero** — and the
+eighteen hard gates are **0 of 18 EVALUATED, not 0 passed**. §101's finding stands exactly as it was:
+`quotes = 0/0` across 14 local calls, so every Expert candidate produced so far is **ungrounded**.
+
+### 103.7 Residual debt
+
+**Unchanged:** hosted transport unmeasured · every Expert candidate ungrounded · routing measured on
+one local model only · live malformed-output behaviour unobserved · `test:kg5b-operator-cli` 64/65 ·
+the unresolved-jurisdiction ranking · `directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER` ·
+`LIVE_PAYMENT_PROOF = FALSE`.
+
+**Narrowed:** §102 recorded that the hosted question was "entirely a credential question" with no
+engineering work outstanding. That is now literally true and demonstrated — the adapter, the
+fixtures, the probe, the metrics and the gates all exist, typecheck and are exercised as far as they
+can be without a call.
+
+**New:** `P2_DETERMINISM_CONTROL` should be pre-registered as **absent** for this provider on the
+evidence of §103.3 item 3, before any cohort is opened, rather than discovered mid-evaluation the way
+G9 was.
+
+### 103.8 Exact next operation
+
+The owner writes the key into `backend/.env` in their own terminal and runs
+`npm run probe:expert-hosted-transport`. Seven calls, worst case `$0.71`, hard-stopped at 8 calls or
+`$3.00`. Nothing else stands in the way.
+
+No provider selection, no customer activation, no evaluation corpus, no Render or Vercel change, no
+production access, no Stripe action, and **no commit, push, tag or deploy**.
+
+---
+
+## 104 — HOSTED PROBE EXECUTED AND GATED AT ZERO COST; THE CREDENTIAL IS NOT WHERE THE PROBE READS (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_BLOCKED — HOSTED_PROVIDER_ACCOUNT_OR_CREDENTIAL_REMEDIATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-hosted-transport-probe-2026-08-29/ADDENDUM-THIRD-ATTEMPT.md`.
+Predecessor: §103. Hosted calls: **0**. Provider calls of any kind: **0**. API cost: **$0.00**.
+Production untouched. **Nothing committed**, pushed, tagged or deployed — §102's preservation commit
+`37a5d1b5` is still the only commit and is still local.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+P2_DETERMINISM_CONTROL            = ABSENT   (pre-registered, claude-sonnet-5)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+Three attempts, three different blockers, each narrower than the last. §102: no credential existed
+anywhere, and no hosted adapter had been written. §103: the adapter, fixtures, probe and eighteen
+gates were built and armed, and the credential still did not reach the session. §104: **the
+credential was to be written into `backend/.env`, and it was not.**
+
+### 104.1 The finding, and the new control that closes §103's explanation
+
+Phase 1 permits **`PRESENT` / `ABSENT` only**, and that is all that was recorded — no value, prefix,
+suffix, length, hash or encoded form was read at any point. `ANTHROPIC_API_KEY` is **ABSENT** in the
+process environment, `backend/.env`, `.env`, `.env.local`, `~/.zshrc`, `~/.zprofile`, `~/.profile`,
+the one file `.zshrc` sources, and both Claude settings `env` blocks. No `.envrc` exists.
+
+§103.1's control still holds — `OPENAI_API_KEY` is **PRESENT** in this session's process
+environment, so the environment is not filtered wholesale and "the tool cannot see credentials" is
+not the explanation.
+
+**A second control closes §103's own diagnosis.** §103.1 attributed the absence to the ordinary
+cause: the key was exported in a different terminal after this session started. A **fresh login
+shell** (`zsh -lc`) — which reads the user's profile from scratch, exactly as a newly-opened terminal
+would — **also** reports `ANTHROPIC_API_KEY` ABSENT while reporting `OPENAI_API_KEY` PRESENT. That
+explanation is therefore ruled out, and the consequence is practical: **this is not a visibility or
+tooling problem, and the remedy is a file write.**
+
+**The decisive fact is narrower still.** `probe-expert-hosted-transport.ts:66` loads **exactly one
+file** — `loadEnvFile(join(__dirname, '..', '.env'))` — and it is deliberately the only one, so the
+credential path stays auditable in one visible place rather than resting on transitive `dotenv`
+resolution. That file's mtime is **2026-08-16 23:08:53**, two weeks before this authorization. It
+carries 19 database and auth keys, none Anthropic-, Claude-, model- or gateway-related, and no
+near-miss name. The file §103.8 named as the route in has not been written to.
+
+### 104.2 The probe was executed, and its own gate is the evidence
+
+Running it without a credential costs nothing by construction: the check at line 273 precedes the
+request loop. `npm run probe:expert-hosted-transport` exited **3** with `BLOCKED — ANTHROPIC_API_KEY
+is not reachable. No call attempted, $0.00 spent.` This is positive evidence that the probe's
+credential gate works, rather than an inference that it would have.
+
+Two lines of that output are kept rather than discarded.
+
+**The pre-flight passed before the gate.** Both grounding anchors were re-verified verbatim in their
+own observations, so the H7/H8 answer keys are sound and a future grounding failure will be readable
+as a model failure rather than a typo in a key.
+
+**The cost was recomputed from the real prompt, not carried from the estimate.** Phase 3 requires
+that. The authorization stated a worst case of approximately `$0.71`; the probe computes **$0.0900
+per call and $0.6300 for the seven planned**, from actual system prompt, user prompt and wire schema
+sizes. Lower than stated, and far under the `$3.00` cap.
+
+### 104.3 P2 was pre-registered before the gate, as §103.7 required
+
+`P2_DETERMINISM_CONTROL = ABSENT` for `claude-sonnet-5`: no seed, and `temperature`, `top_p` and
+`top_k` unavailable and not sent. Per the authorization this is **not a probe failure by itself** —
+hosted reproducibility is **OBSERVED / REPORTED**, not a deterministic hard gate. The distinction is
+preserved for the 17-measure cohort, and the pre-registration exists precisely so the property is
+not rediscovered mid-evaluation the way L3's G9 was.
+
+### 104.4 The pre-call gate — executed, green, and unperturbed
+
+At `37a5d1b5`, raw output under `third-attempt-pre-call-gate/`.
+
+| suite | result |
+|---|---|
+| `expert-contract-foundation` · `expert-authority-merge` | **56 / 0** · **51 / 0** |
+| `expert-provider-failure` · `expert-nocall-harness` | **131 / 0** · **141 / 0** |
+| `expert-routing-contract` | **57 / 0** |
+| `l32i-clarification-carrier` · `l32j-carrier-activation` | **61 / 0** · **37 / 0** — quarantine intact |
+| backend `tsc --noEmit` | **exit 0** |
+| hosted adapter + hosted probe typecheck, project options | **exit 0** |
+
+Every figure reproduces §102.6 and §103.5 field for field. The **141/0** carries the most: the core
+is **still provably pure with a hosted adapter in the tree**, because `test:expert-nocall-harness`
+scans `expert-hazlenz/` and the adapter sits in the sibling directory §99's guard forced.
+
+No protected invariant regressed, so Phase 2 did not stop the operation — the credential did, at
+Phase 3.
+
+**Confinement re-proved:** **12** files reference the Expert module — nine scripts, two adapters, one
+core file. §102 recorded ten at a HEAD predating the hosted adapter and probe; those two are the
+delta, an expected `+2` rather than a regression. **No** controller, service or module is among them;
+**no** frontend file references the module or the adapter; and the **hosted adapter has exactly one
+importer, the probe itself**, matched as a *construct* — a quoted specifier introduced by `from` or
+`require(` — per the §103.4 correction.
+
+**Post-probe regression is the same measurement, and that is a statement rather than a shortcut.**
+Zero hosted calls and zero production edits occurred between the gate and the report; the probe's
+only write was an empty `transport/hosted-probe.jsonl`, truncated at startup. Re-running to produce
+a second table would add a row without adding evidence. Tracked worktree state was re-inspected
+afterwards and is unchanged — `frontend-next/tsconfig.json` is still sha256 `73990cd1…`,
+byte-identical to the §99/§102 protected record.
+
+### 104.5 Everything hosted remains NOT MEASURED, and the gates are NOT EVALUATED
+
+All transport, routing, negative-control, grounding, token, latency and cost fields are **NOT
+MEASURED — which is not zero**. The eighteen hard gates are **0 of 18 EVALUATED, not 0 passed**;
+the probe exits before gate construction.
+
+**HG18 is the one worth naming, because it is the one that could have been quietly promoted.** Its
+underlying invariant *was* independently proved in §104.4. It stays `NOT_EVALUATED` anyway, because
+the gate asserts that invariant **after seven hosted calls** and no hosted call happened. Collapsing
+it into `PASS` is exactly what Phase 9 forbids.
+
+§101's finding stands untouched: `quotes = 0/0` across 14 local calls, so **every Expert candidate
+produced so far is ungrounded**, and H7/H8 remain the most important unanswered measurements in the
+programme. Actual spend `$0.00` against `< $3.00` — satisfied trivially, and a cost gate satisfied
+by never spending is not evidence that the cost model is right.
+
+### 104.6 Four workarounds refused
+
+No credential was written by this operation — provisioning is the owner's action, and an agent that
+writes one has removed the human step that makes the spend authorized. No value was read anywhere.
+`OPENAI_API_KEY` was **not** substituted although it is present and is a hosted credential, because
+the authorization names Anthropic and `claude-sonnet-5` and no OpenAI adapter exists. **Ollama was
+not substituted** although it is free and reachable, because a local result reported against a
+hosted question is the failure mode this programme exists to avoid.
+
+### 104.7 Residual debt
+
+**Unchanged:** hosted transport unmeasured · every Expert candidate ungrounded · routing measured on
+one local model only · live malformed-output behaviour unobserved · `test:kg5b-operator-cli` 64/65 ·
+the unresolved-jurisdiction ranking · `directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER` ·
+`LIVE_PAYMENT_PROOF = FALSE`.
+
+**Narrowed:** §103 could not distinguish "the key exists but is not visible here" from "the key does
+not exist in any persistent location". The fresh-login-shell control separates them.
+
+**New:** none. No engineering work was found outstanding, and none was invented.
+
+### 104.8 Exact next operation
+
+In the account owner's own terminal:
+
+```
+cd /Users/mckinley/Desktop/Safety_InSite/backend
+printf 'ANTHROPIC_API_KEY=%s\n' 'sk-ant-...' >> .env     # real key, typed by the owner
+grep -c '^ANTHROPIC_API_KEY=' .env                        # expect 1; prints a count, never a value
+npm run probe:expert-hosted-transport
+```
+
+`backend/.env` is gitignored at `.gitignore:22`, so the credential cannot be committed by accident.
+**Appending** is deliberate: the file holds 19 live database and auth settings that must not be
+disturbed. Seven calls, worst case `$0.63`, hard-stopped at 8 calls or `$3.00`. Phases 4–12 then run
+unchanged.
+
+No provider selection, no customer activation, no evaluation corpus, no Render or Vercel change, no
+production access, no Stripe action, and **no commit, push, tag or deploy**.
+
+---
+
+## 105 — HOSTED TRANSPORT VALIDATED, EXPERT BEHAVIOUR REPAIRED AT THE CONTRACT, TWO FAILURES LEFT STANDING (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_HOSTED_BEHAVIOR_REPAIR_INCOMPLETE — EVALUATION_COHORT_REMAINS_BLOCKED`.**
+Evidence: `verification/expert-hazlenz-hosted-behavior-repair-2026-08-30/SUMMARY.md`.
+Predecessor: §105.0. Hosted calls this phase: **0**. Hosted spend: **$0.00**. Production untouched.
+**Nothing committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v4   (was v3)
+EXPERT_ANALYSIS_CONTRACT_VERSION  = hazlenz.expert.analysis.v2  (UNCHANGED)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+### 105.0 CORRECTION — the real hosted-probe evidence this section is built on was never numbered, and its raw file was later destroyed
+
+**This subsection exists because of two compounding defects, both caused by this assistant and both
+recorded here rather than quietly fixed.**
+
+**First, a citation defect in the original §105.** The blueprint's numbering is sequential: §104
+already existed, documenting a DIFFERENT, EARLIER event this same day — the credential-blocked
+attempt at the start of this session, before the account owner provisioned
+`ANTHROPIC_API_KEY` into `backend/.env`. The account owner then ran
+`npm run probe:expert-hosted-transport` **themselves**, in their own terminal, and got **7/7 HTTP
+200**. That successful run was never given its own numbered section. §105's original text cited it
+as **"§104"** nine times, which is wrong — §104 is the blocked attempt, not the successful run. This
+subsection is the correction: it is where "§104" in the rest of §105 now points.
+
+**Second, and more serious: the raw evidence file for that successful run was destroyed on
+2026-08-30.** `probe-expert-hosted-transport.ts` wrote its output to a FIXED, date-stamped directory
+rather than one scoped to each run. When the v4 hosted re-probe (§106) executed the same script
+later the same day, it wrote into that same fixed directory and **silently overwrote**
+`results/hosted-probe-summary.json` and `transport/hosted-probe.jsonl` — the only raw copies of the
+owner's successful run — with the re-probe's own (blocked) output. The bug is fixed (§106 records
+the fix); the original file is not recoverable. It was never committed to git.
+
+**What survives is a reconstruction**, assembled from this assistant's own conversation transcript
+of the session that originally read the raw file and printed most of its structure while producing
+§105. It is filed at
+`verification/expert-hazlenz-hosted-transport-probe-2026-08-29/results/hosted-probe-summary.RECONSTRUCTED-2026-08-30.json`,
+labeled field-by-field as exactly recovered or partially recovered. Every AGGREGATE figure below —
+which is everything §105's analysis actually depends on — was printed in full in the transcript
+before destruction and is exact. Two individual per-call rows (`R2`, `R4`) had their nested `score`
+and `grounding` sub-objects truncated in that transcript dump and are not recovered; their top-line
+counts, tokens, latency and cost are exact.
+
+**The authoritative figures §105 is built on, exact and unchanged from the original:**
+
+Provider `anthropic`, model `claude-sonnet-5`, contract `hazlenz.expert.analysis.v2`, prompt
+`hazlenz.expert.prompt.v3` (the version it ran under — this is the run §105 repairs FROM). Thinking
+disabled. **7/7 HTTP 200, 7/7 completed clean, 0 transport failures.** Input tokens **40,269**,
+output tokens **9,049**. Latency p50 **20,869 ms**, max **32,026 ms**. Actual cost **$0.171028**.
+
+Routing: opportunities **13**, hits **7**, misses **4**, over-routed **2**,
+`EXPLANATION_ONLY_LOSSES` **0**. By collection — candidates 5/3/1/1, clarifications 4/1/2/1, insights
+3/2/1/0, disagreements 1/1/0/0 (opportunities/hits/misses/over-routed).
+
+Grounding: opportunities **2**, quotes emitted **0**, exactly bound **0**, unbindable **0**,
+fabricated **0**, grounded objects **0**, ungrounded objects **10**. `GROUNDING_READY = FALSE`.
+
+Gates: **15 PASS, 3 FAIL, 0 NOT_MEASURED**. Failed: `HG08` (zero-candidate clarification, `R1`
+`cand=0 clar=0`), `HG11` (multi-collection sibling routing, `R5` `cand=0 clar=0 ins=0`), `HG12`
+(negative control, `R6` `over-routed=2`, `CANDIDATE_MALFORMED`).
+
+Terminal: `EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_INCONCLUSIVE — NO_EVALUATION_COHORT_SPEND_AUTHORIZED`.
+`EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`.
+
+Every reference to "§104" below this point, in the text as originally written, means THIS
+subsection.
+
+The owner ran the armed probe and it worked. §105 treats that result as authoritative and reads it
+from the artifact rather than from the summary it was handed: **7/7 HTTP 200, 15 of 18 gates,
+`HG08`/`HG11`/`HG12` failed, `GROUNDING_READY = FALSE`, 0/2 supporting exact quotes, 10 ungrounded
+typed objects, $0.1710.** The correct reading is **HOSTED TRANSPORT VALIDATED, EXPERT BEHAVIOUR NOT
+VALIDATED** — and it is not a provider failure.
+
+### 105.1 Three of the four defects had a structural cause, and the fourth is not claimed as repaired
+
+**`outcome` was the FIRST property in the wire schema.** Structured decoding emits properties in
+schema order, so the producer answered *"is there anything to add?"* **before enumerating a single
+hazard**, then generated lists consistent with a commitment made while knowing nothing. §105.0's
+hosted `R1` and `R5` returned every collection empty in **635** and **254** output tokens — `R5` the
+shortest call of the seven. The local baseline supplies the half that proves it: `outcome` came back
+**`NOTHING_TO_ADD` on 27 of 27 calls, including calls that populated three collections.** A field
+answered before the answer existed. Nothing validated the two against each other, so it had been
+invisible since §99.
+
+**The wire schema was WEAKER than the boundary in three places** — required strings had no
+`minLength` (an empty string passed strict transport validation and was then refused as
+`CANDIDATE_MALFORMED`, which is §105.0's `R6`); `participants` had no `minItems` (one-participant
+insights were refused, the collection came back empty, and the interaction survived only in the
+summary — an **EXPLANATION_ONLY_LOSS manufactured by an under-specified schema, not by a model that
+failed to reason**); and `evidence` was not required at all.
+
+**Grounding was not merely optional — the contract ACTIVELY INSTRUCTED OMISSION** (*"BUT A QUOTE IS
+OPTIONAL … raise the candidate anyway with an empty evidence list"*, repeated in the schema
+description). Silence was the cheapest legal answer and every producer took it: `quotes = 0/0`
+across §100/§101's fourteen local calls and `EVIDENCE_QUOTES_EMITTED = 0` across both §105.0 hosted
+grounding fixtures. **This was not model incapacity**, and §105 demonstrated that by measuring the
+same local model emitting exactly-bound quotes as soon as the contract stopped inviting it not to.
+
+**`HG12`'s over-routing has NO structural cause established.** `minLength` explains the
+`CANDIDATE_MALFORMED` half. The over-production half is prompt-pressure asymmetry — a hypothesis,
+not a measurement — and it is **not claimed as repaired**. The local model kept both negative
+controls empty 10/10 before and after, so it cannot falsify the hypothesis either way.
+
+### 105.2 What changed, and what deliberately did not
+
+`outcome` moved to LAST. `minLength: 1` on required strings, `minItems: 2` on `participants`. Hazard
+candidates gained a required **`groundingStatus`** (`EXACT_QUOTE_SUPPLIED` / `NO_EXACT_QUOTE_AVAILABLE`)
+with **`evidence` required beside it**, and the boundary holds the producer to the declaration in
+both directions. Three new reason codes: `GROUNDING_STATUS_INVALID`, `GROUNDING_CLAIM_UNSUPPORTED`,
+`OUTCOME_INCONSISTENT_WITH_CONTENT`.
+
+`NO_EXACT_QUOTE_AVAILABLE` **is a fully legal candidate that still reaches the reviewer as
+ungrounded**, and that is what keeps §101's attempt-1 failure from returning: that attempt demanded
+a quote from every candidate and suppressed the entire collection. What is no longer legal is
+SILENCE — omission now costs a **falsifiable claim about the observation**.
+
+`EXPERT_ANALYSIS_CONTRACT_VERSION` stays `analysis.v2` because the **normalised** analysis is
+untouched; only the wire form moved. `groundingStatus` is deliberately **not** added to the internal
+type — grounded/ungrounded stays derivable from `evidence`, so no second copy of the same fact can
+drift. `OUTCOME_INCONSISTENT_WITH_CONTENT` is **recorded, not rejected and not corrected**: this
+module resolves and refuses, it does not rewrite a producer's output.
+
+**`A.13`/`A.15` were RE-ANCHORED, not deleted or loosened.** They asserted the v3 rule that
+`evidence` is not required, which went STALE exactly the way `G14` did in §103.4. The property they
+protect now has a **direct** assertion — a candidate declaring `NO_EXACT_QUOTE_AVAILABLE` is
+normalised and survives — instead of being protected indirectly by the absence of a `required`
+entry. Nothing that used to fail now passes; the suite went 57 → 58.
+
+### 105.3 Two decisions were reversed BY MEASUREMENT
+
+**`GROUNDING_CLAIM_UNSUPPORTED` was fatal first**, by analogy with `EVIDENCE_OUT_OF_BOUNDS`. The
+local probe measured the cost: **9 of 10 grounding iterations returned nothing at all**, good
+clarifications and insights destroyed alongside the one candidate that lied — §101's suppression in
+a new costume, and the same lesson `expert-normalization.ts` already records from L3-2i. It is now
+**item-level**, which does not weaken the rule (the lying candidate still does not cross at all) and
+which this phase's authorization names in as many words: *"must fail closed **or remain
+non-authoritative**"*. After the change `H8` kept 3 clarifications and 1 insight on 5/5 iterations
+while both over-claiming candidates were correctly dropped.
+
+**`maxLength: 120` on `quotedText` was added and then removed.** It was meant to stop the local
+model pasting the whole observation into a quote. Under that provider's structured decoding it
+produced not a shorter span but a **truncated** one, cut mid-sentence with stray characters appended
+(`"…walked past the 10."`), binding *less* often than what it replaced. A schema keyword that
+corrupts output on a provider we can actually test is not a repair.
+
+### 105.4 Local measurement — 50 calls, `qwen3-coder:30b`, $0.00
+
+5 repeats × 10 cases, so a structural repair is distinguishable from a lucky generation.
+
+| measure | baseline (v3) | after (v4) |
+|---|---|---|
+| `outcome` inconsistent with content | **27 / 27** | **0 / 50** |
+| routing opportunities · hits · misses · over-routed | 54 · 54 · 0 · 0 | 75 · 70 · 5 · **0** |
+| EXPLANATION_ONLY_LOSSES | 0 | **5** |
+| EVIDENCE_QUOTES_EMITTED · EXACTLY_BOUND | **0** · **0** | **5** · **5** |
+| UNBINDABLE · FABRICATED | 0 · 0 | **0** · **0** |
+| GROUNDED typed objects | **0** | **5** |
+| negative controls empty | 6 / 6 | **10 / 10** |
+
+Clarifications **25/25**, insights **15/15**, disagreements **10/10**, candidates **20/25**. Every
+miss and every loss falls in **one fixture**. **The grounding question moved for the first time in
+this programme** — §100, §101 and §105.0 all measured `quotes = 0`, and `H7` now binds exactly on 5/5.
+
+### 105.5 The two failures left standing, and the cliff that matters
+
+**Local acceptance is 6 of 8.** `EXPLANATION_ONLY_LOSSES = 0` fails (5, all `H8`) and "both grounding
+fixtures bind" fails (`H7` 5/5, `H8` 0/5). On `H8` the model declares `EXACT_QUOTE_SUPPLIED` and
+supplies an empty list twice per call; the boundary drops both candidates, which is criterion 8
+passing and criteria 4–5 failing. The same model on `H7` under the same contract quotes correctly,
+so this is **fixture-specific producer behaviour, not a contract defect**, classified per §103.3's
+precedent.
+
+**`R5` is the finding worth carrying forward.** Its analysis is REJECTED 5/5, and the diagnostic
+shows the model is **not paraphrasing**: it copies the entire observation verbatim except that it
+lower-cases the sentence-initial `A` and drops the closing period. `indexOf` fails,
+`EVIDENCE_OUT_OF_BOUNDS` fires, and because that code is **analysis-fatal** the whole response dies.
+
+**§105 exposed this cliff rather than creating it.** Under v3 no producer ever quoted, so the fatal
+rule never fired — dormant for the entire programme. Requiring grounding to be declared makes
+producers attempt quotes, and **every attempt is now a chance to lose the whole analysis.**
+
+It was deliberately **not repaired**. The only repair is to make `EVIDENCE_OUT_OF_BOUNDS`
+item-scoped, and that is a pre-existing protected rule asserted in three places. Changing it to make
+a measurement pass is this phase's own stop condition. Case-insensitive or whitespace-normalised
+binding was rejected for the same reason — it is approximate matching, which the authorization
+forbids. **The risk should be priced into the next hosted run**: in §105.0 Sonnet 5 abstained
+(`UNBINDABLE = 0`, `FABRICATED = 0`); under v4 it must declare, so it will attempt.
+
+### 105.6 Protected regression — all green at `37a5d1b5`
+
+Expert **56 / 51 / 131 / 141 / 58**, the new `expert-grounding-contract` **40 / 0**, Level-3
+quarantine **61 / 0** and **37 / 0**, HazLenz core · precision · level-1 recall · actionable
+coverage all exit 0 with **0 dangerous and 0 life-critical omissions**, backend `tsc` exit 0. The
+**141/0** carries the most: the Expert core is still provably pure, and §105 added no network
+primitive, endpoint, credential or vendor name to it.
+
+**Confinement:** 15 files reference the Expert module (§105.0's 12 plus this phase's probe, suite and
+diagnostic); **no** controller, service or module, **no** frontend reference, the hosted adapter has
+**exactly one importer**, and **no §105 script imports a hosted adapter at all** — which is what
+structurally backs the $0.00.
+
+### 105.7 Residual debt
+
+**Closed:** `outcome` answered before the answer existed · wire schema weaker than the boundary in
+three places · grounding actively discouraged by the contract · every Expert candidate ungrounded
+(now 5/5 grounded on `H7` locally).
+
+**Open and unchanged:** hosted behaviour unvalidated · `HG12` over-routing cause unestablished ·
+routing measured on one local model only · `test:kg5b-operator-cli` 64/65 · the
+unresolved-jurisdiction ranking · `directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER` ·
+`LIVE_PAYMENT_PROOF = FALSE`.
+
+**New:** the `EVIDENCE_OUT_OF_BOUNDS` availability cliff (§105.5) · `H8` grounding non-compliance ·
+`QUOTES_SUPPORTING_ANCHOR = 0` — `H7`'s quotes bind but land on the opening clause rather than the
+supporting phrase, so grounding is mechanically achieved and not yet semantically on-target.
+
+### 105.8 Exact next operation
+
+**A bounded hosted RE-PROBE, on the owner's authorization.** The contract moved materially, so
+§105.0's measurements were taken under v3 and **do not transfer**. Re-run the same seven fixtures under
+v4 to answer three questions: whether `HG08`/`HG11` recover with `outcome` decided last; whether
+Sonnet 5 emits an exactly-bound quote on `H7`/`H8`; and whether it **loses whole analyses to
+`EVIDENCE_OUT_OF_BOUNDS`** now that it will attempt quotes. Bounded exactly as before — 7 calls,
+`MAX_HOSTED_CALLS = 8`, `MAX_HOSTED_COST_USD = 3.00`, against §105.0's actual of $0.1710.
+
+**The 17-measure evaluation cohort remains BLOCKED**, and authorising it is not this phase's to give.
+
+---
+
+## 106 — v4 BOUNDED HOSTED RE-PROBE: TRANSPORT REJECTED EVERY CALL BEFORE GENERATION (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_V4_HOSTED_REPROBE_BLOCKED — HOSTED_PROVIDER_OR_TRANSPORT_REMEDIATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-v4-hosted-reprobe-2026-08-30/REPORT.md` and, for a separate
+incident this phase discovered and corrected, `.../INCIDENT.md`. Predecessor: §105. Hosted calls
+attempted: **7**. Completed clean: **0**. Actual spend: **$0.00**. Production untouched. **Nothing
+committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v4   (UNCHANGED this phase)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+### 106.0 An incident this phase caused and corrected, before the substantive result
+
+Running the frozen probe (`npm run probe:expert-hosted-transport`, unmodified, exactly as
+authorized) **overwrote the raw evidence file for §105.0's real hosted run** — its output path was a
+fixed, date-stamped directory rather than one scoped to each run, and this run wrote into the same
+directory the earlier one used. `results/hosted-probe-summary.json` and
+`transport/hosted-probe.jsonl` were destroyed; the directory was never committed to git, so nothing
+recovered them there. This is documented in full, including what was reconstructed from the session
+transcript and what remains unrecoverable, in `INCIDENT.md`. **All AGGREGATE figures §105
+depends on were already transcribed into §105.0, `INSITE_CURRENT_STATE.json` and
+`.../SUMMARY.md` before the loss and are exact**; two individual rows (`R2`, `R4`) lost nested
+verdict detail that was never fully transcribed. The output-path bug is fixed (§106.1). While
+investigating it, a SEPARATE, pre-existing citation defect was also found: §105's original text
+cited "§104" nine times to mean the real hosted run, but §104 documents a different, earlier
+event this same day (the credential-blocked attempt). That is corrected at §105.0, which is now
+where those nine citations point, plus one in D-117.
+
+### 106.1 Tooling fix: the probe can no longer overwrite prior evidence
+
+`probe-expert-hosted-transport.ts`'s output path now checks whether a summary already exists at the
+base directory. If one does, this run is diverted to a sibling directory suffixed with its own start
+time. A first run at a clean path is completely unaffected. This changes no Expert HazLenz prompt,
+schema, contract or normalization behaviour — it is infrastructure, not a repair of the measured
+result, and it is the only file this phase touched that was not already a verification artifact.
+
+### 106.2 The frozen probe was executed once, unmodified, exactly as authorized
+
+7 calls planned, 7 attempted, **all 7 returned HTTP 400 in 136–433 ms** — far faster than any real
+generation call (§105.0's real run ranged 6.6–32 s for the same fixtures). `failureKind =
+HTTP_CLIENT_ERROR` on all 7; the classifier's credit-exhaustion pattern did not match. **0 tokens
+billed, $0.0000 actual** — transport-level rejections are not billed. No fixture, prompt, schema or
+boundary code was modified between or after any call.
+
+### 106.3 Every behaviour question is NOT MEASURED, and none is reported as PASS or FAIL
+
+None of the 7 calls reached generation, so none produced an analysis to check. `HG08`, `HG11` and
+`HG12` are each **NOT MEASURED** — reporting them as PASS or FAIL would misrepresent an unmeasured
+field as measured, the exact error this programme's own gate tables have been built to prevent.
+**`HG12`'s status under the local repair is neither confirmed nor refuted by this run.** Grounding:
+`GROUNDING_OPPORTUNITIES = 2` (fixed by the fixture set), everything else (`QUOTES_EMITTED`,
+`EXACTLY_BOUND`, `UNBINDABLE`, `FABRICATED`, `GROUNDED`/`UNGROUNDED_TYPED_OBJECTS`) **not measured**
+— not zero, and not §105.0's numbers either, since nothing was produced to count.
+
+**The single most consequential unanswered question:** whether Sonnet 5 exhibits the local model's
+`EVIDENCE_OUT_OF_BOUNDS` copying error (§105 §7's `R5` finding) was **not reached**. The risk §105.0
+flagged — *"if it makes the same class of copying error, a hosted analysis is lost whole"* — is
+neither confirmed nor ruled out by this operation.
+
+### 106.4 Diagnosis — offline evidence, explicitly not a live confirmation
+
+The provider's sanitized error type was not captured; the frozen probe records `failureKind` but not
+that field, and no additional live call was made to retrieve it, judged to fall under this
+operation's restriction against using calls beyond the frozen seven for anything but "an objectively
+necessary transport retry." The finding below is an **inference**, stated at the confidence the
+evidence supports.
+
+Built the exact request body **offline, $0, no network call**. `tools[0].strict = true`, and the
+schema carries **15 `minLength: 1` and 1 `minItems: 2` constraints** — exactly the §105 additions
+that closed RC2. Those keywords are, by pattern with most providers' strict/structured-output JSON
+Schema subsets, plausibly unsupported in Anthropic's strict tool mode, which validates the schema
+itself before generation — consistent with the **uniform, sub-second** rejection profile. **This is
+the assessed most probable cause, not a confirmed one**, and it is reported as a finding, not
+repaired: removing those keywords from the Anthropic-facing wire schema is a schema change, and this
+operation explicitly prohibits performing "any further prompt/schema/contract repair during the
+hosted measurement."
+
+### 106.5 Comparison to §105.0 — no causation claimed beyond what was measured
+
+| measure | §105.0 (v3, real) | §106 (v4, this run) |
+|---|---|---|
+| calls completed clean | 7/7 | **0/7** |
+| HTTP failures | 0 | **7 (all 400)** |
+| routing opportunities/hits/misses/over-routed | 13·7·4·2 | **not measured** |
+| `HG08`/`HG11`/`HG12` | FAIL/FAIL/FAIL | **NOT MEASURED / NOT MEASURED / NOT MEASURED** |
+| grounding quotes emitted/bound/unbindable/fabricated | 0·0·0·0 | not measured |
+| tokens in/out | 40,269 / 9,049 | **0 / 0** |
+| cost | $0.171028 | **$0.0000** |
+| latency p50/max | 20,869 ms / 32,026 ms | **148 ms / 433 ms** |
+
+The comparison shows a v3 run that reached generation on every call and a v4 run that reached
+generation on none. It says nothing about whether v4's Expert behaviour is better, worse or
+unchanged — that remains entirely unmeasured.
+
+### 106.6 Protected regression and confinement — re-run fresh, all green
+
+Expert **56/51/131/141/58**, `expert-grounding-contract` **40/0**, Level-3 quarantine **61/0** and
+**37/0**, HazLenz core/precision/level-1-recall/actionable-coverage all exit 0 with **0 dangerous
+and 0 life-critical omissions**, backend `tsc` exit 0. Forbidden-emission and
+citation-laundering checks are covered within `expert-contract-foundation`
+(`CITATION_SHAPED_TEXT_NOT_PERMITTED`, `FORBIDDEN_GOVERNANCE_FIELD`) — no separately named suite
+exists under those names and none was invented. Confinement unchanged: 15 files, **no** controller/
+service/module, **no** frontend reference, hosted adapter has **exactly one importer**, **no**
+regression suite imports it.
+
+### 106.7 Residual debt
+
+**Unchanged:** every §105.7 item, including the `EVIDENCE_OUT_OF_BOUNDS` availability cliff, `H8`
+grounding non-compliance, `HG12` cause unestablished.
+
+**New:** hosted transport itself is now blocked for v4 by a probable schema-format incompatibility
+with Anthropic's strict tool mode — **narrower and more specific than "hosted behaviour unvalidated"
+was under v3**, because v3's transport worked. Whether the evidence cliff transfers to a hosted
+provider remains completely unknown.
+
+### 106.8 Exact next operation
+
+Not authorized here. Diagnose, with separate authorization, whether stripping `minLength`/`minItems`
+from the Anthropic-facing wire schema (leaving the boundary's independent enforcement and every other
+provider's schema untouched) restores HTTP 200 — the remediation belongs in the adapter's
+provider-specific schema wrapper, not in the shared wire schema or the normalization boundary. Only
+after transport is re-confirmed does re-running the v4 behaviour questions become possible.
+
+**The 17-measure evaluation cohort remains BLOCKED.**
+
+---
+
+## 107 — ANTHROPIC STRICT-SCHEMA COMPATIBILITY CONFIRMED: `minLength`/`minItems` WERE THE §106 BLOCKER (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_ANTHROPIC_SCHEMA_COMPATIBILITY_CONFIRMED — ADAPTER_WRAPPER_REPAIR_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-anthropic-schema-diagnostic-2026-08-30/`. Predecessor: §106.
+Hosted calls attempted: **1**. Hosted calls made: **1**. Actual spend: **$0.036496**. Production
+untouched. **Nothing committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+§106's diagnosis was an **inference** — offline schema inspection plus a timing profile, explicitly
+not a confirmed result, because no live call had isolated the two suspected keywords. This phase ran
+that isolation.
+
+### 107.1 An honest false start, before the authorized call — zero calls, zero cost
+
+The diagnostic script's first execution never reached the network: it forgot to load
+`backend/.env`, so `process.env.ANTHROPIC_API_KEY` was empty and the script correctly stopped itself
+at its own credential gate. **This consumed none of the one authorized call** —
+`hostedCallsMade: 0`, `actualCostUsd: 0`, preserved as
+`attempt1-no-network-call-made/` in the evidence directory rather than discarded. The loader was
+added (mirroring `probe-expert-hosted-transport.ts`'s own pattern exactly, including its "never
+logged, returned or persisted" discipline) and the script was re-run once for the authorized call.
+
+### 107.2 Phase 1/2 — the diagnostic schema, and the pre-call diff proof
+
+The diagnostic schema was never authored by hand. It was built by taking `sourceBody =
+buildAnthropicRequestBody(fixture.input)` — the EXACT body production sends right now, via the same
+function the real adapter and the real probe call — extracting `sourceBody.tools[0].input_schema`,
+deep-cloning it, and recursively deleting only `minLength` and `minItems` keys. Every other field of
+the request body (system prompt, user prompt, model, `max_tokens`, `thinking`, `tool_choice`, tool
+name, description, `strict: true`) was left byte-identical by construction, because only
+`tools[0].input_schema` was ever swapped.
+
+**A deterministic tree-diff walked both schemas before any network call** and was itself
+self-tested first against three injected-corruption cases (a stray added field, a deleted unrelated
+key) to confirm it would actually catch a contamination rather than rubber-stamp one. Result:
+**14 `minLength` removals, 1 `minItems` removal, 0 unexpected differences.** (This refines §106's
+phrasing of "15 `minLength` constraints" — the precise, programmatically counted split is **14
+`minLength` + 1 `minItems` = 15 total**; the total was right, the per-keyword split was not spelled
+out before.) Source schema hash `76bf0142…`, diagnostic schema hash `9d8087d5…`. Had any unexpected
+difference existed, the script would have written `EXPERT_HAZLENZ_ANTHROPIC_SCHEMA_DIAGNOSTIC_ABORTED
+— DIAGNOSTIC_SCHEMA_NOT_ISOLATED` and stopped before Phase 3; it did not need to.
+
+### 107.3 Phase 3/4 — one call, `R2`, no retry
+
+Fixture `R2` ("WET + ELECTRICAL") was chosen because it is non-adversarial, not a grounding
+fixture, not a negative control, and produced a rich real response under v3 (3 candidates, 4
+clarifications, 2 insights) — the cleanest single case for a pure transport-callability question.
+Worst-case cost was computed from the real request size before sending: **$0.0910**, under the
+**$1.00** ceiling. Exactly one `fetch` was issued, with no retry loop and no fallback fixture wired
+into the script at all.
+
+**Result: HTTP 200. `stop_reason: tool_use`. Latency 28,087 ms** — in the 6.6–32 s range real
+generation took in §105.0's run, and nothing like the 136–433 ms uniform rejection §106 measured on
+all seven v4 calls. **6,928 input tokens, 2,264 output tokens, $0.036496 actual.** The normalized
+tool-use payload carried **3 candidates, 3 clarifications, 2 insights** — a normal, populated Expert
+analysis, not an empty or malformed one.
+
+### 107.4 Classification
+
+```
+EXPERT_HAZLENZ_ANTHROPIC_SCHEMA_COMPATIBILITY_CONFIRMED — ADAPTER_WRAPPER_REPAIR_AUTHORIZATION_REQUIRED
+```
+
+Terminal A, not B or C: the request reached generation and returned a normal model response.
+**Removing only `minLength` and `minItems` from the Anthropic-facing schema was sufficient to
+restore provider callability**, on the one fixture tested. No baseline/control call and no second
+confirmatory call were made — this operation authorized exactly one, and the result was unambiguous
+enough that a second call would have spent authorization this phase does not have rather than added
+information the terminal rules require.
+
+**What this does NOT establish.** One fixture, one call, is a callability proof, not a behaviour
+measurement — `HG08`/`HG11`/`HG12`, grounding, and above all whether Sonnet 5 exhibits the local
+model's `EVIDENCE_OUT_OF_BOUNDS` copying error (§105 §7) remain **entirely unmeasured**, exactly as
+§106 left them. Nor does it establish that `minLength`/`minItems` are Anthropic's *only* objection —
+only that removing them was *sufficient* on this one request.
+
+### 107.5 Boundary invariant — proved, not assumed
+
+The stripped schema exists only inside this diagnostic script's memory for the duration of one
+request. `expert-prompt.ts` (the canonical wire schema) and `expert-normalization.ts` (the boundary)
+were not touched. Re-run fresh: Expert **56/51/131/141/58**, `expert-grounding-contract` **40/0** —
+including its own direct assertions that an empty required string (`C.5`), an under-populated
+`participants` array (via `expert-routing-contract`'s `B` series), a malformed candidate, and an
+invalid or contradicted grounding declaration (`D.6`/`D.7`/`D.11`) are all still refused at the
+boundary — Level-3 quarantine **61/0** and **37/0**, HazLenz floors all exit 0 with **0 dangerous and
+0 life-critical omissions**, backend `tsc` exit 0. **No regression suite imports the hosted
+adapter.**
+
+**Confinement:** 16 files reference the Expert module (§106's 15 plus this diagnostic script). **No**
+controller, service or module; **no** frontend reference. The hosted adapter now has **two**
+importers — the hosted probe and this diagnostic — both probe-only, neither reachable from a
+controller, service, module or frontend file.
+
+### 107.6 Evidence-directory collision protection
+
+`verification/expert-hazlenz-anthropic-schema-diagnostic-2026-08-30/` was checked against every
+existing `expert-hazlenz-*` directory before creation and did not exist. The diagnostic script itself
+additionally refuses to overwrite its own `diagnostic-result.json` if one is already present at that
+exact path (the same fail-closed discipline §106.1 added to the frozen probe). No prior evidence,
+including the reconstructed §105 files, was read, moved or altered by this phase except where cited.
+
+### 107.7 Residual debt
+
+**Unchanged:** every §106.7 item except the transport-blocker line, now narrowed further.
+
+**Narrowed:** "hosted transport blocked, cause unconfirmed" (§106) → **"hosted transport blocker
+identified and a compatible schema variant confirmed on one call; the fix has not been made
+permanent or re-measured across the full fixture set."**
+
+**New:** whether `minLength`/`minItems` are the *only* incompatibility, or merely the first one a
+single call could surface, is unknown. A permanent adapter-side fix and a full seven-call re-probe
+are both still required to close this out, and neither is authorized by this phase.
+
+### 107.8 Exact next operation
+
+Not authorized here. With separate authorization: (1) implement the compatibility fix in the
+Anthropic adapter's provider-specific schema wrapper — stripping `minLength`/`minItems` only for the
+Anthropic-facing request, leaving the shared wire schema, `expert-normalization.ts`, and the local
+provider's schema completely untouched, so the boundary keeps enforcing what the wire schema no
+longer states to this one provider; (2) re-run the bounded seven-call v4 behaviour re-probe
+(§106's original assignment) against the repaired adapter to finally measure `HG08`/`HG11`/`HG12`,
+`H7`/`H8` grounding, and — the question every phase since §104 has left open — whether Sonnet 5 hits
+the `EVIDENCE_OUT_OF_BOUNDS` cliff.
+
+**The 17-measure evaluation cohort remains BLOCKED.**
+
+---
+
+## 108 — PERMANENT ANTHROPIC ADAPTER REPAIRED; HOSTED TRANSPORT FULLY VALIDATED; TWO BEHAVIOURAL DEFECTS REMAIN, NEITHER IS THE EVIDENCE-BOUNDARY ARCHITECTURE (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_V4_HOSTED_BEHAVIOR_FAILED — FURTHER_LOCAL_BEHAVIOR_REPAIR_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-anthropic-adapter-repair-2026-08-30/` (Step 1) and
+`verification/expert-hazlenz-v4-hosted-behavior-reprobe-2026-08-30/` (Step 2). Predecessor: §107.
+Hosted calls Step 1: **0** (\$0.00). Hosted calls Step 2: **7 attempted, 7 completed clean**
+(**\$0.211508**). Production untouched. **Nothing committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v4   (UNCHANGED this phase)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+§107 confirmed, on one isolated call, that removing `minLength`/`minItems` from the Anthropic-facing
+schema restored callability. This phase made that fix permanent and then measured actual Expert
+behaviour through it for the first time since §104.
+
+### 108.1 Step 1 — the permanent, Anthropic-only compatibility wrapper
+
+`stripAnthropicUnsupportedKeywords()`, added to `anthropic-expert-provider.ts` immediately after
+`applyStrictSchemaWrapper()` and named for exactly what it is, so no future maintainer mistakes its
+output for the canonical contract. It clones before it mutates
+(`JSON.parse(JSON.stringify(node))`, then a recursive delete on the clone), removes only `minLength`
+and `minItems` at any depth, and is wired into `buildAnthropicRequestBody()`'s `tools[0].input_schema`
+as the last step of a three-stage pipeline: canonical schema → strict-mode wrapper
+(`additionalProperties: false`) → Anthropic-only strip. `buildExpertWireSchema()` — shared with
+`expert-normalization.ts`'s enforcement and the local-provider adapter — is never touched.
+
+**Step 1A, immutability and isolation, 22/0.** The canonical schema is sha256-identical before and
+after the strip runs; the wrapped (pre-strip) schema carries the exact §107-measured count — 14
+`minLength`, 1 `minItems`; the stripped output carries zero of either; two independent strips of the
+same input are byte-identical (deterministic); every leaf value at every path is preserved except
+`minLength`/`minItems` entries, walked and diffed programmatically rather than sampled; property
+names, `required` arrays, `groundingStatus`, enums and `additionalProperties: false` are
+byte-identical between wrapped and stripped. `buildAnthropicRequestBody()` itself — the real
+permanent path — was confirmed to now emit zero `minLength`/`minItems`.
+
+**Step 1B, trusted boundary, 8/0.** Response payloads built as if a provider had been sent the
+stripped schema and a producer exploited the absent constraints are STILL refused: an empty required
+string, a one-participant insight, a structurally malformed candidate, an invalid `groundingStatus`,
+a contradicted grounding declaration, and a malformed evidence object (which resolves through the
+binder to `EVIDENCE_OUT_OF_BOUNDS` — analysis-fatal, a STRONGER protection than the item-level
+rejection originally assumed, and the actual behaviour of the real production path). The fatal-reason
+list is asserted unchanged from §105: authority did not move from the boundary to the provider.
+
+**Step 1C/1D.** All protected suites re-run green (56/51/131/141/58/40/61/37, HazLenz floors exit 0
+with 0 dangerous/life-critical omissions, `tsc` 0); no regression suite makes a network call; no
+controller/service/module or frontend reference. `ANTHROPIC_SCHEMA_WRAPPER_REPAIR_READY = TRUE` —
+full gate record in `STEP1D_GATE.txt`. Step 2 authorized.
+
+### 108.2 Step 2 — the bounded re-probe, through the repaired PERMANENT adapter
+
+`npm run probe:expert-hosted-transport`, the frozen probe, unmodified — not the §107 diagnostic
+script or its throwaway schema. It automatically used the repair, because the repair lives inside
+`buildAnthropicRequestBody()`, which the probe already called.
+
+**Transport: fully clean. 7/7 completed, 0 HTTP failures** — §106's 7/7 pre-generation HTTP 400 is
+gone. Cost **\$0.211508** (below the \$3.00 ceiling), latency p50 **20,079 ms**, max **25,589 ms** —
+in the real-generation range, nothing like §106's uniform sub-second rejection profile.
+
+### 108.3 The single most consequential open question since §104 is answered: NO
+
+**`EVIDENCE_OUT_OF_BOUNDS` occurred ZERO times across all 7 calls.
+`ANALYSES_LOST_TO_EVIDENCE_CLIFF = 0`.** Every call left `layerStatus: PRESENT` — no whole analysis
+was ever rejected. The local model's copying-error cliff (§105 §7's `R5` — copying the whole
+observation verbatim while corrupting the leading capital and trailing period) that has been an open
+risk since §105 **did not transfer to Sonnet 5**, on any of the 7 fixtures, including both grounding
+controls where quotes were actually attempted.
+
+### 108.4 Grounding — the best result of the whole programme
+
+**9 quotes emitted, 9 exactly bound, 0 unbindable, 0 fabricated**, across every fixture that
+attempted one, not only the two grounding controls. `H7` achieved `supportsClaim: true` (2/2 bound,
+matching the intended anchor). `H8` produced **zero candidates** — an empty response, not a
+fabrication or an unbindable quote — so `GROUNDING_READY = FALSE`
+(`groundingFixturesWithSupportingExactQuote: 1/2`, short of the required `>= 2`). §100/§101/§104's
+`quotes = 0/0` finding is decisively closed for this model on the fixtures where it engages: it can
+and does produce exact, verbatim, correctly-bound quotes.
+
+### 108.5 Two independent behavioural hard-gate failures — neither is the evidence-boundary architecture
+
+**`HG10` FAIL.** `R4` (required a candidate) produced **zero candidates**, with `CANDIDATE_MALFORMED`
+and `EXPLANATION_MALFORMED` (`expertExplanation.summary` also not a non-empty string). 439 output
+tokens, `stop_reason: tool_use` — not truncation. Under v3 the same fixture produced 3 valid
+candidates: a genuine regression on this one fixture. Neither issue code is evidence-related or
+analysis-fatal, so `layerStatus` stayed `PRESENT` and nothing beyond this one candidate/explanation
+was lost.
+
+**`HG12` FAIL, and WORSE than v3.** `R6` (negative control, correct answer is empty) over-routed on
+**3 of 4 collections** — candidates, clarifications AND insights all `INCORRECT_POPULATED` — up from
+v3's 2 of 4 (insights was `CORRECT_EMPTY` under v3, became populated under v4). The previously
+malformed candidate is now well-formed but still wrongly present.
+
+**Neither is repaired here, per this operation's explicit prohibition, and neither is inferred to
+have been caused or cured by the local §105 repair** — reported exactly as measured on one hosted
+run.
+
+### 108.6 `HG08` and `HG11`
+
+`HG08`'s literal condition passed (`R1` clarifications `4 > 0`, `CORRECT_POPULATED`), but `R1` also
+produced 3 candidates this run, so it does not cleanly demonstrate the fixture's original
+zero-candidate purpose — that property remains proved deterministically and unconditionally by
+`test:expert-grounding-contract` `A.1`–`A.3`, independent of any one hosted response. `HG11` passed
+cleanly: `R5` produced all three required collections simultaneously (3 candidates, 4 clarifications,
+3 insights), all `CORRECT_POPULATED`.
+
+### 108.7 Comparison — v3 (real, reconstructed) vs. v4 (this run)
+
+| | v3 | v4 |
+|---|---|---|
+| calls completed clean / HTTP failures | 7/7 · 0 | 7/7 · 0 |
+| tokens in/out | 40,269 / 9,049 | 48,424 / 11,466 |
+| cost | \$0.171028 | \$0.211508 |
+| latency p50/max | 20,869 / 32,026 ms | 20,079 / 25,589 ms |
+| routing opp/hits/misses/over-routed | 13/7/4/2 | 13/8/2/**3** |
+| `HG08`/`HG09`/`HG10`/`HG11`/`HG12` | FAIL/PASS/PASS/FAIL/FAIL | PASS(caveat)/PASS/**FAIL**/**PASS**/FAIL(worse) |
+| quotes emitted/bound | 0/0 | **9/9** |
+| unbindable/fabricated | 0/0 | 0/0 |
+| grounded/ungrounded objects | 0/10 | **9/3** |
+| `EXPLANATION_ONLY_LOSSES` | 0 | 0 |
+| `EVIDENCE_OUT_OF_BOUNDS` / lost to cliff | 0 (trivially) / 0 | **0** / **0** |
+| gate tally | 15 PASS / 3 FAIL | **16 PASS / 2 FAIL** |
+
+18/18 gates evaluated, 0 NOT_MEASURED, in both runs.
+
+### 108.8 Terminal selection
+
+Not Terminal D — transport is fully clean. Not Terminal A — two hard gates failed. Not Terminal B —
+its own trigger is analysis-level loss from `EVIDENCE_OUT_OF_BOUNDS`, which fired zero times.
+Terminal C's own condition — routing or negative-control failure independent of the evidence-boundary
+question — is met precisely by `HG10` and `HG12`.
+
+### 108.9 Post-run regression and confinement
+
+Re-run green: `expert-anthropic-adapter-repair` 30/0, Expert 56/51/131/141/58,
+`expert-grounding-contract` 40/0, quarantine 61/0 and 37/0, HazLenz floors exit 0 (0 dangerous/
+life-critical omissions), `tsc` 0. No controller/service/module or frontend reference.
+`EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. Production and
+customer behaviour untouched.
+
+### 108.10 Residual debt
+
+**Closed:** hosted transport blocked by schema incompatibility (§106) · whether Sonnet 5 hits the
+`EVIDENCE_OUT_OF_BOUNDS` cliff (answered: no, on this measurement) · every hosted grounding fixture
+ungrounded (H7 now grounds cleanly).
+
+**Open, narrowed:** `H8` still fails to ground, now by producing nothing rather than an unsupported
+claim. `HG12` over-routing is confirmed present on a hosted model and measured WORSE than v3, not
+merely unconfirmed as §106 left it.
+
+**New:** `R4`'s candidate-and-explanation failure has no precedent in this programme — worth
+watching for repetition rather than assuming a one-off.
+
+### 108.11 Exact next operation
+
+Not authorized here: further local behavioural repair targeting `R4`'s malformed
+candidate/explanation and `R6`'s worsened over-routing, followed by a fresh bounded hosted
+measurement to confirm. **The 17-measure evaluation cohort remains BLOCKED and is not separately
+considered for authorization by this phase** — Terminal C's own text is explicit that further local
+repair, not cohort authorization, is what this result calls for.
+
+---
+
+## 109 — R4/R6 ZERO-HOSTED-CALL LOCAL DIAGNOSTIC: NEITHER DEFECT REPRODUCES LOCALLY (2026-08-30/31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_R4_HOSTED_ONLY_DEFECT_NOT_LOCALLY_REPRODUCED — TARGETED_HOSTED_CONFIRMATION_DESIGN_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-r4-r6-local-repair-2026-08-30/`. Predecessor: §108.
+**Hosted calls: 0. Cost: \$0.00.** Production and prompt/schema/normalization code untouched.
+**Nothing committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v4   (UNCHANGED this phase)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+§108 left two behavioural hard-gate failures standing: `HG10`/`R4` (candidate/explanation loss)
+and `HG12`/`R6` (worsened negative-control over-routing), both measured on exactly one hosted
+run each, with no local repair authorized to touch the evidence-boundary architecture. This
+phase's authorization was to diagnose, and repair only where the loss point could be
+demonstrated, with zero hosted calls.
+
+### 109.1 R4 — ten varied-seed local repetitions, zero reproductions
+
+`backend/scripts/diagnose-r4-r6-local-repair.ts`. The local provider is temperature 0 with a
+fixed seed by design (`EXPERT_PROBE_INFERENCE_CONFIG`), so ten repetitions at the same seed would
+have printed one draw ten times. The script instead varies the seed (`20260829 + i`) per
+repetition — still \$0.00, still fully local — which is the only way a bounded local sample says
+anything about reliability rather than about one draw.
+
+**10 of 10 repetitions produced `CANDIDATE_SURVIVED`**: exactly one well-formed
+`expertHazardCandidates` entry every time, surviving normalization unchanged. Zero occurrences of
+`MODEL_DID_NOT_PRODUCE_CANDIDATE`, `MODEL_PRODUCED_CANDIDATE_BOUNDARY_REJECTED`,
+`MODEL_REASONED_ONLY_IN_EXPLANATION`, or `STRUCTURED_OUTPUT_MALFORMED`. Per the authorization's
+own Phase 3, this is recorded as `R4_LOCAL_REPRODUCTION_NOT_ESTABLISHED` and no local fix is
+invented to chase the one hosted sample.
+
+### 109.2 R4's structural loss point, proven offline
+
+Two measurements, neither making a network call, both in `diagnose-r4-r6-local-repair.ts` and
+`diagnose-r4-anthropic-strip-boundary-proof.ts`:
+
+1. **Schema-keyword count on the real request.** `buildAnthropicRequestBody()` (§108's permanent,
+   unmodified adapter path) carries `minLength=0, minItems=0` on the schema it actually sends,
+   against `minLength=14, minItems=1` on the local/canonical schema
+   (`buildExpertWireSchema()`). This is §108's own `stripAnthropicUnsupportedKeywords()`,
+   untouched and outside this phase's authorization to modify — it removes the ONLY wire-level
+   defense against an empty required string or an under-populated `participants` array, and it
+   removes it for the Anthropic transport ONLY. The local/Ollama adapter sends the unstripped
+   schema and never loses this defense, which is why the local channel is structurally incapable
+   of constructing R4's precondition, independent of how many times it is asked.
+
+2. **Synthetic boundary proof.** A wire object satisfying every `required` entry of the
+   Anthropic-facing schema (three string fields — `candidateKey`, `evidenceBasis`, `reasoning` —
+   left as `''`, plus `expertExplanation.summary` also `''`) run through the real, unmodified
+   `normalizeExpertOutput()` produces: `layerStatus PRESENT`, 0 surviving candidates, and BOTH
+   `CANDIDATE_MALFORMED` and `EXPLANATION_MALFORMED` together — matching the hosted `R4` row in
+   `verification/expert-hazlenz-v4-hosted-behavior-reprobe-2026-08-30/transport/hosted-probe.jsonl`
+   field for field (`counts.candidates: 0`, `issues: ["CANDIDATE_MALFORMED",
+   "EXPLANATION_MALFORMED"]`, `layerStatus: "PRESENT"`). Two narrower variants (only `reasoning`
+   empty; only `expertExplanation.summary` empty) produce a strict subset of the hosted signature,
+   confirming the full signature needs multiple empty fields together rather than any single one.
+
+**Root cause classification: schema-generation failure specific to the Anthropic transport,
+interacting with boundary rejection that fired exactly as designed.** The boundary is not the
+defect — it correctly failed closed on an empty required string, item-level rather than
+analysis-fatal, losing exactly the one candidate and the one explanation and nothing more,
+matching the hosted evidence's `layerStatus: PRESENT`. The defect is that Anthropic's strict
+tool-schema mode cannot carry the `minLength: 1` guidance that made an empty string cheaper to
+avoid producing in the first place, a guidance channel §105 already measured as mattering and
+which §108 made asymmetric across providers by necessity, not by omission.
+
+**No repair was made.** This operation's explicit prohibitions rule out touching the Anthropic
+compatibility stripping, which is the only true schema-level fix. A prompt-instruction
+reinforcement is Phase 5's preferred first-order repair, but it is unfalsifiable here: with zero
+local reproductions there is no local signal a prompt change would move, and adding one anyway is
+exactly "inventing a local fix solely to chase one hosted sample," which Phase 3 forbids by name.
+
+### 109.3 R6 — also zero reproductions, and no structural mechanism to point to
+
+Same ten varied seeds against the `R6` fixture: **10 of 10 fully clean** — zero candidates,
+clarifications, insights or disagreements in any repetition, `outcome` consistently
+`NOTHING_TO_ADD` with zero content. Independently re-confirmed at 3/3 in a fresh run of the
+frozen, protected §105 evidence script `probe-expert-grounding-repair.ts` (unmodified) —
+**13 of 13 clean local repetitions across two independent scripts and two independent seed
+sets.**
+
+Unlike `R4`, no schema-keyword asymmetry has any bearing on `R6`: `minLength`/`minItems`
+stripping governs whether an under-filled field can pass, not whether an extra, well-formed item
+can be emitted, so the Anthropic-facing and local-facing requests are equivalent in every respect
+that could explain over-routing. With zero over-routed items ever produced, Phase 4's
+classification taxonomy (legitimate clarification / unsupported candidate / generic insight /
+speculative disagreement / explanation-only commentary) has no local instance to apply to.
+
+**Root cause classification: could not be established locally.** The finding is a clean negative
+rather than an absence of information: it positively rules out the shared prompt, the shared wire
+schema and the boundary as the mechanism, because the local model runs the identical text and
+schema and never over-routes across thirteen draws. What remains is narrowed to something
+intrinsic to the hosted model's own behaviour on this input.
+
+**No repair was made.** Zero local reproductions leave nothing to fix and no way to falsify a
+fix; a prompt change aimed at "further suppressing over-routing" risks the explicitly forbidden
+moves (global candidate suppression, re-coupling clarification to candidate existence) with no
+local signal that it does anything.
+
+### 109.4 Local acceptance matrix and protected regression
+
+`probe-expert-grounding-repair.ts` re-run fresh (unmodified, `PROBE_REPEATS=3`) across its full
+existing case set (`R1`–`R7`, `H7`, `H8`, `G1` — a superset of the Phase 6 minimum, since `R1` is
+`HG08`, `R5` is `HG11`, and `R4` doubles as the positive-candidate fixture): routing opportunities
+48, hits 45, misses 3, **over-routed 0**, explanation-only losses 5 (pre-existing). `R6`/`R7`
+empty on 3/3 each. `R1` (`HG08`) `cand=2 clar=3 ins=1` all three reps — no clarification
+regression. `R5` (`HG11`) `cand=1 clar=2 ins=1` all three reps, three collections simultaneously —
+no sibling-routing regression. `H7` 3/3 exactly bound, 0 unbindable, 0 fabricated. `H8` 0/3 bound
+with `GROUNDING_CLAIM_UNSUPPORTED` fail-closed each time, matching §108's own D-117 record of
+prior local `H8` behaviour exactly, not a new regression.
+
+**One observation outside this phase's mandate, reported and deliberately not investigated**:
+`R2` failed closed on `EVIDENCE_OUT_OF_BOUNDS` 3 of 3 times in this run — the local
+evidence-copying cliff §105 §7 previously measured on `R5`, apparently now present on a different
+fixture. No code this phase touched could have caused it, and `R2` is outside the `R4`/`R6`
+mandate, so it is recorded here for a future authorized phase rather than chased.
+
+Post-run regression, re-run fresh and matching §108's own baseline exactly: Expert
+**56/58/40/30/51/131/141**, quarantine (`l32i`/`l32j`) **61/0** and **37/0**, HazLenz floors exit
+0 with 0 dangerous/life-critical omissions, `tsc` exit 0 with no diagnostics. Confinement: no
+controller/service/module or frontend reference; the hosted adapter's importer set is unchanged
+except for this phase's own diagnostic (which imports `buildAnthropicRequestBody` for an offline
+schema-keyword count only — zero `fetch()` calls, verified); the structural-proof script does not
+import the hosted adapter at all.
+
+### 109.5 Terminal selection, and how "understood" is being read
+
+Terminal B, read explicitly rather than silently stretched: the authorization frames it as "R4
+cannot be reproduced locally … while R6 is repaired/understood." `R6` was NOT repaired — there
+was no local defect present to repair. It IS treated as UNDERSTOOD, on the strength of the same
+kind of evidence `R4` earned: a clean, thirteen-repetition local negative result that positively
+rules out this repository's own prompt, schema and boundary as the mechanism. Terminal C
+(`R4_R6_LOCAL_REPAIR_INCOMPLETE`) was considered and rejected, because its condition is either
+defect remaining UNEXPLAINED, and neither is — `R4` has a proven structural mechanism, `R6` has a
+proven absence of one. A stricter reading of "repaired/understood" would call this Terminal C
+instead; the measured facts are identical either way, and are recorded so the product owner can
+re-derive the label independently of this session's judgment call.
+
+### 109.6 Residual debt
+
+**Closed, by measured non-reproduction rather than by assumption:** whether R4 or R6 are
+repairable through the LOCAL prompt/schema/normalization channel — neither is, because neither
+exists there to repair.
+
+**New:** R4's structural mechanism (the Anthropic-only `minLength`/`minItems` strip removing the
+wire-level defense against empty required strings) is now a documented, reproducible, offline
+proof — re-runnable at \$0.00 for any future hosted re-probe design, and worth checking again if
+Anthropic's strict-schema support for these keywords ever changes.
+
+**New, out of this phase's mandate:** `R2` locally failing closed on `EVIDENCE_OUT_OF_BOUNDS`,
+observed in the acceptance matrix, not investigated.
+
+### 109.7 Exact next operation
+
+Not authorized here: a narrowly-scoped, hard-ceilinged hosted confirmation probe covering ONLY
+`R4` and `R6` (2 calls, no retry, cost bounded from the real prompt before sending — the same
+discipline §107/§109's own diagnostics used), to determine whether §108's two hosted failures
+were stable defects or one-off draws from a provider with no `temperature`/`seed` control (§108's
+own recorded limitation). **The 17-measure evaluation cohort remains BLOCKED and is not
+separately considered for authorization by this phase.**
+
+---
+
+## 110 — TARGETED HOSTED CONFIRMATION: R6 OVER-ROUTING CONFIRMED REPEATABLE, R4 NOT REPRODUCED (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_R6_HOSTED_OVERROUTING_CONFIRMED — HOSTED_NEGATIVE_CONTROL_REPAIR_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-r4-r6-targeted-hosted-confirmation-2026-08-31/`.
+Predecessor: §109. **7 calls planned, 7 attempted, 7 completed clean, 0 transport failures. Cost
+\$0.2353 of a \$3.00 ceiling.** No production, prompt, schema, or normalization code changed.
+**Nothing committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v4   (UNCHANGED)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+§109 exhausted local diagnosis at \$0.00: neither R4 nor R6 reproduced against the local provider
+across 13 combined repetitions, and R4 had a proven offline structural mechanism (the
+Anthropic-only `minLength`/`minItems` compatibility strip) while R6 had none. The only remaining
+way to answer whether §108's two hosted failures were stable defects or one-off draws from a
+provider with no `temperature`/`seed` control was a hosted call. This phase made exactly seven:
+`R4`×3, `R6`×3, and one stable control (`R5`/`HG11`, the fixture that passed cleanly on both the
+v3 and v4 hosted runs), via the real permanent `AnthropicExpertProvider` /
+`buildAnthropicRequestBody` path, completely unmodified.
+
+### 110.1 R4 — not reproduced
+
+**3 of 3 calls `CANDIDATE_SURVIVED`.** Every call produced multiple well-formed hazard candidates
+(3 each), every required field populated, no empty string, no malformed shape — the opposite of
+§108's single hosted sample (0 candidates, `CANDIDATE_MALFORMED` + `EXPLANATION_MALFORMED`, 439
+output tokens). Output tokens this run ranged 2,692–3,008, roughly 6–7× §108's sample size, which
+is itself informative: a response that short was already an outlier by volume, independent of its
+content. **Verdict: `R4_HOSTED_FAILURE_NOT_REPRODUCED`.** This is consistent with, though does not
+by itself prove, §109's structural account: the loss point requires the model to emit multiple
+empty required strings under the Anthropic-facing schema's stripped `minLength`/`minItems`
+constraints, and nothing about this measurement rules that mechanism out — it says the event is
+rare on this fixture rather than systematic, on a provider that §108 already recorded as having
+no deterministic replay control.
+
+### 110.2 R6 — confirmed reproducible, with a stable shape
+
+**3 of 3 calls over-routed, and NOT merely "some content" three times — the SAME concept each
+time.** Every call raised a `machine_guarding` candidate observing that the guard is currently off
+and reinstatement is unaddressed, plus two clarifications asking whether/when the guard will be
+reinstated and whether residual stored energy remains beyond what was bled down. `crossHazardInsights`
+and `disagreements` stayed correctly empty on all three calls — a narrower over-route (2 of 4
+collections) than §108's single v4 sample (3 of 4, insights included), closer to §105 §7's
+original v3 sample (also 2 of 4). **Verdict: `R6_HOSTED_OVERROUTING_REPRODUCED`**, on the
+authorization's own rule ("if any typed over-routing recurs").
+
+The three candidate/clarification texts, while independently generated, describe the identical
+reasoning move: from "a guard is currently off" (true, and already the deterministic finding's own
+`CONTROLLED` state) to "eventual reinstatement is an open question" — a generically true statement
+about machine guarding, not one grounded in anything this specific observation leaves
+undetermined. This matches Phase 4's "generic... commentary" failure mode by name, now observed
+directly rather than inferred.
+
+### 110.3 The control is what makes this a fixture-specific finding, not general degradation
+
+`R5`/`HG11`, called in the same session against the same model, produced all three required
+collections simultaneously and correctly — 3 candidates, 3 clarifications, 2 insights, matching
+its own record from both the v3 and v4 hosted runs. The same provider, same credential, same
+session, adjacent calls: correctly restrained on one fixture, reliably over-routed on another.
+That rules out "the model is just noisy today" as the explanation for §110.2.
+
+### 110.4 Decision and terminal
+
+Per the authorization's own rules, R4 and R6 are scored independently, not averaged. R4 =
+`NOT_REPRODUCED`; R6 = `REPRODUCED`; no other independent material defect appeared across the
+seven calls (all transport-clean, schema-valid, zero normalization issues on every single row,
+including the over-routed R6 calls — the over-routed content was well-formed, which is exactly
+why it crossed the boundary as advisory rather than being caught as malformed). This combination
+selects Terminal C from the authorization's own table: `EXPERT_HAZLENZ_R6_HOSTED_OVERROUTING_CONFIRMED
+— HOSTED_NEGATIVE_CONTROL_REPAIR_REQUIRED`.
+
+### 110.5 Regression, confinement, and what did not change
+
+Post-run regression re-run fresh, all green, matching §108/§109's baseline exactly: Expert
+**56/58/40/30/51/131/141**, quarantine (`l32i`/`l32j`) **61/0** and **37/0**, HazLenz floors exit 0
+with 0 dangerous/life-critical omissions, `tsc` exit 0. Confinement: no controller/service/module
+or frontend reference; `git diff --stat` against `expert-hazlenz`/`expert-hazlenz-adapters` shows
+the identical, pre-existing §105–§108 4-file diff — this phase added nothing to it. One new
+script, `probe-expert-hosted-r4-r6-targeted-confirmation.ts`, added as the fifth importer of the
+hosted adapter (alongside the pre-existing four probe/test files) — no controller, service or
+module among any of them, no frontend reference. That script deliberately bypasses
+`runExpertAnalysis`'s retry-on-transport-failure, per this operation's own explicit "stop rather
+than burn calls" instruction — a justified, narrow deviation from the frozen probe's pattern, not
+a change to production behaviour, since retries never applied to a REJECTED normalization outcome
+in the first place (`isRetryableExpertFailure` only covers provider-level transport failures).
+
+The quarantined local `R2` `EVIDENCE_OUT_OF_BOUNDS` observation from §109's local acceptance
+matrix remains untouched and uninvestigated, exactly as recorded — this operation made no local
+calls of any kind and changed no evidence-binding code.
+
+### 110.6 Residual debt
+
+**Closed:** whether §108's R4/R6 failures were stable defects or one-off draws — answered.
+`R4` = one-off (not reproduced on 3 fresh hosted calls). `R6` = stable (reproduced on 3/3, same
+concept each time).
+
+**New:** R6's exact failure mode is now characterized from real transcripts rather than inferred —
+a specific, generic-commentary over-generalization about guard reinstatement, not random noise.
+This is real signal a future repair phase can design and validate against, which §109 explicitly
+did not have.
+
+**Unchanged:** the quarantined local `R2` evidence-cliff debt; `EXPERT_HAZLENZ_PROVIDER_VALIDATED
+= FALSE`; `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`; the 17-measure evaluation cohort remains
+BLOCKED.
+
+### 110.7 Exact next operation
+
+Not authorized here: a repair phase targeting R6's now-confirmed over-routing, scoped to what
+these three transcripts actually show — the model over-generalizing "a guard is off" into
+"reinstatement timing is unresolved" without regard to whether the observation gives any basis for
+that being unresolved. Given only 3 hosted samples of R4 exist total, a small hosted spot-check
+(1–2 calls) after any future unrelated prompt change would be prudent but is not itself authorized
+by this operation. **The 17-measure evaluation cohort remains BLOCKED and is not separately
+considered — this result calls for hosted negative-control repair, not cohort authorization.**
+
+---
+
+## 111 — R6 TEMPORAL-STATE REPAIR: ACCEPTED WITH A DISCLOSED RESIDUAL, ZERO HOSTED CALLS (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+### 111.1 R6 semantic characterization
+
+All 3 §110 hosted R6 transcripts were read in full against the fixture's own observation text
+("locked out ... tagged ... bled down and verified at zero before the guard was removed, and a
+second worker verified the isolation"). Every rep produced the same two-part shape: a
+`machine_guarding` candidate framed as "exposes machine hazards ... unless the guard is restored
+before re-energization," plus two clarifications, one asking whether the guard will be reinstalled
+before re-energization and one asking about a present-state fact the observation had already
+answered (rep 1's "is any residual stored energy source present beyond what was bled down" directly
+re-asks "bled down and verified at zero").
+
+The state-transition trace, written out fully in
+`verification/expert-hazlenz-temporal-state-repair-2026-08-30/characterization/PHASE1-R6-SEMANTIC-CHARACTERIZATION.md`:
+the model reads a completed, second-person-verified isolation sequence, infers a hypothetical FUTURE
+transition (eventual re-energization) that the text never describes as imminent or even
+contemplated, and treats that transition's ordinary contingencies as PRESENT, decision-critical
+unknowns about this specific observation. The failure is not lexical (not "the text says
+`removed`") and not family-specific (not "machine guarding always does this") — it is a general
+pattern of collapsing "a condition existed historically, and something about it will eventually need
+resolving" into "a hazard or open question exists right now," with no textual signal that the
+resolution is actually in doubt.
+
+### 111.2 The contrastive corpus
+
+`backend/src/safescope-v2/expert-hazlenz/fixtures/temporal-state-fixtures.ts` adds six fixtures,
+deliberately spread across `electrical`, `machine_guarding`, `lockout_tagout`, `mobile_equipment`
+and `confined_space` so a repair could not pass by hardcoding one family:
+
+| id | class | family | must |
+|----|-------|--------|------|
+| T1 | historical + resolved | electrical | suppress candidate and clarification about the resolved panel cover |
+| T2 | historical + currently unresolved | machine_guarding | candidate survives — the removal is still open |
+| T3 | remediation uncertain | lockout_tagout | clarification may survive; candidate not required to carry it |
+| T4 | resolved primary + current secondary | mobile_equipment | suppress only the resolved leak; the current non-functioning horn survives |
+| T5 | true current positive, ZERO historical framing | machine_guarding | must survive, no over-suppression |
+| T6 | clean negative, different family than R6 | confined_space | stays empty, same bar as R6 |
+
+`T1` is the fixture that matters most: it is the only one of the six that reproduced a version of
+R6's defect class LOCALLY, at baseline, before any repair (5/5 over-routed, local Ollama
+qwen3-coder:30b, $0.00) — over-generalized questions about whether LOTO was applied *during* the
+already-closed-out electrical troubleshooting. `R6` itself has never reproduced locally (§109, §110
+context); `T1` gave this phase a zero-cost, repeatable local instrument for a defect in R6's own
+class, which is why the corpus, not `R6` alone, is the acceptance instrument for this phase.
+
+### 111.3 The repair, and three rejected wordings
+
+Prompt-level only. A new "CURRENT STATE, NOT HISTORICAL STATE" section was added to
+`EXPERT_SYSTEM_PROMPT`, plus one reinforcing line in the per-request user prompt
+(`expert-prompt.ts`). No field, enum, or `required` entry in `buildExpertWireSchema()` changed;
+`EXPERT_ANALYSIS_CONTRACT_VERSION` stays `analysis.v2`. `EXPERT_PROMPT_VERSION` moved `v4` -> `v5`
+on the same reasoning `v3`->`v4` recorded in §105: a recorded probe names the prompt version it ran
+under, and leaving this at `v4` would make §110's hosted evidence and whatever a future hosted
+confirmation measures look comparable when the instructions the model saw are not the same.
+
+The rule: a candidate or clarification about a condition the observation describes as remediated
+(removed / restored / corrected / verified / bled down / reinstalled / tested normal / returned to
+service / closed out) may not be raised on that historical fact alone, unless the text shows the
+state persists, recurred, the remediation failed or is incomplete, a current exposure remains, an
+unrelated current secondary effect remains, or a genuinely decision-critical present-state
+uncertainty remains. Re-asking an already-answered question is named explicitly as disregarding
+evidence, not a clarification. An explicit carve-out states the section never applies to, and never
+adds caution to, a hazard stated as a plain current fact with no historical framing at all — added
+specifically because the first wording tried did not have it and paid for the omission (below). The
+rule is stated as CURRENT-vs-PAST judgment, explicitly not triggered by tense or by the literal word
+"removed," and explicitly cross-family.
+
+**Three wordings were tried and measured before the accepted one:**
+
+- **v1** (no carve-out): fixed `T1` (5/5 -> 0/5 over-routed) but suppressed `T5` — a fixture with
+  ZERO historical framing at all — from 5/5 candidates-present to 0/5. This is exactly the
+  over-correction the corpus was built to catch, and it caught it on the first try.
+- **v2** (added the explicit "never more cautious about an ordinary current hazard" carve-out):
+  recovered `T5` and kept `T1` clean. Extended to 10 reps, this wording measured `T1`/`R5`/`R6`/`R7`
+  10/10 clean, `T5` 9/10 (one miss, seed `20260829`), `R4` 9/10 (one miss, same seed).
+- **v3/v4** (a compaction pass, shortening the section to reduce prompt length on the hypothesis
+  that length itself was contributing to the single-seed misses): the shorter wording RE-BROKE `T1`
+  (back to over-routing every rep) and caused NEW, broader collateral suppression on `T2`/`T3`/`T5`/
+  `T6` that had never appeared in any prior version. The model was observed reproducing near-verbatim
+  phrases from the rule's own illustrative examples ("was this done by a qualified person") as new
+  invented questions — evidence it was pattern-matching surface vocabulary rather than applying the
+  underlying principle, and that shortening the text traded one failure mode for a worse one.
+
+The length hypothesis was falsified by this measurement, not merely abandoned: the fuller v2 wording
+was reinstated verbatim and is what ships. **No further wording iteration was attempted past this
+point** — three rounds had already shown diminishing and occasionally reversing returns, which is
+itself evidence that continued local prompt-tuning against this specific local 30B model's sampling
+idiosyncrasies would not be a genuine repair of anything the hosted model actually does.
+
+### 111.4 Final accepted local result
+
+10 fixtures (`R4`, `R5`, `R6`, `R7`, `T1`-`T6`) × 10 reps, local Ollama qwen3-coder:30b, $0.00,
+`backend/scripts/diagnose-expert-temporal-state-repair.ts` (new, probe-only):
+
+`TYPED_ROUTING_OPPORTUNITIES=200  HITS=199  MISSES=1  OVER_ROUTED=0`
+
+- `T1` (the local R6-class reproduction): **5/5 -> 10/10 clean.** The intended repair worked.
+- `R6`, `R7`, `T6` (protected/corpus negative controls): **10/10 clean**, unchanged.
+- `R5` (HG11, multi-collection): **10/10 clean**, unchanged.
+- `T2`, `T3`, `T4` (historical+unresolved, remediation-uncertain, resolved+current-secondary):
+  **10/10 clean**, candidates/clarifications survive exactly as designed.
+- `R4` (HG10, protected positive): **9/10** candidate-present — one miss, at a single fixed seed
+  (`20260829`), reproducible across repeated runs at that exact seed. The SAME seed independently
+  produced a `G06`/`G08` failure in the frozen `probe:expert-routing` single-shot gate's own history
+  (`attempt1-console.txt`, predating this operation entirely, superseded there by a clean
+  `attempt2`), which is corroborating evidence this is a narrow, pre-existing single-sample
+  sensitivity rather than something newly and specifically caused by this repair's content.
+- `T5` (true current positive, unscored/`OPTIONAL`): same single-seed narrowing as `R4`, 9/10.
+
+**This residual is reported, not hidden.** It is real, measured, and it is the explicit reason
+§111.6's terminal requires a bounded hosted confirmation rather than declaring the repair
+unconditionally successful.
+
+### 111.5 Protected regression, confinement
+
+All 14 suites re-run fresh, identical counts to §108/§109/§110's baseline, zero deltas: Expert
+`56/58/40/30/51/131/141`, quarantine `61/0` (L3-2i) and `37/0` (L3-2j), `hazlenz-core`/
+`hazlenz-precision`/`hazlenz-level1-recall`/`hazlenz-actionable-coverage` all exit 0 with 0 dangerous
+and 0 life-critical omissions, `tsc` 0. Confinement: no controller/service/module or frontend
+reference; the hosted (Anthropic) adapter has the same 5 importers as §110, none added; only
+`expert-prompt.ts` changed among Expert-core files this phase (`expert-contract.types.ts`,
+`expert-normalization.ts`, `fixtures/no-call-scenarios.ts` carry only the pre-existing §105-109
+diff, untouched here). One literal in `test-expert-routing-contract.ts` (A.2) was re-anchored
+`v4`->`v5`, the same pattern as §105's A.13/A.15 re-anchoring — the property asserted ("a recorded
+probe names the prompt version it ran under") is unchanged, only the literal moved. One
+comment-accuracy edit in `anthropic-expert-provider.ts`, no behavior change. Quarantined local `R2`
+evidence-cliff debt (§109) untouched, not investigated, `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays
+`TRUE`.
+
+### 111.6 Decision and terminal
+
+`EXPERT_HAZLENZ_TEMPORAL_STATE_REPAIR_ACCEPTED -- BOUNDED_HOSTED_NEGATIVE_CONTROL_CONFIRMATION_AUTHORIZATION_REQUIRED`,
+selected per this operation's own decision table: the fixture built to reproduce R6's defect class
+locally went from 5/5 failing to 10/10 clean; every protected negative control stayed perfectly
+clean across the whole matrix; historical+unresolved and remediation-uncertain positives continued
+to survive; the one real residual is narrow (a single fixed seed out of ten), characterized, does
+not touch a protected negative control, and recovering it via further local wording changes was
+demonstrated — not assumed — to make things worse, not better. `EXPERT_HAZLENZ_PROVIDER_VALIDATED =
+FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. Nothing committed, pushed, tagged, or deployed. 0
+hosted calls, $0.00 spent.
+
+### 111.7 Exact next operation
+
+Not authorized here, per this operation's own Phase 9 design: a small, bounded hosted confirmation
+against the real, unmodified `AnthropicExpertProvider` — `R6`×3, one historical+resolved contrastive
+control, one historical+unresolved positive, one genuinely-uncertain current-state clarification
+case, and an optional `R4` spot-check — that proves BOTH `OVERROUTING_REMOVED` AND
+`CURRENT_HAZARD_RECALL_PRESERVED`. Declaring success merely because `R6` comes back empty would
+repeat exactly the mistake this operation's own authorization warned against. **The 17-measure
+evaluation cohort remains BLOCKED and is not separately considered.**
+
+---
+
+## 112 — PROMPT v5 BOUNDED HOSTED CONFIRMATION: PARTIAL PROGRESS, PERSISTING DEFECT (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+### 112.1 What this phase measured
+
+§111/D-123's local-only prompt-v5 repair was accepted with a disclosed local residual and an
+explicit condition: only a hosted call against the real target model (Claude Sonnet 5) could
+establish whether §110's actual defect is fixed. This phase executed exactly that — a frozen
+measurement, no prompt/schema/normalization change made during or because of the run, through the
+REAL, unmodified `AnthropicExpertProvider` (no diagnostic bypass).
+
+Plan: `R6`×3 (direct reproduction of the exact §110 defect), `T1` (historical/resolved
+generalization control — electrical, not R6's own family or wording), `T5` (true current-positive
+recall control, a hard gate), `T3` (current-state uncertainty control, a hard gate), and one
+optional `R4` spot-check, authorized because all six primary calls completed cleanly. 7 calls
+planned, 7 attempted, **7 completed clean, 0 transport failures**, cost **$0.198238** of a $3.00
+ceiling (worst-case pre-flight estimate $0.6524, computed from the real request bodies before any
+call — `preflight/preflight.json`).
+
+### 112.2 R6 — still failing, but not in the same way
+
+`R6_ALL_CLEAN = FALSE`, 0/3 clean, scored per-repetition and not averaged, exactly as the
+authorization required. All three reps produced the identical shape: one `machine_guarding`
+candidate about the removed guard, plus two clarifications, one always about reinstatement/
+re-energization timing.
+
+**One real improvement is measured, not assumed.** §110's clearest single defect — a clarification
+that directly re-asked a fact the observation had already answered ("is any residual stored energy
+present... beyond what was bled down," when the text says "stored energy bled down and verified at
+zero") — did NOT recur in any of the 3 reps. `REDUNDANT_ZERO_ENERGY_CLARIFICATION_PRESENT = false`,
+all three times. Rep 2 substituted a different instance of the same underlying move instead (asking
+whether a *lock*, not just a tag, was applied — the observation already describes "the supervisor
+tag applied" as part of a completed, second-person-verified isolation), which is why this is
+reported as "one sub-pattern eliminated," not "the family of defect eliminated."
+
+**The persisting defect changed shape, not just wording.** Under v4 (§110), the model reasoned
+generically forward ("a guard is currently off" → "eventual reinstallation is an open question").
+Under v5, the model now explicitly ARGUES that the removed guard constitutes "a distinct hazard
+family from lockout/tagout itself" that must be "tracked... until the guard is reinstated and
+verified" — independent of the fact that the causally relevant safety state (isolation, zero energy,
+second-person verification) is fully controlled and stated as such. This is a more sophisticated
+restatement of the same forward-reasoning-to-future-transition error, and it falls outside what the
+current "CURRENT STATE, NOT HISTORICAL STATE" rule addresses: that rule stops a hazard being
+INVENTED FROM a resolved history, but does not yet stop an ANCILLARY true-but-controlled fact (the
+guard happens to still be physically off, which is true and stated) from being asserted as
+independently hazard-worthy while the state that actually determines exposure remains fully
+controlled.
+
+### 112.3 Every recall/generalization control held
+
+- `T1_RESOLVED_STATE_CLEAN = TRUE` — outcome `NOTHING_TO_ADD`, all four typed collections empty. The
+  repair generalizes correctly to a hazard family (`electrical`) and wording R6 itself does not use.
+- `T5_CURRENT_HAZARD_RECALLED = TRUE` — 1 candidate, 2 clarifications, 1 insight. The exact
+  regression class caught during local prompt iteration (§111's v1 wording, which suppressed this
+  fixture 5/5→0/5) did NOT reproduce on the hosted model.
+- `CURRENT_STATE_CLARIFICATION_SURVIVED = TRUE` (T3) — the load-bearing clarification directly
+  targeting the observation's own stated gap ("has the isolation lock been reapplied... before any
+  current work began") survived intact.
+- `R4_HOSTED_CANDIDATE_SURVIVAL = PASS` — 3 candidates, 4 clarifications, 1 insight, consistent with
+  and stronger than §110's 3/3 `R4_HOSTED_FAILURE_NOT_REPRODUCED` result under v4. No
+  candidate-survival regression from the v5 prompt change.
+
+### 112.4 Grounding, regression, confinement
+
+Grounding/boundary: 8 quotes emitted, **8/8 exactly bound**, 0 unbindable, 0 fabricated, 0
+`EVIDENCE_OUT_OF_BOUNDS`, 0 malformed responses, 0 outcome/content inconsistencies — no new
+regression anywhere in the evidence architecture this phase touched or could have touched (it
+touched none of it). Post-run regression, all 14 suites, identical to §108-§111's baseline, zero
+deltas: Expert `56/58/40/30/51/131/141`, quarantine `61/0` (L3-2i) and `37/0` (L3-2j), HazLenz floors
+exit 0 with 0 dangerous/life-critical omissions, `tsc` 0. Confinement: no controller/service/module
+or frontend reference; the hosted adapter gained exactly one new importer (this phase's own probe
+script); zero Expert-core production files changed this phase — a frozen measurement changed
+nothing.
+
+### 112.5 Decision and terminal
+
+`EXPERT_HAZLENZ_V5_TEMPORAL_STATE_REPAIR_FAILED -- HOSTED_OVERROUTING_REMAINS` — Terminal B, selected
+per the authorization's own decision gate precisely because it names this exact shape: R6 still
+exhibits the repaired temporal-state overreach while the recall controls remain otherwise intact.
+Terminal C (`CURRENT_HAZARD_RECALL_REGRESSED`) and Terminal D
+(`DECISION_CRITICAL_CLARIFICATION_REGRESSED`) were both considered and ruled out by measurement —
+`T5` and `T3` both held. Terminal E (`MULTIPLE_OR_NEW_BEHAVIORAL_DEFECTS`) was ruled out because no
+new, independent defect appeared — only the already-known R6 class, with one sub-pattern eliminated.
+`EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. Nothing
+committed, pushed, tagged, or deployed. 7 hosted calls made, $0.198238 spent.
+
+### 112.6 Exact next operation
+
+Not authorized here. A further LOCAL repair iteration (zero hosted calls), targeting the specific
+residual this run isolated: the model's new argument that a removed guard is independently
+hazard-worthy as "a distinct hazard family from lockout/tagout itself," regardless of the
+fully-controlled energy state. Any new rule should be built and validated against the existing
+$0.00 contrastive-corpus instrument (`T1`-`T6`, extended with a new class if needed — "an ancillary
+true-but-controlled fact vs. a genuinely current hazard") BEFORE any further hosted spend is
+authorized. **The 17-measure evaluation cohort remains BLOCKED and is not separately considered.**
+
+---
+
+## 113 — HAZARD-ACTUALITY REPAIR: NINE-ITERATION CONVERGENCE TO A PERFECT LOCAL RESULT (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+### 113.1 Root cause, confirmed from the raw transcripts
+
+§112's persisting defect was traced (Phase 1, full trace in
+`verification/expert-hazlenz-hazard-actuality-repair-2026-08-30/characterization/
+PHASE1-R6-REMAINING-LOSS-MECHANISM.md`) to `HAZARD_FAMILY_INDEPENDENCE_MISTAKEN_FOR_CURRENT_
+EXPOSURE_INDEPENDENCE`: the hosted model correctly identifies that a removed guard is relevant to
+the `machine_guarding` hazard family, and then treats that identification itself as proof of a
+CURRENT hazard, without ever pointing to a fact the observation actually establishes about present
+exposure. Every consequence named across all 3 §112 reps was explicitly hedged as hypothetical
+("if re-energization occurs," "if a worker were to approach," "for any worker approaching... during
+the work") — none was a stated fact.
+
+### 113.2 The corpus
+
+`hazard-actuality-fixtures.ts` adds 16 fixtures. Eight contrastive (`U-A`-`U-H`, one per this
+operation's own Phase-3 class), spanning `electrical`, `machine_guarding`, `lockout_tagout`,
+`wet_environment`, `chemical_exposure`, `mobile_equipment`, `fall_protection`, and `confined_space`
+— deliberately NOT concentrated in `machine_guarding`/`lockout_tagout`, so the repair could not pass
+by hardcoding either family. Eight adversarial (`V1`-`V8`), each flipping exactly one fact of the
+canonical R6 sentence from fully controlled to actually hazardous: zero energy not verified, stored
+energy remaining, no lock or tag applied at all, a second energy source still connected, the
+equipment merely stopped rather than isolated, an auto-restart capability, a worker actually
+reaching into the point of operation, and an active task creating a new exposure. This operation's
+own authorization named the adversarial matrix a hard acceptance gate, and it is treated as one:
+every one of the 8 fixtures had to retain full recall or the repair would be rejected regardless of
+how clean R6 itself became.
+
+### 113.3 Nine iterations — the whack-a-mole made visible and resolved
+
+This section exists because the iteration history is itself evidence about what kind of repair this
+was and was not. Each step was measured against the corpus, not guessed:
+
+1. **Full text, explicit trigger list.** A list of "current facts that support exposure" (isolation
+   not verified, energy not bled, no lock/tag, second source, merely stopped, auto-restart, worker
+   exposed) was written directly into the prompt as illustrative examples. The local model echoed
+   the list back as a checklist of questions to ask, regardless of whether the observation had
+   already answered them — breaking `T1`/`U-A`/`U-G`/`R6` 5/5, including `T1`, which never mentions
+   LOTO at all. Isolated by bisection (removing paragraphs one at a time, re-testing after each).
+2. **Trigger list rewritten as an abstract principle.** "Mentioning an isolation never lowers your
+   bar for a different hazard" replaced the literal list. This fixed `T1`/`U-A`/`U-G`/`R6`, but a
+   full corpus run surfaced two NEW failures: `T5` and `U-H` both returned `REJECTED` at
+   normalization — not empty, REJECTED. Root cause: the pre-existing, already-documented
+   `LOCAL_R2_EVIDENCE_CLIFF_DEBT` (verbatim-quote corruption — lowercased first letter, dropped
+   trailing period) on `T5`, and, on `U-H`, the local model splitting one triple-conjunction
+   observation into three candidates each needing its own quote, two of which failed to bind.
+3. **Isolated `T5`'s trigger by direct A/B test.** The phrase "the equipment IS capable of moving"
+   in a "current answer" example paragraph lexically primed the model into mis-quoting `T5`'s
+   near-identical "the machine remains capable of being cycled." Confirmed deterministic across 5
+   default seeds AND 5 seeds far outside the default range — not noise. Removing that one phrase
+   fixed `T5` with zero other regression measured at the time.
+4. **Simplified `U-H`'s observation text** from a triple-conjunction to one clean deficiency,
+   removing a confound (multiple candidates, multiple quotes) the fixture was never built to test.
+5. **Full corpus re-run** showed `U-A` had been quietly relying on the paragraph removed in step 3
+   — without it, `U-A`'s original doubt-clarification ("was LOTO fully completed and verified") came
+   back, 4/5 over-routed. A genuine two-sided tension: the same text helped `U-A` and hurt `T5`.
+6. **Trimmed positive-example paragraph** (dropped "capable of moving," kept "worker present"/"task
+   being performed," folded in the "don't doubt an already-done step" rule): fixed `U-A` again, but
+   `T5` regressed to a pure EXPLANATION-ONLY LOSS — the model's own summary stated "this represents a
+   current safety risk" while the typed candidate list stayed empty.
+7. **Explicit NO-LOSS bridge with `T5`-matching lexical examples** ("if the observation itself says
+   a guard is missing, a blade is exposed... that is a stated current fact"): fixed `T5` (5/5
+   candidate) but re-broke `U-A` (4-5/5 over-routed) — the lexical examples generalized further than
+   intended and made candidate-assertion more aggressive broadly.
+8. **"Pathway to harm is live" distinguishing test** (motion capability / energization / fall
+   exposure vs. a merely-removed component): fixed `U-A` (0/0) but re-broke `T5` (0/0,
+   explanation-only-loss again) — a nuanced nine-word judgment call proved unstable for this
+   30B local model across even a handful of reps.
+9. **Final, accepted.** Replaced the nuanced judgment-call test with the SAME mechanical,
+   already-proven-stable carve-out already in §111's "CURRENT STATE, NOT HISTORICAL STATE" section:
+   "if the observation describes NO isolation, lockout, tagout, de-energization, verification, or
+   other control at all, this section does not apply." This is a mechanically checkable test, not a
+   semantic judgment call, and it fixed `U-A`/`U-G`/`T1`/`R6`/`U-H` cleanly. `T5`'s remaining
+   intermittent non-candidate behavior was traced to a THIRD independent pre-existing artifact: a
+   candidate declaring `groundingStatus: EXACT_QUOTE_SUPPLIED` with an EMPTY `evidence` array,
+   correctly refused by the existing, untouched `GROUNDING_CLAIM_UNSUPPORTED` boundary rule (§105's
+   design, working exactly as intended). Three independent local-only architectural artifacts,
+   traced across three separate mechanisms, none semantic, all previously shown (§110, §112: 0/14
+   hosted `EVIDENCE_OUT_OF_BOUNDS` or malformed responses under both v4 and v5) not to transfer to
+   the real target model — at this point wording iteration was deliberately stopped.
+
+### 113.4 Final acceptance: a perfect local result
+
+23 fixtures (`R4`, `R5`, `R6`, `R7`, `T1`, `T3`, `T5`, `U-A`-`U-H`, `V1`-`V8`) × 10 reps, local
+Ollama, $0.00:
+
+```
+TYPED_ROUTING_OPPORTUNITIES=350  HITS=350  MISSES=0  OVER_ROUTED=0
+```
+
+Every fixture 10/10 clean by its calibrated expectation. The adversarial hard gate — this
+operation's own explicit safety floor — is unconditionally clean: all 8 of `V1`-`V8` retain full
+recall via their measured, calibrated collection. `U-C`'s expectation was recalibrated from
+REQUIRED-candidate to REQUIRED-clarification after measuring the local model's reliable,
+safety-preserving routing choice for that specific fact (the same discipline §111 applied to `T4`).
+
+**The one disclosed residual**: `T5` and `U-C` both route their danger through
+`decisionCriticalClarifications` rather than `expertHazardCandidates`, 10/10 reliably, with
+clarification text that precisely names the real gap ("is the machine currently de-energized or in
+a state where it cannot be cycled," "was the pneumatic supply actually bled down and verified at
+zero pressure"). This is reported as a measured, safety-preserving routing choice, not a
+suppression — recall is 100% via the calibrated collection, and it is explicitly disclosed rather
+than argued away.
+
+### 113.5 Regression, confinement
+
+All 14 suites re-run fresh, identical to §108-§112's baseline, zero deltas: Expert
+`56/58/40/30/51/131/141`, quarantine `61/0` (L3-2i) and `37/0` (L3-2j),
+`hazlenz-core`/`hazlenz-precision`/`hazlenz-level1-recall`/`hazlenz-actionable-coverage` all exit 0
+with 0 dangerous and 0 life-critical omissions, `tsc` 0. Confinement: no controller/service/module or
+frontend reference; the hosted adapter gained no new importer (zero hosted calls made); only
+`expert-prompt.ts` changed among Expert-core files; evidence/grounding architecture completely
+untouched throughout — every local-only artifact encountered during iteration was resolved via
+prompt wording or a single fixture-text simplification, never via evidence-code changes, honoring
+this operation's explicit prohibition. `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`.
+
+### 113.6 Decision and terminal
+
+`EXPERT_HAZLENZ_HAZARD_ACTUALITY_REPAIR_ACCEPTED -- BOUNDED_HOSTED_R6_CONFIRMATION_AUTHORIZATION_REQUIRED`
+— selected because local acceptance is unconditional: 350/350 across every protected fixture and the
+full adversarial hard gate, and the one disclosed residual is measured, triple-characterized as
+architectural rather than semantic, and does not touch dangerous-hazard recall.
+`EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. Nothing
+committed, pushed, tagged, or deployed. 0 hosted calls, $0.00 spent.
+
+### 113.7 Exact next operation
+
+Not authorized here. Per this operation's own "FUTURE HOSTED CONFIRMATION" design: a small, bounded
+hosted matrix against the real, unmodified `AnthropicExpertProvider` — `R6`×3, `U-A` (verified
+control + ancillary condition), `U-B` (stopped but not isolated), `U-C` (incomplete isolation),
+`U-F` (genuine future-transition clarification), and an optional `R4`/`T5` recall spot-check —
+proving BOTH `R6_OVERROUTING_REMOVED` AND `CURRENT_HAZARD_RECALL_PRESERVED`. **The 17-measure
+evaluation cohort remains BLOCKED and is not separately considered.**
+
+---
+
+## 114 — PROMPT v6 HOSTED CONFIRMATION: A PERFECT LOCAL SCORE THAT PREDICTED NOTHING (2026-08-30) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+### 114.1 What this phase measured
+
+§113/D-125 accepted the prompt-v6 hazard-actuality repair on a **350/350** local acceptance matrix
+and required a bounded hosted confirmation before claiming the real defect fixed. This phase
+executed exactly that: a frozen measurement through the REAL, unmodified `AnthropicExpertProvider`
+(no diagnostic bypass), prompt v6 unchanged throughout, nothing repaired.
+
+Matrix, in frozen order: `R6`×3 (primary hard gate), `U-A` (controlled ancillary condition), `U-B`
+(stopped but not isolated — hard recall gate), `U-C` (incomplete control — silence would be a hard
+failure), `U-F` (legitimate future-transition clarification — hard gate), then `T5` and `R4` as
+optional spot-checks, authorized only because all 7 primaries completed cleanly and never used as
+retries. **9 planned, 9 attempted, 9 completed clean, 0 transport failures**, cost **\$0.284080**
+against a pre-flight worst-case projection of **\$0.8587** (computed from the real request bodies
+before any call) and a \$3.00 ceiling.
+
+### 114.2 R6 — 0/3, for the third consecutive measurement
+
+| | v4 (§110) | v5 (§112) | v6 (this run) |
+|---|---|---|---|
+| R6 clean | 0/3 | 0/3 | **0/3** |
+| `machine_guarding` candidate | 3/3 | 3/3 | **3/3** |
+| reinstatement / re-energization clarification | 3/3 | 3/3 | **3/3** |
+| collections over-routed | 2 of 4 | 2 of 4 | **2 of 4** |
+
+Three prompt versions and two dedicated repair phases have produced **no movement** on this fixture.
+
+Worse for the current approach: the defect is now stated *more explicitly, in the repair's own
+vocabulary*. Rep 2's candidate reads —
+
+> "Guarding and energy control are **distinct hazard families** — the guard removal is a current
+> physical exposure to anyone who could contact the machine, separate from the isolation status of
+> the stored energy."
+
+— which is verbatim the `HAZARD_FAMILY_INDEPENDENCE_MISTAKEN_FOR_CURRENT_EXPOSURE_INDEPENDENCE`
+reasoning §113's new section was written to interdict, restated and then acted on anyway. Rep 3 goes
+further and supplies a *mechanism the observation never states* ("gravity-fed components, unexpected
+motion... not addressed by electrical/stored-energy lockout alone") in order to justify `ACTIVE`.
+That is not an instruction the model failed to parse; it is a safety judgment the model is making
+against the instruction — and, on its own terms, one a human safety professional might also make.
+
+### 114.3 U-A — FAIL, but only on one half, and the halves matter
+
+`U_A_HAZARD_ACTUALITY_CONTROL = FAIL`. cand=**0** clar=**2**.
+
+**The candidate half PASSED.** The removed dead-front cover was NOT promoted into a current
+`electrical` hazard, and the model's own summary reads "well-controlled electrical task... No new
+current [hazard]". On a fixture in a *different hazard family* from R6, the candidate-suppression
+half of the repair demonstrably works on the hosted model. That is real, measured progress and it is
+recorded as such.
+
+**The clarification half FAILED**, on one question:
+
+> "Was the lockout applied using a documented lockout/tagout procedure with a lock and tag affixed
+> by the electrician performing the work, **or only verified with a meter**?"
+
+The observation already states the circuit "was locked out and tested with a meter, confirmed at
+zero voltage, and a second qualified electrician independently verified the zero-energy state."
+Prompt v6 forbids this in as many words — "neither is a question that doubts whether a step the
+observation already reports as done (locked out, tested, verified, confirmed) was done — treat a
+stated step as done." The instruction was present and was not followed. (The second U-A
+clarification, about adjacent live parts inside the same enclosure, is defensible and is not what
+fails this gate.)
+
+### 114.4 Every recall control passed — several more strongly than locally
+
+- `U_B_CURRENT_HAZARD_RECALL` **PASS**, candidate survived: `lockout_tagout`/`ACTIVE`, "the conveyor
+  could be started unexpectedly." The model correctly refused the trap this gate exists to catch —
+  it did not treat *merely stopped* as equivalent to verified isolation.
+- `U_C_DANGER_PRESERVED` **PASS**, routing `candidate+clarification+insight` — including "what is the
+  estimated or measured residual pressure in the pneumatic supply **right now**" and "was electrical
+  lockout mistakenly treated as complete isolation?"
+- `U_F_CLARIFICATION_PRESERVED` **PASS**, with the load-bearing present-decision question intact
+  ("Is the area exhaust fan currently running?") and both supporting candidates correctly marked
+  `UNKNOWN` rather than `ACTIVE` — appropriate conditional-state discipline, and proof the repair did
+  not over-generalize into suppressing genuine future-transition reasoning.
+- `T5_DANGER_REPRESENTED` **PASS**; `R4_HOSTED_CANDIDATE_SURVIVAL` **PASS** (2 candidates, 4
+  clarifications, 1 insight).
+
+**§113's two disclosed local residuals are now confirmed local-only by direct measurement rather
+than inferred.** `T5` and `U-C` both routed through clarification only on the local model (candidate
+0/10), which §113 attributed to local-provider grounding/quoting artifacts and disclosed rather than
+chased. Hosted, both produce full `ACTIVE` candidates. The attribution was correct.
+
+### 114.5 Routing, grounding, boundary — the cleanest profile of the programme
+
+Routing: **18 opportunities, 11 hits, ZERO misses, 7 over-routed** — all 7 on the two
+FORBIDDEN-expectation fixtures (`R6` 6, `U-A` 1). No `REQUIRED` collection came back empty anywhere
+in the matrix.
+
+Grounding/boundary: 10 grounding opportunities, 10 quotes emitted, **10/10 exactly bound**, 0
+unbindable, 0 fabricated, **0 `EVIDENCE_OUT_OF_BOUNDS`**, 0 item-level rejections, 0 analysis-level
+rejections, 0 malformed responses, 0 outcome/content inconsistencies, 0 explanation-only losses. All
+9 responses normalized `VALID` with `layerStatus: PRESENT`. No new material defect of any kind
+appeared.
+
+`LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE` as a *local* fact, but this run objectively narrows
+its scope: the hosted model shows none of it, and the specific `T5`/`U-C` residuals are now measured,
+not assumed, to be local-only.
+
+### 114.6 The load-bearing methodological finding
+
+**The local instrument scored 350/350 on v6 and predicted none of this.** That is the most important
+result of this phase, and it is a finding about the *method*, not just the prompt: for this defect
+class the local 30B model and Claude Sonnet 5 diverge structurally. Local acceptance is therefore no
+longer evidence about hosted behaviour here, and another local repair phase would spend real time
+producing a signal now measured not to transfer. §113's nine measured iterations were rigorous and
+correctly executed; the instrument they were measured against simply does not carry information
+about this behaviour on the target model.
+
+### 114.7 Decision and terminal
+
+`EXPERT_HAZLENZ_V6_HAZARD_ACTUALITY_REPAIR_FAILED -- HOSTED_OVERROUTING_REMAINS` (Terminal B) —
+targeted `R6`/`U-A` over-routing remains while every recall control survived. Terminals C
+(`CURRENT_HAZARD_RECALL_REGRESSED`) and D (`LEGITIMATE_CLARIFICATION_REGRESSED`) were both considered
+and ruled out by measurement; E (`MULTIPLE_OR_NEW_BEHAVIORAL_DEFECTS`) ruled out because no new
+defect appeared; A unavailable because the primary gate failed 0/3.
+`EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`, `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`. Nothing
+committed, pushed, tagged, deployed, or repaired.
+
+### 114.8 Exact next operation
+
+**A product-owner strategy decision, explicitly NOT another prompt iteration and NOT another local
+repair phase.** Three options, none authorized here:
+
+1. **Re-examine the `R6` expectation itself.** The fixture asserts that a removed guard under
+   verified LOTO must produce *nothing*. Sonnet 5 has now argued three times, in three different
+   ways, that it warrants a low-confidence advisory candidate. The Expert layer is advisory and
+   additive, the candidate carries `requiresUserConfirmation: true`, and it sits beside a correct
+   deterministic finding — so it is worth deciding whether the fixture or the model is right before
+   spending more on compliance. The expectation was written before any hosted evidence existed.
+2. **Move enforcement from the prompt to the boundary.** Every attempt so far has been a *request*;
+   `expert-normalization.ts` is where refusals actually bind. This would be enforceable in a way
+   instructions demonstrably are not — but it touches protected architecture and needs its own
+   authorization and its own safety analysis, because a boundary rule that silently drops a
+   `machine_guarding` candidate is exactly the shape of change this programme has been most careful
+   about.
+3. **Accept the current state as the product position**, recording `R6` as a known, bounded,
+   non-dangerous over-routing on an advisory layer, offset by this run's recall evidence (every
+   recall control passing, zero routing misses, perfect grounding).
+
+**The 17-measure evaluation cohort remains BLOCKED under all three** and is not separately
+considered.
+
+---
+
+## 115 — R6 PRODUCT-SEMANTICS ADJUDICATION: THE ORACLE IS RIGHT, THE INSTRUMENT AND THE INPUT ARE NOT (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_R6_ORACLE_CONFIRMED — PRODUCT_ENFORCEMENT_STRATEGY_DECISION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-r6-product-semantics-adjudication-2026-08-31/`.
+Predecessor: §114. **Zero hosted calls, zero local provider calls, \$0.00 spent.** No production,
+prompt, schema, normalization, fixture, scorer or boundary code changed — every one of those files
+is byte-identical, SHA-256 recorded in `CONFINEMENT.txt`. **Nothing committed**, pushed, tagged or
+deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+ahead 1 / behind 0
+
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v6   (UNCHANGED)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+§114.8 required a product-owner strategy decision and named re-examining the R6 expectation as its
+first option, noting that the expectation "was written before any hosted evidence existed." This
+phase adjudicated that expectation independently — not to repair the model, and explicitly without
+assuming either the oracle or Sonnet was correct.
+
+### 115.1 Decision: POSITION A — the oracle is confirmed
+
+R6 should remain clean. The removed guard is a **true physical condition that is not a current
+actionable machine-guarding hazard while the verified controlled state persists**; the restoration
+obligation is a **future prerequisite** attaching to a re-energization the observation never states
+is occurring. The `machine_guarding` candidate is **not valid** — emphatically not at `ACTIVE`. The
+reinstatement clarification is **not valid** as a current decision-critical clarification, because
+both answers to "is the guard still off?" leave the current classification unchanged.
+
+### 115.2 The expectation was NOT invented for this test sequence — four surfaces, three of them older
+
+The claim most likely to overturn the oracle is that it was written to make an Expert test pass.
+It was not, and the evidence is mechanical rather than interpretive:
+
+1. **The production deterministic engine already implements it.** `evidence-foundation.ts:220–231`
+   computes `notApplicable = guardPresent || energySafe` for `29 CFR 1910.212(a)(1)`, where
+   `energySafe` includes `energyIsolationState = isolated_and_verified`. Running the real extractor
+   on the exact R6 sentence this phase (zero cost, read-only) yields
+   `energyIsolationState = isolated_and_verified` and `guardState = absent_or_ineffective` —
+   so the engine resolves **machine guarding to `NOT_APPLICABLE` at 0.96 confidence** on this
+   observation. `git log -L` dates that block to `6a593fd2` (2026-08-18); the Expert routing
+   fixtures arrived in `37a5d1b5` (2026-08-29). **The doctrine predates the fixture by eleven days
+   and lives on the customer-authoritative path.**
+2. **A protected golden expectation says the same thing from the opposite side.**
+   `golden-hardening-tests.ts` scenario 7 is *named* "LOTO energized maintenance (**Not Guarding
+   alone**)": servicing with energy uncontrolled classifies as Lockout / Stored Energy, not guarding.
+3. **The Expert corpus already encodes the boundary as a contrast pair.** `R6` (candidates
+   FORBIDDEN) against `V7` — every R6 control held constant plus *"a technician is currently
+   reaching into the point of operation with both hands"* — where a `machine_guarding` candidate is
+   **REQUIRED**. `V6` (auto-restart capable) requires `machine_guarding` recall from the energy side.
+   The rule is discriminating, not a blanket suppression of the family.
+4. **The governed corpus states the displacement as an applicability test.** The repository's own
+   `osha-1910-212-machine-guarding.json` lists as a `nonApplicabilityQuestion`: *"Is the task service
+   or maintenance where lockout/tagout may be the more specific controlling standard?"* — and
+   *"Is the hazard fully enclosed or otherwise guarded so employee contact is not reasonably
+   possible?"* Both records are `approvedForUse: false` and quarantined, so they inform this
+   adjudication and **may not be cited to a customer**.
+
+### 115.3 The finding that changes the record: v5/v6 made R6 semantically WORSE
+
+Extracting `assertedConditionState` from all nine frozen hosted R6 candidates:
+
+| | v4 (§110) | v5 (§112) | v6 (§114) |
+|---|---|---|---|
+| asserted state | **`UNKNOWN`** ×3 | **`ACTIVE`** ×3 | **`ACTIVE`** ×3 |
+
+Under v4 the model raised a hedged, `UNKNOWN`-state, confirmation-flagged advisory framed as a
+restoration prerequisite — rep 3's summary reads *"a decision-relevant gap rather than a settled
+hazard."* Under v5 and v6 it asserts a **present** exposure on a machine stated to be at
+independently verified zero energy.
+
+`expert-routing-metrics.ts` `verdictFor()` receives only `(expectation, count)`. It never sees
+`assertedConditionState`, `confidence` or `requiresUserConfirmation`, so `UNKNOWN`/LOW and
+`ACTIVE`/MODERATE score identically as `INCORRECT_POPULATED`. **§114.2's "no movement" table is
+true at the cardinality level and concealed an adverse semantic regression.** A plausible mechanism
+— offered as a hypothesis, not a measurement — is that v5/v6 made hedged framing look like the
+forbidden move while instruction 1 still pushed for the candidate, so the model reached for `ACTIVE`
+to license it. Confirming that needs hosted calls and was not authorized here.
+
+Consequently §114.6's "the local instrument is non-predictive for this defect class" is correct but
+incomplete: the **hosted** instrument is also partially blind here. §113's 350/350 and §114's 0/3
+were computed by the same cardinality-only scorer.
+
+### 115.4 The root cause no prior phase identified: Expert is denied the answer it is being asked for
+
+R6's Expert input carries **only** `lockout_tagout`/`CONTROLLED` and `governedStandards: []`. It does
+**not** carry the `1910.212(a)(1)` → `NOT_APPLICABLE` determination the real engine produces on this
+sentence. Prompt instruction 1 reads: *"Any hazard you think may be present that is **NOT already in
+the deterministic findings above**. Include it even if you are unsure — set confidence LOW and
+requiresUserConfirmation true."* `machine_guarding` genuinely is not there, and all nine reps set
+`requiresUserConfirmation: true` and `ADDITIONAL_TO_DETERMINISTIC`.
+
+**The model is substantially complying with instruction 1 on an incomplete input.** Three prompt
+generations have tried to instruct around a missing input rather than supply it.
+`grep -rn "DeterministicFindingView" src/` returns only the type declaration and its use in
+`ExpertAnalysisInput` — **no production projection exists yet**, so this is an open design decision
+rather than a regression to repair.
+
+### 115.5 Both cases were built at full strength
+
+The strongest case for Sonnet is recorded in full: the Expert layer is advisory and additive by
+contract, the candidate carries `requiresUserConfirmation: true`, the deterministic finding leaves
+`isActionable: false` and **no action item at all**, and a safety professional walking past an open
+de-guarded press would plausibly say something. §114.8's instinct on this is endorsed as far as it
+goes. It does not reach the oracle, for three independent reasons: the `ACTIVE` state claim is false
+and the model had `UNKNOWN`/`INSUFFICIENT_EVIDENCE` instructed and available; every consequence
+named across all nine reps is hedged on a self-supplied condition, one (v6 rep 3's *"gravity-fed
+components"*) contradicting a stated fact; and overturning the oracle would require simultaneously
+overturning a production predicate, a protected golden expectation and the `R6`/`V7` pair, none of
+which the hosted evidence touches. The model's own v6 rep 3 summary — *"raised as a low-confidence
+candidate pending confirmation **rather than an active finding**"* beside a candidate labelled
+`ACTIVE` — agrees with the oracle about the state and disagrees only in the field.
+
+Position C was ruled out **on its premise**: the semantic category is not missing.
+`EXPERT_CONDITION_STATES` already carries `CONTROLLED`, `HYPOTHETICAL`, `INSUFFICIENT_EVIDENCE` and
+`UNKNOWN`. The Expert contract can already represent a controlled non-current condition; the
+**scorer** cannot.
+
+### 115.6 Counterfactual matrix — and the two gaps it exposes
+
+Six of the nine variants already exist as frozen fixtures and all are consistent with the oracle:
+`R6-B`→`V5`, `R6-C`→`V4`/`U-C`, `R6-D`→`V2`, `R6-E`→`V1`, `R6-F`→`V6`, `R6-G`→`V7`/`V8`. One rule
+generates every classification: *a guard that is off is a current hazard exactly when the observation
+states a live pathway to harm — motion available, or a person in contact range.*
+
+**`R6-H` (re-energization stated as imminent → `BLOCKING` clarification) and `R6-I` (returned to
+operation, guard absent → `machine_guarding`/`ACTIVE` candidate) have no fixtures.** They are the
+only two without one, and they are exactly the two that separate a future prerequisite from a
+current hazard. Every existing counterfactual flips a fact about **energy control**; none flips a
+fact about the **restoration transition**. So the corpus can prove the model does not under-call an
+uncontrolled machine, and cannot yet prove it locates the restoration obligation correctly in time.
+
+### 115.7 Protected state, confinement
+
+All 14 suites re-run fresh, identical to §108–§114's baseline, zero deltas: Expert
+`56/58/40/30/51/131/141`, quarantine `61/0` (L3-2i) and `37/0` (L3-2j), `hazlenz-core`/`precision`/
+`level1-recall`/`actionable-coverage` all exit 0 with **0 dangerous and 0 life-critical omissions**,
+`tsc` 0. Confinement: the Expert-core diff is the identical pre-existing 4-file §105–§113 diff, not
+added to; `expert-prompt.ts`, `expert-normalization.ts`, `expert-contract.types.ts`,
+`expert-routing-metrics.ts`, all three fixture files and `evidence-foundation.ts` are byte-unchanged
+with SHA-256 recorded; zero controller/service/module references, zero frontend references; this
+phase added no importer and no script, and every file it created is under `verification/`.
+`LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`, untouched and uninvestigated.
+
+### 115.8 Exact next operation
+
+**Not authorized here. Complete the deterministic→Expert input projection, then re-measure.**
+Explicitly NOT another prompt iteration (three generations, two repair phases, nine local
+iterations, ~\$0.72 hosted — and §115.3 shows the state claim got worse). NOT boundary suppression
+yet: §114.8 is right to be wary, and a rule that silently drops a `machine_guarding` candidate is
+the highest-risk change shape in this programme; it should not be reached for while a lower-risk
+additive mechanism addressing a demonstrated root cause is untried. NOT acceptance yet, while the
+false `ACTIVE` claim stands — acceptance remains the fallback.
+
+1. Design + \$0.00 local diagnostic: should the Expert input carry negated / `NOT_APPLICABLE` /
+   `CONTROLLED` determinations? Needs a contract decision, since
+   `DeterministicFindingView.conditionState` has no member meaning "evaluated and excluded"
+   (`NEGATED` is closest and its semantics need adjudicating first).
+2. Scorer **instrumentation** — do this regardless: record `assertedConditionState`, `confidence`
+   and `requiresUserConfirmation` beside the cardinality verdict. **Recording only**; changing what
+   `verdictFor()` scores would alter a frozen protected metric and needs its own authorization.
+3. Corpus extension: add `R6-H` and `R6-I`.
+4. Only then a bounded hosted re-measurement: `R6`×3 plus `R6-H`, `R6-I` and the `V7`/`U-B` recall
+   gates.
+
+Falsifiable by construction: if the model still raises `machine_guarding`/`ACTIVE` after being shown
+a `NOT_APPLICABLE` machine-guarding decision, the input hypothesis is wrong and boundary enforcement
+or acceptance becomes next, on much better evidence. **The 17-measure evaluation cohort remains
+BLOCKED and is not separately considered.**
+
+---
+
+## 116 — DETERMINISTIC -> EXPERT PROJECTION DESIGN: THE GAP IS TOTAL, AND THE ENGINE IT WOULD PROJECT IS PARTLY WRONG (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_DETERMINISTIC_PROJECTION_DESIGN_ACCEPTED — BOUNDED_HOSTED_PROJECTION_TEST_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-deterministic-projection-design-2026-08-31/`.
+Predecessor: §115. **Zero hosted calls. 108 local calls (Ollama qwen3-coder:30b, localhost only),
+\$0.00.** No production or customer behaviour changed; every production file byte-identical with
+SHA-256 recorded. **Nothing committed**, pushed, tagged or deployed.
+
+```
+HEAD        37a5d1b50abe836eb19dd24ee18ad10557bda131   (local only, unchanged)
+origin/main de655d2f6e4c0ff7b0de17f9ccfbd3668138a936   (unmoved)
+EXPERT_PROMPT_VERSION             = hazlenz.expert.prompt.v6   (UNCHANGED)
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+```
+
+### 116.1 The hypothesis is confirmed, and the gap is total
+
+`DETERMINISTIC_DECISION_NOT_PROJECTED_TO_EXPERT` holds — and it is not a projection that drops a
+field. **There is no projection at all.** Nothing in `src/` constructs an `ExpertAnalysisInput`;
+every `deterministicFindings` array in the repository is hand-written in a fixture. The deterministic
+layer computes `applicabilityDecisions` on the customer path today and discards all of it at a
+boundary that does not yet exist. `buildExpertUserPrompt` renders exactly two shapes — a positive
+finding, or "(none — the deterministic engine established no finding)" — so **a family evaluated and
+excluded renders identically to a family never considered.**
+
+### 116.2 The second finding is more serious than the first
+
+**`DETERMINISTIC_MACHINE_GUARDING_EXCLUSION_SHORT_CIRCUIT`** — a pre-existing production defect on a
+customer-authoritative surface, found while deriving the projection. **Reported, NOT repaired**: a
+fix touches 1910.212 applicability for every observation and needs its own authorization and
+re-baselining.
+
+`decision()` computes `status = notApplicable ? 'NOT_APPLICABLE' : ...` **before** consulting
+predicate statuses, and `notApplicable = guardPresent || energySafe` is unconditional. Once
+`energyIsolationState = isolated_and_verified` is extracted anywhere in the text, machine guarding is
+excluded at **0.96** regardless of every other fact. Measured on the corpus's own frozen fixtures:
+`V2` (accumulator left charged), `V4` (second circuit on live shop air), `V7` (a technician's hands
+in the point of operation) and `R6-I` (the press running unguarded) **all** return
+`machine_guarding = NOT_APPLICABLE @ 0.96`. `V4` is internally contradictory — that status with
+**all four** of its own required predicates reading `SUPPORTED`.
+
+This turned Phase 7's anti-rubber-stamp controls from constructed into real, which is far stronger
+evidence than the constructed case the authorization asked for: the "deliberately incomplete
+deterministic view" did not need inventing.
+
+### 116.3 Design: a new sibling array, not `DeterministicFindingView`
+
+Six extension points were compared. `DeterministicFindingView` was **rejected despite the convenient
+name**, per this operation's explicit instruction not to assume it: a `NOT_APPLICABLE` determination
+is not a finding; `EXPERT_CONDITION_STATES` has no member meaning "evaluated and excluded" and adding
+one would break the foundation suite's byte-identity assertion against the Level-3 vocabulary; and it
+cannot carry a predicate-level rationale. Reusing `governedStandards` was rejected (carries citations,
+would make an ungoverned engine output look governed); adding the block as an `authoritativeSources`
+entry was rejected as **dangerous** (sources are the quote-binding surface — Expert could "quote" the
+rationale as observation text).
+
+Selected: `deterministicFamilyDispositions[]` carrying `hazardFamily`, `disposition`
+(`ACTIVE`/`CONTROLLED`/`NOT_APPLICABLE`/`UNKNOWN`), `isActionable`, `confidence`,
+`controllingFacts[]` (the engine's own predicate names and statuses), a derived `rationale`,
+`evidenceQuotes[]` and `provenance`. **Citation-free by necessity**: `CITATION_SHAPED_PATTERN`
+refuses `\d{2} CFR \d+` in Expert output including prose, so projecting
+`ApplicabilityDecision.citation` would invite an echo and get the entire analysis rejected.
+
+### 116.4 The Expert contract is sufficient; no collection added
+
+`expertDisagreements` **alone is insufficient** — `ExpertDisagreement` has no `evidence` field and no
+`groundingStatus`, so it is structurally ungrounded and cannot supply the exact observation evidence
+an override requires. The pair suffices and both halves already exist: the grounded half rides on
+`ExpertHazardCandidate` (`evidence`, `groundingStatus`, and the already-legal
+`relationshipToDeterministic: CONTRADICTS_DETERMINISTIC`), the authority-challenge half on
+`ExpertDisagreement` with surface `NEGATION_AND_SAFE_STATE` or `CONDITION_STATE_INTERPRETATION`.
+**Nothing is added**, per the authorization's bar.
+
+### 116.5 Local A/B: safety proven, efficacy not provable locally
+
+108 calls, two runs, one variable. **`silentAgreementReps = 0/3` on every case except `R6`, both
+arms, both runs** — the projection never silenced Expert anywhere danger was present.
+
+The headline measure, `relationshipToDeterministic` across every raw-wire candidate:
+
+| | baseline | projected |
+|---|---|---|
+| `CONTRADICTS_DETERMINISTIC` | **3 / 27 (11%)** | **23 / 29 (79%)** |
+| `REFINES_DETERMINISTIC` | 10 | 0 |
+| `ADDITIONAL_TO_DETERMINISTIC` | 13 | 6 |
+| total candidates | 27 | **29** |
+
+**Candidate volume did not fall — it rose.** The projection re-routed disagreement into the
+contract's explicit, auditable override channel, which is exactly the reviewer relationship this
+operation specified. `R6-I` went from **0 candidates baseline to 3 projected**, overriding a
+`NOT_APPLICABLE @ 0.96` by quoting the observation directly; `V7` held 3/3 with the override formally
+expressed 2/3; `V1-CTRL` produced `CONTRADICTS_DETERMINISTIC` **3/3** at the wire naming the
+defeating fact; `V8` (a family the engine never assessed) was unchanged; `V5` (`UNKNOWN`) rose 3->5.
+
+**The one genuine suppression was found and fixed.** Run 1 measured `V4`'s `machine_guarding`
+candidate disappearing 3/3 under projection — caused by projecting `V4`'s internally contradictory
+exclusion. A projection-side guard (`isExclusionPredicateJustified`: an exclusion is projectable only
+when at least one required predicate is actually `CONTRADICTED`) restored parity, changed **only**
+`V4` in run 2, and **did not modify the engine**.
+
+Grounding **improved**: 3 `GROUNDING_CLAIM_UNSUPPORTED` rows projected vs 6 baseline, 26/26 quotes
+bound vs 21/21, 0 unbindable both, 27/27 `VALID` both. The remaining apparent losses are that
+pre-existing local-only artifact, not projection effects.
+
+**The bounding limitation, stated plainly: `R6` is clean in both arms locally, so this diagnostic
+carries NO information about the primary defect.** What is proven is safety, not efficacy.
+
+### 116.6 State-aware instrumentation, recording-only
+
+`expert-routing-metrics.ts` byte-unchanged, `verdictFor` unchanged, **no pass/fail gate changed and
+no historical score rewritten**. The recorder distinguishes the nine frozen hosted `R6` candidates as
+`UNKNOWN`x3 / `ACTIVE`x3 / `ACTIVE`x3 — nine responses the frozen cardinality scorer records
+identically. Two limitations disclosed rather than tuned away: `overridePathwaySupplied` under-counts
+on an incomplete lexical marker set, and the model **over-applies** `CONTRADICTS_DETERMINISTIC` under
+projection (`V8` labels an addition a contradiction), so 79% overstates true disagreement —
+conservative in direction, and a named calibration item for the hosted phase.
+
+### 116.7 `R6-H` / `R6-I`, and protected state
+
+`restoration-transition-fixtures.ts` is a new file; `routing-fixtures.ts` is byte-unchanged and `R6`
+untouched. The corpus now separates FUTURE PREREQUISITE (`R6`) from CURRENT TRANSITION (`R6-H`,
+clarification REQUIRED) from CURRENT ACTIVE EXPOSURE (`R6-I`, candidate REQUIRED, hard recall gate).
+Both passed locally in both arms.
+
+All 14 suites re-run fresh, identical to §108–§115, zero deltas: Expert `56/58/40/30/51/131/141`,
+quarantine `61/0` and `37/0`, HazLenz floors exit 0 with 0 dangerous and 0 life-critical omissions,
+`tsc` 0. Confinement: zero controller/service/module or frontend references, **zero references to the
+prototype from `src/`**; the prototype and harness live under `scripts/`; the new fixture file is
+imported only by the diagnostic harness. Pre-existing unrelated work — the
+`frontend-next/tsconfig.json` modification and the `ecfr-1910-146.xml` deletion — preserved untouched,
+as are the 4 stashes and 24 tags. `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`.
+
+### 116.8 Exact next operation
+
+**Not authorized here: a bounded hosted projection test**, justified because the local instrument has
+now proven the property it *can* prove and is structurally incapable of proving the one that matters.
+Both arms, real unmodified `AnthropicExpertProvider`: `R6`x3 (the defect the local instrument cannot
+see), `V7` and `R6-I` (anti-rubber-stamp hard gates against a wrong `NOT_APPLICABLE@0.96`), `R6-H`,
+`V8`, `V5`. Falsification condition per the authorization: if Sonnet 5 receives the `NOT_APPLICABLE`
+determination with its rationale and still asserts `ACTIVE` `machine_guarding` without identifying a
+concrete omitted pathway, the hypothesis is weakened or refuted.
+
+Two prerequisites to record in that authorization, neither a blocker: the
+`DETERMINISTIC_MACHINE_GUARDING_EXCLUSION_SHORT_CIRCUIT` defect needs its own adjudication phase (the
+projection guard contains it for the prototype; it does not fix the engine); and the
+`CONTRADICTS_DETERMINISTIC` over-application needs block-wording calibration, measurable in the same
+run. **The 17-measure evaluation cohort remains BLOCKED.**
+
+---
+
+## 117 — MACHINE-GUARDING APPLICABILITY SHORT-CIRCUIT: REPAIRED, AFTER THE FIRST FIX PROVED IMPOSSIBLE (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `HAZLENZ_MACHINE_GUARDING_APPLICABILITY_PRECEDENCE_REPAIRED — BOUNDED_HOSTED_EXPERT_PROJECTION_TEST_AUTHORIZATION_REQUIRED`** (Terminal A).
+Evidence: `verification/hazlenz-machine-guarding-applicability-precedence-2026-08-31/`.
+Predecessor: §116. **Zero hosted calls. 108 local Ollama calls for the Phase-8 revalidation,
+localhost only. \$0.00.** **Nothing committed**, pushed, tagged or deployed.
+
+**8 dangerous false negatives -> 0, with the R6 precision anchor unmoved and Population-A precision
+still 100.0%.**
+
+### 117.1 Root cause confirmed — and insufficient on its own
+
+`ENERGY_SAFE_SHORT_CIRCUITS_EXPOSURE_PREDICATES` is CONFIRMED. `decision()` resolves
+`status = notApplicable ? 'NOT_APPLICABLE' : ...` as its FIRST branch, before `contradictoryEvidence`
+and `missingPredicates` are consulted, and the guarding rule passed `guardPresent || energySafe`. One
+`isolated_and_verified` fact excluded the family at 0.96 before any predicate was read. The
+short-circuit exists in ONE rule: MSHA `56.14107(a)` and Construction `1926.300(b)(2)` carry no
+`energySafe` term.
+
+**But the hypothesis alone could not have fixed it, and proving that is this phase's most important
+finding.** The extracted fact sets for `A` (exact R6, must stay `NOT_APPLICABLE`) and for `B`, `C`,
+`G`, `H`, `I` (must survive) are BYTE-IDENTICAL — `jurisdiction`, `energyIsolationState=
+isolated_and_verified`, `guardState=absent_or_ineffective`, `egressState`. No function of the
+extracted facts can separate the R6 sentence from "a technician is currently reaching into the point
+of operation with both hands." Measured: the precedence repair ALONE moved dangerous false negatives
+**8 -> 7**. The defect has two layers — a precedence error AND a representational gap in the
+extractor.
+
+### 117.2 The precedence rule
+
+> A verified safe-energy state is EVIDENCE FOR non-applicability, NOT AN OVERRIDE OF an exposure the
+> same observation independently establishes.
+
+`notApplicable = guardPresent || (energySafe && !guardingExposureEstablished)`, where
+`guardingExposureEstablished` is energy present/operating, or an isolation stated absent, or **a
+person stated inside the zone the guard would have closed**. `energySafe` is RETAINED as required —
+§115/D-127 confirmed the R6 determination partly on it, and deleting it would fix all eight recall
+cases while destroying the one precision case the programme has spent five phases defending.
+
+### 117.3 The repair: 3 production files, 4 substantive changes
+
+1. `evidence-foundation.ts` — the precedence rule, plus contact exposure satisfying the predicate's
+   own second disjunct ("moving **or accessible**": isolated energy makes parts non-moving; a person
+   in the opening makes them accessible).
+2. `shared-evidence-facts.ts` — `ISOLATION_INCOMPLETE_OR_WITHDRAWN`, a second **withhold-only** guard
+   beside the existing `ISOLATION_UNVERIFIED_OR_CONTRADICTED` at the same single call site, covering
+   three concepts: a dissipation step reported not done, a source left connected, and an isolation
+   stated as being or already withdrawn. It never asserts `not_isolated`, so a defeated claim leaves
+   the state genuinely UNKNOWN rather than resolved in either direction.
+3. `shared-evidence-facts.ts` — `correctedBeforeReview` narrowed, `guard(?:ed)?` -> `guarded`. The
+   bare noun matched "the press is now running production parts with the guard still off" as "now
+   guarded" and negated the current hazard state on an observation saying the exact opposite.
+4. `shared-evidence-facts.ts` — a NEW fact type `machineContactExposure`, read by exactly one
+   predicate. New rather than a value on `employeeExposure`, which already carries three meanings for
+   the fall and excavation rules; blast radius is one rule.
+
+No fixture-specific logic, no phrase matching against corpus sentences, no confidence lowering to
+hide errors, and machine guarding is NOT always applicable when a guard is absent.
+
+### 117.4 A repair attempt measured and REJECTED
+
+Stage 4 added `employee in the guarded zone` as a fifth REQUIRED predicate. `test:hazlenz-core` went
+**0 -> 1**: because that predicate is UNKNOWN whenever no person is mentioned — most observations —
+`decision()`'s `missingPredicates.length ? 'UNKNOWN'` branch downgraded EVERY ordinary
+unguarded-machine finding from SUPPORTED to UNKNOWN. Caught on "The point of operation on the punch
+press is unguarded and the operator's hands enter the die area while it is running." The predicate
+was removed and contact exposure folded into the existing one; the punch-press case is restored to
+SUPPORTED@0.96. A protected suite caught a real regression introduced by this phase and its answer
+was taken.
+
+### 117.5 The two-sided gate
+
+**Precision:** `A` (exact R6) stays `NOT_APPLICABLE` @ **0.96** with the same substantive rationale,
+and is now predicate-coherent. `K` (guard present) and `L` (historical/resolved) unchanged.
+**Recall:** `B`/`H` (person in the zone) -> `SUPPORTED`@0.96; `C`/`D`/`F`/`G`/`I`/`J` -> `UNKNOWN`@0.45
+("Candidate only; missing: ..."); `E` unchanged; `M`/`N`/`O`/`P` cross-jurisdiction and cross-family
+controls unchanged. **16/16, 0 dangerous false negatives, 0 precision failures.**
+
+### 117.6 Confidence
+
+No confidence-model change was made and none is needed: the derivation is a pure function of
+`status`, and the `status` was the defect. Post-repair 0.96 is no longer attached to a short-circuit
+contradicting its own predicates, and the new regression gate asserts that **no decision anywhere
+reports `NOT_APPLICABLE` while a hazard predicate reads `SUPPORTED`**.
+
+### 117.7 Projection revalidation and label calibration
+
+All six required confirmations hold. `unsupportedSameFamilyActive` went 3->0 (`R6-H`), 3->0 (`R6-I`),
+1->0 (`V7`) while `V1-CTRL` — the CONSTRUCTED wrong-view control — still overrides 3/3, preserving the
+anti-rubber-stamp property. `silentAgreementReps = 0/3` everywhere except `R6`. `V4`'s candidate drop
+6->3 is the design working: the deterministic layer now carries the `machine_guarding` hazard itself,
+so Expert contributes the adjacent `electrical` exposure and two clarifications instead.
+
+Phase 9 calibration (recording-only, no gate, no prompt or contract change) quantifies §116's
+disclosure: of declared `CONTRADICTS_DETERMINISTIC`, **17 of 26 (65%) were mislabelled pre-repair and
+26 of 29 (90%) post-repair** — the label is unreliable and must not be read as a disagreement rate.
+The load-bearing number is that **`UNSUPPORTED_CONTRADICTION`, the §115 R6 defect shape, went 3 -> 0**.
+
+### 117.8 Protected regression and confinement
+
+`evidence-foundation` **0**; `hazlenz-core` **0**; precision/level1-recall/actionable-coverage **0**;
+the new `hazlenz-guarding-applicability` gate **0** (16 cases, 0 dangerous); Expert
+**56/58/40/30/51/131/141**; quarantine **61/0** and **37/0**; **0 dangerous and 0 life-critical
+omissions**; **Population A case-level precision 100.0%**; `tsc` 0. Eight pre-existing suite failures
+(`hazlenz-field-gauntlet` 92, `hazlenz-authentic-gauntlet` 92, `hazlenz-authentic-reasoning` 21,
+`hazlenz-clarification-gauntlet`, `hazlenz-independent-standards-audit`, `safescope`,
+`safescope-standards`, `standards-corpus-integrity` 1) are **identical before and after** — measured
+against a true HEAD baseline captured this phase by temporarily restoring the two files and running
+them, then restoring the repair and verifying by SHA-256. `test:classify` fails because
+`src/test-classify.ts` does not exist in HEAD either.
+
+Confinement: exactly **3 production files** changed. Zero controller/service/module, zero
+authentication/account, zero billing/Stripe, zero report/PDF rendering, zero frontend, zero
+migrations, zero governed-release or standards-corpus mutation, zero production DB access. The
+Expert-core diff remains the pre-existing 4-file §105-§113 diff. Pre-existing unrelated work (the
+`frontend-next/tsconfig.json` modification, the `ecfr-1910-146.xml` deletion, 4 stashes, 24 tags)
+preserved untouched. `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`.
+
+### 117.9 Exact next operation
+
+**Bounded hosted Expert projection testing is now justified** — §116's blocker is closed for the
+guarding family and the projection has been revalidated against the corrected outputs. Not
+authorized here. Both arms, real unmodified `AnthropicExpertProvider`: `R6`x3, `V7` + `R6-I`
+(anti-rubber-stamp gates), `V1-CTRL` (now the ONLY wrong-view control), `R6-H`, `V8`, `V5`; recording
+the DERIVED contradiction classification alongside the declared label. **The 17-measure evaluation
+cohort remains BLOCKED.**
+
+---
+
+## 118 — HOSTED PROJECTION A/B: THE DEFECT WAS AN INPUT-COMPLETENESS DEFECT, MEASURED (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_DETERMINISTIC_PROJECTION_HOSTED_CONFIRMED — FORMAL_EVALUATION_COHORT_AUTHORIZATION_DECISION_REQUIRED`** (Terminal A).
+Evidence: `verification/expert-hazlenz-hosted-projection-ab-2026-08-31/`. Predecessor: §117.
+**18 planned, 18 attempted, 18 completed clean, 0 transport failures, 0 retries.** Projected
+worst-case spend **\$1.833378**, actual **\$0.571626**, ceiling \$3.00. **Nothing repaired,
+nothing committed**, pushed, tagged or deployed.
+
+```
+provider = anthropic   model = claude-sonnet-5   prompt = v6   contract = analysis.v2
+thinking = disabled    max_output_tokens = 8000  P2_DETERMINISM_CONTROL = ABSENT
+```
+
+Pre-run and post-run SHA-256 of prompt, contract, normalization, scorer, the §117 deterministic
+repair, the §116 projection and all fixtures are **byte-identical** — the measurement was frozen and
+stayed frozen.
+
+### 118.1 The primary result
+
+| | R6 baseline (Arm A) | R6 projected (Arm B) |
+|---|---|---|
+| `machine_guarding` candidate | **3 / 3** | **0 / 3** |
+| reinstatement / future-transition clarification | **3 / 3** | **0 / 3** |
+| outcome | `ANALYZED` x3 | **`NOTHING_TO_ADD` x3** |
+| collections over-routed | **6** | **0** |
+| clean | **0 / 3** | **3 / 3** |
+| output tokens | 921-1,112 | **381-398** |
+
+`R6_BASELINE_CLEAN_RATE = 0/3`. `R6_PROJECTED_CLEAN_RATE = 3/3`. The hard projected-arm target is met.
+
+**The contemporary control mattered.** Under current code, the current §117 deterministic repair and
+the current configuration, Arm A reproduced the defect 3/3 in its familiar shape — "a distinct hazard
+family from lockout/tagout", `ADDITIONAL_TO_DETERMINISTIC`, plus a reinstatement-timing clarification.
+The defect was not inherited from v4/v5/v6 history; it was live.
+
+**The projected arm did not merely go quiet — it reasoned.** Its summary reads: *"Machine guarding is
+correctly excluded because no moving or accessible energy is established, and no other hazard family
+is supported by any fact in the text."* That is the deterministic layer's own controlling predicate
+(`moving or accessible energy = CONTRADICTED`) read and reused, which is causal criterion 2.
+
+### 118.2 Anti-rubber-stamp gates — all six preserved, zero routing misses in BOTH arms
+
+`V7` (deterministic now `machine_guarding=ACTIVE@0.96`, so Expert correctly does not duplicate it)
+gained a BLOCKING clarification naming the technician reaching into the point of operation. `R6-I`
+and `R6-H` each **overrode** their projected disposition with a verbatim-quoted concrete current fact,
+`R6-H` additionally filing a formal `disagreements` entry on surface `CONDITION_STATE_INTERPRETATION`
+— the proof that projection supplies CONTEXT and not AUTHORITY. `V1-CTRL` refused the deliberately
+constructed `lockout_tagout=CONTROLLED` with a BLOCKING clarification challenging the un-bled stored
+energy. `V8`'s designated cross-family danger survived and strengthened from one candidate to two.
+`V5` survived with two BLOCKING clarifications.
+
+Routing: baseline **18 opportunities / 12 hits / 0 misses / 6 over-routed**; projected **18 / 18 / 0 /
+0**. **The projection eliminated over-routing without costing a single recall opportunity.**
+
+Two things recorded plainly rather than buried. `V8`'s `machine_guarding` candidate present in Arm A
+disappeared in Arm B — judged correct suppression (verified isolation, technician grinding on the ram
+surface, nobody stated in the point of operation) and the only case where projection removed baseline
+content. And `V1-CTRL` expressed its override through a BLOCKING clarification rather than the formal
+`disagreements` channel — a calibration observation, not a gate failure, since `R6-H` proves the
+channel works.
+
+### 118.3 Grounding and the derived classification
+
+Grounding is **perfect in both arms**: 19 opportunities, 19 quotes, **19/19 exactly bound**, 0
+unbindable, 0 fabricated, 0 `EVIDENCE_OUT_OF_BOUNDS`, 0 item-level and 0 analysis-level rejections, 0
+malformed, 0 outcome/content inconsistencies, 0 explanation-only losses.
+
+Derived classification (primary diagnostic, per §117's finding that the declared label is poorly
+calibrated): projected arm declared `CONTRADICTS_DETERMINISTIC` 4x, of which **3 derive as
+`TRUE_DETERMINISTIC_CONTRADICTION`**. The classifier flagged **1 `UNSUPPORTED_CONTRADICTION`, which
+manual adjudication overturns** — it fired on `R6-H`, whose candidate quotes the observation verbatim
+and says in terms "which is a current machine guarding hazard, not a hypothetical one". The regex
+lacked that phrasing. **Automated 1, adjudicated 0**; both are reported. Baseline's derived column is
+definitionally all `CROSS_FAMILY_ADDITION` (Arm A carries no dispositions) and is not comparable
+across arms.
+
+### 118.4 Causal conclusion
+
+All five evidentiary requirements are met: contemporary baseline reproduces materially more often
+(3/3 vs 0/3); projected R6 incorporates the deterministic state correctly; projected R6 invents no
+unsupported current pathway; anti-rubber-stamp hazards remain detectable; valid deterministic
+disagreement still survives. The counter-conditions do not hold — the arms are not equally wrong, not
+equally clean, and no dangerous control regressed.
+
+**`DETERMINISTIC_DECISION_NOT_PROJECTED_TO_EXPERT` is SUPPORTED.** The R6 over-routing that survived
+three prompt generations and two dedicated repair phases was substantially an **input-completeness
+defect, not a model-compliance defect** — exactly what §116 predicted and could not prove locally.
+
+### 118.5 Post-run protected state and disclosed debt
+
+All re-run at \$0.00 with nothing repaired: Expert **56/58/40/30/51/131/141**; quarantine **61/0** and
+**37/0**; HazLenz floors exit 0 with **0 dangerous and 0 life-critical omissions**; **Population-A
+case-level precision 100.0%**; the §117 deterministic corpus **16/16, 0 dangerous false negatives, 0
+precision failures**; `evidence-foundation`, `hazlenz-guarding-applicability`, grounding and Anthropic
+adapter suites all 0; `tsc` 0.
+
+**`PRE_EXISTING_BASELINE_FAILURE_UNCHANGED`** — eight suites fail identically at the true HEAD
+baseline and now: `hazlenz-field-gauntlet` (92), `hazlenz-authentic-gauntlet` (92),
+`hazlenz-authentic-reasoning` (21), `hazlenz-clarification-gauntlet`,
+`hazlenz-independent-standards-audit`, `safescope`, `safescope-standards`,
+`standards-corpus-integrity` (1). **They are not described as passing**, are not attributable to §117
+or §118, and were not investigated. `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`.
+
+**Extraction limitation, explicitly retained**: the deterministic extraction layer remains
+pattern-based. §117's repair is validated against the frozen corpus and the protected battery and does
+**not** prove universal wording coverage; no extraction vocabulary was expanded during this
+measurement.
+
+### 118.6 Exact next operation
+
+A **product-owner decision on whether to authorize the formal 17-measure evaluation cohort**. This
+terminal does not execute it and does not authorize it. Before that decision, three items belong in
+the record: the primary result is n=3 with no determinism control on this provider; the projection
+still has no production implementation (`ExpertAnalysisInput` carries no
+`deterministicFamilyDispositions` field — §116's design remains a `scripts/` prototype and promoting
+it needs its own authorization); and the extraction-coverage limitation above. **The 17-measure
+evaluation cohort remains BLOCKED.**
+
+---
+
+## 119 — THE PROJECTION IS PROMOTED ONTO THE PERMANENT EXPERT PATH, BYTE-FOR-BYTE (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_DETERMINISTIC_PROJECTION_PRODUCTION_PATH_ACCEPTED — FORMAL_EVALUATION_COHORT_AUTHORIZATION_REQUIRED`** (Terminal A).
+Evidence: `verification/expert-hazlenz-projection-production-promotion-2026-08-31/`. Predecessor:
+§118. **Zero hosted calls; 2 local Ollama calls (non-authoritative integration smoke); \$0.00.**
+**Nothing committed**, pushed, tagged or deployed. **No customer activation.**
+
+### 119.1 The gap this closed
+
+`grep -rn "ExpertAnalysisInput" src/` returned only CONSUMERS — no production constructor — and
+`grep -rn "runExpertAnalysis" src/` returned only its own declaration: **zero callers**. The
+deterministic layer computed `applicabilityDecisions` on the customer path and discarded them at a
+boundary that did not exist. `buildExpertUserPrompt` rendered exactly two shapes for the
+deterministic result, a positive finding or "(none)", so **a family EVALUATED AND EXCLUDED rendered
+identically to a family never considered** — the §116 root cause the §118 A/B confirmed.
+
+### 119.2 What was promoted, and what was deliberately not touched
+
+Three production-capable files, plus one line of `package.json`:
+
+1. `expert-contract.types.ts` — `DETERMINISTIC_DISPOSITIONS`, `DeterministicControllingFact`,
+   `DeterministicFamilyDisposition`, and one **optional** field
+   `deterministicFamilyDispositions?` on `ExpertAnalysisInput`.
+2. `expert-deterministic-projection.ts` (NEW) — the prototype promoted unchanged in meaning. A pure
+   projection over decisions the deterministic layer already produced: it evaluates no predicate,
+   reads no observation text and reaches no applicability conclusion. **No second applicability
+   engine, no reconstruction of state inside Expert.** Its parameter is structural, so the module
+   carries no dependency on the evidence foundation.
+3. `expert-prompt.ts` — `renderDeterministicDispositionBlock`, byte-identical to the
+   §118-confirmed prototype text, appended after the closing instructions with the same separator
+   the prototype used.
+
+**`EXPERT_CONDITION_STATES` was NOT touched.** `test-expert-contract-foundation.ts` E.3 asserts it
+byte-identical to the Level-3 vocabulary read as data; adding `NOT_APPLICABLE` there would break a
+frozen shared vocabulary. The disposition vocabulary is separate and smaller, describing what the
+DETERMINISTIC layer said rather than what Expert asserts. The projection is **citation-free by
+necessity**: `CITATION_SHAPED_PATTERN` refuses a `CFR`-shaped string anywhere in Expert output
+including prose, so projecting the decision's citation would invite an echo that gets the whole
+analysis rejected.
+
+**PROMPT SEMANTIC VERSION: UNCHANGED (`v6`). PERMANENT INPUT PROJECTION: NOW POPULATED.**
+`EXPERT_SYSTEM_PROMPT` is byte-unchanged and gate `F.2` asserts the version literal mechanically.
+What changed is that a previously-discarded piece of the deterministic RESULT is rendered into the
+per-request input, beside the observation, the findings and the governed records — the same class of
+thing as those. This is not a behavioural prompt revision and is not described as one.
+
+### 119.3 The equivalence gate — the central acceptance criterion
+
+New protected suite `test:expert-projection-equivalence`: **88 assertions, 0 failed.** Both paths
+are compared through `buildAnthropicRequestBody`, i.e. the real provider request including system
+prompt, user prompt, wire schema, strict wrapper and Anthropic compatibility strip.
+
+**All seven §118 projected-arm cases produce a BYTE-IDENTICAL provider request body.**
+`SEMANTIC_REQUEST_EQUIVALENCE = 100%`, with **no differences to justify**.
+
+Confirmed twice, independently. Within the phase: prototype-built and permanent-built bodies are
+`JSON.stringify`-identical, with `model`, `max_tokens`, `system`, `tools`, `tool_choice`, `thinking`
+and the user prompt each asserted separately. **Across runs**: every permanent request byte-count
+matches the corresponding §118 preflight measurement of the request actually sent to Anthropic —
+`R6` 24,897; `V7` 24,864; `R6-I` 25,391; `V1-CTRL` 24,829; `R6-H` 24,931; `V8` 25,055; `V5` 24,873.
+**The permanent path reproduces the exact requests the hosted measurement was taken on**, so §118's
+evidence transfers.
+
+### 119.4 R6, absence, and anti-rubber-stamp — structural proofs
+
+`R6` permanent path derives `machine_guarding = NOT_APPLICABLE @ 0.96`, provenance
+`DERIVED_FROM_PRODUCTION_ENGINE`, controlling fact `moving or accessible energy = CONTRADICTED`,
+with a rationale that names the contradicted predicate — from the repaired §117 engine, not
+hand-written (gates `C.1`–`C.9`).
+
+**Projection absence stays distinguishable from evaluated-and-excluded** (gates `D.1`–`D.6`): the
+field `undefined` and `[]` both render NO section and are byte-identical to a pre-§119 request;
+`D.3` asserts an absent projection **never synthesises a `NOT_APPLICABLE` state**; a legacy input
+lacking the field entirely is byte-identical to the absent case.
+
+Anti-rubber-stamp, structurally (gates `E.*`): `V7` projects `machine_guarding=ACTIVE@0.96` — a
+stated point-of-operation contact is NOT projected as a false exclusion; `R6-I` and `R6-H` project
+`UNKNOWN@0.45` rather than excluded; `V5` projects `UNKNOWN`, which can carry a clarification; `V8`
+leaves `chemical_exposure` ABSENT from the projection so Expert may still add it; `V1-CTRL` renders
+the `CONTROLLED` assessment together with the override licence verbatim. **No boundary suppression
+exists** — gate `F.1` asserts mechanically that `expert-normalization.ts` does not so much as
+mention the field, so no code path can drop an Expert candidate on account of a projected
+disposition.
+
+### 119.5 Deliberately NOT promoted
+
+The state-aware scorer stays in `scripts/lib/`. The authorization permits promoting recording
+instrumentation **only if it belongs in the permanent evaluation harness**; that harness does not
+exist — the cohort is unauthorized and unbuilt — so promoting it would be speculative production
+surface. **No formal pass/fail threshold changed and no historical score was rewritten;**
+`expert-routing-metrics.ts` is byte-unchanged.
+
+### 119.6 Regression, confinement, retained limitations
+
+All suites re-run at \$0.00: Expert **56/58/40/30/51/131/141** plus the new **88/0** equivalence
+gate; quarantine **61/0** and **37/0**; deterministic corpus **16/16 with 0 dangerous false
+negatives**; **0 dangerous and 0 life-critical omissions**; **Population-A precision 100.0%**;
+`evidence-foundation`, grounding, Anthropic-adapter, standards/applicability suites all 0; `tsc` 0.
+**No new failing suite.** `PRE_EXISTING_BASELINE_FAILURE_UNCHANGED` — the eight known suites report
+identical counts to §118 (`hazlenz-field-gauntlet` 92, `hazlenz-authentic-gauntlet` 92,
+`hazlenz-authentic-reasoning` 21, `hazlenz-clarification-gauntlet`,
+`hazlenz-independent-standards-audit`, `safescope`, `safescope-standards`,
+`standards-corpus-integrity` 1) and are **not** described as passing.
+
+Confinement: exactly three production-capable files plus one `package.json` line. Zero
+controller/service/module, auth, billing, report/PDF, frontend, migration, governed-release or
+database involvement, and **`runExpertAnalysis` still has zero callers in `src/` — the layer remains
+off the customer path.** `expert-normalization.ts`, `expert-routing-metrics.ts`, the Anthropic
+adapter, `evidence-foundation.ts`, `shared-evidence-facts.ts` and `routing-fixtures.ts` are
+byte-unchanged. Pre-existing unrelated work preserved untouched.
+
+Retained explicitly: `P2_DETERMINISTIC_CONTROL = ABSENT` and n=3 per R6 arm in §118; the
+deterministic extraction layer remains **pattern-based** and §117 does not prove universal wording
+coverage (no vocabulary was expanded here); `CONTRADICTS_DETERMINISTIC` remains imperfectly
+calibrated and is **not** authoritative — the derived/adjudicated classification stays the
+meaningful diagnostic; `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN = TRUE`.
+
+### 119.7 Exact next operation
+
+**A product-owner decision on whether to authorize the formal 17-measure evaluation cohort.** It is
+now justified in the sense that the blocker §118 named is closed: the tested projection is no longer
+diagnostic-only, and the permanent path is proven to emit the exact requests the hosted measurement
+was taken on. Two things belong in that decision: the cohort harness itself does not exist and would
+need building (including whether the recording instrumentation is promoted with it), and Expert
+remains OFF the customer path — `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE`, with zero callers — so
+cohort evaluation measures a layer that is still not customer-reachable. **The 17-measure evaluation
+cohort remains BLOCKED.**
+
+---
+
+## 120 — EXPERT HAZLENZ FORMAL COHORT DEFINITION RECOVERY (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_FORMAL_COHORT_BLOCKED — AUTHORITATIVE_COHORT_DEFINITION_INCOMPLETE`.**
+Evidence: `verification/expert-hazlenz-formal-cohort-definition-recovery-2026-08-31/REPORT.md`.
+Predecessor: §119. **Provider calls attempted 0, completed 0; API cost \$0.00;
+`FORMAL_COHORT_SPENT = FALSE`.** No source file modified. Nothing committed, pushed, tagged or
+deployed. No customer activation. HEAD `37a5d1b5`, unmoved.
+
+The product owner authorized the formal cohort (`FORMAL_EXPERT_EVALUATION_COHORT_AUTHORIZED = TRUE`).
+The operation stopped at **Phase 0**, at that phase's own stop condition, before any harness was
+written and before any spend.
+
+### 120.1 The definition that exists — recovered in full
+
+`expert-evaluation-plan.ts` (`0b9b273a…`), narrated at §99.7, is complete and authoritative:
+**seventeen measures, four families, twelve HARD_GATEs and five MEASURED_AND_REPORTED**, four
+zero-tolerance gates (`M03`, `M05`, `M08` at `0`; `M04` at `100 %`), `evaluateGateFamilies()` with
+**no aggregate field** and an unmeasured hard gate counted as FAILED rather than skipped, the four
+preconditions `P1`–`P4`, and `EVALUATION_CORPUS_POLICY`. Full recovery in
+`recovered/EXPERT_17_MEASURE_DEFINITION.md`.
+
+### 120.2 The exam does not exist — five gaps, each independently sufficient
+
+**GAP 1 — no cohort.** No cohort artifact exists anywhere. The corpus policy names reserved material
+(gauntlet offsets 2–3, realism offsets 1–2, the unopened 100-row `gauntlet.seed`) but **never
+designates which is the Expert cohort**, states no rowcount, and states no case identities. Phase 3
+would freeze "complete frozen case/measure identities" and input hashes; there is nothing to freeze.
+
+**GAP 2 — seven measures have no computable definition, and five of the seven are HARD_GATEs.** A
+search for the measure ids over `backend/` returns the plan file, `test-expert-nocall-harness.ts`
+(asserting *dispositions*, not values) and one comment. **No function anywhere computes any
+M-value.** Nine are executable from their frozen `method` (`M03`, `M05`, `M08`, `M12`, `M13`, `M14`,
+`M15`, `M16`, `M17`), and `M04` becomes executable once rows carry deterministic findings. The other
+seven need a criterion that does not exist: `M01` and `M11`'s truth denominators, `M02`'s
+"is not a hazard" rule (**HARD 0.20**), `M06`'s "asserts a regulatory requirement" rule (**HARD
+0.05**), `M07`'s "all regulatory statements" denominator (**HARD 0.95**), `M09`'s
+"genuinely decision-critical" rule (**HARD 0.70**), and `M10`'s "rows owing no clarification"
+denominator (**HARD 0.15**). Authoring these now would set four hard gates' denominators **after**
+§104–§118 made the model's behaviour on exactly those axes visible.
+
+**GAP 3 — `P4` is unmet and blocks all four families on its own.** `P4_PRESPEND_AUTHORIZATION`
+requires "an explicit owner authorization naming **the cohort, the call count and the ceiling**";
+`blocksIfUnmet` is all four families. The authorization names none of the three.
+
+**GAP 4 — the corpus policy forbids the only Expert-shaped material that exists.** Every
+`ExpertAnalysisInput` in `src/` comes from one of six fixture files; the seven cases §118 measured
+and §119 proved byte-equivalent are drawn from `hazard-actuality-fixtures.ts` and
+`restoration-transition-fixtures.ts`. Development material is "**never a source of a gate result.**"
+The reserved material is raw observation text with Level-3 keys — not Expert-shaped rows, and
+carrying no key for any of the seventeen.
+
+**GAP 5 — no production constructor for cohort rows.** Re-verified live at this HEAD:
+`ExpertAnalysisInput` has only consumers plus the six fixture files, and `runExpertAnalysis` has
+**zero callers** (`expert-runner.ts:81`). Building rows from a reserved corpus means authoring a new
+input-construction path, whose per-row choices would be measured alongside the model.
+
+### 120.3 What is NOT the blocker
+
+**The credential is present** — checked presence/absence only, no value, prefix, suffix, length or
+hash read. `ANTHROPIC_API_KEY` is **PRESENT** in `backend/.env` (20 keys, mtime
+`2026-08-30T15:06:33.826Z`), absent from the process environment — the same shape §118 ran under.
+**The §104 credential blocker is CLOSED.** §119's equivalence result holds unchanged:
+`PERMANENT_EXPERT_PATH_PROVEN = TRUE`, `DETERMINISTIC_PROJECTION_PRESENT = TRUE`. Transport,
+credential and projection are all ready. **What is missing is the exam, not the instrument.**
+
+### 120.4 Why nothing was built
+
+Phase 2 requires a harness that measures the authoritative criteria **literally**, and Phase 0
+forbids reconstructing missing acceptance criteria or inventing new ones. A harness could only have
+been completed by authoring four hard gates' denominators and selecting a cohort — so building the
+partial harness would have prejudged them by its shape. A preregistration freezes what exists;
+freezing invented criteria would give fabricated criteria the standing of a frozen contract. **No
+implementation was modified, no scorer written, no threshold touched, no historical evidence
+rewritten.** `LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` remains `TRUE`, uninvestigated as instructed.
+
+### 120.5 Exact next operation
+
+**A product-owner decision supplying the four things `P4` and the seventeen measures require:**
+(1) which reserved material is opened and how many rows; (2) the call count, hard ceiling and
+maximum spend; (3) who authors the truth keys for `M02`, `M06`, `M07`, `M09`, `M10` — plus `M01` and
+`M11` — settled *before* any result is visible; (4) whether a cohort may be built before a
+production `ExpertAnalysisInput` constructor exists.
+
+Offered as engineering input and not as an authorization: items 3 and 4 can be settled on
+**development** material at \$0.00, which the policy permits without limit, and a reserved offset
+opened only once the scorers are frozen and the constructor is proven — keeping the single-use
+cohort for the measurement it was reserved for. **The 17-measure evaluation cohort remains
+BLOCKED, now for a stated and enumerated reason rather than an unbuilt harness.**
+
+---
+
+## 121 — EXPERT HAZLENZ FORMAL COHORT INFRASTRUCTURE AND SCORER FREEZE (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_FORMAL_COHORT_INFRASTRUCTURE_READY — RESERVED_COHORT_SELECTION_AND_PRESPEND_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-formal-cohort-infrastructure-2026-08-31/REPORT.md`.
+Predecessor: §120. **Provider calls 0; API cost \$0.00; `RESERVED_MATERIAL_OPENED = FALSE`;
+`FORMAL_COHORT_SPENT = FALSE`.** Nothing committed, pushed, tagged or deployed. No customer
+activation. HEAD `37a5d1b5`, unmoved. **146 assertions, 0 failed.**
+
+The instrument §120 said did not exist is now built, validated and frozen — before any reserved
+material is opened, which is the only ordering under which an answer key is an answer key.
+
+### 121.1 The seven incomplete measures, closed — and the honest split
+
+`expert-measurement-contract.ts` gives every measure a numerator, denominator, eligible-opportunity
+definition, exclusions, zero-opportunity treatment, and malformed / provider-failure / missing-truth
+handling. **Fourteen of seventeen resolve at truth-precedence level 1 or 2. Exactly three need a
+level-3 rubric** — `M06`, `M07`, `M09` — and each keeps a MECHANICAL detector and denominator so only
+the irreducibly semantic half is judged. Manufacturing a rule for that half would be fabricating
+objectivity, which the authorization forbids by name.
+
+Three of the seven turned out **fully mechanical** and are worth naming because §120 had them as open
+questions: `M10` (rows whose authored gaps are empty, and whether a question was asked), `M11`
+(`interactionKind` equality over a CLOSED vocabulary plus participant containment), and `M01` (truth
+`presentHazardFamilies` minus the families the REAL engine emitted). `M02` became mechanical via a
+**totality rule**: a row's `present`/`defensible`/`forbidden` buckets must PARTITION its
+`allowedHazardFamilies` exactly, checked at freeze time, so every candidate a model can legally emit
+lands in exactly one bucket.
+
+**No threshold, disposition or measure changed.** The contract stores no threshold at all — it reads
+every immutable field from `expert-evaluation-plan.ts` and **derives** each zero-opportunity
+treatment from the plan's own disposition, so there is no entry a later edit could flip to make a
+hard gate lenient. `assertContractMatchesPlan()` returns **0 problems**.
+
+### 121.2 Fail-closed, proved rather than promised
+
+A HARD_GATE with zero eligible opportunities is **UNMEASURED, and UNMEASURED FAILS** — it never
+becomes N/A. So is a gate whose adjudication queue is incomplete, and so is a candidate whose family
+falls outside all three truth buckets. `adjudicateFamilies()` passes ONLY measured values to the
+plan's own `evaluateGateFamilies()`, so the plan's rule does the failing and this layer merely
+refuses to hide it. Two proofs carry the most: **`E.M09.5`** — a model that emits nothing cannot
+score 1.00 on clarification quality, because the denominator is zero and the gate fails; and
+**`E.M02.4`** — an unclassified candidate is UNMEASURED, never read benignly.
+
+### 121.3 ONE canonical constructor, and the anti-leak guarantee
+
+`expert-input-constructor.ts` is the single transformation from analysis state to
+`ExpertAnalysisInput`. The harness calls `buildExpertAnalysisInputFromAnalysis`; a future
+customer-reachable caller calls the same function. There is **no evaluation-only variant** — §120
+GAP 5 named that cost. §119 semantics survive exactly (`C.10`–`C.13`): the constructor emits
+precisely what `projectDeterministicDispositions` produces, and `undefined` versus `[]` stays
+distinguishable with neither synthesising a `NOT_APPLICABLE`. The condition-state map is **total with
+no default branch** and an unmapped state THROWS.
+
+**The truth key cannot reach the model, structurally then measured.** The constructor's one parameter
+cannot express it. Life-criticality is the sharp case: the model is shown NONE — production
+establishes none, so `isLifeCritical` is `false` — while the corpus label reaches the MERGE input,
+which the model never sees. `M04` measures the merge, so it loses nothing, and the model cannot
+preferentially protect a finding it was never told to protect. **`TRUTH_LEAK = 0`**, measured by
+rendering the system prompt, the user prompt and the serialized input for every validation row.
+
+**`expert-prompt.ts` is BYTE-UNCHANGED (`e02c15ea…`) and the semantic version is still `v6`.** No
+prompt was redesigned, and `expert-deterministic-projection.ts` is byte-unchanged too (`f1cc7a61…`).
+
+### 121.4 The harness cannot call, and did not
+
+`DISABLED` mode **REFUSES** a provider and `ENABLED` **REQUIRES** one; ceilings are checked BEFORE
+each call; an invalid cohort stops before a request is built; a DISABLED run produces **NO score**,
+because development material may never yield a gate result. The real deterministic layer ran at
+\$0.00 with no database. **`providerInvocationCount() = 0`** after every check — the harness's own
+counter, not a reading of the code. 18 requests were CONSTRUCTED through the canonical path and none
+was sent.
+
+### 121.5 Composition and topology, DERIVED from the thresholds
+
+The sizing rule was stated before it was applied: `N >= ceil(2/t)` for a MAX ceiling, `N >= ceil(2/(1-f))`
+for a MIN floor. One rule, uniformly — it puts a single failure at or below half the ceiling and keeps
+every gate violable. Binding constraints: **`M06` 40 governed-record rows**, **`M14` 40 paired rows**,
+**`M13` 100 calls**. **Minimum defensible 48 rows** (40 with a record + 8 without), **preferred 60**.
+
+**Three denominators the cohort CANNOT guarantee** — `M02`, `M07`, `M09` count what the MODEL emits.
+Composition creates the opportunity and cannot manufacture the output; if the model emits fewer than
+the minimum, those gates are coarser or UNMEASURED and therefore fail. Stated, not hidden.
+
+Topology: **3 calls per row** — BASE (every content measure reads this arm ONLY), PERMUTED (`M14`),
+CROSS_PROCESS (`M17`). No repetition beyond that. The cost model is **FITTED FROM THE 18 REAL §118
+CALLS**, not quoted: \$2.00/M input and \$10.00/M output, reproducing every recorded cost with a
+**residual of 0.00000000 USD**. **144 calls / \$4.57 minimum; 180 calls / \$5.72 preferred; hard
+ceiling 200 calls; conservative maximum \$25.00** — computed from 200 calls at 12,000 input tokens
+and the full 8,000-token output cap plus 10% retry allowance (\$23), rounded up.
+
+### 121.6 Reserved-material sufficiency, determined WITHOUT opening it
+
+Metadata only — field names, row counts, closed-vocabulary label distributions — with a content
+boundary that refuses to emit observation text. **`RESERVED_MATERIAL_SUFFICIENT_WITHOUT_OPENING = FALSE`**,
+for specific reasons. `gauntlet.seed` (100 rows): through the unchanged `toExpertFamily` map, **45**
+rows express fully in the Expert taxonomy (19 `critical`, 14 multi-hazard), 8 partially, **47 not at
+all** — 45 is **3 short** of the 48-row minimum on its own. Field realism pack v2 (117 rows) carries
+`shouldHaveMissingEvidence`, the `M10` signal, distributed **true 87 / false 2 / unlabelled 28** —
+only **2** zero-owed rows against a minimum of **14**, and unlabelled is UNKNOWN, not zero-owed.
+**Five truth-key fields have NO label in either corpus**, and authoring them requires reading each
+observation, which IS opening the offset. Volume is adequate; composition cannot be settled from
+metadata, and the analysis does not pretend otherwise.
+
+### 121.7 Regression and confinement
+
+Expert suites identical to §119: **56 / 51 / 131 / 141 / 58 / 88 / 40 / 30**, plus the new
+**146/0** instrument suite. Quarantine **61/0** and **37/0** intact. `hazlenz-precision` PASS with
+**0 dangerous and 0 life-critical omissions**; `hazlenz-actionable-coverage` PASS;
+`evidence-foundation` 35; `hazlenz-evidence-boundary` 13; `tsc --noEmit` exit 0. **No new failing
+suite.** The eight `PRE_EXISTING_BASELINE_FAILURE_UNCHANGED` suites were not re-run by this operation
+and are still not described as passing.
+
+Confinement: **six new files under `expert-hazlenz/`, three new scripts, and exactly two added
+`package.json` script lines** — the only tracked file this operation modified. Zero
+controller/service/module, auth, billing, report/PDF, frontend, migration, governed-release or
+database involvement. **`runExpertAnalysis` still has zero callers in `src/`.**
+
+### 121.8 Exact next operation
+
+**`RESERVED_COHORT_SELECTION_AND_PRESPEND_AUTHORIZATION`** — one decision naming which reserved
+material is opened and how many rows (recommended **60**, minimum **48**); who authors the truth key
+and when; the call count (**180**), hard ceiling (**200**) and maximum spend (**\$25.00**); and the
+resolution of three policy items: that the truth key cannot be authored without opening the offset;
+that 47 of 100 `gauntlet.seed` rows are outside the Expert taxonomy and widening `toExpertFamily`
+would change the accepted §119 projection; and that `M10`'s zero-owed rows must be deliberately
+authored because the reserved labels supply 2 against a minimum of 14. **That authorization satisfies
+`P4` and nothing before it does.** Expert remains OFF the customer path, and a passing cohort would
+still not be authorization to activate it.
+
+---
+
+## 122 — EXPERT HAZLENZ FORMAL COHORT ASSEMBLY AND TRUTH-KEY (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_FORMAL_COHORT_ASSEMBLY_BLOCKED — COHORT_SOURCE_MATERIAL_INSUFFICIENT_FOR_FROZEN_COMPOSITION`.**
+Evidence: `verification/expert-hazlenz-formal-cohort-assembly-2026-08-31/REPORT.md`. Predecessor:
+§121. **Provider calls 0; `PROVIDER_INVOCATION_COUNT = 0`; \$0.00; `TRUTH_LEAK = 0`;
+`FORMAL_COHORT_SPENT = FALSE`.** Nothing committed, pushed, tagged or deployed. HEAD `37a5d1b5`.
+
+The reserve was opened once, correctly; the machinery works on real rows; **the cohort could not be
+frozen**, and the reason is not the row count.
+
+### 122.1 Pre-exposure freeze, and a policy frozen before the rows were seen
+
+All nine §121 hashes re-proved identical **before** anything was opened — zero drift. The
+supplemental construction policy (`cc69d28e…`) was then written and hashed **before** `gauntlet.seed`
+was read; it imports no provider, no probe artifact and no run record, so "selection may not be
+driven by observed model behaviour" is structural rather than promised, and its selection order is
+fixed with no randomness and no seed.
+
+### 122.2 The reserved open, and open-once compliance
+
+`safescope-gauntlet.seed.json` opened ONCE, all 100 rows, pre-open `49aa40fd…` **matching the
+§7785 record** and post-operation **unchanged** — read only, never mutated. **0 of 100 scenarioIds
+appear anywhere in `verification/` or `docs/`.** Gauntlet offsets 2 and 3 and realism offsets 1 and 2
+were **NOT opened** and remain available as future single-use exams; the realism pack was left
+untouched deliberately, because §121 measured only 2 zero-owed rows in it against a requirement of 14.
+
+### 122.3 `HISTORICAL` is RESOLVED — and §121's provisional reading was WRONG
+
+`inferConditionState()` reaches HISTORICAL through five branches. **Four of five stamp
+`correctionStatus: 'reported'`** and state in their own text that the current status or exposure is
+NOT established; only the "described as corrected" branch stamps `'verified'`. The frozen definition
+of `CORRECTED` is "the hazard existed and the observation asserts it was PUT RIGHT". Mapping the
+other four to `CORRECTED` would have told Expert the hazard was fixed precisely where the engine said
+it could not establish the current status — a false statement, not an approximation. The engine
+supplies its own discriminator, so the resolution needs no judgement of ours:
+**`HISTORICAL + verified -> CORRECTED`, otherwise `INSUFFICIENT_EVIDENCE`** (rather than `UNKNOWN`,
+because the engine did establish a prior condition and failed only on the current state, and because
+the engine's own `UNKNOWN` branch must stay distinguishable). Implemented and asserted.
+
+**`PLANNED_FUTURE` REMAINS UNRESOLVED AND WAS NOT GUESSED.** The engine asserts a SCHEDULED activity;
+`HYPOTHETICAL` is defined as CONTINGENT framing. A scheduled activity fails that clause, and **no
+member of the eight-state vocabulary means "scheduled but not yet begun"** — a vocabulary gap, not a
+choice between readings. Both alternatives and their consequences are returned in the report.
+**Measured mitigation: ZERO of the 45 eligible reserved rows exercise it** (across all 100 rows the
+engine produced 92 `ACTIVE`, 1 `HISTORICAL`, no `PLANNED_FUTURE`), so the decision changes nothing
+for the material in hand.
+
+### 122.4 The candidate executes the REAL permanent path
+
+45 eligible reserved rows — matching §121's metadata prediction exactly — built with **mechanical
+truth only** (levels 1 and 2), each field carrying its provenance. **0 validity problems across 45
+rows; 135 requests CONSTRUCTED through the canonical constructor and the permanent prompt builder;
+0 SENT; `PROVIDER_INVOCATION_COUNT = 0`; `TRUTH_LEAK = 0`.**
+`CANONICAL_EXPERT_INPUT_CONSTRUCTOR_PROVEN` now holds on real reserved rows rather than fixtures.
+
+### 122.5 Why the cohort could NOT be frozen — two blockers, neither about row count
+
+The candidate pool is **77 rows** against a 60-row target, so **row count is not the constraint**.
+
+**BLOCKER 1 — no authorized governed-record source exists.**
+`approved-knowledge-registry.v1.json` contains **ZERO records**. The governed release, which the
+blueprint records as the authority defining governed regulatory content, lives in the database, which
+this authorization does not permit touching. `safescope-standards.data.ts` holds 8 legacy records and
+`standards_master` is recorded as **COMPATIBILITY_EVIDENCE_ONLY, explicitly not the authority**. Raw
+eCFR XML exists under the governed-knowledge-growth source-evidence directories, but turning raw
+source into a `GovernedStandardView` with a `backingState` would construct governed content outside
+the governed pipeline, and asserting `APPROVED` for text nobody approved is what
+`EXPERT_CANNOT_APPROVE_AN_UNAPPROVED_RECORD` and `EXPERT_CANNOT_FABRICATE_GOVERNED_PROVENANCE` exist
+to prevent. **`GOVERNED_RECORD_SUPPLIED` 40 required / 0 achievable; `DISAGREEMENT_OPPORTUNITY` 6 / 0.**
+Cascade: `M06` (HARD 0.05) and `M07` (HARD 0.95) both need governed-record rows, so at a zero
+denominator `M06` is UNMEASURED and **`REGULATORY_INTEGRITY` would fail BY CONSTRUCTION rather than on
+the model's behaviour** — the §100.4 failure this programme has already paid for once.
+
+**BLOCKER 2 — the frozen taxonomy limits the negative control.** All 100 reserved rows carry
+`unacceptableStandardFamilies`, but only **14 of the 45** eligible rows have one that maps into the
+accepted seven-family taxonomy through the frozen `toExpertFamily`; Population A adds 13, for **27
+against a requirement of 48**. The rest name families the taxonomy cannot express — Housekeeping,
+PPE, Emergency egress, Material Handling. Closing it needs either widening `toExpertFamily`
+(prohibited by name, and a change to the accepted §119 projection) or labelling families forbidden
+where no corpus says so (fabricating truth for a hard gate's numerator). **Neither was done.**
+
+Everything else is satisfiable: `CLARIFICATION_OWED` 45/20, `NEGATED_OR_SAFE_STATE` 14/10,
+`CROSS_HAZARD_INTERACTION` 13/10, `LIFE_CRITICAL_PRESENT` 27/10, `MULTI_HAZARD` 21/12,
+`DETERMINISTIC_MISS_RECALL_OPPORTUNITY` 33/10 — each needing level-3 authoring, which is remaining
+WORK rather than a blocker. `CLARIFICATION_NOT_OWED` is 15 against 14: **one row of margin.**
+
+### 122.6 Recalculated spend, from real constructed requests
+
+Measured over the 45 real request bodies rather than estimated: **mean 23,406 bytes ≈ 8,913 input
+tokens** (min 8,706 / max 9,466), output assumption **1,279** tokens at §118's measured mean.
+At the fitted **\$2.00/M input, \$10.00/M output**: **\$0.0306 per call** without governed records and
+**\$0.0318** with them, so **\$5.51–\$5.72 at 180 calls**. Conservative maximum at 200 calls
+(12,000 in + the full 8,000-token output cap + 10% retry) is **\$22.88**, so **\$25.00 remains a
+sufficient hard financial ceiling** with about 9% headroom.
+
+### 122.7 Regression and confinement
+
+Expert suites identical to §121 after the constructor change: **56 / 51 / 131 / 141 / 58 / 88 / 40 /
+30**, instrument suite **150/0** (up from 146 — four new mapping assertions), quarantine **61/0** and
+**37/0**, `hazlenz-precision` PASS with **0 dangerous and 0 life-critical omissions**,
+`hazlenz-actionable-coverage` PASS, `evidence-foundation` 35, `hazlenz-evidence-boundary` 13,
+`tsc` exit 0. **No new failing suite**, and the §119 equivalence gate still passes at **88/0**.
+
+The ONLY source file this operation changed is `expert-input-constructor.ts`
+(`2210cbe6…` -> `c28c2d9f…`), for the authorized `HISTORICAL` resolution. Prompt, projection, plan,
+measurement contract, cohort contract, scorers, composition and harness are **byte-unchanged**;
+`toExpertFamily` was not widened; no threshold, disposition or scorer semantic changed;
+`LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`, untouched.
+
+### 122.8 Exact next operation
+
+**A product-owner decision on three items**, none of which an engineer may settle: (1) a **governed
+record source** for the cohort — an export from the governed release, or an explicit decision that a
+defined subset of eCFR source-evidence may be supplied under a stated non-`APPROVED` backing state —
+or an amendment to the frozen requirement, which is itself a governance act; (2) the **negative-control
+shortfall**, either accepting 27 against the frozen 48 or authorizing a separately re-verified
+widening of `toExpertFamily`; and (3) **`PLANNED_FUTURE`**, alternative A or B, currently exercised by
+zero rows. Once 1 and 2 are settled the remaining work is bounded level-3 truth authoring. The
+reserve stays open-once compliant: `gauntlet.seed` is opened, the other four offsets are not.
+
+---
+
+## 123 — EXPERT HAZLENZ COHORT SOURCE BLOCKERS (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_FORMAL_COHORT_ASSEMBLY_BLOCKED — RESERVED_NEGATIVE_CONTROL_COVERAGE_INSUFFICIENT`.**
+Evidence: `verification/expert-hazlenz-cohort-source-blockers-2026-08-31/REPORT.md`. Predecessor:
+§122. **Provider calls 0; \$0.00; no production mutation; NO reserved material spent this phase;
+`FORMAL_COHORT_SPENT = FALSE`.** HEAD `37a5d1b5`. Nothing committed, pushed, tagged or deployed.
+
+Both condition mappings are now frozen with regression tests. **Neither source blocker closed** —
+and the second closed AGAINST the cohort, on measurement, by exactly three rows.
+
+### 123.1 Constructor drift — PROVEN, not inspected
+
+Method: revert only the five §122 edits and hash the result. The reverted copy reproduces the §121
+frozen `2210cbe6…` **byte for byte**, so those edits ARE the complete diff and there is **zero
+unrelated semantic drift**. Prompt byte-unchanged (`e02c15ea…`, `v6`); projection byte-unchanged
+(`f1cc7a61…`); `TRUTH_LEAK = 0` re-measured; no evaluation-only behaviour — the added parameter is a
+PRODUCTION engine field (`HazardDecomposition.correctionStatus`), and no cohort or truth type is
+reachable from any signature in the module; still the single canonical path; §119 equivalence **88/0**;
+§121 instrument suite **155/0**. **New authoritative constructor hash: `72dab946…`.**
+
+### 123.2 Both condition mappings frozen
+
+`HISTORICAL` stays resolved from engine semantics, with the disproof preserved: four of five engine
+branches stamp `correctionStatus: 'reported'` and say the current status is NOT established, so a
+blanket `HISTORICAL -> CORRECTED` is FALSE for four of five cases. Frozen as
+`verified -> CORRECTED, otherwise INSUFFICIENT_EVIDENCE`.
+
+**`PLANNED_FUTURE -> HYPOTHETICAL` is frozen as the canonical mapping** on the product owner's
+decision, with **`PLANNED_FUTURE_REPRESENTATION_DEBT = TRUE`** recorded IN CODE rather than absorbed:
+the engine ASSERTS a scheduled activity while `HYPOTHETICAL` means the text framed it as CONTINGENT;
+the foreseeable failure is Expert declining or under-weighting a hazard that IS going to occur; and
+resolving it needs a new member in `EXPERT_CONDITION_STATES`, which is byte-identical to the Level-3
+vocabulary by frozen assertion and is therefore a governance act with its own authorization. **The
+vocabulary was NOT expanded.** Five new tests (`C.5d`–`C.5i`) cover the mapping, its non-discrimination
+by `correctionStatus`, why it is not `INSUFFICIENT_EVIDENCE`, the open debt flag, and the unexpanded
+vocabulary.
+
+### 123.3 The governed release is NOT REACHABLE from this machine
+
+`DATABASE_URL` here is **localhost**, 48 characters, and **malformed** — `new URL()` rejects it and
+`pg` resolves its host to the literal string `base`; the discrete `DB_*` are `localhost` / `safescope`
+/ `5432`, the LOCAL DEVELOPMENT database; there is no Render or production host anywhere in the
+configuration. In that local database `regulatory_releases` has **0 rows** and both
+`regulatory_release_records` and `knowledge_release_events` are **ABSENT**. The accepted production
+governed release therefore cannot be read from here, and the account owner's standing instruction is
+that the production `DATABASE_URL` is never asked for or handled by the assistant — so the deliverable
+is a **guarded read-only runbook the owner executes**, at `governed/READ-ONLY-EXTRACTION-RUNBOOK.md`.
+
+**Read-only enforcement was PROVEN achievable and is what the runbook uses:** on
+`BEGIN TRANSACTION READ ONLY` a `WHERE false` write probe was refused by the server with
+**`SQLSTATE 25006 — cannot execute UPDATE in a read-only transaction`**. Server-side, not discipline.
+Recorded honestly beside it: the local role is a **superuser**, so the ROLE is unconstrained and only
+the TRANSACTION is — which is why the runbook also sets `default_transaction_read_only` at session
+level. **No release identity, checksum, snapshot or coverage count can be reported.**
+`standards_master` was NOT used as authority and no eCFR evidence was turned into invented records.
+
+### 123.4 Negative control: **45 against a frozen 48**, and NO reserve was spent to learn it
+
+Counted from LABEL METADATA ONLY — `primaryHazardFamily`, `secondaryHazardFamilies` and
+`unacceptableStandardFamilies` mapped through the frozen `toExpertFamily` — so **gauntlet offsets 2
+and 3 and realism offsets 1 and 2 remain UNOPENED and UNSPENT**. Opening them was authorized but was
+not NEEDED, and spending single-use material to learn the same number is the failure this programme
+has already paid for.
+
+`gauntlet.seed` **14** + Population A **13** + source offset 2 **9** + source offset 3 **9** +
+realism **0** = **45**. Realism contributes nothing for a structural reason: it carries
+**`forbiddenTerms`, not forbidden FAMILIES** — its 48 distinct values are citations and phrases
+(`29 cfr 1926.651`, `active exposure`, `bare conductor`), and a forbidden-FAMILY truth cannot be
+inferred from a forbidden TERM under the frozen precedence rules.
+
+**Shortfall 3.** Phase 4's STOP fired. No synthetic forbidden labels were created, `toExpertFamily`
+was NOT widened, 48 was NOT reinterpreted, and no family was inferred from the absence of a positive
+label. **The material that would close it exists but is not authorized:** source-pool offsets **0 and
+4** hold **15** further capable rows (total would be **60**), but `EVALUATION_CORPUS_POLICY` names
+only offsets 2 and 3, realism 1 and 2, and the seed as RESERVED — offsets 0 and 4 appear in NEITHER
+the closed nor the reserved list, so designating them is a governance act, not an engineering choice.
+Offset 1 is retired/closed (8 capable rows) and may not be reopened.
+
+### 123.5 Open-once compliance, sharpened
+
+§122 reported 0 of 100 scenarioIds in any prior artifact. A follow-up full-text sweep initially
+flagged 110 files; that was an artifact of two GENERIC short fragments — "unguarded conveyor tail
+pulley" and "missing fire extinguisher in haul truck" — that occur independently in other corpora.
+Re-run over the **98 distinctive (≥40 char)** fragments across **6,400** files: **0 matches.** The
+§122 claim stands, now on stronger evidence.
+
+### 123.6 Regression and confinement
+
+**56 / 51 / 131 / 141 / 58 / 88 / 40 / 30**, instrument **155/0** (up from 150 — five new mapping
+tests), quarantine **61/0** and **37/0**, `hazlenz-precision` PASS with **0 dangerous and 0
+life-critical omissions**, `hazlenz-actionable-coverage` PASS, `evidence-foundation` 35,
+`hazlenz-evidence-boundary` 13, `tsc` exit 0. **No new failing suite.** The ONLY source file changed
+is `expert-input-constructor.ts` (`c28c2d9f…` -> `72dab946…`). All three reserved corpora are
+byte-unchanged (`49aa40fd…`, `a95e5480…`, `6f6897f1…`). `runExpertAnalysis` still has ZERO callers.
+`LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN` stays `TRUE`, untouched.
+
+### 123.7 Exact next operation
+
+**`FORMAL_EXPERT_COHORT_V1` was NOT frozen and no identifier was claimed**, so no P4 proposal is
+returned. Two decisions remain, both the owner's: **execute the governed read-only runbook** (or defer
+it — it gains nothing while blocker 2 stands), and **a governed corpus-augmentation decision** for the
+three-row negative-control shortfall, whose cheapest identified route is designating source-pool
+offsets 0 and 4 as RESERVED for this exam, taking the achievable count to 60.
+
+> **SUPERSEDED BY §124.** That route does not exist. The authoritative D-86 partition is `i % 4`
+> over scenarioId-sorted rows, giving FOUR offsets, not five: there is no offset 4, and
+> **`GAUNTLET_OFFSET_0` was RETIRED by the Run 1 sealed acceptance in §61.** The corrected achievable
+> count is **43**, not 45. See §124.
+
+---
+
+## 124 — EXPERT HAZLENZ FINAL FORMAL-COHORT SOURCE BLOCKERS (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_FORMAL_COHORT_ASSEMBLY_BLOCKED — AUGMENTATION_MATERIAL_RETIRED_AND_COVERAGE_STILL_INSUFFICIENT`.**
+Evidence: `verification/expert-hazlenz-final-source-blockers-2026-08-31/REPORT.md`. Predecessor: §123.
+**Provider calls 0; \$0.00; no production mutation; NO reserved material opened; NO source file
+changed; `FORMAL_COHORT_SPENT = FALSE`.** HEAD `37a5d1b5`.
+
+**The mandatory pre-open identity check fired and changed the answer.** The augmentation route §123
+proposed does not exist, and the negative-control ceiling is LOWER than §123 reported.
+
+### 124.1 The authoritative partition is `i % 4`, and §123 got it wrong four ways
+
+D-86 (L3-EPA) states the rule: `gauntlet.source.v1`, sort `scenarioId` UTF-8 byte-wise ascending,
+0-based index, **`m = 4`**, `i % 4 === k`, `k = parseInt(sha256.slice(-8),16) % 4` =
+`parseInt("22f0adb4",16) % 4` = **0**, giving **38 rows** and partitions **38/38/37/37**, with the
+reservation order `0`→`1`→`2`→`3` **immutable and never reassignable**. Reproduced live this phase
+against `a95e5480…`: `k = 0`, sizes **38/38/37/37** — an EXACT match, so the stride implementation is
+verified rather than assumed.
+
+§123 was wrong on the **modulus** (used 5), the **order** (indexed the file's natural order instead of
+a scenarioId sort), the **designation** (called offset 0 undesignated), and the **existence** of an
+offset 4. Corrected ceiling: **43**, not 45.
+
+### 124.2 `GAUNTLET_OFFSET_0` IS RETIRED — collision confirmed
+
+§61's own header records `HOLDOUT_SPENT = TRUE · GAUNTLET_OFFSET_0 = RETIRED · REALISM_OFFSET_3 =
+RETIRED` under terminal `L3_ACCEPTANCE_INVALID — PROVIDER_CALLABILITY_FAILURE_AFTER_SPEND` — the
+corpus was spent and the measurement was NOT obtained. The governing rule is explicit: **"A FAILED
+ACCEPTANCE RUN SPENDS THE STRIDE. IT DOES NOT RETURN IT"**, and the opened stride "is retired
+permanently; it never becomes a development, tuning or regression set." **`RETIRED = RETIRED`:
+offset 0 was NOT reopened and NOT redesignated.** Offset 4 could not be designated because the
+four-way partition has none.
+
+| offset | rows | capable | status |
+|---|---|---|---|
+| `GAUNTLET_OFFSET_0` | 38 | 12 | **RETIRED** (§61, Run 1) |
+| `GAUNTLET_OFFSET_1` | 38 | 13 | **RETIRED** (Run 2) |
+| `GAUNTLET_OFFSET_2` | 37 | 8 | RESERVED, not opened |
+| `GAUNTLET_OFFSET_3` | 37 | 8 | RESERVED, not opened |
+
+### 124.3 A FROZEN ARTIFACT UNDER-REPORTS RETIREMENTS
+
+`EVALUATION_CORPUS_POLICY.closed` in `expert-evaluation-plan.ts` names only `GAUNTLET_OFFSET_1` and
+`REALISM_OFFSET_0`. It **OMITS `GAUNTLET_OFFSET_0` and `REALISM_OFFSET_3`**, both retired by Run 1 in
+§61 — and that incompleteness is exactly what invited §123's error. **The plan file was NOT
+modified**: it is a frozen authority and `test:expert-nocall-harness` asserts `closed.length === 4`,
+so the blueprint's §61 record is treated as authoritative over the summary list. Amending it is a
+governance act with its own authorization, and it should be taken.
+
+### 124.4 The count, and why nothing was opened
+
+seed **14** + Population A **13** + offset 2 **8** + offset 3 **8** + realism **0** = **43 against a
+frozen 48. Shortfall 5.** The only material that would close it — offsets 0 and 1, 12 and 13 capable
+rows — is **permanently retired** by two spent acceptance runs.
+
+**NOTHING WAS OPENED.** Metadata already proves the end state with offsets 2 and 3 FULLY COUNTED is
+43. Opening them would spend two single-use reserved offsets, still miss 48, and leave the cohort
+unfreezable AND the reserve burned — §61's outcome exactly. The count is identical whether measured
+from labels or after opening, so opening buys nothing. Realism contributes **0** structurally: the
+pack has **no hazard-family field at all**, so its rows cannot be taxonomy-eligible without authoring
+family truth from observations, which the frozen truth rules forbid. **No forbidden-family truth was
+fabricated, `toExpertFamily` was not widened, and 48 was not reinterpreted.**
+
+### 124.5 Governed extraction NOT executed, and Parts D–H did not run
+
+Part B authorizes the PRODUCT OWNER to run the runbook in their own Terminal. **No sanitized output
+was provided, so nothing was reconciled**: no release identity, status, checksum, record count,
+snapshot hash or coverage. `GOVERNED_RECORD_SUPPLIED = 0`. The production credential was neither
+requested nor handled. Running it now gains nothing while blocker 1 stands, since Part D requires
+BOTH closed.
+
+**`FORMAL_EXPERT_COHORT_V1` was NOT frozen, no identifier was claimed, and no P4 block is returned.**
+§122's spend figures stand: \$5.51–\$5.72 at 180 calls, conservative maximum \$22.88.
+
+### 124.6 Drift and regression
+
+All ten frozen artifacts re-verified at their recorded hashes, constructor unchanged at
+`72dab946…`. **No source file changed this phase.** Regression **56 / 51 / 131 / 141 / 58 / 88 / 40 /
+30**, instrument **155/0**, quarantine **61/0** and **37/0**, precision PASS with 0 dangerous and 0
+life-critical omissions, `tsc` exit 0. Reserved corpora byte-unchanged (`49aa40fd…`, `a95e5480…`,
+`6f6897f1…`).
+
+### 124.7 Exact next operation
+
+The negative-control requirement **cannot be met by designating offsets — there are none left to
+designate.** Three options, all the owner's: **author genuinely new formal negative-control material**
+under a governed construction phase (the corpus policy's own remedy, and the only route that keeps 48
+intact); **amend the frozen 48** with a stated rationale; or **accept a smaller cohort** with `M02` on
+a coarser denominator, which changes what the evaluation can conclude. None was taken.
+
+---
+
+## 125 — EXPERT HAZLENZ GOVERNED NEGATIVE-CONTROL CORPUS AUGMENTATION (2026-08-31) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_FORMAL_NEGATIVE_CONTROL_AUGMENTATION_SEALED — FINAL_COHORT_ASSEMBLY_AND_GOVERNED_SNAPSHOT_READY`.**
+Evidence: `verification/expert-hazlenz-negative-control-augmentation-2026-08-31/REPORT.md`.
+Predecessor: §124. **Provider calls 0; \$0.00; no production access; NO reserved material opened;
+`FORMAL_COHORT_SPENT = FALSE`.** HEAD `37a5d1b5`. **29 validation assertions, 0 failed.**
+
+**The negative-control blocker is CLOSED with a margin of 9** — by authoring genuinely new material
+rather than by reopening retired material, widening the taxonomy or weakening the frozen 48.
+
+### 125.1 The retirement registry, and the fail-closed guard
+
+`expert-corpus-retirement-registry.ts` (`cd1a114d…`) records **13 partitions, 6 permanently retired**,
+each with its namespace, corpus hash, partition rule, status, retirement evidence and decision
+source. `assertMayOpen()` consults **BOTH** the frozen plan and the registry and **fails closed on any
+conflict** — verified: retired gauntlet offsets 0 and 1 REFUSED, retired realism offset 3 REFUSED,
+UNKNOWN `GAUNTLET_OFFSET_4` REFUSED, reserved offsets 2 and 3 permitted. This is the overlay that
+makes §123's error structurally unrepeatable.
+
+`planListDiscrepancies()` reports that the frozen plan under-reports **exactly three** retirements —
+`GAUNTLET_OFFSET_0`, `REALISM_OFFSET_3` and the exhausted field-validation dataset — **reported, not
+silently reconciled**, because the plan is frozen and `closed.length === 4` is a protected assertion.
+
+### 125.2 Policy frozen BEFORE a single case existed
+
+`expert-augmentation-construction-policy.ts` (`9865e7d0…`) was written and hashed before any row was
+authored. It imports no provider, probe artifact or run record, so "construction may not be informed
+by provider behaviour" is enforced by the **dependency graph**. It states the purpose as **COVERAGE,
+NOT CHALLENGE**, and requires every forbidden family to carry a **LURE plus a DEFEATING FACT** —
+absence is never a reason, which is the frozen rule made mechanical.
+
+### 125.3 Sixteen rows, every distribution target met
+
+`AUG-01`…`AUG-16`. Forbidden-family rows **14/10**; safe-resolved-negated **6/4**; active **8/4**;
+multi-family **4/4**; clarification-not-owed **13/4**; clarification-owed **3/2**; governed-matchable
+**14/4**; plus **3 recorded interactions** over the closed vocabulary. Every forbidden family's lure
+was verified MECHANICALLY against a per-family lexicon — a family nothing in the text points at
+cannot be forbidden.
+
+### 125.4 The review, and the limitation that is NOT smoothed over
+
+**The review was performed by the same agent that authored the cases.** It is an authoring
+self-review, NOT an independent human safety-domain review, and that matters: this corpus feeds
+`M02`, a HARD GATE at 0.20, where a disputed forbidden label would score a CORRECT model observation
+as a false positive. **A qualified safety professional should review the sixteen rows — especially the
+fourteen forbidden determinations — before this corpus produces a gate result.**
+
+The review's substantive result was **two rejections**, both from asking whether a competent reviewer
+could legitimately raise the family: **`AUG-04` `lockout_tagout`** (isolating lines into a vessel
+before entry is a real requirement) and **`AUG-15` `electrical`** (a carton sealer is electrically
+powered, so unisolated electrical energy is a genuine second source). Both downgraded to DEFENSIBLE.
+Cost: 16 opportunities down to **14**. **Neither row was rewritten to restore one.** Three borderline
+determinations are recorded rather than hidden.
+
+### 125.5 Capability closed, without opening anything
+
+**`NEW_TRUTH_SUPPORTED_NEGATIVE_CONTROL_OPPORTUNITIES = 14`** (≥10 required).
+seed 14 + Population A 13 + offset2 8 + offset3 8 + realism 0 = **43**, + augmentation 14 =
+**`AVAILABLE_NEGATIVE_CONTROL_CAPABILITY = 57 ≥ 48`, margin 9.** Offsets 2 and 3 counted from
+**metadata only — neither was opened**, preserving single-use reserve for final assembly.
+
+**`KNOWN_PROVIDER_CASE_COPY = FALSE`**: all 16 observations yield a distinctive ≥40-char fragment and
+match **0 files** across `verification/`, `docs/`, `safescope-data/` and the Expert fixtures — which
+include every §104–§119 diagnostic fixture a provider has seen. Retired material was NOT read for
+this check; it is excluded by path and its identity established by hash instead.
+**`TRUTH_LEAK = 0`** across all 48 constructed requests; **`PROVIDER_INVOCATION_COUNT = 0`**.
+
+### 125.6 Seal
+
+**`FORMAL_EXPERT_NEGATIVE_CONTROL_AUGMENTATION_V1` — SEALED**, now formal RESERVED material and NOT
+yet spent. Manifest `b2e96cc5…`, truth keys `51afb054…`, provenance `e33fb8df…`, corpus module
+`c744c939…`, seal record `97bb5e67…`, review `2352dc21…`. All frozen artifacts unchanged, constructor
+still `72dab946…`, reserved corpora byte-unchanged.
+
+Regression **56 / 51 / 131 / 141 / 58 / 88 / 40 / 30**, instrument **155/0**, augmentation **29/0**,
+quarantine **61/0** and **37/0**, precision PASS with 0 dangerous and 0 life-critical omissions,
+`tsc` 0.
+
+### 125.7 Exact next operation
+
+**`FORMAL_COHORT_FINAL_ASSEMBLY_AND_GOVERNED_SNAPSHOT`** — reconcile the owner-executed governed
+read-only extraction, open only the minimum reserved material needed, assemble the exact 60 rows,
+freeze the manifest/truth/provenance hashes and produce the P4 proposal. **`GOVERNED_RECORD_SUPPLIED
+= 0` remains the one open cohort blocker.**
+
+---
+
+## 133 — D-86 RESERVED OFFSETS 2 AND 3 OPENED; REAL-SUPPLY JOINT FEASIBILITY MEASURED (2026-09-01) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `FORMAL_COHORT_REAL_SUPPLY_FEASIBLE — COHORT_SIZE_POLICY_GOVERNANCE_DECISION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-d86-reserved-open-2026-09-01/` and
+`verification/expert-hazlenz-real-supply-feasibility-2026-09-01/`.
+Predecessor: §132. **Provider calls 0; \$0.00; no production access; no database access;
+`FORMAL_COHORT_SPENT = FALSE`; `P4_PRESPEND_AUTHORIZATION = FALSE`; `COHORT_STATUS = CANDIDATE`.**
+**`RESERVED_MATERIAL_OPENED = TRUE`, scope `D86_GAUNTLET_OFFSETS_2_AND_3_ONLY`.**
+
+The product owner chose **OPTION B** — spend existing reserved negative-control supply rather than
+author seven new dual-class semantic rows to preserve an historical ceiling of 60. The instruction was
+explicit that authoring evaluation truth to protect an arbitrary cohort size is the wrong trade.
+
+### 133.1 The opening, recorded before it happened
+
+A reserved partition is a single-use exam: reading it spends it whether or not the result is useful.
+The opener therefore writes the **complete pre-open record first** and only then reads a row, so a run
+that dies mid-open still leaves an accurate record of what was spent.
+
+Recorded before the read: timestamp `2026-09-01T17:04:34Z`; `assertMayOpen` verdicts for both
+partitions; the D-86 rule verbatim from the registry; the prior status of **all four** partitions of
+the artifact; expected row counts; and every relevant hash — source `a95e5480…22f0adb4` (matching the
+registry, so identity is proven not asserted), registry, the §122 policy `cc69d28e…`, the evaluation
+plan, `gauntlet.seed`, and the **untouched** realism pack `6f6897f1…`.
+
+**Partition executed, not quoted.** `scenarioId` CMP ascending (UTF-8 byte-wise), 0-based, `m = 4`,
+`i % 4 === offset`, with `k = parseInt(sha256.slice(-8),16) % 4 = 0`. Measured sizes **38 / 38 / 37 /
+37**, matching the registry exactly; byte-wise `Buffer.compare` and JS relational ordering proven to
+agree rather than assumed to. **74 rows exposed**, all identifiers listed in the opening record. This
+is the registry's `i % 4` scheme, **not** §123's historical analytical `i % 5`, per the owner's
+resolution — the two designate materially different material and the choice is irreversible.
+
+Source sha256 asserted again **after** the read and found identical: byte-for-byte preservation is
+proven, not promised. The opener refuses to run a second time, so the recorded opening timestamp can
+never be quietly overwritten by a later one.
+
+### 133.2 Eligibility, and an exact reconciliation
+
+The **existing** §122 rule (`reservedRowEligible`) was applied unchanged — no redesign, no label
+reinterpretation, no authoring, no clarification or interaction truth created. Each row also went
+through the existing deterministic engine, exactly as the §122 seed classification did.
+
+| | offset 2 | offset 3 | total |
+|---|---|---|---|
+| rows opened | 37 | 37 | **74** |
+| ELIGIBLE under §122 | 8 | 8 | **16** |
+| eligible **and** forbidden-negative | 8 | 8 | **16** |
+| registry-recorded contribution | 8 | 8 | **16** |
+
+**The reconciliation is exact.** It was still verified rather than assumed: the registry's 8 + 8 was a
+**label-only** count taken *"without reading any observation"*, and §131 had already shown that count
+is not generally reproducible from labels — in `gauntlet.seed`, 8 of 100 rows carry a mappable primary
+family yet are ineligible. Agreement here is a measured result, not an inherited one.
+
+**58 of the 74 rows are INELIGIBLE** (`PRIMARY_OUTSIDE_TAXONOMY` 32, `SECONDARY_OUTSIDE_TAXONOMY` 26)
+and are counted in **no** class anywhere downstream. Being exposed is not the same as being usable.
+
+The 16 eligible rows carry, from their **existing** labels only: `DETERMINISTIC_MISS_RECALL_OPPORTUNITY`
+**16/16**, `DETERMINISTIC_HAZARD_PRESENT` 16/16, `LIFE_CRITICAL_PRESENT` 8, `MULTI_HAZARD` 6.
+`CLARIFICATION_OWED`, `CROSS_HAZARD_INTERACTION` and `NEGATED_OR_SAFE_STATE` are **structurally zero** —
+the artifact carries no gap, interaction or negation label at all, and authoring one was not authorized.
+
+### 133.3 The absolute supply blocker is closed
+
+**44 previously open + 16 newly opened = 60 eligible forbidden-family negative controls**, against the
+frozen minimum of **48**. Surplus **12**. The §132 finding that *no* hard ceiling could admit a valid
+cohort from open material no longer applies.
+
+### 133.4 `H = 65`, proven — but not by the solver
+
+| | value |
+|---|---|
+| analytic lower bound | **65** |
+| branch-and-bound incumbent | 65 |
+| **minimum jointly feasible `H`** | **65** |
+| search status | **NODE CEILING HIT at 20,000,000 nodes** |
+| witness verified against every class | YES |
+
+**The solver did not finish, and that is reported rather than dressed up.** The real supply is far
+wider than §132's modelled 48 — 60 forbidden rows means choice rather than forced selection — and the
+search tree grew accordingly. Its 65 is an **incumbent**, i.e. an upper bound, and proves nothing about
+minimality on its own.
+
+Minimality comes instead from an argument that needs no search. Every admissible `R` has
+`|OWED n R| >= 20` and `|FORBIDDEN n R| >= 48`, so
+`|R| >= |OWED| + |FORBIDDEN| - |OWED n FORBIDDEN|`. The **whole pool contains only 3 rows that are
+both** (`AUG-10`, `AUG-11`, `SEM-30`), so the intersection term can never exceed 3:
+
+> `|R| >= 20 + 48 - 3 = 65`
+
+That is a property of the pool, not of a search, and no selection can evade it. A verified **65-row
+witness of real rows** meets it. **Bound meets witness: `H = 65` is exact.**
+
+### 133.5 Why the §132 prediction of 67 did not hold — attributed by measurement
+
+§132 predicted 67 conditional on the reserve supplying at least four eligible non-OWED forbidden rows.
+It supplied sixteen, and the measured answer is **65** — the prediction was **2 rows pessimistic**.
+
+Two candidate causes, separated by re-solving rather than by argument. Restricting the pool to the
+**first four** opened forbidden rows in `scenarioId` order — §132's modelled *quantity*, but real class
+vectors — already gives **65**. At that quantity forbidden supply is exactly 48, so every forbidden row
+is **forced** into the selection and there is no surplus to exploit.
+
+**Richness is therefore the entire difference; quantity contributes nothing.** §132 modelled the
+reserve as bare rows carrying only `CLARIFICATION_NOT_OWED` + `FORBIDDEN`, so two extra rows were
+needed to reach the `NEGATED_OR_SAFE_STATE` and `MISS_RECALL` minimums. The real rows carry
+MISS_RECALL 16/16 and LIFE_CRITICAL 8/16 themselves, and those two rows are no longer needed.
+
+**§132 was right to model it that way.** Assuming secondary classes it could not see would have
+*understated* the requirement, which is the dangerous direction to be wrong in.
+
+### 133.6 First real diagnostic witness — NOT a cohort, NOT frozen
+
+**65 rows.** gauntlet.seed 14 · semantic §129 19 · augmentation V2 11 · **D-86 offset 2 8** ·
+**D-86 offset 3 8** · Population A 5. **All 16 newly opened rows participate.** Exact row identifiers
+and per-row class vectors are in `REAL-SUPPLY-FEASIBILITY.txt`/`.json`.
+
+| class | required | supplied | margin |
+|---|---|---|---|
+| `CLARIFICATION_OWED` | 20 | 20 | **0 (tight)** |
+| `CLARIFICATION_NOT_OWED` | 14 | 45 | 31 |
+| `FORBIDDEN_FAMILY_NEGATIVE_CONTROL` | 48 | 48 | **0 (tight)** |
+| `CROSS_HAZARD_INTERACTION` | 10 | 11 | 1 |
+| `MULTI_HAZARD` | 12 | 27 | 15 |
+| `LIFE_CRITICAL_PRESENT` | 10 | 31 | 21 |
+| `NEGATED_OR_SAFE_STATE` | 10 | 17 | 7 |
+| `DETERMINISTIC_HAZARD_PRESENT` | 30 | 61 | 31 |
+| `DETERMINISTIC_MISS_RECALL_OPPORTUNITY` | 10 | 24 | 14 |
+| `GOVERNED_RECORD_SUPPLIED` | 40 | 40 attachable | — |
+| `NO_GOVERNED_RECORD` | 8 | 25 remaining | 17 |
+| `DISAGREEMENT_OPPORTUNITY` | 6 | 40 attachable | 34 |
+
+**Attachment is feasible.** Snapshot identity `a2c5dc32…` re-verified, 64 records, release
+`federal-core-2026-08-28.1`; **no record was read for content, modified or approved**. All 64 resolve
+to `UNAPPROVED_RECORD` under the §126 mapping, so every governed-supplied row is a disagreement
+opportunity. **`REVIEWER_APPROVED_GOVERNED_RECORDS = 0` remains a reported limitation and was NOT
+promoted to a required class** — the cohort still cannot exercise an `APPROVED_EXACT` backing state,
+and opening the reserve did nothing about that.
+
+### 133.7 Governance impact — REPORTED, NOT APPLIED
+
+`COHORT_SIZE_POLICY` is **unchanged**: `hardCeiling` still 60, `targetRows` still 60.
+
+**Both must move to at least 65, and the reason each must is different.**
+
+- **`hardCeiling`** is a refusal threshold. `onInsufficiency` says a cohort that cannot satisfy every
+  requirement must STOP. A ceiling below the feasible minimum makes assembly refuse outright.
+- **`targetRows`** is the size the cohort is *built to*, and `supplementalCount` is written as
+  *"EXACTLY 60 minus the number of eligible reserved rows selected"* — pinned to the target by the
+  policy text.
+
+Raising the ceiling alone would produce a policy that **permits** 65 while still instructing a 60-row
+build, and the 60-row build is exactly what is proven infeasible: a policy contradicting itself rather
+than one that has been decided. **They need not be equal** — a ceiling above the target leaves assembly
+headroom. The requirement is only that both be at least 65.
+
+**Stated from evidence, not from field names:** a repository-wide search shows
+`COHORT_SIZE_POLICY.targetRows` is only ever **printed** — by §131, §132 and the execution preflight.
+No assembler reads it to size a selection. The 60-row build is enforced by policy text and by the
+operator following it, **not by code**.
+
+**`MINIMUM_DEFENSIBLE_ROWS` (48) and `PREFERRED_ROWS` (60) need no change.** They live in
+`expert-cohort-composition.ts` and are derived from the measure sizing rule, not from the ceiling. 48
+remains a correct floor; it is simply no longer **attainable**, because a 48-row cohort cannot carry 48
+forbidden controls and 20 OWED rows when only 3 rows are both. Tuning it to match `H` would be fitting
+a derived constant to a measured outcome and is explicitly **not** proposed.
+
+### 133.8 Cost, from locally authoritative pricing
+
+`MEASURED_COST_MODEL` is fitted to 18 recorded §118 calls at a residual of `0.00000000` USD, so no
+external price list was consulted and no provider was called.
+
+| plan | rows | calls | input tok | output tok | mean USD | worst USD |
+|---|---|---|---|---|---|---|
+| 60-row (**infeasible** reference) | 60 | 180 | 1,706,580 | 230,220 | \$5.72 | \$18.72 |
+| `H = 65` execution | 65 | 195 | 1,848,795 | 249,405 | \$6.19 | \$20.28 |
+| **delta** | +5 | **+15** | +142,215 | +19,185 | **+\$0.48** | +\$1.56 |
+
+**A second policy value the owner should see before deciding.** 195 planned calls leaves **5** under
+the frozen `hardCallCeiling` of 200, and `runExpertAnalysis` retries once on a retryable failure and
+**that retry bills**. A full-retry worst case of 390 attempted calls would be stopped by the ceiling —
+correct behaviour, but it makes the ceiling a live constraint at `H = 65` rather than slack.
+
+### 133.9 What was written to governance surfaces, and what was not
+
+**The retirement registry was amended to record the irreversible fact.** `GAUNTLET_OFFSET_2` and `_3`
+moved `RESERVED` -> **`OPENED`**, with the opening evidence and a `reopenRule` recording them SPENT.
+This follows the existing `gauntlet.seed` precedent exactly: `mayEverReopen` stays `true`, which in
+this file means *permitted to THIS exam*, while status and `reopenRule` carry the spent state. Leaving
+them as RESERVED would have recreated **the precise §124 trap the registry exists to prevent** — a
+future reader believing an unspent exam was still available.
+
+Three now-stale confinement strings in live validators were made scope-precise
+(`RESERVED_OFFSETS_OPENED_BY_THIS_RUN`, `RESERVED_MATERIAL_OPENED_BY_THIS_CORPUS`). **No assertion,
+count, threshold, expected value or gate was altered.**
+
+**NOT changed:** the frozen §122 policy file (its hash is cited by the opening record as evidence it
+predates the open), any class minimum, any scorer, any threshold, `COHORT_SIZE_POLICY`, and the §131
+and §132 artifacts, which are preserved as immutable history including their now-superseded figures.
+
+Verification re-run green: augmentation **29/0**, semantic **46/0** (`SEAL_STATUS` REVIEWED, formal
+evaluation unspent), phase contract **40/0**, cohort instrument **155/0**, no-call harness **141/0**.
+
+### 133.10 Exact next operation
+
+**`COHORT_SIZE_POLICY_GOVERNANCE_DECISION`** — the product owner decides whether to amend
+`hardCeiling` and `targetRows` to at least 65 (and whether `hardCallCeiling` should move with them).
+Only after that decision may the exact formal cohort be assembled and frozen. **Nothing may be frozen
+or spent before it.**
+
+---
+
+## 134 — COHORT-SIZE POLICY AMENDED TO 65, COHORT ASSEMBLED AND VALIDATED, FREEZE BLOCKED ON THE EXECUTION BUDGET (2026-09-01) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `FORMAL_COHORT_READY_EXCEPT_PROVIDER_REQUEST_CEILING — PRODUCT_OWNER_RETRY_BUDGET_DECISION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-formal-cohort-65-2026-09-01/`.
+Predecessor: §133. **Provider calls 0; \$0.00; `TRUTH_LEAK = 0`; no reserve opened;
+`FORMAL_COHORT_SPENT = FALSE`; `P4_PRESPEND_AUTHORIZATION = FALSE`; `COHORT_STATUS = CANDIDATE`.**
+
+The 65-row cohort exists, validates completely and is reproducible. **It is not frozen**, because the
+execution budget it would be frozen against does not currently bound anything.
+
+### 134.1 The amendment is an overlay, not an edit
+
+`targetRows` 60 → 65 and `hardCeiling` 60 → 65, exactly as authorized. Every one of the twelve
+`REQUIRED_CLASS_MINIMUMS` entries, `MINIMUM_DEFENSIBLE_ROWS` (48) and `PREFERRED_ROWS` (60) are
+**unchanged**, and the assembly report prints them live from the frozen contract as proof rather than
+asserting it.
+
+The original `COHORT_SIZE_POLICY` lives in `expert-cohort-supplemental-policy.ts`, whose sha256
+`cc69d28e…` is cited as evidence in **two immutable opening records** — §122's for `gauntlet.seed` and
+§133's for D-86 — that the eligibility rule predates the material it selected. Editing a size constant
+there would change that hash, and a later verifier would have no way to tell a benign size amendment
+from a tampered eligibility rule. So the amendment lives in a new `expert-cohort-size-policy.ts` (v2)
+which supersedes two fields, carries the rationale and measured basis as data, preserves the 60-row
+policy as history, and calls `assertFrozenOriginUnchanged()` at runtime so drift in the frozen origin
+fails loudly. This is the overlay move §125 made rather than amending the frozen evaluation plan.
+
+Historical analyses (§121, §122, §126, §130–§133) continue to read the frozen module, so re-running
+them still reproduces their recorded output.
+
+### 134.2 At 65 the composition is forced, not chosen
+
+Equality in the inclusion-exclusion bound fixes the structure completely:
+
+> `65 = |R| >= |OWED n R| + |FORBIDDEN n R| - |both n R| >= 20 + 48 - 3 = 65`
+
+| bucket | rows |
+|---|---|
+| OWED **and** FORBIDDEN | **3** (every one that exists) |
+| OWED, not FORBIDDEN | **17** |
+| FORBIDDEN, not OWED | **45** |
+| neither | **0** |
+
+The selection rule therefore only decides *which* 17 and *which* 45.
+
+### 134.3 The selection rule, declared before it was applied
+
+- **canonical row order** — source provenance rank, then `rowId` ascending
+- **source rank** — `gauntlet.seed` < `Population A` < `augmentation V2` < `semantic §129` <
+  `D-86 offset 2` < `D-86 offset 3`, i.e. the order each source was admitted to the programme
+- **class priority** — the declaration order of `REQUIRED_CLASS_MINIMUMS`, **read out of the frozen
+  contract** rather than retyped, restricted to the classes still free after the forced structure
+- **phase 0** take every OWED-and-FORBIDDEN row (forced) · **phase 1** close each class deficit with
+  the next canonical row carrying it · **phase 2** fill each bucket to its forced size
+
+Nothing consults an observation, a difficulty estimate or any model behaviour.
+
+**Reproducibility is proven, not claimed:** re-running the rule against a reversed pool yields the
+identical selection in the identical order. Selection-order sha256 `ee57d5da…`.
+
+§133's solver witness was deliberately **not** frozen. It was a property of a branch-and-bound
+traversal order, and no reader could reproduce it from the frozen inputs without re-running that
+binary.
+
+### 134.4 Composition, measured by the authoritative classifier
+
+Measured with `classifyRow`/`evaluateComposition` — **not** the analysis proxy §132/§133 used.
+**0 row-contract problems across 65 rows; `evaluateComposition` gaps: none.**
+
+| class | required | supplied | margin |
+|---|---|---|---|
+| `CLARIFICATION_OWED` | 20 | 20 | **0 (tight)** |
+| `CLARIFICATION_NOT_OWED` | 14 | 45 | 31 |
+| `FORBIDDEN_FAMILY_NEGATIVE_CONTROL` | 48 | 48 | **0 (tight)** |
+| `CROSS_HAZARD_INTERACTION` | 10 | 11 | 1 |
+| `MULTI_HAZARD` | 12 | 20 | 8 |
+| `LIFE_CRITICAL_PRESENT` | 10 | 27 | 17 |
+| `NEGATED_OR_SAFE_STATE` | 10 | 13 | 3 |
+| `DETERMINISTIC_HAZARD_PRESENT` | 30 | 49 | 19 |
+| `DETERMINISTIC_MISS_RECALL_OPPORTUNITY` | 10 | 38 | 28 |
+| `GOVERNED_RECORD_SUPPLIED` | 40 | 40 | 0 |
+| `NO_GOVERNED_RECORD` | 8 | 25 | 17 |
+| `DISAGREEMENT_OPPORTUNITY` | 6 | 40 | 34 |
+
+Sources: gauntlet.seed 14 · Population A 13 · augmentation V2 13 · semantic §129 21 · D-86 offset 2 4.
+
+### 134.5 Two source facts the feasibility model had obscured
+
+**Population A is REQUIRED.** Without it, forbidden supply is 47 against a minimum of 48 and no
+65-row cohort exists. It enters through the mapping §122's `SUPPLEMENTAL_PRIORITY` already declares —
+*"Any eligible Population A row: `forbiddenDomains` IS the negative control"* — as a mechanical
+projection of a corpus frozen 2026-08-27, before any Expert provider output existed. Its rows are
+**suppressed from `DETERMINISTIC_MISS_RECALL_OPPORTUNITY`**, because §122 forbids the precision corpus
+as an M01 source: the engine was measured against it, so a "miss" there would measure the corpus.
+
+**Population B is STRUCTURALLY EXCLUDED**, not omitted by preference. Its rows carry no
+`forbiddenDomains` and no decision-critical gaps, so they are neither OWED nor FORBIDDEN, and the
+forced structure admits no such row. At H = 65 the composition is tight enough to exclude an entire
+authorized source.
+
+**Only 4 of the 16 opened D-86 rows are used.** That is the correct outcome, not a waste: the measured
+shortfall was exactly 4, and a reserved partition is opened whole rather than row by row. They are not
+preferred into the cohort to justify having spent them — no frozen policy contains a sunk-cost rule.
+
+### 134.6 Governed attachment
+
+Snapshot `a2c5dc32…` identity re-verified; 64 records; `reviewState` set `{mechanically_validated}`,
+**unmodified and unapproved**. Records sorted by `citationKey` ascending and paired by index to the
+first 40 rows of the frozen cohort order.
+
+**No family-relevance matching was performed, deliberately.** The snapshot carries no hazard-family
+column, and the frozen measures do not ask for relevance — M06 keys off record *presence*, M07 off
+detected statements, M08 is exercised *by* unapproved records. Inventing a citation→family mapping
+would author contract that does not exist. Recorded as a stated limitation.
+
+`REVIEWER_APPROVED_GOVERNED_RECORDS = 0` preserved as a reported limitation, **not promoted to a gate**.
+
+### 134.7 Why the freeze is blocked — five defects, all measured from code
+
+**`PLANNED_LOGICAL_CALL_COUNT = 195`**, measured from the harness (65 BASE + 65 PERMUTED + 65
+CROSS_PROCESS), not assumed.
+
+1. **`hardCallCeiling` counts LOGICAL calls, not provider requests.** `callsAttempted` increments once
+   per arm (harness:283–287); `executeCall` then invokes `runExpertAnalysis`, which may issue **two**
+   HTTP requests. Retries bypass the ceiling entirely, so `MAXIMUM_BILLABLE_PROVIDER_REQUESTS = 390`
+   is unbounded by a ceiling of 200. **This corrects the §121 comment claiming the ceiling "covers a
+   full retry on every planned call plus margin", and corrects §133, which inherited that error and
+   reported that a 390-request worst case "would be stopped by the ceiling". It would not be.**
+2. **The spend ceiling is INERT.** `spendUsd` accrues only from `options.usageOf` (harness:289), and
+   **no implementation of `usageOf` exists anywhere in the repository**. It defaults to `{0,0,0}`, so
+   spend stays 0, the ceiling can never fire, and `M16_COST_PER_ROW` would report \$0.00/row against a
+   contract requiring it be "reported per run, never estimated".
+3. **Even wired, the adapter keeps only `lastTelemetry`**, overwritten per HTTP request, so a retried
+   call under-reports its first billed request.
+4. **`CallRecord` discards `trace.attempts`**, so M13's frozen denominator — *"All attempted calls,
+   every row, every repetition, retries included"* — cannot be computed as specified. Reported, not
+   repaired: fixing `scoreM13` would be a scorer change.
+5. **The model is not bound.** `model: process.env.EXPERT_ANTHROPIC_MODEL || 'claude-sonnet-5'` and
+   `qualifiedModelIdentity = config.model`, so the `UNEXPECTED_MODEL_IDENTITY` guard compares the
+   response against *whatever the environment said*. It protects against a provider substituting a
+   model; it does not protect against the operator doing so.
+
+**Retry semantics are fully determined:** max 1 retry / 2 attempts, structural (an `if`, not a loop).
+Retryable — `TIMEOUT`, `NETWORK_ERROR`, `HTTP_SERVER_ERROR`, `MALFORMED_JSON`, `TRUNCATED_RESPONSE`,
+`EMPTY_RESPONSE`. Not retryable — `RATE_LIMITED`, `HTTP_CLIENT_ERROR`, `CREDITS_EXHAUSTED`,
+`PROVIDER_REFUSAL`, `SCHEMA_INVALID_STRUCTURED_OUTPUT`, `PROVIDER_NOT_CALLABLE`, `NOT_CONFIGURED`,
+`UNEXPECTED_MODEL_IDENTITY`, or a boundary rejection. A retry **replaces** the call and creates **no**
+additional scored observation. The frozen plan defines **no** retry budget and **no** ceiling formula.
+
+Reaching the ceiling does not invalidate a run — it leaves rows unanswered, and the measurement
+contract turns a hard gate with zero opportunities into UNMEASURED, which **fails**. So the ceiling
+silently converts an interrupted run into a failing one.
+
+### 134.8 The four ceiling options, costed
+
+Pricing is locally authoritative (`MEASURED_COST_MODEL`, fitted to 18 recorded §118 calls at a
+residual of `0.00000000` USD). No web pricing, no provider call.
+
+| option | ceiling | retry capacity | max mean | max worst | consequence |
+|---|---|---|---|---|---|
+| **O1** | 195 | 0 | \$6.19 | \$20.28 | the first transient failure fails the run — predictably fragile |
+| **O2** | 200 | 5 | \$6.35 | \$20.80 | tolerates a 2.6% failure rate; chosen when the ceiling was believed to cover retries |
+| **O3** | 215 | 20 | \$6.83 | \$22.36 | a 10% allowance — the only option derived from a figure the frozen cost model already commits to |
+| **O4** | 390 | 195 | \$12.39 | \$40.56 | never stops early, but doubles authorized spend against an unmeasured failure rate |
+
+**Engineering recommendation: O3. The choice is the product owner's.**
+
+**Every option requires repair before a ceiling means anything:** **R1** count provider *requests*
+against the ceiling (`trace.attempts` already exists and is discarded) — which also makes M13's frozen
+denominator computable; **R2** implement `usageOf`; **R3** accumulate adapter telemetry per attempt;
+**R4** assert `provider.qualifiedModelIdentity === manifest.model` before the first request. R1 and R2
+are required for any ceiling; R3 and R4 are required regardless of which is chosen.
+
+### 134.9 Exact next operation
+
+**`PRODUCT_OWNER_RETRY_BUDGET_DECISION`** — choose O1–O4 (or state another), then authorize the
+repairs that option needs. Only after the request ceiling, spend ceiling, retry budget and model
+binding are determinate may the cohort be frozen and a `cohortId` minted. **Nothing is partially
+frozen: no cohortId exists and no manifest hash has been published.**
+
+---
+
+## 135 — EXECUTION BUDGET REPAIRED AND ENFORCEABLE; FORMAL COHORT FROZEN (2026-09-01) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `FORMAL_EXPERT_COHORT_FROZEN — EXPLICIT_P4_EXECUTION_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-formal-cohort-frozen-2026-09-01/`.
+Predecessor: §134. **0 provider requests; \$0.00; `TRUTH_LEAK = 0`; no reserve opened;
+`FORMAL_COHORT_SPENT = FALSE`; `P4_PRESPEND_AUTHORIZATION = FALSE`.**
+
+```
+COHORT_ID        hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a
+MANIFEST_SHA256  1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3
+COHORT_STATUS    FROZEN
+```
+
+§134 refused to freeze an object whose execution budget could not be enforced. That refusal was not
+waived — the condition was met first.
+
+### 135.1 The owner's O3 decision, frozen
+
+| | |
+|---|---|
+| `PLANNED_LOGICAL_CALLS` | **195** (65 rows × 3 arms, measured from the harness) |
+| `GLOBAL_RETRY_REQUEST_BUDGET` | **20** |
+| `HARD_PROVIDER_REQUEST_CEILING` | **215** |
+| `HARD_SPEND_CEILING_USD` | **\$22.36** |
+
+**The three numbers agree by construction, and that is proven rather than asserted.**
+195 + 20 = 215, and 215 × \$0.104 worst-case-per-request = **\$22.36 exactly**. The spend ceiling *is*
+the request ceiling priced at the frozen worst case — not a second limit that could drift out of
+agreement with it. `assertBudgetInternallyConsistent()` fails loudly if either is edited alone.
+
+The worst case is the figure the programme already committed to: 12,000 input tokens (above any
+observed prompt) plus the full configured 8,000-token output cap, at the frozen rates.
+
+### 135.2 R1 — the ceiling counts provider requests
+
+`providerRequestsAttempted` and `retryRequestsAttempted` are now distinct counters, and the ceiling
+applies to the former.
+
+The initial request is gated by the harness, which owns the counter. The **retry** is gated inside the
+runner by a new opt-in `mayIssueRetry` hook. Between the two, **every provider request in a formal run
+passes a check before it is issued**, which is what makes a 216th unreachable rather than merely
+unlikely.
+
+**Absent means unbounded**, and that is the production default: a customer-path caller passes no gate
+and behaves exactly as before.
+
+### 135.3 R2 — spend accounting is real, and fail-closed
+
+`ExpertRequestUsage` now rides back on the provider result for **success and failure alike**, because
+a truncated or malformed response billed for the tokens it produced. Usage accumulates across every
+attempt, including one later replaced by a retry.
+
+Enforcement is **prospective**:
+
+> before each request: `spendUsd + worstCaseRequestUsd <= hardSpendCeilingUsd`
+
+Final usage is unknowable before a request returns, so a ceiling checked afterwards can always be
+overshot by exactly one request. Pricing the *next* request at its frozen worst case — while counting
+requests already made at what they actually cost — is conservative without being needlessly so.
+
+### 135.4 R3 — per-attempt telemetry is immutable
+
+`ExpertAttemptRecord[]` records every request: index, retry flag, outcome, failure kind, model
+identity, usage, and the `causedRetry` cause stamped on attempt 0. **The retry replaces the RESPONSE,
+never the EVIDENCE.**
+
+The adapter's `attemptTelemetry` array is append-only, replacing the single `lastTelemetry` slot that
+silently dropped a retried call's first — billed — request. `CallRecord.attempts` persists it, so the
+scorer reads history rather than reconstructing it.
+
+**M13 is now computed as its frozen contract always said.** Its denominator counts provider requests,
+*"every row, every repetition, retries included"*. The **numerator semantics are deliberately
+unchanged**. The visible consequence: a retried run scores **0.9750** where a clean one scores
+**1.0000** — before, the two were indistinguishable. `M16` reports `providerRequests` alongside
+logical calls and no longer returns \$0.00 when usage exists.
+
+**No scorer threshold, disposition or class minimum moved.** The implementation was brought to the
+contract, not the contract to the implementation.
+
+### 135.5 R4 — the model is bound
+
+`FrozenExecutionIdentity` is asserted before a single request; a substituted model or vendor returns
+`EXECUTION_IDENTITY_MISMATCH` with **zero provider invocations**.
+
+The previous guard compared the response against `qualifiedModelIdentity` — which
+`EXPERT_ANTHROPIC_MODEL` also resolved. It protected against a *provider* substituting a model; it
+never protected against an *operator* doing so. The binding is scoped to the formal harness, so
+ordinary runtime configurability is untouched.
+
+### 135.6 Retry semantics unchanged, and exhaustion preserves the truth
+
+Same six causes — `TIMEOUT`, `NETWORK_ERROR`, `HTTP_SERVER_ERROR`, `MALFORMED_JSON`,
+`TRUNCATED_RESPONSE`, `EMPTY_RESPONSE`. Max one retry per logical call, structural. A refusal is still
+never retried. None added, none removed.
+
+When the budget is exhausted the 21st retry is refused, **the first attempt's real
+`PROVIDER_FAILED`/`TIMEOUT` outcome stands**, nothing is fabricated into a success, and the suppression
+is recorded with its cause. Classification is **by cause**:
+
+- transport-only → `FORMAL_EVALUATION_INVALID — PROVIDER_RELIABILITY_EXCEEDED_FROZEN_RETRY_BUDGET`
+- model-behaviour → preserved as model evidence, not written off as flakiness
+- mixed → the exact ledger returned to the owner rather than a classification the evidence does not
+  support
+
+### 135.7 Zero-provider regression: 66 passed, 0 failed
+
+Against the **real** runner and **real** harness via a scripted no-network provider:
+
+| proof | result |
+|---|---|
+| 195 no-retry logical calls | **195** provider requests |
+| 5 retried logical calls | **200** provider requests |
+| 20 retried logical calls | **exactly 215** |
+| the 21st retry | **refused** |
+| the 216th provider request | **unreachable** |
+| retries counted toward spend | yes, both attempts billed |
+| first-attempt telemetry and cause | survive the replacement |
+| spend gate | stops at exactly the request its formula forbids |
+| model override | blocked **before** any provider invocation |
+| exact `anthropic` / `claude-sonnet-5` binding | passes |
+
+The counting assertions are exact (`=== 215`, not `<= 215`) because an off-by-one in a spend ceiling
+is the whole defect.
+
+### 135.8 Revalidated, not reselected
+
+The selection rule was extracted to **one shared module** so assembly and freeze cannot drift apart —
+two copies of a selection rule is how a frozen cohort quietly stops matching the rule meant to
+reproduce it.
+
+**The selection-order sha256 `ee57d5da…` is unchanged after the repairs.** A drift there would have
+failed the freeze rather than been re-recorded as a new hash. 65 rows; forced structure 3/17/45
+intact; **0 row-contract problems; 0 composition gaps**; all twelve class minima met; truth-key hash
+`290df2f7…`; 40 governed records still `UNAPPROVED_RECORD`, unmodified and unapproved;
+`REVIEWER_APPROVED_GOVERNED_RECORDS = 0` still a reported limitation and still not a gate.
+
+**The freeze is deterministic**: re-running produces the identical cohortId and manifest hash.
+
+### 135.9 What a P4 authorization must now name
+
+`P4_PRESPEND_AUTHORIZATION` remains **FALSE**. Freezing an object is not authorization to spend it.
+A later authorization must explicitly name:
+
+- `COHORT_ID = hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a`
+- `PLANNED_LOGICAL_CALL_COUNT = 195`
+- `GLOBAL_RETRY_BUDGET = 20`
+- `HARD_PROVIDER_REQUEST_CEILING = 215`
+- `HARD_SPEND_CEILING = \$22.36`
+
+Once the first formal request is issued those four numbers are frozen: no increase after spend begins,
+no emergency allowance, no second run because the allowance was exhausted, no deleted failed request,
+no reset counters.
+
+---
+
+## §137. EXPERT HAZLENZ FORMAL-FAILURE ROOT-CAUSE DIAGNOSTIC (2026-09-02)
+
+**Zero-provider, diagnostic-only. No repair implemented. PROVIDER_INVOCATION_COUNT unchanged at 195.**
+
+Full report: `verification/expert-hazlenz-formal-evaluation-2026-09-01/ROOT-CAUSE-DIAGNOSTIC.md`.
+
+The six failed hard gates are **not six independent defects.** The evidence supports three
+model/contract causes, three evaluation-instrument causes, and one gate whose cause cannot be
+established at all.
+
+- **C1 collection overproduction** and **C2 decision-criticality defined by a possibility test
+  (`could change`) rather than a counterfactual** together explain M10 and the denominator half of
+  M09. 165 clarifications were emitted against 20 authored gaps; 106 of them landed on rows the key
+  owes nothing. Passing M09 at MIN 0.70 admits at most 28 clarifications cohort-wide, so **M09 was
+  arithmetically unreachable before question quality entered the calculation.** The modal row emits
+  three questions covering an EXPOSURE / HAZARD_SEVERITY / REQUIRED_CONTROL template, and 35 of the
+  165 questions restate one of the prompt's own four worked examples.
+- **C9a `EXPERT_AFFECTED_DECISIONS` is a six-member enum with no definition in the type, the prompt
+  or the wire schema.** 11 of the 16 mapped clarifications failed M09 on `affectedDecision`
+  equality, and the disagreements are **bidirectional between the same label pairs** — the signature
+  of an under-specified vocabulary, not of a one-directional model error. The same undefined label
+  decides M12's trigger.
+- **C3 no cross-collection arbitration.** `normalizeExpertOutput` validates each collection's shape
+  and its own cross-field rules but performs no candidate↔clarification reconciliation. M12 is
+  row-level by frozen construction, so a same-row/different-family pair scores identically to a true
+  self-contradiction.
+- **C7 + C11: M07 = 0/9 is substantially an instrument result.** Governed records were attached by
+  the frozen rule "records sorted by citationKey ASCENDING, paired by index to the first 40 rows of
+  the frozen row order" — a conveyor row received compressed gases, a fall-edge row received
+  respirable silica. None of the nine flagged statements is a citation or a claim that a named
+  regulation requires anything; all nine were caught by a keyword lexicon on ordinary safety English
+  (*violation*, *compliance*, *the standard*), and only two assert an obligation. One flagged
+  statement is the model correctly reporting a grinder as compliant. **M07 does not prove that
+  Expert fabricates or ignores governed evidence; that property was not tested by this cohort.** The
+  cohort's attachment design is NOT repaired retroactively and M07 = 0/9 stands as recorded.
+- **M05: the boundary failed CLOSED, not open.** Both events are `POPA-A-28`, both arms, both
+  boundary rejections. The observation is about autumn leaves and the precision corpus contains zero
+  CFR-shaped strings — but the record mechanically attached to that row carries
+  `29 CFR 1926.102(a)(1)` inside its `approvedText`, and all 40 governed rows render citation-bearing
+  text into the prompt. `expert-deterministic-projection.ts` already documents this echo hazard and
+  is citation-free by necessity; the governed-record channel is not. Echo versus invention **cannot
+  be distinguished** — the offending string lived in `call.issues[].detail` and was lost.
+- **M14 ORDER SENSITIVITY: ROOT CAUSE UNKNOWN, and it cannot be established from this run.**
+  `scoredFieldProjection` sorts every collection, so the gate never measured array order — it
+  measured semantic content divergence between two independently sampled generations. With
+  `P2_DETERMINISM_CONTROL = ABSENT` there is no same-input control anywhere in the run, and the
+  per-row projections were never persisted. **Order-conditioned instability and general stochastic
+  instability are not separable here.** Claiming permutation caused 59 of 64 rows to change is
+  unsupported. This is the same class of error as the G9 lesson that made M17 a reported measure
+  rather than a gate, not applied to M14.
+
+**Evidence-persistence defect — NOT normalized.** `expert-cohort-harness.ts` returns the
+`CohortRunRecord[]`; `execute-formal-cohort-65.ts` writes only derived evidence and never serializes
+it. The cost is now measurable: M14 has no attributable cause, and the candidate lists, insight
+bodies, both PERMUTED arms and the M05 offending string are permanently unrecoverable. Items 2, 3,
+4, 6 and 7 of the report's unresolved questions **cannot be closed by any further zero-provider
+analysis of these artifacts.** Harness debt is tracked separately from model remediation and must be
+repaired before another formal cohort runs — including an artifact-completeness preflight that
+refuses to call a cohort formally executable unless every frozen scorer's inputs are provably
+persisted.
+
+**Terminal:** FORMAL_EXPERT_HAZLENZ_ROOT_CAUSE_DIAGNOSIS_INCOMPLETE —
+ADDITIONAL_ZERO_PROVIDER_EVIDENCE_ANALYSIS_REQUIRED. Five of six gates have supported causal
+attribution; M14, the largest numerical breach, does not. Remediation implementation is NOT
+authorized by this section.
+
+---
+
+## §138. EXPERT HAZLENZ INSTRUMENT-VALIDITY AUDIT AND DIAGNOSTIC CLOSURE (2026-09-02)
+
+**Zero-provider. PROVIDER_INVOCATION_COUNT unchanged at 195. No remediation implemented.**
+Report: `verification/expert-hazlenz-formal-evaluation-2026-09-01/INSTRUMENT-VALIDITY-AUDIT.md`.
+`ROOT-CAUSE-DIAGNOSTIC.md` is amended additively; §137 stands as the record of the prior conclusion.
+
+**The formal result is immutable and unchanged: FORMAL_EVALUATION_FAIL — NOT ACCEPTED.** What this
+audit revises is the causal interpretation of three failures, and it corrects two arithmetic errors
+in §137.
+
+**Canonical values.** `AUTHORED_GAP_COUNT = 20` (20 gap objects, 20 unique gapIds, one per row, and
+the gap-bearing row set is exactly the `CLARIFICATION_OWED` set). The "18" in the packet is the
+number of gaps *reachable through the queue*: `AUG-04` and `SEM-05` emitted no clarification, so
+their gaps produced no queue item. **`MAX_POSSIBLE_M09_NUMERATOR_ON_THIS_RUN = 59`, not 20** — the
+frozen `scoreM09` de-duplicates nothing, so §137's "cap of 20" and "at most 28 clarifications" are
+both wrong. The corrected ceiling is **59/165 = 0.3576** against MIN 0.70, and the unreachability
+conclusion is strengthened rather than weakened: it now holds with no one-credit-per-gap assumption,
+because 106 of 165 questions sit on rows with no authored gap and can never be USEFUL. Also
+corrected: **three** statements assert an obligation, not two.
+
+**M09 vs M10 — PARTIALLY REDUNDANT.** 64.2 % of M09's denominator comes from M10's numerator rows and
+the 56 emitting rows partition exactly into 38 M10 rows + 18 gap-bearing rows. But M09 carries
+independent signal: had the model asked nothing on the M10 rows, M09 would still be 0.0847. Neither
+measure was changed.
+
+**M07 — PROVEN_INSTRUMENT_DEFECT.** Of the nine opportunities: 0 contain a citation, 0 name OSHA or
+MSHA, 3 assert an obligation, and 6 entered the queue on a non-obligation keyword alone — a **66.7 %
+false-opportunity rate**. Attachment quality: **0 SAME_SUBJECT, 1 PARTIAL, 6 UNRELATED, 2 NO_RECORD**.
+M07 measured *regulatory-statement detection ∧ governed-record semantic support* on a sample where
+support was constructed to be near-impossible; it did **not** measure exact governed-evidence
+grounding. The FAIL stands; the reading "Expert fabricates or ignores governed evidence" does not.
+
+**M05 — MIXED, and the boundary failed CLOSED.** Citation-shaped text was in the model's input on
+**all 195 calls** via the system prompt's own prohibition examples (`"29 CFR 1910.147"`,
+`"30 CFR 56.12016"`, both matching the rejecting pattern), plus the `citation` field and
+`approvedText` of all 40 attached records. `POPA-A-28`'s observation contains none and the precision
+corpus contains zero. Provenance: **PRESENT_IN_MODEL_INPUT**; the emitted string itself is
+**UNKNOWN_DUE_TO_PERSISTENCE**. Both arms were rejected whole before merge and nothing reached
+`expertAdvisory`. **This event must not be called fabrication at the causal level** — a hallucinated
+citation reaching a customer and a blocked echo of a citation the system itself supplied are
+different product risks with different repairs.
+
+**M12 — trigger is exclusively the undefined enum.** All six `EXPERT_AFFECTED_DECISIONS` members are
+bare enum entries with no definition in the type, the prompt, or the schema. Of the 11 rows,
+**6 are LABEL-DRIVEN CONTRADICTION ONLY** (the firing question does not, by its own text, ask whether
+a hazard exists) and **5 are UNRESOLVABLE** because condition state was lost. **Zero are established
+semantic contradictions.** Remediation should target enum semantics first; arbitration remains
+justified architecturally but no longer draws support from M12's number.
+
+**M14 — UNIDENTIFIABLE, demonstrated not guessed.** The projection sorts every collection, so the
+gate never measured ordering. The run has one process, no seed or temperature, and **no same-input
+replicate**, so `Observed(BASE≠PERMUTED)` cannot be decomposed into order effect and stochastic
+variance; the identified set is `[0, 0.9219]`. The one same-input replicate set in preserved evidence
+(`expert-hazlenz-hosted-projection-ab-2026-08-31`, 3 reps of a byte-identical input) shows **3 of 3
+pairs diverging** on the frozen projection — but it is **rejected as the control** because its
+`expert-prompt.ts` hash (`e80d977abf…`) differs from the formal run's (`e02c15ea2f…`) while both
+declare `v6`. **New instrument finding: `EXPERT_PROMPT_VERSION` does not uniquely identify the
+prompt** — HEAD and the formal-run file both declare `v6` and differ in both `EXPERT_SYSTEM_PROMPT`
+and `buildExpertWireSchema`. Future comparisons must key on the file hash. A 2×2 factorial
+(canonical ×2, permuted ×2) is specified to separate within-condition from between-order divergence,
+and the measure should be split into stochastic reproducibility (reported) and order perturbation
+sensitivity (gateable only if within-condition divergence is low). No threshold was proposed or
+changed.
+
+**Model versus instrument, final.** M10 is the only clean, unambiguous product defect in the surface.
+M09 mixed; M05 mixed; M12 mixed leaning instrument; M07 instrument; M14 unidentifiable. All six
+remain FAIL — this is the difference between what was scored and what was demonstrated, not a
+softening of the verdict.
+
+**Terminal:** FORMAL_EXPERT_HAZLENZ_ROOT_CAUSE_DIAGNOSIS_COMPLETE —
+REMEDIATION_IMPLEMENTATION_AUTHORIZATION_REQUIRED. Remediation is NOT authorized by this section.
+
+---
+
+## §139. EXPERT HAZLENZ SUPPORTED-DEFECT REMEDIATION (2026-09-02)
+
+**Zero provider calls, zero local-model calls, $0.00. PROVIDER_INVOCATION_COUNT unchanged at 195.**
+Report: `verification/expert-hazlenz-formal-remediation-2026-09-02/REMEDIATION-REPORT.md`.
+
+**The formal result is untouched and immutable: FORMAL_EVALUATION_FAIL — NOT ACCEPTED.** No cohort
+was created or rerun, no reserved material opened, no scorer/threshold/truth changed, and no frozen
+artifact modified — all fifteen verified byte-identical by diff.
+
+**Eight supported defects repaired.** (1) Clarification licensing moved from a possibility test
+(*"could change"*) to a **counterfactual**: name two materially different answers leading to two
+different current outcomes, or do not ask; seven excluded shapes enumerated; the measured
+exposure/severity/control template named a COVERAGE HABIT and refused. (2) All six
+`EXPERT_AFFECTED_DECISIONS` members are now **defined** in the type, the prompt and — for the first
+time — as per-value schema descriptions, with the three collision pairs §138 measured decided
+explicitly. (3) A **cross-collection arbitration stage** now exists in `normalizeExpertOutput`. (4)
+The citation prohibition **no longer demonstrates the forbidden form**, and governed records are
+rendered under opaque handles with citation tokens redacted by the same pattern the boundary rejects
+on — closing the channel that put citation-shaped text in the model's own input on all 195 formal
+calls. (5) **Abstention** is stated as the correct response to an unrelated, narrower/wider, or
+absent governed record. (6) Every optional collection is **empty by default** and the v6 worked
+examples — reproduced in 35 of 165 emitted clarifications — are gone. (7) `CohortRunRecord[]` is now
+persisted **append-only with fsync during execution**, with a completeness preflight read back from
+disk. (8) Prompt identity is the label **plus** SHA-256 of the system prompt and the wire schema.
+`EXPERT_PROMPT_VERSION` is `hazlenz.expert.prompt.v7`; `EXPERT_ANALYSIS_CONTRACT_VERSION` stays
+`analysis.v2` because the only new field is optional.
+
+**The one judgment call, disclosed.** Arbitration drops the contradicting QUESTION and never the
+candidate — the file's own settled rules decide that direction — and it fires **only on a declared
+link** via a new optional `relatesToCandidateKey`. A row-level rule would have deleted real questions
+to fix an artefact and would have improved M12 by suppressing content, which is tuning to the metric.
+Absent linkage, arbitration **abstains**, which is byte-identical to prior behaviour. Whether to
+adopt an unconditional row-level rule instead is a product-owner policy choice this operation did not
+make.
+
+**M14 IS NOT REPAIRED AND NO REPAIR IS CLAIMED.** Canonicalization, deterministic semantic IDs and
+permutation-specific prompt changes were considered and **rejected as unsupported by the evidence**.
+Two assertions in the new suite fail the build if such a change appears without evidence. M07's
+instrument, M12's scorer trigger and M09's denominator are likewise untouched — design proposals
+only, each needing separate authorization and a new version identifier.
+
+**Verification.** A baseline of all eleven pre-existing protected suites was captured before the
+first edit; all eleven still pass, plus a new 92-assertion `test:expert-remediation-contract`.
+Nineteen deterministic HazLenz and governed-mode suites pass. Two are **NOT RUN and not claimed**:
+`hazlenz-clarification-gauntlet` (needs a database, none touched) and `hazlenz-authentic-reasoning`
+(integration test against a live local API; unreachable endpoint, not a regression). Four protected
+assertions were **re-anchored, not weakened** — each replaced a literal that could only be satisfied
+by restoring a measured defect driver or by forbidding any future authorized prompt change, and each
+gained strictly more assertions than it lost.
+
+**Consequence to record rather than bury:** `EVALUATION-RESULT.json.integrityHashesBeforeFirstCall`
+no longer matches the working tree for three Expert source files. That is authorized repair, not
+tampering; the recorded hashes remain the authoritative statement of what ran on 2026-09-01, and
+`execute-formal-cohort-65.ts` will now correctly refuse to run against the frozen manifest.
+
+**Terminal:** EXPERT_HAZLENZ_SUPPORTED_DEFECT_REMEDIATION_COMPLETE —
+HOSTED_DEVELOPMENT_PROBE_AUTHORIZATION_REQUIRED. No hosted probe was run; none is authorized by this
+section. No acceptance is declared.
+
+---
+
+## §140 — EXPERT HAZLENZ HOSTED DEVELOPMENT REMEDIATION PROBE (2026-09-02)
+
+**Terminal:** `EXPERT_HAZLENZ_HOSTED_REMEDIATION_PROBE_INCOMPLETE — LINKAGE_CONTRACT_REMEDIATION_REQUIRED`
+
+ONE bounded hosted **development** probe against the §139-remediated contract. **16 logical calls, 16
+provider requests, 0 retries, $0.559102 of a $2.08 enforced ceiling, one arm (`BASE`).** Not a formal
+evaluation, not a cohort, not an acceptance run. **No frozen scorer ran and no formal measure was
+computed.** The formal result is unchanged: FORMAL_EVALUATION_FAIL — NOT ACCEPTED,
+`PROVIDER_INVOCATION_COUNT = 195`, reserved material not opened, the spent 65-row cohort not read,
+imported, reused or mimicked. Full evidence:
+`verification/expert-hazlenz-hosted-remediation-probe-2026-09-02/`.
+
+**Fixtures.** Sixteen development rows authored fresh for this probe
+(`fixtures/hosted-remediation-probe-v1.ts`), reusing the general `FormalCohortRow` shape so
+`validateCohortRow` proves scoreability and `truthOnlyStrings` proves the answer key did not leak —
+both at $0.00. A 30-check pre-spend gate passed before a provider object was constructed.
+
+**What the probe established.**
+
+- **Clarification overproduction is materially reduced.** 3 clarifications across 16 rows (0.188 per
+  call), **0** on rows owing none, **4 of 4** NO-GAP controls silent, 13 of 16 rows with an empty
+  clarification list. The measured three-question exposure/severity/control template does not appear
+  anywhere.
+- **Governed-evidence behaviour is correct in both directions.** All four negative controls abstained
+  in their own words — including the unlabelled-drums row with no record supplied — and the narrower
+  record was refused as an extension explicitly. The relevant record produced a correctly grounded
+  result. **No forbidden family was emitted on any row**, so no record-induced invention occurred.
+- **Citation containment holds end to end.** 0 citation-shaped strings in the model input across 16
+  prompts (redaction exercised on 4 rows / 5 records), 0 in Expert output, 0 needing refusal, 0 in
+  the Expert-advisory block of merged customer output.
+- **Persistence works on live traffic.** 16 records on disk, 0 parse problems, 0 completeness
+  problems, and the first record was read back **from disk** mid-run with 15 calls outstanding.
+- **No routing regression.** Expert added 15 family-level candidates the deterministic engine did not
+  emit; exactly **one** truth-present family across 16 rows was covered by neither layer. All five
+  disagreements correctly challenge genuine deterministic over-flagging.
+- **Protected regression: 31 of 31 suites PASS before the first request and after the last,
+  identical line for line.**
+
+**What the probe did NOT establish, and why the terminal is INCOMPLETE.**
+
+- **`relatesToCandidateKey` / arbitration is UNEXERCISED, not proven.** 3 linkage opportunities, 1
+  populated, 1 valid, 0 invalid — **`LINKAGE_PARTIAL`** — and the arbitration stage fired **zero
+  times** because no `HAZARD_EXISTENCE` clarification was emitted anywhere. The three rows built to
+  provoke a contradiction produced no clarifications at all. §139's open question 4 remains open.
+- **TRUE-GAP retention is 2 of 4 strictly, 3 of 4 loosely.** DP-B4's authored gap was declined with
+  the counterfactual test stated explicitly in `uncertainty` — a **fixture** defect, not a model one.
+  **DP-B1 emitted nothing and left no trace of considering the exposure question; that cause is not
+  identifiable from this run** and must be resolved before a larger probe.
+- **`affectedDecision` labelling is nearly unmeasurable at this scale** — 3 labels, 2 exact matches.
+  The P1 success collapsed the P3 denominator.
+- **`crossHazardInsights` is the residual overproduction candidate:** 13 items on 16 rows, 5 of 13
+  falling back to `interactionKind: OTHER`, one forced vocabulary member. A precision and vocabulary
+  question, not a volume failure. Flagged, not repaired.
+
+**Two measurement defects in the probe's own analysis code were found and corrected after the run**,
+both from the persisted records at $0.00: a citation scan that read the whole merged block and
+counted the **supplied governed citations** as Expert output (a false citation defect), and an
+underproduction measure that ignored deterministic coverage and so penalised Expert for obeying the
+additive contract (a false underproduction defect). `PRE-SPEND-IDENTITY.json` was overwritten by the
+first re-measurement pass, so the probe script's own recorded hash names the corrected script; that
+value is unrecoverable for this run and the file is now write-once. Every other recorded hash names a
+file unedited after the spend, and the prompt, contract-type and normalization hashes are
+byte-identical to §139's.
+
+**M14_REMEDIATION_STATUS = NOT_ATTEMPTED.** One arm, asserted against the requests actually built. No
+permutation, no order-sensitivity quantity, nothing from which an order effect could be inferred.
+
+**No production source was modified. No scorer, truth key, threshold or frozen artifact was touched.
+No historical formal evidence was modified. Advancement to a larger probe is NOT authorized by this
+result** — the authorization requires all seven development criteria, and criterion 2 does not hold
+strictly while the linkage axis is unexercised.
+
+---
+
+## §141 — EXPERT HAZLENZ LINKAGE CONTRACT + DEVELOPMENT-INSTRUMENT REPAIR (2026-09-02)
+
+**Terminal:** `EXPERT_HAZLENZ_LINKAGE_CONTRACT_REMEDIATION_COMPLETE — HOSTED_LINKAGE_PROBE_AUTHORIZATION_REQUIRED`
+
+**ZERO provider calls, ZERO local-model calls, $0.00.** `PROVIDER_INVOCATION_COUNT = 195` before and
+after. No cohort created or rerun, no reserved material opened, nothing committed, pushed, tagged or
+deployed. The replacement hosted probe was **designed and validated but NOT executed**. Full
+evidence: `verification/expert-hazlenz-linkage-remediation-2026-09-02/`.
+
+### The structural question, answered first
+
+**Explicit linkage is STRUCTURALLY POSSIBLE and no contract redesign is needed.** `candidateKey` is
+PRODUCER-AUTHORED — the model invents it and nothing assigns it post-generation; `expertHazardCandidates`
+precedes `decisionCriticalClarifications` in wire-schema property order, and structured decoding emits
+in schema order (the property §105 already relied on when it moved `outcome` last); and §140's DP-B2
+did it live. Asserted at `A.13`/`A.14`.
+
+### The finding that reframes §140
+
+§140 reported `LINKAGE_PARTIAL` — 3 opportunities, 1 populated. That denominator counted **any**
+clarification emitted beside **any** candidate. Re-read against the semantics now specified, **all
+three model decisions were correct**: DP-B2's link was REQUIRED and was taken; DP-B3 and DP-B4 were
+ambiguous or concerned a different hazard, so linkage was FORBIDDEN and was correctly withheld.
+Required-linkage population was **1 of 1**, and the §140 data re-scores to **`LINKAGE_READY`**.
+**The measurement was wrong, not the model** — a THIRD development-instrument defect of the same
+class as the two §140 already disclosed. All three share one shape: *a scope error in a measurement
+is indistinguishable from a defect in the thing measured.*
+
+**This does not erase the real gap.** Arbitration still fired **zero** times on hosted evidence, and
+no re-reading manufactures an event that did not occur.
+
+### Linkage semantics, now specified in three places that must agree
+
+REQUIRED when the answer directly determines, contradicts, qualifies or resolves ONE specific emitted
+candidate. ALLOWED when it refines exactly one candidate without deciding its status. FORBIDDEN for
+same-row, same-family, general PPE/procedure/documentation follow-up, a different hazard, or **any
+ambiguous relationship** — two possible referents means no unique link. **Omission is always legal.**
+Making every clarification attach to a candidate was **explicitly refused**: it would rebuild the
+candidate-dependency blueprint 39.5.1 forbids and hand arbitration a stream of guesses.
+`EXPERT_PROMPT_VERSION` → **v8**; `EXPERT_ANALYSIS_CONTRACT_VERSION` stays `analysis.v2`.
+
+### Arbitration, proven deterministically
+
+A declared key naming no emitted candidate is now **stripped to null, the question is KEPT, and the
+break recorded** (`CLARIFICATION_LINK_UNRESOLVED`, item-scoped). Arbitration fires on
+`HAZARD_EXISTENCE` against the asker's own ACTIVE candidate **and nothing else** — extending it to
+`EXPOSURE` was considered and refused as unsupported. All eight enumerated cases pass, including
+arbitration firing with a locatable diagnostic, `REQUIRED_CONTROL` correctly retained, and two
+same-family candidates where only the explicitly linked question is arbitrated. **A contradiction is
+a MODEL ERROR and cannot be commissioned by a fixture** — every v2 row records that, and arbitration
+is proven deterministically rather than by hoping the model errs.
+
+### Fixtures and instrument
+
+- **DP-B4 → LP-B3, REPLACED.** §140 measured the model declining the authored gap and stating why:
+  *"the exact duration ... does not change the current control decision."* The **fixture** was wrong;
+  the model was right and **was not changed**. New gap: a noise measurement the site already holds,
+  whose two branches lead to different actions today.
+- **DP-B1 → LP-B4, REPLACED. `DP_B1_CAUSE = UNKNOWN`.** The persisted record positively excludes every
+  harness loss path (`issues: []`, `mergeViolations: []`, PRESENT, one successful attempt), so the
+  wire array was empty as it left the model — but model omission and a correct counterfactual refusal
+  are indistinguishable because the model left no trace. **The prompt was not tuned to DP-B1.**
+- **Measurement repaired generically**, in `scripts/lib/expert-probe-measures.ts`, with self-tests
+  that FAIL under each original buggy calculation: citation counted **by producer**; coverage over
+  **deterministic ∪ accepted Expert**; linkage against the **authored answer key**.
+- **`PRE-SPEND-IDENTITY.json` is now truly write-once** — `openSync(path,'wx')` + fsync, no `force`,
+  no override. Self-test proves the second write is refused **with the bytes unchanged**. §140's
+  artifact is **NOT** retroactively repaired; its disclosed limitation stands.
+- **v1 fixtures stay byte-identical** — they are the instrument that produced §140's evidence.
+
+### Verification
+
+**33 of 33 suites PASS, and the 31 previously protected results are identical line for line to the
+§140 post-spend baseline.** TypeScript clean. The first Phase-8 run returned **one failure** —
+`expert-projection-equivalence` F.2, a fourth version pin a grep had missed — recorded as a caught
+regression, then re-anchored on the reasoning its own in-file comment already gave. Four assertions
+were re-anchored v7 → v8, none weakened; each keeps or strengthens the property it protects, and the
+content-hash assertions (which a label cannot substitute for) are untouched.
+
+New identity: system prompt `7f143cb6…`, wire schema `614311db…`. §140 ran under `d0506f67…` /
+`65d6fe4c…`; **the hashes moved, which is the point of having them.**
+
+### Next probe — designed, not executed
+
+16 rows, one arm. Four NO-GAP controls carried forward, four TRUE-GAP controls (two carried, two
+replaced), **four rows where linkage is REQUIRED** (§140 created zero), one valid linked
+non-contradictory case, one ambiguity control where a link is a counted violation, the governed
+quartet and the citation-adversarial row. Advancement criteria are frozen **in the manifest** so they
+cannot be chosen after seeing the result.
+
+**M14_REMEDIATION_STATUS = NOT_ATTEMPTED.** No canonicalization, no deterministic semantic id, no
+permutation-specific instruction; `candidateKey` stays producer-authored and free-form.
+`crossHazardInsights` precision remains open and untouched. **No formal scorer, truth key, threshold
+or frozen artifact was modified. No production source outside the Expert contract was touched.**
+
+---
+
+## §142 — EXPERT HAZLENZ HOSTED LINKAGE VALIDATION PROBE (2026-09-02)
+
+**Terminal:** `EXPERT_HAZLENZ_HOSTED_LINKAGE_PROBE_FAILED — LINKAGE_CONTRACT_REVISION_REQUIRED`
+
+ONE bounded hosted **development** probe against the v8 linkage contract. **16 logical calls, 16
+provider requests, 0 retries, $0.591308 of a $2.08 enforced ceiling, one arm.** Not a formal
+evaluation, not a cohort, not an acceptance run. No frozen scorer ran. Historical
+`PROVIDER_INVOCATION_COUNT = 195` before and after; reserved material not opened; spent cohort not
+read, reused or mimicked. Evidence:
+`verification/expert-hazlenz-hosted-linkage-probe-2026-09-02/`.
+
+### The question the probe existed to answer, answered
+
+**REQUIRED-linkage population is 4 of 4, all resolving to a candidate the same response emitted, with
+0 invalid keys and 0 surviving contradictions.** §140 created ZERO required-linkage opportunities;
+§142 created four and the model took all four. On three of them **two** candidates were available and
+the model chose the right referent each time — the LOTO candidate over the guarding one, the
+fire/explosion candidate over mobile equipment, the chemical candidate over fire. That is
+discrimination, not a reflex to link. The ambiguity control `LP-L4` emitted no clarification and no
+link, and the two `ALLOWED` rows both omitted the link legally.
+
+### Why the terminal is FAILED anyway
+
+Eleven of twelve advancement criteria are met. Criterion 4 — *0 accepted FORBIDDEN links* — is not:
+one link was accepted on a row labelled FORBIDDEN. **The cause is mine, not the model's**, and is
+disclosed rather than reclassified after the fact:
+
+1. **A blanket fixture label.** The v2 manifest marks TEN rows `FORBIDDEN`, but only `LP-L4` carries a
+   rationale arguing that a link would be wrong. `FORBIDDEN` was the default for every row that was
+   not `REQUIRED` or `ALLOWED`. It should mean "a link here would be wrong", not "no link expected".
+2. **An ambiguity in the v8 clause itself.** The FORBIDDEN clause names *"general PPE, procedure or
+   documentation follow-up"*; the REQUIRED clause covers a question that *qualifies ONE specific
+   candidate*. The LP-G3 question — what PPE is worn while decanting from unlabelled drums — is both,
+   and uniquely refines exactly one of four candidates. The clause does not say how to tell the two
+   apart.
+
+Fixture truth was NOT rewritten after spend. The criterion is reported mechanically unmet and the
+terminal names the thing that actually needs work: the linkage contract's FORBIDDEN wording and the
+labelling discipline derived from it. **This is not under-population and not invalidity.**
+
+### Everything else held or improved
+
+- **Clarification:** 7 across 16 rows (0.438/call), **4 of 4 NO-GAP controls silent**, 0 clarifications
+  on NO-GAP rows, 0 duplicates, and the §140-measured exposure/severity/control template did not
+  return on any row.
+- **Retention 3 of 4.** **Both §141 fixture replacements worked**: LP-B3 (replacing DP-B4) asked for
+  the dosimetry reading, LP-B4 (replacing DP-B1) asked the walkway-access question — and LP-B4 did so
+  with ZERO candidates on the row, the blueprint's candidate-independence property holding live. The
+  miss is LP-B2, where the model **resolved** an applicability question instead of asking it; its
+  authored gap is valid, so it is a genuine miss, not a fixture defect.
+- **Governed:** all three negative controls abstained; LP-G4 refused the narrower record's extension
+  in as many words; LP-G1 grounded on R1. No forbidden family emitted anywhere.
+- **Citation:** input 0, Expert output 0, accepted 0, merged 0, with 5 supplied record fields carrying
+  a citation pre-render — redaction exercised. The 4 in the governed-authority block are the supplied
+  records, reported as context.
+- **Coverage: 0 truth-present families covered by neither layer** (13 of 13 combined), improving on
+  §140's baseline of 1. Expert supplied 16 families the engine did not.
+- **`crossHazardInsights`:** 10 items with `interactionKind: OTHER` at **0 of 10**, against §140's 5
+  of 13. Diagnostic only — different fixtures, not a controlled comparison.
+- **Persistence:** 16 records, 0 parse/completeness problems, live read-back with 15 calls
+  outstanding.
+- **Protected suites: 33 of 33 before and after, identical line for line.**
+
+### Arbitration and M14
+
+`ARBITRATION_LIVE_STATUS = NO_NATURAL_OPPORTUNITY`. **Zero `HAZARD_EXISTENCE` clarifications across
+16 rows**, so no contradiction arose to arbitrate. Per the authorization this is not a failure — a
+contradiction is a model error, must arise naturally, and was not manufactured. Arbitration remains
+deterministically proven and hosted-unexercised across both probes.
+
+**M14_REMEDIATION_STATUS = NOT_ATTEMPTED.** One arm asserted against the requests actually built; no
+permutation, no order score, no reproducibility figure. §140-vs-§142 differences on the same fixture
+are recorded as observations and are **not** causally attributable — different prompt, different
+fixtures, no control.
+
+**A gate defect was caught before spend:** the first version wrote `PRE-SPEND-IDENTITY.json` before
+honouring the dry-run flag, so the $0.00 rehearsal consumed the write the real run needed. Fixed so
+the identity is written only by a run about to spend; the rehearsal artifact was deleted before the
+real run, and the write-once refusal was then proved on the live artifact (H.3).
+
+**No production source, scorer, formal truth, threshold or frozen artifact was modified. No historical
+formal or prior-probe evidence was altered.**
+
+---
+
+## §143 — EXPERT HAZLENZ LINKAGE-SEMANTICS PRECEDENCE REPAIR (2026-09-02)
+
+**Terminal:** `EXPERT_HAZLENZ_LINKAGE_SEMANTICS_REPAIR_COMPLETE — BOUNDED_HOSTED_CONFIRMATION_PROBE_AUTHORIZATION_REQUIRED`
+
+**ZERO provider calls, ZERO local-model calls, $0.00.** Historical `PROVIDER_INVOCATION_COUNT = 195`
+before and after. No cohort created or rerun, no reserved material opened, nothing committed, pushed,
+tagged or deployed. The confirmation probe was **designed and validated but NOT executed**. Evidence:
+`verification/expert-hazlenz-linkage-semantics-repair-2026-09-02/`.
+
+### The contradiction
+
+v8 listed the three linkage cases **without precedence**, and wrote *"general PPE, procedure or
+documentation follow-up"* into FORBIDDEN while REQUIRED covered any question that *"determines,
+contradicts, qualifies or resolves ONE specific candidate"*. **A single question could satisfy both,
+and nothing said which won** — the word carrying the meaning was *general*, and the clause never said
+so. §142's LP-G3 was exactly that case: a PPE question about one specific decanting task, uniquely
+qualifying one of four emitted candidates, with the model's own reasoning naming two different
+current actions. A correct behaviour was scored a violation.
+
+### The repair
+
+**SPECIFIC SEMANTIC RELATIONSHIP OVERRIDES SUPERFICIAL QUESTION FORM**, stated in the type contract,
+the system prompt and the wire schema, with the tests applied **in order** — REQUIRED (three explicit
+conditions), else ALLOWED, else FORBIDDEN (which still demands a POSITIVE reason). A PPE, procedure or
+documentation question that passes TEST 1 is now linked **by construction, because TEST 1 runs
+first**. Not a loosening: the ambiguity rule is unchanged and omission stays legal.
+`EXPERT_PROMPT_VERSION` → **v9**; `analysis.v2` unchanged; **the candidateKey /
+relatesToCandidateKey MECHANISM was deliberately not touched**, because §142 measured it working at
+4/4 with correct referent selection on three competing-candidate rows.
+
+New identity: system prompt `8f5c7960…`, wire schema `fc37abc7…`.
+
+### LP-G3 and the FORBIDDEN-label audit
+
+**`LP_G3_LINKAGE_TRUTH = REQUIRED`** — all three TEST-1 conditions hold, so TEST 3's generic-PPE
+clause is never reached. **The historical criterion-4 failure arose from INSTRUMENT TRUTH
+MISCLASSIFICATION, not from a defect in the linkage mechanism.** The §142 terminal stands unchanged;
+nothing was retroactively reclassified.
+
+The audit of all ten §142 FORBIDDEN labels found: **1** with a stated rationale (LP-L4), **9** blanket
+defaults, **9** that emitted no clarification at all, and **0 rows that produced a valid FORBIDDEN
+opportunity** — an empty denominator with a non-empty numerator. Corrected by adding the missing
+value **`NOT_A_LINKAGE_TEST`**: a row that makes no linkage claim is excluded from every denominator,
+and `FORBIDDEN` is now a positive claim that a link would be wrong. The fixture suite **fails the
+build** if any row omits its rationale or a FORBIDDEN row states no positive reason.
+
+### Measurement, tests, and two disclosed supersessions
+
+Measurement is now **opportunity-scoped**: an opportunity requires an emitted clarification on a row
+that makes a linkage claim. Neither *"candidate + clarification"* (§140's bug) nor *"labelled
+FORBIDDEN"* (§142's bug) is sufficient, and **both are reproduced and rejected by self-tests**.
+ATTEMPTED is separated from ACCEPTED, NO_LINKAGE_OPPORTUNITY from FORBIDDEN, and ALLOWED omission is
+never scored as a failure. The repair narrows the denominator without disarming the measure — a
+genuine forbidden link is still counted and still blocks READY.
+
+Two new suites, **86 assertions**. The decisive ones: **B.PAIR** (two PPE questions identical in FORM
+classify oppositely) and **B.EXHAUSTIVE** (all 16 condition combinations land in exactly one category
+— the taxonomy is TOTAL and MUTUALLY EXCLUSIVE, which v8 was not). The eight arbitration tests are
+preserved unchanged. `test:expert-linkage-contract` hands its v8-wording and old-counter assertions to
+the new suite with an in-file note rather than maintaining a second drifting set of needles (73 → 51,
+replaced by 86).
+
+### Verification
+
+**35 of 35 suites PASS; the 33 prior suites are identical line for line to the §142 baseline.** Four
+version pins re-anchored v8 → v9 on the convention those files' own comments establish; none
+weakened.
+
+**A correction to prior reporting:** `tsconfig.json` includes only `src/**/*`, so `tsc -p
+tsconfig.json` has **never** typechecked `backend/scripts/`. §140/§141/§142 said "TypeScript clean";
+that covered the `src/` project only. Script type errors surface when ts-node executes each suite —
+which is how every one in this operation was caught.
+
+**The §142 spent probe script is frozen and no longer compiles** against the repaired API. It is left
+byte-identical (hash matches its recorded PRE-SPEND-IDENTITY exactly) because editing it would break
+the correspondence between spent evidence and recorded identity — the defect §141 closed. Recorded as
+known debt: non-compiling by design, and a future scripts-wide typecheck must exclude spent probe
+scripts rather than "fix" them.
+
+### Next probe — designed, not executed
+
+Nine rows, one arm, ceiling 12 requests / $2.00. Three REQUIRED (one control/PPE-shaped), three
+POSITIVE FORBIDDEN (ambiguous same-family, different hazard, genuinely generic PPE), one
+NOT_A_LINKAGE_TEST, two general TRUE-GAP controls. **CL-R3 and CL-F3 are the pair the operation turns
+on** — if a model links on both or neither, the precedence rule has not landed. CL-R3 shares no
+surface facts with LP-G3. Criteria frozen in the manifest, with TRUE-GAP deliberately at **1 of 2**
+because broad clarification-retention validation is **intentionally deferred**.
+
+**LP-B2 remains a GENUINE TRUE-GAP RETENTION MISS**, truth unchanged, no worked example added, no
+wording targeted at it. **Hosted arbitration remains NO_NATURAL_OPPORTUNITY** — zero
+`HAZARD_EXISTENCE` clarifications across 32 hosted calls in two probes; deterministically proven,
+hosted-unexercised, and not manufactured. **M14_REMEDIATION_STATUS = NOT_ATTEMPTED.**
+
+**No formal scorer, truth, threshold or frozen artifact was modified. No historical §140/§141/§142
+evidence was altered.**
+
+---
+
+## §144 — EXPERT HAZLENZ v9 BOUNDED HOSTED LINKAGE CONFIRMATION PROBE (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_V9_LINKAGE_CONFIRMATION_FAILED — LINKAGE_SEMANTICS_OR_MODEL_BEHAVIOR_REVIEW_REQUIRED`
+**`LINKAGE_V9_HOSTED_CONFIRMATION = FAIL_FORBIDDEN_LINKAGE`**
+
+ONE bounded hosted **development** confirmation probe against v9. **9 logical calls, 9 provider
+requests, 0 retries, $0.369354 of a $1.248 enforced ceiling, one arm.** Not a formal evaluation, not
+a cohort, not an acceptance run, not a broad recall probe. Historical
+`PROVIDER_INVOCATION_COUNT = 195` before and after; reserved material not opened; spent cohort not
+read or mimicked; **the spent §142 probe script was not edited**. Evidence:
+`verification/expert-hazlenz-v9-linkage-confirmation-2026-09-03/`.
+
+### The v9 precedence rule LANDED
+
+**REQUIRED linkage: 3 of 3 populated and valid, with the correct referent every time** — CL-R1 and
+CL-R2 against two competing candidates each, and **CL-R3 against three**. CL-R3 is the row the whole
+repair line exists for: a control/PPE-shaped question that v8's "general PPE follow-up" clause would
+have scored a FORBIDDEN link. Under v9, TEST 1 runs first, and **the model linked it**. Its generic
+counterpart **CL-F3 emitted no clarification and no link at all.** Identical question FORM, opposite
+outcome — the precedence pair behaved exactly as designed.
+
+Also clean: **0 invalid/unresolved keys**, **no forced linkage** on the `NOT_A_LINKAGE_TEST` row,
+both ALLOWED rows linked validly (omission would equally have been correct), **5 of 5**
+clarification-positive controls answered, **0** citations in input/output/accepted/merged,
+**0 truth-present families covered by neither layer** (11 of 11 combined — the deterministic layer
+covered 2, **Expert supplied the other 9**), and 9 records persisted with live read-back at 8 calls
+outstanding.
+
+### The one failure, and why it needs a decision rather than another fixture
+
+`FORBIDDEN_LINKAGE_ACCEPTED = 1` on **CL-F1**, whose authored premise was *"two presses of the same
+family in the same state… there is no unique candidate to name."* **The model did not decompose the
+row per press. It decomposed per DEFECT** — muted curtains, key left in panel, and a third candidate
+`unverified_muting_authorisation` — then linked the authorisation question to that third candidate.
+Against the candidate set the model actually produced, that link satisfies all three REQUIRED
+conditions.
+
+**The result was NOT reinterpreted after spend**; the failure stands as measured. What it establishes
+is structural:
+
+> **A FORBIDDEN-ambiguity fixture's premise depends on the model's candidate decomposition, which the
+> fixture cannot control.** This is the same limitation already accepted for arbitration — a
+> contradiction cannot be commissioned — and it may mean ambiguous-referent FORBIDDEN controls cannot
+> be reliably commissioned either. That is a product-owner decision about what the FORBIDDEN measure
+> can honestly be, not something to settle by relabelling a row.
+
+**The FORBIDDEN denominator is also still thin:** 2 of 3 dedicated controls emitted no clarification,
+so only 1 opportunity arose. §142 had 0 of 10; §144 has 1 of 3.
+
+### Tooling, reported as two separate facts
+
+`SOURCE_PROJECT_TSC = PASS` (covers `src/**/*` only — it does **not** compile `backend/scripts/`), and
+separately `CONFIRMATION_PROBE_SCRIPT_EXECUTABLE = TRUE`. A **new** v9 script was written rather than
+repairing the spent §142 one.
+
+**Worth recording:** the first post-probe executability check re-ran the DRY-RUN path and returned
+**FALSE**. Not a defect — gate checks H.1/H.2 correctly refused to re-arm against a directory that
+had just been spent. **That is the anti-double-spend guard working.** The valid post-probe path is
+MEASURE-ONLY, which returns TRUE and regenerated a **byte-identical** `RESULTS-SUMMARY.json`, proving
+the measurement is deterministic, while leaving the write-once identity untouched. The failed
+diagnostic left a `GATE-BLOCKED.txt`, which was **removed** because it post-dates the successful probe
+and would misread as a blocked run.
+
+### Status carried forward
+
+**Protected suites 35/35 before and after, identical line for line.**
+`ARBITRATION_LIVE_STATUS = NO_NATURAL_OPPORTUNITY` — zero `HAZARD_EXISTENCE` clarifications, now
+across **41 hosted calls in three probes**; deterministically proven, hosted-unexercised, never
+fabricated. **LP-B2 remains an unrepaired, unexplained retention miss** and broad clarification recall
+remains **intentionally deferred** — 5 of 5 here is narrow evidence, not closure.
+**M14_REMEDIATION_STATUS = NOT_ATTEMPTED.** No formal scorer, truth, threshold or frozen artifact was
+modified; no historical §140/§141/§142 evidence was altered.
+
+---
+
+## §145 — EXPERT HAZLENZ LINKAGE INSTRUMENT CLOSURE + EXPANDED-VALIDATION READINESS (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_LINKAGE_DEVELOPMENT_BLOCKER_CLOSED — EXPANDED_POST_REMEDIATION_VALIDATION_AUTHORIZATION_REQUIRED`
+
+**ZERO provider calls, ZERO local-model calls, $0.00.** Historical `PROVIDER_INVOCATION_COUNT = 195`
+before and after. **Every historical result is unchanged**, including the v9 hosted confirmation
+probe, which keeps its recorded `FAIL_FORBIDDEN_LINKAGE` terminal — not one byte of its artifacts was
+written. Expanded validation was **designed, not executed**. Evidence:
+`verification/expert-hazlenz-linkage-instrument-closure-2026-09-03/`.
+
+### The construct-validity defect
+
+The v9 probe failed on one criterion, `FORBIDDEN_LINKAGE_ACCEPTED = 1` on CL-F1, whose fixture
+authored FORBIDDEN on the premise that two trim presses would yield two interchangeable
+`machine_guarding` candidates. **That premise is a prediction about the model's candidate
+decomposition, and a fixture cannot make it true** — ambiguity is a property of the candidate set, and
+the candidate set is model-generated. The model decomposed **per defect**, emitting
+`unverified_muting_authorisation`, which *is* the missing fact, and linked to it correctly.
+
+This is the fourth instrument defect in the programme and the first of its kind: the earlier three
+were **scope** errors in a measurement; this one is a **construct** error — the measure asked a
+question the instrument had no standing to ask.
+
+### Two questions, permanently separated
+
+**QUESTION A — LINKAGE VALIDITY:** given the ACCEPTED candidate set actually emitted, is the
+relationship unique? **QUESTION B — CANDIDATE DECOMPOSITION QUALITY:** should that candidate have
+existed? A valid link to a spurious candidate is `LINKAGE_VALID = TRUE` **and** a candidate-precision
+question. **A bad candidate must never turn a mechanically correct link into a linkage failure.** The
+axes are reported separately and never summed.
+
+`FORBIDDEN` is no longer authorable as fixture truth. A fixture declares `EXPECTED_SCENARIO_INTENT`;
+the instrument computes `SCENARIO_INTENT_REALIZED` mechanically from the accepted candidate set, and
+an unrealized intent **leaves the FORBIDDEN denominator**. The correction is **not** a way to pass —
+`C2.3` proves that a link to one of two genuinely interchangeable candidates is still counted as a
+violation.
+
+### CL-F1 re-derivation, from persisted output only
+
+Accepted candidate? **YES** (survived the boundary, 1 bound quote, `INSUFFICIENT_EVIDENCE`,
+`requiresUserConfirmation`). Uniquely related? **YES** — the guard is defeated and the key is in the
+panel *whatever* the authorisation answer is; only the third candidate's status turns on it. Key
+resolved? **YES**. **Output-relative classification: `REQUIRED`.** **Candidate quality:
+`PLAUSIBLE_BUT_UNVERIFIED`** (`training_procedure_supervision` is the row's authored DEFENSIBLE
+bucket). **Whether three candidates for one defeated-guard situation is over-fragmented is
+UNRESOLVABLE from the development truth and was NOT guessed** — candidate-quality uncertainty was not
+converted into a linkage defect.
+
+### PROSPECTIVE_INSTRUMENT_CORRECTED_REDERIVATION (does NOT replace the historical result)
+
+REQUIRED 3/3 opportunities, populated, valid · ALLOWED 2/2 · FORBIDDEN scenario intents **3**,
+**realized 0**, opportunities **0**, accepted **0** · `SCENARIO_INTENT_NOT_REALIZED` **3** ·
+`INVALID_LINKAGE_ACCEPTED` **0** · `NO_LINKAGE_OPPORTUNITY` 3. CL-F1's link resolved outside the
+presumed families; CL-F2 and CL-F3 emitted no clarification at all.
+
+**`FORBIDDEN_LINKAGE_ACCEPTED = 0` means "no defect established", NOT "FORBIDDEN behaviour
+verified".** Zero opportunities is zero evidence, and across both hosted probes **no execution has
+yet produced a realized FORBIDDEN opportunity.**
+
+### Linkage CLOSED as a development blocker
+
+All eight conditions hold: REQUIRED demonstrated **7 of 7 across two independent executions**
+(§142 4/4, v9 3/3); competing-candidate referent selection with sets of 2, 2 and 3; candidate-specific
+PPE/control precedence (CL-R3); generic counterpart forced no link (CL-F3, CL-N1 silent); **0** invalid
+keys; **no output-relative FORBIDDEN defect**; deterministic arbitration green; **35/35** suites
+before and after.
+
+`ARBITRATION_LIVE_STATUS = DETERMINISTICALLY_PROVEN_HOSTED_UNEXERCISED` — zero `HAZARD_EXISTENCE`
+clarifications across **41 hosted calls in three probes**. **Linkage is not held open waiting for a
+naturally rare contradiction**, and none was fabricated.
+
+### New debt, and the next probe
+
+**`CANDIDATE_PRECISION_AND_DECOMPOSITION`** — the candidate axis reports **8 anomalies** (1 SPURIOUS,
+7 PLAUSIBLE_BUT_UNVERIFIED), none folded into a linkage count. The SPURIOUS one, CL-T1's `cand-2`, is
+grounded in a stated fact with a bound quote, so whether it is a precision defect or a taxonomy
+disagreement is exactly what the new axis exists to ask. **Not repaired from any single row.**
+
+**`LP_B2_STATUS = GENUINE_TRUE_GAP_RETENTION_MISS`, preserved.** Clarification *overproduction* is
+substantially improved and repeatedly measured (0.188 → 0.438 → 0.667 per call, no coverage template
+in any probe), but **recall is not closed** — 5/5 on nine rows is narrow evidence.
+**`CLARIFICATION_RECALL` becomes the PRIMARY axis** of the expanded validation, on fresh cases across
+multiple `affectedDecision` categories, not copying LP-B2.
+
+The expanded probe is **deliberately not another linkage probe** — linkage drops to a regression check
+only. Nine axes: clarification recall (primary), candidate recall, candidate precision/decomposition,
+cross-hazard insights, disagreements, governed evidence, citation containment, collection sparsity,
+additive union quality. Proposed envelope: **~20–30 logical calls, one arm, request ceiling 32, spend
+ceiling min($3.50, 32 × $0.104 = $3.328)**, fresh fixtures, write-once identity, fsync-backed
+scorer-visible persistence. No spent formal rows, no reserved material.
+
+**Tooling debt recorded:** `SOURCE_PROJECT_TSC` covers `src/**/*` only; `backend/scripts/` need their
+own execution/compile validation; **`ACTIVE_SCRIPT_EXECUTABLE_PROOF = TRUE` is required before any
+future provider spend**. Spent scripts may remain intentionally non-compiling where immutable identity
+requires it — `probe-expert-hosted-linkage-2026-09-02.ts` was **not edited**.
+
+**M14_REMEDIATION_STATUS = NOT_ATTEMPTED.** No formal scorer, truth, threshold or frozen artifact was
+modified.
+
+---
+
+## §146 — EXPANDED POST-REMEDIATION HOSTED DEVELOPMENT VALIDATION (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_EXPANDED_POST_REMEDIATION_VALIDATION_FAILED — CLARIFICATION_RECALL_REMEDIATION_REQUIRED`
+
+ONE bounded expanded hosted **development** validation against v9. **24 logical calls, 24 requests,
+0 retries, $0.914836 of a $3.328 ceiling, one arm, 24 distinct safety domains.** Not a formal
+evaluation, not a cohort, not an acceptance run. Historical `PROVIDER_INVOCATION_COUNT = 195` before
+and after. Evidence:
+`verification/expert-hazlenz-expanded-post-remediation-validation-2026-09-03/`.
+
+### What is strong
+
+**Candidate recall 12/14 = 0.857** against a denominator **MEASURED** pre-spend by running the real
+deterministic engine at $0.00 — not authored. **Zero unsupported, zero duplicate, zero fragmented
+candidates in 30 candidates across 24 rows.** Zero citations in input, Expert output, accepted or
+merged, with redaction exercised on 7 supplied record fields. All three governed negatives correct,
+including a verbatim extension refusal. **Zero protected-authority contradictions.** No coverage-habit
+template, no duplicate questions. **Combined coverage 21/24 — Expert supplied MORE truth-present
+coverage than the deterministic layer (12 vs 9)** with no deterministic regression. Empty-by-default
+intact on every collection. **35/35 protected suites before and after, identical.**
+
+### The failure: clarification recall
+
+**Strict recall 5/8 = 0.625** (loose 6/8 = 0.75). The strict/loose distinction is §140's and is
+applied again: `TRUE_GAP_CORRECTLY_ASKED` counts *a question emitted*, not *the authored gap
+recovered* — EV-A2 asked a different question entirely.
+
+**The two outright misses share LP-B2's shape: the model RESOLVES the question instead of asking
+it.** EV-A6 is unusually clear because it wrote the reasoning out first — *"The supplied governed
+record sets its threshold at above 24 feet, so it does not extend to a ladder measured at
+twenty-three feet six inches; that is a distinction worth flagging but not a basis to challenge…"* —
+then declined to surface it. **Three instances now (LP-B2, EV-A4, EV-A6): a repeated, evidence-backed
+pattern, not an anomaly.** `affectedDecision` accuracy is 3/6 on a six-label denominator too thin to
+read a rate from.
+
+### Two axes that CANNOT be concluded — instrument, not model
+
+**Disagreements (fifth instrument defect, second of the CONSTRUCT kind).** 8 emitted, only 1 on a row
+the fixture marked an opportunity — but **all 7 "unnecessary" ones are substantively correct**
+challenges to genuine deterministic over-inclusion (a parked-and-isolated crane asserted active, a
+tested-working e-stop, a repaired and recertified air line, a grinder tool rest classified `hot_work`,
+`UNKNOWN` accessible-energy where the text states hand contact). **A disagreement opportunity depends
+on what the deterministic layer emits, which a fixture cannot predict** — structurally the same defect
+§145 found for linkage ambiguity. The measure is reported **VOID**.
+
+**Insights.** 12 emitted, 6/6 opportunities found, 4 on "no-insight" rows — but all four name a real
+mechanism (the best: a blocked fire exit *and* an inward-opening door, so *"even a person who reaches
+the door cannot swing it open into the stacked castings"*). The fixture labels were too strict; **no
+unsupported-overproduction pattern is established.** The deliberate negative control EV-C3 — two real
+hazards 60 m apart through two fire doors — correctly emitted **zero** insights. `interactionKind:
+OTHER` fell to 2 of 12, from 5 of 13 in §140.
+
+**NO-GAP silence 11/15 = 0.733** is likewise fixture-limited: 2 of the 4 questions (EV-C2, EV-D4)
+raise genuine exposure facts the fixture failed to anticipate. Adjusted it would be 0.867. Reported
+both ways, not as a clean model failure.
+
+### Other findings
+
+**One call in 24 (4.2%) was condemned** by `EVIDENCE_OUT_OF_BOUNDS` — an unbindable quote, fatal by
+design. The fail-closed property worked; the cost is a whole row (3 candidates, one TRUE-GAP
+opportunity, one linkage opportunity, one coverage row). **The offending text is unrecoverable: the
+run record stores the validated analysis, not the raw wire.** Recorded as a persistence gap; nothing
+was reconstructed.
+
+**Linkage stays a regression axis** — 2 opportunities, 1 valid, **0 invalid keys, 0 output-relative
+FORBIDDEN defects**. Too thin to disturb the §145 closure, and linkage is **not reopened**.
+
+`SOURCE_PROJECT_TSC = PASS` (`src/**/*` only — does **not** cover `backend/scripts/`);
+`ACTIVE_SCRIPT_EXECUTABLE_PROOF = TRUE` before and after spend.
+**M14_REMEDIATION_STATUS = NOT_ATTEMPTED.** No formal scorer, truth, threshold or frozen artifact
+modified; no historical evidence altered; no formal cohort constructed or authorized.
+
+---
+
+## §147 — CLARIFICATION-RECALL ROOT CAUSE + BOUNDED REMEDIATION (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_CLARIFICATION_RECALL_REMEDIATION_FAILED — FURTHER_SEMANTIC_REPAIR_REQUIRED`
+
+Root cause ESTABLISHED. Prompt-only remediation implemented (v9 → **v10**; `analysis.v2` unchanged —
+the wire schema gained no field, enum member or `required` entry). Local gates green at $0.00.
+**Bounded hosted probe: 10 calls, 10 requests, 0 retries, $0.420588 of a $1.2480 enforced ceiling**,
+one arm, ten fresh domains. Historical `PROVIDER_INVOCATION_COUNT = 195` before and after. Evidence:
+`verification/expert-hazlenz-clarification-recall-remediation-2026-09-03/`.
+
+### Root cause
+
+**Every layer below the model is excluded on direct evidence:** across 24 §146 calls and §142's
+LP-B2, the only normalization issue anywhere is one evidence-binding failure on a *candidate*. **Not
+one clarification was stripped by any layer.**
+
+The reconstruction found the discriminating variable. Every gap the model RECOVERED was one the
+observation **advertised** (it literally says "does not establish whether", or the scene carries an
+epistemic marker — a painted-over label, a blank permit section). Every gap it MISSED was
+**UNMARKED**, derivable only from what the text never says, and into that hole the model put an
+inference. **A settled fact is not a missing fact**, so v9's counterfactual test was never entered —
+and v9's NO-LOSS RULE could not fire either, because it is keyed to an *acknowledged* gap and a
+resolved gap never produces that sentence. Four mechanisms, all caught in real output:
+resemblance-to-a-programme (LP-B2), adverse-branch collapse (EV-A4),
+threshold-across-incomparable-bases (EV-A6), invariance-by-subsumption (EV-A2).
+
+**v9 governs the disposal of acknowledged gaps and never governs acknowledgement itself.**
+
+### The v10 repair
+
+Three additions, nothing removed: **WHAT COUNTS AS ESTABLISHED** placed *before* the counterfactual
+test; the invariance limb **SCOPED** to the decision the fact governs; and **THE SETTLEMENT CHECK**
+beside the NO-LOSS RULE ("the no-loss rule catches a gap you ADMITTED, and this check is the only
+thing that catches one you RESOLVED"). Condition (b) now admits the interpretive case the
+`affectedDecision` vocabulary already offered. **No quotas, no minimum counts, no keywords, no domain
+rules, no fixture wording.** Every clause of the v9 precision text is asserted needle-by-needle by
+the new suite.
+
+### What the probe showed
+
+**The repair works on the shape it was built for.** CR-E2 (the EV-A6 threshold shape, generalized,
+UNMARKED) and CR-F1 (settlement collapse pointed benignly, UNMARKED) were both **recovered** — the
+model converted units, noticed proximity to the boundary, held both branches open, and on CR-F1 wrote
+that the tester and gloves were *"resting on the bench rather than being actively used or worn"*.
+§146 lost both shapes to silence.
+
+**Strict REQUIRED recall 3/5 delivered (4/5 as reasoned) against a 100% gate. FORBIDDEN silence 2/5
+against a zero-violation gate. Both gates fail.**
+
+**CR-F2 is the most important row and it is not a recall miss.** The model asked the question and
+**arbitration dropped it**: `CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE`, because it labelled a scope
+question `HAZARD_EXISTENCE` while asserting `fire_explosion` ACTIVE. **This is the FIRST hosted
+arbitration event in the programme** — the stage was `DETERMINISTICALLY_PROVEN_HOSTED_UNEXERCISED`
+across 65 hosted calls in four probes, and it fired correctly on a contradiction nobody commissioned.
+It also means §146's `affectedDecision` accuracy defect (3 of 6) is **no longer cosmetic: a
+mislabelled question is destroyed.** Whether arbitration should strip the LABEL rather than the
+QUESTION is a contract decision requiring its own authorization.
+
+**CR-D1 is a real precision regression caused by the v10 clause.** The model computed the record's
+band itself, said 1,050 mm *"falls within… so on its face the guardrail appears compliant"*, and
+asked anyway. v10's clause qualifies on *close to the value* OR *not measured on the same basis*, and
+**neither applies** — mid-band, stated matching datum. **The qualifiers must be made conjunctive and
+operative rather than illustrative.** The other two forbidden violations (CR-B1, CR-G1) are disputed
+and fixture-limited: on CR-B1 the model correctly observed that *"confirmed at the grille only
+confirms airflow presence, not sufficiency"*, and my fixture over-claimed invariance. CR-C1 — the
+anti-overcorrection control on a plainly settled threshold — **stayed correctly silent**, so the
+clause is over-firing, not the settlement rule.
+
+**Regression axes clean:** 0 invalid clarification objects, 0 citations anywhere, 0
+protected-authority contradictions, 0 forbidden families in 15 candidates, 0 invalid linkage, no
+deterministic regression, 36/36 protected suites identical before and after.
+
+### §147 (P7) observability repair
+
+§146 lost a whole row to `EVIDENCE_OUT_OF_BOUNDS` and could not recover WHAT was quoted.
+`ExpertNormalizationIssue` now carries optional `offendingText` on the three evidence-binding codes
+only — bounded at 240 chars with the clipped amount stated, citation-redacted. It cannot contaminate
+accepted output (all three codes are `ANALYSIS_FATAL`, so a populated field implies `validated` is
+null), reconstructs nothing, and its only source is the wire item's own `quotedText`. **The §146
+output was NOT reconstructed.** Citation containment still holds by ORDER — the payload-wide scan
+condemns before the evidence path — which the suite states honestly rather than claiming the
+redaction is what protects it.
+
+### Two local defects caught before spend, recorded not absorbed
+
+A **fourth v9 pin** in `test-expert-projection-equivalence.ts`, written with escaped dots inside a
+regex literal so a plain `prompt.v9` grep misses it — the same pin missed in §143, and it caught the
+regression **both times**. And **six fixture rows** with an allowed family in no partition bucket
+plus one row marking a non-present family life-critical, both surfaced by the first $0.00 dry run;
+`C.14b` now asserts row-contract completeness so the class cannot recur. A stale `GATE-BLOCKED.txt`
+from that dry run was removed before the real run and disclosed.
+
+### Preserved unchanged from §146
+
+`DISAGREEMENT_QUALITY = VOID` (denominator not conditioned on deterministic output; the seven correct
+challenges are **not** model defects). `INSIGHT_PRECISION = NOT_ESTABLISHED`. NO-GAP silence reported
+**both** ways, 0.733 literal and 0.867 adjusted, with EV-C2 and EV-D4 as fixture-limitation evidence.
+Linkage stays a regression axis. `M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.
+
+**Another expanded validation is NOT yet justified**: with a known over-firing clause, it would
+measure the clause rather than the product.
+
+---
+
+## §148 — SETTLEMENT-THRESHOLD NARROWING + AFFECTEDDECISION/ARBITRATION POLICY (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_CLARIFICATION_REMEDIATION_FAILED — FURTHER_SEMANTIC_REPAIR_REQUIRED`
+
+ONE bounded operation, TWO separate workstreams, kept separate and reported separately. Prompt-only
+(v10 → **v11**); `analysis.v2` unchanged — no field, enum member or `required` entry moved; arbitration
+byte-unchanged. **Bounded hosted probe: 10 calls, 10 requests, 0 retries, $0.453496 of a $1.2480
+enforced ceiling**, one arm, ten fresh domains. Historical `PROVIDER_INVOCATION_COUNT = 195` before
+and after. Evidence: `verification/expert-hazlenz-threshold-arbitration-remediation-2026-09-03/`.
+
+### Workstream A — the threshold clause is now conjunctive, and it works
+
+§147's CR-D1 was caused by v10's own text: the third ESTABLISHED bullet qualified a threshold as
+unsettled *"when the facts sit close to the value, **or** when the two are not measured on the same
+basis"* — two **illustrative, disjunctive** qualifiers, neither of which held on CR-D1.
+
+v11 states the SETTLED reading **first and affirmatively** (value + basis + side supplied ⇒ **the
+reading IS ESTABLISHED**; *"Do the arithmetic, state the answer and move on"*), then makes reopening
+**CONJUNCTIVE**: unsettled only where **(i)** something OBJECTIVE in the record or the observation
+gives a concrete reason the value or its basis is not the record's comparison, **AND (ii)** resolving
+it could cross the line. *"BOTH, never either."* Four things are named insufficient on their own —
+**proximity** (*"near the line is a side of the line"*), the mere existence of another basis, imagined
+uncertainty, and the availability of a more exact figure. Two reopening shapes stay reachable: a
+different **datum**, and an **aggregate the record itself demands**.
+
+**ALL FIVE FORBIDDEN CONTROLS STAYED SILENT, AND BOTH LIVE THRESHOLD ROWS STILL ASKED.** `TR-B3` is
+the CR-D1 analog built with proximity as the *only* remaining foothold — 0.52 m/s against 0.5, with
+instrument, plane, sash height and averaging each named by both texts — and the model wrote *"meets
+the supplied governed record's minimum… functioning as required"* and stopped there. `TR-B2` closes a
+hole §147's evidence could not see: CR-C1 only proved silence on an exception that switched the rule
+OFF, and TR-B2 is the case where the rule plainly **applies and is met**. `TR-C2` — the CR-E2
+aggregation shape on unrelated facts, unmarked — was **recovered**, which is the direct evidence that
+v11 narrowed rather than reverted. **CR-D1 is CLOSED. Precision improved: 5/5 silent, 0.50
+clarifications per call against §147's 0.70.**
+
+### Workstream B — E adopted, A retained byte-unchanged, B/C/D refused on measurement
+
+Five options evaluated in `test-expert-affected-decision-arbitration.ts` (41 assertions, $0.00).
+
+**The finding that decided it: arbitration is fail-closed ON THE LABEL, not on the semantics, and it
+trusts the label in BOTH directions.** Matrix case 6 proves it — an existence question labelled
+`REQUIRED_CONTROL` beside an ACTIVE candidate **survives untouched**. There is therefore no
+deterministic repair that makes the stage semantically correct; only one that makes the LABEL correct.
+
+**B is a contract change, not a behaviour change**: `affectedDecision` is `required` on the wire and
+non-nullable here, the boundary already refuses an unlabelled clarification (L3-INV-06), and a
+neutralized label would deliver a question whose decision relationship is unknown — worse than the
+arbitration it replaces.
+
+**C and D were MEASURED, and the first argument against them FAILED and is recorded as such.** A
+keyword reclassifier was built expecting it to corrupt a correct label; **in sample it decided 6 of 7
+and was correct on all 6**, and it *would* have rescued CR-F2 (`R.4`). The refusal rests on what
+survived that: to catch case 6 the same rule must **DESTROY** a question on a keyword match, so C is a
+**new deletion mechanism** rather than a rescue (`R.5`); it **abstains exactly where the rescue was
+wanted**, and D's inferability gate is the same guess grading its own confidence (`R.6`); arbitration
+has fired **ONCE** in the whole programme, so a deletion authority could not be calibrated against any
+population (`R.7`); and **out of sample it does corrupt** — against ten §147 fixture questions authored
+before the rule existed it decided 6 of 10 and is wrong on at least 2, deriving `REQUIRED_CONTROL`
+because **"guardrail" contains "guard"**, and deriving `HAZARD_EXISTENCE` — *the one label that
+deletes* — **from the word "actually"** (`R2.4`/`R2.5`). **6/6 in sample against 4/6 out of sample is
+the in-sample artefact, measured.**
+
+**E ships in v11**: the self-check against the model's own candidate list before writing
+`HAZARD_EXISTENCE`, the four routes for the mislabelled cases, and — the part v10 never said — **the
+CONSEQUENCE**, that such a question is *"DISCARDED IN FULL"* and *"the reviewer never sees it"*. It
+cannot raise question frequency: every route lands on a different enum member of a question already
+decided upon. **`CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE` is not weakened, narrowed or made
+conditional**, and `affectedDecision` accuracy is now a REQUIRED MODEL-SIDE GATE.
+
+### What the hosted probe did NOT establish
+
+**Zero destroyed, zero arbitration events, `AFFECTED_DECISION_SURVIVAL = 5/5`** — and
+**`TRUE_CONTRADICTION_REJECTION` is reported as `null` / NOT EXERCISED, never as 100%**, because the
+denominator is empty. The CR-F2 configuration never arose. On `TR-D1` the model **did** label its
+question `HAZARD_EXISTENCE`; it survived only because it decomposed `fire_explosion` into two
+candidates and linked to the one it had left at `INSUFFICIENT_EVIDENCE`, while an ACTIVE
+`fire_explosion` candidate sat beside it. **Survival passed on a decomposition choice, not on
+demonstrated routing accuracy. Nothing here shows v11 prevents a CR-F2 recurrence.**
+
+### Why the terminal — one row, and it is the §147 class
+
+**`TR-E1` went silent. Strict DELIVERED recall 4 of 5 against a 100% gate**, and for the first time in
+the programme the delivered and as-reasoned figures coincide, because nothing was destroyed. The model
+settled the unmarked fact **adversely** — the observation says a gas monitor is *not visible*, and the
+model wrote *"unmonitored atmospheric hazard"* and *"no controls in place"* as fact, then had nothing
+to ask. That is **adverse-branch collapse compounded by invariance-by-subsumption**, the two mechanisms
+v10's SETTLEMENT CHECK exists to catch, both verified present in the text actually sent. **It is not
+attributable to the v11 narrowing** — `TR-E1` carries no threshold and no supplied record — but that
+attribution is **reasoned, not measured**: no v10 counterfactual was run.
+
+`— CLARIFICATION_PRECISION_REGRESSION` was rejected (precision improved). `—
+AFFECTED_DECISION_ROUTING_REPAIR_REQUIRED` was rejected (nothing was lost to routing).
+
+### Observability, and the field that was deliberately NOT broadened
+
+§147 could not report CR-F2 because a destroyed question's text is unrecoverable from the validated
+analysis. The §148 gates require delivered and reasoned-but-destroyed to be reported separately, so
+the probe wraps the provider in a **development-only capturing decorator** and writes `RAW-WIRE.jsonl`
+(citation-scanned, 0 hits). **`ExpertNormalizationIssue.offendingText` was NOT extended to
+`CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE`**: that code is **non-fatal**, so extending it would put
+model text on an **accepted** analysis and break the exact invariant that made the field safe. The
+production runner, normalizer and customer path are byte-unchanged.
+
+### Regression and confinement
+
+0 invalid clarification objects; citations 0/0/0/0 with 12 supplied-record fields redacted; 0
+protected-authority contradictions; 0 forbidden families in 17 candidates; union coverage **7/7** with
+Expert supplying all seven; **20/20 protected suites identical before and after**; `SOURCE_PROJECT_TSC
+= PASS`; `ACTIVE_SCRIPT_EXECUTABLE_PROOF = TRUE` before and after spend.
+
+**One linkage defect disclosed:** `TR-C2` set `relatesToCandidateKey = "haz-2"`, naming no emitted
+candidate. `CLARIFICATION_LINK_UNRESOLVED` fired, the key was stripped and the question was kept —
+§141 working. **An instrument limitation falls out of it:** `linkageDiagnostics` reports
+`INVALID_LINKAGE_ATTEMPTS = 0` on that row because the counter reads the **validated** output, from
+which the broken key has already been stripped; only `INVALID_LINKAGE_STRIPPED` sees it. Recorded, not
+repaired — outside this operation's authorized minimum.
+
+§147's artifacts verified **byte-identical** against their own recorded hashes (probe script
+`f17ed58d…`, fixture v5 `d5cb48b8…`, run records `0cd48458…`). Reserved material not opened; spent
+formal cohort not read or mimicked; formal scorers, truth and thresholds unchanged; deterministic
+HazLenz unchanged; no commit, push, tag or deploy; production, database and customer state untouched.
+**`M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.**
+
+**Another expanded validation is NOT yet justified**: one REQUIRED row still fails on the unrepaired
+§147 settlement class, and an expanded run would measure that residue rather than the product.
+
+---
+
+## §149 — UNSUPPORTED-SETTLEMENT REMEDIATION (v12) + RAW-LINKAGE CLOSURE (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_CLARIFICATION_REMEDIATION_FAILED — FURTHER_SEMANTIC_REPAIR_REQUIRED`
+
+**THE PRIMARY GOAL WAS MET AND THE RECALL GATE WAS NOT. Neither should be read through the other.**
+Prompt-only (v11 → **v12**); `analysis.v2` unchanged, arbitration byte-unchanged, `affectedDecision`
+enums unchanged, accepted-output semantics unchanged. **Bounded hosted probe: 10 calls, 10 requests,
+0 retries, $0.484598 of a $1.0400 enforced ceiling**, one arm, ten fresh domains. Historical
+`PROVIDER_INVOCATION_COUNT = 195` before and after. Evidence:
+`verification/expert-hazlenz-unsupported-settlement-remediation-2026-09-03/`.
+
+### Root cause — TR-E1, established before anything was changed
+
+The observation said *"no gas monitor **is visible** at the surface or on the man."* The model bound
+that span **exactly** — `EVIDENCE_OUT_OF_BOUNDS` did not fire and should not have — then wrote one
+field away in `evidenceBasis` *"there is no gas monitoring equipment **present at all**"*, and in
+`reasoning` *"the atmosphere… is **unassessed and unmonitored**."* **TWO steps: VISIBILITY →
+EXISTENCE, then EQUIPMENT → ACTIVITY with PRESENT → PAST.** The second destroyed the question,
+because the missing fact was whether the atmosphere was tested **before** entry — and an instrument
+used and put away satisfies *"no monitor visible"* exactly.
+
+**v11's four ESTABLISHED limbs each fail to reach it, and the fourth is the near miss.** Worst-case
+needs the model to know it assumed; resemblance needs a similarity step; the threshold limb needs a
+supplied record; and *"a fact NOBODY MENTIONED is not thereby absent"* needs SILENCE. **The
+observation MENTIONED the monitor** — negatively, about a WEAKER predicate than the one the model
+then asserted.
+
+> **v11 governs facts the text is SILENT about and facts the model INVENTED. It does not govern a
+> fact the text states NEGATIVELY about one predicate and the model then asserts about a STRONGER
+> one.** A partial negative READS LIKE COMPLETENESS AND BEHAVES LIKE SILENCE.
+
+**And no layer below the model can close it.** The prompt states grounding is a provenance check —
+*"It is not read for meaning"* — so nothing verifies `evidenceBasis` against the span it cites, and
+building that check would be the deterministic semantic inference §148 refused on measured evidence.
+
+### v12 — five additions, nothing removed
+
+**NOT OBSERVED IS NOT ABSENT** (read a negative for exactly its predicate; six forbidden restatements
+named; **both jumps named separately**); its **SCOPE** in the same breath (*"THIS IS NOT AN
+INSTRUCTION TO DOUBT THE TEXT"* — a stated absence *"is a fact like any other and you should use
+it"*); **LIKELY IS NOT ESTABLISHED** (v11 named nothing for this); **WORST CASE MAY EXPLAIN, IT MUST
+NEVER SETTLE**; and **THE ENTAILMENT DISCIPLINE** in the EVIDENCE section **because that is where the
+crossing happened**, ending *"None of this is a reason to withhold a candidate."*
+
+### THE PRIMARY GOAL: unsupported settlement did NOT recur — 0 of 10
+
+Adjudicated by reading every candidate's `evidenceBasis` and `reasoning` and every summary against
+each row's authored `textEstablishes` / `mustNotAssert` pair. **US-A1 is TR-E1's configuration on
+unrelated facts and the model refused it**, writing *"no soft landing system… **was visible**"* and
+asking *"Is a soft landing system **actually installed**… **even though it could not be seen from the
+roof due to the opaque sheets**?"* **US-F1 shows the scope holding**: where absences are POSITIVELY
+stated the model used them as facts and asked nothing, so v12 did not become an instruction to doubt
+the text. **Candidate suppression 0**; 17 candidates; union coverage 6/6.
+
+### Why the terminal — strict DELIVERED recall 3 of 5
+
+US-A1, US-B1 and US-C1 recovered the authored fact exactly. **US-D1 went silent** — and it is NOT an
+unsupported settlement: the model refused the strengthening, wrote *"it does not describe any other
+worker, spotter, or traffic management support"* and marked the candidate `INSUFFICIENT_EVIDENCE`,
+then **left the retained doubt in a candidate state instead of asking**. That is
+**retention-without-a-question**, the EV-A2 shape, a mechanism v12 does not govern and was not built
+to. **US-E1 substituted** a different question — itself a v12-shaped one, asking whether the pavement
+was closed off *"by other means not visible from this vantage point"*. Delivered and as-reasoned
+coincide at 3/5 because **nothing was destroyed**.
+
+**Two of the five failures are FIXTURE DEFECTS I authored**, found by reading the output and scored
+strictly anyway. US-D1's observation says *"traffic is passing in **the open lane**"*, which
+presupposes a closure and partially answers its own question. And **US-I1 — the one FORBIDDEN
+violation — vindicates the model**: I claimed a cable removed at both ends makes isolation
+*deterministically derivable*, and the model asked whether the disconnection is **locked or tagged
+against reconnection**, naming *"a second fitter… standing at the door"*. **My derivation smuggled in
+the exact premise §149 forbids**: "no supply path NOW" does not establish "no supply path
+THROUGHOUT". Adjusted for it, FORBIDDEN silence is **5 of 5**; precision did not regress (0.50
+clarifications per call, identical to §148) and **§148's settled-threshold row stayed silent**.
+
+### Phase 5 — the raw-linkage blind spot is CLOSED
+
+§148 reported `INVALID_LINKAGE_ATTEMPTS = 0` on the very row that made an invalid attempt, because
+that counter reads the **validated** analysis from which the broken key had already been stripped —
+**the metric read the output after the thing it counts had been removed.** Four figures are now
+computed from the captured wire and reported separately: `RAW_LINKAGE_ATTEMPTS = 5`,
+`RAW_INVALID_LINKAGE_ATTEMPTS = 0`, `NORMALIZED_VALID_LINKAGES = 5`,
+`STRIPPED_INVALID_LINKAGES = 0`, **reconciled TRUE** on five real hosted attempts. This run produced
+no invalid attempt, so **the closure is proved DETERMINISTICALLY** against the TR-C2 shape: the
+attempt is counted, the key `"haz-2"` is recoverable, a missing capture yields **null and never
+zero** so no historical run is back-inferred, a raw/normalized disagreement fails loudly, and the
+production boundary is byte-unchanged. **`offendingText` was NOT widened** —
+`CLARIFICATION_LINK_UNRESOLVED` is non-fatal, so widening it would put model text on an ACCEPTED
+analysis and break the invariant that made the field safe. §141–§148 metrics unchanged.
+
+### The true-contradiction gate cannot be met as written
+
+`TRUE_CONTRADICTION_REJECTION` is reported **NOT_EXERCISED**, never as 100% from a zero denominator.
+A realized contradiction requires the MODEL to emit `HAZARD_EXISTENCE` naming its own ACTIVE
+candidate — an error v12 instructs against — so it cannot be commissioned, only observed. §148 built
+TR-E1 as exactly that temptation and produced none, and arbitration has fired once in the programme
+across 95 hosted calls. **This is a property of the gate, not a shortfall in the probe.** The
+rejection PROPERTY is proved deterministically (`N.4` rejects and keeps the candidate; `N.5` a valid
+non-existence label survives).
+
+### Regression and confinement
+
+0 invalid clarification objects; citations 0/0/0/0 with 6 supplied-record fields redacted and 0 in
+the captured wire; 0 protected-authority contradictions; 0 forbidden families in 17 candidates; 0
+accepted invalid linkages; **21/21 protected suites identical before and after, 1,540 assertions**;
+`SOURCE_PROJECT_TSC = PASS`; `ACTIVE_SCRIPT_EXECUTABLE_PROOF = TRUE` before and after spend; pre-spend
+gate 44/44 at $0.00. One stale `GATE-BLOCKED.txt` from a $0.00 dry run (an id regex still expecting
+§148's `TR-*`) was removed before the real run and is disclosed; the write-once identity was not
+consumed by it.
+
+§147 and §148 artifacts verified **byte-identical against their own recorded hashes BEFORE any
+modification**. Reserved material not opened; spent cohort not read or mimicked; formal scorers,
+truth and thresholds unchanged; deterministic HazLenz unchanged; arbitration unchanged; no commit,
+push, tag or deploy; production, database and customer state untouched.
+**`M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.**
+
+**Another expanded validation is NOT yet justified**: two of five REQUIRED rows still fail — one on a
+mechanism v12 does not govern — and two fixture defects need repair first, or a larger run would
+measure the instrument rather than the product.
+
+---
+
+## §150 — CLARIFICATION RETENTION-BRIDGE REPAIR (v13) + INSTRUMENT CORRECTION (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_CLARIFICATION_REMEDIATION_FAILED — FURTHER_SEMANTIC_REPAIR_REQUIRED`
+
+**THE TARGETED GATE WAS MET; THE RECALL GATE WAS NOT; AND PRECISION MOVED THE WRONG WAY.** Three
+findings, none to be read through the others. Prompt-only (v12 → **v13**); `analysis.v2` unchanged,
+arbitration byte-unchanged, `affectedDecision` enums unchanged, accepted-output semantics unchanged,
+**§149's v12 settlement semantics NOT reopened** and asserted clause by clause. **Bounded hosted
+probe: 10 calls, 10 requests, 0 retries, $0.511540 of a $1.0400 enforced ceiling**, one arm, ten
+fresh domains. `PROVIDER_INVOCATION_COUNT = 195` before and after. Evidence:
+`verification/expert-hazlenz-retention-bridge-remediation-2026-09-03/`.
+
+### Root cause — a MISSING BRIDGE, not a wrong rule
+
+§149's US-D1 did everything v12 asks: refused the strengthening, declined to conclude (*"the
+observation does not establish this as confirmed absent"*), marked the candidate
+`INSUFFICIENT_EVIDENCE` — **and asked nothing.** The doubt occupied three channels simultaneously and
+every rule was satisfied in all three.
+
+**THE TEMPTING DIAGNOSIS IS REFUTED BY THE DATA.** `INSUFFICIENT_EVIDENCE` occurred on FIVE rows
+across §148 and §149 and **FOUR of them emitted the clarification anyway** — carried by something
+else that happened to apply (a supplied record the threshold limb governs, or an unknown attached to
+an already-ACTIVE hazard, which no candidate state can express). US-D1 had neither. **Whether a
+retained unknown became a question was INCIDENTAL.**
+
+**And the one existing bridge is switched off by the sentence before it.** List 6's *"If an
+uncertainty can be phrased as a question that would change a decision, it is a
+decisionCriticalClarification"* is preceded by *"ONLY residual ambiguity you could not turn into a
+candidate"* — which disqualifies exactly the doubts that found a candidate-shaped home. **US-D1's
+empty `uncertainty` array was COMPLIANCE, not omission.**
+
+> **v10's SETTLEMENT CHECK catches a gap you RESOLVED. v12's NOT-OBSERVED-IS-NOT-ABSENT stops you
+> RESOLVING it. NOTHING CAUGHT A GAP YOU CORRECTLY LEFT OPEN.** Sixth mechanism: RETENTION WITHOUT
+> PROMOTION.
+
+### v13 — one addition, a bridge and not a lowered bar
+
+THE RETENTION BRIDGE, placed LAST and run over the model's own finished output. It names the four
+channels a doubt terminates in (US-D1 used three), asks one gating question — *"WOULD LEARNING THIS
+FACT CHANGE WHAT IS DONE NOW?"* — and lists what is NOT a substitute, each item something US-D1
+actually did, with the consequence stated: *"A decision-critical unknown that reaches the reviewer
+only as a candidate state or a sentence of prose is a question you decided not to ask. It cannot be
+answered, so it cannot be closed."* It is CONJUNCTIVE: *"INSUFFICIENT_EVIDENCE ON ITS OWN IS NEVER A
+REASON TO ASK — the test in 2 still decides, all five of its conditions still hold."* Plus *"One
+question per fact."* The `INSUFFICIENT_EVIDENCE` state and list 6's existing bridge survive verbatim.
+
+### THE TARGETED GATE: `RETAINED-BUT-NOT-ASKED = 0`
+
+The only silent REQUIRED row, RB-B1, **retained nothing** — both candidates ACTIVE, `uncertainty`
+empty, no mention in the summary. It is **class A (gap not recognized)**, not class C, and calling it
+a retention defect would misattribute it. **The bridge was exercised in BOTH directions on real
+signals:** RB-H1's `INSUFFICIENT_EVIDENCE` candidate was carried into a question, and RB-A1's was
+**correctly left silent** because the gas detector is on the worker and reading green, so the answer
+is decision-invariant. **That second case is the anti-overfire clause working in the NO direction on
+a genuine retention signal**, which is what separates a bridge from `INSUFFICIENT_EVIDENCE ⇒ ASK`.
+
+### Why the terminal — recall 3 of 5, and precision regressed
+
+RB-A1 (**the repaired US-D1 analogue**), RB-C1 and RB-E1 recovered. **RB-B1** is class A and
+fixture-limited. **RB-D1 substituted** a question about material decontamination for one about the
+hatch interlock — same exposure pathway, different selector, and the model's is contract-valid.
+
+**FORBIDDEN silence 3/5 literal, 4/5 adjusted, against §149's 4/5 and 5/5 — A REGRESSION OF ONE ROW.**
+**RB-F1**, the anti-overfire control, spoke — but **NOT because of the bridge**: zero
+`INSUFFICIENT_EVIDENCE` candidates on the row, so the bridge's antecedent was false and the same
+question was available under v12. On the merits it is the §147 CR-G1 shape, labelled
+`HAZARD_SEVERITY` while arguing it changes what is done; scored as a loss with the dispute recorded.
+**RB-H1 is a FIXTURE DEFECT and the model was RIGHT**: it asked whether the shared CIP caustic
+circuit is currently live while a fitter is inside the exchanger behind two manual valves, and my
+observation states the shared header without stating its operational state. That is a genuine
+unresolved decision-critical fact inside a row I authored as FORBIDDEN.
+
+### Both repaired §149 fixture defects behaved as designed
+
+**US-D1 → RB-A1**: the definite-article presupposition is gated out before spend, and the row
+recovered cleanly — the first clean recovery of this shape in the programme. **US-I1 → RB-J1**: the
+replacement derivation needs no premise about anyone's conduct (motive element physically absent AND
+a positive statement that no other drive exists), it **stayed silent**, and the deliberately retained
+"two roofers nearby" element did **not** trigger a lockout question, because there is no reconnection
+path to secure.
+
+### §149's closure holds, and a NEW residual mechanism is isolated
+
+**Unsupported settlement 0 of 10** — no regression; the model kept predicates throughout. Candidate
+suppression 0.
+
+**`HAZARD_SEVERITY` OVER-SELECTION is now a named finding**: chosen on RB-C1, RB-D1 and RB-E1 for
+questions about a required control, an exposure and a scope decision, and on §149's US-B1 — **four
+occurrences across two probes**. The prompt's own collision rule (*"how much / how many … is
+HAZARD_SEVERITY"*) is pulling *"what is X"* questions into a label meaning something else.
+Non-destructive (`AFFECTED_DECISION_SURVIVAL = 4/4`, zero `HAZARD_EXISTENCE` on established-hazard
+rows) but it degrades a field §139 made load-bearing.
+
+### Phase 5 instrument and Phase 6 gate semantics
+
+Raw linkage: attempts 6, invalid 0, normalized-valid 6, stripped 0, accepted-invalid 0, **reconciled
+TRUE** on six real hosted attempts; no invalid attempt occurred, so the §148 blind-spot closure
+remains proved deterministically. **Phase 6 implemented**: the frozen gates carry
+`trueContradictionDeterministicProofRequired = true` and
+`hostedTrueContradictionIsObservational = true` with **no numeric hosted target**. The deterministic
+proof is discharged against the real normalizer (rejection with the candidate kept; a valid
+non-existence label surviving; all three abstention conditions). **Hosted denominator 0 →
+NOT_EXERCISED, not a failure, never 100%.**
+
+### Regression, and a fourth fixture defect disclosed
+
+0 invalid clarification objects; citations 0/0/0/0 with 2 supplied-record fields redacted and 0 in
+the captured wire; 0 protected-authority contradictions; 0 forbidden families in 16 candidates; 0
+reasoned-but-destroyed; **22/22 protected suites identical before and after, 1,663 assertions**;
+`SOURCE_PROJECT_TSC = PASS`; `ACTIVE_SCRIPT_EXECUTABLE_PROOF = TRUE`; pre-spend gate 48/48 at $0.00.
+
+**Union coverage 6/7 is an ALIAS ARTIFACT, not a deterministic regression**: on RB-C1 the engine
+emitted `cranes_hoists` and my fixture truth named the same hazard `suspended_loads`, and the Expert
+correctly did not duplicate a finding the engine had already made. Recorded as a taxonomy/alias issue
+in authored truth.
+
+**FOUR fixture defects were found by reading this run's output** (RB-B1, RB-D1, RB-H1, RB-C1's
+alias), and **the recurrence is itself the finding**: FORBIDDEN rows keep containing real unresolved
+facts that were not intended, and REQUIRED selectors keep being one of several defensible readings.
+**An instrument that keeps being wrong in the model's favour is not yet good enough to certify the
+model with.**
+
+§147, §148 and §149 artifacts verified **byte-identical against their own recorded hashes BEFORE any
+modification**; the §149 probe script pins v12 and was left unedited. Reserved material not opened;
+spent cohort not read; formal scorers, truth and thresholds unchanged; no commit, push, tag or
+deploy; production, database and customer state untouched. **`M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.**
+
+**Another expanded validation is NOT justified**: two of five REQUIRED rows still fail, precision
+moved the wrong way, and four fixture defects need repair first, or a broad run would measure the
+instrument rather than the product.
+
+---
+
+## §151 — CLARIFICATION INSTRUMENT HARDENING + RESIDUAL-FAILURE ADJUDICATION (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_CLARIFICATION_RESIDUAL_DEFECT_ESTABLISHED — V14_REMEDIATION_AUTHORIZATION_REQUIRED`
+
+**ZERO provider calls. $0.00. v13 FROZEN throughout** — prompt, `analysis.v2`, arbitration, normalizer
+and candidate semantics all byte-unchanged, asserted needle by needle. §150's historical numbers are
+PRESERVED and are not replaced by anything here. Evidence:
+`verification/expert-hazlenz-instrument-hardening-2026-09-03/`.
+
+### The question this operation asked
+
+Not *"how do we make the model pass?"* but *"what does the evidence establish after instrument error
+is removed?"* — and the answer moved in both directions at once.
+
+### §150 re-adjudicated: 7 AUTHORING_VALID, 2 FIXTURE_DEFECT, 1 AMBIGUOUS
+
+| | LITERAL (§150, unchanged) | ADJUDICATED DIAGNOSTIC |
+|---|---|---|
+| strict delivered recall | **3 / 5** | **3 / 3** |
+| FORBIDDEN silence | **3 / 5** | **3 / 4** |
+
+**BOTH §150 REQUIRED MISSES DISAPPEAR UNDER SOUND ADJUDICATION.** `RB-D1` is **class I — SELECTOR
+OVER-SPECIFICATION (new)**: the decision had two equally exact missing facts and the answer key named
+one, so a correct question was scored a miss. `RB-B1` is **class F — DENOMINATOR CONTAMINATION**: its
+two outcomes read differently and converge on the same current action, failing §140's DP-B4 rule while
+passing the mechanical gate, **because the gate is a string comparison and the defect is semantic**.
+Neither is a model defect. Notably RB-B1 is **not class C** — the model retained nothing, so §150's
+`RETAINED_BUT_NOT_ASKED = 0` stands untouched — and RB-D1 is **not class D**, the raw wire shows the
+question was emitted and delivered.
+
+**`RB-H1` is class C — a GENUINE DECISION-CRITICAL GAP MISLABELLED FORBIDDEN.** The observation states
+the CIP caustic circuit *"shares the same header upstream of the near valve"* and never states its
+operational state, which decides whether a fitter is inside a vessel with a live caustic source behind
+two manual valves. **The model was right.** `RB-C1` is class D, an alias artifact affecting the
+coverage axis only. **`RB-F1` survives adjudication as GENUINE OVER-QUESTIONING** — precision did
+regress, on one row, and it is not an instrument artifact.
+
+Two taxonomy classes were **added** because real rows forced them: **I** (selector
+over-specification) and **J** (advertised-absence wording in a negative control — a recorded weakness,
+never on its own disqualifying, since §149's US-J1 carried it and the model stayed silent).
+
+### THE RESIDUAL DEFECT: `HAZARD_SEVERITY` OVER-SELECTION — and it is 7 of 7
+
+§150 reported "four occurrences across two probes". **That undercounted.** A sweep of every emitted
+clarification across §147–§150 finds **SEVEN occurrences across three probes** (§148 produced none):
+CR-B1, CR-G1, US-B1, RB-C1, RB-D1, RB-E1, RB-F1.
+
+> **NOT ONE IS A CORRECT USE OF THE MEMBER.** Two (arguably three) accompany a question that should
+> not have been asked; four accompany a correct question that should have carried a different label.
+> Its appearance is a reliable marker of a defect.
+
+**The boundary §139 fixed is the only one that no longer fails.** `HAZARD_SEVERITY` ↔
+`HAZARD_EXISTENCE` accounts for **0 of 7**; every failure is on a boundary no rule covers, dominated
+by ↔ `REQUIRED_CONTROL` at **3 of 7**.
+
+**The mechanism is structural.** Five of the six members are defined by **what the missing fact is
+about**; `HAZARD_SEVERITY` alone is defined by **what the answer changes about the consequence** — a
+different axis that overlaps all five. Worse, its two clauses are *"the hazard exists"* (true on all
+seven rows) and *"the answer changes what is done now"* — **which is conditions (c) and (d) of the
+counterfactual test itself.** Its definition is entailed by the admission test for the collection: any
+clarification legal enough to exist satisfies it. Surface form contributes too — the §139 collision
+rule routes *"how much / how many"* to it, explaining 5 of 7 — but the definition explains all seven.
+
+Classification: **B (enum-definition overlap) PRIMARY**, with **A** and **C** contributing. **D
+REFUTED** — all seven expected labels were re-derived and all seven are correct, and the skew is
+one-directional. **E REFUTED** — the field is load-bearing since §139 and §148 proved a wrong label can
+destroy a question. **F not yet**: `HAZARD_SEVERITY` is not an arbitration trigger, so this is benign
+**by luck rather than design** — the same surface-form routing is one definition away from sending
+*"does X have the property"* to `HAZARD_EXISTENCE`, which §148 proved destructive.
+
+**ONE UNIFYING ACCOUNT: CONSEQUENCE-MAGNITUDE ROUTING.** The model treats *how much / how severe* as a
+decision-critical axis in its own right. Labelling, that yields `HAZARD_SEVERITY` on a question that
+decides a control; deciding what to ask, it yields a magnitude question the seven shapes forbid. **It
+accounts for all seven label occurrences and both surviving precision violations in the programme** —
+§147's CR-G1 and §150's RB-F1, the same shape two operations apart.
+
+### The instrument, hardened
+
+**A hardened authoring standard** (8 REQUIRED claims, 5 FORBIDDEN claims, plus canonical family
+identity), each traceable to the defect class it prevents. **A fail-closed linter**
+(`hazlenz.expert.fixture-linter.v1`, 25 mechanical checks, **every one exercised against a row built
+to trip it**) plus manual-review signatures the linter checks for **presence and substance, never for
+truth** — including `REVIEW_NOTE_RESTATES_THE_CLAIM`, because a signature echoing its own claim name
+is not a reason.
+
+**A fresh hardened set, v9: 16 rows (8 REQUIRED / 8 FORBIDDEN), 16 new domains, UNSPENT.** Digest
+`434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194`, frozen prospectively and
+**covering the signatures**, so a row cannot be re-signed after review and still match. Every REQUIRED
+row enumerates **at least two acceptable selectors** — the RB-D1 repair — and no row authors
+`HAZARD_SEVERITY` or `HAZARD_EXISTENCE`. `HS-R1` is a dedicated CONSEQUENCE-MAGNITUDE probe that
+**declares its expected failure under v13 and states what result would falsify the §151 diagnosis**.
+*(The R5 discipline caught its own author: two of the sixteen signatures did not state the immediate
+action and were rewritten.)*
+
+**The contradiction gate correction from §150 stands**: deterministic proof REQUIRED, hosted
+denominator OBSERVATIONAL, zero denominator = NOT_EXERCISED and never 100%.
+
+### The finding about the instrument itself
+
+Across §149 and §150 the answer key was wrong four times and **every time in the same direction —
+against the model**.
+
+> **An instrument that errs consistently in one direction is not noisy. It is biased, and it cannot
+> certify the thing it is measuring.**
+
+### Regression and confinement
+
+**23/23 protected suites, 1,739 assertions, 0 failed**; `SOURCE_PROJECT_TSC = PASS`. One real
+`rootDir` break was introduced and fixed during the operation: the `src/` fixture initially imported a
+type from `scripts/`, and the dependency was inverted so fixtures declare their own shape and the
+instrument reads them.
+
+§147, §148, §149 and §150 artifacts verified **byte-identical against their own recorded hashes**
+before and after. No provider call, no reserved material, no spent-cohort read, no scorer/truth/
+threshold change, no deterministic HazLenz change, no commit, push, tag or deploy; production,
+database and customer state untouched. **`M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.**
+
+### v14 and expanded validation
+
+**v14 is JUSTIFIED — on the `HAZARD_SEVERITY` axis only, and it is DEFINED BUT NOT IMPLEMENTED.** The
+recall evidence justifies nothing: both misses were fixture-invalid, and Phase 4's rule is explicit
+that no semantic-remediation target may be assigned from them. The minimum change is recorded in
+`AFFECTED-DECISION-SEVERITY-ADJUDICATION.md` §7 — re-scope the member onto the same axis as the other
+five, add the missing ↔ `REQUIRED_CONTROL` collision rule, close the entailment, and tie magnitude-only
+questions to the seven shapes — with a **stated falsifier**: if `HAZARD_SEVERITY` usage does not fall,
+the diagnosis is wrong.
+
+**Expanded validation remains NOT AUTHORIZED.** The next empirical step is the hardened v9 set, and
+only after a hardened targeted probe passes does broad validation become eligible.
+
+---
+
+## §152 — HARDENED-INSTRUMENT HOSTED BASELINE, v13 FROZEN (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_HARDENED_V13_BASELINE_FAILED — CLARIFICATION_RECALL_DEFECT_REMAINS`
+(Phase 9 **CASE C**)
+
+**v13 FROZEN. NO REMEDIATION. v14 REMAINS UNIMPLEMENTED**, gated before spend. **16 calls, 16
+requests, 0 retries, $0.827866 of a $1.6640 enforced ceiling**, one arm, against the §151 hardened v9
+set. `PROVIDER_INVOCATION_COUNT = 195` unchanged. Evidence:
+`verification/expert-hazlenz-hardened-v13-baseline-2026-09-03/`.
+
+### THE HEADLINE: §151's v14 DIAGNOSIS DID NOT SURVIVE ITS OWN FALSIFIER
+
+`HAZARD_SEVERITY` was selected **0 times in 9 clarifications**. `HS-R1` — the probe row §151 authored
+with *"EXPECTED FAIL under v13"* and *"a silent result FALSIFIES it and v14 should not be built"*
+written into the fixture **before any data existed** — **stayed silent**.
+
+**THE TRIGGER WAS PRESENT AND THE MODEL ROUTED IT CORRECTLY.** `HS-D1`'s question opens literally
+*"What is the total aggregate quantity…"* — the exact surface form §151 named, on the exact
+aggregation-against-a-record structure that produced §149's `US-B1` failure — and it was labelled
+`REGULATORY_INTERPRETATION`, correctly. That is a direct refutation of the surface-form limb on the
+closest available comparison.
+
+**AND THE SAME PROMPT PRODUCED THE DEFECT ONE OPERATION AGO.** §150 (v13) = 4 of 7; §152 (v13) = 0 of
+9. Whatever drives the selection, **it is not v13** — it varies with the material, the sampling, or
+both. Per-version history: v10 = 2, v11 = 0, v12 = 1, v13 = 4 then 0.
+
+**VERDICT: WEAKENS strongly, and FALSIFIES the specific pre-registered HS-R1 prediction.** Not
+recorded as full falsification for one honest reason: **one replicate, no seed, no variance control**
+— `temperature`, `top_p` and `top_k` are removed on Claude Sonnet 5 (HTTP 400) and the model has no
+seed, which the identity records as a limitation. **v14 IS NOT JUSTIFIED AND MUST NOT BE BUILT.**
+
+### Strict delivered recall: 4 of 7 valid (4 of 8 literal)
+
+RECOVERED exact: `HS-C1`, `HS-D1`, `HS-E1`, `HS-G1`. **Mechanism decomposition: gap-not-recognized 0,
+unsupported settlement 0, retained-but-not-asked 0, reasoned-but-destroyed 0** — *none of the failure
+mechanisms this programme has repaired recurred.* Both misses are substitutions.
+
+**`HS-A1` — EXCLUDED, EXECUTION ANOMALY.** The provider returned a **literal stub**:
+`candidateKey: "placeholder"`, empty `evidenceBasis`, summary `"placeholder"`. The normalizer flagged
+`CANDIDATE_MALFORMED` correctly, **but the call was recorded PRESENT** because a malformed item is
+item-level, so a response consisting of the word *"placeholder"* entered the recall and coverage
+denominators. **The harness has no degenerate-output detector.** Recorded exactly, not rerun, not
+substituted.
+
+**`HS-F1` — MISS, fixture-confounded.** My observation says the footpath *"is open to pedestrians at
+the far end"*, leaving the near end ambiguous; the model asked about exactly that.
+
+**`HS-H1` — THE ONE CLEAN MODEL MISS, and the reason for CASE C.** It asked about the deliberate
+alarm distractor rather than the authored cooling hold, on a row with no wording ambiguity and three
+enumerated selectors. Its question is valid and is not an unsupported settlement; the authored fact
+was simply not asked.
+
+### FORBIDDEN silence 7 of 8 literal, 7 of 7 adjusted — and my own signature was false
+
+**`HS-M1` is a FIFTH FIXTURE DEFECT, class C.** The supplied record requires testing for **three**
+things — oxygen, flammable gases, **and toxic air contaminants**. My observation states two and is
+silent on the third, in an anaerobic digester where hydrogen sulfide is the classic killer. The model
+asked for it and **was right**. My §151 `NO_SIBLING_DECISION_CRITICAL_GAP` signature claimed I had
+closed it because the row states *"testing at three depths"* — **three DEPTHS is not three ANALYTES.
+The signature is wrong, and I signed it.**
+
+> **This is the finding that matters most about the hardening.** §151 said the linter checks a
+> signature for presence and substance, never for truth. **§152 is the first demonstration that the
+> gap is real: a signed F3 claim was false, and nothing caught it but the model.**
+
+### affectedDecision baseline, and it is the best measured so far
+
+`LABEL_EXACT = 5/8`, three disagreements, **none `HAZARD_SEVERITY`** and none clearly wrong.
+`AFFECTED_DECISION_SURVIVAL = 8/8`; `HAZARD_EXISTENCE` on established-hazard rows = 0; arbitration
+events 0. Against §146's 3-of-6 and §150's 1-of-4, label accuracy on the hardened instrument is
+**materially better** — consistent with the earlier label results having been entangled with
+defective fixtures.
+
+### Instrument integrity, and two more instrument defects
+
+**The fixture was NOT touched**: set digest and file sha256 both identical before and after, linter
+green after execution. The budget was declared in the probe rather than the fixture module so the
+reviewed material stayed byte-identical from §151 through the run.
+
+**Union coverage 4/9 is NOT INTERPRETABLE.** Three of four misses are artifacts: `HS-A1`'s
+placeholder, and **the canonical family list §151 built is WRONG** — the engine emits
+`guarding_interlocks`, `ground_control`, `slips_trips_falls`, `conveyors`, `confined_space`,
+`material_handling`, `hot_work`, not the Expert-side names listed as canonical. **Class D again, in
+the very repair that claimed to close class D.** The §151 linter passed because the list matched the
+names I used, not the names the engine emits.
+
+### Regression
+
+0 unsupported settlement · 0 retained-but-not-asked · 0 reasoned-but-destroyed · 0 invalid
+clarification objects · 0 forbidden families in 29 candidates · raw linkage **7/0/7/0 reconciled
+TRUE** · 0 accepted invalid linkage · citations **0/0/0/0** · 0 protected-authority contradictions ·
+true contradictions **NOT_EXERCISED** (denominator 0) · **23/23 protected suites, 1,739 assertions** ·
+`SOURCE_PROJECT_TSC = PASS` · pre-spend gate 45/45 at $0.00.
+
+§147–§151 artifacts byte-identical against recorded hashes. No prompt, contract, arbitration, fixture,
+scorer, truth or threshold change; no commit, push, tag or deploy; production, database and customer
+state untouched. **`M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.**
+
+### Where this leaves the programme
+
+**CASE E was considered and rejected**: three instrument defects surfaced, but 6 of 8 REQUIRED and 7
+of 8 FORBIDDEN rows are clean and the falsifier result rests on 9 clarifications none of them touch.
+
+**v14 is dead as specified.** A recall defect is established on one clean row and is not
+characterized. **Expanded validation remains NOT AUTHORIZED and this result does not move it closer.**
+The highest-value next measurement is a **repeat of this exact run** — same prompt, same set, same
+digest — because §150 and §152 disagree 4-of-7 versus 0-of-9 under an identical frozen prompt, and
+nothing in this programme has ever measured run-to-run variance.
+
+---
+
+## §153 — HARDENED v9 / v13 REPLICATE 2 + MEASUREMENT-LAYER REPAIR (2026-09-03)
+
+**Terminal:** `EXPERT_HAZLENZ_HARDENED_V13_REPLICATE_FAILED — NONSTABLE_CLARIFICATION_VARIANCE_REQUIRES_ADJUDICATION`
+(Phase 12 **CASE C**; **CASE D also applies** and is reported as a co-equal finding)
+
+**v13 FROZEN. v14 DOES NOT EXIST. FIXTURE BYTES AND DIGEST UNTOUCHED.** Measurement layer only. **16
+calls, 16 requests, 0 retries, $0.784426** of a $1.6640 enforced ceiling. `PROVIDER_INVOCATION_COUNT
+= 195` unchanged. Evidence: `verification/expert-hazlenz-hardened-v13-replicate2-2026-09-03/`.
+
+### THE HEADLINE: THE PROGRAMME'S CENTRAL ASSUMPTION DOES NOT HOLD
+
+**6 of 16 rows are fully stable across two executions of identical material.** Candidate-state
+agreement **7/16**, candidate-family **9/16**, affectedDecision **12/16**, clarification presence
+**14/16**, linkage **15/16**.
+
+> **Every semantic conclusion in §147–§152 rests on a single draw from a distribution this run shows
+> to be wide.** That is a larger finding than any individual defect those sections named.
+
+**HS-E1 is the clearest datum: an EXACT RECOVERY in replicate 1 and SILENCE in replicate 2**, same
+prompt, same observation, same frozen bytes, nothing else changed.
+
+### HS-H1 — the failure replicates; the MECHANISM does not
+
+| replicate | outcome | Phase 8 class |
+|---|---|---|
+| §152 | asked about the deliberate alarm distractor | **C** distractor selection |
+| §153 | **no clarification at all** | **D** silence |
+
+Replicate 2 is worse than silence: it is a **RETAINED-BUT-NOT-ASKED**. `cand-steam-release` was left
+`INSUFFICIENT_EVIDENCE` and an explicit uncertainty statement says *"It is not established whether…
+residual steam pockets could remain trapped within the load itself"* — the authored decision held
+open in TWO of v13's four retention channels with no clarification carrying it. **A class §150 closed
+and §152 measured at zero has reopened at 1.**
+
+Per Phase 8, C or D means the residual defect gains replication evidence. **It has — but the shape
+changed between draws, so this is NOT the stable selector-prioritization defect CASE A describes.**
+What replicates is that HS-H1 reliably fails to deliver the owed clarification; the route it fails by
+is not stable.
+
+### THREE VIEWS, never substituted
+
+| | REQUIRED spoke | FORBIDDEN silent |
+|---|---|---|
+| **A LITERAL** | 5/8 | 7/8 |
+| **B PREREGISTERED** (sidecar excludes HS-F1, HS-M1) | 4/7 | 7/7 |
+| **C EXECUTION-VALID** (minus this replicate's degenerate row) | 4/7 | 6/6 |
+
+Against §152's 7/8 and 7/8 literal. **The sidecar was written, hashed and made read-only BEFORE any
+provider call** (`38de42ab…`), so no denominator could be chosen after seeing the data.
+
+### CASE D also applies — degenerate output recurred at ~1 in 16
+
+`HS-K1` returned `summary: "placeholder"` with zero candidates — **a shape the detector was not built
+against, caught on two independent signals.** And `HS-A1` returned *"summary placis a a placeholder"*
+with `candidateKey: "x"` — **garbled, and the detector MISSED it**, because it matches whole fields
+only. **That gap is disclosed and deliberately NOT patched post hoc**; widening a detector after
+seeing the data is the adjustment the sidecar exists to prevent. HS-A1 stays in the preregistered
+denominator. Its provider output was anomalous in BOTH replicates.
+
+**CASE C was chosen over CASE D because the variance is not caused by the degenerate rows** — HS-E1
+and HS-H1 both returned rich, well-formed output and still disagreed with replicate 1.
+
+### HAZARD_SEVERITY across every v13 run: 4 · 0 · 0
+
+§150 = 4 of 7 · §152 = 0 of 9 · **§153 = 0 of 6**. **Second consecutive zero on the hardened
+instrument.** The §151 diagnosis is further weakened; **v14 remains unjustified and unimplemented**.
+The honest reading: §150's 4-of-7 is now the outlier across three v13 runs, and with candidate-state
+agreement at 7/16 the most economical explanation is **stochasticity**, not a defect and not a repair.
+
+### Measurement-layer repairs, and a CORRECTION TO §152
+
+Three instruments, all development-side, all self-tested against real §152 data (39 assertions): the
+**write-once adjudication sidecar**, the **degenerate-output detector** (negatives tested first —
+including §152's real adversarial case, a candidate key literally named `UNPLACEHOLDER` under an
+empty summary, which a substring matcher would flag), and the **family comparison map**.
+
+The map corrects a STRUCTURAL error, not a list error: measured across §147–§152 the two sides are
+**different taxonomies** — 12 shared, 17 deterministic-only, 17 Expert-only. The engine routes to a
+response DOMAIN; Expert names a hazard FAMILY.
+
+> **AND IT CORRECTS §152's OWN REPORT.** Recomputing §152's coverage with the honest map gives
+> **4/9 — IDENTICAL to the reported figure.** §152 claimed HS-C1 and HS-E1 were alias artifacts.
+> **They were not**: HS-C1's engine emitted `guarding_interlocks` (a different hazard) and HS-E1's
+> emitted NOTHING — there was no name to alias. The map was still necessary (§150's RB-C1 proves the
+> shape is real) but it did not fire on this data, and claiming otherwise would have invented a
+> result. §152's 4/9 stands as the historical figure.
+
+### Regression axes
+
+Unsupported settlement 0 · reasoned-but-destroyed 0 · affectedDecision survival 5/5 · accepted invalid
+linkage 0 · raw linkage 5/0/5/0 reconciled TRUE · invalid objects 0 · citations 0/0/0/0 · protected
+contradictions 0 · forbidden families 0 of 26 · arbitration events 0 · **24/24 protected suites, 1,778
+assertions** · `SOURCE_PROJECT_TSC = PASS` · pre-spend gate 50/50 at $0.00. **Only
+`RETAINED_BUT_NOT_ASKED` regressed, at 1**, and given the variance it is reported as one observation
+of a reopened axis rather than a re-broken repair.
+
+Fixture digest and file hash identical before and after; linter green after execution; §147–§152
+artifacts byte-identical. **No rerun of any row. No prompt, contract, arbitration, fixture, scorer,
+truth or threshold change. No commit, push, tag or deploy.**
+**`M14_REMEDIATION_STATUS = NOT_ATTEMPTED`.**
+
+### Where this leaves the programme
+
+**Two draws are not a distribution**, and this run establishes nothing about determinism, acceptance
+or readiness. What it does establish is narrower and more useful: **the asserted residual defect is
+not stable enough to justify a semantic intervention — and neither is its absence.**
+
+**Expanded validation moves FURTHER AWAY, not closer**: a broad run on a 6-of-16-stable instrument
+would produce numbers nobody could attribute. The next empirical step is **replicate 3 on the same
+frozen material**, because the one thing two draws cannot tell you is whether the variance is the
+model's or the row's.
+
+---
+
+## §154 — HARDENED v9 / v13 REPLICATE 3 + THREE-DRAW STABILITY (2026-09-03)
+
+**TERMINAL: `EXPERT_HAZLENZ_HOSTED_OUTPUT_STABILITY_INCONCLUSIVE — PROVIDER_OUTPUT_RELIABILITY_REVIEW_REQUIRED` (CASE D).**
+CASE A is **also factually established, on HS-H1**, and is recorded below with its remediation target
+named from evidence. CASE D is the terminal because it names what actually blocks the next step.
+
+Third hosted draw of identical frozen material: v13 prompt (module sha256
+`02977c30…a266efa`, system prompt `c4b31624…4b158e3f3`), `hazlenz.expert.analysis.v2`, arbitration
+and accepted-output normalization byte-unchanged, hardened v9 fixture bytes
+(`09195af8…1f1545cb`) and digest `434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194`
+verified before the first request and again after the last. v14 and v15 do not exist.
+Evidence: `verification/expert-hazlenz-hardened-v13-replicate3-2026-09-03/`.
+
+**Execution.** 16/16 logical calls, 16 provider requests, **0 retries, 0 reruns**, COMPLETED.
+292,688 in / 20,522 out. **$0.790596** against an enforced ceiling of $1.6640 (the lower of the
+$2.50 authorized and the model-priced cap). Pre-spend gate **52/52 PASS at $0.00**; two gates are new
+in §154 — B.10b and B.10c, which load both stored draws, prove sixteen-row coverage and run detector
+v2 over them *before* spend, so the three-draw matrix could not fail after the money was gone. Two
+dry runs blocked at $0.00 on stale §153 constants; that record is preserved as
+`GATE-BLOCKED-DURING-PRESPEND-CONSTRUCTION.txt` rather than deleted. Sidecar `591a027d…7a982f5f`,
+0444, frozen before spend. Detector v2 sha256 `86fa9b16…c202856d`.
+
+**Three views** (LOOSE; STRICT recall is a human adjudication and is not supplied):
+
+| view | REQUIRED spoke | FORBIDDEN silent |
+|---|---|---|
+| A LITERAL | 5/8 | **8/8** |
+| B PREREGISTERED ADJUDICATED | 4/7 | 7/7 |
+| C EXECUTION-VALID | 4/7 | 6/6 |
+
+REQUIRED silent in all three views: HS-A1, HS-E1, HS-H1. **No FORBIDDEN row spoke** — the first clean
+forbidden side of the three draws.
+
+**REQUIRED failure decomposition.** HS-A1 `RETAINED_BUT_NOT_ASKED`; HS-E1
+`SILENCE_WITHOUT_RETAINED_GAP` with total candidate suppression; HS-H1 `RETAINED_BUT_NOT_ASKED` of a
+distractor rather than of the owed fact. **HS-A1 and HS-H1 share one mechanism in this draw**: each
+retained the unknown, ran v13's retention bridge explicitly — *would learning this change what is
+done now* — and answered NO in prose ("does not establish a decision-changing gap without further
+stated facts"; "does not by itself change any action… rather than a clarification"). The same
+construction is *correct* behaviour on FORBIDDEN rows HS-J1 and HS-R1. The bridge is not switched
+off, as it was before §150; it is **returning the wrong relevance verdict**. That is a different
+repair target from §150's.
+
+**HS-H1 three-draw (the primary recurrent-row investigation).** R1 `DISTRACTOR_SELECTION` · R2
+`SILENCE_RETAINED` · R3 `SILENCE_RETAINED`. Row level: **RECURRENT ROW-LEVEL FAILURE, 3/3.**
+Mechanism level: **REPLICATED MECHANISM EVIDENCE, 3/3** — the owed fact is whether the load was given
+a cooling hold, and the strings `cool`, `cooling hold` and `boil` appear **nowhere in any of the three
+draws**. Every draw anchors on chamber-side instrumentation (the alarm in R1, the gauge in R2 and R3)
+and never entertains the load-side thermal state. The surface classification changed; the cause did
+not. **Named remediation target: chamber/instrument anchoring that never reaches the load-side fact.
+It is NOT the old HAZARD_SEVERITY mechanism and must not be called v14.**
+
+**HS-E1 three-draw.** R1 `EXACT_RECOVERY` · R2 `SILENCE` · R3 **`SILENCE_WITHOUT_RETAINED_GAP` with
+zero candidates emitted**. 2/3 failure evidence, not converted into a rate. R3's summary is
+substantive and reaches a decision — detector v2 correctly did not condemn it — but it converts *no
+stated failure* into *properly restored*, the mirror image of the pattern §149 closed. Recorded as
+**one observation**; a single recurrence does not reopen §149's repair.
+
+**Three-draw stability matrix.** `ROWS_STABLE_3_OF_3 = 3` (HS-L1, HS-P1, HS-Q1) ·
+`ROWS_WITH_SINGLE_FLIP = 3` (HS-E1, HS-H1, HS-M1) · `ROWS_MULTI_STATE_VARIABLE = 8` ·
+`ROWS_EXECUTION_CONTAMINATED = 2` (HS-A1, HS-K1) · `NOT_COMPARABLE = 0`. Per-axis **THREE-DRAW
+EMPIRICAL STABILITY — not population variance estimates**: clarification presence **13/16**,
+affectedDecision **9/16**, candidate state **4/16**, candidate family **5/16**, linkage **14/16**,
+candidate presence **13/16**. Disclosed measurement-layer defect: `MULTI_STATE_VARIABLE` is the
+residual bucket for a row varying on *any* of six axes, so several rows in it (HS-C1, HS-J1, HS-N1,
+HS-R1) were perfectly stable in clarification behaviour. The classifier was frozen before spend and
+is **not** re-cut after seeing the data; the naming is left for a later operation.
+
+**Behavioural dispersion** (14 non-contaminated rows, descriptive only, no probabilities inferred
+from three draws): 10 rows with one observed clarification state, 4 with two, 0 with three;
+`MEAN_DISTINCT_STATES_PER_VALID_ROW = 1.286`.
+
+**HAZARD_SEVERITY, four-run history** counted from raw wire: §150 (v13 / v8 material) **4 of 7** ·
+§152 **0 of 9** · §153 **0 of 6** · §154 **0 of 5**. Three consecutive draws on hardened material:
+**0 of 20**. The §151 v14 mechanism remains **unsupported** and its pre-registered falsifier has
+triggered three times. The sharpened reading: the concentration §151 measured came from the §149/§150
+*fixture material*, not from v13's semantics — the same prompt produces none of it on hardened rows.
+**v14 is not implemented and must not be.** Label exact-match on REQUIRED rows fell to **2/5** (R1
+4/5, R2 4/5); usage this draw EXPOSURE 2, REQUIRED_CONTROL 2, APPLICABILITY 1.
+
+**Repaired-axis regressions.** reasoned-but-destroyed **0** · affectedDecision survival **1.0 (5/5)**
+· invalid clarification objects **0** · raw linkage 4 attempts / 0 invalid / 4 normalized-valid /
+0 stripped, **reconciled** · accepted invalid linkage **0** · citations 0 accepted, 0 merged, 0
+raw-wire hits · protected-authority contradictions **0** · forbidden candidate families **0** ·
+duplicate candidates **0** (27 candidates over 16 rows) · no over-fragmentation · arbitration 0
+events · deterministic coverage 0 of 9 truth families, unchanged from §153 and explained by the
+two-taxonomy finding, not a regression. One observation each on the unsupported-settlement axis
+(HS-E1) and candidate suppression (HS-E1, HS-K1).
+
+**Degenerate output, and the post-hoc common-detector diagnostic.** This draw: **HS-K1**, summary the
+literal string `"placeholder"`, zero candidates, signals `PLACEHOLDER_SUMMARY` +
+`ALL_PROSE_IS_PLACEHOLDER`, denominator loss 1, **no rerun authorized or performed**. Detector v2
+applied *retrospectively* to preserved §152 and §153 wire — **overwriting no historical score** (§152
+had no detector, §153 had v1, both keep their own figures): R1 HS-A1 (`candidateKey: "placeholder"`),
+R2 HS-A1 (`"x"`) + HS-K1, R3 HS-K1. **4 degenerate executions in 48 row-executions — 8.3% — over two
+distinct rows and all three draws.** Detector v2 adds `isNearPlaceholderGarbled` and
+`isMeaninglessIdentifier` to v1's signals with the two-signal conviction threshold unchanged; three
+false positives were caught by adversarial tests and fixed before spend, and are retained as
+regression tests (66 assertions).
+
+**Verification actually executed.** 21 expert protected suites, **0 failures** (1,379 ok-line
+assertions plus projection-equivalence 90, cohort-instrument 155, execution-budget 66, each "0
+failed"); `SOURCE_PROJECT_TSC` clean, exit 0; fixture linter after the run pass with 0 findings;
+pre-spend gate 52/52 at $0.00. The post-spend analysis path was additionally proved end-to-end at
+$0.00 before the run by replaying the frozen §153 artifacts through a scratch copy of the probe.
+
+**Bookkeeping defect, disclosed not repaired.** `HISTORICAL_PROVIDER_INVOCATION_COUNT = 195` has been
+copied unchanged into nine probes since 2026-09-02 and does not include §152, §153 or §154. Each
+run's own `providerInvocationsThisProcess = 16` is accurate; the historical field is a stale marker
+and no metric depends on it. The constant is **not** edited inside the already-executed §154 script,
+because that file's bytes are part of the run's identity record.
+
+**Dominant blocker: C — general hosted-output instability.** Not instrument integrity (52/52 gates,
+both integrity checks and the linter pass; the only measurement defect is a classifier *name*). Not a
+stable semantic defect, which exists on HS-H1 but stands against 3/16 whole-row stability. Row
+sensitivity is present and subsumed by C. Because C dominates, §154 records — **as analysis only, none
+of it implemented or authorized** — that a deterministic postcondition (a summary that is not a
+placeholder; at least one candidate where the observation states a hazard) would have caught all four
+degenerate executions at zero provider cost, and a bounded second pass over the model's own retained
+unknowns is the option matched to the HS-A1/HS-H1 relevance mis-evaluation, at roughly one extra call
+on the 5 of 16 rows carrying a retained unknown. Consensus is the weakest fit — clarification presence
+already agrees 13/16 — and fail-closed abstention suits degenerate output but would discard exactly
+the findings the layer exists to produce. **The two problems want different remedies; the choice
+belongs to the product owner.**
+
+**Confinement.** No prompt, contract, arbitration, normalization, deterministic-HazLenz, fixture-byte
+or signature change. No reserved material opened, no spent formal cohort read, no historical scorer,
+truth or threshold altered, no §147–§153 evidence modified. No expanded validation. M14 remains
+`NOT_ATTEMPTED`. No commit, push, tag or deploy; no production or database mutation.
+
+---
+
+## §155 — PROVIDER-OUTPUT RELIABILITY ARCHITECTURE + SELECTIVE VERIFICATION DESIGN (2026-09-03)
+
+**TERMINAL: `EXPERT_HAZLENZ_DEGENERATE_OUTPUT_POLICY_PROVEN — SELECTIVE_VERIFICATION_DESIGN_REQUIRES_FURTHER_WORK`.**
+**ZERO PROVIDER CALLS. ZERO PRODUCTION FILES CHANGED.** Architecture review plus a development-only
+prototype, in response to §154's `PROVIDER_OUTPUT_RELIABILITY_REVIEW_REQUIRED`. Evidence:
+`verification/expert-hazlenz-provider-reliability-architecture-2026-09-03/`.
+
+**Why this terminal.** The `..._ARCHITECTURE_PROVEN` terminal needs all three of degenerate policy,
+verifier boundary and a passing prototype. Two hold: the verifier *contract* is established and
+locally proven, and the degenerate policy is complete. The verifier *trigger* fails one of §155's own
+three credibility criteria — **11 of 22 valid FORBIDDEN executions escalate**. `..._INCONCLUSIVE —
+ARCHITECTURAL_REDESIGN_REQUIRED` was tested and rejected: the trigger's behaviour is measured on all
+44 valid executions and its blind spots are named in advance, so the open question is whether the
+escalation rate is worth its yield — a product decision, not an architectural impossibility.
+`..._PROVIDER_RELIABILITY_INSUFFICIENT` is explicitly not selectable from 4/48 development
+observations and was not selected.
+
+**Provider output state model** (`hazlenz.expert.provider-response-state.v1`). Five states:
+`TRANSPORT_FAILURE` · `SCHEMA_FAILURE` · `DEGENERATE_SEMANTIC_OUTPUT` · `SUBSTANTIVE_VALID_OUTPUT` ·
+`SUBSTANTIVE_VALID_OUTPUT_WITH_POSTCONDITION_WARNING`. Degenerate is **never** collapsed into schema
+failure: all four §152–§154 degenerate responses satisfied the wire schema, passed normalization and
+were recorded `PRESENT`, so **transport success and schema success together do not establish that a
+usable semantic response exists**. Two Phase-0 facts carried forward: the four are *not one shape*
+(§153's HS-A1 carried a real candidate with 455 characters of prose and a correct quote under
+`summary: "summary placis a a placeholder"` and `candidateKey: "x"`), and §154's HS-K1 degenerated on
+a FORBIDDEN row, producing *accidentally correct* silence — correct output for no reason at all.
+
+**Degenerate policy: OPTION C LAYERED ON OPTION B**, one bounded reissue then fail closed. A rejected
+(accept-with-disclosure shows a customer something that looks like an analysis and is not); B kept as
+the floor but insufficient alone (HS-A1 degenerate in §152/§153 and clean in §154; HS-K1 clean in
+§152 and degenerate in §153/§154 — junk on one draw is not evidence the model cannot answer);
+C safe *here specifically* because a degenerate response asserted nothing, so unlike a REJECTED
+normalization there is no refusal to erode; D not implemented and not selectable without a second
+qualified model. Six non-negotiable conditions: deterministic trigger only; byte-identical reissue;
+at most one; **both attempts preserved** in an append-only ledger; second degenerate result fails
+closed; and **off in every scored run** — `purpose: 'EVALUATION' | 'PROBE'` can only return
+`FAIL_CLOSED_NO_REISSUE`, because a silent reissue would replace the observation being measured.
+
+**Postcondition boundary.** Nine `SAFE_DETERMINISTIC_POSTCONDITION` checks (degenerate structure,
+unresolved link, arbitration condition restated, object completeness, meaningless identifier,
+evidence reference integrity, duplicate key, collection well-formedness, wholly-empty-analysis as a
+*fact*) against six `SEMANTIC_JUDGMENT_REQUIRED` questions. Two of the six were actively refuted
+rather than merely classified: affectedDecision label correctness (§148 measured a keyword
+reclassifier corrupting labels that were already right) and an output-token floor (the four
+degenerate executions produced 473/637/287/240 tokens against per-draw medians near 1,400 — and
+§152's HS-K1 produced 2,325 and was clean, while a correct silence is short by nature).
+
+**Selective verification trigger** (`T_RETAINED_UNKNOWN_WITHOUT_QUESTION`, `T_WHOLLY_EMPTY_ANALYSIS`),
+measured over the 44 non-degenerate executions: fires **15/44 (34.1%)**, captures **4 of the 5** LOOSE
+REQUIRED misses, escalates **0 of 17** successful REQUIRED executions and **11 of 22** FORBIDDEN.
+**THE CENTRAL FINDING IS NEGATIVE AND IT DECIDES THE ARCHITECTURE:** a correct retention and an
+incorrect one are structurally identical — HS-H1 (a miss), HS-J1 and HS-R1 (both correct) each
+produce an unresolved candidate, a stated uncertainty, no question and an explicit denial of
+decision-relevance. Nothing deterministic separates them, so precision is the verifier's to supply,
+not the trigger's. Two conditions were measured and **rejected**, with the refutations recorded in
+code: `T_UNLINKED_QUESTION` (6/22 REQUIRED, 0/22 FORBIDDEN, and **zero** of the five observed misses
+— it escalates successes) and `T_OUTPUT_TOKEN_FLOOR`. Two of the five miss shapes are
+**categorically unreachable**: a fluent question about the wrong fact (§152 HS-H1) and a settled
+silence (§153 HS-E1).
+
+**Verifier contract** (`hazlenz.expert.verifier.v1`). Four verdicts — `VERIFIED_AS_IS` ·
+`ADD_OR_REPLACE_CLARIFICATION` · `NO_CLARIFICATION_REQUIRED` · `ABSTAIN`. It cannot regenerate the
+analysis because no field for one exists, and it cannot touch candidates, citations or deterministic
+output because those types are unreachable from the contract. **`ABSTAIN` and
+`NO_CLARIFICATION_REQUIRED` are distinct and must never be merged** — collapsing them turns "I could
+not tell" into "it is fine", the exact move §149 removed from the first-pass prompt. Linkage is not
+the verifier's to declare (§141).
+
+**HS-H1 replay:** R1 does not escalate and the architecture says so in advance — a fluent question
+about the wrong fact exposes no signal; R2 and R3 escalate. Whether a verifier could reach the
+cooling-hold fact that three first passes never mentioned is an **open empirical question**, stated
+as one. **HS-E1 replay:** R1 delivered and does not escalate; R2 does not escalate (the settled-
+silence blind spot); R3 escalates on `T_WHOLLY_EMPTY_ANALYSIS`.
+
+**Cost model, with prices SOLVED from the recorded runs rather than looked up.** §153 and §154 issued
+identical prompts (292,688 input tokens each), so the cost delta is pure output: **$10.000/M output**
+and **$2.000/M input**. Checked against §152, not used in the derivation: predicted $0.827866 vs
+recorded $0.827866, **delta $0.000000**. Observed first pass: 18,293 in / 1,347 out / **$0.05006**.
+One labelled assumption — a verifier call at ~18,893 in / 300 out = **$0.04079**, since no verifier
+has ever run. **A VERIFIER COSTS ~81% OF A FIRST PASS, NOT A FRACTION OF ONE**: input dominates and
+barely changes, so selective verification's economy comes entirely from being selective. Per 100
+analyses at observed frequencies — A none $5.01 · B reissue-only $5.42 (+8.3%) · C selective
+verification $6.40 (+27.8%) · D both $6.81 (+36.1%) · E universal two-pass $9.08 (+81.5%). Latency
+observed min 5.7s / median 15.7s / max 38.2s; **the bound is structural, not budgetary** — under D an
+analysis issues at most three requests, and a degenerate response is never escalated to a verifier so
+the two paths cannot compound. 4/48 and 15/44 are development observations, **not production rates**.
+
+**Observability, and a counter retired.** Twelve counters with mechanically-asserted invariants.
+`DEVELOPMENT_PROVIDER_REQUEST_COUNT_CUMULATIVE` is **null** until a real append-only ledger exists —
+summing runs by hand produces a figure no artifact attests. **`HISTORICAL_PROVIDER_INVOCATION_COUNT`
+is deprecated for new development evidence** and the concept renamed to
+**`FROZEN_FORMAL_PROVIDER_INVOCATION_COUNT = 195`**, the immutable count of the historical formal
+evaluation (`FORMAL_EVALUATION_FAIL`, not accepted, cohort spent). It is a historical constant, never
+a running total; mutating it is an invariant violation the acceptance matrix asserts. **No historical
+artifact was edited to add a counter.**
+
+**Prototype and verification.** Six development-only modules under `backend/scripts/lib/` — response
+state, postconditions, degenerate policy, trigger, verifier contract, counters — plus an acceptance
+matrix and two analysis scripts. They live under `scripts/` **deliberately**: `SOURCE_PROJECT_TSC`
+compiles `src/` with a `rootDir` that excludes them, so production cannot import them even by
+accident, and the guarantee is enforced by the compiler rather than by convention. Acceptance matrix
+cases A–P: **69 assertions, 0 failures**. 22 expert protected suites, **0 failures, 1,759
+assertions**. `SOURCE_PROJECT_TSC` clean, exit 0. v13 prompt module, v9 fixture bytes and detector v2
+hashes all unchanged; §152–§154 stored evidence untouched.
+
+**Open before a hosted verifier experiment:** (1) whether 34% escalation at ~81% of a first-pass cost
+each is worth a precision of 4 in 15 — the product decision this terminal names; (2) the two blind
+spots stay open whatever is decided; (3) **the verifier's own accuracy is entirely unmeasured** —
+every figure here describes the trigger; (4) the degenerate half needs none of this and could be
+authorized independently.
+
+---
+
+## §156 — SELECTIVE CLARIFICATION VERIFIER HOSTED ACCURACY EXPERIMENT (2026-09-03)
+
+**TERMINAL: `EXPERT_HAZLENZ_SELECTIVE_VERIFIER_FAILED — DECISION_CRITICAL_RECALL_REMEDIATION_REQUIRED` (CASE C).**
+15 verifier calls, 0 retries, 0 reruns, **$0.182082** of a $2.00 ceiling, **0 first-pass Expert
+invocations**, 0 production files changed. Evidence:
+`verification/expert-hazlenz-verifier-accuracy-2026-09-03/`.
+
+**The headline.** The verifier **preserves legitimate silence perfectly — 7/7, zero manufactured
+questions, zero abstentions — and fails on the one case the architecture exists to reach.** HS-H1 was
+triggered in two draws and in neither did the verifier reach the load-side cooling-hold fact: one
+returned `NO_CLARIFICATION_REQUIRED`, the other proposed a question about the over-temperature alarm,
+which is the same distractor §152's first pass anchored on. Both halves of the Phase-12 gate must
+hold; specificity holds and decision-critical recall does not.
+
+**Instruments, frozen before spend.** Blinded packet `VERIFIER-PACKET.json` 0444 sha256
+`75d64197…942afc5a`; write-once truth manifest `TRUTH-MANIFEST.json` 0444 sha256 `dbbe3361…4855617c`;
+verifier instruction `hazlenz.expert.verifier-instruction.v1` sha256 `88540968…`; §155 verifier
+contract and trigger unchanged. Cases are `VC-01`…`VC-15`; row ids, REQUIRED/FORBIDDEN, fixture form
+names, authored `missingFact`/`acceptableSelectors`, draw labels, section references and every prior
+score were removed, with nine forbidden patterns asserted absent at build time and again at the gate.
+The case→row key is held separately and never sent to the provider. Pre-spend gate **22/22 PASS at
+$0.00**.
+
+**Truth derived, not invented.** All fifteen executions are rows of the frozen hardened v9 set
+(digest `434c127c…a7fe194`, reviewed §151). In every case the first pass emitted no clarification, so
+authored-REQUIRED + silence → `ADD_OR_REPLACE_CLARIFICATION` and authored-FORBIDDEN + silence →
+`NO_CLARIFICATION_REQUIRED` (`VERIFIED_AS_IS` accepted as behaviourally equivalent). **THE LIMITATION
+THAT TRAVELS WITH EVERY FIGURE: the manifest is authored by the same model family that was graded, so
+errors may be correlated.** Deriving from human-reviewed authored truth limits this and does not
+eliminate it. **Four cases were excluded from the primary denominator BEFORE spend** under the
+authorization's own provision, each because the model retained *the absence of a named control* the
+authored FORBIDDEN rationale never considered — spray-booth ignition-source/bonding controls (three
+draws) and a tyre-inflation airline pressure-limiting device (one). They were executed and reported,
+never scored.
+
+**Primary metrics, 11 cases / 10 execution-valid.** `VERIFIER_EXACT_VERDICT_ACCURACY` **8/10 (80.0%)**
+· `VERIFIER_SEMANTIC_ACCURACY` **9/10 (90.0%)** · abstain 0/10. Decision-critical side (3 valid):
+recall **2/3**, correct selector 2/3, correct affectedDecision 2/3, **false `NO_CLARIFICATION_REQUIRED`
+1/3**, false `VERIFIED_AS_IS` 0/3. Legitimate-silence side (7): **`FORBIDDEN_VERIFIER_SPECIFICITY`
+7/7 (100%)**, false `ADD_OR_REPLACE` **0/7**. Confusion matrix — truth ADD_OR_REPLACE returned
+0 VERIFIED / **2 ADD** / 1 NO_CLAR / 0 ABSTAIN; truth NO_CLARIFICATION_REQUIRED returned 1 VERIFIED /
+**0 ADD** / 6 NO_CLAR / 0 ABSTAIN.
+
+**Recoveries are real.** VC-08 reached the flame-failure device; VC-04 reached the interlock function
+test *from an entirely empty first-pass analysis with no unresolved facts supplied at all*. Both
+carried the correct `REQUIRED_CONTROL` label.
+
+**HS-H1: 0 of 2 triggered draws repaired.** VC-13 agreed with the first pass's own relevance denial
+("The first pass correctly declined to ask a clarifying question") after judging the *distractor* it
+was handed. VC-02 detected that something was unaddressed, reasoned well that the alarm was "a
+control that could not be seen functioning", then re-asked the §152 distractor under a
+`HAZARD_SEVERITY` label and named a fact outside its supplied set, so the §155 boundary refused the
+verdict whole. **AN ARCHITECTURAL TENSION WORTH NAMING:** `UNRESOLVED_FACT_REF_NOT_SUPPLIED` exists to
+stop a verifier going looking, and on this case going looking is exactly what was needed — the narrow
+contract that keeps the verifier contained also keeps it inside the first pass's wrong framing.
+
+**Blind-spot accounting.** `TRIGGER_REACHABLE_MISS_COUNT = 4`, `TRIGGER_UNREACHABLE_MISS_COUNT = 1`
+(a settled silence retains nothing to trigger on). §155's fluent-wrong-fact blind spot is preserved
+and unchanged: §152's HS-H1 scored a LOOSE success, never enters the miss set and never reaches a
+verifier. **STORED-DEVELOPMENT END-TO-END DIAGNOSTIC = trigger capture × verifier repair = 2 of 5 =
+40%** of the stored miss set. **NOT a production accuracy estimate.**
+
+**Cost: §155's assumption was wrong by a factor of three, in the product's favour.** Measured verifier
+call — 3,681 in / 478 out / **$0.01214**, **24.2% of a first-pass call** against the 81% §155 assumed,
+because the first pass carries the whole v13 system prompt and the verifier does not. Mean latency
+**6,110 ms** against a 15,700 ms first-pass median. At the §155 development trigger frequency 15/44
+that projects to **34.1 extra calls and $0.41 per 100 analyses = +8.3%**, not +27.8%. **The economics
+are not the obstacle; accuracy on the case that matters is.** 15/44 and 4/48 remain development
+observations, not production rates.
+
+**Containment.** Zero degenerate verifier outputs. One boundary rejection, which is the contract
+working. No verdict carried a candidate, citation, deterministic finding, insight or disagreement.
+The experiment imports nothing from `src/`, implements no production provider interface, and invoked
+no first-pass analysis. The trigger was not modified after seeing hosted results and could not have
+been: its output for these fifteen cases is frozen as literal data in the packet builder, which the
+gate asserts. 22 expert protected suites, 0 failures, 1,759 assertions; `SOURCE_PROJECT_TSC` clean.
+
+**Terminal selection.** CASE A fails on "no systematic unsafe false-negative pattern" — both HS-H1
+draws failed the same way, by inheriting the first pass's framing. CASE B and CASE D are refuted by
+7/7 specificity with zero manufactured questions. CASE E is refuted by zero degenerate outputs. CASE C
+describes the measurement exactly.
+
+**Also opened in §156, and not about the verifier.** `docs/PRODUCT-CLAIMS-REGISTER.md` — a
+development-only inventory of every claim requiring substantiation before commercial release, with
+the standing principle **PUBLIC CLAIMS MUST DESCRIBE THE CAPABILITY ACTUALLY PROVEN AND DEPLOYED, NOT
+THE ASPIRATIONAL HAZLENZ ARCHITECTURE**. Grounded in actual usage counts from the codebase: "HazLenz
+AI" 57 occurrences (`SUPPORTABLE_WITH_QUALIFICATION` — the reasoning is a third-party hosted model),
+"proprietary" 7 (`SUPPORTABLE_WITH_QUALIFICATION` — the knowledge base, deterministic engine, scorers
+and evaluation architecture are ours; the model is not), "autonomous" 6 (`NOT_CURRENTLY_SUPPORTABLE`
+— the architecture is advisory-with-human-review by design), "learns" 1 (`NOT_CURRENTLY_SUPPORTABLE`
+— nothing learns from customer data), "real-time" 1 (`SUPPORTABLE_WITH_QUALIFICATION` — 5.7-38.2s
+measured). The register also records `FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED` across 18 items,
+and the **autonomy roadmap principle**: reduce dependence on third-party reasoning providers while
+maintaining or improving demonstrated safety performance, with v1.0 explicitly NOT delayed for
+self-hosting and any future self-hosted model held to the same or stronger validation.
+
+---
+
+## §157 — VERIFIER v2 / BOUNDED FACT NOMINATION (2026-09-04)
+
+**TERMINAL: `EXPERT_HAZLENZ_SELECTIVE_VERIFIER_V2_FAILED — DECISION_CRITICAL_DISCOVERY_INSUFFICIENT` (CASE C).**
+Local matrix 46/46. Hosted 15 calls, 0 retries, 0 reruns, **$0.262272** of a $1.00 ceiling, 0
+first-pass invocations, 0 production files changed. Evidence:
+`verification/expert-hazlenz-verifier-v2-remediation-2026-09-04/`.
+
+**Three findings, in order of weight.** (1) **HS-H1 is still not recovered — 0 of 2, and one draw
+regressed**: VC-02 went from `ADD_OR_REPLACE_CLARIFICATION` under v1 to `NO_CLARIFICATION_REQUIRED`
+under v2, and decision-critical recall fell **2/3 → 1/3**. (2) **Legitimate silence survived the new
+authority intact — 7/7, zero manufactured questions, zero false nominations**, which was the live risk
+in granting nomination authority and it did not materialise. (3) **THE ONE CASE WHERE NOMINATION
+WORKED PERFECTLY IS THE CASE THE HARNESS DESTROYED** — see the defect below.
+
+**EVALUATION TRUTH AUTHORITY, adopted as standing policy** (`docs/EXPERT-EVALUATION-TRUTH-AUTHORITY.md`).
+A provider or model under evaluation must never be the final authority on whether its own answer is
+correct. Model assistance may construct fixtures, organise evidence, identify issues and draft
+proposed truth; final load-bearing truth must derive from governed evidence, deterministic facts,
+contract semantics and human safety judgment. **MODEL AGREEMENT WITH MODEL-AUTHORED TRUTH IS NOT
+INDEPENDENT VALIDATION** — so of §156's 8-of-10 agreement, the two DISAGREEMENTS are the stronger
+evidence. Every future acceptance artifact must carry `truthAuthor`, `evidenceSource`,
+`humanReviewStatus` and `evaluatedModelFamilyContributedToTruth`. §156's provenance is classified
+honestly: author Claude deriving from frozen v9 authored truth, `humanReviewStatus = NOT_REVIEWED`,
+`evaluatedModelFamilyContributedToTruth = TRUE`, **DEVELOPMENT_EVIDENCE — NOT ACCEPTANCE EVIDENCE**.
+Two §156 findings survive the caveat untouched because they read the output text rather than any
+adjudication: HS-H1 was not repaired in either draw, and zero questions were manufactured on the seven
+silence cases. Standing consequence: **no terminal containing PROVEN and no acceptance artifact may
+rest on truth that is model-authored and unreviewed.** The v9 authored truth is not exempt either — it
+was reviewed and frozen, which is a freeze-and-digest rather than an independent adjudication of each
+row's safety reasoning, and building a standard that clears the bar is work no operation has done.
+
+**Verifier contract v2** (`hazlenz.expert.verifier.v2`; v1 preserved byte-unchanged as §156 evidence).
+`ADD_OR_REPLACE_CLARIFICATION` gains two source modes — `SUPPLIED_FACT` and `NOMINATED_FACT` — and the
+verifier may nominate **at most one** previously unsupplied fact, never a list, because a list lets it
+hedge and a hedge scored as a hit is how a recall figure gets inflated. Authority is otherwise
+unchanged: a nomination influences `decisionCriticalClarifications` and nothing else.
+
+**Admission rule, with the boundary declared in code.** DETERMINISTIC: the nomination must quote a
+span appearing **verbatim** in the observation (the no-invented-hazard rule, enforced by byte
+equality, exactly as the first pass's evidence quotes are); both branches present and distinct; **the
+decision under each branch present and DIFFERENT — the divergence proof**; affectedDecision a frozen
+enum member; exactly one nomination; not a restatement of a supplied fact (content overlap ≥ 0.80).
+SEMANTIC AND NOT VERIFIABLE HERE, asserted by the verifier through required proof fields: that the
+fact is genuinely unresolved, that the divergence is real, that the answer is needed now. **The rule
+checks the proof is present and internally consistent; it cannot check the proof is true** — the same
+discipline as first-pass quote binding.
+
+**Local matrices, 46 assertions, 0 failures.** Phase 5: both HS-H1 draws can now carry a nomination v1
+refused whole — **authority, not recovery**. Phase 6: a converging-branch nomination is refused on all
+fifteen stored cases; a restatement of a supplied fact is refused wherever one exists; silence remains
+expressible on all seven silence cases; both §156 recoveries remain representable;
+`NOMINATION_FALSE_POSITIVE_COUNT = 0`. Phase 7: all nine adversarial non-reasons refused, with a
+control proving the rule is discriminating rather than merely strict. Phase 9: 26 containment
+assertions including that the only collection a nomination can affect is
+`decisionCriticalClarifications`.
+
+**Hosted gates (v2 / v1).** exact 8/10 / 8/10 · semantic 8/10 / 9/10 · **A recall 1/3 / 2/3** ·
+**B selector 1/3 / 2/3** · false `NO_CLARIFICATION_REQUIRED` 2/3 / 1/3 · **C specificity 7/7 / 7/7** ·
+false ADD 0/7 / 0/7 · **D nominations 1/15** · **F false nominations 0** · **G abstain 0** ·
+**H boundary rejections 1**.
+
+**HS-H1.** VC-02's v2 rationale shows the new step running and returning nothing: *"I also considered
+whether there is a fact not raised that would change the decision … but no plausible alternate answer
+to an unasked fact would produce a different action."* VC-13 unchanged. **Across §156 and §157 — four
+hosted attempts, two verifier versions — the cooling hold has never been mentioned once.** Both
+versions reason fluently about chamber instrumentation instead.
+
+**HARNESS DEFECT, reported as its own diagnostic.** `max_tokens` was set to 1600 in the §157 probe.
+**VC-04 hit it** (`stop_reason: max_tokens`, output exactly 1600) after producing a complete and
+correct nomination — the interlock function-test fact, a verbatim observation span, the right affected
+decision, and genuinely diverging branches — and lost the `proposedClarification` the contract
+requires, so the admission rule refused it whole. All other 14 finished on `tool_use` at 473–1412
+tokens. **This is DESTROYED OUTPUT, a measurement defect and mine, not a model defect.** No rerun was
+authorized and none was performed. The budget was sized against the average when the payload that
+matters — nomination plus proof plus proposal — is the largest the contract permits. **The single
+strongest piece of evidence that bounded nomination works is therefore the case the experiment cannot
+score**, and it arose on the one case where the first pass returned an entirely empty analysis and
+supplied no unresolved facts at all, which is precisely what nomination is for.
+
+**Cost.** v2 5,114 in / 726 out / **$0.01748** per call, **34.9% of a first pass** (v1: 3,681 / 478 /
+$0.01214 / 24.2%), latency 8,632 ms (v1 6,110 ms). Per 100 analyses at the §155 development trigger
+frequency 15/44: **+$0.60, +11.9%**. Still not the obstacle. 15/44 remains a development observation.
+
+**Reading.** v2 tested two things and they came apart. **The nomination MECHANISM is sound** —
+provable, containable, cheap, zero false positives across fifteen cases, and correct on the one case
+it was allowed to work. **The nomination TRIGGER inside the model is not firing where it is needed.**
+Whether the instruction's "the answer is usually NO" guard suppressed discovery on HS-H1 is not
+established by this run and is the obvious next hypothesis. It is also worth asking whether HS-H1's
+authored truth is reachable from its observation at all — an adjudication question, and §157's
+truth-authority policy names who has to answer it.
+
+**Preserved.** `DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION`, not
+reopened. `docs/PRODUCT-CLAIMS-REGISTER.md` maintained, no production marketing copy changed,
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy principle preserved and honoured: v2 adds no
+Claude-specific semantics — the contract, the admission rule and the instruction are provider-agnostic
+and the only vendor-specific code is the transport in the probe script.
+
+**Verification.** 23 expert protected suites, **0 failures, 1,805 assertions**; `SOURCE_PROJECT_TSC`
+clean; pre-spend gate 18/18 at $0.00.
+
+---
+
+## §158 — VC-04 MEASUREMENT REPAIR + HS-H1 HUMAN ADJUDICATION PREPARATION (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V2_NOMINATION_MECHANISM_INCONCLUSIVE — VERIFIER_EXECUTION_REVIEW_REQUIRED`.**
+
+Two bounded parts. **A** repaired the one §157 measurement the harness destroyed, with exactly one
+hosted call. **B** built the human adjudication packet for HS-H1. No first-pass call, no verifier
+instruction change, no v14, no v15, no expanded validation, no production change.
+
+### §157's own terminal, recorded here for completeness
+
+`EXPERT_HAZLENZ_SELECTIVE_VERIFIER_V2_FAILED — DECISION_CRITICAL_DISCOVERY_INSUFFICIENT`. First-pass
+Expert v13 and `analysis.v2` unchanged; verifier v1 and v2 both 7/7 specificity; v2 false nominations
+0; decision-critical recall 1/3 literal; selector accuracy 1/3 literal; `HS_H1_RECOVERED` 0/2.
+
+### A. The defect, exactly
+
+`max_tokens` was 1600 in the §157 probe. VC-04 returned `stop_reason: max_tokens` at exactly 1600
+output tokens having emitted a complete nine-field `nominatedFact` and never reaching
+`proposedClarification`, which the v2 admission rule requires on `ADD_OR_REPLACE_CLARIFICATION`. The
+contract refused the verdict whole with `PROPOSAL_REQUIRED_FOR_THIS_VERDICT`. **That refusal was
+correct and was not the defect. The defect was that the harness destroyed the output before the model
+finished it**, so §157 measured nothing about whether bounded nomination completes hosted. All other
+fourteen calls finished on `tool_use` at 473–1412 tokens.
+
+### A. The rerun, and the proof that only the ceiling moved
+
+One logical call, one provider request, zero retries, zero reruns, $0.05 hard ceiling.
+`backend/scripts/repair-vc04-verifier-v2-measurement-2026-09-04.ts`, pre-spend gate **23/23 at
+$0.00**.
+
+The gate builds the §157 request body and the repair request body from one parameterised function,
+deletes `max_tokens` from both, and hashes them. Both hash to
+`a48cf351a5ea1673a8fc34a552dda10155331c24e7f754c4323fcbd180aa81fa`; the differing-key set is exactly
+`[max_tokens]`. Blinded case bytes, v2 system prompt (sha `ffc63119…`, including the "usually NO"
+guard byte-for-byte), tool schema, `tool_choice`, `thinking: adaptive`, model `claude-sonnet-5`,
+endpoint, contract and truth manifest all unchanged. No sampling control was introduced. **The
+provider then attested the identity independently: 4,598 metered input tokens on the §157 execution
+and 4,598 on the repair.**
+
+**Ceiling justification, from observed outputs only.** Largest completed v1 output 835 (§156 VC-04);
+largest completed v2 output 1,412 (§157 VC-08, the one case that emitted a full
+`proposedClarification`); truncation point 1,600. Chosen ceiling **4,000** — 2.50× the truncation
+point, 2.83× the largest completed v2 output, 4.79× the largest v1 output, and the largest value the
+$0.05 ceiling admits at a known 4,598-token input ($0.049196 worst case). Maximum headroom was chosen
+deliberately because there was one call and no retry.
+
+### A. Result — the instrument was repaired; the nomination did not reproduce
+
+| | §157 (truncated) | §158 (repaired) |
+|---|---|---|
+| `stop_reason` | `max_tokens` | `tool_use` |
+| output tokens | 1,600 of 1,600 | **520 of 4,000** |
+| verdict | `ADD_OR_REPLACE_CLARIFICATION` | `NO_CLARIFICATION_REQUIRED` |
+| source mode | `NOMINATED_FACT` | `null` |
+| nomination | complete, nine fields | **none attempted** |
+| contract | refused whole | **admitted whole** |
+
+**`HARNESS_TRUNCATION_DEFECT_REPAIRED = TRUE`.** The model left 3,480 output tokens unused, so the
+ceiling was never the binding constraint on the repaired draw.
+
+**`VC04_BOUNDED_NOMINATION_MECHANISM_HOSTED_DEMONSTRATED = FALSE`.** Not because the mechanism failed
+— because the repaired draw never exercised it. Part A's eight scoring questions answer
+`NO / NOT_EXERCISED × 4 / NO / YES / NO` in order; `proposedClarification` is absent and **correctly**
+absent, since the contract forbids one on `NO_CLARIFICATION_REQUIRED`. Zero forbidden fields present.
+
+**This is a correction to §157's reading, and it is the substantive finding of §158.** §157 recorded
+*"the nomination MECHANISM is sound … correct on the one case it was allowed to work."* That reading
+rested on a single destroyed draw. The repaired draw of the same bytes returned a settled silence and
+asserted, in its own rationale, that *"the interlock is verified as engaged"* — a conclusion the
+truncated draw explicitly declined to draw from the same span. **Two executions of byte-identical
+input disagreed on the verdict.** The verifier's nomination decision is not draw-stable, and the
+architecture is **NOT_UPGRADED**.
+
+No rerun was performed and none is authorized. Both executions are preserved: the §157 record
+untouched at `verification/expert-hazlenz-verifier-v2-remediation-2026-09-04/VERIFIER-V2-RUN-RECORDS.jsonl`
+(sha `af3e37b2…`, unchanged), the repair at
+`verification/expert-hazlenz-vc04-measurement-repair-2026-09-04/VC04-REPAIR-RUN-RECORD.jsonl` (0444).
+
+**One reporting defect in this section's own instrument, disclosed rather than edited out.** The
+repair probe prints a fixed string on scoring question 6 asserting the truncation condition
+reproduced. On this execution that string is false. `VC04-REPAIR-RESULT.json` is preserved with the
+string in it and `VC04-REPAIR-SCORE.json` — a zero-call replay of the immutable record — supersedes
+the label and says why. An executed artifact is not rewritten to look better.
+
+**Spend.** 1 request, 4,598 in / 520 out, **$0.014396** of the $0.05 ceiling. `FIRST_PASS_EXPERT_INVOCATIONS = 0`.
+
+### B. HS-H1 human adjudication packet
+
+`verification/expert-hazlenz-hs-h1-human-adjudication-2026-09-04/HS-H1-HUMAN-ADJUDICATION-PACKET.md`,
+sha256 `8182cb4e324a5ac24049b1aaef1e6298b78c61e8949b510f06cc86d07e84a63f`, 53,954 bytes, built by
+`backend/scripts/build-hs-h1-human-adjudication-packet-2026-09-04.ts` at **zero provider calls**.
+
+Fourteen sections, all copied verbatim from frozen artifacts with per-artifact SHA-256: the
+observation; the deterministic result; the governed evidence; the authored missing fact, affected
+decision, both counterfactual branches, all three acceptable selectors, the authoring rationale and
+the eight review signatures; the three stored first-pass analyses from §152/§153/§154; the four
+verifier outputs from §156/§157 with the blinded input each was given; a neutral seven-row chronology;
+a literal term scan; the regulatory position; and six competing unresolved facts, unranked.
+
+The builder **refuses to write the file** if any of twelve prohibited constructions appears
+("Claude was wrong", "the correct answer is", "HS-H1 proves", "the model should have", "obviously",
+"we recommend", …) and if any of sixteen completeness conditions fails. Both checks ran clean: 0
+prohibited constructions, 16/16 complete. The packet reaches no conclusion and selects no disposition.
+
+**The term scan, which is the packet's most load-bearing evidence and is mechanical.** Across ten
+surfaces — the observation, the governed evidence, the deterministic result, three first-pass outputs
+and four verifier outputs:
+
+| term | occurrences, all surfaces |
+|---|---|
+| `cooling hold` | **0** |
+| `cooling` | **0** |
+| `cool` | 2, both in one §156 v1 rationale, both the phrase "a properly cool load" |
+| `load side` / `load-side` | **0** |
+| `chamber instrumentation` | 0 |
+| `alarm` | 62 |
+| `trapped steam` | 2, both §153 first pass |
+
+**Seven executions, zero mentions of the authored fact; 62 mentions of the distractor.**
+
+**Section 13 is the one a reviewer should read first.** No regulatory or evidentiary text was supplied
+with HS-H1: `governedStandards` is `[]` on the row, on all three draws, and in the blinded packet. A
+search of the governed corpus for `autoclave`, `sterilizer` and `pressure vessel` returns nothing.
+Sibling rows DO carry records — HS-D1 `29 CFR 1910.106(e)(2)(ii)`, HS-M1 `29 CFR 1910.146(c)(5)(ii)(C)`
+— so the absence is specific to this row. **The stated basis for the cooling-hold fact being
+decision-relevant is the authoring rationale and nothing else**, and that rationale was authored by
+the model family being graded.
+
+**Truth-authority status: `AUTHORED_BY_EVALUATED_MODEL_FAMILY`, `humanReviewStatus: PENDING`,
+`adjudicationChosen: null`.** No disposition was chosen on the reviewer's behalf.
+
+### C. Prospective instruction experiment — designed, NOT executed, $0.00
+
+`docs/VERIFIER-NOMINATION-PRIOR-EXPERIMENT-DESIGN.md`. Two arms: CONTROL is v2 byte-unchanged; TEST
+deletes exactly two clauses from the step-4 prior — *"THE ANSWER IS USUALLY NO"* and *"and almost none
+of them change what is done"* — and adds one clause making both answers equally acceptable. Every
+constraint on **what may be nominated** is preserved character-for-character. No HS-H1 wording, no
+cooling vocabulary, no domain example, no contract change, no admission-rule change, no
+`affectedDecision` change.
+
+**Pre-registered decision rule, written before any data.** Primary endpoint
+`A_decisionCriticalRecall` pooled over replicates. Suppression is supported only if all three hold:
+recall rises by ≥ 3 of 12 draws; `C_legitimateSilenceSpecificity` stays ≥ 19 of 21; and every
+counted nomination is admitted by the unchanged contract with a selector reaching the owed fact.
+Recall bought by manufacturing questions on silence cases is explicitly **not** support.
+
+**§158's draw-instability finding forced a design change: three replicates per arm per case, 90
+calls.** A single draw per arm cannot separate an instruction effect from the variance measured on
+VC-04. ≈ $1.57 at the measured v2 average, ≈ $4.52 worst case at the 4,000 ceiling.
+
+**Sequencing.** The experiment is authorized only after the HS-H1 adjudication returns a disposition:
+if the disposition is `AUTHORING_INVALID` or `AUTHORING_AMBIGUOUS`, the primary endpoint is measured
+against a standard that itself needs repair.
+
+### Preserved and unchanged
+
+`DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION`, not reopened.
+Verifier instruction v2 byte-identical, "usually NO" guard intact and asserted by suite check P9.23.
+Verifier contract v1 and v2 unchanged. First-pass prompt module and hardened v9 fixture byte-identical
+by hash. No v14, no v15. `FROZEN_FORMAL_PROVIDER_INVOCATION_COUNT = 195`. All §152–§157 evidence
+untouched by hash. `docs/PRODUCT-CLAIMS-REGISTER.md` maintained additively — one row added to section
+B recording that no consistency or repeatability claim is supportable, on the measured draw
+instability, plus a status log; **no production marketing copy changed**.
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy principle honoured: nothing added in §158
+introduces a Claude-specific semantic dependency — the repair probe's only vendor-specific code is its
+transport, and the packet builder and the experiment design are provider-agnostic.
+
+### Verification actually executed
+
+23 expert protected suites, **0 failures, 1,805 assertions**. `SOURCE_PROJECT_TSC` exit 0.
+Pre-spend gate 23/23 at $0.00. Packet neutrality 0/12 prohibited, completeness 16/16.
+Total provider spend this section **$0.014396**, one request.
+
+### Next authorization required
+
+The HS-H1 human adjudication disposition, from the product owner, against the packet. Until it
+returns, neither the instruction experiment nor any change to HS-H1's status in a semantic-accuracy
+denominator is authorized.
+
+---
+
+
+## §159 — HS-H1 ADJUDICATED + ROW-TRUTH RECONCILIATION PREPARED (2026-09-04)
+
+**Terminal: `HS_H1_ADJUDICATED_AUTHORING_AMBIGUOUS — VERIFIER_ROW_TRUTH_RECONCILIATION_AWAITING_HUMAN`.**
+
+Zero provider calls. $0.00. The product owner returned the HS-H1 disposition; this section records it,
+applies it under a policy that changes no history, and prepares the reconciliation the owner directed
+next.
+
+### The disposition
+
+**`AUTHORING_AMBIGUOUS`**, product owner, 2026-09-04, against the §158 packet (sha
+`8182cb4e…`). Recorded verbatim in
+`verification/expert-hazlenz-hs-h1-human-adjudication-2026-09-04/HS-H1-ADJUDICATION-RESULT.md`; the
+packet itself is unaltered, so the question and the answer stay distinguishable.
+
+> The general concern that load thermal state may remain hazardous despite zero chamber pressure is
+> valid. The authored cooling-hold selector is not uniquely supported because the observation does not
+> establish the load type, cycle type, manufacturer/SOP unload criteria, or that a cooling hold is the
+> applicable safe-unloading mechanism. Zero chamber pressure/interlock release does not establish safe
+> liquid-load temperature, but absence of a cooling hold does not by itself establish that opening
+> must stop for every possible load.
+
+**The determination separates two propositions, and only one survives.** That the observation does not
+*settle* the safe state — upheld. That one named mechanism is *the* fact that governs the decision —
+not established. **The test this generalises into now governs every authored selector on the
+programme: a selector naming a specific mechanism is uniquely supported only when the observation
+establishes the conditions under which that mechanism is the applicable one. Failing to settle the
+safe state is not the same as establishing which mechanism governs it.**
+
+Note what the disposition did **not** decide. It did not decide whether the verifier's silence across
+seven executions was correct reasoning or a missed fact. It said the standard could not decide that,
+and it did not decide it either.
+
+### The policy — `docs/VERIFIER-TRUTH-DENOMINATOR-POLICY.md`
+
+> A case removed from a denominator is removed PROSPECTIVELY. Every historical figure stays exactly as
+> it was executed, under the standard that was in force when it was executed.
+
+A historical score is evidence of what was measured, not a claim that the standard was right. Editing
+it to match a later adjudication destroys the record of the adjudication having been needed. A
+re-derivation is therefore a **new measure with a new name, reported beside the old one**.
+
+**Exclusions are scoped to the defect, not to the row.** HS-H1 leaves `A_decisionCriticalRecall`,
+`B_selectorAccuracy` and `E_nominationAccuracy`, and `HS_H1_RECOVERED` is retired as a gate. It stays
+in `F_falseNominationCount`, `G_abstainCount`, `H_boundaryRejectionCount` and all contract-admission
+and containment evidence, because none of those turns on the authored selector.
+
+**Untouched, by design:** §156 `VERIFIER-SCORES.json` and §157 `VERIFIER-V2-SCORES.json` including
+`A 1/3`, `B 1/3` and `HS_H1_RECOVERED 0/2`; the frozen truth manifest, which keeps its HS-H1 entries
+so the exclusion is applied by the consumer rather than by editing the standard; and the v9 fixture
+row, which is not deleted, rewritten or reclassified.
+
+### The consequence that must travel with every future figure
+
+| | before | after HS-H1 removal |
+|---|---|---|
+| decision-critical primary draws | 4 | **2** |
+| distinct rows behind them | 3 | **2** — HS-A1, HS-E1 |
+| legitimate-silence primary draws | 7 | 7 |
+| distinct rows behind those | 3 | 3 — HS-P1 ×3, HS-R1 ×3, HS-N1 ×1 |
+
+**Two draws over two rows cannot support a recall figure.** The policy therefore forbids rendering a
+percentage on any denominator below 10 and requires counts instead, and the re-derivation script
+enforces it in code rather than in prose.
+
+### The structural fact the reconciliation is built on
+
+The fifteen blinded cases are draws of **seven fixture rows**, and the authored truth lives on the
+row, not the draw. Reviewing per case would put one authored artifact in front of a human up to three
+times and invite three answers to one question. So reconciliation is **per row**: six packets, HS-H1
+already dispositioned.
+
+`verification/expert-hazlenz-verifier-row-truth-reconciliation-2026-09-04/`, built by
+`backend/scripts/build-verifier-row-truth-reconciliation-2026-09-04.ts` at zero provider calls.
+
+| row | class | draws | verifier executions | distinct facts raised | governed records |
+|---|---|---|---|---|---|
+| HS-A1 | REQUIRED | 1 | 2 | 5 | 0 |
+| HS-E1 | REQUIRED | 1 | 2 (+ the §158 repair) | 3 | 0 |
+| HS-J1 | FORBIDDEN | 3 | 6 | 8 | 0 |
+| HS-N1 | FORBIDDEN | 2 | 4 | 5 | 0 |
+| HS-P1 | FORBIDDEN | 3 | 6 | 8 | 0 |
+| HS-R1 | FORBIDDEN | 3 | 6 | 4 | 0 |
+
+**The two classes make opposite claims and are asked opposite questions.** REQUIRED rows assert one
+named fact governs a decision — the claim HS-H1 failed, so their question D is the mechanism-
+applicability test above, stated explicitly. FORBIDDEN rows assert *nothing* is decision-critical,
+which is not a weaker claim: they carry the whole 7-of-7 specificity gate, and if their authored
+"nothing is missing" is wrong then every 7-of-7 built on it measures agreement with an error.
+
+**Four draws the §156 manifest already marks contested go back in front of a human rather than being
+treated as settled** — VC-03, VC-11, VC-14 on HS-J1 and VC-06 on HS-N1, all excluded from the primary
+denominator on the grounds that the model retained a control the authored rationale never addressed.
+Those exclusions were an engineering judgement made under the same truth-authority limitation that
+sent HS-H1 to adjudication.
+
+**Competing facts are derived mechanically, not authored.** Each packet enumerates every fact any
+execution actually focused on, taken from the supplied unresolved facts, the ref each verdict was
+about, and each proposed question — so the builder cannot smuggle in a view about which fact should
+have won. Both HS-E1 executions are shown, the §157 truncated draw and the §158 repair, because they
+disagreed on byte-identical input and neither supersedes the other.
+
+The builder refuses to write any packet on any of twelve prohibited persuasive constructions or any
+of eleven completeness failures. All six passed. **No disposition was chosen for any row.**
+
+### The re-derivation, prepared and deliberately blocked
+
+`backend/scripts/rederive-verifier-performance-on-human-truth.ts`. Zero provider calls, no credential
+read, no fetch. It re-derives A, B and C for both v1 and v2 over only the dispositioned rows, applying
+each row's exclusions per denominator, and prints distinct-row counts beside every figure.
+
+**Executed now, it refuses**, exit 2, `VERIFIER_REDERIVATION_BLOCKED — HUMAN_TRUTH_RECONCILIATION_INCOMPLETE`,
+naming HS-A1, HS-E1, HS-J1, HS-N1, HS-P1, HS-R1. That refusal is the feature. A figure computed over
+"the rows reviewed so far" would mean something different each time a disposition landed, and the
+first such number is the one that would get quoted. **A row with no disposition is not thereby valid;
+absence of adjudication is not adjudication**, and the ledger says so in its own instructions field.
+
+The §158 VC-04 repair is reported separately and is **not** folded into either arm: a second draw of
+one case is not a replacement for the first.
+
+### The instruction experiment is NOT authorized
+
+The owner declined. `docs/VERIFIER-NOMINATION-PRIOR-EXPERIMENT-DESIGN.md` is updated to say so — and
+to record that the adjudication **invalidated its statistics, not its variable**. The pre-registered
+"+3 of 12 draws" threshold assumed a twelve-draw decision-critical denominator; with HS-H1 removed
+that denominator is two, and the endpoint is not computable as written. The ARM CONTROL / ARM TEST
+wording, the prohibited changes and the arm-aware gate note all stand. The endpoint, threshold and
+replicate count must be re-derived after the reconciliation returns and re-registered before any call.
+
+### Preserved and unchanged
+
+All §152–§158 evidence untouched by hash. First-pass prompt module `02977c30…` and hardened v9 fixture
+`09195af8…` byte-identical. Verifier instruction v2 `ffc63119…` byte-identical, "usually NO" guard
+intact. Contracts v1 and v2 unchanged. `FROZEN_FORMAL_PROVIDER_INVOCATION_COUNT = 195`. No v14, no
+v15. `DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION`, not reopened.
+`docs/PRODUCT-CLAIMS-REGISTER.md` maintained additively — one row added recording that no claim
+resting on the hardened-set semantic-accuracy figures is supportable while six of seven rows carry
+unreviewed truth — **no production marketing copy changed**.
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy principle honoured: nothing added is
+provider-specific, and neither new script contacts a provider at all.
+
+### Verification actually executed
+
+23 expert protected suites, **0 failures, 1,805 assertions**. `SOURCE_PROJECT_TSC` exit 0. Six packets
+built, 12/12 neutrality and 11/11 completeness each. Re-derivation refusal verified by execution
+(exit 2). **Provider calls this section: 0. Spend: $0.00.**
+
+### Next authorization required
+
+Human dispositions for HS-A1, HS-E1, HS-J1, HS-N1, HS-P1 and HS-R1, entered into
+`ROW-TRUTH-DISPOSITIONS.json`, after which the re-derivation runs itself. Not the instruction
+experiment. Not v14. Not v15. Not a first-pass change. Not expanded validation. Not M14. Not
+production activation.
+
+---
+
+
+## §160 — VERIFIER HUMAN-TRUTH RECONCILIATION BEFORE FURTHER REMEDIATION (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_TRUTH_INCOMPLETE — PRODUCT_OWNER_ADJUDICATION_REQUIRED`.**
+
+Zero provider calls. $0.00. No historical score, artifact, report or terminal altered. The question
+was whether a real verifier decision-critical recall defect survives once model-authored unreviewed
+truth, fixture defects, ambiguous selectors, unsupported counterfactuals and denominator
+contamination are removed. **It does not survive as an established finding — and it is not refuted
+either. There is nothing left to measure it with.**
+
+`backend/scripts/reconcile-verifier-human-truth-2026-09-04.ts`, output in
+`verification/expert-hazlenz-verifier-human-truth-reconciliation-2026-09-04/`.
+
+### The discipline the file is under, enforced in code
+
+This operation is written by the model family being evaluated, so it computes only what is mechanical
+— string equality, set membership, counts, presence and absence — and records every semantic question
+as open. Two traps are closed by assertions rather than by intention:
+
+- **`assertNoSelfValidation()`** fails the run if any case is treated as authoritative while its truth
+  is model-authored (limb G) and unreviewed (limb H). G and H are not convertible into truth.
+- **`rate()`** refuses to divide by zero and refuses to render a percentage below a denominator of 10.
+  A zero denominator returns `INSUFFICIENT`, never a pass and never a fail.
+
+### Phase 1 — freeze
+
+Eight protected artifacts hashed before anything was computed; **8/8 byte-identical**. The operation
+stops rather than compute on a moved baseline. v13 prompt, v9 fixture, verifier packet, truth
+manifest, §156 scores, §157 scores, §157 run records, and the §158 HS-H1 packet all confirmed.
+
+### Phase 2 — the disposition, recorded additively
+
+`HS_H1_HUMAN_DISPOSITION = AUTHORING_AMBIGUOUS` · `HUMAN_REVIEW_STATUS = REVIEWED` ·
+`STRICT_SELECTOR_DENOMINATOR_PROSPECTIVE_ELIGIBILITY = FALSE` · `HISTORICAL_SCORES_MUTATED = FALSE`.
+
+The six things the reviewer found the observation does not establish — load contents/type, liquid vs
+non-liquid, cycle type, load temperature, manufacturer/SOP safe-unload criterion, whether a specific
+cooling hold is required — and the five competing selectors they named are recorded verbatim. The
+authored truth and every historical model output are preserved.
+
+### Phase 3/4 — inventory and mechanical audit, 15 cases over 7 rows
+
+| limb | result | reading |
+|---|---|---|
+| A observation does not carry the selector terms | **1/4** REQUIRED | see FINDING 1 — this is a scorer property, not a model property |
+| B two distinct authored factual states | 4/4 | the counterfactuals are well formed at string level |
+| C branches claim different current decisions | 4/4 | likewise |
+| D **multiple** acceptable selectors authored | **4/4** | selector uniqueness is not established by the fixture itself, on any REQUIRED row |
+| E governed evidence supplied | **0/15** | no row carries a governed regulatory record |
+| F deterministic output intersects authored families | **0/15** | see FINDING 2 |
+| G authored by the evaluated model family | **15/15** | |
+| H human-reviewed | **2/15** | both are HS-H1, and its disposition is AMBIGUOUS |
+
+**FINDING 1 — THE SELECTOR KEYWORD SCORER MATCHES THE OBSERVATION ITSELF.** On three of the four
+REQUIRED cases the authored selector keyword set is already satisfied by the observation text:
+
+- VC-02 and VC-13 (HS-H1) via `["load","temperature"]` — "the **load** trolley" and "the
+  over-**temperature** alarm";
+- VC-08 (HS-A1) via `["flame","fail"]` and `["flame-failure"]` — the observation says "the
+  **flame-failure** device and its wiring are behind that shroud".
+
+Only VC-04 (HS-E1) does not match. **On the other three, a question that merely echoes the observation
+scores as reaching the owed fact.** This is a property of the scorer, not of any model output, and it
+is a defect independent of the authoring ambiguity: excluding HS-H1 does not repair it. It means
+`B_selectorAccuracy` was measuring something weaker than its name implies. Note the sharp corner —
+the reviewer's own HS-H1 determination named "load temperature" as a *competing* selector, and the
+scorer would have accepted it as the authored one.
+
+No historical selector figure is recomputed on this basis. The finding goes to the human-truth queue.
+
+**FINDING 2 — DETERMINISTIC SUPPORT IS ABSENT ON EVERY ROW, IN THREE DISTINCT WAYS.**
+
+- **4 rows emitted nothing at all** — HS-A1, HS-E1, HS-N1, HS-P1. Both surviving REQUIRED rows are in
+  this group.
+- **3 rows emitted families disjoint from the authored ones** — HS-H1 (`guarding_interlocks`,
+  `suspended_loads` against authored `thermal_burn`/`pressure_systems`/`personal_protective_equipment`),
+  HS-J1, HS-R1.
+- **0 rows intersect.**
+
+**The naming-artifact explanation was checked and ruled out:** `suspended_loads` and `hot_work` are
+both members of `CANONICAL_DETERMINISTIC_FAMILIES`, so the two vocabularies genuinely overlap and the
+disjointness is substantive. Separately, one emitted family — `guarding_interlocks` — is **not** a
+member of that canonical list, which is a third observation and is recorded rather than acted on.
+
+Consequence: **on no row did deterministic HazLenz supply support for the authored decision-critical
+claim.** Every authored claim rests on the observation text alone, judged by the model family that
+wrote it. This is precisely why limbs E and F cannot rescue limb G.
+
+### Phase 5 — human-review queue
+
+**13 cases over 6 rows require adjudication; 6/6 rows already have a packet** from §159. Coverage is
+row-level by design — the 15 cases are draws of 7 rows and the authored truth lives on the row, so
+per-case packets would put one artifact in front of a reviewer up to three times.
+
+### Phase 6 — provisional re-derivation
+
+**Cases with adequate independent human-reviewed truth: 0.** Every provisional measure therefore
+returns `INSUFFICIENT — denominator is zero, no figure exists`: decision-critical recall, selector
+accuracy, legitimate-silence specificity, false `NO_CLARIFICATION_REQUIRED`, false-positive question
+rate and nomination accuracy, for both v1 and v2.
+
+**End-to-end reachable-miss recovery: `INSUFFICIENT`.** §155's figures are **quoted, not recomputed** —
+15/44 trigger fire, 4 of 5 misses caught, 0 of 17 successes escalated, 2 of 5 miss shapes
+categorically unreachable. It cannot be re-derived because all five observed misses are misses only
+against the authored truth now under adjudication: of the three rows involved, two are undispositioned
+and the third is `AUTHORING_AMBIGUOUS`. The miss population is inventoried separately (first-pass
+REQUIRED rows that emitted nothing: §152 HS-A1; §153 HS-A1, HS-E1, HS-H1; §154 HS-A1, HS-E1, HS-H1)
+and is **labelled an inventory, not a re-derivation**; it does not replace §155's adjudicated figure.
+
+No pass/fail was manufactured. HS-H1 was not counted as a strict miss. Unreviewed model-authored truth
+was not counted as authoritative.
+
+### Phase 7 — is remediation justified
+
+1. **Any independently human-validated decision-critical miss? NO** — zero cases carry human-reviewed
+   truth, so none can be validated. **This is absence of evidence, not evidence that the verifier is
+   sound.**
+2. **Mechanism demonstrated?** None. The §156/§157 misses are misses only against unreviewed authored
+   truth, and the single row a human has reviewed came back ambiguous.
+3. **Does the evidence support changing verifier discovery behaviour? NO.** What is demonstrated is
+   that the standard cannot currently distinguish a discovery defect from an authoring defect.
+4. **"Usually NO" suppression hypothesis: NOT SUPPORTED AND NOT REFUTED — UNTESTABLE ON THE CURRENT
+   TRUTH.** It was raised because HS-H1 was never recovered; HS-H1's non-recovery is no longer
+   evidence of suppression. §158 separately measured different verdicts on byte-identical input, so a
+   single-draw arm comparison cannot attribute any difference to the instruction.
+5. **Would the two-arm experiment test an established defect? NO — it would optimize against uncertain
+   truth.** Its endpoint needed a 12-draw denominator; the eligible denominator is zero human-reviewed
+   cases and at most two model-authored ones.
+6. **Verifier v2 status: `INSUFFICIENT_HUMAN_TRUTH`.**
+
+**Why that status and not the others.** `DEFECT_ESTABLISHED` needs a human-validated miss and there is
+none. `DEFECT_NOT_ESTABLISHED` would imply the apparent misses dissolved on review, and five of six
+rows have not been reviewed at all. `ARCHITECTURE_INCONCLUSIVE` would blame the architecture when the
+measured obstruction is the truth standard.
+
+**What is NOT invalidated.** The containment properties measured in §156/§157 are mechanical and
+survive intact: 7/7 legitimate-silence specificity, zero false nominations, whole-verdict refusal on
+an incomplete proof, and every boundary assertion in the 46-assertion v2 contract suite. Only the
+recall-side semantic figures are affected.
+
+### Preserved
+
+`DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION` — preserved
+independently and **not** reopened by truth reconciliation. v13 prompt, analysis.v2, verifier v1,
+verifier v2, the nomination contract, §152–§158 evidence, the v9 fixture, detector v2 and the current
+trigger are all byte-unchanged. No v14, no v15. The 90-call experiment was **not executed and is not
+justified**. VC-04 was not rerun. HS-H1 was not rerun. No fixture was created to obtain a desired
+result. `docs/PRODUCT-CLAIMS-REGISTER.md` maintained additively; **no production marketing copy
+changed**; `FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy principle honoured — the script
+contacts no provider and introduces no Claude-specific semantic dependency.
+
+### Verification actually executed
+
+23 expert protected suites, **0 failures, 1,805 assertions**. `SOURCE_PROJECT_TSC` exit 0. Phase-1
+freeze 8/8. Self-validation guard armed and not tripped. **Provider calls: 0. Spend: $0.00.**
+
+### Next authorization required
+
+Human dispositions for HS-A1, HS-E1, HS-J1, HS-N1, HS-P1 and HS-R1 against the six §159 packets, into
+`ROW-TRUTH-DISPOSITIONS.json`. Two items should be adjudicated alongside them, because both are
+independent of any row's outcome: **whether `B_selectorAccuracy`'s keyword scorer is fit for purpose
+given FINDING 1**, and **whether an authored decision-critical claim may rest on observation text
+alone given FINDING 2**. Not the instruction experiment. Not v14. Not v15. Not a first-pass change.
+Not expanded validation. Not M14. Not production activation.
+
+---
+
+
+## §161 — TRUTH ADMISSION STANDARD ADOPTED AND ENFORCED (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_TRUTH_ADMISSION_STANDARD_ENFORCED — PRODUCT_OWNER_ROW_DISPOSITIONS_STILL_REQUIRED`.**
+
+Zero provider calls. $0.00. Two standing product-owner decisions recorded and enforced in code. **The
+six row dispositions were NOT issued in this operation and remain outstanding.**
+
+### The decisions
+
+```
+B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY = RETIRED
+OBSERVATION_ONLY_TRUTH_ALLOWED = TRUE
+OBSERVATION_ONLY_TRUTH_REQUIREMENTS =
+    HUMAN_REVIEWED + FACT_GENUINELY_UNRESOLVED + PLAUSIBLE_ALTERNATIVE_STATES
+  + MATERIAL_CURRENT_DECISION_DIVERGENCE + NECESSARY_NOW
+  + SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP
+```
+
+Recorded in `docs/VERIFIER-TRUTH-DENOMINATOR-POLICY.md` Part 2.
+
+**2.1 settles §160 FINDING 1.** The keyword matcher is retired for prospective use because on three
+of four REQUIRED cases the authored keyword set was already satisfied by the observation text itself.
+**The retirement is prospective only:** §156 `B 1/3` and §157 `B 1/3` stand immutable, and
+`score-expert-verifier-accuracy.ts` and `score-expert-verifier-v2.ts` are deliberately NOT edited —
+verified unchanged by hash. Keyword matching used as a *diagnostic* (§160 limb A) is unaffected. **No
+replacement scorer is authorized: disable before replacing.**
+
+**2.2 settles §160 FINDING 2 as policy.** Observation-only truth is admissible. Governed evidence is
+not mandatory *unless the claimed decision distinction itself turns on regulatory interpretation*;
+deterministic support is not mandatory at all. So the absence of both, on every row, is no longer
+disqualifying in itself — **but it settles no row**, because all six conditions must still be
+established per row by a human.
+
+### Enforcement, in code rather than in prose
+
+`backend/scripts/rederive-verifier-performance-on-human-truth.ts`:
+
+- `B_selectorAccuracy` is **refused, not recomputed**. It prints `RETIRED (§161) — NOT EMITTED`, names
+  how many cases *would* have been eligible, and emits a refusal string in the JSON. The old
+  `selectorReached` helper is replaced by `selectorReachedRETIRED()`, a stub that **throws**, so any
+  future caller fails loudly instead of quietly reintroducing keyword overlap as a score.
+- `admit()` is **conjunctive over all six** and treats a **missing key exactly as false** — an
+  unrecorded condition has not been established. Five of six is not admission.
+- A third refusal gate, exit **3**,
+  `VERIFIER_REDERIVATION_BLOCKED — OBSERVATION_ONLY_TRUTH_ADMISSION_INCOMPLETE`, fires after the
+  disposition gate and names the unrecorded conditions per row.
+
+**The live `ROW-TRUTH-DISPOSITIONS.json` was not modified** — extending it is the owner's to approve.
+The required shape is published beside it as `ROW-TRUTH-DISPOSITIONS.TEMPLATE.json`, with every
+condition `null` and nothing asserted on the reviewer's behalf. HS-H1 carries `HUMAN_REVIEWED: true`
+and five nulls, with a note that admission is not sought for it.
+
+### Gates proven by execution, not by inspection
+
+An unexercised gate is not a gate. Two env overrides (`REDERIVE_LEDGER_PATH`, `REDERIVE_OUT_DIR`,
+both defaulting to the live artifacts) exist solely so the refusals could be run against synthetic
+ledgers in the scratchpad. No live artifact was written by any test — the live ledger hash and the
+absence of `REDERIVED-HUMAN-TRUTH-SCORES.json` were both re-verified afterwards.
+
+| test | ledger | expected | result |
+|---|---|---|---|
+| live | real | disposition gate | **exit 2** — 6 rows awaiting adjudication |
+| A | all dispositioned, admission unrecorded | admission gate | **exit 3** |
+| C | all six recorded, `NECESSARY_NOW: false` on HS-A1 | conjunctive refusal | **exit 3**, naming `HS-A1: unrecorded NECESSARY_NOW` |
+| B | all six true on every row | computes, B refused | **exit 0**, `B … RETIRED — NOT EMITTED` |
+
+### Two defects the B test exposed, both mine, both in the prospective instrument
+
+Neither would have surfaced without running the gate to completion, and both would have corrupted the
+figure the product owner is waiting for.
+
+1. **The v1 arm was silently zeroing.** §156 v1 records contract admission under `boundaryAccepted`;
+   §157 v2 uses `admissionAccepted`. The §159 script read only the v2 key, so `executionValid` was
+   `undefined` — falsy — for **all fifteen** v1 records, and the entire v1 denominator collapsed to
+   zero without any error. Each arm now names its own field. After the fix the v1 arm produces
+   figures over HS-A1 and HS-E1 as it should.
+2. **A zero denominator printed as `0/0 — COUNT ONLY`**, which reads as a measurement of zero. It now
+   reads `INSUFFICIENT — denominator is zero, no figure exists`, in both the console output and the
+   JSON.
+
+### Preserved
+
+Historical scorers and score artifacts byte-identical by hash: `score-expert-verifier-v2.ts`,
+`score-expert-verifier-accuracy.ts`, `VERIFIER-SCORES.json acdf21dd…`,
+`VERIFIER-V2-SCORES.json 3e7cefde…`, `TRUTH-MANIFEST.json dbbe3361…`. v13 prompt, v9 fixture, verifier
+v1/v2, nomination contract, detector v2, trigger, §152–§160 evidence all unchanged. No v14, no v15. No
+verifier change. No replacement selector scorer. No metric recomputed. No provider call.
+`DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION`, not reopened.
+Claims register maintained additively; **no production marketing copy changed**;
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy honoured — nothing added is
+provider-specific and neither script contacts a provider.
+
+### Verification actually executed
+
+23 expert protected suites, **0 failures, 1,805 assertions**. `SOURCE_PROJECT_TSC` exit 0. Four gate
+executions as tabled above. **Provider calls 0, spend $0.00.**
+
+### Next authorization required
+
+Unchanged by this operation: **human dispositions for HS-A1, HS-E1, HS-J1, HS-N1, HS-P1 and HS-R1**,
+now additionally carrying the six §161 admission conditions per row, in the shape published as
+`ROW-TRUTH-DISPOSITIONS.TEMPLATE.json`. The six packets are in
+`verification/expert-hazlenz-verifier-row-truth-reconciliation-2026-09-04/` and were presented in
+full. Once the ledger is complete the re-derivation runs itself at zero cost and will emit A and C
+but not B.
+
+---
+
+
+## §162 — HUMAN TRUTH DISPOSITIONS RECORDED + SEMANTIC RE-DERIVATION (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_HUMAN_TRUTH_REDERIVED — SEMANTIC_MISS_AND_PROVIDER_INSTABILITY_ESTABLISHED`.**
+
+Zero provider calls. $0.00. No historical score, artifact, label or terminal altered. All seven row
+dispositions returned by the product owner; verifier evidence re-derived on the two rows that
+survived human review.
+
+### Phase 1/2 — the dispositions, and what they cost
+
+| row | disposition | prospective strict semantic truth |
+|---|---|---|
+| HS-A1 | `AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS` | **ELIGIBLE** |
+| HS-E1 | `AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS` | **ELIGIBLE** |
+| HS-H1 | `AUTHORING_AMBIGUOUS` | INELIGIBLE |
+| HS-R1 | `AUTHORING_AMBIGUOUS` | INELIGIBLE |
+| HS-J1 | `AUTHORING_INVALID` | INELIGIBLE |
+| HS-N1 | `AUTHORING_INVALID` | INELIGIBLE |
+| HS-P1 | `AUTHORING_INVALID` | INELIGIBLE |
+
+**Five of seven rows of model-authored evaluation truth did not survive independent human review, and
+three were outright invalid.** `ROW-TRUTH-DISPOSITIONS.json` completed at v2, 7/7 dispositioned,
+`HISTORICAL_SCORES_MUTATED = false`. §152–§160 REQUIRED/FORBIDDEN labels are **not** rewritten and are
+recorded as historical development evidence, not retroactively corrected formal truth.
+
+### Phase 3 — the retired scorer, and the guard that proves the replacement matching is different
+
+`B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY = RETIRED`. Scorer not deleted, historical
+results not altered, no replacement production scorer implemented. Selector correctness in this
+operation is `HUMAN_SEMANTIC_REDERIVATION` against the owner's targets and acceptable equivalents,
+with every match printing which cue set it matched beside the verbatim question.
+
+**`OBSERVATION_SELF_SATISFACTION_GUARD`, armed and run before any figure was emitted.** §160 FINDING 1
+retired the keyword scorer because its cue sets were satisfied by the observation text itself. The
+guard tests the new cue sets against the same failure and **refuses to emit anything** if they match
+an observation. They do not, on either eligible row. The cue sets also each require a **safeguard
+reference AND a function/status reference**, so stated physical presence alone cannot satisfy them —
+the exact inference the owner prohibited.
+
+**`REGULATORY_OVERREACH_GUARD`, armed and not tripped.** HS-E1 was supplied no governed evidence, so
+the run fails if any semantic target for a governed-record-free row asserts a regulatory requirement.
+The HS-E1 target speaks only of verifying the protective function; it encodes no claim that OSHA
+requires a specific post-maintenance test after every rotor tooth change.
+
+### Phase 4/5 — every execution on the authoritative rows
+
+| row | case | § | arm | verdict | valid | reaches target | affectedDecision |
+|---|---|---|---|---|---|---|---|
+| HS-A1 | VC-08 | §156 | v1 | `ADD_OR_REPLACE_CLARIFICATION` | yes | **YES** via `["flame","function"]` | `REQUIRED_CONTROL` ✓ |
+| HS-A1 | VC-08 | §157 | v2 | `ADD_OR_REPLACE_CLARIFICATION` | yes | **YES** via `["flame","function"]` | `REQUIRED_CONTROL` ✓ |
+| HS-E1 | VC-04 | §156 | v1 | `ADD_OR_REPLACE_CLARIFICATION` | yes | **YES** via `["interlock","function"]` | `REQUIRED_CONTROL` ✓ |
+| HS-E1 | VC-04 | §157 | v2 | `ADD_OR_REPLACE`/`NOMINATED_FACT` | **NO — truncated** | not scoreable | not scoreable |
+| HS-E1 | VC-04 | §158 | v2 repair | `NO_CLARIFICATION_REQUIRED` | yes | **NO — MISS** | n/a |
+
+**Metrics — `HUMAN_SEMANTIC_REDERIVATION`, counts only, denominators far below any rate threshold.**
+
+- **A. REQUIRED semantic clarification recall — 3/4**
+- **B. semantic selector accuracy — 3/3** (every clarification produced reached the target)
+- **C. affectedDecision accuracy — 3/3**
+- **D. false `NO_CLARIFICATION_REQUIRED` count — 1** (VC-04 §158)
+- **E. execution-valid — 4/5** (invalid: VC-04 §157, truncated)
+- **F. draw-to-draw stability — UNSTABLE** on the only byte-identical repeat in the corpus
+
+The §157 truncated draw is `EXECUTION_INVALID` and stays that way. Its pre-truncation content — a
+complete nine-field nomination that does reach the target — is recorded **as observation only**, and
+nothing is inferred about the destroyed `proposedClarification`. It is **not** scored as a success.
+
+**`LEGITIMATE_SILENCE_SPECIFICITY = INSUFFICIENT_HUMAN_TRUTH`.** All seven silence draws came from
+HS-P1 (INVALID), HS-R1 (AMBIGUOUS) and HS-N1 (INVALID). **The former 7/7 may be reported only as
+`HISTORICAL_MECHANICAL_SILENCE_BEHAVIOR = 7/7`**, with the warning that its semantic truth basis was
+subsequently invalidated or made ambiguous. `NOMINATION_FALSE_POSITIVE_COUNT = 0` survives only as a
+mechanical containment observation; the former "zero false nominations across fifteen cases" rested on
+the same invalidated labels and is downgraded.
+
+### Phase 6 — what is now established
+
+- **A. `VERIFIER_DECISION_CRITICAL_DISCOVERY_DEFECT` — ESTABLISHED.** VC-04 §158.
+- **B. `VERIFIER_SEMANTIC_SELECTOR_DEFECT` — NOT ESTABLISHED.** Every clarification produced on an
+  authoritative row reached the target.
+- **C. `VERIFIER_AFFECTED_DECISION_DEFECT` — NOT ESTABLISHED.** 3/3 correct.
+- **D. `PROVIDER_DRAW_INSTABILITY` — ESTABLISHED.** Byte-identical input, provider-attested at 4,598
+  metered tokens on both draws and hashing identically once `max_tokens` is removed, produced a
+  complete nomination in §157 and a bare silence in §158.
+- **F. `INSUFFICIENT_HUMAN_TRUTH` — applies to the silence side only.**
+
+**THE EXACT MISS, and its mechanism.** VC-04 §158 returned `NO_CLARIFICATION_REQUIRED` on HS-E1 —
+complete at 520 of 4,000 output tokens, contract-admitted, not degenerate, therefore scoreable, and it
+fails. Its own rationale asserts *"the interlock is verified as engaged"*, **treating the stated
+physical presence of the switch as establishing its protective function.** That is precisely the
+inference the product owner ruled impermissible on HS-A1 — "do NOT treat physical presence alone as
+establishing functionality" — and it is the same inference here. This miss is a **separate finding**
+from the §157 truncation, which remains an instrument defect scored neither way.
+
+**The one judgement call, stated so it can be overruled in a word.** The §157 draw is
+`EXECUTION_INVALID` for *semantic scoring* because truncation destroyed `proposedClarification`. That
+invalidity is scoped to semantic scoring by the operating instruction itself, and the content that
+*differs* between the draws — verdict, source mode, the whole nomination — was fully and well-formedly
+emitted before truncation touched a different field. Instability is therefore recorded as established
+on validly-emitted content. **If "materially different VALID outputs" is instead read as requiring
+both draws to be contract-valid, instability drops to OBSERVED and the terminal becomes
+`TARGETED_SEMANTIC_REMEDIATION_AUTHORIZATION_REQUIRED`.** A consistency guard fails the run if the
+terminal does not follow the two determinations.
+
+### Phase 7 — the experiment
+
+`EXPERIMENT_REQUIRES_REDESIGN`. A discovery miss now **is** established, so the experiment finally has
+a target — but **the same instruction version (v2, sha `ffc63119…`) produced both the nomination and
+the silence on byte-identical input.** An instruction held constant across both outcomes cannot be the
+differentiator, and with one case and two draws instruction effect and provider variance are perfectly
+confounded. A redesign must measure per-draw variance *first*, size replicates from it, re-derive the
+endpoint against the authoritative denominator that now exists, and expand authoritative truth — two
+rows cannot carry an arm comparison. **No spend authorized.**
+
+### Phase 8 — reliability architecture
+
+`DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION`, preserved, not
+reopened. **The case for reliability integration over further semantic prompt tuning is
+STRENGTHENED**, and the reason is now measured rather than argued: the single reproducible phenomenon
+left standing is that byte-identical input produced materially different content. Prompt tuning cannot
+be measured *through* that variance — any arm difference would be indistinguishable from draw noise —
+while reliability integration attacks the variance directly and needs no additional authored truth.
+Assessment only; nothing implemented.
+
+### Preserved
+
+`VERIFIER-SCORES.json acdf21dd…`, `VERIFIER-V2-SCORES.json 3e7cefde…`, `TRUTH-MANIFEST.json
+dbbe3361…`, `VERIFIER-PACKET.json 75d64197…`, `VERIFIER-V2-RUN-RECORDS.jsonl af3e37b2…`, v13 prompt
+`02977c30…`, v9 fixture `09195af8…`, verifier instruction v2, contracts v1 and v2, and both historical
+scorers — all byte-identical by hash. No src/ production behaviour changed. No v14, no v15. No
+verifier change, no first-pass change, no scorer replacement, no expanded validation, no M14, no
+provider call, no database access.
+
+### Verification actually executed
+
+23 expert protected suites, **0 failures, 1,805 assertions**. `SOURCE_PROJECT_TSC` exit 0. Two guards
+armed and run before any figure was emitted. Terminal consistency guard armed. **Provider calls 0,
+spend $0.00.**
+
+### Next authorization required
+
+**Reliability integration design** — hosted degenerate-output handling, replay, and multi-draw
+agreement — as the next engineering target, ahead of any further semantic prompt work. Concretely, the
+first measurement that would pay for itself is a **verifier per-draw variance measurement on identical
+input**, which is also the precondition for redesigning the nomination-prior experiment. Not the
+90-call experiment as designed. Not v14. Not v15. Not a first-pass change. Not a replacement selector
+scorer. Not M14. Not production activation.
+
+---
+
+
+## §163 — VERIFIER-v2 PER-DRAW RELIABILITY MEASUREMENT (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_DRAW_VARIANCE_ESTABLISHED — BOUNDED_RELIABILITY_INTEGRATION_AUTHORIZATION_REQUIRED`.**
+
+20 hosted draws, **$0.420520** of a $1.00 cap, 0 retries, 0 reruns, 0 first-pass calls. Pre-spend gate
+**25/25**. `BOUNDED_DEVELOPMENT_RELIABILITY_SAMPLE` — not a production error rate.
+
+### The confound this removed, and how
+
+§157/§158 disagreed on identical VC-04 bytes, but the §157 draw was contract-invalid from a 1600-token
+truncation, so the two draws differed in **execution validity** as well as content. Every draw here
+ran at `max_tokens: 4000`.
+
+**4000 was chosen over a provably non-binding lower ceiling for one reason: it is §158's ceiling, so
+the HS-E1 request is byte-identical to §158's.** Gate C.5 proves it positively — the body hashes to
+`a48cf351a5ea…` with `max_tokens` removed, matching §158's recorded hash, at the same ceiling. §158
+therefore becomes an eleventh draw of the same configuration rather than a comparison across a changed
+parameter.
+
+**Blinding was proven, not asserted — and the first attempt failed correctly.** A crude grep over the
+whole body flagged `REQUIRED` and the verdict enum as leaks. Inspection showed both live in the
+**system prompt and response schema by design** — the verifier cannot choose a verdict it has not been
+shown — and the blinded case id `VC-08`/`VC-04` is the anonymised handle the packet was built around,
+historically sent, carrying no row identity. The gate was **narrowed to the right surfaces** rather
+than loosened: seven truth-artefact patterns over the whole body, four fixture-label patterns over the
+case payload only, plus a positive assertion that the verdict enum appears in the instruction and
+never in the payload. **0 matches on all eleven.**
+
+### Result — 20/20 execution-valid, and both cases unstable
+
+| | HS-A1 / VC-08 | HS-E1 / VC-04 |
+|---|---|---|
+| execution-valid | **10/10** | **10/10** |
+| semantic success vs the frozen §162 target | **3/10** | **1/10** |
+| settled silence | 0 | **8** |
+| wrong-fact clarification | **7** | 1 |
+| contract-invalid · degenerate · forbidden fields | 0 · 0 · 0 | 0 · 0 · 0 |
+| verdict distribution | `ADD_OR_REPLACE` ×10 | `NO_CLARIFICATION_REQUIRED` ×8, `ADD_OR_REPLACE` ×2 |
+| source mode | `NOMINATED_FACT` ×7, `SUPPLIED_FACT` ×3 | none ×8, `NOMINATED_FACT` ×2 |
+| unique clarification intents | 2 | 2 |
+| modal outcome | `WRONG_FACT_CLARIFICATION` 7/10 | `SETTLED_SILENCE` 8/10 |
+| pairwise semantic agreement | **24/45 (53.3%)** | **28/45 (62.2%)** |
+
+Across both: 20/20 execution-valid, **4/20 semantic successes, 16/20 human-validated semantic misses,
+0 execution failures**, within-case pairwise agreement **52/90 (57.8%)**.
+
+**`CLEAN_DRAW_VARIANCE_ESTABLISHED = TRUE`**, on both cases and on all four of the owner's criteria:
+HS-E1 produced valid target clarification *and* settled silence *and* wrong-fact clarification from one
+frozen request; HS-A1 produced valid target clarification *and* wrong-fact clarification, with source
+mode varying `SUPPLIED_FACT`/`NOMINATED_FACT`. **The truncation confound is gone and the variance
+survives it.**
+
+### The finding that matters more than the variance
+
+**HS-A1's seven misses are not noise. They are a well-formed question about a different hazard.** All
+seven asked whether the discharge auger had been locked out or de-energised before the operative
+cleared the blockage — a hazard the observation does state — instead of the flame-failure safeguard's
+functional status. All ten draws carried `REQUIRED_CONTROL`; all ten were contract-clean; the wording
+differed every time (10 unique question strings across 2 intents). This is **target displacement**, not
+malfunction, and against the frozen human target it is a miss. *Neutral note for future truth
+coverage, not an adjudication: the displaced fact concerns a hazard the v9 row records as present and
+life-critical. Whether it deserves its own authored truth is a product-owner question and truth was
+not broadened here.*
+
+**HS-E1's silences repeat the §158 mechanism verbatim.** The rationale again asserts the guard and
+interlock "are confirmed engaged now" — reading stated physical presence as established protective
+function, the inference the owner ruled impermissible.
+
+### Relation to §157/§158 — not rescored, and now contextualised
+
+Both remain historical evidence, untouched. §158's lone `NO_CLARIFICATION_REQUIRED` is now visibly the
+**modal** outcome (8/10), not an anomaly. §157's truncated nomination — which did reach the target —
+now has a clean counterpart in draw 7. **The new draws reproduce BOTH semantic success and settled
+silence, plus a third mode neither §157 nor §158 showed (wrong-fact clarification).**
+
+### Policy comparison, against the measured distribution
+
+Measured baseline: **$0.0210 per verifier call, 15,175 ms median latency.**
+
+| policy | calls | cost | reaches target | verdict |
+|---|---|---|---|---|
+| **A** SINGLE_DRAW | 1.00 | $0.0210 | HS-A1 30%, HS-E1 10% | the measured baseline |
+| **B** TWO_DRAW_CONFIRMATION | 2.00 | $0.0421 | 51% / 19% | helps silence; **two wrong-fact draws agree and look like consensus** |
+| **C** CONDITIONAL_SECOND_DRAW | 1.80 / 1.00 | $0.0378 | HS-E1 18% | best cost-to-benefit; trivial reconciliation |
+| **D** THREE_DRAW_MAJORITY | 3.00 | $0.0631 | **~0% on both** | **REFUTED — majority converges on the MODAL outcome, which is wrong on both cases. It would entrench the error and present it with more confidence than a single draw.** |
+| **E** BOUNDED_SPECIALIST_ESCALATION | n/a | n/a | unmeasurable | **not supportable** — requires a second qualified provider; none is qualified, and an unqualified one on a safety decision path is prohibited |
+
+**Recommended for design, not selected for production: C.** And the recommendation comes with its own
+refutation attached — on the measured distribution C lifts HS-E1 target reach only from 10% to ~18%,
+which is not a decision boundary anyone should rely on.
+
+**THE DECISIVE LIMIT.** Repeating a draw resamples the same distribution, and that distribution is
+centred on the wrong answer on **both** cases. **Reliability policy can raise the chance that
+something is asked; it cannot make the verifier ask the right thing.** A bounded reliability policy is
+worth having and is **not sufficient on its own** — this measurement, commissioned to justify
+reliability integration, also proves reliability integration cannot be the whole answer.
+
+### Degenerate policy — unchanged, and composes cleanly
+
+`PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION`, not reopened. Ordering: transport → degenerate policy
+(at most one bounded reissue, then fail closed to deterministic HazLenz) → contract admission →
+semantic reliability policy. The degenerate policy acts on **response state**; any reliability policy
+acts one layer up on **semantic outcome among usable responses**. No loops, and the reliability policy
+never reissues a degenerate response.
+
+### Preserved
+
+Verifier instruction v2 `ffc63119…` byte-identical with the "usually NO" prior intact; contract v2
+unchanged; v13 prompt `02977c30…`; v9 fixture `09195af8…`; §156 packet `75d64197…`; human dispositions
+unchanged; §152–§162 evidence unchanged. No prompt experiment. No 90-call two-arm run — status remains
+`EXPERIMENT_REQUIRES_REDESIGN`, and this measurement supplies the per-draw variance a redesign needs.
+No src/ change, no v14, no v15, no expanded validation, no M14, no production or database mutation.
+Claims register maintained; the sample is explicitly barred from becoming an accuracy percentage or
+reliability claim. `FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy preserved — HazLenz keeps
+trigger, contract, response-state classification, admissibility, arbitration and reliability policy;
+the only vendor-specific code remains the transport.
+
+### Verification actually executed
+
+Pre-spend gate 25/25 at $0.00. 20/20 draws completed. 23 expert protected suites, **0 failures, 1,805
+assertions**. `SOURCE_PROJECT_TSC` exit 0.
+
+### Next authorization required
+
+**Bounded reliability integration design** for policy C, together with the semantic question this
+measurement forced open: **the verifier's failure is dominated by target displacement and modal
+silence, which repetition cannot repair.** A redesign of the nomination-prior experiment is now
+feasible — the per-draw variance it needed exists — but it should be sized against a 53–62% pairwise
+agreement baseline, not against an assumption of stability. Not v14. Not v15. Not a first-pass change.
+Not expanded validation. Not M14. Not production activation.
+
+---
+
+
+## §164 — RELIABILITY + TARGET-DISPLACEMENT ARCHITECTURE (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_RELIABILITY_ARCHITECTURE_DESIGNED — DISPLACED_FACT_ADJUDICATION_REQUIRED`.**
+
+Zero provider calls. $0.00. **Design only — nothing implemented, no `src/` file touched, no verifier
+or contract changed.** `verification/expert-hazlenz-reliability-target-displacement-design-2026-09-04/`.
+
+### The idea the whole design turns on
+
+The §163 failures look like they need **semantic matching** — did the question mean the same thing as
+the owed fact? Building that matcher is what retired the keyword scorer; doing it with a model is
+self-certification.
+
+**So don't match meaning. Require a declaration and check it deterministically.** If HazLenz builds
+`owedFacts[]` with `factKey`s *before* the verifier runs and requires every clarification to **bind**
+to one of them — or to nominate a new fact **additively, never instead** — then coverage becomes
+**closed-set membership over declarations**. The residual semantic question shrinks from *"does this
+text mean that fact?"* to *"was this declaration truthful?"*, which is bounded human sampling rather
+than a scorer. It is the same discipline the first-pass contract already uses for candidate linkage,
+applied one layer up.
+
+**What it would have done to §163.** On HS-A1 the verifier could not have *replaced* the flame-failure
+fact with the auger fact. It would have had to bind to the flame-failure key, declare it
+not-decision-critical with a two-branch proof, or nominate the auger fact **alongside** it. All three
+are observable. **Silent displacement — the actual failure — becomes structurally impossible.**
+
+### Phase 1 — `hazlenz.expert.verifier.semantic-outcome.v2`, prospective
+
+Nine members. Two rules that must never be collapsed:
+
+- **`VALID_BUT_TARGET_DISPLACED` is an owed-target-recall MISS and NOT a clarification-precision
+  defect.** It must never be netted against `TARGET_REACHED`.
+- **The split between `VALID_BUT_TARGET_DISPLACED` and `INVALID_WRONG_FACT` requires human
+  authority.** No code assigns it, and **§163's seven HS-A1 auger outputs are left UNCLASSIFIED
+  between those two members.**
+
+Defined as a specification rather than executable code, because this operation is design-only. §163 is
+not rescored and stays under v1.
+
+### Phase 2 — the HS-A1 displaced-fact packet
+
+`HS-A1-DISPLACED-FACT-ADJUDICATION-PACKET.md`, sha256 `79e60079bd8c9bcf…`, built from the frozen §163
+records at zero cost. 14 prohibited constructions scanned, 0 found; 6 completeness checks passed; **no
+classification assigned.**
+
+Four mechanical findings it puts in front of the reviewer, none of them adjudicated:
+
+1. The observation states verbatim: *"An operative is clearing a blockage at the discharge auger with
+   the dryer running."*
+2. **None** of nine isolation terms — `lockout`, `lock out`, `tagout`, `isolat`, `de-energis`,
+   `de-energiz`, `disconnect`, `stopped`, `switched off` — appears anywhere in the observation.
+3. The first pass raised `auger_entanglement` at **`ACTIVE`**, not `INSUFFICIENT_EVIDENCE` — so it was
+   **not** among the unresolved facts supplied to the verifier. All seven displaced draws reached it
+   through the verifier's own **nomination** path; the three on-target draws used `SUPPLIED_FACT`.
+4. `machine_guarding` — the family the auger candidate was raised under — appears in the v9 row's
+   **`presentHazardFamilies` and `lifeCriticalHazardFamilies`**, while `decisionCriticalGaps` contains
+   only the flame-failure gap.
+
+Dispositions offered: `DISPLACED_FACT_VALID_DECISION_CRITICAL` · `..._VALID_BUT_NOT_NECESSARY_NOW` ·
+`..._INVALID` · `..._AMBIGUOUS`. Whatever returns, §163 is not rescored and HS-A1's target is not
+broadened — the seven remain an owed-target miss either way.
+
+### Phase 3 — reliability is three problems
+
+| | question | §163 | status |
+|---|---|---|---|
+| **R1** execution | transport, schema, degenerate, contract | **20/20 clean** | **not the current problem** — more of it would fix nothing measured |
+| **R2** decision | does it ask rather than settle wrongly? | HS-E1 **8/10 silence** | primary; partly addressable by repetition |
+| **R3** target coverage | does the owed fact survive a competing hazard? | HS-A1 **7/10 displaced** | primary; **repetition cannot touch it** |
+
+**§163's 4/20 is the sum of two unrelated failures and is not actionable as one number.**
+
+### Phase 4 — policy C, and why two NOs prove nothing
+
+At most 2 verifier calls. No loops, no majority voting, no third draw. The second draw fires **only**
+on silence — so a wrong-fact first draw does not trigger it, a deliberate gap because that case is R3.
+
+**Two silences never establish correctness.** The draws are not independent tests of a proposition;
+they are two samples from one distribution measured to be *centred on silence* (8/10). Two silences is
+the most likely outcome of that distribution (≈64%) **whether or not silence is correct**. Agreement
+among samples from a biased distribution is evidence about the mode, not the truth — treating it as
+confirmation converts a measured bias into manufactured confidence, which is worse than one draw
+because it carries the same error with more authority. Two silences therefore record
+`SETTLED_SILENCE` with `drawCount: 2`, never upgrade to `VERIFIED_AS_IS`, never mark a fact `COVERED`,
+and never clear a coverage warning. Both attempts persist in full; neither replaces the other.
+
+### Phase 5 — the development/production truth boundary
+
+`owedFacts` may be created in production by deterministic HazLenz, governed evidence, first-pass
+retained uncertainty (as a `modelAuthored` candidate only) and bounded verifier nomination (additively
+only). **Human-authoritative fixture truth is DEVELOPMENT ONLY.**
+
+The reason, recorded so it cannot erode: fixture truth is the standard the system is *measured
+against*; seeding production `owedFacts` from it would make it part of the system being measured and
+destroy the independent scale. **Development instrumentation and production architecture share the
+structure and must never share the population step.** A `modelAuthored` owedFact can raise a question;
+it cannot assert a hazard or alone justify a fail-closed customer state.
+
+**Deterministic:** binding membership, fact still unresolved, `evidenceSpan` verbatim, every
+life-critical/required-control fact bound-or-declared-with-proof, nomination additive, no
+`UNRESOLVED → COVERED` without a binding. **Not deterministic and not pretended to be:** whether the
+bound question truly answers the fact, whether a nominated fact is genuinely decision-critical,
+similarity deduplication.
+
+### Phases 6–8 — preservation, budget, postcondition
+
+**The current contract implicitly asks for the *best* question** — one nomination, one proposal. On a
+row with two genuine hazards that is a forced choice, and §163 shows which way it goes. The rule
+instead: **preserve first, rank second**; deduplicate only on `factKey` identity, never similarity; a
+gap leaves `UNRESOLVED` only by evidence or recorded arbitration; **salience is not authority**.
+
+Internal recall and customer burden are **decoupled**: preservation is internal and unbounded by
+budget; the budget applies only at the customer surface. Combine two questions only when they share an
+`affectedDecision` and equipment *and* both remain independently answerable. **Never drop a
+life-critical gap to fit the budget — fail closed to an unresolved safety state instead**, with the
+deterministic findings still shown.
+
+`TARGET_COVERAGE_WARNING` is a **set difference over declarations**, computed deterministically, never
+silently cleared, persisted whether or not resolved.
+
+### Phase 9 — the state machine
+
+**14 transitions, 10 fully deterministic**; every model-dependent transition is gated by a
+deterministic predicate. **Maximum 5 provider calls per analysis, hard-capped** — 1 first pass + 1
+degenerate reissue + 2 verifier draws + 1 coverage re-check. No unbounded loop on any path.
+
+**The invariant under every failure mode: deterministic HazLenz findings are produced and shown.** The
+advisory layer can degrade to nothing without the customer losing the deterministic result.
+
+### Phase 10 — cost is not the constraint; latency is
+
+At the measured $0.0210 per verifier call and 15,175 ms median, the full bounded path adds **at most
+~$0.059 per triggered analysis** against a $0.05006 first pass. Per 100 analyses: $0.42–$1.18 at a 20%
+trigger, $1.05–$2.94 at 50% — **scenario ranges, not production rates; the 15/44 development
+observation is not a rate.** The worst-case bounded path is ~76 s, which is a product decision and
+argues for parallelising draws 1 and 2.
+
+### Phase 12 — the experiment designed to break this, not confirm it
+
+**12 calls, ≈$0.30**, one binding-enabled arm over the same two authoritative cases, compared against
+§163's 20 draws as the frozen baseline — **no new baseline purchased.** Six draws per case detects a
+shift from 7/10 displacement to ≤1/6 with margin; it claims no rate. Six falsifiers, of which **B and
+D are decisive and mutually undetectable**: B — binding available and the verifier still fails to bind
+or declare on the flame-failure key in ≥2 of 6 draws, meaning the core claim fails; D — binding solves
+displacement by manufacturing questions on cases where silence was right, which is the
+over-questioning failure the verifier exists to prevent. **Not executed, not authorized.**
+
+### Preserved
+
+`DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION` — unchanged, not
+reopened. Ordering: transport → degenerate policy → contract admission → owed-fact coverage →
+reliability policy; the two layers act on different objects with separate additive retry budgets.
+Verifier instruction v2, contract v2, v13 prompt `02977c30…`, v9 fixture, human dispositions and
+§152–§163 evidence all byte-identical. No v3 verifier, no v14, no v15, no `owedFacts` in `src/`, no
+selector-scorer replacement, no M14, no production or database mutation. The old nomination-prior
+experiment remains `EXPERIMENT_REQUIRES_REDESIGN` and is **superseded** by the falsification design
+above. Claims register maintained — §163 is barred from becoming an accuracy or reliability claim.
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Autonomy preserved: HazLenz owns unresolved-fact
+representation, orchestration, call caps, arbitration, coverage, question budgeting and the final
+result; the hosted model stays replaceable behind the transport adapter.
+
+### Verification actually executed
+
+23 expert protected suites, **0 failures, 1,805 assertions**. `SOURCE_PROJECT_TSC` exit 0. Packet
+neutrality 14/14 clean, completeness 6/6. **Provider calls 0, spend $0.00.**
+
+### Next authorization required
+
+**The HS-A1 displaced-fact disposition**, against the packet — it decides whether the seven auger
+outputs are additionally a precision defect, and therefore whether R3 is one problem or two. In
+parallel, **bounded integration of the deterministic components** (§11 lists what is `PROVABLE_LOCAL`)
+may be authorized independently of it, since none of those depend on the disposition. The 12-call
+falsification experiment should follow the disposition, not precede it.
+
+---
+
+## §165 — BOUNDED RELIABILITY ARCHITECTURE: LOCAL INTEGRATION (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_BOUNDED_RELIABILITY_LOCAL_INTEGRATION_COMPLETE —
+FALSIFICATION_HARNESS_REMEDIATION_REQUIRED`. 0 provider calls, $0.00, 0 database operations, 0 files
+changed under `backend/src/`.** Evidence:
+`verification/expert-hazlenz-bounded-reliability-local-integration-2026-09-04/`.
+
+Implements the `PROVABLE_LOCAL` portion of §164 and nothing else. Everything §164 classified
+`REQUIRES_HUMAN_TRUTH`, `REQUIRES_HOSTED_VALIDATION` or `DO_NOT_AUTOMATE` is left unimplemented, and
+the modules refuse to let a caller reach it by accident.
+
+### The HS-A1 disposition, returned
+
+`HS-A1_DISPLACED_AUGER_FACT = DISPLACED_FACT_VALID_DECISION_CRITICAL`. The seven §163 auger outputs
+are independently legitimate, decision-critical clarifications; they remain an **owed-target-recall
+miss** and are **not** a clarification-precision defect. `OWED_FLAME_FAILURE_TARGET` stays
+authoritative, the auger fact is an additional valid gap, and the relationship is
+`SIMULTANEOUS_INDEPENDENT_GAPS`. **§163 is not rescored — 3/10 stands.** Recorded in
+`HS-A1-DISPLACED-FACT-ADJUDICATION-RESULT.md`; the §164 packet is byte-unchanged
+(`79e60079bd8c9bcf…`, recomputed from disk).
+
+The owner's boundary is honoured in code by absence rather than by comment: no OSHA section number,
+citation or unconditional applicability claim appears in any module or fixture. The encoded
+conclusion is the narrower one — the isolation state is unresolved and can materially change whether
+clearing the blockage may safely continue.
+
+### What was built — seven modules under `backend/scripts/lib/`
+
+`expert-semantic-outcome-v2.ts` (the nine-member taxonomy and the human-authority door) ·
+`expert-owed-facts.ts` (the append-only ledger, transitions, the population boundary) ·
+`expert-owed-fact-binding.ts` (closed-set binding, additive nomination) ·
+`expert-target-coverage.ts` (`TARGET_COVERAGE_WARNING` as a set difference) ·
+`expert-question-budget.ts` (preserve-first, fail-closed) ·
+`expert-bounded-reliability-state-machine.ts` (policy C, four call channels, composition order) ·
+`expert-reliability-observability.ts` (append-only record, 17 reconstruction obligations).
+Plus `test-expert-bounded-reliability-architecture.ts` and
+`preflight-binding-falsification-harness-2026-09-04.ts`.
+
+### The properties that are enforced rather than described
+
+- **Replacement is unrepresentable.** `applyAdmittedDeclarations()` calls `nominateAdditiveFact()`,
+  whose signature has nowhere to name a fact to remove. There is no check to relax.
+- **Coverage never sees text.** `evaluateTargetCoverage()` takes fact keys and statuses, so it
+  cannot consult question text; the restriction is in the type signature. Proof X10 greps both
+  modules for similarity/embedding/overlap/keyword machinery and for any read of `.question` — 0 hits.
+- **Two silences clear nothing.** `resolveDrawOutcome()` returns `SETTLED_SILENCE` with
+  `drawCount: 2`, `mayClearOwedFact: false`, and `consensusClaimed` typed as the literal `false`.
+  There is no path to `COVERED`, to `VERIFIED_AS_IS`, or to a cleared warning.
+- **Fixture truth cannot reach production.** Both ledger entry points **throw**
+  `DEVELOPMENT_HUMAN_TRUTH_IN_PRODUCTION_POPULATION` rather than filtering.
+- **The displaced/invalid split is unreachable by code.** `classifyDeterministically()` cannot return
+  it; `assignHumanAdjudicatedOutcome()` refuses any provenance but `HUMAN_ADJUDICATION`.
+- **Recall and precision cannot be netted.** `summariseOutcomes()` offers no combined accuracy field
+  and `assertRecallAndPrecisionNotNetted()` throws if a displaced outcome is counted as a recall pass.
+- **Five calls, four separate channels**, none of which lends to another:
+  `FIRST_PASS 1 · DEGENERATE_REISSUE 1 · RELIABILITY_DRAW 2 · COVERAGE_RECHECK 1`.
+
+**Coverage threshold, stated rather than chosen quietly.** §164 §8 gates the warning on
+`LIFE_CRITICAL`/`REQUIRED_CONTROL`; the §165 authorization states it over every `UNRESOLVED` fact.
+The module implements the **stricter §165 form** and reports the §164 form alongside it as
+`priorityGatedWarning`, so neither reading is lost.
+
+### Proof: 44/44, including a replay of the real §163 draws
+
+Cases A–T, adversarial X1–X14, all pass with 0 provider calls. The load-bearing result is the
+replay, which maps each stored draw's **recorded `sourceMode`** onto a binding mode — a mechanical
+mapping over a persisted enum, reading no question text:
+
+- **HS-A1, 10 stored draws: 0 erasures.** 7 draws carried both facts; 3 bound the owed key;
+  `TARGET_COVERAGE_WARNING` true on 7/10. The seven draws that silently displaced the owed target in
+  §163 leave it `UNRESOLVED` and named in `uncoveredFactKeys` in every one of the seven.
+- **HS-E1, 10 stored draws: 0 erasures**, 0 bound the owed key, warning true on 10/10.
+
+### Confinement
+
+`backend/tsconfig.json` sets `rootDir: "./src"` and `include: ["src/**/*"]`, so a `src/` file
+importing `scripts/lib/` is a **compile error** — unreachability is enforced by the compiler, not by
+convention. `SOURCE_PROJECT_TSC` exit 0, clean. 0 `src/` imports and 0 provider/network/credential
+tokens across the seven modules. `REFUSING_DRAW_FUNCTION` throws `HOSTED_EXECUTION_NOT_AUTHORIZED`;
+`ACTIVATION_STATUS = DEVELOPMENT_INACTIVE`. **No customer behaviour can differ, because no `src/`
+file and no runtime configuration was touched.**
+
+### `FALSIFICATION_HARNESS_READY = FALSE` — two blockers, both proven
+
+24 of 26 pre-spend gates pass; **$0.00 spent**.
+
+1. **The manipulation is not expressible under frozen material.** Gate F.1 constructs the additive
+   verdict falsifier C requires — binding the supplied flame-failure fact *and* carrying the auger
+   nomination alongside it, with every proof field present — submits it to the frozen
+   `checkVerifierV2Output`, and records the refusal: `NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE`.
+   The frozen v2 schema has no field in which to declare a binding (F.2), and the frozen instruction
+   contains 0 of 7 binding tokens (F.3). Delivering the binding-enabled arm needs new instruction and
+   schema material, which §165 Phase 13 forbids creating.
+2. **The published cost cap is not a prospective bound.** §164's "≈$0.30" is the *expected* cost —
+   $0.25231 at §163's measured means. The prospective worst case at the 4000-token ceiling is
+   **$0.59798**. Every spend gate on this programme is checked *before* a request against the worst
+   case, so the cap is unusable as written. Raising it, or lowering the output ceiling, is a
+   product-owner decision and was not taken.
+
+**No §164 falsifier was weakened** because the local implementation cannot yet exercise it. A, B, C,
+D, E, F stand with their thresholds; B and D remain the decisive pair.
+
+### Verification actually executed
+
+`SOURCE_PROJECT_TSC` exit 0. New suite 44/44. Protected suites all green:
+expert-reliability-architecture 69, verifier-v2-contract 46, contract-foundation 56,
+routing-contract 67, measurement-layer 66, fixture-hardening 76, clarification-settlement 148,
+affected-decision-arbitration 41, unsupported-settlement 129, retention-bridge 123,
+governed-kill-switch-authority 115; hazlenz-level1-recall PASS, actionable-coverage PASS,
+guarding-applicability 16/16 with 0 dangerous failures. **0 failures. 0 provider calls. 0 database
+operations.**
+
+### Preserved
+
+Verifier instruction v2 (`ffc63119…`), contract v2, v13 prompt (`02977c30…`), v9 fixture
+(`09195af8…`), the §156 blinded packet (`75d64197…`), the §163 draw records and every §164 artifact
+are byte-identical. No v3, no v14, no v15, no M14, no expanded validation, no `owedFacts` in `src/`,
+no selector-scorer replacement, no production or database mutation, no commit, push, tag or deploy.
+`DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION` unchanged.
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`. Claims register maintained; §165 introduces no
+claim. Autonomy preserved: HazLenz owns owed-fact representation, binding, coverage, the state
+machine, arbitration, budgeting, retry caps and the final output, and no new module names a provider,
+endpoint, model identity or credential.
+
+### Next authorization required
+
+1. **Authorize a verifier instruction and response-schema revision** adding a binding declaration
+   naming a supplied `factKey` and permission to carry one additive nomination alongside a binding.
+2. **Resolve the cost cap** — raise the 12-call prospective ceiling to at least $0.60, or lower the
+   output ceiling, noting that going below 4000 breaks byte-identity with §158/§163.
+
+Only then may the 12-call binding falsification experiment be authorized. It remains unexecuted.
+
+---
+
+---
+
+## §166 — VERIFIER PROTOCOL v3: EXPLICIT FACT BINDING (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_BINDING_PROTOCOL_READY —
+SCOPED_HOSTED_FALSIFICATION_AUTHORIZATION_REQUIRED`. 0 provider calls, $0.00, 0 database
+operations, 0 files changed under `backend/src/`.** Evidence:
+`verification/expert-hazlenz-verifier-v3-binding-protocol-2026-09-04/`.
+
+§165 proved mechanically that frozen verifier-v2 could not express the manipulation §164's
+experiment tests. §166 builds the minimum protocol that can, and remediates the harness.
+
+### What v3 adds — and the one removal that must not be misread
+
+`bindingFactKey` (closed-set binding by exact string equality) · `owedFactDeclarations[]` (one
+explicit line per supplied fact: `BOUND_BY_CLARIFICATION` / `STILL_UNRESOLVED` /
+`CHALLENGE_FACT_VALIDITY`) · `SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION` added to the source-mode enum.
+Removed: `aboutUnresolvedFactRef`, superseded by `bindingFactKey`.
+
+**Also removed: v2's `NOMINATED_FACT_DUPLICATES_A_SUPPLIED_FACT` 0.8 content-overlap rule.** It is
+**dropped rather than tightened**, deliberately: a content-overlap score *is* a free-text semantic
+gate, and §160 FINDING 1 is why this programme does not run one. v3 addresses supplied facts by key,
+so the structural rule `NOMINATION_MUST_NOT_REUSE_A_SUPPLIED_FACT_KEY` replaces it. Proof C2 greps
+the admission rule with comments stripped and confirms no similarity, embedding, overlap, threshold
+or case-folding machinery exists in it.
+
+### Semantic preservation — `SUBSTANTIVE_SEMANTIC_CHANGE_COUNT = 0`
+
+105 → 145 lines; **42 added, 2 removed**. `BINDING_PROTOCOL_REQUIRED` 39 ·
+`SCHEMA_ALIGNMENT_REQUIRED` 5 · **`SUBSTANTIVE_SEMANTIC_CHANGE` 0** ·
+`V2_SEMANTIC_INSTRUCTION_PRESERVED_EXCEPT_BINDING_PROTOCOL = TRUE`. Contract diff: 6 field changes,
+0 substantive.
+
+The entire removal set is the two lines naming v2's either/or source-mode choice — a sentence that
+describes fields no longer carrying the meaning it claims. Everything else is an insertion.
+
+The classification table is checked **in both directions**: an actual change with no table entry is
+`UNCLASSIFIED_CHANGE`, a table entry with no actual change is `STALE_CLASSIFICATION`, and both are
+empty. Twelve v2 blocks that must survive — including `THE ANSWER IS USUALLY NO, AND NO IS A GOOD
+ANSWER` — are checked **positively** by substring, because a diff reporting no change and the text
+still being present are different claims.
+
+### The properties that are enforced rather than described
+
+- **Exact-equality binding.** A one-character typo *and* a case change are both refused. A
+  non-string key is refused, not coerced.
+- **A binding covers one key.** A sibling fact with byte-identical descriptive prose stays
+  `UNRESOLVED` and named in `uncoveredFactKeys`.
+- **The nomination is additive by construction.** The bridge emits binding and nomination as two
+  separate §165 declarations; the nomination path calls `nominateAdditiveFact()`, which has nowhere
+  in its signature to name a fact to remove.
+- **`NO_CLARIFICATION_REQUIRED` resolves nothing** — 0 transitions, warning stays TRUE, and two
+  consecutive NOs make no fact `COVERED`.
+- **A challenge is a request.** It produces an `ArbitrationRequest` with `settles` typed as the
+  literal `false`, is not a ledger declaration, and cannot reach `applyAdmittedDeclarations`. There
+  is deliberately no `FACT_NOT_DECISION_CRITICAL` flag; smuggling one in is refused as
+  `CHALLENGE_CLAIMS_TO_SETTLE_THE_FACT`. HazLenz owns every transition.
+
+**Local proof: 49/49**, cases A–X, adversarial Y1–Y16, diff D1–D4, confinement C1–C5, 0 provider
+calls. Case **U** is the headline: HS-A1 binds the flame-failure target **and** nominates the auger
+gap in one response — the exact shape §165 proved v2 refuses.
+
+### Harness remediated — `FALSIFICATION_HARNESS_READY = FALSE`, 44/45 gates
+
+Gate F.1 rebuilds the exact additive verdict v2 refused with
+`NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE` and submits it to v3: **admitted**. The §165
+blocker is closed and shown, not claimed. Gate F.4 confirms a key one character off is still
+refused — the door opened, not widened.
+
+**Two scope items remain, and neither is an engineering choice.**
+
+1. **`FALSIFIER_D_TESTABLE = FALSE`.** Human-authoritative rows: HS-A1 and HS-E1 (REQUIRED);
+   **zero** silence rows — HS-J1/HS-N1/HS-P1 are `AUTHORING_INVALID` and HS-R1 is
+   `AUTHORING_AMBIGUOUS`. D has no denominator. The claim is **narrowed**, the falsifier is not
+   weakened, and the harness asserts none of the four ineligible rows appears in any request.
+   B and D were §164's decisive pair, so the experiment can falsify the core claim but **cannot**
+   establish that binding avoids over-questioning.
+2. **The $0.60 cap admits 10 of 12 calls.** It was set against §165's figure, which priced the *v2*
+   request; the v3 request is necessarily larger because the owed facts are now in the prompt.
+   Worst case per call **$0.05600**; 12 calls **$0.67200** conservative / $0.63550 projection-based;
+   §163-measured expected cost $0.25231. The runtime guard checks
+   `spent + worstCase <= cap` before each call and **stops short rather than overspending**. The
+   output ceiling stayed at 4000 per the owner's direction. **Minimum cap admitting all 12: $0.68.**
+
+### Preserved
+
+Verifier instruction v1 and v2, contracts v1 and v2, the v13 first-pass prompt, `analysis.v2`, the
+v9 fixture, the §156 packet, §157/§158/§163 records and every §164/§165 artifact are byte-unchanged
+— v2's prompt sha256 `ffc63119…` was recomputed *after* v3 was authored. v2 remains the active
+protocol and nothing selects v3. No v14, no v15, no M14, no expanded validation, no hosted call, no
+database access, no commit, push, tag or deploy. The old 90-call experiment remains
+`EXPERIMENT_REQUIRES_REDESIGN` and unexecuted. `FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`;
+§166 introduces no claim. Autonomy preserved: HazLenz owns owed facts, keys, coverage, binding and
+nomination admission, arbitration, state transitions, caps, budgeting and the final output; the
+provider returns bounded declarations only.
+
+### Verification actually executed
+
+`SOURCE_PROJECT_TSC` exit 0. New suite 49/49. 15 further protected suites green, 0 failures.
+
+### Next authorization required
+
+1. Set the prospective cost cap to at least **$0.68**, or accept a run that stops at 10 draws.
+2. Authorize the experiment **scoped to falsifiers A, B, C, E and F(scoped)**, with
+   `FALSIFIER_D_TESTABLE = FALSE` recorded on the result.
+3. *(optional, separable)* commission fresh silence-control material for independent human review to
+   make D testable later. Not a prerequisite for A/B/C/E.
+
+---
+
+---
+
+## §167 — SCOPED HOSTED v3 BINDING FALSIFICATION (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_SCOPED_FALSIFICATION_PASSED —
+BOUNDED_RELIABILITY_INTEGRATION_REVIEW_REQUIRED`. 12 hosted calls, actual cost $0.29139 of a $0.68
+cap, 0 retries, 0 replacements, 0 first-pass invocations, 0 database operations, 0 `src/` changes.**
+Evidence: `verification/expert-hazlenz-verifier-v3-scoped-falsification-2026-09-04/`.
+
+### The result
+
+| | §163 (v2, no binding) | §167 (v3, binding) |
+|---|---|---|
+| **HS-A1 target reached** | **3/10** | **6/6** |
+| HS-A1 displaced by the auger fact | 7/10 | 0/6 |
+| **HS-E1 target reached** | **1/10** | **6/6** |
+| HS-E1 settled silence | **8/10** | **0/6** |
+
+**12/12 draws bound the owed key; on all 12 the independent semantic column agreed.** All 12
+execution-valid, contract-admitted, non-degenerate, non-truncated, 0 forbidden-field violations.
+Five of six HS-A1 draws bound the flame-failure target **and** nominated the auger gap additively —
+the `SIMULTANEOUS_INDEPENDENT_GAPS` shape v2 structurally could not express.
+
+### Falsifier matrix — none triggered
+
+`BINDING_PROTOCOL_HOSTED_EXERCISED = TRUE` (12/12 to the owed key) ·
+`CORE_BINDING_CLAIM_FALSIFIED = FALSE` (0/6 and 0/6 against the frozen ≥2-of-6 threshold) ·
+`FALSIFIER_C_TRIGGERED = FALSE` (0 facts removed, 0 preservation violations, 0 implicit coverage) ·
+`FALSIFIER_E_TRIGGERED = FALSE` · `QUESTION_BURDEN_UNACCEPTABLE = FALSE` (HS-A1 mean 1.83 distinct
+facts/draw, HS-E1 1.00, against the frozen ceiling of 2). B and F thresholds were fixed in §164/§166
+before any result was seen.
+
+`ARCHITECTURE_DETECTION_SUCCESS = TRUE` and `MODEL_SEMANTIC_RECOVERY_SUCCESS = TRUE` were computed
+as **separate columns** and never merged; a populated binding field is a declaration, not proof the
+question reaches the fact.
+
+**The warning that reads oddly:** `TARGET_COVERAGE_WARNING` was TRUE on HS-A1 draws 1–5 — not
+because the owed target was uncovered (it was `COVERED` on all 12) but because the *nominated* fact
+sat `UNRESOLVED`, and the §165 stricter rule fires on any unresolved fact. Correct behaviour,
+reported rather than netted away.
+
+### >>> THE CAVEAT THAT MUST TRAVEL WITH EVERY QUOTATION OF THE NUMBERS
+
+**The manipulation bundles three changes and this design cannot attribute among them:** the binding
+protocol; the per-fact declaration requirement; and **a substantially richer statement of the owed
+fact** — `whyUnresolved`, both branches, and the decision divergence — that v2's packet never
+carried. "Binding fixed displacement" **overstates what was measured**. What was measured is that
+the v3 package as a whole moved the outcome. Separating them needs a third arm supplying the richer
+fact statement *without* binding, and no such arm was purchased.
+
+Further limits: 12 draws over 2 rows on one model is an exact count, not a rate; no inferential test
+was preregistered or performed; both rows are `REQUIRED`, so nothing here measures behaviour where
+silence is correct; HS-A1's owed fact was supplied alone, so nothing measures binding under a larger
+closed set.
+
+### `FALSIFIER_D_TESTABLE = FALSE` — and this run is not evidence on it
+
+No false-question rate, legitimate-silence specificity or manufactured-question precision was
+computed. HS-J1/N1/P1/R1 appear in no request — asserted by gate D.3 before spend. **The absence of
+obviously bad questions in these 12 draws is not evidence on D.** B and D were §164's decisive pair:
+B passed and D was not asked.
+
+### Two lesser defects the contract does not currently catch
+
+1. **HS-A1 draw 6 dropped the auger gap** — bound the target, emitted no nomination. Nothing was
+   erased, so C is not triggered, but a genuine decision-critical gap went unrepresented on 1 of 6.
+2. **HS-A1 draws 2 and 3 emitted a compound question string**, packing both questions into one
+   `question` field while also nominating. The §165 budget's combination rule would not have
+   authorised combining them (different equipment). A presentation defect, not a coverage one.
+
+### Execution discipline
+
+Pre-spend gate **25/25 at $0.00**. Both request bodies frozen, hashed and written to
+`FROZEN-REQUESTS.json` before the first call and asserted equal to §166's recorded hashes
+(`c1e5407a…`, `94b47273…`). Allocation preregistered (2 cases × 6 draws), never rebalanced, no draw
+replaced. Every attempt appended and `fsync`ed before the next request. Spend guard checked
+`spent + $0.05600 <= $0.68` before every call.
+
+### Preserved
+
+§163's 20 draw records unchanged (`7e84cef4…`). Verifier v3 instruction/schema unchanged before,
+during and after spend. Verifier v2 byte-unchanged. §156 packet, v13 prompt, v9 fixture, and every
+§164/§165/§166 artifact unchanged — 0 tracked modifications. `backend/src/` identical to the
+session-start snapshot. `DEGENERATE_OUTPUT_POLICY_STATUS = PROVEN_LOCAL /
+AWAITING_HOSTED_INTEGRATION` — 0 degenerate responses occurred, so it was never exercised and
+remains unproven in hosted use. Policy C's conditional second draw never fired, because no draw fell
+silent: **the bounded reliability layer's value is now largely unexercised rather than proven.**
+
+### Verification actually executed
+
+`SOURCE_PROJECT_TSC` exit 0. 16 protected suites, **0 failures**. §167 introduces no claim;
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`.
+
+### Next authorization required
+
+1. **Human sampling of the 12 bound pairs** — the §164 obligation; column agreement is not proof a
+   binding is truthful.
+2. Optionally, **a third arm** to disentangle the three-way confound.
+3. **Silence-control construction and independent human review** — the only route to
+   `FALSIFIER_D_TESTABLE = TRUE`, and now the single missing input blocking the precision half of
+   every claim this architecture wants to make.
+4. **Bounded reliability integration review** — the terminal this run hands over.
+
+---
+
+---
+
+## §168 — HUMAN BINDING REVIEW PACKET + BOUNDED INTEGRATION DECISION (2026-09-04)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_HUMAN_BINDING_REVIEW_PACKET_READY —
+HUMAN_ADJUDICATION_REQUIRED`. 0 provider calls, $0.00, 0 database operations, 0 `src/` changes,
+0 dispositions assigned.** Evidence:
+`verification/expert-hazlenz-verifier-v3-human-binding-review-2026-09-04/`.
+
+**Why none of the four authorized terminals was claimed.** Each presupposes the human review has
+*returned*. This operation built the instruments and stopped. §164 classified binding truthfulness
+`REQUIRES_HUMAN_TRUTH`, and the standing rule is that the neutral packet is built and nothing is
+adjudicated — so all 12 dispositions are `null` and the PHASE 6 counts are, correctly, not computed.
+
+### What was built
+
+A 12-pair neutral review packet and an unfilled adjudication form; a draw-6 packet; a
+compound-question packet; component-by-component architecture status; a bounded integration
+decision; five candidate silence-control rows; a third-arm value analysis; and a question-burden
+design.
+
+**Neutrality is enforced, not intended.** The packet builder greps the finished document for 11
+forbidden patterns — historical v2 outcomes, pass/fail labels, scorer results, falsifier verdicts,
+per-draw outcome labels, expected adjudications — and refuses to write a packet that leaks its own
+answer. **The verifier's own `rationale` is deliberately excluded**: it is the model arguing for its
+own answer, and a reviewer reading a persuasive defence before judging the thing it defends is not
+reviewing. It stays in §167's raw records for consultation *after* a disposition.
+
+### The architectural question behind draw 6, answered from frozen material
+
+The one HS-A1 draw that bound the target and nominated nothing raises a question the packet settles
+before the disposition:
+
+- **`OWED_FACT_PRESERVATION` is required and fully specified** — the contract refuses a verdict
+  omitting a declaration, refuses an out-of-set binding, and permits no route to `COVERED` but an
+  admitted binding.
+- **`ADDITIVE_GAP_DISCOVERY_RECALL` is permitted, never required, and has no target.** `nominatedFact`
+  is nullable with no admission code for its absence; the inherited *"THE ANSWER IS USUALLY NO"*
+  prior is the opposite of a recall target; and the verifier's jurisdiction is explicitly bounded to
+  the clarification set rather than hazard re-analysis.
+
+On preservation draw 6 is indistinguishable from the other five. On discovery it differs — but that
+axis has no requirement, threshold or measurement basis, and its only confirmed denominator is one
+gap on one row. **A 5-of-6 figure on that denominator is not a recall rate.**
+
+### A governance gap the hosted run exposed
+
+The §165 question-budget rule governs how HazLenz **assembles** questions from surviving owed facts.
+It does **not** govern the single `question` string the verifier returns, and nothing in the v3
+contract inspects that string — `MORE_THAN_ONE_PROPOSED_CLARIFICATION` refuses an *array*, not two
+questions inside one string. Two HS-A1 draws returned two questions about **different equipment with
+different immediate controls**, which the rule would not have authorised. `QUESTION_BUDGET` is
+therefore **`REQUIRES_REMEDIATION`**, and the recommended fix is structural — give the additive
+nomination its own question field — not a lexical splitter on model prose.
+
+### Component status — nine verdicts, never one
+
+`CLOSED_SET_OWED_FACT_LEDGER` `PROVEN_LOCAL`+`SUPPORTED_HOSTED` · `EXPLICIT_BINDING_FACT_KEY`
+`SUPPORTED_HOSTED`, human review **open** · `ADDITIVE_NOMINATION` `SUPPORTED_HOSTED` (additivity) ·
+**`TARGET_COVERAGE_WARNING` `UNEXERCISED_HOSTED` for its primary case** · `PER_FACT_DECLARATIONS`
+`SUPPORTED_HOSTED`, challenge path unexercised · **`CONDITIONAL_SECOND_DRAW_POLICY_C`
+`UNEXERCISED_HOSTED`** · `DEGENERATE_RETRY_POLICY` unchanged and unexercised · **`QUESTION_BUDGET`
+`REQUIRES_REMEDIATION`** · `MULTI_GAP_PRESERVATION` `SUPPORTED_HOSTED` (preservation).
+
+**The coverage warning result is the one most at risk of being overstated.** It fired on 5 of 12
+draws and was correct every time — but never once because an *owed* fact was uncovered. Every firing
+came from an additively nominated fact sitting unresolved. The failure mode it exists to catch has
+not occurred hosted even once.
+
+**The pattern worth naming: a clean run exercises failure-handling machinery *less*, not more.** Four
+components are wholly or partly unexercised hosted precisely because nothing went wrong. Good for the
+product, thin for the evidence, and the two must not be confused.
+
+### Bounded integration decision — nothing integrated
+
+Seven components would be eligible for **inactive** development integration *conditional on a clean
+binding review*, with the population boundary (`DEVELOPMENT_HUMAN_TRUTH` throwing on a `PRODUCTION`
+ledger) as a hard condition. Held back: policy C (**do not activate a hosted retry mechanism merely
+because v3 made it unnecessary**), question-budget formatting, discovery expectations, and
+customer-visible multi-question behaviour.
+
+Note the trade integration makes: today `rootDir: "./src"` means a `src/` import of `scripts/lib/`
+is a **compile error**; integration replaces compiler enforcement with a feature gate, which is
+strictly weaker. That is why the set is selective and why nothing moved in this operation.
+
+### Silence controls — drafted, and blocked by a second problem
+
+Five candidates across five hazard domains, lint-clean, each carrying its settled facts with verbatim
+spans and explicit counterfactuals. `AUTHORITY_STATUS = CANDIDATE_NOT_AUTHORITATIVE` — they are
+model-drafted, and §162 established that five of seven model-authored truth rows did not survive
+human review.
+
+**The blocking finding is not about any row.** Candidates run 559–592 characters; the two existing
+REQUIRED rows are 402 and 412. **Length alone separates the classes perfectly**, so a verifier could
+sort them without reading them. A valid silence-vs-required comparison **cannot** be assembled from
+these five plus the two authoritative REQUIRED rows. Both remedies cost something: shortening risks
+under-settling, and adding longer REQUIRED rows means new authored truth needing its own review.
+
+### Third arm — not recommended
+
+`THIRD_ARM_RECOMMENDED = FALSE`, and the reason is not cost. The attribution answer **cannot change
+the architecture decision**: `TARGET_COVERAGE_WARNING` is a set difference over *declared* bindings,
+so without a binding declaration there is no set to difference and coverage would need the semantic
+matcher §160 retired. The binding protocol is retained under either outcome. The minimum falsifying
+design is recorded (6 draws on HS-A1, ~$0.34) for a future decision, with three named triggers to
+revisit.
+
+### Verification actually executed
+
+`SOURCE_PROJECT_TSC` exit 0. 16 protected suites, **0 failures**. §167 integrity re-proved by hash:
+run records, frozen requests, scores and accounting all unchanged; §163's 20 baseline records
+unchanged. §168 introduces no claim; `FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`.
+
+### Next authorization required
+
+1. **Return the 12 binding dispositions** — zero cost, gates the most components.
+2. Return the **draw-6** and **compound-question** dispositions.
+3. Review the five silence-control candidates **and decide the length-cue remedy**.
+4. **Then** authorize inactive integration of the eligible components as one named slice.
+
+---
+
+---
+
+## §169 — BINDING DISPOSITIONS RECORDED, ARCHITECTURE STATUS RE-DERIVED (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_HUMAN_REVIEW_COMPLETE —
+BOUNDED_DEVELOPMENT_INTEGRATION_AUTHORIZATION_REQUIRED`. 0 provider calls, $0.00, 0 database
+operations, 0 `src/` changes, 0 dispositions assigned by any model.** Evidence:
+`verification/expert-hazlenz-verifier-v3-human-binding-review-2026-09-04/`.
+
+### `HUMAN_VALIDATED_BOUNDED_DEVELOPMENT_COUNTS`
+
+**8/12 semantically correct · 4/12 partially correct · 0 incorrect · 0 ambiguous.**
+`affectedDecision` 12/12. Materially unsupported hazard assumptions: **0**. Owed-target preservation
+6/6 on both rows. Exact counts over 12 draws on 2 rows — **not production rates**.
+
+### The distinction that decides how this reads
+
+**Question A — does the clarification ask for the supplied owed fact — is Yes on all twelve.** The
+closed-set binding mechanism selected the right target every time and **zero bindings were
+incorrect**. All four partials sit on **question B**, whether an answer would *resolve* the fact.
+The defect lives one level down and must not be reported as a binding failure.
+
+### New defect class — `CLARIFICATION_EVIDENCE_SUFFICIENCY = REQUIRES_REMEDIATION`
+
+Three HS-A1 draws (VC-08-1, -4, -6) accept "visually … verified", a "control-panel status indicator"
+or "physical inspection" as evidence — each consistent with a safeguard that is **present and
+non-functional**. One HS-E1 draw (VC-04-1) asks whether the interlock was tested "following this
+morning's return to service" when the owed fact is verification **before** it; VC-04-2 through -6
+state the relationship clearly.
+
+The owner's rule: **a binding must ask for evidence that actually establishes the protective
+function, not merely physical presence, visibility, or an indicator that could be mistaken for
+function.**
+
+### The instrument finding, which is load-bearing
+
+§167's cue instrument scored **12/12 `TARGET_REACHED`**; human review found **8/12** fully correct.
+Not a contradiction, and **§167 is not rescored**:
+
+> **The §162 cue instrument measures TOPIC REACH, not RESOLUTION SUFFICIENCY.**
+
+Both agree 12/12 on question A. On question B the instrument is silent by construction. **No claim
+may read §167's 12/12 as "12 fully correct bindings"** — the supported reading is 12/12 topic reach
+with 8/12 human-confirmed resolution sufficiency. This *vindicates* §164's decision to require human
+sampling of bound pairs: the sampling found what the instrument could not.
+
+### Axes deliberately not collapsed
+
+VC-08-2 and VC-08-3 are `BINDING_SEMANTICALLY_CORRECT` **and**
+`COMPOUND_QUESTION_REPRESENTATION = UNACCEPTABLE` simultaneously. **A semantic binding is not
+downgraded because the customer-facing packaging is wrong.** Likewise
+`OWED_FACT_PRESERVATION = REQUIRED` while `ADDITIVE_GAP_DISCOVERY_RECALL =
+NOT_CURRENTLY_A_REQUIRED_AXIS` — the observed 5/6 must never become a threshold on a denominator of
+one confirmed gap on one row.
+
+### Component status re-derived
+
+Moving to **`SUPPORTED_HUMAN_REVIEWED`**: `CLOSED_SET_OWED_FACT_LEDGER`,
+`EXPLICIT_BINDING_FACT_KEY`, `MULTI_GAP_PRESERVATION`. Unchanged: `TARGET_COVERAGE_WARNING`
+(`UNEXERCISED_HOSTED` for its primary case), `CONDITIONAL_SECOND_DRAW_POLICY_C`
+(`UNEXERCISED_HOSTED`), `DEGENERATE_RETRY_POLICY`, the challenge path. `QUESTION_BUDGET` stays
+`REQUIRES_REMEDIATION` with the form now fixed as `STRUCTURAL_PER_FACT_QUESTION_REPRESENTATION`.
+**New:** `CLARIFICATION_EVIDENCE_SUFFICIENCY = REQUIRES_REMEDIATION`.
+
+### Two remediations specified, neither implemented
+
+1. **Question representation** — give each declared fact its own question field in the v3 schema.
+   **Prohibited:** a lexical/conjunction parser over model prose as the safety gate.
+2. **Evidence sufficiency** — recommended location is an `acceptableEvidence` field on the supplied
+   owed fact, populated by HazLenz. That keeps it in **HazLenz-owned task state**, touches no frozen
+   semantic material, and does not ask the model to infer what counts as settling evidence. Note
+   that **no deterministic admission gate can enforce it** — that would be the matcher §160 retired —
+   so residual sufficiency is permanently a human-sampling obligation.
+
+### Unblocked, and still blocked
+
+**Unblocked:** inactive development integration of the seven eligible components — the §168 gate (no
+`BINDING_INCORRECT`) is satisfied at **0 incorrect**, with the population boundary a hard condition.
+**Not performed here.**
+
+**Still blocked:** customer-path activation on silence-side truth
+(`HUMAN_AUTHORITATIVE_SILENCE_ROWS = 0`; candidates `NOT_READY_LENGTH_CONFOUNDED`, prospective band
+**380–440 characters**, an instrument-control constraint and *not* a safety-truth criterion);
+question representation; evidence sufficiency.
+
+### Verification actually executed
+
+`SOURCE_PROJECT_TSC` exit 0. 16 protected suites, **0 failures**. §167 immutable; all new
+interpretation recorded separately as `HUMAN_POSTHOC_ADJUDICATION`. §169 introduces no claim;
+`FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`.
+
+### Next authorization required
+
+1. Inactive development integration of the seven eligible components as one named slice.
+2. The evidence-sufficiency remediation (preferred: owed-fact `acceptableEvidence` task state).
+3. The structural per-fact question representation.
+4. Re-author silence controls **inside** the 380–440 band, then adjudicate that exact wording.
+
+---
+
+---
+
+## §170 — VERIFIER-v3 BOUNDED DEVELOPMENT INTEGRATION (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_BOUNDED_DEVELOPMENT_INTEGRATED —
+SILENCE_TRUTH_AND_SEMANTIC_SUFFICIENCY_VALIDATION_REQUIRED`. 0 provider calls, $0.00, 0 database
+operations. First `src/` integration of this architecture.** Evidence:
+`verification/expert-hazlenz-verifier-v3-bounded-development-integration-2026-09-05/`.
+
+### Exactly what changed under `src/`
+
+**Created:** `src/safescope-v2/expert-hazlenz/owed-facts/` — six modules, 1,616 lines:
+`owed-fact.types.ts` · `owed-fact-ledger.ts` · `owed-fact-binding.ts` · `structural-questions.ts` ·
+`verifier-v3-development-boundary.ts` · `owed-fact-observability.ts`.
+
+**Modified:** one file, **24 insertions, 0 deletions** — `expert-authority-merge.ts` gains an
+optional `owedFactCoverage?: unknown` field, an optional 4th parameter, and a conditional spread.
+Typed `unknown` deliberately: importing the owed-fact module into the merge would let a coverage
+concern reach where protected authority is composed. Proof **AD** asserts the merge's import
+specifiers are unchanged and its code never names the gate.
+
+### The boundary — off is a type, not a default
+
+```ts
+export const EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED: false = false;
+```
+
+**The module reads no environment variable at all.** That is stronger than reading one and
+defaulting off, because a default can be overridden by a deployment and this cannot. No customer
+toggle exists: proof **AF** shows the six modules have **12 dependencies, all intra-directory** —
+there is no settings, config, flag-service or environment read that could carry one.
+
+**Active-path invariance.** The primary argument is that the customer path does not reach the Expert
+layer *at all*. The secondary proof is case **B**: the 3-arg merge is JSON-identical to the 4-arg
+call with `undefined` and carries no new key. `test:expert-nocall-harness` re-scanned the module
+with the new files: **41 files, 0 network primitives, 0 vendor names in code.**
+
+### `acceptableEvidence` — the §169 remedy, placed in task state
+
+```
+permitted in production   DETERMINISTIC_RULE_METADATA · GOVERNED_EVIDENCE
+                          AUTHORED_HAZLENZ_SAFETY_CONTRACT · VALIDATED_DOMAIN_CONTROL_DEFINITION
+forbidden                 DEVELOPMENT_HUMAN_TRUTH · ADJUDICATION_LABEL · MODEL_SELF_AUTHORED
+```
+
+All three forbidden provenances **throw**. `null` is valid and stays valid — where no trustworthy
+source exists, no criterion is manufactured, and nominated facts inherit `null` because HazLenz
+holds no criterion for a fact it did not author. A provider can never write the field: it heads
+`PROVIDER_FORBIDDEN_OWED_FACT_FIELDS` and a declaration carrying it is refused whole. **No
+hazard-specific wording is hard-coded into any runtime module.**
+
+### The semantic boundary, held
+
+`CLARIFICATION_EVIDENCE_SUFFICIENCY = SEMANTIC_JUDGMENT_REQUIRED`. Proof **L** strips comments and
+confirms the integrated admission code contains no
+`similarit|embedding|cosine|jaccard|levenshtein|overlap|fuzzy|threshold`. Whether a question elicits
+sufficient evidence stays `HUMAN_SAMPLING_REQUIRED`.
+
+### The compound repair — structural, not lexical
+
+The architecture no longer equates **one string** with **one decision-critical fact**. When a
+response binds A and nominates B with one string: the string belongs to A, **B gets `question: null`
+and stays `UNRESOLVED`** with the warning live, and the raw prose is retained as a diagnostic naming
+the co-declared key. Proof **P** confirms the module contains no `.split(`, `.match(`, `RegExp` or
+`replace(` **at all** — the guarantee is the absence of the machinery. Replaying VC-08-2 and
+VC-08-3 yields 2 slots and 1 diagnostic each while their `BINDING_SEMANTICALLY_CORRECT` dispositions
+are untouched.
+
+### Proof matrix 40/40, and the three that matter most
+
+**AI/AJ/AK:** deterministic code replays the §167 draws and the §169 human findings survive intact.
+Nothing rounds a `BINDING_PARTIALLY_CORRECT` up, and nothing downgrades a semantically correct
+binding because its packaging was wrong.
+
+### Status after the slice
+
+**`INTEGRATED_INACTIVE_DEVELOPMENT`** — ledger, factKey binding, per-fact declarations,
+additive-not-substitutive nomination, multi-gap preservation, coverage plumbing, observability,
+`acceptableEvidence` task state, structural per-fact questions.
+
+**`REQUIRES_REMEDIATION / HUMAN VALIDATION`** — `CLARIFICATION_EVIDENCE_SUFFICIENCY`,
+`CUSTOMER_VISIBLE_QUESTION_BUDGET`.
+
+**`UNEXERCISED_HOSTED`, and deliberately not integrated** — policy C (0 of 12 draws fell silent, so
+integrating an unmeasured retry on the strength of a run where it was unnecessary is the inverse of
+the argument that should justify it); the primary coverage-warning failure path (fired 5 of 12 and
+**never once because an owed fact was uncovered**); the degenerate reissue.
+
+**`BLOCKED`** — customer activation, silence-side precision claims.
+
+### Verification actually executed
+
+`SOURCE_PROJECT_TSC` exit 0. **18 protected suites, 0 failures**, including nocall-harness 141 and
+the new integration suite 40/40. No database operation. No frontend build;
+`frontend-next/tsconfig.json` untouched.
+
+### Next authorization required
+
+1. **Populate `acceptableEvidence` from a real production source** for at least one hazard family,
+   so the field carries something other than null outside a fixture.
+2. **Re-author silence controls inside the 380–440 band**, then adjudicate that exact wording — the
+   single blocker on every precision claim and on customer activation.
+3. Human-sample resolution sufficiency on any future bound pairs.
+4. Only then consider hosted validation. Policy C and the degenerate reissue stay inactive until
+   something measures them.
+
+---
+
+---
+
+## §171 — acceptableEvidence FROM A GOVERNED SOURCE (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_ACCEPTABLE_EVIDENCE_GOVERNED_SOURCE_PROVEN —
+SILENCE_TRUTH_AND_HUMAN_SEMANTIC_SUFFICIENCY_VALIDATION_REQUIRED`. 0 provider calls, $0.00,
+0 database operations. One `src/` file created, none modified.** Evidence:
+`verification/expert-hazlenz-acceptable-evidence-governed-source-2026-09-05/`.
+
+### The source
+
+`app-loto-01` from the live approved-knowledge registry — **OSHA 1910.147**, `primary_regulation`,
+`status: approved`, Safety Manager, 2026-06-01. Target family `energy`; target fact
+`owed:energy:isolation_state_before_work`.
+
+```
+verificationMethods       -> examples              (COPIED verbatim)
+commonWeakActionsToAvoid  -> insufficientExamples  (COPIED verbatim)
+requiredFacts + citation  -> requirement           (hazard-agnostic template)
+                          -> provenance = GOVERNED_EVIDENCE
+```
+
+The record names no `factKey`, no `acceptableEvidence`, no binding and no evaluation row — asserted
+mechanically. **The source precedes the criterion.**
+
+### Why NOT the family the observed weaknesses point at — the operation's key finding
+
+The §169 weaknesses were about protective **function**. `app-fire-01` (1910.157) covers extinguisher
+tags, not burner safeguards. **`app-mg-01` (1910.212) offers only `physical_inspection` — the exact
+evidence class §169 ruled insufficient** — so deriving from it would have produced a *governed*
+criterion contradicting the *human* review. `app-loto-01` is the only approved record whose method
+establishes a **state** (`zero_energy_verification`). The family was chosen on what governance
+honestly supports, not on what would look responsive to history.
+
+### The blocker: the governed vocabulary is too coarse
+
+```
+audit · design_review · gas_detection · inspection · observation
+physical_inspection · visual_inspection · walkthrough · zero_energy_verification
+```
+
+**Seven of nine are looking-based.** And `app-mg-01` asks in its own `evidenceQuestions` both *"Is
+the guard present?"* and *"Is the guard functional?"* while offering one method that answers only
+the first — **the record's own evidence question outruns its own verification method.** A
+governed-knowledge finding, not a verifier one. It bounds what `acceptableEvidence` can do today.
+
+### Boundaries held
+
+Provider **cannot author** the criterion (a declaration carrying it is refused whole and the
+criterion is byte-unchanged). `provenance`, `recordId` and `version` are **stripped** from the
+projection; the citation travels inside the requirement by design. Five fail-closed refusals — and
+`CITATION_IS_A_PLACEHOLDER` is not hypothetical: `app-mat-01` and `app-rig-01` carry
+`placeholder_review_required` in the live registry and are both refused. `ADJUDICATION_LABEL`
+remains forbidden. Nomination fabricates no criterion; **coverage is unaffected by whether a fact
+carries one**. `CLARIFICATION_EVIDENCE_SUFFICIENCY = SEMANTIC_JUDGMENT_REQUIRED` — proof G.1 strips
+comments *and string literals* and finds no scoring identifier and no `question` identifier at all.
+
+### Verification
+
+31/31 population proofs · `SOURCE_PROJECT_TSC` exit 0 · **19 protected suites, 0 failures** ·
+`FEATURE_OFF_CURRENT_PATH_INVARIANT` re-proven · boundary unchanged.
+
+### `SILENCE_CONTROL_REAUTHORING_DRAFT_ONLY`
+
+Five rows, **5/5 inside 380–440**, straddling both frozen REQUIRED rows (402, 412), down from
+559–592. **No filler** — length came off clauses that settled no fact for the row's own question
+family. A first pass **overshot to 346–365**, below both REQUIRED rows, which would have recreated
+the confound inverted; clauses carrying genuine settled facts were restored, and SC-3 had lost a
+settled fact outright. `AUTHORITY_STATUS = DRAFT_NOT_AUTHORITATIVE_NOT_ADJUDICATED`. Nothing was
+executed.
+
+### Next authorization
+
+**Adjudicate the five silence controls.** Zero cost, the only item blocking the precision half of
+every claim, and it has now blocked four consecutive operations.
+
+---
+
+---
+
+## §172 — SILENCE-CONTROL INSTRUMENT ANALYSIS (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_SILENCE_CONTROL_INSTRUMENT_INVALID — REAUTHORING_REQUIRED`. 0 provider
+calls, $0.00, 0 database operations, 0 source-code changes — documentation only.** Evidence:
+`verification/expert-hazlenz-silence-control-instrument-analysis-2026-09-05/`.
+
+### Why no row carries a verdict
+
+The authorization asked for `SILENCE_CONTROL_VALID` per row **and** required confirming that no
+model adjudicated truth. Both cannot hold: the five rows were drafted by a model, so scoring them
+would be a model adjudicating its own output. The instrument is returned with the three verdict
+fields `null` and everything mechanical filled. **A second reason makes this the right call anyway:
+the wording must change to fix the confounds, and adjudication attaches to the exact final wording.**
+
+### The seven checks
+
+| check | verdict |
+|---|---|
+| length | **RESOLVED** — controls 382–409 against REQUIRED 402/412; the §168 separation is gone |
+| explicit safe label | CLEAN — 0 hits across 16 cues |
+| question wording | CLEAN — 0 question marks, 0 interrogatives both sides |
+| format | MINOR — REQUIRED both have exactly 1 comma and 0 digits; SC-1/4/5 are separable on commas |
+| **vocabulary** | **MATERIAL** |
+| **decision category** | **MATERIAL** |
+| settled-fact density | NOT SYMMETRICALLY ASSESSABLE |
+
+**Vocabulary:** twelve verification words appear only in controls — `checked, deployed, initialled,
+locked, padlocked, records, sheet, shut, survey, surveyed, tag, tested`. A one-token rule separates
+the classes with no clarification semantics at all.
+
+**Decision category:** no control shares a hazard domain with either REQUIRED row. Class is
+perfectly predictable from hazard family.
+
+### The structural insight
+
+**A silence control settles facts; settling a fact requires saying it was verified; a REQUIRED row
+leaves a fact open and has no reason to.** The surface features attach to the row *class*. Length was
+the first instance of this in §168 — vocabulary and hazard domain are the second and third, and more
+should be expected each time one is fixed.
+
+### Determinations
+
+`HUMAN_AUTHORITATIVE_SILENCE_ROWS = 0`, unchanged, for two independent reasons: no human verdict
+returned, **and** the instrument would not yield an interpretable set even if one had been. Valid /
+invalid / ambiguous counts are **not computable**. All five rows require rewrite on instrument
+grounds, independent of their truth. Silence-side precision validation is **not** scientifically
+interpretable.
+
+### The repair, and where its cost falls
+
+Controls must move into the REQUIRED rows' hazard families, and the vocabulary balance must come
+from the **REQUIRED side** — new rows containing verification language that still leave one
+decision-critical fact open. Those are new authored truth needing their own review. **The
+silence-side blocker is two authoring tasks, not one.**
+
+### Integrity
+
+§167, §168 and §169 hashed and unchanged; `TOPIC_REACH = 12/12` and the four binding counts stand.
+No model or provider adjudicated truth. `EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED` remains `false`.
+
+### Next authorization
+
+Reauthor the controls **and** commission the balancing REQUIRED rows together, then adjudicate the
+final exact wording of both sides in one pass. Do not spend review on the current five rows.
+
+---
+
+---
+
+## §173 — BALANCED PAIRED CLARIFICATION INSTRUMENT (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_BALANCED_CLARIFICATION_INSTRUMENT_AUTHORED —
+INDEPENDENT_HUMAN_ADJUDICATION_REQUIRED`. 0 provider calls, $0.00, 0 database operations, 0
+source-code changes, 0 script changes — documentation only.** Evidence:
+`verification/expert-hazlenz-balanced-clarification-instrument-2026-09-05/`.
+
+### The design change
+
+Ten candidate rows as **five matched pairs**. Each pair is one hazard family, one target decision,
+one target factKey and the same operational scene, differing on exactly one fact's settlement state.
+Both sides carry verification language; the REQUIRED side stays specific and leaves one named fact
+open rather than becoming vague.
+
+**Hazard family and decision category are eliminated by construction** — both classes contain every
+family and every decision, because every one is a pair. They cannot return when the set grows.
+
+| | §172 instrument | §173 instrument |
+|---|---|---|
+| verification tokens exclusive to one class | **12** | **2**, one row each |
+| shared verification tokens | — | **16** |
+| hazard families shared across classes | **0** | **all** |
+| widest single-token class coverage | class-complete | **3 of 5** |
+
+### The pairs
+
+`PAIR-1` machine guarding — interlock function verified before return to service ·
+`PAIR-2` machine guarding — fixed guard fastenings secure ·
+`PAIR-3` fire/explosion — flame-failure safeguard function verified ·
+`PAIR-4` hazardous energy — auger drive isolation verified before work ·
+`PAIR-5` hazardous energy — stored energy dissipated before line break.
+
+Concentrated deliberately: breadth was not pursued, balance was. These are also the families of the
+frozen historical REQUIRED rows, which §172 found the old controls avoided entirely.
+
+### Balance
+
+Max pairwise length delta **16**, all five inside the preferred ≤20. Class ranges overlap (310–358
+against 308–349). Sentence counts identical within every pair. Digits 0 on both sides. **0 hits**
+across 10 explicit-cue patterns.
+
+**The negation trap:** the first draft was perfectly separable on negation count — saying a fact is
+unsettled recruits a negation. Fixed by giving SILENCE rows negations about non-target facts;
+ranges are now identical (1–2) and the per-pair sign flips.
+
+### Residuals, reported
+
+`function-tested` on one SILENCE row and `result` on one REQUIRED row are the only class-exclusive
+verification tokens — one row each. And expressing an unsettled fact tends to recruit negation or
+`whether`; five different constructions were used so none covers the class, but **this is the third
+surface feature to behave this way after length and vocabulary, and any expansion must re-run the
+scan.**
+
+### Flags raised, not resolved
+
+Four of five intended-SILENCE rows rest a settled state partly on a **document**; PAIR-4 and PAIR-5
+are the exceptions (a functional attempted start, an observed and witnessed gauge). Every pair turns
+on **temporal scope**. **PAIR-1 and PAIR-2 carry the §171 governed-knowledge limitation** —
+`app-mg-01` lists `physical_inspection` only and cannot support a function-verified criterion. **No
+stronger governed evidence was manufactured** and no `acceptableEvidence` was attached.
+
+### What did not happen
+
+**No semantic verdict was produced.** `HUMAN_AUTHORITATIVE_SILENCE_ROWS = 0`;
+new authoritative REQUIRED rows = 0. SILENCE and REQUIRED name an **authoring intent**, not truth.
+The blinded packet carries zero pair references, and `TARGET_DECISION` / `TARGET_FACTKEY` are
+reviewer-completed because paired rows share both. §167, §168 and §169 hashed and unchanged; the
+frozen REQUIRED rows were not replaced.
+
+### Next authorization
+
+Independent human adjudication of the **exact frozen ten-row wording**, pair map withheld until
+every verdict is returned. The comparison then answers two things: whether the rows carry the truth
+they were authored to carry, and whether a careful human can separate the classes on surface
+features at all.
+
+---
+
+---
+
+## §174 — HUMAN VERDICTS RECORDED, INSTRUMENT UNBLINDED (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_BALANCED_CLARIFICATION_TRUTH_RECORDED —
+BOUNDED_HOSTED_SEMANTIC_VALIDATION_AUTHORIZATION_REQUIRED`. 0 provider calls, $0.00, 0 database
+operations, 0 source-code changes, 0 script changes.** Evidence:
+`verification/expert-hazlenz-balanced-clarification-instrument-2026-09-05/`.
+
+### Integrity and ordering, enforced mechanically
+
+`FROZEN_ARTIFACT_INTEGRITY = INTACT`: both packet hashes, all ten row hashes (each re-derived
+independently from the markdown *and* the JSON and required to agree), and the preregistered scanner
+hash `ca3c6c8d…` all matched. Order: verify → record → freeze and hash → scan → unblind. The verdict
+record hash `4412990912bef4e9…` was re-verified at the moment `PAIR-MAP.json` was opened.
+
+### Verdicts
+
+TRUE: HR-01, HR-04, HR-06, HR-08, HR-09. FALSE: HR-02, HR-03, HR-05, HR-07, HR-10. All HIGH
+confidence. **`HUMAN_AUTHORITATIVE_REQUIRED_ROWS = 5`, `HUMAN_AUTHORITATIVE_SILENCE_ROWS = 5`** —
+the first movement off zero. The five narrative fields per row were not supplied and are `null`;
+they were not inferred.
+
+### Unblinding: 5/5 fully concordant
+
+Every pair FULLY_CONCORDANT, 0 inversions, 0 ambiguous rows, 10/10 row-level agreement with
+authoring intent. PAIR-1 and PAIR-2 machine guarding, PAIR-3 fire/explosion, PAIR-4 and PAIR-5
+hazardous energy.
+
+### Preregistered scan: no perfect classifier, one interpretable near-miss
+
+303 rules swept over 197 vocabulary tokens, every numeric feature at every threshold both
+directions, every metadata field. Best simple rule **0.9** against a 0.5 baseline;
+`MATERIALLY_SEPARABLE = False`; **zero perfect separators where 1.2 are expected by chance** at this
+corpus size. Length, verification vocabulary, hazard domain and negation count all absent.
+
+**The near-miss has a mechanism.** `contains "it"` — 4 of 5 REQUIRED, 0 of 5 SILENCE — because the
+REQUIRED construction *"a document exists; it records X but not Y"* needs an anaphoric pronoun.
+Fourth surface feature to track row class. Not grounds to remediate ten rows; grounds to vary the
+REQUIRED construction on any expansion.
+
+### The limitation that governs everything downstream
+
+`AI_ASSISTED_HUMAN_VERDICT_GENERATION = TRUE`, `FULLY_INDEPENDENT_HUMAN_ADJUDICATION = FALSE` — a
+GPT-5.6 Sol assessment was reviewed before the owner finalised, disclosed by the owner. So 5/5
+concordance is agreement among two AI systems and a human who saw one of them.
+
+**Plus a provenance confound no sweep can detect:** Claude-authored corpus, AI-assisted labels,
+Claude-based HazLenz. A high score may reflect shared authorship, not safety correctness.
+
+Truth class `PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH`. Suitable for bounded **development**
+validation; **not** for any customer-facing or acceptance claim, and not upgradable into one.
+**HazLenz has not been run against these rows and has passed nothing.**
+
+### Next authorization
+
+Bounded hosted development validation against the ten frozen rows — with the scoring rule and cost
+cap preregistered before the run, and an agreed prior statement of **what result would falsify the
+instrument rather than the model.** A 10/10 HazLenz score against a corpus its own model family
+authored should increase suspicion of the instrument, not confidence in the product.
+
+---
+
+---
+
+## §175 — HOSTED VALIDATION STOPPED BEFORE SPEND (2026-09-05)
+
+**Terminal: `BALANCED_CLARIFICATION_HOSTED_VALIDATION_BLOCKED_BEFORE_SPEND —
+MISSING_FACT_TRUTH_AND_HAZARD_VOCABULARY_AUTHORIZATION_REQUIRED`. 0 provider calls, $0.00, 0 database
+operations, 0 source-code changes, 0 script changes.** Evidence:
+`verification/expert-hazlenz-balanced-hosted-validation-2026-09-05/HOSTED-VALIDATION-BLOCKER.json`.
+
+Stopped under this authorization's own clause: *"If the existing harness cannot execute the ten rows
+without materially changing runtime/scoring behavior: STOP before provider spend and report the
+blocker."*
+
+### Verified before stopping
+
+`PRE_SPEND_INTEGRITY = INTACT` — packet hashes, all ten row hashes (re-derived independently from the
+markdown *and* the JSON), the truth record `4412990912bef4e9…`, the preregistered scanner
+`ca3c6c8d…`, and the ten verdicts against the authorization text. The Expert path is **executable**:
+500 zero-call gates pass with 0 failures across contract-foundation, no-call-harness,
+clarification-settlement and cohort-instrument, despite 1,773 uncommitted insertions in the module.
+**The blocker is not an execution failure.**
+
+### The blocker
+
+The pre-authorized harness needs four things per row that the instrument does not contain and no
+human adjudicated:
+
+| field | model-visible | why required |
+|---|---|---|
+| `allowedHazardFamilies` | **yes** | constrains what the model may raise |
+| present / defensible / forbidden partition | no | gate `A.2` totality rule, disjoint and covering |
+| `decisionCriticalGaps[].description` + `affectedDecision` | no | `validateCohortRow` |
+| `missingFact` + both branches + both outcomes | no | **this is the scoring target** |
+
+**Decisive fact:** `MATERIAL_UNRESOLVED_FACTS` is null on 10 of 10 rows in the frozen §174 record,
+along with the other four narrative fields. The owner supplied the binary verdict only. The sole
+per-row statement of the material unresolved fact is the authoring-side `PAIR-MAP`
+`INTENDED_SEMANTIC_DIFFERENCE`, written by this model in §173.
+
+Supplying it and then scoring this model family against it is the §162 closed loop. §169 is the
+precedent that makes it concrete: under human review, 4 of 12 clarifications that named the right
+fact were still only partially correct. Gate `A.2` was not bypassed either — it is a protected gate.
+
+### What a reduced run could still have measured
+
+`SILENCE_PRECISION` is **exact and mechanical** (frozen truth owes nothing on a SILENCE row, so any
+clarification there is a failure by definition). `REQUIRED_RECALL` loose is a mechanical upper bound.
+Only the strict half needs the missing-fact statement. Offered as a shape, not a result — **nothing
+was executed.**
+
+### Two resolutions
+
+**A (recommended).** The owner supplies one sentence per REQUIRED row naming the material unresolved
+fact. Costs no spend, makes the authorization executable exactly as written, and keeps the scoring
+target human-supplied so the resulting number is checkable by someone outside this session.
+
+**B.** Authorize a reduced run: uniform hazard vocabulary and jurisdiction across all ten rows,
+`SILENCE_PRECISION` reported exactly, `REQUIRED_RECALL` as a bounded range, and a human adjudication
+packet for the strict determination — the §147 precedent. Still needs a model-chosen vocabulary and
+still cannot yield `BALANCED_ACCURACY` as a point estimate.
+
+---
+
+---
+
+## §175 — HOSTED RUN EXECUTED, MEASUREMENT VOID (2026-09-05)
+
+**Terminal: `BALANCED_CLARIFICATION_HOSTED_VALIDATION_INCONCLUSIVE —
+EVIDENCE_OR_EXECUTION_REVIEW_REQUIRED`.** 10 provider calls, **$0.47437**, 0 retries, 0 provider
+errors, 0 database operations, 0 runtime changes. Evidence:
+`verification/expert-hazlenz-balanced-hosted-validation-2026-09-05/`.
+
+### What happened
+
+`PRE_SPEND_INTEGRITY = INTACT` and the preregistration `397aed8f…` was written and hashed before the
+first call. All ten calls succeeded against `claude-sonnet-5`, prompt `c4b3162439988e74`.
+
+**The measurement is VOID.** The probe read `res.analysis.clarifications`; `ExpertProviderSuccess`
+carries `raw: unknown` and the raw payload must pass through `normalizeExpertOutput`, whose
+collections are `expertHazardCandidates` and `decisionCriticalClarifications`. Every count therefore
+defaulted to zero irrespective of what the model returned.
+
+Caught because candidate count was *also* zero on all ten rows while the model produced 788–1563
+output tokens with `stop_reason = tool_use`. **A quantity the scoring rule did not use is what
+exposed the defect.**
+
+### Nothing from this attempt may be cited
+
+Not `REQUIRED_RECALL_LOOSE = 0/5`, and emphatically not `SILENCE_PRECISION = 5/5` — a harness reading
+zero clarifications everywhere scores every SILENCE row correct for free, and would have scored 5/5
+against a model that asked on all ten. Clarification precision, recall and balanced accuracy remain
+**entirely unmeasured**. Attribution is `HARNESS_DEFECT`: not the model, not the instrument.
+
+### The second fault, which cost the evidence
+
+Raw output was **not persisted** — only derived counts. When the extraction proved wrong the ten
+responses were unrecoverable. Standing rule now recorded: **persist the raw provider payload before
+deriving anything from it.**
+
+### Repair, proven with zero calls
+
+Normalizer wired in; real collection names; `rawProviderOutput` persisted per row before any
+derivation; `normalizationState` and issues recorded; a REJECTED normalization scored as a contract
+failure rather than as silence; declared `outcome` captured so a deliberate `NOTHING_TO_ADD` is
+distinguishable from an `ANALYZED` carrying no clarification. Proven by passing a one-clarification
+payload through the real normalizer — `state=VALID`, `clarifications=1`, question recovered verbatim.
+Confined to the probe; prompt, schema, normalizer, verifier, arbitration, scorer and thresholds
+untouched.
+
+### Blocker
+
+10 of 12 authorized calls are spent; a clean ten-row re-run needs 10 and 2 remain. **A fresh budget
+of 10 calls (12 with headroom) at the same $3.00 ceiling is required.** Roughly $0.48 at observed
+rates. The instrument, frozen truth, pair map and preregistration all stand unmodified.
+
+---
+
+---
+
+## §175 ATTEMPT 2 — VALID MEASUREMENT (2026-09-05)
+
+**Terminal: `BALANCED_CLARIFICATION_DEVELOPMENT_DEFECTS_OBSERVED — REMEDIATION_REVIEW_REQUIRED`.**
+Attempt 2: **10 calls, $0.47515**, 0 retries, 0 provider errors, 0 contract failures, all ten
+normalized VALID. Cumulative §175 spend **$0.94952** across 20 calls (attempt 1 void, $0.47437).
+
+### Pre-spend
+
+20-check preflight passed with **zero provider calls**, driving the *exported* `deriveRowRecord` that
+attempt 2 then used — not a copy. It proved: one clarification reads as 1 with the question recovered
+verbatim; `NOTHING_TO_ADD` is distinguishable from `ANALYZED`; a malformed payload is `REJECTED` and
+flagged `CONTRACT_FAILURE`, never silence; raw output is on the record and on disk before any
+aggregate is computed. Frozen instrument, truth, disclosure and the preregistration `397aed8f…` all
+re-verified unchanged.
+
+### Result
+
+| | value | status |
+|---|---|---|
+| `SILENCE_PRECISION` | **4/5** | **exact** |
+| `REQUIRED_RECALL` loose | 4/5 | upper bound |
+| `REQUIRED_RECALL` strict | 0/5 – 4/5 | **PENDING_HUMAN_ADJUDICATION** |
+| `BALANCED_ACCURACY` | **0.40 – 0.80** | range only |
+| `ROW_LEVEL_ACCURACY` | **0.40 – 0.80** | range only |
+
+**Not 10/10**, so the perfect-score rule does not trigger.
+
+**Two definite failures**, both needing no semantic judgement. **HR-04** (REQUIRED, PAIR-2, fixed
+guard fastenings) emitted no clarification at all. **HR-05** (SILENCE, PAIR-4) emitted one, asking
+whether the running drying fans could introduce energy at the blockage point — a different fact from
+the auger isolation the row settles. Both are `MODEL_OR_CONTRACT_FAILURE_CANDIDATE`.
+
+**No instrument defect declared.** Neither failing row was shown to carry a specific ambiguity or
+inadequate target in its frozen wording, and truth was not redefined because Expert disagreed.
+HR-05's shape matches the §169 displaced-fact pattern — recorded for the owner, not acted on.
+
+### Why the strict figure was withheld
+
+`MATERIAL_UNRESOLVED_FACTS` is null on 10/10 rows in the §174 record, so the only per-row statement
+of the owed fact is the §173 pair map written by this model family. The preregistration reserved the
+strict call for a human *before* spend, and it was honoured after the emitted questions turned out to
+look plausible. A preregistration followed only when results disappoint is not one.
+
+### Standing
+
+Development-tier only. AI-assisted labels, Claude-authored corpus, Claude-family model under test —
+so a strong reading here still carries provenance uncertainty. **No remediation is authorized and
+none was performed.**
+
+---
+
+---
+
+## §175 CLOSURE — STRICT ADJUDICATION RECORDED (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_BALANCED_CLARIFICATION_VALIDATION_COMPLETE —
+BOUNDED_REMEDIATION_AUTHORIZATION_REQUIRED`.** 0 provider calls, 0 database operations, 0
+source-code changes. `PRE_CLOSURE_INTEGRITY = INTACT`.
+
+### Final metrics, recomputed from the run records
+
+| metric | value |
+|---|---|
+| `REQUIRED_RECALL_STRICT` | **4/5 = 0.80** |
+| `SILENCE_PRECISION` | **4/5 = 0.80** |
+| `BALANCED_ACCURACY` | **0.80** |
+| `ROW_LEVEL_ACCURACY` | **8/10 = 0.80** |
+
+All four reconcile exactly against the expected values. HR-01, HR-06, HR-08, HR-09 adjudicated
+`HUMAN_ADDRESSES_THE_OWED_FACT = TRUE` at HIGH confidence; HR-04 is FALSE because nothing was emitted.
+
+**Accounting.** Attempt 1 VOID / HARNESS_DEFECT, 10 calls, $0.47437. Attempt 2 VALID, 10 calls,
+$0.47515. Cumulative §175: **20 calls, $0.94952.**
+
+### Failure patterns, evidence-based
+
+**A — OWED_TARGET_MISS (HR-04, n=1).** The four recovered REQUIRED rows each carry an explicit
+absence marker; HR-04 carries none and states a positive-but-stale fact instead. Separation is 4/4
+marked vs 0/1 unmarked. **This replicates the §147 advertised-vs-unmarked variable on independent
+material** rather than being a mechanism fitted to one row.
+
+**B — DISPLACED_VALID_FACT (HR-05, n=1).** Asked about the running drying fans on a row whose auger
+isolation is settled. Matches the §169 displaced-fact shape. Scored a precision failure; truth
+unchanged.
+
+**C — evidence sufficiency: NOT OBSERVED.** All four recovered clarifications demanded
+function-establishing evidence, which is exactly the §169 remediation target.
+
+**D — temporal scope (HR-04).** Same row as A, **not double-counted**. The model recovered temporal
+gaps where the text marked them (HR-06, HR-09); the variable is the marking, not the temporality.
+
+**E — none.** 0 contract failures, 0 rejections, 0 provider errors, 0 retries, all ten `ANALYZED`.
+
+### Remediation hypothesis: supported, narrow, not yet actionable
+
+**Narrowest target — prompt only:** a verification stated at a past occasion does not establish the
+state at the moment of the decision, so a positively-stated but stale verification is an unresolved
+fact. Nothing else: not schema, normalizer, verifier, arbitration or thresholds.
+
+**Risk:** recall repairs cost precision, and HR-05 already shows over-asking about an adjacent
+unsettled source. Any change must be measured on the SILENCE half — 5/5 recall bought at below 4/5
+precision is not an improvement.
+
+**Limit:** n=1 per pattern, ten rows, known shared-authorship provenance. A hypothesis to test, not
+an established defect. **No remediation performed.**
+
+### Claim boundary
+
+The single permitted claim: *on the valid §175 Attempt-2 balanced development instrument, current
+Expert HazLenz achieved 4/5 strict REQUIRED recall and 4/5 SILENCE precision, for 8/10 row-level
+accuracy.* The 0.80 figures do not generalise beyond these ten rows and establish no production
+readiness, formal acceptance, customer readiness or independent-human validation. Both labels and
+strict verdicts are AI-assisted.
+
+---
+
+---
+
+## §176 — TEMPORAL-SUFFICIENCY CLARIFICATION REPAIR (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_TEMPORAL_CLARIFICATION_REMEDIATION_COMPLETE —
+BOUNDED_POST_REMEDIATION_HOSTED_VALIDATION_AUTHORIZATION_REQUIRED`.** 0 provider calls, 0 database
+operations. One file changed: `expert-prompt.ts`, **+28 lines, −0**, prompt text only. Evidence:
+`verification/expert-hazlenz-temporal-clarification-remediation-2026-09-05/`.
+
+### Root cause: the model complied
+
+HR-04 was not disobedience. `CURRENT STATE, NOT HISTORICAL STATE` forbids re-litigating a stated
+verified fact, and HR-04 stated one — the fastenings had been torque-checked. The prompt never said a
+verification speaks for a **time**. The repair is placed at that rule's boundary.
+
+### The three insertions
+
+1. **WHAT COUNTS AS ESTABLISHED (15 lines)** — beside "assumed worse state" and "resemblance": a
+   verification establishes the state *at the time it was performed*; a fact can be positively stated
+   and still not established *for this decision*; compare when the evidence speaks for against when
+   the decision needs it; if they match, say established and move on.
+2. **CURRENT-vs-PAST (6 lines)** — qualifies what "already answered" means. Without it the older rule
+   still overrides and insertion 1 never binds.
+3. **NOT DECISION-CRITICAL (7 lines)** — precision: once the owed fact is settled an adjacent concern
+   does not inherit its urgency; it goes to hazard candidates and becomes a question only by passing
+   the full five-part test on its own decision.
+
+**22 of 28 lines are brakes.** Never about age; no schedule or due date makes evidence stale; long-ago
+verification is FULLY ESTABLISHED where the decision allows; minutes-ago settles nothing about a
+changed state; three inflation triggers named and forbidden.
+
+### Proofs — all static, zero calls
+
+30/30 static proofs (A implicit gap 5, B explicit gap preserved 4, C evidence sufficiency unchanged
+4, D precision 6, E no inflation 6, F no threshold/family/row-leakage 5, G identity 1) and **632
+regression assertions across 6 existing suites, 0 failures**.
+
+Confirmed: no hazard-family wording, no numeric time threshold, no general ask-more rule, and **no
+§175 row wording anywhere in the production prompt** — the repair is a general semantic rule.
+
+### Identity, and one residual to close
+
+`systemPromptSha256` moved `c4b31624…` → **`84aacb9d222d028b…`**. `EXPERT_PROMPT_VERSION` was
+**deliberately left at v13**: two protected gates pin the literal, and bumping would mean editing
+protected assertions to make a change pass. The hash makes the change detectable, and the prompt
+itself records (§138) that the version does not uniquely identify behaviour. **Residual:** a reader
+comparing only `promptVersion` would think nothing changed. Recommend a follow-up authorization to
+bump to v14 and update those two assertions together.
+
+### Not retested
+
+No hosted call. §175 figures stand unchanged and unre-measured. **Static proofs cannot show behaviour
+changed.** The baseline to beat is both numbers at once — 4/5 strict recall **and** 4/5 silence
+precision; 5/5 recall at 3/5 precision is a regression.
+
+---
+
+---
+
+## §177 — v14 IDENTITY ALIGNMENT + POST-REMEDIATION VALIDATION (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_TEMPORAL_CLARIFICATION_REMEDIATION_NOT_CONFIRMED —
+REMEDIATION_REVIEW_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-post-remediation-validation-2026-09-05/`.
+
+### Phase A — identity alignment (0 provider calls)
+
+`EXPERT_PROMPT_VERSION` **v13 → v14**. `SYSTEM_PROMPT_SHA256` = `84aacb9d222d028b…`,
+**byte-identical before and after** — the version string never appears in the prompt text, so
+`PROMPT_TEXT_EXCLUDING_VERSION_IDENTITY = BYTE_EQUIVALENT` holds in its strongest form. No semantic
+prompt edit was required. **17 suites, ~1,475 assertions, 0 failures**, plus 30/30 §176 static proofs.
+
+**12 live pins re-anchored** — not two. The §176 report's "two protected gates" was an undercount
+from reading only the head of a grep. Historical provenance was deliberately left at v13:
+`hardened-development-set-v9.ts` `authoredUnder` (no live consumer; changing it would falsify what
+the fixture set was authored under), the spent `probe-expert-hardened-v13-*` and
+`probe-expert-retention-bridge-*` records, and evidence directory names.
+
+**The escaped-dot pin earned its keep again.** `test-expert-projection-equivalence` F.2 writes its
+pin as a regex with escaped dots; a bulk literal replace updated its message and left the regex on
+v13, so it failed loudly instead of passing under the wrong version. Its comment records the same
+pin being missed in §143 and again later — §177 makes three.
+
+### Phase B — hosted validation (10 calls, $0.49406)
+
+All pre-spend gates passed; 20/20 preflight at zero calls. All ten normalized VALID, 0 contract
+failures, 0 retries, 0 provider errors, raw persisted per row. Preregistration `ffdc2143…`; the §175
+preregistration `397aed8f…` preserved unchanged.
+
+| metric | §175 baseline (v13) | §177 (v14) |
+|---|---|---|
+| `SILENCE_PRECISION` | 4/5 | **5/5** (exact) |
+| `REQUIRED_RECALL` loose | 4/5 | 4/5 |
+| `REQUIRED_RECALL_STRICT` | 4/5 | **PENDING**, upper bound 4/5 |
+| `BALANCED_ACCURACY` | 0.80 | range 0.50–0.90 |
+
+**HR-04 STILL MISSED.** The model raised the conveyor nip point as `CONTROLLED`, reasoning *"the
+observation confirms the guard is currently in place"* — it settled the present state on **physical
+presence**, so the temporal question was never reached. The §176 rule sits in the
+established-facts list, which this failing path does not pass through. **This is the §169
+evidence-sufficiency failure standing in front of the temporal one.**
+
+**HR-05 now silent** — the desired direction, and the row the precision brake targeted.
+
+### The caveat that governs the 5/5
+
+**One row differed out of ten, between two single-sample runs.** Nothing here separates "the brake
+worked" from sampling variance on a stochastic model. The 5/5 may not be reported as an improvement.
+Replicates at one identity — the §152–§154 pattern — are what would settle it.
+
+### Next
+
+Strict human adjudication of the four §177 emissions is outstanding. The remediation itself needs
+review: the rule is correctly written but placed where the failing path does not reach it.
+
+**Cumulative §175+§177: 30 calls, $1.44358.**
+
+---
+
+---
+
+## §177 CLOSURE — STRICT ADJUDICATION RECORDED, REMEDIATION RECLASSIFIED (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_V14_POST_REMEDIATION_VALIDATION_COMPLETE —
+CONTROL_PROPERTY_SUFFICIENCY_REMEDIATION_AUTHORIZATION_REQUIRED`.** 0 provider calls, 0 database
+operations, 0 source-code changes. `PRE_CLOSURE_INTEGRITY = INTACT`. Evidence:
+`verification/expert-hazlenz-post-remediation-validation-2026-09-05/POST-REMEDIATION-STRICT-ADJUDICATION-CLOSURE.json`,
+recomputable by `section-177-strict-closure-recompute.py` in the same directory.
+
+### Integrity, recomputed rather than read
+
+Every hash was recomputed from the actual bytes. The ten frozen row texts agree across the §174
+freeze, the §174 adjudication binding and the §177 preregistration; both blinded review packets are
+unchanged since the freeze, so `ROW_TEXT_MUTATION_ALLOWED = FALSE` has held; the five observations
+in the strict packet hash to the frozen wording and their `emittedClarifications` are byte-identical
+to the run records — **the product owner adjudicated exactly what was executed**. Frozen truth agrees
+on 10/10 rows across all three artifacts, and the run aggregates ($0.49406, 189,830 prompt tokens,
+11,440 output tokens, 38,455 ms mean) recompute from per-row telemetry.
+
+The live prompt was hashed in process: `EXPERT_PROMPT_VERSION = hazlenz.expert.prompt.v14`,
+`SYSTEM_PROMPT_SHA256 = 84aacb9d222d028b…` over 34,622 chars, and the file itself at
+`70fbc0d3cf3b307a…` — identical to §177 Phase A's `promptFileSha256After`. **No source drift between
+execution and closure.**
+
+### Final metrics, recomputed from the run records and the adjudications
+
+| metric | §175 (v13) | §177 (v14) |
+|---|---|---|
+| `REQUIRED_RECALL_STRICT` | 4/5 = 0.80 | **4/5 = 0.80** |
+| `SILENCE_PRECISION` | 4/5 = 0.80 | **5/5 = 1.00** |
+| `BALANCED_ACCURACY` | 0.80 | **0.90** |
+| `ROW_LEVEL_ACCURACY` | 8/10 = 0.80 | **9/10 = 0.90** |
+
+HR-01, HR-06, HR-08 and HR-09 adjudicated `HUMAN_ADDRESSES_THE_OWED_FACT = TRUE` at HIGH confidence.
+HR-04 is FALSE mechanically — nothing was emitted, so nothing could address the owed fact; it is an
+absence, not an adjudicated emission. All four values reconcile exactly against the authorization's
+expected figures, which were checked after the recomputation rather than copied into it.
+`AI_ASSISTED_STRICT_ADJUDICATION = TRUE` (GPT-5.6 Sol reviewed the exact emissions before
+product-owner finalisation); `FULLY_INDEPENDENT_HUMAN_ADJUDICATION = FALSE`.
+
+### The observed result is not a causal claim
+
+`PRECISION_IMPROVEMENT_CAUSALLY_ESTABLISHED = FALSE`. §175 and §177 each ran **one stochastic
+execution per row**; nine rows behaved identically; HR-05 changed. No replicate design exists at
+either identity, so nothing separates the §176 precision brake from sampling variance. **It may not
+be said that §176 caused precision to improve from 4/5 to 5/5.** What would settle it is replicates
+at one identity — the §152–§154 pattern.
+
+### §176 verdict: present, not confirmed
+
+`TEMPORAL_RULE_PRESENT = TRUE`; `TEMPORAL_REMEDIATION_BEHAVIORALLY_CONFIRMED = FALSE`. HR-04 remained
+missed. **The rule stays in the prompt.** Nothing shows it harmful, 22 of its 28 lines are brakes,
+and removing a correct rule because a different defect stood in front of it would be speculative.
+
+### The more proximal failure, from the raw reasoning
+
+Expert raised the nip point as `CONTROLLED`, quoting *"The fixed guard over the head drum nip point
+is in position"* and reasoning *"the observation confirms the guard is currently in place"* — then
+stated *"No decision-critical facts are missing."* It treated **presence** as settling the guarding
+state the decision turns on, so the temporal question was never reached and the §176 rule, which
+lives in the established-facts list, was never consulted on that path.
+
+This separates two things the model merged:
+
+- **`CONTROL_PRESENCE`** — the control exists and is physically in position.
+- **`CONTROL_PROPERTY_SUFFICIENCY`** — the property the decision actually turns on: securement,
+  functional operation, effectiveness, configuration, protective response.
+
+For HR-04, presence/in-position evidence does not by itself establish **current securement of the
+fixed guard**. Only once securement is unresolved does the staleness of the annual-service torque
+check become relevant at all.
+
+**Not concluded:** that physical presence is generally insufficient. Presence may completely
+establish a presence fact. The hypothesis is narrower — *evidence establishing one property of a
+control must not automatically be treated as establishing a different decision-critical property.*
+
+### Classification and standing
+
+`CONTROL_PROPERTY_CONFLATION_REMEDIATION_HYPOTHESIS`. Consistent with, and more specific than, the
+§169 evidence-sufficiency weakness; **§169 is not rewritten and not rescored**. Development evidence:
+the §169 observations, the §177 HR-04 raw reasoning, and the repeated HR-04 miss across §175 and
+§177. n = 1 row across two single-sample runs on one model, so the mechanism is legible in the raw
+reasoning but **not formally established**.
+
+### Next target — recommended, not implemented
+
+Teach Expert that evidence establishing a control's existence, presence or one observed property does
+not automatically establish another property the current decision requires. The rule must stay
+**property-relative and evidence-relative**, and must not become *physical inspection is
+insufficient*, *visual evidence is insufficient*, *old records are insufficient*, *always
+function-test*, *always reverify*, or *ask whenever any property is unstated*. It must preserve
+clarification precision and the five-part decision-critical test, and leave §176 in place.
+**Implementation requires new product-owner authorization.** A third single-sample run cannot
+distinguish a working repair from noise; replicates at one identity are the prerequisite.
+
+### Claim boundary
+
+The single permitted claim: *on the §177 v14 run against the frozen balanced development instrument,
+Expert HazLenz achieved 4/5 strict REQUIRED recall and 5/5 SILENCE precision, for 9/10 row-level
+accuracy.* It establishes no precision improvement, no confirmed temporal remediation, no production
+readiness, no formal acceptance, no customer readiness and no independent-human validation, and does
+not generalise beyond these ten rows.
+
+---
+
+---
+
+## §178 — CONTROL-PROPERTY SUFFICIENCY REPAIR (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_CONTROL_PROPERTY_SUFFICIENCY_REMEDIATION_COMPLETE —
+REPLICATED_HOSTED_VALIDATION_AUTHORIZATION_REQUIRED`.** 0 provider calls, 0 database operations,
+$0.00. One production file changed: `expert-prompt.ts`, **prompt text +47 net lines**. Evidence:
+`verification/expert-hazlenz-control-property-sufficiency-remediation-2026-09-05/`.
+
+### The repair is a placement, not a better sentence
+
+§176 wrote a correct temporal rule and §177 found the target row missed in exactly the same way. The
+raw output said why: the model closed the fact on **presence** and therefore never arrived at a
+temporal question, so a rule living in the established-facts list was never consulted on that path.
+A rule only fires where the reasoning actually passes through it — which makes placement part of
+this hypothesis rather than an implementation detail.
+
+So the rule went in **twice**, and the second location is the point of it.
+
+1. **`WHICH PROPERTY THE DECISION NEEDS` (41 lines)** at the *head* of `WHAT COUNTS AS ESTABLISHED`,
+   ahead of the pre-existing "STATES it" rule. This is where the model decides a fact is
+   established, so the property comparison is now part of that decision instead of a check applied
+   after it. Five ordered steps: name the owed decision and its fact; name the property the decision
+   depends on; name the property the evidence establishes; compare; and only then does timing arise.
+   Step (v) hands off explicitly to the §176 verification-time rule, so property is settled first
+   and moment second.
+2. **A second qualification in `CURRENT STATE, NOT HISTORICAL STATE` (+9 net)**, beside §176's. That
+   section is read *before* lists 1 and 2 and can close a fact on its own — "never ask a question
+   the observation already answered". It is the earlier premature-closure surface, and putting the
+   rule only in the established-facts list would have repeated §176 exactly.
+
+`One qualification, and only this one` becomes `Two qualifications, and only these two` — the closed
+enumeration is preserved, and the working of both is deferred to insertion 1 so the rule is stated
+once and applied once.
+
+**No ordering conflict arose.** `WHAT COUNTS AS ESTABLISHED` already declared itself as running
+before the five-part test, and the current-state section already carried one qualification of this
+shape. The STOP condition was not reached.
+
+### What was deliberately left alone
+
+The `treat a stated step as done` rule in `A HAZARD-RELEVANT FACT IS NOT YET A CURRENT HAZARD` is
+untouched: it governs doubting whether a stated step *happened*, and this repair does not question
+that — §177's failure accepted the verification and misread what it established. The
+`assertedConditionState` path that produced the CONTROLLED candidate was also left alone, because
+extending the rule there pushes toward "presence never establishes safety", which is forbidden and
+unsupported. Schema, normalizer, verifier-v3, arbitration, authority merge, routing, persistence,
+scorer and thresholds are unchanged; **five module hashes are pinned in the proofs**, two of them
+against values recorded before the edit began.
+
+### The brakes, which are most of the text
+
+The rule cuts every way and rules **no** evidence class weak. A stated presence establishes a
+presence fact COMPLETELY and asking further is named as re-litigation; a functional test establishes
+function completely **and is silent about a configuration, a scope or a securement** the decision may
+separately need. A mismatch is "a reason a fact is not yet settled. It is not permission to ask" —
+the property must be one this decision turns on, and the question must still pass all five parts of
+the counterfactual test on its own. The property vocabulary is declared "EXAMPLES … never a list to
+choose from", so no closed taxonomy exists and none was added in code.
+
+### Proofs and regressions — all local, zero calls
+
+**59/59 static proofs** (A property match 4, B mismatch 4, C presence 3, D function 3, E securement
+2, F temporal composition 5, G no inflation 9, H adjacent valid fact 6, I no taxonomy 9, J no
+leakage 5, K placement 6, L identity 3), including index proofs that the rule precedes the STATES-it
+rule, precedes the five-part test, and is *not* placed only downstream of the already-answered
+logic. **§176's own proofs re-run: 31/31.** Regression: **28 suites, 2,070 assertions, 0 failures**,
+plus nine deterministic HazLenz gates. Total executed **30 suites / 2,160 assertions / 0 failures**.
+
+Six service-dependent suites (`hazlenz-clarification-gauntlet`, `authentic-reasoning`,
+`field-gauntlet`, `authentic-gauntlet`, `field-output-smoke`, `independent-standards-audit`) are
+recorded **NOT RUN**: they need a live API at localhost:4000 and a database, which this
+authorization forbids, and they exercise the deterministic classify endpoint rather than the Expert
+prompt.
+
+### Identity — the v13/v14 problem not repeated
+
+`EXPERT_PROMPT_VERSION` **v14 → v15**, `SYSTEM_PROMPT_SHA256` `84aacb9d…` → **`20979d90c0fe0b81…`**
+(34,622 → 38,377 chars). Unlike §177's byte-identical alignment, the text genuinely changed, so hash
+and label moved together. **13 live pins re-anchored**, and five assertion *messages* that still read
+"(v14)" after their literal moved were corrected with them. Two gates were re-anchored rather than
+relaxed and are recorded as such: `measurement-layer` F.1b's ceiling moves from forbidding v15/v16 to
+forbidding v16/v17, and the §176 proof file's region anchor follows the rewritten lead sentence while
+still ending where §176's text ends. The three spent v13 probes and two spent preflight harnesses
+were **left at v13** — they record what a past run executed under, and rewriting them would falsify
+that.
+
+The diff is provable: the pre-§178 file was reconstructed by reverse-applying exactly the three edits
+this slice made, and it hashes to `70fbc0d3cf3b307a…`, the value recorded at §177 closure. That match
+is what makes `SECTION-178-PROMPT.diff` the complete change and not a summary of one.
+
+### Claim boundary, and the next gate
+
+**Remediation implementation evidence only.** No claim that §178 fixed HR-04, improved clarification
+accuracy, or established the conflation mechanism; no production, customer or formal-validation
+claim. §176 passed its static proofs and changed nothing on the target row — that is precisely why
+static success proves presence, order and placement, and nothing about behaviour. The §175 and §177
+figures stand unchanged and unre-measured.
+
+**The next validation must be a preregistered REPLICATE design at one frozen identity** —
+`REPLICATE-DESIGN-RECOMMENDATION.json` lists the eleven parameters to fix before spend, including
+that the replicate count is chosen before any output is seen, that a disagreeing row has a *rate*
+rather than a pass, and that **both** recall and precision must be preserved: a recall gain bought
+with a precision regression is not success. It is a recommendation only; executing it needs a new
+authorization.
+
+---
+
+---
+
+## §179 — v15 REPLICATED HOSTED VALIDATION: NOT CONFIRMED (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_CONTROL_PROPERTY_SUFFICIENCY_REMEDIATION_NOT_CONFIRMED —
+REMEDIATION_REVIEW_REQUIRED`.** 30 calls, **$1.53991**, 0 database operations, 0 source changes, 0
+post-run tuning. Evidence:
+`verification/expert-hazlenz-v15-replicated-clarification-validation-2026-09-05/`.
+
+### The result, in one line
+
+**HR-04 emitted nothing on 3 of 3 replicates.** The row the §178 repair was written for has now been
+missed under v13, v14 and v15 — five single executions and three replicates, zero clarifications,
+across three prompt identities.
+
+### Pre-spend gates: all passed at zero calls
+
+30/30 preflight checks. Frozen instrument, truth record and all ten row texts unchanged since the
+§174 freeze; v15 identity reproduced exactly (`v15`, `20979d90c0fe0b81…`, file `bfe564c25515cabf…`),
+proving no prompt edit after §178; scorer, normalizer, authority-merge, contract types and runner all
+byte-identical; and the extraction/persistence properties driven through the **real**
+`deriveRowRecord` rather than a copy. Preregistration frozen at `8ea7e8499d1eda68…` before the first
+call, including the complete execution order.
+
+**The order was interleaved, not row-consecutive** — three blocks, each a shuffle of the ten rows
+seeded from the frozen prompt hash itself, with a recorded deterministic repair at block boundaries.
+The preflight recomputes it from the identity alone; the executed order matched the frozen order
+exactly.
+
+### Execution-level results
+
+| metric | value | basis |
+|---|---|---|
+| `SILENCE_PASS_RATE` | **12/15** | exact, mechanical, **final** |
+| `REQUIRED_LOOSE_PASS_RATE` | 12/15 | mechanical upper bound |
+| `REQUIRED_STRICT_PASS_RATE` | **PENDING** | ≤ 12/15, human adjudication |
+| `OVERALL_EXECUTION_ACCURACY` | PENDING | ≤ 24/30 |
+
+30/30 normalized VALID, 0 contract failures, 0 rejections, 0 provider errors, 0 retries, model
+identity matched on every call, raw persisted per execution.
+
+### Row-level stability — the point of the design
+
+| row | truth | clarifications | rate | |
+|---|---|---|---|---|
+| HR-01 | REQUIRED | 1,1,1 | 3/3 loose | |
+| HR-04 | REQUIRED | **0,0,0** | **0/3** | the target |
+| HR-06 | REQUIRED | 1,1,1 | 3/3 loose | |
+| HR-08 | REQUIRED | 1,1,1 | 3/3 loose | |
+| HR-09 | REQUIRED | 1,1,1 | 3/3 loose | |
+| HR-02 | SILENCE | 0,0,0 | 3/3 | |
+| HR-03 | SILENCE | 0,0,0 | 3/3 | |
+| HR-05 | SILENCE | **1,1,0** | **1/3** | disagreement |
+| HR-07 | SILENCE | **0,0,1** | **2/3** | disagreement |
+| HR-10 | SILENCE | 0,0,0 | 3/3 | |
+
+`WITHIN_ROW_DISAGREEMENT_COUNT = 2`. Neither disagreeing row was voted into a clean result and no
+minority execution was discarded.
+
+### Criteria: three fail on mechanical evidence alone
+
+1. HR-04 strict ≥ 2/3 — **FAIL, 0/3.** No adjudication needed: an absence cannot address the owed fact.
+2. REQUIRED strict ≥ 12/15 — **PENDING.** The upper bound *equals* the floor, so it holds only if all
+   twelve emitting executions are adjudicated correct.
+3. SILENCE ≥ 13/15 — **FAIL, 12/15.**
+4. No SILENCE row fails ≥2 of 3 — **FAIL, HR-05 failed 2 of 3.**
+5. No recovered REQUIRED row below 2/3 — PENDING; loose 3/3 on all four.
+6–8. Contract failures 0, rejections 0, evidence interpretable — **PASS.**
+
+`V15_REMEDIATION_BEHAVIORALLY_CONFIRMED = FALSE`. The outstanding adjudication cannot change the
+terminal.
+
+### What HR-04 actually did
+
+Replicates 1 and 2 **pivoted to a different hazard** — an operative walking the gangway beside the
+running belt — and closed the guard question outright: *"no gap is established for the guarded nip
+point itself"*, and *"the fixed guard … is stated to be in position, so no gap is identified there"*.
+
+Replicate 3 is the one that matters for the review. It did not pivot. It raised the nip point as
+`CONTROLLED` and reasoned that the guard *"is confirmed in position and was included in the fitter's
+pre-start check, with fastenings last verified at the annual torque check, so the machine_guarding
+hazard … appears currently controlled by a physical guard rather than unguarded."*
+
+**It reached the historical verification and treated it as establishing the current controlled
+state.** That is precisely the step both the §176 temporal rule and the §178 property rule were
+written for, and neither fired. §178's hypothesis was that §176 failed because the failing path never
+reached its location; here the reasoning passed through the territory and the fact was closed anyway.
+That does not make the property hypothesis wrong, and it establishes no cause — but it does put a
+sharper question to the review: whether a prompt-level rule can reach this behaviour at all.
+
+### Precision: the floor was violated, and the §177 5/5 is now readable
+
+**HR-05 emitted on 2 of 3** — the displaced-valid-fact shape again, asking whether the running drying
+fans are interconnected with the locked-out auger. It emitted at v13, was silent at v14, and now
+varies at a fixed identity. **The §177 5/5 silence precision rested entirely on this one row being
+silent in one draw**, and HR-05 is now measured as unstable. That retrospectively supports the §177
+caveat; it establishes nothing about HR-05's rate under v14, which was never replicated.
+
+**HR-07 emitted on 1 of 3** — new. It was silent in both §175 and §177. The question asks how
+extensive dust accumulation is beyond the handrails, on a row whose flame test was performed,
+recorded and certified.
+
+### Causal boundary
+
+`V15_REPLICATED_BEHAVIOR` is established. **`CAUSAL_EFFECT_SIZE_V14_TO_V15` is not, in either
+direction** — no replicated v14 comparator exists, so neither the §177 5/5 nor this 12/15 may be
+attributed to a prompt identity. Nothing here says v15 improved or regressed precision.
+
+### What the design bought, even in failure
+
+Eight of ten rows are stable at this identity. Two are genuinely unstable — the first direct
+measurement of within-row stochastic disagreement on this instrument. And it demonstrates that a
+single-execution reading of these ten rows can mislead: one row moved the entire §177 headline.
+
+---
+
+---
+
+## §179 CLOSURE — STRICT ADJUDICATION RECORDED, ARCHITECTURE REVIEW OWED (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_V15_REPLICATED_VALIDATION_CLOSED —
+CLARIFICATION_SETTLEMENT_ARCHITECTURE_REVIEW_AUTHORIZATION_REQUIRED`.** 0 provider calls, 0 database
+operations, 0 source changes. `PRE_CLOSURE_INTEGRITY = INTACT`. Evidence:
+`V15-REPLICATED-STRICT-CLOSURE.json`, recomputable by `section-179-strict-closure-recompute.py`.
+
+### Integrity, recomputed rather than read
+
+All ten frozen row texts agree across the §174 freeze, the §174 binding and the §179 preregistration;
+both blinded packets unchanged; frozen truth agrees on 10/10 rows across three artifacts; the
+preregistration still hashes to `8ea7e8499d1eda68…`; every one of the thirty executions carries the
+v15 identity; the executed sequence is exactly the preregistered order, position by position; and
+**every packet observation hashes to the frozen row text with every question byte-identical to its
+run record** — the product owner adjudicated exactly what was executed. A verdict exists for exactly
+the twelve emitting executions and no others.
+
+### Final metrics, recomputed from the records and the verdicts
+
+| metric | value |
+|---|---|
+| `REQUIRED_STRICT_PASS` | **12/15 = 0.80** |
+| `SILENCE_PASS` | **12/15 = 0.80** (exact) |
+| `OVERALL_EXECUTION_ACCURACY` | **24/30 = 0.80** |
+
+All twelve emitting REQUIRED executions adjudicated `TRUE` at HIGH confidence, per execution rather
+than per row. HR-04's three are mechanical failures — nothing was emitted, so nothing could address
+the owed fact. `AI_ASSISTED_STRICT_ADJUDICATION = TRUE`;
+`FULLY_INDEPENDENT_HUMAN_ADJUDICATION = FALSE`.
+
+**Those three 0.80s are the least informative thing in this section.** Per row: HR-01 3/3, HR-02 3/3,
+HR-03 3/3, HR-04 **0/3**, HR-05 **1/3**, HR-06 3/3, HR-07 **2/3**, HR-08 3/3, HR-09 3/3, HR-10 3/3.
+
+### Three classes, kept apart
+
+- **`STABLE_CORRECT_ROWS`** — HR-01, HR-02, HR-03, HR-06, HR-08, HR-09, HR-10.
+- **`STABLE_INCORRECT_ROW`** — HR-04.
+- **`STOCHASTICALLY_UNSTABLE_ROWS`** — HR-05, HR-07.
+
+Seven rows identical and right, one identical and wrong, two varying at a fixed identity. Three
+different engineering situations; only the middle one is a defect with a stable signature. They are
+not to be collapsed into a single percentage.
+
+### Criteria: passed two, failed three
+
+`REQUIRED_STRICT ≥ 12/15` **PASS — met exactly at the floor, with no margin**, and no recovered
+REQUIRED row fell below 2/3 (all four at 3/3). Failed: HR-04 ≥ 2/3 (**0/3**), silence ≥ 13/15
+(**12/15**), and no silence row failing 2 of 3 (**HR-05 failed 2**). Contract failures, rejections
+and interpretability all pass.
+
+`V15_REMEDIATION_BEHAVIORALLY_CONFIRMED = FALSE`. `SILENCE_PRECISION_FLOOR_MET = FALSE`.
+`HR05_PER_ROW_PRECISION_RULE_MET = FALSE`.
+
+### HR-04 is now a replicated defect, and the implication is architectural
+
+0/3 at a frozen identity, consistent with its v13 and v14 single draws. **This is no longer
+reasonably read as an isolated stochastic miss.**
+
+v15 taught property-relative evidence sufficiency, temporal sufficiency, and placement ahead of
+premature settlement. In replicate 3 Expert reasoned explicitly through the guard being in position,
+the morning pre-start context, *and* the historical fastener torque verification — and still
+concluded the guard was presently controlled.
+
+`PROMPT_ONLY_CONTROL_PROPERTY_REPAIR_CONFIRMED_EFFECTIVE = FALSE`.
+
+The conclusion recorded is **not** that prompt engineering can never fix this — that claim is
+unsupported and barred. It is
+**`PROMPT_ONLY_SETTLEMENT_CONTROL_RELIABILITY = NOT_ESTABLISHED`**, and the next question is
+architectural: should *what fact is owed*, *what property must be established*, and *what evidence
+actually settles that property* be represented in structured state and verifier reasoning rather than
+left primarily to free-form prompt semantics?
+
+### Precision: one pattern, two domains
+
+**HR-05, 2/3 failures.** Both emissions introduced adjacent plausible hazards *after* the frozen
+auger energy fact was settled — strengthening the existing `DISPLACED_VALID_FACT` concern. The frozen
+SILENCE truth is not reinterpreted.
+
+**HR-07, 1/3.** Expert pivoted from the settled flame-failure fact to dust housekeeping and severity.
+Plausible safety relevance is not decision-critical clarification entitlement. Recorded as further
+evidence that **adjacent-hazard generation can leak into the clarification carrier** — and explicitly
+*not* as a dust-specific defect.
+
+### Next gate
+
+**BOUNDED CLARIFICATION SETTLEMENT ARCHITECTURE REVIEW, before any v16 prompt change.** Six questions
+are recorded in the closure artifact, covering whether owed facts can carry an explicit
+`requiredProperty` without a brittle closed ontology, whether `acceptableEvidence` can express what
+settles a property while staying governed-source guidance, whether the model can be required to
+declare property owed / evidence observed / property established / sufficiency / unresolved reason
+before clarification suppression, whether deterministic factKey coverage can coexist with reviewed
+semantic settlement, whether adjacent hazards can stay additive, and whether all of it fits behind
+the existing inactive development boundary. **No architecture was implemented and none is
+authorized.**
+
+**Cumulative §175 + §177 + §179: 60 calls, $2.98349.**
+
+---
+
+---
+
+## §180 — CLARIFICATION SETTLEMENT ARCHITECTURE REVIEW (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_CLARIFICATION_SETTLEMENT_ARCHITECTURE_REVIEW_COMPLETE —
+BOUNDED_INACTIVE_SETTLEMENT_INTEGRATION_AUTHORIZATION_REQUIRED`.** 0 provider calls, 0 database
+operations, 0 source-code changes, 0 governed records touched. v15 untouched, v16 not begun,
+verifier-v3 still inactive. Evidence:
+`verification/expert-hazlenz-clarification-settlement-architecture-review-2026-09-05/` (seven
+artifacts).
+
+**Recommendation: `STRUCTURED_SETTLEMENT_REPRESENTATION_JUSTIFIED`** — but the first thing it asks
+for is not a new field.
+
+### Four findings, read from the implementation
+
+1. **The settlement state already exists and is unreachable.** `SETTLED_BY_EVIDENCE` requires an
+   `ADMISSIBLE_EVIDENCE` authority; a repository-wide search finds exactly one minted authority and
+   it is `ADMITTED_BINDING`. **Today a fact can only leave `UNRESOLVED` by being asked about.** There
+   is no way to record "the evidence settled this, so nothing is owed" — which is exactly what Expert
+   concluded about HR-04 three times.
+2. **The challenge channel has a producer and no consumer.** `CHALLENGE_FACT_VALIDITY` is instructed
+   in HR-04's own words — *"the observation already settles it"* — and produces an
+   `ArbitrationRequest` that nothing consumes. No `RECORDED_ARBITRATION` is ever minted.
+3. **The provider is never asked what property its evidence establishes.** It receives the target
+   (`acceptableEvidence.requirement`, examples, insufficient examples) and returns one of three
+   bookkeeping tokens. The comparison §178 taught in prose is the one step the structured channel
+   does not represent.
+4. **Both §179 failure shapes occurred where the architecture is absent.** HR-04, HR-05 and HR-07 ran
+   through the *first-pass* v15 prompt — no ledger, no factKey, no binding. **§179 is not evidence
+   against the existing architecture, because it was not running.**
+
+### The answers, in brief
+
+**Q1 owed-fact representation — reuse `acceptableEvidence`, add no field.** `requirement` is already
+*"one sentence naming the capability the evidence must establish"*: a settlement target, governed-derived,
+provenance-typed, nullable, already projected. A `requiredProperty` or `settlementTarget` field would
+duplicate it and is exactly where a closed ontology would grow.
+
+**Q2 settlement declaration — yes, split across layers, and structurally distrusted.** Deterministic
+projection supplies the target; the provider supplies evidence observed, what property it establishes,
+an assessment and a reason; the verifier checks *form only*; **human review is the sole authority that
+can convert a claim into `SETTLED_BY_EVIDENCE`.** A provider claim is typed like a challenge —
+`settles: false`, `factStatusUnchanged: true` — so it can never suppress a clarification.
+
+**Q3 states — keep the status set closed at four.** Statuses are authority-bearing and there is no
+authority that produces "partially established". `EVIDENCE_PROPERTY_MISMATCH` and
+`TEMPORAL_SCOPE_UNRESOLVED` are valuable as *reasons*, which decide nothing, and brittle as statuses.
+
+**Q4 entitlement — the ordering is compatible and six of nine steps already exist.** One caution:
+semantic settlement must not run before structural factKey coverage, or the deterministic half starts
+depending on the semantic half.
+
+**Q5 displaced facts — the control already exists and was not running.** Every declaration must bind
+to a key in the closed set or nominate with a full structural proof burden, enforced by 24 admission
+codes. HR-05 and HR-07 never met it. Settlement state adds observability — "fact A settled, fact B
+nominated in the same response" becomes countable — not suppression.
+
+**Q6 `acceptableEvidence` — unchanged in role.** Null projects as explicit absence and a claim
+against it is flagged and cannot reach `SETTLED_BY_EVIDENCE`. Coarse criteria project *unchanged*:
+§171's seven-of-nine looking-based verification methods are not paraphrased or upgraded.
+
+**Q7 governed-knowledge gap — `PARALLEL`, with the audit half early.** Not a prerequisite, because
+the architecture must fail transparently on null criteria anyway; if it needed a clean registry to be
+safe it would be the wrong architecture. Not merely later, because `app-mg-01` asks presence *and*
+function while its verification method may establish only inspection. **No governed record was
+modified, and none may be strengthened to make this architecture work.**
+
+**Q8 budget — settlement removes questions that were never owed**, which is categorically different
+from deferring questions that are. And it must never justify combining facts into one string: one
+question, one factKey, unchanged. No production threshold defined.
+
+**Q9 observability — record the comparison, not just the verdict.** Owed requirement beside claimed
+property turns HR-04's three unreadable summaries into three legible rows. Adjudication labels stay
+out of provider input, as `PRODUCTION_FORBIDDEN_EVIDENCE_PROVENANCES` already requires.
+
+**Q10 sequence — one stage inserted before A.** Because of finding 4, the first step is **A0: run the
+existing architecture against the frozen rows and see whether the failure survives it.** Zero-call,
+zero new code, and the cheapest thing that could overturn the recommendation.
+
+### Why not the alternatives
+
+`CONTINUE_PROMPT_ONLY` is not barred — `PROMPT_ENGINEERING_CANNOT_SOLVE_SETTLEMENT` remains
+unestablished — but as the sole next step it repeats a loop that has failed three times and *cannot
+report why*. `ARCHITECTURE_CHANGE_NOT_YET_JUSTIFIED` was the closest competitor on finding 4, and is
+answered by making A0 the first act rather than a new field. `GOVERNED_KNOWLEDGE_REMEDIATION_FIRST` is
+rejected as a prerequisite and adopted in parallel. A deterministic semantic gate is refused outright
+— it is the keyword scorer §160/§161 retired, rebuilt in the production path.
+
+### Risks worth carrying forward
+
+`RISK-REGISTER.json` carries twelve. The safety-critical one — a false settlement becoming actionable
+— is closed by construction. The three most likely real-world failures are **governance** failures,
+not design failures: semantic creep into a structural check, a rubber-stamped review surface, and
+governed records strengthened to fit the tool.
+
+### Claim boundary
+
+The review may recommend; it establishes nothing. **No claim that the architecture fixes HR-04 or
+displaced-valid-fact leakage, no customer or production readiness, no formal validation, no
+deterministic semantic sufficiency** — and equally, no claim that the existing inactive architecture
+would have prevented the §179 failures, which is unmeasured in both directions.
+
+---
+
+---
+
+## §181 — STAGE A0 REPLAY + GOVERNED EVIDENCE ALIGNMENT AUDIT (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_SETTLEMENT_STAGE_A0_COMPLETE —
+BOUNDED_EXISTING_ARCHITECTURE_INTEGRATION_AUTHORIZATION_REQUIRED`.**
+**Classification: `A0_SUPPORTS_EXISTING_ARCHITECTURE`.** 0 provider calls, 0 database operations, 0
+runtime source changes, 0 governed records modified. 43 checks, 0 failures. Evidence:
+`verification/expert-hazlenz-settlement-stage-a0-2026-09-05/` (eight artifacts).
+
+**A0 partially overturned §180's recommendation — which is what it was built to be able to do.**
+
+### The §180 findings, re-derived rather than trusted
+
+| finding | verdict |
+|---|---|
+| F1 only `ADMITTED_BINDING` is minted | **PARTIALLY_CONFIRMED** — see the correction below |
+| F2 the challenge channel has no consumer | **CONFIRMED** |
+| F3 no structured evidence-property declaration | **CONFIRMED** |
+| F4 the §179 rows ran outside the ledger | **CONFIRMED** |
+
+**The F1 correction matters.** §180 called `SETTLED_BY_EVIDENCE` *unreachable*. It is not. `transition()`
+is exported and generic: A0 called it directly, reached the state, and confirmed it refuses any other
+authority for that status. The transition is **already exercised and proven in development suites**.
+
+> The accurate statement is that **the state machine is complete and tested; what does not exist is a
+> runtime caller.** Against the authorization's four options that is *blocked pending a missing
+> producer and consumer* — not accidentally unreachable, and not intentionally sealed. A sealed state
+> would need a redesign. An un-invoked one needs a caller.
+
+### HR-04 can be represented today, with no new field
+
+Two `factKey`s — `owed:guarding:guard_presence` and
+`owed:guarding:current_securement_of_fixed_guard` — plus `acceptableEvidence.requirement` as the
+settlement target. Settling the **presence** fact leaves the **securement** fact `UNRESOLVED`
+(check 1.4). `factsRemoved` empty, `preservationViolations` none.
+
+**Presence cannot structurally erase securement, because they are different facts.** No
+`requiredProperty`, no `propertyType`, no enum; the status set is still four members.
+
+The uncomfortable part is honest: the governed target HR-04's fact would carry, derived from
+`app-mg-01`, offers **`physical_inspection`** as its example of sufficient evidence — the class §169
+ruled insufficient. A reviewer should judge it insufficient, and the architecture's correct response
+is to leave the fact `UNRESOLVED`, which it does. The replay stopped there and recorded
+`SEMANTIC_JUDGMENT_REQUIRED`.
+
+### The displaced-fact controls work — and were not running
+
+Replayed with the **actual** §179 content. The drying-fan question was admitted as its own fact beside
+the settled auger fact, replacing nothing. The dust question, offered as a *binding* to the settled
+flame-failure fact, was **refused** `BOUND_FACT_NOT_UNRESOLVED`. Substitution is unrepresentable;
+inheritance is impossible; a non-verbatim nomination is refused; and a genuinely new hazard is still
+admitted on its own proof burden.
+
+This is representational and structural. It is **not** evidence that a model would stop producing
+displaced questions — volume belongs to the question budget, never to the admission burden (§180 R8).
+
+### What A0 changes about what to build first
+
+The claim a model would make — *"the observation already settles it"* — **can already be expressed
+today**, through `CHALLENGE_FACT_VALIDITY` with a free-text `challengeReason`. A reviewer could
+already compare that reason against `acceptableEvidence.requirement`. **Nothing reads it.**
+
+So the binding constraint is that nothing *consumes* the claim, not that the claim cannot be
+*expressed*. §180 recommended building the structured declaration; A0's evidence says integrate what
+exists first, then design the declaration from real challenge reasons rather than from a field shape
+guessed in advance. **The declaration's merit is unchanged; its priority moved.**
+
+### The alignment audit — read-only, 20 records, 28 questions
+
+`ALIGNMENT_CLEAR` **21** · `QUESTION_STRONGER_THAN_METHOD` **4** · `METHOD_STRONGER_THAN_QUESTION` 1
+· `AMBIGUOUS` 2 · `NO_VERIFICATION_METHOD` 0.
+
+The four misalignments: `app-mg-01` *"Is the guard functional?"*, `rec-msha-30-56-12` *"Is equipment
+properly grounded?"*, `app-haul-01` *"Can persons contact moving parts?"*, `app-ppe-02` *"Is
+appropriate PPE provided?"* — each against a looking-based method.
+
+> **No functional-test verification method exists anywhere in the registry.** Nine distinct methods:
+> five observational, two desk-based, two instrumented or procedural. The
+> protective-response-question-vs-functional-test pattern does not appear because **neither side of
+> it exists.** The one property HR-04 turns on is the one the registry cannot express.
+
+§180's characterisations of `app-mg-01`, `app-loto-01` and `app-fire-01` are all **confirmed**. §171's
+"seven of nine looking-based" holds if `audit` and `design_review` are grouped with looking; the
+grouping is now stated rather than assumed. Two findings surfaced on a different axis:
+`app-elec-01` and `app-fire-01` each ask a question that does not address their own `requiredFacts`
+— which matters because the derived requirement sentence is built *from* `requiredFacts`.
+
+**No automated semantic scorer was built.** Every classification is an engineering judgement in a
+named table; the code looks pairs up and counts, and reports `UNCLASSIFIED` for anything the table
+does not cover. Provenance: `AI_PERFORMED_DEVELOPMENT_AUDIT = true`, `HUMAN_ADJUDICATED = false`.
+
+### Architecture and knowledge, kept apart
+
+**Architecture: adequate in representation and structural control, unintegrated.**
+**Knowledge: weak in a narrow, now-quantified way.**
+
+Neither excuses the other. HR-04 did not fail because of the registry — it failed on the first-pass
+path, where no governed criterion was ever consulted. And a fully wired architecture would still find
+no criterion capable of settling a protective-function property. Alignment stays **parallel**
+remediation, now sized.
+
+### Claim boundary
+
+Established: representational and structural capability, the un-invoked settlement state, the dead
+arbitration channel, the missing functional-test method. **Not established: that HR-04 is
+behaviourally fixed, that displaced-fact leakage is fixed, that semantic sufficiency is automated, or
+any readiness or acceptance claim.** No model ran.
+
+---
+
+---
+
+## §182 — EXISTING SETTLEMENT ARCHITECTURE INTEGRATED, INACTIVE (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_EXISTING_SETTLEMENT_INTEGRATION_COMPLETE —
+BOUNDED_INACTIVE_SETTLEMENT_BEHAVIOR_VALIDATION_AUTHORIZATION_REQUIRED`.**
+**Classification: `EXISTING_SETTLEMENT_INTEGRATION_COMPLETE`.** 48 checks, 0 failures, `tsc` clean.
+0 provider calls, 0 database operations, 0 governed records modified. Evidence:
+`verification/expert-hazlenz-existing-settlement-integration-2026-09-05/` (nine artifacts).
+
+The two §181 absences are closed. **`RUNTIME_SETTLEMENT_AUTHORITY_PRODUCER_PRESENT`** and
+**`CHALLENGE_FACT_VALIDITY_CONSUMER_PRESENT`** both move FALSE → TRUE.
+
+### One new file, nothing else touched
+
+`owed-facts/settlement-review.ts`. **No existing source file was modified** — proofs assert
+`expert-prompt.ts`, `owed-fact.types.ts` and `owed-fact-binding.ts` are byte-identical to their §181
+values. No new owed-fact field, no new provider declaration field, no new status. The STOP condition
+for active-contract changes was never reached.
+
+### The authority boundary, made structural
+
+```
+provider claim -> reviewable record -> HUMAN decision -> authority -> transition -> SETTLED_BY_EVIDENCE
+                                       ^^^^^^^^^^^^^^
+                               a provider cannot produce this
+```
+
+**`PROVIDER_SETTLEMENT_AUTHORITY = NEVER`.** The authority carries a **real module-private symbol**
+brand, not a type-only one — so an object satisfying the interface cannot be constructed outside the
+module, and a forged authority is an impossible value rather than a type error a cast could silence.
+(The first draft used a type-only brand and failed at runtime with
+`SETTLEMENT_AUTHORITY_BRAND is not defined`, which was the right failure.)
+
+Seven independent refusal codes; a provider claim fails two of them before any other check matters.
+All five refused provenances — `PROVIDER_DECLARATION`, `MODEL_ADJUDICATION`,
+`HISTORICAL_EVALUATION_LABEL`, `AUTOMATED_MATCHER`, `DERIVED_HEURISTIC` — are driven in P2. Two of
+those are programme scars, not hypotheticals: the first is the §162/§169 disposition that must never
+re-enter the loop it judges, the second is the scorer §160/§161 retired.
+
+Scope is `SINGLE_FACT_SINGLE_CLAIM_SINGLE_USE`, with **`impliesFutureSufficiency` typed as the
+literal `false`** — an approval says this evidence settled this fact this once, and nothing about the
+next identical-looking evidence.
+
+### Decisions, and the deliberate absence of a degree
+
+`APPROVE_SETTLEMENT` · `REJECT_SETTLEMENT` · `LEAVE_UNRESOLVED`. Exactly one mints anything. No
+`PARTIAL_MATCH_PERCENT`, no confidence, no score. A reviewer who is unsure returns
+`LEAVE_UNRESOLVED` — the same outcome as doing nothing, and **the right answer whenever the governed
+criterion cannot settle the property**, which §181 showed will be common. A blank rationale or
+missing reviewer identity fails closed: an approval without a rationale is not a review.
+
+### Replay protection — two digests and no more
+
+`claimId` over (contract version, analysisId, factKey, reason); `evidenceDigest` over the reason
+alone, so **an approval cannot be replayed against edited evidence**. No revision subsystem was
+invented: application compares against `factStatusAtClaim`, and the pre-existing `transition()`
+independently throws on a terminal status. `appliedClaimIds` is carried **by the caller**, so replay
+protection is explicit at the call site rather than hidden global memory. Every case in the
+authorization's staleness list is proven.
+
+### HR-04, both branches
+
+| | |
+|---|---|
+| initial | securement `UNRESOLVED`, presence `UNRESOLVED` |
+| after consumption | still `UNRESOLVED`, `AWAITING_HUMAN_REVIEW`, `ledgerUnchanged: true` |
+| **Branch A — reject** | no authority; securement stays `UNRESOLVED` |
+| **Branch B — approve** | `SETTLED_BY_EVIDENCE` via `ADMISSIBLE_EVIDENCE`; **presence sibling untouched** |
+
+**Branch B is an architecture proof and nothing more.** It does not claim a human ought to approve
+HR-04. The frozen truth remains **REQUIRED**, and the only governed criterion available for that fact
+offers `physical_inspection` — which a reviewer should judge incapable of settling securement.
+
+### The reviewer is told what the criterion is *not*
+
+Every claim carries `acceptableEvidenceAbsent` so null is visible as null, and a fixed
+`settlementGuidanceCaveat` recording that the criterion states what the governed record recognises as
+verification and **not** that it settles this property — naming the §181 finding that the registry
+has no functional-test method. Coarse guidance is preserved **verbatim**: `physical_inspection` is
+shown as the example even for a securement fact, because that is what the record says. The code never
+upgrades, paraphrases or supplements it.
+
+`GOVERNED_FUNCTIONAL_TEST_METHOD_PRESENT = false` and
+`EVIDENCE_QUESTION_METHOD_ALIGNMENT_GAPS_PRESENT = true` are exported constants, so the §181 finding
+travels with the mechanism that depends on it and appears on every observability record.
+
+### Two residuals, reported rather than hidden
+
+**R1 — `transition()` remains directly callable in-process with `'ADMISSIBLE_EVIDENCE'`.**
+Pre-existing and unchanged. Closing it means unexporting `transition()` and rerouting every caller —
+a change to an existing contract the §170/§181 suites depend on, so it stops here and is reported.
+The safety property still holds and is proven: **no provider input can reach that call.**
+
+**R2 — the §181 A0 check F1.b was re-anchored.** It asserted *"src/ mints ADMISSIBLE_EVIDENCE
+nowhere"*, true of the pre-§182 tree. It now asserts *"only from the §182 authorized producer"* —
+**stricter, not weaker**: the property was never *zero*, it was *no unauthorized producer*. Same class
+of move as §178's version-ceiling re-anchor, recorded the same way.
+
+### Claim boundary
+
+Permitted and proven: *the existing inactive settlement architecture now contains a human-authorized
+path capable of transitioning a bound owed fact to `SETTLED_BY_EVIDENCE`, while provider claims alone
+cannot do so.* **Not permitted: HR-04 fixed, HR-05 fixed, HR-07 fixed, behavioural improvement,
+automated semantic sufficiency, customer or production readiness, formal acceptance.** No model ran.
+
+### Next
+
+`BOUNDED_INACTIVE_SETTLEMENT_BEHAVIOR_VALIDATION` — test whether real challenge reasons are good
+enough for a reviewer to decide on. **It should not authorize a new provider declaration schema**;
+only if real reasons prove insufficient should that move forward. And the reviewer surface is where
+this most plausibly goes wrong (§180 R4), so any validation should record how long review took and
+how often the criterion was judged incapable — not only the outcomes.
+
+---
+
+---
+
+## §183 — SETTLEMENT BEHAVIOR VALIDATION: STOPPED BEFORE SPEND (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_SETTLEMENT_BEHAVIOR_VALIDATION_INCONCLUSIVE —
+EVIDENCE_OR_EXECUTION_REVIEW_REQUIRED`.** **0 provider calls, $0.00, 0 database operations, 0 source
+changes.** Evidence: `verification/expert-hazlenz-settlement-behavior-validation-2026-09-05/`.
+
+Stopped under the authorization's own instruction: *"If the complete ten-row cohort cannot be made
+valid without changing the instrument materially: STOP before spend and report."* It cannot.
+
+### The blocker
+
+The §182 settlement path takes **owed facts**. A valid `OwedFact` needs `whyUnresolved`, both
+branches and the decision divergence. None of that exists in the frozen instrument:
+
+- **§174 frozen truth carries `MATERIAL_UNRESOLVED_FACTS = null` on 10 of 10 rows**, every narrative
+  field null and annotated *"not supplied by the product owner; not inferred"*. The rows are
+  authoritative for **whether** a clarification is required, never for **what fact is owed**.
+- **§173's `PAIR-MAP`** has `TARGET_FACTKEY` and `TARGET_DECISION`, but is headed `AUTHORING-SIDE
+  ONLY` with `intendedRoleIsNotTruth`, and lacks all four narrative fields anyway.
+- **§181's A0 fixtures** are complete — and were authored by this model, reviewed by nobody.
+
+This is the wall §175 first hit and recorded verbatim. It has now blocked scoring at §175, §177,
+§179 and here.
+
+### Why that is fatal rather than inconvenient
+
+HR-04 is the primary target: does the model false-settle **securement** on **presence** evidence? To
+construct the owed fact at all, someone must write `whyUnresolved`. The natural wording — §181's own —
+reads *"whether the fixed guard is presently secured … is not stated; the observation states the guard
+is in position and that its fastenings were verified at a past occasion."*
+
+**That sentence states the distinction under test.** It hands the model, in the stimulus, the exact
+discrimination §178 spent forty prompt lines trying to teach and §179 measured it failing to make. A
+pass would measure my own authoring.
+
+The disciplined alternative — derive the framing from `app-mg-01` — gives `guarding_status` with
+"Is the guard present? / Is the guard functional?" and `physical_inspection`. That **cannot express
+the property at all**, so nothing could be measured. This is §181's
+`GOVERNED_FUNCTIONAL_TEST_METHOD_PRESENT = FALSE` arriving at *construction* time rather than at
+review time.
+
+There is no third wording: specific enough to be a real owed fact means naming the unresolved
+property, and naming it is the answer.
+
+**And the programme already measured this confound.** §167's claims-register entry records that its
+12/12 result could not be attributed because the manipulation bundled *"a substantially richer
+statement of the owed fact"*. §183 would repeat it with the discrimination itself inside the stimulus.
+
+### What authoritative material does exist
+
+Exactly two rows — **HS-A1** and **HS-E1** — carry human-authoritative owed-fact targets from §162,
+reviewed at §169. Both are REQUIRED-shaped. There are **zero** human-authoritative rows carrying a
+*settled* owed fact, so containment (the HR-05/HR-07 shapes) and settled positive controls have no
+authoritative material at all.
+
+### Five options, none taken
+
+`COHORT-OPTIONS.json`. In brief: **(1) the product owner supplies the owed facts** and §183 re-runs as
+written — recommended, because the missing content has blocked four sections and is reusable;
+**(2) a six-call HS-A1/HS-E1 cohort** — real human targets, answers the declaration-field question,
+cannot touch HR-04; **(3) governed-derived coarse facts** — zero authoring, different question;
+**(4) governed alignment remediation first** — the authorization's own decision rule points here, since
+the dominant blocker is that the criterion is incapable; **(5) run the reviewability half knowingly**,
+with criteria 6–8 recorded VOID BY CONSTRUCTION.
+
+Option 5 is legitimate and is the owner's call — spending $1.50 and up to 30 packets of review labour
+on an instrument whose primary target is void by construction is a decision to take deliberately, not
+one to reach by proceeding quietly.
+
+### What this establishes
+
+**Nothing about behaviour.** No provider ran. No claim may be made about whether the settlement
+architecture behaves correctly, whether challenge reasons are reviewable, or how HR-04, HR-05 or HR-07
+behave under the structured path. §182's structural findings are neither confirmed nor disturbed.
+
+One thing *is* established, and it is about the instrument rather than the system: **the frozen
+ten-row instrument cannot supply owed facts, and constructing them for HR-04 requires authoring the
+discrimination under test.**
+
+---
+
+---
+
+## §184 — OWED-FACT TRUTH CANDIDATES PREPARED, AWAITING ADJUDICATION (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_OWED_FACT_TRUTH_PACKET_READY — PRODUCT_OWNER_ADJUDICATION_REQUIRED`.**
+0 provider calls, 0 database operations, 0 source/prompt/schema/governed-record changes, frozen row
+text and §174 truth byte-unchanged. Ten rows prepared, none blocked, 13/13 quality checks pass.
+Evidence: `verification/expert-hazlenz-owed-fact-truth-2026-09-05/`.
+
+**`OWED_FACT_TRUTH_CONSTRUCTION = AWAITING_PRODUCT_OWNER_REVIEW`. Nothing here is truth**, every
+`productOwnerVerdict` is null, and this model filled none.
+
+### How the §183 stop was resolved
+
+§183 stopped because constructing HR-04's owed fact appeared to require writing the discrimination
+under test. The product owner's layer separation resolves it, and the distinction is right: the §182
+architecture **requires** an explicit owed fact, so naming the owed property is not contamination —
+embedding the *argument* would be. §183's caution was about the argument-embedding wording; that
+argument now lives in a withheld layer.
+
+### The pair structure does the work
+
+The instrument is five matched pairs, and **both members of a pair turn on the same owed fact** — one
+observation establishes it, the other leaves it open. A `factStatement` leaning toward either answer
+would read as wrong for its own pair partner, so the pairing **forces** neutrality.
+
+HR-04 and HR-10 share one sentence:
+
+> *Whether the fixed guard over the head drum nip point is currently secured sufficiently for safe
+> operation.*
+
+It says nothing about presence and nothing about the annual torque check. It has to serve HR-10, where
+the fitter torque-checked all six fastenings this morning and recorded them tight. **Reading each
+pair's statement twice, once against each member, is the single most useful review check** — if it
+fits one and strains against the other, it is contaminated.
+
+| pair | owed fact | settled by | unresolved in |
+|---|---|---|---|
+| 1 | rotor guard interlock protective function verified | HR-02 | HR-06 |
+| 2 | fixed guard fastenings currently secure | HR-10 | **HR-04** |
+| 3 | burner flame-failure safeguard function verified | HR-07 | HR-01 |
+| 4 | auger drive isolation verified before work | HR-05 | HR-08 |
+| 5 | stored hydraulic energy dissipated before line break | HR-03 | HR-09 |
+
+### Three layers, kept apart
+
+**A — the owed fact** (`factStatement`, branches, decision divergence, `evidenceSpan`,
+`whyUnresolved`): may be projected. **B — evaluation truth** (`evaluationRationale`, expected
+disposition, settled/unresolved label, verdicts): never projected — on HR-04 this is literally the
+sentence §183 identified as the answer key. **C — the projection**: the eight fields the existing
+architecture already sends. **§184 adds no provider field.**
+
+### Two findings the owner needs before re-authorizing §183
+
+**`SETTLED_FIXTURE_TYPE_MISMATCH = TRUE`.** `owedFactDefects()` requires a non-blank `whyUnresolved`
+regardless of `status`, and `projectOwedFact` sends that field to the provider. For the five SILENCE
+rows any such sentence would be **false** — and would actively mislead the model on exactly the rows
+that exist as settled controls. Three handling options are set out, with the narrowest honest one
+(allow `whyUnresolved: null` when status is not `UNRESOLVED`) provisionally recommended. **No option
+taken, no schema redesigned.** Until it is decided, a future §183 can run the five REQUIRED rows
+faithfully and cannot express the five SILENCE rows — the containment half.
+
+**Governed evidence per fact, as metadata only:** `ADEQUATE` for both energy pairs (`app-loto-01`
+offers `zero_energy_verification`), `COARSE` for the guard-fastening pair, `INCAPABLE_FOR_TARGET` for
+the interlock-function pair, and `ABSENT` for the flame-failure pair — no approved record covers
+burner flame-failure safeguards, and §171 refused to derive from `app-fire-01` because that would
+manufacture a criterion. **This does not determine owed-fact truth:** HR-04 has a perfectly
+constructible owed fact even though the governed vocabulary cannot express securement proof. That is
+precisely why the layers are separate.
+
+### Provenance, and what was deliberately not read
+
+`AI_ASSISTED_OWED_FACT_AUTHORING = TRUE`, `PRODUCT_OWNER_REVIEWED = FALSE`,
+`FULLY_INDEPENDENT_HUMAN_AUTHORING = FALSE`. Never to be described as independent human truth.
+
+No §175, §177 or §179 provider output was read by the generator, and the §181 A0 fixture wording was
+**not** copied — the pair-shared statements were written fresh, specifically so HR-04 would not
+inherit the A0 phrasing that stated the discrimination.
+
+**The claims register and the truth-authority document were deliberately not updated.** No claim
+exists to register, and no truth exists to record, until verdicts are returned.
+
+---
+
+---
+
+
+### §184 recorded — product-owner owed-fact truth (supersedes the candidate-packet status above)
+
+**Recorded 2026-09-05.** The product owner returned verdicts on all ten rows of the frozen balanced
+clarification instrument. Every row is `EDIT`: the owner rewrote `targetDecision`,
+`decisionIfEstablished` and `decisionIfNotEstablished` on all five pairs and approved every other
+substantive field as written — `factStatement`, `factKey`, the settled/unresolved classification,
+`whyUnresolved`, `evidenceSpan`, the evaluation-only rationale, `affectedDecision` and the governed
+evidence classification.
+
+This supersedes the line in the §184 candidate-packet section above recording
+`PRODUCT_OWNER_REVIEWED = FALSE`; that line describes the state before recording and is retained as
+history. Provenance is now `AI_ASSISTED_OWED_FACT_AUTHORING = TRUE`, `PRODUCT_OWNER_REVIEWED = TRUE`,
+`FULLY_INDEPENDENT_HUMAN_AUTHORING = FALSE`, truth class `PRODUCT_OWNER_REVIEWED_DEVELOPMENT_OWED_FACT_TRUTH`. The truth-authority document
+has been updated; **the claims register deliberately has not**, because no customer or product
+capability claim is established by this recording.
+
+**What the owner's edit changed, and why it matters.** The candidate branches asserted a permission
+over the machine — "the debarker may continue to run under the existing controls". One owed fact
+cannot support that: resolving it clears nothing else on the equipment. Every branch and target
+decision is now scoped to the fact itself — *"no additional control is required on account of
+uncertainty about X"*, *"whether uncertainty about X requires an additional control before Y
+continues"* — with branch B carrying an explicit obligation bounded by the same fact. Because
+`decisionDivergence.ifA/.ifB` sit inside the eight provider-visible projected fields, this is a
+change to what a future run will show a model, not only to how the truth reads.
+
+**23/23 quality checks pass against the recorded state** — the original 13 plus ten §184 recording
+checks covering settlement scope, pair semantics, branch and target-decision scope, the HR-04
+answer-key firewall and PAIR-4's isolated-and-proved-dead semantics. Three of those greens carry
+caveats recorded in the artifacts: check 20 passes as truth but is not expressible in the runtime
+type; check 21's firewall enforcement is declarative, with no runtime guard; check 22's residual is
+that HR-04's `evidenceSpan` verbatim-quotes the annual-service sentence.
+
+**What this does not unblock.** `SETTLED_FIXTURE_TYPE_MISMATCH` remains `TRUE` and unimplemented.
+`owedFactDefects()` requires a non-blank `whyUnresolved` regardless of status, and `projectOwedFact`
+sends that field to the provider, so the five SILENCE rows cannot enter a runtime fixture without a
+false sentence that would actively mislead the model on exactly the rows that exist as settled
+controls. The owner's settled direction is recorded and **not** implemented here:
+
+> `PRODUCT_OWNER_SETTLED_FIXTURE_DIRECTION = WHY_UNRESOLVED_NULL_WHEN_NOT_UNRESOLVED`
+> `IMPLEMENTATION_NOT_YET_AUTHORIZED = TRUE`
+> `status == UNRESOLVED` → `whyUnresolved` truthful and nonblank; `status != UNRESOLVED` → null.
+
+The next development action is ONE bounded local settled-fixture compatibility correction
+implementing that invariant, preserving provider semantics and proving no false uncertainty text is
+manufactured. Only after that gate passes is the full ten-row §183 hosted validation
+re-authorizable; §184 authorizes it for **neither** half on its own.
+
+**Claim boundary.** Established: the instrument now has product-owner-reviewed development
+owed-fact truth naming the decision-critical fact for each row, with AI-assisted authoring and
+review provenance preserved, and the ten rows now provide five matched settled/unresolved pairs for
+development evaluation. Not established, and not to be claimed: HazLenz behaviour improved,
+settlement behaviour validated, HR-04 fixed, §183 passed, customer readiness, production readiness,
+automated semantic sufficiency, formal acceptance, governed evidence adequacy.
+
+Evidence: `verification/expert-hazlenz-owed-fact-truth-2026-09-05/`. Zero provider calls, zero
+database operations, zero runtime/prompt/schema/governed-record changes. Not committed, not pushed,
+not deployed.
+
+---
+
+### §185 — settled owed facts are now representable (supersedes SETTLED_FIXTURE_TYPE_MISMATCH above)
+
+**2026-09-05.** `owedFactDefects()` required `whyUnresolved` to be non-blank regardless of `status`,
+so the five product-owner-reviewed SILENCE rows recorded at §184 could not enter a ledger at all
+without a sentence that would be false — and `projectOwedFact` puts that field in front of a
+provider, on exactly the rows that exist as settled controls. `SETTLED_FIXTURE_TYPE_MISMATCH` is now
+**FALSE**.
+
+Three files changed, all under `owed-facts/`. `whyUnresolved` became `string | null`; validation
+became status-sensitive and stayed strict in both directions, published as
+`WHY_UNRESOLVED_STATUS_INVARIANT`; and `ProjectedOwedFact.whyUnresolved` became nullable, projecting
+an explicit null exactly as `acceptableEvidence` already does. **Nullable is not optional:**
+`UNRESOLVED` with null or with a blank string is still refused, and any other status carrying any
+string — the empty string included — is refused too. No synthetic stand-in was written anywhere.
+
+The authorization named `SETTLED_BY_OBSERVATION` and `NOT_APPLICABLE`. Neither exists in this
+repository; the four statuses are `UNRESOLVED`, `COVERED`, `SETTLED_BY_EVIDENCE` and
+`REJECTED_BY_ARBITRATION`, and **no status was added**.
+
+**One behavioural change.** `transition()` now nulls `whyUnresolved` when a fact leaves `UNRESOLVED`,
+because otherwise the system would emit a state its own validator refuses. The sentence is preserved
+verbatim on the transition record as `whyUnresolvedAtTransition` rather than destroyed — the ledger
+is append-only precisely so a value that goes away leaves a record behind.
+
+**21/21 proofs pass,** including all 18 required. Ten-row fixture representable 10/10, false
+uncertainty text manufactured 0, pair semantics identical 5/5, §184 truth byte-identical, and the
+provider payload clean of all twelve withheld evaluation fields on all ten rows. The ten rows
+replay as **ten independent ledgers**, not one: pair members share a `factKey` by §184 design and a
+ledger deduplicates on exact identity, so a single ten-fact ledger is structurally wrong and was
+correctly refused.
+
+**Two things left open rather than closed.**
+
+First, `test-settlement-review-integration-2026-09-05.ts` assertion **P20c** now fails. It pins
+`owed-fact.types.ts` to its pre-§185 hash and asserts "§182 is one NEW file; nothing existing
+changed" — a §182-scoped statement correctly detecting an authorized later change it predates. It
+was deliberately not touched: editing the pin would relax a protected gate to obtain a pass, and
+adding a §185 phase would modify §182 evidence. Product-owner direction is required.
+
+Second, and material for the planned hosted run: `projectOwedFactsForVerifier` filters to
+`unresolvedFacts()`, so a settled row's ledger projects **zero** facts. The five settled controls are
+representable and simultaneously **invisible to a provider** through the standard projection
+function. Anything §183 intends to measure as containment on those rows would be satisfied by the
+projection filter rather than by model behaviour. That should be settled before a cohort is spent.
+Measured alongside it: `factStatement` and `targetDecision` are **not** projected, which answers the
+§184 open question by measurement; the firewall still does not classify them, and §185 did not
+change that.
+
+**Established:** the inactive owed-fact architecture can represent both product-owner-reviewed
+unresolved and settled facts without manufacturing false `whyUnresolved` text, and the full ten-row
+§184 cohort is structurally representable. **Not established:** §183 passed, HazLenz behaviour
+improved, HR-04 fixed, settlement quality or reviewability validated, governed evidence sufficient,
+customer or production readiness, formal acceptance. No provider ran; nothing here measures
+behaviour.
+
+Evidence: `verification/expert-hazlenz-settled-fixture-compatibility-2026-09-05/`. Zero provider
+calls, zero database operations. Not committed, not pushed, not deployed.
+
+---
+
+## §187A / §187B — REQUIRED STRUCTURED VERIFIER VALIDATION (2026-09-05)
+
+**Terminal: `EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_BEHAVIOR_FAILED —
+REMEDIATION_REVIEW_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-required-structured-verifier-validation-2026-09-05/`.
+
+**VERIFIER-v3 IS NOT VALIDATED.** One hard gate failed mechanically; the gate carrying the
+behavioural claim is unmeasured. No customer activation, no production change, no acceptance.
+
+### §187A — infrastructure-invalid first attempt
+
+Five REQUIRED rows (HR-01, HR-04, HR-06, HR-08, HR-09), one product-owner-reviewed unresolved owed
+fact each, three verifier replicates per row against one frozen first-pass stimulus.
+
+Five first-pass Expert executions completed and normalized VALID. **All fifteen verifier calls were
+rejected HTTP 400 — "credit balance too low" — before any inference, consuming zero tokens.**
+Classified `EXECUTION_INVALID_FOR_BEHAVIORAL_CONCLUSION_DUE_TO_PROVIDER_CREDIT_FAILURE`. The fifteen
+rejections are **attempt history and count as zero behavioural replicates**.
+`FIRST_PASS_STIMULUS_CONFOUND = MINOR` was classified *before* any verifier spend and has never been
+reclassified.
+
+### §187B — 15/15 behavioural execution
+
+Resumed against byte-identical frozen stimuli after **12/12 pre-resume integrity checks passed**: no
+first-pass regeneration, no treatment mutation, prompt/model/schema/preregistration/execution order
+all unchanged. **15/15 behavioural executions, 0 provider errors, $0.27927.** Cumulative actual
+§187A+§187B spend **$0.54182**.
+
+**A harness defect was found and corrected without re-spending.** The resume harness passed the
+provider tool payload to `checkVerifierV3Output` without the HazLenz-owned envelope fields
+`verifierContractVersion` and `analysisId`, which `VERIFIER_V3_RESPONSE_SCHEMA` deliberately never
+asks the model to emit and which the §167 reference executor injects. Admission is a pure function
+over persisted raw output, so it was recomputed with **zero** provider calls:
+
+```
+original (erroneous)    0 admitted / 15 refused      ← harness scoring artifact, never a model result
+corrected              13 admitted /  2 refused
+```
+
+Both are preserved; `RESUME-RUN-SUMMARY.json` and the JSONL were not overwritten.
+
+### Results
+
+| gate | observed | verdict |
+|---|---|---|
+| provider errors = 0 | 0 | PASS |
+| contract-invalid = 0 | **2** | **FAIL** |
+| wrong factKey bindings = 0 | **0** | PASS |
+| unauthorized settlement = 0 | 0 | PASS |
+| `PROVIDER_SETTLEMENT_AUTHORITY = NEVER` | NEVER | PASS |
+| adjacent-fact substitution = 0 | — | PENDING |
+
+`HR-08` #2 and `HR-01` #3 declared `BOUND_BY_CLARIFICATION` with a `bindingFactKey` under verdict
+`VERIFIED_AS_IS` and no `proposedClarification` — a genuine output-state violation, refused **whole**,
+settling and removing nothing. **Both named the correct supplied key**, so
+`VERIFIER_RESPONSE_CONTRACT_VALID = FALSE` and `TARGET_SELECTION_WRONG = FALSE` are recorded
+separately and must never be collapsed into one metric.
+
+Mechanical distribution: `proposedClarification` **0/15**; verdicts 12 × `VERIFIED_AS_IS`, 3 ×
+`NO_CLARIFICATION_REQUIRED` (all HR-04); declarations `STILL_UNRESOLVED` 12, `BOUND_BY_CLARIFICATION`
+2, `CHALLENGE_FACT_VALIDITY` 1; nominations 0/15. **Semantic correctness must not be inferred from
+these labels.** The strict semantic gate (`>= 12/15`) was `PENDING_HUMAN_ADJUDICATION` at §187B close
+and was not decided by any model.
+
+---
+
+## §188 — REQUIRED STRUCTURED VERIFIER REMEDIATION REVIEW (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_ADJUDICATION_INCONCLUSIVE —
+EVIDENCE_REVIEW_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-required-structured-verifier-remediation-review-2026-09-06/`.
+
+0 provider calls · 0 database operations · 0 product-runtime, prompt, schema or verifier-contract
+changes · source-integrity gate **PASS 12/12** · not committed, pushed, tagged or deployed.
+
+**The §187B terminal is not modified** — it stands as issued.
+
+### Why inconclusive
+
+The frozen §187A preregistration assigns every strict semantic axis to human judgement and states
+**"This model does not decide them."** The §187B packet repeats that this model "did not supply a
+verdict on any of the ten axes **and must not.**" The adjudication cannot be completed reproducibly
+from the frozen instrument alone, because the instrument demands an input it forbids this model to
+supply. The other two §188 terminals are both conditioned on the adjudication having been performed.
+
+`STRICT-SEMANTIC-GATE.json` records `RESULT: UNMEASURED`, `FORMAL_ADJUDICATION_PENDING`,
+`isThisAFailure: false`, `isThisAPass: false`. **112 verdict slots stand null.** A neutral ledger
+(`HUMAN-ADJUDICATION.json`) and a scorer that refuses while any slot is null
+(`score-188-strict-semantic-gate-2026-09-06.ts`, reading every threshold from the frozen
+preregistration at scoring time) are the deliverable.
+
+### Denominator treatment, applied literally
+
+`REJECTED_IS_NOT_SILENCE` governs the **numerator** — a refused observation is "never scored as
+behaviour" — and nowhere excludes it from the denominator, which the gate writes literally as `/15`.
+So both refused executions stay in: **maximum attainable 13/15 against `>= 12/15`, headroom 1**, and
+HR-01 and HR-08 each ceiling at 2/3 against a `>= 2/3` floor — **zero slack on those two rows**.
+
+### Contract-failure root cause
+
+`VERIFIER_V3_RESPONSE_SCHEMA` is a flat object containing **no** `if`/`then`/`oneOf`/`anyOf`/`allOf`/
+`not`/`dependentRequired` (verified mechanically), so every illegal combination is schema-valid. Three
+field descriptions actively license the refused output: `bindingFactKey` says "the supplied
+unresolved fact **this question** answers" — agent-neutral and verdict-independent;
+`clarificationSourceMode` **contradicts itself** ("null otherwise" vs "must agree with which of
+`bindingFactKey` and `nominatedFact` are present") the moment a binding appears under a non-`ADD`
+verdict, and both models resolved it toward the second sentence; `declaration` carries **no
+description at all**, so the enum token arrives stripped of the prompt's scoping.
+
+Underneath: the contract has **no declaration token meaning "the first pass's question already
+reaches this fact"** — precisely the conclusion instruction step 3 drives the model toward. 13/15
+recorded it as `STILL_UNRESOLVED`; 2/15 reached for `BOUND_BY_CLARIFICATION`. A missing vocabulary
+member, not a random failure.
+
+**Smallest recommended remediation: repair the three schema field descriptions, and nothing else.**
+Admission stays the sole guard — it worked, refusing whole and settling nothing. Explicitly *not*
+recommended now: JSON-Schema conditionals (provider enforcement unverified here), a fourth
+declaration member (needs its own authorization; must be typed `settles: false` if ever taken),
+normalizing the illegal state away (would destroy the evidence that a binding was asserted), and
+partial admission.
+
+### The 0/15 clarification rate is measured against the wrong denominator
+
+The verifier reviews a clarification set. On HR-01, HR-06, HR-08 and HR-09 the first pass **had
+already asked a question targeting the owed fact**; on HR-04 it **asked nothing**.
+
+```
+PROPOSED_CLARIFICATIONS_EMITTED                            = 0 / 15
+A PROPOSAL WAS UNCONDITIONALLY AVAILABLE                   = 3 / 15   (HR-04 only)
+PROPOSALS ON THOSE                                         = 0 / 3
+ZERO IS CORRECT IFF THE EXISTING QUESTION SUFFICES         = 12 / 15  (PENDING)
+```
+
+Eliminated deterministically: `acceptableEvidence` was **never transmitted** (`V3SuppliedOwedFact`
+has no such field), so it cannot have been read loosely; the prompt's "the answer is usually no"
+prior is scoped to **nomination**, not to the clarification decision. The instruction is *not* loose
+on sufficiency — step 3 demands an answer that "would settle the fact that changes the decision".
+The prompt supplies three named heuristics, two exclusionary and one inclusionary, and the rationales
+track them exactly: the twelve deferrals invoke the inclusionary one by name; all three HR-04
+declinations invoke the exclusionary pair, and replicate 3 explicitly declines the inclusionary one
+because "the guard is directly observed present and in position". **Outcome row-specific; mechanism
+general.** No prompt wording is proposed — that requires the adjudication.
+
+### HR-04
+
+Three × `NO_CLARIFICATION_REQUIRED` — which per step 5 affirmatively asserts the fact is genuinely
+unresolved *and* that answering it changes nothing. One challenge, whose warrant runs *(guard in
+position) + (no tools on it) ⟹ (guard is performing its function)* while the owed property is the
+**current securement of the fastenings**. Four of five cited evidence items are about other
+properties; the fifth establishes an interval, not a current state.
+
+Mechanically determined, needing no adjudication: **provider output alone left the fact unresolved
+3/3 — PASS.** No binding, no settlement, ledger unmoved. The record is *mechanically preserving and
+rhetorically resolving*, consistent with **both category B and category C** — which is exactly why
+the frozen instrument routes it to a human. The A/B/C/D classification was **not** made.
+
+### Challenge reviewability
+
+`CHALLENGE_REVIEWABILITY_OBSERVED = PENDING / 1`;
+`PREREGISTERED_THRESHOLD_EVALUATION = NOT_MEANINGFULLY_ESTIMABLE`. `NOT_EXERCISED` does not apply.
+The gate is not changed retroactively and will be computed literally once the verdict exists — but on
+n = 1 it can only return 0% or 100%, neither a population proportion. **Report `x/1`, never a
+percentage.**
+
+### §187A cost-accounting repair
+
+```
+reported as TOTAL_ACTUAL_COST_USD   $1.22255     ← conservative reservations, not money
+actually spent                      $0.26255
+difference                          $0.96000  =  15 × $0.064
+```
+
+One counter served both the budget guard and the spend report, so fifteen zero-token HTTP 400s were
+each charged the frozen worst case. The reservation was right; naming it actual spend was not.
+Repaired prospectively with a two-counter `ProviderSpendLedger` — actual spend is provider-returned
+usage only, reservations live in the guard and are never reported as money — with the guard's
+strength unchanged. **`RUN-SUMMARY.json` left unedited as run evidence**; the §187A run is not
+rewritten as though the defect never occurred. Regression: **26 assertions, 26 passed**, zero
+provider requests, reconstructing both $0.26255 and $1.22255 from the persisted evidence rather than
+from restated constants. No product runtime touched.
+
+**STANDING RULE: actual spend is provider-returned usage and nothing else. A synthetic worst-case
+charge is a reservation; it lives in the guard and is never reported as money.**
+
+### Claim boundary
+
+**Established.** Fifteen adjudicable behavioural executions; corrected admission 13/2; a mechanical
+contract gate failed for a now-diagnosed cause; the §187A cost figure corrected and
+regression-covered with the erroneous original preserved; product runtime, prompts, schemas and
+verifier contracts byte-unchanged.
+
+**Must not be claimed.** Verifier-v3 validated · semantic gate passed or failed · HR-04 solved or
+unsolved · adjacent-fact substitution absent · clarification policy sound or defective · challenge
+representation adequate · SILENCE improvement · full ten-row validation · customer readiness ·
+production readiness · formal acceptance.
+
+**Next:** human semantic adjudication of the 112 slots (no provider call), then run the scorer. Only
+then does the evidence exist to choose between the contract-remediation and semantic-remediation
+paths, and a bounded remediation authorization is required either way. **No rerun is authorized.**
+
+---
+
+## §189 / §190 — HUMAN ADJUDICATION STOPPED, MODEL SEMANTIC REVIEW PERFORMED (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_MODEL_REVIEW_SEMANTIC_DEFECTS_IDENTIFIED —
+BOUNDED_REMEDIATION_REVIEW_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-required-structured-verifier-human-adjudication-2026-09-06/` (§189
+partial) and `…-model-adjudication-2026-09-06/` (§190).
+
+0 provider calls · 0 database operations · 0 product-runtime, prompt, schema, verifier-contract or
+frozen-scorer changes · source-integrity **PASS 19/19** · not committed, pushed or deployed.
+
+### THREE GATES, THREE DIFFERENT STATES — do not merge them
+
+```
+MECHANICAL CONTRACT GATE          FAILED       (§187B, 2 contract-invalid executions)
+FROZEN HUMAN SEMANTIC GATE        UNMEASURED   (§189, 65/112 slots — NOT COMPLETED BY A HUMAN)
+MODEL SEMANTIC ADJUDICATION       9/15 FAIL    (§190, diagnostic only)
+```
+
+**Verifier-v3 is NOT validated.** The model review is diagnostic evidence for remediation scoping
+and is **not** a substitute for an independently human-adjudicated acceptance gate. A model result
+must never be reported as a human verdict.
+
+### §189 — human adjudication started and stopped
+
+The product owner adjudicated 65 of 112 slots across nine executions in frozen sequence order, then
+redirected to a model review. Those raw selections are preserved unedited in
+`RAW-HUMAN-ANSWERS.json`; six executions were never reached. `HUMAN_ADJUDICATION_COMPLETENESS =
+65 / 112`, so the frozen gate stays `UNMEASURED` and the §188 neutral ballot remains unanswered with
+all 112 verdict slots null.
+
+A standing process lesson came out of it: presenting a bare rubric label is not enough support for
+an adjudicator. Every axis now gets plain-English framing, the bearing spans quoted, what would
+justify each outcome, and what must not influence it — while the verdict itself stays untouched.
+
+### §190 — model semantic adjudication, 112/112 slots
+
+One standard, fixed before any result and applied to every row. **Sufficiency:** a clarification is
+sufficient when a truthful "yes", *as worded*, entails the owed property; insufficient when a
+truthful "yes" is obtainable while the owed property is false, because the question's grammar admits
+a **different act** or a **different property**. **Substitution:** present when the *operative*
+premise concerns a property other than the owed one, or rests on a fact the observation does not
+state. Every execution was judged before any total was computed.
+
+| gate | model result |
+|---|---|
+| strict semantic | **9/15** vs `>= 12/15` — **FAIL** |
+| per-row floors `>= 2/3` | HR-01 3/3, HR-06 3/3, HR-09 3/3 · **HR-04 0/3**, **HR-08 0/3** — **FAIL** |
+| adjacent-fact substitution `= 0` | **3** (all HR-04) — **FAIL** |
+| HR-04 categories | **C, C, C** (read independently; convergence, not assumption) |
+| challenge reviewability | **1/1**, `NOT_MEANINGFULLY_ESTIMABLE` at n=1 |
+
+**HR-04 — adjacent-property substitution, 3/3.** Presence stands in for securement; an inspection of
+*belt tracking and lubrication* stands in for verification of fastener securement; absence of tools
+is allowed to bear on securement; an annual torque check is allowed to speak to current state.
+Replicate 1 additionally states as observed fact a daily guard check the observation does not
+describe. Replicate 3 puts it plainest — guard-in-position is *"the operative fact for whether the
+guard is performing its function"* — and declines the unseen-control heuristic because the guard is
+visible. The mechanism generalises: the heuristic has no stated boundary for a **visible housing
+with an invisible property**.
+
+**HR-08 — conjunctive sufficiency, 3/3.** The owed fact requires **isolated AND proved dead**; the
+endorsed first-pass question asks whether the isolator was *"locked out (or otherwise verified
+de-energized)"*. The parenthetical is disjunctive, so a truthful "yes" is available on lockout
+alone — a different act, one conjunct of two. This is the cohort's most contestable finding; the
+OSHA-1910.147 counter-argument is recorded and answered in the evidence.
+
+**Two positive results worth keeping.** `188-HR-01-R3` is **contract-invalid and semantically
+sound** — the clearest proof the two dimensions are independent. And **settlement authority held on
+every row**: no fact's status moved anywhere, including all three HR-04 replicates where the
+reasoning was wrong. HR-04 R2 states the boundary unprompted — *"I am not entitled to mark it
+answered."* The containment layer absorbed a real reasoning defect. **Do not touch it.**
+
+**Sensitivity, disclosed after scoring.** If HR-08 were judged sufficient the aggregate becomes
+12/15 and clears the threshold — but HR-04 still fails its per-row floor 0/3 and substitution still
+stands at 3 against a gate of 0. **The cohort fails at least one frozen semantic gate under either
+reading.**
+
+**Model vs the 65 partial human answers:** 46 agree, 19 disagree, every disagreement on HR-04 or
+HR-08 — two arguments, not nineteen. Full agreement on every HR-01, HR-06 and HR-09 execution
+reached. No human answer was altered.
+
+### Remediation classification
+
+`STRUCTURAL_CONTRACT` **DEMONSTRATED** (mechanical) · `CLARIFICATION_EVIDENCE_SUFFICIENCY`
+**DEMONSTRATED** (model) · `ADJACENT_PROPERTY_SUBSTITUTION` **DEMONSTRATED** (model) ·
+`OWED_FACT_PRESERVATION` **DEMONSTRATED as a consequence** · `CLARIFICATION_POLICY` **INCONCLUSIVE**
+(only three unconditional proposal opportunities, all one row) · `CHALLENGE_POLICY` **INCONCLUSIVE**
+(n=1) · `FACTKEY_TARGETING` **NOT_DEMONSTRATED** · `SETTLEMENT_AUTHORITY` **NOT_DEMONSTRATED**.
+
+Separately: the insufficient HR-08 question was authored by the **first pass**, not the verifier.
+Two remediation targets sit behind one observation and are not interchangeable; only the
+verifier-side one is in scope.
+
+**Smallest justified remediation, smallest first:** (1) repair the three schema field descriptions —
+unchanged from §188, and the only item resting on mechanical evidence alone; (2) add a
+conjunct-by-conjunct sufficiency step to the verifier instruction; (3) bound the unseen-control
+heuristic so a visible component does not make an unobservable property of it a seen control. Items
+2 and 3 rest on **model** adjudication; if the human instrument is later completed and disagrees,
+their basis changes with it. All three move an identity hash, so they should be authorized as one
+bounded change with a re-baselined identity.
+
+**Not claimed:** verifier-v3 validated · a human semantic result · the frozen §189 gate measured ·
+HR-04 or HR-08 settled as a matter of record · any rate or population proportion · customer
+readiness · production readiness · formal acceptance.
+
+---
+
+## §191 — BOUNDED REQUIRED VERIFIER REMEDIATION (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_BOUNDED_REMEDIATION_COMPLETE —
+FRESH_PROSPECTIVE_VALIDATION_AUTHORIZATION_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-required-structured-verifier-bounded-remediation-2026-09-06/`.
+
+0 provider calls · 0 database operations · 0 production/runtime changes · **0 existing files
+modified** · proof suite **69/69 PASS** · source integrity **PASS 21/21** · not committed, pushed or
+deployed.
+
+### The four states, still distinct
+
+```
+MECHANICAL CONTRACT GATE     FAILED       (§187B — 2 contract-invalid executions)
+FROZEN HUMAN SEMANTIC GATE   UNMEASURED   (§189 — 65/112, not completed by a human)
+MODEL SEMANTIC ADJUDICATION  9/15 FAIL    (§190 — diagnostic only)
+§191 REMEDIATION             IMPLEMENTED  (development; NOT hosted-revalidated)
+```
+
+**Verifier-v3 remains DEVELOPMENT / NOT VALIDATED, and so does v3.1.**
+`PROVIDER_SETTLEMENT_AUTHORITY = NEVER`, unchanged. Historical terminals are immutable.
+
+### It ships as v3.1; v3 is byte-unchanged
+
+The authorization said to change "verifier-v3". It ships as **v3.1, a new prospective protocol**,
+because the fifteen §187B executions are attached to v3 at prompt sha `678160c9…` and schema sha
+`1bddc1a5…`, which the §187A preregistration pins and the §188 and §190 integrity gates assert. An
+in-place edit would have detached fifteen results from their protocol and falsified two evidence
+packages recording PASS. It is also the repo's own convention — v1 and v2 were left byte-unchanged
+for exactly this reason, and v3 now joins them.
+
+**v3 and v3.1 results are not one population and must never be combined into one score.**
+
+v3.1 is built **by construction** from v3: its prompt is v3's own line array with two blocks inserted
+at named anchors, its schema a structural clone with three descriptions replaced, and the module
+refuses to load against a drifted base. Hence the suite's strongest assertion — removing the two
+blocks reproduces v3 **byte-identically**, `678160c95bc7` both sides.
+
+```
+v3.1 prompt 7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+v3.1 schema d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+31 lines added · 0 removed · 0 modified · 3 descriptions repaired
+```
+
+### The three repairs, with their evidence class kept apart
+
+| # | repair | class | evidence | tests |
+|---|---|---|---|---|
+| 1 | three schema field descriptions | **MECHANICAL** | §188 | A (17) |
+| 2 | conjunctive sufficiency, step 3 | **MODEL_DIAGNOSTIC** | §190 HR-08 ×3 | B (10) |
+| 3 | adjacent-property boundary, step 2 | **MODEL_DIAGNOSTIC** | §190 HR-04 ×3 | C (11) |
+
+**1 — descriptions.** `bindingFactKey` was agent-neutral and verdict-independent ("*this question*"),
+so under `VERIFIED_AS_IS` it read as the first pass's question. `clarificationSourceMode`
+contradicted itself, and both refused outputs resolved the contradiction toward its second sentence.
+`declaration` had **no description at all**. All three repaired. This is also where §188's missing
+vocabulary member is closed **without adding one**: the `declaration` description now names
+`STILL_UNRESOLVED` as the token that records "the first pass already asked it".
+
+**2 — conjunctive sufficiency.** *When an owed fact contains multiple necessary conjuncts, a
+clarification is sufficient only if its answer would establish every one.* Plus: read a disjunctive
+question as satisfied by its **weakest branch**, and never let trade shorthand supply a conjunct the
+question does not ask about. Test **B.9** scans for fifteen cohort terms and finds none — the rule is
+general, not HR-08-shaped.
+
+**3 — adjacent-property boundary.** Attached as the **boundary on** the unseen-control heuristic,
+because HR-04 R3 declined that heuristic precisely because the guard was visible. Presence ≠
+securement · inspection occurred ≠ property verified · historical check ≠ current state · visible ≠
+protective function · related control ≠ separate source · no recorded anomaly ≠ property
+established. Implemented as reasoning at the owed-property/evidence level — **not** a keyword list;
+no code compares two strings for meaning.
+
+### Preservation, and what it does not prove
+
+§190 found HR-01, HR-06 and HR-09 at 3/3. The real risk was over-correction — a more conservative
+verifier replacing their already-sufficient questions. Section D asserts nine named passages
+byte-identical in both versions, including the unseen-control heuristic HR-06 turned on. Test **D.6**
+scans the inserted text against eight frequency-directive patterns and finds none, so
+`CLARIFICATION_POLICY` stays `INCONCLUSIVE` and the remediation does not quietly become a volume
+change.
+
+**But byte-preservation of context is not preservation of behaviour.** Whether v3.1 reasons better,
+and whether it over-triggers on the three good rows, is unmeasured. An instruction change is a change
+to a string; only a hosted cohort settles what it does.
+
+### Deliberately not done
+
+No fourth declaration member (needs its own authorization) · no JSON-Schema conditionals (provider
+enforcement unverified here) · **no change to the admission validator** — it is the fail-closed guard
+and it worked · no normalization of the illegal state · no partial admission · no settlement-authority
+change · no first-pass prompt change, though §190 found the insufficient HR-08 question was authored
+*there*, not by the verifier.
+
+### Next
+
+**Fresh prospective hosted validation of v3.1**, under its own authorization and preregistration.
+That authorization should settle two things §191 could not: whether the cohort creates enough
+unconditional clarification-proposal opportunities to move `CLARIFICATION_POLICY` off
+`INCONCLUSIVE`, and whether it includes the HR-01/HR-06/HR-09 shapes so over-triggering is measured
+rather than assumed absent.
+
+---
+
+## §192 — VERIFIER-v3.1 FRESH PROSPECTIVE HOSTED VALIDATION (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_1_PROSPECTIVE_VALIDATION_PASSED —
+HUMAN_ACCEPTANCE_OR_NEXT_INTEGRATION_GATE_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-verifier-v3-1-prospective-validation-2026-09-06/`.
+
+39/39 behavioural executions · **0 provider errors** · **$0.87129** against a $3.25 ceiling ·
+source integrity **PASS 21/21** · 0 existing runtime files modified · not committed, pushed or
+deployed.
+
+### TWO POPULATIONS — never merged
+
+```
+verifier-v3    §187B   15 executions   prompt 678160c9…   MECHANICAL GATE FAILED (2 contract-invalid)
+verifier-v3.1  §192    39 executions   prompt 7e73d175…   all gates pass (development, model-adjudicated)
+```
+
+**This is a MODEL-ADJUDICATED DEVELOPMENT result.** All ten semantic axes were classified
+`MODEL_DIAGNOSTIC` **before spend** and `HUMAN_REQUIRED` was recorded as **empty** — so the §189
+ambiguity cannot recur. **The frozen §189 human semantic gate remains `UNMEASURED` at 65/112, and
+verifier-v3.1 is NOT accepted.** A human acceptance gate is not part of §192.
+
+### Cohort
+
+13 fresh rows × 3 replicates. **Nothing reused from §187.** First-pass clarification sets were
+**authored, not generated** — this guarantees the behaviour families and removes the §187A stimulus
+confound, at the stated cost that §192 validates **the verifier in isolation, not the end-to-end
+pipeline**. 13 rows rather than 8–10, justified before spend by the coverage floors.
+
+### Mechanical hard gates — 6/6 PASS
+
+**Question A is answered: the §187B illegal state was eliminated, 0 in 39.** And not by avoidance —
+`BOUND_BY_CLARIFICATION` was emitted **21 times**, every one in the legal pairing with
+`ADD_OR_REPLACE_CLARIFICATION` and a real proposal. That is precisely what the description repair
+was written to disambiguate. Wrong factKey bindings 0 · unauthorized settlement 0 ·
+`PROVIDER_SETTLEMENT_AUTHORITY = NEVER` · in-run vs independent admission recompute disagreements 0.
+
+### Semantic development gates — 9/9 PASS
+
+| gate | observed | threshold |
+|---|---|---|
+| G1 owed-fact preserved | 33/33 | ≥ 31/33 |
+| G2 clarification target correct | 30/30 | ≥ 90% |
+| G3 clarification evidence sufficient | 30/30 | ≥ 90% |
+| G4 nearby-property substitution | **0** | = 0 |
+| G5 adjacent-fact contained | 39/39 | ≥ 37/39 |
+| G6 unnecessary clarification | 0/15 | ≤ 1/15 |
+| **G7 appropriate proposals on opportunities** | **15/18** | **≥ 15/18 — zero slack** |
+| G8 good-behaviour regression | 9/9 | ≥ 8/9 |
+| G9 conjunctive sufficiency | 6/6 | ≥ 5/6 |
+
+G10 challenge: **6/6 valid, 6/6 reviewable at n = 6** — up from n = 1, and `ESTIMABLE` against a
+floor of 5 that was preregistered and not moved.
+
+**Both §191 repairs are demonstrably operating.** Conjunctive: *"A locked-off drive does not
+de-tension a gravity take-up; that is a separate stored-energy source."* Adjacent-property, on the
+HR-04-analogous trap: *"the work rest being 'in place' (position) is visible, but its clearance value
+is not."*
+
+**Over-correction did not occur** — the risk §191 could not measure. 0 unnecessary proposals across
+all 15 executions where none was owed. The clearest evidence is FV-01, where the **new** conjunctive
+rule fired and was used to **confirm** the existing question rather than replace it: *"No weaker
+branch is offered — the question does not use 'or'."* A rule that only ever rejected would be
+indistinguishable from a bias; this shows the test returning both answers.
+
+**Clarification policy is no longer `INCONCLUSIVE` for this cohort.** 18 opportunities across 6
+owed-property families: 15 appropriate, 3 missed, **0 unnecessary**. Reported on the preregistered
+denominator, never as raw proposals/total (which was 21/39 and is not the policy result).
+
+### The one deviation — and the fixture is the likelier defect
+
+**FV-11, 3/3 `NO_CLARIFICATION_REQUIRED`.** The verifier argued that whether a two-year-old safety
+valve test suffices turns on the examination scheme's interval, which no supplied evidence
+establishes. **That argument has force.** I authored the row with an **in-date certificate covering
+the very examination in which the valve was tested**, and never stated the interval — so whether the
+fact is open depends on something the observation withholds. Contrast FV-07 and FV-10, where the
+cited inspection's stated scope **excluded** the owed property and the verifier refused it correctly.
+
+The fact was **preserved** (`STILL_UNRESOLVED` 3/3) — it declined to propose, it did not settle.
+**The denominator was not moved and the row was not excluded to rescue the gate**: G7 is reported as
+preregistered at 15/18, counting all three as misses. Exclusion would read 15/15 and is stated as
+sensitivity only. Correction is prospective.
+
+### Incidental finding, not scored
+
+FV-07 R1/R3 cite a regulatory figure in the rationale and embed it in the proposed question. The
+v3/v3.1 instruction says the verifier **may not "cite or quote a regulation"** and claims the whole
+verdict is discarded if it does — but the admission validator has no such check, so these were
+admitted. A gap between a stated prohibition and what is enforced. Not a preregistered axis; **no
+gate was invented after spend.** For a future authorization to settle.
+
+### Not claimed
+
+Verifier-v3.1 accepted · a human semantic result · the §189 gate measured · end-to-end pipeline
+behaviour · any population rate from 13 rows × 3 replicates · customer readiness · production
+readiness · formal acceptance.
+
+---
+
+## §193 — VERIFIER-v3.1 INTEGRATION-READINESS HARDENING (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_1_CITATION_CONTRACT_MISMATCH —
+REPRESENTATION_REVIEW_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-verifier-v3-1-integration-readiness-hardening-2026-09-06/`.
+
+0 provider calls · 0 database operations · deterministic tests **46/46** · source integrity **23/23**
+· **0 protocol changes** · not committed, pushed or deployed.
+
+### State carried forward unchanged
+
+```
+VERIFIER_V3                     historical development protocol   (§187B, prompt 678160c9…)
+VERIFIER_V3_1                   prospective development protocol  (§192, prompt 7e73d175…)
+§192 MODEL DEVELOPMENT VALIDATION   PASS — not human acceptance
+§189 HUMAN GATE                     UNMEASURED at 65/112
+verifier-v3.1                       DEVELOPMENT VALIDATED, NOT YET CUSTOMER ACCEPTED
+G7                                  15/18, zero slack — preserved, not upgraded
+FV-11                               preserved as observed; nothing excluded or reclassified
+```
+
+**End-to-end Expert HazLenz validation is NOT complete.**
+
+### Why the mismatch terminal rather than "complete"
+
+The NUL/audit half **is** complete. The citation half is not: the prohibition *as stated* cannot be
+deterministically enforced, and **the two outputs that motivated §193 remain admitted**. Claiming
+completion would misrepresent what the architecture delivers.
+
+### CITATION ENFORCEMENT — gap partly closed, residual escalated
+
+The instruction says the verifier may not *"cite or quote a regulation"* and that violating output is
+*"discarded"*. **Nothing enforced that on the verifier path.** Proof A.3/B.2 show a verdict
+containing `29 CFR 1910.212(a)(1)` being **ADMITTED** by the unchanged v3 boundary.
+
+Canonical logic was found and **reused, not reinvented**: `CITATION_SHAPED_PATTERN`
+(`/\b\d{2}\s*CFR\s*\d+/i`, `expert-contract.types.ts:701`), already applied to first-pass free text
+by `expert-normalization.ts`. `checkVerifierV3_1Output` composes the **unchanged** v3 admission with
+it over every free-text field, refusing whole with `PROHIBITED_REGULATORY_CITATION`.
+
+**It does not refuse FV-07.** Replay over the persisted §192 outputs: **39/39 admitted before and
+after, 0 canonical violations.** FV-07 asserted a regulatory requirement *in prose* — *"OSHA general
+industry requires… not exceeding 1/8 inch"* — with no citation string. The authorization's condition
+was refusal *if and only if* the canonical definition is met; it is not.
+
+**No broader rule was adopted, on measured evidence.** `\bOSHA\b` would refuse any verdict naming the
+jurisdiction it was handed (the prompt contains `JURISDICTION: osha-general-industry`); `\bregulat`
+matches FV-11 and FV-13, where the verifier reasons **correctly** about the *absence* of governed
+evidence — a false positive on wanted behaviour. Both are keyword lists, retired at §160 FINDING 1.
+`REGULATORY_REQUIREMENT_ASSERTED_IN_PROSE = NOT_DETERMINISTICALLY_DECIDABLE` is recorded in code.
+
+The prompt was **not** changed and the contract was **not** silently weakened. Three representation
+options are documented for a separate authorization; the smallest honest one is rewording the
+fail-closed claim, the one that actually closes the gap is a structured `regulatoryBasis` field.
+Both are v3.2 protocol changes and **§193 does not make that product decision**.
+
+### AUDIT_TOOLING_NUL_DEFECT — REPAIRED
+
+The four NULs in `expert-verifier-v2-v3-diff.ts` were **intentional** — a delimiter in a composite
+map key, chosen because NUL cannot collide with prompt-line content. The design was sound; only the
+**encoding** was wrong. Repaired to the `\0` escape, with **semantics proven identical**:
+`classifyInstructionDiff` hashes to `9e143e0c…` before *and* after, and the §166 suite importing it
+re-runs 49/49. How they entered is **not recoverable** — the file is untracked with no history.
+
+The real defect was second-order: `grep` returned no output and exit 0 on patterns that *were*
+present, indistinguishable from a clean audit. `expert-source-audit-integrity.ts` adopts the rule
+that **an audit that cannot read its target must fail loudly**, via a discriminated
+`SEARCHED | UNAUDITABLE` outcome. Sweeps clean: 681 script files, 43 source files.
+
+The sweep caught a real instance on its first run — **the §193 test file itself**, where the NUL
+fixture had been written as a literal control character. Recorded rather than quietly fixed.
+
+### Versioning — no v3.2, and none needed
+
+§193's enforcement is **shared admission/runtime logic in a new module**, not a protocol change. v3.1
+prompt and schema hash to exactly the values §192 preregistered, so §192 stays attached to the
+protocol that produced it. `expert-verifier-contract-v3.ts` was composed with, never mutated.
+
+**No verifier semantic retuning.** Conjunctive sufficiency, adjacent-property boundary, clarification
+policy, challenge behaviour, owed-fact semantics, settlement authority and the v3.1 thresholds are
+untouched. G7 was not optimised. `PROVIDER_SETTLEMENT_AUTHORITY = NEVER`.
+
+### Next
+
+**Fresh end-to-end Expert → owed-fact → verifier-v3.1 pipeline validation**, on raw observations with
+**no hand-authored first-pass state** — the limit §192 recorded about itself. Not executed here. That
+authorization should also settle the citation representation question, and the §192 fixture rule
+FV-11 produced: *time/interval-dependent owed facts must supply the temporal rule needed to determine
+whether the current state is actually deficient.*
+
+---
+
+## §194 — VERIFIER REGULATORY-BASIS REPRESENTATION, v3.2 INTEGRATED (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_VERIFIER_V3_2_REGULATORY_BASIS_INTEGRATED —
+END_TO_END_PIPELINE_VALIDATION_AUTHORIZATION_REQUIRED`.** Evidence:
+`verification/expert-hazlenz-verifier-regulatory-basis-2026-09-06/`.
+
+0 provider calls · 0 database operations · deterministic tests **48/48** · source integrity **21/21**
+· **0 existing runtime files modified** · not committed, pushed or deployed.
+
+### THREE PROTOCOLS, THREE IDENTITIES — never merged
+
+```
+v3    historical development protocol      §187B  prompt 678160c9…  schema 1bddc1a5…
+v3.1  §192-validated development protocol  §192   prompt 7e73d175…  schema d39c86bc…
+v3.2  regulatory-basis protocol            NONE   prompt f2522995…  schema 83071b51…
+```
+
+**v3.2 has no hosted evidence of any kind.** §192 PASS is immutable, §189 remains `UNMEASURED` at
+65/112, G7 stays 15/18 zero-slack, FV-11 stays included as preregistered. **End-to-end Expert HazLenz
+validation is NOT complete.**
+
+### The architecture was already there — twice
+
+The authorization required finding canonical logic before designing. Two mechanisms, both reused:
+
+1. `ExpertVerifierInput.governedEvidence: { sourceId, text }[]` — *"as supplied to the first pass.
+   Never re-fetched, never re-selected."* `sourceId` is the canonical identifier.
+2. **The first pass already binds model claims to those ids** — `expert-prompt.ts:1055` enumerates
+   supplied `sourceId`s into the wire schema, `expert-normalization.ts:263` refuses
+   `EVIDENCE_SOURCE_UNKNOWN`.
+
+§194 applies pattern 2 to the verifier path using v3's own closed-set-by-exact-string-equality
+discipline. **No new architecture was invented.**
+
+### The representation
+
+```ts
+regulatoryBasis: { reliance: 'NONE' | 'SUPPLIED_GOVERNED_EVIDENCE',
+                   sourceIds: string[], proposition: string | null }
+```
+
+Required on every verdict, so silence about reliance is impossible. **Activation is declared, never
+inferred** — the prompt names the three `NONE` cases §192 actually produced: naming the supplied
+jurisdiction, observing that governed evidence is absent, describing the workplace record's own
+certificates. `NONE` is stated to be the normal answer.
+
+`proposition` earns its place not for enforcement but for **governability**: without it a declaration
+names a source but not the claim, and a reviewer would be back to inferring from prose.
+
+**Fail-closed, and now truthful:** raw citation outside the structure → refuse whole · valid supplied
+source → structurally admitted · invented or unknown id → refuse whole · `NONE` → admitted ·
+supplied jurisdiction named → admitted. **With zero governed evidence supplied, any declared reliance
+is refused** — there is no route by which a verifier supplies the rule from memory. A citation string
+is refused even inside `proposition`: *structure is not authority*.
+
+### The honest residual, stated rather than buried
+
+**A v3.2 verifier could still write a regulatory-sounding sentence in prose and declare `NONE`.** No
+deterministic rule catches that — the §193 finding stands and §194 does not overturn it. What changes
+is real but bounded: there is now a legitimate route it declined to use, **claimed** authority is
+fail-closed, and an undeclared assertion becomes a semantic review item against a `NONE` declaration
+rather than a contract hole. **This does not close the prose-assertion class.**
+
+### Determinism not overclaimed
+
+Decided: reliance declared · declaration internally consistent · every `sourceId` supplied (exact
+equality, closed set) · no raw citation in free text · contract state legal. **Not decided, and
+recorded in code as `REQUIRES_HUMAN_TRUTH`:** whether the proposition faithfully reads the source,
+whether the source supports the conclusion, whether any legal conclusion is correct. **Structural
+source binding is not legal validation.**
+
+### One test failed on the first run, and it mattered
+
+**D.3** — a citation inside `regulatoryBasis.proposition` was not refused, because §193's scanner
+predates the field. A model could have self-authorised *inside* the structure. Closed additively in
+v3.2's contract; the §193 module was left byte-untouched because §193 is closed evidence.
+
+### Scope held
+
+No clarification-frequency, conjunctive-sufficiency, adjacent-property, challenge, owed-fact-targeting
+or settlement change. Ten §191/§166 passages asserted byte-identical in v3.2; four frequency-directive
+patterns absent; `PROVIDER_SETTLEMENT_AUTHORITY = NEVER`. Prior suites re-run: §193 46/46, §191 69/69,
+§166 49/49, Expert grounding 41/41.
+
+### Next
+
+**Fresh end-to-end pipeline cohort from raw observations, using v3.2**, with no hand-authored
+first-pass state. It must exercise ordinary reasoning with no reliance, legitimate reliance with
+governed evidence **actually supplied**, and a regulatory question with **no adequate governed
+evidence** to verify abstention. Note: **§192 had `governedEvidence` empty on all thirteen rows**, so
+the second and third shapes have never been exercised at all.
+
+---
+
+## §195 — END-TO-END VALIDATION STOPPED BEFORE SPEND: A PIPELINE STAGE DOES NOT EXIST (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_V3_2_END_TO_END_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-v3-2-end-to-end-validation-2026-09-06/`.
+
+**0 provider calls · $0.00 spent · source integrity 21/21 · 0 existing runtime files modified.**
+
+### The blocker
+
+The authorization's third stage — **`EXPERT FIRST PASS → OWED-FACT / TASK-STATE CONSTRUCTION`** —
+**does not exist as an executable component.** No code reads an Expert analysis and produces owed
+facts. Every owed fact this programme has verified was authored: product-owner-reviewed at §184, or
+authored by me at §192. The authorization forbids hand-authoring that state, so no valid end-to-end
+cohort can be produced.
+
+Four independent confirmations: no `deriveOwedFact`/`owedFactsFrom`/`fromAnalysis` exists anywhere;
+every caller of `owedFact()` is a test or harness; `projectOwedFact(f: OwedFact)` takes an
+**already-constructed** fact and is a firewall, not a constructor; every `owed-facts/` module is
+`INTEGRATED AND INACTIVE` and **not one imports `ExpertAnalysis`**.
+
+**The shapes do not meet.** The first pass emits `DecisionCriticalClarification`
+(`clarificationId`, `question`, `whyItMatters`, `affectedDecision`, `criticality`, `evidenceGap`).
+`OwedFact` additionally requires `factKey`, a **verbatim** `evidenceSpan`, `branchA`, `branchB` and
+`decisionDivergence.ifA/.ifB` — all absent. Building them from prose would mean inventing a key,
+extracting a verbatim span from text that is not one, and authoring both answer states and both of
+today's decisions: **authoring safety truth deterministically**, which
+`structural-questions.ts` ("no parser over generated English") and `governed-evidence-derivation.ts`
+("a search would be an inference") explicitly refuse.
+
+**Running it anyway with hand-authored owed facts would reproduce §192 with a fresh cohort and call
+it end-to-end.** That is the misleading outcome, not the stop.
+
+### Second finding, zero spend — a §193/§194 collision
+
+A verifier legitimately relying on supplied governed evidence and **quoting the citation from that
+supplied source** is **refused whole** with `PROHIBITED_REGULATORY_CITATION`. Only a paraphrase is
+admitted. Both boundaries are individually right; together they punish a model for accurately
+quoting evidence the system handed it, and the repair it must learn — *paraphrase rather than quote*
+— pushes toward **less** faithful representation of governed material.
+
+**This matters for the eventual run:** real governed records carry citations
+(`ApprovedKnowledgeRecord.authority.citation`), so a cohort drawn from the live registry would hit
+this and its legitimate-reliance arm could fail for the wrong reason. §195 changed no code; the
+fixtures avoid forcing it and the freeze script **aborts** if supplied governed text contains a
+citation-shaped string. Recorded rather than designed around silently. Preferred fix, not
+implemented: exempt only citation strings appearing **verbatim in the supplied source text**.
+
+### Delivered and reusable
+
+A frozen **12-row fresh cohort** — nothing reused from §187 or §192 — with **6 valid-reliance** and
+**6 unsupported-reliance** executions (both at floor) across two hazard families each, 30
+NONE-expected executions, A∧B and A∧B∧C conjunctives, a multi-gap row, two zero-owed-fact rows, all
+ten families, every expected span verified verbatim. Plus truth and governed-evidence manifests, a
+frozen interleaved execution order, protocol hashes, and **all fourteen thresholds preregistered**,
+none derived from observed output.
+
+**Design finding:** `EXISTING-SUFFICIENT-FIRST-PASS-QUESTION` and `FIRST-PASS-INSUFFICIENT-QUESTION`
+**cannot be guaranteed** in a genuine end-to-end cohort — they are outcomes, since the first pass
+writes its own question. §192 could guarantee them only because its first-pass sets were
+hand-authored, which §195 forbids.
+
+**Not produced, and listed as absent so the package cannot be mistaken for a completed run:** all
+eleven execution-dependent artifacts, from `RAW-FIRST-PASS-OUTPUTS.jsonl` through
+`END-TO-END-STRICT-RESULTS.md`.
+
+### Preserved
+
+v3 / v3.1 / v3.2 remain separate populations · §192 PASS immutable · §189 `UNMEASURED` at 65/112 ·
+§193 NUL/audit repair COMPLETE · §194 48/48 deterministic, **v3.2 still zero hosted evidence** ·
+`PROVIDER_SETTLEMENT_AUTHORITY = NEVER`.
+
+### The decision required
+
+How owed facts come to exist from a real first pass. **(1)** the first pass emits structured
+unresolved facts directly — a new first-pass protocol version plus fresh first-pass validation, and
+the only option that makes the specified pipeline real; **(2)** a deterministic constructor over
+first-pass prose — rejected on this architecture's own stated grounds; **(3)** accept that owed facts
+are human-authored and rescope the end-to-end claim. **A product-architecture decision, not an
+engineering one.**
+
+---
+
+## §196 — STRUCTURED FIRST-PASS OWED-FACT ARCHITECTURE (2026-09-06)
+
+**Terminal: `EXPERT_HAZLENZ_STRUCTURED_OWED_FACT_PIPELINE_INTEGRATED —
+FRESH_END_TO_END_PROTOCOL_VALIDATION_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-structured-first-pass-owed-facts-2026-09-06/`.
+
+**0 provider calls · $0.00 spent · 0 database operations · no customer/production activation ·
+0 existing runtime files modified · deterministic suite 91/91 · source integrity 34/34.**
+
+The product owner chose **option 1**: the Expert first pass must be capable of emitting structured
+unresolved facts directly. §196 is the bounded zero-provider-call architecture and integration slice
+that builds it, plus the correction of the governed-evidence quotation boundary §195 discovered.
+
+> **The model authors semantic safety content. Deterministic code validates and projects it.**
+
+### The missing stage now has a component
+
+Four new modules, all under `backend/scripts/lib/`, all development-only and unreachable from
+production. Nothing under `src/` was touched.
+
+| module | what it is |
+|---|---|
+| `expert-first-pass-instruction-vnext.ts` | the prospective **first-pass vNext** protocol — v15 plus one prompt block and two schema additions, built by construction and provably reversible |
+| `expert-first-pass-owed-fact-projection.ts` | the deterministic bridge: structured declaration → `OwedFact`, fail-closed, with a total field-provenance table |
+| `expert-governed-citation-reuse.ts` | the supplied-source citation reuse rule |
+| `expert-verifier-contract-v3-3.ts` | **v3.3 admission** — v3.2 plus that rule. Admission only |
+
+### The representation reuses the canonical shape
+
+Protocol identity: v15 `20979d90c0fe0b81…` **unchanged**; vNext
+`05e1ad22efd1353d…`, `hazlenz.expert.first-pass-instruction.vNext`, **zero hosted evidence**. The
+first-pass wire schema is per-request, so the gate records v15's and vNext's schema hashes against
+one named fixture input to keep the comparison like-for-like.
+
+`unresolvedFactDeclarations` is a **fifth sibling collection**, and its item is v3's own
+`nominatedFact` shape — `missingFact`, `observationSpan`, `notEstablishedBecause`,
+`affectedDecision`, `branchA`/`decisionIfA`, `branchB`/`decisionIfB`, `whyNecessaryNow` — plus
+`observationSourceId`, `governedEvidenceSourceIds` and a within-response `declarationId`. A
+first-pass declaration and a verifier nomination now project through the **same code**.
+
+**The wire has no `factKey`, `priority`, `status`, `source`, `modelAuthored` or `acceptableEvidence`
+field.** Every one of them decides something, and §170 reserves those to HazLenz. A declaration that
+sends one is refused with a countable code, not sanitised.
+
+**Identity is computed, never accepted:**
+`FP.<affectedDecision>.<observationSourceId>.<startOffset>-<endOffset>.<ordinal>`. Every part is a
+closed vocabulary or externally anchored, and the offsets are HazLenz's own `indexOf` measurement of
+the model's span — the mechanism `bindWireAnalysis` already uses. A provider cannot name, collide
+with or impersonate a fact because there is no field for it. `FACT_IDENTITY_CLAIMS` records what is
+**not** claimed: `SEMANTIC_IDENTITY_ACROSS_ANALYSES = false`. Two draws phrasing the same property
+differently produce different keys, and no hash over prose pretends otherwise.
+
+**Carrier coupling is not reintroduced.** The declaration collection is a top-level sibling, not a
+field on a hazard candidate or a clarification; the question→fact link is an optional
+`answersUnresolvedFactDeclarationId` back-reference behaving exactly as `relatesToCandidateKey` does,
+including stripping an unresolvable id while the question survives.
+
+### The projection is a firewall in both directions
+
+Every `OwedFact` field has explicit provenance — `EXPLICIT_UPSTREAM_FIELD`,
+`MECHANICAL_DERIVATION` or `HAZLENZ_TASK_STATE`, and there is no fourth kind. The table is exported
+as data and the suite asserts it covers a projected fact **exactly**, so a field added later without
+a row fails the suite.
+
+Refusal is **per declaration**, not whole-response: a malformed entry must not take a well-formed
+independent gap with it, which would be displacement arriving through the boundary. Nothing is
+repaired and nothing is partial.
+
+**Two residuals, recorded rather than buried.** (1) `priority` is the stated constant `OTHER` — a
+provider may not set the value that gates `UNRESOLVED_SAFETY_STATE`, and the cost is that a genuinely
+life-critical first-pass gap will not raise the gate either; escalation needs its own authority.
+(2) **`OwedFact` has no field for the owed property itself.** `missingFact` states it and cannot be
+projected; adding a field would mutate `owed-fact.types.ts`, whose sha256 §187 pins, and folding it
+into `whyUnresolved` would be composition. **Escalated as a contract question.**
+
+### The §193/§194 citation collision is resolved at the admission boundary
+
+`PROVIDER-ORIGINATED CITATION AUTHORITY` stays refused. `REPRODUCTION OF AUTHORISED SUPPLIED TEXT` is
+admitted — but only when reliance was validly declared, every `sourceId` was supplied, and **every**
+citation token appears verbatim in one of those sources after case-and-whitespace normalisation and
+nothing else. Reuse is evaluated **only when the citation refusal is the sole objection**, so an
+invalid reliance declaration can never authorise its own citation. An altered paragraph reference is
+a different citation and is refused. One unauthorised token beside one authorised token refuses the
+verdict whole.
+
+**No prompt change.** There is no v3.3 instruction and no v3.3 prompt hash: v3.2's prompt and schema
+are byte-unchanged and the verifier is still told never to write a citation. The instruction stays
+**stricter than the boundary**, deliberately — §195 asked that faithful reuse not be destroyed, not
+that quoting be encouraged, and the paraphrase route remains open and admitted.
+
+**The first pass gets no reuse allowance.** v15's `HARD PROHIBITIONS` says reproducing a number from
+its own input is the same violation as inventing one, and §196 does not weaken v15.
+
+**Quotation length is kept distinct and stated honestly:** the admitted unit is a citation
+identifier and nothing else; no quotation-length limit exists on the verifier path, §196 creates
+neither one nor a licence in its absence, and a long uncited regulatory paragraph is exactly as
+admissible as it was before.
+
+### Preservation
+
+`expert-prompt.ts` untouched (`20979d90…`), `EXPERT_PROMPT_VERSION` still `v15`; all four
+`owed-facts/` module hashes unchanged; v3, v3.1, v3.2 prompts and schemas byte-identical; §192 PASS
+immutable; §189 `UNMEASURED` at 65/112; `PROVIDER_SETTLEMENT_AUTHORITY = NEVER`; §195 preserved as an
+execution-inconclusive pre-spend run with each of its eleven absent execution artifacts asserted
+still absent, file by file.
+
+**The integrity gate caught a §196 defect and it is reported, not quietly fixed:** the first draft of
+the projection module carried two literal NUL bytes, which is the exact §193 failure mode — grep
+treats such a file as binary and returns nothing, and a silent no-match is indistinguishable from a
+clean audit. Gate failed 33/34, separators replaced, now 34/34.
+
+### §195 artifact disposition
+
+`REUSABLE_UNCHANGED` — the two findings, the run summary, the 12 raw observations, the semantic
+rubric concepts. `REUSABLE_WITH_NEW_PREREGISTRATION` — the truth manifest (scored semantically
+against `factKeyIntent`, **never** by key equality), the fixture and governed-evidence manifests, the
+execution order, the fourteen thresholds, the mechanical gates (one of which must now distinguish an
+*unauthorised* citation from an authorised reuse), and the cohort/freeze machinery.
+`RETIRED_FOR_NEW_PROTOCOL` — the preregistration and protocol hashes **as a plan**, because their
+first-pass identity is v15's, and the two outcome-defined fixture families, which are observed
+outcomes and must be preregistered as scoring categories with realised opportunity counts reported
+after execution.
+
+### Status and what remains
+
+**vNext `HOSTED VALIDATED = FALSE`. v3.3 `HOSTED VALIDATED = FALSE`.** Nothing here measures whether
+a model will declare the right facts, write genuinely possible branches, or anchor a real span. A
+declaration can be perfectly well-formed and completely wrong, and the boundary will project it —
+those axes are `REQUIRES_HUMAN_TRUTH`.
+
+**A fresh prospective end-to-end protocol validation authorization is required before any spend.**
+
+---
+
+## §197 — HOSTED VALIDATION STOPPED AT THE TRANSPORT, BEFORE ANY INFERENCE (2026-09-07)
+
+**Terminal: `EXPERT_HAZLENZ_STRUCTURED_PIPELINE_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-structured-e2e-validation-2026-09-07/`.
+
+**12 provider calls attempted · 0 completed · 0 output tokens · $0.00 actual spend · 0 database
+operations · no customer or production activation · 0 existing runtime files modified.**
+
+Every first-pass request was rejected with HTTP 400 **before generation began**, identically:
+
+```
+tools.0.custom: For 'array' type, property 'maxItems' is not supported
+```
+
+**No model behaviour was observed and none is reported. Every axis A–R is `NOT_EXERCISED` — no axis
+passed and no axis failed.** The hard-fail block reports `EVALUABLE: false`: "none triggered" on this
+run means *nothing ran*, not *the architecture held*.
+
+### Root cause, established with zero further provider calls
+
+All twelve request bodies were rebuilt offline and their schema keywords compared against v15's,
+which has executed hosted many times. **Exactly one keyword is introduced by vNext — `maxItems` —**
+once per row, at `unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds.maxItems = 0`.
+§196 emits it whenever no governed evidence was supplied, so a model with no governed records has no
+legal way to name one. Anthropic's `strict: true` tool mode rejects `maxItems` on an array and
+refuses the whole request.
+
+**Why nothing caught it:** the §108 compatibility strip removes `minLength` and `minItems` only, and
+its own comment records that no `maxItems` existed in the schema when it was written. §196 made that
+parenthesis false and nothing connected the new keyword to the adapter. §196's suite passed 91/91
+because it tested the schema as a **document**; the strip only matters for the schema as a
+**request**.
+
+### What this falsifies
+
+§196 case **K3** claimed "transport refuses it, and the boundary refuses it again". **The first half
+does not hold on the hosted transport** — it does not refuse the id, it refuses the entire request.
+The boundary half is untouched: K1 and K2 still refuse an unsupplied governed `sourceId` at the
+projection. The safety property survives; the claimed *second layer* does not. A structural guarantee
+that cannot be transmitted to the provider is not a structural guarantee on the hosted path. §196's
+other 90 cases are unaffected.
+
+### Why no repair was applied
+
+Every candidate correction changes the per-row `wireSchemaSha256` frozen in the §197 preregistration,
+which is exactly the case the authorization routes to review: *"record the failure and obtain review
+if the correction changes any hashed treatment artifact."* Three options are set out for the owner —
+**A** extend the §108 strip to `maxItems` (smallest; gives up the transport guarantee, keeps the
+boundary one); **B** omit the field entirely when the supplied set is empty (a *stronger* guarantee
+and transport-acceptable, but a vNext protocol revision); **C** supply real `sourceId`s (incomplete
+alone). §197 does not choose.
+
+### Three further findings, all recorded rather than smoothed over
+
+1. **The first-pass governed binding is currently unexercisable.** `buildExpertUserPrompt` renders
+   governed records under opaque handles with citations redacted and never shows a `sourceId`, so
+   §196 asked the first pass to name an id it is never shown. §197 scoped the governed families to
+   the verifier stage, where `{sourceId, text}` is rendered verbatim — sound, and the finding stands.
+2. **Harness defect:** the executor issued all twelve identical pre-inference rejections instead of
+   stopping. $0.00 cost, but this is the §187A failure mode in a new costume. The missing rule:
+   stop on the second consecutive pre-inference rejection carrying the same error message.
+3. **Scorer defect:** its first draft printed `P settlement = NO_PROVIDER_OUTPUT_SETTLED_ANY_FACT`
+   and `HARD FAILS = none triggered` on a run where nothing executed — literally true, and green.
+   Every axis now routes through a helper returning `NOT_EXERCISED` on an empty denominator. The
+   §193 lesson on a different instrument.
+   A fourth, caught **pre-spend**: the integrity gate's own first draft failed 57/58 by grepping for
+   `/MODEL/` near `TRANSITION_AUTHORITIES` and matching the module's *comment*; replaced with an
+   assertion over the exported constant's values.
+
+### Delivered and reusable
+
+A fresh **12-row cohort** — three matched gap/no-gap pairs balanced on equipment, setting and
+vocabulary, a two-gap row, a conjunctive row, a governed-quotation opportunity and an
+unsupplied-citation containment opportunity, 10–11 expected owed facts — plus a semantic truth
+manifest, a frozen execution order separating every matched pair, protocol hashes, and a **neutral
+adjudication packet with 48 verdict slots and zero supplied**. The truth manifest carries
+`AI_ASSISTED_SCENARIO_AND_EXPECTATION_AUTHORING = TRUE`, `PRODUCT_OWNER_REVIEWED = FALSE`, and is
+explicitly **not** the semantic oracle; it structures the packet and nothing more.
+
+**No semantic verdict was produced by any script**, and that would have held had the run succeeded:
+the authorization requires human review and forbids the admitting validator from being the oracle.
+
+### Preserved
+
+§196 intact (terminal, 91/91, 34/34, and its recorded NUL-byte incident) · §195 intact, still
+`EXECUTED=false` with all eleven absent artifacts asserted still absent · `expert-prompt.ts`
+`20979d90…` and still `v15` · all four §187-pinned owed-facts hashes · v3 / v3.1 / v3.2 byte-identical
+· §192 PASS immutable · §189 `UNMEASURED` at 65/112 · `PROVIDER_SETTLEMENT_AUTHORITY = NEVER`
+(unchanged as a contract, and **untested** by this run) · all three §196 contract questions still open.
+
+### Next gate
+
+**Product-owner decision between corrections A, B and C, then a fresh successor preregistration.**
+Every per-row schema hash moves under any of them, so the §197 preregistration cannot be reused and
+the cohort must be re-frozen. The twelve scenarios, the truth manifest and the packet structure are
+reusable unchanged.
+
+---
+
+## §198 — TRANSPORT / BINDING REMEDIATION: OPTION B, CAPABILITY OMISSION (2026-09-07)
+
+**Terminal: `EXPERT_HAZLENZ_STRUCTURED_PIPELINE_TRANSPORT_REMEDIATED —
+SUCCESSOR_HOSTED_PROTOCOL_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-structured-pipeline-transport-remediation-2026-09-07/`.
+
+**0 provider calls · $0.00 · 0 database operations · no activation · NO file under `backend/src/`
+modified · §198 matrix 89/89 · source integrity 72/72 · every legacy suite green.**
+
+### The decision, implemented
+
+The owner chose **Option B**: when the supplied governed-evidence set is empty, omit
+`governedEvidenceSourceIds` **entirely** rather than bound it at zero. The §108 strip was **not**
+extended, and no artificial source ids were supplied.
+
+**It is stronger than what it replaces, not a workaround.** A bounded field is still a field — the
+model is told the capability exists, and the only thing stopping a populated one is a keyword this
+provider does not honour at all. An absent field cannot be populated by a compliant producer, and is
+refused by `additionalProperties: false` at the transport **and** by exact set membership at the
+boundary. The `maxItems` keyword is gone **before the adapter strip runs**.
+
+The capability had to disappear from **three** surfaces, not one: the wire schema, the system prompt
+(two variants now, built from one head and one tail so they cannot drift), and the user prompt. One
+function derives prompt and schema from the same supplied set, so a capability-present schema cannot
+be paired with a capability-absent instruction.
+
+### The impossible contract, closed
+
+§197 found that `buildExpertUserPrompt` renders governed records under opaque handles (`R1`, `R2`)
+with citations redacted and **never shows a `sourceId`** — while §196 asked the first pass to name
+one. §198 adds a removable `AVAILABLE GOVERNED EVIDENCE` block exposing the exact ids, and only
+supplied ids. A duplicate or malformed supplied id **aborts** rather than being de-duplicated or
+normalised.
+
+The evidence **text** stays redacted, deliberately: v15's HARD PROHIBITIONS still tells the first
+pass that reproducing a number from its own input is the same violation as inventing one, and §196
+gave the first pass no supplied-source reuse allowance — so a first pass shown a citation could only
+be punished for repeating it. The reuse allowance lives on the verifier path, confirmed unaffected.
+
+### §196 K3, corrected additively
+
+K3 claimed *"transport refuses it, and the boundary refuses it again"*. §197 showed the transport
+refuses **the whole request**. §196 tested the schema as a **document**, where the claim was true;
+what failed is the claim that this was an independent **transport layer**.
+`BOUNDARY_REFUSES_UNSUPPLIED_SOURCE_ID` (K1/K2) is untouched and still passes — **a claim was
+retired, not a protection.** §196's evidence is byte-unchanged and its historical 91/91 output still
+carries the original K3 line verbatim; the *suite* moved to assert the current architecture, plus a
+new K3b asserting the supersession is registered. 91 → 92 cases. One register,
+`expert-superseded-claims.ts`, read by both the suite and the evidence.
+
+### Three instrument invariants, now modules with regression coverage
+
+- **Circuit breaker** — stop on two consecutive pre-inference rejections sharing a normalized
+  signature. `reachedInference` is a separate field, never inferred from the HTTP status, and an
+  inference-reaching attempt **breaks the streak** — a behavioural failure is what a cohort exists to
+  sample. The §197 run would have stopped at **2** calls instead of 12. Wiring it into the executor
+  belongs to the successor slice.
+- **Empty-run safety** — `axisResult`/`axisRatio` *cannot express* a positive verdict on an empty
+  denominator; `hardFailEvaluability` returns `null`, not `false`. A self-audit catches the class of
+  green wording, including the two exact strings §197 printed.
+- **Integrity-scan precision** — comment-stripped scanning, with string literals deliberately kept.
+  **And its honest limit recorded:** stripping alone would *not* have rescued the §197 check, because
+  the ledger also *imports* `MODEL_AUTHORED_SOURCES` nearby. The real fix was always asserting over
+  exported values.
+
+### A fourth finding: the project typecheck never covered `scripts/`
+
+`tsc -p tsconfig.json` includes only `src/**/*`. §198 found this by renaming an export and watching
+the project typecheck report clean over a broken import. **Every "tsc clean" in §196 and §197 was a
+statement about `src/` alone**, and is restated as such. The directory carries 2011 pre-existing
+errors in unrelated legacy scripts, so §198 adds `tsconfig.scripts-198.json` covering exactly the
+§196–§198 file set under the project's own options.
+
+### Preserved
+
+§197 byte-unchanged and still inconclusive with every axis `NOT_EXERCISED` and an unevaluable
+hard-fail block; §196 byte-unchanged; `expert-prompt.ts` still v15 `20979d90…`; all four §187-pinned
+owed-facts hashes; v3/v3.1/v3.2. The §196 and §197 gates were **not** re-run — both write into their
+own evidence directories and the §197 gate pins a hash §198 deliberately moved — so the §198 gate
+subsumes their checks and proves preservation by **hashing** both packages. One incident: running
+the refactored scorer rewrote `§197/DETERMINISTIC-RESULTS.json`; caught against a pre-edit manifest,
+inverted, regenerated, and all 28 files verified byte-identical.
+
+**All three §196 contract questions remain open.** §198 is transport/protocol remediation only.
+
+### Next gate
+
+**Product-owner decision on successor cohort reuse** — reuse the twelve (`BEHAVIORALLY_UNSPENT`, no
+model ever saw them), build fresh (they are `PROTOCOL_EXPOSED` to the development team), or replace
+only SF-09 and SF-10, the two the capability work actually turned on. Then a fresh preregistration
+freezing **two** prompt hashes and per-row schema hashes. **§198 proves the request no longer
+contains a keyword this provider rejects; it does not prove the provider accepts it.**
+
+
+---
+
+## §199 — SUCCESSOR HOSTED VALIDATION: THE PIPELINE RAN (2026-09-07)
+
+**Terminal: `EXPERT_HAZLENZ_STRUCTURED_PIPELINE_EXECUTED — SEMANTIC_REMEDIATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-successor-structured-e2e-2026-09-07/`.
+
+**20 calls attempted · 18 reached inference · 18 completed · 2 rejected pre-inference · $0.81666 ·
+0 database operations · no activation · pre-spend gate 91/91 · protocol suite 43/43.**
+
+### The canary reached inference — a first for this programme
+
+`SF-01`, a reused capability-absent row, returned `ANALYZED` with one structured declaration that
+projected cleanly to one `OwedFact`. §195 never executed, §197 was rejected twelve times before
+generation, §198 made no calls. **The §198 capability-omission remediation is what made the ordinary
+first-pass request transportable, and the canary is the evidence.** It was not disposable and its
+output is `SF-01`'s real result.
+
+Ten of twelve rows completed. Eight owed facts were projected and **all eight were admitted by
+verifier-v3.3**: seven `VERIFIED_AS_IS`, one `NO_CLARIFICATION_REQUIRED`.
+
+### A second, different transport blocker — on the governed half only
+
+Both capability-PRESENT rows were rejected before generation:
+
+```
+The compiled grammar is too large… Simplify your tool schemas or reduce the number of strict tools.
+```
+
+Measured offline with no further calls: capability-ABSENT sends ~18,620 bytes and is **accepted**;
+capability-PRESENT sends ~19,060 and is **rejected**. A ~440-byte margin. **Byte size is not the
+provider's metric — grammar complexity is, and an enum-constrained array adds disproportionately.**
+The vNext first-pass schema sits at the edge of this provider's grammar budget and the governed
+binding does not fit in what is left. This is *not* evidence the capability contract is wrong; §198
+case C and §199 case H both hold. **No fix was applied** — the preregistration forbids changing a
+treatment after first inference. Four candidate directions are recorded.
+
+### Established on real hosted evidence
+
+**J** 8/8 byte-faithful projection · **K** 8/8 `factKey`s derived identically **three** ways, zero
+provider attempts to author one · **P** zero transitions, all eight facts still `UNRESOLVED` ·
+the fail-closed boundary **refused a genuinely malformed declaration** (`SF-05` emitted both
+decision-divergence fields empty) rather than repairing it — §196's design observed against real
+model output for the first time.
+
+### NOT established — and the wording matters
+
+**S, N, O and T are all `NOT_EXERCISED`.** Both governed rows died pre-inference, and zero
+citation-shaped tokens were emitted across all eight verifier calls, so containment was never put to
+the test. Two hard-fail conditions are marked **not exercisable**: *a condition that could not have
+fired is not a condition that held.*
+
+**No semantic axis has been measured.** The packet has **152 slots and 0 supplied** — 12 rows × 4
+plus 8 facts × 13, covering rows that declared, rows that declared nothing, and the two that never
+ran. No script produced a verdict.
+
+Three of ten rows deviate from preregistered counts and are flagged for adjudication, not judged
+here: `SF-05` (refused declaration), `SF-04` (a declaration on a **no-gap** row), `SF-02` (one of two
+expected gaps).
+
+### A scorer correction, disclosed
+
+The scorer's first run reported **S** and **O** as passes over opportunities that never materialised
+— true statements that read green. Corrected to `NOT_EXERCISED` before write-up. It changes no
+prompt, schema, truth or threshold and can only make the report more conservative: the
+preregistration's own `NO_VACUOUS_PASSING` rule applied to the instrument.
+
+### The circuit breaker: correct, and instructive
+
+`SG-01` failed at position 3, `SG-02` at position 8, with completed inferences between — so the two
+identical rejections were not **consecutive** and the breaker rightly did not trip. The cost was
+$0.00, but the observation stands: a *same-signature-twice-within-a-stage* rule would have stopped
+after the first. Adjacency is the right guard against stochastic model failure and the wrong guard
+against a **capability-class** failure. **The rule was not changed mid-protocol.**
+
+### Cohort Option 3
+
+Ten §197 rows reused **by reference** — byte-identical by construction, zero drift asserted — and
+SF-09/SF-10 replaced by SG-01/SG-02 with under 25% content-word overlap, different hazard families
+and different owed-property shapes. **Both replacements remain behaviourally unspent at $0.00.**
+
+### Preserved
+
+§196, §197 and §198 evidence byte-unchanged; v15 `20979d90…`; all four §187-pinned owed-facts
+hashes; v3/v3.1/v3.2; §189 `UNMEASURED` at 65/112; all three §196 contract questions open.
+
+### Next gate — two separate decisions
+
+**(1)** Human semantic adjudication of the 152-slot packet — the only route to any semantic result
+or to `HOSTED_VALIDATED`. **(2)** A product-owner choice among the four directions for the
+capability-PRESENT grammar limit, then a successor preregistration for the governed half. Neither is
+authorized by §199.
+
+
+---
+
+## §200 — SEMANTIC ADJUDICATION SESSION BUILT, NOT PERFORMED (2026-09-07)
+
+**Terminal: `EXPERT_HAZLENZ_STRUCTURED_PIPELINE_SEMANTIC_REVIEW_INCONCLUSIVE —
+PRODUCT_OWNER_REVIEW_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-semantic-adjudication-2026-09-07/`.
+
+**0 provider calls · $0.00 · 0 database operations · 0 §199 rows re-run · 0 treatment artifacts
+modified · preservation gate 25/25.**
+
+### Why the terminal is what it is
+
+The session is **built and ready** and the **152 verdict slots remain unsupplied**. The only party
+authorised to supply them is the human reviewer; a verdict produced by the evaluated component would
+make it its own examiner, which is why §190 exists as a labelled *model* adjudication and why §189's
+gate is still `UNMEASURED` at 65/112 rather than filled in. `SEMANTIC_REVIEW_COMPLETE` cannot be
+claimed on either other terminal without those verdicts.
+
+The allowed terminal's gloss says *"too ambiguous"*. **That is not the reason.** The §199 evidence is
+clear and fully assembled; what is missing is the judgement. The terminal *name* fits exactly.
+
+### What was built
+
+`ADJUDICATION-SESSION.md` (readable) and `ADJUDICATION-WORKSHEET.json` (machine-readable) present
+**all seven transition points** the authorization names — scenario, frozen truth, raw first-pass
+output, admitted/rejected declaration, projection, raw verifier output, admitted verifier
+representation — so nothing is judged from the normalised object alone. **10 adjudicable rows, 8
+projected facts, 1 refused declaration**, every axis explained with what would justify each outcome
+and what must not influence it.
+
+**Neutral factual observations** are computed — span containment, decision-label match, conjunct
+presence — each a byte or set comparison whose answer is not in dispute. *"The span is not inside any
+acceptable region"* is a fact; *"therefore D is INCORRECT"* is a verdict, and none crosses that line.
+Two weaknesses are disclosed rather than hidden: the neighbour-vocabulary metric is **noisy** (60%
+overlap on `SF-01` between *securement* and *presence*, which are different properties), and a no-gap
+row has no expectation to compare against, so `SF-04`'s comparison was rebuilt against that row's own
+established/not-established truth.
+
+`TRUTH_SPECIFICATION_DEFECT` is a **first-class outcome** everywhere: the §199 truth is AI-authored
+and unreviewed, so a divergence is equally consistent with a bad declaration and a bad expectation.
+
+### The three deviations, prepared for judgement
+
+**`SF-02`** declared the rescue-capability gap and not the gas-monitor calibration gap — recall
+failure, representation limitation, or truth-manifest problem is the question. **`SF-04`** declared
+exactly the absence its own frozen truth planted *and labelled non-decision-critical*, and **the
+verifier disagreed with the first pass** — `NO_CLARIFICATION_REQUIRED` plus `CHALLENGE_FACT_VALIDITY`.
+**`SF-05`** left both decision fields empty; the boundary refused it whole and repaired nothing, and
+the worksheet keeps `STRUCTURAL_REFUSAL_CORRECTNESS` and `UNDERLYING_SEMANTIC_INTENT` strictly apart.
+
+**N, O, S and T are `NOT_EXERCISED` and cannot be otherwise.** Absence of citation output is not
+containment evidence.
+
+### Grammar decision packet — four options, no implementation
+
+Against the owner's stated preference (*reduce coupling, don't shave to fit*): **C — a separate
+smaller governed-binding stage — is the only option that reduces coupling**, and it leaves the
+first pass literally unchanged including its hash. **B — dropping the enum — is the pragmatic
+fallback** and is not a commitment against C. **A** contradicts the preference and risks the ten
+working rows. **D** solves the problem and creates a larger one. Two things not left unsaid: C costs
+a whole validation cycle after four slices without a semantic result, and **neither B nor C is proven
+to fit** — the threshold is undocumented, so either needs an offline build plus a single-row canary.
+
+### Circuit breaker — prospective only
+
+**Keep adjacency, add a stage-local signature memory gated on `DETERMINISTIC_CONTRACT_REJECTION`.**
+Adjacency is right against *stochastic* failure and wrong against a *capability-class* failure whose
+incidence follows row class. Classification must be conservative — unknown ⇒ transient. It would have
+saved one cohort row in §199 and **changed no result**. The frozen §199 rule is not altered
+retroactively.
+
+### Hygiene, disclosed
+
+The §199 current-state update re-serialised the whole JSON file (234 keys verified intact); §200 uses
+a **targeted insert** instead. Typecheck reporting now uses explicit names — **`SRC_TYPECHECK = PASS`**
+and **`EXPERIMENT_SCOPE_TYPECHECK = PASS`** — and the ambiguous phrase *"tsc clean"* is not used;
+unrelated legacy scripts still carry pre-existing errors outside both scopes. The §200 gate's own
+first draft misnamed a §199 axis key and reported a preservation failure that was entirely its own —
+recorded, and key names are now read from the record rather than hardcoded.
+
+### Preserved
+
+§196 (14 files), §197 (14), §198 (11), §199 (19) — **all byte-unchanged**, verified by hashing.
+Every legacy suite green. All three §196 contract questions still open.
+
+### Next gate
+
+**(1)** Supply the 152 verdicts — fill the worksheet, or work through it with me recording your
+decisions verbatim. **(2)** Choose among the four grammar directions and authorise a successor to
+implement and validate it. Neither is authorized by §200.
+
+---
+
+## §201 — CONTROLLED PARALLEL DEVELOPMENT: SEVEN WORKSTREAMS, ZERO CONFLICTS (2026-09-07)
+
+**Terminal: `EXPERT_HAZLENZ_PARALLEL_DEVELOPMENT_COMPLETE — PRODUCT_OWNER_DECISIONS_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-parallel-development-2026-09-07/`.
+
+**0 experiment provider calls · $0.00 · 0 database operations · 0 existing files modified by any
+agent · §195–§200 evidence 75/75 byte-unchanged · runtime `src/` 27/27 byte-unchanged.**
+
+The zero-call claim is stated precisely because this programme has been corrected on ambiguous
+verification language: **no HazLenz experiment provider call was made** — no first-pass request, no
+verifier request, no spend against the experiment budget. The seven subagents are Claude Code tooling,
+not experiment executions.
+
+### The topology held
+
+Seven specialists dispatched in one message, genuinely concurrent — completion order `1 → 4 → 3 → 7 →
+2 → 6 → 5` does not match dispatch order. **Zero conflicts, zero overlapping edits, zero agents
+outside allocation, zero self-expanded authority.** The ownership map was written before any agent
+began; the four hazards it anticipated were all real, and the most consequential steer worked: Agent 6
+was told to build an **additive successor** rather than mutate the §198/§199 circuit-breaker and
+empty-run modules, and both remain byte-identical to their pinned hashes.
+
+`backend/package.json` and every `tsconfig` were **orchestrator-reserved**, which is the reason there
+was nothing to reconcile: every implementing agent would otherwise have edited them.
+
+Sixteen files created (8 code, 8 documents). **401 assertions passing** across the four new suites —
+59/59, 59/59, 216, 67/67 — every one re-executed by the orchestrator rather than taken on the agents'
+word, alongside all seven legacy suites.
+
+### NO SEMANTIC SELF-GRADING — held absolutely
+
+**0 of 152 verdicts supplied. `PENDING_HUMAN_ADJUDICATION`.** Re-verified after all agents finished.
+Two agents were explicitly asked for a recommendation and **correctly refused**: Agent 3 declined to
+choose an `OwedFact` representation because choosing *is* answering axis Q, and Agent 4 declined to
+rank escalation options on axis-R evidence that does not exist.
+
+### The run's most valuable output was correction of my own prior work
+
+Four defects in evidence I authored, found by agents and each independently re-verified before being
+recorded here. §199 and §200 are immutable and were **not edited**; these are additive.
+
+1. **§199 byte figures understated by 12 characters.** `CAPABILITY-TRANSPORT-DIAGNOSIS.json`
+   reproduces only with a placeholder `sourceId: "OBS"`; the executor sent `OBS-<rowId>`. SF-01
+   published 18,617 / actual **18,629**; SG-01 published 19,062 / actual **19,074**. The conclusion is
+   unaffected — both sides carry the offset — but a later remeasurement would have looked adrift.
+2. **The §200 circuit-breaker recommendation would not have fired.** §200 says SG-01 and SG-02 shared
+   "the identical normalised signature"; the log shows `contract=d0713f36696e8bea` vs
+   `contract=243bb6766c05599f` — only the *messages* matched, because §199 keyed `requestContractId`
+   on the per-row schema hash. **Wrong on its own worked example.** The corrected key is an
+   **effective grammar identity** (structure retained, leaf scalars erased), which on the real cohort
+   partitions exactly along the capability axis: 10 ABSENT rows one identity, 2 PRESENT rows another.
+3. **`STOP` vs `SKIP_ATTEMPT` ambiguity** in the same §200 text, whose own worked example described
+   the run continuing. Both are expressible; the executing slice must freeze one.
+4. **`backend/scripts` carries 181 diagnostics, not "~2011".** My published figure came from an
+   ad-hoc `--strict false` invocation that manufactures errors not present under the project's own
+   options. The scoped configuration is still necessary; the figure was wrong by an order of magnitude.
+
+### Independent corroboration — the reason the rule exists
+
+**Agents 4 and 7, different files and different mandates, found the same defect class: a boundary
+asserted in a comment but held only by a caller default.** Agent 4's `NominationPayload.priority`
+(kept out by a bridge defaulting to `OTHER`, not by the forbidden-field scan, which inspects the
+declaration); Agent 7's `mergeExpertIntelligence` fourth parameter (ungated, unaudited, held shut only
+because no caller passes it). **A systematic sweep for this class is now warranted.**
+
+Separately, Agents 3 and 5 reached the same wiring gap from opposite ends: the executor forwards 7 of
+8 projected fields, omitting `acceptableEvidence`, *and* `V3SuppliedOwedFact` has no such field at all
+— so the verifier is never shown the architecture's own statement of what would settle a fact while
+being asked to judge sufficiency. A contract gap with a harness gap on top of it.
+
+### Governed binding — measured, not asserted
+
+**Recommendation: a separate small call after `OwedFact` projection, governed rows only; the first
+pass becomes capability-ABSENT everywhere.** Before projection a fact has no identity and the only
+handle is the model's own `declarationId`, which the projection explicitly refuses as identity.
+
+| request | enums | alternatives | props | chars |
+|---|---|---|---|---|
+| first pass, ABSENT (accepted) | 17 | 74 | 54 | 18,629 |
+| first pass, PRESENT (**rejected**) | 18 | 75 | 55 | 19,074 |
+| **§201 binding stage** | **3** | **5** | **5** | **1,505** |
+
+Accepted and rejected differ by **one enum construct and 2.3% of the bytes** — the sharpest available
+proof that byte size is not the provider's metric. The stage is **12.7× smaller** than the refused
+request. **No `factKey` on the wire in either direction**; the model addresses facts by HazLenz-minted
+request-scoped references. `governedBindingStageEffect()` is literal `false` on eight axes. **Not
+proven to fit** — offline measurement cannot establish transport acceptance, so the first hosted step
+must be a single-row canary.
+
+### What the analyses established
+
+**OwedFact (Agent 3):** 9 raw declarations all carried a non-blank `missingFact`; **0 of 8 projected
+facts carry it under any key or as a substring — 770 authored bytes reach neither the fact nor the
+verifier.** The §187 pin costs more than §196 recorded: `owedProperty` and `unresolvedTarget` break
+**eleven live source-integrity assertions**; `owedProperty` also fails outright on an untested
+requirement (`required` is unsatisfiable for facts that never had a declared property). The sidecar
+and successor options share a demonstrated failure mode — **silence**.
+
+**Escalation (Agent 4):** `priority` is part of fact identity in `preservationViolations` and there is
+no priority analogue of `transition()`, so **post-hoc escalation is unrepresentable as a priority
+edit** — a constraint absent from §196's argument. `modelAuthoredOnlyFailClosedKeys` already bars a
+model-authored fact from alone justifying a fail-closed state; **the two rules do not consult each
+other.** `LIFE_CRITICAL` does not itself fail closed, so escalation's first-order effect is ranking
+displacement.
+
+**Verifier (Agent 5), highest-ranked at 25.0 — challenge grounding.** A *nomination* asserting "this
+is open" must quote a verbatim span checked by containment; a *challenge* asserting the opposite need
+not point anywhere. **The contract demands proof for the claim that creates work and accepts bare
+assertion for the claim that removes it.** §199 produced exactly one `CHALLENGE_FACT_VALIDITY`. Also
+proved: compound questions are *induced* by the representation, not permitted by it — a well-formed
+two-question verdict is refused by unmodified v3.2, while `structural-questions.ts` enforces
+one-string-one-fact at assembly.
+
+**Audit (Agent 7): 30 findings, 0 CRITICAL, 4 HIGH.** Nothing is CRITICAL because the
+**customer-inactive boundary holds in code**, checked four independent ways rather than read from
+comments. HIGH-1: two divergent owed-fact implementations, both live, already drifted. HIGH-2: three
+incompatible `ArbitrationRequest` definitions; the only wired producer is type-incompatible with the
+only consumer. HIGH-3: the §199 executor reimplements the transport and has no `max_tokens` branch, so
+a truncated response would return `ok: true` — **verified LATENT, not retroactive**: 0 truncations
+across all 18 completed §199 calls, every stop reason `tool_use`, `claude-sonnet-5` throughout.
+
+### Next gate
+
+Unchanged and unmoved by this slice: **the 152 verdicts** gate everything semantic, **the
+governed-grammar direction** gates the governed arm, and **HIGH-1/HIGH-2** are architecture questions
+needing triage. **No prototype was integrated into the active Expert path**, and none is reachable
+from production.
+
+---
+
+## §202 — GOVERNED STAGE INTEGRATED (DEVELOPMENT ONLY), AUTHORITY SWEEP BLOCKED ON THE §187 PIN (2026-09-07)
+
+**Terminal: `EXPERT_HAZLENZ_GOVERNED_STAGE_INTEGRATED_DEVELOPMENT_ONLY — PRODUCT_OWNER_DECISIONS_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-governed-stage-integration-2026-09-07/`.
+
+**0 experiment provider calls · $0.00 · 0 database operations · 0 hosted canary · 1,177 / 1,177
+baseline files byte-unchanged across 96 evidence directories plus the runtime module · 0 existing
+files modified by any agent.**
+
+Five agents, dispatched together, genuinely concurrent — completion order `A → B2 → D → B1 → C`
+against dispatch order `A → B1 → B2 → C → D`. **Zero conflicts. 354 new assertions, all re-executed
+by the orchestrator.**
+
+### Adjudication: 0 of 120, and the denominator itself was wrong
+
+**The 128 figure §201 published — and §202 enshrined — contained 8 slots §200 itself says cannot be
+judged.** SG-01 and SG-02 carry `ADJUDICABLE = false` with the recorded reason *"No model output
+exists … no semantic judgement is possible or permitted"*, while their four row-axis slots each sat
+inside the open count. Ruled **excluded**: the answerable denominator is **120**. Recorded as
+`OUT_OF_SCOPE_NO_MODEL_OUTPUT` with §200's own reason quoted, §200 unedited, **no verdict supplied by
+anyone** — verified, the operation touched zero `verdict` and zero `attribution` fields.
+
+Two further instrument defects: **`R_PRIORITY_FLOOR_IMPACT` had no vocabulary anywhere in §200** (axis
+R is two slots per fact and the declaration carries the scale for the classification half only, which
+is why 8 facts × 13 keys = 104 against 12 declared axes) — three members now confirmed; and **axis O
+does not exist**, §200's prose naming four governed axes where the worksheet defines three, which is
+why the pre-filled count is 24 and not 32.
+
+**21 review units built, U01 presented, 0 verdicts returned.** The judgments need the product owner
+and a subagent has no channel to them. `recordVerdict` refuses any attribution but the exact string
+`PRODUCT_OWNER`, refuses the 24 structural slots, refuses out-of-vocabulary values, and preserves the
+supplied string verbatim — **a model-authored verdict is not representable.**
+
+### The governed-binding stage — placed for least provider authority
+
+**After deterministic validation and identity, before enrichment, on governed rows only.** The
+ordinary first pass stays capability-ABSENT everywhere and is byte-unchanged. At that point **both
+sides of the relation are HazLenz-owned closed sets** — a minted request-scoped `factRef` and the
+exact supplied `sourceId` set — so the model selects and never names. Enforced by the call graph, not
+a comment: the nominator is typed to receive a request object carrying no facts, no `factKey`, no seal.
+
+| request (measured as sent) | enums | alts | props | schema B | total B |
+|---|---|---|---|---|---|
+| §199 ABSENT (accepted 10/10) | 17 | 74 | 54 | 18,679 | 63,691 |
+| §199 PRESENT (**rejected**) | 18 | 75 | 55 | 19,124 | 67,086 |
+| **§202 stage, 1 record** | **3** | **5** | **5** | **1,538** | **6,074** |
+
+**B1–B20 all pass inside 54/54**, including a 17-fixture differential against §201's boundary with 0
+disagreements. **B20 is diagnostic evidence and is NOT provider acceptance** — five `false` flags in
+code say so. Only a hosted canary can settle it.
+
+On the governed-text question: the first-pass prohibition **does not automatically extend** to a
+separate stage — it lives in v15's prompt and §196's projection boundary, neither in this path, and
+the verifier already sees unredacted governed text. Both exposures were built; the default stays
+`REDACTED`; the verbatim mode refuses to run without an explicit ruling string.
+
+### Effective grammar identity — and four corrections to §201's own function
+
+Classification is **by schema keyword, never by value shape**; that distinction *is* the correction.
+Validated before use: the reconstruction reproduces §199's recorded contract ids exactly, so findings
+are about the run rather than a fixture. Partition measured at **10 ABSENT rows to one identity, 2
+PRESENT to another**, on both sent and wire schema.
+
+**§201's `grammarShapeOf` erased grammar-relevant leaf scalars** — collapsing `{type:"string"}` with
+`{type:"number"}`, `additionalProperties:false` with `:true`, `pattern:"^a$"` with `"^[0-9]{40}$"`.
+These are false equivalences **in the dangerous direction**: they declare a *different* grammar
+already-rejected. §201 also split on annotation *presence* while collapsing annotation *content*,
+omitted provider scope and the rejection signature, and had no accounting at all.
+
+**It remains a proxy.** Agreement with provider behaviour is measured on one cohort of twelve —
+agreement, not equality, and the disclaimer is a returned code constant rather than prose.
+
+### Circuit breaker — `STOP` vs `SKIP_ATTEMPT` resolved
+
+Both dispositions implemented; which applies is read from a **frozen requirement table**, never
+inferred from class name, counts or position, with a **totality check at construction** so the
+question cannot arrive undecided mid-spend. Three-state accounting — `ATTEMPTED` /
+`SKIPPED_DUE_TO_KNOWN_DETERMINISTIC_REJECTION` / `NOT_EXERCISED` — with an arithmetic proof, and
+`recordAttempt` never called for a skipped row, so **a skipped row appears in no failure numerator and
+no attempt denominator**. Replay: 11 / 1 / 0 against §199's actual 12 / 0 / 0. **Not wired into any
+executor; behaviour against a live provider is inferred from replay, not measured.**
+
+### The authority sweep hit a wall that only the product owner can move
+
+**Every category-A fix lands on a file whose sha256 is frozen.** §187's `owedFactSourceHashes` pins
+four modules, re-asserted by **eleven** `verify-19x-source-integrity` scripts, plus `expert-prompt.ts`
+and `expert-verifier-contract-v3.ts`. **The §202 category-A hardening authorization and the §187 pin
+are in direct conflict.** Five guards were therefore written as pure functions with exact call-site
+signatures and **zero insertions applied**; all six pinned hashes recomputed identical. That was the
+correct call and it is the blocking item for the whole workstream.
+
+**11 findings — A=5, B=5, C=0, D=1 — with 10 of 11 reproduced by executing the real production
+function.** The worst is **ABF-5**: a nomination colliding with a *terminal-status* key is admitted,
+`addOwedFact` then silently no-ops, and `preservationViolations` **and** `bindingSideEffects` both
+report nothing — **a genuine new safety fact vanishes while a question is still projected against the
+key.** Also measured: the projection's governance scan is top-level only where the canonical boundary
+recurses depth-8; a provider-escalated question is `SELECTED` while the deterministic life-critical
+one is `SUPPRESSED_BY_BUDGET`; and citation blind spots were measured and **deliberately not
+repaired**, because broadening the regex is semantic inference.
+
+**HIGH-1 and HIGH-2 are both category B and neither is implemented.** HIGH-1's drift is
+*bidirectional*, and the same declaration is refused by the runtime and admitted with zero codes by
+the prototype. HIGH-2's framing is corrected twice: there *are* two producers and the parser *is*
+type-compatible — it is simply never wired — and **the incompatibility is compile-time only**, since
+the consumer never reads the field it supposedly rejects. Anyone reading HIGH-2 as "the types make
+this unreachable" is reading it wrongly. `PROVIDER_SETTLEMENT_AUTHORITY = NEVER` still holds on a real
+module-private symbol.
+
+### Red team: five evidenced bypasses, and one ruling that must be withheld
+
+**BYPASS-1 gates a decision.** The whole verbatim-citation contract sits behind one pattern.
+Verified by executing it: `29 CFR 1910.147` fires, while `29 C.F.R. 1910.147`, `1910.147(c)(4)`,
+`NFPA 70E` and `OSHA 1926.1153` **all miss**. The redactor shares the pattern, so it leaks both ways.
+**The verbatim ruling must be withheld until this closes** — granting it today would authorize a
+weaker mechanism than the one described.
+
+**BYPASS-2, corrected in a way that strengthens it.** The red team measured `additionalProperties:
+false` at "count 0 in both". Binary-safe: §201 has **one occurrence, in a comment**, asserting the
+protection. No schema sets it. Not an absent feature but **a comment claiming a layer that was never
+built** — the systemic class exactly. Measured from the other side: §201's own boundary **admits
+`{affectedDecision:'APPLICABILITY'}` as `BOUND`**.
+
+**One red-team framing is not accepted.** It reported that Agent C "exempts" `priority` and concluded
+"apply both or neither". C does not exempt it — it **routes** it, reporting it separately and not as a
+violation, because the field is *required* by the published nomination contract and scanning it as
+forbidden would refuse every well-formed nomination. That contradiction between two published
+contracts *is* the finding, and is why it is category B.
+
+**What held:** the customer-inactive boundary was attacked rather than re-verified and held four
+ways, decisively via `tsconfig.json`'s `include: ["src/**/*"]`. **Declared coverage gaps:** the red
+team saw none of the other agents' memos, and **the rejection-cache key derivation is unchallenged**.
+
+### A NUL byte, twice
+
+A prototype module carried a **raw NUL byte** as a hash-join delimiter — sound intent, unsafe
+encoding. It made `grep` treat the file as binary and **silently returned nothing during the
+orchestrator's own verification**, which is how it surfaced. Replaced with the escape sequence
+(runtime string identical, so every hash that function computes is unchanged); suite re-run 54/54.
+The §193 auditability gate independently failed on it while present and passed after repair — **the
+gate worked.** Then the §202 report *itself* reproduced the defect in the sentence documenting it;
+found by sweep, fixed, and recorded rather than quietly corrected. Zero raw NUL bytes remain in any
+§202 file.
+
+### Next gate (as of §202 — superseded by §203, retained for chronology)
+
+**The §187 pin conflict blocks all category-A hardening. The 120 verdicts block everything semantic.
+ABF-5, ABF-4, HIGH-1 and HIGH-2 need architecture rulings. The verbatim-citation ruling should be
+withheld.** No prototype was integrated into the active Expert path and none is reachable from
+production.
+
+---
+
+## §203 — SUCCESSOR EXPERT BOUNDARY HARDENING (2026-09-07)
+
+The §187-pin-vs-hardening conflict was resolved by product-owner ruling: a **successor development
+contract**, `hazlenz.expert.203-successor-boundary.v1`, reproduces the minimum pinned surface (two
+copied binding functions; the projection wrapped; the ledger imported unchanged) and enforces what
+the frozen path could not. All five §202 Category-A guards are integrated there with exercised call
+sites (GUARD_EXISTS / GUARD_CALLED / GUARD_REJECTS_ADVERSARIAL_INPUT each proven); ABF-5 is
+repaired there as `FACT_IDENTITY_COLLISION` (terminal-status collisions fail closed with a
+no-semantic-position diagnostic; the frozen path still silently no-ops, measured); the
+provider-authored priority field is removed (Ruling 5 — deterministic priority,
+`urgencyNomination` non-authoritative); every successor model-facing schema is closed
+(`additionalProperties: false` at every node, runtime-enforced, 107-case red team); the §201
+grammar identity is retired prospectively by a §203 canonical identity (splits string/number,
+additionalProperties false/true, pattern content; §199 cohort partition 10/2 reproduced; SG-02
+suppressed under the §203 key). §187 pins stayed byte-identical (7/7); zero provider calls; no
+caller was promoted. Evidence: `verification/expert-hazlenz-successor-boundary-hardening-2026-09-07/`.
+
+**§204 — SEMANTIC ADJUDICATION COMPLETE (2026-09-07).** D11 is **CLOSED at 120 / 120**
+product-owner verdicts, every one `PRODUCT_OWNER`-attributed through the append-only
+`recordVerdict` / `recordAdditive` machinery, which refuses any other attribution, refuses the 24
+structural slots, and refuses out-of-vocabulary values. Terminal state:
+`EXPERT_HAZLENZ_DEVELOPMENT_SEMANTIC_ADJUDICATION_COMPLETE — REMEDIATION_REQUIRED`.
+**120/120 is instrument completion, NOT acceptance, and no quality claim extends beyond the
+§199 twelve-row cohort on one provider in one run.** Opportunity-adjusted clean rate 82.4 %
+(75 of 91 pass/fail-bearing exercised slots; `NOT_EXERCISED` excluded, axis R excluded as
+diagnostic). Eight defect mechanisms recorded: F1 multi-gap loss, F2 counterfactual inflation,
+F3 temporal-qualifier loss (1 of 8, did not replicate on either discriminating test), F4 branch
+partition incompleteness, F5 performance-not-result clarification, F6 priority-floor
+under-escalation (7 of 8 — diagnostic only), **F7 decision-divergence overreach (2 facts across
+2 affected-decision families — the only cross-family mechanism)**, and **F8 total owed-fact loss
+through declaration contract non-compliance on SF-05**. Verifier target binding and evidence-span
+relevance held 8/8 and must be preserved. Six of the eight mechanisms originate before projection,
+so **no representation change reaches them**. Separately carried as an evidence-tooling defect,
+not a model/verifier defect: `recordAdditive` overwrites rather than appends (T1). The 66
+supplementary verifier sub-axis slots remain DEFERRED and are not opened for completeness.
+Governed axes N/S/T carry **zero** evidence — both governed rows were rejected before inference.
+Evidence: `verification/expert-hazlenz-semantic-adjudication-204-2026-09-07/` — read
+`POST-120-CLOSURE-REPORT-204.md` first.
+
+**§205 — POST-120 REMEDIATION IMPLEMENTED (2026-09-07), DEVELOPMENT ONLY.** Terminal:
+`EXPERT_HAZLENZ_POST_120_REMEDIATION_IMPLEMENTED — PRODUCT_OWNER_REVIEW_AND_HOSTED_TRANSPORT_SMOKE_REQUIRED`.
+Zero provider calls, zero database operations, zero files modified outside the §205 namespace; the
+§199-executed vNext prompt, the `OwedFact` contract, §202's `recordAdditive` and every §203 module
+are byte-unchanged. Eleven new §205 files. **`test-205-remediation.ts` 92/0 and
+`test-205-acceptance-design.ts` 35/0**, with §202/§203/§204 regressions all green (52, 45, 63, 107,
+83, 36 and four exit-0 suites). What was implemented: an **R2 first-pass instruction successor**
+carrying RR-1, RR-2A, RR-2B (F7, quoting both recorded branch shapes), RR-3 (a test to apply, NOT a
+mandatory ternary — SF-11 was CORRECT as a binary) and RR-5, built by construction from vNext and
+**reversible byte-identically**; **RR-7 declaration preservation**, which reproduces the SF-05
+failure and turns it from silent total loss into `safetyStateComplete = false` with the identified
+property preserved verbatim and the absent fields named but never invented; **T1** repaired as
+append-only evidence tooling (structural entries, derived flat read view, byte-identical legacy
+adoption, historical ledger untouched) and classified explicitly as tooling, NOT an Expert semantic
+defect; and the **governed capability-present transport**, routed through §202's separate stage and
+measured at 18,730 B first pass (byte-identical to the ABSENT schema §199 accepted) plus 1,478 B
+governed stage, against the retired 19,152 B PRESENT shape that drew `COMPILED_GRAMMAR_TOO_LARGE`.
+**That claim is CONSTRUCTIBLE AND WITHIN THE ACCEPTED ENVELOPE, not PROVIDER ACCEPTED** — §199
+measured a 433-byte accept/reject margin, so byte size is not the provider's metric. **Stated
+residual limit: F7 is not reachable by deterministic code** — both overreach fixtures are
+structurally well-formed and admitted, so F7 is answered by instruction and adjudication only.
+**O1 retained** as the representation baseline (O4 built, exercised, `AVAILABLE_NOT_ADOPTED` with a
+recorded revisit trigger). **RR-6 designed, not activated**: E3 raises 6 of 7 correctly with 0
+over-escalations where E1 over-raises U07, because `affectedDecision` alone cannot separate the six
+`REQUIRED_CONTROL` facts — diagnostic only, Ruling 5 unchanged, D14 open. A **24-case fresh
+acceptance cohort** with a risk-targeted instrument (**159 judgments, 39 % of full factorial**) and
+**15 proposed gates** (13 hard safety-critical, all 100 %/zero) are drafted, NOT preregistered; the
+execution gate refuses to run until the truth specification is product-owner-reviewed AND frozen,
+the transport smoke passes, and the gates are preregistered. Evidence:
+`verification/expert-hazlenz-post-120-remediation-205-2026-09-07/IMPLEMENTATION-REPORT-205.md`.
+
+**§206 — HOSTED GOVERNED-TRANSPORT SMOKE PASSED (2026-09-08).** Terminal:
+`EXPERT_HAZLENZ_GOVERNED_TRANSPORT_HOSTED_SMOKE_PASSED — FRESH_COHORT_PREREGISTRATION_REQUIRED`.
+**3 provider calls, USD 0.134574, 0 database operations, ceiling 4 not exceeded.**
+`PROVIDER_TRANSPORT_ACCEPTED = TRUE`; `SEMANTIC_OUTPUT_CORRECT = NOT JUDGED`. A nine-check preflight
+reproduced every §205 identity byte-exactly before any call — routed first pass 18,730 B /
+`c0df75103834b03c`, retired PRESENT 19,152 B / `09825bd0e1b3de13`, governed stage 1,478 B /
+`58faca1cd094af1b` — and a mismatch would have aborted with zero calls. **Nothing was rewritten,
+truncated or simplified to obtain acceptance.** The routed capability-ABSENT first pass returned
+HTTP 200 / `tool_use` and projected to 1 admitted owed fact with `safetyStateComplete = true`; the
+separate governed stage returned HTTP 200 / `tool_use` with a single `bindings` key, **no
+HazLenz-owned field**, addressing the fact by its minted reference `F1` rather than by a factKey.
+**The §199 `COMPILED_GRAMMAR_TOO_LARGE` failure did not recur** and the retired PRESENT form was
+never transmitted — guarded before every `fetch` by whole-schema equality and grammar identity.
+**One of the three calls was wasted by operator error** (a diagnostic command re-required the
+executor module and repeated the first pass, USD 0.064196); it is reported as an unintended clean
+replicate rather than discarded, and the executor is now leg-aware with an append-only ledger.
+**A defect was found in the §206 executor, not in the transport:** the first pre-transmission guard
+used the string `governedEvidenceSourceIds` as a proxy for the retired form and wrongly refused the
+governed call — that field legitimately appears in the governed stage's OUTPUT schema as an
+enum-constrained array over supplied ids, which *is* the §202 authority boundary. The guard was
+narrowed to its actual meaning, not relaxed. All §205 rulings preserved (R2, RR-7, T1, O1/O4, RR-6
+E3 unauthorized); no §205 file modified; §205/§203/§202 regressions re-run green. Evidence:
+`verification/expert-hazlenz-governed-transport-smoke-206-2026-09-08/SMOKE-REPORT-206.md`.
+
+**§207 — FRESH-COHORT TRUTH SPECIFICATION AND PREREGISTRATION FROZEN (2026-09-08).** Terminal:
+`EXPERT_HAZLENZ_FRESH_COHORT_PREREGISTRATION_FROZEN — PRODUCT_OWNER_REVIEW_AND_COHORT_EXECUTION_AUTHORIZATION_REQUIRED`.
+**0 provider calls, 0 database operations, no commit/push/tag/deploy, no §205 or §206 file
+modified** (all eight §205 lib sha256 prefixes still match the §205 and §206 records). §207 authored
+a full product-owner truth specification for all 24 fresh acceptance cases — exact observation and
+supplied context, per-property status (resolved / unresolved / negated / not applicable), the
+independent owed facts with their conjuncts, essential qualifiers, acceptable branch partitions and
+what changes under each state, per-fact PROHIBITED downstream decision claims (the F7 boundary,
+frozen), acceptable settling evidence, what a sufficient clarification must establish, false-gap
+traps with reasons, governed-evidence constraints and authority boundaries, containment
+expectations, a frozen safety classification, and the gates each case feeds. **24 expected projected
+facts, 23 of them frozen safety-critical; 4 zero-declaration cases; 3 governed cases.**
+**15 gates are now PREREGISTERED, not proposed** (13 hard safety-critical, every one 100 % or
+zero-occurrence). Reviewing the §205 proposals as acceptance rules surfaced two gates whose stated
+denominator did not exist in the instrument — G6 (verifier target binding) claimed "every projected
+fact" against an instrument that adjudicated axis L on two, and G7 (clarification sufficiency)
+claimed 23 safety-critical facts while four of them had no clarification slot at all — so two declared, reversible axis amendments were
+added, taking the instrument from the §205 target of **159 to 177 judgments** (57 row + 120 fact,
+43 % of the 408 full factorial). Removing the amendments reproduces the §205 axis sets exactly, and
+the suite asserts the round trip. **Ordinary quality is set as seven explicit criteria rather than a
+headline percentage**, because the instrument is risk-targeted, its slots are correlated, and a
+single number invites the compensation the §205 principle forbids; no ordinary criterion can
+override a hard gate in either direction. The preregistration is canonicalised, hashed and
+identity-pinned — `879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4` — with the pin
+held in a **different file** from the record, so one edit cannot satisfy both. **The execution gate
+refuses**: today on the two remaining product-owner acts (review of the frozen specification, and
+authorization to execute), and independently on an absent record, a tampered payload, a
+self-consistent but drifted record, or a pin/record disagreement — all four proven in
+`EXECUTION-GATE-PROOF-207.txt`, with an all-conditions-met control showing the gate opens.
+`test-207-preregistration` **144/0**; §205/§203/§202/§204 regressions re-run green. Evidence:
+`verification/expert-hazlenz-fresh-cohort-preregistration-207-2026-09-08/`.
+
+**§207 also RULED D08 and D15.** **D08 CLOSED in favour of the current architecture**, with the
+governing rule recorded: MODEL AUTHORS SEMANTIC SAFETY CONTENT; deterministic code may validate,
+reject, refuse admission, preserve unresolved truth, normalize without semantic change and project
+valid model-authored declarations, and may NOT invent, reconstruct from prose, repair branch
+meaning, infer divergence, or recreate the retired semantic matcher. Preregistered gate G11 is the
+run-time expression of that ruling and a G11 failure reopens D08. **D15 CLOSED as `O1_RETAINED` /
+`O4_AVAILABLE_NOT_ADOPTED`** — O4 is not adopted merely because it was implemented successfully, and
+its revisit trigger is retained and live. **D14 remains OPEN**: no escalation policy was activated
+or tuned, E3 stays `RECOMMENDED_NOT_AUTHORIZED`, and gate G15 is measurement-only with its small
+denominator (7 R_SAFETY / 4 R_FLOOR) written into the gate so it cannot be quoted as carrying D14.
+
+**§208 — FRESH ACCEPTANCE COHORT EXECUTED (2026-09-08).** Terminal:
+`EXPERT_HAZLENZ_FRESH_COHORT_EXECUTED — PRODUCT_OWNER_ADJUDICATION_OF_177_JUDGMENTS_REQUIRED`.
+The product owner accepted §207 and authorized execution against the frozen preregistration
+`879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4`, which the execution gate
+verified — record, pin and source identity all agreeing — before every stage. **50 provider calls,
+USD 2.308554 of a USD 6.00 ceiling, 0 retries of 6, 0 database operations, no commit/push/deploy,
+and no change to any prompt, contract, representation, boundary, truth item, gate, denominator or
+threshold.** An offline preflight constructed all 24 requests at zero cost first and confirmed no
+first-pass request carried a governed-binding property anywhere.
+
+**Execution results, all structural.** 24 of 24 cases execution-valid; 24 admitted owed facts;
+**zero declarations refused**, so RR-7 had nothing to preserve and gate G13 is
+`NOT_EXERCISED_ZERO_DENOMINATOR` rather than PASSED — the vacuous-pass rule §207 froze for exactly
+this case. The §199 `COMPILED_GRAMMAR_TOO_LARGE` failure did not recur. Deterministic scans are
+clean across all 50 provider payloads: 0 citation-shaped strings, 0 forbidden expert fields, 0
+provider-returned `factKey`s, 0 governed ids outside the supplied set, 0 degenerate outputs, 0
+truncations. The governed stage bound only the bearing record `GOV-ECP-01` on AC-22 and did not name
+the deliberately off-point `GOV-PPE-02`, addressing the fact by its minted reference `F1`. Verifier:
+22 `VERIFIED_AS_IS`, 2 `ADD_OR_REPLACE_CLARIFICATION`, with one v3.3 admission refusal on AC-22.
+**Gate G10 PASSED** deterministically (50/24) and **G11 PASSED on its automated half**; the other
+thirteen gates are `AWAITING_ADJUDICATION`.
+
+**EXECUTION COMPLETING IS NOT ACCEPTANCE, and none is claimed.** All **177 preregistered judgments
+are open and zero verdicts are supplied** — every verdict must carry `PRODUCT_OWNER` attribution and
+no agent, default or code path may write one, exactly as §200 recorded zero model verdicts on 152
+slots. Eleven of thirteen hard gates therefore have no evidence at all, and the acceptance
+determination is `NOT_DETERMINABLE`. Eleven slots have no opportunity (AC-03 produced one fact where
+two were designed; AC-23 produced none where one was designed) and each **reduces** the denominator
+of the gates it feeds; **G6's coverage headroom is one slot.**
+
+**Three §208 EXECUTOR defects are recorded rather than absorbed**, none of them a model, contract,
+transport or truth defect. (1) The first-pass projection was called with a non-empty supplied
+governed set, which made the projection demand a `governedEvidenceSourceIds` field the
+capability-ABSENT first pass is structurally forbidden to produce; on AC-22 it refused a
+well-formed declaration and would have presented a `PLAUSIBLY_LIFE_CRITICAL` case as a total
+owed-fact loss belonging to neither the model nor the contract. Corrected by re-deriving the
+projection from the **persisted raw output** with an empty supplied set — zero provider calls,
+original file preserved byte-untouched, and **exactly one case changed** while the other 23 are
+bit-identical. (2) The verifier tool was transmitted in Anthropic strict mode, which §199 never used
+and which the provider rejected at HTTP 400 for USD 0.00; corrected by transmitting the tool exactly
+as §199 did, with the verifier schema, system prompt and admission contract **byte-unchanged**. (3)
+Every verifier call received an empty hazard-candidate block because the executor read §199's
+*persisted* field name out of the *parsed* payload; **this was NOT corrected by re-running**, because
+24 further calls would breach the 57-call hard ceiling, so axis L and gate G6 rest on a disclosed
+lower-fidelity input and the disclosure is attached to every axis-L slot. **One NON-MATERIAL
+preregistration defect** is recorded and the frozen truth was **not** repaired or regraded.
+Evidence: `verification/expert-hazlenz-fresh-cohort-execution-208-2026-09-08/`.
+
+**§208B — FROZEN-COHORT VERIFIER-LEG RECOVERY (2026-09-08).** Terminal:
+`EXPERT_HAZLENZ_VERIFIER_LEG_RECOVERED — PRODUCT_OWNER_ADJUDICATION_OF_177_JUDGMENTS_MAY_BEGIN`.
+The product owner classified the three §208 executor defects and, decisively, **declined to waive
+the structural-rejection rule retrospectively**: `ORIGINAL_§208_EXECUTION_CLEAN_ACCEPTANCE_VALIDITY
+= NOT_ESTABLISHED`. Defect 3 was ruled **MATERIAL** — axis L and G6 were preregistered against the
+intended verifier architecture, not against knowingly degraded input, and **a caveat may not convert
+lower-fidelity evidence into full-fidelity acceptance evidence**, so §208's per-slot disclosure was
+the wrong remedy. §208B is the bounded recovery that supplies what §208 did not.
+
+**24 verifier calls against the FROZEN §208 first-pass outputs. USD 0.612072 of a USD 1.50 ceiling,
+0 retries of 6, 0 failures, all HTTP 200 / `tool_use`. ZERO first-pass calls, ZERO governed-stage
+calls, ZERO database operations, ZERO human verdicts.** No first-pass response was regenerated —
+the executor imports no first-pass or governed request builder, so such a call is unconstructible
+rather than merely unmade — and the §208 ledger is unchanged at 50 records.
+
+**The offline preflight was clean and is the load-bearing artifact:** 15 identity checks and 15
+proofs, zero provider calls, with the preflight and the executor sharing ONE assembly path so that
+what was proved is what was sent. All 49 persisted hazard-candidate records were assembled verbatim;
+every one of the 24 requests carries 1–3 candidates where §208 carried none; and the
+empty-candidate-block defect is unreachable by **three independent guards** that throw rather than
+transmit. The verifier schema (`83071b51…`), system prompt, admission contract, provider and model
+are **byte-unchanged**, and the wrapper is §199's, carrying no strict flag.
+
+**Recovered results:** 23 `VERIFIED_AS_IS`, 1 `ADD_OR_REPLACE_CLARIFICATION`; admission 23 admitted,
+1 refused (AC-02 fact 1, missing proposal and source mode). The replacement rule is **UNIFORM** —
+the §208B outputs are `ACCEPTANCE_VERIFIER_EVIDENCE` for all 24 facts and the §208 outputs are
+`DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE` for all 24, with no per-fact selection possible in the
+tooling. The diagnostic comparison (23 of 24 verdicts identical, 1 differing on AC-22, 2 admission
+outcomes changed) **decides nothing**: the rule was fixed before the comparison was computed, and
+agreement does not retrospectively make a degraded input adequate. The §208B acceptance worksheet
+carries **177 slots and 0 verdicts**, its 15 axis-L slots now bearing a provenance statement rather
+than a fidelity caveat. Evidence:
+`verification/expert-hazlenz-verifier-recovery-208b-2026-09-08/`.
+
+**§209 — FROZEN FRESH-COHORT ADJUDICATION SESSION PREPARED (2026-09-08).** Terminal:
+`EXPERT_HAZLENZ_ADJUDICATION_SESSION_PREPARED — PRODUCT_OWNER_MUST_SUPPLY_THE_177_JUDGMENTS`.
+**0 provider calls, 0 database operations, no commit/push/deploy.** §209 asked for the 177 judgments
+to be completed AND stated that no agent, deterministic scorer, heuristic, language model or code
+path may write a product-owner verdict. **The second rule governs: 177 slots, 0 verdicts, 177
+open.** That is the property the whole instrument rests on — §200 recorded zero model verdicts on
+152 slots, §204's 120 were all product-owner-attributed, and a verdict written by an agent and
+labelled `PRODUCT_OWNER` would make every gate computed from it worthless.
+
+**Everything automation is authorized to do is done.** The session is bound to the §208B
+`ACCEPTANCE_VERIFIER_EVIDENCE` (24 records; the builder aborts below 24 and never opens the §208
+verifier file), and the slots are read from the §208B acceptance worksheet rather than re-derived,
+so no second slot constructor can disagree with the first. **The human session document removes the
+per-slot gate linkage that the §208/§208B packets exposed**: with G6's coverage headroom at one
+slot, that linkage told a reader which single answer would decide a hard gate, which §209 forbids
+showing during adjudication — the linkage is retained only in the machine worksheet, where the gate
+computation needs it and cannot be influenced by it. That exposure is recorded as a
+`NON_PREREGISTERED_DIAGNOSTIC_OBSERVATION` and changes no judgment, gate, denominator or threshold.
+
+**`record-209-verdict.ts` is the only writer and derives nothing** — it has no scorer, no heuristic
+and no comparison against the frozen truth, so an omitted verdict writes nothing. Its refusals are
+proved by execution: unknown slot, value outside the frozen vocabulary, any attribution other than
+`PRODUCT_OWNER`, an unexplained `NOT_EXERCISED`, scoring one of the eleven frozen no-opportunity
+slots, and a silent conflicting revision. The ledger is appended before the worksheet is updated, so
+a revision cannot destroy the value it replaces.
+
+**Gates, computed mechanically with every rule as preregistered: G10 `PASSED` (deterministic,
+50/24), G11 `PASSED_AUTOMATED_HALF`, G13 `NOT_EXERCISED_ZERO_DENOMINATOR` — which is not a pass —
+and the other twelve `AWAITING_ADJUDICATION`. No hard-gate failure, no `UNDETERMINED` and no
+`COVERAGE_INSUFFICIENT` is possible yet. Acceptance: `NOT_DETERMINABLE`.** All seven
+ordinary-quality criteria await adjudication and no headline percentage was invented. AC-02 fact 1
+is preserved exactly — `ADD_OR_REPLACE_CLARIFICATION` without the required proposal and source mode,
+refused by the unchanged v3.3 contract — not repaired, inferred, re-run, substituted, softened, or
+classified semantically. **D08's reopen trigger did not fire** (G11's automated half passed; the
+recorded human half is outstanding); **D15's revisit trigger did not fire** and cannot yet, since
+all three axis-Q slots are open; **D14 stays OPEN** and must not be evaluated on G15's 7 `R_SAFETY`
+and 4 `R_FLOOR` judgments, all unfilled. Evidence:
+`verification/expert-hazlenz-frozen-cohort-adjudication-209-2026-09-08/`.
+
+**Current next gate:** the **product owner supplying the 177 judgments** — the one step in this
+chain an agent cannot perform. Then the completeness check, the fifteen gates, the seven
+ordinary-quality criteria, D14, and only then advancement. D11, D08 and D15 are closed; D10 is next
+in that chain. Nothing in §204–§209 authorizes a second cohort, a case regeneration, a
+priority-policy mutation, or successor promotion, and nothing may be re-run because an output looks
+unfavourable.
+
+---
+
+## EXPERT HAZLENZ CURRENT-STATE PACKAGE (2026-09-07 CONSOLIDATION)
+
+Expert HazLenz state is now consolidated in **`docs/expert-hazlenz/`** — the authoritative entry
+point for all future Expert HazLenz work, replacing re-reading §187–§203 reports:
+
+1. `CURRENT-EXPERT-HAZLENZ-STATE.md` — primary entry point (read first)
+2. `EXPERT-HAZLENZ-DECISION-REGISTER.md` — every open product-owner decision (D01–D15)
+3. `EXPERT-HAZLENZ-NEXT-WORK.md` — dependency graph; orchestration source for future slices
+4. `EXPERT-HAZLENZ-ARCHITECTURE-MAP.md` / `EXPERT-HAZLENZ-VALIDATION-MATRIX.md` — per-workstream
+5. `EXPERT-HAZLENZ-EVIDENCE-INDEX.md` — navigation into §187–§203 immutable evidence
+
+Historical experiment chronology lives in the evidence index and the per-slice directories, not in
+this blueprint. A full pre-consolidation backup and hash baseline are recorded at
+`verification/expert-hazlenz-checkpoint-consolidation-2026-09-07/`.
+
+---
+
 ## FUTURE-SESSION BOOTSTRAP
 
 > **Copy/paste for the start of any major InSite session.**
 >
 > Read `docs/INSITE_ENGINEERING_BLUEPRINT.md` and `docs/INSITE_CURRENT_STATE.json` before doing
-> anything else. Treat `STABLE_INVARIANT` and `PROTECTED_DECISION` entries as binding: preserve them
+> anything else. **For Expert HazLenz work, read `docs/expert-hazlenz/CURRENT-EXPERT-HAZLENZ-STATE.md`
+> first instead** and follow its reading order — do not reconstruct §187–§203 from raw evidence.
+> Treat `STABLE_INVARIANT` and `PROTECTED_DECISION` entries as binding: preserve them
 > unless current repository evidence contradicts them, and never reopen a closed KG decision to make a
 > test or a metric more convenient. Reverify every `MUST_REVERIFY` item — HEAD, branch, `git status`,
 > tag targets, stash count, corpus counts, active release, DB schema, running services, environment

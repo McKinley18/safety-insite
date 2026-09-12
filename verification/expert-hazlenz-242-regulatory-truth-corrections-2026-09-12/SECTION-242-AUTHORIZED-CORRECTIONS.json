@@ -1,0 +1,96 @@
+{
+  "artifact": "SECTION-242-AUTHORIZED-CORRECTIONS",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "producedAt": "2026-09-12",
+  "authorizedBy": "§242 product-owner decision, exactly three governed-truth corrections",
+  "basisEvidence": "verification/expert-hazlenz-241-regulatory-source-verification-2026-09-12",
+  "basisPackageDigest": "5801070d809f9b642ba3ea138f2408e17e21e3b6c65975d7dfdbdcad1319a3dc",
+  "correctionsAuthorized": 3,
+  "correctionsApplied": 3,
+  "correctionsBlocked": 0,
+  "corrections": [
+    {
+      "id": "C1",
+      "subject": "M4 jurisdiction and the governing MSHA record",
+      "status": "APPLIED",
+      "jurisdictionFact": "SURFACE METAL/NONMETAL MINERAL CONCENTRATOR",
+      "citationBefore": "30 CFR 57.14105",
+      "citationAfter": "30 CFR 56.14105",
+      "sourceIdBefore": "GOV-MSHA-57-14105",
+      "sourceIdAfter": "GOV-MSHA-56-14105",
+      "quotationChanged": false,
+      "quotationBasis": "the §240 quotation is preserved verbatim. §241 and §242 both verify it as character-identical to the official text of 30 CFR 56.14105, so the directive's condition \"only to the extent that this is the verified official §56.14105 text\" is satisfied.",
+      "allowedAuthorityBefore": [
+        "GOV-MSHA-57-14105"
+      ],
+      "allowedAuthorityAfter": [
+        "GOV-MSHA-56-14105"
+      ],
+      "mechanicalReferencesUpdated": [
+        "SECTION-240-JUDGMENT-SLOTS.json slot M4-J6 question text"
+      ],
+      "jurisdictionRecordedIn": [
+        "cases[M4].setting",
+        "cases[M4].mineClassification",
+        "cases[M4].governingMshaPart",
+        "cases[M4].jurisdictionBasis"
+      ],
+      "whyNotRecordedInTheTransmittedJurisdictionField": "cases[M4].jurisdiction is the field the assembly transmits to the provider, and all 24 cases carry the value \"US\". Two reasons to leave it alone. First, writing a part designation there would give M4 alone a richer transmitted context than the other MSHA cases, which is a payload difference rather than a truth correction. Second, the first-pass prompt deliberately withholds citation tokens: governed records are rendered under opaque handles with redactCitationTokens applied, because a model that echoes a citation-shaped token is condemned by CITATION_SHAPED_PATTERN. Injecting a CFR part reference into the inspection context would put the forbidden token class back into the model context that §139 removed it from. The jurisdiction fact is therefore explicit in the truth contract, where adjudication reads it, and the provider payload is byte-unchanged.",
+      "notChanged": [
+        "observation",
+        "hazard",
+        "controllingProperty",
+        "expectedPosture",
+        "prohibitedProxies",
+        "owedProperties",
+        "exercises/human action",
+        "expectedFinalAuthoritativeState",
+        "scoring logic"
+      ]
+    },
+    {
+      "id": "C2",
+      "subject": "G2 / 29 CFR 1910.151(c) applicability rationale",
+      "status": "APPLIED",
+      "quotationChanged": false,
+      "citationChanged": false,
+      "removed": "the statement that the decision turns on the drenching facility being unable to be shown to function",
+      "nowRestsOn": "obstructed access to a facility the case establishes as functioning, against the regulation's requirement that the facility be provided within the work area for immediate emergency use",
+      "postureChanged": false,
+      "controllingPropertyChanged": false,
+      "whyNoPostureChange": "G2 posture CONTINUE_WITH_CONTROLS and controlling property \"whether the route from the etch bench to the emergency drenching facility is clear\" were never derived from the operability statement. The frozen consequence already reads \"the recipe may continue. The doorway must be cleared now and kept clear while acid work is done in this bay.\" No posture or property change was required, so none was made.",
+      "newOperabilityUncertaintyCreated": false
+    },
+    {
+      "id": "C3",
+      "subject": "C1 / 29 CFR 1926.1153(c)(1) applicability description",
+      "status": "APPLIED",
+      "quotationChanged": false,
+      "citationChanged": false,
+      "replaced": "dry shotcrete application",
+      "replacedWith": "removing mortar joints with a handheld grinder, the terminology the frozen case already uses in cases[C1].suppliedContext.task",
+      "table1Authority": "verified present in the official Table 1 as \"Handheld grinders for mortar removal (i.e., tuckpointing)\"",
+      "notChanged": [
+        "observation",
+        "hazard",
+        "silica reasoning",
+        "expectedPosture",
+        "governed-authority boundary",
+        "thresholds"
+      ]
+    }
+  ],
+  "recordExplicitlyNotCorrected": {
+    "sourceId": "GOV-OSHA-1910-212A1",
+    "citation": "29 CFR 1910.212(a)(1)",
+    "instruction": "NO CORRECTION",
+    "carriedFinding": "the frozen quotation is exact; the official text continues with a non-exhaustive illustrative sentence; the omission does not alter the duty the frozen quotation represents",
+    "illustrativeSentenceAppended": false
+  },
+  "blockedItem": {
+    "sourceId": "GOV-MSHA-57-15005",
+    "status": "NOT_CHANGED_AND_BLOCKING",
+    "seeArtifact": "SECTION-242-REFREEZE-BLOCKED.json"
+  }
+}

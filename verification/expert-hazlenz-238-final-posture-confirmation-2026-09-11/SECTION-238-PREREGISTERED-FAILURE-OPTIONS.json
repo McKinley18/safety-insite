@@ -1,0 +1,14 @@
+{
+  "artifact": "SECTION-238-PREREGISTERED-FAILURE-OPTIONS",
+  "frozenBeforeAnyProviderCall": true,
+  "whyFrozenNow": "the §238 authorization requires the four product-level options to be frozen with the instrument, so that a failure is classified against a written list rather than against whatever seems reasonable once the result is known.",
+  "rule": "if the decision-controlling versus response distinction fails after §237 and this one confirmation, no further prompt-tuning cycle may be started.",
+  "theFourOptions": [
+    "accept a human-review containment boundary for this limitation, as KR-1 and exact property identity are already held",
+    "move the distinction into stronger deterministic or governed logic, which would mean finding authoritative state the first-pass contract does not currently carry",
+    "redesign the semantic component responsible",
+    "hold the Expert release"
+  ],
+  "whyItIsWrittenDownNow": "because the decision is easier to take honestly before the result is known than after. §233, §235 and §237 have each added instruction to the same defect family, and the §237 authorization is right that the programme must not remain in repeated micro-cohort remediation.",
+  "noFurtherPromptTuningOrMicroCohortWithoutExplicitAuthorization": true
+}

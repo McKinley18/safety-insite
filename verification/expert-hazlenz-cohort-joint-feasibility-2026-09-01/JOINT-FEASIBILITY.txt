@@ -1,0 +1,186 @@
+FORMAL EXPERT HAZLENZ COHORT -- MINIMUM JOINTLY FEASIBLE SIZE
+ZERO-SPEND POLICY FEASIBILITY. No reserve opened. No provider. Nothing frozen.
+
+A. FROZEN COMPOSITION REQUIREMENTS
+   COHORT_CASE_CLASSES declared: 13
+   hard ceiling 60   target 60   minimum defensible 48
+
+   GOVERNED_RECORD_SUPPLIED               minimum  40   (attachment)
+   NO_GOVERNED_RECORD                     minimum   8   (attachment)
+   CLARIFICATION_NOT_OWED                 minimum  14   (intrinsic)
+   CLARIFICATION_OWED                     minimum  20   (intrinsic)
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL      minimum  48   (intrinsic)
+   LIFE_CRITICAL_PRESENT                  minimum  10   (intrinsic)
+   CROSS_HAZARD_INTERACTION               minimum  10   (intrinsic)
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY  minimum  10   (intrinsic)
+   MULTI_HAZARD                           minimum  12   (intrinsic)
+   NEGATED_OR_SAFE_STATE                  minimum  10   (intrinsic)
+   DISAGREEMENT_OPPORTUNITY               minimum   6   (attachment)
+   DETERMINISTIC_HAZARD_PRESENT           minimum  30   (intrinsic)
+
+   classes with NO frozen minimum: DETERMINISTIC_EXCLUSION_PROJECTED
+
+B. CURRENTLY OPEN POOL
+
+   gauntlet.seed          45 rows
+   Population A           34 rows
+   Population B           22 rows
+   augmentation V2        16 rows
+   semantic §129          35 rows
+   TOTAL                 152 rows
+
+   class                                   req  supply  absolute
+   CLARIFICATION_OWED                       20      25  ok
+   CLARIFICATION_NOT_OWED                   14     127  ok
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL        48      44  SHORT 4
+   CROSS_HAZARD_INTERACTION                 10      17  ok
+   MULTI_HAZARD                             12      61  ok
+   LIFE_CRITICAL_PRESENT                    10      72  ok
+   NEGATED_OR_SAFE_STATE                    10      45  ok
+   DETERMINISTIC_HAZARD_PRESENT             30     123  ok
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY    10      33  ok
+
+C/D. FEASIBILITY USING ONLY CURRENTLY OPEN MATERIAL
+
+   Exact lower bound on |R|:
+      34  OWED (20) + NOT_OWED (14) -- complementary, they add
+      48  GOVERNED (40) + NO_GOVERNED (8) -- complementary attachment, they add
+      65  OWED (20) + FORBIDDEN (48) - overlap available (3)
+      48  largest single class minimum
+      48  MINIMUM_DEFENSIBLE_ROWS (48)
+     => H >= 65
+
+   ABSOLUTE SUPPLY BLOCKER -- infeasible at EVERY H, not a size problem:
+     FORBIDDEN_FAMILY_NEGATIVE_CONTROL: supply 44 < minimum 48 (short 4)
+
+   No hard ceiling, however large, can satisfy a class whose total supply is below its
+   minimum. This is categorically different from the §131 size/overlap conflict and it
+   must be resolved by SUPPLY, not by policy arithmetic.
+
+E/F/G/H/I. MINIMUM ADDITIONAL FORBIDDEN SUPPLY, AND WHETHER IT MUST OVERLAP OWED
+
+   FORBIDDEN supply 44, minimum 48  =>  at least 4 additional
+   eligible forbidden-negative rows are required NO MATTER WHAT H IS.
+
+   Whether they must ALSO be CLARIFICATION_OWED depends only on the ceiling you want:
+
+   d = new OWED+FORBIDDEN     r = new non-OWED FORB    forbidden overlap     bound   EXACT H  minimality
+   0                          4                               48       3        65        67  PROVEN
+   1                          3                               48       4        64        66  PROVEN
+   2                          2                               48       5        63        65  PROVEN
+   3                          1                               48       6        62        64  PROVEN
+   4                          0                               48       7        61        63  PROVEN
+   5                          0                               49       8        60        62  PROVEN
+   6                          0                               50       9        59        61  PROVEN
+   7                          0                               51      10        58        60  PROVEN
+   8                          0                               52      11        57        59  PROVEN
+   9                          0                               53      12        56        59  PROVEN
+   10                         0                               54      13        55        59  NODE-CAPPED
+
+   THE ANALYTIC BOUND IS NOT TIGHT. The exact minimum sits consistently ABOVE
+   O + F - overlap, so the §131 inclusion-exclusion figure understates the real requirement.
+   Additional forbidden rows may be EITHER kind, and each row of the OWED kind buys exactly
+   one row of headroom -- but the headroom is measured against the EXACT minimum, not the
+   analytic bound.
+
+   SMALLEST d that keeps the hard ceiling at 60: 7  (exact minimum H = 60)
+
+F. WHY A SMALLER H FAILS -- the binding classes at the optimum
+
+   TIGHT   CLARIFICATION_OWED                     supplied exactly 20
+   TIGHT   FORBIDDEN_FAMILY_NEGATIVE_CONTROL      supplied exactly 48
+   TIGHT   DETERMINISTIC_MISS_RECALL_OPPORTUNITY  supplied exactly 10
+
+   Rows that are NEITHER OWED nor FORBIDDEN: 2
+   These are the rows the inclusion-exclusion bound cannot see. They exist because
+   NEGATED_OR_SAFE_STATE and DETERMINISTIC_MISS_RECALL_OPPORTUNITY must also be covered,
+   and the rows carrying them are not all forbidden-bearing. Every such row is a row the
+   OWED/FORBIDDEN union bound does not account for, which is exactly why the exact minimum
+   exceeds that bound.
+
+WITNESS COMPOSITION at the smallest ceiling-preserving option (d = 7, H = 60)
+DIAGNOSTIC PROOF ONLY -- this is NOT a frozen cohort and NOT a selection.
+
+   size 60   analytic bound 58   EXACT MINIMUM, minimality PROVEN by exhaustive branch and bound
+     CLARIFICATION_OWED                      20 required   20 supplied  PASS
+     CLARIFICATION_NOT_OWED                  14 required   40 supplied  PASS
+     FORBIDDEN_FAMILY_NEGATIVE_CONTROL       48 required   48 supplied  PASS
+     CROSS_HAZARD_INTERACTION                10 required   11 supplied  PASS
+     MULTI_HAZARD                            12 required   16 supplied  PASS
+     LIFE_CRITICAL_PRESENT                   10 required   20 supplied  PASS
+     NEGATED_OR_SAFE_STATE                   10 required   22 supplied  PASS
+     DETERMINISTIC_HAZARD_PRESENT            30 required   40 supplied  PASS
+     DETERMINISTIC_MISS_RECALL_OPPORTUNITY   10 required   10 supplied  PASS
+     GOVERNED_RECORD_SUPPLIED                40 required   40 attachable  PASS
+     NO_GOVERNED_RECORD                       8 required   20 remaining   PASS
+     DISAGREEMENT_OPPORTUNITY                 6 required   40 attachable  PASS  (all 64 records are UNAPPROVED_RECORD)
+
+   witness source composition:
+     gauntlet.seed           16
+     augmentation V2         11
+     Population A            13
+     semantic §129           13
+     NEWDUAL                  7
+
+J. WHAT IS KNOWN ABOUT THE D-86 RESERVE WITHOUT OPENING IT
+
+   Owner resolution recorded: "gauntlet offset 2 / 3" = the D-86 retirement-registry
+   partition scheme i % 4. The §123 i % 5 analysis is historical evidence only and does
+   NOT designate the governance identity of an irreversible reserved partition.
+
+   GAUNTLET_OFFSET_2   status RESERVED   rule D-86: i%4===2
+     evidence: Never opened. 37 rows; §124 counted 8 negative-control-capable rows from LABEL METADATA ONLY, without reading any observation.
+   GAUNTLET_OFFSET_3   status RESERVED   rule D-86: i%4===3
+     evidence: Never opened. 37 rows; 8 negative-control-capable from label metadata only.
+
+   KNOWN ELIGIBLE CONTRIBUTION   8 + 8 = 16 negative-control-capable rows, recorded in the
+                                 retirement registry itself under the i % 4 rule. This is
+                                 the only authoritative figure under the governance scheme.
+   UPPER BOUND                   §131 measured 35 + 36 = 71 forbidden-LABEL-bearing rows
+                                 with NO eligibility filter. Not a supply claim.
+   UNKNOWN UNTIL OPENED          which specific rows are eligible; every other class those
+                                 rows carry (MULTI_HAZARD, LIFE_CRITICAL, NEGATED_OR_SAFE,
+                                 MISS_RECALL); and confirmation that all 16 survive the
+                                 §122 eligibility rule, which §131 showed is NOT
+                                 reproducible from labels alone.
+   STRUCTURALLY KNOWN            the artifact carries NO gap label and NO interaction label,
+                                 so the reserve contributes ZERO to CLARIFICATION_OWED and
+                                 ZERO to the OWED-FORBIDDEN overlap. Its rows are non-OWED.
+
+K/L. GOVERNANCE OPTIONS, MEASURED
+
+   OPTION A -- raise the hard ceiling only, currently open supply
+     CAN NEVER WORK: FORBIDDEN_FAMILY_NEGATIVE_CONTROL: supply 44 < minimum 48 (short 4)
+     Ceiling arithmetic cannot manufacture a case that does not exist.
+
+   OPTION B -- raise the ceiling AND later open D-86 offsets 2 and 3
+     minimum reserve contribution required: 4 eligible forbidden rows
+     registry-recorded available:           16
+     EXACT minimum feasible H:              67   (analytic bound 65, not tight)   minimality PROVEN
+     The reserve supplies only non-OWED rows, so it cannot reduce H below this. It closes
+     the absolute supply shortfall and nothing else.
+
+   OPTION C -- keep hard ceiling 60, author new dual-class rows
+     the §131 overlap bound suggested 5 new OWED+FORBIDDEN rows, but that bound
+     is NOT TIGHT: with 5 the EXACT minimum is 62, still above 60.
+     MEASURED ANSWER: 7 new dual-class rows are required to keep the ceiling at 60
+     (exact minimum H = 60, minimality PROVEN, and the
+     witness above satisfies every class). This corrects the §131 figure of 5.
+
+   OPTION D -- mixed. See the tradeoff surface above. Each dual-class row buys exactly one
+   row of headroom against the EXACT minimum. Reserve rows and non-OWED authored rows are
+   interchangeable up to the point where forbidden supply reaches 48; beyond that only
+   dual-class rows move the ceiling.
+
+M. GOVERNED-RECORD ATTACHMENT FEASIBILITY
+
+   snapshot present: true   (identity a2c5dc32..., 64 records, §126)
+   GOVERNED_RECORD_SUPPLIED 40 + NO_GOVERNED_RECORD 8 = 48 rows minimum -- satisfied by any H >= that.
+   DISAGREEMENT_OPPORTUNITY 6: every governed-supplied row
+   qualifies, because all 64 records resolve to UNAPPROVED_RECORD. Satisfied whenever
+   GOVERNED_RECORD_SUPPLIED is.
+   REVIEWER_APPROVED_GOVERNED_RECORDS = 0 remains a REPORTED LIMITATION and is NOT promoted
+   to a required class here. No record was read, modified or approved.
+
+RESERVED_MATERIAL_OPENED = FALSE   PROVIDER_INVOCATION_COUNT = 0
+FORMAL_COHORT_SPENT = FALSE        P4_PRESPEND_AUTHORIZATION = FALSE

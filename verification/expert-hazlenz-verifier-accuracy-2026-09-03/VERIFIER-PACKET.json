@@ -1,0 +1,701 @@
+{
+  "packetVersion": "hazlenz.expert.verifier-packet.v1",
+  "builtFrom": "stored prior-run raw wire and run records; NO first-pass response regenerated",
+  "caseCount": 15,
+  "cases": [
+    {
+      "caseId": "VC-01",
+      "observation": "In the school kitchen the deep-fat fryer is switched off and cold, and the duty chef is draining the oil into a wheeled bin using the fryer's own drain tap and hose, with the bin positioned under the tap and the area coned. He is wearing heat-resistant gauntlets and an apron. The fryer's high-limit thermostat test record is on the wall and is signed for this term. The observation does not record the fryer's make or its oil capacity in litres.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "residual_heat_oil_drain",
+            "hazardFamily": "thermal_burn",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The text establishes the chef is currently draining oil through the drain tap and hose into a bin, a task that involves direct handling of fryer oil as it flows through the drain system.",
+            "reasoning": "Draining oil from a fryer, even when the unit is switched off, involves handling a substance that can retain significant heat and cause burns if it contacts skin during the pour, splash, or hose handling. The task is in progress now, and the chef's use of heat-resistant gauntlets and apron indicates the task itself is recognised as carrying a burn exposure."
+          },
+          {
+            "candidateKey": "slip_spill_walking_surface",
+            "hazardFamily": "walking_working_surfaces",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The text states the area around the draining operation is coned off, which is consistent with a precaution against a floor hazard such as an oil spill, but the text does not state whether any oil has spilled or whether the floor is currently wet or slippery.",
+            "reasoning": "Draining oil via a hose into a bin creates a plausible risk of spillage onto the floor, which would be a slip hazard. The coning suggests an awareness of this risk being managed, but the observation does not confirm or deny an actual spill or slippery surface at this time."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not state whether the drained oil retains significant residual heat at the time of draining, though the fryer being cold and the use of heat-resistant gauntlets suggests the risk is being actively managed regardless.",
+          "Whether the coned area reflects an actual spill risk being realized or is simply a standard precaution cannot be determined from the text."
+        ],
+        "summary": "The observation describes a controlled oil-draining task on a cold, switched-off fryer, with the chef wearing heat-resistant gauntlets and apron and the area coned off, and a current high-limit thermostat test record on file. The residual thermal burn exposure from handling drained oil is the main hazard worth noting, and it is already being addressed with appropriate PPE and area control. No decision-critical facts are missing that would change what is done now, since the fryer's make and oil capacity are administrative details that do not affect the current control approach."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:slip_spill_walking_surface",
+          "kind": "CANDIDATE",
+          "text": "slip_spill_walking_surface (walking_working_surfaces) left INSUFFICIENT_EVIDENCE: The text states the area around the draining operation is coned off, which is consistent with a precaution against a floor hazard such as an oil spill, but the text does not state whether any oil has spilled or whether the floor is currently wet or slippery."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not state whether the drained oil retains significant residual heat at the time of draining, though the fryer being cold and the use of heat-resistant gauntlets suggests the risk is being actively managed regardless."
+        },
+        {
+          "ref": "uncertainty:1",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "Whether the coned area reflects an actual spill risk being realized or is simply a standard precaution cannot be determined from the text."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-02",
+      "observation": "A laboratory autoclave has finished a cycle and a technician is at the door with the load trolley. The door interlock released and she has begun to swing the door open. The chamber pressure gauge on the front panel reads zero. Through the whole of the cycle I watched, the over-temperature alarm did not sound. She is wearing a lab coat and heat-resistant gloves and is standing to the hinge side as the door opens.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "guarding_interlocks",
+          "suspended_loads"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "cand-thermal-residual",
+            "hazardFamily": "thermal_burn",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The observation shows the technician wearing heat-resistant gloves and lab coat while opening the door immediately after a cycle, and states the over-temperature alarm did not sound at any point during the cycle observed.",
+            "reasoning": "Autoclave loads and chamber surfaces remain very hot immediately after a cycle even when pressure has returned to zero; the technician's use of heat-resistant gloves confirms this residual thermal hazard is present and being actively managed. The fact that the over-temp alarm never sounded during the cycle is a current gap in the alarm's verifiable function at the moment of highest thermal risk (door opening), even though the PPE in use is mitigating exposure now."
+          },
+          {
+            "candidateKey": "cand-steam-release",
+            "hazardFamily": "pressure_systems",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The gauge reading shown on the front panel indicates zero chamber pressure at the moment observed.",
+            "reasoning": "A zero gauge reading is the normal indicator that it is safe to open an autoclave, but gauge malfunction or residual trapped steam pockets in a load are a recognized latent hazard in autoclave operation; the observation does not state the gauge was verified against an independent measure or that the load itself was checked for trapped superheated liquids/steam."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "It is not established whether the zero pressure gauge reading was cross-verified against an independent indicator or whether residual steam pockets could remain trapped within the load itself."
+        ],
+        "summary": "Beyond the deterministic interlock and suspended-load findings, the technician's use of heat-resistant gloves while opening the door immediately after a cycle points to a residual thermal burn hazard from the hot chamber and load, which is being actively mitigated by PPE. A latent pressure-systems concern (trapped steam or gauge reliability) is noted at low confidence since the zero reading alone does not confirm the absence of residual pressure in the load itself. The interlock release and the thermal hazard interact at the moment of door opening, since the interlock's release is what first exposes the technician to the hot chamber contents."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:cand-steam-release",
+          "kind": "CANDIDATE",
+          "text": "cand-steam-release (pressure_systems) left INSUFFICIENT_EVIDENCE: The gauge reading shown on the front panel indicates zero chamber pressure at the moment observed."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "It is not established whether the zero pressure gauge reading was cross-verified against an independent indicator or whether residual steam pockets could remain trapped within the load itself."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-03",
+      "observation": "In the paint spray booth a sprayer is finishing a panel. The booth extract is running and I watched the airflow indicator on the control panel sit in the green band throughout. The booth interlock prevents the gun triggering with the fans off, and the electrician demonstrated this to me by switching the fans off, at which the gun would not fire. The sprayer is wearing an air-fed hood supplied from the compressor with a breathing-air filter, and the filter change record beside the compressor is signed for this month.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "guarding_interlocks"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "cand-chem-1",
+            "hazardFamily": "chemical_inhalation_contact",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The observation establishes spray painting is actively underway, which is a chemical inhalation/contact exposure source, but the same text describes active extraction and PPE controls addressing it.",
+            "reasoning": "Spray painting generates overspray and solvent vapors that are a chemical inhalation/contact hazard. The observation shows this hazard is present but currently controlled by the running booth extract (airflow confirmed in green band) and the air-fed hood supplied with filtered breathing air, so it is raised as a controlled hazard rather than an uncontrolled one."
+          },
+          {
+            "candidateKey": "cand-resp-1",
+            "hazardFamily": "respiratory_protection",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The observation states the sprayer is wearing supplied-air respiratory protection with a breathing-air filter, and that the filter change record is signed for the current month, indicating the respiratory protection element is current and maintained.",
+            "reasoning": "Supplied-air respiratory protection is itself a hazard family requiring attention to breathing air quality; here the filter maintenance record is current, so the respiratory protection appears adequately controlled based on stated facts."
+          },
+          {
+            "candidateKey": "cand-fire-1",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "",
+            "reasoning": "Paint spray booths involve flammable solvent vapors and an ignition-capable environment; the observation does not mention bonding/grounding, ventilation rate adequacy for flammability, or ignition source controls beyond the gun-fan interlock, so a fire/explosion hazard from solvent vapor accumulation cannot be ruled in or out from the text."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not describe any ignition-source or vapor-concentration controls specific to fire/explosion risk in the booth, but this is not established as either present or absent from the text, and no current decision turns on it given the other controls described."
+        ],
+        "summary": "The deterministic finding confirms an active guarding/interlock control preventing gun operation without extract fans running, which directly mitigates the chemical inhalation hazard inherent to spray painting. The observation also shows the respiratory protection element (air-fed hood with a currently-signed filter record) is in place and current, and airflow was directly observed in the acceptable band. No fire/explosion-specific controls (such as bonding or vapor concentration monitoring) are mentioned, so that hazard family is noted only as a low-confidence, unconfirmed possibility rather than a stated gap."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:cand-fire-1",
+          "kind": "CANDIDATE",
+          "text": "cand-fire-1 (fire_explosion) left INSUFFICIENT_EVIDENCE: "
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not describe any ignition-source or vapor-concentration controls specific to fire/explosion risk in the booth, but this is not established as either present or absent from the text, and no current decision turns on it given the other controls described."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-04",
+      "observation": "A sawmill debarker is running and a sawyer is standing at the infeed deck rolling logs onto the chain. The machine's guard door over the rotor is closed and its interlock switch is in place. The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift. The sawyer is working from the deck and is not reaching into the throat.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [],
+        "uncertainty": [],
+        "summary": "The observation describes a debarker with its guard door closed and interlock in place while the sawyer works from the deck without reaching into the throat — a controlled, current state with no stated gap. The overnight rotor tooth change is a resolved historical event: the machine was returned to service, the guard is confirmed closed with the interlock engaged, and no failure, bypass, or residual exposure from that maintenance is stated. The lockout/tagout question already flagged by the deterministic engine concerns that completed maintenance activity, not a live hazard, and nothing in the text gives reason to believe the machine is not properly restored to normal operation."
+      },
+      "unresolvedFacts": [],
+      "triggerConditions": [
+        "T_WHOLLY_EMPTY_ANALYSIS"
+      ]
+    },
+    {
+      "caseId": "VC-05",
+      "observation": "A groundworker is using a petrol cut-off saw to cut kerbs in the compound. He is wearing goggles, gloves, ear defenders and a fitted FFP3 mask, and the saw's water suppression is connected and running with visible water at the blade. He is cutting in the open air with nobody else within fifteen metres. The observation does not record how many kerbs he is cutting today or for how long.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "hot_work"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "cand-silica",
+            "hazardFamily": "respiratory_protection",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The text states a fitted FFP3 mask is worn and that water suppression is connected and running with visible water at the blade, both of which are controls relevant to respirable dust generated by cutting kerbs.",
+            "reasoning": "Cutting kerbs (concrete/masonry) with a cut-off saw generates respirable crystalline silica dust; the observation shows both engineering control (water suppression) and PPE (FFP3) actively in use, indicating the inhalation hazard is being controlled rather than left unmitigated."
+          },
+          {
+            "candidateKey": "cand-noise",
+            "hazardFamily": "noise_exposure",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The text states ear defenders are worn while operating the petrol cut-off saw.",
+            "reasoning": "Petrol cut-off saws are high-noise tools; the worker is wearing ear defenders, indicating the noise exposure hazard is currently controlled by PPE."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "Duration and quantity of cutting are not recorded, but this does not change the current control assessment since PPE and water suppression are already confirmed in use."
+        ],
+        "summary": "The deterministic finding correctly flags hot work from the petrol cut-off saw; alongside this, the observation shows the associated respirable dust and noise hazards inherent to kerb-cutting are currently being controlled — water suppression is running and an FFP3 mask is fitted for dust, and ear defenders are worn for noise. No decision-critical gaps arise from the unstated duration or kerb count, since neither would change the current control picture: PPE and engineering controls are already in place and no one else is within exposure range. No cross-hazard interaction is established beyond controls already described, and no regulatory record was supplied to assess compliance against."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "Duration and quantity of cutting are not recorded, but this does not change the current control assessment since PPE and water suppression are already confirmed in use."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-06",
+      "observation": "A tyre fitter is inflating a commercial truck tyre on a split-rim wheel inside a fitted restraint cage in the workshop bay. He is standing outside the cage and to one side with the airline extension reaching in, and the bay is clear of other people. The cage is bolted to the floor and the wheel is fully within it. The observation does not record how many tyres this fitter changes in a shift.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "noise_exposure_workshop",
+            "hazardFamily": "noise_exposure",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The observation does not mention noise levels, air tools, or hearing protection at all; this is raised purely as a general possibility in a tyre workshop setting rather than anything the text supports.",
+            "reasoning": "Tyre inflation and workshop bays commonly involve compressors and impact tools that can generate elevated noise, but nothing in this observation describes noise levels, duration, or hearing protection use, so this is speculative context rather than an established hazard."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not state whether the airline is fitted with a pressure-limiting or shutoff device, but no fact in the text suggests the restraint cage control is compromised, so this is not raised as a decision-critical question."
+        ],
+        "summary": "The observation describes a well-controlled tyre inflation task: the split-rim wheel is fully enclosed in a floor-bolted restraint cage, and the fitter stands outside and to the side of the cage while inflating via an airline extension, with no other personnel in the bay. No deterministic hazard was flagged, and the observation gives no basis to assert an active hazard here, since the stated facts show the explosive-separation exposure being controlled by the cage and standoff position. A low-confidence, ungrounded possibility of workshop noise exposure is noted only as general context, not as an established current hazard."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:noise_exposure_workshop",
+          "kind": "CANDIDATE",
+          "text": "noise_exposure_workshop (noise_exposure) left INSUFFICIENT_EVIDENCE: The observation does not mention noise levels, air tools, or hearing protection at all; this is raised purely as a general possibility in a tyre workshop setting rather than anything the text supports."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not state whether the airline is fitted with a pressure-limiting or shutoff device, but no fact in the text suggests the restraint cage control is compromised, so this is not raised as a decision-critical question."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-07",
+      "observation": "In the school kitchen the deep-fat fryer is switched off and cold, and the duty chef is draining the oil into a wheeled bin using the fryer's own drain tap and hose, with the bin positioned under the tap and the area coned. He is wearing heat-resistant gauntlets and an apron. The fryer's high-limit thermostat test record is on the wall and is signed for this term. The observation does not record the fryer's make or its oil capacity in litres.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "residual_oil_burn",
+            "hazardFamily": "thermal_burn",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The observation shows the chef actively draining oil from the fryer through a hose into a wheeled bin, which is a task involving direct handling of fryer oil and its drainage path.",
+            "reasoning": "Even with the fryer switched off and cold, draining oil through a tap and hose into a wheeled bin carries a residual splash/spill contact hazard with cooking oil, and a wheeled bin introduces potential for tipping or hose disconnection during the pour, which is a current task-based exposure rather than a historical one."
+          },
+          {
+            "candidateKey": "slip_hazard_oil_spill",
+            "hazardFamily": "walking_working_surfaces",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The observation does not state whether any oil has spilled onto the floor during the draining operation.",
+            "reasoning": "Draining oil via a tap and hose into a bin carries a plausible risk of drips or spillage creating a slippery floor surface near the coned area, though the observation does not confirm any spill occurred."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not indicate whether any oil has spilled or dripped onto the kitchen floor during the draining process, though this would not change the currently observed controls."
+        ],
+        "summary": "The fryer is confirmed switched off and cold, and the chef draining the oil is wearing heat-resistant gauntlets and an apron, with the area coned off — this is a well-controlled task as described. Residual low-level risks remain inherent to handling oil through a hose into a wheeled bin (splash contact or spillage), but the observation gives no basis to escalate these beyond low-confidence, unconfirmed possibilities. No missing fact here would change what is currently being done, since the core controls (cold fryer, PPE, coning, verified high-limit thermostat) are already stated as in place."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:slip_hazard_oil_spill",
+          "kind": "CANDIDATE",
+          "text": "slip_hazard_oil_spill (walking_working_surfaces) left INSUFFICIENT_EVIDENCE: The observation does not state whether any oil has spilled onto the floor during the draining operation."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not indicate whether any oil has spilled or dripped onto the kitchen floor during the draining process, though this would not change the currently observed controls."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-08",
+      "observation": "A grain dryer is running on the farm drying floor. The burner unit sits at the far end of the plenum behind a steel shroud, and from the walkway the flame-failure device and its wiring are behind that shroud and cannot be seen. Grain dust has settled on the horizontal surfaces of the walkway and on the motor housings. An operative is clearing a blockage at the discharge auger with the dryer running.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "auger_entanglement",
+            "hazardFamily": "machine_guarding",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The text states an operative is actively clearing a blockage at the discharge auger while the dryer, and by implication its driven components, remain running.",
+            "reasoning": "Clearing a blockage at an auger while it and the associated equipment are running exposes the operative to entanglement/caught-in injury from the moving auger flighting or drive components. This is a current, ongoing exposure, not a hypothetical."
+          },
+          {
+            "candidateKey": "combustible_dust_accumulation",
+            "hazardFamily": "combustible_dust",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The text states grain dust has settled on horizontal surfaces of the walkway and on motor housings.",
+            "reasoning": "Accumulated grain dust on horizontal surfaces, including on motor housings near a heat source (the dryer/burner), is a recognized combustible dust hazard that can propagate a secondary dust explosion or ignite from hot equipment surfaces."
+          },
+          {
+            "candidateKey": "flame_failure_device_unverifiable",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The text states the flame-failure device and its wiring cannot be seen from the walkway due to the shroud.",
+            "reasoning": "The flame-failure device is a critical safety control preventing unburned fuel accumulation and explosion in the burner/plenum. Its condition and function cannot be visually confirmed from the walkway, so whether it is operating correctly cannot be determined from this observation alone."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "Whether the flame-failure device is currently functioning correctly cannot be determined from the observation, as it is physically obscured from view; no stated fact indicates it has failed or is out of service."
+        ],
+        "summary": "An operative is clearing a blockage at the discharge auger while the dryer continues to run, creating an active entanglement hazard. Grain dust has settled on walkway surfaces and motor housings, a combustible dust accumulation that is worsened by proximity to heat-generating equipment near the burner. The flame-failure device and its wiring cannot be visually confirmed from the walkway, so its current functional status is unverifiable from this observation alone, though this alone does not establish a decision-changing gap without further stated facts."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:flame_failure_device_unverifiable",
+          "kind": "CANDIDATE",
+          "text": "flame_failure_device_unverifiable (fire_explosion) left INSUFFICIENT_EVIDENCE: The text states the flame-failure device and its wiring cannot be seen from the walkway due to the shroud."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "Whether the flame-failure device is currently functioning correctly cannot be determined from the observation, as it is physically obscured from view; no stated fact indicates it has failed or is out of service."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-09",
+      "observation": "A tyre fitter is inflating a commercial truck tyre on a split-rim wheel inside a fitted restraint cage in the workshop bay. He is standing outside the cage and to one side with the airline extension reaching in, and the bay is clear of other people. The cage is bolted to the floor and the wheel is fully within it. The observation does not record how many tyres this fitter changes in a shift.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "repeated_manual_wheel_handling",
+            "hazardFamily": "material_handling_storage",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The observation describes a single tyre-fitting task involving a commercial truck tyre on a split-rim wheel, which are heavy components, but does not describe frequency, lifting method, or repetition.",
+            "reasoning": "Commercial truck split-rim wheels and tyres are heavy and handling them repeatedly can create manual handling/musculoskeletal or struck-by exposure during mounting/demounting, separate from the inflation hazard already controlled by the cage. The observation itself notes it does not record how many tyres are changed in a shift, leaving open whether repetitive heavy handling is occurring."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not record how many tyres are changed per shift, so the degree of repetitive manual handling exposure, if any, cannot be characterized further from this text alone."
+        ],
+        "summary": "The observation describes a tyre fitter correctly using a bolted-down restraint cage while inflating a split-rim wheel, standing clear outside the cage with an airline extension — this is the controlled configuration for this hazard and no gap in that control is stated. The only additional angle worth noting at low confidence is potential repetitive manual handling of heavy truck wheels/tyres, though the observation gives no frequency or method detail to substantiate it as a current, active hazard. No decision-critical facts are missing and no cross-hazard interaction is established by the text."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:repeated_manual_wheel_handling",
+          "kind": "CANDIDATE",
+          "text": "repeated_manual_wheel_handling (material_handling_storage) left INSUFFICIENT_EVIDENCE: The observation describes a single tyre-fitting task involving a commercial truck tyre on a split-rim wheel, which are heavy components, but does not describe frequency, lifting method, or repetition."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not record how many tyres are changed per shift, so the degree of repetitive manual handling exposure, if any, cannot be characterized further from this text alone."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-10",
+      "observation": "A groundworker is using a petrol cut-off saw to cut kerbs in the compound. He is wearing goggles, gloves, ear defenders and a fitted FFP3 mask, and the saw's water suppression is connected and running with visible water at the blade. He is cutting in the open air with nobody else within fifteen metres. The observation does not record how many kerbs he is cutting today or for how long.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "hot_work"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not state how long the cutting task will continue or how many kerbs remain, but this affects only duration of exposure, not the presence or adequacy of the controls already described."
+        ],
+        "summary": "The groundworker is using a petrol cut-off saw (hot work, already flagged) with appropriate respiratory (FFP3), eye, hand and hearing protection in place, water suppression running to control dust, and no bystanders within fifteen metres. The observation as written shows the relevant exposure pathways for silica dust, noise and eye/hand contact already controlled by the PPE and wet-cutting method described, so no additional hazard candidates or decision-critical questions arise from this text. The unstated duration or quantity of cutting does not change any current control decision, since the controls described (mask, water suppression, isolation distance) apply regardless of task length."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not state how long the cutting task will continue or how many kerbs remain, but this affects only duration of exposure, not the presence or adequacy of the controls already described."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION",
+        "T_WHOLLY_EMPTY_ANALYSIS"
+      ]
+    },
+    {
+      "caseId": "VC-11",
+      "observation": "In the paint spray booth a sprayer is finishing a panel. The booth extract is running and I watched the airflow indicator on the control panel sit in the green band throughout. The booth interlock prevents the gun triggering with the fans off, and the electrician demonstrated this to me by switching the fans off, at which the gun would not fire. The sprayer is wearing an air-fed hood supplied from the compressor with a breathing-air filter, and the filter change record beside the compressor is signed for this month.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "guarding_interlocks"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "cand-1",
+            "hazardFamily": "chemical_inhalation_contact",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The observation shows the sprayer wearing supplied-air respiratory protection while spraying, with the booth extract running and airflow confirmed in the green band, indicating the inhalation exposure from spray paint aerosols/solvents is being actively controlled.",
+            "reasoning": "Spray painting generates airborne solvent vapours and overspray particulates that would otherwise pose an inhalation hazard; the observation establishes both engineering control (booth extract with confirmed airflow) and PPE (air-fed hood) are in place and functioning, so the underlying chemical inhalation hazard is present but currently controlled rather than an uncontrolled active exposure."
+          },
+          {
+            "candidateKey": "cand-2",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The observation describes spray painting operations and extract ventilation but does not mention any ignition source controls, static grounding, or explosive atmosphere monitoring.",
+            "reasoning": "Paint spray booths handling solvent-based coatings can generate flammable vapour concentrations; while the running extract fan reduces this risk, the observation gives no information about coating type (solvent vs water-based), grounding/bonding of equipment, or ignition source control, so the current state of this hazard cannot be determined from the text."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The coating type (solvent-based vs water-based) and any bonding/grounding or ignition-source controls in the booth are not described, leaving the flammable-atmosphere risk unassessed, though this does not change the currently observed and controlled inhalation exposure."
+        ],
+        "summary": "The core hazard here — chemical inhalation exposure from spray-applied coatings — is currently controlled: booth extract airflow was confirmed in the green band, the fan/gun interlock was demonstrated to function, and the sprayer wears an air-fed hood with a breathing-air filter change record signed current for this month. No decision-critical fact is missing given the controls demonstrated in the observation, so no clarification is raised. A low-confidence, ungrounded fire/explosion possibility from solvent vapour is noted for completeness given the spray booth context, though the observation gives no basis to assess it further."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:cand-2",
+          "kind": "CANDIDATE",
+          "text": "cand-2 (fire_explosion) left INSUFFICIENT_EVIDENCE: The observation describes spray painting operations and extract ventilation but does not mention any ignition source controls, static grounding, or explosive atmosphere monitoring."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The coating type (solvent-based vs water-based) and any bonding/grounding or ignition-source controls in the booth are not described, leaving the flammable-atmosphere risk unassessed, though this does not change the currently observed and controlled inhalation exposure."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-12",
+      "observation": "In the school kitchen the deep-fat fryer is switched off and cold, and the duty chef is draining the oil into a wheeled bin using the fryer's own drain tap and hose, with the bin positioned under the tap and the area coned. He is wearing heat-resistant gauntlets and an apron. The fryer's high-limit thermostat test record is on the wall and is signed for this term. The observation does not record the fryer's make or its oil capacity in litres.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "residual_oil_burn",
+            "hazardFamily": "thermal_burn",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The text establishes that oil is currently being drained from the fryer through a tap and hose into a bin, an activity involving direct handling of fryer oil.",
+            "reasoning": "Although the fryer is switched off and cold, draining oil through a tap and hose into a wheeled bin carries a splash/spill burn and slip potential from oil contacting skin or the floor during the pour; the chef is wearing heat-resistant gauntlets and an apron, which is a control already reflected in the observation, but the act of draining itself remains a live handling task with contact potential."
+          },
+          {
+            "candidateKey": "oil_spill_slip",
+            "hazardFamily": "walking_working_surfaces",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The observation does not state whether any oil has spilled onto the floor around the bin or tap during the draining operation.",
+            "reasoning": "Draining oil via a tap and hose into a bin creates a potential for spillage onto the kitchen floor, which would create a slip hazard; the area is coned, which suggests some walking-surface control is already in place, but whether any spillage has occurred is not stated."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not record the fryer's make or oil capacity, but neither detail changes any current safety decision given the fryer is off, cold, and the draining task is already controlled with PPE and coning."
+        ],
+        "summary": "The fryer is off and cold, and the duty chef is draining oil using the fryer's built-in tap and hose into a coned-off, positioned bin while wearing heat-resistant gauntlets and an apron, so the primary thermal burn pathway from hot oil is not currently supported by the facts stated. The high-limit thermostat test record being signed and current is a resolved administrative control and raises no open question. No decision-critical fact is missing given the controls already described in the observation."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:oil_spill_slip",
+          "kind": "CANDIDATE",
+          "text": "oil_spill_slip (walking_working_surfaces) left INSUFFICIENT_EVIDENCE: The observation does not state whether any oil has spilled onto the floor around the bin or tap during the draining operation."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not record the fryer's make or oil capacity, but neither detail changes any current safety decision given the fryer is off, cold, and the draining task is already controlled with PPE and coning."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-13",
+      "observation": "A laboratory autoclave has finished a cycle and a technician is at the door with the load trolley. The door interlock released and she has begun to swing the door open. The chamber pressure gauge on the front panel reads zero. Through the whole of the cycle I watched, the over-temperature alarm did not sound. She is wearing a lab coat and heat-resistant gloves and is standing to the hinge side as the door opens.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "guarding_interlocks",
+          "suspended_loads"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "cand-thermal",
+            "hazardFamily": "thermal_burn",
+            "assertedConditionState": "ACTIVE",
+            "evidenceBasis": "The technician is wearing heat-resistant gloves while opening the door of an autoclave immediately after a cycle, indicating recognition of residual heat as the load and chamber contents are removed.",
+            "reasoning": "An autoclave load and chamber surfaces remain hot immediately after a cycle even when pressure has returned to zero; opening the door and handling the trolley at this point exposes the technician to contact burn hazards from hot surfaces, steam residue, or the load itself."
+          },
+          {
+            "candidateKey": "cand-pressure-verify",
+            "hazardFamily": "pressure_systems",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The gauge reading is stated as zero, but the observation does not state whether this reading was cross-checked or whether the gauge itself is functioning correctly.",
+            "reasoning": "Residual chamber pressure during door opening is a known autoclave hazard; a faulty or unverified gauge reading zero when actual pressure is not zero would create a real exposure. The interlock releasing and the gauge reading zero both support a de-pressurized state, but gauge malfunction is a recognized failure mode."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "Whether the over-temperature alarm's silence throughout the observed cycle reflects a normal (non-alarming) run or an alarm malfunction cannot be determined from the observation alone, though this does not change the present door-opening exposure being assessed."
+        ],
+        "summary": "Beyond the identified interlock and suspended-load hazards, the technician's use of heat-resistant gloves while opening the autoclave door right after cycle completion points to a current thermal burn hazard from hot chamber surfaces or load contents, which is added as a candidate. The pressure gauge reading zero supports a de-pressurized chamber, but this is a routine reliance on instrument accuracy that does not by itself change any action, so it is noted only as a low-confidence candidate rather than a clarification. No cross-hazard interaction rises above the interlock/thermal proximity noted, and no regulatory record was supplied to assess against, so no citation or applicability determination is made."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:cand-pressure-verify",
+          "kind": "CANDIDATE",
+          "text": "cand-pressure-verify (pressure_systems) left INSUFFICIENT_EVIDENCE: The gauge reading is stated as zero, but the observation does not state whether this reading was cross-checked or whether the gauge itself is functioning correctly."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "Whether the over-temperature alarm's silence throughout the observed cycle reflects a normal (non-alarming) run or an alarm malfunction cannot be determined from the observation alone, though this does not change the present door-opening exposure being assessed."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-14",
+      "observation": "In the paint spray booth a sprayer is finishing a panel. The booth extract is running and I watched the airflow indicator on the control panel sit in the green band throughout. The booth interlock prevents the gun triggering with the fans off, and the electrician demonstrated this to me by switching the fans off, at which the gun would not fire. The sprayer is wearing an air-fed hood supplied from the compressor with a breathing-air filter, and the filter change record beside the compressor is signed for this month.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "guarding_interlocks"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "resp-1",
+            "hazardFamily": "respiratory_protection",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The sprayer is wearing supplied-air respiratory protection and the breathing-air filter change record shows a signature for the current month.",
+            "reasoning": "Spray painting generates inhalation exposure to solvent/paint vapours and overspray; this is being controlled by supplied-air respiratory protection with a documented, current filter change record, indicating an actively maintained control rather than an uncontrolled hazard."
+          },
+          {
+            "candidateKey": "chem-1",
+            "hazardFamily": "chemical_inhalation_contact",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "Spray painting inherently involves atomized coating materials that could contact skin or be inhaled if controls failed, though the observation describes the extraction and respiratory controls functioning.",
+            "reasoning": "Paint spraying involves chemical solvents/coatings that pose inhalation and skin contact hazards; the observation describes the extract running in the green band and the operator wearing air-fed respiratory protection, indicating the exposure pathway is currently controlled rather than unmitigated."
+          },
+          {
+            "candidateKey": "fire-1",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "evidenceBasis": "The observation describes the booth extract running and an airflow interlock preventing gun operation without fan airflow, which is consistent with control of flammable vapour/overspray accumulation, but does not state anything about ignition sources, bonding/grounding, or booth electrical classification.",
+            "reasoning": "Paint spray booths handling flammable coatings carry a potential fire/explosion hazard from solvent vapour accumulation if ventilation fails; the interlock and functioning extraction described suggest this pathway is being managed, but no information is given about ignition source control, so existence of a distinct uncontrolled fire hazard cannot be confirmed or ruled out from this observation alone."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not describe ignition source controls (e.g., bonding, electrical classification) within the booth, but since ventilation and interlock controls are functioning and no flammable vapour accumulation or ignition event is indicated, this does not establish a current fire/explosion hazard requiring a decision-critical question."
+        ],
+        "summary": "The observation describes a spray booth operating with functioning extraction confirmed in the green band, a demonstrated fan-gun interlock, and a sprayer using air-fed respiratory protection with a current, signed filter change record — all controls appear active and verified at the time of observation. This supports the deterministic interlock finding and additionally suggests the related respiratory and chemical inhalation exposure pathways are currently controlled rather than open hazards. No fact is missing that would change today's assessment, so no clarification is raised."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "candidate:fire-1",
+          "kind": "CANDIDATE",
+          "text": "fire-1 (fire_explosion) left INSUFFICIENT_EVIDENCE: The observation describes the booth extract running and an airflow interlock preventing gun operation without fan airflow, which is consistent with control of flammable vapour/overspray accumulation, but does not state anything about ignition sources, bonding/grounding, or booth electrical classification."
+        },
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not describe ignition source controls (e.g., bonding, electrical classification) within the booth, but since ventilation and interlock controls are functioning and no flammable vapour accumulation or ignition event is indicated, this does not establish a current fire/explosion hazard requiring a decision-critical question."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    },
+    {
+      "caseId": "VC-15",
+      "observation": "A groundworker is using a petrol cut-off saw to cut kerbs in the compound. He is wearing goggles, gloves, ear defenders and a fitted FFP3 mask, and the saw's water suppression is connected and running with visible water at the blade. He is cutting in the open air with nobody else within fifteen metres. The observation does not record how many kerbs he is cutting today or for how long.",
+      "jurisdiction": "osha-general-industry",
+      "governedEvidence": [],
+      "deterministic": {
+        "familiesEmitted": [
+          "hot_work"
+        ],
+        "lifeCriticalFindingKeys": []
+      },
+      "firstPass": {
+        "candidates": [
+          {
+            "candidateKey": "cand-silica-dust",
+            "hazardFamily": "respiratory_protection",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The text states water suppression is connected and running with visible water at the blade, and that the worker is wearing a fitted FFP3 mask, both of which are controls for the respirable dust generated by cutting kerbs (concrete/masonry) with a petrol saw.",
+            "reasoning": "Cutting kerbs with a petrol cut-off saw generates respirable crystalline silica dust. The observation shows two layered controls in place (wet cutting and fitted FFP3 respirator), so the hazard is present but appears controlled at the moment observed."
+          },
+          {
+            "candidateKey": "cand-noise",
+            "hazardFamily": "noise_exposure",
+            "assertedConditionState": "CONTROLLED",
+            "evidenceBasis": "The text states the worker is wearing ear defenders while operating a petrol cut-off saw, a known high-noise tool.",
+            "reasoning": "Petrol cut-off saws produce high noise levels; hearing protection is stated as worn, so the hazard exists but is controlled as observed."
+          }
+        ],
+        "clarifications": [],
+        "uncertainty": [
+          "The observation does not record how long or how many kerbs are being cut, which affects cumulative exposure duration but not the presence or adequacy of the controls observed at this moment."
+        ],
+        "summary": "The observation describes a groundworker cutting kerbs with a petrol cut-off saw, which the deterministic engine correctly flags as hot work. Alongside this, the task creates respirable dust and high noise exposure, but both appear controlled at the time observed through running water suppression plus a fitted FFP3 mask, and worn ear defenders. No decision-critical facts are missing: the observation gives enough to see that the relevant controls are in place, and the unspecified duration or quantity of kerbs cut would not change what is done today."
+      },
+      "unresolvedFacts": [
+        {
+          "ref": "uncertainty:0",
+          "kind": "UNCERTAINTY_STATEMENT",
+          "text": "The observation does not record how long or how many kerbs are being cut, which affects cumulative exposure duration but not the presence or adequacy of the controls observed at this moment."
+        }
+      ],
+      "triggerConditions": [
+        "T_RETAINED_UNKNOWN_WITHOUT_QUESTION"
+      ]
+    }
+  ]
+}

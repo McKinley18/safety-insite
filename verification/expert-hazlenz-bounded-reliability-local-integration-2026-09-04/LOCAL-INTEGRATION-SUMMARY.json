@@ -1,0 +1,424 @@
+{
+  "operation": "§165 bounded expert reliability architecture — LOCAL INTEGRATION",
+  "date": "2026-09-04",
+  "terminal": "EXPERT_HAZLENZ_BOUNDED_RELIABILITY_LOCAL_INTEGRATION_COMPLETE — FALSIFICATION_HARNESS_REMEDIATION_REQUIRED",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "activationStatus": "DEVELOPMENT_INACTIVE",
+  "evidenceDirectory": "verification/expert-hazlenz-bounded-reliability-local-integration-2026-09-04",
+  "hsA1DisplacedFactDisposition": {
+    "disposition": "DISPLACED_FACT_VALID_DECISION_CRITICAL",
+    "returnedBy": "product owner",
+    "recordedIn": "HS-A1-DISPLACED-FACT-ADJUDICATION-RESULT.md",
+    "packetUnaltered": true,
+    "packetSha256": "79e60079bd8c9bcf704c58ecff6c74e52fa8b26e350eab279689be01690c91a6",
+    "OWED_FLAME_FAILURE_TARGET": "still authoritative",
+    "AUGER_ISOLATION_FACT": "additional valid decision-critical fact",
+    "RELATIONSHIP": "SIMULTANEOUS_INDEPENDENT_GAPS",
+    "prospectiveSemanticOutcome": "VALID_BUT_TARGET_DISPLACED",
+    "isAClarificationPrecisionDefect": false,
+    "section163HistoricalIntegrity": "IMMUTABLE — the 3/10 owed-target-recall result is not rescored and HS-A1's frozen target is not broadened",
+    "regulatoryClaimBoundaryHonoured": "no OSHA section number, citation or unconditional applicability claim appears in any new module or fixture; the encoded conclusion is the owner's narrower one — the isolation state is unresolved and can materially change whether clearing the blockage may safely continue"
+  },
+  "implementationInventory": {
+    "location": "backend/scripts/lib/ and backend/scripts/",
+    "whyThere": "backend/tsconfig.json sets rootDir './src' and include ['src/**/*']. A src/ file importing scripts/lib/ is a COMPILE ERROR, so production unreachability is enforced by the compiler rather than by convention.",
+    "files": {
+      "backend/scripts/lib/expert-semantic-outcome-v2.ts": {
+        "lines": 294,
+        "sha256": "1ee33163d645d06a987e5d53805efedd3aaac5667d4cd0fe3f5fe8dd8597151f",
+        "version": "hazlenz.expert.verifier.semantic-outcome.v2"
+      },
+      "backend/scripts/lib/expert-owed-facts.ts": {
+        "lines": 393,
+        "sha256": "f343f01e20e328a5c228704252072065bb5498a646adba6f35f7fb8799b48a54",
+        "version": "hazlenz.expert.owed-facts.v1"
+      },
+      "backend/scripts/lib/expert-owed-fact-binding.ts": {
+        "lines": 331,
+        "sha256": "563bd24a99775dbaa7831ef46d02dcdbd9de3ecc64e8847e41710e4e286d3519",
+        "version": "hazlenz.expert.owed-fact-binding.v1"
+      },
+      "backend/scripts/lib/expert-target-coverage.ts": {
+        "lines": 157,
+        "sha256": "736b2d7c5ff3b31ea77456b4708c2d08d967b35745609923ce7d2ab07aa563a2",
+        "version": "hazlenz.expert.target-coverage.v1"
+      },
+      "backend/scripts/lib/expert-question-budget.ts": {
+        "lines": 239,
+        "sha256": "e5ff0a0ef94038c3dd692c8c40eb0c32ef8f213321d1335faa8721327748131c",
+        "version": "hazlenz.expert.question-budget.v1"
+      },
+      "backend/scripts/lib/expert-bounded-reliability-state-machine.ts": {
+        "lines": 404,
+        "sha256": "8d82119bd245a727206a5e46f1cb969298ad3e03e30973802e1fd5cdd848027d",
+        "version": "hazlenz.expert.bounded-reliability-state-machine.v1"
+      },
+      "backend/scripts/lib/expert-reliability-observability.ts": {
+        "lines": 255,
+        "sha256": "a82fbfeaf07735b11f38a422431ea7506b499ee7f1a51192741f30626ffc95b5",
+        "version": "hazlenz.expert.reliability-observability.v1"
+      },
+      "backend/scripts/test-expert-bounded-reliability-architecture.ts": {
+        "lines": 819,
+        "sha256": "f90f561a257812ce9dd7ca52f5aabf82f97b1eda94cb2bfa2c73b75602fe0a1f",
+        "npmScript": "test:expert-bounded-reliability"
+      },
+      "backend/scripts/preflight-binding-falsification-harness-2026-09-04.ts": {
+        "lines": 443,
+        "sha256": "5c27a3f2729f7186c01c8aa0948b9f54c681f9e377780ab97a6ffa18d0a2727b",
+        "npmScript": "preflight:binding-falsification"
+      }
+    },
+    "packageJsonScriptsAdded": [
+      "test:expert-bounded-reliability",
+      "preflight:binding-falsification"
+    ]
+  },
+  "semanticOutcomeV2": {
+    "implemented": true,
+    "members": 9,
+    "humanAuthorityOnlyMembers": [
+      "TARGET_REACHED",
+      "VALID_BUT_TARGET_DISPLACED",
+      "INVALID_WRONG_FACT",
+      "WRONG_AFFECTED_DECISION"
+    ],
+    "deterministicallyAssignable": [
+      "SETTLED_SILENCE",
+      "BOUNDARY_REJECTION",
+      "CONTRACT_INVALID",
+      "DEGENERATE_OUTPUT",
+      "TRANSPORT_FAILURE"
+    ],
+    "runtimeStateWhenUnadjudicated": "UNKNOWN_SEMANTIC_VALIDITY",
+    "rule1Enforcement": "summariseOutcomes() returns recall and precision as separate objects with no combined accuracy field; assertRecallAndPrecisionNotNetted() throws if a VALID_BUT_TARGET_DISPLACED outcome has been counted as a recall success",
+    "rule2Enforcement": "classifyDeterministically() cannot return any human-authority member; assignHumanAdjudicatedOutcome() refuses any provenance but HUMAN_ADJUDICATION and any unnamed adjudicator",
+    "section163Rescored": false
+  },
+  "owedFacts": {
+    "fields": [
+      "factKey",
+      "affectedDecision",
+      "source",
+      "evidenceSpan",
+      "whyUnresolved",
+      "branchA",
+      "branchB",
+      "decisionDivergence",
+      "priority",
+      "status",
+      "modelAuthored"
+    ],
+    "statuses": [
+      "UNRESOLVED",
+      "COVERED",
+      "SETTLED_BY_EVIDENCE",
+      "REJECTED_BY_ARBITRATION"
+    ],
+    "sources": [
+      "DETERMINISTIC",
+      "GOVERNED_EVIDENCE",
+      "FIRST_PASS_MODEL",
+      "VERIFIER_NOMINATION",
+      "DEVELOPMENT_HUMAN_TRUTH"
+    ],
+    "productionPermittedSources": [
+      "DETERMINISTIC",
+      "GOVERNED_EVIDENCE",
+      "FIRST_PASS_MODEL",
+      "VERIFIER_NOMINATION"
+    ],
+    "populationBoundaryEnforcement": "createOwedFactLedger('PRODUCTION', …) and addOwedFact() both THROW DEVELOPMENT_HUMAN_TRUTH_IN_PRODUCTION_POPULATION rather than filtering — a silent drop would let a caller believe the fact was represented",
+    "modelAuthoredLimit": "modelAuthored is derived from source by the constructor; modelAuthoredOnlyFailClosedKeys() reports a fail-closed state resting on model-authored facts alone",
+    "ledgerIsAppendOnly": true
+  },
+  "bindingContract": {
+    "modes": [
+      "BOUND_TO_OWED_FACT",
+      "NOMINATED_NEW"
+    ],
+    "admissionCodes": 17,
+    "refusesWhole": true,
+    "additiveInvariant": "applyAdmittedDeclarations() calls nominateAdditiveFact(), whose signature has nowhere to name a fact to remove. Replacement is UNREPRESENTABLE, not merely forbidden.",
+    "noImplicitSiblingCoverage": "a binding transitions exactly its own key; bindingSideEffects() reports IMPLICIT_COVERAGE if any other key changed",
+    "coverageDecisionInputs": [
+      "declaration.bindingMode",
+      "declaration.coversFactKey",
+      "owedFact.factKey",
+      "owedFact.status",
+      "owedFact.evidenceSpan (byte equality against the observation only)"
+    ],
+    "semanticMatcherAbsenceProven": "proof X10 greps expert-target-coverage.ts and the checkBindingDeclarations body for similarity/embedding/cosine/jaccard/levenshtein/overlap/fuzzy/keyword and for any read of .question — 0 hits"
+  },
+  "targetCoverage": {
+    "method": "DETERMINISTIC_CLOSED_SET_MEMBERSHIP_OVER_DECLARED_BINDINGS",
+    "warningRuleImplemented": "§165 STRICTER form — TRUE if ANY owedFact remains UNRESOLVED with no admitted binding",
+    "section164FormAlsoReported": "priorityGatedWarning — gated on LIFE_CRITICAL / REQUIRED_CONTROL",
+    "whyBothAreReported": "the two rules differ on an uncovered OTHER-priority gap. Choosing the looser one silently would relax a governance surface; choosing the stricter one without saying so would misreport §164.",
+    "uncoveredFactKeysPersisted": true,
+    "neverSilentlyClears": "unexplainedCoverageClearances() reports COVERAGE_CLEARED_WITHOUT_A_RECORDED_TRANSITION",
+    "permittedResponses": [
+      "ONE_BOUNDED_RECHECK_NAMING_THE_UNCOVERED_KEYS",
+      "ARBITRATION_WITH_A_RECORDED_REASON",
+      "FAIL_CLOSED_SURFACE_THE_UNRESOLVED_SAFETY_STATE"
+    ],
+    "noAcceptAnywayMember": true
+  },
+  "questionBudget": {
+    "preserveFirstRankSecond": true,
+    "survivingSetUnboundedByBudget": true,
+    "combinationRequires": [
+      "same affectedDecision",
+      "same DECLARED equipmentOrTaskKey",
+      "both DECLARED independentlyAnswerableInOneReply"
+    ],
+    "combinationDefault": "no declaration → no combination; there is no heuristic fallback and nothing reads question text",
+    "lifeCriticalNeverDropped": true,
+    "failClosedState": "UNRESOLVED_SAFETY_STATE with the keys named and deterministicFindingsStillShown: true",
+    "notImplementedDeliberately": [
+      "semantic ranking",
+      "similarity-based deduplication"
+    ]
+  },
+  "stateMachine": {
+    "policy": "C — conditional second draw",
+    "maxReliabilityDraws": 2,
+    "majorityVoting": false,
+    "thirdDraw": false,
+    "loops": 0,
+    "secondDrawGateConditions": [
+      "execution-valid and contract-admitted",
+      "verdict is NO_CLARIFICATION_REQUIRED",
+      "the case is trigger-positive",
+      "an owed fact remains UNRESOLVED",
+      "this is draw 1",
+      "the RELIABILITY_DRAW channel has allowance"
+    ],
+    "twoSilencesResult": {
+      "outcome": "SETTLED_SILENCE",
+      "drawCount": 2,
+      "mayClearOwedFact": false,
+      "coverageWarningMayClear": false,
+      "consensusClaimed": false,
+      "note": "consensusClaimed is typed as the literal false so a caller cannot set it; there is no branch from two silences to COVERED, VERIFIED_AS_IS or a cleared warning"
+    },
+    "providerCallChannels": {
+      "FIRST_PASS": 1,
+      "DEGENERATE_REISSUE": 1,
+      "RELIABILITY_DRAW": 2,
+      "COVERAGE_RECHECK": 1
+    },
+    "maxProviderCallsPerAnalysis": 5,
+    "channelsDoNotBorrow": "proved in both directions by case Q",
+    "compositionOrder": [
+      "TRANSPORT",
+      "RESPONSE_STATE_CLASSIFICATION",
+      "DEGENERATE_HANDLING",
+      "CONTRACT_ADMISSION",
+      "SEMANTIC_RELIABILITY_DRAW_HANDLING",
+      "OWED_FACT_COVERAGE",
+      "ARBITRATION",
+      "QUESTION_BUDGET",
+      "FINAL_AUGMENTATION"
+    ],
+    "degeneratePolicyStatus": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION — unchanged, not reopened, semantics untouched",
+    "hostedExecution": "REFUSING_DRAW_FUNCTION throws HOSTED_EXECUTION_NOT_AUTHORIZED by default"
+  },
+  "observability": {
+    "reconstructionObligations": 17,
+    "appendOnly": true,
+    "countersRecomputedFromLedger": true,
+    "violationCodes": [
+      "ATTEMPT_HISTORY_TRUNCATED",
+      "ATTEMPT_OVERWRITTEN",
+      "TRANSITION_HISTORY_TRUNCATED",
+      "TRANSITION_REWRITTEN",
+      "INITIAL_OWED_FACTS_MUTATED",
+      "RAW_NOT_PRESERVED",
+      "ATTEMPT_SEQ_REUSED",
+      "PROVIDER_CALL_COUNT_DISAGREES_WITH_LEDGER"
+    ]
+  },
+  "proofMatrix": {
+    "total": 44,
+    "passed": 44,
+    "failed": 0,
+    "providerCalls": 0,
+    "transcript": "PROOF-MATRIX-RESULT.txt",
+    "casesAthroughT": "all pass",
+    "adversarialCases": "X1–X14, all refused or caught",
+    "replays": {
+      "R1_HS_A1": {
+        "storedDraws": 10,
+        "erasuresOfTheOwedFact": 0,
+        "drawsCarryingBothFacts": 7,
+        "drawsBindingTheOwedKey": 3,
+        "targetCoverageWarningTrue": "7/10",
+        "meaning": "the seven draws that silently displaced the owed target in §163 leave it UNRESOLVED and named in uncoveredFactKeys in every one of the seven"
+      },
+      "R2_HS_E1": {
+        "storedDraws": 10,
+        "erasuresOfTheOwedFact": 0,
+        "drawsBindingTheOwedKey": 0,
+        "targetCoverageWarningTrue": "10/10"
+      },
+      "replayMappingDisclosure": "a draw's RECORDED sourceMode — a field the provider emitted and §163 persisted — is mapped onto the binding mode it corresponds to. Nothing reads question text, and no claim is made that any §163 draw 'bound' anything; binding did not exist when those draws were made."
+    }
+  },
+  "confinement": {
+    "srcFilesCreatedModifiedOrDeleted": 0,
+    "compilerEnforcedUnreachability": "backend/tsconfig.json rootDir './src', include ['src/**/*'] — a src/ import of scripts/lib/ is a compile error",
+    "SOURCE_PROJECT_TSC": "npx tsc --noEmit — exit 0, clean",
+    "newModulesImportingFromSrc": 0,
+    "providerOrNetworkTokensInNewModules": 0,
+    "currentCustomerBehaviourChange": "none — no src/ file and no runtime configuration was touched, so no path exists by which customer behaviour could differ"
+  },
+  "protectedRegression": {
+    "transcript": "PROTECTED-REGRESSION.txt",
+    "SOURCE_PROJECT_TSC": "exit 0, clean",
+    "suites": {
+      "test:expert-bounded-reliability": "44/44 (new)",
+      "test:expert-reliability-architecture": "69 passed, 0 failed",
+      "test:expert-verifier-v2-contract": "46 passed, 0 failed",
+      "test:expert-contract-foundation": "56 passed, 0 failed",
+      "test:expert-routing-contract": "67 passed, 0 failed",
+      "test:expert-measurement-layer": "66 passed, 0 failed",
+      "test:expert-fixture-hardening": "76 passed, 0 failed",
+      "test:expert-clarification-settlement": "148 passed, 0 failed",
+      "test:expert-affected-decision-arbitration": "41 passed, 0 failed",
+      "test:expert-unsupported-settlement": "129 passed, 0 failed",
+      "test:expert-retention-bridge": "123 passed, 0 failed",
+      "test:hazlenz-level1-recall": "PASS (17 checks)",
+      "test:hazlenz-actionable-coverage": "PASS (17 checks)",
+      "test:hazlenz-guarding-applicability": "16 cases, 0 failures, 0 dangerous failures",
+      "test:governed-kill-switch-authority": "115 passed, 0 failed"
+    },
+    "databaseAccess": "none — no migration, seed, schema or mutable command was issued"
+  },
+  "falsificationHarness": {
+    "FALSIFICATION_HARNESS_READY": false,
+    "gatesPassed": 24,
+    "gatesTotal": 26,
+    "providerCalls": 0,
+    "costUsd": 0.0,
+    "transcript": "FALSIFICATION-HARNESS-PREFLIGHT.txt",
+    "machineReadable": "FALSIFICATION-HARNESS-PREFLIGHT.json",
+    "blockers": [
+      {
+        "gate": "F.4",
+        "finding": "the binding-enabled arm is NOT deliverable under frozen material",
+        "provenNotAsserted": "gate F.1 constructs the additive verdict falsifier C requires — binding the supplied flame-failure fact AND carrying the auger nomination alongside it, with every proof field present — submits it to the frozen checkVerifierV2Output, and records the refusal code NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE. Gate F.2 records that the frozen schema has no field in which to declare a binding. Gate F.3 records 0 of 7 binding tokens in the frozen instruction.",
+        "consequence": "falsifier C (additive nomination retention) is not measurable under frozen material, and the 'binding required' manipulation falsifier B depends on is not deliverable either",
+        "remediation": "an authorized revision of the verifier instruction and response schema adding a binding declaration and permitting an additive nomination. §165 Phase 13 forbids changing verifier instruction v2 or creating a v3 in this operation."
+      },
+      {
+        "gate": "E.2",
+        "finding": "the published $0.30 cap is an EXPECTED cost, not a prospective worst-case bound",
+        "expectedSpendUsdAtSection163MeasuredMean": 0.25231,
+        "prospectiveWorstCaseUsd": 0.59798,
+        "why": "every spend gate on this programme is evaluated BEFORE a request against the worst case that request could cost, because final token usage is unknowable until the response returns. A cap checked against expected spend can always be overshot.",
+        "remediation": "raise the 12-call prospective ceiling to at least $0.60, or lower the output ceiling — noting that lowering it below 4000 breaks byte-identity with §158/§163 and forfeits direct comparability with the frozen baseline. Product-owner decision; not taken here."
+      }
+    ],
+    "experimentExecuted": false,
+    "experimentAuthorized": false
+  },
+  "frozenMaterialStatus": {
+    "verifierInstructionV2": "UNCHANGED — prompt sha256 ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+    "verifierV3": "NOT CREATED",
+    "firstPassPromptV13": "UNCHANGED — module sha256 02977c309f6d3e377d97b31836f9fc6e8af8dfd64fa28d81d1a53f605a266efa",
+    "firstPassV14orV15": "NOT CREATED",
+    "hardenedDevelopmentSetV9": "UNCHANGED — sha256 09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+    "section156BlindedPacket": "UNCHANGED — sha256 75d64197583092ed8ac826a1c3c85d86666fd36d7eca52737d1d6eec942afc5a",
+    "section164Artifacts": "UNCHANGED — HS-A1 packet sha256 79e60079bd8c9bcf704c58ecff6c74e52fa8b26e350eab279689be01690c91a6, recomputed from disk",
+    "section163DrawRecords": "UNCHANGED — read only",
+    "provider": "UNCHANGED",
+    "M14": "NOT RUN",
+    "expandedValidation": "NOT RUN",
+    "frozenFormalProviderInvocationCount": 195
+  },
+  "section164FalsifiersPreserved": {
+    "A_settledSilenceRecovery": "unchanged",
+    "B_owedTargetPreservation": "unchanged",
+    "C_validButDisplacedRetention": "unchanged",
+    "D_falseQuestionManufacture": "unchanged",
+    "E_drawInstability": "unchanged",
+    "F_questionBurden": "unchanged",
+    "noneWeakened": "no falsifier was weakened because the local implementation cannot yet exercise it. B and D remain the decisive pair."
+  },
+  "remainingUncertainty": {
+    "REQUIRES_HOSTED_VALIDATION": [
+      "does binding reduce displacement in practice",
+      "does the conditional second draw improve silence recovery",
+      "does the question burden stay acceptable"
+    ],
+    "REQUIRES_HUMAN_TRUTH": [
+      "whether a given binding is truthful",
+      "whether a nominated fact is genuinely decision-critical",
+      "whether two differently-worded owed facts are the same fact"
+    ],
+    "whatTheLocalProofsDoNotEstablish": "the local proofs establish that displacement is structurally unrepresentable and that the owed set survives every path in the implemented architecture. They establish NOTHING about how a hosted model behaves when handed a binding contract, because no hosted call was made."
+  },
+  "observedPriorArtifactDefectNotRepaired": {
+    "file": "verification/expert-hazlenz-reliability-target-displacement-design-2026-09-04/DESIGN-SUMMARY.json",
+    "field": "costLatency.per100AnalysesAt20pct / per100AnalysesAt50pct",
+    "observed": "the dollar figures were shell-expanded when the file was written — e.g. \"/bin/zsh.42\" where \"$0.42\" was intended",
+    "actionTaken": "NONE — the §164 artifact is left byte-unchanged. Reported rather than repaired, because editing a prior operation's evidence is not this operation's authority. The correct figures are recoverable from RELIABILITY-AND-COVERAGE-ARCHITECTURE.md §10, which is intact."
+  },
+  "claimsRegister": {
+    "file": "docs/PRODUCT-CLAIMS-REGISTER.md",
+    "newPublicClaim": "none",
+    "sectionAdded": "§165",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED",
+    "productionMarketingCopyChanged": "none"
+  },
+  "autonomyAndModelIndependence": {
+    "hazlenzOwns": [
+      "owed-fact representation",
+      "binding",
+      "coverage",
+      "the state machine",
+      "arbitration",
+      "budgeting",
+      "retry caps",
+      "final output"
+    ],
+    "providerRole": "replaceable reasoning infrastructure",
+    "evidence": "no new module names a provider, an endpoint, a model identity or a credential; proof C3 records 0 such tokens across all seven modules"
+  },
+  "worktreeState": {
+    "codeFilesCreated": 9,
+    "codeFilesModified": 1,
+    "codeFileModified": "backend/package.json — two npm script entries added",
+    "documentationFilesUpdatedAdditively": [
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md — §165 section appended before the bootstrap block",
+      "docs/INSITE_CURRENT_STATE.json — one new top-level key plus generatedAt/generatedBy; every prior key byte-identical and re-serialization is idempotent",
+      "docs/EXPERT-EVALUATION-TRUTH-AUTHORITY.md — §165 section appended",
+      "docs/PRODUCT-CLAIMS-REGISTER.md — one §165 row appended to the status log"
+    ],
+    "verificationArtifactsCreated": [
+      "BOUNDED-RELIABILITY-LOCAL-INTEGRATION.md",
+      "HS-A1-DISPLACED-FACT-ADJUDICATION-RESULT.md",
+      "LOCAL-INTEGRATION-SUMMARY.json",
+      "FALSIFICATION-HARNESS-PREFLIGHT.json",
+      "FALSIFICATION-HARNESS-PREFLIGHT.txt",
+      "PROOF-MATRIX-RESULT.txt",
+      "PROTECTED-REGRESSION.txt"
+    ],
+    "srcFilesTouched": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "preexistingUncommittedWorkPreserved": true,
+    "notedNotTouched": "frontend-next/tsconfig.json carries pre-existing generated include globs (.next-onereport/**) injected by an earlier disposable Next.js build. It was not created by this operation and was left unchanged under existing-worktree protection; it should be removed before any commit."
+  },
+  "nextAuthorizationRequired": [
+    "1. Authorize a verifier instruction and response-schema revision adding (a) a binding declaration naming a supplied factKey and (b) permission to carry one additive nomination alongside a binding. This is new frozen semantic material and cannot be created under §165 Phase 13.",
+    "2. Resolve the cost cap: raise the 12-call prospective ceiling to at least $0.60, or lower the output ceiling (noting that lowering it below 4000 breaks byte-identity with §158/§163).",
+    "Only after both may the 12-call binding falsification experiment be authorized. It remains unexecuted and $0.00 has been spent."
+  ]
+}

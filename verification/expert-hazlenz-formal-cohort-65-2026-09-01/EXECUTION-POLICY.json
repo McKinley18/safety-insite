@@ -1,0 +1,170 @@
+{
+  "plannedLogicalCallCount": 195,
+  "callsPerRow": 3,
+  "arms": [
+    "BASE",
+    "PERMUTED",
+    "CROSS_PROCESS"
+  ],
+  "retrySemantics": {
+    "maxRetriesPerLogicalCall": 1,
+    "maxAttemptsPerLogicalCall": 2,
+    "retryableFailureKinds": [
+      "TIMEOUT",
+      "NETWORK_ERROR",
+      "HTTP_SERVER_ERROR",
+      "MALFORMED_JSON",
+      "TRUNCATED_RESPONSE",
+      "EMPTY_RESPONSE"
+    ],
+    "nonRetryableFailureKinds": [
+      "HTTP_CLIENT_ERROR",
+      "RATE_LIMITED",
+      "CREDITS_EXHAUSTED",
+      "SCHEMA_INVALID_STRUCTURED_OUTPUT",
+      "PROVIDER_REFUSAL",
+      "UNEXPECTED_MODEL_IDENTITY",
+      "PROVIDER_NOT_CALLABLE",
+      "NOT_CONFIGURED"
+    ],
+    "retriesEnabledOnFormalPath": true,
+    "retryReplacesCall": true,
+    "retryCreatesAdditionalScoredObservation": false,
+    "attemptsRecordedInCallRecord": false,
+    "frozenPlanDefinesRetryBudget": false
+  },
+  "defectsFound": [
+    "callCeiling counts LOGICAL calls, not provider requests; retries bypass it entirely",
+    "usageOf has no implementation anywhere, so spendUsd stays 0 and the spend ceiling is inert",
+    "the adapter retains only lastTelemetry, so a retried call under-reports its first billed request",
+    "CallRecord discards trace.attempts, so M13's frozen \"retries included\" denominator is not computable",
+    "the §121 RECOMMENDED_CALL_TOPOLOGY comment claiming the ceiling covers retries is false"
+  ],
+  "maximumBillableProviderRequests": 390,
+  "existingHardCallCeiling": 200,
+  "ceilingOptions": [
+    {
+      "id": "O1",
+      "ceiling": 195,
+      "label": "exactly the planned calls, zero retry capacity",
+      "retryCapacity": 0,
+      "maxMeanUsd": 6.19,
+      "maxWorstUsd": 20.28
+    },
+    {
+      "id": "O2",
+      "ceiling": 200,
+      "label": "the existing 200, reinterpreted as a REQUEST ceiling",
+      "retryCapacity": 5,
+      "maxMeanUsd": 6.35,
+      "maxWorstUsd": 20.8
+    },
+    {
+      "id": "O3",
+      "ceiling": 215,
+      "label": "planned + a 10% global retry allowance",
+      "retryCapacity": 20,
+      "maxMeanUsd": 6.83,
+      "maxWorstUsd": 22.36
+    },
+    {
+      "id": "O4",
+      "ceiling": 390,
+      "label": "full theoretical one-retry-per-call maximum",
+      "retryCapacity": 195,
+      "maxMeanUsd": 12.39,
+      "maxWorstUsd": 40.56
+    }
+  ],
+  "engineeringRecommendation": "O3",
+  "requiredCodeRepairs": [
+    "R1 count provider REQUESTS, not logical calls, against the ceiling",
+    "R2 implement usageOf, or the spend ceiling stays inert and M16 reports $0.00",
+    "R3 accumulate adapter telemetry per ATTEMPT, or a retried call under-reports its cost",
+    "R4 bind the model: assert provider.qualifiedModelIdentity === manifest.model before the first request. Required whatever ceiling is chosen -- EXPERT_ANTHROPIC_MODEL currently redirects the formal cohort to another model and the identity guard still passes."
+  ],
+  "costBasis": "verification/expert-hazlenz-hosted-projection-ab-2026-08-31 (18 calls, exact fit)",
+  "meanUsdPerCall": 0.031757,
+  "worstUsdPerCall": 0.104,
+  "freezePrerequisites": [
+    {
+      "item": "exact 65 rows",
+      "determinate": true,
+      "detail": "65"
+    },
+    {
+      "item": "exact row order",
+      "determinate": true,
+      "detail": "source rank, then rowId ascending"
+    },
+    {
+      "item": "exact class composition",
+      "determinate": true,
+      "detail": "every minimum met"
+    },
+    {
+      "item": "exact governed attachment",
+      "determinate": true,
+      "detail": "40 records paired"
+    },
+    {
+      "item": "exact provider",
+      "determinate": true,
+      "detail": "anthropic"
+    },
+    {
+      "item": "exact model",
+      "determinate": false,
+      "detail": "ENVIRONMENT-OVERRIDABLE -- not bound"
+    },
+    {
+      "item": "exact prompt",
+      "determinate": true,
+      "detail": "hazlenz.expert.prompt.v6"
+    },
+    {
+      "item": "exact contracts",
+      "determinate": true,
+      "detail": "hazlenz.expert.input.v1 / hazlenz.expert.analysis.v2"
+    },
+    {
+      "item": "exact measurement contract",
+      "determinate": true,
+      "detail": "hazlenz.expert.measurement.v1"
+    },
+    {
+      "item": "exact harness",
+      "determinate": true,
+      "detail": "hazlenz.expert.cohort.harness.v1"
+    },
+    {
+      "item": "exact planned logical calls",
+      "determinate": true,
+      "detail": "195"
+    },
+    {
+      "item": "exact provider-request hard ceiling",
+      "determinate": false,
+      "detail": "UNRESOLVED -- product-owner decision (STEP 8)"
+    },
+    {
+      "item": "exact spend ceiling",
+      "determinate": false,
+      "detail": "follows from the request ceiling"
+    },
+    {
+      "item": "exact retry policy",
+      "determinate": false,
+      "detail": "semantics are known; the BUDGET is not, and the ceiling cannot enforce one without R1"
+    },
+    {
+      "item": "exact stop conditions",
+      "determinate": false,
+      "detail": "the spend stop condition is inert until usageOf exists (R2)"
+    }
+  ],
+  "frozen": false,
+  "cohortStatus": "CANDIDATE",
+  "p4PrespendAuthorization": false,
+  "providerInvocationCount": 0
+}

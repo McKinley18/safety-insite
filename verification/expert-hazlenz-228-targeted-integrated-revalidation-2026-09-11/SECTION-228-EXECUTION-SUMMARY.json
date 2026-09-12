@@ -1,0 +1,134 @@
+{
+  "artifact": "SECTION-228-EXECUTION-SUMMARY",
+  "executorVersion": "hazlenz.expert.228b.integrated-execution.v1",
+  "assemblyVersion": "hazlenz.expert.228b.assembly.v1",
+  "frozenDigest": "4c91ae539f18efdad0f37e30967e8b188b659864fac8ab0cda08c8e2dea0c3cc",
+  "preSpendIdentity": "PASS",
+  "plannedPrimaryCalls": 14,
+  "callsExecuted": 13,
+  "contingencyCallsExecuted": 0,
+  "contingencyCallsAuthorized": 2,
+  "contingencyLog": [],
+  "maxAuthorizedCalls": 16,
+  "spendUsd": 0.933846,
+  "spendCeilingUsd": 1.23,
+  "projectedSpendUsd": 0.9399,
+  "semanticPreferenceRetries": 0,
+  "databaseOperations": 0,
+  "stoppedEarly": null,
+  "promptChangedDuringExecution": false,
+  "schemaChanged": false,
+  "caseChangedAfterFreeze": false,
+  "malformedOutputRepaired": false,
+  "stringifiedFieldsParsed": false,
+  "verifierAssembly": {
+    "C1": {
+      "elided": true,
+      "reason": "NO_ADMITTED_DECLARATION",
+      "refused": [],
+      "projectionCodes": [],
+      "admittedCount": 0,
+      "identities": null
+    },
+    "C2": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-exam-status",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "34ed7fc2aac7a1011a015b2321b9364a833f470118dffdd7f02caa83bdf81bac",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C3": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "ufd-continue-operation",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "0b0e5cc7f88c8c0d13806964314cb149a96ca95b0dc48973dc68a3ed6a42b5bb",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C4": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-conduit-dead",
+          "codes": []
+        },
+        {
+          "declarationId": "decl-acm-status",
+          "codes": []
+        }
+      ],
+      "admittedCount": 2,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "880f1c42e99b6bc1ab323e89e525a31b9113e402e4c9d853c0402b2a8816cfa0",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C5": {
+      "elided": true,
+      "frozen": true,
+      "reason": "the verifier leg runs over an ADMITTED declaration. Nothing is admitted here by construction, so the call has no target. The elision is legitimate, is frozen before execution, and saves a draw rather than avoiding an unfavourable one."
+    },
+    "C6": {
+      "elided": true,
+      "frozen": true,
+      "reason": "no declaration is expected and the verifier reviews an admitted declaration. If the first pass unexpectedly declares something, the verifier leg stays elided and the unexpected declaration is itself the HR13 finding. The elision is frozen before execution and does not depend on what comes back."
+    },
+    "C7": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-wse",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "9fb858bbb21ff33c8fd9fcdb8fe79a8a0356a2f1d0294b4113257f82a4d23ff4",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    },
+    "C8": {
+      "elided": false,
+      "reason": null,
+      "refused": [],
+      "projectionCodes": [
+        {
+          "declarationId": "decl-1",
+          "codes": []
+        }
+      ],
+      "admittedCount": 1,
+      "identities": {
+        "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+        "userPrompt": "4df33863f5a8eb03caa78e95fb6586511fa3c218897b1ef2966db9ff2f43a08d",
+        "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+      }
+    }
+  },
+  "completedAt": "2026-09-11T16:55:48.753Z"
+}

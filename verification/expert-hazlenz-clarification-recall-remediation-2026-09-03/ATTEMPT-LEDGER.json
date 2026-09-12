@@ -1,0 +1,311 @@
+{
+ "perCall": [
+  {
+   "rowId": "CR-A1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14093,
+      "outputTokens": 1367,
+      "costUsd": 0.041856,
+      "latencyMs": 19160,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 19162,
+   "costUsd": 0.041856,
+   "inputTokens": 14093,
+   "outputTokens": 1367,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-B1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14737,
+      "outputTokens": 1245,
+      "costUsd": 0.041924,
+      "latencyMs": 17550,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17550,
+   "costUsd": 0.041924,
+   "inputTokens": 14737,
+   "outputTokens": 1245,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-C1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14422,
+      "outputTokens": 1190,
+      "costUsd": 0.040744,
+      "latencyMs": 17584,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17585,
+   "costUsd": 0.040744,
+   "inputTokens": 14422,
+   "outputTokens": 1190,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-D1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14323,
+      "outputTokens": 833,
+      "costUsd": 0.036976,
+      "latencyMs": 9916,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 9916,
+   "costUsd": 0.036976,
+   "inputTokens": 14323,
+   "outputTokens": 833,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-E1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14302,
+      "outputTokens": 2187,
+      "costUsd": 0.050474000000000005,
+      "latencyMs": 26410,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 26412,
+   "costUsd": 0.050474000000000005,
+   "inputTokens": 14302,
+   "outputTokens": 2187,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-E2",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14334,
+      "outputTokens": 1463,
+      "costUsd": 0.043298,
+      "latencyMs": 19134,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 19134,
+   "costUsd": 0.043298,
+   "inputTokens": 14334,
+   "outputTokens": 1463,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-F1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14084,
+      "outputTokens": 1175,
+      "costUsd": 0.039917999999999995,
+      "latencyMs": 18010,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 18011,
+   "costUsd": 0.039917999999999995,
+   "inputTokens": 14084,
+   "outputTokens": 1175,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-F2",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14116,
+      "outputTokens": 1782,
+      "costUsd": 0.046051999999999996,
+      "latencyMs": 23695,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 23695,
+   "costUsd": 0.046051999999999996,
+   "inputTokens": 14116,
+   "outputTokens": 1782,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [
+    {
+     "code": "CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE",
+     "collection": "decisionCriticalClarifications",
+     "index": 0,
+     "detail": "decisionCriticalClarifications[0]: asks whether the hazard exists while candidate cand-fire-explosion is asserted ACTIVE"
+    }
+   ],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-G1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14098,
+      "outputTokens": 1515,
+      "costUsd": 0.043345999999999996,
+      "latencyMs": 19095,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 19095,
+   "costUsd": 0.043345999999999996,
+   "inputTokens": 14098,
+   "outputTokens": 1515,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "CR-H1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 14125,
+      "outputTokens": 775,
+      "costUsd": 0.036000000000000004,
+      "latencyMs": 11560,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 11561,
+   "costUsd": 0.036000000000000004,
+   "inputTokens": 14125,
+   "outputTokens": 775,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  }
+ ]
+}

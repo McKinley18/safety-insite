@@ -1,0 +1,403 @@
+{
+  "artifact": "SECTION_195_PRE_SPEND_PREREGISTRATION",
+  "writtenBeforeAnyProviderCall": true,
+  "EXECUTED": false,
+  "whyNotExecuted": "the OWED-FACT / TASK-STATE CONSTRUCTION stage of the specified pipeline does not exist as an executable component. See PIPELINE-STAGE-BLOCKER.md. No provider call was made.",
+  "operation": "§195 fresh end-to-end Expert HazLenz pipeline validation using verifier-v3.2",
+  "systemUnderTest": [
+    "RAW OBSERVATION",
+    "EXPERT FIRST PASS",
+    "OWED-FACT / TASK-STATE CONSTRUCTION",
+    "FIRST-PASS CLARIFICATIONS",
+    "VERIFIER-v3.2",
+    "DETERMINISTIC ADMISSION",
+    "UNRESOLVED / SETTLEMENT-ELIGIBILITY STATE"
+  ],
+  "POPULATION_SEPARATION": {
+    "v3": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88 — §187B",
+    "v3_1": "7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c — §192",
+    "v3_2": "f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f — §195, zero hosted evidence",
+    "rule": "the three populations are never combined into one score"
+  },
+  "firstPassIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v15",
+    "systemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+    "promptFileSha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694"
+  },
+  "verifierIdentity": {
+    "instructionVersion": "hazlenz.expert.verifier-instruction.v3.2",
+    "systemPromptSha256": "f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f",
+    "responseSchemaSha256": "83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e",
+    "contractVersion": "hazlenz.expert.verifier.v3.2",
+    "admissionValidatorSha256": "475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc"
+  },
+  "provider_model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "cohort": {
+    "version": "hazlenz.expert.e2e-cohort.2026-09-06",
+    "moduleSha256": "a49cf14cd348ebd269077962acf191c55a07a5b24d50da95a0dab08fbaafc274",
+    "coverage": {
+      "rows": 12,
+      "replicatesPlanned": 3,
+      "executions": 36,
+      "validRelianceRows": [
+        "EE-09",
+        "EE-10"
+      ],
+      "validRelianceExecutions": 6,
+      "unsupportedRelianceRows": [
+        "EE-11",
+        "EE-12"
+      ],
+      "unsupportedRelianceExecutions": 6,
+      "absentEvidenceRows": 8,
+      "noneExpectedExecutions": 30,
+      "conjunctiveRows": [
+        {
+          "rowId": "EE-01",
+          "maxConjuncts": 2
+        },
+        {
+          "rowId": "EE-02",
+          "maxConjuncts": 2
+        },
+        {
+          "rowId": "EE-03",
+          "maxConjuncts": 3
+        },
+        {
+          "rowId": "EE-09",
+          "maxConjuncts": 2
+        },
+        {
+          "rowId": "EE-10",
+          "maxConjuncts": 2
+        },
+        {
+          "rowId": "EE-11",
+          "maxConjuncts": 2
+        }
+      ],
+      "multiGapRows": [
+        "EE-08"
+      ],
+      "zeroOwedFactRows": [
+        "EE-06",
+        "EE-07"
+      ],
+      "familiesCovered": [
+        "ADJACENT_PROPERTY_TRAP",
+        "CONJUNCTIVE_REQUIRED_CONTROL",
+        "FULLY_ESTABLISHED_CONTROL",
+        "GOVERNED_EVIDENCE_ABSENT",
+        "GOVERNED_EVIDENCE_TOO_NARROW",
+        "GOVERNED_EVIDENCE_UNRELATED",
+        "GOVERNED_EVIDENCE_VALID_RELIANCE",
+        "MULTI_GAP",
+        "NON_DECISION_CRITICAL_MISSING_DETAIL",
+        "SIMPLE_REQUIRED_CONTROL"
+      ],
+      "totalExpectedOwedFacts": 11
+    },
+    "firstPassSetsAuthored": false,
+    "note": "the hosted system receives the RAW OBSERVATION and normal allowed context only. Expected truth exists solely for scoring and is never injected. A first-pass miss propagates and is scored as an end-to-end failure; no downstream stage is rescued.",
+    "familiesThatCannotBeGuaranteed": "EXISTING-SUFFICIENT-FIRST-PASS-QUESTION and FIRST-PASS-INSUFFICIENT-QUESTION are OUTCOMES in an end-to-end run, not fixture properties. Rows carry sufficientQuestionLikelihood as design intent; scoring must record what actually happened rather than assume the family was hit."
+  },
+  "executionOrder": {
+    "method": "three interleaved blocks; Fisher-Yates under mulberry32 seeded from the v3.2 system prompt sha256; a block opening on the previous block's closing row is rotated left",
+    "seedHex": "f2522995",
+    "frozenOrder": [
+      {
+        "sequencePosition": 1,
+        "rowId": "EE-08",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 2,
+        "rowId": "EE-06",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 3,
+        "rowId": "EE-10",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 4,
+        "rowId": "EE-01",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 5,
+        "rowId": "EE-07",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 6,
+        "rowId": "EE-12",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 7,
+        "rowId": "EE-02",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 8,
+        "rowId": "EE-03",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 9,
+        "rowId": "EE-04",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 10,
+        "rowId": "EE-05",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 11,
+        "rowId": "EE-09",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 12,
+        "rowId": "EE-11",
+        "replicateNumber": 1,
+        "block": 1
+      },
+      {
+        "sequencePosition": 13,
+        "rowId": "EE-04",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 14,
+        "rowId": "EE-02",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 15,
+        "rowId": "EE-06",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 16,
+        "rowId": "EE-01",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 17,
+        "rowId": "EE-09",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 18,
+        "rowId": "EE-08",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 19,
+        "rowId": "EE-10",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 20,
+        "rowId": "EE-05",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 21,
+        "rowId": "EE-12",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 22,
+        "rowId": "EE-07",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 23,
+        "rowId": "EE-03",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 24,
+        "rowId": "EE-11",
+        "replicateNumber": 2,
+        "block": 2
+      },
+      {
+        "sequencePosition": 25,
+        "rowId": "EE-05",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 26,
+        "rowId": "EE-01",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 27,
+        "rowId": "EE-03",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 28,
+        "rowId": "EE-07",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 29,
+        "rowId": "EE-06",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 30,
+        "rowId": "EE-02",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 31,
+        "rowId": "EE-08",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 32,
+        "rowId": "EE-11",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 33,
+        "rowId": "EE-04",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 34,
+        "rowId": "EE-10",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 35,
+        "rowId": "EE-09",
+        "replicateNumber": 3,
+        "block": 3
+      },
+      {
+        "sequencePosition": 36,
+        "rowId": "EE-12",
+        "replicateNumber": 3,
+        "block": 3
+      }
+    ]
+  },
+  "caps": {
+    "plannedFirstPassCalls": 36,
+    "plannedVerifierCalls": 36,
+    "plannedTotalCalls": 72,
+    "hardCallCap": 80,
+    "hardSpendCapUsd": 7.5,
+    "worstCasePerFirstPassUsd": 0.124,
+    "worstCasePerVerifierUsd": 0.072,
+    "worstCaseTotalUsd": 7.056,
+    "retries": 0,
+    "spendRule": "provider-returned usage only; a call reporting no usage adds zero",
+    "onCreditRejection": "STOP on FIRST occurrence"
+  },
+  "AXIS_CLASSIFICATION": {
+    "MECHANICAL": [
+      "provider errors",
+      "contract admission",
+      "wrong supplied factKey bindings",
+      "unknown regulatory sourceIds",
+      "raw prohibited citation admitted",
+      "unauthorized settlement",
+      "adjacent ledger mutation",
+      "PROVIDER_SETTLEMENT_AUTHORITY",
+      "transfer field equality"
+    ],
+    "MODEL_DIAGNOSTIC": [
+      "first-pass owed-fact recall and precision",
+      "fact granularity",
+      "affectedDecision and branch correctness",
+      "observation-span support",
+      "clarification recall/precision/target/sufficiency",
+      "multi-gap preservation",
+      "verifier strict semantic preservation",
+      "conjunctive sufficiency",
+      "adjacent-property substitution",
+      "regulatory-basis semantic correctness",
+      "UNDECLARED_REGULATORY_ASSERTION"
+    ],
+    "HUMAN_REQUIRED": [],
+    "note": "MODEL semantic adjudication is authorized for this DEVELOPMENT validation and is labelled MODEL_DIAGNOSTIC. It is never called human adjudication. §189 remains UNMEASURED at 65/112 and §195 does not require its completion."
+  },
+  "MECHANICAL_GATES": {
+    "providerErrors": 0,
+    "contractInvalid": 0,
+    "wrongSuppliedFactKeyBindings": 0,
+    "unknownRegulatorySourceIds": 0,
+    "rawProhibitedCitationAdmitted": 0,
+    "unauthorizedSettlement": 0,
+    "adjacentLedgerMutation": 0,
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "waiverPolicy": "no mechanical gate may be waived after observing results"
+  },
+  "PREREGISTERED_THRESHOLDS": {
+    "FIRST_PASS_OWED_FACT_RECALL": ">= 9/11 expected owed facts raised",
+    "FIRST_PASS_OWED_FACT_PRECISION": "<= 1 false REQUIRED_CONTROL owed fact across the 6 executions on EE-06 and EE-07",
+    "FIRST_PASS_CLARIFICATION_SUFFICIENCY": ">= 70% of raised facts carry a question whose truthful answer would establish every conjunct",
+    "MULTI_GAP_PRESERVATION": "both EE-08 facts survive in >= 2/3 replicates",
+    "TRANSFER_FIDELITY": "= 100% — every transfer field byte-equal; this is MECHANICAL and admits no shortfall",
+    "VERIFIER_STRICT_SEMANTIC_PRESERVATION": ">= 30/36",
+    "CONJUNCTIVE_SUFFICIENCY": ">= 10/12 executions on EE-02, EE-03, EE-09, EE-10 identify the open conjunct",
+    "ADJACENT_PROPERTY_SUBSTITUTION": "= 0 across all 36",
+    "CLARIFICATION_POLICY": "appropriate >= 80% of opportunities; unnecessary <= 1 across EE-06 and EE-07",
+    "GOOD_BEHAVIOUR_REGRESSION": "no sufficient first-pass question replaced without a stated insufficiency",
+    "REGULATORY_BASIS_STRUCTURAL": "= 100% — legal state, no unknown sourceId, no raw citation admitted",
+    "REGULATORY_BASIS_SEMANTIC": ">= 5/6 valid-reliance executions declare reliance on the correct supplied source with a proposition the source supports",
+    "UNDECLARED_REGULATORY_ASSERTION": "= 0 demonstrated",
+    "END_TO_END_STRICT_SUCCESS": ">= 24/36",
+    "derivedFromObservedOutputs": false
+  },
+  "END_TO_END_STRICT_DEFINITION": "an execution is strict-success only if EVERY required stage succeeds. A downstream verifier success does not erase a first-pass owed-fact miss, a false owed fact, a malformed property, an insufficient clarification, transfer corruption, unsupported regulatory reliance, a verifier semantic failure, a contract refusal or an unauthorized settlement.",
+  "noMidRunRemediation": "after the first provider call: no prompt, schema, fixture, truth, scorer, threshold or rubric change."
+}

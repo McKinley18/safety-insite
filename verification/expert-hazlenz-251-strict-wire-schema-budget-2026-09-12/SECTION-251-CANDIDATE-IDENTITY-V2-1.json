@@ -1,0 +1,83 @@
+{
+  "section": "251",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "status": "DESIGNED, NOT FROZEN",
+  "whyNotFrozen": "Candidate Identity v2.1 exists to bind \"the provider actually receives wire representation X\" to the executable path. No compact wire representation was adopted, because the compaction cannot clear the grammar limit, so elements 7 and 8 describe a representation the production path does not use. Freezing an identity over a representation that is not executed would assert exactly the thing v2.1 was created to make unfalsifiable.",
+  "v2ElementsStillExecutionDerived": 7,
+  "v2_1ElementsPendingAdoption": 2,
+  "negativeTestsRequired": [
+    "identity fails if the provider path falls back to the §239 schema",
+    "identity fails if the provider path falls back to the pre-compaction §247 schema",
+    "identity fails if the schema is transmitted non-strict",
+    "identity fails under an alternate normalizer",
+    "identity fails under an alternate K6 mapping"
+  ],
+  "negativeTestsImplemented": "NOT IMPLEMENTED — they would test a representation that was not adopted",
+  "elements": [
+    {
+      "n": 1,
+      "element": "canonical semantic contract version",
+      "derivedFrom": "the executing module",
+      "value": "hazlenz.expert.first-pass.247",
+      "executionDerived": true
+    },
+    {
+      "n": 2,
+      "element": "internal canonical semantic schema identity",
+      "derivedFrom": "sha256 of the canonical wire schema the entry point built",
+      "value": "399517bd31120890d6d312fff4bd4763ae92ec4ee3e4fe81edce66d0ad08171c",
+      "executionDerived": true
+    },
+    {
+      "n": 3,
+      "element": "actual strict provider schema after sanitization and wrapping",
+      "derivedFrom": "sha256 of the bytes handed to the envelope",
+      "value": "7184a04404d9b68c3bf72811ba37735d9ffdf11e30ed25d0a3a5854edbb13df2",
+      "executionDerived": true
+    },
+    {
+      "n": 4,
+      "element": "system prompt identity",
+      "derivedFrom": "sha256 of the assembled system prompt",
+      "value": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+      "executionDerived": true
+    },
+    {
+      "n": 5,
+      "element": "envelope bound options",
+      "derivedFrom": "envelopeBoundOptions()",
+      "value": "430863a6b917ae3fbca1ecbfbf387574e15030fbe375aa3183e26d0d74346893",
+      "executionDerived": true
+    },
+    {
+      "n": 6,
+      "element": "contract identities",
+      "derivedFrom": "contractIdentities247()",
+      "value": "a5038b7cc5d7aa81a1c67bfc3a7a0249f4cab58be5e6fba40fbeb76cce076eda",
+      "executionDerived": true
+    },
+    {
+      "n": 7,
+      "element": "provider compact wire-schema identity",
+      "derivedFrom": "sha256 of the compacted transmitted schema — DESIGNED, NOT EXECUTED",
+      "value": "e16079079eeb2640e50f38149c8c5c2528891db4d912ee8d8ec449a89ad2ed9f",
+      "executionDerived": false
+    },
+    {
+      "n": 8,
+      "element": "deterministic normalization identity",
+      "derivedFrom": "sha256 of normalize251BasisEntry / denormalize251BasisEntry source — DESIGNED, NOT EXECUTED",
+      "value": "7d6626feacd4854d718d4d9a4c4abb4af39e11b6d00bbae004383ab0e0b9c4ed",
+      "executionDerived": false
+    },
+    {
+      "n": 9,
+      "element": "deterministic admission identity",
+      "derivedFrom": "sha256 of the §247 role-justification projection module",
+      "value": "aac1c01670940322007ae26aa186508858ed4d98c7da2af883b7f85d965cba34",
+      "executionDerived": true
+    }
+  ]
+}

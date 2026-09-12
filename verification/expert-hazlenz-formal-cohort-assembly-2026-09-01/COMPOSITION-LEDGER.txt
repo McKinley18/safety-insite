@@ -1,0 +1,117 @@
+FORMAL EXPERT HAZLENZ COHORT -- STEP 1 COMPOSITION LEDGER AND FEASIBILITY PROOF
+READ-ONLY. No provider. No database. No RESERVED observation read.
+
+1. FROZEN COMPOSITION REQUIREMENTS, derived from the authoritative artifacts
+   source: expert-cohort-composition.ts REQUIRED_CLASS_MINIMUMS
+           expert-cohort-supplemental-policy.ts COHORT_SIZE_POLICY
+
+   cohort target rows      60
+   minimum defensible rows 48
+   preferred rows          60
+   HARD CEILING            60
+   onInsufficiency         If 60 rows cannot satisfy every frozen composition requirement, STOP and report the exact reason. The cohort is NEVER silently enlarged and a requirement is NEVER relaxed.
+
+   GOVERNED_RECORD_SUPPLIED               minimum  40   preferred  48
+   NO_GOVERNED_RECORD                     minimum   8   preferred  12
+   CLARIFICATION_NOT_OWED                 minimum  14   preferred  20
+   CLARIFICATION_OWED                     minimum  20   preferred  30
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL      minimum  48   preferred  60
+   LIFE_CRITICAL_PRESENT                  minimum  10   preferred  15
+   CROSS_HAZARD_INTERACTION               minimum  10   preferred  15
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY  minimum  10   preferred  15
+   MULTI_HAZARD                           minimum  12   preferred  20
+   NEGATED_OR_SAFE_STATE                  minimum  10   preferred  15
+   DISAGREEMENT_OPPORTUNITY               minimum   6   preferred  10
+   DETERMINISTIC_HAZARD_PRESENT           minimum  30   preferred  40
+
+2. RESERVED GAUNTLET OFFSETS 2 AND 3 -- LABEL METADATA ONLY, NOT OPENED
+
+   artifact       safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+   sha256         a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+   registry sha   a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4   MATCHES -- artifact unchanged
+   partition rule D-86: i%4===2
+   rows 150   k = parseInt(sha.slice(-8),16) % 4 = 0
+   partition sizes  38/38/37/37
+
+   *** PARTITION-SCHEME DISCREPANCY -- material to an OPEN-ONCE action ***
+   registry (D-86, authoritative)  : i % 4, sizes 38/38/37/37
+   §123 NEGATIVE-CONTROL-DETERMINATION.json : i % 5, sizes 30/30/30/30/30 ("offset 2 (i %% 5 == 2) ... rows 30")
+   "GAUNTLET_OFFSET_2" is 37 rows under the registry rule and 30 under §123's; the two sets share only 8 rows.
+   "GAUNTLET_OFFSET_3" is 37 vs 30; they share 8 rows.
+   An open-once instruction naming "offset 2 and 3" therefore designates DIFFERENT material
+   depending on which record is followed, and opening the wrong set is irreversible.
+   gap label present in ANY field name         : false
+   interaction label present in ANY field name : false
+   => a row from these partitions can NEVER be CLARIFICATION_OWED or
+      CROSS_HAZARD_INTERACTION without Level-3 authoring, which is not authorized here.
+
+   GAUNTLET_OFFSET_2   registry RESERVED   assertMayOpen.allowed = true
+   rows 37   forbidden-label-bearing (UPPER BOUND) 35
+
+   GAUNTLET_OFFSET_3   registry RESERVED   assertMayOpen.allowed = true
+   rows 37   forbidden-label-bearing (UPPER BOUND) 36
+
+   TOTAL forbidden-label-bearing rows, UPPER BOUND: 71
+   THIS NUMBER IS NOT COMPARABLE TO THE RECORDED ONES AND IS NOT USED AS A CAPABILITY CLAIM.
+   §123 recorded 9 + 9 = 18 and §126 recorded 16. Both applied an ELIGIBILITY filter that
+   this count does not: in gauntlet.seed only 45 of 100 rows were eligible, and the rule is
+   not reproducible from labels alone (8 of 100 rows carry a taxonomy-mappable primary family
+   and are still marked ineligible). Reproducing it would require opening the partitions.
+   The number is reported as an upper bound only, and the verdict below does not rest on it.
+   NOTHING WAS OPENED. Only field names and label arrays were read; no observation was
+   accessed from either partition.
+
+3. COMPOSITION LEDGER -- supply by class
+
+   Status below is PER-CLASS ONLY. A class marked ok can still be unreachable inside one
+   row set -- see section 4, which is what actually decides whether a cohort exists.
+
+   class                                   req   open  +resvd  status
+   CLARIFICATION_OWED                       20     25      25  ok
+   CLARIFICATION_NOT_OWED                   14    127     201  ok
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL        48     44     115  ok
+   CROSS_HAZARD_INTERACTION                 10     17      17  ok
+   MULTI_HAZARD                             12     61     135  ok
+   LIFE_CRITICAL_PRESENT                    10     72     120  ok
+   NEGATED_OR_SAFE_STATE                    10     45      45  ok
+   DETERMINISTIC_HAZARD_PRESENT             30    123     197  ok
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY    10     33      33  ok
+   GOVERNED_RECORD_SUPPLIED                 40 attach  attach  satisfiable by attachment
+   NO_GOVERNED_RECORD                        8 attach  attach  satisfiable by attachment
+   DISAGREEMENT_OPPORTUNITY                  6 attach  attach  satisfiable by attachment
+
+4. SIMULTANEOUS-FEASIBILITY PROOF
+
+   Necessary condition, by inclusion-exclusion over ONE selected row set R:
+     H >= |R| >= |OWED u FORBIDDEN| = |OWED| + |FORBIDDEN| - |OWED n FORBIDDEN|
+     => |OWED n FORBIDDEN| >= O + F - H
+
+     O = CLARIFICATION_OWED minimum                 20
+     F = FORBIDDEN_FAMILY_NEGATIVE_CONTROL minimum  48
+     H = COHORT_SIZE_POLICY.hardCeiling             60
+     REQUIRED overlap  O + F - H                  = 8
+
+     AVAILABLE overlap in the OPEN pool           = 3   (AUG-10, AUG-11, SEM-30)
+     AVAILABLE overlap INCLUDING offsets 2 and 3  = 3   (unchanged: those partitions carry no gap label)
+
+   MAXIMUM achievable FORBIDDEN count in any 60-row cohort that also carries 20 OWED rows:
+     overlap 3 + min(H - O = 40, non-OWED forbidden available 112) = 43
+     required 48   =>  SHORT BY 5
+
+   FEASIBLE = false
+
+   OPENING THE RESERVE CANNOT CHANGE THIS. Offsets 2 and 3 add only NOT-OWED forbidden
+   rows, and the binding term is the OWED-AND-FORBIDDEN overlap, to which they contribute
+   ZERO -- the artifact carries no gap label at all.
+
+   THE VERDICT IS ROBUST TO THE RESERVED-COUNT UNCERTAINTY. Only `min(H - O, non-OWED
+   forbidden) matters, and the slot count H - O = 40 is already the
+   binding side WITHOUT the reserve: 41 non-OWED forbidden rows are already
+   available in the open pool (112 including the reserve upper bound), and
+   both exceed 40. The maximum is therefore 43 either way.
+
+   Under COHORT_SIZE_POLICY.onInsufficiency the correct action is to STOP and report the
+   exact reason, with the reserve INTACT.
+
+RESERVED_MATERIAL_OPENED = FALSE   PROVIDER_INVOCATION_COUNT = 0   FORMAL_COHORT_SPENT = FALSE
+COHORT_STATUS = INFEASIBLE_UNDER_FROZEN_CONTRACT

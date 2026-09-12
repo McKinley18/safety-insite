@@ -1,0 +1,82 @@
+{
+  "artifact": "SECTION-234-POST-EXECUTION-FREEZE",
+  "frozenAt": "2026-09-12T00:21:35.706Z",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false,
+  "nothingMovedUnderTheRun": {
+    "instrumentDigest": "d988f2904c77185c047f06fd680a83d8733e1d5d7451d8e4e6b1128145cd7c64",
+    "instrumentDigestUnchanged": true,
+    "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+    "section233ImplementationUnchanged": true,
+    "moduleDigests233": {
+      "contract": "dda676aff97d6c4bbf5ac57eb8ec3fa3e89249225bdb9c0ff109ab5163a7323a",
+      "projection": "8901d0d39b8dcf50a8a045f1759ae284168ba7d5818876c255e3c82346c4f044",
+      "fixtures": "d744993f69486f510625cf11b919656b5e9a94337a463f46374558ef259448d3",
+      "suite": "61f9db3ddb2b1fb8a205f7aaae89169c0ee78841a58268ff618058a777380502"
+    },
+    "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "protectedCompositeIdentityUnchanged": true,
+    "protectedModuleCount": 29,
+    "protectedModulesMissing": [],
+    "unauthorizedProtectedModuleMutations": 0
+  },
+  "executionLedger": {
+    "callsExecuted": 16,
+    "retriesExecuted": 0,
+    "semanticPreferenceRetries": 0,
+    "unusedCallsSpentOnInvestigation": 0,
+    "spendUsd": 1.59777,
+    "spendCeilingUsd": 1.8,
+    "withinCeiling": true,
+    "stoppedEarly": null,
+    "promptChangedDuringExecution": false,
+    "schemaChanged": false,
+    "caseChangedAfterFreeze": false,
+    "malformedOutputRepaired": false,
+    "stringifiedFieldsParsedIntoTheJudgment": false,
+    "earlyResultsUsedToAlterLaterExecution": false
+  },
+  "decision": {
+    "result": "FAIL",
+    "exactPostureIdentity": "5/16",
+    "requirements": {
+      "R1_exactPostureIdentity16of16": {
+        "required": "16/16",
+        "actual": "5/16",
+        "pass": false
+      },
+      "R2_zeroSafetyCriticalUnderConservative": {
+        "required": 0,
+        "actual": 1,
+        "pass": false
+      },
+      "R3_zeroStructuralContractFailures": {
+        "required": 0,
+        "actual": 10,
+        "pass": false
+      },
+      "R4_zeroRecommendationContradictions": {
+        "required": 0,
+        "actual": 10,
+        "pass": false
+      },
+      "R5_zeroManufacturedDeclarations": {
+        "required": 0,
+        "actual": 3,
+        "pass": false
+      }
+    },
+    "terminal": "EXPERT_HAZLENZ_POSTURE_DISCRIMINATION_VALIDATION_FAILED — PRODUCT_OWNER_REMEDIATION_DECISION_REQUIRED",
+    "remediationPerformed": false,
+    "promptTuned": false,
+    "schemaChanged": false
+  },
+  "spentEvidence": {
+    "section231": "SPENT. Used in this slice only to measure a wire-shape base rate for diagnosis. Not rescored, not reinterpreted, and no part of the §234 result.",
+    "section234": "SPENT VALIDATION EVIDENCE from this point. It may not become the successor acceptance cohort."
+  }
+}

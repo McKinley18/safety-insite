@@ -1,0 +1,413 @@
+{
+  "artifact": "SECTION_187A_FIRST_PASS_STIMULI",
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "firstPassCalls": 5,
+  "costUsd": 0.26255,
+  "stimuli": [
+    {
+      "rowId": "HR-01",
+      "rawResponsePersistedBeforeDerivation": true,
+      "raw": {
+        "expertHazardCandidates": [
+          {
+            "candidateKey": "flame_failure_untested",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 199,
+                "endOffset": 293,
+                "quotedText": "lists a nozzle change and filter clean but does not record whether the burner was flame-tested"
+              }
+            ],
+            "evidenceBasis": "The service certificate documents a nozzle change and filter clean but is silent on whether the flame-failure device / burner flame-test was performed.",
+            "reasoning": "The flame-failure device is a critical safety control preventing unburned fuel accumulation and explosion/fire on ignition failure. The certificate's silence on whether this device was tested at the most recent service leaves its current functional status unconfirmed. Because the device also cannot be visually verified from the walkway (obscured by the shroud), there is no independent way to confirm it is currently functional.",
+            "confidence": "MODERATE",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": true
+          },
+          {
+            "candidateKey": "combustible_dust_accumulation",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "ACTIVE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 295,
+                "endOffset": 329,
+                "quotedText": "Dust has settled on the handrails."
+              }
+            ],
+            "evidenceBasis": "Dust is currently observed settled on handrails in the vicinity of an operating grain dryer with a burner.",
+            "reasoning": "Grain dust is combustible; its accumulation near an active heat/ignition source (the dryer burner) on the drying floor is a current fire/explosion hazard given a fuel source and ignition source are both present in the same area.",
+            "confidence": "MODERATE",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": false
+          }
+        ],
+        "decisionCriticalClarifications": [
+          {
+            "clarificationId": "flame_test_status",
+            "question": "Was the flame-failure device / burner flame-tested during Monday's service, even though it is not recorded on the certificate?",
+            "whyItMatters": "If the flame test was performed but simply not logged, the flame-failure device's current function is confirmed and the dryer can continue running as-is; if the flame test was not performed, the device's ability to shut off fuel on flame loss is unverified on an operating burner, which would warrant testing or de-rating the dryer until confirmed, since the device cannot be visually checked from the walkway either.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "criticality": "BLOCKING",
+            "evidenceGap": "The service certificate does not state whether the flame-failure device was functionally tested at the last service.",
+            "relatesToCandidateKey": "flame_failure_untested"
+          }
+        ],
+        "crossHazardInsights": [
+          {
+            "insightId": "dust_burner_proximity",
+            "interactionKind": "OTHER",
+            "participants": [
+              "combustible_dust_accumulation",
+              "flame_failure_untested"
+            ],
+            "reasoning": "Combustible grain dust accumulation on the drying floor combines with an unverified flame-failure device on the burner: if the flame-failure control does not perform as intended, an unburned fuel/flame excursion has a ready combustible dust fuel source nearby, increasing the potential severity of any ignition event beyond what either condition would present alone.",
+            "confidence": "MODERATE"
+          }
+        ],
+        "disagreements": [],
+        "expertExplanation": {
+          "summary": "The service certificate confirms maintenance work occurred but is silent on whether the flame-failure device was flame-tested, and that device cannot be visually verified from the walkway, leaving its current functional status unconfirmed on an operating burner. Separately, dust observed settled on handrails indicates combustible material accumulation on the drying floor near the burner, which is a current fire/explosion-relevant condition. Together, an unconfirmed flame-failure control and nearby combustible dust would compound the consequences of any ignition failure, so confirming whether the flame test was actually performed is the key open question."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "contractVersion": "hazlenz.expert.analysis.v2",
+        "analysisId": "HR-01"
+      },
+      "providerOk": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "contractFailure": false,
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [
+          {
+            "clarificationId": "flame_test_status",
+            "question": "Was the flame-failure device / burner flame-tested during Monday's service, even though it is not recorded on the certificate?",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "uncertainty": [],
+        "summary": ""
+      },
+      "firstPassSha256": "717790e29de0bbfe96266587db70702bee2e806b8a042563f3d9d1788ed3694a",
+      "telemetry": {
+        "costUsd": 0.055788,
+        "promptTokens": 20159,
+        "outputTokens": 1547,
+        "respondedModel": "claude-sonnet-5",
+        "httpStatus": 200
+      },
+      "timestamp": "2026-09-06T02:16:26.807Z"
+    },
+    {
+      "rowId": "HR-04",
+      "rawResponsePersistedBeforeDerivation": true,
+      "raw": {
+        "expertHazardCandidates": [
+          {
+            "candidateKey": "conveyor-gangway-proximity",
+            "hazardFamily": "conveyors",
+            "assertedConditionState": "ACTIVE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 45,
+                "endOffset": 85,
+                "quotedText": "an operative walks the gangway alongside"
+              }
+            ],
+            "evidenceBasis": "The observation states an operative regularly walks a gangway alongside the running belt conveyor, establishing ongoing pedestrian proximity to a moving conveyor.",
+            "reasoning": "A worker routinely present alongside a running conveyor is a struck-by/entanglement exposure distinct from the nip-point guarding hazard already found, though the fixed guard mitigates the nip point specifically. This is a conveyor hazard family consideration (moving belt, gangway proximity) rather than the guarding hazard itself.",
+            "confidence": "LOW",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": true
+          }
+        ],
+        "decisionCriticalClarifications": [],
+        "crossHazardInsights": [],
+        "disagreements": [],
+        "expertExplanation": {
+          "summary": "The deterministic finding of an active machine-guarding hazard at the head drum nip point stands; the observation notes the fixed guard is in position and no tools rest on it, and fastenings were torque-checked at the last annual service, none of which are contradicted by any current gap. A secondary, low-confidence conveyor hazard is raised for the operative's routine proximity to the running belt along the gangway, separate from the nip point itself. No decision-critical facts are missing and no cross-hazard interaction is established on the current evidence."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "contractVersion": "hazlenz.expert.analysis.v2",
+        "analysisId": "HR-04"
+      },
+      "providerOk": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "contractFailure": false,
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [],
+        "uncertainty": [],
+        "summary": ""
+      },
+      "firstPassSha256": "fb91e13fe649b934f81aa7a1cf177da58ac6b621a497e34750893dc6e5553202",
+      "telemetry": {
+        "costUsd": 0.047675999999999996,
+        "promptTokens": 20168,
+        "outputTokens": 734,
+        "respondedModel": "claude-sonnet-5",
+        "httpStatus": 200
+      },
+      "timestamp": "2026-09-06T02:16:57.123Z"
+    },
+    {
+      "rowId": "HR-06",
+      "rawResponsePersistedBeforeDerivation": true,
+      "raw": {
+        "expertHazardCandidates": [
+          {
+            "candidateKey": "interlock_untested_after_maintenance",
+            "hazardFamily": "guarding_interlocks",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 233,
+                "endOffset": 298,
+                "quotedText": "it recorded the tooth change but carries no interlock test result"
+              }
+            ],
+            "evidenceBasis": "The return-to-service log documents the tooth change but does not document any interlock test being performed or its result, following maintenance work that involved opening the guard door area.",
+            "reasoning": "After maintenance work near the rotor guard, the interlock switch's function was not verified per the return-to-service record. The guard door is currently closed and the switch is physically in place, but whether it will actually stop the rotor if the door is opened has not been confirmed since the tooth change, meaning a compromised interlock could go undetected until the door is next opened during operation.",
+            "confidence": "MODERATE",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": true
+          }
+        ],
+        "decisionCriticalClarifications": [
+          {
+            "clarificationId": "interlock_test_status",
+            "question": "Was the rotor guard interlock switch functionally tested (not just visually confirmed in place) after the tooth change and before this restart?",
+            "whyItMatters": "If the interlock was tested and confirmed functional, the guarding_interlocks control is verified and no corrective action is needed beyond documentation. If it was not tested, the interlock's protective function is unconfirmed after maintenance disturbance, and the machine is currently running with a guard whose fail-safe behavior on door-opening is unknown, warranting the machine be stopped and the interlock verified before continued operation.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "criticality": "BLOCKING",
+            "evidenceGap": "The return-to-service log records the tooth change but does not record any interlock test result, and the observation does not state whether a functional test occurred by another means.",
+            "relatesToCandidateKey": "interlock_untested_after_maintenance"
+          }
+        ],
+        "crossHazardInsights": [],
+        "disagreements": [],
+        "expertExplanation": {
+          "summary": "The debarker guard door is closed with its interlock switch physically in place, and the sawyer keeps clear of the throat, so no current guarding gap is directly observed. However, the return-to-service log after last night's tooth change documents the maintenance performed but omits any interlock test result, leaving the interlock's actual protective function unverified since the machine was last opened up — this is decision-critical because the machine has since been restarted and is now running on that unverified interlock."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "contractVersion": "hazlenz.expert.analysis.v2",
+        "analysisId": "HR-06"
+      },
+      "providerOk": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "contractFailure": false,
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [
+          {
+            "clarificationId": "interlock_test_status",
+            "question": "Was the rotor guard interlock switch functionally tested (not just visually confirmed in place) after the tooth change and before this restart?",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "uncertainty": [],
+        "summary": ""
+      },
+      "firstPassSha256": "a06b5903e3251eceeb6f65570a8b093a51092c01c130bde35ee1cd8b3f41de76",
+      "telemetry": {
+        "costUsd": 0.050848,
+        "promptTokens": 20159,
+        "outputTokens": 1053,
+        "respondedModel": "claude-sonnet-5",
+        "httpStatus": 200
+      },
+      "timestamp": "2026-09-06T02:17:39.910Z"
+    },
+    {
+      "rowId": "HR-08",
+      "rawResponsePersistedBeforeDerivation": true,
+      "raw": {
+        "expertHazardCandidates": [
+          {
+            "candidateKey": "auger_lockout_gap",
+            "hazardFamily": "machine_guarding",
+            "assertedConditionState": "ACTIVE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 200,
+                "endOffset": 288,
+                "quotedText": "the auger drive has its own local isolator and the lockout log shows no entry against it"
+              }
+            ],
+            "evidenceBasis": "The observation states the auger drive has a separate, dedicated local isolator distinct from the main dryer panel, and that the lockout log has no entry recorded against that isolator, meaning the operative's own lock is applied only to the main panel and not confirmed on the auger's local isolator.",
+            "reasoning": "The operative is clearing a blockage by hand at the discharge auger, a point of contact with the machine, while only the main dryer panel has been proven dead. The auger has a separate local isolator that could re-energize or leave energized the auger drive independent of the main panel lockout, and there is no record showing it was locked out. This is a direct current exposure to entanglement/crushing at the point of work.",
+            "confidence": "HIGH",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": false
+          },
+          {
+            "candidateKey": "drying_fans_running",
+            "hazardFamily": "fire_explosion",
+            "assertedConditionState": "ACTIVE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 72,
+                "endOffset": 94,
+                "quotedText": "the drying fans run on"
+              }
+            ],
+            "evidenceBasis": "The text states the drying fans continue running while the operative works at the discharge auger.",
+            "reasoning": "Grain dryers involve combustible dust and heated airflow; continued fan operation during manual clearing of a blockage keeps dust in suspension and airflow through the system, which is a recognized hazard condition in grain handling operations, though the observation does not describe dust levels or ignition sources.",
+            "confidence": "LOW",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": true
+          }
+        ],
+        "decisionCriticalClarifications": [
+          {
+            "clarificationId": "auger_isolator_locked",
+            "question": "Has the auger drive's own local isolator been locked out (or otherwise verified de-energized) separately from the main dryer panel lockout?",
+            "whyItMatters": "If the local isolator has also been locked out or proven dead despite the missing log entry (e.g. logged elsewhere or physically locked but not recorded), the auger is isolated and there is no current stored/residual energy exposure at the point of work; if it has not been locked out, the auger drive could be energized or re-energized independently of the main panel while the operative's hands are at the discharge point, creating an immediate entanglement/crushing hazard that requires stopping work until the local isolator is locked and verified.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "criticality": "BLOCKING",
+            "evidenceGap": "Whether the auger's local isolator is physically locked out and verified de-energized, independent of the missing lockout log entry.",
+            "relatesToCandidateKey": "auger_lockout_gap"
+          }
+        ],
+        "crossHazardInsights": [],
+        "disagreements": [],
+        "expertExplanation": {
+          "summary": "The operative proved the main dryer panel dead and applied a personal lock, but the auger drive has a separate local isolator with no corresponding lockout log entry, leaving open whether the specific machine he is physically clearing is actually isolated from its own energy source. This is a direct current point-of-operation exposure, not a historical or hypothetical one, since the clearing work is happening now at the auger discharge. The continued running of the drying fans is noted as a possible secondary combustible-dust consideration but is not established strongly enough to assert with confidence."
+        },
+        "uncertainty": {
+          "statements": [
+            "The observation does not indicate whether dust concentration, heat, or other combustible conditions are present at a level that would make continued fan operation an active fire/explosion hazard; this is noted as a low-confidence candidate rather than a settled hazard."
+          ]
+        },
+        "outcome": "ANALYZED",
+        "contractVersion": "hazlenz.expert.analysis.v2",
+        "analysisId": "HR-08"
+      },
+      "providerOk": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "contractFailure": false,
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [
+          {
+            "clarificationId": "auger_isolator_locked",
+            "question": "Has the auger drive's own local isolator been locked out (or otherwise verified de-energized) separately from the main dryer panel lockout?",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "uncertainty": [],
+        "summary": ""
+      },
+      "firstPassSha256": "948bb116c8579b8f52ecce7d4c3a62139b76fd71c6ef8c24bcd63d6930bf1593",
+      "telemetry": {
+        "costUsd": 0.055471999999999994,
+        "promptTokens": 20151,
+        "outputTokens": 1517,
+        "respondedModel": "claude-sonnet-5",
+        "httpStatus": 200
+      },
+      "timestamp": "2026-09-06T02:18:33.076Z"
+    },
+    {
+      "rowId": "HR-09",
+      "rawResponsePersistedBeforeDerivation": true,
+      "raw": {
+        "expertHazardCandidates": [
+          {
+            "candidateKey": "stored-hydraulic-energy",
+            "hazardFamily": "suspended_loads",
+            "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "startOffset": 218,
+                "endOffset": 280,
+                "quotedText": "the accumulator gauge sits behind the tank shroud unread since"
+              }
+            ],
+            "evidenceBasis": "The text states the accumulator gauge has not been read since the dump valve was cycled, meaning the residual pressure state of the accumulator was not visually confirmed by the fitters.",
+            "reasoning": "Hydraulic accumulators store energy independent of pump/electrical isolation and require a confirmed bleed-down (typically by gauge reading at or near zero) before hose disconnection is safe. Cycling the dump valve and leaving it open is a step toward bleeding stored energy, but the gauge being unread means the fitter about to break the hose has no confirmed indication that the accumulator has actually reached a zero-energy state. Breaking a hydraulic hose on a system with unconfirmed residual accumulator pressure risks a high-pressure fluid injection or whipping-hose event.",
+            "confidence": "MODERATE",
+            "relationshipToDeterministic": "ADDITIONAL_TO_DETERMINISTIC",
+            "requiresUserConfirmation": true
+          }
+        ],
+        "decisionCriticalClarifications": [
+          {
+            "clarificationId": "clar-accumulator-pressure",
+            "question": "Has the accumulator pressure been confirmed at zero (or a safe residual level) by reading the gauge, rather than merely cycling the dump valve without checking the result?",
+            "whyItMatters": "If the gauge reading confirms the accumulator has bled down to zero/safe pressure, the fitter can proceed to break the hose with stored hydraulic energy controlled. If the gauge is unread and the accumulator retains residual pressure, breaking the hose now exposes the fitter to a high-pressure fluid injection or hose-whip injury, and work must stop until the gauge is checked and pressure confirmed released.",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "criticality": "BLOCKING",
+            "evidenceGap": "The accumulator gauge has not been read since the dump valve was cycled and left open, so the actual current pressure state of the accumulator is unknown.",
+            "relatesToCandidateKey": "stored-hydraulic-energy"
+          }
+        ],
+        "crossHazardInsights": [],
+        "disagreements": [],
+        "expertExplanation": {
+          "summary": "Beyond the confined space and machine guarding findings, the account of the baler's hydraulic system raises an additional stored-energy concern: the accumulator was cycled via dump valve but the gauge behind the tank shroud has gone unread, leaving the actual bleed-down state unconfirmed before the fitter breaks the hose. This is decision-critical because unconfirmed residual pressure in the accumulator could cause a high-pressure injection or hose-whip event during hose disconnection, independent of the pump/electrical lockout already in place. No cross-hazard interaction is established between this and the two deterministic findings, as the mechanisms are unrelated."
+        },
+        "uncertainty": {
+          "statements": []
+        },
+        "outcome": "ANALYZED",
+        "contractVersion": "hazlenz.expert.analysis.v2",
+        "analysisId": "HR-09"
+      },
+      "providerOk": true,
+      "normalizationState": "VALID",
+      "normalizationIssues": [],
+      "contractFailure": false,
+      "firstPass": {
+        "candidates": [],
+        "clarifications": [
+          {
+            "clarificationId": "clar-accumulator-pressure",
+            "question": "Has the accumulator pressure been confirmed at zero (or a safe residual level) by reading the gauge, rather than merely cycling the dump valve without checking the result?",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "uncertainty": [],
+        "summary": ""
+      },
+      "firstPassSha256": "4f3bce3505d507c810d05049b18754bb5bacbbf8ca4cedd9f4a9329016043883",
+      "telemetry": {
+        "costUsd": 0.052768,
+        "promptTokens": 20184,
+        "outputTokens": 1240,
+        "respondedModel": "claude-sonnet-5",
+        "httpStatus": 200
+      },
+      "timestamp": "2026-09-06T02:18:45.980Z"
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "section": "255",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "remediationPerformed": false,
+  "productionCodeChanged": false,
+  "capabilityBoundary": {
+    "classification": "BOUNDED EXPERT CAPABILITY LIMIT — AUTONOMOUS DRIVER-ROLE ASSIGNMENT NOT ACCEPTED FOR v1.0",
+    "sixCaseExperiment": "CLOSED",
+    "safetyClassification": "CAPABILITY FAILURE, NOT UNSAFE PRODUCT ESCAPE",
+    "everyMissDirection": "OVER-RESTRICTIVE",
+    "humanConfirmationRequiredWhere": "the continuation-controlling versus follow-up distinction materially decides whether work stops, holds, continues with controls, or continues while a separate follow-up remains open",
+    "h6ArchitecturalFinding": "a model-generated structured justification for a driver role does not establish that the role it justifies is semantically correct",
+    "reopeningRule": "only after a material intelligence or architecture change; a new instrument must be designed from first principles and §254 may never be reused as a tuning set"
+  },
+  "measured": {
+    "section254": {
+      "providerCalls": 6,
+      "spendUsd": 0.673574,
+      "totalInputTokens": 262277,
+      "totalOutputTokens": 14902,
+      "model": [
+        "claude-sonnet-5"
+      ],
+      "perCallInputTokens": 43713,
+      "perCallOutputTokens": 2484,
+      "perCallCostUsd": 0.1123,
+      "wholeAnalysisRefusals": 3,
+      "analysesDelivered": 3,
+      "deliveredYield": "3/6",
+      "rolePresenceCoherentAdmissionAware": "2/6",
+      "rolePresenceCoherentRawOutput": "4/6",
+      "frozenFloor": "5/6",
+      "unsafeUnderRestrictions": [],
+      "semanticInventions": 0,
+      "conformanceViolations": 0,
+      "transportFailures": 0
+    },
+    "deployment": {
+      "deployedBackendSha": "45251d38a4e800bbff461708aa4c77061feade56",
+      "localHeadSha": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+      "commitsAheadOfDeployed": "2",
+      "uncommittedWorktreeEntries": 812,
+      "autoDeploy": "yes, trigger=commit, branch=main -- A COMMIT TO main IS A PRODUCTION DEPLOY",
+      "deployRunsMigrations": false,
+      "customerDefaultMode": "LEGACY",
+      "productionShadowEnabled": false,
+      "service": "safety-insite-backend (srv-d7kl74jeo5us73deaor0), Render, free plan, 1 instance"
+    },
+    "expertReachability": {
+      "productionCallers": [],
+      "reachableFromAnyRouteOrService": false,
+      "verifierLegExercisedInSection254": false
+    },
+    "promptCaching": {
+      "cacheControlPresentInTheEnvelope": false
+    }
+  },
+  "totals": {
+    "blockers": 8,
+    "risks": 10,
+    "polish": 3,
+    "acceptedLimitations": 6,
+    "unverified": 2
+  },
+  "countsByCategory": {
+    "1_expertCapability": {
+      "total": 5,
+      "blockers": 2,
+      "risks": 2,
+      "polish": 0,
+      "accepted": 1
+    },
+    "2_safeHumanBeta": {
+      "total": 5,
+      "blockers": 3,
+      "risks": 2,
+      "polish": 0,
+      "accepted": 0
+    },
+    "3_productPolish": {
+      "total": 3,
+      "blockers": 0,
+      "risks": 0,
+      "polish": 3,
+      "accepted": 0
+    },
+    "4_infrastructureBillingStorageUpdates": {
+      "total": 5,
+      "blockers": 0,
+      "risks": 5,
+      "polish": 0,
+      "accepted": 0
+    },
+    "5_legalPrivacyClaims": {
+      "total": 4,
+      "blockers": 3,
+      "risks": 1,
+      "polish": 0,
+      "accepted": 0
+    },
+    "6_knownAcceptedLimitations": {
+      "total": 5,
+      "blockers": 0,
+      "risks": 0,
+      "polish": 0,
+      "accepted": 5
+    }
+  },
+  "inventory": {
+    "1_expertCapability": [
+      {
+        "id": "E1",
+        "severity": "ACCEPTED",
+        "status": "MEASURED",
+        "title": "Autonomous driver-role classification is not accepted for v1.0",
+        "evidence": "§254 role-presence coherence 2/6 admission-aware and 4/6 on raw output, against a frozen floor of 5/6. Closed by §255 as a bounded limit."
+      },
+      {
+        "id": "E2",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "Expert HazLenz has no production caller",
+        "evidence": "runExpertHazLenzAnalysis is invoked by scripts only; no controller, route or service under src/ calls it. §246 made it production-CALLABLE and nothing has made it production-CALLED, so the validated path cannot be reached by a user."
+      },
+      {
+        "id": "E3",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "Delivered-analysis yield is 3/6 on fresh well-formed observations",
+        "evidence": "§254 refused 3 of 6 analyses outright. The refusals are correct and fail-closed, but a user would receive no analysis half the time. Causes: H3 declaration-coverage self-consistency, H4 exact self-reference of a discharging control, H5 role/candidate-state contradiction. Only H5 is a driver-role defect, so the other two survive the §255 human-confirmation boundary."
+      },
+      {
+        "id": "E4",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "The verifier leg has never been exercised against Candidate v2.3",
+        "evidence": "§254 ran first-pass only by frozen spend design; the verifier was reached on 0 of 6. The §218 verifier contract is wired into the entry point but unmeasured on this candidate."
+      },
+      {
+        "id": "E5",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "dischargingControlRef transmitted-null / projection-refusal gap",
+        "evidence": "Carried from §252 and §253, not materially encountered in §254, and distinct from the role-capability result."
+      }
+    ],
+    "2_safeHumanBeta": [
+      {
+        "id": "B1",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "No human-confirmation surface for consequential driver-role classification",
+        "evidence": "The §255 boundary requires the continuation-controlling versus follow-up distinction to be human-confirmed where it decides whether work stops, holds or continues. No such flow exists in frontend-next, and the backend result contract carries no confirmation state. §255 authorizes the boundary, not the implementation."
+      },
+      {
+        "id": "B2",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "Fail-closed behaviour pending confirmation is unimplemented",
+        "evidence": "Nothing yet prevents an unconfirmed classification being presented as an operational conclusion, because no consumer exists. Must be built with B1 and must never infer confirmation from silence."
+      },
+      {
+        "id": "B3",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "Expert is not customer-active and the product default is the legacy path",
+        "evidence": "customerDefaultMode=LEGACY, productionShadowEnabled=false. Deterministic HazLenz remains the sole customer-authoritative path."
+      },
+      {
+        "id": "B4",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "Deployed code is behind local main and the worktree is large and uncommitted",
+        "evidence": "deployed 45251d38a4e8, local HEAD 37a5d1b50abe, 2 commits ahead, 812 uncommitted worktree entries. autoDeploy=yes, trigger=commit, branch=main -- A COMMIT TO main IS A PRODUCTION DEPLOY, so a commit to main is a production deploy while migrations are applied out of band. Beta needs a controlled release plan before any commit."
+      },
+      {
+        "id": "B5",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "The canonical current-state readiness statement is stale",
+        "evidence": "docs/INSITE_CURRENT_STATE.json readiness still describes the pre-§243 formal evaluation and its M14/M10 gate failures. It predates §243 through §255 and would misinform anyone reviewing beta readiness from the authoritative document."
+      }
+    ],
+    "3_productPolish": [
+      {
+        "id": "P1",
+        "severity": "POLISH",
+        "status": "MEASURED",
+        "title": "Stale architectural comment in the semantic transport",
+        "evidence": "expert-semantic-transport.ts still explains why the strict flag cannot be dropped. Behaviour is correct because the flag comes from the envelope, but the envelope now binds strict=FALSE and the comment reads as an invariant that no longer holds."
+      },
+      {
+        "id": "P2",
+        "severity": "POLISH",
+        "status": "MEASURED",
+        "title": "Historical suites carry known-failing assertions",
+        "evidence": "test-249 (P2,P4,P5,P7), test-246 (F1,F4,F6,E3b) and test-expert-anthropic-adapter-repair (A.19) fail by design under the accepted architecture. Ruled and classified, but a new engineer running the suites sees red."
+      },
+      {
+        "id": "P3",
+        "severity": "POLISH",
+        "status": "MEASURED",
+        "title": "Frozen TypeScript provenance error",
+        "evidence": "expert-237-posture-contract.ts(193,47) TS2552 POSTURE_REF_KINDS_237, deliberately unrepaired since §239 to keep the frozen chain reproducible."
+      }
+    ],
+    "4_infrastructureBillingStorageUpdates": [
+      {
+        "id": "I1",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "Expert unit economics are unmanaged",
+        "evidence": "§254 measured 43713 input tokens and USD 0.1123 per analysis. Input tokens dominate and prompt caching is not configured (cache_control in the envelope: false). No per-tenant spend cap or budget control is evidenced on the Expert path."
+      },
+      {
+        "id": "I2",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "Single free-plan backend instance",
+        "evidence": "safety-insite-backend (srv-d7kl74jeo5us73deaor0), Render, free plan, 1 instance. Cold starts and no redundancy, compounded by Expert calls that take tens of seconds."
+      },
+      {
+        "id": "I3",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "Deploy and migration ordering hazard",
+        "evidence": "deployRunsMigrations=false with autoDeploy=yes, trigger=commit, branch=main -- A COMMIT TO main IS A PRODUCTION DEPLOY. Code ships on commit; schema does not."
+      },
+      {
+        "id": "I4",
+        "severity": "RISK",
+        "status": "UNVERIFIED",
+        "title": "Production object storage provisioning is not evidenced",
+        "evidence": "Storage is S3-backed and the local provider throws in production, which is correct. Whether STORAGE_S3_BUCKET and credentials are configured in production is not established by anything in the repository. Verify before beta."
+      },
+      {
+        "id": "I5",
+        "severity": "RISK",
+        "status": "UNVERIFIED",
+        "title": "Billing live configuration is not evidenced",
+        "evidence": "Plans, entitlements, subscription status and Stripe customer identifiers exist in src/billing. Whether live keys, products and webhooks are configured in production is not established by anything in the repository. Verify before beta."
+      }
+    ],
+    "5_legalPrivacyClaims": [
+      {
+        "id": "L1",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "The product claims register predates §254 and needs a §255 amendment",
+        "evidence": "docs/PRODUCT-CLAIMS-REGISTER.md already classifies \"autonomous\" as NOT_CURRENTLY_SUPPORTABLE and \"expert\" as not supportable externally; §254 now corroborates both with direct measurement. The permissible characterization §255 sets out must be recorded there before any beta-facing copy is written."
+      },
+      {
+        "id": "L2",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "Name and trademark clearance not performed",
+        "evidence": "The register marks both \"HazLenz\" and \"Safety InSite\" LEGAL_REVIEW_REQUIRED. Engineering has no view and cannot close this."
+      },
+      {
+        "id": "L3",
+        "severity": "BLOCKER",
+        "status": "MEASURED",
+        "title": "Third-party model disclosure and data-processing position",
+        "evidence": "Reasoning is performed by [\"claude-sonnet-5\"]. Observation text leaves the product to a third-party provider. Subprocessor disclosure, a DPA and the customer consent posture are required before real workplace observations are sent."
+      },
+      {
+        "id": "L4",
+        "severity": "RISK",
+        "status": "MEASURED",
+        "title": "\"HazLenz AI\" is the most-used claim and attaches to third-party reasoning",
+        "evidence": "Register section A: 57 occurrences, SUPPORTABLE_WITH_QUALIFICATION. The qualification has not been applied to the copy."
+      }
+    ],
+    "6_knownAcceptedLimitations": [
+      {
+        "id": "A1",
+        "severity": "ACCEPTED",
+        "title": "Autonomous driver-role assignment not accepted for v1.0 (§255)",
+        "evidence": "Consequential continuation-controlling versus follow-up classification is human-confirmed."
+      },
+      {
+        "id": "A2",
+        "severity": "ACCEPTED",
+        "title": "Single-call strict structured output infeasible on this provider (§251)",
+        "evidence": "Replaced by non-strict transport plus deterministic whole-output admission, validated in §252."
+      },
+      {
+        "id": "A3",
+        "severity": "ACCEPTED",
+        "title": "dischargingControlRef contract-consistency gap carried forward (§253, §255)",
+        "evidence": "Non-blocking absent observed consequence; not encountered in §254."
+      },
+      {
+        "id": "A4",
+        "severity": "ACCEPTED",
+        "title": "Frozen POSTURE_REF_KINDS_237 TypeScript provenance error",
+        "evidence": "Preserved deliberately since §239."
+      },
+      {
+        "id": "A5",
+        "severity": "ACCEPTED",
+        "title": "Historical suites superseded by the strict flag and by the §253 schema head",
+        "evidence": "Ruled in §252 and §255 under narrow, explicitly bounded supersession rules."
+      }
+    ]
+  },
+  "emitterSha256": "b6d3bedd8ed2b44375691cacc022c06c2b4992bcaa1041f4ab53f6b893bb2a1b"
+}

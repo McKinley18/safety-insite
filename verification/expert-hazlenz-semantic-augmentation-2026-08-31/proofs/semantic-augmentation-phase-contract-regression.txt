@@ -1,0 +1,72 @@
+SEMANTIC AUGMENTATION PHASE CONTRACT REGRESSION
+policy EXPERT_SEMANTIC_AUGMENTATION_POLICY_V1
+phase model EXPERT_SEMANTIC_AUGMENTATION_PHASE_MODEL_V1
+
+P. THE FROZEN CANDIDATE-AUTHORING TARGETS ARE UNCHANGED
+
+  PASS  P.1 CANDIDATE_TARGETS.clarificationOwed is still 26
+  PASS  P.2 CANDIDATE_TARGETS.crossHazardInteraction is still 14
+  PASS  P.3 the candidate targets still sit ABOVE the frozen minimums -- the rejection margin exists
+
+Q. PRE_REVIEW_CANDIDATE STILL ENFORCES 26 AND 14
+
+  PASS  Q.1 a candidate corpus at exactly 26 / 14 PASSES F.1 and F.2
+  PASS  Q.2 a candidate corpus at 25 clarifications FAILS F.1 -- the target was not lowered
+  PASS  Q.3 a candidate corpus at 13 interactions FAILS F.2 -- the target was not lowered
+  PASS  Q.4 the POST-REVIEW shape (22 / 12) still FAILS the candidate contract, as it must
+  PASS  Q.5 merely meeting the frozen MINIMUMS does not satisfy the candidate TARGETS
+
+R. THE PHASES DIFFER ONLY IN THE CONSTRUCTION TARGETS
+
+  PASS  R.1 F.1 and F.2 exist ONLY in PRE_REVIEW_CANDIDATE
+  PASS  R.2 POST_HUMAN_REVIEW does not evaluate the pre-review authoring targets
+  PASS  R.3 the reviewed-count gates exist ONLY in POST_HUMAN_REVIEW
+  PASS  R.4 F.3 is enforced in BOTH phases -- POST_HUMAN_REVIEW is not a weaker validator
+  PASS  R.4 F.4 is enforced in BOTH phases -- POST_HUMAN_REVIEW is not a weaker validator
+  PASS  R.4 F.5 is enforced in BOTH phases -- POST_HUMAN_REVIEW is not a weaker validator
+  PASS  R.5 POST_HUMAN_REVIEW runs MORE composition gates than PRE_REVIEW_CANDIDATE (13 vs 5)
+
+S. POST_HUMAN_REVIEW ENFORCES THE FROZEN MINIMUMS, NOT A LOWER NUMBER
+
+  PASS  S.1 the frozen minimums are 20 and 10, read from REQUIRED_CLASS_MINIMUMS
+  PASS  S.2 countable clarification exactly at the frozen minimum PASSES F.1R
+  PASS  S.3 one countable clarification BELOW the frozen minimum FAILS F.1R
+  PASS  S.4 countable interactions exactly at the frozen minimum PASSES F.2R
+  PASS  S.5 one countable interaction BELOW the frozen minimum FAILS F.2R
+
+T. REVIEW METADATA CANNOT ASSERT MATERIAL THE CORPUS DOES NOT CONTAIN
+
+  PASS  T.1 the real reviewed corpus reconciles row-for-row with the review record
+  PASS  T.2 a review record claiming one MORE surviving OWED row than the fixture holds FAILS F.6
+  PASS  T.3 counting a vocabulary-blocked row as a recorded interaction FAILS F.7
+  PASS  T.4 the same fabrication also FAILS F.10 -- blocked rows are counted nowhere
+  PASS  T.5 a clarification ledger that does not close FAILS F.8
+  PASS  T.6 a declared countable total that does not equal the derived total FAILS F.12
+
+U. PHASE IS EXPLICIT AND AUDITABLE, NEVER INFERRED FROM COUNTS
+
+  PASS  U.1 an explicit --phase argument selects the phase and is reported as EXPLICIT_ARGUMENT
+  PASS  U.2 the two-token --phase form is accepted
+  PASS  U.3 with no argument the DECLARED corpus lifecycle state governs, and says so
+  PASS  U.4 an unrecognised phase is a hard error, never a silent default
+  PASS  U.5 the declared lifecycle state records a completed, applied human review
+  PASS  U.6 the declared lifecycle state records the formal evaluation as UNSPENT
+
+V. SEAL STATUS TRACKS THE PHASE AND CLAIMS NOTHING MORE
+
+  PASS  V.1 the pre-review status still reads CANDIDATE -- AWAITING ... REVIEW
+  PASS  V.2 the post-review status states review completion and an UNSPENT formal evaluation
+  PASS  V.3 the post-review status implies no authorization, activation or passing evaluation
+
+W. LIMITATIONS ARE CARRIED, NOT REPAIRED
+
+  PASS  W.1 SEM-09 is carried as an unrepaired frozen-vocabulary limitation
+  PASS  W.1 SEM-27 is carried as an unrepaired frozen-vocabulary limitation
+  PASS  W.1 SEM-35 is carried as an unrepaired frozen-vocabulary limitation
+  PASS  W.2 exactly three limitations are carried -- none invented, none dropped
+  PASS  W.3 the SEM-08 life-critical overlay adjustment is recorded as contract-consequential
+
+COUNTABLE REVIEWED CASES  clarification 25 (min 20), interaction 17 (min 10)
+
+40 passed, 0 failed
+PROVIDER_INVOCATION_COUNT = 0   RESERVED_MATERIAL_OPENED = FALSE   FORMAL_COHORT_SPENT = FALSE   P4_PRESPEND_AUTHORIZATION = FALSE

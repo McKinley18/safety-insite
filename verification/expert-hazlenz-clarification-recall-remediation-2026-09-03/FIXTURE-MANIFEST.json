@@ -1,0 +1,432 @@
+{
+ "fixtureSetVersion": "hazlenz.expert.clarification-recall.fixtures.v5",
+ "fixtureFileSha256": "d5cb48b89df49c985dc4a458668b2330ecb7626616a5206233f00c6b87bce281",
+ "rows": [
+  {
+   "rowId": "CR-A1",
+   "domain": "elevated platform near overhead line",
+   "structure": "A_UNKNOWN_DECISION_CHANGING",
+   "temptation": "NONE",
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "electrical"
+    ],
+    "defensibleHazardFamilies": [
+     "fall_protection",
+     "mobile_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "electrical"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "CR-A1-G1",
+      "description": "whether the overhead line has been made dead for this work",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "A raised platform directly beneath a live-capacity overhead line is a stated present electrical hazard. The absence is ANNOUNCED by the text, which is the shape v9 already recovers; this row exists so a recall regression on the easy case would be visible."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the 11kV overhead line has been isolated and proved dead for this work",
+     "answerA": "the line is isolated, proved dead and earthed under a documented permit",
+     "outcomeA": "the work continues and the finding is limited to platform and access discipline",
+     "answerB": "the line remains live",
+     "outcomeB": "the platform must be lowered and the work stopped now until isolation or a safe clearance distance is established",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the text states only that nobody could say; no finding, record or answered clarification establishes the isolation state either way",
+     "absenceIsUnmarked": false
+    }
+   }
+  },
+  {
+   "rowId": "CR-B1",
+   "domain": "traction battery charging",
+   "structure": "B_UNKNOWN_DECISION_INVARIANT",
+   "temptation": "NONE",
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "electrical",
+     "ventilation_air_quality"
+    ],
+    "forbiddenHazardFamilies": [
+     "excavation_trenching"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "ventilation_air_quality"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The amp-hour capacity is genuinely unknown and genuinely unmentioned. It is also decision-invariant HERE: extract is running and confirmed, ignition sources are controlled and the circuit is dedicated, so a larger or smaller charge leads to the same thing done today. This is the EV-A2 trap pointed the other way -- the answers really do converge -- and it must stay SILENT."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "what is the amp-hour capacity of the battery on charge?",
+     "whyNotDecisionCritical": "hydrogen evolution scales with the charge, but the three controls the answer would bear on -- extract, ignition-source control and circuit dedication -- are all described as present and confirmed. No plausible capacity changes what is done in this bay today."
+    }
+   }
+  },
+  {
+   "rowId": "CR-C1",
+   "domain": "excavation",
+   "structure": "C_KNOWN_THRESHOLD_SATISFIED",
+   "temptation": "THRESHOLD_ACROSS_INCOMPARABLE_BASES",
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "excavation_trenching",
+     "walking_working_surfaces",
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "hot_work"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The supplied record states its exception at less than five feet (1.52 m); the tape reading is 0.9 m and BOTH are measured bottom-to-surface. Nothing is unresolved about which side of the value these facts fall on. v10 tells the model an incomparable-basis threshold is not settled; this row is the case where it plainly IS, and silence is correct."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "how should the supplied record's five-foot condition be applied to a 0.9 metre trench?",
+     "whyNotDecisionCritical": "the record states its own measurement basis and the observation states the same one, and 0.9 metres is not close to 1.52 metres. There is no live interpretive branch: the exception plainly reaches these facts and no answer would change today's action."
+    }
+   }
+  },
+  {
+   "rowId": "CR-D1",
+   "domain": "mobile tower scaffold",
+   "structure": "D_KNOWN_THRESHOLD_NOT_SATISFIED",
+   "temptation": "THRESHOLD_ACROSS_INCOMPARABLE_BASES",
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fall_protection",
+     "walking_working_surfaces",
+     "material_handling_storage"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "fall_protection"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The record plainly governs (6.2 m is far above any exemption) AND the control it requires is described as measured and in place -- 1,050 mm sits inside the record's 38-to-45 inch band, and the midrail is approximately midway. Both limbs are settled, so no branch remains. The mirror image of CR-C1."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "does the guardrail height measured at 1,050 millimetres meet the supplied record's band?",
+     "whyNotDecisionCritical": "the observation states the measurement and its datum and the record states its band; 1,050 millimetres is 41.3 inches, inside 38 to 45, and the midrail is approximately midway. The comparison is arithmetic on two stated, comparable figures, not an open interpretation."
+    }
+   }
+  },
+  {
+   "rowId": "CR-E1",
+   "domain": "asbestos survey",
+   "structure": "E_BOTH_BRANCHES_ARTICULABLE_SELECTOR_UNKNOWN",
+   "temptation": "RESEMBLANCE_TO_A_PROGRAMME",
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "chemical_inhalation_contact",
+     "respiratory_protection",
+     "hazcom"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "CR-E1-G1",
+      "description": "whether the tiles have been surveyed or analysed and found not to contain asbestos, which the supplied record makes the rebuttal condition",
+      "affectedDecision": "APPLICABILITY"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The supplied record states a PRESUMPTION and names the only thing that rebuts it. Whether that rebuttal exists is precisely what is unresolved, and it decides whether an ordinary strip-out or a controlled removal is what should be happening right now. The absence is announced (\"could not be produced\"), so this row tests the branch reasoning rather than the noticing."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether a survey or accredited analysis has established that these tiles do not contain asbestos",
+     "answerA": "a survey or analysis records the tiles as non-asbestos and rebuts the presumption",
+     "outcomeA": "the work is an ordinary strip-out and the finding is limited to dust and manual handling",
+     "answerB": "no survey or analysis exists, so the presumption stands",
+     "outcomeB": "the work as described is an uncontrolled disturbance of presumed asbestos and must stop now, with the area secured and controlled removal arranged",
+     "affectedDecision": "APPLICABILITY",
+     "whyNotEstablished": "the record states the presumption and its rebuttal condition, and the observation states only that the survey could not be produced -- which is not evidence either way about whether one exists or what it says",
+     "absenceIsUnmarked": false
+    }
+   }
+  },
+  {
+   "rowId": "CR-E2",
+   "domain": "ammonia refrigeration",
+   "structure": "E_BOTH_BRANCHES_ARTICULABLE_SELECTOR_UNKNOWN",
+   "temptation": "THRESHOLD_ACROSS_INCOMPARABLE_BASES",
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "chemical_release",
+     "chemical_inhalation_contact",
+     "emergency_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "CR-E2-G1",
+      "description": "whether the two packages are interconnected in the sense the supplied record uses, so that their charges aggregate against the threshold quantity",
+      "affectedDecision": "REGULATORY_INTERPRETATION"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The EV-A6 shape on unrelated facts. 4,400 kg is 9,700 pounds, just BELOW the record's 10,000-pound threshold -- and the record also says interconnected vessels are one process. The observation states a common header, which is a physical connection and NOT the record's legal one; the adjoining charge is never stated. Nothing in the text announces that anything is unknown. The model must notice that it cannot settle which side of the threshold this process falls on."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the two ammonia packages count as one interconnected process under the supplied record, and what the adjoining package holds",
+     "answerA": "the packages are separable and this one stands alone at 9,700 pounds",
+     "outcomeA": "the process sits below the stated threshold and the finding rests on general refrigeration safety rather than the record's programme",
+     "answerB": "the common header makes them one process and the combined charge is at or above 10,000 pounds",
+     "outcomeB": "the record's process safety management programme governs this plant room now, which changes what is required of the work at the compressor deck today",
+     "affectedDecision": "REGULATORY_INTERPRETATION",
+     "whyNotEstablished": "the nameplate charge and the existence of a header are stated; whether that header is the interconnection the record means, and what the adjoining package holds, are not",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "CR-F1",
+   "domain": "electrical distribution board",
+   "structure": "F_SUGGESTED_BUT_NOT_ESTABLISHED",
+   "temptation": "BENIGN_ASSUMPTION",
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "electrical",
+     "lockout_tagout",
+     "personal_protective_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "combustible_dust"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "CR-F1-G1",
+      "description": "whether the board has been proved dead at the terminations being worked on, and whether the padlocked breaker is its only source of supply",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "The padlock invites the model to SETTLE the fact benignly -- \"it is locked off, therefore it is dead\" -- exactly as EV-A4 settled an unknown adversely. A distribution board can carry a second incomer or a backfed circuit, and a tester lying on a bench is not a test performed. The observation establishes the padlock and nothing about the proving."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the terminations have been proved dead and whether the padlocked breaker is the board's only source of supply",
+     "answerA": "the board was proved dead at the terminations and the padlocked breaker is its only source",
+     "outcomeA": "the work is properly isolated and the finding is limited to the gloves and tester not being worn or in hand",
+     "answerB": "the board was not proved, or a second incomer or backfeed remains live",
+     "outcomeB": "this is live working at 400 volts with the cover off and must stop now",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "a padlocked upstream handle is stated; proving dead at the point of work and the absence of a second source are neither stated nor implied by it",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "CR-F2",
+   "domain": "solvent transfer",
+   "structure": "F_SUGGESTED_BUT_NOT_ESTABLISHED",
+   "temptation": "RESEMBLANCE_TO_A_PROGRAMME",
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "chemical_release",
+     "electrical"
+    ],
+    "forbiddenHazardFamilies": [
+     "excavation_trenching"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "CR-F2-G1",
+      "description": "whether this loading pad has been classified as a hazardous area, and to what zone, which decides whether ordinary electrical equipment may be used on it",
+      "affectedDecision": "APPLICABILITY"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "LP-B2 reasoned from a physical profile to a CLASSIFICATION and then asserted it. The same move is available here: flammable transfer at a pad LOOKS like a classified area, so ordinary electrical gear looks like an ignition source. Resemblance is not the classification. Whether this pad is zoned, and to what, is what decides the answer, and nothing in the text says it is unknown."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the loading pad is classified as a hazardous area, and to which zone",
+     "answerA": "the pad is classified non-hazardous on the basis of the transfer method and open ventilation",
+     "outcomeA": "the ordinary pump is permitted here and the finding turns on bonding, earthing and spill control at the coupling",
+     "answerB": "the pad is classified as a zoned hazardous area",
+     "outcomeB": "a non-protected pump and trailing lead are an ignition source inside a flammable atmosphere and the transfer must stop now",
+     "affectedDecision": "APPLICABILITY",
+     "whyNotEstablished": "the placard, the pump and the socket are stated; the pad's area classification is never mentioned, and resembling a zoned area is not being one",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "CR-G1",
+   "domain": "manual handling in a chill room",
+   "structure": "G_SEVERITY_OR_DETAIL_ONLY",
+   "temptation": "NONE",
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "material_handling_storage"
+    ],
+    "defensibleHazardFamilies": [
+     "training_procedure_supervision",
+     "walking_working_surfaces"
+    ],
+    "forbiddenHazardFamilies": [
+     "suspended_loads"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "Throughput is genuinely unknown and would genuinely change the magnitude of the exposure. It changes nothing that is done today: the defect is the lift GEOMETRY -- floor to chest with a twist -- and the correction is the same at any rate. Severity refinement without a decision, which the seven forbidden shapes already name."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "how many cases are handled per shift on this line?",
+     "whyNotDecisionCritical": "the answer scales the exposure but selects no different action: raising the pallet and lowering or squaring the transfer point is what is owed whether the rate is high or low, and no plausible figure would make the current geometry acceptable."
+    }
+   }
+  },
+  {
+   "rowId": "CR-H1",
+   "domain": "welding local exhaust ventilation",
+   "structure": "H_EVIDENCE_RESOLVES_THE_APPARENT_GAP",
+   "temptation": "NONE",
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "welding_fumes",
+     "ventilation_air_quality",
+     "respiratory_protection"
+    ],
+    "forbiddenHazardFamilies": [
+     "excavation_trenching"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "ventilation_air_quality"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The question a coverage habit reaches for -- is the extraction actually working? -- is the one the observation answers three separate ways: indicator, witnessed smoke-tube draw, and a measured figure above the design flow. Asking it back is disregarding evidence already given, which the prompt names explicitly."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is the on-torch extraction actually capturing fume at the arc?",
+     "whyNotDecisionCritical": "capture was verified in three independent ways in the inspector's presence and the measured flow exceeds the design figure. The fact is established, so there is nothing to ask."
+    }
+   }
+  }
+ ]
+}

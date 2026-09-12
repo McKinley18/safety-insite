@@ -1,0 +1,470 @@
+{
+  "artifact": "SECTION_198_REQUEST_COMPATIBILITY",
+  "date": "2026-09-07",
+  "providerCallsMadeByThisReport": 0,
+  "method": "every §197 first-pass request rebuilt offline under the remediated contract and its schema keywords enumerated. Nothing was sent.",
+  "knownProviderProhibitedKeywords": [
+    "minLength",
+    "minItems",
+    "maxItems"
+  ],
+  "section197RejectionCause": {
+    "error": "tools.0.custom: For 'array' type, property 'maxItems' is not supported",
+    "occurrences": 12,
+    "nowPresentInAnyRequest": false,
+    "note": "the keyword is absent from the CANONICAL schema, before the §108 strip runs. §198 did not extend the strip and does not rely on it here."
+  },
+  "summary": {
+    "rows": 12,
+    "capabilityAbsentRows": [
+      "SF-01",
+      "SF-03",
+      "SF-05",
+      "SF-12",
+      "SF-06",
+      "SF-04",
+      "SF-02",
+      "SF-07",
+      "SF-08",
+      "SF-11"
+    ],
+    "capabilityPresentRows": [
+      "SF-09",
+      "SF-10"
+    ],
+    "rowsWithAnyKnownProhibitedKeyword": [],
+    "everyPresentRowExposesItsExactSourceIds": true,
+    "distinctSystemPromptHashes": 2,
+    "distinctSystemPromptNote": "two — one per capability variant. A successor preregistration must freeze BOTH, and must freeze the wire schema PER ROW because it is per-request."
+  },
+  "rows": [
+    {
+      "rowId": "SF-01",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "5568eb143c36520c6a4e2274a987fb3bfb644187a2e61f9889e411cba913969a",
+      "wireSchemaSha256": "c3ed2ab857eb877f47edd4db7ede26d0bcc0a37bbbb1bbad8484b7b873b17b0f",
+      "v15WireSchemaSha256": "58ba4af8d357d445879950c986301aaf0d47824e8cfae453f247c44bd651f659"
+    },
+    {
+      "rowId": "SF-03",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "ae902aea36b7db5f6909d9bac77f9d347cffca49c10017e96853ef9ff0f8644c",
+      "wireSchemaSha256": "f6bff9add409252e44058a534824310e2e54cb5bc030ea544c0750643874544b",
+      "v15WireSchemaSha256": "cf5a075791fa85c2a079526b069bc4246adf225df26ca4b3ccf4fbd7be65e757"
+    },
+    {
+      "rowId": "SF-05",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "95e540034a409cc04b2d4c7af0e70217c8fcd814fae1ce5a016a5bdbc8994655",
+      "wireSchemaSha256": "4a071d969a93db5fc7e1ec4e4674dace2ebe93e8759c8d005bddc1e2487f7374",
+      "v15WireSchemaSha256": "efa974b7df1ff01349242afabd9a8789130c6e526fc8467d9c7c123d9b33d5ea"
+    },
+    {
+      "rowId": "SF-12",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "0c9c958ccdfc889e4e5ecf650b9c67dd34e35cc882a1b41e46a003906fd78b9d",
+      "wireSchemaSha256": "893e267c992e25abdec27e2a8430bc8c04a430c311c00e46f2712ff40547d6e3",
+      "v15WireSchemaSha256": "fa12c062b2d6d9df7c740bd432f9e1d456b06bdb9daf1a1a9dcebaefeff4a1a9"
+    },
+    {
+      "rowId": "SF-06",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "bdab2d559754753d2638b690fb914630c0b4daa522342eae20ac40b76334a296",
+      "wireSchemaSha256": "46fe48e263b70542fe42e4b620f12463b6adfb048d03dd3cc8f37de139636868",
+      "v15WireSchemaSha256": "f8dd19c09df93442895086c60e281bfc817abcf1311a07a341bdec58698bb9ad"
+    },
+    {
+      "rowId": "SF-04",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "8cd25fd6e4938a755163fc41471b718a45ba4608de7dbe1216ca4ffa8f38f496",
+      "wireSchemaSha256": "3470896fd7db18eee4558e510571634b2344fb043bdc1774358ae596ed00259d",
+      "v15WireSchemaSha256": "c0352f183612a6e59456485053dd190e19e829d4afb4a1129edda78ac48c2905"
+    },
+    {
+      "rowId": "SF-02",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "d9daeb9c00d5494f5b6cb40812bb8737176b1808115f16ec5c8a560ab0def8d8",
+      "wireSchemaSha256": "9a4db2f567a0f48b2a673ea5c344830adc0338b13c1fe12eb74dc8987a2d4183",
+      "v15WireSchemaSha256": "9f06514fa753bc6659d528899a16ca4bfc0d07765819cdd91ddf3b760731ec4f"
+    },
+    {
+      "rowId": "SF-07",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "60bb32d0aae339f316df03821cb2d7a0d02586f97cc987eee075eb27c2662dd1",
+      "wireSchemaSha256": "6a3f82ed2d18886e0be60d88a41d8d59df314fc4e87c5dea3d883214f3bd5818",
+      "v15WireSchemaSha256": "f6acd68e9c6fd60ad03281acdc9e05f71108adb57fe8be4a1db9814f16fa4965"
+    },
+    {
+      "rowId": "SF-08",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "3de1c77d6b6e0c4f8bedb2c2f21458ec64dc0e7d2dad8fe1959d549339f02c22",
+      "wireSchemaSha256": "09b73366c79a5224d6fd1c53ee40090b8280a5c33eda3cd1b5aa4e6645c75ac7",
+      "v15WireSchemaSha256": "bb7a3b0e3fee7d36a72d2ff6e132d380d8f71e866880b095de6f8c8c2e2182d5"
+    },
+    {
+      "rowId": "SF-09",
+      "governedRecordsSupplied": [
+        "GOV-ABRASIVE-01"
+      ],
+      "capability": "PRESENT",
+      "governedEvidenceSourceIdsPropertyPresent": true,
+      "governedEvidenceSourceIdsInRequired": true,
+      "exactSourceIdsVisibleInUserPrompt": [
+        "GOV-ABRASIVE-01"
+      ],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "669bde6933e19bd1e1c35acde9a8db2a24020666917d9fe79c0718d5344df44b",
+      "userPromptSha256": "d882a6012634382d1be52efaa1c5fbeb3b7863c9e8658c49403464690846d2ef",
+      "wireSchemaSha256": "635018f1c07ed2f88c4fb744f66754b646c366cf2bbc7758e3a383a5a48aae5c",
+      "v15WireSchemaSha256": "79b20e7af72c9f4ba2b73ed7053144f7de6bb3c7134a7c49f2fc93a230c1a9f4"
+    },
+    {
+      "rowId": "SF-10",
+      "governedRecordsSupplied": [
+        "GOV-HAZCOM-01"
+      ],
+      "capability": "PRESENT",
+      "governedEvidenceSourceIdsPropertyPresent": true,
+      "governedEvidenceSourceIdsInRequired": true,
+      "exactSourceIdsVisibleInUserPrompt": [
+        "GOV-HAZCOM-01"
+      ],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "669bde6933e19bd1e1c35acde9a8db2a24020666917d9fe79c0718d5344df44b",
+      "userPromptSha256": "cebb7917d42b5369041478b816ba304b7d192730d5fb081035b27b6fc15cda49",
+      "wireSchemaSha256": "521105c4112c5560c1011e5d59badbf73cddfd384eb6c0fb544936f5eb297f7e",
+      "v15WireSchemaSha256": "9fa729743177cee5d0d2335a6d320dec929abd87550330933fed1c019bc6054d"
+    },
+    {
+      "rowId": "SF-11",
+      "governedRecordsSupplied": [],
+      "capability": "ABSENT",
+      "governedEvidenceSourceIdsPropertyPresent": false,
+      "governedEvidenceSourceIdsInRequired": false,
+      "exactSourceIdsVisibleInUserPrompt": [],
+      "unsuppliedIdsVisibleInUserPrompt": [],
+      "canonicalSchemaKeywords": [
+        "description",
+        "enum",
+        "items",
+        "minItems",
+        "minLength",
+        "properties",
+        "required",
+        "type"
+      ],
+      "sentSchemaKeywords": [
+        "additionalProperties",
+        "description",
+        "enum",
+        "items",
+        "properties",
+        "required",
+        "type"
+      ],
+      "knownProhibitedRemainingInSentSchema": [],
+      "maxItemsPresentBeforeStrip": false,
+      "maxItemsPresentAfterStrip": false,
+      "systemPromptSha256": "bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b",
+      "userPromptSha256": "0096b8bc5877527bcb11f19f1d0020873250677d8310478ea14a6036c86d7838",
+      "wireSchemaSha256": "b7181e37ca04a9211351b59c8fd59a45f5d7f68e7f55fdb37f1c1f75e6083200",
+      "v15WireSchemaSha256": "cfc99001881385a7025764a9bcff866a5b2668af25eccdfddaf712423c440109"
+    }
+  ]
+}

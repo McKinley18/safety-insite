@@ -1,0 +1,39 @@
+RESERVED MATERIAL OPENING RECORD
+================================
+opened_at_utc:        2026-08-31T20:24:15Z
+operator:             Claude Code session 63be29de, acting under the 2026-08-31 product-owner
+                      authorization 'Assemble, Truth-Key, and Freeze Formal Expert Cohort'
+process:              local ts-node, no network egress, no provider client constructed
+
+artifact_opened:      safescope-data/gauntlets/safescope-gauntlet.seed.json
+reserve_identity:     'the unopened 100-row gauntlet.seed' (EVALUATION_CORPUS_POLICY.reserved[2])
+range_opened:         ALL 100 rows (scenarioId ascending), full record
+pre_open_sha256:      49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+blueprint_recorded:   49aa40fd... (section 7785) -- MATCH, so the reserve was unmodified
+
+NOT OPENED (remain available as future single-use exams):
+  - gauntlet offset 2
+  - gauntlet offset 3
+  - realism offset 1
+  - realism offset 2
+  realism pack pre-open sha256: 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb (UNTOUCHED)
+
+purpose_authorized:   eligibility classification; truth-key construction; cohort composition;
+                      formal row freezing
+purpose_forbidden:    provider execution; prompt development; any alteration of Expert
+                      semantics, scorers or thresholds in response to row content
+
+policy_frozen_before_opening: backend/scripts/lib/expert-cohort-supplemental-policy.ts
+policy_sha256:                cc69d28e74308f492271ff573357b5c346ebe915f253e692f108e9e962f94967
+
+EVIDENCE THAT NO PROVIDER RESULT EXISTS FOR THESE ROWS:
+  - EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE and FORMAL_COHORT_SPENT = FALSE at open time
+  - the Expert core is provably no-call (test:expert-nocall-harness 141/0, scans the module
+    for network primitives and vendor names)
+  - this reserve is recorded UNOPENED in every prior phase and its hash is unchanged
+  - grep for the reserve path across every verification run artifact:
+verification/full-production-audit-2026-07-26/HAZLENZ_INDEPENDENT_EVALUATION 2.md
+verification/full-production-audit-2026-07-26/HAZLENZ_INDEPENDENT_EVALUATION.md
+verification/hazlenz-l3-sealed-acceptance-2026-08-25/STATUS.md
+verification/hazlenz-l3-sealed-acceptance-2026-08-25/STATUS 2.md
+verification/hazlenz-l3-sealed-acceptance-2026-08-25/preservation/PRESERVATION_POST 2.txt

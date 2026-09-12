@@ -1,0 +1,72 @@
+{
+  "executorVersion": "hazlenz.expert.221.integrated-validation-execution.v1",
+  "frozenDigest": "82487b704e7601476481bbbe803d1b3299742478404e8df65f0149330302e1f6",
+  "digestVerified": true,
+  "checks": [
+    {
+      "id": "frozen §221 digest",
+      "ok": true,
+      "detail": "82487b704e7601476481bbbe803d1b3299742478404e8df65f0149330302e1f6"
+    },
+    {
+      "id": "assembly reproduces the frozen first-pass call set",
+      "ok": true,
+      "detail": "ten user-prompt, instruction and schema identities match the freeze"
+    },
+    {
+      "id": "verifier leg identities match the freeze",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "execution order is the frozen order",
+      "ok": true,
+      "detail": "IG1,IG2,IG3,IG4,IG5,IG6,IG7,IG8,IG9,IG10"
+    },
+    {
+      "id": "model is the frozen model",
+      "ok": true,
+      "detail": "claude-sonnet-5"
+    },
+    {
+      "id": "api key present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "no cache_control anywhere in the assembled requests",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "evidence state is consistent with the invocation mode",
+      "ok": true,
+      "detail": "--resume: 10 calls already drawn, USD 0.6692 already spent"
+    }
+  ],
+  "callCeiling": 22,
+  "spendCeilingUsd": 1.78,
+  "worstFirstPassUsd": 0.104,
+  "worstVerifierUsd": 0.084,
+  "retriesAuthorized": 0,
+  "databaseOperations": 0,
+  "cachingPosture": "DISABLED",
+  "callPlan": {
+    "firstPassCalls": 10,
+    "verifierCalls": 9,
+    "contingencyCalls": 2,
+    "totalPlanned": 19,
+    "ceiling": 22
+  },
+  "transportAccounting": {
+    "firstPassBaseSchemaBytes": 18688,
+    "firstPass210jSchemaBytes": 19215,
+    "firstPassSchemaAsSentBytes": 19127,
+    "firstPassSystemPromptBytes": 56893,
+    "verifierSchemaBytes": 8247,
+    "section199RefusedAtAsSentBytes": 19060,
+    "section199AcceptedAtAsSentBytes": 18620,
+    "section210hTransmittedBaseSchemaSuccessfully": true,
+    "STATED_PRE_EXECUTION_RISK": "the §210J first-pass wire schema has NEVER been transmitted hosted. §210H executed the §210G base. The as-sent §210J schema measures above the size at which §199 was refused on compiled grammar complexity. This is recorded BEFORE execution rather than discovered after it. The first hosted call is the compatibility canary and the frozen instrument is NOT altered to avoid the risk: if the transport refuses it, §221 returns the execution-blocked terminal."
+  }
+}

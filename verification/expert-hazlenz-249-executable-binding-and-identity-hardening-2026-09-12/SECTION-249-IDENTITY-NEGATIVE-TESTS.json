@@ -1,0 +1,43 @@
+{
+  "section": "249",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "principle": "a 17/17 that cannot be broken by these six is not evidence",
+  "required": 6,
+  "executed": 6,
+  "correctlyFailed": 6,
+  "verdict": "PASS",
+  "fixtures": [
+    {
+      "id": "N1 §239 prompt invoked while §247 prompt exists",
+      "why": "element 5 must not resolve",
+      "failed": true
+    },
+    {
+      "id": "N2 §239 schema invoked while §247 schema exists",
+      "why": "element 6 must not resolve",
+      "failed": true
+    },
+    {
+      "id": "N3 K6 successor exists but the invoked schema permits 10 combinations",
+      "why": "element 17 must not resolve",
+      "failed": true
+    },
+    {
+      "id": "N4 roleJustification contract exists but the request omits it",
+      "why": "element 17 must not resolve",
+      "failed": true
+    },
+    {
+      "id": "N5 production and adapter invoke different contract versions",
+      "why": "element 3 must not resolve",
+      "failed": true
+    },
+    {
+      "id": "N6 strict schema disabled on the production request",
+      "why": "element 13 must not resolve",
+      "failed": true
+    }
+  ]
+}

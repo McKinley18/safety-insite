@@ -1,0 +1,306 @@
+{
+  "artifact": "SECTION_187A_PRE_SPEND_PREREGISTRATION",
+  "writtenBeforeFirstProviderCall": true,
+  "operation": "§187A REQUIRED-row structured owed-fact verifier-path validation",
+  "cohort": {
+    "requiredRows": [
+      "HR-01",
+      "HR-04",
+      "HR-06",
+      "HR-08",
+      "HR-09"
+    ],
+    "silenceRowsRerun": false,
+    "silenceEvidenceStatus": "HISTORICAL_FIRST_PASS_SILENCE_EVIDENCE (§179, SILENCE_PASS 12/15). Not a contemporaneous control, not a paired comparator, never combined into one accuracy score."
+  },
+  "twoComponentPath": {
+    "step1": "ONE first-pass Expert execution per row generates the real verifier stimulus. Not scored as the primary result.",
+    "step2": "THREE verifier-v3 executions per row against the SAME persisted first-pass stimulus, isolating verifier stochasticity from first-pass stochasticity."
+  },
+  "provider_model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "firstPassMaxTokens": 8000,
+    "verifierMaxTokens": 4000,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "firstPassIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v15",
+    "systemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+    "promptFileSha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+    "wireSchemaSha256": "96ceed875bc2ff8af2a67b171b2e1fddc4eaae9932ac18f30a9e81202ea80bf5"
+  },
+  "verifierIdentity": {
+    "instructionVersion": "hazlenz.expert.verifier-instruction.v3",
+    "systemPromptSha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+    "responseSchemaSha256": "1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a"
+  },
+  "contracts": {
+    "analysisContractVersion": "hazlenz.expert.analysis.v2",
+    "inputContractVersion": "hazlenz.expert.input.v1",
+    "validatorVersion": "hazlenz.expert.validator.v1"
+  },
+  "owedFactSourceHashes": {
+    "owed-fact.types.ts": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+    "owed-fact-ledger.ts": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+    "owed-fact-binding.ts": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+    "verifier-v3-development-boundary.ts": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245"
+  },
+  "frozenRows": [
+    {
+      "id": "HR-01",
+      "textSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d"
+    },
+    {
+      "id": "HR-04",
+      "textSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274"
+    },
+    {
+      "id": "HR-06",
+      "textSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb"
+    },
+    {
+      "id": "HR-08",
+      "textSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0"
+    },
+    {
+      "id": "HR-09",
+      "textSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef"
+    }
+  ],
+  "frozenTruthHashes": {
+    "OWED-FACT-TRUTH-CANDIDATES.json": "649a17df3730b1d67f20bda9b6231d0a5461902c985ce87fb7b2659e67798b0b",
+    "SECTION-184-INTEGRITY.json": "172aaba1fbd22b95259a1bdef3d76a8d5dbd32b27d69b9784532d60a36ebeb36"
+  },
+  "suppliedOwedFacts": {
+    "HR-01": {
+      "payload": {
+        "factKey": "owed:fire:burner_flame_failure_safeguard_function_verified",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state whether the burner's flame-failure safeguard was function-tested",
+        "branchA": "established: the burner's flame-failure safeguard has been verified to shut off fuel on loss of flame",
+        "branchB": "not established: the burner's flame-failure safeguard has been verified to shut off fuel on loss of flame",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about the burner's flame-failure safeguard's protective function",
+          "ifB": "the burner must be shut down until the flame-failure safeguard's protective function is verified"
+        },
+        "evidenceSpan": "it lists a nozzle change and filter clean but does not record whether the burner was flame-tested"
+      },
+      "sha256": "ca8d69d2ee0250e542bb3c206dfcc3fe047d2996862e31fddd763f4b3b445ed3"
+    },
+    "HR-04": {
+      "payload": {
+        "factKey": "owed:guarding:fixed_guard_fastenings_currently_secure",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state the current securement of the guard fastenings",
+        "branchA": "established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+        "branchB": "not established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+          "ifB": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation"
+        },
+        "evidenceSpan": "the fastenings were last torque-checked at the annual service"
+      },
+      "sha256": "80565d3e83fdf0c8ee061e4c15c632e7aa698b72b07b965fc90eb7d34792b62e"
+    },
+    "HR-06": {
+      "payload": {
+        "factKey": "owed:guarding:rotor_guard_interlock_protective_function_verified",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state the interlock's protective behaviour after the tooth change",
+        "branchA": "established: the rotor guard door interlock's protective function was verified after the tooth change and before the debarker was returned to service",
+        "branchB": "not established: the rotor guard door interlock's protective function was verified after the tooth change and before the debarker was returned to service",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about the rotor guard door interlock's protective function",
+          "ifB": "the debarker must be stopped until the rotor guard door interlock's protective function is verified"
+        },
+        "evidenceSpan": "it recorded the tooth change but carries no interlock test result"
+      },
+      "sha256": "c3533b8ed35825fccdc69216ffe962017c1765c68be26699f2b35578d0f82f18"
+    },
+    "HR-08": {
+      "payload": {
+        "factKey": "owed:energy:auger_drive_isolation_verified_before_work",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state whether the auger drive's own local isolator was locked and proved dead",
+        "branchA": "established: the discharge auger drive has been isolated and proved dead before the operative works at the blockage",
+        "branchB": "not established: the discharge auger drive has been isolated and proved dead before the operative works at the blockage",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about whether the discharge auger drive is isolated and proved dead",
+          "ifB": "blockage-clearing work must stop until the discharge auger drive is isolated and proved dead"
+        },
+        "evidenceSpan": "the auger drive has its own local isolator and the lockout log shows no entry against it"
+      },
+      "sha256": "13bf87a644e365f60fcf6c493dd059789d0f8e574038d3c5e6f28d6b810fd79c"
+    },
+    "HR-09": {
+      "payload": {
+        "factKey": "owed:energy:stored_hydraulic_energy_dissipated_before_line_break",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "whyUnresolved": "the observation does not state the accumulator's current pressure",
+        "branchA": "established: the stored hydraulic energy in the accumulator has been dissipated and confirmed at zero before the hose is broken",
+        "branchB": "not established: the stored hydraulic energy in the accumulator has been dissipated and confirmed at zero before the hose is broken",
+        "decisionDivergence": {
+          "ifA": "no additional control is required on account of uncertainty about stored hydraulic energy in the accumulator",
+          "ifB": "the hose must not be broken until the accumulator is confirmed at zero"
+        },
+        "evidenceSpan": "the accumulator gauge sits behind the tank shroud unread since"
+      },
+      "sha256": "1e08e03ec17c47a7fb8c8c30d84e64e6640d2376651603f99b4dca5e22ce3988"
+    }
+  },
+  "suppliedOwedFactCountPerExecution": 1,
+  "acceptableEvidenceNote": "null under the existing §184/§185 derivation on all five rows. V3SuppliedOwedFact carries no acceptableEvidence field, so it is NOT transmitted. Recorded, not silently dropped; null is not a behavioural failure.",
+  "executionOrder": {
+    "method": "three interleaved blocks; Fisher-Yates over the five REQUIRED row ids under mulberry32 seeded from the verifier instruction sha256; a block opening on the previous block's closing row is rotated left one position",
+    "seedHex": "678160c9",
+    "frozenOrder": [
+      {
+        "sequencePosition": 1,
+        "rowId": "HR-09",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 2,
+        "rowId": "HR-01",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 3,
+        "rowId": "HR-06",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 4,
+        "rowId": "HR-04",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 5,
+        "rowId": "HR-08",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 6,
+        "rowId": "HR-06",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 7,
+        "rowId": "HR-09",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 8,
+        "rowId": "HR-08",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 9,
+        "rowId": "HR-04",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 10,
+        "rowId": "HR-01",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 11,
+        "rowId": "HR-09",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 12,
+        "rowId": "HR-08",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 13,
+        "rowId": "HR-01",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 14,
+        "rowId": "HR-04",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 15,
+        "rowId": "HR-06",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      }
+    ]
+  },
+  "caps": {
+    "plannedFirstPass": 5,
+    "plannedVerifier": 15,
+    "plannedTotal": 20,
+    "hardCallCap": 24,
+    "hardSpendCapUsd": 2,
+    "retries": 0,
+    "worstCaseFirstPassUsd": 0.104,
+    "worstCaseVerifierUsd": 0.064,
+    "onExceeding": "STOP and report INCOMPLETE. The replicate count is never silently reduced after spend begins."
+  },
+  "scoringRules": {
+    "MECHANICAL": "provider errors, contract admission, factKey binding correctness against the supplied key, declaration modes, unauthorized settlement, clarification counts. Computed by this script.",
+    "STRICT_SEMANTIC": "NOT COMPUTED BY THIS SCRIPT. Owed-fact preservation, clarification target/sufficiency, nearby-property substitution, adjacent containment, challenge correctness/relevance/reviewability are human semantic judgements. Every execution is exported verbatim for independent adjudication. This model does not decide them.",
+    "REJECTED_IS_NOT_SILENCE": "a contract failure or refused admission is recorded as CONTRACT_FAILURE and never scored as behaviour."
+  },
+  "successGates": {
+    "hard": [
+      "provider errors = 0",
+      "contract-invalid verifier executions = 0",
+      "wrong factKey bindings = 0",
+      "unauthorized settlement transitions = 0",
+      "PROVIDER_SETTLEMENT_AUTHORITY = NEVER",
+      "adjacent-fact substitution = 0"
+    ],
+    "semantic": ">= 12/15 strict owed-fact preservation (PENDING HUMAN ADJUDICATION)",
+    "perRowFloor": "each of HR-01, HR-04, HR-06, HR-08, HR-09 >= 2/3",
+    "hr04": "invalid false-settlement challenge <= 1/3; current-securement target preserved >= 2/3; provider output alone leaves the fact unresolved 3/3",
+    "reviewability": ">= 80% reviewable, <= 20% representation failures; NOT_EXERCISED if no challenge-bearing executions occur"
+  },
+  "noPostHocTuning": "after the first provider call, no change to prompt, schema, normalizer, verifier, contracts, scorers, thresholds, truth, row text, execution order or success criteria.",
+  "residualsPreserved": [
+    "BOUND_FACT_NOT_UNRESOLVED unchanged",
+    "no settled fact exposed",
+    "no ALREADY_SETTLED added",
+    "EXPECTED_HISTORICAL_PIN_DIVERGENCE_AFTER_AUTHORIZED_LATER_CHANGE preserved",
+    "direct terminal-construction residual OPEN / out of scope",
+    "projection-firewall declarative gap OPEN"
+  ]
+}

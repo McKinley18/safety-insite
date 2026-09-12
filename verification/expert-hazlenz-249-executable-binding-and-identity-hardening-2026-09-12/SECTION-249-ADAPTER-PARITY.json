@@ -1,0 +1,73 @@
+{
+  "section": "249",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "compared": [
+    "canonical production entry point",
+    "legacy compatibility adapter buildAnthropicRequestBody"
+  ],
+  "loadBearingElements": [
+    "model",
+    "toolName",
+    "strictSchema",
+    "forcedToolChoice",
+    "thinking",
+    "discriminatedUnionPresent",
+    "roleJustificationPresent",
+    "admissiblePairs",
+    "inadmissiblePairsExpressible",
+    "systemPromptCarriesJustificationInstruction",
+    "systemPromptSha256",
+    "wireSchemaSha256"
+  ],
+  "mismatches": [],
+  "verdict": "PASS",
+  "note": "the two differ only where a difference is demonstrably non-semantic; every load-bearing element above is compared by value or by digest.",
+  "production": {
+    "model": "claude-sonnet-5",
+    "maxTokens": 8000,
+    "toolName": "emit_expert_analysis",
+    "strictSchema": true,
+    "forcedToolChoice": true,
+    "thinking": "{\"type\":\"disabled\"}",
+    "discriminatedUnionPresent": true,
+    "roleJustificationPresent": true,
+    "additionalPropertiesFalseInEveryBranch": true,
+    "admissiblePairs": 6,
+    "inadmissiblePairsExpressible": 0,
+    "systemPromptCarriesJustificationInstruction": true,
+    "unsupportedKeywords": {
+      "minLength": 0,
+      "minItems": 0,
+      "oneOf": 0,
+      "allOf": 0
+    },
+    "systemPromptSha256": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+    "userPromptSha256": "05a8816f295dac151f24a489e7cf806c10821bce8cc22368076753ef4aa2c10e",
+    "wireSchemaSha256": "0c9f1ae288154868cd97dbe3efedf543f47c9afce82235ec10c99e3f8a71a2f1"
+  },
+  "adapter": {
+    "model": "claude-sonnet-5",
+    "maxTokens": 8000,
+    "toolName": "emit_expert_analysis",
+    "strictSchema": true,
+    "forcedToolChoice": true,
+    "thinking": "{\"type\":\"disabled\"}",
+    "discriminatedUnionPresent": true,
+    "roleJustificationPresent": true,
+    "additionalPropertiesFalseInEveryBranch": true,
+    "admissiblePairs": 6,
+    "inadmissiblePairsExpressible": 0,
+    "systemPromptCarriesJustificationInstruction": true,
+    "unsupportedKeywords": {
+      "minLength": 0,
+      "minItems": 0,
+      "oneOf": 0,
+      "allOf": 0
+    },
+    "systemPromptSha256": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+    "userPromptSha256": "05a8816f295dac151f24a489e7cf806c10821bce8cc22368076753ef4aa2c10e",
+    "wireSchemaSha256": "0c9f1ae288154868cd97dbe3efedf543f47c9afce82235ec10c99e3f8a71a2f1"
+  }
+}

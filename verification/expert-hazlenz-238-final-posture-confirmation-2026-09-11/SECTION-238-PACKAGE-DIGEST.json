@@ -1,0 +1,39 @@
+{
+  "artifact": "SECTION-238-PACKAGE-DIGEST",
+  "version": "hazlenz.expert.238.final-confirmation.v1",
+  "frozenAt": "2026-09-12T02:11:12.171Z",
+  "files": [
+    {
+      "file": "SECTION-238-INSTRUMENT.json",
+      "sha256": "20a44a1dc53a792f00bc34e3f85c12aff5f56384fa7e0b002385e1dd69064599"
+    },
+    {
+      "file": "SECTION-238-TRUTH-CONTRACT.json",
+      "sha256": "2058eb9c3e2b29f640b5595fded2d063b772b1dfae2c62b4af57d78985e16833"
+    },
+    {
+      "file": "SECTION-238-TRUTH-PREFLIGHT.json",
+      "sha256": "50a07fa012b883544121ab39c6416a83c866478948e94948c207444b3dfa812d"
+    },
+    {
+      "file": "SECTION-238-SCORING-RULES.json",
+      "sha256": "038b799af8ccb90536c475217bbd74de7bc5c3dda74dc7b27807bcb2ab73e8f8"
+    },
+    {
+      "file": "SECTION-238-PREREGISTERED-FAILURE-OPTIONS.json",
+      "sha256": "bc1dc6b954352586c512f0ccb6cf538b88b92dce76ff4a7c9118a4acb151c8b4"
+    },
+    {
+      "file": "SECTION-238-FROZEN-PROTOCOL.json",
+      "sha256": "980e6be93bb17e4cd5134267fec3bceaccb7381c7de5dd1e308977919fb96094"
+    }
+  ],
+  "packageDigest": "a77ba19ecad8a53406684f37adbeaaffd0ac8b02aabe2c289a956ed6b8265cf5",
+  "instrumentDigest": "21ea0832330ff73fa928aa8b8e8854fccc10a5a33a61c52a3933ec30eaa70f1f",
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "closureDigest237": "1820bfd10ae3ab9105bd4233e97d97500267c6361cf520c60438383540461755",
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+  "providerCallsSoFar": 0,
+  "spendUsdSoFar": 0
+}

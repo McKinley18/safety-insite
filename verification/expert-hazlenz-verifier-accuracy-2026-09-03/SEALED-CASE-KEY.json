@@ -1,0 +1,80 @@
+{
+  "note": "NOT SENT TO THE PROVIDER. Maps blinded case ids back to stored executions for scoring.",
+  "key": [
+    {
+      "caseId": "VC-01",
+      "draw": "R3",
+      "rowId": "HS-P1"
+    },
+    {
+      "caseId": "VC-02",
+      "draw": "R2",
+      "rowId": "HS-H1"
+    },
+    {
+      "caseId": "VC-03",
+      "draw": "R1",
+      "rowId": "HS-J1"
+    },
+    {
+      "caseId": "VC-04",
+      "draw": "R3",
+      "rowId": "HS-E1"
+    },
+    {
+      "caseId": "VC-05",
+      "draw": "R1",
+      "rowId": "HS-R1"
+    },
+    {
+      "caseId": "VC-06",
+      "draw": "R3",
+      "rowId": "HS-N1"
+    },
+    {
+      "caseId": "VC-07",
+      "draw": "R2",
+      "rowId": "HS-P1"
+    },
+    {
+      "caseId": "VC-08",
+      "draw": "R3",
+      "rowId": "HS-A1"
+    },
+    {
+      "caseId": "VC-09",
+      "draw": "R1",
+      "rowId": "HS-N1"
+    },
+    {
+      "caseId": "VC-10",
+      "draw": "R2",
+      "rowId": "HS-R1"
+    },
+    {
+      "caseId": "VC-11",
+      "draw": "R3",
+      "rowId": "HS-J1"
+    },
+    {
+      "caseId": "VC-12",
+      "draw": "R1",
+      "rowId": "HS-P1"
+    },
+    {
+      "caseId": "VC-13",
+      "draw": "R3",
+      "rowId": "HS-H1"
+    },
+    {
+      "caseId": "VC-14",
+      "draw": "R2",
+      "rowId": "HS-J1"
+    },
+    {
+      "caseId": "VC-15",
+      "draw": "R3",
+      "rowId": "HS-R1"
+    }
+  ]
+}

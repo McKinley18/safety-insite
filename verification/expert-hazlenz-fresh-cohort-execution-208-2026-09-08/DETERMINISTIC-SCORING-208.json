@@ -1,0 +1,1143 @@
+{
+  "artifact": "SECTION_208_DETERMINISTIC_SCORING",
+  "producedBefore": "ANY_HUMAN_SEMANTIC_VERDICT",
+  "neverShownAs": "A_SUGGESTED_VERDICT_ON_ANY_SEMANTIC_SLOT",
+  "preregistrationIdentity": "879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4",
+  "providerCalls": 50,
+  "providerSpendUsd": 2.308554,
+  "databaseOperations": 0,
+  "legs": {
+    "firstPass": 24,
+    "governedStage": 1,
+    "verifier": 25
+  },
+  "retries": [],
+  "failureClasses": {
+    "NO_FAILURE": 49,
+    "TRANSPORT_STRUCTURAL": 1
+  },
+  "grammarIdentities": [
+    "FIRST_PASS:8b9847471b4812ce",
+    "FIRST_PASS:c0df75103834b03c",
+    "FIRST_PASS:0248677c838b44b3",
+    "GOVERNED_STAGE:911a80a31791a0bb",
+    "VERIFIER:e9e3a4a2788bc8c5"
+  ],
+  "executionValidCaseCount": 24,
+  "executionValidCases": [
+    "AC-01",
+    "AC-02",
+    "AC-03",
+    "AC-04",
+    "AC-05",
+    "AC-06",
+    "AC-07",
+    "AC-08",
+    "AC-09",
+    "AC-10",
+    "AC-11",
+    "AC-12",
+    "AC-13",
+    "AC-14",
+    "AC-15",
+    "AC-16",
+    "AC-17",
+    "AC-18",
+    "AC-19",
+    "AC-20",
+    "AC-21",
+    "AC-22",
+    "AC-23",
+    "AC-24"
+  ],
+  "perCase": [
+    {
+      "caseId": "AC-01",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 2,
+      "admittedCount": 2,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+        "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1"
+      ]
+    },
+    {
+      "caseId": "AC-02",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 2,
+      "admittedCount": 2,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+        "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1"
+      ]
+    },
+    {
+      "caseId": "AC-03",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1"
+      ]
+    },
+    {
+      "caseId": "AC-04",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 0,
+      "admittedCount": 0,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": []
+    },
+    {
+      "caseId": "AC-05",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-05.497-609.1"
+      ]
+    },
+    {
+      "caseId": "AC-06",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 0,
+      "admittedCount": 0,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": []
+    },
+    {
+      "caseId": "AC-07",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 2,
+      "admittedCount": 2,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+        "FP.REQUIRED_CONTROL.OBS-AC-07.439-518.1"
+      ]
+    },
+    {
+      "caseId": "AC-08",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1"
+      ]
+    },
+    {
+      "caseId": "AC-09",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.HAZARD_SEVERITY.OBS-AC-09.235-425.1"
+      ]
+    },
+    {
+      "caseId": "AC-10",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1"
+      ]
+    },
+    {
+      "caseId": "AC-11",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1"
+      ]
+    },
+    {
+      "caseId": "AC-12",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-12.317-473.1"
+      ]
+    },
+    {
+      "caseId": "AC-13",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1"
+      ]
+    },
+    {
+      "caseId": "AC-14",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1"
+      ]
+    },
+    {
+      "caseId": "AC-15",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1"
+      ]
+    },
+    {
+      "caseId": "AC-16",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1"
+      ]
+    },
+    {
+      "caseId": "AC-17",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-17.503-634.1"
+      ]
+    },
+    {
+      "caseId": "AC-18",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1"
+      ]
+    },
+    {
+      "caseId": "AC-19",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1"
+      ]
+    },
+    {
+      "caseId": "AC-20",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 2,
+      "admittedCount": 2,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+        "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1"
+      ]
+    },
+    {
+      "caseId": "AC-21",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1"
+      ]
+    },
+    {
+      "caseId": "AC-22",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 1,
+      "admittedCount": 1,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [
+        "GOV-ECP-01"
+      ],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": [
+        "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1"
+      ]
+    },
+    {
+      "caseId": "AC-23",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 0,
+      "admittedCount": 0,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": []
+    },
+    {
+      "caseId": "AC-24",
+      "executionValid": true,
+      "failureClass": "NO_FAILURE",
+      "stopReason": "tool_use",
+      "declarationCount": 0,
+      "admittedCount": 0,
+      "refusedCount": 0,
+      "refusalCodes": [],
+      "rr7": {
+        "preservedCount": 0,
+        "safetyStateComplete": true,
+        "totalLossOnThisRow": false
+      },
+      "citationShapedHits": [],
+      "forbiddenFieldHits": [],
+      "unsuppliedGovernedIdsNamed": [],
+      "suppliedGovernedIdsNamed": [],
+      "degeneracy": {
+        "degenerate": false,
+        "reasons": []
+      },
+      "factKeys": []
+    }
+  ],
+  "verifierRecords": [
+    {
+      "caseId": "AC-01",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-01.242-300.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-01",
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-01.499-623.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-02",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "bindingFactKey": "FP.REQUIRED_CONTROL.OBS-AC-02.235-369.1",
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-02",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-02.434-567.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-03",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-03.438-566.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-05",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-05.497-609.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-07",
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-07.264-348.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-07",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-07.439-518.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-08",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-08.600-658.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-09",
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-09.235-425.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-10",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-10.343-528.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-11",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-11.455-496.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-12",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-12.317-473.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-13",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-13.530-594.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-14",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-14.485-574.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-15",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-15.373-433.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-16",
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-16.537-643.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-17",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-17.503-634.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-18",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-18.534-622.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-19",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-19.426-497.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-20",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-20.207-347.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-20",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-AC-20.639-776.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-21",
+      "factKey": "FP.HAZARD_SEVERITY.OBS-AC-21.362-429.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "VERIFIED_AS_IS",
+      "bindingFactKey": null,
+      "admissionAdmitted": true,
+      "admissionCodes": []
+    },
+    {
+      "caseId": "AC-22",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "failureClass": "NO_FAILURE",
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "bindingFactKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1",
+      "admissionAdmitted": false,
+      "admissionCodes": [
+        "PROPOSAL_REQUIRED_FOR_THIS_VERDICT",
+        "SOURCE_MODE_MISSING_ON_A_CLARIFICATION",
+        "NOMINATION_FIELD_MISSING"
+      ]
+    }
+  ],
+  "governedRecords": [
+    {
+      "caseId": "AC-22",
+      "recordKind": "GOVERNED_STAGE",
+      "reason": null,
+      "topLevelKeys": [
+        "bindings"
+      ],
+      "mintedReferences": [
+        {
+          "ref": "F1",
+          "factKey": "FP.REQUIRED_CONTROL.OBS-AC-22.367-417.1"
+        }
+      ],
+      "bindings": [
+        {
+          "factRef": "F1",
+          "determination": "BINDS",
+          "governedEvidenceSourceIds": [
+            "GOV-ECP-01"
+          ],
+          "bearingStatement": "This record describes the requirement that stored or residual energy be dissipated or restrained by methods such as blocking or bleeding down, which bears on whether such a method exists on the machine."
+        }
+      ]
+    },
+    {
+      "caseId": "AC-23",
+      "recordKind": "GOVERNED_STAGE_NOT_CALLED",
+      "reason": "the first pass admitted no owed fact on this case, so there is no candidate fact to nominate a governed binding for. This is NOT a provider failure and NOT a degenerate output; on AC-24 zero declarations is the frozen correct answer.",
+      "topLevelKeys": [],
+      "mintedReferences": [],
+      "bindings": null
+    },
+    {
+      "caseId": "AC-24",
+      "recordKind": "GOVERNED_STAGE_NOT_CALLED",
+      "reason": "the first pass admitted no owed fact on this case, so there is no candidate fact to nominate a governed binding for. This is NOT a provider failure and NOT a degenerate output; on AC-24 zero declarations is the frozen correct answer.",
+      "topLevelKeys": [],
+      "mintedReferences": [],
+      "bindings": null
+    }
+  ],
+  "deterministicGateHalves": {
+    "G3_structural": {
+      "note": "STRUCTURAL HALF ONLY. Whether a lost identification was semantically valid is axes A and B, which are human judgments. This half reports what the machinery saw.",
+      "rows": [
+        {
+          "caseId": "AC-01",
+          "admitted": 2,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-02",
+          "admitted": 2,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-03",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-04",
+          "admitted": 0,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-05",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-06",
+          "admitted": 0,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-07",
+          "admitted": 2,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-08",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-09",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-10",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-11",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-12",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-13",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-14",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-15",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-16",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-17",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-18",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-19",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-20",
+          "admitted": 2,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-21",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-22",
+          "admitted": 1,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-23",
+          "admitted": 0,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        },
+        {
+          "caseId": "AC-24",
+          "admitted": 0,
+          "totalLossOnThisRow": false,
+          "safetyStateComplete": true,
+          "structurallySilentTotalLoss": false
+        }
+      ],
+      "structurallySilentTotalLossCount": 0
+    },
+    "G10_provider_settlement_authority": {
+      "threshold": "0 occurrences",
+      "violations": [],
+      "outcome": "PASSED",
+      "denominator": 50
+    },
+    "G11_deterministic_authority": {
+      "threshold": "0 occurrences",
+      "note": "the executed path performs no repair, no reconstruction and no prose parsing. The projection refuses malformed declarations and RR-7 preserves them without composing any field. This half records that no repair path exists in the executed code; the recorded human check remains outstanding.",
+      "automatedViolations": [],
+      "outcome": "PASSED_AUTOMATED_HALF"
+    },
+    "G12_governed_citation_boundary": {
+      "threshold": "0 escapes",
+      "violations": [],
+      "outcome": "PASSED_SCAN_HALF",
+      "denominator": 24
+    },
+    "G13_rr7_preservation": {
+      "threshold": "100% of refused declarations carrying a semantic identification",
+      "denominator": 0,
+      "failures": [],
+      "outcome": "NOT_EXERCISED_ZERO_DENOMINATOR",
+      "zeroDenominatorRule": "a gate reporting PASSED on an empty denominator would be the vacuous-CORRECT failure at gate level; §207 froze NOT_EXERCISED for that case."
+    }
+  },
+  "generatedAt": "2026-09-08T23:43:44.656Z"
+}

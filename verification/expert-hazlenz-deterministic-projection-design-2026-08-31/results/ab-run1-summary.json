@@ -1,0 +1,265 @@
+{
+  "label": "ab-run1",
+  "repeats": 3,
+  "model": "qwen3-coder:30b",
+  "provider": "local-ollama",
+  "hostedCalls": 0,
+  "costUsd": 0,
+  "elapsedMs": 565433,
+  "note": "RECORDING-ONLY instrumentation. No pass/fail gate in expert-routing-metrics.ts was changed.",
+  "perCase": {
+    "R6": {
+      "control": "A_R6_EXACT",
+      "hardGate": true,
+      "gate": "No same-family ACTIVE candidate without a concrete override pathway. The primary defect.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {},
+        "totalCandidates": 0,
+        "totalClarifications": 0,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 3
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {},
+        "totalCandidates": 0,
+        "totalClarifications": 0,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 3
+      }
+    },
+    "R6-H": {
+      "control": "CURRENT_TRANSITION",
+      "hardGate": true,
+      "gate": "A clarification/candidate must engage the STATED restart with the guard still off.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 6,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 3,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 6,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 3,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    },
+    "R6-I": {
+      "control": "F_DETERMINISTIC_FALSE_NEGATIVE",
+      "hardGate": true,
+      "gate": "Engine says machine_guarding NOT_APPLICABLE 0.96 while the press RUNS unguarded. Expert MUST override.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {},
+        "totalCandidates": 0,
+        "totalClarifications": 3,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 3,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 3,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    },
+    "V7": {
+      "control": "E_SEPARATE_CURRENT_EXPOSURE",
+      "hardGate": true,
+      "gate": "Engine says NOT_APPLICABLE 0.96 while a technician reaches into the point of operation. Expert MUST override.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 4,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 3,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 6,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 1,
+        "supportedOverrides": 2,
+        "silentAgreementReps": 0
+      }
+    },
+    "V4": {
+      "control": "C_INCOMPLETE_ISOLATION",
+      "hardGate": true,
+      "gate": "Engine says NOT_APPLICABLE 0.96 with ALL predicates SUPPORTED and a live second source. Recall must survive.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 6
+        },
+        "totalCandidates": 6,
+        "totalClarifications": 3,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 3,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 3,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    },
+    "V2": {
+      "control": "D_STORED_ENERGY_REMAINS",
+      "hardGate": true,
+      "gate": "Engine says NOT_APPLICABLE 0.96 with the accumulator charged. Recall must survive.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {},
+        "totalCandidates": 0,
+        "totalClarifications": 3,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 1
+        },
+        "totalCandidates": 1,
+        "totalClarifications": 3,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    },
+    "V5": {
+      "control": "B_STOPPED_NOT_ISOLATED / G_UNKNOWN_STATE",
+      "hardGate": true,
+      "gate": "Engine says machine_guarding UNKNOWN 0.45. Recall must survive; UNKNOWN must not silence Expert.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 5,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 5
+        },
+        "totalCandidates": 5,
+        "totalClarifications": 5,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    },
+    "V8": {
+      "control": "E2_DIFFERENT_FAMILY_ADDITION",
+      "hardGate": true,
+      "gate": "Expert must still ADD a different family (chemical/spark) the engine never assessed.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 6,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 6,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 0,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    },
+    "V1-CTRL": {
+      "control": "H_CONTROLLED_BUT_CONTROL_FAILED",
+      "hardGate": true,
+      "gate": "A CONSTRUCTED lockout_tagout=CONTROLLED is projected onto an observation that states the stored energy has NOT been bled. Expert must disagree rather than accept the control.",
+      "baseline": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 3
+        },
+        "totalCandidates": 3,
+        "totalClarifications": 4,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 3,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      },
+      "projected": {
+        "reps": 3,
+        "assertedConditionStateDistribution": {
+          "ACTIVE": 2
+        },
+        "totalCandidates": 2,
+        "totalClarifications": 4,
+        "totalDisagreements": 0,
+        "unsupportedSameFamilyActive": 2,
+        "supportedOverrides": 0,
+        "silentAgreementReps": 0
+      }
+    }
+  }
+}

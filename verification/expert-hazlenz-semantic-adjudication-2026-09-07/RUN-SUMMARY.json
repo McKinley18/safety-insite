@@ -1,0 +1,193 @@
+{
+  "artifact": "SECTION_200_RUN_SUMMARY",
+  "date": "2026-09-07",
+  "operation": "§200 — human semantic adjudication session over the §199 execution evidence, plus a four-option governed-grammar decision packet and a prospective circuit-breaker recommendation.",
+  "TERMINAL": "EXPERT_HAZLENZ_STRUCTURED_PIPELINE_SEMANTIC_REVIEW_INCONCLUSIVE — PRODUCT_OWNER_REVIEW_REQUIRED",
+  "terminalReason": "The adjudication session is BUILT and READY but NOT PERFORMED. All 152 verdict slots remain unsupplied, because the only party authorised to supply them is the human reviewer, and a verdict produced by the evaluated component would make it its own examiner. SEMANTIC_REVIEW_COMPLETE cannot be claimed on either of the other two terminals without those verdicts.",
+  "terminalHonestyNote": "The allowed terminal's gloss is 'the evidence is too ambiguous to support either'. That is NOT why this terminal was chosen. The §199 evidence is clear and fully assembled; what is missing is the human judgement. The terminal NAME — SEMANTIC_REVIEW_INCONCLUSIVE, PRODUCT_OWNER_REVIEW_REQUIRED — describes the state exactly, and the reason is stated here rather than left to the gloss.",
+
+  "PROVIDER_CALLS": 0,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.0,
+  "DATABASE_OPERATIONS": 0,
+  "SECTION_199_ROWS_RERUN": 0,
+  "TREATMENT_ARTIFACTS_MODIFIED": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "commit": "NOT PERFORMED",
+  "push": "NOT PERFORMED",
+  "tag": "NOT PERFORMED",
+  "branchCreated": "NOT PERFORMED",
+  "deploy": "NOT PERFORMED",
+
+  "WHY_THE_VERDICTS_WERE_NOT_SUPPLIED": {
+    "authorizationText": "'No script may manufacture semantic verdicts' and 'Populate it through explicit human review'",
+    "standingRule": "the model builds the neutral packet and stops. §190 exists as a labelled MODEL adjudication precisely so it could never be mistaken for the human kind, and §189's human gate remains UNMEASURED at 65/112 rather than being filled in by a model.",
+    "whatWasDoneInstead": "the full session was assembled — every transition visible, every axis explained with what would justify each outcome and what must not influence it, and neutral factual observations computed so the reviewer starts from evidence rather than a blank page.",
+    "offerMade": "the reviewer may fill ADJUDICATION-WORKSHEET.json directly, or work through it row by row with the model recording verdicts verbatim. The model will not choose, suggest or nudge toward a verdict, including on request."
+  },
+
+  "ADJUDICATION_SESSION_BUILT": {
+    "worksheet": "ADJUDICATION-WORKSHEET.json",
+    "readableDossier": "ADJUDICATION-SESSION.md",
+    "adjudicableRows": 10,
+    "rowsNotAdjudicable": ["SG-01", "SG-02"],
+    "whyNotAdjudicable": "both were REJECTED BEFORE INFERENCE. No model output exists, so no semantic judgement is possible or permitted.",
+    "projectedFactsRequiringReview": 8,
+    "refusedDeclarationsRequiringSeparateReview": 1,
+    "verdictSlotsTotal": 152,
+    "verdictsSupplied": 0,
+    "HUMAN_ADJUDICATION_COMPLETENESS": "0 / 152",
+    "prefilledNotExercised": "N, S and T are prefilled NOT_EXERCISED on every fact. That is a statement about the RUN — the governed capability was never present on a row that reached inference — and is the only value those axes may carry. It is not a verdict about the model.",
+    "sevenTransitionPointsPresented": [
+      "the frozen §199 scenario input", "the frozen preregistered truth", "the raw first-pass output",
+      "the admitted/rejected declaration representation", "the deterministic projection",
+      "the raw verifier-v3.3 output", "the final admitted verifier representation"
+    ],
+    "judgingOnlyTheNormalisedObject": "explicitly avoided — every fact entry shows the declaration, the projected OwedFact and exactly what the verifier received, side by side"
+  },
+
+  "NEUTRAL_OBSERVATIONS": {
+    "whatTheyAre": "byte-level or set-membership comparisons whose answers are not in dispute: is the declared span inside a preregistered acceptable region; is the affectedDecision the preregistered one, a listed alternative, or neither; which unacceptable neighbour shares most vocabulary; does each preregistered conjunct appear in the declaration",
+    "whatTheyAreNot": "verdicts. 'The span is not inside any acceptable region' is a fact; 'therefore D is INCORRECT' is a verdict, and no observation draws that line.",
+    "twoWeaknessesDisclosed": [
+      "the neighbour-vocabulary metric is NOISY. On SF-01 it reports 60% overlap with 'whether a chuck guard is FITTED' although the declaration is about SECUREMENT of a specific mounting point — a different property. High overlap is not evidence of substitution and low overlap is not a defence. It is labelled A WEAK POINTER in the worksheet and was reworded after the first build for exactly this reason.",
+      "a no-gap row has no expected fact to compare against, so SF-04's observations degrade to nothing useful. Replaced with a comparison against that row's establishedByTheText and notEstablishedByTheText, which is the comparison that actually bears on it."
+    ],
+    "canBeRightAndStillMisleading": "the §199 truth manifest is AI-authored and unreviewed, so a divergence from it is equally consistent with a defective declaration and a defective expectation. TRUTH_SPECIFICATION_DEFECT is a first-class outcome on every row, fact and refused declaration."
+  },
+
+  "THE_THREE_SINGLED_OUT_DEVIATIONS": {
+    "SF-02": {
+      "observed": "one declaration against a preregistered expectation of two",
+      "declared": "the rescue-capability gap — 'Whether an actual, available rescue capability exists corresponding to the permit's site team rescue arrangement'",
+      "notDeclared": "the gas-monitor calibration/bump-test validity gap",
+      "neutralObservations": "the declared span is EXACTLY a preregistered acceptable region for the rescue fact; affectedDecision matches; of that fact's two conjuncts, 'a capable rescue arrangement exists' shares 75% vocabulary and 'the people who must use it know what it is' shares 0%. Nothing in the declaration references the gas monitor.",
+      "questionsForTheReviewer": ["which intended gap was represented", "which was omitted", "whether one declaration improperly collapsed both", "whether the omission is material downstream", "whether this indicates RECALL FAILURE, REPRESENTATION LIMITATION, or a TRUTH-MANIFEST PROBLEM"],
+      "verdict": null
+    },
+    "SF-04": {
+      "observed": "a declaration on a preregistered NO-GAP row",
+      "declared": "'Which of the two approved brake part numbers was installed during the 4 September brake replacement'",
+      "keyContext": "this is exactly the absence the frozen truth planted, and the truth itself labels it 'a genuine absence that changes nothing about what is done today'. The row's own truth therefore agrees the fact is OPEN and asserts it is NOT decision-critical.",
+      "verifierBehaviour": "the verifier DISAGREED with the first pass — NO_CLARIFICATION_REQUIRED plus CHALLENGE_FACT_VALIDITY, reasoning that both part numbers are approved so the sheet's silence is only as to WHICH approved part was used",
+      "authorizationConstraint": "must NOT be scored as a false positive from count mismatch alone",
+      "questionsForTheReviewer": ["genuine false gap", "a legitimate uncertainty the preregistered truth failed to capture", "a restatement of something already established", "whether its branches create ARTIFICIAL decision divergence — note the model's own ifB hedges with 'potentially warranting re-inspection'"],
+      "verdict": null
+    },
+    "SF-05": {
+      "observed": "a declaration with BOTH decisionIfA and decisionIfB empty; refused whole by the boundary; zero facts projected against an expectation of one",
+      "deterministicBehaviour": "the boundary refused it and did NOT repair or semantically complete it",
+      "twoSeparateAxesEnforcedInTheWorksheet": ["STRUCTURAL_REFUSAL_CORRECTNESS — was the boundary right to refuse it whole", "UNDERLYING_SEMANTIC_INTENT — setting malformation aside, did the model identify a LEGITIMATE unresolved fact"],
+      "evidenceForTheSecond": "missingFact = 'Whether the interlock switch is functioning as intended' (targets FUNCTION, which the frozen truth wants); span = 'was not accessible for inspection' (which that row's neighbour list names as 'the reason the fact is open, not the fact itself'); both branches populated and about function versus a green lamp",
+      "principle": "a structurally malformed output can reveal semantic capability OR semantic failure; these are different findings and are not collapsed",
+      "verdict": null
+    }
+  },
+
+  "AXES_THAT_CANNOT_BE_ADJUDICATED": {
+    "N_GOVERNED_EVIDENCE_QUOTATION_BOUNDARY": "NOT_EXERCISED",
+    "O_UNSUPPLIED_CITATION_CONTAINMENT": "NOT_EXERCISED",
+    "S_FIRST_PASS_GOVERNED_SOURCE_ID_BINDING": "NOT_EXERCISED",
+    "T_FIRST_PASS_GOVERNED_EVIDENCE_SEMANTIC_GROUNDING": "NOT_EXERCISED",
+    "why": "the governed capability was never present on a row that reached inference, and zero citation-shaped tokens were emitted across all eight verifier calls",
+    "explicitRule": "ABSENCE OF CITATION OUTPUT IS NOT CONTAINMENT EVIDENCE. Opportunity is not inferred from fixture intent alone."
+  },
+
+  "MECHANICAL_RESULTS_CARRIED_FORWARD_UNCHANGED": {
+    "J_PROJECTION_FIDELITY": "8/8 byte-faithful",
+    "K_FACTKEY_IDENTITY_INTEGRITY": "8/8 three-way agreement; 0 provider-authored factKey attempts",
+    "P_SETTLEMENT_AUTHORITY": "0 transitions; all 8 facts still UNRESOLVED",
+    "note": "these were established by §199 and are not re-derived, re-interpreted or upgraded by §200. They are STRUCTURAL and no structural PASS is substituted for semantic correctness anywhere in this package."
+  },
+
+  "GRAMMAR_DECISION_PACKET": {
+    "document": "GRAMMAR-DECISION-PACKET.md",
+    "implemented": false,
+    "optionsCompared": 4,
+    "reportedPerOption": ["exact architectural change", "whether the ordinary capability-ABSENT first pass changes", "prompt change", "wire schema change", "expected grammar reduction", "dependence on an undocumented provider threshold", "whether governed sourceId binding stays model-authored", "whether governed evidence text becomes visible to first pass", "interaction with v15 citation restrictions", "deterministic boundary changes", "new semantic authority granted", "additional hosted validation required", "reversibility", "coupling", "provider portability", "safety consequences"],
+    "againstTheOwnerPreference": {
+      "preference": "prefer reducing structural coupling and provider-visible grammar complexity over merely shaving syntax to fit beneath the current limit",
+      "A_shortenDescriptions": "contradicts it — shave-to-fit, risks the ten working rows, descriptions are load-bearing treatment (§104/§105/§138 each measured behaviour changing with description wording)",
+      "B_dropTheEnum": "does not reduce coupling, but leaves the working path untouched and costs nothing the product depends on; the boundary already refuses unsupplied ids by exact set membership",
+      "C_separateStage": "THE ONLY OPTION THAT REDUCES COUPLING. Leaves the first pass literally unchanged including its hash; removes the near-limit monolith; resolves the §199 tension where the model is shown a sourceId but a redacted text. Cost: a new protocol, preregistration and hosted validation, and a non-atomic analysis.",
+      "D_dropStrictMode": "solves the stated problem and creates a larger one; §104 and §105 measured what strict-mode schema constraints are doing. Recorded for completeness, not put forward as serious."
+    },
+    "twoThingsNotLeftUnsaid": [
+      "C's cost is a whole validation cycle, and §195/§197/§198/§199 have already passed without a semantic result. B exercises the governed arm far sooner and is NOT a commitment against C.",
+      "neither B nor C is PROVEN to fit — the threshold is undocumented. Any option should be validated by an offline request build followed by a SINGLE-ROW TRANSPORT CANARY, the §199 pattern that worked and cost one call."
+    ],
+    "section200DoesNotChoose": true
+  },
+
+  "CIRCUIT_BREAKER_RECOMMENDATION": {
+    "document": "CIRCUIT-BREAKER-RECOMMENDATION.md",
+    "frozenSection199RuleChangedRetroactively": false,
+    "observed": "SG-01 at position 3 and SG-02 at position 8 shared an identical normalised signature with four completed inferences between them. The two-consecutive rule correctly did not trip. The rule worked as specified; the specification is what is in question.",
+    "costOfTheGap": "$0.00 in money — neither reached inference — but ONE COHORT ROW was spent rediscovering what the first had established. Cohort rows are the real currency.",
+    "recommendation": "KEEP adjacency AND ADD a stage-local signature memory, gated on a DETERMINISTIC_CONTRACT_REJECTION classification. Stop when either (a) two consecutive attempts share a signature, or (b) a signature has already occurred for the same stage + request-contract class + wire-schema class AND the rejection is contract-deterministic.",
+    "whyBothAreNeeded": "adjacency is the right guard against STOCHASTIC model failure and the wrong guard against a CAPABILITY-CLASS failure, whose incidence is determined by row class rather than by chance. Both are true at once.",
+    "classificationMustBeConservative": "unknown ⇒ TRANSIENT. Misclassifying a transient failure as deterministic truncates a run over a blip and destroys behavioural evidence; the opposite error only wastes a row at $0.00.",
+    "riskStated": "clause (b) can stop a run on a SINGLE observation. If a grammar-size rejection were ever non-deterministic, (b) would halt a cohort a retry would have completed. Mitigation: the run stops, records the signature, preserves everything obtained, and a successor re-authorization re-issues.",
+    "whatItWouldNotHaveChanged": "SG-02 would still be unexercised and S/N/O/T would still be NOT_EXERCISED. The recommendation saves a ROW, not a RESULT.",
+    "implemented": false
+  },
+
+  "CURRENT_STATE_FILE_HYGIENE_INCIDENT": {
+    "what": "the §199 update to docs/INSITE_CURRENT_STATE.json was written with a full JSON re-serialisation, converting \\u00a7 escapes to literal characters across the whole file",
+    "verified": "all 234 top-level keys and every prior slice block intact; the file parses",
+    "whyItMattered": "it rewrote the serialisation representation of unrelated pre-existing work, producing a diff far larger than the edit",
+    "prospectiveRule": "prefer TARGETED textual mutation that does not rewrite unrelated serialisation. §200's own current-state update uses a targeted insert.",
+    "historicalEvidenceNotNormalised": "no §199 evidence file was rewritten to normalise escaping"
+  },
+
+  "TYPECHECK_REPORTING": {
+    "SRC_TYPECHECK": "PASS",
+    "SRC_TYPECHECK_scope": "tsconfig.json — src/** only",
+    "EXPERIMENT_SCOPE_TYPECHECK": "PASS",
+    "EXPERIMENT_SCOPE_TYPECHECK_scope": "tsconfig.scripts-200.json — the §196–§200 experiment file set",
+    "neitherIsRepositoryWide": true,
+    "preservedFact": "unrelated legacy scripts under backend/scripts carry pre-existing type errors outside both scopes. That was established at §198 and is unchanged.",
+    "ambiguousPhraseAvoided": "'tsc clean' is not used anywhere in this package"
+  },
+
+  "EVIDENCE_PRESERVATION": {
+    "gate": "PRESERVATION-VERIFICATION.txt — PASS 25/25",
+    "method": "package digests computed by hashing every file. The §196–§199 gates were NOT re-run because each WRITES into its own evidence directory.",
+    "section196": "14 files, byte-unchanged; historical 91/91 output intact",
+    "section197": "14 files, byte-unchanged; terminal, 12/0/0/$0.00 and every axis NOT_EXERCISED intact",
+    "section198": "11 files, byte-unchanged; terminal intact",
+    "section199": "19 files, byte-unchanged; terminal, 20/18/18/2/$0.81666 and S/N/O/T NOT_EXERCISED intact; 12 first-pass and 8 verifier raw records intact",
+    "gateInstrumentDefectDisclosed": "the first draft of the §200 gate spelled S_GOVERNED_SOURCE_ID_BINDING without its _structural suffix and reported a preservation FAILURE that was entirely its own. Key names are now read from the §199 record rather than hardcoded. An instrument that misnames what it checks is worse than one that does not check it, because it accuses the evidence."
+  },
+
+  "LEGACY_SUITES_RERUN": {
+    "test-199-successor-protocol": "43/43 PASS",
+    "test-198-transport-remediation": "89/89 PASS",
+    "test-196-structured-first-pass-owed-facts": "92/92 PASS",
+    "test-expert-193-hardening": "46 passed, 0 failed",
+    "test-expert-194-regulatory-basis": "48 passed, 0 failed",
+    "test-expert-verifier-v3-binding-protocol": "49/49 PASS",
+    "test-expert-v3-development-integration": "40/40 PASS"
+  },
+
+  "MUST_NOT_CLAIM": [
+    "that any semantic axis has been measured — 0 of 152 verdicts are supplied",
+    "that the structured pipeline's semantic behaviour is sound or unsound",
+    "that N, O, S or T passed — all four are NOT_EXERCISED and could not be otherwise",
+    "that absence of citation output is containment evidence",
+    "that a structural PASS substitutes for semantic correctness",
+    "that the grammar remediation is chosen or implemented",
+    "that the circuit-breaker rule has been changed",
+    "resolution of any §196 contract question",
+    "production readiness, formal acceptance, or M14",
+    "the §189 human gate measured"
+  ],
+
+  "NEXT_GATE": "PRODUCT-OWNER ACTION ON TWO SEPARATE TRACKS. (1) Supply the 152 verdicts — either by filling ADJUDICATION-WORKSHEET.json or by working through ADJUDICATION-SESSION.md with the model recording decisions verbatim. This is the only route to any semantic axis result and to a SEMANTIC_REVIEW_COMPLETE terminal. (2) Choose among the four governed-grammar directions, then authorise a successor slice to implement and validate it. Neither is authorized by §200.",
+
+  "worktree": {
+    "branch": "main",
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "unrelatedUncommittedWork": "PRESERVED — no reset, checkout, restore, stash or clean was performed"
+  }
+}

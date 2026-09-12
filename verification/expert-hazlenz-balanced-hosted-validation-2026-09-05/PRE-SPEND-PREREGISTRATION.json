@@ -1,0 +1,135 @@
+{
+  "artifact": "SECTION_175_PRE_SPEND_PREREGISTRATION",
+  "writtenBeforeFirstProviderCall": true,
+  "1_provider_model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "2_prompt_identity": {
+    "promptVersion": "hazlenz.expert.prompt.v13",
+    "systemPromptSha256": "c4b3162439988e74186c36f75ee1f14875835e1cc832251a8d7365a4b158e3f3",
+    "systemPromptChars": 32097
+  },
+  "3_contract_schema": {
+    "analysisContractVersion": "hazlenz.expert.analysis.v2",
+    "inputContractVersion": "hazlenz.expert.input.v1",
+    "validatorVersion": "hazlenz.expert.validator.v1",
+    "wireSchemaSha256": "96ceed875bc2ff8af2a67b171b2e1fddc4eaae9932ac18f30a9e81202ea80bf5"
+  },
+  "4_frozen_rows": [
+    {
+      "id": "HR-01",
+      "textSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-02",
+      "textSha256": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-03",
+      "textSha256": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-04",
+      "textSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-05",
+      "textSha256": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-06",
+      "textSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-07",
+      "textSha256": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-08",
+      "textSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-09",
+      "textSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-10",
+      "textSha256": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed",
+      "truthRequired": false
+    }
+  ],
+  "5_execution_order": [
+    "HR-01",
+    "HR-02",
+    "HR-03",
+    "HR-04",
+    "HR-05",
+    "HR-06",
+    "HR-07",
+    "HR-08",
+    "HR-09",
+    "HR-10"
+  ],
+  "6_executions_per_row": 1,
+  "7_scoring_rules": {
+    "SILENCE_PRECISION": "EXACT AND MECHANICAL. Frozen truth owes nothing on a SILENCE row, so a row is correct iff ZERO clarifications were emitted. Any clarification there is unnecessary by definition. No semantic judgement, no authored target.",
+    "REQUIRED_RECALL_LOOSE": "MECHANICAL UPPER BOUND. Correct iff at least one clarification was emitted. This does NOT establish that the question addressed the owed fact.",
+    "REQUIRED_RECALL_STRICT": "NOT COMPUTED BY THIS SCRIPT. The frozen §174 record has MATERIAL_UNRESOLVED_FACTS = null on 10/10 rows, so no human-supplied target exists. Every emitted clarification is exported verbatim for human adjudication instead.",
+    "BALANCED_ACCURACY": "Reported as a RANGE only: the lower bound assumes every REQUIRED emission missed its fact, the upper bound assumes every one hit. A point estimate is not available.",
+    "ROW_LEVEL_ACCURACY": "Reported as the same range, for the same reason."
+  },
+  "8_malformed_handling": "A response failing contract validation is recorded as CONTRACT_FAILURE and scored as NO clarification emitted. It is never silently retried and never dropped.",
+  "9_retry_policy": {
+    "retries": 0,
+    "note": "zero. A failed call is recorded as a failure."
+  },
+  "10_provider_call_hard_cap": 12,
+  "11_dollar_hard_cap_usd": 3,
+  "12_interpretation_rules": {
+    "sharedAuthorship": "Claude authored the rows; GPT-5.6 Sol reviewed before owner finalization; Expert HazLenz is Claude-family. A high score does NOT remove provenance uncertainty.",
+    "ifTenOfTen": "PERFECT_DEVELOPMENT_CONCORDANCE — SHARED_MODEL_FAMILY_INSTRUMENT_CHALLENGE_REQUIRED. Do not declare validated. Do not discard the ten rows.",
+    "ifBelowTenOfTen": "Each failure is initially MODEL_OR_CONTRACT_FAILURE_CANDIDATE. Do not blame the instrument without identifying a specific defect in the frozen wording.",
+    "allAskOrAllSilent": "Neither may be described as successful balanced clarification behaviour.",
+    "truthIsNotRedefined": "Frozen verdicts are never edited to agree with Expert."
+  },
+  "uniformInputDecision": {
+    "allowedHazardFamilies": [
+      "confined_space",
+      "conveyors",
+      "fire_explosion",
+      "guarding_interlocks",
+      "machine_guarding",
+      "suspended_loads"
+    ],
+    "derivation": "union of families the real deterministic decomposer emits across the ten frozen observations; IDENTICAL for every row so it cannot separate the classes",
+    "whyThisIsSafe": "clarifications are not family-gated — the hazardFamily enum constrains hazard CANDIDATES only — so the vocabulary cannot prevent Expert from asking about anything",
+    "jurisdiction": "osha-general-industry",
+    "inspectionContext": "location null, task null, for every row",
+    "governedStandards": "none supplied, for every row"
+  },
+  "knownInputAsymmetry": {
+    "observed": "the deterministic decomposer emits a different number of findings per row",
+    "note": "recorded BEFORE the run as a limitation on interpretation, not discovered afterwards"
+  },
+  "provenanceLimitation": {
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "HUMAN_AI_AGREEMENT": "10 / 10",
+    "mustNotBeDescribedAs": "independent human adjudication"
+  }
+}

@@ -1,0 +1,30 @@
+PRODUCTION / CUSTOMER-PATH CONFINEMENT — §105, re-proved 2026-08-30 at HEAD 37a5d1b5
+
+A. files referencing the Expert module:
+   backend/scripts/diagnose-expert-probe-content.ts
+   backend/scripts/diagnose-expert-quote-binding.ts
+   backend/scripts/probe-expert-grounding-repair.ts
+   backend/scripts/probe-expert-hosted-transport.ts
+   backend/scripts/probe-expert-routing.ts
+   backend/scripts/probe-expert-transport.ts
+   backend/scripts/test-expert-authority-merge.ts
+   backend/scripts/test-expert-contract-foundation.ts
+   backend/scripts/test-expert-grounding-contract.ts
+   backend/scripts/test-expert-nocall-harness.ts
+   backend/scripts/test-expert-provider-failure.ts
+   backend/scripts/test-expert-routing-contract.ts
+   backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+   backend/src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider.ts
+   backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+   COUNT: 15
+   §104 recorded 12. §105 adds two probe/test scripts and one diagnostic. Expected, not a regression.
+
+B. controllers / services / modules among them: NONE (0 matches)
+
+C. importers of the HOSTED adapter (construct match):
+   backend/scripts/probe-expert-hosted-transport.ts:37:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+   -> the hosted probe only. §105's new scripts import the LOCAL adapter, never the hosted one.
+
+D. frontend references: NONE (0 matches)
+
+E. does any §105 script import a HOSTED adapter? NO (0 matches) — $0.00 is structurally backed

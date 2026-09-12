@@ -1,0 +1,18 @@
+{
+  "//": "SECTION 202 EXPERIMENT SCOPE ONLY. This configuration typechecks the eight §202 development files and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. `tsc -p tsconfig.json` covers src/** only; `scripts/**` under the project's own compiler options carries 181 pre-existing diagnostics across 43 unrelated legacy files (the figure ~2011 published in §198 was measured with an ad-hoc --strict false invocation and is WRONG). Report results as EXPERIMENT_SCOPE_TYPECHECK, never as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "files": [
+    "scripts/lib/expert-202-adjudication-grouping.ts",
+    "scripts/build-202-adjudication-session.ts",
+    "scripts/test-202-adjudication-grouping.ts",
+    "scripts/lib/expert-202-governed-binding-contract.ts",
+    "scripts/lib/expert-202-governed-stage-pipeline.ts",
+    "scripts/test-202-governed-binding-stage.ts",
+    "scripts/lib/expert-202-effective-grammar-identity.ts",
+    "scripts/lib/expert-202-rejection-cache.ts",
+    "scripts/test-202-grammar-identity-and-cache.ts",
+    "scripts/lib/expert-202-authority-boundary-guards.ts",
+    "scripts/test-202-authority-boundary-guards.ts"
+  ]
+}

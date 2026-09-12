@@ -1,0 +1,199 @@
+§198 SOURCE INTEGRITY GATE — TRANSPORT / BINDING REMEDIATION
+recomputed 2026-09-09T23:11:42.024Z from the files on disk
+
+RESULT: FAIL   71/72
+
+OK    v3 system prompt
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    v3 response schema
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    v3.1 system prompt — §192 stays attached
+        expected  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+OK    v3.1 response schema — §192 stays attached
+        expected  d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+OK    v3 admission validator
+        expected  475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+OK    v3.2 system prompt unchanged since §195
+        expected  f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f
+OK    v3.2 response schema unchanged since §195
+        expected  83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e
+OK    first-pass expert-prompt.ts UNTOUCHED
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    v15 system prompt UNTOUCHED
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    v15 prompt version
+        expected  hazlenz.expert.prompt.v15
+OK    owed-facts/owed-fact.types.ts UNMUTATED
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts UNMUTATED
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts UNMUTATED
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts UNMUTATED
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    canonical CITATION_SHAPED_PATTERN reused, not redefined
+        expected  \b\d{2}\s*CFR\s*\d+
+OK    the three transition authorities are exactly the frozen set
+        expected  ADMITTED_BINDING,ADMISSIBLE_EVIDENCE,RECORDED_ARBITRATION
+OK    no transition authority names a model, a provider or an explanation
+        expected  0
+OK    every terminal status requires a named authority
+        expected  3
+OK    §189 human gate still UNMEASURED
+        expected  65 / 112
+OK    §195 EXECUTED still false
+        expected  false
+OK    §195 execution artifact still absent: RAW-FIRST-PASS-OUTPUTS.jsonl
+        expected  absent
+OK    §195 execution artifact still absent: FIRST-PASS-SCORES.json
+        expected  absent
+OK    §195 execution artifact still absent: TRANSFER-SCORES.json
+        expected  absent
+OK    §195 execution artifact still absent: RAW-VERIFIER-OUTPUTS.jsonl
+        expected  absent
+OK    §195 execution artifact still absent: VERIFIER-ADMISSION.json
+        expected  absent
+OK    §195 execution artifact still absent: MECHANICAL-GATES.json
+        expected  absent
+OK    §195 execution artifact still absent: MODEL-SEMANTIC-ADJUDICATION.json
+        expected  absent
+OK    §195 execution artifact still absent: REGULATORY-BASIS-RESULTS.md
+        expected  absent
+OK    §195 execution artifact still absent: CLARIFICATION-POLICY-RESULTS.md
+        expected  absent
+OK    §195 execution artifact still absent: END-TO-END-STRICT-RESULTS.md
+        expected  absent
+OK    §195 execution artifact still absent: COST-ACCOUNTING.md
+        expected  absent
+OK    OPTION B — governedEvidenceSourceIds ABSENT from the zero-source schema
+        expected  absent
+OK    OPTION B — absent from `required` too
+        expected  absent
+OK    OPTION B — no maxItems anywhere in the zero-source schema
+        expected  0
+OK    OPTION B — no governed-binding instruction in the zero-source prompt
+        expected  absent
+OK    OPTION B — capability PRESENT when a source is supplied
+        expected  present
+OK    OPTION B — the exact sourceId is provider-visible when the capability is present
+        expected  visible
+OK    OPTION B — no unsupplied id is rendered
+        expected  0
+OK    all twelve §197 request schemas are free of maxItems
+        expected  0
+OK    vNext(absent) minus its block reproduces v15 prompt
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    vNext(present) minus its block reproduces v15 prompt
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    vNext(absent) minus its additions reproduces v15 schema
+        expected  6f01cac8dc7d6f0d49638324cae3fff686d2dd5a89ca3e80dd74586c981c8e8c
+OK    vNext(present) minus its additions reproduces v15 schema
+        expected  6f01cac8dc7d6f0d49638324cae3fff686d2dd5a89ca3e80dd74586c981c8e8c
+OK    vNext user prompt minus its block reproduces the v15 user prompt
+        expected  4e3aa26c72b381178538db79098bfe3ca70a9cca0bb260f4a2a01336c5de5a0f
+OK    vNext instruction version
+        expected  hazlenz.expert.first-pass-instruction.vNext
+OK    no factKey property in either capability variant
+        expected  0
+OK    a declaration with NO governed field projects on a capability-absent treatment
+        expected  1
+OK    provenance table still covers a projected OwedFact exactly
+        expected  ["acceptableEvidence","affectedDecision","branchA","branchB","decisionDivergence","evidenceSpan","factKey","modelAuthored","priority","source","status","whyUnresolved"]
+OK    projected priority is still the non-escalating floor
+        expected  OTHER
+OK    projected status is still UNRESOLVED
+        expected  UNRESOLVED
+OK    projection effect still false on every axis
+        expected  false,false,false,false,false
+OK    an unsupplied governed id is still refused
+        expected  true
+OK    circuit breaker version
+        expected  hazlenz.expert.pre-inference-circuit-breaker.v1
+OK    circuit breaker threshold
+        expected  2
+OK    empty-run safety version
+        expected  hazlenz.expert.empty-run-safety.v1
+OK    source semantic scan version
+        expected  hazlenz.expert.source-semantic-scan.v1
+OK    K3 recorded as superseded, historical evidence preserved
+        expected  SUPERSEDED_BY_SECTION_198|true
+OK    v3.3 admission contract unchanged
+        expected  hazlenz.expert.verifier.v3.3
+OK    projection version unchanged
+        expected  hazlenz.expert.first-pass-owed-fact-projection.v1
+OK    §196 evidence file count
+        expected  14
+OK    §197 evidence file count
+        expected  14
+OK    §196 historical 91/91 output preserved
+        expected  true
+OK    §196 original K3 line preserved verbatim in its historical output
+        expected  true
+OK    §197 terminal unchanged
+        expected  EXPERT_HAZLENZ_STRUCTURED_PIPELINE_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED
+OK    §197 calls attempted / completed / spend
+        expected  12|0|0
+OK    §197 every axis still NOT_EXERCISED
+        expected  true
+OK    §197 hard-fail report still unevaluable
+        expected  false|null
+OK    §197 recorded instrument defects still in its history
+        expected  true
+OK    §197 preregistration can no longer be satisfied — vNext prompt hash moved
+        expected  moved
+FAIL  backend/scripts audit sweep clean
+        expected  clean
+        actual    /Users/mckinley/Desktop/Safety_InSite/backend/scripts/execute-208-acceptance-cohort.ts
+OK    expert-hazlenz src audit sweep clean
+        expected  clean
+OK    §196–§198 file set typechecks (tsconfig.scripts-198.json)
+        expected  clean
+
+PROTOCOL IDENTITIES AFTER REMEDIATION
+
+  v15 base                       20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979   UNCHANGED
+  vNext, capability ABSENT       bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b   NEW
+  vNext, capability PRESENT      669bde6933e19bd1e1c35acde9a8db2a24020666917d9fe79c0718d5344df44b   NEW
+  §197 pinned vNext (retired)    05e1ad22efd1353d72f04406f63ee3985892072ca566aed5ceb34c4c29881db6
+  verifier v3.2 (executed)       f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f   UNCHANGED
+  admission contract             hazlenz.expert.verifier.v3.3   UNCHANGED
+
+  The first-pass wire schema is PER-REQUEST and now ALSO per-capability, so no single
+  schema hash identifies the protocol. A successor preregistration must freeze per-row.
+
+EVIDENCE PACKAGE DIGESTS — preservation proven by hashing, not by re-deriving
+  §196  14 files  93a1512fdefa808e70eb881d80c0a09b4dae8cdc8b02eb5552d63a8073263a0c
+  §197  14 files  fd13a63bf39e185e9dadadc83780d6b1f2c5ec34ec8ed80ab98753f5b6423564
+
+  verify-196-source-integrity and verify-197-source-integrity were NOT re-run. Both WRITE
+  into their own evidence directories, and the §197 gate additionally pins the vNext prompt
+  hash that §198 deliberately moved. Their still-valid checks are subsumed above.
+
+FILES ADDED BY §198
+  NEW  backend/scripts/lib/expert-pre-inference-circuit-breaker.ts
+       sha256 4b4d6b96a51b087ad427b69cbf11e5e52342330e88b0c30bec8468f964c86c33
+  NEW  backend/scripts/lib/expert-empty-run-safety.ts
+       sha256 a34ebff758e9a23ffb98a49b6452d3ab12b646f76f017ec6bbdbcbed75b17298
+  NEW  backend/scripts/lib/expert-source-semantic-scan.ts
+       sha256 862ef3eb7dfa04685b84130e9bbe181effc9438492e5a28ddf984a664ee3ed7a
+  NEW  backend/scripts/lib/expert-superseded-claims.ts
+       sha256 ff2dd1426c3289a43ee34b5b7f6756a793ba014ac9dfd060b7a03d161adeb567
+  NEW  backend/scripts/test-198-transport-remediation.ts
+       sha256 bf62667fc7d906ada464d549fa3dfff7d334964865e7301f94287097849c5df8
+  NEW  backend/scripts/verify-198-source-integrity-2026-09-07.ts  this gate
+
+FILES MODIFIED BY §198
+  MOD  backend/scripts/lib/expert-first-pass-instruction-vnext.ts   Option B + user prompt
+       sha256 a81c63c8314f16290e0e5ead451b9f2c7e127d6eaa6c66e754ae605bec0e756e
+  MOD  backend/scripts/lib/expert-first-pass-owed-fact-projection.ts   capability-absent parse
+       sha256 bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e
+  MOD  backend/scripts/test-196-structured-first-pass-owed-facts.ts   K3 corrected additively
+       sha256 f248b6f30d60eef812300ff6864f9387bf9d8bbd0197241f51d7299891560df4
+  No file under backend/src/ was modified. expert-prompt.ts is byte-unchanged at v15.
+
+WORKTREE
+  branch main   HEAD 37a5d1b50abe836eb19dd24ee18ad10557bda131
+
+PROVIDER CALLS = 0   DATABASE OPERATIONS = 0   PRODUCTION ACTIVATION = NONE
+vNext HOSTED VALIDATED = FALSE   v3.3 HOSTED VALIDATED = FALSE
+

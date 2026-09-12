@@ -1,0 +1,168 @@
+{
+  "artifact": "SECTION-239-DIAGNOSTIC-REPLAY-OF-238",
+  "version": "hazlenz.expert.239.replay.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "whatThisIs": "A DIAGNOSTIC ON SPENT EVIDENCE. It asks whether the deterministic rule §239 changed is the rule that refused §238 B1, and whether B2 and C1 still refuse.",
+  "whatThisIsNot": [
+    "NOT an acceptance cohort. §238 is spent and may never serve as the acceptance cohort for the successor it diagnosed.",
+    "NOT a rescore. The frozen §238 judgment is FAILED, is untouched by this file, and stays FAILED.",
+    "NOT the proof of the repair. The generalized local fixtures in the §239 suite are that proof.",
+    "NOT evidence of any semantic behaviour. No provider was called."
+  ],
+  "section238RawUnmodified": true,
+  "section238JudgmentUnmodified": true,
+  "defectiveOutputsRepaired": 0,
+  "transmittedSchema": "the §237 schema the provider actually received, unchanged",
+  "expectedUnderTheRepair": {
+    "A1": "ADMITTED",
+    "A2": "ADMITTED",
+    "B1": "ADMITTED",
+    "B2": "REFUSED",
+    "C1": "REFUSED",
+    "C2": "ADMITTED"
+  },
+  "mismatches": [],
+  "results": [
+    {
+      "caseId": "A1",
+      "rawOutputModified": false,
+      "section237": {
+        "admitted": true,
+        "codes": []
+      },
+      "section239": {
+        "admitted": true,
+        "codes": []
+      },
+      "changed": false,
+      "admittedPostureUnder239": "STOP",
+      "controllingDriversUnder239": [
+        {
+          "ref": "cracked-blade",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "blade-fragment-struck-by",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "cessationDriversUnder239": 2
+    },
+    {
+      "caseId": "A2",
+      "rawOutputModified": false,
+      "section237": {
+        "admitted": true,
+        "codes": []
+      },
+      "section239": {
+        "admitted": true,
+        "codes": []
+      },
+      "changed": false,
+      "admittedPostureUnder239": "STOP",
+      "controllingDriversUnder239": [
+        {
+          "ref": "post3-safety-nut-defect",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        },
+        {
+          "ref": "worker-crushing-exposure",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+        }
+      ],
+      "cessationDriversUnder239": 2
+    },
+    {
+      "caseId": "B1",
+      "rawOutputModified": false,
+      "section237": {
+        "admitted": false,
+        "codes": [
+          "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+        ]
+      },
+      "section239": {
+        "admitted": true,
+        "codes": []
+      },
+      "changed": true,
+      "admittedPostureUnder239": "HOLD_PENDING_VERIFICATION",
+      "controllingDriversUnder239": [
+        {
+          "ref": "reserve_bank_unexplained_pressure_loss",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        },
+        {
+          "ref": "DEC-1",
+          "refKind": "UNRESOLVED_DECLARATION",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+        }
+      ],
+      "cessationDriversUnder239": 0
+    },
+    {
+      "caseId": "B2",
+      "rawOutputModified": false,
+      "section237": {
+        "admitted": false,
+        "codes": [
+          "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+        ]
+      },
+      "section239": {
+        "admitted": false,
+        "codes": [
+          "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+        ]
+      },
+      "changed": true,
+      "admittedPostureUnder239": null,
+      "controllingDriversUnder239": [],
+      "cessationDriversUnder239": 0
+    },
+    {
+      "caseId": "C1",
+      "rawOutputModified": false,
+      "section237": {
+        "admitted": false,
+        "codes": [
+          "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+        ]
+      },
+      "section239": {
+        "admitted": false,
+        "codes": [
+          "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+        ]
+      },
+      "changed": false,
+      "admittedPostureUnder239": null,
+      "controllingDriversUnder239": [],
+      "cessationDriversUnder239": 0
+    },
+    {
+      "caseId": "C2",
+      "rawOutputModified": false,
+      "section237": {
+        "admitted": true,
+        "codes": []
+      },
+      "section239": {
+        "admitted": true,
+        "codes": []
+      },
+      "changed": false,
+      "admittedPostureUnder239": "CONTINUE",
+      "controllingDriversUnder239": [],
+      "cessationDriversUnder239": 0
+    }
+  ],
+  "rawFileDigest": "467a2662770eb376eff01873b8054db82fef600f1675b78526a516ea114b2bea"
+}

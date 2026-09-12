@@ -1,0 +1,193 @@
+{
+  "operation": "§158 VC-04 measurement repair — instrument repair only, one hosted call",
+  "startedAt": "2026-09-04T15:43:02.196Z",
+  "finishedAt": "2026-09-04T15:43:08.810Z",
+  "whatWasRepaired": "the §157 harness truncated VC-04 at max_tokens=1600 before the model emitted proposedClarification; the contract then refused a destroyed output. This rerun changes the output-token ceiling and nothing else.",
+  "onlyChangeProof": {
+    "differingTopLevelKeys": [
+      "max_tokens"
+    ],
+    "originalMaxTokens": 1600,
+    "repairMaxTokens": 4000,
+    "requestBodySha256WithMaxTokensRemoved_original": "a48cf351a5ea1673a8fc34a552dda10155331c24e7f754c4323fcbd180aa81fa",
+    "requestBodySha256WithMaxTokensRemoved_repair": "a48cf351a5ea1673a8fc34a552dda10155331c24e7f754c4323fcbd180aa81fa",
+    "identical": true,
+    "observedInputTokensOriginal": 4598,
+    "observedInputTokensRepair": 4598,
+    "inputTokensMatch": true
+  },
+  "ceilingJustification": {
+    "largestCompletedV1Output": 835,
+    "largestCompletedV2Output": 1412,
+    "truncationPoint": 1600,
+    "chosenCeiling": 4000,
+    "multipleOfTruncationPoint": 2.5,
+    "worstCaseUsd": 0.049196,
+    "hardCeilingUsd": 0.05
+  },
+  "identity": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "verifierContract": "hazlenz.expert.verifier.v2",
+    "verifierInstruction": "hazlenz.expert.verifier-instruction.v2",
+    "verifierInstructionSha256": "ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+    "packetSha256": "75d64197583092ed8ac826a1c3c85d86666fd36d7eca52737d1d6eec942afc5a",
+    "truthManifestSha256": "dbbe3361a3c407af6a06446024c8de6f78d8d15540a349702b9c1eac4855617c"
+  },
+  "accounting": {
+    "logicalCalls": 1,
+    "providerRequests": 1,
+    "retries": 0,
+    "reruns": 0,
+    "inputTokens": 4598,
+    "outputTokens": 520,
+    "spendUsd": 0.014396,
+    "spendCeilingUsd": 0.05
+  },
+  "firstPassInvocations": 0,
+  "partAScoring": [
+    {
+      "id": "1. nominated a previously unsupplied fact",
+      "answer": "NO",
+      "detail": "no nomination present"
+    },
+    {
+      "id": "2. the fact is inside observation/evidence bounds",
+      "answer": "NO",
+      "detail": "n/a"
+    },
+    {
+      "id": "3. both counterfactual branches supplied",
+      "answer": "NO",
+      "detail": "n/a"
+    },
+    {
+      "id": "4. the decisions genuinely diverge under the existing authored truth",
+      "answer": "NO",
+      "detail": "authored truth holds the same divergence: \"If no function test was made after the guard was refitted, the debarker must come out of service until the int…\""
+    },
+    {
+      "id": "5. affectedDecision is valid",
+      "answer": "NO",
+      "detail": "n/a"
+    },
+    {
+      "id": "6. proposedClarification is present",
+      "answer": "NO",
+      "detail": "ABSENT — the §157 truncation condition reproduced"
+    },
+    {
+      "id": "7. the contract accepted the result",
+      "answer": "YES",
+      "detail": "admitted whole"
+    },
+    {
+      "id": "8. any forbidden field changed",
+      "answer": "NO",
+      "detail": "none of 14 forbidden fields present"
+    }
+  ],
+  "reproduction": {
+    "nominationFieldsIdentical": 0,
+    "nominationFieldsTotal": 9,
+    "differingFields": [],
+    "proposedQuestionReachesAuthoredOwedFact": null,
+    "authoredOwedFact": "whether the guard interlock was function-tested after the overnight rotor tooth change",
+    "authoredAcceptableSelectors": [
+      "whether the guard interlock was function-tested after the rotor work",
+      "whether the rotor was proved to stop when the guard is opened"
+    ]
+  },
+  "VC04_BOUNDED_NOMINATION_MECHANISM_HOSTED_DEMONSTRATED": false,
+  "ARCHITECTURE_STATUS": "NOT_UPGRADED — this is a mechanism demonstration on one case, not architecture proof. §157 gate figures are NOT restated as PROVEN.",
+  "TRUTH_AUTHORITY_CAVEAT": "Scored against a standard authored by the model family being graded, not independently reviewed. DEVELOPMENT EVIDENCE, NOT ACCEPTANCE EVIDENCE.",
+  "originalExecutionPreservedAt": "verification/expert-hazlenz-verifier-v2-remediation-2026-09-04/VERIFIER-V2-RUN-RECORDS.jsonl",
+  "originalExecution": {
+    "caseId": "VC-04",
+    "ok": true,
+    "failureKind": null,
+    "httpStatus": 200,
+    "modelIdentity": "claude-sonnet-5",
+    "stopReason": "max_tokens",
+    "inputTokens": 4598,
+    "outputTokens": 1600,
+    "latencyMs": 18613,
+    "costUsd": 0.025196,
+    "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+    "clarificationSourceMode": "NOMINATED_FACT",
+    "rationale": "The observation states the machine was returned to service after overnight maintenance (a rotor tooth change) and that the guard door is closed with the interlock switch \"in place.\" But being \"in place\" describes the physical position of the switch component, not that it was functionally verified after the maintenance work. A rotor tooth change requires removing the guard to access the rotor, meaning the interlock circuit was necessarily disturbed. The text never states that a post-maintenance functional test or verification of the interlock's operation (e.g., that opening the guard actually stops/prevents rotor motion) was performed before the sawyer resumed working at the infeed deck. This is exactly the case where a control that cannot be seen to fail is not a control that was checked: the switch could be correctly reinstalled and verified, or it could be reconnected but miswired/defeated/left non-functional after the overnight repair, and the observation is consistent with either. If the interlock was verified functional post-maintenance, the sawyer's current work practice (standing at the deck, not reaching into the throat) is adequately protected and work continues as-is. If the interlock was not verified and is in fact non-functional after the maintenance disturbance, the guard provides no actual protection against rotor contact if the door were later opened or defeated, meaning the machine should not have been released to normal production operation without lockout/tagout-cleared verification — a required control (functional interlock test) is missing before continued operation. These are different actions today: continue routine operation vs. halt and verify/test the interlock before further use. This is not a magnitude question and not a duplicate of the LTO-for-completed-maintenance point the summary dismisses; it is about whether the safety device was confirmed operational before restart, which is a standard verification step following guarding-related maintenance and needs to be resolved now, not at a later review, since the sawyer is currently operating with exposure at the infeed deck. The first pass raised no candidates and asked no clarification at all, missing this decision-critical fact.",
+    "aboutUnresolvedFactRef": null,
+    "proposedClarification": null,
+    "nominatedFact": {
+      "missingFact": "Whether the rotor guard interlock switch was functionally tested/verified to actually stop or prevent rotor operation when the guard is opened, following the overnight rotor tooth change and reassembly, before the machine was returned to service.",
+      "observationSpan": "The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift.",
+      "notEstablishedBecause": "This span states the machine was put back into service and that the guard door is closed with the interlock switch 'in place,' but it describes only physical positioning, not a functional verification. A rotor tooth change requires disturbing the guard/interlock to access the rotor, so the interlock's post-repair operability is not established by stating it is 'in place' -- the same observation is consistent with the switch being correctly restored and verified, or being reconnected without confirming it actually functions.",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "branchA": "The interlock was functionally tested and confirmed to stop/prevent rotor motion when the guard opens before restart",
+      "decisionIfA": "Normal operation continues as observed; no additional action needed",
+      "branchB": "The interlock was not functionally tested after reassembly and its operability post-repair is unverified",
+      "decisionIfB": "Operation should be halted and the guard interlock functionally verified (or the machine placed back under lockout/tagout) before the sawyer continues working at the infeed deck",
+      "whyNecessaryNow": "The sawyer is currently working at the infeed deck with the machine running; if the interlock is non-functional after the maintenance disturbance, the primary safeguard against rotor contact is not actually in place during ongoing operation, which is an immediate exposure that cannot wait for a later review."
+    },
+    "admissionAccepted": false,
+    "nominationAdmitted": false,
+    "admissionCodes": [],
+    "admissionDetail": [
+      "PROPOSAL_REQUIRED_FOR_THIS_VERDICT"
+    ],
+    "degenerate": false,
+    "degenerateSignals": [],
+    "rawResponse": {
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "rationale": "The observation states the machine was returned to service after overnight maintenance (a rotor tooth change) and that the guard door is closed with the interlock switch \"in place.\" But being \"in place\" describes the physical position of the switch component, not that it was functionally verified after the maintenance work. A rotor tooth change requires removing the guard to access the rotor, meaning the interlock circuit was necessarily disturbed. The text never states that a post-maintenance functional test or verification of the interlock's operation (e.g., that opening the guard actually stops/prevents rotor motion) was performed before the sawyer resumed working at the infeed deck. This is exactly the case where a control that cannot be seen to fail is not a control that was checked: the switch could be correctly reinstalled and verified, or it could be reconnected but miswired/defeated/left non-functional after the overnight repair, and the observation is consistent with either. If the interlock was verified functional post-maintenance, the sawyer's current work practice (standing at the deck, not reaching into the throat) is adequately protected and work continues as-is. If the interlock was not verified and is in fact non-functional after the maintenance disturbance, the guard provides no actual protection against rotor contact if the door were later opened or defeated, meaning the machine should not have been released to normal production operation without lockout/tagout-cleared verification — a required control (functional interlock test) is missing before continued operation. These are different actions today: continue routine operation vs. halt and verify/test the interlock before further use. This is not a magnitude question and not a duplicate of the LTO-for-completed-maintenance point the summary dismisses; it is about whether the safety device was confirmed operational before restart, which is a standard verification step following guarding-related maintenance and needs to be resolved now, not at a later review, since the sawyer is currently operating with exposure at the infeed deck. The first pass raised no candidates and asked no clarification at all, missing this decision-critical fact.",
+      "aboutUnresolvedFactRef": null,
+      "clarificationSourceMode": "NOMINATED_FACT",
+      "nominatedFact": {
+        "missingFact": "Whether the rotor guard interlock switch was functionally tested/verified to actually stop or prevent rotor operation when the guard is opened, following the overnight rotor tooth change and reassembly, before the machine was returned to service.",
+        "observationSpan": "The machine was returned to service this morning after a rotor tooth change carried out overnight by the maintenance fitter, who has gone off shift.",
+        "notEstablishedBecause": "This span states the machine was put back into service and that the guard door is closed with the interlock switch 'in place,' but it describes only physical positioning, not a functional verification. A rotor tooth change requires disturbing the guard/interlock to access the rotor, so the interlock's post-repair operability is not established by stating it is 'in place' -- the same observation is consistent with the switch being correctly restored and verified, or being reconnected without confirming it actually functions.",
+        "affectedDecision": "REQUIRED_CONTROL",
+        "branchA": "The interlock was functionally tested and confirmed to stop/prevent rotor motion when the guard opens before restart",
+        "decisionIfA": "Normal operation continues as observed; no additional action needed",
+        "branchB": "The interlock was not functionally tested after reassembly and its operability post-repair is unverified",
+        "decisionIfB": "Operation should be halted and the guard interlock functionally verified (or the machine placed back under lockout/tagout) before the sawyer continues working at the infeed deck",
+        "whyNecessaryNow": "The sawyer is currently working at the infeed deck with the machine running; if the interlock is non-functional after the maintenance disturbance, the primary safeguard against rotor contact is not actually in place during ongoing operation, which is an immediate exposure that cannot wait for a later review."
+      }
+    }
+  },
+  "repairedExecution": {
+    "execution": "REPAIRED",
+    "supersedes": null,
+    "caseId": "VC-04",
+    "ok": true,
+    "failureKind": null,
+    "httpStatus": 200,
+    "modelIdentity": "claude-sonnet-5",
+    "stopReason": "tool_use",
+    "maxTokens": 4000,
+    "inputTokens": 4598,
+    "outputTokens": 520,
+    "latencyMs": 6611,
+    "costUsd": 0.014396,
+    "verdict": "NO_CLARIFICATION_REQUIRED",
+    "clarificationSourceMode": null,
+    "rationale": "The observation states the guard door is closed, the interlock is in place, and the sawyer is not reaching into the throat — the current operating state is fully controlled and stated as such. The overnight rotor tooth change is a completed maintenance event; the machine was returned to service and the guard/interlock are confirmed engaged now, so there is no stated gap suggesting a bypassed interlock or residual lockout hazard. Whether the return-to-service check was a formal verification step or an informal one does not change what is being done now: the guard is closed and interlocked, and the sawyer is not exposed to the rotor. Because the interlock is verified as engaged and the operator's exposure is not established as open (they are not reaching in), there is no branch of any missing fact (e.g., exact verification procedure used overnight) that would change the current action — the machine continues to run under the stated closed/interlocked/no-reach condition either way. No hazard candidate was reasonably omitted, and no unresolved fact would flip the decision from continue-operating to stop-and-correct.",
+    "aboutUnresolvedFactRef": null,
+    "proposedClarification": null,
+    "nominatedFact": null,
+    "admissionAccepted": true,
+    "nominationAdmitted": false,
+    "admissionCodes": [],
+    "admissionDetail": [],
+    "degenerate": false,
+    "degenerateSignals": [],
+    "rawResponse": {
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "rationale": "The observation states the guard door is closed, the interlock is in place, and the sawyer is not reaching into the throat — the current operating state is fully controlled and stated as such. The overnight rotor tooth change is a completed maintenance event; the machine was returned to service and the guard/interlock are confirmed engaged now, so there is no stated gap suggesting a bypassed interlock or residual lockout hazard. Whether the return-to-service check was a formal verification step or an informal one does not change what is being done now: the guard is closed and interlocked, and the sawyer is not exposed to the rotor. Because the interlock is verified as engaged and the operator's exposure is not established as open (they are not reaching in), there is no branch of any missing fact (e.g., exact verification procedure used overnight) that would change the current action — the machine continues to run under the stated closed/interlocked/no-reach condition either way. No hazard candidate was reasonably omitted, and no unresolved fact would flip the decision from continue-operating to stop-and-correct.",
+      "aboutUnresolvedFactRef": null,
+      "clarificationSourceMode": null,
+      "proposedClarification": null,
+      "nominatedFact": null
+    }
+  }
+}

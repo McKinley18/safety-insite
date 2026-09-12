@@ -1,0 +1,9 @@
+{
+  "//": "SECTION 217 EXPERIMENT SCOPE ONLY. Typechecks the §217 confirmation files plus the §210i-§216 modules they build on. Report as EXPERIMENT_SCOPE_TYPECHECK (§217), never as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-21*-*.ts", "scripts/test-21*-*.ts", "scripts/verify-212-*.ts",
+    "scripts/build-21*-*.ts", "scripts/execute-21*-*.ts"
+  ]
+}

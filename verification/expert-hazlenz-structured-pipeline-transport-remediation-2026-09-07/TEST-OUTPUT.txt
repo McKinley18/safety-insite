@@ -1,0 +1,94 @@
+ok    A1. governedEvidenceSourceIds is ABSENT from the provider-visible schema  — not empty-array, not bounded, not a sentinel — absent
+ok    A2. it is absent from `required` too  — 11 required properties
+ok    A3. NO maxItems appears anywhere in the schema — the §197 rejection cause is gone
+ok    A4. no maxItems workaround was needed: the §108 strip is NOT relied on to remove it  — absent BEFORE the strip runs, not removed by it
+ok    A5. no governed-binding instruction is emitted in the system prompt  — the model is not told about a capability it does not have
+ok    A6. the capability is derived, not configured
+ok    A7. a declaration WITHOUT governed binding remains valid where otherwise valid  — omitting the capability does not break the ordinary path
+ok    A8. the system prompt and the schema always agree on the capability  — one function derives both from the same supplied set
+ok    B1. a provider that invents the field anyway is refused by the boundary  — fail closed — the boundary never depended on the transport
+ok    B2. the transport also refuses it, through additionalProperties: false  — an undeclared property is not merely unmentioned, it is prohibited
+ok    B3. capability omission is STRONGER than the retired maxItems bound  — a bounded field is still a field; an absent one cannot be populated by a compliant producer
+ok    C1. the property is present when one source is supplied
+ok    C2. the exact sourceId is visible to the model in the user prompt  — the §197 impossible contract is closed — the model can now see what it is asked to name
+ok    C3. the schema permits only the intended representation — an enum of supplied ids
+ok    C4. the with-binding system prompt names the AVAILABLE GOVERNED EVIDENCE list
+ok    C5. still no maxItems in the capability-present schema
+ok    D1. every permissible sourceId is rendered
+ok    D2. the schema enum is exactly the supplied set
+ok    D3. no unsupplied id is rendered anywhere in the prompt  — only supplied ids are exposed
+ok    D4. a duplicate supplied id is refused rather than de-duplicated silently
+ok    D5. an id that is not a legal id is refused rather than normalised  — quietly rewriting an identifier is how two records end up sharing one
+ok    D6. the id shape is the same narrow shape used everywhere else
+ok    E1. the projection refuses an id not in the supplied set
+ok    E2. exact membership — a near-miss id is refused, not matched  — no case folding, no nearest neighbour
+ok    E3. a supplied id IS admitted
+ok    E4. BOUNDARY_REFUSES_UNSUPPLIED_SOURCE_ID still holds — the claim that survived §197
+ok    F1. each rendered sourceId is followed by ITS OWN evidence text  — no cross-pairing
+ok    F2. the id→text mapping is deterministic — the same records render the same bytes
+ok    F3. reordering the supplied records changes the rendering, and nothing is silently sorted  — supplied order is data and is preserved
+ok    F4. no hidden internal identifier is introduced — the opaque handles are not reused here  — the exact sourceId is the only identifier offered
+ok    G1. supplied evidence carrying a citation is renderable without exploding
+ok    G2. the FIRST-PASS rendering still redacts the citation, as v15 does  — v15 redaction rules unchanged — a first pass shown a citation could only be punished for it
+ok    G3. the sourceId is exposed EXACTLY even though the text is redacted  — the contract needs the id, not the citation
+ok    G4. the VERIFIER path is untouched — v3.3 still admits a faithful supplied-source quotation  — the §196 collision fix is unaffected by the §198 remediation
+ok    H1. the first pass still refuses a citation-shaped string in a declaration
+ok    H2. the verifier still refuses a citation absent from every supplied source  — fail closed
+ok    H3. a declaration may not carry a HazLenz-owned field, capability present or absent
+ok    I1. every §197 first-pass request rebuilds under the remediated contract  — 12 rows
+ok    I2. NO known provider-prohibited keyword survives in any of the twelve requests  — none
+ok    I3. maxItems specifically — the §197 rejection cause — is absent from all twelve  — regression for the exact keyword that produced twelve HTTP 400s
+ok    I4. the two governed rows now carry the capability; the other ten do not
+ok    J1. the §108 strip was NOT extended — it still removes exactly minLength and minItems  — maxItems still passes through — §198 did not need it to
+ok    J2. §198 does not rely on the strip to repair the empty-governed-set representation  — nothing to strip, because nothing was emitted
+ok    J3. the strip still does its own job on the v15 schema
+ok    K1. two identical pre-inference rejections trip the breaker  — attempts 1 and 2 recorded, attempt 3 not issued (threshold 2)
+ok    K2. the tripped state names the signature it tripped on
+ok    K3. exactly two attempts are recorded before the stop  — the §197 run would have stopped at 2 instead of 12
+ok    L1. two DIFFERENT pre-inference failures do not trip the breaker
+ok    L2. a different stage does not match
+ok    L3. a different request-contract identity does not match
+ok    L4. a different HTTP status does not match
+ok    L5. volatile detail is normalised away, so ONE problem reported twice still matches  — request ids and timestamps excluded; the structural path and words kept
+ok    L6. normalisation does NOT collapse two genuinely different paths  — the tool index is kept
+ok    M1. an inference-reaching failure produces NO signature and cannot contribute to a streak
+ok    M2. two similar-looking INFERENCE-TIME failures do not trip the breaker  — a behavioural failure is exactly what a cohort exists to sample
+ok    M3. one inference-reaching attempt BREAKS a streak of pre-inference rejections  — consecutive means consecutive
+ok    M4. reachedInference is the deciding field, and it is not inferred from the status code  — a billed 400 reached inference; a 200 with no tool_use may not have
+ok    N1. an axis with an empty denominator is NOT_EXERCISED, never a pass
+ok    N2. a zero denominator never renders as 0/0
+ok    N3. a small denominator is reported literally and not as a rate
+ok    N4. hardFailEvaluability returns null — not false — when nothing ran  — false asserts the conditions held; null says the question was not askable
+ok    N5. the exact §197 wording is caught by the self-audit  — the two strings §197 actually printed
+ok    N6. a correctly reported empty run produces no violations
+ok    N7. a run WITH executions is not constrained by the empty-run rule
+ok    N8. the forbidden-phrase list covers a CLASS, not one remembered string
+ok    O1. the exact §197 false positive is reproduced against the raw source  — the naive scan still matches the module's own explanatory comment
+ok    O2. on a real file, a comment-only occurrence is removed by stripping  — owed-fact.types.ts explains the invariant in prose and the scan no longer reads it
+ok    O2b. comment-stripping alone does NOT rescue a badly-chosen proximity scan  — the module also IMPORTS MODEL_AUTHORED_SOURCES nearby — the fix was the value assertion, not the strip
+ok    O3. stripping removes comments and keeps executable text  — a string literal is executable content and is deliberately kept
+ok    O4. line numbering survives stripping, so a finding points at the right line
+ok    O5. the scanner reports the offending line, not just a boolean
+ok    O6. coverage is not weakened — an executable violation still fails  — the same token in an executable position still matches
+ok    P1. v15 is still reconstructible from the capability-ABSENT prompt variant
+ok    P2. v15 is still reconstructible from the capability-PRESENT prompt variant  — the §198 capability split did not become a v15 edit
+ok    P3. the two prompt variants differ ONLY by the governed-binding paragraph  — built from one head and one tail, so they cannot drift
+ok    P4. v15 schema is still reconstructible, capability absent and present
+ok    P5. v15 user prompt is reconstructible from the vNext user prompt  — buildExpertUserPrompt is not modified; the block is appended and removable
+ok    P6. expert-prompt.ts is still untouched — no §198 marker in v15
+ok    P7. the superseded K3 claim is registered, with the historical evidence preserved
+ok    P8. the register distinguishes HISTORICAL_ASSERTION from CURRENT_ARCHITECTURE  — the claim, its implementation and its replacement are three separate fields
+ok    Q1. the §197 preregistration pins a vNext prompt hash that no longer matches  — so the §197 executor aborts on "vNext prompt moved since freeze" rather than re-running silently
+ok    Q2. every §197 per-row wireSchemaSha256 has moved  — the §197 preregistration cannot be reused, exactly as the authorization requires
+ok    Q3. §197 remains recorded as inconclusive with zero completed calls
+ok    Q4. every §197 axis is still NOT_EXERCISED and none was reinterpreted
+ok    Q5. the §197 hard-fail report is still explicitly unevaluable
+ok    Q6. the recorded §197 instrument defects are still in its history  — not rewritten
+ok    R1. the §196 evidence package still holds its 14 files  — the historical 91/91 run, including the original K3 line, is untouched
+ok    R2. the original K3 line is still present in the §196 historical output  — history is preserved, not rewritten
+ok    R3. §196 RUN-SUMMARY still records its own terminal and zero calls
+
+====================================================================================================
+  89/89 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0   CUSTOMER ACTIVATION: NONE
+====================================================================================================

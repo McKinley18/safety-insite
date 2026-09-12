@@ -1,0 +1,100 @@
+{
+  "operation": "§175 bounded hosted balanced clarification validation",
+  "date": "2026-09-05",
+  "terminal": "BALANCED_CLARIFICATION_HOSTED_VALIDATION_BLOCKED_BEFORE_SPEND — MISSING_FACT_TRUTH_AND_HAZARD_VOCABULARY_AUTHORIZATION_REQUIRED",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "scriptsChanged": 0,
+  "stoppedUnderClause": "EXECUTION BOUNDARY: \"If the existing harness cannot execute the ten rows without materially changing runtime/scoring behavior: STOP before provider spend and report the blocker.\"",
+  "PRE_SPEND_INTEGRITY": "INTACT",
+  "integrityVerifiedBeforeStopping": {
+    "packetMdSha256": "7dd2ea00ad1c0f64eb9fd118275274d753dd12e1df1019c693e36ad81776c9fb",
+    "packetJsonSha256": "85da35aa6552554fd9675d450c362d92df66cfffcef8e1f04f5de417ebf6c627",
+    "truthRecordSha256": "4412990912bef4e91c23286823bc685520c1d124259abb59acb9431e30dac2ff",
+    "preregisteredScannerSha256": "ca3c6c8dc1df8fbb48185ce613e0781e31e5be43c47e893f06f4c5e9fc469f04",
+    "allTenRowTextHashes": "re-derived independently from the markdown AND the JSON packet; all matched",
+    "verdictsMatchAuthorization": true
+  },
+  "expertPathIsExecutable": {
+    "zeroCallGatesRun": [
+      "test:expert-contract-foundation",
+      "test:expert-nocall-harness",
+      "test:expert-clarification-settlement",
+      "test:expert-cohort-instrument"
+    ],
+    "result": "500 passed, 0 failed",
+    "uncommittedExpertPathInsertions": 1773,
+    "note": "the runtime is coherent and would execute; the blocker is not an execution failure"
+  },
+  "blocker": {
+    "summary": "The pre-authorized harness cannot accept these ten rows without me authoring four classes of evaluation truth that the §173/§174 instrument does not contain and no human adjudicated — one of which IS the scoring target this authorization names.",
+    "whatTheInstrumentContains": [
+      "the ten frozen observation texts",
+      "one binary HUMAN_CLARIFICATION_REQUIRED verdict per row",
+      "HIGH confidence per row"
+    ],
+    "whatTheHarnessAdditionallyRequires": [
+      {
+        "field": "source.allowedHazardFamilies",
+        "modelVisible": true,
+        "why": "ExpertAnalysisInput carries it and it constrains what the model may raise",
+        "adjudicated": false
+      },
+      {
+        "field": "truth.presentHazardFamilies / defensibleHazardFamilies / forbiddenHazardFamilies",
+        "modelVisible": false,
+        "why": "gate A.2 \"every row is structurally scoreable\" runs validateCohortRow, whose TOTALITY RULE requires these three buckets to be disjoint and to cover allowedHazardFamilies exactly",
+        "adjudicated": false
+      },
+      {
+        "field": "truth.decisionCriticalGaps[].description and .affectedDecision",
+        "modelVisible": false,
+        "why": "required by validateCohortRow for any row that owes a clarification",
+        "adjudicated": false
+      },
+      {
+        "field": "expectation.truth.missingFact (plus both branches and both outcomes)",
+        "modelVisible": false,
+        "why": "THIS IS THE SCORING TARGET. The authorization scores a REQUIRED row correct only if Expert emits a clarification that addresses \"the material unresolved fact represented by that row\".",
+        "adjudicated": false
+      }
+    ],
+    "decisiveFact": "MATERIAL_UNRESOLVED_FACTS is null on 10 of 10 rows in the frozen §174 truth record, as are EVIDENCE_SUFFICIENCY_CONCERN, TEMPORAL_SCOPE_CONCERN, COUNTERFACTUAL_DECISION_CHANGE and HUMAN_RATIONALE. The product owner supplied the binary verdict and confidence only. The sole existing per-row statement of the material unresolved fact is the authoring-side PAIR-MAP INTENDED_SEMANTIC_DIFFERENCE, written by this model in §173.",
+    "whyIDidNotSupplyIt": "Authoring the missing-fact statement and then scoring this model family output against it is the closed loop refused since §162 — and §169 is the direct precedent: when a human reviewed whether clarifications addressed the owed fact, 4 of 12 came back only partially correct, a distinction no model-authored target would have produced. The provenance limitation recorded in §174 already means a strong score is hard to interpret; scoring against a model-authored target as well would leave nothing an independent reader could check.",
+    "whyIDidNotBypassTheValidator": "Gate A.2 is a protected verification gate. Repository policy forbids bypassing, mocking, relaxing or disabling a gate to obtain a result, and a placeholder truth key passed to it would be exactly that even though the truth key provably never reaches the model."
+  },
+  "whatWouldHaveBeenMeasurableAnyway": {
+    "SILENCE_PRECISION": "EXACT AND MECHANICAL — frozen truth says nothing is owed on a SILENCE row, so any clarification emitted there is a failure by definition, with no semantic judgement needed",
+    "REQUIRED_RECALL_LOOSE": "MECHANICAL UPPER BOUND — whether any clarification was emitted",
+    "REQUIRED_RECALL_STRICT": "NOT MODEL-DETERMINABLE — needs the missing-fact statement per row",
+    "note": "this is offered as the shape of a reduced run, not as a result. Nothing was executed."
+  },
+  "twoResolutionsForTheOwner": [
+    {
+      "option": "A",
+      "title": "supply the ten missing-fact statements",
+      "what": "for each of the five REQUIRED rows, one sentence naming the material unresolved fact, and for each SILENCE row a confirmation that nothing is owed. Then the full strict scoring rule in this authorization becomes executable as written.",
+      "cost": "no provider spend; human effort only",
+      "preservesIndependence": true
+    },
+    {
+      "option": "B",
+      "title": "authorize a reduced run with the strict half deferred",
+      "what": "preregister a uniform hazard vocabulary and jurisdiction identical across all ten rows, report SILENCE_PRECISION exactly and REQUIRED_RECALL as a bounded range, and emit a human adjudication packet pairing every emitted clarification with its row for the strict determination — the §147 precedent in this repository.",
+      "cost": "10 calls, well inside the $3.00 cap",
+      "preservesIndependence": true,
+      "caveat": "still requires authorizing a hazard-vocabulary choice this model would make, and still cannot produce BALANCED_ACCURACY as a point estimate"
+    }
+  ],
+  "recommendation": "Option A. It is the only one that makes the authorization executable as written, costs nothing, and keeps the scoring target human-supplied — which is what makes any resulting number checkable by someone who was not in this session.",
+  "historicalEvidenceUnchanged": true,
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

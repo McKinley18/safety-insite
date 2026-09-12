@@ -1,0 +1,138 @@
+{
+  "builtAt": "2026-09-04T16:09:13.005Z",
+  "scope": "§159 zero-cost human-truth reconciliation of the remaining load-bearing verifier rows",
+  "providerCalls": 0,
+  "distinctRowsBehindThePacket": 7,
+  "blindedCases": 15,
+  "alreadyAdjudicated": {
+    "HS-H1": "AUTHORING_AMBIGUOUS (product owner, 2026-09-04)"
+  },
+  "rowsBuilt": 6,
+  "dispositionLedger": "ROW-TRUTH-DISPOSITIONS.json",
+  "TRUTH_AUTHORITY": "AUTHORED_BY_EVALUATED_MODEL_FAMILY — humanReviewStatus PENDING for every row below except HS-H1",
+  "packets": [
+    {
+      "rowId": "HS-A1",
+      "authoredClass": "REQUIRED",
+      "fixtureForm": "NOT_VISIBLE",
+      "draws": [
+        "VC-08 (R3)"
+      ],
+      "primaryDraws": [
+        "VC-08"
+      ],
+      "excludedDraws": [],
+      "verifierExecutions": 2,
+      "distinctFactsRaised": 5,
+      "governedRecordsSupplied": 0,
+      "packet": "HS-A1-ROW-TRUTH-RECONCILIATION-PACKET.md",
+      "packetSha256": "ddad63eee35701d8aad1dd09715e1837a246a9020a9f4b43a7f69614e3d5f318",
+      "disposition": null
+    },
+    {
+      "rowId": "HS-E1",
+      "authoredClass": "REQUIRED",
+      "fixtureForm": "PRIOR_EVENT",
+      "draws": [
+        "VC-04 (R3)"
+      ],
+      "primaryDraws": [
+        "VC-04"
+      ],
+      "excludedDraws": [],
+      "verifierExecutions": 3,
+      "distinctFactsRaised": 3,
+      "governedRecordsSupplied": 0,
+      "packet": "HS-E1-ROW-TRUTH-RECONCILIATION-PACKET.md",
+      "packetSha256": "dd5f1cf861762a15fbfc59db7cd2c19c09f321cd01c8eabd1d115d6c33640449",
+      "disposition": null
+    },
+    {
+      "rowId": "HS-J1",
+      "authoredClass": "FORBIDDEN",
+      "fixtureForm": "EXPLICITLY_PRESENT",
+      "draws": [
+        "VC-03 (R1)",
+        "VC-11 (R3)",
+        "VC-14 (R2)"
+      ],
+      "primaryDraws": [],
+      "excludedDraws": [
+        "VC-03",
+        "VC-11",
+        "VC-14"
+      ],
+      "verifierExecutions": 6,
+      "distinctFactsRaised": 8,
+      "governedRecordsSupplied": 0,
+      "packet": "HS-J1-ROW-TRUTH-RECONCILIATION-PACKET.md",
+      "packetSha256": "9271626376410b04675ef3e353bdc84bee710cd0f992fd574f31ed91aad6d6d3",
+      "disposition": null
+    },
+    {
+      "rowId": "HS-N1",
+      "authoredClass": "FORBIDDEN",
+      "fixtureForm": "DECISION_INVARIANT_UNKNOWN",
+      "draws": [
+        "VC-06 (R3)",
+        "VC-09 (R1)"
+      ],
+      "primaryDraws": [
+        "VC-09"
+      ],
+      "excludedDraws": [
+        "VC-06"
+      ],
+      "verifierExecutions": 4,
+      "distinctFactsRaised": 5,
+      "governedRecordsSupplied": 0,
+      "packet": "HS-N1-ROW-TRUTH-RECONCILIATION-PACKET.md",
+      "packetSha256": "5c7b196bdc0fc641e48b11e17d8bfa1ef1d132da038dfe3a7ed3bf12f4e9920f",
+      "disposition": null
+    },
+    {
+      "rowId": "HS-P1",
+      "authoredClass": "FORBIDDEN",
+      "fixtureForm": "NON_DECISION_CRITICAL_DETAIL",
+      "draws": [
+        "VC-01 (R3)",
+        "VC-07 (R2)",
+        "VC-12 (R1)"
+      ],
+      "primaryDraws": [
+        "VC-01",
+        "VC-07",
+        "VC-12"
+      ],
+      "excludedDraws": [],
+      "verifierExecutions": 6,
+      "distinctFactsRaised": 8,
+      "governedRecordsSupplied": 0,
+      "packet": "HS-P1-ROW-TRUTH-RECONCILIATION-PACKET.md",
+      "packetSha256": "f85a4f9d21583cd55613ac6416c10af2f191e2593a36e83e677006ed91cb2fd2",
+      "disposition": null
+    },
+    {
+      "rowId": "HS-R1",
+      "authoredClass": "FORBIDDEN",
+      "fixtureForm": "SEVERITY_REFINEMENT_ONLY",
+      "draws": [
+        "VC-05 (R1)",
+        "VC-10 (R2)",
+        "VC-15 (R3)"
+      ],
+      "primaryDraws": [
+        "VC-05",
+        "VC-10",
+        "VC-15"
+      ],
+      "excludedDraws": [],
+      "verifierExecutions": 6,
+      "distinctFactsRaised": 4,
+      "governedRecordsSupplied": 0,
+      "packet": "HS-R1-ROW-TRUTH-RECONCILIATION-PACKET.md",
+      "packetSha256": "01826b6f1b47c7b33d9cbb6a0ad343746a28d922592f68eed5bb0137613ada46",
+      "disposition": null
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "artifact": "SECTION_196_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "§196 — structured first-pass owed-fact architecture, deterministic projection, and the governed-evidence citation-reuse correction. One bounded ZERO-PROVIDER-CALL development architecture and integration slice.",
+  "TERMINAL": "EXPERT_HAZLENZ_STRUCTURED_OWED_FACT_PIPELINE_INTEGRATED — FRESH_END_TO_END_PROTOCOL_VALIDATION_AUTHORIZATION_REQUIRED",
+  "terminalReason": "The structured first-pass unresolved-fact representation exists, the deterministic OwedFact projection exists, the governed-evidence citation quotation mismatch is resolved at the admission boundary, the deterministic suites pass, and a new end-to-end protocol is ready for prospective validation. Nothing was executed against a provider and no spend is authorised by §196.",
+  "PROVIDER_CALLS": 0,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "existingRuntimeFilesModified": 0,
+
+  "productOwnerDecision": {
+    "chosen": "OPTION 1 — the Expert first pass must be capable of emitting structured unresolved facts directly",
+    "rejected": [
+      "constructing OwedFact semantics deterministically from generated prose",
+      "permanently relying on product-owner or harness-authored owed facts as the production bridge"
+    ],
+    "corePrinciple": "The MODEL authors semantic safety content. DETERMINISTIC CODE validates and projects it."
+  },
+
+  "VERIFICATION_EXECUTED": {
+    "test:196-structured-owed-facts": "PASS 91/91 — the authorization's A–O matrix plus P–S preservation, carrier-independence, citation-pattern discipline and claim-honesty cases",
+    "verify:196-source-integrity": "PASS 34/34 — recomputed from the files on disk",
+    "test-expert-193-hardening": "PASS 46/0 — unchanged",
+    "test-expert-194-regulatory-basis": "PASS 48/0 — unchanged",
+    "test-expert-verifier-v3-binding-protocol": "PASS 49/49 — unchanged",
+    "test-expert-v3-development-integration": "PASS 40/40 — unchanged",
+    "verify-195-source-integrity": "PASS 21/21 — §195 still intact",
+    "tsc --noEmit (backend)": "clean, exit 0"
+  },
+  "verificationNote": "Every result above was executed in this slice. None is inferred.",
+
+  "WHAT_WAS_BUILT": {
+    "firstPassProtocol": {
+      "base": "hazlenz.expert.prompt.v15",
+      "successor": "hazlenz.expert.first-pass-instruction.vNext",
+      "module": "backend/scripts/lib/expert-first-pass-instruction-vnext.ts",
+      "v15SystemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+      "vNextSystemPromptSha256": "05e1ad22efd1353d72f04406f63ee3985892072ca566aed5ceb34c4c29881db6",
+      "edits": [
+        "SCHEMA — unresolvedFactDeclarations collection added to properties and to required",
+        "SCHEMA — OPTIONAL answersUnresolvedFactDeclarationId added to the clarification item, never in required",
+        "INSTRUCTION — the STATING AN UNRESOLVED FACT IN FULL block inserted before v15's closing line at a uniqueness-checked anchor"
+      ],
+      "reversibilityProven": "vNext minus the block reproduces EXPERT_SYSTEM_PROMPT byte-identically; vNext minus the two schema additions reproduces buildExpertWireSchema(input) byte-identically. Asserted by the suite (P1, P2) AND independently re-proven by the integrity gate against the files on disk.",
+      "expertPromptTsModified": false,
+      "abortsOnDriftedBase": true,
+      "wireSchemaIdentityNote": "The first-pass wire schema is PER-REQUEST — enums are bound to the request's own vocabularies — so a single schema hash identifies a schema for a given input rather than the protocol. The gate records v15 and vNext against one named fixture input so the comparison is like-for-like.",
+      "HOSTED_VALIDATED": false
+    },
+    "representation": {
+      "collection": "unresolvedFactDeclarations — a FIFTH TOP-LEVEL SIBLING",
+      "itemShape": "the canonical v3 nominatedFact shape reused unchanged (missingFact, observationSpan, notEstablishedBecause, affectedDecision, branchA, decisionIfA, branchB, decisionIfB, whyNecessaryNow) plus observationSourceId, governedEvidenceSourceIds and a within-response declarationId",
+      "consequence": "a first-pass declaration and a verifier nomination now project through the SAME code, parameterised only by the declaring stage",
+      "fieldsTheProviderIsNotGiven": ["factKey", "priority", "status", "source", "modelAuthored", "acceptableEvidence"],
+      "forbiddenFieldHandling": "REFUSED with a countable code, never sanitised",
+      "carrierCouplingPreserved": "CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE preserved-against structurally; the question→fact link is an OPTIONAL back-reference behaving exactly as relatesToCandidateKey, including stripping an unresolvable id while the question survives"
+    },
+    "factIdentity": {
+      "form": "FP.<affectedDecision>.<observationSourceId>.<startOffset>-<endOffset>.<ordinal>",
+      "example": "FP.REQUIRED_CONTROL.OBS-1.95-144.1",
+      "computedNotAccepted": true,
+      "offsetsAreHazLenzMeasurement": "computed with indexOf over the supplied source, the same mechanism bindWireAnalysis already uses",
+      "composedKeyIsCheckedNotSanitised": true,
+      "claims": {
+        "DETERMINISTIC_FROM_THE_DECLARATION": true,
+        "INDEPENDENT_OF_GENERATED_RATIONALE_PROSE": true,
+        "UNIQUE_WITHIN_THE_ANALYSIS": true,
+        "NOT_CHOOSABLE_BY_THE_PROVIDER": true,
+        "COMPATIBLE_WITH_VERIFIER_EXACT_BINDING": true,
+        "SEMANTIC_IDENTITY_ACROSS_ANALYSES": false
+      },
+      "notClaimedNote": "Two draws phrasing the same unresolved property differently produce DIFFERENT keys. No deterministic function of model output can decide that two differently-worded facts are the same fact — that is the semantic matcher retired at §160 — so cross-analysis identity is a human or measurement question and is not smuggled in under a hash."
+    },
+    "projection": {
+      "module": "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts",
+      "version": "hazlenz.expert.first-pass-owed-fact-projection.v1",
+      "provenanceKinds": ["EXPLICIT_UPSTREAM_FIELD", "MECHANICAL_DERIVATION", "HAZLENZ_TASK_STATE"],
+      "totalityProven": "OWED_FACT_FIELD_PROVENANCE is exported as data and case B3 asserts it covers a projected OwedFact EXACTLY — no field without a row, no row without a field",
+      "refusalGranularity": "PER DECLARATION, never whole-response",
+      "refusalCodeCount": 17,
+      "semanticNoOp": "every OwedFact field comes from an explicit upstream structured field or an allowed mechanical derivation; no field requires semantic invention"
+    },
+    "citationReuse": {
+      "modules": [
+        "backend/scripts/lib/expert-governed-citation-reuse.ts",
+        "backend/scripts/lib/expert-verifier-contract-v3-3.ts"
+      ],
+      "admissionContract": "hazlenz.expert.verifier.v3.3",
+      "collisionReproducedFirst": "case L1 reproduces the §195 collision against the UNMODIFIED v3.2 boundary",
+      "rule": "a citation token is admitted only when reliance was validly declared, every sourceId was supplied, and the WHOLE identifier appears verbatim in one of those authorised sources after case-and-whitespace normalisation and nothing else",
+      "gating": "reuse is evaluated ONLY when PROHIBITED_REGULATORY_CITATION is the sole objection, so an invalid reliance declaration can never authorise its own citation",
+      "noFuzzyInference": "no prefix matching, no nearest citation, no family matching; an altered paragraph reference is a different citation and is refused",
+      "promptChanged": false,
+      "promptNote": "There is NO v3.3 instruction and NO v3.3 prompt hash. v3.2's prompt and schema are byte-unchanged and the verifier is still told never to write a citation. The instruction stays STRICTER than the boundary, deliberately: §195 asked that faithful reuse not be DESTROYED, not that quoting be encouraged. The paraphrase route remains open and admitted.",
+      "firstPassReuseAllowance": "NONE — v15's HARD PROHIBITIONS block is not weakened",
+      "HOSTED_VALIDATED": false
+    }
+  },
+
+  "QUOTATION_BOUNDARY": {
+    "ADMITTED_UNIT": "a citation identifier, and nothing else",
+    "QUOTATION_LENGTH_LIMIT_EXISTS_ON_THE_VERIFIER_PATH": false,
+    "SECTION_196_CREATES_A_QUOTATION_LENGTH_LIMIT": false,
+    "SECTION_196_CREATES_A_LICENCE_TO_QUOTE_AT_LENGTH": false,
+    "note": "A long verbatim regulatory paragraph carrying no citation-shaped string was admissible before §196 and is admissible after it — unchanged. That residual is a different question from the one §195 raised and is not resolved here."
+  },
+
+  "RESIDUALS_AND_ESCALATIONS": [
+    {
+      "id": "PRIORITY_FLOOR",
+      "what": "a projected model-authored fact enters at priority OTHER, the non-escalating floor",
+      "why": "priority gates COVERAGE_PRIORITY_GATE and UNRESOLVED_SAFETY_STATE, and §170 reserves every deciding field to HazLenz, so the wire has no priority field",
+      "cost": "a genuinely LIFE_CRITICAL first-pass gap also enters at OTHER and will not raise the gate",
+      "disposition": "ESCALATED — escalation needs its own authority and its own evidence; §196 does not invent one"
+    },
+    {
+      "id": "OWED_PROPERTY_HAS_NO_OWEDFACT_FIELD",
+      "what": "declaration.missingFact states the unresolved property and cannot be projected, because OwedFact has no field for it",
+      "why": "adding one would mutate owed-fact.types.ts, whose sha256 §187 pins and every integrity gate since asserts; folding it into whyUnresolved would be composition and therefore invention — and whyUnresolved is projected in front of a provider",
+      "disposition": "ESCALATED as a contract question for a later authorization: whether OwedFact should gain an explicit owed-property field, under what protocol version, and with what re-attachment of existing evidence"
+    },
+    {
+      "id": "SEMANTIC_CORRECTNESS_UNCHECKED",
+      "what": "whether the two branches are genuinely possible, whether the divergence is real, and whether the span shows the fact is open",
+      "disposition": "REQUIRES_HUMAN_TRUTH — a declaration can be perfectly well-formed and completely wrong, and the boundary will project it. Stated in code and in the evidence rather than implied."
+    },
+    {
+      "id": "PROSE_REGULATORY_ASSERTION",
+      "what": "a verifier can still assert a regulatory requirement in prose with no citation string",
+      "disposition": "UNCHANGED — the §193 finding stands; §196 neither closes nor reopens it"
+    }
+  ],
+
+  "INTEGRITY_GATE_FINDING_ABOUT_SECTION_196_ITSELF": "The first draft of the projection module carried TWO LITERAL NUL BYTES where string separators were intended. The §193 auditability sweep caught it and the gate failed 33/34. That is the §193 failure mode exactly: grep treats such a file as binary and returns nothing, and a silent no-match is indistinguishable from a clean audit. Separators replaced; the file is valid UTF-8 with zero NUL bytes; gate now 34/34. Reported rather than quietly fixed.",
+
+  "SECTION_195_DISPOSITION": {
+    "preservedAs": "an execution-inconclusive pre-spend run, exactly",
+    "EXECUTED": false,
+    "PROVIDER_CALLS": 0,
+    "SPEND_USD": 0.0,
+    "elevenExecutionArtifactsStillAbsent": "ASSERTED FILE BY FILE by the §196 gate",
+    "syntheticExecutionEvidenceCreated": false,
+    "describedAsBehaviouralFailure": false,
+    "REUSABLE_UNCHANGED": [
+      "PIPELINE-STAGE-BLOCKER.md",
+      "CITATION-RELIANCE-COLLISION.md",
+      "RUN-SUMMARY.json",
+      "SOURCE-INTEGRITY.txt and PROTOCOL-HASHES.txt as historical record",
+      "the 12 raw observations inside FIXTURE-MANIFEST.json",
+      "the semantic rubric concepts — owedProperty, conjuncts, adjacentPropertiesEstablished"
+    ],
+    "REUSABLE_WITH_NEW_PREREGISTRATION": [
+      "TRUTH-MANIFEST.json — scored semantically against factKeyIntent and NEVER by key equality, because a computed key encodes a span offset and two correct declarations may anchor differently",
+      "FIXTURE-MANIFEST.json — re-frozen against the vNext protocol hashes",
+      "GOVERNED-EVIDENCE-MANIFEST.json — the noCitationShapedText design-around should now be relaxed DELIBERATELY, since v3.3 removes its reason and the live-registry case is the one §195 warned about",
+      "EXECUTION-ORDER.json — method and seed sound, order re-derived against the new protocol hashes",
+      "the fourteen PREREGISTERED_THRESHOLDS — untainted, but re-stated rather than inherited by reference",
+      "MECHANICAL_GATES — rawProhibitedCitationAdmitted must now distinguish an UNAUTHORISED citation from an authorised supplied-source reuse",
+      "backend/scripts/lib/expert-e2e-cohort-2026-09-06.ts and freeze-195-cohort-2026-09-06.ts"
+    ],
+    "RETIRED_FOR_NEW_PROTOCOL": [
+      "PREREGISTRATION.json / .md AS A FROZEN PREREGISTRATION — its firstPassIdentity pins v15 and its systemUnderTest names a stage that had no implementation",
+      "PROTOCOL-HASHES.txt AS AN EXECUTION PLAN — its first-pass identity is v15's",
+      "EXISTING-SUFFICIENT-FIRST-PASS-QUESTION and FIRST-PASS-INSUFFICIENT-QUESTION as INPUT fixture families"
+    ],
+    "outcomeDefinedFamiliesRule": "Future preregistration must NOT guarantee those two families by construction. Preregister scoring categories — if the first-pass clarification is sufficient, test verifier PRESERVATION; if insufficient, test verifier REPAIR — and report realised opportunity counts after execution. Do not alter truth after observing them.",
+    "frozenCohortExecuted": false,
+    "note": "§196 did not execute the frozen §195 cohort, automatically or otherwise, and created none of its absent artifacts."
+  },
+
+  "PRESERVED": {
+    "expertPromptTs": "UNCHANGED — file sha256 and EXPERT_SYSTEM_PROMPT sha256 byte-identical to §187's pinned values and to §195's frozen PROTOCOL-HASHES.txt; EXPERT_PROMPT_VERSION still hazlenz.expert.prompt.v15",
+    "owedFactsModules": "ALL FOUR pinned hashes UNCHANGED — owed-fact.types.ts, owed-fact-ledger.ts, owed-fact-binding.ts, verifier-v3-development-boundary.ts",
+    "verifierV3": "prompt and schema byte-identical; admission validator byte-identical (475a9577…)",
+    "verifierV3_1": "prompt and schema byte-identical — §192 PASS remains immutable",
+    "verifierV3_2": "prompt and schema byte-identical — deterministic integration complete, HOSTED-UNVALIDATED",
+    "section189HumanSemanticGate": "UNMEASURED at 65/112",
+    "section193CitationBoundary": "unchanged; the prose-assertion escalation stands",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "populations": "v3 / v3.1 / v3.2 remain analytically separate; vNext and v3.3 are new populations with no evidence at all"
+  },
+
+  "MUST_NOT_CLAIM": [
+    "any end-to-end pipeline result",
+    "any first-pass owed-fact recall, precision, sufficiency or transfer measurement",
+    "vNext hosted validated",
+    "v3.3 hosted validated",
+    "v3.2 hosted validated",
+    "that a well-formed declaration is a correct one",
+    "Expert HazLenz accepted, provider-validated or customer-ready",
+    "the §189 human gate measured"
+  ],
+
+  "NEXT_GATE": "A FRESH PROSPECTIVE END-TO-END PROTOCOL VALIDATION AUTHORIZATION, carrying its own preregistration built on the §195 artifact dispositions above. No spend is authorised by §196 and none occurred.",
+
+  "evidenceFiles": [
+    "MISSING-PIPELINE-STAGE-ROOT-CAUSE.md",
+    "STRUCTURED-OWED-FACT-ARCHITECTURE.md",
+    "FIRST-PASS-PROTOCOL-DIFF.md",
+    "OWED-FACT-FIELD-PROVENANCE.md",
+    "DETERMINISTIC-PROJECTION.md",
+    "GOVERNED-EVIDENCE-CITATION-REUSE.md",
+    "CITATION-ADMISSION-MATRIX.md",
+    "MULTI-GAP-PROJECTION.md",
+    "195-ARTIFACT-DISPOSITION.md",
+    "TEST-RESULTS.md",
+    "TEST-OUTPUT.txt",
+    "SOURCE-DIFF.md",
+    "SOURCE-INTEGRITY.txt",
+    "RUN-SUMMARY.json"
+  ],
+
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "branchCreated": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "unrelatedUncommittedWork": "PRESERVED — no reset, checkout, restore, stash or clean was performed"
+  }
+}

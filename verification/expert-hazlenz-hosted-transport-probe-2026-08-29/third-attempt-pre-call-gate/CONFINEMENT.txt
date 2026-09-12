@@ -1,0 +1,31 @@
+PRODUCTION / CUSTOMER-PATH CONFINEMENT — re-proved 2026-08-30 at HEAD 37a5d1b5
+
+A. every file referencing the Expert module (backend/src, backend/scripts, frontend-next):
+   backend/scripts/diagnose-expert-probe-content.ts
+   backend/scripts/probe-expert-hosted-transport.ts
+   backend/scripts/probe-expert-routing.ts
+   backend/scripts/probe-expert-transport.ts
+   backend/scripts/test-expert-authority-merge.ts
+   backend/scripts/test-expert-contract-foundation.ts
+   backend/scripts/test-expert-nocall-harness.ts
+   backend/scripts/test-expert-provider-failure.ts
+   backend/scripts/test-expert-routing-contract.ts
+   backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+   backend/src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider.ts
+   backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+
+   COUNT: 12
+   Section 102 recorded TEN at a HEAD that predated the hosted adapter and the hosted
+   probe. Those two files are the delta. This is an expected +2, not a regression.
+
+B. controllers / services / modules among them -- must be NONE:
+   NONE  (0 matches)
+
+C. importers of the HOSTED adapter -- CONSTRUCT match, a quoted specifier introduced
+   by from or require(, never a bare word (section 103.4):
+   backend/scripts/probe-expert-hosted-transport.ts:37:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+   -> exactly one importer, the hosted probe script itself, which is the authorized
+      probe-only consumer. No controller, service, module or frontend file imports it.
+
+D. frontend references to expert-hazlenz or the hosted adapter -- must be NONE:
+   NONE  (0 matches)

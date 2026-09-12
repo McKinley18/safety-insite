@@ -1,0 +1,103 @@
+{
+  "artifact": "SECTION_175_STRICT_ADJUDICATION_PACKET",
+  "purpose": "For each REQUIRED row that emitted a clarification, a human decides whether the question addresses the material unresolved fact. This model did not decide it and must not.",
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "observation": "A grain dryer runs on the drying floor. The burner sits behind a steel shroud and the flame-failure device cannot be seen from the walkway. At Monday's service the engineer filed the certificate; it lists a nozzle change and filter clean but does not record whether the burner was flame-tested. Dust has settled on the handrails.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "flame_test_status",
+          "question": "Was the flame-failure device on the burner actually flame-tested during Monday's service, even though the certificate does not record it, and if not, has it been tested since?",
+          "whyItMatters": "If the flame-failure device was tested and functioning, the burner can continue to be operated as a normal, controlled ignition source; if it was not tested and its function is unconfirmed, the dryer is operating with an unverified critical safety interlock and should be flame-tested or shut down before continued use, especially given the combustible dust nearby.",
+          "evidenceGap": "The service certificate lists a nozzle change and filter clean but does not state whether the flame-failure device was tested, and the device cannot be visually verified from the walkway.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": true,
+      "HUMAN_RATIONALE": null,
+      "HUMAN_CONFIDENCE": "HIGH"
+    },
+    {
+      "rowId": "HR-04",
+      "observation": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter initialled the sheet, which covers belt tracking and lubrication; the fastenings were last torque-checked at the annual service. No tools rest on the guard.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": false,
+      "HUMAN_RATIONALE": "no clarification was emitted, so there is nothing that could address the owed fact",
+      "HUMAN_CONFIDENCE": "HIGH"
+    },
+    {
+      "rowId": "HR-06",
+      "observation": "A debarker runs and a sawyer rolls logs onto the infeed chain. The guard door over the rotor is closed and its interlock switch is in place. After last night's tooth change the fitter signed the return-to-service log before restart; it recorded the tooth change but carries no interlock test result. The sawyer does not reach into the throat.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "interlock_test_performed",
+          "question": "Was the guard door interlock switch functionally tested (verified to stop/prevent rotor operation when the door is opened) at any point during or after the tooth change and before the machine was returned to service?",
+          "whyItMatters": "If the interlock was tested and confirmed functional (even though not recorded in this particular log entry), the current guarding control is verified sound and no further action is needed. If it was not tested at all after the maintenance work disturbed the guarded area, the interlock's protective function is unverified and could have been left non-functional by the maintenance work, requiring the machine to be stopped and the interlock tested before continued operation.",
+          "evidenceGap": "Whether a functional interlock test was performed after the tooth change and before restart is not stated; the log records the tooth change but omits any interlock test result.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": true,
+      "HUMAN_RATIONALE": null,
+      "HUMAN_CONFIDENCE": "HIGH"
+    },
+    {
+      "rowId": "HR-08",
+      "observation": "An operative clears a blockage at a grain dryer's discharge auger while the drying fans run on. Before starting he locked off the main dryer panel, applied a personal lock and proved that panel dead; the auger drive has its own local isolator and the lockout log shows no entry against it. The key hangs at the panel.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "auger_isolator_state",
+          "question": "Is the auger drive's local isolator currently locked out and verified de-energized, or is it left in a state where the auger could start while the operative is clearing the discharge blockage?",
+          "whyItMatters": "If the local isolator is not locked out, the auger drive remains a live energy source at the exact point the operative has his hands clearing a blockage, creating an active entanglement/crushing exposure requiring immediate stop-work and application of lockout to that isolator; if it is in fact locked out (e.g., via a group lockout procedure not reflected in this particular log) then the exposure is controlled and no immediate intervention is needed beyond correcting the log entry.",
+          "evidenceGap": "Whether the auger drive's own local isolator has been locked out/verified de-energized is not stated; only that the log shows no entry against it.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": true,
+      "HUMAN_RATIONALE": null,
+      "HUMAN_CONFIDENCE": "HIGH"
+    },
+    {
+      "rowId": "HR-09",
+      "observation": "A fitter is about to break a hydraulic hose on a baler ram. The pump is stopped and the isolator locked with his own lock; a second fitter witnessed the pump stop. He cycled the manual dump valve and left it open, and the accumulator gauge sits behind the tank shroud unread since. The ram guard is refitted.",
+      "emittedClarifications": [
+        {
+          "clarificationId": "clar-1",
+          "question": "Has the accumulator gauge been read/verified to confirm zero stored hydraulic pressure before breaking the hose, or does it remain unread as stated?",
+          "whyItMatters": "If the gauge is read and confirms zero pressure, the hose can be broken with residual stored energy ruled out and work proceeds under the isolation already in place; if it remains unread and pressure cannot be ruled out, breaking the hose exposes the fitter to a high-pressure fluid injection or whip hazard from stored accumulator energy, and work must stop until the gauge is checked or the accumulator is independently bled and verified.",
+          "evidenceGap": "The current pressure reading on the accumulator gauge, and whether it has been checked at all since the dump valve was cycled.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "BLOCKING"
+        }
+      ],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": true,
+      "HUMAN_RATIONALE": null,
+      "HUMAN_CONFIDENCE": "HIGH"
+    }
+  ],
+  "silenceFailures": [
+    {
+      "rowId": "HR-05",
+      "observation": "An operative clears a blockage at a grain dryer's discharge auger while the drying fans run on. Before starting he locked off the auger drive at its local isolator, applied a personal lock and proved the auger dead by attempting a start from the panel, which did not turn. The key is on his belt and no second key exists.",
+      "unnecessaryQuestions": [
+        {
+          "clarificationId": "clr-1",
+          "question": "Are the drying fans and any other energy sources connected to or capable of moving the discharge auger or its surrounding equipment (e.g., shared drive train, airflow-driven components) while the auger drive isolator remains locked out?",
+          "whyItMatters": "If the fans are mechanically or electrically independent of the auger drive with no capacity to move the auger or expose the operative to a struck-by/entanglement hazard, the single-point lockout on the auger drive is a sufficient control for the auger itself; if the fans or associated systems can cause movement or release grain into the discharge point despite the auger being locked out, additional isolation of those systems would be required to protect the operative from residual hazardous energy at the point of work.",
+          "evidenceGap": "The observation states only that the auger drive was locked out and dead-tested; it does not state whether the running drying fans or connected material flow could still introduce hazardous energy or grain movement at the discharge auger blockage point.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "criticality": "IMPORTANT"
+        }
+      ]
+    }
+  ],
+  "STATUS": "STRICT_ADJUDICATION_RECORDED",
+  "adjudicatedBy": "product owner",
+  "adjudicationDate": "2026-09-05",
+  "AI_ASSISTED_STRICT_ADJUDICATION": true,
+  "aiAssistanceDisclosure": "GPT-5.6 Sol reviewed the exact four emitted clarification questions before product-owner finalization; the product owner independently agrees with all four. This must NOT be described as AI-free independent human adjudication."
+}

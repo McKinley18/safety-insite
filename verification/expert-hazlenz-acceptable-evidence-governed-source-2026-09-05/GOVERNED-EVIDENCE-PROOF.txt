@@ -1,0 +1,91 @@
+§171 GOVERNED acceptableEvidence POPULATION — PROOF
+====================================================================================================
+  registry: 20 records from safescope-data/approved-knowledge/registry
+  derivation: hazlenz.expert.governed-evidence-derivation.v1
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0
+
+--- A  THE GOVERNED SOURCE IS REAL, APPROVED AND PRE-EXISTING
+
+ok    A.1 the selected record exists in the live governed registry and is approved  — app-loto-01 v1.0.0 — OSHA 1910.147, primary_regulation, approved 2026-06-07 by Safety Director
+ok    A.2 the record carries a state-establishing verification method and a named weak action  — verificationMethods=["zero_energy_verification"] · weak=["warning_only"] · requiredFacts=["energy_isolation_status"]
+ok    A.3 the record predates and is independent of the verifier — it names no verifier concept  — no verifier vocabulary and no evaluation identifier appears anywhere in the record
+
+--- B  DERIVATION IS DETERMINISTIC AND COPIES THE GOVERNED VOCABULARY
+
+ok    B.1 a criterion is derived, with GOVERNED_EVIDENCE provenance  — provenance=GOVERNED_EVIDENCE
+ok    B.2 examples and insufficientExamples are COPIED from the record, not paraphrased  — byte-equal to the governed arrays
+ok    B.3 the requirement is the fixed hazard-agnostic template with governed values substituted  — "Evidence establishing energy_isolation_status by a verification method the governed record for 1910.147 recognises."
+ok    B.4 the derivation is byte-stable across repeated calls  — identical bytes on re-derivation
+ok    B.5 no evaluation or human-disposition material is an input to the derivation  — the derivation module names no evaluation row, disposition or adjudication
+
+--- C  FAIL-CLOSED REFUSALS, INCLUDING TWO FOUND IN THE LIVE REGISTRY
+
+ok    C.1 records carrying a placeholder citation are refused — and two exist in the live registry  — app-rig-01, app-mat-01 refused as CITATION_IS_A_PLACEHOLDER
+ok    C.2 an unapproved record, a methodless record and a missing record all refuse to null  — four named refusals, all yielding null rather than a weaker criterion
+ok    C.3 the derivation never searches for a record — it cannot infer one from a hazard family  — no lookup, no registry read, no hazard-family matching in the derivation module
+
+--- D  MIXED POPULATED / NULL LEDGER
+
+ok    D.1 a PRODUCTION ledger accepts the governed criterion and the null side by side  — one populated, one null, in the same production ledger
+ok    D.2 the criterion stays attached to its own factKey and does not bleed  — exactly one fact carries a criterion
+ok    D.3 projection preserves the pairing and the null  — populated projects populated, null projects null
+
+--- E  THE PROVIDER CANNOT AUTHOR, OVERRIDE OR SEE PROVENANCE
+
+ok    E.1 provenance is absent from the provider-visible projection  — provenance, recordId and version stripped; the citation travels inside the requirement by design
+ok    E.1b the projection carries requirement, examples and insufficientExamples and nothing else  — three fields; no provenance, no recordId, no version
+ok    E.2 a declaration attempting to author acceptableEvidence is refused whole  — refused; the governed criterion is byte-unchanged
+ok    E.3 acceptableEvidence heads the provider-forbidden field list  — first entry
+
+--- F  FORBIDDEN PROVENANCE, INCLUDING ADJUDICATION_LABEL
+
+ok    F.1 all three forbidden provenances throw on a PRODUCTION ledger  — DEVELOPMENT_HUMAN_TRUTH, ADJUDICATION_LABEL, MODEL_SELF_AUTHORED
+ok    F.2 ADJUDICATION_LABEL remains forbidden and is not in the permitted list  — a judgement about the system output may never become an input to it
+ok    F.3 an arbitrary runtime literal provenance is not a member and cannot be admitted  — anything outside the four permitted provenances fails closed
+ok    F.4 the derivation can only ever emit GOVERNED_EVIDENCE  — one provenance literal in the module, and it is GOVERNED_EVIDENCE
+
+--- G  NO SEMANTIC SUFFICIENCY SCORER WAS INTRODUCED
+
+ok    G.1 the derivation contains no comparison between a question and a criterion  — no question parameter, no comparison operator over prose, no scoring identifier in the code
+ok    G.2 the semantic boundary is unchanged  — a criterion is a governed floor, not a guarantee of sufficiency
+
+--- H  COVERAGE, NOMINATION AND MULTI-GAP ARE UNAFFECTED
+
+ok    H.1 a nomination fabricates no criterion — the nominated fact inherits null  — HazLenz holds no governed criterion for a fact it did not author
+ok    H.2 multi-gap preservation is intact and coverage stays factKey-based  — 0 removed, 0 violations; 2 facts still uncovered by key, not by criterion
+ok    H.3 coverage is unaffected by whether a fact carries a criterion  — the same fact, with and without a criterion, produces the same coverage
+ok    H.4 question representation stays independent of semantic sufficiency  — a question object carries no evidence criterion and is not scored against one
+
+--- I  THE INACTIVE BOUNDARY, RE-PROVEN
+
+ok    I.1 the 3-argument merge is unchanged and carries no owedFactCoverage key  — FEATURE_OFF_CURRENT_PATH_INVARIANT holds
+ok    I.2 the gate is still the literal false and the stage still attaches nothing  — unchanged by this slice
+ok    I.3 this slice reaches no provider and requires no database write  — the derivation module has no transport and no persistence primitive
+
+====================================================================================================
+  31/31 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED: false
+====================================================================================================
+
+  DERIVED CRITERION (the exact task-state object):
+    {
+      "requirement": "Evidence establishing energy_isolation_status by a verification method the governed record for 1910.147 recognises.",
+      "examples": [
+        "zero_energy_verification"
+      ],
+      "insufficientExamples": [
+        "warning_only"
+      ],
+      "provenance": "GOVERNED_EVIDENCE"
+    }
+
+  PROVIDER-VISIBLE PROJECTION:
+    {
+      "requirement": "Evidence establishing energy_isolation_status by a verification method the governed record for 1910.147 recognises.",
+      "examples": [
+        "zero_energy_verification"
+      ],
+      "insufficientExamples": [
+        "warning_only"
+      ]
+    }

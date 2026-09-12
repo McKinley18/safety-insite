@@ -1,0 +1,175 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verdict",
+    "rationale",
+    "clarificationSourceMode",
+    "proposedClarification",
+    "bindingFactKey",
+    "nominatedFact",
+    "owedFactDeclarations"
+  ],
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "VERIFIED_AS_IS",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "NO_CLARIFICATION_REQUIRED",
+        "ABSTAIN"
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "clarificationSourceMode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "SUPPLIED_FACT",
+        "NOMINATED_FACT",
+        "SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION",
+        null
+      ],
+      "description": "Required on ADD_OR_REPLACE_CLARIFICATION, null otherwise. Must agree with which of bindingFactKey and nominatedFact are present."
+    },
+    "proposedClarification": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "question",
+        "whyItMatters",
+        "affectedDecision",
+        "evidenceGap"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "whyItMatters": {
+          "type": "string"
+        },
+        "affectedDecision": {
+          "type": "string",
+          "enum": [
+            "HAZARD_EXISTENCE",
+            "HAZARD_SEVERITY",
+            "EXPOSURE",
+            "APPLICABILITY",
+            "REQUIRED_CONTROL",
+            "REGULATORY_INTERPRETATION"
+          ]
+        },
+        "evidenceGap": {
+          "type": "string"
+        }
+      }
+    },
+    "bindingFactKey": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The factKey of the supplied unresolved fact this question answers, copied EXACTLY. Must be one of the supplied keys. Null when the question answers no supplied fact."
+    },
+    "nominatedFact": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "missingFact",
+        "observationSpan",
+        "notEstablishedBecause",
+        "affectedDecision",
+        "branchA",
+        "decisionIfA",
+        "branchB",
+        "decisionIfB",
+        "whyNecessaryNow"
+      ],
+      "description": "At most one, ever. ADDITIVE: it may accompany a bindingFactKey and never replaces a supplied fact.",
+      "properties": {
+        "missingFact": {
+          "type": "string"
+        },
+        "observationSpan": {
+          "type": "string",
+          "description": "Copied WORD FOR WORD from the observation. Checked by exact match."
+        },
+        "notEstablishedBecause": {
+          "type": "string"
+        },
+        "affectedDecision": {
+          "type": "string",
+          "enum": [
+            "HAZARD_EXISTENCE",
+            "HAZARD_SEVERITY",
+            "EXPOSURE",
+            "APPLICABILITY",
+            "REQUIRED_CONTROL",
+            "REGULATORY_INTERPRETATION"
+          ]
+        },
+        "branchA": {
+          "type": "string"
+        },
+        "decisionIfA": {
+          "type": "string",
+          "description": "What is done TODAY if branchA holds."
+        },
+        "branchB": {
+          "type": "string"
+        },
+        "decisionIfB": {
+          "type": "string",
+          "description": "What is done TODAY if branchB holds. MUST DIFFER from decisionIfA."
+        },
+        "whyNecessaryNow": {
+          "type": "string"
+        }
+      }
+    },
+    "owedFactDeclarations": {
+      "type": "array",
+      "description": "EXACTLY ONE ENTRY PER SUPPLIED FACT, in any order. Every supplied key appears once and no other key appears at all.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "factKey",
+          "declaration",
+          "challengeReason"
+        ],
+        "properties": {
+          "factKey": {
+            "type": "string",
+            "description": "Copied EXACTLY from the supplied fact."
+          },
+          "declaration": {
+            "type": "string",
+            "enum": [
+              "BOUND_BY_CLARIFICATION",
+              "STILL_UNRESOLVED",
+              "CHALLENGE_FACT_VALIDITY"
+            ]
+          },
+          "challengeReason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Required for CHALLENGE_FACT_VALIDITY, null otherwise. A challenge is a REQUEST for review and never settles the fact."
+          }
+        }
+      }
+    }
+  }
+}

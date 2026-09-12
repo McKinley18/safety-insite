@@ -1,0 +1,12 @@
+0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+022fb9db7e55a05db0870405bcccd4ba1140c41ae4750371143d93e3fdd5f330  backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts
+c6d593bef0a0c139af9fee3727068785ddff92e0bdbbc9102c883770c8b5b633  backend/src/safescope-v2/expert-hazlenz/expert-cohort-contract.ts
+2210cbe620ff3ad837389a4b84b5ab166d39cff1f374b8964fc52e019b3723e5  backend/src/safescope-v2/expert-hazlenz/expert-input-constructor.ts
+bec26908b814bf80d6da4f563a83d57759c49d619c75d233325b8dbf71bb41cc  backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts
+96f6c84895ece2bad0750a4ef0194433b5e1f116cea4a034269328b7c7cf7323  backend/src/safescope-v2/expert-hazlenz/expert-cohort-composition.ts
+ca8c7e7d0720255840ca2f49ac9e662e8a5717d66b24557e7e5e2ea80c3f8ca0  backend/src/safescope-v2/expert-hazlenz/fixtures/cohort-validation-fixtures.ts
+b4ea8b750afc5f4c88fb7f2892e71d894767427a7310b4b4314c6687e65e0fcd  backend/scripts/lib/expert-cohort-harness.ts
+106e3be435208f79b69fa9c0518d860f092bf06f78ba7d7d7e6a9012e323da95  backend/scripts/test-expert-cohort-instrument.ts
+9e7a5bc4c378c7b48343e295a9460437248ab077d4f286a1c546d0b7500995fc  backend/scripts/analyze-reserved-cohort-sufficiency.ts
+e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+f1cc7a61cf957a45449274eaa1763fece0bd9cfee095a636421cd5a0ff88e467  backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts

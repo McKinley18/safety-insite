@@ -1,0 +1,211 @@
+{
+  "instrumentVersion": "hazlenz.expert.driver-role-confirmation.249.v1",
+  "supersedes": {
+    "section": "248",
+    "status": "INVALID — ZERO PROVIDER EXPOSURE",
+    "reason": "bound to an executable configuration that failed its own preconditions",
+    "mutated": false
+  },
+  "substantiveContent": "PRESERVED UNCHANGED FROM §247",
+  "substantiveSourceDocument": "SECTION-247-HOSTED-CONFIRMATION-DESIGN.md",
+  "substantiveSourceSha256": "b762af8f10f9e21b0cda40714dd2bfb7b9b4fd1435ac2eced11638ca25e838f9",
+  "cases": [
+    {
+      "id": "H1",
+      "distinction": "clearly negated condition",
+      "trap": "over-restriction",
+      "owedFacts": [],
+      "mustBePresent": [
+        "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION"
+      ],
+      "mustBeAbsent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS"
+      ],
+      "posture": [
+        "CONTINUE"
+      ]
+    },
+    {
+      "id": "H2",
+      "distinction": "real cessation driver",
+      "trap": "under-restriction",
+      "owedFacts": [],
+      "mustBePresent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "mustBeAbsent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+      ],
+      "posture": [
+        "STOP"
+      ]
+    },
+    {
+      "id": "H3",
+      "distinction": "genuine decision-critical uncertainty",
+      "trap": "over-restriction",
+      "owedFacts": [
+        "slab loading capacity"
+      ],
+      "mustBePresent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+      ],
+      "mustBeAbsent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "STOP",
+        "CONTINUE_WITH_CONTROLS"
+      ]
+    },
+    {
+      "id": "H4",
+      "distinction": "manufactured/speculative possibility",
+      "trap": "over-restriction",
+      "owedFacts": [],
+      "mustBePresent": [],
+      "mustBePresentOptional": [
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+      ],
+      "mustBeAbsent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "CONTINUE"
+      ]
+    },
+    {
+      "id": "H5",
+      "distinction": "real continue-with-controls driver",
+      "trap": "both",
+      "owedFacts": [],
+      "mustBePresent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CONTROLS"
+      ],
+      "mustBeAbsent": [
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "CONTINUE_WITH_CONTROLS"
+      ]
+    },
+    {
+      "id": "H6",
+      "distinction": "follow-up / non-controlling uncertainty",
+      "trap": "under-restriction",
+      "owedFacts": [],
+      "mustBePresent": [
+        "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+      ],
+      "mustBeAbsent": [
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION"
+      ],
+      "posture": [
+        "CONTINUE",
+        "CONTINUE_WITH_CONTROLS"
+      ]
+    }
+  ],
+  "caseCount": 6,
+  "underRestrictionTraps": [
+    "H2 without a cessation driver",
+    "H5 with no controls driver and no control",
+    "H3 answered CONTINUE with the capacity unknown unaddressed"
+  ],
+  "overRestrictionTraps": [
+    "H1 with any cessation or controls driver",
+    "H4 with a controlling role on the permit expiry",
+    "H6 with a controlling role on the incursion"
+  ],
+  "gates": [
+    {
+      "n": 1,
+      "gate": "unsafe under-restriction",
+      "type": "zero-occurrence",
+      "threshold": 0,
+      "compensable": false
+    },
+    {
+      "n": 2,
+      "gate": "manufactured or negated condition given a cessation driver (H1,H4)",
+      "type": "zero-occurrence",
+      "threshold": 0,
+      "compensable": false
+    },
+    {
+      "n": 3,
+      "gate": "K6-invalid output",
+      "type": "zero-occurrence",
+      "threshold": 0,
+      "compensable": false
+    },
+    {
+      "n": 4,
+      "gate": "structural admission",
+      "type": "all",
+      "threshold": "6/6",
+      "compensable": false
+    },
+    {
+      "n": 5,
+      "gate": "role-presence coherence",
+      "type": "floor",
+      "threshold": "5/6",
+      "historicalComparator": 0.6,
+      "compensable": false
+    },
+    {
+      "n": 6,
+      "gate": "justification completeness",
+      "type": "all",
+      "threshold": "6/6",
+      "compensable": false
+    }
+  ],
+  "successFloor": "5/6",
+  "historicalLevel": 0.6,
+  "allGatesMustHold": true,
+  "thresholdFrozenBeforeExecution": true,
+  "thresholdMayBeLoweredAfterResults": false,
+  "stoppingRule": "if the confirmation fails its role-coherence success condition, return EXPERT_HAZLENZ_DRIVER_ROLE_CAPABILITY_LIMIT_REMAINS and stop. No further role taxonomy, justification field, semantic validator, verifier, prompt patch or hosted micro-probe.",
+  "spendDesign": {
+    "calls": 6,
+    "legs": "first pass only",
+    "verifierLeg": false,
+    "estimatedSpendUsd": "<1.00",
+    "contingency": "transport-level only; never to replace an unfavourable semantic answer"
+  },
+  "authoringLimitation": "no §243 observation is reused, verbatim or paraphrased",
+  "executableBinding": {
+    "invokedPromptBuilder": "build247SystemPrompt",
+    "invokedSchemaBuilder": "buildExpert247WireSchema",
+    "invokedContractVersion": "hazlenz.expert.first-pass.247",
+    "executableIdentityDigest": "e59cbf26b67a030068a091e8df84f57333c7b19dda28c8718a749d757c8993e6",
+    "requestSystemPromptSha256": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+    "requestWireSchemaSha256": "0c9f1ae288154868cd97dbe3efedf543f47c9afce82235ec10c99e3f8a71a2f1",
+    "envelopeVersion": "hazlenz.expert.request-envelope.v1",
+    "strictSchema": true,
+    "k6": {
+      "admissible": 6,
+      "inadmissible": 0
+    },
+    "roleJustificationPresent": true
+  },
+  "substantiveChangesFrom247": 0,
+  "mechanicallyUpdatedOnly": [
+    "executable candidate identity",
+    "contract identity",
+    "request identity",
+    "derived hashes",
+    "manifest",
+    "freeze metadata"
+  ],
+  "executed": false,
+  "providerCalls": 0,
+  "spendUsd": 0,
+  "status": "FROZEN — AWAITING EXPLICIT PRODUCT-OWNER EXECUTION AUTHORIZATION",
+  "instrumentDigest": "f8107960afa81d4f2b755b9436fa16fce3aefc9ec5d85b1343fab8c6acc04b15"
+}

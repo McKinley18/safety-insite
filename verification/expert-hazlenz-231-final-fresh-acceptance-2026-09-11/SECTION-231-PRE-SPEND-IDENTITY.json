@@ -1,0 +1,406 @@
+{
+  "artifact": "SECTION-231-PRE-SPEND-IDENTITY",
+  "executorVersion": "hazlenz.expert.231.final-acceptance-execution.v1",
+  "assemblyVersion": "hazlenz.expert.231.assembly.v1",
+  "capturedAt": "2026-09-11T22:11:53.814Z",
+  "recomputedBeforeAnyProviderCall": true,
+  "candidateBaselineDigest": "48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200",
+  "candidateBaselineVerified": true,
+  "frozenInstrumentDigest": "bbde6ca0a1d1253ea8dc78d46bef8a26b3ef75ac2d59f72ed051e9e8fbe06844",
+  "frozenInstrumentDigestRecomputedFromModule": "bbde6ca0a1d1253ea8dc78d46bef8a26b3ef75ac2d59f72ed051e9e8fbe06844",
+  "frozenPackageDigest": "4bb37d515e142902254e1ebb6cb7e67c8899f6f776f3625c7ec7ff8e9f626d1f",
+  "frozenPackageDigestAuthorized": "4bb37d515e142902254e1ebb6cb7e67c8899f6f776f3625c7ec7ff8e9f626d1f",
+  "frozenPackageDigestMatches": true,
+  "protectedIdentity": {
+    "compositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "moduleCount": 29,
+    "missingModules": [],
+    "matchesBaseline": true,
+    "semanticIdentities": {
+      "firstPassContractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "contract226Version": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "verifierContractVersion": "hazlenz.expert.218.property-review-contract.v1",
+      "systemPrompt210jNoGoverned": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+      "systemPrompt210jGoverned": "6f78f0a1d5583173df29280197ee6e4d386218c48db0e5e70da8b5393383b80b",
+      "systemPrompt226NoGoverned": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "systemPrompt226Governed": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+      "verifierSystemPrompt218": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+      "verifierSchema218": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380",
+      "requiredDeclarationFields210j": "a920591b1a200cfdbba88119db965e3cf221b8ca2de6891a9951ed3425435e89",
+      "unresolvedActionField": "decisionWhileUnresolved",
+      "unresolvedActionSchemaProperty": "aa27e4f8e7d75b81cc1a395a828e03326bb80773783dabff9c3ecd1a1ee04f07",
+      "propertySemanticRoles218": "12c486a15cecd068966e938ef5192dbdd4bf81600ef0138d8a8b9ef399a2e12b",
+      "propertyValidities218": "d89fd6651958ec8c41c0255b90933beec133847841b8d574ed2c2cc10699371e",
+      "roleDefinitions218": "b5d05180a38d2a8ca0a06a8a1dc242602095021f9feae2290b3f63f6cc5f1505",
+      "evidenceRoleCounterfactual218": "a09652c670794ec816a7b07125dd71d5253d1cd8fa261f59cfa0c4761572db23",
+      "instrument228ADigest": "b8c26ff9c6f1eb35f2881255d348e2243ae2aa94bf32aaa7a5f5b77cb7a4a0c4",
+      "instrument228CDigest": "f5d9e0c051e835f3b07122a5813479d32cca88d7e0de802d4b59772df4a2bc09"
+    }
+  },
+  "providerIdentity": {
+    "endpoint": "https://api.anthropic.com",
+    "requestedModel": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "frozenExecutionConfiguration": {
+    "firstPassMaxTokens": 4000,
+    "verifierMaxTokens": 4000,
+    "primaryCalls": 52,
+    "maximumTotalCalls": 54,
+    "contingencyCalls": 2,
+    "contingencyEligibleFailureClasses": [
+      "TRANSPORT_FAILURE",
+      "HTTP_FAILURE"
+    ],
+    "semanticPreferenceRetries": 0,
+    "spendCeilingUsd": 4.28,
+    "projectedSpendUsd": 3.6328,
+    "databaseOperations": 0
+  },
+  "startingProviderCallCount": 0,
+  "startingSpendLedgerUsd": 0,
+  "perCaseAssembledIdentity": [
+    {
+      "caseId": "G1",
+      "ordinal": 1,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G1",
+      "observationSourceId": "OBS-230-G1",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "b4ce0abc4b3bd9de1b2b44a7b60c3519924cb88ea92c6a2782f37fd0df2cc8d8",
+      "wireSchemaDigest": "b34c04d14490daa38db9315ff5c12a782cdb00b2a4ee51b4e0dfbe7731950fb1",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G2",
+      "ordinal": 2,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G2",
+      "observationSourceId": "OBS-230-G2",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "25ea4a01ac61fc9863fcfc3dc1a4978d45544a7d2bae006b317d875435aa89d6",
+      "wireSchemaDigest": "275accb83ac0fe90c4648cf8b5663c026f73abdb82d8b3d6f2ac6a7d779917ba",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G3",
+      "ordinal": 3,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G3",
+      "observationSourceId": "OBS-230-G3",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "8baf2ba750765d0972d311256433cce6f9b1f04d32d15f6874fbf8c95c8ec778",
+      "wireSchemaDigest": "f26ce578ba8cfa91a4065de20159822137f813c83fac19c490091af8e1a9cbb1",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G4",
+      "ordinal": 4,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G4",
+      "observationSourceId": "OBS-230-G4",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "ecdfe0be2a006dc084ab837381d2f0108d90d8cb5a6926d8fe95a2fda5104746",
+      "wireSchemaDigest": "00c4f9bced9d235e8802cb1b3f71b43bd343950782a6567bab8bfcb83a72fc76",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G5",
+      "ordinal": 5,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G5",
+      "observationSourceId": "OBS-230-G5",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "a79672becc111d57a767451bceaec969dfcb4f441cca3346fc235a4dc4c2e665",
+      "wireSchemaDigest": "ebc236dc394698545676eb5e0955bad3f65f4a9926c9287ebfd3638fccb86f56",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G6",
+      "ordinal": 6,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G6",
+      "observationSourceId": "OBS-230-G6",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "f5a3c37fd978c768abce18821997d2f0c2b8e742e9282741876d528cb8d2cb69",
+      "wireSchemaDigest": "2eb9b3cad3086c5d92b72c6addd9250cb9444dd878477b98c4d5bae7c3a7c3bd",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G7",
+      "ordinal": 7,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G7",
+      "observationSourceId": "OBS-230-G7",
+      "systemPromptDigest": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+      "userPromptDigest": "0bd914e9773046b07ade6010c26afc351f8875ef16193e6a53ae518a57dd0be2",
+      "wireSchemaDigest": "0bc7695947c6d1e284c0dcc18e8e2a952339aeeaf9cf5ea38b9064b8bbb547c4",
+      "governedRecordIds": [
+        "GOV-OSHA-1910-147",
+        "GOV-OSHA-1910-37"
+      ]
+    },
+    {
+      "caseId": "G8",
+      "ordinal": 8,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G8",
+      "observationSourceId": "OBS-230-G8",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "4f40a473be2c80f9579e5f39b94f65524ff89fe9f7dad3ea38fc0093e25ae392",
+      "wireSchemaDigest": "e317f629e3e223c0634872ac4535de11799876846d8004c0b163d74138edaa23",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G9",
+      "ordinal": 9,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G9",
+      "observationSourceId": "OBS-230-G9",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "cd3975bbadf20119a72bdb85ee164c6c230be8a27fbf4999f7e7c9c145e84849",
+      "wireSchemaDigest": "234f1a34b999d74acf34de3122220f06d4ecc31e09967820922a55f5c9266490",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G10",
+      "ordinal": 10,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G10",
+      "observationSourceId": "OBS-230-G10",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "a822d1689d80705839d4414586f2d599923670a491cab2162f50422abc8e564f",
+      "wireSchemaDigest": "65b36c8fee078a5e573ea695f5d95166faff703683cedcba6ad7f5a0c83cf3d4",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "G11",
+      "ordinal": 11,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-G11",
+      "observationSourceId": "OBS-230-G11",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "edd406a8e563428c302664665660d897e43bf3a3b44e9410c30e7e1c41c19c10",
+      "wireSchemaDigest": "d4a6f90c6f9db8824eb60678c951e692f6e0f8f800bbb66e5948d3ea987693fa",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C1",
+      "ordinal": 12,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C1",
+      "observationSourceId": "OBS-230-C1",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "0f126b57b2945942e2041873af93dedbf4cf9e1c5c02ba977eb5fe19c2d218e6",
+      "wireSchemaDigest": "9723d736639f884bad72edf6dabb739460cd49d8c5e18715eb6755aa81366957",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C2",
+      "ordinal": 13,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C2",
+      "observationSourceId": "OBS-230-C2",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "6266870e4c8c685d90f677733246520fecc9c1e88eea7ce0deb09c69c7122d1f",
+      "wireSchemaDigest": "4760e6b30a6b100855cf8866233747e62b8f739ba8d54abe6dbf1076e7e7fcd4",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C3",
+      "ordinal": 14,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C3",
+      "observationSourceId": "OBS-230-C3",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "67edbe5db9f886e05c6b2e3f881003107de0e52c19427052e1c9d62f7c3f6e4f",
+      "wireSchemaDigest": "306e3f5a3ef92d3fe8119beffd82e083ad4589ec06926e99f447c0bd319b055b",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C4",
+      "ordinal": 15,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C4",
+      "observationSourceId": "OBS-230-C4",
+      "systemPromptDigest": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+      "userPromptDigest": "f178c3776bd148572db3e5de80ec044244cc745f3f74e0c0238ea6a53ea90115",
+      "wireSchemaDigest": "4e6ea257600e377d3afba97e836c2196f96b865422e50a240124586e79759b91",
+      "governedRecordIds": [
+        "GOV-OSHA-1926-451"
+      ]
+    },
+    {
+      "caseId": "C5",
+      "ordinal": 16,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C5",
+      "observationSourceId": "OBS-230-C5",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "8ab88b35adba3393f6b732cd53a920050f6690a1f8027427731060d3f2cfd174",
+      "wireSchemaDigest": "c211866f2b6dde168b81b94cc6eb7dc29b55c63b88aff3f1ffa8b69babf54bec",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C6",
+      "ordinal": 17,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C6",
+      "observationSourceId": "OBS-230-C6",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "ca5f57c7a92e8d5824d64986d574c97d02019cd61d819482451e861ffb978bc3",
+      "wireSchemaDigest": "5142ab01821475e588ebdda14fc69e7e16f957359f26ed3fb541c75c115cf603",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C7",
+      "ordinal": 18,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C7",
+      "observationSourceId": "OBS-230-C7",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "82f1f70e6b7f33769e0bfe821be3d19f157d7921d1d4d92fe58e284ceec73e28",
+      "wireSchemaDigest": "fde0bcbc0ae569a4b371f0a5562296abc1b8eea87789412fbb94dfe778ae67e4",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C8",
+      "ordinal": 19,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C8",
+      "observationSourceId": "OBS-230-C8",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "53fadb9ee3a12fe7f122db5b9b36b54f86850482c5ae2cc7c786c677caba5dae",
+      "wireSchemaDigest": "6da7a49889a1060b27786f8785c9ccdafa253924a64b340f2bb3b72dc193d6d7",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C9",
+      "ordinal": 20,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C9",
+      "observationSourceId": "OBS-230-C9",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "1d8a1eda91934e87031a84f9b41df9094c05b265037ab5f1f5e15e7807804eca",
+      "wireSchemaDigest": "b2487ad0a60a06675498719fce6308cff8242e9b378201f1bc9a4eb8f0d7d9cc",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "C10",
+      "ordinal": 21,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-C10",
+      "observationSourceId": "OBS-230-C10",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "ba8775b1e246dbba4bc99b59593a2f59f679231a82f45efdb227fb8abd58dd06",
+      "wireSchemaDigest": "7f29b23b2dc1f42a2e1392c8a920358c9c7dcf76f22d3e4227d07c85a5566d4d",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M1",
+      "ordinal": 22,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M1",
+      "observationSourceId": "OBS-230-M1",
+      "systemPromptDigest": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+      "userPromptDigest": "9536262934260a898abe61222fe0da8f7886bfa5bed58ac5e63d96427ed955c5",
+      "wireSchemaDigest": "c7d8bf57439c6aab3c49a2c6624dd2800198ff8217c7144eb696b7dc8d183fa3",
+      "governedRecordIds": [
+        "GOV-MSHA-56-3401",
+        "GOV-MSHA-56-20003"
+      ]
+    },
+    {
+      "caseId": "M2",
+      "ordinal": 23,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M2",
+      "observationSourceId": "OBS-230-M2",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "f3523b701bfb97288a915122c70474cedfdb5c80280867a2c2fe7d9129aac4db",
+      "wireSchemaDigest": "a048568249b2a0685ab1d21b466552191a60a7ca8a34474ef4a69f67dbd2c449",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M3",
+      "ordinal": 24,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M3",
+      "observationSourceId": "OBS-230-M3",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "5ae51400a90d6fc7287281d762e9e7ad83bdeb3859f189545e9b13e72e249e45",
+      "wireSchemaDigest": "1c0a3741c6e73e9c671714fe96a3e8a62f4a76c333e56fff7aac7ed7c17c1add",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M4",
+      "ordinal": 25,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M4",
+      "observationSourceId": "OBS-230-M4",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "ec1d29b237ce6d4cf6118fa0b473b3602c2889938238a7de5ac8419b46fa2a9b",
+      "wireSchemaDigest": "ead6878cf2a30d7e43d60fbfe4a284b77e0f1a5078c5341a3c0226bb5d608acc",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M5",
+      "ordinal": 26,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M5",
+      "observationSourceId": "OBS-230-M5",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "66a7073ec70ca47e350dda474d698bda08abb4bf302d81c5a9f5dacdc9b905c1",
+      "wireSchemaDigest": "1224e5c76f90b8e0fe186abfe9ba307dfd3f3dcfca7fcb7f6b2e300bd7f43827",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M6",
+      "ordinal": 27,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M6",
+      "observationSourceId": "OBS-230-M6",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "fd3c6102205126f11263aea57524751aafdf1f38721e4971547eae1f543b8f8c",
+      "wireSchemaDigest": "c57b07ff831aecdfd5306c72c4725a92da08403365afd8eaefbb96555a368f12",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M7",
+      "ordinal": 28,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M7",
+      "observationSourceId": "OBS-230-M7",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "2b32b48295bd925ed6112f0bc7715ccc235df68ba85447e5a03136af2b9b6c08",
+      "wireSchemaDigest": "a66267b377e86b2b5c2ea2cf3275fffad3845621e62efebceb9136d53d7a38f9",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M8",
+      "ordinal": 29,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M8",
+      "observationSourceId": "OBS-230-M8",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "bf0fe18fbbcc54c3b0c311aa0ea7d255f2f0f7d9c6d84952cc840990021c7ee6",
+      "wireSchemaDigest": "a365fb041a2b95479db6e1b500c33a89678dd791c81abeb0772ee42b2c6d5453",
+      "governedRecordIds": []
+    },
+    {
+      "caseId": "M9",
+      "ordinal": 30,
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "analysisId": "ANL-230-M9",
+      "observationSourceId": "OBS-230-M9",
+      "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptDigest": "e1723a438a7524bbfe9fd75aeb91afa5cdce3756be2bdcd3476b7f78e8f559c0",
+      "wireSchemaDigest": "b66b7804ca01673c0ccfde2a22d3449ba49eb5cff2fdf9f9ab353e6c562493ed",
+      "governedRecordIds": []
+    }
+  ]
+}

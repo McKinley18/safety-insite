@@ -1,0 +1,16 @@
+fixture    R2  WET + ELECTRICAL
+reason     non-adversarial, non-grounding, non-negative-control; produced a rich
+           real response under v3 (3 candidates, 4 clarifications, 2 insights)
+
+source schema hash      76bf0142206b647c301ad22a9af913bf5e1952ee681bc3f62484d3cbff0782c0
+diagnostic schema hash  9d8087d5507db70caf0dcbce9db301b102c66f0451fba50650a8888f9c213128
+minLength removed       14
+minItems removed        1
+unexpected differences  0
+
+pre-flight  diff is isolated to minLength/minItems removal only — proceeding to Phase 3
+
+ceiling    1 call   $1.00
+worst case $0.0910 for this one call
+
+EXPERT_HAZLENZ_ANTHROPIC_SCHEMA_DIAGNOSTIC_BLOCKED — PROVIDER_OR_ACCOUNT_REMEDIATION_REQUIRED

@@ -1,0 +1,1199 @@
+{
+  "artifact": "SECTION-228A-COVERAGE-MAP",
+  "version": "hazlenz.expert.228a.targeted-integrated-revalidation.v1",
+  "dimensions": "CASE x PIPELINE STAGE x HARD REQUIREMENT x HUMAN ACTION x EXPECTED FINAL STATE",
+  "rule": "no required path is marked covered unless it names real case ids, real exercise ids and the concrete runtime steps that decide it. No prose-only coverage claim is admitted.",
+  "correctsSection221Deficiency": {
+    "whatWentWrong": "§221 listed a gate in a case exercised-set without authoring a judgment slot feeding it. Five of the six COVERAGE_INSUFFICIENT results came from that alone, and frozen denominators made it unrepairable afterwards.",
+    "howItIsCorrected": "preflight check P15 fails the freeze if any requirement a case claims is not fed by a mandatory judgment slot on that same case, and separately if any requirement has zero cases.",
+    "underAuthoredRequirementsRemaining": []
+  },
+  "rows": [
+    {
+      "caseId": "C1",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR1"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "VERIFIER",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "PROPERTY_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR4",
+        "HR7",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "EVIDENCE_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR7"
+      ],
+      "humanActionAtThisStage": "NONE / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "SETTLEMENT",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR4",
+        "HR5",
+        "HR7",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C1"
+    },
+    {
+      "caseId": "C1",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR5",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "the capacity fact is present and UNRESOLVED, the ledger holds zero transitions, an evidence authority exists and settled nothing, and the analysis presents the aisle beneath the mezzanine as an open safety question rather than an answered one"
+    },
+    {
+      "caseId": "C2",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR1"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "VERIFIER",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "PROPERTY_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR6",
+        "HR8",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE then CONFIRM_PROPERTY / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "HUMAN_REVIEW_PACKET",
+      "requirementsAtThisStage": [
+        "HR2"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE then CONFIRM_PROPERTY / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "EVIDENCE_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR6"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE then CONFIRM_PROPERTY / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "SETTLEMENT",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR5",
+        "HR6",
+        "HR8",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE then CONFIRM_PROPERTY / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C2"
+    },
+    {
+      "caseId": "C2",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR5",
+        "HR8",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "after stage one the fact is CONFIRMED for property authority and still UNRESOLVED with zero transitions. After stage two the same fact — the same proposition, not a near neighbour — is SETTLED_BY_EVIDENCE on exactly one transition carrying ADMISSIBLE_EVIDENCE, and the sentence saying why it was unresolved is preserved on the transition record"
+    },
+    {
+      "caseId": "C3",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR1"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "VERIFIER",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "PROPERTY_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR8",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "HUMAN_REVIEW_PACKET",
+      "requirementsAtThisStage": [
+        "HR2"
+      ],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "EVIDENCE_AUTHORITY",
+      "requirementsAtThisStage": [],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "SETTLEMENT",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR5",
+        "HR8",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / APPROVE_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C3"
+    },
+    {
+      "caseId": "C3",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR5",
+        "HR8",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "the correction is recorded with the reviewer's own words as the controlling property, the original declared property is NOT settled and NOT treated as confirmed, the fact remains UNRESOLVED, and the ledger holds zero transitions despite a recorded evidence approval"
+    },
+    {
+      "caseId": "C4",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR1"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR3"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "VERIFIER",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "SCOPE_CONTAINMENT",
+      "requirementsAtThisStage": [
+        "HR3"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "PROPERTY_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR14"
+      ],
+      "humanActionAtThisStage": "KEEP_UNRESOLVED / REJECT_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "HUMAN_REVIEW_PACKET",
+      "requirementsAtThisStage": [
+        "HR2"
+      ],
+      "humanActionAtThisStage": "KEEP_UNRESOLVED / REJECT_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "EVIDENCE_AUTHORITY",
+      "requirementsAtThisStage": [],
+      "humanActionAtThisStage": "KEEP_UNRESOLVED / REJECT_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "SETTLEMENT",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR3",
+        "HR5",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "KEEP_UNRESOLVED / REJECT_SETTLEMENT",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C4"
+    },
+    {
+      "caseId": "C4",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR3",
+        "HR5",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "both facts are present. The asbestos fact is UNRESOLVED with property authority DECLINED_KEEP_UNRESOLVED and no evidence authority. The conduit fact is UNRESOLVED and untouched, with no authority state of its own having been sought. The ledger holds zero transitions and neither fact has been collapsed into or substituted for the other"
+    },
+    {
+      "caseId": "C5",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C5"
+    },
+    {
+      "caseId": "C5",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR10",
+        "HR11"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C5"
+    },
+    {
+      "caseId": "C5",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR10"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C5"
+    },
+    {
+      "caseId": "C5",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR9",
+        "HR10"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "the declaration is refused whole. A STRUCTURALLY_INVALID_DECLARATION record exists carrying the ventilation property VERBATIM as the model wrote it, with admissible false, mayBeSettled false, mayCloseTheAnalysis false and requiresUpstreamRepair true. No owed fact enters the ledger, no claim can be raised, no packet can be built, and the end state names the result as unusable rather than as clean"
+    },
+    {
+      "caseId": "C6",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9",
+        "HR13"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C6"
+    },
+    {
+      "caseId": "C6",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR13"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C6"
+    },
+    {
+      "caseId": "C6",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C6"
+    },
+    {
+      "caseId": "C6",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR9",
+        "HR13"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "an empty owed-fact ledger, zero transitions, zero review packets, zero claims, and an analysis that says the task may proceed on what is established rather than holding it open"
+    },
+    {
+      "caseId": "C7",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9",
+        "HR12"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR1"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "VERIFIER",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR12",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "PROPERTY_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR6",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "HUMAN_REVIEW_PACKET",
+      "requirementsAtThisStage": [
+        "HR2"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "SETTLEMENT",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR6",
+        "HR9",
+        "HR12",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONFIRM_PROPERTY / NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C7"
+    },
+    {
+      "caseId": "C7",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR9",
+        "HR12",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "the scheme fact is present and UNRESOLVED with property authority CONFIRMED and zero transitions. Any regulatory authority in the output traces to GOV-PSSR-2000-R8 alone. GOV-BG01-WATER appears nowhere in controlling reasoning. No citation outside the supplied set appears anywhere"
+    },
+    {
+      "caseId": "C8",
+      "stage": "FIRST_PASS",
+      "requirementsAtThisStage": [
+        "HR9"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "PROJECTION",
+      "requirementsAtThisStage": [
+        "HR1"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "OWED_FACT_LEDGER",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "VERIFIER",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "PROPERTY_AUTHORITY",
+      "requirementsAtThisStage": [
+        "HR8",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "HUMAN_REVIEW_PACKET",
+      "requirementsAtThisStage": [
+        "HR2"
+      ],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "SETTLEMENT",
+      "requirementsAtThisStage": [
+        "HR2",
+        "HR5",
+        "HR8",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "CONDITIONAL_CORRECT / NONE",
+      "expectedStateAtThisStage": "see the frozen exercise expectations for C8"
+    },
+    {
+      "caseId": "C8",
+      "stage": "FINAL_AUTHORITATIVE_STATE",
+      "requirementsAtThisStage": [
+        "HR1",
+        "HR2",
+        "HR5",
+        "HR8",
+        "HR9",
+        "HR14"
+      ],
+      "humanActionAtThisStage": "NONE",
+      "expectedStateAtThisStage": "the stopping fact is present and UNRESOLVED with zero transitions. The property authority state is CORRECTED where the conditional rule fired and CONFIRMED where it did not, and either way nothing is settled. Any candidate-state label that contradicts its own reasoning is recorded, along with whether the verifier nomination or the property handling moved with it"
+    }
+  ],
+  "requirementCoverage": {
+    "HR1": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 6,
+      "mandatorySlots": 6,
+      "underAuthored": false
+    },
+    "HR2": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 7,
+      "mandatorySlots": 7,
+      "underAuthored": false
+    },
+    "HR3": {
+      "cases": [
+        "C4"
+      ],
+      "judgmentSlots": 3,
+      "mandatorySlots": 3,
+      "underAuthored": false
+    },
+    "HR4": {
+      "cases": [
+        "C1"
+      ],
+      "judgmentSlots": 1,
+      "mandatorySlots": 1,
+      "underAuthored": false
+    },
+    "HR5": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C8"
+      ],
+      "judgmentSlots": 5,
+      "mandatorySlots": 5,
+      "underAuthored": false
+    },
+    "HR6": {
+      "cases": [
+        "C2",
+        "C7"
+      ],
+      "judgmentSlots": 2,
+      "mandatorySlots": 2,
+      "underAuthored": false
+    },
+    "HR7": {
+      "cases": [
+        "C1"
+      ],
+      "judgmentSlots": 1,
+      "mandatorySlots": 1,
+      "underAuthored": false
+    },
+    "HR8": {
+      "cases": [
+        "C2",
+        "C3",
+        "C8"
+      ],
+      "judgmentSlots": 3,
+      "mandatorySlots": 3,
+      "underAuthored": false
+    },
+    "HR9": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 8,
+      "mandatorySlots": 8,
+      "underAuthored": false
+    },
+    "HR10": {
+      "cases": [
+        "C5"
+      ],
+      "judgmentSlots": 2,
+      "mandatorySlots": 2,
+      "underAuthored": false
+    },
+    "HR11": {
+      "cases": [
+        "C5"
+      ],
+      "judgmentSlots": 2,
+      "mandatorySlots": 2,
+      "underAuthored": false
+    },
+    "HR12": {
+      "cases": [
+        "C7"
+      ],
+      "judgmentSlots": 4,
+      "mandatorySlots": 4,
+      "underAuthored": false
+    },
+    "HR13": {
+      "cases": [
+        "C6"
+      ],
+      "judgmentSlots": 2,
+      "mandatorySlots": 2,
+      "underAuthored": false
+    },
+    "HR14": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 19,
+      "mandatorySlots": 19,
+      "underAuthored": false
+    }
+  },
+  "residualCoverage": {
+    "RO-A": {
+      "cases": [
+        "C1",
+        "C2",
+        "C4",
+        "C5",
+        "C8"
+      ],
+      "judgmentSlots": 3
+    },
+    "RO-B": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 2
+    },
+    "RO-C": {
+      "cases": [
+        "C4",
+        "C7"
+      ],
+      "judgmentSlots": 3
+    },
+    "RO-D": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 6
+    },
+    "RO-E": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "judgmentSlots": 8
+    }
+  },
+  "pathCoverage": {
+    "1": {
+      "covered": true,
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C7",
+        "C8"
+      ],
+      "exercises": []
+    },
+    "2": {
+      "covered": true,
+      "cases": [
+        "C2"
+      ],
+      "exercises": [
+        "C2-E1",
+        "C2-E2"
+      ]
+    },
+    "3": {
+      "covered": true,
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C7"
+      ],
+      "exercises": []
+    },
+    "4": {
+      "covered": true,
+      "cases": [
+        "C1"
+      ],
+      "exercises": [
+        "C1-E1"
+      ]
+    },
+    "5": {
+      "covered": true,
+      "cases": [
+        "C2",
+        "C7"
+      ],
+      "exercises": [
+        "C2-E1",
+        "C7-E1"
+      ]
+    },
+    "6": {
+      "covered": true,
+      "cases": [
+        "C3",
+        "C8"
+      ],
+      "exercises": [
+        "C3-E1",
+        "C8-E1"
+      ]
+    },
+    "7": {
+      "covered": true,
+      "cases": [
+        "C1",
+        "C2"
+      ],
+      "exercises": [
+        "C1-E1",
+        "C2-E1"
+      ]
+    },
+    "8": {
+      "covered": true,
+      "cases": [
+        "C2"
+      ],
+      "exercises": [
+        "C2-E2"
+      ]
+    },
+    "9": {
+      "covered": true,
+      "cases": [
+        "C4"
+      ],
+      "exercises": [
+        "C4-E1"
+      ]
+    },
+    "10": {
+      "covered": true,
+      "cases": [
+        "C5"
+      ],
+      "exercises": [
+        "C5-E1"
+      ]
+    },
+    "11": {
+      "covered": true,
+      "cases": [
+        "C6"
+      ],
+      "exercises": [
+        "C6-E1"
+      ]
+    },
+    "12": {
+      "covered": true,
+      "cases": [
+        "C7"
+      ],
+      "exercises": [
+        "C7-E1"
+      ]
+    }
+  },
+  "stageCoverage": {
+    "FIRST_PASS": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "PROJECTION": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "OWED_FACT_LEDGER": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "VERIFIER": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C7",
+      "C8"
+    ],
+    "SCOPE_CONTAINMENT": [
+      "C4"
+    ],
+    "PROPERTY_AUTHORITY": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C7",
+      "C8"
+    ],
+    "HUMAN_REVIEW_PACKET": [
+      "C2",
+      "C3",
+      "C4",
+      "C7",
+      "C8"
+    ],
+    "EVIDENCE_AUTHORITY": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "SETTLEMENT": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C7",
+      "C8"
+    ],
+    "FINAL_AUTHORITATIVE_STATE": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8"
+    ]
+  },
+  "requiredPaths": [
+    {
+      "id": 1,
+      "name": "DECLARATION_TO_OWEDFACT_PROJECTION",
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C7",
+        "C8"
+      ],
+      "exercises": [],
+      "steps": "project210jDeclarations admits the declaration and createOwedFactLedger holds it UNRESOLVED; the admitted fact carries the observation span by exact string match",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 2,
+      "name": "EXACT_PROPERTY_PRESERVATION_END_TO_END",
+      "cases": [
+        "C2"
+      ],
+      "exercises": [
+        "C2-E1",
+        "C2-E2"
+      ],
+      "steps": "the same proposition is compared at five points — declaration missingFact, admitted fact, verifier payload target, review packet proposedProperty, and the transition record on SETTLED_BY_EVIDENCE. C2 is the only case reaching a terminal status, so it is the only one that can test preservation through settlement",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 3,
+      "name": "VERIFIER_ROUTING",
+      "cases": [
+        "C1",
+        "C2",
+        "C3",
+        "C7"
+      ],
+      "exercises": [],
+      "steps": "UNDERLYING_SAFETY_STATE on C1, REQUIRED_ACT_ITSELF on C2, REQUIRED_ARTIFACT_ITSELF on C7, EVIDENCE_FOR_ANOTHER_PROPERTY on C3 where the proxy trap is taken. Each read from the verifier propertyReview role and validity, with §218 consistency refusing the output whole where disposition and property disagree",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 4,
+      "name": "KR1_MISSING_PROPERTY_AUTHORITY",
+      "cases": [
+        "C1"
+      ],
+      "exercises": [
+        "C1-E1"
+      ],
+      "steps": "A model-authored property is admitted, so propertyAuthorityRequirementFor returns REQUIRED. B the claim is born REQUIRED_NOT_OBTAINED and a settlement is attempted. C settleByReviewedEvidence refuses with PROPERTY_AUTHORITY_NOT_OBTAINED. D the fact status is still UNRESOLVED. E the ledger transitions array is empty",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 5,
+      "name": "CONFIRM_PROPERTY_GRANTS_ONLY_PROPERTY_AUTHORITY",
+      "cases": [
+        "C2",
+        "C7"
+      ],
+      "exercises": [
+        "C2-E1",
+        "C7-E1"
+      ],
+      "steps": "mintPropertyAuthority returns an authority whose impliesFactSettled, impliesSatisfactorySettlement, impliesAdverseSettlement and impliesWorkRelease are the literal false; no evidence authority exists; the fact is UNRESOLVED; transitions are zero",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 6,
+      "name": "CORRECT_PROPERTY",
+      "cases": [
+        "C3",
+        "C8"
+      ],
+      "exercises": [
+        "C3-E1",
+        "C8-E1"
+      ],
+      "steps": "the frozen conditional rule fires, mintPropertyAuthority returns outcome CORRECTED carrying the reviewer's replacement wording, attachPropertyAuthority records CORRECTED on the claim, and settleByReviewedEvidence refuses because CORRECTED is absent from SETTLEMENT_PERMITTING_STATES — so the original property cannot settle as though confirmed",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 7,
+      "name": "EVIDENCE_AUTHORITY_SEPARATE_FROM_PROPERTY_AUTHORITY",
+      "cases": [
+        "C1",
+        "C2"
+      ],
+      "exercises": [
+        "C1-E1",
+        "C2-E1"
+      ],
+      "steps": "both directions. C1-E1 approves evidence with no property review and the settlement is still refused, so approval does not supply property authority. C2-E1 confirms the property with no evidence decision and nothing settles, so confirmation does not approve evidence",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 8,
+      "name": "SATISFACTORY_HUMAN_AUTHORIZED_SETTLEMENT",
+      "cases": [
+        "C2"
+      ],
+      "exercises": [
+        "C2-E2"
+      ],
+      "steps": "both authorities recorded and separate, settleByReviewedEvidence applies, the fact becomes SETTLED_BY_EVIDENCE on exactly one transition carrying ADMISSIBLE_EVIDENCE, and whyUnresolvedAtTransition preserves the sentence the fact carried",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 9,
+      "name": "ADVERSE_OR_KEEP_UNRESOLVED_WITH_SIBLING_PRESERVATION",
+      "cases": [
+        "C4"
+      ],
+      "exercises": [
+        "C4-E1"
+      ],
+      "steps": "the reviewer records KEEP_UNRESOLVED, which mints nothing, and recordPropertyAuthorityDeclined sets DECLINED_KEEP_UNRESOLVED. The reviewer separately records REJECT_SETTLEMENT, which mints no evidence authority. The fact stays UNRESOLVED with zero transitions and the sibling conduit fact is untouched and still present",
+      "exercisable": true,
+      "notExercisableBecause": "PARTIAL. The adverse-LEDGER-TRANSITION limb — a fact moving to REJECTED_BY_ARBITRATION under RECORDED_ARBITRATION — is NOT EXERCISABLE, because TRANSITION_COVERAGE_220 records that no runtime producer for that transition exists anywhere in the codebase. §228A covers the adverse HUMAN OUTCOME, which does have producers, and reports the ledger limb as architecturally absent rather than failed."
+    },
+    {
+      "id": 10,
+      "name": "RR7_MALFORMED_DECLARATION",
+      "cases": [
+        "C5"
+      ],
+      "exercises": [
+        "C5-E1"
+      ],
+      "steps": "the harness replaces decisionIfB with a whole-field filler on the persisted output, project210jDeclarations refuses with NON_SEMANTIC_PLACEHOLDER_VALUE, preserveIdentifiedSafetyFacts emits a STRUCTURALLY_INVALID_DECLARATION carrying the identified property verbatim, and no fact enters the ledger so no settlement is reachable",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 11,
+      "name": "SAFE_NEGATED_RESTRAINT",
+      "cases": [
+        "C6"
+      ],
+      "exercises": [
+        "C6-E1"
+      ],
+      "steps": "zero declarations, an empty ledger, zero packets, zero claims, zero transitions, and a near-miss fact that is real but immaterial and must not be declared",
+      "exercisable": true,
+      "notExercisableBecause": null
+    },
+    {
+      "id": 12,
+      "name": "GOVERNED_REGULATORY_GROUNDING",
+      "cases": [
+        "C7"
+      ],
+      "exercises": [
+        "C7-E1"
+      ],
+      "steps": "two authorized records supplied, one on point and one topically adjacent and off point. Every governed reference in the output is checked against the supplied sourceIds; every stated requirement against the supplied approvedText; the off-point record against controlling reasoning; and the fact status after a confirmed property with grounding present against UNRESOLVED",
+      "exercisable": true,
+      "notExercisableBecause": null
+    }
+  ],
+  "pathsCovered": 12,
+  "pathsTotal": 12,
+  "residualsInstrumented": 5,
+  "residualsTotal": 5
+}

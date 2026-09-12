@@ -1,0 +1,293 @@
+{
+  "operation": "§169 verifier-v3 binding dispositions recorded + architecture status re-derived",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_VERIFIER_V3_HUMAN_REVIEW_COMPLETE — BOUNDED_DEVELOPMENT_INTEGRATION_AUTHORIZATION_REQUIRED",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "evidenceDirectory": "verification/expert-hazlenz-verifier-v3-human-binding-review-2026-09-04",
+  "dispositionsAssignedByAnyModel": 0,
+  "adjudicatedBy": "PRODUCT_OWNER",
+  "humanValidatedCounts": {
+    "label": "HUMAN_VALIDATED_BOUNDED_DEVELOPMENT_COUNTS",
+    "warning": "EXACT COUNTS over 12 draws on 2 human-authoritative rows. NOT production accuracy rates and not convertible into any.",
+    "adjudicatedBy": "PRODUCT_OWNER",
+    "adjudicatedAt": "2026-09-04",
+    "totalPairs": 12,
+    "semanticallyCorrect": 8,
+    "partiallyCorrect": 4,
+    "incorrect": 0,
+    "ambiguous": 0,
+    "affectedDecisionCorrect": "12/12",
+    "materiallyUnsupportedHazardAssumptions": 0,
+    "evidenceSufficiencyWeaknesses": {
+      "count": 3,
+      "rowId": "HS-A1",
+      "pairs": [
+        "VC-08-1",
+        "VC-08-4",
+        "VC-08-6"
+      ]
+    },
+    "temporalScopeWeaknesses": {
+      "count": 1,
+      "rowId": "HS-E1",
+      "pairs": [
+        "VC-04-1"
+      ]
+    },
+    "compound": {
+      "acceptable": 0,
+      "acceptableWithFormatRepair": 0,
+      "unacceptable": 2,
+      "pairs": [
+        "VC-08-2",
+        "VC-08-3"
+      ],
+      "separationRule": "these two are BINDING_SEMANTICALLY_CORRECT AND COMPOUND_QUESTION_REPRESENTATION = UNACCEPTABLE simultaneously. A semantic binding is NOT downgraded because the customer-facing packaging is wrong."
+    },
+    "questionA_asksTheOwedFact": "12/12",
+    "questionB_answerResolvesIt": {
+      "yes": 8,
+      "partially": 4,
+      "no": 0
+    },
+    "owedTargetPreservation": {
+      "HS-A1": "6/6",
+      "HS-E1": "6/6"
+    },
+    "additiveGapNominationOnHsA1": {
+      "observed": "5/6",
+      "status": "ADDITIVE_GAP_DISCOVERY_RECALL = NOT_CURRENTLY_A_REQUIRED_AXIS",
+      "prohibition": "must NOT be converted into a required recall threshold — the denominator is one confirmed gap on one row"
+    },
+    "theDistinctionThatMatters": "Question A is Yes on ALL TWELVE: the closed-set binding mechanism selected the right target every time and ZERO bindings were incorrect. The four partials sit on question B — whether an answer would RESOLVE the fact. The defect class is therefore not target selection but EVIDENCE SUFFICIENCY in how much the question demands of the answer.",
+    "perPair": [
+      {
+        "pairId": "VC-08-1",
+        "rowId": "HS-A1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Partially",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "Yes, minor",
+        "E_distortionOrNarrowing": "Yes, minor",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_PARTIALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-08-2",
+        "rowId": "HS-A1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No material assumption",
+        "E_distortionOrNarrowing": "No material distortion",
+        "F_independentlyAnswerableIfCompound": "Yes",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-08-3",
+        "rowId": "HS-A1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "No",
+        "F_independentlyAnswerableIfCompound": "Yes",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-08-4",
+        "rowId": "HS-A1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Partially",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "Yes, minor",
+        "E_distortionOrNarrowing": "Yes, minor",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_PARTIALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-08-5",
+        "rowId": "HS-A1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No material assumption",
+        "E_distortionOrNarrowing": "No material distortion",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-08-6",
+        "rowId": "HS-A1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Partially",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "Yes, minor",
+        "E_distortionOrNarrowing": "Yes, minor",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_PARTIALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-04-1",
+        "rowId": "HS-E1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Partially",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "Yes — temporal ambiguity",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_PARTIALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-04-2",
+        "rowId": "HS-E1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "No",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-04-3",
+        "rowId": "HS-E1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "No",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-04-4",
+        "rowId": "HS-E1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "No",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-04-5",
+        "rowId": "HS-E1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "No",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      },
+      {
+        "pairId": "VC-04-6",
+        "rowId": "HS-E1",
+        "A_asksOwedFact": "Yes",
+        "B_answerResolvesIt": "Yes",
+        "C_affectedDecision": "Correct",
+        "D_unsupportedAssumption": "No",
+        "E_distortionOrNarrowing": "No",
+        "F_independentlyAnswerableIfCompound": "N/A",
+        "disposition": "BINDING_SEMANTICALLY_CORRECT"
+      }
+    ]
+  },
+  "instrumentVsHumanFinding": {
+    "statement": "The §162 cue instrument measures TOPIC REACH, not RESOLUTION SUFFICIENCY.",
+    "section167ScoredTargetReached": "12/12",
+    "humanFullyCorrect": "8/12",
+    "humanPartiallyCorrect": "4/12",
+    "humanIncorrect": "0/12",
+    "agreementOnQuestionA": "12/12 — the instrument and the human agree that every clarification asks about the owed fact",
+    "divergence": "on question B the instrument is silent by construction: a cue match cannot tell whether the evidence a question demands would actually settle the fact.",
+    "section167Rescored": false,
+    "classification": "HUMAN_POSTHOC_ADJUDICATION — recorded separately, §167 remains immutable",
+    "consequence": "no claim may read §167's 12/12 as \"12 fully correct bindings\". The supported reading is 12/12 topic reach with 8/12 human-confirmed resolution sufficiency.",
+    "vindicatesSection164Obligation": "this is exactly why §164 classified binding truthfulness REQUIRES_HUMAN_TRUTH and required human sampling of bound pairs rather than an automated judge. The sampling found something the instrument could not."
+  },
+  "resolvedAdjudications": {
+    "HS_A1_DRAW_6_DISPOSITION": "SECONDARY_GAP_NOT_REQUIRED_IN_THIS_VERIFIER_ROLE",
+    "HS_A1_DRAW_2_COMPOUND_DISPOSITION": "COMPOUND_UNACCEPTABLE",
+    "HS_A1_DRAW_3_COMPOUND_DISPOSITION": "COMPOUND_UNACCEPTABLE",
+    "CURRENT_SILENCE_CANDIDATES_HOSTED_ELIGIBILITY": "NOT_READY_LENGTH_CONFOUNDED",
+    "OWED_FACT_PRESERVATION": "REQUIRED",
+    "ADDITIVE_GAP_DISCOVERY_RECALL": "NOT_CURRENTLY_A_REQUIRED_AXIS",
+    "prospectiveSilenceLengthBandChars": "380-440",
+    "bandStatus": "INSTRUMENT_CONTROL_CONSTRAINT_NOT_A_SAFETY_TRUTH_CRITERION"
+  },
+  "componentStatusRederived": {
+    "CLOSED_SET_OWED_FACT_LEDGER": "SUPPORTED_HUMAN_REVIEWED",
+    "EXPLICIT_BINDING_FACT_KEY": "SUPPORTED_HUMAN_REVIEWED — target selection confirmed 12/12, 0 incorrect",
+    "ADDITIVE_NOMINATION": "SUPPORTED_HOSTED (additivity)",
+    "ADDITIVE_GAP_DISCOVERY": "NOT_CURRENTLY_A_REQUIRED_AXIS",
+    "TARGET_COVERAGE_WARNING": "PROVEN_LOCAL; UNEXERCISED_HOSTED for its primary case — unchanged",
+    "PER_FACT_DECLARATIONS": "SUPPORTED_HOSTED; challenge path UNEXERCISED_HOSTED",
+    "CONDITIONAL_SECOND_DRAW_POLICY_C": "UNEXERCISED_HOSTED — unchanged",
+    "DEGENERATE_RETRY_POLICY": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION — unchanged",
+    "QUESTION_BUDGET": "REQUIRES_REMEDIATION — form now fixed as STRUCTURAL_PER_FACT_QUESTION_REPRESENTATION",
+    "MULTI_GAP_PRESERVATION": "SUPPORTED_HUMAN_REVIEWED — 6/6 on both rows",
+    "CLARIFICATION_EVIDENCE_SUFFICIENCY": "REQUIRES_REMEDIATION — NEW defect class"
+  },
+  "remediationsSpecifiedNotImplemented": {
+    "questionRepresentation": {
+      "form": "STRUCTURAL_PER_FACT_QUESTION_REPRESENTATION",
+      "prohibited": "a lexical/conjunction parser over model prose as the safety gate"
+    },
+    "evidenceSufficiency": {
+      "rule": "a binding must ask for evidence that actually establishes the protective function, not merely physical presence, visibility, or an indicator that could be mistaken for function",
+      "recommendedLocation": "owed-fact task state (an acceptableEvidence / whatWouldSettleIt field populated by HazLenz) rather than model instruction prose — HazLenz-owned, does not touch frozen semantic material, and does not ask the model to infer what counts as settling evidence",
+      "notEnforceableByContract": "'does this question demand function-establishing evidence?' is a semantic judgement; a deterministic gate for it would be the semantic matcher §160 retired. Residual sufficiency remains a human-sampling obligation.",
+      "implemented": false
+    }
+  },
+  "unblocked": [
+    "inactive development integration of the closed-set ledger, exact factKey binding, additive-not-substitutive invariant, coverage-warning computation, per-fact declaration parsing, observability and deterministic state transitions — the §168 gate (no BINDING_INCORRECT) is satisfied at 0 incorrect; the population boundary remains a hard condition"
+  ],
+  "stillBlocked": {
+    "customerPathActivation": "silence-side truth — HUMAN_AUTHORITATIVE_SILENCE_ROWS = 0 and the five candidates are NOT_READY_LENGTH_CONFOUNDED. No precision, specificity, over-questioning or customer-burden claim may rest on this architecture.",
+    "questionRepresentation": "structural repair outstanding",
+    "evidenceSufficiency": "remediation specified, not implemented",
+    "unexercisedHosted": [
+      "policy C",
+      "degenerate policy",
+      "challenge/arbitration path"
+    ]
+  },
+  "historicalIntegrity": {
+    "section167Rescored": false,
+    "classification": "HUMAN_POSTHOC_ADJUDICATION recorded separately",
+    "section167TargetReachedStands": "12/12 as what it measured — topic reach",
+    "supportedReading": "12/12 topic reach with 8/12 human-confirmed resolution sufficiency"
+  },
+  "protectedRegression": {
+    "SOURCE_PROJECT_TSC": "exit 0, clean",
+    "suitesRun": 16,
+    "failures": 0
+  },
+  "claimsRegister": {
+    "newPublicClaim": "none",
+    "sectionAdded": "§169",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED"
+  },
+  "worktreeState": {
+    "codeFilesCreated": 1,
+    "codeFilesModified": 1,
+    "srcFilesTouched": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  },
+  "nextAuthorizationRequired": [
+    "1. Authorize inactive development integration of the seven eligible components as one named slice, with the population boundary and a zero-behaviour-change regression proof as acceptance criteria.",
+    "2. Authorize the evidence-sufficiency remediation — preferred route is an owed-fact acceptableEvidence field (HazLenz-owned task state), not instruction prose.",
+    "3. Authorize the structural per-fact question representation (v3 schema revision).",
+    "4. Re-author silence controls inside the 380-440 character band, then independently adjudicate that final exact wording."
+  ]
+}

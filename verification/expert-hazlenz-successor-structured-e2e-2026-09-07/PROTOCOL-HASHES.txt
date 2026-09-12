@@ -1,0 +1,38 @@
+§199 FROZEN PROTOCOL IDENTITY — recorded before the first provider call
+
+first-pass instruction         hazlenz.expert.first-pass-instruction.vNext
+  capability ABSENT prompt     bdb3af044340dac164b979672ab61be8f14e5d190abbd7e496b82dd5010b4f7b
+  capability PRESENT prompt    669bde6933e19bd1e1c35acde9a8db2a24020666917d9fe79c0718d5344df44b
+first-pass vNext module        a81c63c8314f16290e0e5ead451b9f2c7e127d6eaa6c66e754ae605bec0e756e
+v15 base system prompt         20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979   UNCHANGED
+projection module              aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c
+projection version             hazlenz.expert.first-pass-owed-fact-projection.v1
+circuit breaker module         4b4d6b96a51b087ad427b69cbf11e5e52342330e88b0c30bec8468f964c86c33
+verifier instruction           hazlenz.expert.verifier-instruction.v3.2
+verifier system prompt         f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f
+verifier schema                83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e
+admission contract             hazlenz.expert.verifier.v3.3
+admission module (v3.3)        43497985c58cf8e7108e7132cccdab15f10485cc65a2d9cf025b67a1c948fd88
+cohort                         hazlenz.expert.structured-e2e-cohort.2026-09-07.v2
+cohort module                  959b29b54861b751a9d4d05856b2cacb044308ebdbafc2ab7f9c28a1f30efd99
+§197 cohort module (reused)    6cb73ed67922f829ecce1be81201f8c1b82447290ce79b0959c5a7dac2a1cda1
+model                          claude-sonnet-5
+executor version               hazlenz.expert.199.successor-e2e-executor.v1
+transport canary               SF-01
+preregistration                ddd6f63d56de4e6e62037457bed06b3de59b1100d169ec1b28d427d6f3d4fea4
+
+PER-ROW WIRE SCHEMA HASHES — the schema is per-request AND per-capability
+  SF-01    ABSENT   c3ed2ab857eb877f47edd4db7ede26d0bcc0a37bbbb1bbad8484b7b873b17b0f
+  SF-03    ABSENT   f6bff9add409252e44058a534824310e2e54cb5bc030ea544c0750643874544b
+  SF-05    ABSENT   4a071d969a93db5fc7e1ec4e4674dace2ebe93e8759c8d005bddc1e2487f7374
+  SF-12    ABSENT   893e267c992e25abdec27e2a8430bc8c04a430c311c00e46f2712ff40547d6e3
+  SF-06    ABSENT   46fe48e263b70542fe42e4b620f12463b6adfb048d03dd3cc8f37de139636868
+  SF-04    ABSENT   3470896fd7db18eee4558e510571634b2344fb043bdc1774358ae596ed00259d
+  SF-02    ABSENT   9a4db2f567a0f48b2a673ea5c344830adc0338b13c1fe12eb74dc8987a2d4183
+  SF-07    ABSENT   6a3f82ed2d18886e0be60d88a41d8d59df314fc4e87c5dea3d883214f3bd5818
+  SF-08    ABSENT   09b73366c79a5224d6fd1c53ee40090b8280a5c33eda3cd1b5aa4e6645c75ac7
+  SF-11    ABSENT   b7181e37ca04a9211351b59c8fd59a45f5d7f68e7f55fdb37f1c1f75e6083200
+  SG-01    PRESENT  d0713f36696e8beaa1307280fcd76a59dd1c9818946a8c631ffb910b45b38b71
+  SG-02    PRESENT  243bb6766c05599feb1392f681e793dd0bc8e772c07e8215e8f07bae132b8ccc
+
+NOT THIS POPULATION: §187B (v3), §192 (v3.1), §195 (not executed), §197 (0 inferences).

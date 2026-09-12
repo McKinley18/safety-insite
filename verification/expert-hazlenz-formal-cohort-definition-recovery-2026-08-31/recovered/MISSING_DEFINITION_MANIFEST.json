@@ -1,0 +1,150 @@
+{
+  "artifact": "EXPERT_HAZLENZ_FORMAL_COHORT_MISSING_DEFINITION_MANIFEST",
+  "generatedAt": "2026-08-31",
+  "operation": "InSite v1.0 — Build, Freeze, and Execute Formal Expert HazLenz Evaluation Cohort",
+  "terminal": "EXPERT_HAZLENZ_FORMAL_COHORT_BLOCKED — AUTHORITATIVE_COHORT_DEFINITION_INCOMPLETE",
+  "stoppedAtPhase": "PHASE_0_AUTHORITATIVE_STATE_RECOVERY",
+  "providerCallsAttempted": 0,
+  "providerCallsCompleted": 0,
+  "apiCostUsd": 0.0,
+  "formalCohortSpent": false,
+
+  "gitState": {
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "branch": "main",
+    "upstream": "origin/main",
+    "aheadOfUpstream": 1,
+    "behindUpstream": 0,
+    "staged": 0,
+    "trackedModified": 14,
+    "trackedDeleted": 1,
+    "untracked": 3093,
+    "stashes": 4,
+    "tags": 24
+  },
+
+  "whatIsPresentAndAuthoritative": {
+    "sourceOfTruth": "backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts",
+    "sha256": "0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8",
+    "blueprintSection": "99.7",
+    "measureCount": 17,
+    "families": ["SAFETY", "REGULATORY_INTEGRITY", "REASONING_QUALITY", "RELIABILITY"],
+    "measureIdsThresholdsDispositions": "COMPLETE",
+    "familyVerdictLogic": "COMPLETE — evaluateGateFamilies(); no aggregate field; an unmeasured HARD_GATE is a FAILED gate, not a skipped one",
+    "preconditions": "COMPLETE — P1_TRANSPORT_PROBE, P2_DETERMINISM_CONTROL, P3_MODEL_IDENTITY, P4_PRESPEND_AUTHORIZATION",
+    "corpusPolicy": "COMPLETE AS A POLICY — closed / reserved / development lists plus the open-once rule"
+  },
+
+  "whatIsMissing": [
+    {
+      "id": "GAP_1_NO_COHORT_EXISTS",
+      "class": "COHORT_IDENTITY",
+      "statement": "No cohort artifact exists anywhere in the repository. The 17 measures are defined; the row set they are measured on is not.",
+      "evidence": [
+        "EVALUATION_CORPUS_POLICY names reserved material ('gauntlet offsets 2 and 3', 'realism offsets 1 and 2', 'the unopened 100-row gauntlet.seed') but never designates which of these is the Expert cohort.",
+        "No file named for or containing an Expert evaluation cohort exists: a repository-wide search for prereg/cohort artifacts returns only verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/phase14-cohort-isolation.json, which is a KG-4D shadow-cutover isolation artifact, unrelated to the Expert 17-measure evaluation.",
+        "Rowcount, case identities, and per-row identity for the Expert cohort are stated nowhere in docs/INSITE_ENGINEERING_BLUEPRINT.md, docs/INSITE_CURRENT_STATE.json, or any verification/ report."
+      ],
+      "consequenceForThisPhase": "Phase 3 requires preregistering 'complete frozen case/measure identities' and 'hashes of frozen inputs'. There is nothing to freeze."
+    },
+    {
+      "id": "GAP_2_NO_SCORERS_FOR_ADJUDICATED_MEASURES",
+      "class": "SCORING_RULES",
+      "statement": "Six of the seventeen measures are defined in terms of adjudication, and no adjudication rubric, adjudicator identity, precedence rule, or answer key exists for any of them.",
+      "measures": [
+        {"id": "M01_ADDITIVE_HAZARD_RECALL", "disposition": "MEASURED_AND_REPORTED", "missing": "the denominator 'adjudicated missed hazards in the cohort' requires a per-row ground-truth hazard set that exists for no corpus"},
+        {"id": "M02_EXPERT_CANDIDATE_FALSE_POSITIVES", "disposition": "HARD_GATE", "threshold": 0.20, "missing": "a rule deciding when an Expert candidate 'is not a hazard', and the separate counting rule for negated/safe-state rows"},
+        {"id": "M06_UNSUPPORTED_REGULATORY_ASSERTIONS", "disposition": "HARD_GATE", "threshold": 0.05, "missing": "a rule deciding when Expert prose 'asserts a regulatory requirement'; the plan itself records this as judged, not mechanical"},
+        {"id": "M07_GOVERNED_RECORD_GROUNDING", "disposition": "HARD_GATE", "threshold": 0.95, "missing": "the definition of 'all regulatory statements' — the denominator — and the grounding test applied to each"},
+        {"id": "M09_CLARIFICATION_QUALITY", "disposition": "HARD_GATE", "threshold": 0.70, "missing": "a rule deciding when a clarification is 'genuinely decision-critical'"},
+        {"id": "M10_UNNECESSARY_QUESTION_RATE", "disposition": "HARD_GATE", "threshold": 0.15, "missing": "the denominator 'rows owing no clarification' — a per-row clarification-obligation key"},
+        {"id": "M11_CROSS_HAZARD_REASONING", "disposition": "MEASURED_AND_REPORTED", "missing": "the denominator 'rows with a recorded interaction' — a per-row interaction truth key"}
+      ],
+      "evidence": [
+        "A repository-wide search for the measure ids over backend/ returns only: expert-evaluation-plan.ts (the definitions), test-expert-nocall-harness.ts lines 172-183 (which assert dispositions, not values), and one comment in fixtures/grounding-fixtures.ts. No function anywhere computes any M-value.",
+        "The only scorer that exists in the Expert module is expert-routing-metrics.ts scoreRouting()/totalRouting(), which scores REQUIRED/FORBIDDEN/OPTIONAL collection routing. Routing is not one of the seventeen measures."
+      ],
+      "consequenceForThisPhase": "Phase 3 requires preregistering 'scorer identities/versions'. Four of these seven are HARD_GATEs, so authoring their rules now — after §104-§118 hosted behaviour has been observed — would be choosing a threshold's denominator after seeing the numbers, which is the exact failure the pre-registration exists to prevent."
+    },
+    {
+      "id": "GAP_3_P4_PRESPEND_AUTHORIZATION_UNMET",
+      "class": "FROZEN_PRECONDITION",
+      "statement": "P4_PRESPEND_AUTHORIZATION requires 'an explicit owner authorization naming the cohort, the call count and the ceiling'. The authorization for this operation names none of the three.",
+      "blocksIfUnmet": ["SAFETY", "REGULATORY_INTEGRITY", "REASONING_QUALITY", "RELIABILITY"],
+      "evidence": [
+        "expert-evaluation-plan.ts:252-256 defines P4 and its blocksIfUnmet list, which is all four families.",
+        "The operation authorization states FORMAL_EXPERT_EVALUATION_COHORT_AUTHORIZED = TRUE and instructs 'Proceed to the reserved formal 17-measure Expert HazLenz evaluation', but names no cohort, no call count, and no ceiling."
+      ],
+      "consequenceForThisPhase": "By the frozen plan's own rule an unmet P4 blocks all four gate families. This is a product-owner decision and cannot be self-supplied.",
+      "note": "This gap is independent of GAP_1 and GAP_2 and is dispositive on its own."
+    },
+    {
+      "id": "GAP_4_CORPUS_POLICY_FORBIDS_THE_ONLY_AVAILABLE_MATERIAL",
+      "class": "CORPUS_ELIGIBILITY",
+      "statement": "The only Expert-shaped material that exists is development material, which EVALUATION_CORPUS_POLICY forbids as a source of a gate result.",
+      "evidence": [
+        "EVALUATION_CORPUS_POLICY.development names fixtures/no-call-scenarios.ts and the development-l32*.json cohorts, described as 'Unlimited re-use, and never a source of a gate result'.",
+        "The rule reads: 'A fix is demonstrated on development cohorts. A reserved offset is opened once, for one pre-registered exam, and is spent whether the result is good or bad.'",
+        "Every ExpertAnalysisInput that exists in src/ comes from one of six fixture files: no-call-scenarios.ts, routing-fixtures.ts, grounding-fixtures.ts, temporal-state-fixtures.ts, hazard-actuality-fixtures.ts, restoration-transition-fixtures.ts. The seven cases §118 measured and §119 proved byte-equivalent are drawn from hazard-actuality-fixtures.ts and restoration-transition-fixtures.ts.",
+        "The reserved material (safescope-gauntlet.seed.json and the realism pack) is raw observation text carrying Level-3 reasoning keys, not Expert-shaped rows, and carries no key for any of the seventeen measures."
+      ],
+      "consequenceForThisPhase": "Running the formal cohort on the seven §118 cases would produce a gate result from development material, which the frozen policy prohibits."
+    },
+    {
+      "id": "GAP_5_NO_PRODUCTION_CONSTRUCTOR_FOR_COHORT_ROWS",
+      "class": "HARNESS_FEASIBILITY",
+      "statement": "There is no production constructor for ExpertAnalysisInput, so a cohort drawn from reserved corpus material cannot be built without writing one.",
+      "evidence": [
+        "grep -rn 'ExpertAnalysisInput' backend/src/ at this HEAD returns only consumers (providers, prompt builder, normalization, runner) and the six fixture files. No production path constructs one from a real inspection or observation.",
+        "grep -rn 'runExpertAnalysis' backend/src/ returns only its own declaration at expert-runner.ts:81 — zero callers.",
+        "§119.1 recorded this and §119.5 deliberately declined to promote further surface for a harness that did not exist."
+      ],
+      "consequenceForThisPhase": "Constructing cohort rows from a reserved corpus would require authoring a new input-construction path — selecting jurisdiction, allowedHazardFamilies, governedStandards and deterministicFindings per row. The evaluation would then be measuring that new, unproven constructor as much as the model, and the construction choices would themselves be unpreregistered acceptance-relevant decisions."
+    }
+  ],
+
+  "whatWasNotDoneAndWhy": {
+    "harnessImplemented": false,
+    "reason": "Phase 2 requires the harness to measure the authoritative criteria literally. Four HARD_GATE denominators and the cohort itself do not exist, so the harness could only be completed by inventing them, which Phase 0 forbids.",
+    "preregistrationWritten": false,
+    "reason2": "A preregistration is a freeze of things that exist. Freezing invented criteria would give fabricated criteria the authority of a frozen contract.",
+    "providerCallsMade": 0,
+    "cohortSpent": false,
+    "implementationModified": false,
+    "r2EvidenceCliffDebt": "UNTOUCHED — LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN remains TRUE, as instructed"
+  },
+
+  "flags": {
+    "COHORT_DEFINITION_COMPLETE": false,
+    "COHORT_FROZEN": false,
+    "SCORERS_FROZEN": false,
+    "HARNESS_SELF_TEST": "NOT_RUN",
+    "PERMANENT_EXPERT_PATH_PROVEN": true,
+    "DETERMINISTIC_PROJECTION_PRESENT": true,
+    "PROVIDER_VALIDATED": false,
+    "CUSTOMER_ACTIVE": false,
+    "FORMAL_EXPERT_EVALUATION_COHORT_AUTHORIZED": true,
+    "FORMAL_COHORT_SPENT": false,
+    "LOCAL_R2_EVIDENCE_CLIFF_DEBT_OPEN": true,
+    "P1_TRANSPORT_PROBE": "ESTABLISHED — §118 completed hosted calls cleanly",
+    "P2_DETERMINISM_CONTROL": "ABSENT — unchanged; no seed, and temperature/top_p/top_k unavailable for this model",
+    "P3_MODEL_IDENTITY": "ENFORCEABLE — expert-runner.ts:115 refuses a response whose modelIdentity differs from the provider's qualifiedModelIdentity",
+    "P4_PRESPEND_AUTHORIZATION": "UNMET — cohort, call count and ceiling not named"
+  },
+
+  "credentialCheck": {
+    "method": "presence/absence only; no value, prefix, suffix, length or hash was read",
+    "ANTHROPIC_API_KEY_in_backend_dotenv": "PRESENT",
+    "ANTHROPIC_API_KEY_in_process_env": "ABSENT",
+    "backend_dotenv_key_count": 20,
+    "backend_dotenv_mtime": "2026-08-30T15:06:33.826Z",
+    "note": "The §104 credential blocker is CLOSED. Transport is not what blocks this operation; the cohort definition is."
+  },
+
+  "decisionRequiredFromProductOwner": [
+    "Name the cohort: which reserved corpus material is opened for the Expert 17-measure evaluation, and how many rows.",
+    "State the call count and the hard call ceiling, and the maximum authorized spend (P4 requires all three).",
+    "Decide who authors the per-row truth keys the four adjudicated HARD_GATEs need (M02, M06, M07, M09, M10), and when relative to seeing any result — the plan's own G9 lesson is that a criterion settled after the numbers are visible is not a criterion.",
+    "Decide whether an Expert cohort may be constructed at all before a production ExpertAnalysisInput constructor exists, given that the constructor's choices would be measured alongside the model."
+  ]
+}

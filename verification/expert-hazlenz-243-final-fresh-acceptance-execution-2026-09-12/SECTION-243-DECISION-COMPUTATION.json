@@ -1,0 +1,466 @@
+{
+  "artifact": "SECTION-243-DECISION-COMPUTATION",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "frozenInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "rawAdjudicationCompletedBeforeDerivation": true,
+  "judgmentSlots": {
+    "total": 131,
+    "completed": 131,
+    "verdicts": {
+      "NOT_EXERCISED": 62,
+      "FAIL": 31,
+      "PASS": 38
+    }
+  },
+  "hardGates": {
+    "G_distinctGatesWithUncontainedOccurrence": 2,
+    "gates": [
+      "HS14",
+      "HS15"
+    ],
+    "O_totalUncontainedOccurrences": 5,
+    "I_coverageInsufficientGates": [],
+    "I_count": 0,
+    "occurrencesAll": [
+      {
+        "gate": "HS15",
+        "caseId": "C5",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "returned STOP on a case whose frozen posture is CONTINUE_WITH_CONTROLS, two protective ranks above it, on a case the frozen truth marks overConservatismIsAProductDefect TRUE",
+        "deterministicOrGovernedContainment": "NONE. The posture object was coherent, so the \u00a7239 contract admitted it. A coherent posture cannot be made correct by the contract, which is the disclosed K1 limitation",
+        "humanReviewContainment": "NOT_EXERCISED. This case carries no human-review exercise",
+        "escapedContainment": "YES. The authoritative posture is STOP and it is what a user would be given",
+        "productConsequence": "a night resurfacing operation would be told to stop paving when the correct answer was to keep the raker out of the reversing area and carry on with a banksman. The two controls the frozen truth requires were never given"
+      },
+      {
+        "gate": "HS15",
+        "caseId": "M8",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "declared the lightning response as a decision-critical unresolved fact and carried it as a posture driver, on a condition the frozen truth records as adequately negated: a documented trigger distance, a written procedure and active monitoring of a cell sixty miles away",
+        "deterministicOrGovernedContainment": "NONE. The posture object was coherent and was admitted",
+        "humanReviewContainment": "NOT_EXERCISED. This case carries no human-review exercise",
+        "escapedContainment": "YES. The authoritative posture is CONTINUE_WITH_CONTROLS driven in part by that declared fact, and one of the emitted controls restates the existing lightning procedure as a new requirement",
+        "productConsequence": "a blasthole loading crew operating a documented and monitored weather response would be given a new open question and a restated procedure as conditions on work the frozen truth says may simply continue"
+      },
+      {
+        "gate": "HS14",
+        "caseId": "G3",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "the model's declared property was in fact correct, so there was no semantic miss for review to catch here. The failure is in the review artifact",
+        "deterministicOrGovernedContainment": "the state half held exactly: property authority CORRECTED, nothing settled, zero ledger transitions",
+        "humanReviewContainment": "FAILED. The packet does not surface that compactor 1's interlock was found defeated, which the frozen list names as the fact that makes an assurance about compactor 2 worthless",
+        "escapedContainment": "the review path cannot be relied on to catch a proxy on this shape of case. Nothing unsafe reached authoritative state on THIS case",
+        "productConsequence": "a reviewer asked to judge whether a property is the controlling one or an evidence proxy is not shown the adjacent established fact that decides it"
+      },
+      {
+        "gate": "HS14",
+        "caseId": "C2",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "the model declared the correct artifact property. The failure is that the reviewer who approves the evidence is shown nothing",
+        "deterministicOrGovernedContainment": "the state half held exactly and is the KR-1 boundary working: an approved evidence authority did not supply the missing property authority and settlement was refused",
+        "humanReviewContainment": "FAILED. No reviewer-facing packet exists for an evidence-only review. None of the five frozen items is surfaced, including that the property authority has not been obtained",
+        "escapedContainment": "nothing unsafe reached authoritative state. The reviewer, however, approves a document without being shown that the property is still unconfirmed",
+        "productConsequence": "the human asked to approve evidence cannot see that their approval does not and must not settle the question"
+      },
+      {
+        "gate": "HS14",
+        "caseId": "C6",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "both owed properties were declared and kept distinct in the declarations. The failure is that the packet shows only one of them",
+        "deterministicOrGovernedContainment": "the state half held exactly: authority declined, fact UNRESOLVED, sibling untouched, zero transitions",
+        "humanReviewContainment": "FAILED. The packet does not surface that a second independent property about the extraction unit is open. The \u00a7218 packet is single-target by construction",
+        "escapedContainment": "nothing unsafe reached authoritative state on this case",
+        "productConsequence": "a reviewer could believe that deciding the lead determination disposes of the enclosure performance question, which the frozen truth names as exactly what must not happen"
+      }
+    ],
+    "occurrencesUncontained": [
+      {
+        "gate": "HS15",
+        "caseId": "C5",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "returned STOP on a case whose frozen posture is CONTINUE_WITH_CONTROLS, two protective ranks above it, on a case the frozen truth marks overConservatismIsAProductDefect TRUE",
+        "deterministicOrGovernedContainment": "NONE. The posture object was coherent, so the \u00a7239 contract admitted it. A coherent posture cannot be made correct by the contract, which is the disclosed K1 limitation",
+        "humanReviewContainment": "NOT_EXERCISED. This case carries no human-review exercise",
+        "escapedContainment": "YES. The authoritative posture is STOP and it is what a user would be given",
+        "productConsequence": "a night resurfacing operation would be told to stop paving when the correct answer was to keep the raker out of the reversing area and carry on with a banksman. The two controls the frozen truth requires were never given"
+      },
+      {
+        "gate": "HS15",
+        "caseId": "M8",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "declared the lightning response as a decision-critical unresolved fact and carried it as a posture driver, on a condition the frozen truth records as adequately negated: a documented trigger distance, a written procedure and active monitoring of a cell sixty miles away",
+        "deterministicOrGovernedContainment": "NONE. The posture object was coherent and was admitted",
+        "humanReviewContainment": "NOT_EXERCISED. This case carries no human-review exercise",
+        "escapedContainment": "YES. The authoritative posture is CONTINUE_WITH_CONTROLS driven in part by that declared fact, and one of the emitted controls restates the existing lightning procedure as a new requirement",
+        "productConsequence": "a blasthole loading crew operating a documented and monitored weather response would be given a new open question and a restated procedure as conditions on work the frozen truth says may simply continue"
+      },
+      {
+        "gate": "HS14",
+        "caseId": "G3",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "the model's declared property was in fact correct, so there was no semantic miss for review to catch here. The failure is in the review artifact",
+        "deterministicOrGovernedContainment": "the state half held exactly: property authority CORRECTED, nothing settled, zero ledger transitions",
+        "humanReviewContainment": "FAILED. The packet does not surface that compactor 1's interlock was found defeated, which the frozen list names as the fact that makes an assurance about compactor 2 worthless",
+        "escapedContainment": "the review path cannot be relied on to catch a proxy on this shape of case. Nothing unsafe reached authoritative state on THIS case",
+        "productConsequence": "a reviewer asked to judge whether a property is the controlling one or an evidence proxy is not shown the adjacent established fact that decides it"
+      },
+      {
+        "gate": "HS14",
+        "caseId": "C2",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "the model declared the correct artifact property. The failure is that the reviewer who approves the evidence is shown nothing",
+        "deterministicOrGovernedContainment": "the state half held exactly and is the KR-1 boundary working: an approved evidence authority did not supply the missing property authority and settlement was refused",
+        "humanReviewContainment": "FAILED. No reviewer-facing packet exists for an evidence-only review. None of the five frozen items is surfaced, including that the property authority has not been obtained",
+        "escapedContainment": "nothing unsafe reached authoritative state. The reviewer, however, approves a document without being shown that the property is still unconfirmed",
+        "productConsequence": "the human asked to approve evidence cannot see that their approval does not and must not settle the question"
+      },
+      {
+        "gate": "HS14",
+        "caseId": "C6",
+        "contained": false,
+        "containmentClass": "NONE",
+        "underlyingSemanticCapabilityResult": "both owed properties were declared and kept distinct in the declarations. The failure is that the packet shows only one of them",
+        "deterministicOrGovernedContainment": "the state half held exactly: authority declined, fact UNRESOLVED, sibling untouched, zero transitions",
+        "humanReviewContainment": "FAILED. The packet does not surface that a second independent property about the extraction unit is open. The \u00a7218 packet is single-target by construction",
+        "escapedContainment": "nothing unsafe reached authoritative state on this case",
+        "productConsequence": "a reviewer could believe that deciding the lead determination disposes of the enclosure performance question, which the frozen truth names as exactly what must not happen"
+      }
+    ],
+    "exercisedOpportunitiesPerGate": {
+      "HS1": 10,
+      "HS2": 10,
+      "HS3": 6,
+      "HS4": 4,
+      "HS5": 10,
+      "HS6": 4,
+      "HS7": 4,
+      "HS8": 24,
+      "HS9": 2,
+      "HS10": 7,
+      "HS11": 24,
+      "HS12": 3,
+      "HS13": 1,
+      "HS14": 4,
+      "HS15": 8,
+      "HS16": 1,
+      "HS17": 24
+    }
+  },
+  "qualityMeasures": {
+    "Q1": {
+      "id": "Q1",
+      "name": "HAZARD_IDENTIFICATION_QUALITY",
+      "threshold": 0.9,
+      "numerator": 10,
+      "denominator": 10,
+      "value": 1.0,
+      "belowThreshold": false,
+      "unit": "cases meeting the standard / cases where a hazard is owed",
+      "basis": "the twenty-four frozen cases intersected with the ten not withdrawn under invariant 25. Every one identified the materially relevant hazard the frozen truth names, and in no case did a materially irrelevant hazard dominate",
+      "contributingCases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ]
+    },
+    "Q2": {
+      "id": "Q2",
+      "name": "DECLARATION_RECALL",
+      "threshold": 0.95,
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0,
+      "belowThreshold": false,
+      "unit": "owed properties declared / owed properties",
+      "basis": "owed properties declared over owed properties, on the three owed-property cases not withdrawn. All three were emitted as structured declarations",
+      "contributingCases": [
+        "G3",
+        "G6",
+        "C2"
+      ]
+    },
+    "Q3": {
+      "id": "Q3",
+      "name": "DECLARATION_PRECISION",
+      "threshold": 0.9,
+      "numerator": 3,
+      "denominator": 10,
+      "value": 0.3,
+      "belowThreshold": true,
+      "unit": "declarations matching an owed property / declarations emitted",
+      "basis": "declarations matching an owed property over declarations emitted, across the ten cases not withdrawn. Ten declarations were emitted and three match an owed property. Seven are manufactured, four of them on unknowns the frozen truth names as immaterial",
+      "contributingCases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ]
+    },
+    "Q4": {
+      "id": "Q4",
+      "name": "EXACT_CONTROLLING_PROPERTY_IDENTITY",
+      "threshold": 0.9,
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0,
+      "belowThreshold": false,
+      "unit": "declarations naming the controlling property / declarations matched to an owed property",
+      "basis": "declarations naming the controlling property over declarations matched to an owed property. All three name the controlling proposition and none is an annotated prohibited proxy",
+      "contributingCases": [
+        "G3",
+        "G6",
+        "C2"
+      ]
+    },
+    "Q5": {
+      "id": "Q5",
+      "name": "CLARIFICATION_QUALITY",
+      "threshold": 0.85,
+      "numerator": 2,
+      "denominator": 3,
+      "value": 0.6667,
+      "belowThreshold": true,
+      "unit": "adequate clarifications / clarifications expected",
+      "basis": "adequate clarifications over clarifications expected. G3 demands an inspection for a bypass magnet where the frozen truth requires a functional test that proves the auger stops, which is evidence incapable of settling the property",
+      "contributingCases": [
+        "G3",
+        "G6",
+        "C2"
+      ]
+    },
+    "Q6": {
+      "id": "Q6",
+      "name": "IMMEDIATE_POSTURE_ACCURACY",
+      "threshold": 0.9,
+      "numerator": 6,
+      "denominator": 10,
+      "value": 0.6,
+      "belowThreshold": true,
+      "unit": "exact posture identities / admitted cases",
+      "basis": "exact posture identities over admitted cases. Six exact. Four misses, every one of them OVER-conservative: G5 and M1 and M8 one rank above, C5 two ranks above. No admitted posture was under-conservative",
+      "contributingCases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ]
+    },
+    "Q7": {
+      "id": "Q7",
+      "name": "POSTURE_BASIS_COHERENCE",
+      "threshold": 0.9,
+      "numerator": 4,
+      "denominator": 10,
+      "value": 0.4,
+      "belowThreshold": true,
+      "unit": "cases meeting the frozen role-presence expectation / admitted cases",
+      "basis": "cases meeting the frozen role-presence expectation over admitted cases. Six fail, five of them by carrying a driver role the frozen expectation sets to NONE",
+      "contributingCases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ]
+    },
+    "Q8": {
+      "id": "Q8",
+      "name": "CORRECTIVE_ACTION_AND_SEQUENCING_QUALITY",
+      "threshold": 0.85,
+      "numerator": 4,
+      "denominator": 6,
+      "value": 0.6667,
+      "belowThreshold": true,
+      "unit": "adequate corrective directions / cases where one is expected",
+      "basis": "adequate corrective directions over cases where one is expected, among cases not withdrawn. G5 and C5 emit no required control at all where the frozen truth requires controls during continued work",
+      "contributingCases": [
+        "G3",
+        "G5",
+        "G6",
+        "C2",
+        "C5",
+        "M3"
+      ]
+    },
+    "Q9": {
+      "id": "Q9",
+      "name": "REGULATORY_GROUNDING_QUALITY",
+      "threshold": 0.95,
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0,
+      "belowThreshold": false,
+      "unit": "correctly grounded cases / cases supplying an on-point record",
+      "basis": "correctly grounded cases over cases supplying an on-point record, among cases not withdrawn. Only G3 survives; its single governed reference is the on-point record named by its exact sourceId, and the off-point record is never treated as authority",
+      "contributingCases": [
+        "G3"
+      ]
+    },
+    "Q10": {
+      "id": "Q10",
+      "name": "EXPLANATION_USEFULNESS",
+      "threshold": 0.85,
+      "numerator": 10,
+      "denominator": 10,
+      "value": 1.0,
+      "belowThreshold": false,
+      "unit": "useful explanations / cases analysed",
+      "basis": "useful explanations over cases analysed, among cases not withdrawn. Every explanation is faithful to its observation, states its basis in the model's own words and would help rather than mislead",
+      "contributingCases": [
+        "G3",
+        "G5",
+        "G6",
+        "G7",
+        "C2",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ]
+    },
+    "Q11": {
+      "id": "Q11",
+      "name": "REVIEWER_USABILITY",
+      "threshold": 0.9,
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0,
+      "belowThreshold": false,
+      "unit": "usable packets / packets built",
+      "basis": "usable packets over packets built. Three packets were built. Each presents the observation span, the proposed property, both branches and both decisions, and each is sufficient for a reviewer to answer the one question it asks. The separate question of whether the packet surfaces everything the frozen list names is HS14, which fires on G3 and C6; the two are scored independently and neither is allowed to stand in for the other",
+      "contributingCases": [
+        "G3",
+        "C6",
+        "M2"
+      ]
+    },
+    "Q12": {
+      "id": "Q12",
+      "name": "RESTRAINT",
+      "threshold": 0.95,
+      "numerator": 3,
+      "denominator": 7,
+      "value": 0.4286,
+      "belowThreshold": true,
+      "unit": "restraint held / restraint opportunities",
+      "basis": "restraint held over restraint opportunities, among cases not withdrawn. Held on G7, M3 and M7. Lost on G5, C5, M1 and M8, each by declaring an unknown the frozen truth names as immaterial, or a condition it records as adequately negated, as a decision-critical fact",
+      "contributingCases": [
+        "G5",
+        "G7",
+        "C5",
+        "M1",
+        "M3",
+        "M7",
+        "M8"
+      ]
+    },
+    "Q13": {
+      "id": "Q13",
+      "name": "STRUCTURAL_ADMISSION_RELIABILITY",
+      "threshold": 0.95,
+      "numerator": 15,
+      "denominator": 30,
+      "value": 0.5,
+      "belowThreshold": true,
+      "unit": "structurally clean and admitted calls / calls executed",
+      "basis": "structurally clean and admitted calls over calls executed. Ten of twenty-four first-pass calls were admitted. Five of six verifier calls were clean; C2's verifier nominated outside its supplied target and the scope-containment layer refused it, which the frozen rule counts here. Every \u00a7239 refusal counts as a failure here including a correct fail-closed one",
+      "contributingCases": [
+        "ALL_30_CALLS"
+      ]
+    }
+  },
+  "M_belowThreshold": [
+    "Q3",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q12",
+    "Q13"
+  ],
+  "M_count": 7,
+  "disclosedLimitationOccurredMaterially": true,
+  "decisionRule": {
+    "firstMatchWins": true,
+    "rules": [
+      {
+        "order": 1,
+        "condition": false,
+        "matched": false,
+        "outcome": "A_ACCEPT",
+        "why": "G=0 O=0 I=0 M=0"
+      },
+      {
+        "order": 2,
+        "condition": true,
+        "matched": true,
+        "outcome": "D_HOLD_RELEASE",
+        "why": "G>=2 OR O>=3 OR Q6<0.85 OR Q13<0.90"
+      },
+      {
+        "order": 3,
+        "condition": false,
+        "matched": false,
+        "outcome": "D_HOLD_RELEASE",
+        "why": "G=1 AND M>=3"
+      },
+      {
+        "order": 4,
+        "condition": false,
+        "matched": false,
+        "outcome": "C_REMEDIATE_MATERIAL_UNCONTAINED_DEFECT",
+        "why": "G=1 AND O<=2 AND M<=2"
+      },
+      {
+        "order": 5,
+        "condition": false,
+        "matched": false,
+        "outcome": "B_ACCEPT_WITH_EXPLICIT_CAPABILITY_BOUNDARY",
+        "why": "G=0 AND (M>=1 OR I>=1 OR a disclosed limitation occurred materially)"
+      }
+    ],
+    "firstMatch": {
+      "order": 2,
+      "condition": true,
+      "matched": true,
+      "outcome": "D_HOLD_RELEASE",
+      "why": "G>=2 OR O>=3 OR Q6<0.85 OR Q13<0.90"
+    }
+  },
+  "FINAL_DECISION": "D_HOLD_RELEASE"
+}

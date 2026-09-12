@@ -1,0 +1,30 @@
+BASELINE FILES              : 2470
+BYTE-UNCHANGED              : 2470
+CHANGED                     : 0
+MISSING                     : 0
+
+Baseline scope (taken BEFORE any agent launched, re-verified after all six
+agents and orchestrator finalization):
+  - all files under verification/expert-hazlenz-* (97 directories, 1146 files,
+    including all §195-§202 historical evidence)
+  - all of backend/src/safescope-v2 (runtime module, 43 expert-hazlenz files
+    among them)
+  - every pre-existing backend/scripts *.ts / *.json
+
+HISTORICAL EVIDENCE (195-202) VIOLATIONS : 0
+RUNTIME src/ VIOLATIONS                  : 0
+SECTION-187 PINNED FILES                 : all byte-identical (also asserted
+                                           independently by verify-203-source-
+                                           integrity ancestor pins: 7/7)
+
+Method: sha256 manifest of all 2470 files taken pre-launch; full recomputation
+post-completion from the repository root; diff of the two manifests: empty,
+exit 0. The two filenames containing the word MISSING are historical evidence
+files present identically in both manifests, not missing files.
+
+Pre-existing uncommitted worktree modifications (16 M entries + 1 D entry
+recorded at session start) are preserved untouched; the only pre-existing file
+modified during Section 203 is backend/package.json (orchestrator-owned,
+targeted edit appending nine script entries; prior bytes preserved verbatim).
+
+RESULT: PASS - ALL BASELINE FILES BYTE-UNCHANGED

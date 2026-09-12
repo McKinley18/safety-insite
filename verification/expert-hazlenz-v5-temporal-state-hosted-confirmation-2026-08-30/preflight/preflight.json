@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-08-30T00:00:00.000Z",
+  "promptVersion": "hazlenz.expert.prompt.v5",
+  "systemPromptSha256": "e4624f8a0e04d34c4628ba4243c39725278086e7d1c35a87ceb148ccf89c82d8",
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "fixtureHashes": {
+    "R6": "2adf4721159cd33fb3c8449b32144178eb859d25bfae1c418245e50495bc2914",
+    "R4": "107ca95b391f6d7c42b87e3c6cb806f8869cd56b52ee104f0c5f0f87f6daa4ca",
+    "T1": "e9c00a44919d6f71569ae19695aaaa62d78b5bbc7f4498820252ee0d4e9b0406",
+    "T5": "74571bc5fa12c15bda20c574f95e287f145196cd13da47fdc2b01443026dd3aa",
+    "T3": "af6345f43f3219ccce6c09693916cc2fe3ecd895324500350256aea5514a6066"
+  },
+  "hostedConfig": {
+    "endpoint": "https://api.anthropic.com",
+    "model": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "timeoutMs": 180000,
+    "thinking": "disabled",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "plannedCalls": 7,
+  "absoluteCeiling": 7,
+  "costCeilingUsd": 3
+}

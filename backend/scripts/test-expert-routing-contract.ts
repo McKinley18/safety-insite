@@ -28,6 +28,7 @@ import {
 import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
+  expertPromptIdentity, expertPromptIdentityMismatches,
 } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
 import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
 
@@ -78,6 +79,7 @@ const insight = (id: string, reasoning: string) => ({
 
 const candidate = (key: string, family: string, reasoning: string) => ({
   candidateKey: key, hazardFamily: family, assertedConditionState: 'UNKNOWN' as const,
+  groundingStatus: 'NO_EXACT_QUOTE_AVAILABLE' as const,
   evidence: [], evidenceBasis: 'stated in the observation', reasoning,
   confidence: 'MODERATE' as const, relationshipToDeterministic: 'ADDITIONAL_TO_DETERMINISTIC' as const,
   requiresUserConfirmation: true,
@@ -107,18 +109,65 @@ const INTERACTION_PROBE: ConceptProbe = {
 
   assert(EXPERT_ANALYSIS_CONTRACT_VERSION === 'hazlenz.expert.analysis.v2',
     'A.1 the analysis contract is v2 (subtractive change, so the version moved)');
-  assert(EXPERT_PROMPT_VERSION === 'hazlenz.expert.prompt.v3', 'A.2 the prompt is v3');
+  // v8 (§141 linkage contract). This literal has now moved v6 -> v7 -> v8, each time because a
+  // SEPARATELY AUTHORIZED operation revised the prompt. It is re-anchored, never relaxed: the
+  // property A.2 protects -- a recorded probe names the prompt version it actually ran under --
+  // is unchanged, and A.2b below still pins the CONTENT hashes, which is what a label cannot do.
+  // §147 moved it again, v9 -> v10, for the clarification-recall remediation, and §148 v10 -> v11
+  // for the settlement-threshold narrowing and the affectedDecision routing disclosure.
+  // §149 moved it again, v11 -> v12, for the unsupported-settlement repair.
+  // §150 moved it again, v12 -> v13, for the retention-bridge repair.
+  assert(EXPERT_PROMPT_VERSION === 'hazlenz.expert.prompt.v15', 'A.2 the prompt is v15');
+  // A.2b is NEW in §139 and makes A.2 stronger rather than replacing it. §138 established that the
+  // LABEL alone does not identify the prompt -- three files declared v6 and two of them differed in
+  // both the system prompt and the wire schema, which is why a preserved same-input probe had to be
+  // refused as a control. A label pin can therefore pass while behaviour has moved underneath it;
+  // the hashes cannot.
+  {
+    const id = expertPromptIdentity(input());
+    assert(/^[0-9a-f]{64}$/.test(id.systemPromptSha256) && /^[0-9a-f]{64}$/.test(id.wireSchemaSha256),
+      'A.2b prompt identity carries BOTH content hashes, not only the label');
+    assert(expertPromptIdentityMismatches(id, id).length === 0,
+      'A.2c an identity compares equal to itself');
+    assert(expertPromptIdentityMismatches(
+      { ...id, systemPromptSha256: 'x'.repeat(64) }, id).length === 1,
+      'A.2d a moved system prompt is DETECTED even when the version label is unchanged');
+    assert(expertPromptIdentityMismatches(
+      { ...id, wireSchemaSha256: 'x'.repeat(64) }, id).length === 1,
+      'A.2e a moved wire schema is DETECTED even when the version label is unchanged');
+  }
 
-  // v3: a candidate no longer REQUIRES a verbatim quote. Attempt 1 measured 0 quotes and 0
-  // candidates on 13 of 13 live calls -- demanding one suppressed the whole collection. The
-  // VALIDATOR is untouched; only the ask changed.
+  // v4 (§105). A.13 and A.15 asserted the v3 rule that `evidence` is NOT required. That rule went
+  // STALE when §105 made grounding a required DECLARATION -- stale in the repository's precise
+  // sense, the way G14 did in §103.4, not wrong-and-inconvenient. Deleting them or loosening them
+  // would both have been wrong, because the PROPERTY they protect is still the one that matters:
+  // §101 attempt 1 demanded a quote from every candidate and suppressed the entire collection, and
+  // nothing here may bring that back. So they keep their strength and gain precision, and now prove
+  // the property DIRECTLY -- that an unquotable hazard still survives the boundary -- instead of
+  // proving it indirectly by the absence of a `required` entry. Nothing that used to fail passes.
   const candidateRequired = JSON.parse(JSON.stringify(buildExpertWireSchema(input())))
     .properties.expertHazardCandidates.items.required as string[];
-  assert(!candidateRequired.includes('evidence'),
-    'A.13 evidence is NOT required on a candidate — an unquotable hazard is raised, not dropped');
+  assert(candidateRequired.includes('groundingStatus') && candidateRequired.includes('evidence'),
+    'A.13a a candidate must DECLARE its grounding — silence is no longer a legal answer');
+  const unquotable = bindWireAnalysis({
+    outcome: 'ANALYZED',
+    expertHazardCandidates: [{
+      candidateKey: 'u1', hazardFamily: 'electrical', assertedConditionState: 'UNKNOWN',
+      groundingStatus: 'NO_EXACT_QUOTE_AVAILABLE', evidence: [],
+      evidenceBasis: 'inferred from context', reasoning: 'r', confidence: 'LOW',
+      relationshipToDeterministic: 'ADDITIONAL_TO_DETERMINISTIC', requiresUserConfirmation: true,
+    }],
+    decisionCriticalClarifications: [], crossHazardInsights: [], disagreements: [],
+    expertExplanation: { summary: 's' }, uncertainty: { statements: [] },
+  }, input());
+  const unquotableResult = normalizeExpertOutput(unquotable.raw, input(), NOW);
+  assert(unquotableResult.state === 'VALID'
+    && unquotableResult.validated!.analysis.expertHazardCandidates.length === 1,
+    'A.13 an unquotable hazard is still RAISED, not dropped — the §101 suppression cannot return');
   assert(candidateRequired.includes('reasoning') && candidateRequired.includes('hazardFamily'),
     'A.14 everything else about a candidate is still required');
-  assert(EXPERT_SYSTEM_PROMPT.includes('A QUOTE IS OPTIONAL'),
+  assert(EXPERT_SYSTEM_PROMPT.includes('NO_EXACT_QUOTE_AVAILABLE')
+    && EXPERT_SYSTEM_PROMPT.includes('still raised, still reaches the reviewer'),
     'A.15 the prompt says so too, so the schema and the prompt cannot disagree');
   assert(EXPERT_SYSTEM_PROMPT.includes('an invented') && EXPERT_SYSTEM_PROMPT.includes('quote is rejected'),
     'A.16 and an INVENTED quote is still refused — the safety rule did not move');
@@ -142,10 +191,29 @@ const INTERACTION_PROBE: ConceptProbe = {
     'A.6 the v1 free-text twins are DROPPED at the boundary, not carried');
 
   // The schema must actually describe the distinctions the model has to make.
-  for (const needle of ['de-energized', 'lockout/tagout', 'Independent of hazards',
+  //
+  // §139 RE-ANCHORED, NOT RELAXED. Two needles were the worked-example questions "de-energized" and
+  // "lockout/tagout". The property -- the schema teaches the distinctions rather than assuming them
+  // -- is unchanged and is now tested against MORE schema guidance, not less: §138 verified that
+  // all six `affectedDecision` members were undefined everywhere, and §137 measured those two
+  // example questions being reproduced in 35 of 165 emitted clarifications. A needle that can only
+  // be satisfied by restoring a measured overproduction driver would make this test enforce the
+  // defect it exists to catch, so the needles now anchor on the DEFINITIONS that replaced them.
+  for (const needle of ['Independent of hazards',
                         'worse together', 'Adding new context is NOT a disagreement',
                         'Not an overflow channel']) {
     assert(schema.includes(needle), `A.7 the schema states the distinction: "${needle}"`);
+  }
+  // A.7b: every affectedDecision member is now DEFINED in the schema, and the collision pairs the
+  // audit measured are decided explicitly. This is the §139 repair, asserted where it must hold.
+  for (const needle of ['HAZARD_EXISTENCE = does the hazardous condition exist',
+                        'HAZARD_SEVERITY = the hazard exists',
+                        'EXPOSURE = who or what is exposed',
+                        'APPLICABILITY = whether a rule',
+                        'REQUIRED_CONTROL = which control is required',
+                        'REGULATORY_INTERPRETATION = what a SUPPLIED governed record means',
+                        'is REQUIRED_CONTROL, not HAZARD_EXISTENCE']) {
+    assert(schema.includes(needle), `A.7b the schema DEFINES the decision label: "${needle}"`);
   }
   assert(!/additional information|optional insights/i.test(schema),
     'A.8 no vague "additional information" / "optional insights" description survives');
@@ -274,6 +342,7 @@ const INTERACTION_PROBE: ConceptProbe = {
     outcome: 'ANALYZED',
     expertHazardCandidates: [{
       candidateKey: 'e1', hazardFamily: 'electrical', assertedConditionState: 'ACTIVE',
+      groundingStatus: 'EXACT_QUOTE_SUPPLIED',
       evidence: [{ sourceId: 'obs-1', quotedText: goodQuote }],
       evidenceBasis: 'b', reasoning: 'r', confidence: 'HIGH',
       relationshipToDeterministic: 'AGREES_WITH_DETERMINISTIC', requiresUserConfirmation: false,
@@ -292,6 +361,7 @@ const INTERACTION_PROBE: ConceptProbe = {
     outcome: 'ANALYZED',
     expertHazardCandidates: [{
       candidateKey: 'e1', hazardFamily: 'electrical', assertedConditionState: 'ACTIVE',
+      groundingStatus: 'EXACT_QUOTE_SUPPLIED',
       evidence: [{ sourceId: 'obs-1', quotedText: 'a phrase that is definitely not in the observation' }],
       evidenceBasis: 'b', reasoning: 'r', confidence: 'HIGH',
       relationshipToDeterministic: 'AGREES_WITH_DETERMINISTIC', requiresUserConfirmation: false,

@@ -1,0 +1,162 @@
+{
+  "status": "SCANNED",
+  "preregistered": true,
+  "scannerSha256": "ca3c6c8dc1df8fbb48185ce613e0781e31e5be43c47e893f06f4c5e9fc469f04",
+  "retainedRowIds": [
+    "HR-01",
+    "HR-02",
+    "HR-03",
+    "HR-04",
+    "HR-05",
+    "HR-06",
+    "HR-07",
+    "HR-08",
+    "HR-09",
+    "HR-10"
+  ],
+  "unadjudicatedRows": [],
+  "classBalance": {
+    "REQUIRED": 5,
+    "SILENCE": 5,
+    "total": 10
+  },
+  "majorityClassBaseline": 0.5,
+  "bestSimpleClassifier": {
+    "accuracy": 0.9,
+    "rule": "contains \"it\"",
+    "liftOverBaseline": 0.4
+  },
+  "top10Rules": [
+    {
+      "accuracy": 0.9,
+      "rule": "contains \"it\""
+    },
+    {
+      "accuracy": 0.8,
+      "rule": "wordCount >= 59.5"
+    },
+    {
+      "accuracy": 0.8,
+      "rule": "wordCount < 59.5"
+    },
+    {
+      "accuracy": 0.8,
+      "rule": "contains \"he\""
+    },
+    {
+      "accuracy": 0.7,
+      "rule": "wordCount >= 58.5"
+    },
+    {
+      "accuracy": 0.7,
+      "rule": "wordCount < 58.5"
+    },
+    {
+      "accuracy": 0.7,
+      "rule": "meanSentenceLength >= 14.875"
+    },
+    {
+      "accuracy": 0.7,
+      "rule": "meanSentenceLength < 14.875"
+    },
+    {
+      "accuracy": 0.7,
+      "rule": "uniqueTokenRatio >= 0.7227"
+    },
+    {
+      "accuracy": 0.7,
+      "rule": "uniqueTokenRatio < 0.7227"
+    }
+  ],
+  "candidateRulesSwept": 303,
+  "vocabularySize": 197,
+  "perFamilyBest": {
+    "numericSurfaceFeature": {
+      "accuracy": 0.8,
+      "rule": "wordCount >= 59.5"
+    },
+    "tokenPresence": {
+      "accuracy": 0.9,
+      "rule": "contains \"it\""
+    },
+    "metadataField": {
+      "accuracy": 0.5,
+      "rule": "EVIDENCE_SUFFICIENCY_CONCERN == None"
+    }
+  },
+  "classExclusiveTokens": {
+    "onlyRequired": [
+      "against",
+      "annual",
+      "but",
+      "carries",
+      "clean",
+      "covers",
+      "entry",
+      "filter",
+      "hangs",
+      "it",
+      "left",
+      "lists",
+      "lockout",
+      "lubrication",
+      "main",
+      "nozzle",
+      "open",
+      "record",
+      "result",
+      "shows",
+      "since",
+      "stop",
+      "tank",
+      "test",
+      "tracking",
+      "unread",
+      "were",
+      "whether"
+    ],
+    "onlySilence": [
+      "all",
+      "attempting",
+      "by",
+      "did",
+      "exists",
+      "fall",
+      "flame",
+      "fuel",
+      "function-tested",
+      "handrail",
+      "load",
+      "loss",
+      "of",
+      "opened",
+      "reading",
+      "rests",
+      "rise",
+      "seconds",
+      "shut",
+      "six",
+      "sound",
+      "start",
+      "them",
+      "tight",
+      "turn",
+      "two",
+      "watched",
+      "when",
+      "within",
+      "zero"
+    ],
+    "widestRequiredCoverage": "4 of 5",
+    "widestSilenceCoverage": "1 of 5"
+  },
+  "smallCorpusCaveat": {
+    "perfectSplitsPossibleByChance": true,
+    "probabilityOneFixedRuleSplitsPerfectly": 0.003968,
+    "candidateRulesSwept": 303,
+    "expectedNumberOfPerfectRulesUnderNoSignal": 1.202,
+    "readThisBeforeConcluding": "With a corpus this small a perfect single-feature rule is expected even with no real leakage. Treat a perfect rule as a prompt to inspect the feature by hand, not as proof of a confound; and treat a HIGH best-accuracy on a small corpus as uninformative rather than as a clean bill of health."
+  },
+  "MATERIALLY_SEPARABLE": false,
+  "interpretation": "MATERIALLY_SEPARABLE is set when some simple rule separates the retained classes perfectly. It is a trigger for hand inspection of the named rule, NOT an automatic verdict: read smallCorpusCaveat first, because on a corpus of this size a perfect rule is expected by chance alone. Equally, a best accuracy below 1.0 is not a clean bill of health on a small corpus -- it is simply uninformative."
+}

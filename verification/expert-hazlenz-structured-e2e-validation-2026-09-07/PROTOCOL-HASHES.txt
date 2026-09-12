@@ -1,0 +1,21 @@
+§197 FROZEN PROTOCOL IDENTITY — recorded before the first provider call
+
+first-pass instruction      hazlenz.expert.first-pass-instruction.vNext
+first-pass system prompt    05e1ad22efd1353d72f04406f63ee3985892072ca566aed5ceb34c4c29881db6
+first-pass vNext module     ec89b349d246e983cee9e8b9b07f693941ff9491e12a9eb9257ac73e287801ed
+v15 base system prompt      20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979   UNCHANGED
+projection module           f5b602a00860628690723cec1b7050c123e883c6c58c04f0ec27faaae7c9b423
+projection version          hazlenz.expert.first-pass-owed-fact-projection.v1
+verifier instruction        hazlenz.expert.verifier-instruction.v3.2
+verifier system prompt      f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f
+verifier schema             83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e
+admission contract          hazlenz.expert.verifier.v3.3
+admission module (v3.3)     43497985c58cf8e7108e7132cccdab15f10485cc65a2d9cf025b67a1c948fd88
+cohort                      hazlenz.expert.structured-e2e-cohort.2026-09-07
+cohort module               6cb73ed67922f829ecce1be81201f8c1b82447290ce79b0959c5a7dac2a1cda1
+model                       claude-sonnet-5
+executor version            hazlenz.expert.197.structured-e2e-executor.v1
+preregistration             fff14d4e1f9ee0daf00c39dac2ce3e645f122d9199ae4fd4b5ade1ae41613cc7
+
+v3.3 IS AN ADMISSION CHANGE ONLY — the prompt and schema executed are v3.2's.
+NOT THIS POPULATION: §187B (v3), §192 (v3.1), §195 (not executed).

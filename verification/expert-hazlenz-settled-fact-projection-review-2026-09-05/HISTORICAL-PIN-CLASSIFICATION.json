@@ -1,0 +1,24 @@
+{
+  "artifact": "SECTION_186_HISTORICAL_PIN_CLASSIFICATION",
+  "date": "2026-09-05",
+  "classification": "EXPECTED_HISTORICAL_PIN_DIVERGENCE_AFTER_AUTHORIZED_LATER_CHANGE",
+  "CURRENT_REGRESSION_FAILURE": false,
+  "HISTORICAL_PIN_NO_LONGER_MATCHES_CURRENT_SOURCE": true,
+  "pin": {
+    "suite": "backend/scripts/test-settlement-review-integration-2026-09-05.ts",
+    "assertion": "P20c",
+    "pinnedFile": "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts",
+    "pinnedValue": "f77c7febb55a056271174c4efd4375506145344bd0748e5d56f93c698074c1d1",
+    "currentValue": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+    "otherHalfStillPasses": "owed-fact-binding.ts is unmodified at e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0"
+  },
+  "reason": "§182 correctly pinned the source state that existed at §182. §185 later changed owed-fact.types.ts under explicit authorization. Historical evidence must remain true about its own slice.",
+  "actionTaken": "NONE. Not relaxed, not refreshed, not rewritten.",
+  "artifactsCarryingTheSamePin": [
+    "verification/expert-hazlenz-owed-fact-truth-2026-09-05/SECTION-184-INTEGRITY.json",
+    "verification/expert-hazlenz-settlement-behavior-validation-2026-09-05/SECTION-183-INTEGRITY.json",
+    "verification/expert-hazlenz-verifier-v3-bounded-development-integration-2026-09-05/INTEGRATION-SUMMARY.json",
+    "docs/INSITE_CURRENT_STATE.json"
+  ],
+  "allUnmodified": true
+}

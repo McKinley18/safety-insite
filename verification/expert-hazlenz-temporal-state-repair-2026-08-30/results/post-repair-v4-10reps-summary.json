@@ -1,0 +1,5171 @@
+{
+  "label": "post-repair-v4-10reps",
+  "repeats": 10,
+  "provider": "local-ollama",
+  "model": "qwen3-coder:30b",
+  "costUsd": 0,
+  "hostedCalls": 0,
+  "totals": {
+    "TYPED_ROUTING_OPPORTUNITIES": 200,
+    "TYPED_ROUTING_HITS": 190,
+    "TYPED_ROUTING_MISSES": 0,
+    "TYPED_ROUTING_OVER_ROUTED": 10,
+    "EXPLANATION_ONLY_LOSSES": 1,
+    "byCollection": {
+      "expertHazardCandidates": {
+        "opportunities": 60,
+        "hits": 60,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "decisionCriticalClarifications": {
+        "opportunities": 70,
+        "hits": 60,
+        "misses": 0,
+        "overRouted": 10
+      },
+      "crossHazardInsights": {
+        "opportunities": 40,
+        "hits": 40,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "disagreements": {
+        "opportunities": 30,
+        "hits": 30,
+        "misses": 0,
+        "overRouted": 0
+      }
+    }
+  },
+  "byFixture": {
+    "R4": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "R5": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "R6": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "R7": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "T1": {
+      "cleanReps": 0,
+      "totalReps": 10,
+      "overRoutedItems": 10
+    },
+    "T2": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "T3": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "T4": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "T5": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    },
+    "T6": {
+      "cleanReps": 10,
+      "totalReps": 10,
+      "overRoutedItems": 0
+    }
+  },
+  "rows": [
+    {
+      "fixtureId": "R4",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump is generally considered a confined space due to its design and potential for limited access and egress. The presence of a worker inside such a space raises concerns about atmospheric hazards or other confined space risks."
+      ],
+      "clarificationSummaries": [
+        "Is the solvent drum properly closed and labeled? (The observation does not confirm whether the solvent drum has been closed and labeled as required.)",
+        "Is the worker inside the sump exposed to atmospheric hazards? (The observation does not provide information about the atmospheric conditions inside the sump.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R4",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "confined_space: A below-grade sump typically qualifies as a confined space due to its physical characteristics and potential for hazardous atmospheres or engulfment. The worker's activity of bailing residue from this sump suggests exposure to confined space hazards."
+      ],
+      "clarificationSummaries": [
+        "Is the atmosphere within the below-grade sump tested and safe for worker exposure? (The observation does not specify whether the atmosphere in the sump was tested or if it is safe for worker entry.)",
+        "What personal protective equipment (PPE) is the worker wearing while bailing residue from the sump? (There is no mention in the observation of what PPE, if any, the worker is using during this activity.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [
+          {
+            "label": "battery / hydrogen / chemical hazard",
+            "collection": "expertHazardCandidates",
+            "foundIn": "summary"
+          }
+        ],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash if a person comes into contact with the charging equipment or wet surfaces."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger properly isolated or de-energized? (The observation does not state whether the charger was isolated or de-energized.)",
+        "Is the aisle still wet from the washdown? (The observation states that the aisle was wet but does not confirm if it is still wet at the time of inspection.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R5",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: Forklift charging involves electrical hazards. The presence of a wet aisle increases the risk of electrical shock or arc flash, especially when people are walking nearby."
+      ],
+      "clarificationSummaries": [
+        "Is the forklift charger isolated from power? (The observation does not state whether the charger was isolated or not.)",
+        "Is the wet aisle condition currently present? (The observation states that the aisle was wet from a washdown, but does not confirm whether it is still wet.)"
+      ]
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R6",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "R7",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T1",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 1,
+            "verdict": "INCORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 1,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the electrical panel properly re-energized and tested normal by a qualified person? (The observation states that the circuit was re-energized and tested normal, but does not specify if this was done by a qualified person.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T2",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 1,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Is the punch press de-energized? (The observation does not state whether the press is de-energized.)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the machine been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T3",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": [
+        "Was the lockout/tagout system reapplied after the isolation lock was removed? (obs-1)",
+        "Has the feed conveyor been re-isolated before current work began? (obs-1)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation does not indicate whether the verification was performed by a qualified person or with proper procedures.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T4",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [
+        "electrical: A non-functioning horn on a mobile equipment unit like a forklift represents an active safety hazard because horns are required for operator awareness and communication with others in the vicinity. The fact that it was confirmed not to work during testing indicates this is a current condition, not a historical one."
+      ],
+      "clarificationSummaries": [
+        "Is the horn failure due to an electrical issue or a mechanical problem with the horn itself? (The observation does not specify whether the horn failure is due to electrical or mechanical causes.)",
+        "Was the horn functionality verified by a qualified person using proper testing procedures? (The observation only states the operator confirmed the horn does not sound, but does not specify if proper verification procedures were followed.)"
+      ]
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T5",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": null,
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 0,
+      "seed": 20260829,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 1,
+      "seed": 20260830,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 2,
+      "seed": 20260831,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 3,
+      "seed": 20260832,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 4,
+      "seed": 20260833,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 5,
+      "seed": 20260834,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 6,
+      "seed": 20260835,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 7,
+      "seed": 20260836,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 8,
+      "seed": 20260837,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    },
+    {
+      "fixtureId": "T6",
+      "rep": 9,
+      "seed": 20260838,
+      "ok": true,
+      "failureKind": null,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "score": {
+        "fixtureId": "T6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "candidateSummaries": [],
+      "clarificationSummaries": []
+    }
+  ]
+}

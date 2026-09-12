@@ -1,0 +1,162 @@
+{
+  "identifier": "FORMAL_EXPERT_SEMANTIC_AUGMENTATION_V1_CANDIDATE",
+  "status": "REVIEWED -- HUMAN ADJUDICATION COMPLETE, SEALED, FORMAL EVALUATION UNSPENT",
+  "statusDoesNotImply": [
+    "The formal evaluation cohort has NOT been assembled, run, scored or passed.",
+    "No provider has validated this material; PROVIDER_INVOCATION_COUNT is 0.",
+    "No customer activation is authorized.",
+    "No production authorization is granted or implied.",
+    "P4_PRESPEND_AUTHORIZATION remains unmet."
+  ],
+  "validationPhase": "POST_HUMAN_REVIEW",
+  "validationPhaseSource": "DECLARED_CORPUS_LIFECYCLE_STATE",
+  "corpusLifecycleState": "POST_HUMAN_REVIEW",
+  "identifierNote": "The sealed IDENTIFIER still ends in _CANDIDATE. That string is the frozen name of the corpus and renaming it would break every artifact that references the seal, so it is left alone. Lifecycle phase is carried by this field, not by the identifier.",
+  "policyVersion": "EXPERT_SEMANTIC_AUGMENTATION_POLICY_V1",
+  "phaseModelVersion": "EXPERT_SEMANTIC_AUGMENTATION_PHASE_MODEL_V1",
+  "rows": 35,
+  "order": "SEM-01 .. SEM-30, SEM-35, SEM-31 .. SEM-34 -- the actual sealed array order, with SEM-35 at index 30. Numeric identifier order is NOT array order. Immutable after seal.",
+  "manifestSha256": "6a2c564c81c79acb5c267963f0b12483684a2a5ce8ad0173c9af663332b0dfdf",
+  "truthKeySha256": "2e4377ead15a8c349bdecb389371015185b3023bab706768d32356d333ce9812",
+  "provenanceSha256": "16b76f48e77dc93933e595da50803d0c2de8ba2a69fe62b94b80b5ea62ff13ac",
+  "clarificationOwedCandidates": 22,
+  "clarificationNotOwedControls": 13,
+  "crossHazardInteractionCandidates": 12,
+  "interactionNegativeControls": 10,
+  "rowsCarryingBoth": 9,
+  "rowsCarryingForbiddenFamily": 5,
+  "interactionKindsUsed": [
+    "CHEMICAL_PPE_VENTILATION",
+    "CONFINED_SPACE_ATMOSPHERIC",
+    "ELECTRICAL_WET_ENVIRONMENT",
+    "FALL_EXPOSURE_ANCHORAGE",
+    "LOTO_STORED_ENERGY"
+  ],
+  "currentIndependentlyAuthorized": {
+    "clarificationOwed": 3,
+    "crossHazardInteraction": 5
+  },
+  "candidateAuthoringTargets": {
+    "clarificationOwed": 26,
+    "crossHazardInteraction": 14,
+    "enforcedInPhase": "PRE_REVIEW_CANDIDATE"
+  },
+  "frozenCompositionMinimums": {
+    "clarificationOwed": 20,
+    "crossHazardInteraction": 10,
+    "enforcedInPhase": "POST_HUMAN_REVIEW"
+  },
+  "countableReviewedCases": {
+    "clarificationOwed": 25,
+    "clarificationMargin": 5,
+    "crossHazardInteraction": 17,
+    "crossHazardInteractionMargin": 7
+  },
+  "reviewedAccounting": {
+    "reviewedRowCount": 35,
+    "clarification": {
+      "authoredOwed": 27,
+      "withdrawnRowIds": [
+        "SEM-06",
+        "SEM-20",
+        "SEM-22",
+        "SEM-23",
+        "SEM-28"
+      ],
+      "survivingOwedRowIds": [
+        "SEM-01",
+        "SEM-02",
+        "SEM-03",
+        "SEM-04",
+        "SEM-05",
+        "SEM-07",
+        "SEM-08",
+        "SEM-09",
+        "SEM-10",
+        "SEM-15",
+        "SEM-16",
+        "SEM-17",
+        "SEM-18",
+        "SEM-19",
+        "SEM-21",
+        "SEM-24",
+        "SEM-25",
+        "SEM-26",
+        "SEM-27",
+        "SEM-29",
+        "SEM-30",
+        "SEM-35"
+      ],
+      "independentlyAuthorized": 3,
+      "declaredCountableCases": 25
+    },
+    "interaction": {
+      "authoredPresent": 14,
+      "withdrawnRowIds": [
+        "SEM-06",
+        "SEM-08",
+        "SEM-14"
+      ],
+      "promotedRowIds": [
+        "SEM-18",
+        "SEM-24"
+      ],
+      "authoredThenVocabularyBlockedRowIds": [
+        "SEM-35"
+      ],
+      "neverAuthoredVocabularyBlockedRowIds": [
+        "SEM-09"
+      ],
+      "mechanicallyRecordedRowIds": [
+        "SEM-01",
+        "SEM-02",
+        "SEM-03",
+        "SEM-04",
+        "SEM-05",
+        "SEM-07",
+        "SEM-10",
+        "SEM-11",
+        "SEM-12",
+        "SEM-13",
+        "SEM-18",
+        "SEM-24"
+      ],
+      "independentlyAuthorized": 5,
+      "declaredCountableCases": 17
+    },
+    "frozenVocabularyLimitations": [
+      {
+        "rowId": "SEM-09",
+        "vocabulary": "ACCEPTED_INTERACTION_TAXONOMY",
+        "missing": "a kind naming ignition of a flammable solvent atmosphere by a competent electrical ignition source with ventilation locked out",
+        "consequence": "A real interaction is left UNRECORDED and UNCOUNTED. OTHER is unusable: the token occurs in EXPERT_SYSTEM_PROMPT as ordinary English and trips the substring truth-leak guard. Not repaired."
+      },
+      {
+        "rowId": "SEM-27",
+        "vocabulary": "ACCEPTED_EXPERT_TAXONOMY",
+        "missing": "a thermal / hot-process hazard family covering radiant heat and hot-material ejection",
+        "consequence": "The row intentionally carries ZERO present families and keeps its OWED clarification. No family was created, widened or substituted; toExpertFamily untouched."
+      },
+      {
+        "rowId": "SEM-35",
+        "vocabulary": "ACCEPTED_INTERACTION_TAXONOMY",
+        "missing": "a kind naming vehicle movement / platform-position dependency / drive-away effects on fall protection",
+        "consequence": "The authored interaction was REMOVED rather than forced into a distorting kind. The corpus has now lost two interaction counts to one vocabulary defect, and the second loss was the repair attempt for the first. Not repaired."
+      }
+    ],
+    "contractConsequentialEffects": [
+      {
+        "rowId": "SEM-08",
+        "effect": "chemical_exposure removed from lifeCriticalHazardFamilies, leaving ['confined_space']. This is a consequence of the reviewed partition correction PRESENT -> DEFENSIBLE, not an independent new semantic verdict.",
+        "forcedBy": "validateCohortRow raises LIFE_CRITICAL_NOT_PRESENT for any life-critical family that is not PRESENT. Retaining it would have made the row internally invalid."
+      }
+    ]
+  },
+  "truthLeak": 0,
+  "providerInvocationCount": 0,
+  "knownProviderCaseCopy": false,
+  "reservedMaterialOpened": false,
+  "formalCohortSpent": false,
+  "p4PrespendAuthorization": false,
+  "authorUncertaintyFlagged": 8
+}

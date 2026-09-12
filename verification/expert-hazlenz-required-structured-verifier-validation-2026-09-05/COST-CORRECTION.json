@@ -1,0 +1,23 @@
+{
+  "artifact": "SECTION_187A_COST_CORRECTION",
+  "actualMoneySpentUsd": 0.26255,
+  "breakdown": {
+    "firstPassCalls": {
+      "count": 5,
+      "costUsd": 0.26255
+    },
+    "verifierCalls": {
+      "count": 15,
+      "tokensConsumed": 0,
+      "costUsd": 0,
+      "why": "rejected at the request level with HTTP 400 before any inference"
+    }
+  },
+  "correction": "RUN-SUMMARY.json reports TOTAL_ACTUAL_COST_USD = 1.22255. That figure is the CONSERVATIVE CAP ACCOUNTING the harness uses — it charges the frozen worst case for a failed call so a failing run can never silently exceed the budget. It is NOT money spent. Actual spend is $0.26255. RUN-SUMMARY.json was left unedited because it is run evidence; this record is the correction.",
+  "capsRespected": {
+    "callsUsed": 20,
+    "callCap": 24,
+    "spendCap": 2.0,
+    "actualSpend": 0.26255
+  }
+}

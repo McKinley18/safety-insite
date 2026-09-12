@@ -1,0 +1,105 @@
+EXPERT HAZLENZ — HOSTED TRANSPORT PROBE
+provider   anthropic   model claude-sonnet-5
+contract   hazlenz.expert.analysis.v2   prompt hazlenz.expert.prompt.v4
+thinking   disabled   max_tokens 8000
+ceiling    8 calls   $3.00
+worst/call $0.0900   worst total $0.6300
+planned    7 calls
+
+pre-flight  both grounding anchors verified verbatim in their sources
+
+  H1+H2 basic structure + zero-candidate clarification
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  315ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0
+  H3 cross-hazard
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  147ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0
+  H4 additional plausible hazard
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  433ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0
+  H5 multi-collection
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  144ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0
+  H6 negative control
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  154ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0
+  H7 exact evidence grounding
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  148ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0  supportsClaim=false
+  H8 second grounding control
+     HTTP 400  HTTP_CLIENT_ERROR  model=—  136ms  in=— out=—  $0.0000
+     cand=0 clar=0 ins=0 dis=0  quotes emitted=0 bound=0 unbindable=0 fabricated=0  supportsClaim=false
+
+---------------- ROUTING ----------------
+{
+  "TYPED_ROUTING_OPPORTUNITIES": 0,
+  "TYPED_ROUTING_HITS": 0,
+  "TYPED_ROUTING_MISSES": 0,
+  "TYPED_ROUTING_OVER_ROUTED": 0,
+  "EXPLANATION_ONLY_LOSSES": 0,
+  "byCollection": {
+    "expertHazardCandidates": {
+      "opportunities": 0,
+      "hits": 0,
+      "misses": 0,
+      "overRouted": 0
+    },
+    "decisionCriticalClarifications": {
+      "opportunities": 0,
+      "hits": 0,
+      "misses": 0,
+      "overRouted": 0
+    },
+    "crossHazardInsights": {
+      "opportunities": 0,
+      "hits": 0,
+      "misses": 0,
+      "overRouted": 0
+    },
+    "disagreements": {
+      "opportunities": 0,
+      "hits": 0,
+      "misses": 0,
+      "overRouted": 0
+    }
+  }
+}
+
+---------------- GROUNDING ----------------
+{
+  "EVIDENCE_OPPORTUNITIES": 2,
+  "EVIDENCE_QUOTES_EMITTED": 0,
+  "EVIDENCE_QUOTES_EXACTLY_BOUND": 0,
+  "EVIDENCE_QUOTES_UNBINDABLE": 0,
+  "EVIDENCE_QUOTES_FABRICATED": 0,
+  "GROUNDED_TYPED_OBJECTS": 0,
+  "UNGROUNDED_TYPED_OBJECTS": 0
+}
+grounding fixtures with a supporting exact quote: 0/2
+GROUNDING_READY (>=2 bound across distinct fixtures, 0 unbindable, 0 fabricated): false
+
+---------------- 18 HARD GATES ----------------
+  HG01  FAIL         hosted credential usable  —  0/7 calls authenticated
+  HG02  FAIL         exact model callable  —  requested claude-sonnet-5
+  HG03  PASS         provider identity from response body  —  responded —
+  HG04  FAIL         transport errors = 0 on intended-success calls  —  7 failures
+  HG05  PASS         responses parse  —  no MALFORMED_JSON
+  HG06  PASS         responses normalize through the adapter  —  forced tool_choice emit_expert_analysis
+  HG07  PASS         responses validate at the Expert boundary  —  —
+  HG08  FAIL         zero-candidate clarification survives  —  R1 clar=0 cand=0
+  HG09  FAIL         typed cross-hazard routing survives  —  R2 insights=0
+  HG10  FAIL         candidate routing survives  —  R4 candidates=0
+  HG11  FAIL         multi-collection sibling routing survives  —  R5 cand=0 clar=0 ins=0
+  HG12  NOT MEASURED negative control not materially over-routed  —  R6 over-routed=—
+  HG13  PASS         protected merge halves invariant  —  7/7 byte-identical, 0 invariant violations
+  HG14  PASS         token usage measurable  —  0 in / 0 out (provider-reported)
+  HG15  PASS         latency measured  —  p50 148ms, max 433ms
+  HG16  PASS         cost below cap  —  $0.0000 of $3.00
+  HG17  PASS         fabricated/unbindable evidence cannot cross as grounded  —  unbindable=0 fabricated=0 — VACUOUS: no malformed quote arose
+  HG18  PASS         production/customer path untouched  —  no file outside expert-hazlenz* references the module
+
+gates: 10 passed, 7 failed, 1 NOT MEASURED (an unmeasured gate is never counted as a pass)
+calls: 7 attempted / 0 completed clean   cost $0.0000   ceiling 8 / $3.00
+
+TERMINAL: EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_BLOCKED — HOSTED_PROVIDER_ACCOUNT_OR_CREDENTIAL_REMEDIATION_REQUIRED
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE   EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE

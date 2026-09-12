@@ -1,0 +1,161 @@
+{
+  "artifact": "SECTION-239-CONTRACT-IDENTITY",
+  "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+  "baseContractVersion": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+  "supersedes": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+  "contractIdentities239": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+    "baseVersions": {
+      "posture": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture",
+      "driverRoles": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure"
+    },
+    "driverRoleField": "driverRole",
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "driverRoles": "76d1049d612fb42633c435a1fc250f8c5f2284125f0eaf774742e66884648012",
+    "driverRoleDefinitions": "e8af37363abadb56eea067ff257e1ba413ca7ba8338149a2a287ed7c2a8ee76a",
+    "driverRoleRefKinds": "3a16d967db300b092e5e95c57658f00f2229c06100f77fb564c931bb12c60899",
+    "candidateStateRequirement": "0cbecf24219dc34ce8d890c403284cfe755aa2d9e325f9d363a32434683f0d8c",
+    "unresolvedCandidateStates": [
+      "INSUFFICIENT_EVIDENCE",
+      "UNKNOWN"
+    ],
+    "settledCandidateStates": [
+      "ACTIVE",
+      "CONTROLLED",
+      "CORRECTED",
+      "REMOVED_FROM_SERVICE",
+      "NEGATED",
+      "HYPOTHETICAL"
+    ],
+    "bindingsBroadened": 1,
+    "rolesAdded": 0,
+    "refKindsAdded": 0,
+    "posturesAdded": 0,
+    "postureSubfieldsAdded": 0,
+    "basisEntrySubfieldsAdded": 0,
+    "rulesRetainedFrom237": 11,
+    "rulesReplacedFrom237": 1,
+    "rulesAdded": 1,
+    "providerVisibleRules": "8df382fb9837bd43a600fe98e6b3beb9c1d070cba63bae4a10362a25e953720c",
+    "driverBlockLines": "dc374b186b5f857b3cb4dd4e806582ec4ff523ee3ee098d3faad87e313f31fe8",
+    "postureSchemaProperty": "a246f97c3828214a1b31dee81260c3ee80d85d26dc727c7276181aee5a593993",
+    "systemPromptNoGoverned": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+    "systemPromptGoverned": "8a8ee6045f07315ba0e087f1b54c8b5b6bf80447c8c901c4315523c32836e31d",
+    "residualNarrowness": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP"
+  },
+  "projectionIdentity239": {
+    "projectionVersion": "hazlenz.expert.239.posture-projection.v1",
+    "refusalCodes239": [
+      "POSTURE_DRIVER_ROLE_MISSING",
+      "POSTURE_DRIVER_ROLE_INVALID",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+    ],
+    "codeToInvariant239": {
+      "POSTURE_DRIVER_ROLE_MISSING": "D",
+      "POSTURE_DRIVER_ROLE_INVALID": "D",
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND": "D",
+      "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE": "D",
+      "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE": "D",
+      "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER": "D",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE": "P8",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT": "P9"
+    },
+    "codesRetiredFrom237": [],
+    "codesAddedBy239": [
+      "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+    ],
+    "behaviourChangedFrom237": {
+      "admitsThatSection237Refused": "a requiredBy entry whose driverRole is UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION and whose refKind is HAZARD_CANDIDATE, where that candidate's own assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN. §237 refused it as DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND. This is the §238 B1 shape.",
+      "stillRefusesUnderANewCode": "the same entry where the candidate's state is ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL. §237 refused it as DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND; §239 refuses it as UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE, so the two shapes are never again counted as one defect. This is the §238 B2 shape.",
+      "refusesNothingSection237Admitted": true,
+      "changesNoOtherCheck": true
+    },
+    "delegatesTo233": true,
+    "section233CodesUnchanged": true,
+    "reusesSection235Normalizer": true,
+    "section233ModulesModified": false,
+    "section235ModulesModified": false,
+    "section237ModulesModified": false,
+    "cessationSetIsDerivedNotAuthored": true,
+    "controllingSetIsDerivedNotAuthored": true,
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false,
+    "repairsContradictoryModelState": false
+  },
+  "refusalCodes239": [
+    "POSTURE_DRIVER_ROLE_MISSING",
+    "POSTURE_DRIVER_ROLE_INVALID",
+    "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+    "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+    "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+    "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+    "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+    "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+  ],
+  "refusalCodes237": [
+    "POSTURE_DRIVER_ROLE_MISSING",
+    "POSTURE_DRIVER_ROLE_INVALID",
+    "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+    "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+    "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+    "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+    "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+  ],
+  "behaviourChangedFrom237": {
+    "admitsThatSection237Refused": "a requiredBy entry whose driverRole is UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION and whose refKind is HAZARD_CANDIDATE, where that candidate's own assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN. §237 refused it as DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND. This is the §238 B1 shape.",
+    "stillRefusesUnderANewCode": "the same entry where the candidate's state is ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL. §237 refused it as DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND; §239 refuses it as UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE, so the two shapes are never again counted as one defect. This is the §238 B2 shape.",
+    "refusesNothingSection237Admitted": true,
+    "changesNoOtherCheck": true
+  },
+  "moduleDigests239": {
+    "contract": "e8542623d005ca320d7dc991b620263c6c0c3224db59a705efbfb823986c4678",
+    "projection": "c730ab25638b2d2f2cf14f16bc5794b2eda12922ee4a301d3e578be12b6a9072",
+    "consistency": "2251a35f3b7da1d1ee8f6d51f6d67b7b7a33fb3ca99aee261628178509c6d923",
+    "fixtures": "e37b8fddd6b233097f9ba3cfa9f09a632fd6cc8eef4b8b836f2e30013efe1493",
+    "suite": "590b4af8bd4c3808b64277aaf632c1b3aa11cad42ff82cf44c001f06dff6a2b1",
+    "replay": "f869be1a3e7e6880f397bc9ce780a2de565ebe6ecc93ffec6f2c14186446b053",
+    "typecheckScope": "9da602f4ad0b80440109c306ab91587c5c4d4bf9858ecd80183e54d1ec15218d"
+  },
+  "moduleDigests237": {
+    "contract": "fe881d1360bc4f34a09e48f1db1df00fa3c01ba384f16eac4773af28bfbe6324",
+    "projection": "7a6df06203403df7e02f4a229d22f6bf22c9db5ffe4361c96c2b20a0a9d79b20",
+    "consistency": "aba79f5b3a6019c6aba24b174fbf12a4b7c2addd2bcf50831247cffed9634719",
+    "fixtures": "6dac24f5fb94e7b1e37ca5ce9a300055542faa79bd8206845985dae86dfffa9e",
+    "suite": "eb08d04b05ecf25bc0d5dcb8fbe37370d57c25bdf465760bab1d035c32f3be25"
+  },
+  "moduleDigests235": {
+    "normalization": "e895ff214a6ba1e76a2812d573f2c8dfb6847cc18d1e0414422650db1c66d5fb",
+    "contract": "4faee904803b582c54eafab636ce910dd83fcd98346088dc8b6556736e3f6201",
+    "projection": "b742b124947ffbfc31a0d4cc8f885cb17427393346682ccfacc1ccf2588533d3",
+    "consistency": "b9ed6339d28b8e8d4224286b0b13b60898c8b695525206977fe9838040696cfb",
+    "fixtures": "465bf58c13102131e654b88a5ed13fac8371f625459eb3506eed3027a7bc4fab",
+    "suite": "f5fdcc973afcc7cc3e6437be5fe47767aa63f9e24b66907e7b705ca0ec11d958"
+  },
+  "moduleDigests233": {
+    "contract": "dda676aff97d6c4bbf5ac57eb8ec3fa3e89249225bdb9c0ff109ab5163a7323a",
+    "projection": "8901d0d39b8dcf50a8a045f1759ae284168ba7d5818876c255e3c82346c4f044",
+    "fixtures": "d744993f69486f510625cf11b919656b5e9a94337a463f46374558ef259448d3",
+    "suite": "61f9db3ddb2b1fb8a205f7aaae89169c0ee78841a58268ff618058a777380502"
+  },
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "closureDigest237": "1820bfd10ae3ab9105bd4233e97d97500267c6361cf520c60438383540461755",
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb"
+}

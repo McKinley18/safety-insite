@@ -1,0 +1,478 @@
+{
+ "fixtureSetVersion": "hazlenz.expert.threshold-arbitration.fixtures.v6",
+ "fixtureFileSha256": "d84731b902a4db4d834def524f44fa72294ea8e2e80b616cc4205052d3a3722a",
+ "rows": [
+  {
+   "rowId": "TR-A1",
+   "domain": "bulk solids silo",
+   "opportunity": "A_UNMARKED_REQUIRED",
+   "thresholdShape": "NONE",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": true,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "defensibleHazardFamilies": [
+     "atmospheric_hazard",
+     "fall_protection"
+    ],
+    "forbiddenHazardFamilies": [
+     "welding_fumes"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "TR-A1-G1",
+      "description": "whether the discharge auger has been isolated and locked off, which decides whether the man standing on the meal can be engulfed while he works",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "Standing on stored bulk material above an unattended discharge is the classic engulfment configuration, and the single fact that decides it -- whether material can be withdrawn from below while he is on it -- is NEVER MENTIONED. The text names the control panel and its location and says nothing about its state, which is exactly the unmarked shape: the only trace of the missing fact is that the reader has to supply it to finish reasoning."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the silo discharge auger has been isolated and locked off for the duration of this work",
+     "answerA": "the auger is isolated and locked off, and the lock is held by the man inside",
+     "outcomeA": "the work continues and the finding is limited to entry control, harness and the standby man's means of rescue",
+     "answerB": "the auger can still be started, or its state is simply unknown to the men doing the work",
+     "outcomeB": "this is entry onto stored material above a live discharge and must stop now, with the man brought out before anything else is decided",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation places the control panel and says nothing whatever about its state; no deterministic finding, record or answered clarification establishes the isolation either way, and standing on the material is not evidence that withdrawal has stopped",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "TR-B1",
+   "domain": "flammable liquid dispensing",
+   "opportunity": "B_SETTLED_THRESHOLD_SILENCE",
+   "thresholdShape": "SETTLED_BELOW",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": false,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "chemical_inhalation_contact",
+     "hazcom"
+    ],
+    "forbiddenHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The record's safety-can requirement bites above one gallon and states that quantities are the container nominal capacity. The observation gives the nominal capacity, on the same basis, and it is at the bottom of the range rather than near the value. Every element v11 names as making a reading settled is present, so silence is the only correct answer."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "does the supplied record's safety-can requirement apply to this one-gallon container?",
+     "whyNotDecisionCritical": "the record states its own quantity basis and the observation reports the container on that same basis. One gallon is not greater than one gallon, so the requirement does not bite, and no answer to the question would change what is done in the paint shop today.",
+     "whatMakesItSettled": "value = one gallon nominal; basis = container nominal capacity, named identically by the record and the observation; side = below the value, and not close to it."
+    }
+   }
+  },
+  {
+   "rowId": "TR-B2",
+   "domain": "bulk LPG storage",
+   "opportunity": "B_SETTLED_THRESHOLD_SILENCE",
+   "thresholdShape": "SETTLED_ABOVE",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": false,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "chemical_release",
+     "emergency_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "machine_guarding"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "fire_explosion"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE MIRROR OF CR-C1, AND THE CONTROL §147 LACKED. Here the record plainly GOVERNS -- 500 gallons is inside the band it addresses -- and the distance it demands is described as measured, horizontally, from the nearest point to the nearest opening, which is the exact basis the record names. 41 feet against 25 feet is settled on both limbs. A model that stays silent only when a rule is switched OFF has not learned the rule; this row is the case where the rule is ON and satisfied."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is the 41-foot measurement to the correct opening, and does the record's 25-foot separation apply to a 500-gallon container?",
+     "whyNotDecisionCritical": "the observation states which opening is nearest, that the measurement was horizontal, and that it ran nearest-point to nearest-point — the three things the record names as its own method. The container is squarely inside the capacity band the record addresses and the measured distance exceeds the requirement by 16 feet, so nothing about today's action turns on the answer.",
+     "whatMakesItSettled": "value = 41 feet; basis = horizontal, nearest point of container to nearest point of the nearest opening, stated identically in both texts; side = above the 25-foot requirement, by a wide margin, on a container the record plainly covers."
+    }
+   }
+  },
+  {
+   "rowId": "TR-B3",
+   "domain": "laboratory fume hood",
+   "opportunity": "B_SETTLED_THRESHOLD_SILENCE",
+   "thresholdShape": "SETTLED_NEAR_BOUNDARY",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": false,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "chemical_inhalation_contact",
+     "respiratory_protection",
+     "hazcom"
+    ],
+    "forbiddenHazardFamilies": [
+     "mobile_equipment"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "chemical_inhalation_contact"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ROW THAT DECIDES WORKSTREAM A. 0.52 against 0.5 is as close to a boundary as this set goes, and PROXIMITY IS THE ONLY THING AVAILABLE: the instrument (calibrated velocity meter), the plane (across the working sash opening), the sash height (the one in use) and the statistic (an average of readings) are each named by the record AND by the observation, in the same terms. v11 says in terms that near the line is a side of the line. If the model asks here, the conjunction is not operative."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "is 0.52 metres per second, so close to the 0.5 minimum, actually adequate — and was it measured in a way comparable to the record's requirement?",
+     "whyNotDecisionCritical": "the second half of the question is answered in the observation, word for word against the record: same instrument, same plane, same sash height, same averaging. The first half is proximity alone, and 0.52 is above 0.5 whether or not the margin feels comfortable. Neither branch changes what is done in the laboratory today.",
+     "whatMakesItSettled": "value = 0.52 m/s as a measured average; basis = calibrated velocity meter across the plane of the working sash opening at the sash height in use, named identically by both texts; side = above the 0.5 m/s minimum. Nothing objective suggests another comparison value."
+    }
+   }
+  },
+  {
+   "rowId": "TR-B4",
+   "domain": "compressed gas cylinder storage",
+   "opportunity": "B_SETTLED_THRESHOLD_SILENCE",
+   "thresholdShape": "IRRELEVANT_CONCEPT",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": false,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "fire_explosion",
+     "material_handling_storage",
+     "welding_fumes"
+    ],
+    "forbiddenHazardFamilies": [
+     "fall_protection"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "fire_explosion"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "The record offers TWO alternative provisions and says either satisfies it. The separation limb is met on stated, matching facts, so the barrier limb -- a real second measurement concept, with its own height and its own fire rating -- is IRRELEVANT here. v11 says the mere existence of another measurement basis is not a reason unless something says it is the applicable one. The absent barrier is the bait: its absence is conspicuous and means nothing."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "there is no barrier between the two groups — what is its height and fire-resistance rating, and does the store meet the record without one?",
+     "whyNotDecisionCritical": "the record states the two provisions in the alternative and says either satisfies it. The separation provision is met at 31 feet against 20, measured horizontally between the nearest cylinders of each group, which is the record's own method. A barrier that is not needed has no rating to ask about, and no answer changes what is done in the store today.",
+     "whatMakesItSettled": "value = 31 feet; basis = horizontal, nearest cylinder of each group, named identically by both texts; side = above the 20-foot alternative, which the record says is sufficient on its own."
+    }
+   }
+  },
+  {
+   "rowId": "TR-C1",
+   "domain": "press shop noise",
+   "opportunity": "C_GENUINE_THRESHOLD_OR_BASIS_AMBIGUITY",
+   "thresholdShape": "BASIS_AMBIGUOUS",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": true,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "noise_exposure"
+    ],
+    "defensibleHazardFamilies": [
+     "machine_guarding",
+     "personal_protective_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "atmospheric_hazard"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "TR-C1-G1",
+      "description": "how much of the shift the setter spends at this position, without which the single 88 dBA reading cannot be converted to the eight-hour time-weighted average the record's action level is expressed in",
+      "affectedDecision": "REGULATORY_INTERPRETATION"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE BASIS MISMATCH IS OBJECTIVE AND IS STATED IN BOTH TEXTS. The record says in terms that its value is a dose accumulated over the shift and NOT a single instantaneous reading; the observation says in terms that it recorded a single reading and no dosimetry. That is v11 limb (i) on the face of the documents rather than in the model's imagination. Limb (ii) holds too: 88 dBA for a short part of a shift averages BELOW 85, and for most of a shift averages ABOVE it, so the answer moves the facts across the value and decides whether a hearing conservation programme is owed. This is NOT proximity: 88 is above 85, and the reason to ask has nothing to do with the margin."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "how much of the working shift the setter spends at this press position, which is what converts the single 88 dBA reading into the eight-hour average the record is written in",
+     "answerA": "the setter is at the press for a short part of the shift and the eight-hour average is below 85 dBA",
+     "outcomeA": "the action level is not reached, and the finding is limited to advisory hearing protection and the absence of signage",
+     "answerB": "the setter is at the press for most of the shift and the eight-hour average is at or above 85 dBA",
+     "outcomeB": "the record's hearing conservation programme is owed now — monitoring, protection and audiometry — which is a materially different requirement from an advisory",
+     "affectedDecision": "REGULATORY_INTERPRETATION",
+     "whyNotEstablished": "the observation states a single instantaneous reading and states that it records no dosimetry and no time at the position; the record states that its value is a dose over the shift and expressly not a single reading. The two are on different bases, and the observation says so itself rather than leaving it to be inferred",
+     "absenceIsUnmarked": false
+    }
+   }
+  },
+  {
+   "rowId": "TR-C2",
+   "domain": "overhead crane lifting",
+   "opportunity": "C_GENUINE_THRESHOLD_OR_BASIS_AMBIGUITY",
+   "thresholdShape": "AGGREGATE_MISSING",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": true,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "GOVERNED_RECORD_SUPPLIED",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "suspended_loads"
+    ],
+    "defensibleHazardFamilies": [
+     "material_handling_storage",
+     "mobile_equipment"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "suspended_loads"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "TR-C2-G1",
+      "description": "the total load on the hook — the fabrication together with the spreader beam and slings — which the record says is what must not exceed the five-ton marking",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE CR-E2 AGGREGATION SHAPE, AND THE POSITIVE CONTROL ON THE NARROWING. The record does not turn on the fabrication's weight; it turns on the TOTAL, and says so, naming below-the-hook devices and rigging. The observation gives neither component. So the comparison quantity the record demands cannot be assembled from the text at all -- v11 limb (i) in its second form -- and either answer crosses or does not cross the marking, which is limb (ii). Nothing in the text announces the absence: the reader has to notice that a lift is being judged against a number nobody supplied. IF THIS ROW GOES SILENT, v11 REVERTED v10 AND THE NARROWING WENT TOO FAR."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "the total weight on the hook — the fabrication plus the spreader beam and slings — against the crane's five-ton marking",
+     "answerA": "the total is comfortably inside five tons",
+     "outcomeA": "the lift may proceed and the finding is limited to the fitters steering the load by hand and the travel path over the bay",
+     "answerB": "the total is at or above five tons once the spreader beam and slings are counted",
+     "outcomeB": "the crane is being loaded beyond its rated load with two men under the travel path, and the lift must stop now",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the crane marking is stated and neither the fabrication's weight nor the rigging's is; the record defines the quantity to be compared as the total including below-the-hook devices, so the comparison value cannot be assembled from anything in the observation",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "TR-D1",
+   "domain": "fuel bowser hot work",
+   "opportunity": "D_ACTIVE_CANDIDATE_DIFFERENT_AFFECTED_DECISION",
+   "thresholdShape": "NONE",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": true,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "MULTI_HAZARD",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "fire_explosion",
+     "hot_work"
+    ],
+    "defensibleHazardFamilies": [
+     "chemical_release"
+    ],
+    "forbiddenHazardFamilies": [
+     "confined_space_entry"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "fire_explosion"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "TR-D1-G1",
+      "description": "whether the bowser tank has been emptied and its vapour space rendered safe before hot work on the frame",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ARBITRATION SURVIVAL ROW. Grinding with sparks reaching a fuel bowser's fill point, no watch, no extinguisher and no permit is a hazard the text ESTABLISHES, so an ACTIVE fire/explosion candidate is the correct and expected output. The question owed is NOT whether that hazard exists -- the model will have just said it does -- it is whether the tank has been rendered safe, which is REQUIRED_CONTROL. Correctly labelled it survives arbitration; labelled HAZARD_EXISTENCE it is destroyed in full. The absence here is ANNOUNCED, deliberately: this row tests the LABEL, not the noticing, and confounding the two would make a failure unattributable."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the bowser has been emptied and its tank and vapour space rendered safe before hot work on the frame",
+     "answerA": "the tank is empty, purged and gas-free, and a certificate says so",
+     "outcomeA": "the work may continue once a fire watch, an extinguisher and a permit are put in place, and the finding is those three omissions",
+     "answerB": "the tank still holds fuel or an unpurged vapour space",
+     "outcomeB": "this is hot work on a vessel that has contained flammable liquid and must stop immediately, ahead of any paperwork",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation states the grinding, the sparks and the absent permit, watch and extinguisher, and states expressly that it does not record whether the tank was emptied or rendered safe",
+     "absenceIsUnmarked": false
+    }
+   }
+  },
+  {
+   "rowId": "TR-E1",
+   "domain": "sewer chamber entry",
+   "opportunity": "E_EXISTENCE_CONTRADICTION_OPPORTUNITY",
+   "thresholdShape": "NONE",
+   "existenceContradictionTemptation": true,
+   "arbitrationExposed": true,
+   "expectation": "REQUIRED",
+   "caseClasses": [
+    "DETERMINISTIC_HAZARD_PRESENT",
+    "MULTI_HAZARD",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+    "LIFE_CRITICAL_PRESENT"
+   ],
+   "truth": {
+    "presentHazardFamilies": [
+     "confined_space_entry",
+     "atmospheric_hazard"
+    ],
+    "defensibleHazardFamilies": [
+     "fall_protection"
+    ],
+    "forbiddenHazardFamilies": [
+     "machine_guarding"
+    ],
+    "negatedOrSafeStateFamilies": [],
+    "lifeCriticalHazardFamilies": [
+     "confined_space_entry",
+     "atmospheric_hazard"
+    ],
+    "decisionCriticalGaps": [
+     {
+      "gapId": "TR-E1-G1",
+      "description": "whether the chamber atmosphere was tested before entry and is being monitored during it, which decides whether the man may remain in the chamber at all",
+      "affectedDecision": "REQUIRED_CONTROL"
+     }
+    ],
+    "recordedInteractions": [],
+    "authoringRationale": "THE ARBITRATION EXERCISE ROW, AND IT IS SCORED AS AN EXERCISE. A man at depth in a chamber connected to a foul sewer with no monitor, no rescue rig and no harness is a hazard the text establishes, so an ACTIVE atmospheric or confined-space candidate is expected. An EXISTENCE framing of the owed question -- \"is there a hazardous atmosphere in this chamber?\" -- is genuinely available and genuinely tempting, which is what makes this the contradiction opportunity. But a TRUE contradiction cannot be commissioned: it requires the model to make the error, and §147 showed that arbitration had gone unexercised across 65 hosted calls precisely because the error is uncommon. So BOTH outcomes are informative. Correctly labelled REQUIRED_CONTROL, the question survives and the v11 routing repair is evidenced. Labelled HAZARD_EXISTENCE beside its own ACTIVE candidate, arbitration rejects it -- which is CORRECT arbitration behaviour on a real contradiction, is scored as a ROUTING failure, and must never be recorded as an arbitration defect."
+   },
+   "expected": {
+    "kind": "REQUIRED",
+    "truth": {
+     "missingFact": "whether the chamber atmosphere was tested before this entry and is being monitored while the man is down there",
+     "answerA": "the atmosphere was tested clear before entry and a monitor is running on the man",
+     "outcomeA": "the entry continues under review and the finding is the absent rescue arrangements — no tripod, no winch, no harness",
+     "answerB": "the atmosphere was not tested, or is not being monitored",
+     "outcomeB": "this is an untested entry into a chamber connected to a foul sewer and the man must be brought out now, before anything else is arranged",
+     "affectedDecision": "REQUIRED_CONTROL",
+     "whyNotEstablished": "the observation states what is absent at the surface and on the man, and states nothing about testing or monitoring having been done; the absence of a visible monitor is not the same fact as the absence of a test, and neither is established by the other",
+     "absenceIsUnmarked": true
+    }
+   }
+  },
+  {
+   "rowId": "TR-F1",
+   "domain": "warehouse racking",
+   "opportunity": "F_ORDINARY_NO_GAP_CONTROL",
+   "thresholdShape": "NONE",
+   "existenceContradictionTemptation": false,
+   "arbitrationExposed": false,
+   "expectation": "FORBIDDEN",
+   "caseClasses": [
+    "NEGATED_OR_SAFE_STATE",
+    "NO_GOVERNED_RECORD",
+    "CLARIFICATION_NOT_OWED",
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+   ],
+   "truth": {
+    "presentHazardFamilies": [],
+    "defensibleHazardFamilies": [
+     "material_handling_storage",
+     "walking_working_surfaces",
+     "suspended_loads"
+    ],
+    "forbiddenHazardFamilies": [
+     "noise_exposure"
+    ],
+    "negatedOrSafeStateFamilies": [
+     "material_handling_storage"
+    ],
+    "lifeCriticalHazardFamilies": [],
+    "decisionCriticalGaps": [],
+    "recordedInteractions": [],
+    "authoringRationale": "Everything a question could reach for is stated and closed IN THE INSPECTOR'S PRESENCE: the bay is unloaded, tagged and barriered, the inspection is in date, and the damage is registered with a repair order raised. The remaining questions -- when will it be repaired, who struck it -- are the follow-up and history shapes the seven NOT-DECISION-CRITICAL entries already name. No threshold anywhere: this row tests ORDINARY silence, so that the FORBIDDEN half is not made entirely of threshold rows."
+   },
+   "expected": {
+    "kind": "FORBIDDEN",
+    "truth": {
+     "temptingQuestion": "when will the damaged upright be repaired, and has the load capacity of the run been reassessed in the meantime?",
+     "whyNotDecisionCritical": "the bay is already unloaded, tagged out of use and barriered off, so there is no load on the damaged frame and nobody beneath it. The repair date changes nothing about what is done today, and a capacity reassessment of a bay that is out of service selects no different action.",
+     "whatMakesItSettled": "no threshold is in play at all. The state of the rack, the state of the bay, the inspection currency and the repair status are each stated, and the interim control was witnessed."
+    }
+   }
+  }
+ ]
+}

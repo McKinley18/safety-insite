@@ -1,0 +1,45 @@
+{
+  "artifact": "SECTION_210C_PB02_GRAMMAR_ANALYSIS",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "productionArchitectureChanged": false,
+  "schemaValidationWeakened": false,
+  "measured": {
+    "pb02CapabilityAbsent": {
+      "bytes": 18758,
+      "nodes": 98,
+      "properties": 54,
+      "enums": 17,
+      "enumMembers": 74,
+      "maxDepth": 10,
+      "requiredEntries": 52,
+      "descriptionChars": 12865
+    },
+    "pb02CapabilityPresent": {
+      "bytes": 19184,
+      "nodes": 101,
+      "properties": 55,
+      "enums": 18,
+      "enumMembers": 75,
+      "maxDepth": 10,
+      "requiredEntries": 53,
+      "descriptionChars": 13154
+    },
+    "deltaCanonicalBytes": 426,
+    "deltaNodes": 3,
+    "deltaProperties": 1,
+    "deltaEnums": 1,
+    "deltaRequiredEntries": 1,
+    "largestAcceptedCanonicalBytes": 18773,
+    "governedRecordTextEntersSchema": false,
+    "governedIdCountEntersSchema": true
+  },
+  "conclusions": {
+    "whatDrivesSize": "the capability-PRESENT binding adds one array-typed property with an enum, plus a required entry, to the unresolvedFactDeclarations ITEM schema. It is inside a repeated array item, which is the multiplicative position in a decoding grammar.",
+    "governedEvidenceItself": "does NOT drive grammar size. Record text is user-prompt content. Only the number of permissible sourceIds affects the schema, as enum members.",
+    "caseSpecificEnums": "contribute a small spread and are NOT the cause: all seven capability-ABSENT cases carrying the same per-case enums were accepted.",
+    "semanticsPreservingAlternativeExists": true
+  },
+  "recommendation": "RETAIN THE SEPARATE GOVERNED STAGE. See the accompanying analysis document.",
+  "timestamp": "2026-09-09T20:04:43.276Z"
+}

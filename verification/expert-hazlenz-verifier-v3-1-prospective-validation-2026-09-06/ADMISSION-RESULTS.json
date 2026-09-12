@@ -1,0 +1,1001 @@
+{
+  "artifact": "SECTION_192_ADMISSION_RESULTS",
+  "date": "2026-09-06",
+  "PROVIDER_CALLS": 0,
+  "basis": "pure deterministic recompute over the persisted raw tool payloads, with the HazLenz-owned envelope injected exactly as the §167 reference executor does",
+  "behavioralExecutions": 39,
+  "admitted": 39,
+  "refused": 0,
+  "refusalCodeCounts": {},
+  "inRunVersusRecomputeDisagreements": 0,
+  "disagreementDetail": [],
+  "executions": [
+    {
+      "rowId": "FV-01",
+      "replicate": 1,
+      "sequencePosition": 1,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-03",
+      "replicate": 1,
+      "sequencePosition": 2,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-13",
+      "replicate": 1,
+      "sequencePosition": 3,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": true,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:traffic:pedestrian_crossing_frequency_in_the_aisle"
+        ]
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-04",
+      "replicate": 1,
+      "sequencePosition": 4,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:energy:conveyor_drive_isolated_and_take_up_tension_released",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-09",
+      "replicate": 1,
+      "sequencePosition": 5,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:energy:shrink_tunnel_heater_supply_isolated_before_work",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-07",
+      "replicate": 1,
+      "sequencePosition": 6,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:guarding:grinder_work_rest_gap_currently_within_safe_clearance",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-05",
+      "replicate": 1,
+      "sequencePosition": 7,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:chemical:dosing_line_isolated_flushed_and_confirmed_zero_pressure",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-10",
+      "replicate": 1,
+      "sequencePosition": 8,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:ventilation:lev_hood_capture_effective_at_current_position",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-12",
+      "replicate": 1,
+      "sequencePosition": 9,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": true,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:pressure:receiver_vented_and_confirmed_zero_before_hatch_opened"
+        ]
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-02",
+      "replicate": 1,
+      "sequencePosition": 10,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-08",
+      "replicate": 1,
+      "sequencePosition": 11,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:fall:temporary_line_anchor_current_load_test_valid",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-06",
+      "replicate": 1,
+      "sequencePosition": 12,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:detection:booth_low_airflow_alarm_trip_function_currently_operable",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-11",
+      "replicate": 1,
+      "sequencePosition": 13,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-05",
+      "replicate": 2,
+      "sequencePosition": 14,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:chemical:dosing_line_isolated_flushed_and_confirmed_zero_pressure",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-10",
+      "replicate": 2,
+      "sequencePosition": 15,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:ventilation:lev_hood_capture_effective_at_current_position",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-13",
+      "replicate": 2,
+      "sequencePosition": 16,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": true,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:traffic:pedestrian_crossing_frequency_in_the_aisle"
+        ]
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-06",
+      "replicate": 2,
+      "sequencePosition": 17,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:detection:booth_low_airflow_alarm_trip_function_currently_operable",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-04",
+      "replicate": 2,
+      "sequencePosition": 18,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:energy:conveyor_drive_isolated_and_take_up_tension_released",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-02",
+      "replicate": 2,
+      "sequencePosition": 19,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-03",
+      "replicate": 2,
+      "sequencePosition": 20,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-12",
+      "replicate": 2,
+      "sequencePosition": 21,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": true,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:pressure:receiver_vented_and_confirmed_zero_before_hatch_opened"
+        ]
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-01",
+      "replicate": 2,
+      "sequencePosition": 22,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-07",
+      "replicate": 2,
+      "sequencePosition": 23,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:guarding:grinder_work_rest_gap_currently_within_safe_clearance",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-09",
+      "replicate": 2,
+      "sequencePosition": 24,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:energy:shrink_tunnel_heater_supply_isolated_before_work",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-11",
+      "replicate": 2,
+      "sequencePosition": 25,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-08",
+      "replicate": 2,
+      "sequencePosition": 26,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:fall:temporary_line_anchor_current_load_test_valid",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-12",
+      "replicate": 3,
+      "sequencePosition": 27,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": true,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:pressure:receiver_vented_and_confirmed_zero_before_hatch_opened"
+        ]
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-11",
+      "replicate": 3,
+      "sequencePosition": 28,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-05",
+      "replicate": 3,
+      "sequencePosition": 29,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:chemical:dosing_line_isolated_flushed_and_confirmed_zero_pressure",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-03",
+      "replicate": 3,
+      "sequencePosition": 30,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-10",
+      "replicate": 3,
+      "sequencePosition": 31,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:ventilation:lev_hood_capture_effective_at_current_position",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-09",
+      "replicate": 3,
+      "sequencePosition": 32,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:energy:shrink_tunnel_heater_supply_isolated_before_work",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-06",
+      "replicate": 3,
+      "sequencePosition": 33,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:detection:booth_low_airflow_alarm_trip_function_currently_operable",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-08",
+      "replicate": 3,
+      "sequencePosition": 34,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:fall:temporary_line_anchor_current_load_test_valid",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-04",
+      "replicate": 3,
+      "sequencePosition": 35,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:energy:conveyor_drive_isolated_and_take_up_tension_released",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-07",
+      "replicate": 3,
+      "sequencePosition": 36,
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "bindingFactKey": "owed:guarding:grinder_work_rest_gap_currently_within_safe_clearance",
+      "proposedClarificationPresent": true,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": true,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-01",
+      "replicate": 3,
+      "sequencePosition": 37,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-02",
+      "replicate": 3,
+      "sequencePosition": 38,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": false,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      },
+      "agree": true
+    },
+    {
+      "rowId": "FV-13",
+      "replicate": 3,
+      "sequencePosition": 39,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "nominationPresent": false,
+      "challengeEmitted": true,
+      "inRunAdmission": {
+        "admitted": true,
+        "codes": []
+      },
+      "recomputedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:traffic:pedestrian_crossing_frequency_in_the_aisle"
+        ]
+      },
+      "agree": true
+    }
+  ]
+}

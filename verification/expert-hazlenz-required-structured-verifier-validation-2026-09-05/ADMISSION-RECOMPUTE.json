@@ -1,0 +1,480 @@
+{
+  "artifact": "SECTION_187B_ADMISSION_RECOMPUTE",
+  "date": "2026-09-05",
+  "PROVIDER_CALLS": 0,
+  "basis": "the persisted raw tool payloads from RESUMED-VERIFIER-EXECUTIONS.jsonl. No re-spend, no stimulus change.",
+  "defect": {
+    "id": "HARNESS_ADMISSION_ENVELOPE_OMISSION",
+    "what": "the §187B harness passed the model tool payload straight to checkVerifierV3Output without the HazLenz-owned envelope fields verifierContractVersion and analysisId",
+    "why": "VERIFIER_V3_RESPONSE_SCHEMA does not ask the model for those fields, so they can never be present in a tool payload. The §167 reference executor injects them before admission.",
+    "consequence": "CONTRACT_VERSION_MISMATCH and ANALYSIS_ID_MISMATCH were raised on all fifteen executions",
+    "classification": "VERIFICATION_INFRASTRUCTURE_DEFECT — not a model contract violation and not a behavioural result",
+    "originalNotOverwritten": true
+  },
+  "originalComputation": {
+    "admitted": 0,
+    "refused": 15
+  },
+  "correctedComputation": {
+    "admitted": 13,
+    "refused": 2,
+    "refusalCodeCounts": {
+      "BINDING_DECLARED_BY_A_NON_ADD_VERDICT": 2,
+      "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION": 2,
+      "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION": 2,
+      "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION": 2
+    }
+  },
+  "executions": [
+    {
+      "rowId": "HR-09",
+      "replicate": 1,
+      "sequencePosition": 1,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:energy:stored_hydraulic_energy_dissipated_before_line_break"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-01",
+      "replicate": 1,
+      "sequencePosition": 2,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:fire:burner_flame_failure_safeguard_function_verified"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-06",
+      "replicate": 1,
+      "sequencePosition": 3,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:guarding:rotor_guard_interlock_protective_function_verified"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-04",
+      "replicate": 1,
+      "sequencePosition": 4,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:guarding:fixed_guard_fastenings_currently_secure"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-08",
+      "replicate": 1,
+      "sequencePosition": 5,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:energy:auger_drive_isolation_verified_before_work"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-06",
+      "replicate": 2,
+      "sequencePosition": 6,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:guarding:rotor_guard_interlock_protective_function_verified"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-09",
+      "replicate": 2,
+      "sequencePosition": 7,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:energy:stored_hydraulic_energy_dissipated_before_line_break"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-08",
+      "replicate": 2,
+      "sequencePosition": 8,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "declaredKeys": [
+        "owed:energy:auger_drive_isolation_verified_before_work"
+      ],
+      "bindingFactKey": "owed:energy:auger_drive_isolation_verified_before_work",
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH",
+          "BINDING_DECLARED_BY_A_NON_ADD_VERDICT",
+          "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": false,
+        "codes": [
+          "BINDING_DECLARED_BY_A_NON_ADD_VERDICT",
+          "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION"
+        ],
+        "detail": [
+          "a VERIFIED_AS_IS verdict may not bind a fact; only a supplied clarification can",
+          "a source mode is meaningless without a clarification",
+          "nothing can bind a fact except a supplied clarification",
+          "owed:energy:auger_drive_isolation_verified_before_work declared BOUND_BY_CLARIFICATION under a VERIFIED_AS_IS verdict"
+        ],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-04",
+      "replicate": 2,
+      "sequencePosition": 9,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:guarding:fixed_guard_fastenings_currently_secure"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-01",
+      "replicate": 2,
+      "sequencePosition": 10,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:fire:burner_flame_failure_safeguard_function_verified"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-09",
+      "replicate": 3,
+      "sequencePosition": 11,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:energy:stored_hydraulic_energy_dissipated_before_line_break"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-08",
+      "replicate": 3,
+      "sequencePosition": 12,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:energy:auger_drive_isolation_verified_before_work"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-01",
+      "replicate": 3,
+      "sequencePosition": 13,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "declaredKeys": [
+        "owed:fire:burner_flame_failure_safeguard_function_verified"
+      ],
+      "bindingFactKey": "owed:fire:burner_flame_failure_safeguard_function_verified",
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH",
+          "BINDING_DECLARED_BY_A_NON_ADD_VERDICT",
+          "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": false,
+        "codes": [
+          "BINDING_DECLARED_BY_A_NON_ADD_VERDICT",
+          "SOURCE_MODE_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION",
+          "BOUND_DECLARATION_WITHOUT_A_CLARIFICATION"
+        ],
+        "detail": [
+          "a VERIFIED_AS_IS verdict may not bind a fact; only a supplied clarification can",
+          "a source mode is meaningless without a clarification",
+          "nothing can bind a fact except a supplied clarification",
+          "owed:fire:burner_flame_failure_safeguard_function_verified declared BOUND_BY_CLARIFICATION under a VERIFIED_AS_IS verdict"
+        ],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    },
+    {
+      "rowId": "HR-04",
+      "replicate": 3,
+      "sequencePosition": 14,
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "declarationModes": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "declaredKeys": [
+        "owed:guarding:fixed_guard_fastenings_currently_secure"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": [
+          "owed:guarding:fixed_guard_fastenings_currently_secure"
+        ]
+      }
+    },
+    {
+      "rowId": "HR-06",
+      "replicate": 3,
+      "sequencePosition": 15,
+      "verdict": "VERIFIED_AS_IS",
+      "declarationModes": [
+        "STILL_UNRESOLVED"
+      ],
+      "declaredKeys": [
+        "owed:guarding:rotor_guard_interlock_protective_function_verified"
+      ],
+      "bindingFactKey": null,
+      "proposedClarificationPresent": false,
+      "originalAdmission": {
+        "admitted": false,
+        "codes": [
+          "CONTRACT_VERSION_MISMATCH",
+          "ANALYSIS_ID_MISMATCH"
+        ]
+      },
+      "correctedAdmission": {
+        "admitted": true,
+        "codes": [],
+        "detail": [],
+        "bindingAdmitted": false,
+        "challengedFactKeys": []
+      }
+    }
+  ]
+}

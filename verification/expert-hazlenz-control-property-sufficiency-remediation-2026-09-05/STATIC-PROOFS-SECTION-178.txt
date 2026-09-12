@@ -1,0 +1,86 @@
+--- A. PROPERTY MATCH: evidence for the owed property settles the fact
+ok    A.1 the rule states that establishment is relative to a property, not absolute
+ok    A.2 a matching property is declared ESTABLISHED, resolving rather than hedging
+ok    A.3 a match is explicitly closed with no question and no hedge
+ok    A.4 the comparison is ordered, not a vague instruction to think harder
+
+--- B. PROPERTY MISMATCH: the owed property stays open unless something else states it
+ok    B.1 evidence about one property is declared SILENT about another, not contrary to it
+ok    B.2 a mismatch leaves the owed property unresolved
+ok    B.3 the model must look for other evidence before calling the property missing
+ok    B.4 a true, stated, relevant fact can still leave the decision unresolved
+
+--- C. PRESENCE FACT: presence evidence FULLY settles a presence question
+ok    C.1 presence is named as completely establishing a presence decision
+ok    C.2 asking further about a settled presence is named as re-litigation
+ok    C.3 the rule explicitly disclaims being about any kind of evidence
+
+--- D. FUNCTION FACT: presence alone does not carry function
+ok    D.1 function is named as a distinct property the decision may depend on
+ok    D.2 the property examples separate presence from function and from effectiveness
+ok    D.3 the rule reaches the case where evidence establishes A and the decision needs B
+
+--- E. SECUREMENT FACT: presence alone does not carry securement
+ok    E.1 securement is named as a distinct property class
+ok    E.2 the reverse direction is stated too, so this is not an anti-presence rule
+
+--- F. TEMPORAL COMPOSITION: §176 survives and is sequenced AFTER the property check
+ok    F.1 the §176 verification-time rule is intact
+ok    F.2 the new rule hands off to the timing rule explicitly
+ok    F.3 property is settled BEFORE timing in the text order
+ok    F.4 both qualifications are declared in the current-state section, and only those two
+ok    F.5 §176 static proofs still hold (run separately)  [test-temporal-clarification-remediation-2026-09-05.ts]
+
+--- G. NO INFLATION: an unstated, undecisive property is not a question
+ok    G.1 a mismatch is explicitly not permission to ask
+ok    G.2 the unresolved property must be one the current decision turns on
+ok    G.3 the five-part test still gates every question independently
+ok    G.4 three inflation triggers are named and refused
+ok    G.5 the paragraph declares it changes nothing about silence
+ok    G.6 no evidence class is called insufficient, weak or stale
+ok    G.7 no standing requirement for a test, a re-check or a second source
+ok    G.8 the forbidden blanket readings appear NOWHERE in the prompt
+ok    G.9 the burden still sits on asking, not on silence
+
+--- H. ADJACENT VALID FACT: the displaced-fact precision brake is untouched
+ok    H.1 a settled owed fact still does not lend urgency to an adjacent concern
+ok    H.2 the adjacent concern is still routed to candidates, not questions
+ok    H.3 it still becomes a question only by passing all five parts on its own decision
+ok    H.4 settledness is still a reason for silence, never a cue to hunt
+ok    H.5 the seven not-decision-critical shapes are unchanged
+ok    H.6 the generic-question brake survives
+
+--- I. NO DETERMINISTIC PROPERTY TAXONOMY
+ok    I.1 the property vocabulary is declared examples, not a closed list
+ok    I.2 the model is told to name the decisive property in its own words
+ok    I.3 no property enum, union or constant array was added to the module
+ok    I.4 the wire schema is untouched — contract stays analysis.v2  [hazlenz.expert.analysis.v2]
+ok    I.5 expert-normalization.ts is byte-identical — §178 changed the prompt only  [pre-§178 value recorded at §177 closure; 606dd1a7d468eecf…]
+ok    I.5 expert-authority-merge.ts is byte-identical — §178 changed the prompt only  [pre-§178 value recorded at §177 closure; 9c4fa19663da947b…]
+ok    I.5 expert-measure-scorers.ts is byte-identical — §178 changed the prompt only  [§178 baseline; 3c916b110ffd6188…]
+ok    I.5 expert-contract.types.ts is byte-identical — §178 changed the prompt only  [§178 baseline; 456d736f2fb291cc…]
+ok    I.5 expert-runner.ts is byte-identical — §178 changed the prompt only  [§178 baseline; 26dac3049b220375…]
+
+--- J. NO HAZARD-SPECIFIC OR ROW LEAKAGE
+ok    J.1 no hazard-family or equipment wording in the §178 region
+ok    J.2 no frozen-row wording anywhere in the production prompt
+ok    J.3 no numeric threshold in the §178 region  [none]
+ok    J.4 no general instruction to ask more or be more thorough
+ok    J.5 the word "guard" does not appear in the §178 region
+
+--- K. PLACEMENT: the rule runs where the fact is closed, not only downstream
+ok    K.1 every anchor was found
+ok    K.2 the property qualification sits INSIDE the current-state section, which is read first  [the section that can close a fact before lists 1 and 2 are reached now carries the rule]
+ok    K.3 the worked rule opens WHAT COUNTS AS ESTABLISHED  [property comparison precedes the STATES-it rule and its particulars]
+ok    K.4 the whole rule precedes the five-part counterfactual test  [establishment is settled before the question test runs]
+ok    K.5 the rule is NOT placed only downstream of the already-answered logic  [the §176 failure mode -- a correct rule the failing path never reaches -- is not repeated]
+ok    K.6 the current-state section still forbids re-litigating a stated verified fact
+
+--- L. IDENTITY
+ok    L.1 the prompt version advanced to v15  [hazlenz.expert.prompt.v15]
+ok    L.2 the version literal is not v13 or v14 anywhere in the module export
+ok    L.3 the system prompt text genuinely changed from v14  [v14 was 84aacb9d…; a semantic change must move the hash]
+      systemPromptSha256 = 20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+      systemPromptChars  = 38377
+
+ALL STATIC PROOFS PASSED — provider calls: 0

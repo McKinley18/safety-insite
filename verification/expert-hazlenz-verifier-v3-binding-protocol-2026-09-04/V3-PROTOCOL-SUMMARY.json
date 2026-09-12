@@ -1,0 +1,285 @@
+{
+  "operation": "§166 verifier binding protocol revision + falsification harness remediation",
+  "date": "2026-09-04",
+  "terminal": "EXPERT_HAZLENZ_VERIFIER_V3_BINDING_PROTOCOL_READY — SCOPED_HOSTED_FALSIFICATION_AUTHORIZATION_REQUIRED",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "evidenceDirectory": "verification/expert-hazlenz-verifier-v3-binding-protocol-2026-09-04",
+
+  "protocolIdentity": {
+    "instruction": {
+      "version": "hazlenz.expert.verifier-instruction.v3",
+      "promptSha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+      "moduleSha256": "db71ce6bc91bfd791b1ddedae06260b1230d67ead17dd4f4b49d89840559bc9f"
+    },
+    "contract": {
+      "version": "hazlenz.expert.verifier.v3",
+      "responseSchemaSha256": "1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a",
+      "moduleSha256": "475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc",
+      "admissionCodes": 41
+    },
+    "v2Preserved": {
+      "instructionPromptSha256": "ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+      "note": "recomputed AFTER v3 was authored; identical to the value §163 recorded. v2 was not edited in place."
+    }
+  },
+
+  "semanticPreservation": {
+    "instruction": {
+      "beforeLines": 105,
+      "afterLines": 145,
+      "addedLines": 42,
+      "removedLines": 2,
+      "blankLineChanges": 12,
+      "BINDING_PROTOCOL_REQUIRED": 39,
+      "SCHEMA_ALIGNMENT_REQUIRED": 5,
+      "SUBSTANTIVE_SEMANTIC_CHANGE_COUNT": 0,
+      "V2_SEMANTIC_INSTRUCTION_PRESERVED_EXCEPT_BINDING_PROTOCOL": true,
+      "entireRemovalSet": "the two lines naming v2's either/or SUPPLIED_FACT / NOMINATED_FACT source-mode choice, which v3 replaces with an explicit binding key that may coexist with a nomination. Everything else in v3 is an insertion.",
+      "bidirectionalCheck": "an actual change with no table entry is UNCLASSIFIED_CHANGE; a table entry with no actual change is STALE_CLASSIFICATION. Both are empty, so the count rests on a table proven complete.",
+      "blankLineRule": "a blank line carries no instruction and is the paragraph break of the paragraph it separates; blank changes are classified BINDING_PROTOCOL_REQUIRED uniformly",
+      "v2BlocksCheckedPositively": 12,
+      "v2BlocksLost": 0
+    },
+    "contract": {
+      "fieldChanges": 6,
+      "added": ["bindingFactKey", "owedFactDeclarations"],
+      "removed": ["aboutUnresolvedFactRef", "NOMINATED_FACT_DUPLICATES_A_SUPPLIED_FACT (rule)"],
+      "redefined": ["clarificationSourceMode", "proposedClarification"],
+      "SUBSTANTIVE_SEMANTIC_CHANGE_COUNT": 0,
+      "whyTheLexicalDuplicateRuleWasDroppedNotTightened": "a content-overlap score IS a free-text semantic gate, and §160 FINDING 1 — a keyword scorer satisfied by the observation text itself — is why this programme does not run one. v3 addresses supplied facts by key, so the structural rule NOMINATION_MUST_NOT_REUSE_A_SUPPLIED_FACT_KEY replaces it."
+    }
+  },
+
+  "owedFactsInputShape": {
+    "fields": ["factKey", "affectedDecision", "whyUnresolved", "branchA", "branchB", "decisionDivergence", "evidenceSpan"],
+    "notSupplied": ["human truth labels", "REQUIRED/FORBIDDEN fixture labels", "expected outcome", "historical model performance", "pass/fail status", "row identity", "scoring status", "human dispositions", "section references"],
+    "status": "TASK STATE, NOT GRADING TRUTH",
+    "leakChecksScoped": "whole body checked for evaluation-truth artefacts; fixture-label and scoring-state checks applied to the USER MESSAGE only, because contract vocabulary appears in the system prompt and schema BY DESIGN",
+    "statedExclusions": ["REQUIRED-CONTROL — inherited byte-identically from v2 step 4", "FIRST-PASS ANALYSIS — a structural header the §156 packet builder has always emitted"]
+  },
+
+  "bindingSemantics": {
+    "field": "bindingFactKey",
+    "membershipTest": "EXACT STRING EQUALITY against the supplied keys",
+    "noFuzzyMatch": "a one-character typo AND a case change are both refused (proof F)",
+    "noCoercion": "a non-string binding key is refused, not coerced (proof Y15)",
+    "scopeOfEffect": "coverage state for the bound key ONLY; a sibling fact with byte-identical descriptive prose stays UNRESOLVED (proof M)",
+    "invalidBindingRejection": ["BINDING_KEY_NOT_IN_SUPPLIED_SET", "BINDING_KEY_MALFORMED", "BINDING_KEY_MISSING_FOR_SUPPLIED_MODE", "BINDING_KEY_PRESENT_WITHOUT_A_CLARIFICATION", "BINDING_DECLARED_BY_A_NON_ADD_VERDICT"]
+  },
+
+  "additiveNomination": {
+    "maximumPerResponse": 1,
+    "mayCoexistWithABinding": true,
+    "sourceMode": "SUPPLIED_FACT_WITH_ADDITIVE_NOMINATION",
+    "additiveByConstruction": "the bridge emits a binding and a nomination as two SEPARATE §165 declarations; the nomination path calls nominateAdditiveFact(), whose signature has nowhere to name a fact to remove",
+    "provenBy": ["C — two supplied + binding + nomination all representable", "D — the second supplied fact is not deleted", "N — an array of nominations is refused", "U — HS-A1 binds the target and nominates the auger gap in one response"]
+  },
+
+  "noClarificationRequiredSemantics": {
+    "means": "this verifier proposes no clarification",
+    "doesNotMean": "the supplied owed facts are resolved",
+    "consequences": ["facts remain UNRESOLVED", "TARGET_COVERAGE_WARNING remains TRUE", "0 ledger transitions", "no consensus upgrade, no silent closure"],
+    "provenBy": ["H", "I", "X", "Y8", "Y9"]
+  },
+
+  "factChallengeSemantics": {
+    "declaration": "CHALLENGE_FACT_VALIDITY",
+    "requires": "a recorded reason",
+    "produces": "an ArbitrationRequest with settles typed as the literal false",
+    "isNotALedgerDeclaration": "it cannot reach applyAdmittedDeclarations and cannot move a fact's status",
+    "noSelfCertification": "there is deliberately no FACT_NOT_DECISION_CRITICAL flag; a declaration carrying settled/resolved/covered/rejected/factNotDecisionCritical is refused as CHALLENGE_CLAIMS_TO_SETTLE_THE_FACT",
+    "arbitrationOwnership": "HazLenz, via transition(…, RECORDED_ARBITRATION)",
+    "provenBy": ["J", "K", "L", "Y6", "Y7"]
+  },
+
+  "localProofMatrix": {
+    "total": 49,
+    "passed": 49,
+    "failed": 0,
+    "providerCalls": 0,
+    "transcript": "PROOF-MATRIX-RESULT.txt",
+    "casesAthroughX": "all pass",
+    "adversarialCases": "Y1–Y16, all refused with the expected code",
+    "diffCases": "D1–D4",
+    "confinementCases": "C1–C5",
+    "hsA1BindPlusNominate": "case U — the shape §165 proved v2 REFUSES is admitted by v3, and both facts survive",
+    "hsE1Binding": "case W — COVERED via ADMITTED_BINDING; warning clears",
+    "twoNoProof": "case I — no fact becomes COVERED, 0 transitions, warning still TRUE",
+    "coverageWarningProof": "cases B, D, G, H, M, X",
+    "noSemanticMatcherProof": "case C2 — the admission rule (comments stripped) contains no similarity, embedding, overlap, threshold or case-folding machinery"
+  },
+
+  "confinement": {
+    "srcFilesCreatedModifiedOrDeleted": 0,
+    "compilerEnforcedUnreachability": "backend/tsconfig.json rootDir './src', include ['src/**/*'] — a src/ import of scripts/lib/ is a compile error",
+    "SOURCE_PROJECT_TSC": "npx tsc --noEmit — exit 0, clean",
+    "v3ModulesImportingFromSrc": 0,
+    "providerOrNetworkTokensInV3Modules": 0,
+    "v2RemainsActive": "v2's instruction and contract are byte-unchanged and nothing selects v3 anywhere",
+    "currentCustomerBehaviourChange": "none — no src/ file and no runtime configuration was touched"
+  },
+
+  "humanTruthInventory": {
+    "totalRows": 7,
+    "humanAuthoritativeRequired": ["HS-A1 AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS", "HS-E1 AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS"],
+    "humanAuthoritativeSilence": [],
+    "ineligible": ["HS-H1 AUTHORING_AMBIGUOUS", "HS-J1 AUTHORING_INVALID", "HS-N1 AUTHORING_INVALID", "HS-P1 AUTHORING_INVALID", "HS-R1 AUTHORING_AMBIGUOUS"],
+    "FALSIFIER_D_TESTABLE": false,
+    "consequence": "Falsifier D has NO denominator. Manufacturing one from AUTHORING_INVALID or AUTHORING_AMBIGUOUS rows would produce a precision figure resting on truth a human rejected. Gate H.4 confirms none of the four ineligible rows appears in any request the harness builds.",
+    "claimNarrowedNotFalsifierWeakened": true
+  },
+
+  "falsifierTestability": {
+    "A_settledSilenceRecovery": true,
+    "B_owedTargetPreservation": true,
+    "C_validButDisplacedRetention": true,
+    "D_falseQuestionManufacture": false,
+    "E_drawInstability": true,
+    "F_questionBurden": "TESTABLE_BUT_SCOPED — measurable on these two rows only; NOT a production burden estimate",
+    "testableCount": 5,
+    "consequenceForTheDecisivePair": "B and D were §164's decisive pair. With D untestable this experiment can falsify the design's core claim but CANNOT establish that binding avoids over-questioning."
+  },
+
+  "experimentDesign": {
+    "arms": 1,
+    "arm": "binding-enabled, verifier protocol v3",
+    "baseline": "§163's 20 draws under v2, FROZEN — no new baseline purchased",
+    "cases": ["HS-A1 / VC-08", "HS-E1 / VC-04"],
+    "drawsPerCase": 6,
+    "hardProviderRequestCap": 12,
+    "maxTokensPerCall": 4000,
+    "retryBudget": 0,
+    "replacementBudget": 0,
+    "firstPassInvocations": 0,
+    "model": "claude-sonnet-5",
+    "suppliedOwedFacts": {
+      "VC-08": "the flame-failure target ONLY — supplying the auger fact would answer the displacement question instead of measuring it",
+      "VC-04": "the interlock-function fact ONLY"
+    },
+    "comparabilityDisclosure": "the v3 request necessarily differs byte-for-byte from §163's v2 request; that difference IS the manipulation. §163 remains the frozen no-binding baseline and is compared ACROSS the manipulation, not held byte-identical to it.",
+    "executed": false,
+    "authorized": false
+  },
+
+  "cost": {
+    "maxTokensPerCall": 4000,
+    "conservativeInputTokenBound": 8000,
+    "projectedInputTokens": { "VC-08": 6660, "VC-04": 6298 },
+    "worstCasePerCallUsd": 0.056,
+    "prospectiveWorstCase12CallsUsd_conservative": 0.672,
+    "prospectiveWorstCase12CallsUsd_projectionBased": 0.6355,
+    "expectedCostUsd_atSection163MeasuredMeans": 0.25231,
+    "hardProspectiveCostCapUsd": 0.6,
+    "callsAdmittedUnderTheCap": 10,
+    "spendGateFormula": "BEFORE each call: spentUsd + worstCasePerCallUsd <= hardProspectiveCostCapUsd",
+    "finding": "The $0.60 cap was set against §165's figure, which priced the v2 request. The v3 request is necessarily larger — the owed facts and their two-branch structure are now in the prompt — so the same 12 calls at the same 4000-token output ceiling cost more. The runtime guard stops the run short rather than overspending. The output ceiling was NOT lowered to fit, per the product owner's direction.",
+    "minimumCapThatAdmitsAll12Usd": { "conservativeBound": 0.68, "projectionBased": 0.64 }
+  },
+
+  "preSpendGates": {
+    "total": 45,
+    "passed": 44,
+    "failed": 1,
+    "FALSIFICATION_HARNESS_READY": false,
+    "blocker": "E.4 — the full 12-call design does not fit inside the $0.60 prospective cap",
+    "section165BlockerClosed": "gate F.1 rebuilds the exact additive verdict the v2 contract refused with NOMINATION_PRESENT_WITHOUT_NOMINATED_SOURCE_MODE and submits it to v3: ADMITTED, binding and nomination both accepted in one response",
+    "transcript": "FALSIFICATION-HARNESS-PREFLIGHT-V3.txt",
+    "machineReadable": "FALSIFICATION-HARNESS-PREFLIGHT-V3.json"
+  },
+
+  "frozenMaterialStatus": {
+    "verifierInstructionV1": "BYTE-UNCHANGED",
+    "verifierInstructionV2": "BYTE-UNCHANGED — ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+    "verifierContractV1": "BYTE-UNCHANGED",
+    "verifierContractV2": "BYTE-UNCHANGED",
+    "firstPassPromptV13": "BYTE-UNCHANGED — 02977c309f6d3e377d97b31836f9fc6e8af8dfd64fa28d81d1a53f605a266efa",
+    "analysisV2Contract": "BYTE-UNCHANGED",
+    "hardenedDevelopmentSetV9": "BYTE-UNCHANGED — 09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb",
+    "section156Packet": "BYTE-UNCHANGED — 75d64197583092ed8ac826a1c3c85d86666fd36d7eca52737d1d6eec942afc5a",
+    "section157and158Records": "UNCHANGED — read only",
+    "section163ReliabilityRecords": "UNCHANGED — 20 draw records, read only",
+    "section164DesignArtifacts": "UNCHANGED",
+    "section165LocalIntegrationEvidence": "UNCHANGED",
+    "firstPassV14orV15": "NOT CREATED",
+    "M14": "NOT RUN",
+    "expandedValidation": "NOT RUN",
+    "old90CallExperiment": "EXPERIMENT_REQUIRES_REDESIGN — superseded by the §164 falsification design; NOT executed",
+    "provider": "UNCHANGED",
+    "frozenFormalProviderInvocationCount": 195
+  },
+
+  "protectedRegression": {
+    "transcript": "PROTECTED-REGRESSION.txt",
+    "SOURCE_PROJECT_TSC": "exit 0, clean",
+    "suites": {
+      "test:expert-verifier-v3-protocol": "49/49 (new)",
+      "test:expert-bounded-reliability": "44/44",
+      "test:expert-reliability-architecture": "69 passed, 0 failed",
+      "test:expert-verifier-v2-contract": "46 passed, 0 failed",
+      "test:expert-contract-foundation": "56 passed, 0 failed",
+      "test:expert-routing-contract": "67 passed, 0 failed",
+      "test:expert-measurement-layer": "66 passed, 0 failed",
+      "test:expert-fixture-hardening": "76 passed, 0 failed",
+      "test:expert-clarification-settlement": "148 passed, 0 failed",
+      "test:expert-affected-decision-arbitration": "41 passed, 0 failed",
+      "test:expert-unsupported-settlement": "129 passed, 0 failed",
+      "test:expert-retention-bridge": "123 passed, 0 failed",
+      "test:hazlenz-level1-recall": "PASS (17 checks)",
+      "test:hazlenz-actionable-coverage": "PASS (17 checks)",
+      "test:hazlenz-guarding-applicability": "16 cases, 0 failures, 0 dangerous failures",
+      "test:governed-kill-switch-authority": "115 passed, 0 failed"
+    },
+    "databaseAccess": "none"
+  },
+
+  "claimsRegister": {
+    "file": "docs/PRODUCT-CLAIMS-REGISTER.md",
+    "newPublicClaim": "none",
+    "sectionAdded": "§166",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED",
+    "productionMarketingCopyChanged": "none"
+  },
+
+  "autonomyAndModelIndependence": {
+    "hazlenzOwns": ["owed facts", "fact keys", "coverage", "binding admission", "nomination admission", "arbitration", "state transitions", "retry and call caps", "question budgeting", "final output"],
+    "providerReturns": "bounded declarations only — a verdict, a question, at most one nomination, and one declaration line per supplied fact",
+    "evidence": "no v3 module names a provider, endpoint, model identity or credential; proof C1 records 0 such tokens"
+  },
+
+  "worktreeState": {
+    "codeFilesCreated": 6,
+    "codeFilesModified": 1,
+    "codeFileModified": "backend/package.json — two npm script entries added",
+    "srcFilesTouched": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "preexistingUncommittedWorkPreserved": true
+  },
+
+  "unrelatedDebtRecordedNotTouched": {
+    "frontendTsconfig": {
+      "file": "frontend-next/tsconfig.json",
+      "defect": "pre-existing injected .next-onereport/** include globs from an earlier disposable Next.js build",
+      "actionTaken": "NONE — unrelated to this operation and left unchanged under existing-worktree protection",
+      "recommendation": "separate cleanup before any commit authorization; must not be silently included in a later commit"
+    },
+    "section164DesignSummaryShellExpansion": {
+      "file": "verification/expert-hazlenz-reliability-target-displacement-design-2026-09-04/DESIGN-SUMMARY.json",
+      "defect": "costLatency dollar figures were shell-expanded when written — e.g. \"/bin/zsh.42\" where \"$0.42\" was intended",
+      "actionTaken": "NONE — preserved as historical artifact evidence and NOT mutated",
+      "recommendation": "a corrected ADDITIVE artifact would require separate authorization; the correct figures are intact in RELIABILITY-AND-COVERAGE-ARCHITECTURE.md §10"
+    }
+  },
+
+  "nextAuthorizationRequired": [
+    "1. Set the prospective cost cap to at least $0.68 (conservative bound) so all 12 calls fit, or accept a run that stops at 10 draws. The output ceiling stays at 4000 either way.",
+    "2. Authorize the experiment SCOPED to falsifiers A, B, C, E and F(scoped), with FALSIFIER_D_TESTABLE = FALSE recorded on the result and no false-question-precision claim drawn from it.",
+    "3. (optional, separable) commission fresh silence-control material for independent human review, which would make falsifier D testable in a later experiment. Not a prerequisite for A/B/C/E.",
+    "Only then may the 12-call binding falsification experiment be authorized. It remains unexecuted and $0.00 has been spent."
+  ]
+}

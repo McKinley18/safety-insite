@@ -1,0 +1,773 @@
+{
+  "artifact": "SECTION-218-STRUCTURED-PROPERTY-SEMANTIC-VERIFIER-ARCHITECTURE-RECORD",
+  "version": "hazlenz.expert.218.property-review-contract.v1",
+  "builtFrom": "hazlenz.expert.212.verifier-protocol-successor",
+  "protocolVersionClaimed": null,
+  "whyNoVersionIsClaimed": "a version number is earned by a preregistered hosted run. §218 is an architecture slice and has made none.",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false,
+  "customerActivation": false,
+  "schemaChanged": true,
+  "schemaChangeIsAdditive": true,
+  "instructionChangeIsAdditive": true,
+  "theRemedy": {
+    "primaryRemedy": "STRUCTURED_OUTPUT_PLUS_DETERMINISTIC_CROSS_FIELD_CONSISTENCY",
+    "instructionRole": "explains five new required fields; adds no new argument for a rule that was already stated three times",
+    "isAnotherInstructionRemediationCycle": false,
+    "section216StoppingRuleHonoured": true
+  },
+  "structuredPropertyReview": {
+    "fields": [
+      "targetDeclarationId",
+      "propertySemanticRole",
+      "propertyValidity",
+      "decisionControllingProperty",
+      "propertyReviewReason"
+    ],
+    "propertySemanticRole": [
+      "UNDERLYING_SAFETY_STATE",
+      "REQUIRED_ACT_ITSELF",
+      "REQUIRED_ARTIFACT_ITSELF",
+      "EVIDENCE_FOR_ANOTHER_PROPERTY",
+      "AMBIGUOUS_OR_UNRESOLVED"
+    ],
+    "propertyValidity": [
+      "VALID",
+      "INVALID",
+      "UNCERTAIN"
+    ],
+    "decisionControllingPropertyLimits": {
+      "becomesAnOwedFact": false,
+      "isSettled": false,
+      "reachesCustomerAuthoritativeTruth": false,
+      "isParsedForMeaningByDeterministicCode": false,
+      "mayInjectASiblingFact": false,
+      "existsFor": [
+        "human review",
+        "diagnosis",
+        "downstream controlled remediation",
+        "future architecture work if separately authorized"
+      ],
+      "whyItIsNotTheSection212RefusedField": "§212 refused a REPLACEMENT PROPERTY the architecture would consume. This is a statement the architecture reads only to a human. Nothing constructs, binds, projects or settles from it, and the suite asserts that no §218 module imports a fact constructor."
+    },
+    "orderedDecisionSteps": [
+      {
+        "step": 1,
+        "what": "evaluate the identity of the target property",
+        "reachedOnlyIf": null
+      },
+      {
+        "step": 2,
+        "what": "record propertySemanticRole",
+        "reachedOnlyIf": null
+      },
+      {
+        "step": 3,
+        "what": "record propertyValidity",
+        "reachedOnlyIf": null
+      },
+      {
+        "step": 4,
+        "what": "ordinary branch, representation and clarification review, toward VERIFIED_AS_IS or ADD_OR_REPLACE_CLARIFICATION",
+        "reachedOnlyIf": "propertyValidity === VALID"
+      }
+    ]
+  },
+  "vocabularyUnchanged": {
+    "verdicts": [
+      "VERIFIED_AS_IS",
+      "ADD_OR_REPLACE_CLARIFICATION",
+      "NO_CLARIFICATION_REQUIRED",
+      "ABSTAIN"
+    ],
+    "verdictsAdded": [],
+    "owedFactDeclarations": [
+      "BOUND_BY_CLARIFICATION",
+      "STILL_UNRESOLVED",
+      "CHALLENGE_FACT_VALIDITY"
+    ],
+    "challengeGrounds": [
+      "THE_OBSERVATION_ALREADY_ESTABLISHES_IT",
+      "BOTH_ANSWERS_LEAD_TO_THE_SAME_ACTION",
+      "PROPERTY_IDENTITY_MISMATCH"
+    ],
+    "propertyMismatchKinds": [
+      "EVIDENCE_PROXY_FOR_UNDERLYING_STATE",
+      "ADJACENT_PROPERTY_SUBSTITUTED"
+    ],
+    "representationConcerns": [
+      "NONE",
+      "BRANCHES_DO_NOT_PARTITION_THE_PROPERTY",
+      "UNRESOLVED_ACTION_PRESUMES_A_BRANCH"
+    ],
+    "membersAdded": []
+  },
+  "deterministicBoundary": {
+    "codes": [
+      "PROPERTY_REVIEW_MISSING",
+      "PROPERTY_REVIEW_NOT_AN_OBJECT",
+      "PROPERTY_REVIEW_FIELD_MISSING",
+      "PROPERTY_REVIEW_FIELD_PLACEHOLDER",
+      "PROPERTY_REVIEW_UNKNOWN_FIELD",
+      "PROPERTY_SEMANTIC_ROLE_NOT_A_MEMBER",
+      "PROPERTY_VALIDITY_NOT_A_MEMBER",
+      "PROPERTY_REVIEW_TARGET_MISMATCH",
+      "PROPERTY_REVIEW_TARGET_NOT_DECLARED",
+      "EVIDENCE_ROLE_MUST_BE_INVALID",
+      "AMBIGUOUS_ROLE_MUST_BE_UNCERTAIN",
+      "ROLE_AND_MISMATCH_KIND_INCONSISTENT",
+      "INVALID_PROPERTY_NOT_CHALLENGED",
+      "INVALID_PROPERTY_VERIFIED_AS_IS",
+      "INVALID_PROPERTY_ROUTED_TO_CLARIFICATION",
+      "INVALID_PROPERTY_GROUND_NOT_PROPERTY_IDENTITY",
+      "UNCERTAIN_PROPERTY_NOT_ABSTAINED",
+      "UNCERTAIN_PROPERTY_CHALLENGED_ON_IDENTITY",
+      "VALID_PROPERTY_CHALLENGED_ON_IDENTITY"
+    ],
+    "decisionInputs": [
+      "output.propertyReview (presence and object shape)",
+      "output.propertyReview.targetDeclarationId (exact string equality only)",
+      "output.propertyReview.propertySemanticRole (closed-set membership only)",
+      "output.propertyReview.propertyValidity (closed-set membership only)",
+      "output.propertyReview.decisionControllingProperty (non-blank and whole-field filler only)",
+      "output.propertyReview.propertyReviewReason (non-blank and whole-field filler only)",
+      "output.verdict (closed-set membership only)",
+      "output.owedFactDeclarations[].factKey (exact string equality only)",
+      "output.owedFactDeclarations[].declaration (closed-set membership only)",
+      "output.owedFactDeclarations[].challengeGround (closed-set membership only)",
+      "output.owedFactDeclarations[].propertyMismatchKind (closed-set membership only)"
+    ],
+    "ruleClassification": {
+      "PROPERTY_REVIEW_IS_PRESENT_AND_WELL_SHAPED": "SAFE_DETERMINISTIC",
+      "ROLE_AND_VALIDITY_ARE_CLOSED_SET_MEMBERS": "SAFE_DETERMINISTIC",
+      "TARGET_DECLARATION_ID_MATCHES_THE_SUPPLIED_ID": "SAFE_DETERMINISTIC_EXACT_STRING_EQUALITY",
+      "TWO_MODEL_AUTHORED_ENUMS_DO_NOT_CONTRADICT": "SAFE_DETERMINISTIC_CROSS_FIELD_PAIRING",
+      "VALIDITY_AND_DISPOSITION_DO_NOT_CONTRADICT": "SAFE_DETERMINISTIC_CROSS_FIELD_PAIRING",
+      "THE_ROLE_IS_THE_RIGHT_ROLE": "REQUIRES_MODEL_SEMANTICS",
+      "THE_PROPERTY_IS_REALLY_EVIDENCE": "REQUIRES_MODEL_SEMANTICS",
+      "THE_DECISION_CONTROLLING_PROPERTY_IS_THE_RIGHT_ONE": "REQUIRES_HUMAN_TRUTH",
+      "THE_REASON_TEXT_IS_A_GOOD_REASON": "REQUIRES_HUMAN_TRUTH"
+    },
+    "effect": {
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "infersWhetherSomethingIsEvidence": false,
+      "inspectsVocabularyToClassify": false,
+      "reconstructsThePropertyFromProse": false,
+      "repairsAModelClassification": false,
+      "inventsAReplacementOwedFact": false,
+      "readsAnyFieldForMeaning": false,
+      "usesAKeywordList": false,
+      "addsAVerdict": false,
+      "addsAChallengeGround": false
+    },
+    "failClosedEffect": {
+      "rawOutputPreserved": true,
+      "targetRemainsUnresolved": true,
+      "clarificationsMayChange": false,
+      "factMayBeSettled": false,
+      "missingSemanticJudgementIsInferred": false,
+      "aReplacementOwedFactIsCreated": false,
+      "theModelClassificationIsRepaired": false
+    },
+    "refusedRules": [
+      {
+        "rule": "require propertyValidity UNCERTAIN whenever propertySemanticRole is not AMBIGUOUS_OR_UNRESOLVED but the reason text hedges",
+        "refusedBecause": "reading a reason for hedging is reading free text for meaning, which is the line this architecture has held since §160."
+      },
+      {
+        "rule": "make AMBIGUOUS_OR_UNRESOLVED and UNCERTAIN a biconditional, so that UNCERTAIN forces the ambiguous role",
+        "refusedBecause": "a verifier can be sure a property is an act and still unable to establish whether that act is what this decision turns on. Forcing the role would refuse a right answer, which is the overcorrection shape §212, §214 and §216 each had to undo."
+      },
+      {
+        "rule": "forbid NO_CLARIFICATION_REQUIRED alongside propertyValidity INVALID",
+        "refusedBecause": "§216 refused the same rule and the reason still holds: whether the unknown changes what is done today is a semantic judgement about the case, not a structural property of the output. §218 was directed to close VERIFIED_AS_IS and ADD_OR_REPLACE_CLARIFICATION, and it closes exactly those."
+      },
+      {
+        "rule": "check that decisionControllingProperty concerns the target rather than a sibling",
+        "refusedBecause": "that is a semantic comparison of two prose statements. Sibling containment stays where §214 put it -- on the structured nomination, which is refused by request shape -- and the prose half remains instruction-led. Recorded as a residual."
+      },
+      {
+        "rule": "derive propertySemanticRole from the property text when the model omits it",
+        "refusedBecause": "that is the keyword classifier this architecture has refused since §160, and §212, §214 and §216 each recorded the same refusal. A missing role fails closed."
+      }
+    ],
+    "supersededRefusals": [
+      {
+        "rule": "forbid VERIFIED_AS_IS alongside a property-identity challenge",
+        "section216Reason": "a challenge addresses the FACT and the verdict addresses the CLARIFICATION layer, so the combination may be correct, and a rule refusing it would refuse a right answer",
+        "section218Reason": "that reasoning applied to an architecture with no structured property decision. With propertyValidity explicit, INVALID and VERIFIED_AS_IS are two statements about the same proposition that cannot both hold: one says it does not control the decision, the other says the right question was asked about it. The product-owner authorization directs the refusal and the structured field makes it checkable without semantics."
+      }
+    ]
+  },
+  "overcorrectionGuards": [
+    {
+      "risk": "a required role field with EVIDENCE_FOR_ANOTHER_PROPERTY in it invites a verifier to reach for that member on every property that mentions a test, a permit or a record -- which would take the legitimate act and artifact cases with it",
+      "guard": "REQUIRED_ACT_ITSELF and REQUIRED_ARTIFACT_ITSELF are their own members, each with the \"you must not spend it\" warning attached, and the evidence member is defined by the counterfactual rather than by a vocabulary",
+      "protects": "SECTION_217_K3, SECTION_215_H4, SECTION_213_T4, and the F3/F4 fixtures"
+    },
+    {
+      "risk": "naming the absence rule in order to bound it could be read as retiring it, which would send a genuine no-permit-was-ever-raised case the wrong way",
+      "guard": "the paragraph states the absence rule affirmatively FIRST and says an absence-shaped branchB is correct and should be left alone, before saying which question it does not answer",
+      "protects": "SECTION_215_H3 and the three-worlds section carried verbatim from §212"
+    }
+  ],
+  "sizeAccounting": {
+    "schema": {
+      "baseArtifact": "hazlenz.expert.212.verifier-protocol-successor",
+      "successorArtifact": "hazlenz.expert.218.property-review-contract.v1",
+      "protocolVersionClaimed": null,
+      "baseSha256": "571dadaf51751e390363e302868cff72450a8825e5ac74f406305d1520a6d4e8",
+      "successorSha256": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380",
+      "baseBytes": 6094,
+      "successorBytes": 8247,
+      "addedBytes": 2153,
+      "baseNodes": 38,
+      "successorNodes": 45,
+      "addedNodes": 7,
+      "baseEnums": 9,
+      "successorEnums": 11,
+      "addedEnums": 2,
+      "baseEnumMembers": 35,
+      "successorEnumMembers": 43,
+      "addedEnumMembers": 8,
+      "grammarCostCaveat": "the provider's stated metric is COMPILED GRAMMAR COMPLEXITY and the threshold is undocumented. Two enums of five and three members expand well beyond their serialised length. The verifier request remains far smaller than the first-pass request that was refused at ~19,060 bytes, and that headroom is the reason this is proposed rather than a claim that it will pass."
+    },
+    "instruction": {
+      "blockLines": 75,
+      "blockChars": 4497,
+      "promptChars216": 19712,
+      "promptChars218": 24210,
+      "addedCharacters": 4498,
+      "removedCharacters": 0,
+      "estimatedAddedTokens": 1576,
+      "identity216": "ef95e903a2f204cd19abdab55919a760e1ce09ee83d8774d8b959bc90961a33e",
+      "identity218": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+      "tokenEstimateBasis": "OBSERVED_BYTES_PER_TOKEN = 69968 / 24512, from the frozen §208 first-pass leg. An estimate, not a tokenizer result.",
+      "note": "ADDITIVE. The §216 block is carried unchanged and the ladder still runs; its step 1 is now entered with the property already declared in fields."
+    }
+  },
+  "fixtures": {
+    "count": 12,
+    "compliantAdmitted": 8,
+    "compliantTotal": 8,
+    "refusalsFired": 4,
+    "refusalsTotal": 4,
+    "everyRefusalFiredItsNamedCode": true,
+    "rows": [
+      {
+        "id": "F1_EVIDENCE_PROXY_FOR_A_PHYSICAL_STATE",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "CHALLENGE_PROPERTY_IDENTITY",
+        "requiredRefusalCode": null,
+        "mustNotAssert": "the receiver shell is below minimum thickness"
+      },
+      {
+        "id": "F2_DOCUMENT_PROXY_FOR_A_PHYSICAL_STATE",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "CHALLENGE_PROPERTY_IDENTITY",
+        "requiredRefusalCode": null,
+        "mustNotAssert": "the hoist is unfit to lift"
+      },
+      {
+        "id": "F3_LEGITIMATE_REQUIRED_ACT",
+        "requiredRole": "REQUIRED_ACT_ITSELF",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "ACCEPT_AND_VERIFY",
+        "requiredRefusalCode": null,
+        "mustNotAssert": null
+      },
+      {
+        "id": "F4_LEGITIMATE_REQUIRED_ARTIFACT",
+        "requiredRole": "REQUIRED_ARTIFACT_ITSELF",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "ACCEPT_AND_VERIFY",
+        "requiredRefusalCode": null,
+        "mustNotAssert": null
+      },
+      {
+        "id": "F5_CORRECT_UNDERLYING_SAFETY_STATE",
+        "requiredRole": "UNDERLYING_SAFETY_STATE",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "ACCEPT_AND_VERIFY",
+        "requiredRefusalCode": null,
+        "mustNotAssert": null
+      },
+      {
+        "id": "F6_AMBIGUOUS_SEMANTIC_ROLE",
+        "requiredRole": "AMBIGUOUS_OR_UNRESOLVED",
+        "requiredValidity": "UNCERTAIN",
+        "requiredOutcome": "ABSTAIN_FAIL_CLOSED",
+        "requiredRefusalCode": null,
+        "mustNotAssert": "the tank farm arrangement is inadequate"
+      },
+      {
+        "id": "F7_INVALID_PLUS_CLARIFICATION_REPLACEMENT",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "DETERMINISTICALLY_REFUSED",
+        "requiredRefusalCode": "INVALID_PROPERTY_ROUTED_TO_CLARIFICATION",
+        "mustNotAssert": null
+      },
+      {
+        "id": "F8_INVALID_PLUS_VERIFIED_AS_IS",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "DETERMINISTICALLY_REFUSED",
+        "requiredRefusalCode": "INVALID_PROPERTY_VERIFIED_AS_IS",
+        "mustNotAssert": null
+      },
+      {
+        "id": "F9_UNCERTAIN_PLUS_CLARIFICATION_REPLACEMENT",
+        "requiredRole": "AMBIGUOUS_OR_UNRESOLVED",
+        "requiredValidity": "UNCERTAIN",
+        "requiredOutcome": "DETERMINISTICALLY_REFUSED",
+        "requiredRefusalCode": "UNCERTAIN_PROPERTY_NOT_ABSTAINED",
+        "mustNotAssert": null
+      },
+      {
+        "id": "F10_CORRECT_PROPERTY_INADEQUATE_QUESTION",
+        "requiredRole": "UNDERLYING_SAFETY_STATE",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "ACCEPT_AND_REPLACE_THE_QUESTION",
+        "requiredRefusalCode": null,
+        "mustNotAssert": "the extraction fails to clear the breathing zone"
+      },
+      {
+        "id": "F11_EVIDENCE_PROXY_WITH_AN_EXCELLENT_QUESTION",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "CHALLENGE_PROPERTY_IDENTITY",
+        "requiredRefusalCode": null,
+        "mustNotAssert": "the pool water is out of range"
+      },
+      {
+        "id": "F12_TWO_FACT_OBSERVATION_TARGET_ONLY",
+        "requiredRole": "UNDERLYING_SAFETY_STATE",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "DETERMINISTICALLY_REFUSED",
+        "requiredRefusalCode": "NOMINATION_OUTSIDE_TARGET_SCOPE",
+        "mustNotAssert": "the mezzanine edge is unprotected"
+      }
+    ]
+  },
+  "negativeControls": {
+    "reachableFromArchitecture": false,
+    "scores": [
+      {
+        "control": "VOCABULARY_ONLY_ROLE_CLASSIFIER",
+        "correct": 4,
+        "wrong": 4,
+        "total": 8,
+        "wrongOn": [
+          "F3_LEGITIMATE_REQUIRED_ACT",
+          "F4_LEGITIMATE_REQUIRED_ARTIFACT",
+          "F5_CORRECT_UNDERLYING_SAFETY_STATE",
+          "F6_AMBIGUOUS_SEMANTIC_ROLE"
+        ]
+      },
+      {
+        "control": "CLARIFICATION_FIRST_ROUTING",
+        "correct": 4,
+        "wrong": 4,
+        "total": 8,
+        "wrongOn": [
+          "F1_EVIDENCE_PROXY_FOR_A_PHYSICAL_STATE",
+          "F2_DOCUMENT_PROXY_FOR_A_PHYSICAL_STATE",
+          "F6_AMBIGUOUS_SEMANTIC_ROLE",
+          "F11_EVIDENCE_PROXY_WITH_AN_EXCELLENT_QUESTION"
+        ]
+      },
+      {
+        "control": "CHALLENGE_EVERYTHING",
+        "correct": 3,
+        "wrong": 5,
+        "total": 8,
+        "wrongOn": [
+          "F3_LEGITIMATE_REQUIRED_ACT",
+          "F4_LEGITIMATE_REQUIRED_ARTIFACT",
+          "F5_CORRECT_UNDERLYING_SAFETY_STATE",
+          "F6_AMBIGUOUS_SEMANTIC_ROLE",
+          "F10_CORRECT_PROPERTY_INADEQUATE_QUESTION"
+        ]
+      }
+    ]
+  },
+  "legacyCompatibility": {
+    "fieldProvenance": {
+      "targetDeclarationId": "MECHANICAL",
+      "propertySemanticRole": "MODEL_SEMANTIC",
+      "propertyValidity": "MODEL_SEMANTIC",
+      "decisionControllingProperty": "MODEL_SEMANTIC",
+      "propertyReviewReason": "MODEL_SEMANTIC"
+    },
+    "refusedAdaptations": [
+      {
+        "route": "read a historical rationale for role vocabulary and record propertySemanticRole",
+        "refusedBecause": "that is a keyword classifier over prose, refused since §160, and §217 K1 proves it would have produced the wrong answer with high confidence."
+      },
+      {
+        "route": "set propertyValidity from the historical declaration -- CHALLENGE means INVALID, STILL_UNRESOLVED means VALID",
+        "refusedBecause": "the declaration answers a different question. §217 K1 declared STILL_UNRESOLVED on a property the frozen truth marks INVALID, so the mapping would record VALID for the case §218 exists to catch."
+      },
+      {
+        "route": "set decisionControllingProperty from the first pass's own missingFact",
+        "refusedBecause": "that is the supplied property, which is the very thing under review. Copying it would make every legacy review self-confirming."
+      },
+      {
+        "route": "backfill the §217 CONTRACT-VALIDATION file with §218 codes",
+        "refusedBecause": "§217 was executed under the §212 schema and validated by the §212 layer. Adding codes from a layer that did not exist would misdescribe what was actually run."
+      }
+    ],
+    "effect": {
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "historicalEvidenceEdited": false,
+      "historicalResultReclassified": false,
+      "semanticRoleInferredFromProse": false,
+      "frozenDigestRecomputed": false
+    },
+    "historicalEvidenceDisposition": {
+      "rewritten": false,
+      "upgraded": false,
+      "rescored": false,
+      "reclassified": false,
+      "digestsRecomputed": false,
+      "note": "§217 evidence is preserved exactly: HF1 x2 on K1 and K2, HF2 x1 on K2, HF4 x1 on K4, HF3 HF5 HF6 HF7 clean, K3 PASS, K4 target accepted and the sibling nomination deterministically refused, HF1 and HF2 CLASS A, HF4 CLASS B, KR-1 OPEN."
+    },
+    "section217Evidence": {
+      "callsAttempted": 4,
+      "callsReachingInference": 4,
+      "transportFailures": 0,
+      "deterministicRefusals": 1,
+      "gateOccurrences": {
+        "HF1_EVIDENCE_PROXY_ACCEPTED": {
+          "count": 2,
+          "on": [
+            "K1",
+            "K2"
+          ]
+        },
+        "HF2_PROPERTY_INVALID_ROUTED_AS_CLARIFICATION": {
+          "count": 1,
+          "on": [
+            "K2"
+          ]
+        },
+        "HF3_LEGITIMATE_ACT_CHALLENGED": {
+          "count": 0,
+          "on": []
+        },
+        "HF4_SIBLING_NOMINATION": {
+          "count": 1,
+          "on": [
+            "K4"
+          ]
+        },
+        "HF5_TARGET_BINDING_VIOLATION": {
+          "count": 0,
+          "on": []
+        },
+        "HF6_UNRESOLVED_BECAME_ADVERSE": {
+          "count": 0,
+          "on": []
+        },
+        "HF7_PROVIDER_SETTLEMENT_AUTHORITY": {
+          "count": 0,
+          "on": []
+        }
+      },
+      "caseResults": {
+        "K1": "FAIL",
+        "K2": "FAIL",
+        "K3": "PASS",
+        "K4": "PART_FAIL"
+      },
+      "k3LegitimateActControl": "PASS",
+      "k4TargetProperty": "CORRECTLY_ACCEPTED",
+      "k4SiblingNomination": "ATTEMPTED_BY_PROVIDER_DETERMINISTICALLY_REFUSED",
+      "classification": {
+        "HF1": "CLASS_A",
+        "HF2": "CLASS_A",
+        "HF4": "CLASS_B"
+      },
+      "kr1": "OPEN",
+      "frozenDigest": "99f9f6b82842cb0ad4c0e1ea78418af3606dc4dcadde353699ed8d18998fa2a4",
+      "mayBeReclassifiedBySection218": false
+    }
+  },
+  "hostedReadiness": {
+    "items": [
+      {
+        "n": 1,
+        "item": "propertySemanticRole reaches the verifier output schema",
+        "answer": "YES",
+        "evidence": "closed enum of 5, required"
+      },
+      {
+        "n": 2,
+        "item": "propertyValidity reaches the verifier output schema",
+        "answer": "YES",
+        "evidence": "closed enum of 3, required"
+      },
+      {
+        "n": 3,
+        "item": "decisionControllingProperty reaches output",
+        "answer": "YES",
+        "evidence": "present and required; advisory, and consumed by nobody"
+      },
+      {
+        "n": 4,
+        "item": "propertyReviewReason reaches output",
+        "answer": "YES",
+        "evidence": "present and required"
+      },
+      {
+        "n": 5,
+        "item": "exact target identity reaches the property review and a mismatch is refused",
+        "answer": "YES",
+        "evidence": "PROPERTY_REVIEW_TARGET_MISMATCH"
+      },
+      {
+        "n": 6,
+        "item": "an INVALID property cannot be VERIFIED_AS_IS",
+        "answer": "YES",
+        "evidence": "INVALID_PROPERTY_VERIFIED_AS_IS"
+      },
+      {
+        "n": 7,
+        "item": "an INVALID property cannot be routed to ADD_OR_REPLACE_CLARIFICATION",
+        "answer": "YES",
+        "evidence": "INVALID_PROPERTY_NOT_CHALLENGED,INVALID_PROPERTY_ROUTED_TO_CLARIFICATION,INVALID_PROPERTY_GROUND_NOT_PROPERTY_IDENTITY"
+      },
+      {
+        "n": 8,
+        "item": "UNCERTAIN routes to ABSTAIN and anything else fails closed",
+        "answer": "YES",
+        "evidence": "refused: UNCERTAIN_PROPERTY_NOT_ABSTAINED; abstain route admitted: true"
+      },
+      {
+        "n": 9,
+        "item": "a legitimate REQUIRED_ACT_ITSELF property can pass",
+        "answer": "YES",
+        "evidence": "route PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED"
+      },
+      {
+        "n": 10,
+        "item": "a legitimate REQUIRED_ARTIFACT_ITSELF property can pass",
+        "answer": "YES",
+        "evidence": "route PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED"
+      },
+      {
+        "n": 11,
+        "item": "a correct UNDERLYING_SAFETY_STATE property can pass",
+        "answer": "YES",
+        "evidence": "route PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED"
+      },
+      {
+        "n": 12,
+        "item": "an evidence proxy is challenged using the EXISTING §212 vocabulary, with nothing added",
+        "answer": "YES",
+        "evidence": "grounds 3, kinds 2, concerns 3"
+      },
+      {
+        "n": 13,
+        "item": "the unresolved / adverse distinction is preserved",
+        "answer": "YES",
+        "evidence": "the §212 three-worlds section is carried unchanged into the §218 prompt"
+      },
+      {
+        "n": 14,
+        "item": "sibling containment is preserved and unweakened",
+        "answer": "YES",
+        "evidence": "NOMINATION_OUTSIDE_TARGET_SCOPE,SOURCE_MODE_CLAIMS_A_NOMINATION_OUTSIDE_SCOPE,CLARIFICATION_BOUND_TO_A_NOMINATION_OUTSIDE_SCOPE; §214 reads 6 inputs, unchanged"
+      },
+      {
+        "n": 15,
+        "item": "the provider still cannot settle a fact",
+        "answer": "YES",
+        "evidence": "CHALLENGE_CLAIMS_TO_SETTLE_THE_FACT"
+      },
+      {
+        "n": 16,
+        "item": "historical frozen evidence is unchanged and cannot be upgraded",
+        "answer": "YES",
+        "evidence": "LEGACY_OUTPUT_MAY_NOT_BE_UPGRADED,SEMANTIC_FIELD_NOT_AUTHORED"
+      }
+    ],
+    "clean": true,
+    "fixturesClean": true
+  },
+  "hostedRecommendation": {
+    "status": "RECOMMENDED_NOT_FROZEN",
+    "authorizedToExecute": false,
+    "calls": 5,
+    "cases": [
+      {
+        "id": "A1",
+        "mechanism": "evidence proxy for a latent physical state",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "CHALLENGE_FACT_VALIDITY with PROPERTY_IDENTITY_MISMATCH and EVIDENCE_PROXY_FOR_UNDERLYING_STATE, no clarification proposed for that fact",
+        "whyItIsNeeded": "§217 K1 accepted exactly this shape and reasoned that the act itself was the required control. The structured field is the whole change; A1 asks whether declaring the role in a field separates what reasoning in prose did not.",
+        "hardGateIfWrong": "evidence proxy accepted as a valid property",
+        "localFixture": "F1_EVIDENCE_PROXY_FOR_A_PHYSICAL_STATE",
+        "calls": 1,
+        "mayReuseAHistoricalObservation": false
+      },
+      {
+        "id": "A2",
+        "mechanism": "evidence proxy in document or certificate form",
+        "requiredRole": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+        "requiredValidity": "INVALID",
+        "requiredOutcome": "CHALLENGE_FACT_VALIDITY with PROPERTY_IDENTITY_MISMATCH and EVIDENCE_PROXY_FOR_UNDERLYING_STATE",
+        "whyItIsNeeded": "the document form is the one §215 H1 called \"a reasonable proxy\" and kept, and it is the form most easily confused with A4. Paired with A4 it measures whether the artifact member discriminates or is simply a place to put every document.",
+        "hardGateIfWrong": "evidence proxy accepted as a valid property",
+        "localFixture": "F2_DOCUMENT_PROXY_FOR_A_PHYSICAL_STATE",
+        "calls": 1,
+        "mayReuseAHistoricalObservation": false
+      },
+      {
+        "id": "A3",
+        "mechanism": "a legitimate required act",
+        "requiredRole": "REQUIRED_ACT_ITSELF",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "the property accepted and left intact, no challenge",
+        "whyItIsNeeded": "the new enum puts EVIDENCE_FOR_ANOTHER_PROPERTY in front of the model on every call, which is exactly the pressure that would spend §213 T4, §215 H4 and §217 K3. A3 is the control that says whether it did.",
+        "hardGateIfWrong": "legitimate act wrongly challenged",
+        "localFixture": "F3_LEGITIMATE_REQUIRED_ACT",
+        "calls": 1,
+        "mayReuseAHistoricalObservation": false
+      },
+      {
+        "id": "A4",
+        "mechanism": "a legitimate required artifact",
+        "requiredRole": "REQUIRED_ARTIFACT_ITSELF",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "the property accepted and left intact, no challenge",
+        "whyItIsNeeded": "REQUIRED_ARTIFACT_ITSELF is the one member with no hosted history at all. Without A4 the architecture would ship a member nothing has ever exercised, and the failure mode it guards -- all records are evidence proxies -- would be unmeasured.",
+        "hardGateIfWrong": "legitimate artifact wrongly challenged",
+        "localFixture": "F4_LEGITIMATE_REQUIRED_ARTIFACT",
+        "calls": 1,
+        "mayReuseAHistoricalObservation": false
+      },
+      {
+        "id": "A5",
+        "mechanism": "a correct underlying safety-state property",
+        "requiredRole": "UNDERLYING_SAFETY_STATE",
+        "requiredValidity": "VALID",
+        "requiredOutcome": "the property accepted; the clarification layer decided on its merits",
+        "whyItIsNeeded": "the plain false-positive control. A verifier that has learned to find something wrong on every call fails here, and the set is non-degenerate in both directions only because A3, A4 and A5 must all be left alone.",
+        "hardGateIfWrong": "correct underlying state wrongly challenged",
+        "localFixture": "F5_CORRECT_UNDERLYING_SAFETY_STATE",
+        "calls": 1,
+        "mayReuseAHistoricalObservation": false
+      }
+    ],
+    "localFixtureBacking": [
+      {
+        "caseId": "A1",
+        "fixture": "F1_EVIDENCE_PROXY_FOR_A_PHYSICAL_STATE"
+      },
+      {
+        "caseId": "A2",
+        "fixture": "F2_DOCUMENT_PROXY_FOR_A_PHYSICAL_STATE"
+      },
+      {
+        "caseId": "A3",
+        "fixture": "F3_LEGITIMATE_REQUIRED_ACT"
+      },
+      {
+        "caseId": "A4",
+        "fixture": "F4_LEGITIMATE_REQUIRED_ARTIFACT"
+      },
+      {
+        "caseId": "A5",
+        "fixture": "F5_CORRECT_UNDERLYING_SAFETY_STATE"
+      }
+    ],
+    "costProjection": {
+      "calls": 5,
+      "addedInputTokensFromPrompt": 1576,
+      "addedInputTokensFromSchema": 754,
+      "addedOutputTokenAllowance": 160,
+      "projectedInputTokensPerCall": 13930,
+      "projectedOutputTokensPerCall": 1315,
+      "projectedUsd": 0.2051,
+      "hardCeilingUsd": 0.28,
+      "ceilingBasis": "35% headroom, the basis §211 and §214 used and §213, §215 and §217 all stayed inside",
+      "retriesAuthorized": 0,
+      "basisNote": "projected from §217 MEASURED tokens plus the MEASURED §218 prompt and schema deltas and a stated allowance for the five new output fields. A projection, not a production cost claim."
+    },
+    "alreadySettled": [
+      "transport and grammar compatibility — 22 successful calls across §213, §215 and §217",
+      "exact target binding — zero violations on 22 of 22 calls",
+      "provider settlement authority — zero violations across all three sections",
+      "the three-world discipline — §215 H3 and §217 clean on the cases built for it",
+      "the fully-correct control — §213 T8, §215 H6 and §217 K4-target all clean",
+      "the deterministic scope rule — refused every prohibited nomination attempted, §215 and §217",
+      "act-as-property restraint at the instruction layer — §213 T4, §215 H4 and §217 K3 clean"
+    ],
+    "hardGates": [
+      "evidence proxy accepted as a valid property",
+      "INVALID property routed to clarification-only correction",
+      "legitimate act wrongly challenged",
+      "legitimate artifact wrongly challenged",
+      "correct underlying state wrongly challenged",
+      "target-binding violation",
+      "sibling escape",
+      "unresolved-to-adverse collapse",
+      "provider settlement-authority violation"
+    ],
+    "noAggregateCompensation": {
+      "aggregatePercentageReported": false,
+      "oneGateMayBeOffsetByAnother": false,
+      "aQualityScoreMayOffsetAGate": false
+    },
+    "limits": [
+      "this is a recommendation and not a preregistration; nothing here is frozen by sha256",
+      "the five observations are NOT authored here; that is the next slice, under its own authorization",
+      "no §213, §215 or §217 observation may be reused as a scored case",
+      "the local gate establishes representability and refusal, and establishes nothing about whether a provider will classify a property correctly under the new representation",
+      "a clean result would confirm the structured representation on five new cases. It would not establish Expert HazLenz acceptance, production readiness, G6 closure, S6 or end-to-end acceptance",
+      "if a material evidence-proxy misclassification survives, the stopping rule applies and the next step is a product-owner decision between A, B and C — not another slice"
+    ]
+  },
+  "stoppingRule": {
+    "thisIsTheFinalStandaloneVerifierArchitectureIntervention": true,
+    "ifAMaterialEvidenceProxyMisclassificationSurvives": [
+      "DO NOT return to prompt tuning",
+      "DO NOT add another verifier gate",
+      "DO NOT automatically add another architecture layer"
+    ],
+    "reportInstead": "that the remaining defect appears to be provider semantic classification capability under the explicit representation",
+    "productOwnerDecides": [
+      {
+        "option": "A",
+        "decision": "existing human review and fail-closed controls are sufficient for the supported scope"
+      },
+      {
+        "option": "B",
+        "decision": "an independent non-provider safety control is required"
+      },
+      {
+        "option": "C",
+        "decision": "the provider or model is not yet capable enough for the intended Expert role"
+      }
+    ]
+  },
+  "kr1Status": "OPEN — the structured representation is local only. No hosted behaviour is measured and no §217 result is reclassified.",
+  "identities": {
+    "promptSection216": "ef95e903a2f204cd19abdab55919a760e1ce09ee83d8774d8b959bc90961a33e",
+    "promptSection218": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+    "schemaSection212": "571dadaf51751e390363e302868cff72450a8825e5ac74f406305d1520a6d4e8",
+    "schemaSection218": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+  },
+  "generatedAt": "2026-09-10T02:57:04.053Z"
+}

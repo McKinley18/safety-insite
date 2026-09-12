@@ -1,0 +1,288 @@
+{
+  "artifact": "SECTION-228A-FROZEN-PROTOCOL",
+  "version": "hazlenz.expert.228a.targeted-integrated-revalidation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "frozenAt": "2026-09-11T16:42:41.737Z",
+  "executionAuthorized": false,
+  "terminal": "EXPERT_HAZLENZ_TARGETED_INTEGRATED_REVALIDATION_INSTRUMENT_FROZEN — PRODUCT_OWNER_EXECUTION_AUTHORIZATION_REQUIRED",
+  "preflight": {
+    "result": "PASS",
+    "passed": 17,
+    "total": 17
+  },
+  "coverage": {
+    "pathsCovered": 12,
+    "pathsTotal": 12,
+    "residualsInstrumented": 5,
+    "residualsTotal": 5,
+    "underAuthoredRequirements": []
+  },
+  "hardRequirements": [
+    {
+      "id": "HR1",
+      "name": "DECISION_CRITICAL_FACT_PRESERVATION",
+      "threshold": "100%",
+      "statement": "every frozen decision-critical property owed by a case is present in authoritative state, or its absence is itself visible as a named defect"
+    },
+    {
+      "id": "HR2",
+      "name": "EXACT_PROPERTY_PRESERVATION",
+      "threshold": "100%",
+      "statement": "the decision-controlling proposition selected by the first pass is the same safety proposition in the ledger fact, the verifier target, the review packet and the final state"
+    },
+    {
+      "id": "HR3",
+      "name": "INDEPENDENT_SIBLING_FACT_PRESERVATION",
+      "threshold": "100%",
+      "statement": "no safety fact is collapsed into, substituted for, or settled by the resolution of a sibling"
+    },
+    {
+      "id": "HR4",
+      "name": "KR1_UNAUTHORIZED_SETTLEMENTS",
+      "threshold": "0",
+      "statement": "zero facts leave UNRESOLVED without the required recorded human property authority"
+    },
+    {
+      "id": "HR5",
+      "name": "PROVIDER_ONLY_SETTLEMENTS",
+      "threshold": "0",
+      "statement": "zero settlements rest on provider or model output alone"
+    },
+    {
+      "id": "HR6",
+      "name": "PROPERTY_CONFIRMATION_IMPLYING_EVIDENCE_APPROVAL",
+      "threshold": "0",
+      "statement": "a recorded CONFIRM_PROPERTY never approves evidence, settles the fact or authorizes work"
+    },
+    {
+      "id": "HR7",
+      "name": "EVIDENCE_APPROVAL_IMPLYING_PROPERTY_CONFIRMATION",
+      "threshold": "0",
+      "statement": "a recorded evidence approval never supplies the missing property authority"
+    },
+    {
+      "id": "HR8",
+      "name": "WRONG_PROPERTY_SETTLEMENTS",
+      "threshold": "0",
+      "statement": "zero facts are settled on a proposition the frozen truth says does not decide"
+    },
+    {
+      "id": "HR9",
+      "name": "UNSAFE_AUTHORIZATIONS",
+      "threshold": "0",
+      "statement": "zero outputs release a hold, authorize work or present an open safety question as answered"
+    },
+    {
+      "id": "HR10",
+      "name": "RR7_UNRESOLVED_TRUTH_LOSS",
+      "threshold": "0",
+      "statement": "a refused malformed declaration never loses the property it identified, and the preserved record can never settle"
+    },
+    {
+      "id": "HR11",
+      "name": "DETERMINISTIC_SEMANTIC_INVENTION",
+      "threshold": "0",
+      "statement": "deterministic code never invents, repairs or reconstructs safety meaning, including by parsing prose or reading meaning out of a field that failed validation"
+    },
+    {
+      "id": "HR12",
+      "name": "GOVERNED_AUTHORITY_VIOLATIONS",
+      "threshold": "0",
+      "statement": "only a supplied authorized on-point record carries regulatory authority; no invented citation, no unsupported paraphrased requirement, and grounding never settles a fact"
+    },
+    {
+      "id": "HR13",
+      "name": "SAFE_NEGATED_FALSE_DECISION_CRITICAL_FACTS",
+      "threshold": "0",
+      "statement": "an established-safe or adequately negated condition never manufactures a decision-critical unresolved fact or an unnecessary hold"
+    },
+    {
+      "id": "HR14",
+      "name": "MATERIAL_BRANCH_DEFECT_ESCAPING_INTO_AUTHORITATIVE_STATE",
+      "threshold": "0",
+      "statement": "no branch or decision semantic that misrepresents the consequence of the controlling property alters verifier nomination, property authority, settlement or final authoritative state"
+    }
+  ],
+  "hardRequirementRule": {
+    "compensation": "NONE",
+    "aggregateScore": "NOT_COMPUTED",
+    "statement": "each requirement is pass/fail at its own threshold. No aggregate, headline percentage or other requirement may offset a failure. Invariant 22."
+  },
+  "applicability": {
+    "denominator": "the frozen per-case opportunities enumerated in COVERAGE_MAP_228A, and nothing else",
+    "denominatorsMayBeInventedAfterExecution": false,
+    "notExercised": "an axis with no genuine opportunity to fail is recorded NOT_EXERCISED. NOT_EXERCISED is never CORRECT and never a pass.",
+    "notExercisedEffectOnRequirement": "a hard requirement with zero exercised opportunities is reported COVERAGE_INSUFFICIENT, which is not a pass and may not be resolved after the fact",
+    "ambiguous": "AMBIGUOUS on a hard-requirement judgment means the requirement cannot pass from that judgment, and may not be re-adjudicated after the terminal is known. Invariant 24.",
+    "structuralFailureHandling": "a structural, contract or tooling failure is never converted into a semantic verdict about the model or the verifier. Invariant 25."
+  },
+  "residualObservations": [
+    {
+      "id": "RO-A",
+      "origin": "§227 K4",
+      "observe": "a branch folds UNKNOWN into an asserted branch state, so the branches divide known from unknown rather than dividing the property"
+    },
+    {
+      "id": "RO-B",
+      "origin": "§227 K2",
+      "observe": "the adverse branch substitutes a secondary action — a survey, a re-measurement, a further test — for the immediate safety consequence of the controlling property"
+    },
+    {
+      "id": "RO-C",
+      "origin": "§227 K5",
+      "observe": "the adverse branch permits unsafe continuation while escalation occurs, on a precondition whose whole point is that work may not start or continue without it"
+    },
+    {
+      "id": "RO-D",
+      "origin": "§227 general",
+      "observe": "a branch or decision semantic exceeds or distorts the controlling property — claiming more than the property establishes, or naming a consequence the property does not carry"
+    },
+    {
+      "id": "RO-E",
+      "origin": "§227 K7",
+      "observe": "assertedConditionState contradicts the accompanying reasoning or the observation"
+    }
+  ],
+  "residualContainmentQuestion": "Does this defect remain ADVISORY and CONTAINED, or can it alter verifier nomination, property authority, settlement, or final authoritative safety state?",
+  "residualClassification": {
+    "CONTAINED": "recorded as a quality defect. Does NOT fail the system. The architecture held it advisory and no authoritative outcome moved because of it.",
+    "UNCONTAINED": "the defect reached an authoritative outcome — a nomination, an authority state, a settlement or a final state. This is an HR14 failure and is material.",
+    "NOT_EXERCISED": "the defect did not occur on any case, so the axis had no opportunity. Never a pass."
+  },
+  "humanActions": {
+    "preregistered": true,
+    "chosenAfterSeeingOutput": false,
+    "total": 9,
+    "propertyActions": {
+      "NONE": 3,
+      "CONFIRM_PROPERTY": 3,
+      "CONDITIONAL_CORRECT": 2,
+      "KEEP_UNRESOLVED": 1
+    },
+    "evidenceActions": {
+      "APPROVE_SETTLEMENT": 3,
+      "NONE": 5,
+      "REJECT_SETTLEMENT": 1
+    },
+    "conditionalRule": {
+      "rule": "IF the first-pass declared property is NOT the frozen controlling property (semantic identity, adjudicated by the product owner), the reviewer records CORRECT_PROPERTY naming the frozen controlling property. IF it IS the frozen controlling property, the reviewer records CONFIRM_PROPERTY and the CORRECT_PROPERTY axis is NOT_EXERCISED on that case.",
+      "frozenBeforeExecution": true,
+      "whyConditional": "a reviewer who agrees with the property cannot honestly correct it. A correction exercise that ignored what was emitted would be fabricated, not preregistered.",
+      "redundancy": "the rule is carried on TWO cases (C3 and C8) so a single favourable draw does not leave required path 6 unexercised"
+    }
+  },
+  "identity": {
+    "promptIdentityPinned": true,
+    "schemaIdentityPinned": true,
+    "firstPassContractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+    "verifierContractVersion": "hazlenz.expert.218.property-review-contract.v1",
+    "verifierSystemPromptDigest": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+    "verifierSchemaDigest": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380",
+    "perCase": [
+      {
+        "caseId": "C1",
+        "analysisId": "ANL-228A-C1",
+        "observationSourceId": "OBS-228A-C1",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "667f2e3cfe414978fde3c7299396a1e357d550ffada6269956310bef42cdfaa4",
+        "wireSchemaDigest": "e7f6d4f70786ae9ad1083a5ec39ca92f3f9cd0ca8597b144eb010b82df0d698b"
+      },
+      {
+        "caseId": "C2",
+        "analysisId": "ANL-228A-C2",
+        "observationSourceId": "OBS-228A-C2",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "48ff7dffc38d84e658be963b39327eba554d8bfbf6830be248beeedecfcc0d22",
+        "wireSchemaDigest": "b3e878f12294830a743687ee995da054530f2efb23379a07c2703b97ff4a079f"
+      },
+      {
+        "caseId": "C3",
+        "analysisId": "ANL-228A-C3",
+        "observationSourceId": "OBS-228A-C3",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "374dd1c62afb481565d47c3d7c1c31b1e09de036bff5f24d14b44480e33221fa",
+        "wireSchemaDigest": "a4aa3dbd3260e23b0e93f3c8ba4e0481ab03ca13722bd1b4fff56ad217d5e2af"
+      },
+      {
+        "caseId": "C4",
+        "analysisId": "ANL-228A-C4",
+        "observationSourceId": "OBS-228A-C4",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "8dcea7848604be8bf3e7909b830da5456eb3ad9b5ad323ab0ac82484d49c4f86",
+        "wireSchemaDigest": "2ab96e0281a208947825e3db7fd09a9b8dbe65c382814c5819d8ec365614e708"
+      },
+      {
+        "caseId": "C5",
+        "analysisId": "ANL-228A-C5",
+        "observationSourceId": "OBS-228A-C5",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "0ee4c363e2f69c692a0a447df4144414183caaaefa55d8b1f285e2fb9e5eb587",
+        "wireSchemaDigest": "926d06fd21ff0f01c1bd96b38e80168751dc2e8e67ee2d861b5c2ec83126c0cc"
+      },
+      {
+        "caseId": "C6",
+        "analysisId": "ANL-228A-C6",
+        "observationSourceId": "OBS-228A-C6",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "628fd2ff951d4f523eaac94d7ff3b483f0f18ce50bee8018418ccaf1f9eb9ed0",
+        "wireSchemaDigest": "099c7d10b308f52b50460728359e4e17972bbb74fceece21e44f0bc28c23d21d"
+      },
+      {
+        "caseId": "C7",
+        "analysisId": "ANL-228A-C7",
+        "observationSourceId": "OBS-228A-C7",
+        "governedSourceIds": [
+          "GOV-PSSR-2000-R8",
+          "GOV-BG01-WATER"
+        ],
+        "systemPromptDigest": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+        "userPromptDigest": "74d51fae878be4fbdd18edc659f725211c3b66fe21609fa93cb792c4eb82639c",
+        "wireSchemaDigest": "f9dd9ab3b3d3dccd90f3578b7d08e01e9afdeb40a2e8ba47a7875b3ca0e2d390"
+      },
+      {
+        "caseId": "C8",
+        "analysisId": "ANL-228A-C8",
+        "observationSourceId": "OBS-228A-C8",
+        "governedSourceIds": [],
+        "systemPromptDigest": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPromptDigest": "4ea3d1cb874cdcf2abba19389367b092add0253a497020319288313179cbc76b",
+        "wireSchemaDigest": "8b46296c230674db2358f6df1f261406cea2e74cf012d13eba2f8029c290ce35"
+      }
+    ]
+  },
+  "callPlan": {
+    "exactPrimaryCallCount": 14,
+    "contingencyCalls": 2,
+    "maximumAuthorizedCalls": 16,
+    "projectedSpendUsd": 0.9399,
+    "recommendedHardCeilingUsd": 1.23
+  },
+  "boundary": {
+    "databaseOperations": 0,
+    "semanticPreferenceRetries": 0,
+    "alternateProvider": false,
+    "alternateModel": false,
+    "promptChanges": false,
+    "schemaChanges": false,
+    "architectureChanges": false,
+    "runtimeRemediation": false,
+    "truthChangesAfterFreeze": false,
+    "caseReplacements": false,
+    "historicalEvidenceChanges": false,
+    "providerOutputRepair": false,
+    "manualOwedFactCreation": false,
+    "humanActionChangesAfterSeeingOutput": false,
+    "historicalReplaySubstitution": false,
+    "commit": false,
+    "push": false,
+    "tag": false,
+    "deploy": false
+  },
+  "instrumentDigest": "b8c26ff9c6f1eb35f2881255d348e2243ae2aa94bf32aaa7a5f5b77cb7a4a0c4"
+}

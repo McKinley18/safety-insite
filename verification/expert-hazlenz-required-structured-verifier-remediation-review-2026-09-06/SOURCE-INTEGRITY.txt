@@ -1,0 +1,59 @@
+§188 SOURCE INTEGRITY GATE
+recomputed 2026-09-06T23:48:08.994Z from the files on disk
+
+RESULT: PASS   12/12
+
+FROZEN IDENTITIES — expected vs recomputed
+
+OK    PREREGISTRATION.json
+        expected  9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82
+OK    expert-prompt.ts (file)
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    EXPERT_SYSTEM_PROMPT (string)
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    owed-facts/owed-fact.types.ts
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    EXPERT_VERIFIER_V3_SYSTEM_PROMPT (string)
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    VERIFIER_V3_RESPONSE_SCHEMA (canonical JSON)
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    verifier instruction version
+        expected  hazlenz.expert.verifier-instruction.v3
+OK    §184 OWED-FACT-TRUTH-CANDIDATES.json
+        expected  649a17df3730b1d67f20bda9b6231d0a5461902c985ce87fb7b2659e67798b0b
+OK    §184 SECTION-184-INTEGRITY.json
+        expected  172aaba1fbd22b95259a1bdef3d76a8d5dbd32b27d69b9784532d60a36ebeb36
+
+§187 BEHAVIOURAL EVIDENCE — hashes recorded so a later change is detectable
+
+  79129ae849cd54be2e73ba9cf84bda2d7ae4ce62003c4ea1ac127149c386cda9  RESUMED-VERIFIER-EXECUTIONS.jsonl
+  c54bddd626f951fb07fbc5b7787172d26195aa86f4edc93dddaef43224ffff12  RAW-VERIFIER-EXECUTIONS.jsonl
+  aa6f249753126abe35e16d2449f44d6b243e7475503c88255620c81d26269129  FIRST-PASS-STIMULI.json
+  14d131f27097c5f53d39b39f32055fc0a4e07361c75b4aeb095cdb93b9a67a00  RUN-SUMMARY.json
+  0d83b0999f632876a1cbfb66781e21b286c0687c36c8859ea4c249c9bfc9bf47  RESUME-RUN-SUMMARY.json
+  ccbb0678421b500a66386a6aa8fe7852a8fba4f69a59dd388aeddd2d2efe5532  ADMISSION-RECOMPUTE.json
+  acd1357afeaef0c1e757978ec6206181471766319c8f1d80a068389afd256264  COST-CORRECTION.json
+  45633c6a708c10432c614ecd672e25c9df8a460650f89776c444a797b0f80df7  SECTION-187A-INTEGRITY.json
+  9a71ddaa7b22fa4ceb40a375748ea7f39df5e43233d2cdd80d7e0f8ad7be73ec  SECTION-187B-INTEGRITY.json
+  3953592a8ce9a70b87c9070b8418622b37724c2b70004b9de82cff6ea63b4014  STRICT-SEMANTIC-REVIEW-PACKET-187B.md
+  0bd095a8ba2911196d120925e5d9ccdc2effaa80fc36352b51e5295059616296  CHALLENGE-REVIEWABILITY-PACKET-187B.md
+  bd59c975708a28ee88af84809b969e7d566bcbee3f1cb20d2fe4fd6b0feef0ba  BEHAVIORAL-METRICS-187B.json
+
+PROMPT_CHANGES = 0    SCHEMA_CHANGES = 0    VERIFIER_SOURCE_CHANGES = 0
+PRODUCT_RUNTIME_CHANGES = 0    DATABASE_OPERATIONS = 0    PROVIDER_CALLS = 0
+
+Separately authorized §188 changes, all harness/test/documentation, none of them
+product runtime and none of them a verifier prompt, schema or contract:
+  backend/scripts/lib/expert-provider-spend-accounting.ts        (new)
+  backend/scripts/test-expert-provider-spend-accounting.ts       (new)
+  backend/scripts/build-188-adjudication-ballot-2026-09-06.ts    (new)
+  backend/scripts/score-188-strict-semantic-gate-2026-09-06.ts   (new)
+  backend/scripts/verify-188-source-integrity-2026-09-06.ts      (new)
+  backend/scripts/probe-required-structured-verifier-2026-09-05.ts  (cost accounting repair)
+

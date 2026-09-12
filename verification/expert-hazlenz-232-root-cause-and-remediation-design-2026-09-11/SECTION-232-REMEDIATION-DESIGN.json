@@ -1,0 +1,216 @@
+{
+  "artifact": "SECTION-232-REMEDIATION-DESIGN",
+  "version": "hazlenz.expert.232.remediation-design.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "implemented": false,
+  "authorizationRequired": "PRODUCT_OWNER_IMPLEMENTATION_AUTHORIZATION",
+
+  "smallestProposedRemediation": {
+    "oneSentence": "Give immediate safety posture a first-class, model-authored, analysis-level representation, added as an additive successor contract exactly as §210J was added to §210G, and enforce its completeness and internal consistency deterministically without reading any prose for meaning.",
+    "scope": "ONE new required analysis-level object. No change to any of the twenty-nine protected modules. No change to the property, authority, settlement, verifier or governed-evidence layers.",
+    "whyAnalysisLevelAndNotPerDeclaration": "Three of the ten hard-gate events occur on cases whose posture is driven by an established hazard that correctly owes no declaration, and one event (M9) emitted two contradictory per-declaration postures in a single analysis. Attaching posture to declarations IS the defect.",
+
+    "theObject": {
+      "name": "immediateSafetyPosture",
+      "cardinality": "exactly one per analysis, REQUIRED on the wire",
+      "fields": {
+        "posture": {
+          "kind": "model-authored enum",
+          "values": ["CONTINUE_UNCHANGED", "CONTINUE_WITH_CONTROLS", "HOLD_PENDING_VERIFICATION", "STOP"],
+          "vocabularyMustBeDefined": "every member carries a per-value definition in the type, the system prompt and the wire schema, following the §139 precedent that bidirectional labeller disagreement is the signature of an under-specified vocabulary and the repair is to DEFINE the vocabulary rather than to correct the model",
+          "whyFourAndNotThree": "the STOP / HOLD_PENDING_VERIFICATION split IS the sequencing representation. G10 and M8 are precisely the failure to distinguish work that may continue under controls from work that may not proceed while the controlling property is being resolved. A three-value vocabulary cannot express the distinction whose absence caused two of the eight HS13 firings.",
+          "relationToTheFrozen230Vocabulary": "§230 truth uses CONTINUE_UNCHANGED / CONTINUE_WITH_CONTROLS / STOP_OR_HOLD. The four-value set refines the third. A successor instrument must declare the mapping before freezing; §231 is not rescored and its STOP_OR_HOLD cases are not re-labelled."
+        },
+        "requiredBy": {
+          "kind": "typed reference list, not prose",
+          "content": "candidateKey values and declarationId values from the SAME analysis that require this posture",
+          "purpose": "makes the posture auditable by reference rather than by reading its sentence"
+        },
+        "acceptedWithoutImmediateAction": {
+          "kind": "typed reference list with a per-item reason",
+          "content": "candidateKey values the model asserts ACTIVE but which require no action today, each with the model's stated reason",
+          "purpose": "THE RESTRAINT ESCAPE. Without it the completeness rule below degenerates into a stop-forcing rule. G2 asserts a thermal hazard ACTIVE on a case whose correct posture is CONTINUE_UNCHANGED, and must be able to say so."
+        },
+        "resumeCondition": {
+          "kind": "typed reference list plus prose",
+          "requiredWhen": "posture is HOLD_PENDING_VERIFICATION or STOP",
+          "content": "the declarationId values whose resolution permits resumption, and for an established hazard the correction that must be completed",
+          "purpose": "closes the M8 shape. 'As soon as practicable' names a timing, not a condition. The reference requirement is checkable without reading the prose."
+        },
+        "whatHappensNow": {
+          "kind": "prose, anchored to the enum",
+          "purpose": "the human-readable instruction. It explains the posture; it does not establish it."
+        }
+      }
+    },
+
+    "deterministicInvariantsAdded": [
+      {
+        "id": "P1", "name": "POSTURE_PRESENT",
+        "rule": "the object is required on the wire; absence is a structural refusal of the analysis",
+        "semanticInferenceRequired": false,
+        "closes": "the silence family by construction. There is always a carrier, on every analysis, including zero-declaration analyses.",
+        "wouldHaveFiredOn": ["G1", "G4", "C1", "C8"]
+      },
+      {
+        "id": "P2", "name": "POSTURE_BASIS_REFERENTIAL_INTEGRITY",
+        "rule": "every candidateKey and declarationId named in requiredBy, acceptedWithoutImmediateAction or resumeCondition must exist in the same analysis",
+        "semanticInferenceRequired": false,
+        "closes": "posture claims that reference nothing"
+      },
+      {
+        "id": "P3", "name": "ACTIVE_CANDIDATE_COVERAGE",
+        "rule": "every candidate the model itself asserts ACTIVE must appear in requiredBy or in acceptedWithoutImmediateAction with a reason",
+        "semanticInferenceRequired": false,
+        "note": "a reference check over the model's OWN labels, the same class as the existing CLARIFICATION_CONTRADICTS_ACTIVE_CANDIDATE arbitration",
+        "measuredAgainstThe30Cases": "forces an explicit posture basis on 24 of 30 cases; forces nothing on the 6 cases with no ACTIVE candidate, which include C10 and M3, both correctly CONTINUE_UNCHANGED",
+        "wouldHaveFiredOn": ["G1", "G4", "C1", "C9"],
+        "wouldNotHaveFiredOn": ["C10", "M3", "C7", "G10", "M8", "C4"]
+      },
+      {
+        "id": "P4", "name": "RESUME_CONDITION_REQUIRED_ON_HOLD_OR_STOP",
+        "rule": "posture HOLD_PENDING_VERIFICATION or STOP must name at least one declarationId or one established-hazard correction in resumeCondition",
+        "semanticInferenceRequired": false,
+        "closes": "the M8 shape: an unbounded 'as soon as practicable' with no resume condition becomes structurally invalid"
+      },
+      {
+        "id": "P5", "name": "BLOCKING_CLARIFICATION_CONSISTENCY",
+        "rule": "if any clarification carries criticality BLOCKING and is bound to a declaration, the posture may not be CONTINUE_UNCHANGED",
+        "semanticInferenceRequired": false,
+        "note": "consistency between two model-authored labels. It revives EXPERT_CLARIFICATION_CRITICALITY, which is currently declared and consumed nowhere.",
+        "honestLimitation": "this would NOT have caught G5, G10, M6, M8 or M9, whose postures would most likely have been CONTINUE_WITH_CONTROLS rather than CONTINUE_UNCHANGED. It is a floor, not a fix."
+      },
+      {
+        "id": "P6", "name": "PROJECTION_MONOTONICITY",
+        "rule": "no downstream projection or packet may present a posture less protective than the authorized one; the posture is carried, never re-derived",
+        "semanticInferenceRequired": false,
+        "note": "this is the product owner's principle that the user-visible recommendation may not be less protective than the authorized posture, expressed as a projection rule rather than as prose forcing"
+      }
+    ],
+
+    "whatIsDeliberatelyNotDone": [
+      "No keyword or regex detection of stop-language. Measured on the §231 strings, stop-language and continue-language do not separate the passing cases from the failing ones, and §148 already refused deterministic reclassification of a natural-language field as semantic inference forbidden by invariant 3.",
+      "No deterministic rule that an unresolved LIFE_CRITICAL property implies STOP. That is the universal rule the authorization forbids, and it would be wrong on the evidence: M5 owes a MATERIAL property under CONTINUE_WITH_CONTROLS and G8 owes a SERIOUS property under CONTINUE_WITH_CONTROLS.",
+      "No deterministic derivation of posture from candidates, consequence class or declaration count. Posture is model-authored under invariant 1; deterministic code validates, projects and refuses under invariant 2.",
+      "No stop-language forced into final prose.",
+      "No third instruction cycle on property identity.",
+      "No change to any protected module, to the verifier, or to the authority and settlement layers, all of which scored clean."
+    ]
+  },
+
+  "filesAndModules": {
+    "new": [
+      { "path": "backend/scripts/lib/expert-233-posture-contract.ts", "role": "successor to §210J, built by construction from it. Adds the analysis-level posture to the wire schema and the instruction block. Must expose a reconstruction function proving that removing the addition reproduces the §210J schema byte for byte, exactly as buildExpert210jWireSchema / reconstructBaseWireSchema do today." },
+      { "path": "backend/scripts/lib/expert-233-posture-projection.ts", "role": "deterministic validate / project / refuse for P1 through P6. Mirrors expert-210j-declaration-projection.ts. Emits refusal codes; invents nothing." },
+      { "path": "backend/scripts/lib/expert-233-posture-prompt.ts", "role": "successor to build226SystemPrompt, built by construction from §226. Carries the per-value posture definitions." },
+      { "path": "backend/scripts/lib/expert-233-posture-fixtures.ts", "role": "the local regression set" },
+      { "path": "backend/scripts/test-233-posture-contract.ts", "role": "the local deterministic suite" }
+    ],
+    "modified": [],
+    "protectedModulesMutated": "NONE",
+    "whyNoProtectedModuleChanges": "unresolvedFactDeclarations and decisionWhileUnresolved are defined only in the scripts/lib successor layer and appear nowhere in expert-contract.types.ts or expert-normalization.ts. The posture follows the same established pattern, so the core production contract and the normalizer are untouched.",
+    "deferredAndNotRequiredToCloseAnyEvent": [
+      "carrying the analysis posture into PropertyReviewPacket alongside decisionWhileUnresolved — an improvement, not part of the smallest change"
+    ]
+  },
+
+  "semanticBehaviourChanged": {
+    "changed": "the model is now required to state one work posture per analysis, to name what requires it, to name what it is consciously not acting on, and to name what must become true before work resumes.",
+    "unchanged": "hazard identification, property selection, branch construction, clarification authorship, grounding, verifier routing, authority, settlement and every deterministic comparison.",
+    "invariantStatus": "no existing invariant is changed, weakened or narrowed. One ADDITIVE invariant is PROPOSED for product-owner decision, not adopted here: invariant 14 currently reads one-directionally, and the G5 failure is its converse — absence of a realised failure event is not established SAFE truth and may not support continued operation."
+  },
+
+  "regressionRisks": [
+    {
+      "risk": "OVER-CORRECTION. A required posture field biases the model toward declaring a stop, worsening restraint, which already missed threshold at 6/9.",
+      "likelihood": "HIGH without mitigation",
+      "precedent": "§210J had to state explicitly that 'no additional restriction while this remains open' is a real answer and not a failure to think, because the natural reading of a new action field is that it must say something.",
+      "mitigations": [
+        "acceptedWithoutImmediateAction is a first-class field, not an exception",
+        "CONTINUE_UNCHANGED is defined as a correct and expected answer, with a worked example, in the same block that defines STOP",
+        "the local regression set is balanced across the four postures rather than inheriting the §230 skew of 23 stop-or-hold to 7 continue",
+        "restraint is a named exit criterion of the local suite, not an afterthought"
+      ]
+    },
+    {
+      "risk": "The manufactured-declaration route closes and the model loses its only way to express an action, producing MORE silence rather than less.",
+      "likelihood": "LOW",
+      "why": "P1 guarantees a carrier on every analysis, so the incentive that produced the manufactured declarations in C9, M3 and M4 disappears rather than being blocked."
+    },
+    {
+      "risk": "Posture degree remains wrong. A structured enum makes the judgment explicit and auditable; it does not make it correct.",
+      "likelihood": "CERTAIN for some fraction of cases",
+      "why": "choosing CONTINUE_WITH_CONTROLS where HOLD_PENDING_VERIFICATION is required is a semantic judgment. Four of the ten events (E3, E6, E8, E10) are of this kind and none of the six deterministic invariants refutes them.",
+      "disposition": "this is the honest limit of the change and it is governed by invariant 27: a schema change is never evidence that a behavioural defect is repaired. It must be MEASURED, not asserted."
+    },
+    {
+      "risk": "Schema growth degrades output completeness. §231 already recorded one truncation at 4000 tokens.",
+      "likelihood": "LOW to MODERATE",
+      "mitigation": "the posture object is small and largely reference lists. Output token headroom is checked in the local suite before any hosted call."
+    }
+  ],
+
+  "localTestsRequired": {
+    "providerCalls": 0,
+    "whatLocalTestsCanEstablish": "that the contract, schema, projection and refusal behaviour are correct given synthesized outputs",
+    "whatLocalTestsCannotEstablish": "whether the model chooses the right posture. That is hosted-only.",
+    "suites": [
+      "schema successor identity: the §233 schema minus the posture reproduces the §210J schema byte for byte, and the §210J base is unchanged",
+      "P1 refusal: a posture-absent analysis is refused whole and named, never silently accepted",
+      "P2 refusal: references to non-existent candidateKey or declarationId are refused",
+      "P3 both directions: an uncovered ACTIVE candidate is refused; an ACTIVE candidate correctly placed in acceptedWithoutImmediateAction is admitted",
+      "P4 refusal: HOLD or STOP with no resume condition is refused",
+      "P5 refusal: BLOCKING clarification with CONTINUE_UNCHANGED is refused",
+      "P6: no projection path can weaken a carried posture",
+      "invariant 3 guard: the projection is asserted to read no prose field for meaning",
+      "RR-7 extension: a non-semantic filler in a required posture field is a refusal, not a value"
+    ],
+    "fixtureSet": {
+      "size": "approximately 23 fixtures, balanced by design",
+      "composition": {
+        "STOP": 3, "HOLD_PENDING_VERIFICATION": 3, "CONTINUE_WITH_CONTROLS": 3, "CONTINUE_UNCHANGED": 3,
+        "safeOrNegatedControls": 2, "exactPropertyTraps": 2, "evidenceVersusPropertyTraps": 2,
+        "sequencingTraps": 2, "silenceAndCompletenessTraps": 3
+      },
+      "freshnessRule": "genuinely distinct scenarios. No §231 subject, industry, equipment, observation or property shape is reused, and the §231 outputs are not tuned against."
+    }
+  },
+
+  "hostedTests": {
+    "genuinelyNecessary": true,
+    "butNotYet": "provider calls remain unauthorized until the local deterministic work above is complete, per the §232 authorization. The purpose of the local work is to establish precisely what hosted uncertainty remains.",
+    "theOneQuestionHostedTestingMustAnswer": "can the model discriminate between the four postures on cases it has not seen, or does it collapse toward one of them?",
+    "whyAPairedDesign": "the §225 precedent: an instruction or contract change is only attributable if it is the single variable. A paired §210J-versus-§233 arm isolates it.",
+    "proposedShape": "12 fresh scenarios, 3 per posture, run on both arms = 24 first-pass calls. No verifier leg: the question is posture selection, not property review.",
+    "estimatedProviderCalls": 24,
+    "estimatedSpendUsd": 2.1487,
+    "worstCaseSpendUsd": 2.5041,
+    "unitCostBasis": "§231 CALL-LEDGER-231: first-pass mean USD 0.089530 over 30 calls, max USD 0.104338. No §221 or §227 constants imported.",
+    "requiresSeparateAuthorization": true
+  },
+
+  "protectedIdentity": {
+    "mustAnyOfThe29ProtectedModulesChange": "NO",
+    "reason": "the posture is added at the scripts/lib successor layer, the same layer that already owns unresolvedFactDeclarations and decisionWhileUnresolved, neither of which appears in any core production type.",
+    "whatDoesChange": "the protected SET is EXTENDED by the new successor modules, which is an addition to the protected list rather than a mutation of any protected module. The composite identity therefore changes by construction and must be recorded as a new baseline.",
+    "candidateBaseline": "a remediated candidate is a NEW baseline with a new digest. The §229 baseline 48db2a0f… is preserved immutable as the FAILED candidate, and §231 remains its acceptance record. Invariant 26.",
+    "reconstructionObligation": "the successor must be able to reconstruct the §210J base exactly, and a local test must assert it."
+  },
+
+  "successorAcceptanceStrategy": {
+    "hardRule": "§231 is spent evidence. It diagnoses; it may never become the acceptance cohort for the remediated successor. No iteration against these thirty cases.",
+    "stages": [
+      { "stage": 1, "name": "LOCAL", "providerCalls": 0, "establishes": "contract, projection and refusal correctness, and the reconstruction proof. Establishes nothing behavioural." },
+      { "stage": 2, "name": "PAIRED HOSTED DISCRIMINATION PROBE", "providerCalls": 24, "establishes": "whether posture selection discriminates across four postures with the contract as the single variable. Characterization only; not acceptance." },
+      { "stage": 3, "name": "PRODUCT-OWNER CAPABILITY DECISION ON CLUSTER B", "providerCalls": 0, "establishes": "whether exact property identity is carried as a contained v1.0 limitation at the human review boundary, as KR-1 already is, or whether a further capability investment is authorized. This decision belongs to the product owner and should be taken before any successor acceptance is designed, because it determines what the successor instrument is allowed to claim." },
+      { "stage": 4, "name": "FRESH SUCCESSOR ACCEPTANCE", "providerCalls": "to be planned", "requirements": [
+        "a genuinely fresh cohort, authored against the same case-family list",
+        "the authoring-independence limitation finally addressed if the product owner wants an acceptance that licenses more than capability evidence: cases authored by a competent safety professional who has not seen any provider output from this programme, reviewed by a second competent person",
+        "the frozen §230 scoring apparatus reused as the scoring apparatus rather than as the whole instrument, with the posture vocabulary mapping declared before freezing",
+        "preregistration before any provider call, per invariant 21"
+      ] }
+    ],
+    "whatWouldMakeThisRemediationFail": "if the paired probe shows the model collapses toward a single posture, the representation is adequate and the capability is not, and that is a product-owner capability decision rather than another engineering cycle."
+  }
+}

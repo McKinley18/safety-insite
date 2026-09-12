@@ -1,0 +1,130 @@
+{
+  "section": 203,
+  "title": "Successor Expert Boundary Hardening and Identity Safety",
+  "date": "2026-09-07",
+  "successorContractVersion": "hazlenz.expert.203-successor-boundary.v1",
+  "topology": {
+    "orchestrator": 1,
+    "specialistAgents": 6,
+    "sequencing": "A parallel E parallel F; B after A; C after B (declared serial handoff of expert-203-successor-binding.ts); D after B and C; orchestrator finalization last"
+  },
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "gitActions": "none (no commit, push, tag, branch, deploy)",
+  "customerActivation": "none; governed-binding stage remains REDACTED (Ruling 2 honored, verbatim mode NOT activated)",
+  "adjudication": {
+    "totalWorksheetSlots": 152,
+    "productOwnerAnswerableSemanticVerdicts": 120,
+    "productOwnerVerdictsSupplied": 0,
+    "note": "Ruling 6 preserved; no agent supplied, simulated, or partially filled any verdict; the incorrect 128 denominator was not reintroduced; section 200 unmodified"
+  },
+  "rulingsCompliance": {
+    "ruling1_187HashesFrozen": "PASS - zero pinned files modified; successor development contract created with new version identity, own source manifest, own integrity gate, own test evidence; historical behavior reproducible byte-for-byte (7/7 ancestor pins byte-identical)",
+    "ruling2_verbatimExposureNotAuthorized": "PASS - governed stage untouched and REDACTED; no regex accumulation on CITATION_SHAPED_PATTERN",
+    "ruling3_abf5FailClosed": "PASS - FACT_IDENTITY_COLLISION implemented at successor admission boundary; 63/63; frozen-vs-successor differential recorded; identity-construction revision analysis returned separately",
+    "ruling4_closedObjectContracts": "PASS with recorded caveat - additionalProperties:false at every object node of every successor model-facing schema, runtime parse enforces unknown-key rejection, 107 adversarial cases; value-shape closure partial on binding path (RT203-2/3/4, no authority acquired)",
+    "ruling5_priorityAuthority": "PASS - successor nomination contract carries no provider priority field; deterministic priority preserved; urgencyNomination is non-authoritative, vocabulary-checked, maps to no priority or escalation state; verified from five attack directions",
+    "ruling6_adjudicationDenominator": "PASS - 152/120/0 preserved, section 200 unmodified",
+    "ruling7_effectiveGrammarIdentity": "PASS - section 201 prototype retired prospectively; canonical section 203 identity splits all three dangerous equivalences; 45/45; section 199 cohort partitions 10/2; SG-02 suppressed under the 203 key; proxy disclaimer carried as machine-readable data"
+  },
+  "guardIntegration": {
+    "ABF-1": { "GUARD_EXISTS": true, "GUARD_CALLED": true, "GUARD_REJECTS_ADVERSARIAL_INPUT": true },
+    "ABF-2": { "GUARD_EXISTS": true, "GUARD_CALLED": true, "GUARD_REJECTS_ADVERSARIAL_INPUT": true },
+    "ABF-3": { "GUARD_EXISTS": true, "GUARD_CALLED": true, "GUARD_REJECTS_ADVERSARIAL_INPUT": true },
+    "ABF-7": { "GUARD_EXISTS": true, "GUARD_CALLED": true, "GUARD_REJECTS_ADVERSARIAL_INPUT": true },
+    "ABF-8": { "GUARD_EXISTS": true, "GUARD_CALLED": true, "GUARD_REJECTS_ADVERSARIAL_INPUT": true },
+    "mechanism": "guards imported from expert-202-authority-boundary-guards.ts, never reimplemented; call sites live in the successor path only; the section 202 pure functions in the frozen path remain uncalled there by design"
+  },
+  "suitesExecutedByOrchestrator": {
+    "test:203-boundary-guards": "52/52",
+    "test:203-identity-collision": "63/63",
+    "test:203-grammar-identity": "45/45",
+    "test:203-schema-closure-redteam": "107/107 (5 EXPECTED-FINDING cases recorded, none weakened)",
+    "test:202-adjudication-grouping": "137/137",
+    "test:202-governed-binding-stage": "54/54",
+    "test:202-grammar-identity-and-cache": "80/80",
+    "test:202-authority-boundary-guards": "83/83",
+    "test:196-structured-owed-facts": "92/92",
+    "test:198-transport-remediation": "89/89",
+    "test:199-successor-protocol": "43/43",
+    "test:201-governed-binding-stage": "59/59",
+    "test:201-owed-property-representation": "59/59",
+    "test:201-verifier-vnext": "216/216",
+    "test:201-harness-hardening": "67/67",
+    "test:expert-verifier-v3-protocol": "49/49",
+    "test:expert-v3-development-integration": "40/40",
+    "test-expert-193-hardening": "46/46",
+    "test-expert-194-regulatory-basis": "48/48"
+  },
+  "newSection203Assertions": 267,
+  "typechecks": {
+    "SRC_TYPECHECK": "PASS (tsconfig.json, src/** only)",
+    "EXPERIMENT_SCOPE_TYPECHECK_203": "PASS (tsconfig.scripts-203.json, section 203 globs only)",
+    "EXPERIMENT_SCOPE_TYPECHECK_202": "PASS (tsconfig.scripts-202.json, 11 files)",
+    "note": "neither is repository-wide; backend/scripts carries the 181-diagnostic pre-existing baseline under the corrected historical measurement, unre-measured and unchanged by section 203"
+  },
+  "integrityGates": {
+    "verify:203-source-integrity": "PASS - 19 files, 0 successor drift, 0 ancestor drift (MANIFEST_ABSENT loud-failure behavior demonstrated pre-manifest by Agent A)",
+    "verify:203-text-integrity": "PASS - 0 raw NUL bytes across all section 203 files, byte-safe scan, not grep",
+    "preservation": "PASS - 2470/2470 baseline files byte-unchanged"
+  },
+  "redTeam": {
+    "objectsEnumerated": 6,
+    "attacksRun": 107,
+    "held": "unknown fields cannot acquire deterministic authority by surviving parsing, including through the declared G6 cast; Ruling 5 holds from five directions; no settlement channel on successor surface; AB203-5 delimiter-injection class closed in the 203 rejection key",
+    "findings": ["RT203-1 MEDIUM depth-8 fail-open truncation inherited from ABF-7 guard (defense-in-depth held)", "RT203-2/2b MEDIUM question value shape TYPE_ONLY, citation-bearing free content reaches development-only question surface", "RT203-3 LOW-MEDIUM BOUND-path affectedDecision unchecked", "RT203-4 LOW object-valued declarationId admitted", "RT203-5 LOW __proto__ schema key erased in grammar identity, not model-facing"]
+  },
+  "authorityBoundaryAudit": {
+    "newFindings": 11,
+    "byRank": { "HIGH": 2, "MED_HIGH": 1, "MEDIUM": 2, "LOW": 3, "INFORMATIONAL": 3 },
+    "critical": 0,
+    "demonstratedByExecution": 7,
+    "soundBoundariesRecorded": 8,
+    "top": ["AB203-1 normalization deep-scan silently stops at depth 8 and reports clean", "AB203-2 raw-provider-JSON boundary claim is TYPE_ONLY at the merge seam", "AB203-3 mintSettlementAuthority trust root is an unbranded plain object"]
+  },
+  "high1": "NOT REPAIRED (correct per instruction - not wholly inside any ruling). Exact section 202 facts preserved and carried forward for product-owner decision.",
+  "high2": "NOT REPAIRED (same basis). The compile-time-only clarification is preserved: consumeSettlementClaims never reads requestedBy, so the incompatibility is a compile-time barrier only; not promoted into a runtime-behavior claim.",
+  "filesCreated": {
+    "code": [
+      "backend/scripts/lib/expert-203-successor-identity.ts",
+      "backend/scripts/lib/expert-203-successor-projection.ts",
+      "backend/scripts/lib/expert-203-successor-binding.ts",
+      "backend/scripts/lib/expert-203-fact-identity-collision.ts",
+      "backend/scripts/lib/expert-203-effective-grammar-identity.ts",
+      "backend/scripts/generate-203-source-manifest.ts",
+      "backend/scripts/verify-203-source-integrity.ts",
+      "backend/scripts/verify-203-text-integrity.ts",
+      "backend/scripts/test-203-boundary-guards.ts",
+      "backend/scripts/test-203-identity-collision.ts",
+      "backend/scripts/test-203-grammar-identity.ts",
+      "backend/scripts/test-203-schema-closure-redteam.ts",
+      "backend/tsconfig.scripts-203.json"
+    ],
+    "evidence": [
+      "FILE-OWNERSHIP-MAP.md",
+      "SUCCESSOR-VERSION-ARCHITECTURE.md",
+      "GUARD-INTEGRATION-REPORT.md",
+      "IDENTITY-COLLISION-ARCHITECTURE.md",
+      "SCHEMA-CLOSURE-RED-TEAM.md",
+      "EFFECTIVE-GRAMMAR-IDENTITY-203.md",
+      "AUTHORITY-BOUNDARY-AUDIT-203.md",
+      "SUCCESSOR-SOURCE-MANIFEST.json",
+      "PRESERVATION-VERIFICATION.txt",
+      "RUN-SUMMARY.json",
+      "INTEGRATION-REPORT.md"
+    ]
+  },
+  "preExistingFilesModified": [
+    "backend/package.json (orchestrator only: nine section 203 script entries appended by targeted edit; prior bytes preserved)"
+  ],
+  "authorizationsRequiredNext": [
+    "Fact-identity construction revision (Agent C recommendation: HazLenz computes nomination identity, removing provider naming authority; interim option: shape + namespace validation of NominationPayload.factKey)",
+    "Disposition of AB203-1/AB203-2/AB203-3 (depth-8 fail-open normalization scan; TYPE_ONLY raw-JSON merge seam; unbranded settlement trust root) - all in frozen or pinned surfaces, outside section 203 authority",
+    "Disposition of RT203-1/2/3 value-shape closure on the successor binding path (successor files, but hardening beyond the five authorized guards)",
+    "HIGH-1: which owed-fact implementation is canonical (three separable questions preserved from section 202)",
+    "HIGH-2: whether the settlement consumer is meant to have a producer (four separable questions preserved)",
+    "Any promotion of successor modules into existing callers (migration path section 5 of SUCCESSOR-VERSION-ARCHITECTURE.md)",
+    "The 120 product-owner adjudication verdicts (U01 remains available)",
+    "Any provider call, including a hosted canary; the governed verbatim-evidence mode remains unauthorized"
+  ]
+}

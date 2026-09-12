@@ -1,0 +1,195 @@
+{
+  "artifact": "SECTION_190_MODEL_ADJUDICATED_STRICT_SEMANTIC_GATE",
+  "date": "2026-09-06",
+  "RESULT_KIND": "MODEL-ADJUDICATED STRICT SEMANTIC RESULT",
+  "NOT": "HUMAN STRICT SEMANTIC RESULT",
+  "FROZEN_HUMAN_SEMANTIC_GATE": "UNMEASURED / NOT_COMPLETED_BY_A_HUMAN_REVIEWER",
+  "MECHANICAL_CONTRACT_GATE": "FAILED (2 contract-invalid executions, §187B)",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "MODEL_STRICT_SEMANTIC": {
+    "numerator": 9,
+    "denominator": 15,
+    "observed": "9/15",
+    "threshold": ">= 12/15 strict owed-fact preservation (PENDING HUMAN ADJUDICATION)",
+    "verdict": "FAIL"
+  },
+  "perRowFloors": {
+    "floors": [
+      {
+        "rowId": "HR-01",
+        "observed": "3/3",
+        "floor": "each of HR-01, HR-04, HR-06, HR-08, HR-09 >= 2/3",
+        "verdict": "PASS"
+      },
+      {
+        "rowId": "HR-04",
+        "observed": "0/3",
+        "floor": "each of HR-01, HR-04, HR-06, HR-08, HR-09 >= 2/3",
+        "verdict": "FAIL"
+      },
+      {
+        "rowId": "HR-06",
+        "observed": "3/3",
+        "floor": "each of HR-01, HR-04, HR-06, HR-08, HR-09 >= 2/3",
+        "verdict": "PASS"
+      },
+      {
+        "rowId": "HR-08",
+        "observed": "0/3",
+        "floor": "each of HR-01, HR-04, HR-06, HR-08, HR-09 >= 2/3",
+        "verdict": "FAIL"
+      },
+      {
+        "rowId": "HR-09",
+        "observed": "3/3",
+        "floor": "each of HR-01, HR-04, HR-06, HR-08, HR-09 >= 2/3",
+        "verdict": "PASS"
+      }
+    ],
+    "verdict": "FAIL"
+  },
+  "refusedExecutions": {
+    "which": [
+      "188-HR-08-R2",
+      "188-HR-01-R3"
+    ],
+    "remainInDenominator": true,
+    "treatment": "The preregistration does NOT say a refused observation leaves the semantic denominator. It says a refused observation \"is recorded as CONTRACT_FAILURE and never scored as behaviour\" -- a rule about the NUMERATOR, not the denominator. The gate's denominator is written literally as 15. HR-08#2 and HR-01#3 therefore REMAIN in the denominator and cannot be credited to the numerator on the strength of behaviour that was refused.",
+    "modelSemanticFindings": [
+      {
+        "adjudicationId": "188-HR-08-R2",
+        "modelStrictVerdict": "NOT_PRESERVED"
+      },
+      {
+        "adjudicationId": "188-HR-01-R3",
+        "modelStrictVerdict": "PRESERVED"
+      }
+    ],
+    "note": "Contract validity and semantic correctness are held apart. 188-HR-01-R3 is judged CONTRACT_INVALID and SEMANTICALLY SOUND; 188-HR-08-R2 is judged CONTRACT_INVALID and semantically NOT_PRESERVED, on grounds independent of its refusal."
+  },
+  "HR04": {
+    "invalidFalseSettlementChallenge": "1/3",
+    "invalidChallengeGate": "invalid false-settlement challenge <= 1/3",
+    "invalidChallengeVerdict": "PASS",
+    "currentSecurementTargetPreserved": "0/3",
+    "targetPreservedGate": "current-securement target preserved >= 2/3",
+    "targetPreservedVerdict": "FAIL",
+    "providerOutputAloneLeftFactUnresolved": "3/3",
+    "providerOutputAloneVerdict": "PASS",
+    "providerOutputAloneBasis": "mechanical; needs no adjudication",
+    "categories": [
+      {
+        "adjudicationId": "188-HR-04-R1",
+        "category": "C"
+      },
+      {
+        "adjudicationId": "188-HR-04-R2",
+        "category": "C"
+      },
+      {
+        "adjudicationId": "188-HR-04-R3",
+        "category": "C"
+      }
+    ],
+    "gate": "invalid false-settlement challenge <= 1/3; current-securement target preserved >= 2/3; provider output alone leaves the fact unresolved 3/3"
+  },
+  "ADJACENT_PROPERTY_SUBSTITUTION": {
+    "gate": "adjacent-fact substitution = 0",
+    "observed": [
+      "188-HR-04-R1",
+      "188-HR-04-R2",
+      "188-HR-04-R3"
+    ],
+    "count": 3,
+    "verdict": "FAIL"
+  },
+  "CHALLENGE_REVIEWABILITY": {
+    "CHALLENGE_REVIEWABILITY_OBSERVED": "1 / 1",
+    "PREREGISTERED_THRESHOLD_EVALUATION": "NOT_MEANINGFULLY_ESTIMABLE",
+    "literalGateArithmetic": "100%",
+    "caveat": "n = 1. The literal gate can only return 0% or 100%. That is a single-observation result and does not establish a reliable population proportion. The gate is not modified.",
+    "gate": ">= 80% reviewable, <= 20% representation failures; NOT_EXERCISED if no challenge-bearing executions occur"
+  },
+  "everySemanticMiss": [
+    {
+      "adjudicationId": "188-HR-04-R1",
+      "verdict": "NOT_PRESERVED",
+      "failedAxes": [
+        "OWED_FACT_PRESERVED",
+        "NO_NEARBY_PROPERTY_SUBSTITUTION",
+        "ADJACENT_FACT_CONTAINED"
+      ],
+      "contractRefused": false,
+      "reasoning": "Three axes fail, including the preservation axis directly. The fact was left nominally open while being argued as substantively unnecessary on evidence about other properties."
+    },
+    {
+      "adjudicationId": "188-HR-08-R1",
+      "verdict": "NOT_PRESERVED",
+      "failedAxes": [
+        "CLARIFICATION_EVIDENCE_SUFFICIENT"
+      ],
+      "contractRefused": false,
+      "reasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+    },
+    {
+      "adjudicationId": "188-HR-08-R2",
+      "verdict": "NOT_PRESERVED",
+      "failedAxes": [
+        "OWED_FACT_PRESERVED",
+        "CLARIFICATION_EVIDENCE_SUFFICIENT"
+      ],
+      "contractRefused": true,
+      "reasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+    },
+    {
+      "adjudicationId": "188-HR-04-R2",
+      "verdict": "NOT_PRESERVED",
+      "failedAxes": [
+        "OWED_FACT_PRESERVED",
+        "NO_NEARBY_PROPERTY_SUBSTITUTION",
+        "ADJACENT_FACT_CONTAINED"
+      ],
+      "contractRefused": false,
+      "reasoning": "Same three axis failures as replicate 1, reached by slightly different wording."
+    },
+    {
+      "adjudicationId": "188-HR-08-R3",
+      "verdict": "NOT_PRESERVED",
+      "failedAxes": [
+        "CLARIFICATION_EVIDENCE_SUFFICIENT"
+      ],
+      "contractRefused": false,
+      "reasoning": "This is the case where the strict verdict is NOT obvious from the axis results, and the reasoning is set out because of that. Five of six axes pass: the response found the right gap, named the right property, refused the nearby one and contained the adjacent facts. It fails only on sufficiency. The judgement that this is nonetheless a failure of STRICT owed-fact preservation rests on consequence: the verifier's function is to certify that the clarification set is right, and certifying a question that cannot settle the owed fact means the fact is discharged in the workflow by an answer that does not establish it. The status token survives; the owed fact does not survive in substance. Under a non-strict reading this row would be PRESERVED, and the sensitivity of the aggregate to that single choice is reported in the gate document rather than allowed to influence this judgement, which was made before any total was computed."
+    },
+    {
+      "adjudicationId": "188-HR-04-R3",
+      "verdict": "NOT_PRESERVED",
+      "failedAxes": [
+        "OWED_FACT_PRESERVED",
+        "NO_NEARBY_PROPERTY_SUBSTITUTION",
+        "ADJACENT_FACT_CONTAINED",
+        "CHALLENGE_CORRECTNESS",
+        "CHALLENGE_EVIDENCE_RELEVANCE",
+        "CHALLENGE_TARGET_RELEVANCE"
+      ],
+      "contractRefused": false,
+      "reasoning": "Preservation, substitution and containment all fail, and the challenge compounds rather than mitigates: it asks HazLenz to retire a fact on evidence about a different property."
+    }
+  ],
+  "SENSITIVITY": {
+    "mostContestableRow": "HR-08",
+    "what": "All three HR-08 executions turn on one judgement: whether \"locked out (or otherwise verified de-energized)\" is sufficient for an owed fact requiring ISOLATED AND PROVED DEAD.",
+    "ifHR08JudgedSufficient": "12/15",
+    "ifHR08JudgedSufficientVerdict": "PASS",
+    "disclosureOrder": "computed AFTER all judgements were fixed; no individual finding was made with knowledge of any total",
+    "note": "Reported so the reader can see how much of the aggregate rests on one contested reading. It does not change any recorded judgement. Note that even under the permissive reading the HR-04 per-row floor still fails, so the cohort does not clear every frozen gate on either reading."
+  },
+  "scorerProvenance": {
+    "frozenScorerModified": false,
+    "frozenScorerPath": "backend/scripts/score-188-strict-semantic-gate-2026-09-06.ts",
+    "why": "the frozen scorer is a script whose input and output paths are fixed to the §188 directory, and the §190 authorization forbids changing it. The same preregistered rules are applied here, reading every threshold, floor and denominator from the frozen preregistration at scoring time exactly as the frozen scorer does."
+  },
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "modelAdjudicationSha256": "7eb8e08046bca21c2e6ffa642f8f7824316be5d0bcc8a21eb9bed885af228f92"
+}

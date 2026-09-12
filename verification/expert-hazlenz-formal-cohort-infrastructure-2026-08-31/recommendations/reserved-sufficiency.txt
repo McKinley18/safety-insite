@@ -1,0 +1,57 @@
+RESERVED-MATERIAL SUFFICIENCY -- METADATA ONLY, NO CONTENTS OPENED
+
+gauntlet.seed  rows = 100
+  fields: agency, equipmentContext, expectedCorrectiveActionTheme, expectedStandardFamily, industryContext, observation, primaryHazardFamily, reasoningExpectation, scenarioId, secondaryHazardFamilies, severityExpectation, sourceType, unacceptableStandardFamilies
+
+  TAXONOMY ALIGNMENT (via the accepted toExpertFamily map, unchanged by this phase)
+    primary AND every secondary map to the Expert taxonomy : 45
+      of those, severityExpectation = critical             : 19
+      of those, multi-hazard                               : 14
+    primary maps but a secondary does not                  : 8
+    primary does not map at all                            : 47
+    rows carrying an unacceptableStandardFamilies signal    : 100
+
+field realism pack v2  rows = 117
+  fields: employeeExposureKnown, equipmentInvolved, expectedTerms, forbiddenTerms, hazardObservation, id, industryContext, photosAvailable, shouldHaveMissingEvidence, siteType, taskContext, title
+
+  CLARIFICATION-OBLIGATION LABEL (shouldHaveMissingEvidence)
+    true (owes a question)      : 87
+    false (owes NO question)    : 2   <-- M10's denominator
+    unlabelled                  : 28
+
+  WHAT THE TRUTH KEY NEEDS, AGAINST WHAT THE METADATA CAN SUPPLY
+
+    ~ presentHazardFamilies
+        PARTIAL -- 45/100 gauntlet rows express fully in the Expert taxonomy
+    ~ forbiddenHazardFamilies
+        PARTIAL -- unacceptableStandardFamilies is present on 100/100 rows but names STANDARD families, not the Expert hazard taxonomy
+    ~ lifeCriticalHazardFamilies
+        PROXY ONLY -- severityExpectation=critical on 19 mappable rows; severity is not life-criticality
+    X defensibleHazardFamilies
+        no label exists. Without it the M02 partition is incomplete and every row is invalid
+    X decisionCriticalGaps
+        no gap-level label exists in either corpus. M09 needs the specific missing fact, not a boolean
+    X rows owing NO clarification
+        the realism pack labels only 2 rows false against a minimum of 14; the 28 unlabelled rows are UNKNOWN, not zero-owed
+    X recordedInteractions
+        no interaction label exists in either corpus
+    X governedStandards to supply
+        neither corpus carries governed records; supplying them is a separate selection
+
+  VOLUME
+    minimum defensible rows  : 48
+    preferred rows           : 60
+    gauntlet.seed fully-mappable rows : 45
+    realism pack rows                 : 117 (offsets 1 and 2 are a PORTION of this)
+    volume verdict           : SUFFICIENT for volume alone; gauntlet.seed ALONE is SHORT by 3 rows
+
+  DETERMINATION
+    RESERVED_MATERIAL_SUFFICIENT_WITHOUT_OPENING = FALSE
+    Volume is adequate and several labels map, but five truth-key fields have NO
+    corresponding label in either corpus. Authoring them requires READING each
+    observation, which IS opening the offset. Sufficiency of composition therefore
+    cannot be settled from metadata, and this script does not pretend otherwise.
+
+    RESERVED_MATERIAL_OPENED = FALSE   (no observation text was read or emitted)
+
+  CONTENT BOUNDARY: no field in CONTENT_FIELDS was emitted. Verified.

@@ -1,0 +1,141 @@
+{
+  "artifact": "SECTION_185_INTEGRITY",
+  "date": "2026-09-05",
+  "operation": "§185 — settled owed-fact fixture compatibility correction",
+  "terminal": "EXPERT_HAZLENZ_SETTLED_FIXTURE_COMPATIBILITY_CORRECTED — PROJECTION_FIREWALL_REVIEW_REQUIRED",
+  "terminalReason": "The structural correction succeeded and 21/21 proofs pass. The clean terminal was NOT declared, for two reasons recorded below: the settled-row projection finding is a material design question for the planned ten-row hosted validation, and §182 assertion P20c is left failing because this authorization forbids modifying it.",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "promptChanges": 0,
+  "schemaChanges": 0,
+  "governedRecordChanges": 0,
+  "frozenRowTextChanges": 0,
+  "section174TruthChanges": 0,
+  "section184TruthChanges": 0,
+  "productOwnerVerdictChanges": 0,
+  "statusesAdded": 0,
+  "providerDeclarationFieldsAdded": 0,
+  "sourceFilesModified": 3,
+  "sourceFilesModifiedList": [
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts",
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts",
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts"
+  ],
+  "sourceHashes": {
+    "note": "owed-facts/ is entirely untracked in git and no prior artifact pinned owed-fact-ledger.ts or verifier-v3-development-boundary.ts, so their PRE hashes were RECONSTRUCTED by inverting the recorded §185 edits rather than measured before the change. The method is validated: the same inversion reproduces owed-fact.types.ts at exactly the hash §184 recorded independently.",
+    "pre": {
+      "owed-fact.types.ts": "f77c7febb55a056271174c4efd4375506145344bd0748e5d56f93c698074c1d1",
+      "owed-fact.types.ts_source": "MEASURED -- recorded by §184 and re-verified before the edit",
+      "owed-fact-ledger.ts": "8b5ce40e33f54272082f121b06c84b618e933d76504eec39ec5f63f7c88d0486",
+      "owed-fact-ledger.ts_source": "RECONSTRUCTED by inverting the §185 edits",
+      "verifier-v3-development-boundary.ts": "e9b20d034dd91e7a37df6bc129367ef255ae5d4ae652ede90c0dcb5efa9645fc",
+      "verifier-v3-development-boundary.ts_source": "RECONSTRUCTED by inverting the §185 edits"
+    },
+    "post": {
+      "owed-fact.types.ts": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+      "owed-fact-ledger.ts": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+      "verifier-v3-development-boundary.ts": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245"
+    },
+    "unchanged": {
+      "owed-fact-binding.ts": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+      "settlement-review.ts": "1c300ff178638b11c677aef1091f777a7a4e3ae71e5137383013105863891bd2",
+      "expert-prompt.ts": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694"
+    }
+  },
+  "proofs": {
+    "total": 21,
+    "passed": 21,
+    "allPass": true
+  },
+  "SETTLED_FIXTURE_TYPE_MISMATCH": false,
+  "TEN_ROW_FIXTURE_STRUCTURALLY_REPRESENTABLE": "10 / 10",
+  "FALSE_UNCERTAINTY_TEXT_MANUFACTURED": 0,
+  "behaviouralChange": {
+    "what": "transition() nulls whyUnresolved when a fact leaves UNRESOLVED, and preserves the prior sentence verbatim on the transition record as whyUnresolvedAtTransition.",
+    "why": "Without it the system would emit a state its own validator refuses. Without the preservation half it would destroy the evidence that the fact was ever unresolved and why.",
+    "scope": "the only place §185 goes beyond pure representation"
+  },
+  "regression": {
+    "typescriptCompilation": "PASS",
+    "passing": [
+      "test:expert-v3-development-integration 40/40",
+      "test:expert-verifier-v3-protocol 49/49",
+      "test:expert-bounded-reliability 44/44",
+      "test:expert-contract-foundation",
+      "test:expert-routing-contract",
+      "a0-settlement-replay-2026-09-05",
+      "test:governed-acceptable-evidence",
+      "preflight:binding-falsification-v3"
+    ],
+    "failing": [
+      {
+        "suite": "backend/scripts/test-settlement-review-integration-2026-09-05.ts",
+        "assertion": "P20c no existing owed-facts module was modified",
+        "classification": "STALE_SCOPE_ASSERTION — correct and correctly failing",
+        "analysis": "a §182-scoped immutability pin on owed-fact.types.ts (f77c7feb...) detecting a real, authorized, later §185 change it predates. Its owed-fact-binding.ts half still passes, that file being unmodified.",
+        "actionTaken": "NONE. Updating the pinned hash would relax a protected gate to obtain a pass; adding a §185 phase would modify §182 evidence, which this authorization forbids.",
+        "decisionRequired": "product owner: authorize a phase-aware update to the §182 assertion, or accept it as a permanent record that §185 changed the file."
+      }
+    ]
+  },
+  "staleHashPinsElsewhere": {
+    "note": "four evidence artifacts also carry the pre-§185 owed-fact.types.ts hash. None was altered: each remains a true statement about its own slice.",
+    "artifacts": [
+      "verification/expert-hazlenz-owed-fact-truth-2026-09-05/SECTION-184-INTEGRITY.json",
+      "verification/expert-hazlenz-settlement-behavior-validation-2026-09-05/SECTION-183-INTEGRITY.json",
+      "verification/expert-hazlenz-verifier-v3-bounded-development-integration-2026-09-05/INTEGRATION-SUMMARY.json",
+      "docs/INSITE_CURRENT_STATE.json"
+    ]
+  },
+  "projectionObservation": {
+    "fieldsAdded": 0,
+    "fieldsRemoved": 0,
+    "firewallRedesigned": false,
+    "projectedFields": [
+      "factKey",
+      "affectedDecision",
+      "whyUnresolved",
+      "branchA",
+      "branchB",
+      "decisionDivergence",
+      "evidenceSpan",
+      "acceptableEvidence"
+    ],
+    "factStatementProjected": false,
+    "targetDecisionProjected": false,
+    "settledRowsProjectWhyUnresolved": null,
+    "materialFindingForSection183": "projectOwedFactsForVerifier filters to unresolvedFacts(), so a settled row's ledger projects ZERO facts. The five settled controls are representable but invisible to a provider through the standard projection function. Anything §183 intends to measure as containment on those rows would be satisfied by the projection filter rather than by model behaviour. Settle before spending a hosted cohort.",
+    "openGapsObservedNotFixed": [
+      "PROJECTION-FIREWALL.json enforcementStatus remains DECLARATIVE",
+      "factStatement and targetDecision remain unclassified by the firewall; both measured ABSENT from the actual payload",
+      "owedFact() accepts a terminal status directly, so a fact can be constructed settled without a transition record. Pre-existing, unchanged, and required by the §184 settled controls."
+    ]
+  },
+  "CLAIM_BOUNDARY": {
+    "established": [
+      "The existing inactive owed-fact architecture can now represent both product-owner-reviewed unresolved and settled facts without manufacturing false whyUnresolved text.",
+      "The full ten-row §184 development truth cohort is structurally representable for future inactive settlement behavior validation."
+    ],
+    "mustNotClaim": [
+      "§183 passed",
+      "HazLenz behavior improved",
+      "HR-04 fixed",
+      "settlement claim quality validated",
+      "human reviewability validated",
+      "governed evidence is sufficient",
+      "automated semantic settlement",
+      "customer readiness",
+      "production readiness",
+      "formal acceptance"
+    ]
+  },
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED",
+    "verifierV3CustomerActivation": "NOT PERFORMED",
+    "section183Executed": false
+  }
+}

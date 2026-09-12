@@ -1,0 +1,504 @@
+{
+ "perCall": [
+  {
+   "rowId": "HS-A1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18200,
+      "outputTokens": 473,
+      "costUsd": 0.04113,
+      "latencyMs": 17893,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17895,
+   "costUsd": 0.04113,
+   "inputTokens": 18200,
+   "outputTokens": 473,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [
+    {
+     "code": "CANDIDATE_MALFORMED",
+     "collection": "expertHazardCandidates",
+     "index": 0,
+     "detail": "expertHazardCandidates[0]"
+    }
+   ],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-B1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18194,
+      "outputTokens": 2261,
+      "costUsd": 0.058997999999999995,
+      "latencyMs": 28448,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 28449,
+   "costUsd": 0.058997999999999995,
+   "inputTokens": 18194,
+   "outputTokens": 2261,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-C1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18205,
+      "outputTokens": 1238,
+      "costUsd": 0.04879,
+      "latencyMs": 17763,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17764,
+   "costUsd": 0.04879,
+   "inputTokens": 18205,
+   "outputTokens": 1238,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-D1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18446,
+      "outputTokens": 1969,
+      "costUsd": 0.056582,
+      "latencyMs": 28301,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 28301,
+   "costUsd": 0.056582,
+   "inputTokens": 18446,
+   "outputTokens": 1969,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-E1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18836,
+      "outputTokens": 1112,
+      "costUsd": 0.048791999999999995,
+      "latencyMs": 16373,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 16374,
+   "costUsd": 0.048791999999999995,
+   "inputTokens": 18836,
+   "outputTokens": 1112,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-F1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18254,
+      "outputTokens": 2363,
+      "costUsd": 0.060138,
+      "latencyMs": 28314,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 28315,
+   "costUsd": 0.060138,
+   "inputTokens": 18254,
+   "outputTokens": 2363,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-G1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18236,
+      "outputTokens": 2215,
+      "costUsd": 0.058621999999999994,
+      "latencyMs": 27155,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 27156,
+   "costUsd": 0.058621999999999994,
+   "inputTokens": 18236,
+   "outputTokens": 2215,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-H1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18237,
+      "outputTokens": 1355,
+      "costUsd": 0.050024,
+      "latencyMs": 17761,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17761,
+   "costUsd": 0.050024,
+   "inputTokens": 18237,
+   "outputTokens": 1355,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-J1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18249,
+      "outputTokens": 1479,
+      "costUsd": 0.051288,
+      "latencyMs": 19075,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 19076,
+   "costUsd": 0.051288,
+   "inputTokens": 18249,
+   "outputTokens": 1479,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [
+    {
+     "code": "CANDIDATE_MALFORMED",
+     "collection": "expertHazardCandidates",
+     "index": 2,
+     "detail": "expertHazardCandidates[2]"
+    }
+   ],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-K1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18227,
+      "outputTokens": 2325,
+      "costUsd": 0.059704,
+      "latencyMs": 38229,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 38229,
+   "costUsd": 0.059704,
+   "inputTokens": 18227,
+   "outputTokens": 2325,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [
+    {
+     "code": "EXPLANATION_MALFORMED",
+     "collection": "expertExplanation",
+     "detail": "expertExplanation"
+    }
+   ],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-L1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18241,
+      "outputTokens": 1476,
+      "costUsd": 0.051242,
+      "latencyMs": 19200,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 19200,
+   "costUsd": 0.051242,
+   "inputTokens": 18241,
+   "outputTokens": 1476,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-M1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18485,
+      "outputTokens": 1654,
+      "costUsd": 0.05351,
+      "latencyMs": 22001,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 22001,
+   "costUsd": 0.05351,
+   "inputTokens": 18485,
+   "outputTokens": 1654,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-N1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18202,
+      "outputTokens": 820,
+      "costUsd": 0.044604,
+      "latencyMs": 13200,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 13200,
+   "costUsd": 0.044604,
+   "inputTokens": 18202,
+   "outputTokens": 820,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-P1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18225,
+      "outputTokens": 1092,
+      "costUsd": 0.04737,
+      "latencyMs": 17122,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 17122,
+   "costUsd": 0.04737,
+   "inputTokens": 18225,
+   "outputTokens": 1092,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-Q1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18241,
+      "outputTokens": 1309,
+      "costUsd": 0.049572000000000005,
+      "latencyMs": 16753,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 16753,
+   "costUsd": 0.049572000000000005,
+   "inputTokens": 18241,
+   "outputTokens": 1309,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  },
+  {
+   "rowId": "HS-R1",
+   "layerStatus": "PRESENT",
+   "attempts": [
+    {
+     "attemptIndex": 0,
+     "isRetry": false,
+     "ok": true,
+     "failureKind": null,
+     "detail": null,
+     "modelIdentity": "claude-sonnet-5",
+     "causedRetry": null,
+     "usage": {
+      "inputTokens": 18210,
+      "outputTokens": 1108,
+      "costUsd": 0.0475,
+      "latencyMs": 14900,
+      "httpStatus": 200,
+      "modelIdentity": "claude-sonnet-5"
+     }
+    }
+   ],
+   "latencyMs": 14901,
+   "costUsd": 0.0475,
+   "inputTokens": 18210,
+   "outputTokens": 1108,
+   "modelIdentity": "claude-sonnet-5",
+   "issues": [],
+   "retrySuppressed": null
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+  "//": "SECTION 207 EXPERIMENT SCOPE ONLY. This configuration typechecks the §207 fresh-cohort preregistration files and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. `tsc -p tsconfig.json` covers src/** only; `scripts/**` under the project's own compiler options carries pre-existing diagnostics across unrelated legacy files. Report results as EXPERIMENT_SCOPE_TYPECHECK (§207), never as `tsc clean`. Every include glob is §207-namespaced, so no pre-existing file enters the scope; the §205 modules §207 imports are pulled in as dependencies and were already clean under tsconfig.scripts-205.json.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-207-*.ts",
+    "scripts/test-207-*.ts",
+    "scripts/freeze-207-preregistration.ts",
+    "scripts/render-207-artifacts.ts"
+  ]
+}

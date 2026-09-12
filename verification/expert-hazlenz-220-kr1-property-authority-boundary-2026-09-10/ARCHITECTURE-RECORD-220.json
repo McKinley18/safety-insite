@@ -1,0 +1,658 @@
+{
+  "artifact": "SECTION-220-KR1-PROPERTY-AUTHORITY-BOUNDARY-AND-INTEGRATED-GATE-DESIGN",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false,
+  "customerActivation": false,
+  "kr1": {
+    "status": "OPEN — HUMAN-GATED V1.0 LIMITATION",
+    "providerCapabilityRemediated": false,
+    "autonomousPropertyIdentificationValidated": false,
+    "fixed": false,
+    "closed": false
+  },
+  "componentStatus": {
+    "firstPass": "DEVELOPMENT FROZEN",
+    "verifier": "STANDALONE DEVELOPMENT COMPLETE WITH KNOWN SEMANTIC CAPABILITY LIMIT",
+    "kr1": "OPEN — HUMAN-GATED V1.0 LIMITATION",
+    "expertHazlenz": "NOT YET ACCEPTED",
+    "nextValidationLevel": "INTEGRATED SYSTEM"
+  },
+  "architecture": {
+    "contractVersion": "hazlenz.expert.kr1-property-authority.v1",
+    "settlementReviewVersion": "hazlenz.expert.settlement-review.v1",
+    "providerPropertyAuthority": "NEVER",
+    "providerSettlementAuthority": "NEVER",
+    "authorityStates": [
+      "NOT_REQUIRED",
+      "REQUIRED_NOT_OBTAINED",
+      "CONFIRMED",
+      "CORRECTED",
+      "DECLINED_KEEP_UNRESOLVED"
+    ],
+    "settlementPermittingStates": [
+      "NOT_REQUIRED",
+      "CONFIRMED"
+    ],
+    "reviewerDecisions": [
+      "CONFIRM_PROPERTY",
+      "CORRECT_PROPERTY",
+      "KEEP_UNRESOLVED"
+    ],
+    "applicationRefusalCodes": [
+      "AUTHORITY_NOT_FOR_THIS_CLAIM",
+      "AUTHORITY_NOT_FOR_THIS_FACT",
+      "AUTHORITY_EVIDENCE_DIGEST_MISMATCH",
+      "CLAIM_ALREADY_APPLIED",
+      "FACT_NOT_IN_LEDGER",
+      "FACT_NOT_UNRESOLVED",
+      "LEDGER_MOVED_SINCE_CLAIM",
+      "PROPERTY_AUTHORITY_NOT_OBTAINED"
+    ],
+    "attachRefusalCodes": [
+      "PROPERTY_AUTHORITY_NOT_FOR_THIS_FACT",
+      "PROPERTY_AUTHORITY_NOT_REQUIRED_FOR_THIS_CLAIM"
+    ],
+    "transitionCoverage": [
+      {
+        "to": "COVERED",
+        "authority": "ADMITTED_BINDING",
+        "gatedBy220": false,
+        "reason": "binding a clarification asks the question; it does not answer it. The hold stands and nothing is released, so gating it would make analysis manual for no safety gain."
+      },
+      {
+        "to": "SETTLED_BY_EVIDENCE",
+        "authority": "ADMISSIBLE_EVIDENCE",
+        "gatedBy220": true,
+        "reason": "this is where a wrong property retires a right question. The prerequisite is enforced in settleByReviewedEvidence."
+      },
+      {
+        "to": "REJECTED_BY_ARBITRATION",
+        "authority": "RECORDED_ARBITRATION",
+        "gatedBy220": false,
+        "reason": "NO RUNTIME PRODUCER EXISTS anywhere in this codebase. Recorded rather than gated a future producer must apply mayBeSettledUnderPropertyAuthority before transitioning."
+      }
+    ],
+    "effect": {
+      "providerCalls": 0,
+      "databaseOperations": 0,
+      "readsThePropertyTextForMeaning": false,
+      "usesAKeywordList": false,
+      "infersSemanticRole": false,
+      "classifiesEvidenceVersusState": false,
+      "gatesAnalysis": false,
+      "gatesClarificationBinding": false,
+      "blocksAPropertyForItsVocabulary": false,
+      "weakensAnyExistingFailClosedBehaviour": false
+    },
+    "failClosedEffect": {
+      "unresolvedTruthRemainsOpen": true,
+      "decisionWhileUnresolvedRemainsAuthoritative": true,
+      "workReleaseImplied": false,
+      "automaticSatisfactorySettlement": false,
+      "automaticAdverseSettlement": false,
+      "canonicalFactDeleted": false,
+      "clarificationChanged": false,
+      "providerClassificationRepaired": false
+    }
+  },
+  "scoping": {
+    "triggerSourcesEvaluated": [
+      {
+        "signal": "propertyReview.propertySemanticRole",
+        "usedAsTrigger": false,
+        "reason": "§219 A1 (the mistake) and A3 (the right answer) both returned REQUIRED_ACT_ITSELF. The field does not separate them, and reading it as a risk signal would gate every legitimate required act while still missing a mistake declared UNDERLYING_SAFETY_STATE."
+      },
+      {
+        "signal": "propertyReview.propertyValidity",
+        "usedAsTrigger": false,
+        "reason": "A1 and A3 both returned VALID. Same reason."
+      },
+      {
+        "signal": "verifier challenge / concern structures",
+        "usedAsTrigger": false,
+        "reason": "A1 emitted none. A challenge indicates the verifier NOTICED a property problem, so it marks the cases already handled and is silent on the ones that matter."
+      },
+      {
+        "signal": "verifier ABSTAIN and deterministic refusal states",
+        "usedAsTrigger": false,
+        "reason": "these are already fail-closed and already keep the fact unresolved. §219 A2 is the worked example: the §218 layer refused the whole output, so nothing reached the ledger and no new gate was needed. Adding one here would duplicate an existing containment."
+      },
+      {
+        "signal": "the property text itself",
+        "usedAsTrigger": false,
+        "reason": "FORBIDDEN. Deciding from words like test, certificate, inspection, measurement or record is the keyword classifier this architecture has refused since §160, and it is exactly what the §220 authorization prohibits."
+      },
+      {
+        "signal": "OwedFact.source / OwedFact.modelAuthored",
+        "usedAsTrigger": true,
+        "reason": "PROVENANCE, not semantics. It answers \"was this property identity established by authoritative supplied context, or by provider analysis alone\" -- which is the exact condition the containment boundary is written against. It is already derived by rule, already invariant-checked, and reading it involves no judgement about what the property means."
+      },
+      {
+        "signal": "the transition being attempted",
+        "usedAsTrigger": true,
+        "reason": "the boundary applies at SETTLEMENT and nowhere else, because settlement is the only place a wrong property retires a right question. Analysis, clarification binding and the COVERED transition are untouched."
+      }
+    ],
+    "triggersUsed": [
+      "OwedFact.source / OwedFact.modelAuthored",
+      "the transition being attempted"
+    ],
+    "limitation": {
+      "canDeterministicallyIdentifyKr1RiskyFacts": false,
+      "why": "§219 A1 and A3 produced identical structured verifier signatures. Separating them requires reading what the property means, which is the boundary this architecture does not cross.",
+      "consequence": "the requirement is scoped by provenance and by transition, so it applies to every model-authored property at settlement rather than to a semantically selected subset.",
+      "whatThisCosts": "a settlement of a model-authored fact carries one additional recorded human confirmation. Settlement already required a human, so no analysis becomes manual and no property is blocked for its vocabulary.",
+      "whatThisDoesNotDo": "it does not make the reviewer right. It converts an autonomous provider property decision into a human-authorized one, and a reviewer who confirms a wrong property has exercised real authority to do so. That residual is reported, not hidden."
+    },
+    "deterministicSemanticInferenceUsed": false,
+    "globalHumanGateOnAllAnalysis": false,
+    "additionalProviderLayerAdded": false,
+    "failClosedBehaviourWeakened": false
+  },
+  "filesChanged": {
+    "added": [
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts",
+        "sha256": "fb10ef7052ad35756995876969e85b117a9b3c70b311f893df41c3657205658c"
+      }
+    ],
+    "modified": [
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts",
+        "sha256": "7f8b51b5aa4e4b22694d6068944ab1072d97393613b10d2f45efef12a2b0dcbf",
+        "change": "ADDITIVE — SettlementClaim gains two provenance-derived fields, attachPropertyAuthority and recordPropertyAuthorityDeclined are added, and settleByReviewedEvidence gains one refusal code. No existing behaviour is removed and no existing refusal is weakened."
+      }
+    ],
+    "unmodifiedOwedFactModules": [
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts",
+        "sha256": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a"
+      },
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts",
+        "sha256": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0"
+      },
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts",
+        "sha256": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701"
+      },
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-observability.ts",
+        "sha256": "2e3caf677a71aee94eda293b6f5c8ca70b42ad3472748188a6cc7362258e9dd3"
+      },
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/structural-questions.ts",
+        "sha256": "cb6faef78455a693309a198b0378c606d9b812e1140e568b7995f9768aaf0519"
+      },
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts",
+        "sha256": "206895009d8b7e80d1f381e2dbb6fa26d5de02e2e1f8f862debac3800b86ff32"
+      },
+      {
+        "path": "backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts",
+        "sha256": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245"
+      }
+    ]
+  },
+  "section219EvidenceUnchanged": {
+    "preregistrationSha256": "491bf18a1094c99c22a80719001c207c7d72e92c1f547086284b3331d5918d56",
+    "expected": "491bf18a1094c99c22a80719001c207c7d72e92c1f547086284b3331d5918d56",
+    "rawVerifierSha256": "070fff9b97a07a8dc3121d4091a14286d898bf6e95969e8e8c2306f4841e14ee",
+    "adjudicationSha256": "7fa555421eddcad33b5e8ed1fa9dba7b3780542b03d31ed690254e1ec64d8844",
+    "reclassified": false
+  },
+  "integratedGateDesign": {
+    "version": "hazlenz.expert.220.integrated-gate-design.v1",
+    "authorizedToExecute": false,
+    "observationsAuthoredHere": false,
+    "frozenForExecution": false,
+    "caseCount": 10,
+    "familyCount": 12,
+    "familiesCovered": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "familiesUncovered": [],
+    "cases": [
+      {
+        "caseId": "IG1",
+        "families": [
+          1
+        ],
+        "mechanism": "ordinary recognizable hazard, straightforward analysis",
+        "mustSupply": "a hazard the deterministic engine recognises, with one clean decision-critical gap and no trap of any kind",
+        "requiredSystemOutcome": "the hazard is identified, one owed fact is raised with partitioning branches and divergent decisions, the clarification binds, and the unresolved state is accurate. Nothing is settled autonomously.",
+        "stressesStages": [
+          "first pass",
+          "deterministic projection",
+          "unresolved-fact state"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG1",
+          "IG-HG2"
+        ],
+        "humanJudgments": 5,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG2",
+        "families": [
+          2,
+          12
+        ],
+        "mechanism": "two genuinely independent decision-critical gaps, one of which settles ADVERSE",
+        "mustSupply": "two unrelated hazards in one observation whose facts cannot substitute for each other, plus an answer to one of them that establishes the adverse branch",
+        "requiredSystemOutcome": "BOTH facts survive to the ledger and neither displaces the other. The adverse settlement moves exactly one fact, the hold implied by the adverse branch is authoritative, and the second fact remains open and visible.",
+        "stressesStages": [
+          "unresolved-fact state",
+          "deterministic verifier containment",
+          "authorized settlement path"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 2,
+        "hardGatesExercised": [
+          "IG-HG1",
+          "IG-HG9",
+          "IG-HG12",
+          "IG-HG10"
+        ],
+        "humanJudgments": 11,
+        "whyCombined": "family 12 needs a fact worth settling adversely, and a two-gap case is where an adverse settlement can also be checked for not silently taking the sibling with it"
+      },
+      {
+        "caseId": "IG3",
+        "families": [
+          3
+        ],
+        "mechanism": "KR-1 evidence proxy for a latent physical state — the §219 A1 shape, new setting",
+        "mustSupply": "a test, measurement or check that is the customary and required means of proof for a physical condition that can independently be satisfactory or adverse",
+        "requiredSystemOutcome": "WHATEVER THE PROVIDER DOES, the underlying condition is not released. If the verifier classifies correctly the fact is challenged and stays open. If it repeats the A1 mistake, the §220 property-authority prerequisite refuses settlement and a human must confirm or correct the property first.",
+        "stressesStages": [
+          "structured verifier",
+          "property-authority state",
+          "human review state"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG5",
+          "IG-HG4",
+          "IG-HG2",
+          "IG-HG11"
+        ],
+        "humanJudgments": 10,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG4",
+        "families": [
+          4,
+          11
+        ],
+        "mechanism": "legitimate required act, carried through to a SATISFACTORY human settlement",
+        "mustSupply": "an act whose performance is itself the requirement with no separate condition underneath, plus an answer establishing that it was performed",
+        "requiredSystemOutcome": "the property is left intact through every layer, the reviewer confirms the property, the evidence is approved separately, and the fact settles satisfactorily. Property confirmation and fact settlement are visibly two decisions.",
+        "stressesStages": [
+          "structured verifier",
+          "property-authority state",
+          "authorized settlement path"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG3",
+          "IG-HG6",
+          "IG-HG11"
+        ],
+        "humanJudgments": 9,
+        "whyCombined": "family 11 needs a property that legitimately CAN settle, which is exactly what a genuine required act is"
+      },
+      {
+        "caseId": "IG5",
+        "families": [
+          5
+        ],
+        "mechanism": "legitimate required artifact — the control against \"all documents are evidence\"",
+        "mustSupply": "a document whose existence, status or possession is itself the substantive requirement, in a case that also contains a record that is merely evidence",
+        "requiredSystemOutcome": "the artifact property is left intact and the evidential record is not confused with it. Neither is settled autonomously.",
+        "stressesStages": [
+          "first pass",
+          "structured verifier",
+          "deterministic verifier containment"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG3",
+          "IG-HG6"
+        ],
+        "humanJudgments": 7,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG6",
+        "families": [
+          6
+        ],
+        "mechanism": "insufficient evidence — the answer is that nothing can responsibly be concluded",
+        "mustSupply": "an observation thin enough that a confident analysis would have to invent, with a real safety question visible in it",
+        "requiredSystemOutcome": "the system holds the fact open, states truthfully why, and asserts neither the safe nor the adverse branch. Absence of evidence is not converted into evidence of the adverse state anywhere in the path.",
+        "stressesStages": [
+          "first pass",
+          "deterministic projection",
+          "unresolved-fact state"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG9",
+          "IG-HG1"
+        ],
+        "humanJudgments": 6,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG7",
+        "families": [
+          7
+        ],
+        "mechanism": "neighbouring property temptation — an adjacent proposition that is nearly right",
+        "mustSupply": "a property one step to the side of the controlling one, salient and plausible, where settling the neighbour would leave the real question untouched",
+        "requiredSystemOutcome": "the wrong property is not authoritatively settled. Either the verifier challenges it as ADJACENT_PROPERTY_SUBSTITUTED, or the property-authority prerequisite holds it until a human decides.",
+        "stressesStages": [
+          "structured verifier",
+          "property-authority state"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG4",
+          "IG-HG5",
+          "IG-HG11"
+        ],
+        "humanJudgments": 8,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG8",
+        "families": [
+          8
+        ],
+        "mechanism": "governed OSHA/MSHA regulatory grounding",
+        "mustSupply": "an observation whose analysis genuinely depends on a governed record the registry actually holds, plus an adjacent requirement it does NOT hold",
+        "requiredSystemOutcome": "governed authority is cited only where it exists and is never invented or overstated. Where the registry is silent the system says so rather than filling the gap. A fact grounded in governed evidence is NOT_REQUIRED for property authority, and the gate checks that this exemption is earned rather than assumed.",
+        "stressesStages": [
+          "deterministic projection",
+          "property-authority state"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG8",
+          "IG-HG11"
+        ],
+        "humanJudgments": 8,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG9",
+        "families": [
+          9
+        ],
+        "mechanism": "negated / actually-safe condition — HazLenz must not manufacture a hazard",
+        "mustSupply": "an observation stating positively that the control is present and effective, with enough hazard vocabulary around it to tempt a finding",
+        "requiredSystemOutcome": "no hazard is manufactured, no owed fact is invented, and no question is asked whose only purpose is to have asked one. An empty owed set is the right answer and must be representable as such.",
+        "stressesStages": [
+          "first pass",
+          "deterministic projection"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 1,
+        "hardGatesExercised": [
+          "IG-HG9"
+        ],
+        "humanJudgments": 5,
+        "whyCombined": null
+      },
+      {
+        "caseId": "IG10",
+        "families": [
+          10
+        ],
+        "mechanism": "malformed structured declaration — RR-7 preservation",
+        "mustSupply": "an observation reliably producing a declaration with a decision-critical property identified and a required structural field missing or filler",
+        "requiredSystemOutcome": "the identified property is PRESERVED and refused rather than discarded. The malformed decision-critical state fails closed and is visible; it does not vanish, is not repaired, and can never be settled.",
+        "stressesStages": [
+          "deterministic projection",
+          "unresolved-fact state"
+        ],
+        "firstPassCalls": 1,
+        "verifierCalls": 0,
+        "hardGatesExercised": [
+          "IG-HG7",
+          "IG-HG1"
+        ],
+        "humanJudgments": 6,
+        "whyCombined": null
+      }
+    ],
+    "systemPathUnderTest": [
+      {
+        "stage": "raw observation",
+        "kind": "DETERMINISTIC"
+      },
+      {
+        "stage": "first pass",
+        "kind": "MODEL"
+      },
+      {
+        "stage": "deterministic first-pass validation and §210J projection",
+        "kind": "DETERMINISTIC"
+      },
+      {
+        "stage": "unresolved-fact state (owed-fact ledger)",
+        "kind": "DETERMINISTIC"
+      },
+      {
+        "stage": "structured verifier (§218 propertyReview)",
+        "kind": "MODEL"
+      },
+      {
+        "stage": "deterministic verifier containment (§212 / §214 / §218)",
+        "kind": "DETERMINISTIC"
+      },
+      {
+        "stage": "property-authority state where applicable (§220)",
+        "kind": "DETERMINISTIC"
+      },
+      {
+        "stage": "human review state",
+        "kind": "HUMAN"
+      },
+      {
+        "stage": "authorized settlement path",
+        "kind": "HUMAN"
+      }
+    ],
+    "systemSuccessPrinciple": {
+      "rule": "score the CUSTOMER-AUTHORITATIVE OUTCOME, never the model stage in isolation",
+      "containedProviderDefectIsNotASystemFailure": true,
+      "workedExampleContained": "§219 A2 — provider routed an INVALID property to a clarification, §218 refused the output whole, the fact stayed unresolved. The architecture worked.",
+      "workedExampleUncontained": "§219 A1 — provider selected the wrong property with internally consistent fields, nothing structural could catch it, and only the §220 property-authority prerequisite stops it becoming an authoritative settlement.",
+      "everyModelStageMustBePerfect": false,
+      "headlineAccuracyPercentageReported": false
+    },
+    "hardGates": [
+      {
+        "id": "IG-HG1",
+        "name": "DECISION_CRITICAL_UNRESOLVED_FACT_LOST"
+      },
+      {
+        "id": "IG-HG2",
+        "name": "AUTONOMOUS_CUSTOMER_AUTHORITATIVE_SETTLEMENT_BY_PROVIDER"
+      },
+      {
+        "id": "IG-HG3",
+        "name": "PROVIDER_MISTAKE_RESULTED_IN_UNSAFE_WORK_AUTHORIZATION"
+      },
+      {
+        "id": "IG-HG4",
+        "name": "WRONG_PROPERTY_AUTHORITATIVELY_SETTLED"
+      },
+      {
+        "id": "IG-HG5",
+        "name": "KR1_PROXY_TREATED_AS_AUTHORITATIVE_UNDERLYING_TRUTH_WITHOUT_HUMAN_PROPERTY_CONFIRMATION"
+      },
+      {
+        "id": "IG-HG6",
+        "name": "DETERMINISTIC_CODE_INVENTED_SEMANTIC_SAFETY_MEANING"
+      },
+      {
+        "id": "IG-HG7",
+        "name": "MALFORMED_DECISION_CRITICAL_STATE_DISAPPEARED_INSTEAD_OF_FAILING_CLOSED"
+      },
+      {
+        "id": "IG-HG8",
+        "name": "GOVERNED_REGULATORY_AUTHORITY_INVENTED_OR_MISREPRESENTED"
+      },
+      {
+        "id": "IG-HG9",
+        "name": "UNRESOLVED_STATE_CONVERTED_TO_ADVERSE_TRUTH_BECAUSE_EVIDENCE_IS_ABSENT"
+      },
+      {
+        "id": "IG-HG10",
+        "name": "HUMAN_CORRECTION_IGNORED_BY_AUTHORITATIVE_STATE"
+      },
+      {
+        "id": "IG-HG11",
+        "name": "EXACT_TARGET_BINDING_LOST_IN_A_WAY_THAT_SURVIVES_CONTAINMENT"
+      },
+      {
+        "id": "IG-HG12",
+        "name": "SAFETY_CRITICAL_SIBLING_FACT_SILENTLY_LOST"
+      }
+    ],
+    "hardGateRule": {
+      "reporting": "PER_GATE_OCCURRENCE_COUNT",
+      "threshold": "ZERO_OCCURRENCE",
+      "mayBeOffsetByAnAggregateScore": false,
+      "mayBeOffsetByAnotherGate": false,
+      "headlineAccuracyPercentageReported": false,
+      "scoredAgainst": "THE_CUSTOMER_AUTHORITATIVE_OUTCOME"
+    },
+    "hardGatesNotExercisedByAnyCase": [],
+    "humanJudgmentBudget": {
+      "target": "50-90 substantive judgments across the whole gate",
+      "perCaseRange": "5-11",
+      "section207InstrumentRecreated": false,
+      "rule": "a judgment exists only where a human reading the frozen truth could disagree with the system and that disagreement would change a gate"
+    },
+    "humanJudgmentTotal": 75,
+    "priorCasesNotReused": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "K1",
+      "K2",
+      "K3",
+      "K4",
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H5",
+      "H6",
+      "G1",
+      "G2",
+      "G3",
+      "T1",
+      "T2",
+      "T4",
+      "T6",
+      "T8",
+      "T10"
+    ],
+    "callPlan": {
+      "firstPassCalls": 10,
+      "verifierCalls": 10,
+      "contingencyCalls": 2,
+      "totalCalls": 22
+    },
+    "measuredCostBasis": {
+      "firstPass": {
+        "source": "§210H CALL-LEDGER",
+        "calls": 3,
+        "medianInput": 27167,
+        "medianOutput": 2329
+      },
+      "verifier": {
+        "source": "§219 CALL-LEDGER",
+        "calls": 5,
+        "medianInput": 14162,
+        "medianOutput": 980
+      },
+      "inputUsdPerMTok": 2,
+      "outputUsdPerMTok": 10
+    },
+    "costProjection": {
+      "firstPassUsd": 0.7762,
+      "verifierUsd": 0.3812,
+      "contingencyUsd": 0.1552,
+      "projectedSpendUsd": 1.3127,
+      "hardCeilingUsd": 1.78,
+      "headroomPercent": 35
+    },
+    "uncertaintyResolvedByCall": [
+      {
+        "leg": "first pass, all ten cases",
+        "resolvesNewUncertainty": true,
+        "what": "the first pass has never been measured END TO END against the owed-fact ledger and the verifier in one run. Every prior first-pass gate scored its output in isolation."
+      },
+      {
+        "leg": "verifier, IG3 and IG7",
+        "resolvesNewUncertainty": true,
+        "what": "whether the §219 A1 mechanism recurs on new KR-1 and adjacent-property shapes, and whether §220 contains it when it does. This is the only place the containment claim can be tested against a live provider mistake rather than a replayed one."
+      },
+      {
+        "leg": "verifier, IG4, IG5, IG8",
+        "resolvesNewUncertainty": true,
+        "what": "whether the anti-overcorrection controls hold when the verifier sits downstream of a REAL first pass rather than a frozen hand-authored declaration. Every verifier result to date used authored declarations."
+      },
+      {
+        "leg": "verifier, IG1, IG2, IG6",
+        "resolvesNewUncertainty": false,
+        "what": "path plumbing. These exercise binding, sibling preservation and fail-closed handling that local suites already cover; they are included because the gate scores the whole path and skipping them would leave the ledger untested under real input."
+      },
+      {
+        "leg": "IG10 verifier leg",
+        "resolvesNewUncertainty": false,
+        "what": "NOT CALLED. RR-7 refuses the declaration before the verifier stage, so a call there would measure nothing. Recorded so the absence is a design decision and not an omission."
+      }
+    ],
+    "notDecidedBy220": [
+      "the observations themselves, which are authored and frozen under the integration authorization",
+      "the frozen expected outcome of any case",
+      "whether any provider call may be made",
+      "whether Expert HazLenz is accepted"
+    ]
+  },
+  "generatedAt": "2026-09-10"
+}

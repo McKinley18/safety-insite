@@ -1,0 +1,1693 @@
+{
+  "version": "hazlenz.expert.dev-validation.fixtures.v4",
+  "provenance": "authored 2026-09-03; no reserved material; no spent formal-cohort row read, copied or mimicked; LP-B2 surface facts not reused",
+  "budget": {
+    "targetLogicalCalls": 24,
+    "hardLogicalCallCeiling": 30,
+    "hardProviderRequestCeiling": 32,
+    "hardSpendCeilingUsd": 3.328,
+    "arms": [
+      "BASE"
+    ],
+    "maxRetriesPerLogicalCall": 1
+  },
+  "targets": {
+    "trueGapRecall": 0.75,
+    "noGapSilence": 0.8,
+    "additiveCandidateRecall": 0.8,
+    "genericCoverageHabitQuestions": 0,
+    "protectedAuthorityContradictions": 0,
+    "unsupportedAcceptedCitations": 0,
+    "unsupportedMergedCitations": 0
+  },
+  "computedAdditiveOpportunities": {
+    "EV-A1": [],
+    "EV-A2": [
+      "silica_respirable_dust"
+    ],
+    "EV-A3": [
+      "chemical_inhalation_contact"
+    ],
+    "EV-A4": [
+      "lockout_tagout"
+    ],
+    "EV-A5": [
+      "fall_protection"
+    ],
+    "EV-A6": [],
+    "EV-A7": [
+      "traffic_control"
+    ],
+    "EV-A8": [
+      "fire_explosion"
+    ],
+    "EV-B1": [],
+    "EV-B2": [],
+    "EV-B3": [],
+    "EV-B4": [],
+    "EV-B5": [],
+    "EV-B6": [
+      "electrical"
+    ],
+    "EV-C1": [
+      "fire_explosion",
+      "chemical_release"
+    ],
+    "EV-C2": [],
+    "EV-C3": [
+      "machine_guarding",
+      "emergency_equipment"
+    ],
+    "EV-C4": [],
+    "EV-C5": [],
+    "EV-C6": [
+      "ventilation_air_quality"
+    ],
+    "EV-D1": [],
+    "EV-D2": [
+      "emergency_equipment",
+      "material_handling_storage"
+    ],
+    "EV-D3": [
+      "training_procedure_supervision"
+    ],
+    "EV-D4": []
+  },
+  "rows": [
+    {
+      "rowId": "EV-A1",
+      "domain": "chemical",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "the identity of the substance venting from the drum",
+          "answerA": "an inert aqueous cleaner",
+          "outcomeA": "the venting is a housekeeping issue; relabel the drum and continue",
+          "answerB": "a volatile flammable or toxic solvent",
+          "outcomeB": "evacuate the platform, isolate ignition sources and ventilate before any further work",
+          "affectedDecision": "HAZARD_EXISTENCE",
+          "whyCurrentEvidenceIsInsufficient": "nothing in the observation identifies the contents, and the label is destroyed"
+        }
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "hazcom"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "REQUIRED_LINKAGE_CHALLENGE",
+        "note": "an existence question about an unknown substance should attach to whichever exposure candidate the model raises, if it raises one"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "A drum on the mixing platform is venting a visible vapour from a partly open bung, and two operators work at the platform continuously. The drum carries a workplace label that has been painted over and is unreadable; nobody on shift could say what it holds and no transfer record was available.",
+      "observationSha256": "c93b0089ab488437302ad2ccf5f004397276296137376329e4f6d04863636e47",
+      "allowedHazardFamilies": [
+        "chemical_inhalation_contact",
+        "hazcom",
+        "fire_explosion",
+        "fall_protection"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "hazcom"
+        ],
+        "defensibleHazardFamilies": [
+          "chemical_inhalation_contact",
+          "fire_explosion"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A1-G1",
+            "description": "what the venting drum actually contains",
+            "affectedDecision": "HAZARD_EXISTENCE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "The labelling failure is stated and present. Whether an inhalation or fire hazard EXISTS turns entirely on the unknown contents, so those families are defensible rather than present — the authored key must not assert what the text does not establish."
+      }
+    },
+    {
+      "rowId": "EV-A2",
+      "domain": "respirable dust",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "the filed personal sampling result for this task",
+          "answerA": "the recorded result is below the action level",
+          "outcomeA": "the fitted P100 remains adequate; connect extraction as an improvement and file the result",
+          "answerB": "the recorded result is at or above the permissible limit",
+          "outcomeB": "stop the dry cutting now, fit extraction or wet-cut, and start an exposure-control review",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "whyCurrentEvidenceIsInsufficient": "the magnitude is recorded but not present at the workplace, so the current control decision cannot be made from the observation alone"
+        }
+      },
+      "candidate": {
+        "expectation": "ALLOWED_PLAUSIBLE",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "A worker was cutting fibre-cement board with a dry circular saw inside a partly enclosed ground-floor unit. The saw has a dust port but no extraction was connected. He wore a fit-tested half-face P100. The site hygienist recorded a personal sample on this exact task three weeks ago and the result is filed at the head office, unavailable on site.",
+      "observationSha256": "61df51caf7a610a0c8ebb5b3d610953cb0211473efb979cef012c73ea828b70a",
+      "allowedHazardFamilies": [
+        "silica_respirable_dust",
+        "respiratory_protection",
+        "noise_exposure",
+        "excavation_trenching"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "silica_respirable_dust"
+        ],
+        "defensibleHazardFamilies": [
+          "respiratory_protection",
+          "noise_exposure"
+        ],
+        "forbiddenHazardFamilies": [
+          "excavation_trenching"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A2-G1",
+            "description": "the recorded personal exposure result for this task",
+            "affectedDecision": "HAZARD_SEVERITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Dry cutting of silica-bearing board with the extraction disconnected is a stated present exposure. The measurement EXISTS and is merely unavailable, which makes the gap concrete rather than open-ended."
+      }
+    },
+    {
+      "rowId": "EV-A3",
+      "domain": "coatings / cross-trade",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "whether the sheeted volume is a designated controlled spraying area under the site permit",
+          "answerA": "it is designated, with an exclusion zone in force",
+          "outcomeA": "the electrician is inside an exclusion zone in breach; remove him now and enforce the boundary",
+          "answerB": "it is not designated and no exclusion regime applies",
+          "outcomeB": "the finding is that a controlled area was never established; establish one before spraying continues",
+          "affectedDecision": "APPLICABILITY",
+          "whyCurrentEvidenceIsInsufficient": "the observation describes the physical arrangement but never states which control regime governs the volume"
+        }
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "chemical_inhalation_contact"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "an unprotected worker sharing an enclosed volume with isocyanate spraying — the enclosure is what converts one trade's control into another trade's exposure"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "REQUIRED_LINKAGE_CHALLENGE",
+        "note": "the scope question bears on the chemical exposure candidate specifically"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "A contractor is spraying a two-part polyurethane coating inside a partly erected steel frame that has temporary sheeting on three sides and an open fourth elevation. Two of the contractor crew are inside the sheeted volume with air-fed hoods; a site electrician without respiratory protection is working on a distribution board eight metres away inside the same sheeted volume.",
+      "observationSha256": "032b129b3b69edef58b318eece33df29c4584f81f0678f77c63b46424fc667fa",
+      "allowedHazardFamilies": [
+        "chemical_inhalation_contact",
+        "respiratory_protection",
+        "electrical",
+        "suspended_loads"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_inhalation_contact"
+        ],
+        "defensibleHazardFamilies": [
+          "respiratory_protection",
+          "electrical"
+        ],
+        "forbiddenHazardFamilies": [
+          "suspended_loads"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A3-G1",
+            "description": "whether the sheeted volume is designated a controlled spraying area under the site permit, which decides whether the electrician may be in it at all",
+            "affectedDecision": "APPLICABILITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "An unprotected worker inside the same enclosed volume as two-part polyurethane spraying is a stated present exposure. What is open is SCOPE — whether the exclusion regime applies to that volume. Tests the same contract property as the §142 LP-B2 miss on entirely different facts; no vault, no confined space, no permit-space language."
+      }
+    },
+    {
+      "rowId": "EV-A4",
+      "domain": "machinery / energy control",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "whether the automatic upstream start sequence is inhibited and locked, not merely the local isolator switched off",
+          "answerA": "the sequence is inhibited and the isolation locked",
+          "outcomeA": "the residual finding is the missing lock/tag discipline; correct the procedure",
+          "answerB": "only the local isolator is off and the sequence can still call a start",
+          "outcomeB": "stop the work immediately — an unexpected start can occur with hands in the drive",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "whyCurrentEvidenceIsInsufficient": "an OFF isolator with no lock says nothing about whether an automatic start source is inhibited"
+        }
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "lockout_tagout"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "the removed guard and the un-inhibited automatic restart share a mechanism — either alone is survivable, together they place hands in a drive that can start itself"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "REQUIRED_LINKAGE_CHALLENGE",
+        "note": "the control question determines whether the LOTO candidate stays ACTIVE; a guarding candidate is available as a competing referent"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "A maintenance fitter had the guard off the number 2 conveyor drive and was seating a new belt by hand. The local isolator was in the OFF position with no lock or tag on it, and the conveyor is fed by an automatic upstream sequence that restarts on a level signal.",
+      "observationSha256": "b0de45499716622806952c4b54dabf443a30eace4b5b97f479e060dd05997578",
+      "allowedHazardFamilies": [
+        "lockout_tagout",
+        "machine_guarding",
+        "electrical",
+        "noise_exposure"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "lockout_tagout"
+        ],
+        "defensibleHazardFamilies": [
+          "electrical"
+        ],
+        "forbiddenHazardFamilies": [
+          "noise_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "lockout_tagout"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A4-G1",
+            "description": "whether the automatic upstream sequence has been inhibited as well as the local isolator turned off",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Hands inside an unguarded drive with an un-locked isolator and an automatic restart source is a stated present hazard. What is open is which CONTROL was applied, which v7+ decides is REQUIRED_CONTROL rather than HAZARD_EXISTENCE."
+      }
+    },
+    {
+      "rowId": "EV-A5",
+      "domain": "work at height",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "whether anyone still transits the pipe-rack walkway while the panel is out",
+          "answerA": "the walkway is closed and locked off at both ends for the duration",
+          "outcomeA": "the finding is the inadequate barrier standard; complete the cable work as planned",
+          "answerB": "the walkway is still in use as a through route",
+          "outcomeB": "stop transit now and install hard barriers or a temporary cover before any further passage",
+          "affectedDecision": "EXPOSURE",
+          "whyCurrentEvidenceIsInsufficient": "the text describes the opening and the tape but never says whether the route is live"
+        }
+      },
+      "candidate": {
+        "expectation": "ALLOWED_PLAUSIBLE",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "A section of raised grating has been lifted out of the pipe-rack walkway to run new cable and the opening is roughly one metre square, eleven metres above grade. A single length of barrier tape is strung across one approach and nothing on the other three. The observation does not establish whether the walkway remains in use while the grating is out.",
+      "observationSha256": "a2ac596e31b6b94461db0e42bf0e9baa55892befcd3a4b8203b9ba2ba0dc0cc4",
+      "allowedHazardFamilies": [
+        "fall_protection",
+        "walking_working_surfaces",
+        "material_handling_storage",
+        "electrical"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "walking_working_surfaces",
+          "electrical"
+        ],
+        "forbiddenHazardFamilies": [
+          "material_handling_storage"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A5-G1",
+            "description": "whether the pipe-rack walkway remains in use while the grating panel is out",
+            "affectedDecision": "EXPOSURE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "An unprotected eleven-metre opening with tape on one of four approaches is a stated present fall hazard. Who is exposed is genuinely open and the two answers give different actions today."
+      }
+    },
+    {
+      "rowId": "EV-A6",
+      "domain": "fixed access / governed interpretation",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "how the supplied record's height condition is applied to a ladder measured just below it — and from which datum the height is taken",
+          "answerA": "the height is measured as recorded and falls below the record's stated condition",
+          "outcomeA": "the record does not impose its requirement here; the finding is a recommendation, not a citation",
+          "answerB": "the datum used places the climb above the record's stated condition",
+          "outcomeB": "the record's requirement applies and a ladder safety system is owed now",
+          "affectedDecision": "REGULATORY_INTERPRETATION",
+          "whyCurrentEvidenceIsInsufficient": "the record states a condition and the observation states a measurement; how the condition applies at the boundary is not settled by either"
+        }
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [
+        "RELEVANT"
+      ],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "A fixed steel ladder on the clarifier runs from grade to the top walkway. The tape measure read twenty-three feet six inches from the lowest rung to the landing, and there is no cage, well or ladder safety system. Two operators climb it each shift. A single approved governed record covering fixed ladders was supplied with this inspection.",
+      "observationSha256": "4f0b3091ad03eaf7eaa9ce6c7ee5660f4235677d1e306e677ec86d3fdd9ff315",
+      "allowedHazardFamilies": [
+        "fall_protection",
+        "walking_working_surfaces",
+        "machine_guarding"
+      ],
+      "governedStandards": [
+        {
+          "title": "Fixed ladders — fall protection above 24 feet",
+          "backingState": "APPROVED"
+        }
+      ],
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A6-G1",
+            "description": "how the supplied record's stated height condition applies when the measured height falls just below it",
+            "affectedDecision": "REGULATORY_INTERPRETATION"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "The one row where REGULATORY_INTERPRETATION is natural rather than forced: a record IS supplied, it carries an explicit numeric condition, and the measured value sits just under it. v9 bounds this label to SUPPLIED records, which this row satisfies."
+      }
+    },
+    {
+      "rowId": "EV-A7",
+      "domain": "mobile plant / traffic",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "whether pedestrians are currently using the haul road stretch within the slew radius",
+          "answerA": "the stretch is closed to pedestrians for the lift",
+          "outcomeA": "the finding is the absent banksman; reinstate before the next lift",
+          "answerB": "pedestrians are still routed along it",
+          "outcomeB": "stop slewing now and hold the load until segregation or a banksman is restored",
+          "affectedDecision": "EXPOSURE",
+          "whyCurrentEvidenceIsInsufficient": "the observation states the road is shared but not whether it is in pedestrian use at this moment"
+        }
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "traffic_control"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "the missing banksman and the unsegregated shared road compound: either alone leaves a control, together there is neither a physical nor a human barrier"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "A 20-tonne excavator is slewing to load a lorry across the site haul road. The banksman left to take a delivery and has not returned; the operator continues to slew. The haul road carries both plant and site pedestrians and there is no physical segregation along that stretch.",
+      "observationSha256": "44a126be98e9667a5eb64f9427bf442ab010cb37675795af09d4a0a103ae8a61",
+      "allowedHazardFamilies": [
+        "mobile_equipment",
+        "traffic_control",
+        "suspended_loads",
+        "noise_exposure"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment",
+          "traffic_control"
+        ],
+        "defensibleHazardFamilies": [
+          "suspended_loads"
+        ],
+        "forbiddenHazardFamilies": [
+          "noise_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "mobile_equipment"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A7-G1",
+            "description": "whether pedestrians are currently routed along the haul road stretch inside the slew radius",
+            "affectedDecision": "EXPOSURE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Slewing without a banksman across a shared haul road is stated and present. Whether anyone is in the slew path right now is the open fact, and the answers diverge."
+      }
+    },
+    {
+      "rowId": "EV-A8",
+      "domain": "hot work",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "whether a fire watch is posted at the work despite the blank permit section",
+          "answerA": "a competent fire watch is present and briefed",
+          "outcomeA": "the finding is the permit-completion failure; correct the paperwork discipline",
+          "answerB": "no fire watch is posted",
+          "outcomeB": "stop the cutting now — sparks are falling on combustibles with no one watching them",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "whyCurrentEvidenceIsInsufficient": "the permit is blank in that section, which records nothing either way about the actual watch"
+        }
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "fire_explosion"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "ignition source directly above combustible storage — the vertical proximity is the mechanism, not mere co-location"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "A welder is cutting a redundant bracket from a steel column inside the finished-goods store. Sparks are falling onto stacked cardboard outer cases two metres below. A powder extinguisher stands beside the work. The permit copy at the job is signed but the fire-watch and post-work-inspection sections are blank.",
+      "observationSha256": "7392d751e4414c75f228289990e92d4fa57b1cb7ce113736b3cc8a26429ce64d",
+      "allowedHazardFamilies": [
+        "hot_work",
+        "fire_explosion",
+        "material_handling_storage",
+        "welding_fumes"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "hot_work",
+          "fire_explosion"
+        ],
+        "defensibleHazardFamilies": [
+          "welding_fumes",
+          "material_handling_storage"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fire_explosion"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-A8-G1",
+            "description": "whether a fire watch is actually posted, the blank permit section notwithstanding",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Sparks onto combustible stock is stated and present. A blank permit section is not the same fact as an absent watch, so the control question is genuinely open."
+      }
+    },
+    {
+      "rowId": "EV-B1",
+      "domain": "machinery / verified safe",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "USEFUL_DOCUMENTATION_DETAIL",
+        "whyNotDecisionCritical": "asking where the interlock test certificate is filed is good records practice and cannot change any current action — the interlock was demonstrated working"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "The pedestrian gate interlock on the palletiser cell was tested in my presence: opening the gate stopped the robot within one second and the cell would not restart until the gate was closed and the reset pressed. The interlock label shows a test date of last month. No one was inside the cell at any point.",
+      "observationSha256": "fba9533f5806904a999cb4de7cfebd5837e819da10492c480e6ad881f73613cb",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "lockout_tagout",
+        "electrical"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "lockout_tagout",
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "machine_guarding"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A verified-safe interlock, demonstrated under observation. Whether the test certificate is filed centrally is useful documentation and changes nothing about today."
+      }
+    },
+    {
+      "rowId": "EV-B2",
+      "domain": "machinery",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "SEVERITY_REFINEMENT_ONLY",
+        "whyNotDecisionCritical": "asking the flight speed or torque refines how bad an entanglement would be and changes nothing: an exposed screw flight at waist height with operators in reach is guarded or the machine stops, at any speed"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "GENERIC_FOLLOWUP_CHALLENGE",
+        "note": "if a generic question is emitted here it should carry no link — but this is an intent, not authored FORBIDDEN truth, and realization is judged against the emitted candidate set"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "The guard is missing from the outboard end of the screw conveyor and the flight is exposed for about 300 millimetres at waist height. The conveyor runs continuously during production and two operators pass within arm's reach of the opening on every cycle. There is no barrier, rope or warning marking of any kind.",
+      "observationSha256": "f5ec1d36e3eb0f1aad5c992a13d0c1dbf95165e9938c14005904761b2497ffd3",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "material_handling_storage",
+        "electrical"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "material_handling_storage"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Exposure, access, continuity and the absence of every alternative control are all stated. The action is the same at any flight speed."
+      }
+    },
+    {
+      "rowId": "EV-B3",
+      "domain": "fabrication / routine",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "GENERIC_PPE_FOLLOWUP",
+        "whyNotDecisionCritical": "\"what PPE is required in this bay\" is row-level, could be asked of almost any workshop, and changes no specific current decision — the deliberate generic counterpart to the candidate-specific PPE questions elsewhere in this set"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "GENERIC_FOLLOWUP_CHALLENGE",
+        "note": "the generic-PPE no-link control; realization requires >=2 accepted candidates"
+      },
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "Walkthrough of the fabrication bay. A fitter was grinding a weld at the bench behind a screen wearing a face shield and gauntlets, a labourer was banding pallets in the aisle, and the overhead crane was parked and isolated with its pendant stowed. The bay PPE board is mounted at the entrance and is current.",
+      "observationSha256": "b65bf5efb046ef7cb579f2b30f215d9e1202c3f0f1ae3e1f6f3ae613e4ff4eb0",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "personal_protective_equipment",
+        "suspended_loads",
+        "material_handling_storage"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "machine_guarding",
+          "personal_protective_equipment",
+          "material_handling_storage"
+        ],
+        "forbiddenHazardFamilies": [
+          "suspended_loads"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "suspended_loads"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Three ordinary tasks, each with its stated control, and the crane affirmatively isolated. Nothing is owed."
+      }
+    },
+    {
+      "rowId": "EV-B4",
+      "domain": "emergency systems / verified safe",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ROUTINE_DUE_DILIGENCE",
+        "whyNotDecisionCritical": "\"is the pull-cord on a periodic test schedule\" is routine diligence askable of any installed safety device and changes nothing today — it was tested three times and worked"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "The emergency stop pull-cord along the picking conveyor was pulled at three points during the walkthrough and stopped the belt each time within two seconds, with the fault indicated at the panel. The cord tension was correct and the run was unobstructed for its full length.",
+      "observationSha256": "2c75196d8d9421c75c004f098a4c749f2695716ca70dcb28ed43f165ee529955",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "emergency_equipment",
+        "walking_working_surfaces"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "emergency_equipment"
+        ],
+        "forbiddenHazardFamilies": [
+          "machine_guarding",
+          "walking_working_surfaces"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "emergency_equipment"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Tested three times under observation and working. Nothing is open."
+      }
+    },
+    {
+      "rowId": "EV-B5",
+      "domain": "pressure systems / remediated",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "HISTORICAL_INFORMATION",
+        "whyNotDecisionCritical": "\"what caused the original pinhole\" is history. The cause of a repaired, tested and recertified section changes no current action, and the genericness of the question is itself the evidence it is not decision-critical"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "A pinhole leak on the compressed-air ring main above the packing line was found last week, isolated the same day, the section replaced, and the line pressure-tested and returned to service two days ago. The test certificate was shown to me. The line has run since with no reported loss of pressure and no staining at the repair.",
+      "observationSha256": "b4d9cf340126c4101ab7dbea05eed9d567c196df26ca1ddb12da0b23d5bc3ce9",
+      "allowedHazardFamilies": [
+        "compressed_gas",
+        "hydraulic_pneumatic_energy",
+        "noise_exposure"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [
+          "compressed_gas",
+          "hydraulic_pneumatic_energy"
+        ],
+        "forbiddenHazardFamilies": [
+          "noise_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "compressed_gas",
+          "hydraulic_pneumatic_energy"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A historical condition the observation closes out: isolated, replaced, tested, certificate seen, running clean since."
+      }
+    },
+    {
+      "rowId": "EV-B6",
+      "domain": "electrical / access control",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ALREADY_ESTABLISHED_FACT",
+        "whyNotDecisionCritical": "\"is the room actually energised?\" or \"is the corridor really accessible?\" re-litigates facts the observation states and the responsible engineer confirmed — the v7+ rule names this explicitly as disregarding evidence you were given"
+      },
+      "candidate": {
+        "expectation": "ALLOWED_PLAUSIBLE",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": true,
+        "basis": "the temporary chain and sign are a stated interim control, so a deterministic finding that leaves the condition wholly uncontrolled is arguably over-inclusive as to CURRENT state"
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "The transformer room door was found unlocked and standing ajar. I confirmed with the responsible engineer that the room is energised at 11kV, that the door lock is broken, and that the room is on an open corridor used by cleaners and contractors. A temporary chain and sign were fitted while I waited.",
+      "observationSha256": "3e7316fc0c389cadf79968a90c17a1e3e6b13542d66a6ceaee4381ba81b29672",
+      "allowedHazardFamilies": [
+        "electrical",
+        "training_procedure_supervision",
+        "walking_working_surfaces"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "electrical"
+        ],
+        "defensibleHazardFamilies": [
+          "training_procedure_supervision"
+        ],
+        "forbiddenHazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "electrical"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Energisation, broken lock, public access and the interim control are ALL stated and confirmed. Re-asking any of them is disregarding evidence already given."
+      }
+    },
+    {
+      "rowId": "EV-C1",
+      "domain": "chemical transfer",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ROUTINE_DUE_DILIGENCE",
+        "whyNotDecisionCritical": "everything needed to act is stated — unbonded, gravity transfer, open pails, traffic, and a release path. Asking the solvent flash point refines severity without changing that bonding and containment are owed now"
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "fire_explosion",
+          "chemical_release"
+        ],
+        "decomposition": "two genuinely distinct hazards — static ignition during transfer, and an uncontained release reaching a gully. Separate candidates here are DISTINCT, not fragmented. How finely each is subdivided remains DECOMPOSITION_UNRESOLVABLE."
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "an unbonded transfer generating static beside an uncontained pool feeding a gully — ignition source and spreading fuel path share a mechanism"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "CROSS_HAZARD_INTERACTION",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "Waste solvent is decanted from a bulk tote into open steel pails on a pallet outside the paint kitchen. The pails are unbonded and unearthed, the transfer is by gravity through a plastic hose, and a forklift passes within two metres on each round. There is no drip tray and a stain runs to the yard gully.",
+      "observationSha256": "d31ed0324fbbe63763748a32bb59409a5d2a34fcf592bbb5f0d5307bb7367573",
+      "allowedHazardFamilies": [
+        "fire_explosion",
+        "chemical_release",
+        "mobile_equipment",
+        "chemical_inhalation_contact",
+        "fall_protection"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "fire_explosion",
+          "chemical_release"
+        ],
+        "defensibleHazardFamilies": [
+          "mobile_equipment",
+          "chemical_inhalation_contact"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fire_explosion"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [
+          {
+            "interactionKind": "CHEMICAL_PPE_VENTILATION",
+            "participants": [
+              "fire_explosion",
+              "chemical_release"
+            ]
+          }
+        ],
+        "authoringRationale": "Deliberately rich: unbonded solvent transfer (static ignition), an uncontained release path to a gully, and passing plant. Multiple genuinely DISTINCT additive hazards, which is what makes it a candidate-recall opportunity rather than a fragmentation trap."
+      }
+    },
+    {
+      "rowId": "EV-C2",
+      "domain": "work at height / decomposition",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "SEVERITY_REFINEMENT_ONLY",
+        "whyNotDecisionCritical": "the height, the extent, the missing toe board and the stored parts are all stated; asking the exact drop distance refines severity and changes nothing about restoring the edge protection"
+      },
+      "candidate": {
+        "expectation": "ALLOWED_PLAUSIBLE",
+        "expectedAdditiveFamilies": [
+          "material_handling_storage"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "stored parts within half a metre of an edge whose toe board is gone — the storage is what turns a missing toe board into a falling-object path"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "The handrail has been cut away from a four-metre run of the mezzanine edge to allow a machine to be lifted through. The cut ends are unfinished and sharp, the toe board went with it, and small parts are stored on the floor within half a metre of the open edge. The lift is scheduled for next week and the gap has been open since Monday.",
+      "observationSha256": "14279d6bd5f9640d33e7c74c059351031a6a3b9bd1dbc2bbb2bd60a1682df12b",
+      "allowedHazardFamilies": [
+        "fall_protection",
+        "material_handling_storage",
+        "walking_working_surfaces",
+        "suspended_loads"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "material_handling_storage",
+          "walking_working_surfaces"
+        ],
+        "forbiddenHazardFamilies": [
+          "suspended_loads"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "ONE physical defect — a removed handrail run — with several consequences: fall from edge, objects falling to the level below with the toe board gone, and sharp cut ends. Whether Expert should emit one candidate or three is EXACTLY the decomposition question this programme has not settled, so it is recorded as UNRESOLVABLE and NOT scored."
+      }
+    },
+    {
+      "rowId": "EV-C3",
+      "domain": "mixed / insight negative control",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ROUTINE_DUE_DILIGENCE",
+        "whyNotDecisionCritical": "both conditions are fully stated and each has an obvious action; nothing is open"
+      },
+      "candidate": {
+        "expectation": "ALLOWED_PLAUSIBLE",
+        "expectedAdditiveFamilies": [
+          "emergency_equipment"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "Two findings in the same building. In the north workshop a bench grinder tool rest is set nine millimetres from the wheel. In the south office corridor, sixty metres away through two fire doors, a fire extinguisher is missing from its bracket and the bracket tag is dated last year.",
+      "observationSha256": "734623569e68bba5bef34ad9c821423f4a8f23fd4da6db483912b8afcdd19aec",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "emergency_equipment",
+        "electrical"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding",
+          "emergency_equipment"
+        ],
+        "defensibleHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Two real, unrelated hazards separated by sixty metres and two fire doors. **No mechanism connects them.** A cross-hazard insight here would be co-occurrence dressed as interaction, which is exactly what the empty-by-default insight contract forbids."
+      }
+    },
+    {
+      "rowId": "EV-C4",
+      "domain": "excavation / remediated",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "HISTORICAL_INFORMATION",
+        "whyNotDecisionCritical": "the excavation is closed, reinstated, signed off and photographed; asking about the original dig is history"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": true,
+        "basis": "the observation states the excavation is backfilled, reinstated and permit-closed, so any deterministic finding asserting it as an active current hazard is over-inclusive as to condition state"
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "The excavation at the north elevation is fully backfilled and compacted, the barriers have been removed and the ground reinstated to the original level. The permit was closed out on Friday and signed by the competent person. Photographs of the closed-out state were shown to me.",
+      "observationSha256": "b5d174932ed26f2054faa9336a48199001355923be9a62acdf44991cac58f848",
+      "allowedHazardFamilies": [
+        "excavation_trenching",
+        "walking_working_surfaces",
+        "fall_protection"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "excavation_trenching",
+          "walking_working_surfaces",
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "excavation_trenching",
+          "fall_protection"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Affirmatively closed out and evidenced. If the deterministic layer still emits an active excavation finding on the word \"excavation\", Expert has a REAL basis to challenge the CONDITION STATE — which is a legitimate disagreement, not an override of authority."
+      }
+    },
+    {
+      "rowId": "EV-C5",
+      "domain": "lighting / measured safe",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ALREADY_ESTABLISHED_FACT",
+        "whyNotDecisionCritical": "the illuminance is measured and stated against the standard; re-asking whether the lighting is adequate disregards the measurement given"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": true,
+        "basis": "a measured 210 lux against a 150 lux standard directly contradicts any asserted current lighting deficiency"
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "The pipe gallery lighting was reported as failed. On inspection all three luminaires are lit, the illuminance meter read 210 lux at the walkway centreline against a 150 lux standard for the area, and the emergency fitting discharged for the full duration on test. The original report was raised against the wrong gallery.",
+      "observationSha256": "82bf6d5748f85a65812892300faa9469729634be25c509d7eac1831e6fc51dc0",
+      "allowedHazardFamilies": [
+        "illumination_visibility",
+        "walking_working_surfaces",
+        "emergency_equipment"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "illumination_visibility",
+          "walking_working_surfaces",
+          "emergency_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "illumination_visibility",
+          "emergency_equipment"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Measured, above standard, emergency fitting tested, and the original report attributed to the wrong location. Any finding asserting a current lighting deficiency is contradicted by a stated measurement."
+      }
+    },
+    {
+      "rowId": "EV-C6",
+      "domain": "LEV / control effectiveness",
+      "clarification": {
+        "kind": "TRUE_GAP",
+        "gap": {
+          "missingFact": "whether the extraction is still achieving its rated capture volume",
+          "answerA": "a check shows it is still within specification despite the gauge reading",
+          "outcomeA": "the finding is the gauge/filter maintenance backlog; schedule the change",
+          "answerB": "capture volume has fallen below specification",
+          "outcomeB": "stop sanding now — the operator is working an uncontrolled dust source believing it captured",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "whyCurrentEvidenceIsInsufficient": "a red differential gauge and a ballooning sock are symptoms, not a measurement of capture"
+        }
+      },
+      "candidate": {
+        "expectation": "ALLOWED_PLAUSIBLE",
+        "expectedAdditiveFamilies": [
+          "combustible_dust"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": true,
+        "basis": "a deterministic finding treating \"extraction present\" as \"extraction adequate\" is incomplete on the stated facts, which is a legitimate qualification rather than an override"
+      },
+      "governed": [],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "REQUIRED_LINKAGE_CHALLENGE",
+        "note": "the effectiveness question determines whether the ventilation candidate stays ACTIVE"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "The dust extraction on the sanding bench is running and the hood is in place, but the filter differential gauge reads in the red and the discharge sock is visibly ballooning. Sanding continues. The observation does not establish when the filters were last changed or whether the unit is still moving its rated volume.",
+      "observationSha256": "1e250f6dfd23dad02fc5ed538808ea392b23173f75348b3355785f5a9d236527",
+      "allowedHazardFamilies": [
+        "ventilation_air_quality",
+        "combustible_dust",
+        "respiratory_protection",
+        "noise_exposure"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "ventilation_air_quality"
+        ],
+        "defensibleHazardFamilies": [
+          "combustible_dust",
+          "respiratory_protection"
+        ],
+        "forbiddenHazardFamilies": [
+          "noise_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "EV-C6-G1",
+            "description": "whether the extraction unit is still moving its rated volume, which the red gauge and ballooning sock put in doubt",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A control that is PRESENT but possibly INEFFECTIVE — the shape a simple present/absent reading gets wrong. Also the second REQUIRED-linkage regression row: the effectiveness question bears on the ventilation candidate specifically."
+      }
+    },
+    {
+      "rowId": "EV-D1",
+      "domain": "machinery / governed positive",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ALREADY_ESTABLISHED_FACT",
+        "whyNotDecisionCritical": "the nip, the access, the continuity and the hand-clearing are all stated"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [
+        "RELEVANT"
+      ],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "The infeed nip between the belt and the drive drum on the packing conveyor is open and unguarded at operator height. The line runs continuously and operators clear jams there by hand without stopping the belt. One approved governed record on machine guarding was supplied.",
+      "observationSha256": "4a55197215010f2424dca4d8ac41a8892d2098722cc494c136988142f2065842",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "electrical",
+        "noise_exposure"
+      ],
+      "governedStandards": [
+        {
+          "title": "General requirements for all machines",
+          "backingState": "APPROVED"
+        }
+      ],
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "noise_exposure"
+        ],
+        "forbiddenHazardFamilies": [
+          "electrical"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "The supplied record is about nip points and the observation is an unguarded nip point with hands entering it. A grounded statement is available and should be made."
+      }
+    },
+    {
+      "rowId": "EV-D2",
+      "domain": "means of escape / governed negative",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "ALREADY_ESTABLISHED_FACT",
+        "whyNotDecisionCritical": "the obstruction, the inward swing and the occupancy are all stated"
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "emergency_equipment"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [
+        "UNRELATED"
+      ],
+      "citationAdversarial": true,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT",
+        "DISAGREEMENT_OPPORTUNITY"
+      ],
+      "observation": "A stillage of finished castings has been stacked three high against the fire exit door in the despatch bay, and the door opens inwards. The exit sign above it is lit. The bay was in normal use with six people working in it.",
+      "observationSha256": "cde61bd78b72d3c588495087b77102f06b12ecfeb9ce8ff7478055e15d01d263",
+      "allowedHazardFamilies": [
+        "emergency_equipment",
+        "material_handling_storage",
+        "welding_fumes",
+        "fall_protection"
+      ],
+      "governedStandards": [
+        {
+          "title": "Selection and use of work practices — 29 CFR 1910.333(a)(1)",
+          "backingState": "DRAFT"
+        },
+        {
+          "title": "Welding, cutting and brazing — ventilation for general welding",
+          "backingState": "APPROVED"
+        }
+      ],
+      "truth": {
+        "presentHazardFamilies": [
+          "emergency_equipment",
+          "material_handling_storage"
+        ],
+        "defensibleHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "welding_fumes",
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "emergency_equipment"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "An obstructed fire exit with people working. The supplied records — a DRAFT electrical one and an APPROVED welding-ventilation one — have no bearing on it, and welding_fumes is FORBIDDEN so a record-induced candidate is detectable rather than merely suspected."
+      }
+    },
+    {
+      "rowId": "EV-D3",
+      "domain": "training / governed absent",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "USEFUL_DOCUMENTATION_DETAIL",
+        "whyNotDecisionCritical": "the absence of induction records is confirmed by the supervisor; asking which template the site uses is documentation detail that changes nothing today"
+      },
+      "candidate": {
+        "expectation": "REQUIRED_ADDITIVE",
+        "expectedAdditiveFamilies": [
+          "training_procedure_supervision"
+        ],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "INTERACTION_PLAUSIBLE",
+        "mechanism": "uninducted operators running powered trucks unsupervised — the absent training and the absent supervision remove both the competence and the catch"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [
+        "NONE"
+      ],
+      "citationAdversarial": false,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "Nobody on the late shift has been through the site induction. The shift supervisor confirmed that four of the six operators started this month and that no induction records exist for them. They are operating powered pallet trucks and the paint line unsupervised.",
+      "observationSha256": "6ae02693cd33e6557f624368a6d1bf06168c8ce291342dcd5097350a5a3f574e",
+      "allowedHazardFamilies": [
+        "training_procedure_supervision",
+        "powered_industrial_trucks",
+        "chemical_inhalation_contact",
+        "fall_protection"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "training_procedure_supervision"
+        ],
+        "defensibleHazardFamilies": [
+          "powered_industrial_trucks",
+          "chemical_inhalation_contact"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "A textbook regulatory obligation with NO record supplied. The correct behaviour is to state what the observation shows and assert no governed obligation."
+      }
+    },
+    {
+      "rowId": "EV-D4",
+      "domain": "fixed access / governed narrower",
+      "clarification": {
+        "kind": "NO_GAP",
+        "temptingShape": "SEVERITY_REFINEMENT_ONLY",
+        "whyNotDecisionCritical": "the height, the absence of every fall-protection option and the daily climb are stated; the action does not turn on a further measurement"
+      },
+      "candidate": {
+        "expectation": "NO_ADDITIVE_CANDIDATE_EXPECTED",
+        "expectedAdditiveFamilies": [],
+        "decomposition": "DECOMPOSITION_UNRESOLVABLE"
+      },
+      "insight": {
+        "expectation": "NO_INSIGHT_WARRANTED"
+      },
+      "disagreement": {
+        "opportunity": false
+      },
+      "governed": [
+        "NARROWER",
+        "UNRELATED"
+      ],
+      "citationAdversarial": true,
+      "linkage": {
+        "intent": "NO_LINKAGE_CLAIM",
+        "note": "this row makes no linkage claim and is excluded from every linkage denominator"
+      },
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_NOT_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "Portable step ladders in the store are tagged and in good order. Separately, a fixed vertical ladder on the outside of the silo runs thirty-one feet from grade to the top hatch with no cage, no well and no ladder safety system. An operator climbs it once a shift to take a sample. One approved governed record about portable ladders was supplied.",
+      "observationSha256": "2f3bfb8cc886903205cb1ad45fc394100b95613c94b6ebed094e4892cb871526",
+      "allowedHazardFamilies": [
+        "fall_protection",
+        "walking_working_surfaces",
+        "confined_space_entry"
+      ],
+      "governedStandards": [
+        {
+          "title": "Portable ladders — side rail extension above the landing surface",
+          "backingState": "APPROVED"
+        },
+        {
+          "title": "Respiratory protection program",
+          "backingState": "APPROVED"
+        }
+      ],
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "walking_working_surfaces",
+          "confined_space_entry"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "The supplied record covers PORTABLE ladders and says so in its own text. Putting a tidy portable-ladder fact and an unprotected fixed ladder in one paragraph is what makes the extension tempting."
+      }
+    }
+  ]
+}

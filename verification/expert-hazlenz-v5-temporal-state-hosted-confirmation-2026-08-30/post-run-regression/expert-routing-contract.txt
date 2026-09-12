@@ -1,0 +1,70 @@
+
+--- A. the v2 contract change — the duplicate homes are gone
+ok    A.1 the analysis contract is v2 (subtractive change, so the version moved)
+ok    A.2 the prompt is v5
+ok    A.13a a candidate must DECLARE its grounding — silence is no longer a legal answer
+ok    A.13 an unquotable hazard is still RAISED, not dropped — the §101 suppression cannot return
+ok    A.14 everything else about a candidate is still required
+ok    A.15 the prompt says so too, so the schema and the prompt cannot disagree
+ok    A.16 and an INVENTED quote is still refused — the safety rule did not move
+ok    A.3 the wire schema no longer offers "whatMatters"
+ok    A.3 the wire schema no longer offers "whatIsMissing"
+ok    A.3 the wire schema no longer offers "howConditionsInteract"
+ok    A.4 the schema still offers a synthesis summary
+ok    A.5 a v1-shaped explanation still validates (summary is present)
+ok    A.6 the v1 free-text twins are DROPPED at the boundary, not carried
+ok    A.7 the schema states the distinction: "de-energized"
+ok    A.7 the schema states the distinction: "lockout/tagout"
+ok    A.7 the schema states the distinction: "Independent of hazards"
+ok    A.7 the schema states the distinction: "worse together"
+ok    A.7 the schema states the distinction: "Adding new context is NOT a disagreement"
+ok    A.7 the schema states the distinction: "Not an overflow channel"
+ok    A.8 no vague "additional information" / "optional insights" description survives
+ok    A.9 the prompt orders typed collections before the summary
+ok    A.10 the no-loss rule is stated
+ok    A.11 the prompt does NOT request chain-of-thought
+ok    A.12 the prompt guards against over-routing as explicitly as against under-routing
+
+--- B. the four verdicts
+ok    B.1 REQUIRED + empty = INCORRECT_EMPTY (a routing miss)
+ok    B.2 four misses, zero hits, four opportunities
+ok    B.3 FORBIDDEN + empty = CORRECT_EMPTY — a correct silence is a HIT, not a blank
+ok    B.4 a correct silence scores four hits
+ok    B.5 REQUIRED + populated = CORRECT_POPULATED
+ok    B.6 FORBIDDEN + populated = INCORRECT_POPULATED (over-routing)
+ok    B.7 over-routing is counted separately from missing
+ok    B.8 OPTIONAL creates no opportunity — a fixture that cannot say the right answer does not vote
+ok    B.9 a question with zero candidates beside it is recorded as such
+ok    B.10 and is NOT recorded when a candidate is present
+ok    B.11 totals aggregate across fixtures
+ok    B.12 totals break down per collection
+
+--- C. EXPLANATION_ONLY_LOSS — the §100 defect, made measurable
+ok    C.1 both drained concepts are detected as EXPLANATION_ONLY_LOSSES
+ok    C.2 the loss names the collection it belonged in and where it was found instead
+ok    C.3 a summary-only interaction is a loss
+ok    C.4 and the same response also scores two routing misses
+ok    C.5 the SAME concepts, typed correctly, produce ZERO losses even though the summary repeats them
+ok    C.6 and score as hits
+ok    C.7 a concept the model never raised is NOT a routing loss — the metric does not score reasoning
+ok    C.8 uncertainty volume is recorded, so a catch-all channel is observable
+
+--- D. quote binding stays fail-closed
+ok    D.1 a real quote binds to the correct span — the model never supplies offsets
+ok    D.2 binding stats count it
+ok    D.3 the bound span then passes the boundary’s own equality re-check
+ok    D.4 an unbindable quote is PRESERVED with an unresolvable span, never dropped
+ok    D.5 the attempted evidence text survives for the operator to see
+ok    D.6 the binder counts it as unbindable
+ok    D.7 and the boundary REJECTS it — fail closed, no fabricated offset, no cleaner-looking result
+
+--- E. the fixture set
+ok    E.1 seven routing fixtures
+ok    E.2 two of them are full negative controls (R6, R7)
+ok    E.3 a wet/electrical interaction fixture requires crossHazardInsights
+ok    E.4 an extra-plausible-hazard fixture requires expertHazardCandidates
+ok    E.5 the multi-collection fixture requires three collections at once
+ok    E.6 every fixture carries a real synthetic observation
+ok    E.7 every concept probe names a real collection
+
+58 passed, 0 failed

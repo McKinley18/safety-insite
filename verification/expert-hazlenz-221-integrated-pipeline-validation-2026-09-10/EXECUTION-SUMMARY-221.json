@@ -1,0 +1,15 @@
+{
+  "executorVersion": "hazlenz.expert.221.integrated-validation-execution.v1",
+  "frozenDigest": "82487b704e7601476481bbbe803d1b3299742478404e8df65f0149330302e1f6",
+  "callsAuthorized": 22,
+  "callsAttempted": 13,
+  "spendCeilingUsd": 1.78,
+  "cumulativeSpendUsd": 0.889756,
+  "projectedSpendUsd": 1.3127,
+  "stopped": null,
+  "retriesUsed": 0,
+  "databaseOperations": 0,
+  "integratedRuntimeCanaryOutcome": "REACHED_INFERENCE_ON_THE_FIRST_INVOCATION",
+  "cachingPosture": "DISABLED",
+  "completedAt": "2026-09-10T23:27:31.061Z"
+}

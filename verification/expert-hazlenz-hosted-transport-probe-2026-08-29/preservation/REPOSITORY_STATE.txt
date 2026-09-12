@@ -1,0 +1,31 @@
+REPOSITORY STATE — EXPERT HAZLENZ HOSTED TRANSPORT PROBE (2026-08-29)
+measured: 2026-08-30T02:02:23Z
+
+HEAD                 : 37a5d1b50abe836eb19dd24ee18ad10557bda131
+HEAD subject         : feat(hazlenz): establish and repair expert routing foundation
+origin/main          : de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+branch               : main
+ahead / behind       : 1 ahead / 0 behind
+pushed               : NO
+deployed             : NO
+tagged               : NO
+
+PRESERVATION COMMIT
+  parent             : de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+  files              : 75
+  stat               : 75 files changed, 12783 insertions(+), 43 deletions(-)
+
+WORKTREE AFTER COMMIT
+  staged             : 0
+  tracked modified   : 1
+  tracked deleted    : 1
+  untracked          : 2157
+  stashes            : 4
+  tags               : 24
+
+PRE-EXISTING EXCLUDED MATERIAL — DELIBERATELY NOT COMMITTED, STILL PRESENT
+  frontend-next/tsconfig.json  sha256 = 73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535
+     (NEXT_DIST_DIR build contamination; recorded at 73990cd1... in section 99 and UNCHANGED)
+  deleted (unstaged) : verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+  compiled artifacts : backend/scripts/lib/test-database-ownership.{js,d.ts,js.map}
+  2,156 further untracked worktree entries left untouched

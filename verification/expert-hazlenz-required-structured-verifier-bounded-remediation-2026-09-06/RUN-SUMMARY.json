@@ -1,0 +1,158 @@
+{
+  "artifact": "SECTION_191_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "§191 bounded development remediation of the REQUIRED structured verifier",
+
+  "TERMINAL": "EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_BOUNDED_REMEDIATION_COMPLETE — FRESH_PROSPECTIVE_VALIDATION_AUTHORIZATION_REQUIRED",
+  "terminalReason": "All three authorized repairs are implemented, every change maps to recorded evidence of a declared class, the 69-assertion deterministic proof suite passes in full, and the source-integrity gate passes 21/21. No hosted execution was performed and none is authorized.",
+
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "HOSTED_EXECUTION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "PRODUCTION_ACTIVATION": "NONE",
+  "PRODUCTION_RUNTIME_CHANGES": 0,
+  "EXISTING_RUNTIME_FILES_MODIFIED": 0,
+  "DETERMINISTIC_PROOF_SUITE": "69 / 69 PASS",
+  "SOURCE_INTEGRITY_GATE": "PASS 21 / 21",
+
+  "VERIFIER_V3_VALIDATED": false,
+  "VERIFIER_V3_1_VALIDATED": false,
+  "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER — unchanged",
+
+  "EVIDENCE_STATE_PRESERVED_SEPARATELY": {
+    "MECHANICAL_CONTRACT_GATE": "FAILED (§187B — 2 contract-invalid executions)",
+    "FROZEN_HUMAN_SEMANTIC_GATE": "UNMEASURED — 65/112, not completed by a human reviewer",
+    "MODEL_SEMANTIC_ADJUDICATION": "9/15 FAIL (§190 — diagnostic only)",
+    "historicalTerminalsRewritten": 0
+  },
+
+  "STRUCTURAL_DECISION": {
+    "what": "the remediation ships as v3.1, a NEW PROSPECTIVE PROTOCOL; v3 is left byte-unchanged",
+    "why": "the fifteen §187B behavioural executions are attached to v3 at system-prompt sha256 678160c9… and schema sha256 1bddc1a5…, which the §187A preregistration pins and the §188 and §190 integrity gates assert. An in-place edit would have detached fifteen results from the protocol that produced them and falsified two evidence packages recording PASS.",
+    "precedent": "the repository's own convention, stated in v3's header: v1 and v2 are left byte-unchanged so their results stay attached to the exact protocol that produced them. v3 now joins them.",
+    "consequence": "v3 and v3.1 results are NOT one population and must never be combined into one score"
+  },
+
+  "BUILT_BY_CONSTRUCTION": {
+    "prompt": "v3.1's prompt is v3's own line array with two blocks inserted at named anchors; the module refuses to load if an anchor is missing or ambiguous",
+    "schema": "v3.1's schema is a structural clone of v3's with exactly three descriptions replaced; the module refuses to load if a recorded 'before' text does not match what v3 actually says",
+    "proof": "removing the two inserted blocks from v3.1 reproduces v3 byte-identically (678160c95bc7 on both sides) — test D.1"
+  },
+
+  "THE_THREE_REPAIRS": [
+    {
+      "id": 1,
+      "change": "three schema field descriptions",
+      "kind": "SCHEMA_DESCRIPTION",
+      "evidenceClass": "MECHANICAL",
+      "evidence": "§188 — the schema permits the refused state and its own descriptions license it",
+      "testSection": "A",
+      "detail": {
+        "bindingFactKey": "AGENT_NEUTRAL_AND_VERDICT_INDEPENDENT — 'this question' named neither agent nor verdict, so under VERIFIED_AS_IS it read as the first pass's question. Now scoped to the clarification proposed IN THIS RESPONSE, and null unless the verdict is ADD_OR_REPLACE_CLARIFICATION.",
+        "clarificationSourceMode": "SELF_CONTRADICTORY — 'null otherwise' versus 'must agree with the payload' gave opposite answers once a binding appeared under a non-ADD verdict, and both refused outputs resolved it toward the second sentence. Now ordered rather than stated side by side.",
+        "owedFactDeclarations[].declaration": "NO_DESCRIPTION_AT_ALL — the enum token reached the model bare. Now names all three states, and addresses §188's missing vocabulary member WITHOUT adding one by naming STILL_UNRESOLVED as the token that records 'the first pass already asked it'."
+      }
+    },
+    {
+      "id": 2,
+      "change": "conjunctive sufficiency block, end of step 3",
+      "kind": "INSTRUCTION",
+      "evidenceClass": "MODEL_DIAGNOSTIC",
+      "evidence": "§190 — HR-08 x3 CLARIFICATION_EVIDENCE_SUFFICIENT = FAIL on a conjunctive owed fact",
+      "testSection": "B",
+      "principle": "when an owed fact contains multiple necessary conjuncts, a clarification is sufficient only if its answer would establish every required conjunct",
+      "alsoStates": [
+        "decompose the owed fact and test the question against each requirement on its own",
+        "a disjunctive question is read as satisfied by its WEAKEST branch",
+        "trade shorthand may not supply a conjunct the question does not ask about"
+      ],
+      "rowSpecificWording": "NONE — test B.9 scans for fifteen cohort terms and finds none"
+    },
+    {
+      "id": 3,
+      "change": "adjacent-property boundary block, step 2",
+      "kind": "INSTRUCTION",
+      "evidenceClass": "MODEL_DIAGNOSTIC",
+      "evidence": "§190 — HR-04 x3 category C; adjacent-fact substitution = 3 against a gate of 0",
+      "testSection": "C",
+      "principle": "evidence about component presence, general inspection, historical checking, surrounding conditions or general function must not settle a different owed property unless the supplied evidence explicitly establishes that property",
+      "placement": "attached as the BOUNDARY on the unseen-control heuristic, because HR-04 R3 declined that heuristic precisely because the guard was visible",
+      "implementedAs": "instruction text reasoning at the owed-property/evidence level — NOT a keyword list or matcher; no code compares two strings for meaning"
+    }
+  ],
+
+  "DELIBERATELY_NOT_DONE": [
+    "no fourth declaration member — needs its own authorization; the description repair names the existing token instead",
+    "no JSON-Schema conditionals — provider enforcement unverified in this repository",
+    "no change to the admission validator — it stays the hard fail-closed deterministic guard and it worked at §187B",
+    "no normalization of the illegal state — would destroy the evidence that a binding was asserted",
+    "no partial admission",
+    "no settlement-authority change",
+    "no clarification-frequency instruction — CLARIFICATION_POLICY stays INCONCLUSIVE; test D.6 asserts this against eight directive patterns",
+    "no first-pass prompt change — the insufficient HR-08 question was authored by the first pass, which is a separate target and out of scope"
+  ],
+
+  "PRESERVATION": {
+    "risk": "a globally more conservative verifier would start replacing the already-sufficient first-pass questions on HR-01, HR-06 and HR-09, which §190 found at 3/3 preserved",
+    "mitigation": "nine named passages that carried that behaviour are asserted byte-identical in both versions, including the unseen-control heuristic HR-06 turned on, step 3's existing sufficiency test, the 'usually no' nomination prior, both magnitude exclusions and the settlement-authority restriction",
+    "honestLimit": "byte-preservation of context is NOT preservation of behaviour; only a fresh prospective hosted cohort can establish that"
+  },
+
+  "IDENTITY": {
+    "v3_systemPromptSha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+    "v3_schemaSha256": "1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a",
+    "v3_status": "BYTE-UNCHANGED",
+    "v3_1_systemPromptSha256": "7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c",
+    "v3_1_schemaSha256": "d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65",
+    "v3_1_version": "hazlenz.expert.verifier-instruction.v3.1",
+    "linesAdded": 31,
+    "linesRemoved": 0,
+    "linesModified": 0,
+    "descriptionsRepaired": 3
+  },
+
+  "filesAdded": [
+    "backend/scripts/lib/expert-verifier-instruction-v3-1.ts",
+    "backend/scripts/test-expert-verifier-v3-1-remediation.ts",
+    "backend/scripts/verify-191-source-integrity-2026-09-06.ts"
+  ],
+  "filesModified": [],
+  "section187EvidenceModified": 0,
+  "section188EvidenceModified": 0,
+  "section189EvidenceModified": 0,
+  "section190EvidenceModified": 0,
+
+  "POST_REMEDIATION_REVIEW": {
+    "method": "automated in proof-suite section E, over the V3_1_CHANGE_LEDGER and DESCRIPTION_REPAIRS tables",
+    "changesWithoutEvidenceSupport": 0,
+    "scopeExpansionRemoved": "none was found; the suite fails on any ledger entry lacking evidence or a test section",
+    "evidenceClassSeparation": "exactly one change rests on mechanical evidence alone (the schema descriptions); both instruction changes are labelled MODEL_DIAGNOSTIC and the suite asserts the labelling"
+  },
+
+  "OBSERVATION_OUT_OF_SCOPE": {
+    "what": "backend/scripts/lib/expert-verifier-v2-v3-diff.ts contains 4 embedded NUL bytes, so `file` reports it as data and grep treats it as binary and silently reports no matches",
+    "impact": "any grep-based audit of that file returns nothing rather than failing loudly; the file is otherwise valid UTF-8 and parses",
+    "actionTaken": "NONE — pre-existing, unrelated to §191 scope, and not authorized here",
+    "recommendation": "worth a separate look, since silent grep misses in a verifier lib file are a poor failure mode"
+  },
+
+  "mustNotClaim": [
+    "verifier-v3 or v3.1 validated",
+    "the remediation behaviourally effective",
+    "over-triggering on HR-01/HR-06/HR-09 ruled out",
+    "the frozen human semantic gate measured",
+    "the mechanical contract gate now passing",
+    "customer readiness",
+    "production readiness",
+    "formal acceptance"
+  ],
+  "nextGate": "fresh prospective hosted validation of v3.1 under its own authorization and preregistration. That authorization should settle two things §191 could not: whether the cohort creates enough unconditional clarification-proposal opportunities to move CLARIFICATION_POLICY off INCONCLUSIVE, and whether it includes the HR-01/HR-06/HR-09 shapes so over-triggering is measured rather than assumed absent.",
+
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

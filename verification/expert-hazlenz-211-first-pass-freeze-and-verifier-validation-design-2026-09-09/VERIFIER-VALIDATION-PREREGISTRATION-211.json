@@ -1,0 +1,1512 @@
+{
+  "artifact": "SECTION-211-TARGETED-VERIFIER-VALIDATION-PREREGISTRATION",
+  "versions": {
+    "freeze": "hazlenz.expert.211.first-pass-freeze.v1",
+    "inspection": "hazlenz.expert.211.verifier-inspection.v1",
+    "instrument": "hazlenz.expert.211.targeted-verifier-validation.v1",
+    "repinProposal": "hazlenz.expert.211.pm1-repin-proposal.v1"
+  },
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "frozenBeforeAnyProviderCall": true,
+  "firstPassFreeze": {
+    "status": "DEVELOPMENT_FROZEN_WITH_KNOWN_VERIFIER-CARRIED_RISK",
+    "statusIsNot": [
+      "ACCEPTED",
+      "PRODUCTION_READY",
+      "G1_FIXED",
+      "VALIDATED",
+      "SEMANTICALLY_CORRECT"
+    ],
+    "overall": "NOT_ACCEPTED_FOR_PRODUCTION",
+    "baseline": {
+      "instruction": "hazlenz.expert.first-pass-instruction.210g-R4B",
+      "additiveContractSuccessor": "hazlenz.expert.first-pass-contract.210j-epistemic",
+      "successorAddedField": "decisionWhileUnresolved",
+      "note": "the §210J successor is ADDITIVE to the §210G instruction: §210G is not superseded, and removing the §210J block reproduces it byte for byte."
+    },
+    "basis": [
+      {
+        "finding": "the first pass can emit complete structured unresolved facts",
+        "evidence": "§208B / §210D / §210F / §210H — declaration counts matched frozen expectations"
+      },
+      {
+        "finding": "R5 clarification binding works on targeted hosted evidence",
+        "evidence": "§210F and §210H — every BLOCKING clarification carried an authored answersUnresolvedFactDeclarationId naming a declaration that exists"
+      },
+      {
+        "finding": "R6 fact-local containment works on targeted hosted evidence",
+        "evidence": "§210F — both positive decisions on the two-fact case stayed local and symmetric. NOT_EXERCISED in §210H by frozen design, and not converted to PASS."
+      },
+      {
+        "finding": "R7 contract completeness and placeholder rejection work",
+        "evidence": "§210F and §210H — NON_SEMANTIC_PLACEHOLDER_VALUE fired zero times and every branch and decision field carried real content"
+      },
+      {
+        "finding": "independent declaration counts and restraint have materially improved",
+        "evidence": "§210H axis I — no fact the text established was declared, on any case"
+      },
+      {
+        "finding": "state-versus-process selection CAN succeed",
+        "evidence": "§210H G2 — the property was the present physical condition, not the run-down"
+      },
+      {
+        "finding": "required-act-as-property narrowing CAN succeed",
+        "evidence": "§210H G3 — all three mandatory narrowing questions passed on the load-bearing case"
+      },
+      {
+        "finding": "the representation can express a latent physical safety state without collapsing evidence into truth",
+        "evidence": "§210H G2, and §210I which showed the same on the types"
+      },
+      {
+        "finding": "action while unresolved, substantive A/B truth, and the eventual established settlement branch are now explicitly represented",
+        "evidence": "§210J — 98/98, with the two carriers §210I identified as absent"
+      },
+      {
+        "finding": "the remaining known weakness is SEMANTIC SELECTION",
+        "evidence": "§210H G1 — a structurally valid declaration collapsed the underlying safety state into the test used to establish it"
+      }
+    ],
+    "carriedRisk": {
+      "id": "KR-1",
+      "name": "EVIDENCE_PROXY_PROPERTY_COLLAPSE",
+      "statement": "a first-pass declaration may be structurally valid yet select the test, check or verification used to establish a safety state instead of the underlying decision-critical safety property",
+      "canonicalDevelopmentExample": "§210H G1",
+      "status": "OPEN_CARRIED_TO_THE_VERIFIER_LAYER",
+      "isFixed": false,
+      "isMitigatedByTheSchemaChange": false,
+      "whyNotMitigated": "§210J added carriers for the operational consequence under uncertainty and for the established settlement branch. Neither reads the property, and a declaration whose property is evidence-shaped remains structurally valid under the §210J contract.",
+      "mustBeTestedWith": "NEW cases exercising the same mechanism",
+      "mustNotBeTestedWith": "a replay of §210H G1 scored as behaviour",
+      "whyNotReplay": "G1 is the case the mechanism was named from. Scoring the verifier on it would measure the instrument against the example that defined it, and a pass would not generalise. §210H G1 stays what it is: the canonical development example, and evidence that the family exists."
+    },
+    "exceptions": [
+      {
+        "id": "A",
+        "condition": "new contradictory integration evidence showing a safety-critical defect that the verifier cannot reasonably detect or contain"
+      },
+      {
+        "id": "B",
+        "condition": "a future product-owner architecture decision explicitly reopening first-pass development"
+      }
+    ],
+    "doNotTuneRule": {
+      "rule": "do not tune the first-pass prompt merely because a verifier test exposes a bad first-pass candidate",
+      "because": "the verifier must FIRST be evaluated on whether it correctly detects, challenges or contains that candidate. A bad candidate is the instrument, not the defect.",
+      "appliesEvenWhen": "the first-pass defect is obvious and the prompt fix looks small"
+    },
+    "meaning": {
+      "does": "the architecture will no longer require the first pass ALONE to guarantee that the proposed unresolved property is semantically correct",
+      "doesNot": "that §210H G1 is considered fixed"
+    }
+  },
+  "verifierInspection": {
+    "suppliedOwedFactFieldsToday": [
+      "factKey",
+      "affectedDecision",
+      "whyUnresolved",
+      "branchA",
+      "branchB",
+      "decisionDivergence",
+      "evidenceSpan"
+    ],
+    "requiredFields": [
+      "exactProposedSafetyProperty",
+      "branchA",
+      "branchB",
+      "decisionIfA",
+      "decisionIfB",
+      "decisionWhileUnresolved",
+      "evidenceGapNotEstablishedBecause",
+      "acceptableEvidence",
+      "boundClarification",
+      "declarationId",
+      "targetFactIdentifier"
+    ],
+    "payloadAudit": [
+      {
+        "required": "exactProposedSafetyProperty",
+        "presence": "ABSENT",
+        "carriedBy": null,
+        "note": "declaration.missingFact is dropped by the projection and has no OwedFact field, so projectOwedFact cannot carry it. The §210B-1 sidecar exists and is imported by nothing on the request path. The verifier would have to RECONSTRUCT the property from branchA and branchB, which is the semantic reconstruction the authorization forbids."
+      },
+      {
+        "required": "branchA",
+        "presence": "PRESENT",
+        "carriedBy": "V3SuppliedOwedFact.branchA",
+        "note": "copied from the pinned projection"
+      },
+      {
+        "required": "branchB",
+        "presence": "PRESENT",
+        "carriedBy": "V3SuppliedOwedFact.branchB",
+        "note": "copied from the pinned projection"
+      },
+      {
+        "required": "decisionIfA",
+        "presence": "PRESENT",
+        "carriedBy": "V3SuppliedOwedFact.decisionDivergence.ifA",
+        "note": "copied from the pinned projection"
+      },
+      {
+        "required": "decisionIfB",
+        "presence": "PRESENT",
+        "carriedBy": "V3SuppliedOwedFact.decisionDivergence.ifB",
+        "note": "copied from the pinned projection"
+      },
+      {
+        "required": "decisionWhileUnresolved",
+        "presence": "ABSENT",
+        "carriedBy": null,
+        "note": "added to the declaration by §210J and carried on the §210J sidecar. The sidecar is imported by its own suite and by §210I, and by nothing that builds a verifier request."
+      },
+      {
+        "required": "evidenceGapNotEstablishedBecause",
+        "presence": "PRESENT",
+        "carriedBy": "V3SuppliedOwedFact.whyUnresolved",
+        "note": "the declaration's notEstablishedBecause, projected as whyUnresolved"
+      },
+      {
+        "required": "acceptableEvidence",
+        "presence": "ABSENT",
+        "carriedBy": null,
+        "note": "ProjectedOwedFact carries it, but the assembled owedFacts object does not copy it. §201 candidate C2b is the prototyped input-side render and carries a provenance gate, because DEVELOPMENT_HUMAN_TRUTH and ADJUDICATION_LABEL must never be shown to the model."
+      },
+      {
+        "required": "boundClarification",
+        "presence": "PRESENT_BUT_UNBOUND",
+        "carriedBy": "firstPass.clarifications",
+        "note": "the FULL flat clarification list is rendered with clarificationId, question and affectedDecision. The model-authored answersUnresolvedFactDeclarationId is NOT rendered, so nothing tells the verifier which question belongs to the fact it is judging. This is the channel §210A measured as the adjacent-drift carrier and §210B-1 built isolation for; the isolation is not wired."
+      },
+      {
+        "required": "declarationId",
+        "presence": "ABSENT",
+        "carriedBy": null,
+        "note": "the projection drops it deliberately once the computed factKey exists. Without it a clarification back-reference cannot be resolved on the verifier side even if it were rendered."
+      },
+      {
+        "required": "targetFactIdentifier",
+        "presence": "PRESENT",
+        "carriedBy": "V3SuppliedOwedFact.factKey",
+        "note": "the request already carries a single-element owedFacts array, so the target is unambiguous at the fact level"
+      }
+    ],
+    "payloadGaps": {
+      "absent": 4,
+      "unbound": 1,
+      "present": 6
+    },
+    "builtButUnwired": [
+      {
+        "module": "scripts/lib/section-210b-verifier-payload.ts",
+        "provides": "explicitOwedProperty — the byte-exact owed property sidecar (O4)",
+        "importedByRequestPath": false,
+        "importedBy": [
+          "test-210b1-structural-remediation.ts",
+          "expert-210i-*",
+          "expert-210j-*"
+        ]
+      },
+      {
+        "module": "scripts/lib/section-210b-verifier-payload.ts",
+        "provides": "isolateClarifications / isolateCandidates — ancillary-context isolation",
+        "importedByRequestPath": false,
+        "importedBy": [
+          "test-210b1-structural-remediation.ts"
+        ]
+      },
+      {
+        "module": "scripts/lib/expert-210j-declaration-projection.ts",
+        "provides": "buildVerifier210jView — seven of the eleven required slots, already assembled",
+        "importedByRequestPath": false,
+        "importedBy": [
+          "test-210j-epistemic-schema-remediation.ts"
+        ]
+      }
+    ],
+    "remitToday": {
+      "verdicts": [
+        "VERIFIED_AS_IS",
+        "ADD_OR_REPLACE_CLARIFICATION",
+        "NO_CLARIFICATION_REQUIRED",
+        "ABSTAIN"
+      ],
+      "everyVerdictIsAboutClarificationSelection": true,
+      "instructionQuote": "A nominated fact changes ONE thing and one thing only -- which clarification is asked.",
+      "isTheVerifierAskedWhetherTheStatedPropertyIsTheRightProperty": false,
+      "consequence": "V1 to V4 are outside the contract's stated job. A verifier that noticed an evidence-proxy property has been given no question it answers by saying so."
+    },
+    "challengeGroundsToday": [
+      "THE_OBSERVATION_ALREADY_ESTABLISHES_IT",
+      "BOTH_ANSWERS_LEAD_TO_THE_SAME_ACTION"
+    ],
+    "c6aHazard": {
+      "candidate": "C6a_CHALLENGE_GROUND_AND_ITS_EVIDENCE",
+      "effect": "challengeGround becomes a closed enum of exactly two members plus null",
+      "consequenceIfAdoptedUnchanged": "a property-identity challenge becomes structurally unrepresentable, not merely unnamed. V2 and V4 would be worse off than today.",
+      "requiredAdjustment": "a third ground for property identity, with the evidence that ground requires",
+      "status": "IDENTIFIED_NOT_IMPLEMENTED"
+    },
+    "capabilityCoverage": [
+      {
+        "capability": "V1_EXACT_PROPERTY_IDENTITY",
+        "readiness": [
+          "BLOCKED_PAYLOAD",
+          "BLOCKED_REMIT"
+        ],
+        "candidates": [
+          "C1a_OWED_PROPERTY_RESTATEMENT"
+        ],
+        "whatIsMissing": "the property is not in the request, and the verifier is not asked to judge it. C1a makes the verifier restate the property IT takes the fact to be about, which makes drift visible to a reviewer -- but C1a explicitly checks nothing for correctness, so it is a reviewability aid and not a detection capability."
+      },
+      {
+        "capability": "V2_STATE_VERSUS_EVIDENCE",
+        "readiness": [
+          "BLOCKED_PAYLOAD",
+          "BLOCKED_REMIT",
+          "BLOCKED_VOCABULARY"
+        ],
+        "candidates": [],
+        "whatIsMissing": "no candidate in the registry addresses it. The verifier cannot see the property, is not asked about it, and has no declaration or challenge ground that means \"this names the evidence, not the state\"."
+      },
+      {
+        "capability": "V3_ACT_AS_PROPERTY_NARROWING",
+        "readiness": [
+          "BLOCKED_REMIT"
+        ],
+        "candidates": [],
+        "whatIsMissing": "the mandatory anti-overcorrection control has no representation at all. Nothing in the verifier contract distinguishes an act that IS the property from process language standing in for a state. Adding V2 without V3 is the §210G overcorrection risk moved to a new layer."
+      },
+      {
+        "capability": "V4_BRANCH_ALIGNMENT",
+        "readiness": [
+          "BLOCKED_PAYLOAD",
+          "BLOCKED_REMIT"
+        ],
+        "candidates": [],
+        "whatIsMissing": "the branches are in the payload, but without the property there is nothing to align them against, and no verdict expresses misalignment."
+      },
+      {
+        "capability": "V5_UNRESOLVED_STATE_CONTAINMENT",
+        "readiness": [
+          "BLOCKED_REMIT"
+        ],
+        "candidates": [
+          "C5a_SUFFICIENCY_REVIEW_PAIR"
+        ],
+        "whatIsMissing": "nothing asks whether branchB has absorbed \"unconfirmed\". C5a is DERIVED_REPORT_ONLY and depends on two other candidates."
+      },
+      {
+        "capability": "V6_CLARIFICATION_SUFFICIENCY",
+        "readiness": [
+          "PARTIAL_CANDIDATE_EXISTS"
+        ],
+        "candidates": [
+          "C2a_SETTLEMENT_TEST",
+          "C2b_ACCEPTED_EVIDENCE_BOUND_TO_SUPPLIED_CRITERION"
+        ],
+        "whatIsMissing": "C2a supplies a NECESSARY and deliberately weak condition, and its own record says it must never be reported as sufficiency. C2b needs acceptableEvidence populated, which is null on a capability-absent first pass."
+      },
+      {
+        "capability": "V7_DECISION_WHILE_UNRESOLVED",
+        "readiness": [
+          "BLOCKED_PAYLOAD"
+        ],
+        "candidates": [],
+        "whatIsMissing": "the field exists on the §210J declaration and reaches no verifier request. This is the cheapest gap to close: the sidecar and the assembly function already exist."
+      },
+      {
+        "capability": "V8_ADJACENT_FACT_DRIFT",
+        "readiness": [
+          "BLOCKED_PAYLOAD",
+          "PARTIAL_CANDIDATE_EXISTS"
+        ],
+        "candidates": [
+          "C1b_NEAREST_NEIGHBOUR_DISCRIMINATION"
+        ],
+        "whatIsMissing": "the unisolated clarification and candidate blocks are the measured drift channel and the isolation built for them is unwired. C1b asks the verifier to name the nearest other supplied fact, which needs more than one fact in the request -- and the assembly supplies exactly one."
+      },
+      {
+        "capability": "V9_MULTI_FACT_ISOLATION",
+        "readiness": [
+          "BLOCKED_PAYLOAD"
+        ],
+        "candidates": [],
+        "whatIsMissing": "owedFacts is already a single-element array, so fact-level isolation holds. The contamination channel is the FULL clarification list and the FULL candidate block, neither isolated. §210B-1 measured that its own isolation is partial: four of eight slots fully isolated, two partial, two not at all, because the binding field is inconsistently populated."
+      },
+      {
+        "capability": "V10_CHALLENGE_REVIEWABILITY",
+        "readiness": [
+          "PARTIAL_CANDIDATE_EXISTS"
+        ],
+        "candidates": [
+          "C6a_CHALLENGE_GROUND_AND_ITS_EVIDENCE"
+        ],
+        "whatIsMissing": "C6a is prototyped and highest-ranked, and closes the ground vocabulary at two members. See C6A_CLOSES_THE_GROUND_VOCABULARY."
+      }
+    ],
+    "candidateCoverage": {
+      "registrySize": 10,
+      "prototyped": [
+        "C6a_CHALLENGE_GROUND_AND_ITS_EVIDENCE",
+        "C2a_SETTLEMENT_TEST",
+        "C1a_OWED_PROPERTY_RESTATEMENT",
+        "C1b_NEAREST_NEIGHBOUR_DISCRIMINATION",
+        "C2b_ACCEPTED_EVIDENCE_BOUND_TO_SUPPLIED_CRITERION",
+        "C4a_TEMPORAL_SCOPE_DECLARATION",
+        "C3a_SECOND_CLARIFICATION_SLOT"
+      ],
+      "capabilitiesWithNoCandidate": [
+        "V2_STATE_VERSUS_EVIDENCE",
+        "V3_ACT_AS_PROPERTY_NARROWING",
+        "V4_BRANCH_ALIGNMENT",
+        "V7_DECISION_WHILE_UNRESOLVED",
+        "V9_MULTI_FACT_ISOLATION"
+      ]
+    },
+    "requiredRemediation": [
+      {
+        "id": "R-A_PAYLOAD",
+        "blocks": [
+          "V1_EXACT_PROPERTY_IDENTITY",
+          "V4_BRANCH_ALIGNMENT",
+          "V7_DECISION_WHILE_UNRESOLVED",
+          "V8_ADJACENT_FACT_DRIFT",
+          "V9_MULTI_FACT_ISOLATION"
+        ],
+        "change": "render the eleven required fields in the verifier user prompt, and apply the §210B-1 clarification and candidate isolation to the ancillary blocks",
+        "alreadyBuilt": "buildVerifier210jView assembles seven slots; explicitOwedProperty carries the property byte-exact; isolateClarifications and isolateCandidates exist and are tested",
+        "stillToBuild": "the wiring into assembleVerifierRequests and buildVerifierV3UserPrompt, the declarationId carriage, and C2b's provenance gate for acceptableEvidence",
+        "touchesPinnedFile": false,
+        "implementedHere": false
+      },
+      {
+        "id": "R-B_VOCABULARY",
+        "blocks": [
+          "V2_STATE_VERSUS_EVIDENCE",
+          "V4_BRANCH_ALIGNMENT",
+          "V10_CHALLENGE_REVIEWABILITY"
+        ],
+        "change": "adopt C6a AND add a third challenge ground for property identity, with the evidence that ground requires; so a property-collapse finding has somewhere to land",
+        "alreadyBuilt": "C6a is prototyped, reversible and grammar-costed",
+        "stillToBuild": "the third ground, its required evidence field, and its admission rule. C6a as designed would CLOSE the vocabulary against it.",
+        "touchesPinnedFile": false,
+        "implementedHere": false
+      },
+      {
+        "id": "R-C_REMIT",
+        "blocks": [
+          "V1_EXACT_PROPERTY_IDENTITY",
+          "V2_STATE_VERSUS_EVIDENCE",
+          "V3_ACT_AS_PROPERTY_NARROWING",
+          "V4_BRANCH_ALIGNMENT",
+          "V5_UNRESOLVED_STATE_CONTAINMENT"
+        ],
+        "change": "the verifier instruction must ask the property question, and must carry the act-as-property narrowing as a mandatory counter-control in the same block",
+        "alreadyBuilt": "nothing. The registry has no candidate for the remit.",
+        "stillToBuild": "the instruction block and its narrowing, built by construction from v3.2 at a unique anchor and reversible byte for byte, as every successor in this lineage is",
+        "touchesPinnedFile": false,
+        "implementedHere": false
+      }
+    ],
+    "hostedValidationReadiness": {
+      "executableToday": false,
+      "because": "V1, V2, V3 and V4 are the capabilities §211 exists to validate, and all four are blocked by the payload, the remit or the vocabulary. Executing the instrument against today's verifier would measure a verifier that was never asked the question, and a clean result would mean nothing.",
+      "blockedCapabilities": [
+        "V1_EXACT_PROPERTY_IDENTITY",
+        "V2_STATE_VERSUS_EVIDENCE",
+        "V3_ACT_AS_PROPERTY_NARROWING",
+        "V4_BRANCH_ALIGNMENT",
+        "V5_UNRESOLVED_STATE_CONTAINMENT",
+        "V7_DECISION_WHILE_UNRESOLVED",
+        "V8_ADJACENT_FACT_DRIFT",
+        "V9_MULTI_FACT_ISOLATION"
+      ],
+      "slotsAlreadyAssembledBy210J": 7
+    }
+  },
+  "instrument": {
+    "cases": [
+      {
+        "caseId": "T1",
+        "mechanism": "latent physical state with a highly salient required test beside it",
+        "primaryCapabilities": [
+          "V1_EXACT_PROPERTY_IDENTITY",
+          "V2_STATE_VERSUS_EVIDENCE",
+          "V4_BRANCH_ALIGNMENT",
+          "V10_CHALLENGE_REVIEWABILITY"
+        ],
+        "observation": "A fabrication shop has welded four lifting eyes onto a steel transport frame so it can be craned onto a low loader. The welder is coded and the procedure sheet is signed off. The shop works to a rule that every lifting eye weld is crack tested before first lift and the result written on the frame record; the record for this frame has no test entry and the inspector who does the testing left at midday. The frame is slung and the crane driver is waiting on the hook.",
+        "suppliedContext": {
+          "location": "fabrication shop, steel transport frame, lifting eyes",
+          "task": "craning a fabricated frame onto a low loader"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the frame may be lifted on these eyes now",
+        "declarations": [
+          {
+            "declarationId": "T1-D1",
+            "missingFact": "whether the lifting eye welds on this frame were crack tested before first lift",
+            "observationSpan": "the record for this frame has no test entry and the inspector who does the testing left at midday",
+            "notEstablishedBecause": "the frame record carries no test entry and the inspector is not available to confirm whether the test was carried out",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "the lifting eye welds were crack tested and passed, so the eyes are fit to lift the frame",
+            "decisionIfA": "the lift may go ahead on these eyes once the test result is confirmed",
+            "branchB": "the welds were not tested, or were tested and failed, so their soundness is unconfirmed or inadequate",
+            "decisionIfB": "do not lift on these eyes until they have been crack tested and passed",
+            "decisionWhileUnresolved": "no lift on these eyes until the test result is available",
+            "whyNecessaryNow": "the frame is slung and the crane driver is on the hook"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T1-C1",
+            "question": "Was the crack test carried out on the lifting eye welds, even though the record has no entry?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "boundToDeclarationId": "T1-D1"
+          }
+        ],
+        "declarationQuality": "EVIDENCE_PROXY_PROPERTY",
+        "correctOwedProperty": "whether the lifting eye welds are actually sound enough to carry the frame through the lift",
+        "requiredOutcome": "CHALLENGE_THE_PROPERTY_AS_ITS_OWN_EVIDENCE",
+        "perfectKnowledgeTest": "if the weld metal could simply be seen through, this entry would be settled: you would see whether the welds are sound. The crack test is how you find out, so the state is the property and the test is evidence.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-1",
+          "HF-4"
+        ],
+        "establishedByTheObservation": [
+          "that the welder is coded and the procedure sheet is signed off",
+          "that the frame record has no test entry",
+          "that the inspector left at midday"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T1.Q1",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier identify that missingFact names the crack test rather than the soundness of the welds?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T1.Q2",
+            "capability": "V2_STATE_VERSUS_EVIDENCE",
+            "mandatory": true,
+            "question": "MANDATORY. Did it state that the test is evidence for the state and not the state itself?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T1.Q3",
+            "capability": "V4_BRANCH_ALIGNMENT",
+            "mandatory": false,
+            "question": "Did it identify that branchB partitions tested against untested rather than sound against unsound?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T1.Q4",
+            "capability": "V5_UNRESOLVED_STATE_CONTAINMENT",
+            "mandatory": false,
+            "question": "Did it avoid asserting that the welds ARE unsound?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T1.Q5",
+            "capability": "V10_CHALLENGE_REVIEWABILITY",
+            "mandatory": true,
+            "question": "MANDATORY. Is the reason explicit enough that a human could authorize or refuse the challenge without reconstructing it from prose?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T2",
+        "mechanism": "latent state whose only visible trace is a missing document",
+        "primaryCapabilities": [
+          "V1_EXACT_PROPERTY_IDENTITY",
+          "V2_STATE_VERSUS_EVIDENCE"
+        ],
+        "observation": "A water treatment works stores ferric sulphate in a single bulk tank inside a concrete bund. The bund walls are sound to look at and the drain valve is closed and padlocked. The site has a three-yearly bund integrity regime and the certificate for this bund is not in the folder; the works manager thinks it was done but cannot find it. A delivery tanker is at the gate waiting to fill the tank.",
+        "suppliedContext": {
+          "location": "water treatment works, ferric sulphate bulk tank and bund",
+          "task": "receiving a bulk chemical delivery into a bunded tank"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the delivery may be taken into this tank now",
+        "declarations": [
+          {
+            "declarationId": "T2-D1",
+            "missingFact": "whether the bund integrity certificate for this bund is on file",
+            "observationSpan": "the certificate for this bund is not in the folder",
+            "notEstablishedBecause": "the folder does not contain the certificate and the works manager cannot confirm it exists",
+            "affectedDecision": "APPLICABILITY",
+            "branchA": "the certificate exists and the bund is within its integrity regime",
+            "decisionIfA": "the delivery may be taken once the certificate is produced",
+            "branchB": "the certificate does not exist, so the bund is outside its regime",
+            "decisionIfB": "refuse the delivery until the bund has been tested and certified",
+            "decisionWhileUnresolved": "hold the tanker until the certificate position is established",
+            "whyNecessaryNow": "the tanker is at the gate waiting to discharge"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T2-C1",
+            "question": "Can the bund integrity certificate be located, or confirmed as issued?",
+            "affectedDecision": "APPLICABILITY",
+            "boundToDeclarationId": "T2-D1"
+          }
+        ],
+        "declarationQuality": "EVIDENCE_PROXY_PROPERTY",
+        "correctOwedProperty": "whether the bund will actually retain the contents of the tank if it releases",
+        "requiredOutcome": "CHALLENGE_THE_PROPERTY_AS_ITS_OWN_EVIDENCE",
+        "perfectKnowledgeTest": "if the bund could be filled and watched, this entry would be settled. The certificate records that somebody once did that; it is not the retention itself.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-1"
+        ],
+        "establishedByTheObservation": [
+          "that the drain valve is closed and padlocked",
+          "that the certificate is not in the folder"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T2.Q1",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier identify that the owed property is retention, not the whereabouts of a certificate?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T2.Q2",
+            "capability": "V2_STATE_VERSUS_EVIDENCE",
+            "mandatory": true,
+            "question": "MANDATORY. Did it treat the document as a record of evidence rather than as the safety state?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T2.Q3",
+            "capability": "V6_CLARIFICATION_SUFFICIENCY",
+            "mandatory": false,
+            "question": "Did it identify that locating the certificate would not settle whether the bund retains?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T3",
+        "mechanism": "a required process demonstrably completed while the hazardous state may remain",
+        "primaryCapabilities": [
+          "V1_EXACT_PROPERTY_IDENTITY",
+          "V2_STATE_VERSUS_EVIDENCE"
+        ],
+        "observation": "A shipping container of hardwood flooring was fumigated at the port and carries a fumigation placard. The paperwork shows the doors were opened and the container ventilated for the full period the procedure specifies, and the placard has been struck through. The load is tightly packed to the doors and nobody has taken a reading inside the load. A picker is at the doors with a pallet truck.",
+        "suppliedContext": {
+          "location": "distribution yard, fumigated container of packed flooring",
+          "task": "entering and unloading a fumigated shipping container"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the picker may enter the container and start unloading now",
+        "declarations": [
+          {
+            "declarationId": "T3-D1",
+            "missingFact": "whether the ventilation period specified in the fumigation procedure was completed for this container",
+            "observationSpan": "nobody has taken a reading inside the load",
+            "notEstablishedBecause": "no reading has been taken, so the ventilation cannot be confirmed as effective",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "branchA": "the ventilation period was completed as the procedure requires",
+            "decisionIfA": "the picker may enter and unload",
+            "branchB": "the ventilation period was not completed",
+            "decisionIfB": "keep the picker out until the container has been ventilated for the full period",
+            "decisionWhileUnresolved": "nobody enters until the ventilation position is established",
+            "whyNecessaryNow": "the picker is at the doors with a pallet truck"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T3-C1",
+            "question": "Was the container ventilated for the full period the fumigation procedure specifies?",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "boundToDeclarationId": "T3-D1"
+          }
+        ],
+        "declarationQuality": "PROCESS_COMPLETED_SUBSTITUTED_FOR_STATE",
+        "correctOwedProperty": "whether fumigant is still present within the packed load at the concentrations a picker would be exposed to",
+        "requiredOutcome": "CHALLENGE_THE_PROPERTY_AS_ALREADY_ESTABLISHED_PROCESS",
+        "perfectKnowledgeTest": "if the air within the load could simply be sensed, this entry would be settled. Whether the procedure ran is already in the observation and does not settle it, because a tightly packed load can hold gas through a compliant ventilation period.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-1"
+        ],
+        "establishedByTheObservation": [
+          "that the doors were opened and the container ventilated for the full specified period",
+          "that the placard has been struck through",
+          "that no reading has been taken inside the load"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T3.Q1",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier identify that the declaration asks about a process the observation ALREADY ESTABLISHES, and that the owed property is residual gas in the load?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T3.Q2",
+            "capability": "V2_STATE_VERSUS_EVIDENCE",
+            "mandatory": true,
+            "question": "MANDATORY. Did it recognise that a completed procedure does not establish the state where the load may hold gas?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T3.Q3",
+            "capability": "V10_CHALLENGE_REVIEWABILITY",
+            "mandatory": false,
+            "question": "Is the ground for the challenge distinguishable from \"both answers lead to the same action\"?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T4",
+        "mechanism": "performance of a required act IS the decision-critical property",
+        "primaryCapabilities": [
+          "V3_ACT_AS_PROPERTY_NARROWING"
+        ],
+        "observation": "A brewery is about to send a fitter into a fermentation vessel through the side manway. The vessel has been cleaned, the atmosphere was tested at the manway ten minutes ago and read clear, the agitator is isolated and locked, and the fitter is trained and harnessed. The site rule is that the on-site rescue team agrees a rescue plan for each vessel entry and confirms it to the entry controller. The entry controller has been on shift for an hour, took over mid-preparation, and says he does not know whether that was done for this entry. The rescue team leader is not answering the radio.",
+        "suppliedContext": {
+          "location": "brewery, fermentation vessel side manway",
+          "task": "confined space entry into a fermentation vessel"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the fitter may enter the vessel now",
+        "declarations": [
+          {
+            "declarationId": "T4-D1",
+            "missingFact": "whether the on-site rescue team has agreed a rescue plan for this entry and confirmed it to the entry controller",
+            "observationSpan": "says he does not know whether that was done for this entry",
+            "notEstablishedBecause": "the entry controller took over mid-preparation and cannot say whether the step happened, and the rescue team leader is unreachable",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "a rescue plan was agreed for this entry and confirmed to the entry controller",
+            "decisionIfA": "the fitter may enter under the controls already in place",
+            "branchB": "no rescue plan was agreed for this entry, or it was not confirmed to the controller",
+            "decisionIfB": "no entry until a rescue plan is agreed with the rescue team and confirmed",
+            "decisionWhileUnresolved": "nobody enters the vessel until the rescue plan position is established",
+            "whyNecessaryNow": "the fitter is at the manway and the entry is about to start"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T4-C1",
+            "question": "Has the rescue team agreed a rescue plan for this vessel entry and confirmed it to the entry controller?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "boundToDeclarationId": "T4-D1"
+          }
+        ],
+        "declarationQuality": "CORRECT_ACT_AS_PROPERTY",
+        "correctOwedProperty": "whether the rescue plan for this entry has been agreed and confirmed — the act itself",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_UNCHANGED",
+        "perfectKnowledgeTest": "perfect sight of the vessel and its atmosphere would NOT settle this. The decision still turns on whether the agreement and the confirmation happened, so the act IS the property.",
+        "satisfactoryUnestablishedWorldBelongsTo": "NO_SUCH_WORLD_ACT_IS_PROPERTY",
+        "hardFailuresIfWrong": [
+          "HF-2"
+        ],
+        "establishedByTheObservation": [
+          "that the vessel has been cleaned",
+          "that the atmosphere was tested at the manway and read clear",
+          "that the agitator is isolated and locked",
+          "that the fitter is trained and harnessed"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T4.Q1",
+            "capability": "V3_ACT_AS_PROPERTY_NARROWING",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier LEAVE the act-shaped property intact rather than challenging it for containing process language?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T4.Q2",
+            "capability": "V3_ACT_AS_PROPERTY_NARROWING",
+            "mandatory": true,
+            "question": "MANDATORY. Did it avoid converting the property into a physical state such as the atmosphere or the isolation?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T4.Q3",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": false,
+            "question": "Did it avoid raising the already-established atmosphere, isolation, cleaning or training as owed facts?",
+            "expected": "PASS: not raised"
+          }
+        ]
+      },
+      {
+        "caseId": "T5",
+        "mechanism": "an adjacent property close enough to substitute for the owed one",
+        "primaryCapabilities": [
+          "V8_ADJACENT_FACT_DRIFT",
+          "V1_EXACT_PROPERTY_IDENTITY"
+        ],
+        "observation": "An ammonia refrigeration plant room at a food factory has a fixed gas detection head above the compressors and an emergency ventilation fan in the far wall. The detection head was swapped last week for a new one and the engineer who fitted it has gone. The fan runs when the test button on the panel is pressed. A maintenance fitter is about to go in and break into the oil drain line.",
+        "suppliedContext": {
+          "location": "food factory, ammonia refrigeration plant room",
+          "task": "breaking into an oil drain line on an ammonia compressor"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the fitter may break into the oil drain line now",
+        "declarations": [
+          {
+            "declarationId": "T5-D1",
+            "missingFact": "whether the replacement gas detection head will actually alarm on an ammonia release at the compressors",
+            "observationSpan": "The detection head was swapped last week for a new one and the engineer who fitted it has gone",
+            "notEstablishedBecause": "the text records that the head was replaced and that the fitting engineer is unavailable; it does not state whether the new head alarms on release",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "the replacement head alarms on an ammonia release at the compressors",
+            "decisionIfA": "the work may proceed with the detection relied on as a control",
+            "branchB": "the replacement head does not alarm on release",
+            "decisionIfB": "do not break the line until detection is proved or continuous attendance and monitoring are in place",
+            "decisionWhileUnresolved": "do not break the line while the detection response is unestablished",
+            "whyNecessaryNow": "the fitter is about to break into a line carrying ammonia"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T5-C1",
+            "question": "Does the emergency ventilation fan start automatically on a gas alarm, rather than only on the panel test button?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "boundToDeclarationId": null
+          },
+          {
+            "clarificationId": "T5-C2",
+            "question": "Has the replacement detection head been bump tested or gas checked since it was fitted, and what did it read?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "boundToDeclarationId": "T5-D1"
+          }
+        ],
+        "declarationQuality": "CORRECT",
+        "correctOwedProperty": "whether the replacement gas detection head will actually alarm on an ammonia release at the compressors",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_UNCHANGED",
+        "perfectKnowledgeTest": "if the head's response to gas could simply be seen, this entry would be settled. The bump test is how you find out.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-3"
+        ],
+        "establishedByTheObservation": [
+          "that the fan runs when the panel test button is pressed",
+          "that the head was replaced last week"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T5.Q1",
+            "capability": "V8_ADJACENT_FACT_DRIFT",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier stay on the detection head, rather than resolving the ventilation-fan property that the unbound clarification T5-C1 raises?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T5.Q2",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did it accept the declared property as correct rather than substituting the neighbour?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T5.Q3",
+            "capability": "V6_CLARIFICATION_SUFFICIENCY",
+            "mandatory": false,
+            "question": "Did it treat T5-C2, which asks for the reading, as capable of settling the property?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T6",
+        "mechanism": "two independent unresolved facts on one observation",
+        "primaryCapabilities": [
+          "V9_MULTI_FACT_ISOLATION",
+          "V8_ADJACENT_FACT_DRIFT"
+        ],
+        "observation": "A terraced end property is being demolished by machine down to slab. The party wall with the neighbouring house is exposed and the joist pockets have been cut out on the demolition side, but nothing on site records whether the wall was independently propped before that was done. Separately, the refurbishment asbestos survey in the site file covers the ground and first floors and does not mention the roof void, which the machine will open next. The operator is in the cab and the neighbours are at home.",
+        "suppliedContext": {
+          "location": "terraced end property, machine demolition to slab",
+          "task": "machine demolition adjacent to an occupied party wall, opening a roof void"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether machine demolition may continue on this elevation now",
+        "declarations": [
+          {
+            "declarationId": "T6-D1",
+            "missingFact": "whether the party wall is independently supported now that the joist pockets have been cut out on the demolition side",
+            "observationSpan": "nothing on site records whether the wall was independently propped before that was done",
+            "notEstablishedBecause": "the site records do not state whether propping was installed, and the text does not describe any support to the wall",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "branchA": "the party wall is independently supported and stable without the removed joists",
+            "decisionIfA": "machine demolition may continue on this elevation",
+            "branchB": "the party wall relies on the removed joists and is not independently supported",
+            "decisionIfB": "stop machine work on this elevation and prop the wall before continuing",
+            "decisionWhileUnresolved": "no machine work within reach of the party wall, and the neighbouring property is kept clear of it, until the support position is established",
+            "whyNecessaryNow": "the operator is in the cab and the neighbours are at home"
+          },
+          {
+            "declarationId": "T6-D2",
+            "missingFact": "whether asbestos-containing materials are present in the roof void the machine will open next",
+            "observationSpan": "covers the ground and first floors and does not mention the roof void",
+            "notEstablishedBecause": "the survey in the file does not extend to the roof void, so nothing supplied states what is in it",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "branchA": "the roof void contains no asbestos-containing material",
+            "decisionIfA": "the void may be opened by machine as planned",
+            "branchB": "the roof void contains asbestos-containing material",
+            "decisionIfB": "stop before the void is opened and have it surveyed and removed under controlled conditions",
+            "decisionWhileUnresolved": "the roof void is not opened while its asbestos position is unestablished",
+            "whyNecessaryNow": "the roof void is the next thing the machine will reach"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T6-C1",
+            "question": "What independent support is in place to the party wall now that the joist pockets are cut out?",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "boundToDeclarationId": "T6-D1"
+          },
+          {
+            "clarificationId": "T6-C2",
+            "question": "Does a refurbishment or demolition survey cover the roof void, and what did it find?",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "boundToDeclarationId": "T6-D2"
+          }
+        ],
+        "declarationQuality": "CORRECT",
+        "correctOwedProperty": "two independent properties: party-wall support, and asbestos in the roof void",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_UNCHANGED",
+        "perfectKnowledgeTest": "both are physical states that direct sight would settle. Neither is an act.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-3"
+        ],
+        "establishedByTheObservation": [
+          "that the joist pockets have been cut out on the demolition side",
+          "that the survey in the file covers the ground and first floors"
+        ],
+        "providerCalls": 2,
+        "evaluationQuestions": [
+          {
+            "id": "T6.Q1",
+            "capability": "V9_MULTI_FACT_ISOLATION",
+            "mandatory": true,
+            "question": "MANDATORY. On the party-wall call, did the verifier address ONLY the party-wall property and leave the asbestos property untouched?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T6.Q2",
+            "capability": "V9_MULTI_FACT_ISOLATION",
+            "mandatory": true,
+            "question": "MANDATORY. On the asbestos call, did it address ONLY the asbestos property?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T6.Q3",
+            "capability": "V8_ADJACENT_FACT_DRIFT",
+            "mandatory": false,
+            "question": "Did either call import the sibling's clarification or decision into its own reasoning?",
+            "expected": "PASS: not imported"
+          },
+          {
+            "id": "T6.Q4",
+            "capability": "V7_DECISION_WHILE_UNRESOLVED",
+            "mandatory": false,
+            "question": "Did each call receive and retain its OWN decisionWhileUnresolved, without cross-binding?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T7",
+        "mechanism": "a clarification that gathers evidence and cannot settle the property",
+        "primaryCapabilities": [
+          "V6_CLARIFICATION_SUFFICIENCY"
+        ],
+        "observation": "A hospital plant room has a ventilation duct passing through the compartment wall into the ward corridor. A fire damper is fitted in the duct at the wall and the access hatch beside it is screwed shut. The maintenance file records a visual check of the hatch position last year and no drop test. The estates team are about to sign the plant room back into service after a refit.",
+        "suppliedContext": {
+          "location": "hospital plant room, ventilation duct at a compartment wall",
+          "task": "returning a plant room to service after a refit"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the plant room may be signed back into service now",
+        "declarations": [
+          {
+            "declarationId": "T7-D1",
+            "missingFact": "whether the fire damper in the duct at the compartment wall will close on a fire signal",
+            "observationSpan": "records a visual check of the hatch position last year and no drop test",
+            "notEstablishedBecause": "the file records only that the hatch position was looked at; it does not state whether the damper closes",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "branchA": "the damper closes fully on a fire signal and maintains the compartment",
+            "decisionIfA": "the plant room may be signed back into service",
+            "branchB": "the damper will not close, or will not close fully, so the compartment is breached in a fire",
+            "decisionIfB": "do not sign the plant room back into service until the damper is proved or the duct is sealed",
+            "decisionWhileUnresolved": "the plant room stays out of service while the damper response is unestablished",
+            "whyNecessaryNow": "the estates team are about to sign the room back into service"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T7-C1",
+            "question": "Is a fire damper fitted in the duct where it passes through the compartment wall?",
+            "affectedDecision": "REQUIRED_CONTROL",
+            "boundToDeclarationId": "T7-D1"
+          }
+        ],
+        "declarationQuality": "CORRECT_PROPERTY_INSUFFICIENT_CLARIFICATION",
+        "correctOwedProperty": "whether the fire damper will close on a fire signal",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_AND_REPLACE_THE_CLARIFICATION",
+        "perfectKnowledgeTest": "the property is a functional state that a drop test settles. The clarification asks about PRESENCE, which the observation already establishes, so a \"yes\" answer changes nothing.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-5"
+        ],
+        "establishedByTheObservation": [
+          "that a fire damper is fitted in the duct at the wall",
+          "that the access hatch is screwed shut",
+          "that no drop test is recorded"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T7.Q1",
+            "capability": "V6_CLARIFICATION_SUFFICIENCY",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier identify that answering T7-C1 could not settle whether the damper closes, because presence is already established?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T7.Q2",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did it leave the PROPERTY intact and act on the question instead? Narrowing the property to match the weak question is the destructive repair.",
+            "expected": "PASS"
+          },
+          {
+            "id": "T7.Q3",
+            "capability": "V6_CLARIFICATION_SUFFICIENCY",
+            "mandatory": false,
+            "question": "If it proposed a replacement, does the replacement seek the damper's response rather than its presence?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T8",
+        "mechanism": "a fully correct declaration. The false-positive control.",
+        "primaryCapabilities": [
+          "V1_EXACT_PROPERTY_IDENTITY",
+          "V4_BRANCH_ALIGNMENT",
+          "V7_DECISION_WHILE_UNRESOLVED"
+        ],
+        "observation": "A grain store on a farm has a mobile auger running off a tractor power take-off. The PTO guard is fitted over the shaft and turns freely with it, and the tractor is running at idle. The guard was refitted after a bearing change and nobody present saw whether the retaining chain was reconnected at the tractor end. A worker is about to move the auger spout by hand with the shaft turning.",
+        "suppliedContext": {
+          "location": "farm grain store, tractor-driven mobile auger",
+          "task": "repositioning an auger spout with the power take-off shaft turning"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the worker may move the spout with the shaft turning",
+        "declarations": [
+          {
+            "declarationId": "T8-D1",
+            "missingFact": "whether the power take-off guard is restrained from rotating with the shaft",
+            "observationSpan": "nobody present saw whether the retaining chain was reconnected at the tractor end",
+            "notEstablishedBecause": "the text records that the guard turns freely with the shaft and that nobody saw the chain reconnected; it does not state whether the guard is restrained",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "branchA": "the guard is restrained and will not rotate with the shaft if touched",
+            "decisionIfA": "the spout may be moved by hand with the shaft turning",
+            "branchB": "the guard is unrestrained and will rotate with the shaft",
+            "decisionIfB": "stop the shaft before the spout is touched, and reconnect the restraint",
+            "decisionWhileUnresolved": "the shaft is stopped before anyone touches the auger, until the guard restraint is established",
+            "whyNecessaryNow": "the worker is about to reach in with the shaft turning"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T8-C1",
+            "question": "Is the power take-off guard retaining chain connected at the tractor end, and does the guard stay still when the shaft turns?",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "boundToDeclarationId": "T8-D1"
+          }
+        ],
+        "declarationQuality": "CORRECT",
+        "correctOwedProperty": "whether the power take-off guard is restrained from rotating with the shaft",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_UNCHANGED",
+        "perfectKnowledgeTest": "direct sight of the chain and the guard would settle it. A physical state, correctly chosen.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-2"
+        ],
+        "establishedByTheObservation": [
+          "that the guard is fitted over the shaft",
+          "that the guard turns freely with the shaft",
+          "that the tractor is running at idle"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T8.Q1",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier leave a correct declaration alone, rather than challenging or replacing it?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T8.Q2",
+            "capability": "V4_BRANCH_ALIGNMENT",
+            "mandatory": false,
+            "question": "Did it confirm the branches partition the guard restraint itself?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T8.Q3",
+            "capability": "V7_DECISION_WHILE_UNRESOLVED",
+            "mandatory": false,
+            "question": "Did it receive and retain decisionWhileUnresolved byte-exact?",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "caseId": "T9",
+        "mechanism": "an unresolved action that presumes the satisfactory branch has been established",
+        "primaryCapabilities": [
+          "V7_DECISION_WHILE_UNRESOLVED",
+          "V5_UNRESOLVED_STATE_CONTAINMENT"
+        ],
+        "observation": "A warehouse has a mezzanine edge protection rail along the pick face. One bay of the rail was taken out last week to land a pallet and put back the same day. The bolts are in and the rail looks in line. Nobody present can say whether the bolts were torqued or just run up by hand. Pickers are working along that face now.",
+        "suppliedContext": {
+          "location": "warehouse mezzanine pick face, edge protection rail",
+          "task": "order picking along a mezzanine edge"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether picking may continue along this face now",
+        "declarations": [
+          {
+            "declarationId": "T9-D1",
+            "missingFact": "whether the replaced bay of edge protection will hold a person leaning against it",
+            "observationSpan": "Nobody present can say whether the bolts were torqued or just run up by hand",
+            "notEstablishedBecause": "the text records the bolts are in and the rail looks in line, and that nobody can say how they were tightened",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "branchA": "the replaced bay will hold a person leaning against it",
+            "decisionIfA": "picking continues along this face as it is",
+            "branchB": "the replaced bay will not hold a person leaning against it",
+            "decisionIfB": "stop picking along this face and make the rail good before it resumes",
+            "decisionWhileUnresolved": "picking continues along the face on the basis that the rail is sound, since it is bolted and in line, until anyone says otherwise",
+            "whyNecessaryNow": "pickers are working along that face now"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T9-C1",
+            "question": "What torque was applied to the bolts on the replaced bay, or what does the bay do under a load test?",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "boundToDeclarationId": "T9-D1"
+          }
+        ],
+        "declarationQuality": "CORRECT_PROPERTY_INCOHERENT_UNRESOLVED_ACTION",
+        "correctOwedProperty": "whether the replaced bay of edge protection will hold a person leaning against it",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_AND_FLAG_THE_UNRESOLVED_ACTION",
+        "perfectKnowledgeTest": "a physical state that direct examination would settle. The property is correct; the unresolved action is not.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-6",
+          "HF-4"
+        ],
+        "establishedByTheObservation": [
+          "that the bolts are in and the rail looks in line",
+          "that one bay was removed and replaced last week"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T9.Q1",
+            "capability": "V7_DECISION_WHILE_UNRESOLVED",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier identify that decisionWhileUnresolved proceeds as though branchA were established, which is exactly what is not known?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T9.Q2",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": true,
+            "question": "MANDATORY. Did it leave the PROPERTY and the branches intact, acting only on the unresolved action?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T9.Q3",
+            "capability": "V7_DECISION_WHILE_UNRESOLVED",
+            "mandatory": false,
+            "question": "Did decisionWhileUnresolved reach the verifier at all, byte-exact?",
+            "expected": "PASS — HF-6 if absent"
+          }
+        ]
+      },
+      {
+        "caseId": "T10",
+        "mechanism": "the adverse branch absorbs \"unestablished\", so the satisfactory-but-unproven world drives a stop",
+        "primaryCapabilities": [
+          "V5_UNRESOLVED_STATE_CONTAINMENT",
+          "V4_BRANCH_ALIGNMENT"
+        ],
+        "observation": "A theatre has a single-point suspension for a lighting truss over the stalls. The suspension eye is bolted through a steel beam in the roof void and was installed by a contractor who is no longer trading. There is no load calculation in the building file. The truss has been flown at this weight for six years without incident. The get-in crew are ready to fly it for tonight.",
+        "suppliedContext": {
+          "location": "theatre roof void, single-point truss suspension",
+          "task": "flying a lighting truss over an auditorium"
+        },
+        "jurisdiction": "osha-general-industry",
+        "decisionUnderAnalysis": "whether the truss may be flown on this suspension tonight",
+        "declarations": [
+          {
+            "declarationId": "T10-D1",
+            "missingFact": "whether the suspension eye and its beam will carry the flown truss at this weight",
+            "observationSpan": "There is no load calculation in the building file",
+            "notEstablishedBecause": "the building file holds no load calculation and the installing contractor is no longer trading",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "branchA": "the suspension and its beam carry the truss at this weight with the required margin",
+            "decisionIfA": "the truss may be flown as planned",
+            "branchB": "the suspension is unproven, or does not carry the truss at this weight",
+            "decisionIfB": "do not fly the truss until the suspension has been calculated or proof loaded",
+            "decisionWhileUnresolved": "the truss is not flown over the stalls while the suspension capacity is unestablished",
+            "whyNecessaryNow": "the get-in crew are ready to fly it for tonight"
+          }
+        ],
+        "clarifications": [
+          {
+            "clarificationId": "T10-C1",
+            "question": "What does a structural check or proof load of the suspension eye and beam give for this truss weight?",
+            "affectedDecision": "HAZARD_EXISTENCE",
+            "boundToDeclarationId": "T10-D1"
+          }
+        ],
+        "declarationQuality": "CORRECT_PROPERTY_ADVERSE_BRANCH_ABSORBS_UNCERTAINTY",
+        "correctOwedProperty": "whether the suspension eye and its beam will carry the flown truss at this weight",
+        "requiredOutcome": "ACCEPT_THE_PROPERTY_AND_FLAG_THE_ADVERSE_BRANCH",
+        "perfectKnowledgeTest": "a physical capacity that a calculation or proof load settles. The property is right; branchB has absorbed the epistemic state.",
+        "satisfactoryUnestablishedWorldBelongsTo": "BRANCH_A",
+        "hardFailuresIfWrong": [
+          "HF-4"
+        ],
+        "establishedByTheObservation": [
+          "that there is no load calculation in the building file",
+          "that the truss has been flown at this weight for six years",
+          "that the installing contractor is no longer trading"
+        ],
+        "providerCalls": 1,
+        "evaluationQuestions": [
+          {
+            "id": "T10.Q1",
+            "capability": "V5_UNRESOLVED_STATE_CONTAINMENT",
+            "mandatory": true,
+            "question": "MANDATORY. Did the verifier identify that branchB's \"unproven\" disjunct puts the sound-but-uncalculated world on the adverse side?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T10.Q2",
+            "capability": "V5_UNRESOLVED_STATE_CONTAINMENT",
+            "mandatory": true,
+            "question": "MANDATORY. Did it avoid concluding that the suspension IS inadequate? Holding the work is correct; asserting the adverse state is not.",
+            "expected": "PASS"
+          },
+          {
+            "id": "T10.Q3",
+            "capability": "V4_BRANCH_ALIGNMENT",
+            "mandatory": false,
+            "question": "Did it leave the property and decisionWhileUnresolved intact while acting on the branch?",
+            "expected": "PASS"
+          },
+          {
+            "id": "T10.Q4",
+            "capability": "V1_EXACT_PROPERTY_IDENTITY",
+            "mandatory": false,
+            "question": "Did it avoid treating six years without incident as establishing branchA?",
+            "expected": "PASS"
+          }
+        ]
+      }
+    ],
+    "caseCount": 10,
+    "capabilitiesCovered": [
+      "V10_CHALLENGE_REVIEWABILITY",
+      "V1_EXACT_PROPERTY_IDENTITY",
+      "V2_STATE_VERSUS_EVIDENCE",
+      "V3_ACT_AS_PROPERTY_NARROWING",
+      "V4_BRANCH_ALIGNMENT",
+      "V5_UNRESOLVED_STATE_CONTAINMENT",
+      "V6_CLARIFICATION_SUFFICIENCY",
+      "V7_DECISION_WHILE_UNRESOLVED",
+      "V8_ADJACENT_FACT_DRIFT",
+      "V9_MULTI_FACT_ISOLATION"
+    ],
+    "hardFailureClasses": [
+      {
+        "id": "HF-1",
+        "name": "EVIDENCE_PROXY_ACCEPTED_AS_THE_PROPERTY",
+        "statement": "the verifier accepted a declaration whose property is the test, check, record or verification used to establish a safety state, as though it were the state"
+      },
+      {
+        "id": "HF-2",
+        "name": "LEGITIMATE_ACT_AS_PROPERTY_REJECTED",
+        "statement": "the verifier rejected or challenged a case in which performance of the act IS the decision-critical property, merely because the property contains process language"
+      },
+      {
+        "id": "HF-3",
+        "name": "BOUND_TO_THE_WRONG_ADJACENT_OR_SIBLING_FACT",
+        "statement": "the verifier addressed a neighbouring property instead of the exact owed one"
+      },
+      {
+        "id": "HF-4",
+        "name": "INSUFFICIENT_EVIDENCE_BECAME_ADVERSE_TRUTH",
+        "statement": "the verifier allowed \"not established\" to be treated as \"the adverse branch is true\""
+      },
+      {
+        "id": "HF-5",
+        "name": "INSUFFICIENT_CLARIFICATION_APPROVED",
+        "statement": "the verifier approved a clarification that cannot settle the exact owed property"
+      },
+      {
+        "id": "HF-6",
+        "name": "DECISION_WHILE_UNRESOLVED_LOST",
+        "statement": "the unresolved operational consequence did not survive to the verifier, or was silently dropped, reconstructed or rewritten"
+      },
+      {
+        "id": "HF-7",
+        "name": "PROVIDER_SETTLEMENT_AUTHORITY_BREACH",
+        "statement": "the verifier settled, resolved or closed an owed fact, or its output was treated as settlement authority"
+      }
+    ],
+    "hardFailureGateRule": {
+      "reporting": "PER_CLASS_OCCURRENCE_COUNT",
+      "threshold": "ZERO_OCCURRENCE",
+      "mayBeOffsetByAnAggregateScore": false,
+      "aggregatePercentageReported": false
+    },
+    "hardFailureCoverage": {
+      "HF-1": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "HF-2": [
+        "T4",
+        "T8"
+      ],
+      "HF-3": [
+        "T5",
+        "T6"
+      ],
+      "HF-4": [
+        "T1",
+        "T9",
+        "T10"
+      ],
+      "HF-5": [
+        "T7"
+      ],
+      "HF-6": [
+        "T9"
+      ],
+      "HF-7": []
+    },
+    "providerCallsOnExecution": 11,
+    "costBasis": {
+      "source": "verification/expert-hazlenz-210a-root-cause-and-token-blueprint-2026-09-08/TOKEN-BASELINE-210A.json — VERIFIER (§208B recovered, authoritative)",
+      "calls": 24,
+      "medianInputTokens": 9106,
+      "medianOutputTokens": 732,
+      "usdPerMillionInput": 2,
+      "usdPerMillionOutput": 10,
+      "ratesDerivedFrom": "the recorded stage totals; the same rates reproduce the first-pass leg cost to the cent, which is the check that they are right"
+    },
+    "costDeltaAssumptions": {
+      "addedInputTokensPerCall": 830,
+      "breakdown": {
+        "elevenFieldPayload": 165,
+        "remitInstructionBlockRC": 525,
+        "vocabularySchemaRB": 140
+      },
+      "addedOutputTokensPerCall": 120,
+      "outputBreakdown": "the property restatement and the challenge ground with its evidence",
+      "basis": "measured byte counts for the §210J fields plus §210G-scale instruction blocks, converted at the repository's OBSERVED_BYTES_PER_TOKEN. An estimate, not a tokenizer result."
+    },
+    "costProjection": {
+      "providerCalls": 11,
+      "projectedInputTokensPerCall": 9936,
+      "projectedOutputTokensPerCall": 852,
+      "projectedTotalInputTokens": 109296,
+      "projectedTotalOutputTokens": 9372,
+      "projectedUsd": 0.3123,
+      "recommendedCeilingUsd": 0.43,
+      "ceilingBasis": "35% headroom over the projection, covering per-case observation length variance and one transport retry. A ceiling is a spend guard, not a prediction.",
+      "retriesAuthorized": 0,
+      "semanticRetriesAuthorized": 0
+    },
+    "executionPreconditions": {
+      "remediationsRequired": [
+        "R-A_PAYLOAD",
+        "R-B_VOCABULARY",
+        "R-C_REMIT"
+      ],
+      "executableAgainstTodaysVerifier": false,
+      "whyNot": "the exact property is not in the payload, the verifier is not asked about it, and a property-collapse finding has no declaration or challenge ground to land in. A clean result from today's verifier would measure a verifier that was never asked the question.",
+      "alsoRequired": [
+        "a preregistration frozen by sha256 before the first call, as §207 and §210H were",
+        "a transport canary on one row before the cohort, the §199 pattern that worked and cost one call",
+        "product-owner execution authorization naming the ceiling"
+      ]
+    },
+    "acceptanceCharacter": {
+      "kind": "DEVELOPMENT_VALIDATION",
+      "isExpertAcceptance": false,
+      "isProductionValidation": false,
+      "aggregatePercentageReported": false,
+      "reachingTheDenominatorMeans": "INSTRUMENT_COMPLETION_ONLY"
+    }
+  },
+  "pm1RepinProposal": {
+    "version": "hazlenz.expert.211.pm1-repin-proposal.v1",
+    "item": "PM-1",
+    "status": "AWAITING_PRODUCT_OWNER_REVIEW",
+    "subjectPath": "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts",
+    "repinApplied": false,
+    "historicalEvidenceModified": false,
+    "entries": [
+      {
+        "pin": {
+          "id": "PM-1.1",
+          "site": "backend/scripts/lib/expert-203-successor-identity.ts — ANCESTOR_PINS",
+          "assertionName": null,
+          "kind": "ASSERTED_GATE",
+          "expectedSha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+          "observedFailure": "verify-203-source-integrity RESULT: FAIL — \"expected aab67e0b… actual bc47df39…\"",
+          "affectedSuite": "backend/scripts/verify-203-source-integrity.ts"
+        },
+        "currentSha256": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "classification": "REPIN_PROPOSED",
+        "legitimateModifyingSection": "§210E",
+        "semanticModificationDocumentedAt": [
+          "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+          "verification/expert-hazlenz-210i-epistemic-representation-review-2026-09-09/ARCHITECTURE-REVIEW-210I.md",
+          "verification/expert-hazlenz-210j-epistemic-schema-remediation-2026-09-09/IMPLEMENTATION-REPORT-210J.md",
+          "backend/scripts/lib/expert-210j-ancestry-successor.ts"
+        ],
+        "marksPresentInFile": [
+          "NON_SEMANTIC_PLACEHOLDER_VALUE",
+          "isNonSemanticFiller",
+          "SEMANTIC_BRANCH_FIELDS",
+          "§210E R7"
+        ],
+        "marksAbsentFromFile": [],
+        "proposedReplacementExpectation": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "proposedReplacementRationale": "replace aab67e0b2e9c… with bc47df39ea9d… and record §210E as the section that advanced the file. The assertion keeps its meaning — \"this file has not moved since the expectation was set\" — and the expectation moves forward to the accepted state rather than being deleted."
+      },
+      {
+        "pin": {
+          "id": "PM-1.2",
+          "site": "backend/scripts/test-201-governed-binding-stage.ts:169",
+          "assertionName": "A4. §201 changes nothing in the projection module",
+          "kind": "ASSERTED_GATE",
+          "expectedSha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+          "observedFailure": "58/59 PASS · 1 FAIL",
+          "affectedSuite": "backend/scripts/test-201-governed-binding-stage.ts"
+        },
+        "currentSha256": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "classification": "REPIN_PROPOSED",
+        "legitimateModifyingSection": "§210E",
+        "semanticModificationDocumentedAt": [
+          "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+          "verification/expert-hazlenz-210i-epistemic-representation-review-2026-09-09/ARCHITECTURE-REVIEW-210I.md",
+          "verification/expert-hazlenz-210j-epistemic-schema-remediation-2026-09-09/IMPLEMENTATION-REPORT-210J.md",
+          "backend/scripts/lib/expert-210j-ancestry-successor.ts"
+        ],
+        "marksPresentInFile": [
+          "NON_SEMANTIC_PLACEHOLDER_VALUE",
+          "isNonSemanticFiller",
+          "SEMANTIC_BRANCH_FIELDS",
+          "§210E R7"
+        ],
+        "marksAbsentFromFile": [],
+        "proposedReplacementExpectation": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "proposedReplacementRationale": "replace aab67e0b2e9c… with bc47df39ea9d… and record §210E as the section that advanced the file. The assertion keeps its meaning — \"this file has not moved since the expectation was set\" — and the expectation moves forward to the accepted state rather than being deleted."
+      },
+      {
+        "pin": {
+          "id": "PM-1.3",
+          "site": "backend/scripts/test-202-governed-binding-stage.ts:554 — FROZEN.projectionModule",
+          "assertionName": "B18. the first-pass protocol files are byte-unchanged by §202",
+          "kind": "ASSERTED_GATE",
+          "expectedSha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+          "observedFailure": "53/54 PASS · 1 FAIL",
+          "affectedSuite": "backend/scripts/test-202-governed-binding-stage.ts"
+        },
+        "currentSha256": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "classification": "REPIN_PROPOSED",
+        "legitimateModifyingSection": "§210E",
+        "semanticModificationDocumentedAt": [
+          "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+          "verification/expert-hazlenz-210i-epistemic-representation-review-2026-09-09/ARCHITECTURE-REVIEW-210I.md",
+          "verification/expert-hazlenz-210j-epistemic-schema-remediation-2026-09-09/IMPLEMENTATION-REPORT-210J.md",
+          "backend/scripts/lib/expert-210j-ancestry-successor.ts"
+        ],
+        "marksPresentInFile": [
+          "NON_SEMANTIC_PLACEHOLDER_VALUE",
+          "isNonSemanticFiller",
+          "SEMANTIC_BRANCH_FIELDS",
+          "§210E R7"
+        ],
+        "marksAbsentFromFile": [],
+        "proposedReplacementExpectation": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "proposedReplacementRationale": "replace aab67e0b2e9c… with bc47df39ea9d… and record §210E as the section that advanced the file. The assertion keeps its meaning — \"this file has not moved since the expectation was set\" — and the expectation moves forward to the accepted state rather than being deleted."
+      },
+      {
+        "pin": {
+          "id": "PM-1.4",
+          "site": "backend/scripts/verify-196/197/198/199-source-integrity — report lines",
+          "assertionName": null,
+          "kind": "RECORDED_ONLY",
+          "expectedSha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+          "observedFailure": null,
+          "affectedSuite": null
+        },
+        "currentSha256": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+        "classification": "RECORDED_ONLY_NO_REPIN_NEEDED",
+        "legitimateModifyingSection": null,
+        "semanticModificationDocumentedAt": [
+          "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+          "verification/expert-hazlenz-210i-epistemic-representation-review-2026-09-09/ARCHITECTURE-REVIEW-210I.md",
+          "verification/expert-hazlenz-210j-epistemic-schema-remediation-2026-09-09/IMPLEMENTATION-REPORT-210J.md",
+          "backend/scripts/lib/expert-210j-ancestry-successor.ts"
+        ],
+        "marksPresentInFile": [
+          "NON_SEMANTIC_PLACEHOLDER_VALUE",
+          "isNonSemanticFiller",
+          "SEMANTIC_BRANCH_FIELDS",
+          "§210E R7"
+        ],
+        "marksAbsentFromFile": [],
+        "proposedReplacementExpectation": null,
+        "proposedReplacementRationale": null
+      }
+    ],
+    "affectedSuites": [
+      "backend/scripts/verify-203-source-integrity.ts",
+      "backend/scripts/test-201-governed-binding-stage.ts",
+      "backend/scripts/test-202-governed-binding-stage.ts"
+    ],
+    "assertedGateFailureCount": 3,
+    "notes": [
+      "a stale historical pin is not a current HazLenz behavioural failure, and the three failing assertions must not be reported as regressions",
+      "no repin is authorized until product-owner review; this module applies none",
+      "PM-1.4 is RECORDED_ONLY. Those scripts exit non-zero for an unrelated pre-existing audit-sweep finding, not for this staleness.",
+      "the §203 ancestry record was already repaired ADDITIVELY by §210J. That repair documents the transition; it does not and cannot make an asserted gate pass, which is why PM-1.1 still fails.",
+      "an alternative to repinning PM-1.2 and PM-1.3 is to narrow those assertions to what they actually mean — \"§201 / §202 changed nothing\" — by comparing against a baseline captured at suite start rather than a literal. That is a product-owner choice and is recorded, not taken."
+    ]
+  },
+  "generatedAt": "2026-09-09"
+}

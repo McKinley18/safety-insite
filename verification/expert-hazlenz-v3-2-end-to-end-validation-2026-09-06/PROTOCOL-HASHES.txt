@@ -1,0 +1,17 @@
+§195 FROZEN PROTOCOL IDENTITY — recorded before any provider call (none was made)
+
+first-pass prompt version   hazlenz.expert.prompt.v15
+first-pass system prompt    20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+verifier instruction        hazlenz.expert.verifier-instruction.v3.2
+verifier system prompt      f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f
+verifier schema             83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e
+admission contract          hazlenz.expert.verifier.v3.2
+admission validator (v3)    475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+cohort                      hazlenz.expert.e2e-cohort.2026-09-06
+cohort module               a49cf14cd348ebd269077962acf191c55a07a5b24d50da95a0dab08fbaafc274
+model                       claude-sonnet-5
+preregistration             67cfe67f1ff5763454302b73ce38755b799df38e3cf97485cd9c48cc44881b6a
+
+NOT THIS POPULATION:
+  v3   678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88  (§187B)
+  v3.1 7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c  (§192)

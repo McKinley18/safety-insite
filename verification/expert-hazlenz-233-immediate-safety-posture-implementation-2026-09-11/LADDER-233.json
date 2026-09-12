@@ -1,0 +1,184 @@
+{
+  "artifact": "SECTION-229-PROTECTED-LADDER",
+  "ranAt": "2026-09-11T23:29:49.612Z",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "suitesListed": 17,
+  "suitesPresent": 17,
+  "suitesMissing": [],
+  "passed": 17,
+  "failed": 0,
+  "failedSuites": [],
+  "results": [
+    {
+      "rung": "2 first-pass contract",
+      "suite": "§210E final remediation",
+      "script": "scripts/test-210e-final-remediation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "No semantic PASS may be claimed from this file. That requires a hosted run.",
+      "durationMs": 525
+    },
+    {
+      "rung": "2 first-pass contract",
+      "suite": "§210J epistemic schema",
+      "script": "scripts/test-210j-epistemic-schema-remediation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "====================================================================================================",
+      "durationMs": 514
+    },
+    {
+      "rung": "2 first-pass contract",
+      "suite": "§210G alignment",
+      "script": "scripts/test-210g-alignment-remediation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "No semantic PASS may be claimed from this file. That requires a hosted run.",
+      "durationMs": 520
+    },
+    {
+      "rung": "3 declaration / property",
+      "suite": "§205 remediation and RR-7 preservation",
+      "script": "scripts/test-205-remediation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "92 passed, 0 failed",
+      "durationMs": 520
+    },
+    {
+      "rung": "3 declaration / property",
+      "suite": "§224 declaration capability",
+      "script": "scripts/test-224-declaration-capability.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "CONTRACT DISCRIMINATION ONLY. No behavioural claim is made or implied.",
+      "durationMs": 519
+    },
+    {
+      "rung": "3 declaration / property",
+      "suite": "§226 property selection capability",
+      "script": "scripts/test-226-property-selection-capability.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "CONTRACT DISCRIMINATION ONLY. No behavioural claim is made or implied.",
+      "durationMs": 533
+    },
+    {
+      "rung": "4 verifier",
+      "suite": "§212 verifier architecture",
+      "script": "scripts/test-212-verifier-architecture-remediation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "====================================================================================================",
+      "durationMs": 524
+    },
+    {
+      "rung": "4 verifier",
+      "suite": "§214 verifier semantic / sibling containment",
+      "script": "scripts/test-214-verifier-semantic-remediation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "====================================================================================================",
+      "durationMs": 502
+    },
+    {
+      "rung": "4 verifier",
+      "suite": "§218 structured property verifier",
+      "script": "scripts/test-218-structured-property-verifier.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "====================================================================================================",
+      "durationMs": 515
+    },
+    {
+      "rung": "6 property authority",
+      "suite": "§220 KR-1 property authority boundary",
+      "script": "scripts/test-220-kr1-property-authority.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "KR-1 = OPEN — HUMAN-GATED V1.0 LIMITATION",
+      "durationMs": 498
+    },
+    {
+      "rung": "7 settlement",
+      "suite": "clarification settlement",
+      "script": "scripts/test-expert-clarification-settlement.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "148 passed, 0 failed",
+      "durationMs": 502
+    },
+    {
+      "rung": "7 settlement",
+      "suite": "unsupported settlement",
+      "script": "scripts/test-expert-unsupported-settlement.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "129 passed, 0 failed",
+      "durationMs": 504
+    },
+    {
+      "rung": "8 governed evidence",
+      "suite": "grounding contract",
+      "script": "scripts/test-expert-grounding-contract.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "41 passed, 0 failed",
+      "durationMs": 496
+    },
+    {
+      "rung": "9 integrated local",
+      "suite": "§219 preregistration",
+      "script": "scripts/test-219-preregistration.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "PROVIDER CALLS 0 · DATABASE OPERATIONS 0",
+      "durationMs": 611
+    },
+    {
+      "rung": "9 integrated local",
+      "suite": "§221 integrated preregistration",
+      "script": "scripts/test-221-preregistration.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "PROVIDER CALLS 0 · DATABASE OPERATIONS 0",
+      "durationMs": 527
+    },
+    {
+      "rung": "1 targeted unit",
+      "suite": "expert contract foundation",
+      "script": "scripts/test-expert-contract-foundation.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "56 passed, 0 failed",
+      "durationMs": 503
+    },
+    {
+      "rung": "1 targeted unit",
+      "suite": "expert authority merge",
+      "script": "scripts/test-expert-authority-merge.ts",
+      "present": true,
+      "ok": true,
+      "exitCode": 0,
+      "tailLine": "51 passed, 0 failed",
+      "durationMs": 515
+    }
+  ]
+}

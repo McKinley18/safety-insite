@@ -1,0 +1,46 @@
+CONFINEMENT — R6 HOSTED NEGATIVE-CONTROL TEMPORAL-STATE REPAIR, 2026-08-30
+
+A. controllers/services/modules referencing the Expert module:
+   NONE (0 matches) -- `grep -rl "expert-hazlenz" backend/src --include="*.ts"` outside
+   `expert-hazlenz/`, `expert-hazlenz-adapters/` and `scripts/` returns nothing.
+
+B. frontend references:
+   NONE (0 matches) -- no `expert-hazlenz`, `ExpertHazlenz`, or `expertHazardCandidates` reference
+   anywhere under `frontend-next`.
+
+C. importers of the HOSTED (Anthropic) adapter (construct match):
+backend/scripts/test-expert-anthropic-adapter-repair.ts
+backend/scripts/diagnose-anthropic-schema-compatibility.ts
+backend/scripts/diagnose-r4-r6-local-repair.ts
+backend/scripts/probe-expert-hosted-transport.ts
+backend/scripts/probe-expert-hosted-r4-r6-targeted-confirmation.ts
+   -- identical set to §110's CONFINEMENT.txt. This phase added no new importer of the hosted
+   adapter and made zero hosted calls.
+
+D. did this phase modify any production/customer or Expert-core file beyond the prompt?
+   Only `expert-prompt.ts` changed among Expert-core files this phase (209 insertions / 39
+   deletions cumulative with the pre-existing §105-109 working-tree diff; this phase's own
+   contribution is the "CURRENT STATE, NOT HISTORICAL STATE" system-prompt section, the matching
+   user-prompt reinforcement line, and the v4->v5 version bump). `expert-contract.types.ts`,
+   `expert-normalization.ts`, and `fixtures/no-call-scenarios.ts` carry ONLY the pre-existing
+   §105-109 diff -- this phase did not touch them at all.
+
+   New files added this phase, all probe/fixture-only, zero production reference:
+     backend/src/safescope-v2/expert-hazlenz/fixtures/temporal-state-fixtures.ts  (T1-T6 corpus)
+     backend/scripts/diagnose-expert-temporal-state-repair.ts                     (local-only harness)
+
+   One comment-only edit for accuracy, no behavior change:
+     backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+       ("prompt.v4" -> "the current prompt version", since the literal is now stale)
+
+   One literal re-anchor in an existing protected suite (not a weakening -- the property asserted,
+   "a recorded probe names the prompt version it ran under", is unchanged; only the version string
+   moved from v4 to v5, the same way A.13/A.15 were re-anchored in §105):
+     backend/scripts/test-expert-routing-contract.ts  (A.2: 'hazlenz.expert.prompt.v4' -> '...v5')
+
+E. hosted calls made this phase:
+   ZERO. Every diagnostic run this phase used `OllamaExpertProvider` (localhost:11434, $0.00).
+
+F. commit/push/tag/deploy status:
+   Nothing committed, pushed, tagged, or deployed. Working tree carries this phase's changes on
+   top of the pre-existing uncommitted §105-109 grounding/routing repair diff.

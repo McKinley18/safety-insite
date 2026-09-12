@@ -1,0 +1,291 @@
+{
+  "operation": "§173 balanced paired instrument — mechanical analysis only",
+  "date": "2026-09-05",
+  "note": "structural measurements. No semantic truth is inferred from any of them.",
+  "pairwiseLengths": {
+    "PAIR-1": {
+      "silence": 358,
+      "required": 342,
+      "delta": 16
+    },
+    "PAIR-2": {
+      "silence": 336,
+      "required": 349,
+      "delta": 13
+    },
+    "PAIR-3": {
+      "silence": 331,
+      "required": 329,
+      "delta": 2
+    },
+    "PAIR-4": {
+      "silence": 321,
+      "required": 317,
+      "delta": 4
+    },
+    "PAIR-5": {
+      "silence": 310,
+      "required": 308,
+      "delta": 2
+    }
+  },
+  "maxPairwiseDelta": 16,
+  "preferredDelta<=20_metBy": 5,
+  "classLengthRanges": {
+    "intendedSilence": [
+      310,
+      358
+    ],
+    "intendedRequired": [
+      308,
+      349
+    ]
+  },
+  "punctuation": {
+    "silenceCommas": [
+      1,
+      0,
+      0,
+      2,
+      0
+    ],
+    "requiredCommas": [
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "silenceSemicolons": [
+      1,
+      1,
+      1,
+      0,
+      1
+    ],
+    "requiredSemicolons": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "silenceQuestionMarks": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "requiredQuestionMarks": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "digits": {
+    "silence": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "required": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "negations": {
+    "silence": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "required": [
+      2,
+      1,
+      2,
+      1,
+      1
+    ],
+    "ranges": {
+      "silence": [
+        1,
+        2
+      ],
+      "required": [
+        1,
+        2
+      ]
+    },
+    "note": "ranges are identical (1-2) and the per-pair sign of the difference flips, so no negation-count threshold separates the classes"
+  },
+  "sentenceCounts": {
+    "silence": [
+      4,
+      4,
+      4,
+      3,
+      4
+    ],
+    "required": [
+      4,
+      4,
+      4,
+      3,
+      4
+    ],
+    "note": "identical within every pair"
+  },
+  "verificationVocabulary": {
+    "inSilence": [
+      "certificate",
+      "checked",
+      "filed",
+      "flame-tested",
+      "function-tested",
+      "initialled",
+      "locked",
+      "log",
+      "proved",
+      "recorded",
+      "sheet",
+      "signed",
+      "stopped",
+      "test",
+      "tested",
+      "torque-checked",
+      "witnessed"
+    ],
+    "inRequired": [
+      "certificate",
+      "checked",
+      "filed",
+      "flame-tested",
+      "initialled",
+      "locked",
+      "log",
+      "proved",
+      "recorded",
+      "result",
+      "sheet",
+      "signed",
+      "stopped",
+      "test",
+      "tested",
+      "torque-checked",
+      "witnessed"
+    ],
+    "shared": [
+      "certificate",
+      "checked",
+      "filed",
+      "flame-tested",
+      "initialled",
+      "locked",
+      "log",
+      "proved",
+      "recorded",
+      "sheet",
+      "signed",
+      "stopped",
+      "test",
+      "tested",
+      "torque-checked",
+      "witnessed"
+    ],
+    "onlySilence": [
+      "function-tested"
+    ],
+    "onlyRequired": [
+      "result"
+    ],
+    "sharedCount": 16,
+    "note": "the §172 defect was twelve verification tokens exclusive to one class. Sixteen are now shared; the two residual exclusives each appear in exactly one row."
+  },
+  "classExclusiveContentWords": {
+    "onlySilenceCount": 25,
+    "onlyRequiredCount": 25,
+    "sharedCount": 116,
+    "widestSingleTokenCoverage": {
+      "silence": [
+        [
+          "start",
+          3
+        ],
+        [
+          "handrail",
+          2
+        ],
+        [
+          "all",
+          2
+        ],
+        [
+          "turn",
+          2
+        ],
+        [
+          "two",
+          1
+        ]
+      ],
+      "required": [
+        [
+          "test",
+          2
+        ],
+        [
+          "record",
+          2
+        ],
+        [
+          "annual",
+          1
+        ],
+        [
+          "unread",
+          1
+        ],
+        [
+          "stop",
+          1
+        ]
+      ]
+    },
+    "noSingleTokenCoversAClass": true,
+    "note": "some class-exclusive words are unavoidable: the semantic difference has to appear somewhere. What matters is that none covers a whole class, so no one-token rule classifies."
+  },
+  "hazardFamilyDistribution": {
+    "PAIR-1": "machine_guarding",
+    "PAIR-2": "machine_guarding",
+    "PAIR-3": "fire_explosion",
+    "PAIR-4": "hazardous_energy",
+    "PAIR-5": "hazardous_energy"
+  },
+  "hazardFamilyConfound": "STRUCTURALLY_ELIMINATED — every pair shares one hazard family across both sides, so family cannot predict class",
+  "targetDecisionDistribution": {
+    "PAIR-1": "whether the debarker may continue to run as observed",
+    "PAIR-2": "whether the conveyor may keep running with an operative on the adjacent gangway",
+    "PAIR-3": "whether drying may continue under the existing controls",
+    "PAIR-4": "whether the blockage-clearing work may continue as observed",
+    "PAIR-5": "whether the hydraulic hose may be broken as planned"
+  },
+  "decisionCategoryConfound": "STRUCTURALLY_ELIMINATED — every pair shares one target decision and one target factKey across both sides",
+  "explicitCueScan": {
+    "cuesChecked": 10,
+    "hits": "0 hits across all 10 rows"
+  },
+  "residualStructuralConfounds": [
+    "'function-tested' appears only on an intended-SILENCE row (1 of 5) and 'result' only on an intended-REQUIRED row (1 of 5); neither approaches a classifier",
+    "expressing an unsettled fact naturally recruits negation or 'whether'; five different constructions were used across the required side so no single one covers it, but the tendency is intrinsic to the row class and should be re-checked in any future expansion"
+  ]
+}

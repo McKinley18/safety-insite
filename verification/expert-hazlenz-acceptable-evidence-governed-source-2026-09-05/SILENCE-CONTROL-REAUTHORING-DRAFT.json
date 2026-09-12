@@ -1,0 +1,189 @@
+{
+  "label": "SILENCE_CONTROL_REAUTHORING_DRAFT_ONLY",
+  "AUTHORITY_STATUS": "DRAFT_NOT_AUTHORITATIVE_NOT_ADJUDICATED",
+  "createdAt": "2026-09-05",
+  "warning": "MODEL-DRAFTED. NOT evaluation truth, NOT adjudicated, and NOT fed into any local or hosted semantic evaluation in this slice. §162 established that five of seven rows of model-authored evaluation truth did not survive human review.",
+  "targetBandChars": [
+    380,
+    440
+  ],
+  "bandStatus": "INSTRUMENT_CONTROL_CONSTRAINT_NOT_A_SAFETY_TRUTH_CRITERION",
+  "frozenRequiredRowChars": {
+    "HS-A1": 402,
+    "HS-E1": 412
+  },
+  "requiredRowsFallInsideBand": true,
+  "rowsInBand": "5/5",
+  "section168DraftBandChars": [
+    559,
+    592
+  ],
+  "howLengthWasReached": "by removing clauses that settled NO fact for the row's own question family, and by tightening phrasing. NO filler was added. A first compression pass overshot to 346-365 characters — below both frozen REQUIRED rows, which would have re-created the confound in the opposite direction — and clauses carrying genuine settled facts were restored to land inside the band. Those restorations improved the rows: SC-3 had lost a settled fact outright.",
+  "reachingTheBandDoesNotMakeThemValid": "the length confound is an INSTRUMENT defect; removing it does not establish that the semantic silence truth is correct. Each row still requires human adjudication of its EXACT final wording before it can become authoritative truth.",
+  "rows": [
+    {
+      "id": "SC-1",
+      "domain": "electrical / hazardous energy control",
+      "obs": "An electrician is replacing a contactor in a motor control cabinet, wearing safety glasses and insulated gloves. The line disconnect is open and padlocked with their own lock, and they are the only person working on the circuit. They tested their meter on a known live source, read zero volts at the terminals, then retested the meter. The line is stopped and a supervisor stands at the disconnect.",
+      "settles": [
+        "isolation under the worker's own exclusive lock",
+        "absence of voltage verified live-dead-live at the point of work",
+        "equipment at rest",
+        "the disconnect is attended",
+        "personal protection in use"
+      ],
+      "droppedFromTheSection168Draft": [
+        "the written-procedure clause, which settled no fact for this question family"
+      ],
+      "compressionNote": "the PPE clause was restored rather than padded away: it carries a settled fact and its removal would have left arc-flash exposure open.",
+      "chars": 398
+    },
+    {
+      "id": "SC-2",
+      "domain": "respiratory / solvent vapour",
+      "obs": "A technician is wiping two circuit assemblies with isopropyl alcohol at a downdraft bench in the electronics repair room. The bench extraction runs and its airflow indicator sits in the green band, checked and initialled at shift start. About 50 millilitres is used from a closed bottle over four minutes. Nitrile gloves and safety glasses are worn. No other solvent is in use and the corridor door is closed.",
+      "settles": [
+        "engineering control present and verified at the point of use",
+        "quantity and duration stated",
+        "no other solvent source",
+        "the room is not open to an adjacent source",
+        "skin and eye protection in use",
+        "the work location is stated, scoping the no-other-source claim to a room"
+      ],
+      "droppedFromTheSection168Draft": [
+        "the safety data sheet location, which settles no exposure fact"
+      ],
+      "compressionNote": "the closed door was restored because it supports the no-other-source claim. The room was named to bring the row inside the band with locating content that scopes the no-other-source claim, not with filler.",
+      "chars": 409
+    },
+    {
+      "id": "SC-3",
+      "domain": "fall protection / work at height",
+      "obs": "Two joiners fix cladding rails from a mobile tower scaffold at a platform height of four metres. The platform is fully boarded with guard rails on all four sides at 1.1 metres, a mid-rail and a toe board. The wheels are locked and outriggers deployed on concrete. A scaffold tag dated this morning hangs at the ladder. Both work within the footprint and the apron below is cordoned.",
+      "settles": [
+        "collective fall protection on every open side",
+        "platform complete",
+        "tower stable",
+        "inspection current",
+        "work within the footprint",
+        "falling-object exposure below controlled"
+      ],
+      "droppedFromTheSection168Draft": [
+        "rails passed up by hand from ground level, which bore only on tower loading"
+      ],
+      "compressionNote": "the cordon was restored. Without it the row lost a settled fact outright and would have been under-settled for its own question family.",
+      "chars": 382
+    },
+    {
+      "id": "SC-4",
+      "domain": "noise exposure",
+      "obs": "An operator tends two CNC routers in the joinery shop and wears earmuffs from the dispenser at the entrance. A survey last month by an occupational hygienist, posted on the notice board, records 84 dBA at this workstation over a full shift with both routers cutting. The operator is present the whole shift, no other noise source is present, and the routers are at the settings surveyed.",
+      "settles": [
+        "measured full-shift level, recent, qualified assessor",
+        "surveyed conditions still hold",
+        "full-shift duration",
+        "no additional source",
+        "hearing protection in use"
+      ],
+      "droppedFromTheSection168Draft": [
+        "the hearing-protection sign at the entrance, which settles no exposure fact"
+      ],
+      "compressionNote": "the earmuffs were restored. They are additional to what 84 dBA requires, but their absence read as a missing control.",
+      "chars": 387
+    },
+    {
+      "id": "SC-5",
+      "domain": "powered industrial truck / pedestrian separation",
+      "obs": "A counterbalance forklift moves banded pallets from the dock to racking in aisle four. The aisle is closed to pedestrians by hinged barriers at both ends, both shut, and an operative outside the barrier directs the movement by radio. Today's pre-use check sheet hangs in the cab, the load is at travel height with the mast tilted back, the operator is belted, and the floor is dry and lit.",
+      "settles": [
+        "pedestrians physically separated",
+        "the only person near the movement is outside the separation",
+        "truck checked for the shift",
+        "stable travel configuration",
+        "operator restrained",
+        "floor and lighting stated"
+      ],
+      "droppedFromTheSection168Draft": [
+        "none beyond tightening of phrasing"
+      ],
+      "compressionNote": "the seat belt was restored; it settles a rollover fact a reviewer could reasonably call decision-critical.",
+      "chars": 389
+    }
+  ],
+  "dispositionForm": [
+    {
+      "candidateId": "SC-1",
+      "disposition": null,
+      "allowedDispositions": [
+        "SILENCE_CONTROL_VALID",
+        "SILENCE_CONTROL_INVALID",
+        "SILENCE_CONTROL_AMBIGUOUS",
+        "UNDER_SETTLED_AFTER_COMPRESSION",
+        "INSUFFICIENT_INFORMATION_FOR_HUMAN_ADJUDICATION"
+      ],
+      "disputedClause": null,
+      "reviewerNote": null
+    },
+    {
+      "candidateId": "SC-2",
+      "disposition": null,
+      "allowedDispositions": [
+        "SILENCE_CONTROL_VALID",
+        "SILENCE_CONTROL_INVALID",
+        "SILENCE_CONTROL_AMBIGUOUS",
+        "UNDER_SETTLED_AFTER_COMPRESSION",
+        "INSUFFICIENT_INFORMATION_FOR_HUMAN_ADJUDICATION"
+      ],
+      "disputedClause": null,
+      "reviewerNote": null
+    },
+    {
+      "candidateId": "SC-3",
+      "disposition": null,
+      "allowedDispositions": [
+        "SILENCE_CONTROL_VALID",
+        "SILENCE_CONTROL_INVALID",
+        "SILENCE_CONTROL_AMBIGUOUS",
+        "UNDER_SETTLED_AFTER_COMPRESSION",
+        "INSUFFICIENT_INFORMATION_FOR_HUMAN_ADJUDICATION"
+      ],
+      "disputedClause": null,
+      "reviewerNote": null
+    },
+    {
+      "candidateId": "SC-4",
+      "disposition": null,
+      "allowedDispositions": [
+        "SILENCE_CONTROL_VALID",
+        "SILENCE_CONTROL_INVALID",
+        "SILENCE_CONTROL_AMBIGUOUS",
+        "UNDER_SETTLED_AFTER_COMPRESSION",
+        "INSUFFICIENT_INFORMATION_FOR_HUMAN_ADJUDICATION"
+      ],
+      "disputedClause": null,
+      "reviewerNote": null
+    },
+    {
+      "candidateId": "SC-5",
+      "disposition": null,
+      "allowedDispositions": [
+        "SILENCE_CONTROL_VALID",
+        "SILENCE_CONTROL_INVALID",
+        "SILENCE_CONTROL_AMBIGUOUS",
+        "UNDER_SETTLED_AFTER_COMPRESSION",
+        "INSUFFICIENT_INFORMATION_FOR_HUMAN_ADJUDICATION"
+      ],
+      "disputedClause": null,
+      "reviewerNote": null
+    }
+  ],
+  "reviewer": null,
+  "reviewedAt": null,
+  "notExecutedInThisSlice": [
+    "no hosted call",
+    "no local semantic evaluation",
+    "no scoring",
+    "no denominator formed",
+    "no counterfactual set re-authored — the §168 counterfactuals still apply and must be re-checked against the compressed wording during adjudication"
+  ]
+}

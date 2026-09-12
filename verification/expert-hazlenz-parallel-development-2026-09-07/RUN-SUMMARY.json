@@ -1,0 +1,214 @@
+{
+  "artifact": "SECTION_201_RUN_SUMMARY",
+  "date": "2026-09-07",
+  "operation": "§201 — controlled multi-agent parallel development across seven independent Expert HazLenz workstreams, with orchestrator reconciliation.",
+  "TERMINAL": "EXPERT_HAZLENZ_PARALLEL_DEVELOPMENT_COMPLETE — PRODUCT_OWNER_DECISIONS_REQUIRED",
+  "EXPERIMENT_PROVIDER_CALLS": 0,
+  "EXPERIMENT_PROVIDER_SPEND_USD": 0.0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "commit": "NOT PERFORMED", "push": "NOT PERFORMED", "tag": "NOT PERFORMED",
+  "branchCreated": "NOT PERFORMED", "deploy": "NOT PERFORMED",
+  "zeroCallAccountingNote": "ZERO HAZLENZ EXPERIMENT PROVIDER CALLS: no first-pass request, no verifier request, no Anthropic API call for experimental purposes, no spend against the experiment budget. The seven subagents are Claude Code tooling, not experiment executions; none was permitted to issue a provider call and none did. The distinction is stated rather than left to an ambiguous 'provider calls = 0'.",
+
+  "agentsLaunched": 7,
+  "ranConcurrently": true,
+  "concurrencyEvidence": "all seven dispatched in a single message; completion order 1 → 4 → 3 → 7 → 2 → 6 → 5 does not match dispatch order. Durations ~5.8 to ~20.9 minutes; ~76 minutes of agent time inside a span bounded by the longest agent.",
+  "additionalAgentsSpawned": 0,
+
+  "fileOwnership": {
+    "mapWrittenBeforeAnyAgentBegan": true,
+    "conflictsDetected": 0,
+    "everyAgentStayedInAllocation": true,
+    "filesCreated": { "code": 8, "documents": 8 },
+    "existingFilesModifiedByAgents": 0,
+    "orchestratorOnlyEdits": ["backend/package.json (5 script entries)", "backend/tsconfig.scripts-201.json (new)"],
+    "additiveSteerWorked": "Agent 6 mutated NEITHER harness module; both remain byte-identical to the hashes §198 and §199 pinned."
+  },
+
+  "verificationReRunByOrchestrator": {
+    "test-201-governed-binding-stage": "59/59 PASS",
+    "test-201-owed-property-representation": "59/59 PASS",
+    "test-201-verifier-vnext-candidates": "216 passed, 0 failed",
+    "test-201-harness-hardening": "67/67 PASS",
+    "test-198-transport-remediation": "89/89 PASS",
+    "test-199-successor-protocol": "43/43 PASS",
+    "test-196-structured-first-pass-owed-facts": "92/92 PASS",
+    "test-expert-193-hardening": "46 passed, 0 failed",
+    "test-expert-194-regulatory-basis": "48 passed, 0 failed",
+    "test-expert-verifier-v3-binding-protocol": "49/49 PASS",
+    "test-expert-v3-development-integration": "40/40 PASS",
+    "SRC_TYPECHECK": "PASS (tsconfig.json — src/** only)",
+    "EXPERIMENT_SCOPE_TYPECHECK_196_200": "PASS",
+    "EXPERIMENT_SCOPE_TYPECHECK_201": "PASS",
+    "note": "agent test claims were not taken on trust; every suite was re-executed by the orchestrator."
+  },
+
+  "evidencePreservation": {
+    "section195To200Files": 75,
+    "result": "ALL 75 BYTE-UNCHANGED, verified against a manifest taken before any agent launched",
+    "runtimeSrcFiles": 27,
+    "runtimeSrcResult": "ALL 27 BYTE-UNCHANGED",
+    "section200Worksheet": "re-verified after all agents completed — 0 human semantic verdicts supplied, PENDING_HUMAN_ADJUDICATION, 0 / 152",
+    "section200SlotSplitIndependentlyReDerived": "152 slots | 24 pre-filled NOT_EXERCISED | 128 genuinely open | 0 supplied by anyone. The 24 are the governed axes N, S and T on the eight projected facts: a DETERMINISTIC STRUCTURAL CONSEQUENCE, not a judgement — both governed rows were rejected at the transport, so the governed arm never reached inference and there is nothing for a human to judge on those axes. The worksheet excludes them from verdictsSupplied for that reason. Stated because a reader traversing the file WILL find non-null values."
+  },
+
+  "noSemanticSelfGrading": {
+    "held": true,
+    "verdictsSuppliedByAnyAgent": 0,
+    "substituteVerdictsCreated": 0,
+    "agentsThatDeclinedToRecommendWhereAdjudicationIsMissing": ["Agent 3 (axis Q)", "Agent 4 (axis R)"],
+    "note": "no agent filled a slot, created a substitute verdict, or described anything as human review, product-owner review, ground truth or semantic acceptance."
+  },
+
+  "independentCorroborations": [
+    {
+      "finding": "a boundary asserted in a comment but held only by a CALLER DEFAULT",
+      "agent4": "F5 — NominationPayload.priority is validated for membership and copied verbatim into the ledger; the forbidden-field scan inspects the declaration, not d.nomination. A bridge default of OTHER is what keeps a provider priority out.",
+      "agent7": "HIGH-4 — mergeExpertIntelligence's fourth parameter is ungated, unlabelled and unaudited; a comment asserts it is gated, the code enforces nothing. No caller passes a fourth argument.",
+      "significance": "two agents, different files, different mandates, same structural defect class. Warrants a systematic sweep: which stated invariants are held by a default rather than by a check?"
+    }
+  ],
+  "duplicatedFindings": [
+    {
+      "finding": "the verifier is never shown OwedFact.acceptableEvidence",
+      "agent3": "harness end — the §199 executor forwards 7 of 8 projectOwedFact fields; acceptableEvidence is omitted. It was null on all 8, so nothing was lost in practice.",
+      "agent5": "contract end — V3SuppliedOwedFact has no such field at all, so the component asked to judge resolution sufficiency is never shown the architecture's own statement of what would settle the fact.",
+      "significance": "a contract gap with a harness gap on top of it. Fixing only the executor would achieve nothing."
+    }
+  ],
+
+  "correctionsToMyOwnPriorWork": [
+    {
+      "id": "SECTION_199_BYTE_FIGURES_UNDERSTATED",
+      "foundBy": "Agent 2, verified independently by the orchestrator",
+      "what": "CAPABILITY-TRANSPORT-DIAGNOSIS.json reproduces its per-row figures only with a placeholder sourceId 'OBS'; the executor sent 'OBS-<rowId>', enumerated twice in the schema. Every per-row figure is 12 characters short (6 in the v15 column).",
+      "verified": "SF-01 published 18617 / actual 18629; SG-01 published 19062 / actual 19074",
+      "impactOnConclusion": "NONE — both sides of the comparison carry the offset. But a later remeasurement would have looked unexplainably adrift.",
+      "handling": "§199 evidence is immutable and was NOT edited; recorded additively in the §201 integration report."
+    },
+    {
+      "id": "SECTION_200_CIRCUIT_BREAKER_RECOMMENDATION_WOULD_NOT_HAVE_FIRED",
+      "foundBy": "Agent 6, verified independently by the orchestrator",
+      "what": "§200 states SG-01 and SG-02 shared 'the identical normalised signature'. The §199 log shows contract=d0713f36696e8bea vs contract=243bb6766c05599f — only the MESSAGES matched. §199 keyed requestContractId on the per-row schema hash, so a memory keyed on that field misses SG-02 exactly as adjacency did.",
+      "consequence": "my §200 recommendation was wrong on its own worked example",
+      "correction": "an EFFECTIVE GRAMMAR IDENTITY — structure, property names, nesting, keywords and array arity retained, leaf scalar values erased. Measured on the real cohort it partitions exactly along the capability axis: 10 ABSENT rows to one identity, both PRESENT rows to another."
+    },
+    {
+      "id": "SECTION_200_STOP_VS_SKIP_AMBIGUITY",
+      "foundBy": "Agent 6",
+      "what": "§200's text says STOP while its own worked example describes the run CONTINUING past the skipped row.",
+      "handling": "both dispositions are expressible; the executing slice must freeze one. Agent 6 implemented SKIP_ATTEMPT."
+    },
+    {
+      "id": "SCRIPTS_DIAGNOSTIC_COUNT_WRONG_BY_AN_ORDER_OF_MAGNITUDE",
+      "foundBy": "Agent 6, re-measured by the orchestrator",
+      "what": "§198 and the blueprint state backend/scripts carries '~2011 pre-existing type errors'. Under the project's own compiler options the real figure is 181 diagnostics across 43 files. My number came from an ad-hoc invocation with --strict false, which manufactures errors that do not exist under the real configuration.",
+      "stillTrue": "the scoped configuration remains necessary — 181 is plenty to make a directory-wide gate unusable"
+    }
+  ],
+
+  "verifiedLatentNotRetroactive": {
+    "finding": "Agent 7 HIGH-3 — the §199 executor has no max_tokens branch, so a truncated response would return ok:true and project partial declarations as complete",
+    "orchestratorVerification": "checked the frozen §199 records: 0 max_tokens truncations across all 18 completed calls, every stop reason tool_use, responded model claude-sonnet-5 on every call",
+    "conclusion": "the defect is LATENT, not retroactive. The gate is genuinely missing and §199's results are unaffected."
+  },
+
+  "governedBindingRecommendation": {
+    "location": "after OwedFact projection, as its own small call, on governed rows only",
+    "why": "before projection a fact has no identity and the only handle is the model's own declarationId, which the projection explicitly refuses as identity. After projection both halves of every binding come from HazLenz-owned closed sets.",
+    "measuredGrammar": {
+      "firstPassAbsentAccepted": "17 enums / 74 alternatives / 54 props / 18,629 chars",
+      "firstPassPresentRejected": "18 / 75 / 55 / 19,074",
+      "bindingStage": "3 / 5 / 5 / 1,505",
+      "acceptedVsRejectedDelta": "one enum construct and 438 characters (2.3%) — the sharpest available demonstration that byte size is not the provider's metric",
+      "reduction": "12.7x smaller than the request that was refused"
+    },
+    "noFactKeyOnTheWire": true,
+    "modelAuthority": "governedBindingStageEffect() is literal false on eight axes",
+    "rejected": ["verifier-associated enrichment — conflates verdict reliance with fact binding", "deterministic-only binding — the §160-retired matcher under a new name"],
+    "unproven": "offline measurement cannot establish transport acceptance; the threshold is undocumented. First hosted step must be a SINGLE-ROW canary."
+  },
+
+  "owedFactOptions": {
+    "measuredLoss": "0 of 8 projected facts carry the property under any key or as a substring; 770 authored bytes reach neither the fact nor the verifier",
+    "pinCost": "O2/O3 break the §187 pin and fail ELEVEN live source-integrity assertions plus §196 case B3; O1/O4/O5 cost nothing on the pin",
+    "o2FailsOutright": "required is unsatisfiable for DETERMINISTIC and GOVERNED_EVIDENCE facts that never had a declared property",
+    "sharedFailureMode": "O4 and O5 fail by SILENCE — an empty sidecar projection is byte-identical to O1 with no error",
+    "recommendation": "NONE — deliberately. Choosing is answering axis Q, from the component under evaluation."
+  },
+
+  "escalationOptions": {
+    "largestConstraint": "F3 — priority is part of fact identity in preservationViolations and there is no priority analogue of transition(). POST-HOC ESCALATION IS UNREPRESENTABLE AS A PRIORITY EDIT.",
+    "secondRule": "F4 — modelAuthoredOnlyFailClosedKeys already bars a model-authored fact from alone justifying a fail-closed state. The two rules do not consult each other.",
+    "firstOrderEffect": "F2 — LIFE_CRITICAL does not itself fail closed; the gate needs a life-critical fact NOT PRESENTED. Escalation's first-order effect is ranking displacement.",
+    "refusals": ["would not estimate alert fatigue in a product whose customer surface is undesigned", "would not rank options on axis-R evidence that does not exist"],
+    "warning": "SafeScopeEvidenceGapIntelligenceService looks like a ready-made classifier but matches by String.includes over concatenated free text — pointed at model prose it is the §160-retired matcher deciding a fail-closed state"
+  },
+
+  "verifierOptions": {
+    "highestRanked": "C6a challenge grounding (25.0) — a NOMINATION asserting 'this is open' must quote a verbatim span checked by containment; a CHALLENGE asserting the exact opposite need not point anywhere. The contract demands proof for the claim that creates work and accepts bare assertion for the claim that removes it. §199 produced exactly one CHALLENGE_FACT_VALIDITY, so this is not hypothetical.",
+    "compoundQuestions": "INDUCED by the representation, not permitted by it — proved: a well-formed two-question verdict is refused by unmodified v3.2. structural-questions.ts enforces one-string-one-fact at assembly while the verifier contract enforces the opposite at emission.",
+    "hiddenCost": "adding any prose field silently reopens the §193 citation boundary — verifierFreeTextStrings is a hand-maintained list",
+    "grammarCost": "all seven candidates 4,998 → 9,765 bytes and 25 → 41 enum members; the top three cost +1,998 bytes and +3 enum members combined",
+    "declined": ["C3b unbounded proposal array — the §199 grammar construct", "C5b authored property × evidence sufficiency matrix — a blanket evidence-class rule, which the property-relative discipline forbids"]
+  },
+
+  "harnessChanges": {
+    "delivered": ["corrected stage-local memory keyed on effective grammar identity", "five-class error taxonomy with conservative unknown ⇒ transient", "non-opportunity scorer safety (§198 returns 0 findings on axis O's real §199 shape; §201 returns 1)", "immutable-evidence guard as a tested function", "targeted JSON splice proved on the live 2.29 MB current-state file, reversible byte-for-byte, nothing written to disk", "SRC_TYPECHECK / EXPERIMENT_SCOPE_TYPECHECK helpers"],
+    "predecessorsUnmutated": true,
+    "notWiredIntoAnyExecutor": true,
+    "neverExercisedAgainstAProvider": true
+  },
+
+  "auditFindings": {
+    "total": 30, "CRITICAL": 0, "HIGH": 4, "MEDIUM": 11, "LOW": 9, "INFORMATIONAL": 6,
+    "itemsMarkedRequiringVerification": 3,
+    "customerInactiveBoundary": "HOLDS IN CODE, checked four independent ways rather than taken from comments — no reference to expert-hazlenz in backend/src outside the module, no match for 'expert' in the module registration, no dynamic import, a single type-only outward edge. That is why nothing is CRITICAL.",
+    "HIGH_1": "two complete divergent owed-fact implementations, both live, already drifted, chain uses one at each end",
+    "HIGH_2": "three incompatible ArbitrationRequest definitions; the only wired producer is type-incompatible with the only consumer; the §182 settlement boundary has no producer in any execution path",
+    "HIGH_3": "the §199 executor reimplements the transport inline and drops three runner-owned checks, including any max_tokens branch — VERIFIED LATENT, NOT RETROACTIVE",
+    "HIGH_4": "mergeExpertIntelligence's ungated fourth parameter — corroborated as a class by Agent 4",
+    "measurementsThatReadAsZero": "CONTRACT_VERSION_MISMATCH and ANALYSIS_ID_MISMATCH are unreachable on every real provider path because both fields are injected before the boundary; a non-array evidence is silently coerced to [], making the boundary's own malformed-evidence code unreachable"
+  },
+
+  "integrableImmediately": [
+    "the four prototype modules and their suites as development-only artifacts (401 assertions passing)",
+    "the two typecheck configurations and their explicit labels",
+    "the corrected scripts/ diagnostic count (181, not ~2011)",
+    "the §199 12-character offset, recorded additively",
+    "the corrected circuit-breaker identity function as a module (NOT wired into any executor)"
+  ],
+  "blockedOnProductOwnerAdjudication": [
+    "the final OwedFact representation choice — axis Q, 0 of 8 verdicts",
+    "the final priority/escalation choice — axis R, 0 of 8 verdicts",
+    "any prompt remediation for gap recall, gap precision, branch semantics or decision divergence",
+    "any acceptance threshold derived from §199 semantic quality",
+    "promoting any verifier candidate to a numbered protocol version"
+  ],
+
+  "authorizationsRequested": [
+    "choose the governed-grammar direction; first hosted step a SINGLE-ROW transport canary, not a cohort",
+    "any provider call, including that canary",
+    "wire the hardened circuit breaker into an executor, freezing disposition + identity function + allow-list in that slice's preregistration",
+    "add truncation and model-identity gates to the executor transport (HIGH-3)",
+    "triage HIGH-1 and HIGH-2 — architecture questions, not repairs",
+    "a systematic sweep for the corroborated defect class: invariants held by a caller default rather than by a check",
+    "any mutation of owed-fact.types.ts — §187-pinned, eleven live assertions, and it should be taken JOINTLY with the escalation question",
+    "populating OwedFact.acceptableEvidence from a production-permitted provenance — a product and safety decision",
+    "any promotion of a verifier candidate to v3.4"
+  ],
+
+  "mustNotClaim": [
+    "that any §200 semantic axis has been measured — 0 of 152 verdicts supplied",
+    "that any prototype is validated — none has been sent to a provider",
+    "that the governed-binding stage fits the provider's grammar limit — offline measurement cannot establish transport acceptance",
+    "that the hardened circuit breaker has been exercised — all results are replays of the recorded §199 log",
+    "that 'no CRITICAL findings' means the system is sound — 4 HIGH remain open",
+    "resolution of any §196 contract question",
+    "production readiness, formal acceptance, or M14"
+  ],
+  "nextGate": "PRODUCT-OWNER DECISIONS. The 152 semantic verdicts remain the gate on everything semantic; the governed-grammar direction is the gate on the governed arm; HIGH-1 and HIGH-2 are architecture questions needing triage. §201 integrated no prototype into the active Expert path.",
+  "worktree": { "branch": "main", "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131", "unrelatedUncommittedWork": "PRESERVED — no reset, checkout, restore, stash or clean was performed" }
+}

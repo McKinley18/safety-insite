@@ -1,0 +1,144 @@
+{
+  "artifact": "SECTION_192_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "\u00a7192 fresh prospective hosted development validation of verifier-v3.1",
+  "TERMINAL": "EXPERT_HAZLENZ_VERIFIER_V3_1_PROSPECTIVE_VALIDATION_PASSED \u2014 HUMAN_ACCEPTANCE_OR_NEXT_INTEGRATION_GATE_REQUIRED",
+  "terminalReason": "All six mechanical hard gates pass, all nine scored semantic development gates pass, good-behaviour regression is 9/9 with zero unnecessary proposals, conjunctive sufficiency is 6/6, adjacent-property substitution is 0/39, and clarification policy is now exercised at 18 opportunities across 6 owed-property families. G7 passes at exactly its preregistered threshold with zero slack.",
+  "POPULATION": {
+    "population": "verifier-v3.1",
+    "v3_1_promptSha256": "7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c",
+    "v3_1_schemaSha256": "d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65",
+    "v3_promptSha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+    "separation": "\u00a7187B's fifteen v3 executions are NEVER combined with these results",
+    "section187StimuliReused": 0
+  },
+  "GOVERNANCE": {
+    "ADJUDICATION_KIND": "MODEL_SEMANTIC_ADJUDICATION",
+    "adjudicator": "MODEL \u2014 not a human reviewer",
+    "axisClassificationFrozenBeforeSpend": true,
+    "HUMAN_REQUIRED_axes": 0,
+    "humanAcceptanceGate": "NOT part of \u00a7192 and NOT discharged by it",
+    "VERIFIER_V3_1_ACCEPTED": false,
+    "frozenHumanSemanticGate_section189": "UNMEASURED \u2014 65/112, unchanged by \u00a7192"
+  },
+  "EXECUTION": {
+    "plannedCalls": 39,
+    "attempted": 39,
+    "behavioralExecutions": 39,
+    "providerErrors": 0,
+    "stopReason": null,
+    "replicateStability": "every row 100% consistent across its three replicates"
+  },
+  "SPEND": {
+    "ACTUAL_PROVIDER_SPEND_USD": 0.87129,
+    "ceilingUsd": 3.25,
+    "worstCaseUsd": 2.808,
+    "syntheticReservationUsd": 0,
+    "callsWithNoProviderUsage": 0,
+    "rule": "provider-returned usage only"
+  },
+  "MECHANICAL_HARD_GATES": {
+    "providerErrors": "0 \u2014 PASS",
+    "contractInvalid": "0 \u2014 PASS",
+    "wrongSuppliedFactKeyBindings": "0 \u2014 PASS",
+    "unauthorizedSettlementTransitions": "0 \u2014 PASS",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER \u2014 PASS",
+    "adjacentStateLedgerMutation": "0 \u2014 PASS"
+  },
+  "ALL_MECHANICAL_GATES_PASS": true,
+  "QUESTION_A_CONTRACT_STATE_DISCIPLINE": {
+    "answer": "ELIMINATED",
+    "observed": "0 contract-invalid in 39",
+    "note": "BOUND_BY_CLARIFICATION appears 21 times, every one in the LEGAL pairing with ADD_OR_REPLACE_CLARIFICATION and a real proposal. The token was not avoided; it was used correctly.",
+    "inRunVersusRecomputeDisagreements": 0
+  },
+  "SEMANTIC_DEVELOPMENT_GATES": {
+    "G1_owedFactPreserved": "33/33 vs >= 31/33 \u2014 PASS",
+    "G2_clarificationTargetCorrect": "30/30 vs >= 90% \u2014 PASS",
+    "G3_clarificationEvidenceSufficient": "30/30 vs >= 90% \u2014 PASS",
+    "G4_nearbyPropertySubstitution": "0 vs = 0 \u2014 PASS",
+    "G5_adjacentFactContained": "39/39 vs >= 37/39 \u2014 PASS",
+    "G6_unnecessaryClarification": "0/15 vs <= 1/15 \u2014 PASS",
+    "G7_missedClarificationOnOpportunities": "15/18 vs appropriate proposals >= 15/18 \u2014 PASS",
+    "G8_goodBehaviourRegression": "9/9 vs fact preserved and no unnecessary replacement >= 8/9 \u2014 PASS",
+    "G9_conjunctiveSufficiency": "6/6 vs insufficiency identified >= 5/6 \u2014 PASS"
+  },
+  "ALL_SEMANTIC_DEVELOPMENT_GATES_PASS": true,
+  "G10_challenge": {
+    "n": 6,
+    "validity": "6 / 6",
+    "reviewability": "6 / 6",
+    "evaluation": "ESTIMABLE",
+    "note": "n=6, up from n=1 at \u00a7187B; the estimability floor of 5 was preregistered and not moved"
+  },
+  "CLARIFICATION_POLICY": {
+    "denominatorRule": "NEVER raw proposedClarification / total executions. Report OPPORTUNITIES, PROPOSALS, APPROPRIATE_PROPOSALS, MISSED_PROPOSALS and UNNECESSARY_PROPOSALS separately.",
+    "OPPORTUNITIES": 18,
+    "opportunityRows": [
+      "FV-06",
+      "FV-07",
+      "FV-08",
+      "FV-09",
+      "FV-10",
+      "FV-11"
+    ],
+    "opportunityPropertyFamilies": [
+      "detection_alarm_function",
+      "guarding_clearance",
+      "fall_anchor_integrity",
+      "energy_separate_source",
+      "ventilation_capture",
+      "pressure_relief_function"
+    ],
+    "PROPOSALS": 15,
+    "APPROPRIATE_PROPOSALS": 15,
+    "MISSED_PROPOSALS": 3,
+    "UNNECESSARY_PROPOSALS": 0,
+    "unnecessaryScope": "15 executions where no proposal was owed",
+    "rawRateNotUsed": "21/39 is the raw emission count and is NOT the policy denominator"
+  },
+  "THE_ONE_DEVIATION": {
+    "row": "FV-11",
+    "observed": "3/3 NO_CLARIFICATION_REQUIRED, no proposal, on an unconditional opportunity row",
+    "factPreserved": "STILL_UNRESOLVED on all three \u2014 declined to propose, did not settle",
+    "classification": "FIXTURE_AMBIGUITY is the likelier defect",
+    "why": "the row was authored with an IN-DATE written scheme certificate covering the very examination in which the safety valve was tested, and never states the scheme's interval, so whether the fact is open depends on an interval the observation withholds. Contrast FV-07 and FV-10, where the cited inspection's stated scope EXCLUDED the owed property and the verifier refused it correctly.",
+    "denominatorAdjusted": false,
+    "reportedFigure": "G7 reported as preregistered, 15/18, with FV-11 counted as three misses",
+    "sensitivityOnly": "had the row been excluded the figure would read 15/15; that is stated as sensitivity and is NOT the reported result",
+    "recommendation": "prospective only \u2014 a future cohort should state the scheme interval or drop the row; every \u00a7192 figure stands unchanged"
+  },
+  "INCIDENTAL_FINDING_NOT_SCORED": {
+    "what": "FV-07 R1 and R3 cite a regulatory figure in the rationale and embed it in the proposed question",
+    "why_it_matters": "the v3/v3.1 instruction says the verifier may not cite or quote a regulation and states the whole verdict is discarded if it does, but the admission validator has no check for regulation citation in prose, so these were admitted",
+    "actionTaken": "NONE \u2014 not one of the ten preregistered axes; no gate was invented after spend",
+    "forFutureAuthorization": "either narrow the prohibition to fields, add a validator check, or stop claiming a consequence the contract cannot deliver"
+  },
+  "SOURCE_INTEGRITY": "PASS 21/21 \u2014 v3 byte-unchanged, v3.1 unchanged since freeze, fixtures unchanged since freeze, \u00a7187\u2013\u00a7191 evidence unchanged, settlement authority untouched",
+  "filesAdded": [
+    "backend/scripts/lib/expert-v3-1-prospective-cohort-2026-09-06.ts",
+    "backend/scripts/lib/expert-v3-1-model-judgements-2026-09-06.ts",
+    "backend/scripts/execute-v3-1-prospective-validation-2026-09-06.ts",
+    "backend/scripts/score-v3-1-mechanical-gates-2026-09-06.ts",
+    "backend/scripts/build-v3-1-model-semantic-adjudication-2026-09-06.ts",
+    "backend/scripts/verify-192-source-integrity-2026-09-06.ts"
+  ],
+  "existingRuntimeFilesModified": 0,
+  "mustNotClaim": [
+    "verifier-v3.1 accepted",
+    "a human semantic result",
+    "the \u00a7189 human gate measured",
+    "end-to-end pipeline behaviour \u2014 the first-pass sets were AUTHORED, so nothing here says a real first pass would produce these questions",
+    "a population rate from 13 rows x 3 replicates",
+    "customer readiness",
+    "production readiness",
+    "formal acceptance"
+  ],
+  "nextGate": "human acceptance, or the next integration gate. \u00a7192 is a DEVELOPMENT result.",
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

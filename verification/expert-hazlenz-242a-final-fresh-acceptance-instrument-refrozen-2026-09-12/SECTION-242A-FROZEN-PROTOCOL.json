@@ -1,0 +1,323 @@
+{
+  "artifact": "SECTION-242A-FROZEN-PROTOCOL",
+  "version": "hazlenz.expert.242a.final-fresh-successor-acceptance.refrozen.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "frozenAt": "2026-09-12T15:59:50.983084Z",
+  "status": "FROZEN INSTRUMENT. NOT EXECUTED. NO ACCEPTANCE HAS BEEN MEASURED.",
+  "whatFreezingMeans": "the twenty-four cases, their truth contracts, the hard gates, the quality thresholds, the judgment slots, the containment model, the decision rules, the call plan and the spend ceiling are fixed at this digest. Nothing here is a claim about the candidate.",
+  "whatWouldAnswerTheProductQuestion": "executing this instrument once, under a separate product-owner authorization, against the successor candidate named below.",
+  "frozenInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "digestMethod": "sha256 over the UTF-8 bytes of JSON.stringify with sorted keys and no whitespace of {version, instrument, truthContract, judgmentSlots, coverageMap}, in that key order. This is a NEW method declared here, NOT the §240 formula. instrumentDigest240() hashes TypeScript constants inside expert-240-final-acceptance-instrument.ts; reproducing it would require editing that module and re-running build-240-freeze.ts, which writes into the frozen §240 directory. §242A therefore declares its own reproducible method rather than overwrite frozen evidence. The two digest values are NOT comparable as numbers; only as identities of their own artifacts.",
+  "digestVerification": "parse SECTION-242A-INSTRUMENT.json, SECTION-242A-TRUTH-CONTRACT.json, SECTION-242A-JUDGMENT-SLOTS.json and SECTION-242A-COVERAGE-MAP.json, rebuild {version, instrument, truthContract, judgmentSlots, coverageMap} with version taken from the instrument, serialise with sorted keys and no whitespace, and sha256 the UTF-8 bytes. No field is excluded, so the digest is reproducible from the four files exactly as written.",
+  "supersedes": {
+    "instrument": "verification/expert-hazlenz-240-final-fresh-acceptance-instrument-2026-09-11",
+    "digest240": "cccf242b8910a1225e37bf6075b5ee706acd49b8d7ab9f2a56e225ea8f8f67a2",
+    "scope": "this freeze supersedes §240 ONLY as the executable acceptance instrument. §240, §241 and §242 remain unmodified and are the provenance explaining why the re-freeze happened."
+  },
+  "successorCandidateDigest": "b22e43957625afe696b417253ac46031f62b763a52e52b3eb9464ace0a81676e",
+  "candidateUnderTest": {
+    "successorCandidateDigest": "b22e43957625afe696b417253ac46031f62b763a52e52b3eb9464ace0a81676e",
+    "bindingClosureDigest239": "ee6b099123b48bd3fa9995e72ec5d16cb32e872e88c233f48ff3bce800744862",
+    "closureDigest237": "1820bfd10ae3ab9105bd4233e97d97500267c6361cf520c60438383540461755",
+    "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+    "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+    "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "protectedModuleCount": 29,
+    "contractVersion": "hazlenz.expert.first-pass-contract.239-unresolved-driver-binding-closure",
+    "evidencePackage239": "verification/expert-hazlenz-239-contract-binding-closure-2026-09-11",
+    "evidencePackageDigest239": "aef1539c45e8106ac56018d63a17b69cbcbfdeef89711e0dd52be3ccc2e2c1c2",
+    "firstPassStack": [
+      "§210J",
+      "§226",
+      "§233",
+      "§235 normalizer",
+      "§237",
+      "§239"
+    ],
+    "verifierStack": [
+      "§212",
+      "§214 scope containment",
+      "§218"
+    ],
+    "authorityStack": [
+      "owed-fact ledger",
+      "property authority",
+      "settlement review"
+    ],
+    "mayBeModifiedBetweenFreezeAndExecution": false,
+    "mayBeModifiedDuringExecution": false
+  },
+  "cohort": {
+    "cases": 24,
+    "byDomain": {
+      "OSHA_GENERAL_INDUSTRY": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8"
+      ],
+      "OSHA_CONSTRUCTION": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "MSHA": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8"
+      ]
+    },
+    "postures": {
+      "CONTINUE": 5,
+      "CONTINUE_WITH_CONTROLS": 7,
+      "HOLD_PENDING_VERIFICATION": 6,
+      "STOP": 6
+    },
+    "declaringCases": 10,
+    "owedProperties": 12
+  },
+  "hardGates": 17,
+  "qualityMeasures": 13,
+  "judgmentSlots": 131,
+  "callPlan": {
+    "perCase": [
+      {
+        "caseId": "G1",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "G2",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "G3",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "G4",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "G5",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "G6",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "G7",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "G8",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "C1",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "C2",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "C3",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "C4",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "C5",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "C6",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "C7",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "C8",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "M1",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "M2",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "M3",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "M4",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "M5",
+        "firstPass": 1,
+        "verifier": 1,
+        "elided": false
+      },
+      {
+        "caseId": "M6",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "M7",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      },
+      {
+        "caseId": "M8",
+        "firstPass": 1,
+        "verifier": 0,
+        "elided": true
+      }
+    ],
+    "firstPassCalls": 24,
+    "verifierCalls": 8,
+    "verifierLegsElided": 16,
+    "otherProviderCalls": 0,
+    "primaryCalls": 32,
+    "contingencyCalls": 2,
+    "maximumTotalCalls": 34,
+    "projectedSpendUsd": 2.9564,
+    "worstCaseSpendUsd": 3.4799,
+    "recommendedHardCeilingUsd": 3.6,
+    "perCallGuardUsd": 0.16
+  },
+  "decisionRule": {
+    "evaluatedInOrder": true,
+    "firstMatchWins": true,
+    "symbols": {
+      "G": "distinct hard gates with >= 1 uncontained occurrence",
+      "O": "total uncontained hard-gate occurrences",
+      "I": "hard gates reported COVERAGE_INSUFFICIENT",
+      "M": "quality measures below their frozen threshold"
+    },
+    "rules": [
+      {
+        "order": 1,
+        "outcome": "A_ACCEPT",
+        "condition": "G === 0 && O === 0 && I === 0 && M === 0"
+      },
+      {
+        "order": 2,
+        "outcome": "D_HOLD_RELEASE",
+        "condition": "G >= 2 || O >= 3 || Q6 < 0.85 || Q13 < 0.90",
+        "why": "two distinct uncontained gate families, or three occurrences of one, is not a narrow defect. A posture accuracy below 0.85 or a structural admission rate below 0.90 is broad unreliability rather than one correctable mechanism, whatever the gates did."
+      },
+      {
+        "order": 3,
+        "outcome": "D_HOLD_RELEASE",
+        "condition": "G === 1 && M >= 3",
+        "why": "an uncontained safety defect alongside three or more capability shortfalls is a capability deficiency, not a remediation target."
+      },
+      {
+        "order": 4,
+        "outcome": "C_REMEDIATE_MATERIAL_UNCONTAINED_DEFECT",
+        "condition": "G === 1 && O <= 2 && M <= 2",
+        "why": "one gate family, at most two occurrences, with capability otherwise at or near threshold. The remediation proposal must NAME the mechanism; it may not be opened as an exploratory cycle."
+      },
+      {
+        "order": 5,
+        "outcome": "B_ACCEPT_WITH_EXPLICIT_CAPABILITY_BOUNDARY",
+        "condition": "G === 0 && (M >= 1 || I >= 1 || a disclosed contained limitation occurred materially)",
+        "why": "no uncontained safety defect, and a named capability limitation that the product must carry explicitly."
+      }
+    ],
+    "everyReachableCombinationIsCovered": "G === 0 lands on rule 1 or rule 5. G === 1 lands on rule 2, 3 or 4. G >= 2 lands on rule 2. P22 proves the rule set is total and unambiguous over the reachable space.",
+    "containedLimitationOccurredMateriallyMeans": "K3 exact-property misses at or above the Q4 threshold's complement, any K5 or K6 fail-closed refusal, or any contained component error whose product consequence was that the user received no usable analysis."
+  },
+  "correctionProvenance": {
+    "sections": [
+      "§241 official-source verification, 4/7",
+      "§242 three authorized corrections, refreeze blocked",
+      "§242A off-point substitution authorized, refreeze issued"
+    ],
+    "authorizedCorrectionFamilies": 3,
+    "unauthorizedSemanticDifferences": 0,
+    "semanticFieldChangesFrom240": 18,
+    "regulatoryVerification": "7 / 7"
+  },
+  "preFreezeChecks": "46/46",
+  "truthPreflight": "26/26 carried from §240; no truth-preflight input changed by §242 or §242A, and the structural P11 rule was re-run directly and passes",
+  "executionAuthorized": false,
+  "terminal": "EXPERT_HAZLENZ_SUCCESSOR_FINAL_FRESH_ACCEPTANCE_INSTRUMENT_REFROZEN — PRODUCT_OWNER_EXECUTION_REAUTHORIZATION_REQUIRED",
+  "whatThisFreezeDoesNotClaim": [
+    "it does not claim the successor candidate is accepted. No provider call has been made against it under this instrument.",
+    "it does not claim independent external validation. This session authored the cases, the truth and the scoring rules, having read the whole programme record.",
+    "it does not claim the exact-property limitation is closed. K3 is measured, not resolved.",
+    "it does not claim the scoped TypeScript stack is universally type-clean. Two frozen-module annotation errors are disclosed and were not repaired.",
+    "it does not claim twenty-four cases measure a population rate. Invariant 28 still holds.",
+    "it does not claim the regulatory corrections improved the candidate. They corrected the INSTRUMENT. The candidate is byte-identical to the one §240 named.",
+    "it does not claim a §240-comparable digest. §242A declares its own digest method because the §240 method cannot be run without overwriting frozen evidence."
+  ]
+}

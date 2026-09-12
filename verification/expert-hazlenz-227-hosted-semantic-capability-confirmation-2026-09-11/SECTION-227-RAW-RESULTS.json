@@ -1,0 +1,481 @@
+{
+  "artifact": "SECTION-227-RAW-RESULTS",
+  "derivedFrom": "RAW-227.jsonl",
+  "rawLedgerSha256": "dd844724578f7b436bcf44b3c1e15df5d619d4ca706013a9d53afdc1237fef63",
+  "note": "Provider output is recorded exactly. No malformed field was repaired and no stringified structured field was parsed. This file is a readable projection of the raw ledger and is never a substitute for it.",
+  "frozenProtocolDigest": "d0cda04c6a40a257997c0e70c4dffde80d62f179e64fc143fd9d1b47d7b1a338",
+  "callsExecuted": 8,
+  "spendUsd": 0.685892,
+  "calls": [
+    {
+      "callIndex": 1,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K1",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "6706f43d44dbf5d5b4f39b63bd079a9caaf8d23a98a3e11a9efa628f9ea9eb04",
+      "wireSchemaIdentity": "32c19c7f26e5b5a4ba2342342f6eb6ad11e55bf8f0ac21ba55cdf19e6c099aa6",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32127,
+      "outputTokens": 2984,
+      "costUsd": 0.094094,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "ufd-residue-state",
+          "missingFact": "Whether flammable, combustible, or reactive residue is currently present inside the pipe being hot-cut",
+          "observationSpan": "nobody on the farm can say what product it carried and no test of the residue inside it has been done",
+          "notEstablishedBecause": "The observation states only that the product carried and the residue's identity are unknown and untested; it does not state that residue is present, absent, or of a particular hazard class inside the pipe currently being cut.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The pipe is empty/inert with no flammable or reactive residue capable of ignition or harmful release during cutting",
+          "branchB": "The pipe retains flammable, combustible, or reactive residue capable of ignition or harmful release when heated or sparked by the cutting operation",
+          "decisionIfA": "Hot cutting may continue with standard hot-work precautions (fire watch, extinguisher, spark containment) already observed at the site",
+          "decisionIfB": "Hot cutting must stop immediately; the line must be purged, tested, or cut by a cold-cutting method, and a hazard assessment completed before resuming",
+          "decisionWhileUnresolved": "Hot cutting should be paused or restricted until the pipe's contents/residue status is established, given the active ignition source (sparks) at the point of unknown residue"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "unknown-residue-ignition",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true,
+          "reasoning": "Cutting into a pipe whose residue composition and quantity are unknown, with an active ignition source (sparks/heat from the cut-off saw) at the point of cutting, creates a live possibility of igniting flammable/combustible residue or vapour inside or released from the pipe. This is a present exposure, not a hypothetical one, because the cutting and spark generation are happening now on the unverified pipe."
+        },
+        {
+          "candidateKey": "unknown-residue-chemical-exposure",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true,
+          "reasoning": "Cutting an unlabelled, untested former chemical dosing line could release residual chemical product or vapour to the cutting contractor and fire watch, but the observation does not establish that residue is currently present in the pipe being cut, so this is raised as a possible rather than confirmed exposure."
+        },
+        {
+          "candidateKey": "bund-floor-chemical-contamination-ignition",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": true,
+          "reasoning": "A bunded area for a chemical store is designed to contain spilled or leaked product; falling sparks onto that floor create an ignition source over a surface that may bear flammable or reactive chemical residue from stored products, independent of the pipe's own contents."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The deterministic engine returned no findings, but the observation describes hot cutting with a petrol cut-off saw, producing sparks onto a chemical-store bund floor, on a pipe whose former contents are unidentified and whose interior residue has never been tested. This combination of an active ignition source and an unverified residue is a present fire/explosion exposure, not merely a historical concern, and a possible chemical exposure to the workers cannot be ruled out either. The single decision-critical gap is whether the pipe's contents/residue have been characterized or purged before hot work began, since the answer determines whether hot cutting may safely continue or must stop for a hazard assessment or alternative method."
+    },
+    {
+      "callIndex": 2,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K2",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "d3a2af75230c41d9bb232cfe992dc2ac9572dc89d7b78469722e1e2763397f3b",
+      "wireSchemaIdentity": "dfdef6c8242c8b95f612840a1ff5f97d0b064fe450db5f84d0214d079031d00f",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32075,
+      "outputTokens": 1820,
+      "costUsd": 0.08235,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 1,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-current-noise-level",
+          "missingFact": "The current noise level (dB(A)) at the blanking line workstations with the newly installed larger press in operation",
+          "observationSpan": "No measurement has been taken since the new press went in.",
+          "notEstablishedBecause": "The observation states no measurement has been taken since the new press was installed; it does not state what the current noise level is, only that the prior 92 dB(A) figure was recorded before the change.",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "branchA": "The current noise level at the workstations is comparable to or lower than the previously measured 92 dB(A)",
+          "branchB": "The current noise level at the workstations is materially higher than 92 dB(A) due to the larger press",
+          "decisionIfA": "The existing SNR 30 ear defenders and current hearing protection arrangements remain adequate for the noise level actually present; no immediate change to hearing protection is required for this fact alone.",
+          "decisionIfB": "The existing hearing protection selection and/or engineering controls may be inadequate for the increased noise level, requiring a new noise survey to be completed promptly and re-evaluation of the protection provided.",
+          "decisionWhileUnresolved": "Continue requiring the ear defenders currently worn as a precaution, but treat the noise exposure level at this workstation as unverified until a post-installation noise measurement is obtained."
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "noise-outdated-survey",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true,
+          "reasoning": "A larger press replacing two smaller ones is a change in equipment that plausibly changes the noise emission at the workstation. The current noise level at these workstations with the new press running is not established by any measurement, so whether current exposure and the adequacy of the SNR 30 hearing protection remain appropriate cannot be confirmed from the observation."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "Operators are wearing well-fitted, well-maintained SNR 30 ear defenders, but the only noise survey on file predates the installation of a larger blanking press that replaced two smaller machines, and no measurement has been taken since. Because the equipment change could plausibly alter the noise exposure at these workstations, the current noise level and whether the existing hearing protection remains adequate cannot be confirmed from the observation. This is raised as a clarification because the answer would determine whether existing controls are sufficient or whether a new survey and possibly upgraded protection/controls are needed now."
+    },
+    {
+      "callIndex": 3,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K3",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "695d20524b0281165be88908d935d48aef8e22b8f3f15c34f8bc65ac2ae4617e",
+      "wireSchemaIdentity": "8b7f6e5dbfa1056c46ddcfbfb0197333b01462eb00e265e9e2ae5704e386befd",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32110,
+      "outputTokens": 2954,
+      "costUsd": 0.09376,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 3,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "ufd-deflection",
+          "missingFact": "Whether the upright's bow exceeds the manufacturer's allowable deflection criteria for continued loading",
+          "observationSpan": "nobody can say whether the damage has been measured against the manufacturer's deflection criteria",
+          "notEstablishedBecause": "The observation states only that nobody can say whether the damage has been measured against the criteria; it does not state the actual deflection value or which side of the manufacturer's tolerance it falls on.",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "branchA": "The measured bow is within the manufacturer's allowable deflection tolerance",
+          "branchB": "The measured bow exceeds the manufacturer's allowable deflection tolerance",
+          "decisionIfA": "The bay may remain loaded and in use under the existing load notice while permanent repair is scheduled, since the manufacturer's rated capacity still applies",
+          "decisionIfB": "The bay must be unloaded and removed from service immediately, since the manufacturer's load notice no longer reflects the rack's actual condition and continued loading risks collapse",
+          "decisionWhileUnresolved": "Restrict or remove load from the damaged bay and limit picker access to the aisle at that location until the deflection has been checked against the manufacturer's criteria, given that the current status cannot be confirmed either way"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "damaged-upright-structural-failure",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false,
+          "reasoning": "A struck, visibly bowed upright that continues to carry loaded pallets at three levels is a current structural damage condition. Racking uprights are compression/bending members; a permanent bow indicates loss of section capacity or eccentric loading, and the rack has not been unloaded, repaired, or removed from service since the impact three weeks ago."
+        },
+        {
+          "candidateKey": "picker-struck-by-collapse",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": false,
+          "reasoning": "Pickers working the aisle in front of a structurally compromised, loaded rack bay are exposed to being struck by pallets or racking components if the damaged upright or the bay it supports were to fail. This is a current exposure because the workers are present now and the damaged, loaded condition persists now."
+        },
+        {
+          "candidateKey": "no-post-impact-inspection",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true,
+          "reasoning": "Without any assessment against the manufacturer's deflection criteria, it cannot be determined whether the visible bow exceeds the tolerance at which the manufacturer's load notice remains valid, meaning the rack's current safe load capacity is unknown."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "A forklift-struck upright with a visible permanent bow remains loaded at three levels and has not been inspected or assessed against the manufacturer's deflection criteria in the three weeks since impact, while pickers continue to work the adjacent aisle throughout the day. This combination creates an active struck-by exposure layered on an unresolved structural-failure condition: the rack's current safe-load status cannot be confirmed, and workers are present at the point of potential failure. The critical open fact is whether the measured deflection exceeds the manufacturer's tolerance, which determines whether the bay may remain loaded pending repair or must be unloaded and taken out of service now."
+    },
+    {
+      "callIndex": 4,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K4",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "db83ca77d709fb1c3426543d4a9c5b6b0f2c41b48670e637dbcf1b608a075d19",
+      "wireSchemaIdentity": "ecf1f9851fa18838c5d943b49a985305febc2c44963670214796dcb3b8be5190",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32139,
+      "outputTokens": 2496,
+      "costUsd": 0.089238,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-test-purge-performed",
+          "missingFact": "Whether the tightness test and purge were completed on the replaced pipework before the ranges were first used this morning",
+          "observationSpan": "Nobody in the kitchen can say whether the test and the purge were done before the ranges were first used.",
+          "notEstablishedBecause": "The text states directly that nobody present can say whether the test and purge occurred; it does not state that they did occur, nor that they did not.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The tightness test and purge were completed and passed before the ranges were lit",
+          "branchB": "The tightness test and purge were not completed, or their outcome is unknown, before the ranges were lit",
+          "decisionIfA": "The precondition for return to service has been met; the installation may remain in service, subject to no other open issues.",
+          "decisionIfB": "The precondition for return to service has not been shown to be met; gas supply to the affected pipework should be shut off and the ranges taken out of use until a competent person completes the tightness test and purge.",
+          "decisionWhileUnresolved": "Given the ranges are currently lit and in active use with no confirmation the precondition was met, gas use on this line should be suspended pending confirmation, unless and until the test and purge status is established."
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "untested-gas-pipework-in-use",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": true,
+          "reasoning": "Replaced gas pipework has been returned to service and is currently being fired for breakfast service without anyone able to confirm the precondition tightness test and purge occurred first. This is a live gas system in active use whose safe-to-use status has not been established, which is a current gas systems hazard, not a historical one, because the ranges are burning right now."
+        },
+        {
+          "candidateKey": "unconfirmed-joint-integrity-under-load",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true,
+          "reasoning": "A visual inspection and absence of smell are not equivalent to a tightness test; a small leak, especially under thermal cycling from now-operating ranges, may not be visible or detectable by smell alone, particularly with kitchen ventilation and cooking odors present. This leaves open the possibility of an undetected leak feeding a fire/explosion risk while appliances are firing."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The observation describes newly replaced gas pipework being fired for breakfast service without anyone able to confirm that the precondition tightness test and purge were performed, which is a current, active gas-systems hazard rather than a historical one since the ranges are burning now. The visual soundness of joints and absence of gas smell are reassuring but do not substitute for the required test, leaving open whether an undetected leak could interact with live flame. The critical missing fact is whether the test and purge were actually completed before first use; this must be resolved now because the two possible answers lead to materially different actions (continue safely vs. shut down and re-isolate)."
+    },
+    {
+      "callIndex": 5,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K5",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "70c93073d4ca0c85e19577f22302973a42472f022221b2acb676845a5be003e2",
+      "wireSchemaIdentity": "27b3d3d3c0293a02983a5c6b617486efcb1207ff724cd741809102452864d113",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32119,
+      "outputTokens": 1874,
+      "costUsd": 0.082978,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 1,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 1,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 1,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-notification-status",
+          "missingFact": "Whether the statutory notification of the asbestos removal work was sent to the enforcing authority, and if sent, whether it was sent with the required lead time before work commenced",
+          "observationSpan": "The statutory notification of the work to the enforcing authority cannot be produced, and nobody on site can say whether it was sent fourteen days ago, sent late, or sent at all.",
+          "notEstablishedBecause": "The observation states only that the record cannot be produced and that nobody on site can say whether it was sent, sent late, or sent at all — it does not state that notification was never made or that it was made and merely undocumented on site.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "Notification was sent to the enforcing authority with the required lead time before work began",
+          "branchB": "Notification was never sent, or was sent but not with the required lead time before work began",
+          "decisionIfA": "This precondition has been met and no further action regarding notification is needed for this candidate; work may continue under the existing controls",
+          "decisionIfB": "The work is proceeding without having satisfied a required precondition, and the situation must be escalated to the responsible party and/or enforcing authority to establish and correct the notification status before or while work continues",
+          "decisionWhileUnresolved": "Treat the notification status as unresolved and escalate to the contractor/responsible party to establish and produce evidence of the notification; the physical controls already verified remain in place in the meantime"
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "notification-status-unknown",
+          "assertedConditionState": "UNKNOWN",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true,
+          "reasoning": "Whether the required notification to the enforcing authority was made, and made with the required lead time, is a distinct administrative/regulatory precondition for licensed asbestos removal work that is separate from the physical controls (enclosure, negative pressure, RPE) already verified as in place. Its status is currently unknown rather than confirmed either way."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The physical and procedural controls for this licensed asbestos removal task — enclosure integrity, negative pressure with a current filter test, face-fit tested RPE, and a signed plan of work — are all documented as in place and current, so no physical containment or respiratory exposure hazard is indicated as active. However, the observation establishes that the statutory notification to the enforcing authority cannot be produced and its sending, timing, or existence cannot be confirmed by anyone on site, leaving open whether a required precondition for this work has actually been met. This is raised as an unresolved candidate and a decision-critical clarification rather than a confirmed hazard, since the observation neither confirms nor rules out that notification occurred correctly."
+    },
+    {
+      "callIndex": 6,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K6",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "94021aa08c40ba7a142af341b9e60b9252b0be1f1fdc26f20e195ed63924b327",
+      "wireSchemaIdentity": "d01397723307b951470ff54e87c141b4723ae2029f8e272a67de197b1dd3f4fc",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32117,
+      "outputTokens": 3287,
+      "costUsd": 0.097104,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 2,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 2,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 2,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [
+        {
+          "declarationId": "decl-1",
+          "missingFact": "Whether anyone is or will be present in the open-plan office directly beneath the drilling position while the core is cut",
+          "observationSpan": "nobody can say whether it has been cleared for the drilling or whether anyone will be beneath the position while the core is cut",
+          "notEstablishedBecause": "The observation states plainly that nobody can say whether the space has been cleared or whether anyone will be beneath the position; it does not state that the space is either cleared or occupied.",
+          "affectedDecision": "EXPOSURE",
+          "branchA": "The room below has been cleared and cordoned and no one will be beneath the drilling position while the core is cut",
+          "branchB": "The room below is occupied or cannot be confirmed clear, and someone may be beneath the drilling position while the core is cut",
+          "decisionIfA": "Core drilling may proceed with the current setup, since no person is exposed to the struck-by hazard from the falling core/debris/water below.",
+          "decisionIfB": "Core drilling must stop until the space below is cordoned off and confirmed clear, since a person beneath the slab could be struck by the falling core, debris, or catchment water when the slab is breached.",
+          "decisionWhileUnresolved": "Do not proceed with cutting through the slab until the area below has been confirmed clear and secured; drilling that would breach the slab should be held pending confirmation."
+        },
+        {
+          "declarationId": "decl-2",
+          "missingFact": "Whether the slab at the specific drilling location contains post-tensioned cables, critical reinforcement, or embedded services within the drilling path",
+          "observationSpan": "no as-built drawings for the slab can be found; the slab has not been scanned",
+          "notEstablishedBecause": "The observation states that drawings cannot be found and the slab has not been scanned; it does not state what the slab actually contains at the drilling location, only that this has not been determined.",
+          "affectedDecision": "REQUIRED_CONTROL",
+          "branchA": "The drilling path is free of post-tensioned cables, critical reinforcement, and embedded services",
+          "branchB": "The drilling path intersects a post-tensioned cable, critical reinforcement, or an embedded service",
+          "decisionIfA": "Core drilling may proceed at this location using the current method, as there is no risk of striking embedded tensioned elements.",
+          "decisionIfB": "Core drilling must not proceed at this location until the drilling path is relocated, the tendon/reinforcement/service is avoided, or specialist scanning and sign-off is obtained, since cutting into a tensioned cable or critical reinforcement could cause sudden energy release or localized structural failure.",
+          "decisionWhileUnresolved": "Hold the coring operation at this location until the slab has been scanned (e.g., by GPR or equivalent) to confirm the drilling path is clear of tensioned cables and critical reinforcement."
+        }
+      ],
+      "candidateStates": [
+        {
+          "candidateKey": "struck-by-core-fall",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "HIGH",
+          "requiresUserConfirmation": true,
+          "reasoning": "Core drilling a hole through a concrete slab can release the cut concrete core or drilling debris/water downward. With the drilling actively being set up and no confirmation that the space below is cleared or unoccupied, there is a present, unresolved struck-by exposure to anyone who may be in the office below when the core breaks through."
+        },
+        {
+          "candidateKey": "structural-unknown-embeds",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "confidence": "MODERATE",
+          "requiresUserConfirmation": true,
+          "reasoning": "Core drilling into a slab of unknown internal construction without a scan or drawings creates a possibility of striking post-tensioned tendons, structural reinforcement, or embedded services, which could compromise local structural integrity or release stored energy from a tensioned cable. This cannot be confirmed present or absent from the observation alone."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The observation establishes two current gaps that bear directly on safety: nobody can confirm whether the office space beneath the drilling position is cleared or occupied while the core is cut, creating a present struck-by exposure from the falling core, debris or water; and the slab's internal construction is unknown (no as-built drawings, not scanned), leaving open whether the drilling path will strike post-tensioned cables or critical reinforcement. Both are stated as unresolved in the text itself, not assumed, and both would change what is done today depending on the answer, so they are raised as blocking clarifications alongside their corresponding hazard candidates."
+    },
+    {
+      "callIndex": 7,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K7",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "3836207f5b257502d508634b1edbf38eeb1fb30e0ed5cdb85d37efa4f992da7e",
+      "wireSchemaIdentity": "ee39255606367f7eb86cae75aba7735612c19307f421f9c6972d1fe210dff208",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32152,
+      "outputTokens": 839,
+      "costUsd": 0.072694,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 1,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "overdue-thorough-examination",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": false,
+          "reasoning": "At three months into a twelve-month cycle, the thorough examination is current, not overdue; this is included as a candidate only to note the currency of statutory-style examination documentation is a relevant vehicle_operations fact for this lift truck, distinct from the daily pre-use check already completed."
+        }
+      ],
+      "uncertaintyStatements": [],
+      "summary": "The observation describes a well-controlled forklift operation: a completed pre-use check with sound forks/mast/hydraulics, a current thorough examination certificate (three months into a twelve-month interval, so not overdue), a displayed in-date licence, load well within rated capacity, and physical segregation from pedestrians on a level, dry yard. No stated gap, failure, or current exposure remains that would support a vehicle_operations or struck_by candidate at meaningful strength. No regulatory records were supplied, so no citation or governed obligation is asserted."
+    },
+    {
+      "callIndex": 8,
+      "arm": "REMEDIATED_226",
+      "callKind": "PRIMARY",
+      "contingencyReason": null,
+      "caseId": "K8",
+      "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+      "instructionIdentity": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPromptIdentity": "58985bfc62a2f7dda8b0feb3c02a7c20b2cc037b21767f41520a86d1758f8664",
+      "wireSchemaIdentity": "9952869c31e3162f5e14f0093a7a02a4b0dadc9daa7bfdb05fb912e0e2e7b7c9",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "httpStatus": 200,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE",
+      "inputTokens": 32072,
+      "outputTokens": 953,
+      "costUsd": 0.073674,
+      "outputShape": {
+        "parsed": true,
+        "declarationsShape": "ARRAY",
+        "declarationCount": 0,
+        "candidatesShape": "ARRAY",
+        "candidateCount": 1,
+        "clarificationsShape": "ARRAY",
+        "clarificationCount": 0,
+        "uncertaintyShape": "ARRAY",
+        "outcome": "ANALYZED"
+      },
+      "declaredProperties": [],
+      "candidateStates": [
+        {
+          "candidateKey": "hot-water-drip-contact",
+          "assertedConditionState": "ACTIVE",
+          "confidence": "LOW",
+          "requiresUserConfirmation": false,
+          "reasoning": "A wall mounted hot water boiler that is actively dripping presents a low-level but current thermal contact hazard to anyone who touches the drip tray, tap area or comes into contact with the drip stream while using or servicing the unit. The drip is described as continuing now, not as a past event that has been corrected."
+        }
+      ],
+      "uncertaintyStatements": [
+        "The cause and duration of the drip (when it started, who reported it) are unknown, but this does not change the current assessment that the drip is minor, contained by the tray, and not creating a floor hazard or unsafe condition requiring immediate action beyond routine maintenance."
+      ],
+      "summary": "The observation describes a minor, currently active drip from the boiler's tap that is being contained by a functioning drip tray draining to waste, with the floor dry — a low-severity thermal contact exposure but not an uncontrolled one. Electrical safeguards (RCD protection, current EICR) and the temperature cut-out (tested two months ago) are documented as in place, and nothing in the text suggests either has failed or is currently compromised, so no electrical or thermal-runaway hazard is raised beyond the minor drip itself. No decision-critical facts are missing: the drip's containment and the site's electrical/thermal safety documentation are stated plainly enough that no additional control decision turns on an unresolved fact here."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "//": "SECTION 240 EXPERIMENT SCOPE ONLY. Typechecks the §233/§235/§237/§239 posture stack, the §230 instrument it reads for freshness, and the §240 acceptance instrument. Report as EXPERIMENT_SCOPE_TYPECHECK (§240), NEVER as `tsc clean`. Two PRE-EXISTING frozen-module annotation errors are disclosed by §239 and allowed BY EXACT STRING in verify-240-pre-freeze.ts: scripts/lib/expert-237-posture-contract.ts(193,47) TS2552 and scripts/lib/expert-238-final-confirmation-design.ts(18,3) TS1355. Both are erased at emit and have no runtime effect. §240 does not repair them because both modules are frozen §238 provenance.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-233-*.ts", "scripts/lib/expert-235-*.ts",
+    "scripts/lib/expert-237-*.ts", "scripts/lib/expert-239-*.ts",
+    "scripts/lib/expert-240-*.ts",
+    "scripts/verify-240-pre-freeze.ts", "scripts/build-240-freeze.ts"
+  ]
+}

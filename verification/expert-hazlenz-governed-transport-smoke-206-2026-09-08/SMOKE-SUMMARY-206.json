@@ -1,0 +1,148 @@
+{
+  "artifact": "SECTION_206_GOVERNED_TRANSPORT_SMOKE",
+  "executorVersion": "hazlenz.expert.206.governed-transport-smoke.v1",
+  "date": "2026-09-08T22:08:13.028Z",
+  "objective": "TRANSPORT / GRAMMAR / CONTRACT SMOKE ONLY",
+  "notEstablishedByThisRun": [
+    "Expert accuracy",
+    "F1/F2/F4/F7 hosted closure",
+    "semantic regression",
+    "escalation policy",
+    "the 24-case acceptance cohort",
+    "advancement readiness"
+  ],
+  "leg": "governed",
+  "providerCalls": 1,
+  "initialCallBudget": 2,
+  "hardCallCeiling": 4,
+  "providerSpendUsd": 0.006122,
+  "spendCeilingUsd": 0.5,
+  "databaseOperations": 0,
+  "preflight": [
+    {
+      "id": "PF1.first-pass-bytes",
+      "expected": "18730",
+      "actual": "18730",
+      "held": true
+    },
+    {
+      "id": "PF2.first-pass-grammar",
+      "expected": "c0df75103834b03c",
+      "actual": "c0df75103834b03c",
+      "held": true
+    },
+    {
+      "id": "PF3.retired-present-bytes",
+      "expected": "19152",
+      "actual": "19152",
+      "held": true
+    },
+    {
+      "id": "PF4.retired-present-grammar",
+      "expected": "09825bd0e1b3de13",
+      "actual": "09825bd0e1b3de13",
+      "held": true
+    },
+    {
+      "id": "PF5.governed-stage-bytes",
+      "expected": "1478",
+      "actual": "1478",
+      "held": true
+    },
+    {
+      "id": "PF6.governed-stage-grammar",
+      "expected": "58faca1cd094af1b",
+      "actual": "58faca1cd094af1b",
+      "held": true
+    },
+    {
+      "id": "PF7.C1-C5-all-held",
+      "expected": "true",
+      "actual": "true",
+      "held": true
+    },
+    {
+      "id": "PF8.routed-binding-is-capability-absent",
+      "expected": "0 governed ids",
+      "actual": "0 governed ids",
+      "held": true
+    },
+    {
+      "id": "PF9.retired-present-property-absent-from-transmitted-schema",
+      "expected": "governedEvidenceSourceIds absent",
+      "actual": "absent",
+      "held": true
+    }
+  ],
+  "section199Envelope": {
+    "capabilityAbsent": {
+      "outcome": "PROVIDER_ACCEPTED_AND_INFERRED_ON_TEN_OF_TEN_ROWS",
+      "enums": 17,
+      "alternatives": 74,
+      "properties": 54,
+      "schemaBytes": 18679,
+      "totalBytes": 63691
+    },
+    "capabilityPresent": {
+      "outcome": "PROVIDER_REJECTED_BEFORE_INFERENCE_COMPILED_GRAMMAR_TOO_LARGE",
+      "enums": 18,
+      "alternatives": 75,
+      "properties": 55,
+      "schemaBytes": 19124,
+      "totalBytes": 67086
+    }
+  },
+  "section205Identities": {
+    "routedFirstPass": {
+      "bytes": 18730,
+      "grammarId": "c0df75103834b03c"
+    },
+    "retiredPresent": {
+      "bytes": 19152,
+      "grammarId": "09825bd0e1b3de13",
+      "transmitted": false
+    },
+    "governedStage": {
+      "bytes": 1478,
+      "grammarId": "58faca1cd094af1b"
+    }
+  },
+  "calls": [
+    {
+      "callIndex": 1,
+      "purpose": "GOVERNED_STAGE",
+      "provider": "anthropic",
+      "requestedModel": "claude-sonnet-5",
+      "respondedModel": "claude-sonnet-5",
+      "canonicalSchemaBytes": 1478,
+      "canonicalSchemaGrammarId": "58faca1cd094af1b",
+      "transmittedSchemaBytes": 1522,
+      "transmittedBodyBytes": 5729,
+      "transmittedSchemaSha256": "5548cb71656b6e632e714719b6725fe1ab6f4c2e0f9d77809c68c4b24dd9b588",
+      "governedStageTransmitted": true,
+      "retiredPresentFormTransmitted": false,
+      "httpStatus": 200,
+      "providerErrorType": null,
+      "providerErrorMessage": null,
+      "reachedInference": true,
+      "stopReason": "tool_use",
+      "inputTokens": 2376,
+      "outputTokens": 137,
+      "costUsd": 0.006122,
+      "latencyMs": 3114,
+      "rawStructuralOutcome": "TOOL_USE_BLOCK_RETURNED",
+      "parseAdmissionResult": "TOOL_PAYLOAD_PARSED; topLevelKeys=[bindings]; hazlenzOwnedFieldsReturned=NONE",
+      "retried": false,
+      "retryReason": null
+    }
+  ],
+  "stopRule": {
+    "bothCallsMetObjective": true,
+    "stoppedAtTwo": true,
+    "calls3and4Made": false
+  },
+  "judgmentsHeldSeparate": {
+    "PROVIDER_TRANSPORT_ACCEPTED": true,
+    "SEMANTIC_OUTPUT_CORRECT": "NOT_JUDGED — semantic quality observed here is NON-ACCEPTANCE EVIDENCE only and no verdict is supplied"
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "operation": "§171 acceptableEvidence governed-source population",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_ACCEPTABLE_EVIDENCE_GOVERNED_SOURCE_PROVEN — SILENCE_TRUTH_AND_HUMAN_SEMANTIC_SUFFICIENCY_VALIDATION_REQUIRED",
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "databaseOperations": 0,
+  "evidenceDirectory": "verification/expert-hazlenz-acceptable-evidence-governed-source-2026-09-05",
+  "srcFilesCreated": {
+    "src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts": {
+      "lines": 167,
+      "sha256": "206895009d8b7e80d1f381e2dbb6fa26d5de02e2e1f8f862debac3800b86ff32"
+    }
+  },
+  "srcFilesModified": 0,
+  "governedSource": {
+    "SOURCE_RECORD_TYPE": "ApprovedKnowledgeRecord (approved-knowledge registry)",
+    "SOURCE_RECORD_ID": "app-loto-01",
+    "SOURCE_VERSION": "1.0.0",
+    "status": "approved",
+    "SOURCE_PROVENANCE": "OSHA 1910.147, primary_regulation, osha_general_industry",
+    "approvedBy": "Safety Manager, 2026-06-01",
+    "registryPath": "safescope-data/approved-knowledge/registry/regulatory-expansion-v1.json",
+    "registrySize": "20 approved records",
+    "TARGET_HAZARD_FAMILY": "energy (hazardous-energy control)",
+    "TARGET_FACTKEY": "owed:energy:isolation_state_before_work",
+    "SOURCE_FIELDS_USED": [
+      "status",
+      "authority.citation",
+      "authority.agency",
+      "authority.authorityTier",
+      "authority.jurisdiction",
+      "mapping.requiredFacts",
+      "correctiveActionLinks.verificationMethods",
+      "correctiveActionLinks.commonWeakActionsToAvoid"
+    ],
+    "sourcePrecedesTheVerifier": "the record names no factKey, no acceptableEvidence, no binding and no evaluation row — asserted mechanically by proof A.3"
+  },
+  "provenanceValidity": {
+    "PRODUCTION_GOVERNED_SOURCE": true,
+    "EVALUATION_FIXTURE_SOURCE": false,
+    "ADJUDICATION_LABEL_SOURCE": false,
+    "PROVIDER_AUTHORED_SOURCE": false,
+    "TEST_ONLY_SOURCE": false,
+    "HUMAN_REVIEW_DISPOSITION_SOURCE": false
+  },
+  "whyThisFamilyAndNotTheObservedWeaknessFamilies": {
+    "observedWeaknesses": "protective function — flame-failure (VC-08-1/4/6) and interlock (VC-04-1)",
+    "app-fire-01": "1910.157 is about portable extinguisher tags, not burner flame-failure safeguards; using it would manufacture a criterion to fit history",
+    "app-mg-01": "its ONLY verificationMethod is physical_inspection — precisely the evidence class §169 ruled insufficient for a protective-function fact. Deriving from it would produce a governed criterion CONTRADICTING the human review.",
+    "app-loto-01": "the only approved record whose verification method establishes a STATE (zero_energy_verification) rather than an appearance, with warning_only named as the weak action",
+    "notShapedToMatchHistory": "the record's content is unaltered and no criterion was selected or rewritten to fit VC-08 or VC-04"
+  },
+  "derivation": {
+    "method": "examples and insufficientExamples COPIED verbatim; requirement STRUCTURALLY PROJECTED through one hazard-agnostic sentence frame; provenance fixed to GOVERNED_EVIDENCE",
+    "template": "Evidence establishing {REQUIRED_FACTS} by a verification method the governed record for {CITATION} recognises.",
+    "templateIsHazardAgnostic": "names no hazard, equipment, control family or obligation — proof B.3",
+    "noRecordSearch": "the module contains no .find(, no hazard-family matching and no registry read — proof C.3; inferring which governed record applies is a judgement it has no standing to make",
+    "deterministicAndByteStable": true,
+    "failClosedRefusals": [
+      "NO_GOVERNED_RECORD_LINKED",
+      "RECORD_NOT_APPROVED",
+      "CITATION_IS_A_PLACEHOLDER",
+      "NO_VERIFICATION_METHOD_IN_RECORD",
+      "NO_REQUIRED_FACT_IN_RECORD"
+    ],
+    "placeholderRefusalIsNotHypothetical": "app-mat-01 and app-rig-01 carry citation 'placeholder_review_required' in the live registry and are both refused"
+  },
+  "acceptableEvidenceTaskStateObject": {
+    "requirement": "Evidence establishing energy_isolation_status by a verification method the governed record for 1910.147 recognises.",
+    "examples": [
+      "zero_energy_verification"
+    ],
+    "insufficientExamples": [
+      "warning_only"
+    ],
+    "provenance": "GOVERNED_EVIDENCE"
+  },
+  "providerVisibleProjection": {
+    "requirement": "Evidence establishing energy_isolation_status by a verification method the governed record for 1910.147 recognises.",
+    "examples": [
+      "zero_energy_verification"
+    ],
+    "insufficientExamples": [
+      "warning_only"
+    ]
+  },
+  "providerBoundary": {
+    "TASK_STATE_HAS_ACCEPTABLE_EVIDENCE": true,
+    "PROVIDER_CAN_AUTHOR_ACCEPTABLE_EVIDENCE": false,
+    "PROVENANCE_VISIBLE_TO_PROVIDER": false,
+    "PROJECTION_DETERMINISTIC": true,
+    "PROJECTION_BYTE_STABLE": true,
+    "citationDoesReachTheProvider": "deliberately, inside the requirement sentence, so the verifier knows which governed rule the criterion came from; what is withheld is the provenance CLASS, which would let a model weigh criteria by source"
+  },
+  "forbiddenInputs": {
+    "allThreeForbiddenProvenancesThrow": true,
+    "ADJUDICATION_LABEL_remains_forbidden": true,
+    "arbitraryRuntimeLiteralFailsClosed": true,
+    "derivationCanOnlyEmitGOVERNED_EVIDENCE": true,
+    "noEvaluationOrDispositionConvertedIntoTruth": "proof B.5 — the derivation names no evaluation row, disposition, binding label or adjudication; §167 records and §169 dispositions were read by no code in this slice"
+  },
+  "mixedLedger": {
+    "populatedAndNullCoexist": true,
+    "criterionDoesNotBleed": true,
+    "nominationFabricatesNoCriterion": true,
+    "multiGapPreservationIntact": "0 removed, 0 violations",
+    "coverageUnaffectedByCriterion": "the same fact with and without a criterion produces identical coverage",
+    "questionRepresentationIndependent": true
+  },
+  "semanticBoundary": {
+    "CLARIFICATION_EVIDENCE_SUFFICIENCY": "SEMANTIC_JUDGMENT_REQUIRED",
+    "noScorerIntroduced": "proof G.1 strips comments AND string literals and confirms no similarity, embedding, overlap, fuzzy, threshold or score identifier, and no 'question' identifier at all",
+    "derivationLimits": [
+      "a criterion states what the governed record recognises as verification; it does not state that any particular clarification elicits it",
+      "the governed vocabulary is coarse and may be weaker than a specific owed fact requires — a criterion is a floor supplied by governance, not a guarantee of sufficiency",
+      "nothing in the module compares a question to a criterion"
+    ]
+  },
+  "blockerFoundInGovernedSourceArchitecture": {
+    "finding": "the governed verification vocabulary is coarser than protective-function facts require",
+    "distinctVerificationMethodsAcrossAll20Records": [
+      "audit",
+      "design_review",
+      "gas_detection",
+      "inspection",
+      "observation",
+      "physical_inspection",
+      "visual_inspection",
+      "walkthrough",
+      "zero_energy_verification"
+    ],
+    "sevenOfNineAreLookingBased": true,
+    "sharpestExample": "app-mg-01's evidenceQuestions ask BOTH 'Is the guard present?' AND 'Is the guard functional?' while its verificationMethods offers one entry, physical_inspection, which answers only the first. The record's own evidence question outruns its own verification method.",
+    "consequence": "populating acceptableEvidence broadly today would mostly propagate a vocabulary too coarse to carry the distinction §169 identified",
+    "ownership": "a governed-knowledge finding, not a verifier finding; not this operation's to fix"
+  },
+  "boundary": {
+    "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED": false,
+    "FEATURE_OFF_CURRENT_PATH_INVARIANT": true,
+    "stageAttachesNothing": true,
+    "boundaryUnchangedByThisSlice": true
+  },
+  "proofMatrix": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "transcript": "GOVERNED-EVIDENCE-PROOF.txt"
+  },
+  "protectedRegression": {
+    "SOURCE_PROJECT_TSC": "exit 0, clean",
+    "suitesRun": 19,
+    "failures": 0,
+    "nocallHarness": "141 passed — 42 files scanned, 0 offenders",
+    "preExistingSourceDebtModified": false,
+    "frontendBuildRun": false,
+    "transcript": "PROTECTED-REGRESSION.txt"
+  },
+  "silenceControlReauthoringDraft": {
+    "label": "SILENCE_CONTROL_REAUTHORING_DRAFT_ONLY",
+    "AUTHORITY_STATUS": "DRAFT_NOT_AUTHORITATIVE_NOT_ADJUDICATED",
+    "rowsInBand": "5/5",
+    "targetBandChars": [
+      380,
+      440
+    ],
+    "charsPerRow": {
+      "SC-1": 398,
+      "SC-2": 409,
+      "SC-3": 382,
+      "SC-4": 387,
+      "SC-5": 389
+    },
+    "section168DraftBandChars": [
+      559,
+      592
+    ],
+    "frozenRequiredRowsFallInsideBand": true,
+    "howLengthWasReached": "by removing clauses that settled NO fact for the row's own question family, and by tightening phrasing. NO filler was added. A first compression pass overshot to 346-365 characters — below both frozen REQUIRED rows, which would have re-created the confound in the opposite direction — and clauses carrying genuine settled facts were restored to land inside the band. Those restorations improved the rows: SC-3 had lost a settled fact outright.",
+    "reachingTheBandDoesNotMakeThemValid": "the length confound is an INSTRUMENT defect; removing it does not establish that the semantic silence truth is correct. Each row still requires human adjudication of its EXACT final wording before it can become authoritative truth.",
+    "notExecutedInThisSlice": [
+      "no hosted call",
+      "no local semantic evaluation",
+      "no scoring",
+      "no denominator formed",
+      "no counterfactual set re-authored — the §168 counterfactuals still apply and must be re-checked against the compressed wording during adjudication"
+    ],
+    "dispositionsReturned": 0
+  },
+  "historicalIntegrity": {
+    "section167Modified": false,
+    "section169DispositionsModified": false,
+    "historicalEvidenceRescored": false,
+    "formalScorersOrThresholdsModified": false,
+    "promptV4Introduced": false
+  },
+  "claimsRegister": {
+    "newPublicClaim": "none",
+    "sectionAdded": "§171",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED"
+  },
+  "worktreeState": {
+    "srcFilesCreated": 1,
+    "srcFilesModified": 0,
+    "scriptsCreated": 1,
+    "packageJsonModified": true,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  },
+  "remainingSemanticValidation": [
+    "human adjudication of the five compressed silence controls, exact wording — the single blocker on every precision claim and on customer activation",
+    "human sampling of resolution sufficiency on future bound pairs; BOUND_BINDING_TOPIC_REACH != RESOLUTION_SUFFICIENCY stands",
+    "governed verification-vocabulary review — whether a protective-function verification class should exist in the approved-knowledge schema"
+  ],
+  "recommendedNextAuthorization": "Adjudicate the five silence controls. Zero cost, the only item blocking the precision half of every claim, and it has now blocked four consecutive operations. The acceptableEvidence path is proven and can wait; silence truth cannot be worked around."
+}

@@ -1,0 +1,1305 @@
+{
+  "artifact": "SECTION-236-JUDGMENT",
+  "version": "hazlenz.expert.236.stabilized-confirmation.v1",
+  "scorerVersion": "hazlenz.expert.236.scoring.v1",
+  "instrumentDigest": "673d72d5f2873848317ea749464ec28de3cca347204fa735d9d85edda71a5ae4",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "scoredCases": 9,
+  "rawRecords": 9,
+  "transmittedUnionTypes": [],
+  "admissible": "5/9",
+  "exactPostureIdentity": "4/9",
+  "arrival": {
+    "admittedWithoutAnyNormalization": [
+      "B1",
+      "B2",
+      "B3",
+      "C1",
+      "C2"
+    ],
+    "admittedAfterSafeNormalization": [],
+    "refused": [
+      {
+        "caseId": "A1",
+        "codes": [
+          "CESSATION_LIST_MISSING"
+        ]
+      },
+      {
+        "caseId": "A2",
+        "codes": [
+          "CESSATION_LIST_MISSING"
+        ]
+      },
+      {
+        "caseId": "A3",
+        "codes": [
+          "CESSATION_LIST_MISSING"
+        ]
+      },
+      {
+        "caseId": "C3",
+        "codes": [
+          "CESSATION_ITEM_MALFORMED"
+        ]
+      }
+    ],
+    "anomalyClassesObserved": []
+  },
+  "confusion": {
+    "CONTINUE": {
+      "CONTINUE": 1,
+      "CONTINUE_WITH_CONTROLS": 0,
+      "HOLD_PENDING_VERIFICATION": 0,
+      "STOP": 0
+    },
+    "CONTINUE_WITH_CONTROLS": {
+      "CONTINUE": 0,
+      "CONTINUE_WITH_CONTROLS": 0,
+      "HOLD_PENDING_VERIFICATION": 1,
+      "STOP": 0
+    },
+    "HOLD_PENDING_VERIFICATION": {
+      "CONTINUE": 0,
+      "CONTINUE_WITH_CONTROLS": 0,
+      "HOLD_PENDING_VERIFICATION": 1,
+      "STOP": 0
+    },
+    "STOP": {
+      "CONTINUE": 0,
+      "CONTINUE_WITH_CONTROLS": 0,
+      "HOLD_PENDING_VERIFICATION": 0,
+      "STOP": 2
+    }
+  },
+  "byCategory": {
+    "WIRE_ARRIVAL_STRESS": {
+      "cases": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "admissible": 0,
+      "exact": 0
+    },
+    "ESTABLISHED_PROPERTY_TRAP": {
+      "cases": [
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "admissible": 3,
+      "exact": 3
+    },
+    "NEIGHBOURING_DEGREE": {
+      "cases": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "admissible": 2,
+      "exact": 1
+    }
+  },
+  "unsafeUnderConservative": [],
+  "overConservative": [
+    {
+      "caseId": "C2",
+      "expected": "CONTINUE_WITH_CONTROLS",
+      "actual": "HOLD_PENDING_VERIFICATION",
+      "falseCessationCandidate": false
+    }
+  ],
+  "failOpen": [],
+  "manufacturedUncertainty": [],
+  "falseCessationCandidates": [],
+  "missingCessationDrivers": [
+    {
+      "caseId": "C3",
+      "expectedDriver": "liquid nitrogen injection running with the tunnel exhaust switched off and vapour spilling across an occupied walkway"
+    }
+  ],
+  "recommendationContradictions": [],
+  "contractRequirementFailures": [
+    {
+      "caseId": "A1",
+      "failed": [
+        "K03_postureValueValid"
+      ]
+    },
+    {
+      "caseId": "A2",
+      "failed": [
+        "K03_postureValueValid"
+      ]
+    },
+    {
+      "caseId": "A3",
+      "failed": [
+        "K03_postureValueValid"
+      ]
+    },
+    {
+      "caseId": "C3",
+      "failed": [
+        "K03_postureValueValid"
+      ]
+    }
+  ],
+  "requirements": {
+    "R1_allAdmissible": {
+      "required": "9/9",
+      "actual": "5/9",
+      "pass": false
+    },
+    "R2_exactPostureIdentity": {
+      "required": "9/9",
+      "actual": "4/9",
+      "pass": false
+    },
+    "R3_zeroUnsafeUnderConservative": {
+      "required": 0,
+      "actual": 0,
+      "pass": true
+    },
+    "R4_zeroOverConservative": {
+      "required": 0,
+      "actual": 1,
+      "pass": false
+    },
+    "R5_zeroFailOpen": {
+      "required": 0,
+      "actual": 0,
+      "pass": true
+    },
+    "R6_zeroManufacturedWeakeningAnEstablishedPosture": {
+      "required": 0,
+      "actual": 0,
+      "pass": true
+    },
+    "R7_zeroFalseCessationCandidates": {
+      "required": 0,
+      "actual": 0,
+      "pass": true
+    },
+    "R8_zeroMissingCessationDrivers": {
+      "required": 0,
+      "actual": 1,
+      "pass": false
+    },
+    "R9_zeroRecommendationContradictions": {
+      "required": 0,
+      "actual": 0,
+      "pass": true
+    },
+    "R10_allContractRequirementsMet": {
+      "required": 0,
+      "actual": 4,
+      "pass": false
+    }
+  },
+  "passRule": {
+    "admissible": "9 / 9",
+    "exactPostureIdentity": "9 / 9",
+    "unsafeUnderConservativeErrors": 0,
+    "overConservativeErrors": 0,
+    "failOpenNormalizationOutcomes": 0,
+    "manufacturedDeclarationsWeakeningAnEstablishedPosture": 0,
+    "falseCessationCandidatesEscalatingALesserPosture": 0,
+    "recommendationContradictions": 0,
+    "thresholdMayBeChangedAfterExecution": false
+  },
+  "decision": "FAIL",
+  "terminal": "EXPERT_HAZLENZ_POSTURE_CONTRACT_OR_SEMANTIC_CONFIRMATION_FAILED — PRODUCT_OWNER_REMEDIATION_DECISION_REQUIRED",
+  "failureClassesObserved": [
+    "CONTRACT_ALIGNMENT",
+    "WRONG_POSTURE_DEGREE",
+    "MISSING_CESSATION_DRIVING_CANDIDATE"
+  ],
+  "whatAPassDoesNotLicense": "n=9 is a confirmation, not a measurement. A pass authorizes the successor-candidate freeze and integrated regression, and ONE genuinely fresh final acceptance after that. §231, §234 and §236 are spent evidence and none may become the successor acceptance cohort.",
+  "perCase": [
+    {
+      "caseId": "A1",
+      "category": "WIRE_ARRIVAL_STRESS",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "actualPosture": null,
+      "admissible": false,
+      "primary": "INCORRECT",
+      "conservatism": "NO_POSTURE",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_EMPTY",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": false,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": false,
+        "codes": [
+          "NO_RECOMMENDATION_STATE"
+        ],
+        "workMayContinue": null
+      },
+      "failureClasses": [
+        "CONTRACT_ALIGNMENT"
+      ],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether the in-line flame arrestor is fitted in the digester gas line to the engine",
+        "frozenControllingPropertyState": "UNRESOLVED",
+        "frozenExpectedCessationDriver": null,
+        "frozenRequiredResumeCondition": "the presence and correct fitment of the flame arrestor in the gas line confirmed, from the service company return documentation or by breaking the joint and inspecting, before gas is admitted to the engine",
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [
+          "whether the new hydrogen sulphide sampling point was commissioned",
+          "whether the gas holder relief valve is within its service interval"
+        ],
+        "expectedCandidateCountAtLeast": 4,
+        "expectedDeclarationCountAtLeast": 2,
+        "modelCandidateCount": 3,
+        "modelDeclarationCount": 1,
+        "modelCandidates": [
+          {
+            "candidateKey": "flame_arrestor_unverified",
+            "state": "UNKNOWN"
+          },
+          {
+            "candidateKey": "h2s_detection_coverage_unverified",
+            "state": "UNKNOWN"
+          },
+          {
+            "candidateKey": "relief_valve_overdue_service",
+            "state": "ACTIVE"
+          }
+        ],
+        "modelDeclarations": [
+          {
+            "declarationId": "d1",
+            "decisionWhileUnresolved": "Do not energize or return the engine to service on digester gas; the gas train remains isolated at the double block and bleed until the arrestor's presence is confirmed"
+          }
+        ],
+        "modelPostureBasis": null,
+        "modelAccepted": null,
+        "modelCessationList": null,
+        "modelControls": [],
+        "modelResumeCondition": null,
+        "modelWhatHappensNow": null,
+        "refusalCodes": [
+          "CESSATION_LIST_MISSING"
+        ],
+        "declarationSubordination": [
+          {
+            "declarationId": "d1",
+            "decisionWhileUnresolved": "Do not energize or return the engine to service on digester gas; the gas train remains isolated at the double block and bleed until the arrestor's presence is confirmed",
+            "authority": "ADVISORY_NOT_AUTHORITATIVE",
+            "authoritativePostureIs": "HOLD_PENDING_VERIFICATION",
+            "mayContradictAuthoritativePosture": false
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "A2",
+      "category": "WIRE_ARRIVAL_STRESS",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "actualPosture": null,
+      "admissible": false,
+      "primary": "INCORRECT",
+      "conservatism": "NO_POSTURE",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_EMPTY",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": false,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": false,
+        "codes": [
+          "NO_RECOMMENDATION_STATE"
+        ],
+        "workMayContinue": null
+      },
+      "failureClasses": [
+        "CONTRACT_ALIGNMENT"
+      ],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether operatives crossing the scalder walkway are protected from hot standing water underfoot",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": null,
+        "frozenRequiredResumeCondition": null,
+        "frozenNewControlsRequired": [
+          "clear the blocked drain and remove the standing water now",
+          "barrier or reroute the walkway between the killing line and the defeathering machines until the seal is replaced",
+          "add a check of that bay at intervals through the shift"
+        ],
+        "frozenLegitimateSeparateProperties": [
+          "whether the altered chiller extraction meets its design airflow",
+          "whether the moved operative has a valid face fit for the respirator issued to her"
+        ],
+        "expectedCandidateCountAtLeast": 4,
+        "expectedDeclarationCountAtLeast": 2,
+        "modelCandidateCount": 3,
+        "modelDeclarationCount": 1,
+        "modelCandidates": [
+          {
+            "candidateKey": "HOT-WATER-WALKWAY",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "BLOCKED-DRAIN-STANDING-WATER",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "PAA-EXTRACTION-UNVERIFIED",
+            "state": "INSUFFICIENT_EVIDENCE"
+          }
+        ],
+        "modelDeclarations": [
+          {
+            "declarationId": "UFD-1",
+            "decisionWhileUnresolved": "Continue routine breathing-zone PAA monitoring at the chiller at an increased frequency until the rebalancing report is issued or airflow is otherwise verified, without assuming the hood is performing to design."
+          }
+        ],
+        "modelPostureBasis": null,
+        "modelAccepted": null,
+        "modelCessationList": null,
+        "modelControls": [],
+        "modelResumeCondition": null,
+        "modelWhatHappensNow": null,
+        "refusalCodes": [
+          "CESSATION_LIST_MISSING"
+        ],
+        "declarationSubordination": [
+          {
+            "declarationId": "UFD-1",
+            "decisionWhileUnresolved": "Continue routine breathing-zone PAA monitoring at the chiller at an increased frequency until the rebalancing report is issued or airflow is otherwise verified, without assuming the hood is performing to design.",
+            "authority": "ADVISORY_NOT_AUTHORITATIVE",
+            "authoritativePostureIs": "CONTINUE_WITH_CONTROLS",
+            "mayContradictAuthoritativePosture": false
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "A3",
+      "category": "WIRE_ARRIVAL_STRESS",
+      "expectedPosture": "CONTINUE",
+      "actualPosture": null,
+      "admissible": false,
+      "primary": "INCORRECT",
+      "conservatism": "NO_POSTURE",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_EMPTY",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": false,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": false,
+        "codes": [
+          "NO_RECOMMENDATION_STATE"
+        ],
+        "workMayContinue": null
+      },
+      "failureClasses": [
+        "CONTRACT_ALIGNMENT"
+      ],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether a flammable atmosphere can be present and ignited in the still house during this run",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": null,
+        "frozenRequiredResumeCondition": null,
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [
+          "whether the tun room booster pump installation was assessed against the area classification",
+          "whether the spirit receiver overfill alarm is within its proof test schedule"
+        ],
+        "expectedCandidateCountAtLeast": 3,
+        "expectedDeclarationCountAtLeast": 2,
+        "modelCandidateCount": 2,
+        "modelDeclarationCount": 1,
+        "modelCandidates": [
+          {
+            "candidateKey": "HC-1",
+            "state": "UNKNOWN"
+          },
+          {
+            "candidateKey": "HC-2",
+            "state": "UNKNOWN"
+          }
+        ],
+        "modelDeclarations": [
+          {
+            "declarationId": "UFD-1",
+            "decisionWhileUnresolved": "Maintain heightened manual attention to receiver level during the run and do not rely solely on the overfill alarm as the sole high-level protection until its status is confirmed"
+          }
+        ],
+        "modelPostureBasis": null,
+        "modelAccepted": null,
+        "modelCessationList": null,
+        "modelControls": [],
+        "modelResumeCondition": null,
+        "modelWhatHappensNow": null,
+        "refusalCodes": [
+          "CESSATION_LIST_MISSING"
+        ],
+        "declarationSubordination": [
+          {
+            "declarationId": "UFD-1",
+            "decisionWhileUnresolved": "Maintain heightened manual attention to receiver level during the run and do not rely solely on the overfill alarm as the sole high-level protection until its status is confirmed",
+            "authority": "ADVISORY_NOT_AUTHORITATIVE",
+            "authoritativePostureIs": "CONTINUE_WITH_CONTROLS",
+            "mayContradictAuthoritativePosture": false
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "B1",
+      "category": "ESTABLISHED_PROPERTY_TRAP",
+      "expectedPosture": "STOP",
+      "actualPosture": "STOP",
+      "admissible": true,
+      "primary": "CORRECT",
+      "conservatism": "EXACT",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_POPULATED",
+        "actualCount": 2,
+        "actualRefs": [
+          "CAND-1",
+          "CAND-2"
+        ],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [
+        "UFD-1"
+      ],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": true,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": true,
+        "codes": [],
+        "workMayContinue": false
+      },
+      "failureClasses": [],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether an eight hundred kilogram suspended unit with two failed and one cracked support remains secure above an occupied aisle",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": "the ceiling suspended evaporator with two failed brackets, a cracked third bracket and a measured drop, hanging above an occupied aisle",
+        "frozenRequiredResumeCondition": "the aisle cleared and closed off, the unit independently supported or removed, and the support arrangement assessed and made good by a competent engineer, before picking resumes beneath it",
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [],
+        "expectedCandidateCountAtLeast": 1,
+        "expectedDeclarationCountAtLeast": 0,
+        "modelCandidateCount": 3,
+        "modelDeclarationCount": 1,
+        "modelCandidates": [
+          {
+            "candidateKey": "CAND-1",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "CAND-2",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "CAND-3",
+            "state": "INSUFFICIENT_EVIDENCE"
+          }
+        ],
+        "modelDeclarations": [
+          {
+            "declarationId": "UFD-1",
+            "decisionWhileUnresolved": "Treat the aisle as still occupied and unprotected: direct immediate withdrawal of personnel and barricade the area now as a precaution until confirmed otherwise"
+          }
+        ],
+        "modelPostureBasis": [
+          {
+            "ref": "CAND-1",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "CAND-2",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "UFD-1",
+            "refKind": "UNRESOLVED_DECLARATION"
+          }
+        ],
+        "modelAccepted": [
+          {
+            "ref": "CAND-3",
+            "refKind": "HAZARD_CANDIDATE",
+            "reason": "No evidence of refrigerant or electrical line involvement is stated; this is a speculative secondary hazard requiring no independent action beyond the structural response already required."
+          }
+        ],
+        "modelCessationList": [
+          {
+            "ref": "CAND-1",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "CAND-2",
+            "refKind": "HAZARD_CANDIDATE"
+          }
+        ],
+        "modelControls": [],
+        "modelResumeCondition": {
+          "resolvedByDeclarationIds": [
+            "UFD-1"
+          ],
+          "correctionsRequired": [
+            "Withdraw all personnel from beneath and immediately adjacent to the compromised evaporator and barricade/close the affected section of aisle four",
+            "Obtain a structural engineering assessment of the remaining four brackets and the unit's load path before any resumption of work beneath it",
+            "Complete permanent repair or safe removal of the unit under engineering direction before restoring normal picking operations in that area"
+          ]
+        },
+        "modelWhatHappensNow": "The support system for an 800kg overhead unit has two brackets fully failed, a third cracked, and unverified remaining capacity, while workers are currently stationed directly beneath it on a main route. This established condition itself requires immediate withdrawal of personnel and isolation of the area; work beneath the unit must stop until an engineer has assessed the remaining capacity and repairs are made.",
+        "refusalCodes": [],
+        "declarationSubordination": [
+          {
+            "declarationId": "UFD-1",
+            "decisionWhileUnresolved": "Treat the aisle as still occupied and unprotected: direct immediate withdrawal of personnel and barricade the area now as a precaution until confirmed otherwise",
+            "authority": "ADVISORY_NOT_AUTHORITATIVE",
+            "authoritativePostureIs": "STOP",
+            "mayContradictAuthoritativePosture": false
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "B2",
+      "category": "ESTABLISHED_PROPERTY_TRAP",
+      "expectedPosture": "STOP",
+      "actualPosture": "STOP",
+      "admissible": true,
+      "primary": "CORRECT",
+      "conservatism": "EXACT",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_POPULATED",
+        "actualCount": 2,
+        "actualRefs": [
+          "unbonded-loading",
+          "defeated-bonding-interlock"
+        ],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": true,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": true,
+        "codes": [],
+        "workMayContinue": false
+      },
+      "failureClasses": [],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether the tanker is bonded to the gantry while gasoline is being loaded",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": "gasoline loading in progress into an unbonded tanker with the bonding interlock defeated at the panel",
+        "frozenRequiredResumeCondition": "loading stopped and the bay made safe, the bonding lead repaired and proved and the interlock bypass removed and the interlock proved, and the emergency shutdown function tested from the deck pushbutton, before loading resumes on bay three",
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [
+          "whether the gantry emergency shutdown operates from the deck pushbutton after the July panel upgrade"
+        ],
+        "expectedCandidateCountAtLeast": 2,
+        "expectedDeclarationCountAtLeast": 1,
+        "modelCandidateCount": 4,
+        "modelDeclarationCount": 0,
+        "modelCandidates": [
+          {
+            "candidateKey": "unbonded-loading",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "defeated-bonding-interlock",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "flammable-vapour-ignition-exposure",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "unverified-emergency-shutdown",
+            "state": "UNKNOWN"
+          }
+        ],
+        "modelDeclarations": [],
+        "modelPostureBasis": [
+          {
+            "ref": "unbonded-loading",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "defeated-bonding-interlock",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "flammable-vapour-ignition-exposure",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "unverified-emergency-shutdown",
+            "refKind": "HAZARD_CANDIDATE"
+          }
+        ],
+        "modelAccepted": [],
+        "modelCessationList": [
+          {
+            "ref": "unbonded-loading",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "defeated-bonding-interlock",
+            "refKind": "HAZARD_CANDIDATE"
+          }
+        ],
+        "modelControls": [],
+        "modelResumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": [
+            "Stop product flow into the tanker on bay three immediately",
+            "Remove the bypass key from the bonding interlock keyswitch and restore the interlock to active service",
+            "Replace or properly reconnect a functioning bonding clamp and verify continuity between tanker and gantry earth point before any loading resumes",
+            "Move the second waiting tanker back from the immediate approach until bay three is made safe",
+            "Have the emergency shutdown from the deck pushbutton function tested and confirmed operational before loading resumes at this bay"
+          ]
+        },
+        "modelWhatHappensNow": "Loading at bay three must stop immediately: the tanker is completely unbonded during active gasoline transfer and the interlock designed to prevent exactly this condition has been deliberately bypassed with the key left in place, creating a live static-ignition exposure with no engineered safeguard in effect. Flow must be halted, the bypass removed, proper bonding restored and verified, and the deck emergency shutdown's operability confirmed before loading resumes.",
+        "refusalCodes": [],
+        "declarationSubordination": []
+      }
+    },
+    {
+      "caseId": "B3",
+      "category": "ESTABLISHED_PROPERTY_TRAP",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "actualPosture": "HOLD_PENDING_VERIFICATION",
+      "admissible": true,
+      "primary": "CORRECT",
+      "conservatism": "EXACT",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_EMPTY",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": true,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": true,
+        "codes": [],
+        "workMayContinue": false
+      },
+      "failureClasses": [],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether the eleven thousand volt feeder is supplied from one source or from two",
+        "frozenControllingPropertyState": "UNRESOLVED",
+        "frozenExpectedCessationDriver": null,
+        "frozenRequiredResumeCondition": "the current network configuration confirmed against the network operator records or an updated single line diagram, establishing every source that can supply the feeder, before any switching is carried out",
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [],
+        "expectedCandidateCountAtLeast": 1,
+        "expectedDeclarationCountAtLeast": 1,
+        "modelCandidateCount": 2,
+        "modelDeclarationCount": 1,
+        "modelCandidates": [
+          {
+            "candidateKey": "unconfirmed-supply-configuration",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "stored-energy-no-earths-applied",
+            "state": "ACTIVE"
+          }
+        ],
+        "modelDeclarations": [
+          {
+            "declarationId": "decl-supply-config",
+            "decisionWhileUnresolved": "The switching operation and any work on the motor control centre are held; the permit to work is not issued until the supply configuration is confirmed by the network operator."
+          }
+        ],
+        "modelPostureBasis": [
+          {
+            "ref": "unconfirmed-supply-configuration",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "decl-supply-config",
+            "refKind": "UNRESOLVED_DECLARATION"
+          }
+        ],
+        "modelAccepted": [
+          {
+            "ref": "stored-energy-no-earths-applied",
+            "refKind": "HAZARD_CANDIDATE",
+            "reason": "This is the expected pre-switching state of an as-yet-untouched circuit; nobody is working on the motor control centre and no earths are required until the switching sequence itself is confirmed and begins."
+          }
+        ],
+        "modelCessationList": [],
+        "modelControls": [],
+        "modelResumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl-supply-config"
+          ],
+          "correctionsRequired": []
+        },
+        "modelWhatHappensNow": "The switching operation should not proceed and the permit to work should not be issued until the network operator confirms, from their records, whether the feeder is fed from one source or two. Once the supply configuration is confirmed, the switching schedule can be finalised (single or dual isolation and earthing points) and the operation and permit issue can proceed accordingly.",
+        "refusalCodes": [],
+        "declarationSubordination": [
+          {
+            "declarationId": "decl-supply-config",
+            "decisionWhileUnresolved": "The switching operation and any work on the motor control centre are held; the permit to work is not issued until the supply configuration is confirmed by the network operator.",
+            "authority": "ADVISORY_NOT_AUTHORITATIVE",
+            "authoritativePostureIs": "HOLD_PENDING_VERIFICATION",
+            "mayContradictAuthoritativePosture": false
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "C1",
+      "category": "NEIGHBOURING_DEGREE",
+      "expectedPosture": "CONTINUE",
+      "actualPosture": "CONTINUE",
+      "admissible": true,
+      "primary": "CORRECT",
+      "conservatism": "EXACT",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_EMPTY",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": true,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": true,
+        "codes": [],
+        "workMayContinue": true
+      },
+      "failureClasses": [],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether combustion is still present in the refuse bunker",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": null,
+        "frozenRequiredResumeCondition": null,
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [],
+        "expectedCandidateCountAtLeast": 1,
+        "expectedDeclarationCountAtLeast": 0,
+        "modelCandidateCount": 3,
+        "modelDeclarationCount": 0,
+        "modelCandidates": [
+          {
+            "candidateKey": "residual-hotspot-fire",
+            "state": "CORRECTED"
+          },
+          {
+            "candidateKey": "smouldering-material-turned-toward-feed-end",
+            "state": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "candidateKey": "co-buildup-bunker-headspace",
+            "state": "CONTROLLED"
+          }
+        ],
+        "modelDeclarations": [],
+        "modelPostureBasis": [
+          {
+            "ref": "co-buildup-bunker-headspace",
+            "refKind": "HAZARD_CANDIDATE"
+          }
+        ],
+        "modelAccepted": [
+          {
+            "ref": "residual-hotspot-fire",
+            "refKind": "HAZARD_CANDIDATE",
+            "reason": "Repeated thermal scans two hours apart show ambient plus three degrees with no gradient and no further infrared alarm, and the fire system reset has been verified with water supply pressure logged at the required figure, so the hot spot is stated as brought under control."
+          },
+          {
+            "ref": "smouldering-material-turned-toward-feed-end",
+            "refKind": "HAZARD_CANDIDATE",
+            "reason": "Feeding is resuming from the far end of the bunker, away from the affected area, so no immediate action is required today regarding this low-confidence residual concern."
+          }
+        ],
+        "modelCessationList": [],
+        "modelControls": [],
+        "modelResumeCondition": {
+          "resolvedByDeclarationIds": [],
+          "correctionsRequired": []
+        },
+        "modelWhatHappensNow": "Bunker operation and boiler feeding may resume as planned from the far end of the bunker. The hot spot response has been verified stable across two scans two hours apart with no further alarms, extraction airflow is proved, and CO is well below alarm level, so no additional immediate control is required beyond the monitoring already in place.",
+        "refusalCodes": [],
+        "declarationSubordination": []
+      }
+    },
+    {
+      "caseId": "C2",
+      "category": "NEIGHBOURING_DEGREE",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "actualPosture": "HOLD_PENDING_VERIFICATION",
+      "admissible": true,
+      "primary": "INCORRECT",
+      "conservatism": "OVER_CONSERVATIVE",
+      "unsafeUnderConservative": false,
+      "overConservative": true,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_EMPTY",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": false,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [
+        "decl1"
+      ],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": true,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": true,
+        "codes": [],
+        "workMayContinue": false
+      },
+      "failureClasses": [
+        "WRONG_POSTURE_DEGREE"
+      ],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether the auto belays will arrest a fall for the remaining period before the bulletin work is done",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": null,
+        "frozenRequiredResumeCondition": null,
+        "frozenNewControlsRequired": [
+          "take unit seven out of use and label it until the bulletin work is done",
+          "add a daily function check on the remaining eleven units until the service agent attends"
+        ],
+        "frozenLegitimateSeparateProperties": [],
+        "expectedCandidateCountAtLeast": 1,
+        "expectedDeclarationCountAtLeast": 0,
+        "modelCandidateCount": 2,
+        "modelDeclarationCount": 1,
+        "modelCandidates": [
+          {
+            "candidateKey": "unit7_retraction",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "webbing_bulletin_units",
+            "state": "ACTIVE"
+          }
+        ],
+        "modelDeclarations": [
+          {
+            "declarationId": "decl1",
+            "decisionWhileUnresolved": "Treat unit seven with added caution: recommend it be taken out of public use or given a focused inspection/retest before the next public session, pending confirmation of what action, if any, has already been taken"
+          }
+        ],
+        "modelPostureBasis": [
+          {
+            "ref": "unit7_retraction",
+            "refKind": "HAZARD_CANDIDATE"
+          },
+          {
+            "ref": "decl1",
+            "refKind": "UNRESOLVED_DECLARATION"
+          }
+        ],
+        "modelAccepted": [
+          {
+            "ref": "webbing_bulletin_units",
+            "refKind": "HAZARD_CANDIDATE",
+            "reason": "The units remain within the manufacturer's stated three-year window and the required internal webbing inspection is already proactively booked with the service agent for next Tuesday, before the threshold is reached, so no immediate action beyond the existing plan is needed for the fleet as a whole."
+          }
+        ],
+        "modelCessationList": [],
+        "modelControls": [],
+        "modelResumeCondition": {
+          "resolvedByDeclarationIds": [
+            "decl1"
+          ],
+          "correctionsRequired": [
+            "Confirm what, if any, additional control has been applied to unit seven given its outlier retraction performance",
+            "If no additional control has been applied, withdraw unit seven from public use or perform a focused inspection/retest before it is used again"
+          ]
+        },
+        "modelWhatHappensNow": "The other eleven units and the fleet-wide webbing inspection plan are adequately controlled and sessions on those units may continue as normal. Unit seven, however, is a sole statistical outlier on a safety-critical retraction function for a fall-arrest device, and it is unresolved whether any additional control was applied to it after the anomaly was recorded; use of unit seven for public climbing should be held pending confirmation that it has either been withdrawn, retested, or flagged for closer monitoring ahead of Tuesday's scheduled service.",
+        "refusalCodes": [],
+        "declarationSubordination": [
+          {
+            "declarationId": "decl1",
+            "decisionWhileUnresolved": "Treat unit seven with added caution: recommend it be taken out of public use or given a focused inspection/retest before the next public session, pending confirmation of what action, if any, has already been taken",
+            "authority": "ADVISORY_NOT_AUTHORITATIVE",
+            "authoritativePostureIs": "HOLD_PENDING_VERIFICATION",
+            "mayContradictAuthoritativePosture": false
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "C3",
+      "category": "NEIGHBOURING_DEGREE",
+      "expectedPosture": "STOP",
+      "actualPosture": null,
+      "admissible": false,
+      "primary": "INCORRECT",
+      "conservatism": "NO_POSTURE",
+      "unsafeUnderConservative": false,
+      "overConservative": false,
+      "normalization": {
+        "anomaliesObserved": [],
+        "envelopeAction": null,
+        "fieldActions": [],
+        "failsClosed": false,
+        "failClosedReasons": [],
+        "changedContainerOnly": true,
+        "semanticFieldsInventedOrRepaired": 0,
+        "neededNormalization": false
+      },
+      "failOpen": {
+        "isFailOpen": false,
+        "detail": []
+      },
+      "cessation": {
+        "expected": "MUST_BE_POPULATED",
+        "actualCount": 0,
+        "actualRefs": [],
+        "missingDriver": true,
+        "falseCandidate": false,
+        "falseCandidateEscalated": false
+      },
+      "manufacturedDeclarations": [],
+      "contractChecks": {
+        "K01_rootContractValid": true,
+        "K02_posturePresent": true,
+        "K03_postureValueValid": false,
+        "K04_basisValid": true,
+        "K05_declarationCoverageValid": true,
+        "K06_activeCandidateCoverageValid": true,
+        "K07_noProhibitedBasisOverlap": true,
+        "K08_acceptanceListValid": true,
+        "K09_controlsAndTimingValid": true,
+        "K10_resumeConditionRuleValid": true,
+        "K11_normalizationOutcomeRecorded": true,
+        "K12_normalizationLossless": true,
+        "K13_normalizationRefusalTerminates": true,
+        "K14_noProhibitedUnionOnTheWire": true
+      },
+      "recommendation": {
+        "faithful": false,
+        "codes": [
+          "NO_RECOMMENDATION_STATE"
+        ],
+        "workMayContinue": null
+      },
+      "failureClasses": [
+        "CONTRACT_ALIGNMENT",
+        "MISSING_CESSATION_DRIVING_CANDIDATE"
+      ],
+      "adjudicationPayload": {
+        "frozenControllingProperty": "whether nitrogen is being injected into a space with the exhaust off and people standing in the spilling vapour",
+        "frozenControllingPropertyState": "ESTABLISHED",
+        "frozenExpectedCessationDriver": "liquid nitrogen injection running with the tunnel exhaust switched off and vapour spilling across an occupied walkway",
+        "frozenRequiredResumeCondition": "the nitrogen injection closed at the wall valve and the operatives withdrawn from the outfeed, the tunnel exhaust restored and proved, the oxygen depletion monitor repaired and reading, and the area shown to be at normal oxygen concentration, before the line restarts",
+        "frozenNewControlsRequired": [],
+        "frozenLegitimateSeparateProperties": [],
+        "expectedCandidateCountAtLeast": 2,
+        "expectedDeclarationCountAtLeast": 0,
+        "modelCandidateCount": 4,
+        "modelDeclarationCount": 0,
+        "modelCandidates": [
+          {
+            "candidateKey": "asphyxiation-vapour-exposure",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "oxygen-monitoring-failure",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "ventilation-loss-vapour-accumulation",
+            "state": "ACTIVE"
+          },
+          {
+            "candidateKey": "cold-vapour-cryogenic-contact",
+            "state": "ACTIVE"
+          }
+        ],
+        "modelDeclarations": [],
+        "modelPostureBasis": null,
+        "modelAccepted": null,
+        "modelCessationList": null,
+        "modelControls": [],
+        "modelResumeCondition": null,
+        "modelWhatHappensNow": null,
+        "refusalCodes": [
+          "CESSATION_ITEM_MALFORMED"
+        ],
+        "declarationSubordination": []
+      }
+    }
+  ]
+}

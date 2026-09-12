@@ -1,0 +1,177 @@
+{
+  "operation": "§164 reliability + target-displacement architecture design",
+  "designOnly": true,
+  "providerCalls": 0,
+  "costUsd": 0.0,
+  "srcFilesChanged": 0,
+  "implemented": false,
+  "terminal": "EXPERT_HAZLENZ_RELIABILITY_ARCHITECTURE_DESIGNED — DISPLACED_FACT_ADJUDICATION_REQUIRED",
+  "centralIdea": "Do not match meaning; require a DECLARATION and check it deterministically. If HazLenz builds owedFacts with factKeys BEFORE the verifier runs and requires every clarification to BIND to one — or to nominate additively, never instead — coverage becomes closed-set membership over declarations. The residual semantic question shrinks from 'does this text mean that fact?' to 'was this declaration truthful?', which is human sampling, not a scorer. Applied to §163, silent displacement becomes structurally impossible.",
+  "semanticOutcomeV2": {
+    "contractVersion": "hazlenz.expert.verifier.semantic-outcome.v2",
+    "status": "PROSPECTIVE SPECIFICATION ONLY — not executable code; §163 remains under v1 and is not rescored",
+    "members": [
+      "TARGET_REACHED",
+      "VALID_BUT_TARGET_DISPLACED",
+      "INVALID_WRONG_FACT",
+      "SETTLED_SILENCE",
+      "WRONG_AFFECTED_DECISION",
+      "BOUNDARY_REJECTION",
+      "CONTRACT_INVALID",
+      "DEGENERATE_OUTPUT",
+      "TRANSPORT_FAILURE"
+    ],
+    "rule1": "VALID_BUT_TARGET_DISPLACED is an owed-target-recall MISS and NOT a clarification-precision defect; it must never be netted against TARGET_REACHED",
+    "rule2": "the split between VALID_BUT_TARGET_DISPLACED and INVALID_WRONG_FACT REQUIRES HUMAN AUTHORITY; no code assigns it",
+    "hsA1SevenOutputsStatus": "UNCLASSIFIED between those two members, pending human adjudication"
+  },
+  "reliabilityDecomposition": {
+    "R1_execution": "20/20 clean in §163 — 0 truncation, 0 degenerate, 0 transport failure, 0 forbidden fields. NOT the current problem; adding more execution reliability would address nothing measured.",
+    "R2_decision": "HS-E1 8/10 settled silence. Primary failure. Partially addressable by repetition.",
+    "R3_targetCoverage": "HS-A1 7/10 displaced. Primary failure. NOT addressable by repetition — every draw resamples a distribution that already prefers the other fact.",
+    "doNotCollapse": "§163's 4/20 is the sum of two unrelated failures and is not actionable as one number."
+  },
+  "policyC": {
+    "addresses": "R2 only",
+    "maxVerifierCalls": 2,
+    "loops": 0,
+    "majorityVoting": false,
+    "thirdDraw": false,
+    "secondDrawTriggersOnlyOn": "NO_CLARIFICATION_REQUIRED on a trigger-positive case",
+    "knownDeliberateGap": "a wrong-fact first draw does NOT trigger a second draw; that case is R3 and is handled by coverage, not repetition",
+    "twoNoDrawsRule": "TWO SILENCES NEVER ESTABLISH CORRECTNESS. The draws are two samples from one distribution measured to be centred on silence (8/10 on HS-E1); two silences is the most likely outcome (~64%) whether or not silence is correct. Agreement between samples from a biased distribution is evidence about the mode, not the truth. Two silences record SETTLED_SILENCE with drawCount 2, never upgrade to VERIFIED_AS_IS, never mark an owed fact COVERED, and never clear a TARGET_COVERAGE_WARNING.",
+    "observability": "both attempts persisted in full under one analysisId with drawIndex 1 and 2; neither replaces the other"
+  },
+  "owedFacts": {
+    "fields": [
+      "factKey",
+      "affectedDecision",
+      "source",
+      "evidenceSpan",
+      "whyUnresolved",
+      "branchA",
+      "branchB",
+      "decisionDivergence",
+      "priority",
+      "status"
+    ],
+    "statuses": [
+      "UNRESOLVED",
+      "COVERED",
+      "SETTLED_BY_EVIDENCE",
+      "REJECTED_BY_ARBITRATION"
+    ],
+    "permittedSourcesProduction": [
+      "deterministic HazLenz",
+      "governed evidence",
+      "first-pass retained uncertainty (candidate only, modelAuthored)",
+      "bounded verifier nomination (ADDITIVE ONLY)"
+    ],
+    "developmentOnlySource": "human-authoritative fixture truth",
+    "theBoundary": "Human-authored fixture truth is the standard the system is MEASURED AGAINST. Seeding production owedFacts from it would make it part of the system being measured and destroy the independent scale. Development instrumentation and production architecture share the STRUCTURE and must never share the POPULATION STEP.",
+    "modelAuthoredLimit": "a production owedFact sourced from model output carries modelAuthored:true and cannot alone justify a fail-closed customer-visible state; it can raise a question, not assert a hazard",
+    "implementedInSrc": false
+  },
+  "coverageCheck": {
+    "deterministic": [
+      "closed-set binding membership",
+      "bound fact still UNRESOLVED",
+      "evidenceSpan verbatim in observation",
+      "every LIFE_CRITICAL/REQUIRED_CONTROL fact bound-covered or declared not-decision-critical with a two-branch proof",
+      "nomination is additive rather than replacing",
+      "no UNRESOLVED→COVERED transition without a binding"
+    ],
+    "notDeterministic": [
+      "whether the bound question actually answers the fact it bound to",
+      "whether a nominated new fact is genuinely decision-critical",
+      "deduplication on similarity"
+    ],
+    "semanticMatchingProhibitions": [
+      "satisfiable by the observation text itself (§160 FINDING 1)",
+      "keyword/lexical overlap as the decision",
+      "label matching without meaning",
+      "model self-certification of coverage"
+    ],
+    "howBindingAvoidsAllFour": "binding never asks a matcher what text means; false bindings are addressed by HUMAN SAMPLING of bound pairs, which is a measurement obligation rather than a runtime component"
+  },
+  "multiGapPreservation": [
+    "preserve first and rank second — every LIFE_CRITICAL and REQUIRED_CONTROL fact survives internally regardless of budget",
+    "deduplicate only on factKey identity, never on similarity",
+    "a gap leaves UNRESOLVED only by evidence or recorded arbitration, never because another gap is more salient",
+    "salience is not authority — no path erases an unrelated valid gap"
+  ],
+  "questionBudget": [
+    "rank LIFE_CRITICAL → REQUIRED_CONTROL → others",
+    "combine only when same affectedDecision, same equipment/task, and both independently answerable without ambiguity",
+    "defer only when the answer cannot change what must be done before the next interaction; deferral is recorded, not discarded",
+    "NEVER drop a LIFE_CRITICAL gap to fit the budget",
+    "fail closed — surface an unresolved safety state rather than a tidy list; deterministic findings still shown"
+  ],
+  "targetCoveragePostcondition": {
+    "rule": "TARGET_COVERAGE_WARNING = TRUE when any LIFE_CRITICAL or REQUIRED_CONTROL owedFact remains UNRESOLVED and no accepted clarification binds its factKey",
+    "computedDeterministically": true,
+    "responses": [
+      "one bounded verifier re-check naming the uncovered factKeys",
+      "arbitration with a recorded reason",
+      "fail closed"
+    ],
+    "neverSilentlyClears": true,
+    "persistedRegardless": true
+  },
+  "stateMachine": {
+    "transitions": 14,
+    "deterministicTransitions": 10,
+    "maxProviderCallsPerAnalysis": 5,
+    "breakdown": "1 first pass + 1 degenerate reissue + 2 verifier draws + 1 coverage re-check",
+    "unboundedLoops": 0,
+    "invariant": "deterministic HazLenz findings are produced and shown under EVERY failure mode; the advisory layer can degrade to nothing without the customer losing the deterministic result"
+  },
+  "costLatency": {
+    "measuredVerifierCallUsd": 0.021,
+    "measuredVerifierLatencyMs": 15175,
+    "firstPassUsd": 0.05006,
+    "scenarioNote": "ranges span a 20–50% trigger frequency; the 15/44 development observation is NOT a production rate",
+    "per100AnalysesAt20pct": {
+      "single": "/bin/zsh.42",
+      "conditional2nd": "/bin/zsh.42–/bin/zsh.76",
+      "plusRecheck": "/bin/zsh.42–.18"
+    },
+    "per100AnalysesAt50pct": {
+      "single": ".05",
+      "conditional2nd": ".05–.89",
+      "plusRecheck": ".05–.94"
+    },
+    "worstCaseAddedPerTriggeredAnalysisUsd": 0.059,
+    "constraint": "LATENCY, not cost — worst-case bounded path ~76s is a product decision and argues for parallelising draws 1 and 2"
+  },
+  "nextExperiment": {
+    "purpose": "designed to BREAK the design, not confirm it",
+    "notTheOldExperiment": "the 90-call nomination-prior run tested a different hypothesis with a denominator that no longer exists",
+    "design": "one binding-enabled arm, same two authoritative cases, owedFacts supplied with factKeys, binding required, conditional second draw enabled",
+    "calls": 12,
+    "estimatedUsd": 0.3,
+    "baseline": "§163's 20 draws, frozen — no new baseline purchased",
+    "sampleSizeJustification": "6 draws per case detects a shift from the measured 7/10 displacement to <=1/6 with a clear margin; it does NOT claim a rate",
+    "falsifiers": {
+      "A_settledSilenceRecovery": "HS-E1 silence stays >=8/10 with conditional second draw enabled",
+      "B_owedTargetPreservation": "binding available and the verifier still fails to bind or declare on the flame-failure key in >=2 of 6 draws — THE CORE CLAIM FAILS",
+      "C_validButDisplacedRetention": "additive nomination available and the auger fact is LOST rather than carried alongside",
+      "D_falseQuestionManufacture": "binding causes spurious binding on cases where silence was right",
+      "E_drawInstability": "pairwise agreement does not improve above §163's 53–62%",
+      "F_questionBurden": "mean surviving customer questions per case exceeds 2, or any case exceeds 3"
+    },
+    "decisivePair": "B and D — B failing means binding does not solve displacement; D failing means it solves it by manufacturing questions. Neither is detectable from the other.",
+    "executed": false,
+    "authorized": false
+  },
+  "degeneratePolicy": {
+    "status": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION — unchanged, not reopened, semantics untouched",
+    "ordering": "transport → degenerate policy → contract admission → owed-fact coverage → reliability policy",
+    "separation": "degenerate policy acts on RESPONSE STATE; reliability layer acts on SEMANTIC OUTCOME among usable responses",
+    "retryBudgets": "separate and additive, which is why the §9 hard cap counts them separately"
+  },
+  "artifacts": {
+    "verification/expert-hazlenz-reliability-target-displacement-design-2026-09-04/RELIABILITY-AND-COVERAGE-ARCHITECTURE.md": "2119751873de46554e44de8486cb14e5e3bebcd82281bb5cb2be99be12d2a10f",
+    "verification/expert-hazlenz-reliability-target-displacement-design-2026-09-04/HS-A1-DISPLACED-FACT-ADJUDICATION-PACKET.md": "79e60079bd8c9bcf704c58ecff6c74e52fa8b26e350eab279689be01690c91a6"
+  }
+}

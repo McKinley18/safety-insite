@@ -1,0 +1,216 @@
+{
+  "operation": "§147 Expert HazLenz bounded hosted clarification-recall remediation probe",
+  "capturedAt": "2026-09-03T13:15:05.185Z",
+  "isFormalEvaluation": false,
+  "hashes": {
+    "probeScriptSha256": "f17ed58de1337b568f26287a7e3bebfda465b37b4bd7a8e1785f56ff722b0c14",
+    "fixtureManifestSha256": "d5cb48b89df49c985dc4a458668b2330ecb7626616a5206233f00c6b87bce281",
+    "systemPromptSha256": "83cd078b0c67deacdce197d9aee7db9344a8625eb753c41b73fa83fb9fb3f12a",
+    "wireSchemaSha256": "42586d42381e09e46d5cd3742b2a8c1e62fe7ad39475712c580292e3f8e7abca",
+    "normalizationSha256": "606dd1a7d468eecf00de773fd322f2018b00888dc18544c7894f4e5b0082d4ae",
+    "contractTypesSha256": "fec3fd5fea5514929717258178883b7b63f7a4f73b4bf5a7d7412bee88bbdfdd"
+  },
+  "execution": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "promptVersion": "hazlenz.expert.prompt.v10",
+    "analysisContractVersion": "hazlenz.expert.analysis.v2"
+  },
+  "budget": {
+    "targetLogicalCalls": 10,
+    "hardProviderRequestCeiling": 12,
+    "retryRequestBudget": 2,
+    "enforcedSpendCeilingUsd": 1.248,
+    "worstCaseRequestUsd": 0.104
+  },
+  "extra": {
+    "git": {
+      "head": null,
+      "branch": null,
+      "upstream": null,
+      "dirty": null
+    },
+    "historicalProviderInvocationCount": 195,
+    "contractVersions": {
+      "input": "hazlenz.expert.input.v1",
+      "validator": "hazlenz.expert.validator.v1",
+      "measurement": "hazlenz.expert.measurement.v1",
+      "harness": "hazlenz.expert.cohort.harness.v1",
+      "runRecordStore": "hazlenz.expert.run-record-store.v1",
+      "probeMeasures": "hazlenz.expert.probe-measures.v1",
+      "fixtureSet": "hazlenz.expert.clarification-recall.fixtures.v5"
+    },
+    "arms": [
+      "BASE"
+    ],
+    "m14RemediationStatus": "NOT_ATTEMPTED",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "frozenGates": {
+      "strictRequiredRecall": 1,
+      "maxForbiddenViolations": 0,
+      "maxInvalidClarificationObjects": 0,
+      "maxCitationContainmentViolations": 0,
+      "maxProtectedAuthorityContradictions": 0
+    },
+    "gate": [
+      {
+        "id": "A.1 logical calls are within the authorized band and MATERIALLY SMALLER than §146",
+        "ok": true,
+        "detail": "10 rows (ceiling 10; §146 spent 24)"
+      },
+      {
+        "id": "A.2 every row is structurally scoreable",
+        "ok": true,
+        "detail": "0 problems"
+      },
+      {
+        "id": "A.3 ids are fresh CR-* development ids",
+        "ok": true,
+        "detail": "CR-A1 CR-B1 CR-C1 CR-D1 CR-E1 CR-E2 CR-F1 CR-F2 CR-G1 CR-H1"
+      },
+      {
+        "id": "A.4 the set is not over-sampled on one family",
+        "ok": true,
+        "detail": "10 distinct domains across 10 rows"
+      },
+      {
+        "id": "B.1 the halves are BALANCED",
+        "ok": true,
+        "detail": "5 REQUIRED / 5 matched FORBIDDEN controls"
+      },
+      {
+        "id": "B.2 all eight paired semantic structures are present",
+        "ok": true,
+        "detail": "8 of 8"
+      },
+      {
+        "id": "B.3 the ESTABLISHED DEFECT shape dominates the REQUIRED half",
+        "ok": true,
+        "detail": "3 of 5 mark the absence NOWHERE: CR-E2 CR-F1 CR-F2"
+      },
+      {
+        "id": "B.4 and one ANNOUNCED case survives as a non-regression control",
+        "ok": true,
+        "detail": "present"
+      },
+      {
+        "id": "B.5 the three caught settlement mechanisms are each represented",
+        "ok": true,
+        "detail": "THRESHOLD_ACROSS_INCOMPARABLE_BASES, RESEMBLANCE_TO_A_PROGRAMME, BENIGN_ASSUMPTION"
+      },
+      {
+        "id": "B.6 both anti-overcorrection threshold controls supply a record and must stay SILENT",
+        "ok": true,
+        "detail": "C and D present"
+      },
+      {
+        "id": "C.1 every REQUIRED row states BOTH answers and BOTH DIFFERENT current outcomes",
+        "ok": true,
+        "detail": "5 complete counterfactuals"
+      },
+      {
+        "id": "C.2 exactly one authored gap per REQUIRED row, none on any FORBIDDEN row",
+        "ok": true,
+        "detail": "retention is unambiguous per row"
+      },
+      {
+        "id": "C.3 every FORBIDDEN row states the tempting question AND a per-row reason",
+        "ok": true,
+        "detail": "no blanket labels"
+      },
+      {
+        "id": "C.4 every authored affectedDecision is in the frozen vocabulary",
+        "ok": true,
+        "detail": "REQUIRED_CONTROL, APPLICABILITY, REGULATORY_INTERPRETATION"
+      },
+      {
+        "id": "C.5 REGULATORY_INTERPRETATION is never claimed without a SUPPLIED record",
+        "ok": true,
+        "detail": "checked"
+      },
+      {
+        "id": "D.1 no formal-cohort, reserved or SPENT-probe path is imported",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "E.1 model bound exactly",
+        "ok": true,
+        "detail": "claude-sonnet-5"
+      },
+      {
+        "id": "E.2 vendor endpoint",
+        "ok": true,
+        "detail": "https://api.anthropic.com"
+      },
+      {
+        "id": "E.3 thinking disabled",
+        "ok": true,
+        "detail": "disabled"
+      },
+      {
+        "id": "E.4 credential present (never logged or persisted)",
+        "ok": true,
+        "detail": "set"
+      },
+      {
+        "id": "F.1 built one request per row, called nothing",
+        "ok": true,
+        "detail": "10 built, 0 invocations"
+      },
+      {
+        "id": "F.2 ONE ARM ONLY — M14 not attempted",
+        "ok": true,
+        "detail": "BASE"
+      },
+      {
+        "id": "F.3 the prospective repaired prompt is v10",
+        "ok": true,
+        "detail": "hazlenz.expert.prompt.v10"
+      },
+      {
+        "id": "F.4 the analysis contract is UNCHANGED at v2 — the schema gained no field",
+        "ok": true,
+        "detail": "hazlenz.expert.analysis.v2"
+      },
+      {
+        "id": "F.5 the settlement rule is in the system prompt this probe will send",
+        "ok": true,
+        "detail": "present and correctly ordered in all requests"
+      },
+      {
+        "id": "G.1 no truth-key-only string reaches any request",
+        "ok": true,
+        "detail": "10 scanned"
+      },
+      {
+        "id": "G.2 no built prompt carries citation-shaped text",
+        "ok": true,
+        "detail": "10 scanned"
+      },
+      {
+        "id": "G.3 redaction is exercised",
+        "ok": true,
+        "detail": "8 supplied record fields carried a citation pre-render"
+      },
+      {
+        "id": "H.1 spend ceiling is the LOWER of authorized and model-priced",
+        "ok": true,
+        "detail": "authorized $2.00, priced $1.2480 -> enforcing $1.2480"
+      },
+      {
+        "id": "H.1b the retry allowance is the whole headroom and no more",
+        "ok": true,
+        "detail": "2 requests, inside the 12-request cap"
+      },
+      {
+        "id": "H.2 MEASURE-ONLY: store exists",
+        "ok": true,
+        "detail": "no provider request will be issued"
+      }
+    ]
+  }
+}

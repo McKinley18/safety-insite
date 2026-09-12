@@ -1,0 +1,172 @@
+{
+  "operation": "§175 strict semantic adjudication closure",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_BALANCED_CLARIFICATION_VALIDATION_COMPLETE — BOUNDED_REMEDIATION_AUTHORIZATION_REQUIRED",
+  "PRE_CLOSURE_INTEGRITY": "INTACT",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "sourceCodeChanges": 0,
+  "ATTEMPT_1": {
+    "MEASUREMENT_STATUS": "VOID",
+    "ATTRIBUTION": "HARNESS_DEFECT",
+    "calls": 10,
+    "costUsd": 0.47437,
+    "note": "no attempt-1 clarification-performance number may be cited"
+  },
+  "ATTEMPT_2": {
+    "MEASUREMENT_STATUS": "VALID",
+    "calls": 10,
+    "costUsd": 0.47515
+  },
+  "CUMULATIVE_SECTION_175": {
+    "calls": 20,
+    "costUsd": 0.94952
+  },
+  "strictAdjudications": {
+    "HR-01": true,
+    "HR-06": true,
+    "HR-08": true,
+    "HR-09": true
+  },
+  "strictAdjudicationConfidence": "HIGH for all four",
+  "HR-04_strict": {
+    "value": false,
+    "reason": "no clarification emitted; nothing could address the owed fact"
+  },
+  "AI_ASSISTED_STRICT_ADJUDICATION": true,
+  "aiAssistanceDisclosure": "GPT-5.6 Sol reviewed the exact four emitted clarification questions before product-owner finalization; the product owner independently agrees with all four. This must NOT be described as AI-free independent human adjudication.",
+  "FINAL_METRICS": {
+    "REQUIRED_RECALL_STRICT": 0.8,
+    "SILENCE_PRECISION": 0.8,
+    "BALANCED_ACCURACY": 0.8,
+    "ROW_LEVEL_ACCURACY": 0.8
+  },
+  "metricReconciliation": {
+    "REQUIRED_RECALL_STRICT": {
+      "expected": 0.8,
+      "recomputed": 0.8,
+      "agrees": true
+    },
+    "SILENCE_PRECISION": {
+      "expected": 0.8,
+      "recomputed": 0.8,
+      "agrees": true
+    },
+    "BALANCED_ACCURACY": {
+      "expected": 0.8,
+      "recomputed": 0.8,
+      "agrees": true
+    },
+    "ROW_LEVEL_ACCURACY": {
+      "expected": 0.8,
+      "recomputed": 0.8,
+      "agrees": true
+    }
+  },
+  "metricsReproduce": true,
+  "narrowClaim": "On the valid §175 Attempt-2 balanced development instrument, current Expert HazLenz achieved 4/5 strict REQUIRED recall and 4/5 SILENCE precision, for 8/10 row-level accuracy.",
+  "mustNotClaim": [
+    "production readiness",
+    "formal acceptance",
+    "customer readiness",
+    "independent-human validation",
+    "any general 80% clarification accuracy outside this frozen ten-row instrument"
+  ],
+  "failures": [
+    {
+      "rowId": "HR-04",
+      "frozenTruth": "REQUIRED",
+      "pair": "PAIR-2",
+      "hazardFamily": "machine_guarding",
+      "observed": "no clarification emitted",
+      "hazardCandidates": 1,
+      "declaredOutcome": "ANALYZED",
+      "pattern": "A_OWED_TARGET_MISS_FAILURE_TO_ASK",
+      "classification": "genuine clarification recall failure candidate"
+    },
+    {
+      "rowId": "HR-05",
+      "frozenTruth": "SILENCE",
+      "pair": "PAIR-4",
+      "hazardFamily": "hazardous_energy",
+      "observed": "unnecessary clarification emitted",
+      "question": "Are the drying fans and any other energy sources connected to or capable of moving the discharge auger or its surrounding equipment (e.g., shared drive train, airflow-driven components) while the auger drive isolator remains locked out?",
+      "pattern": "B_DISPLACED_VALID_FACT_OVER_CLARIFICATION",
+      "classification": "clarification precision failure",
+      "note": "the question may be independently safety-relevant, but that does not change its frozen precision-failure status and no truth label was altered"
+    }
+  ],
+  "failurePatternAnalysis": {
+    "A_OWED_TARGET_MISS": {
+      "rows": [
+        "HR-04"
+      ],
+      "count": 1,
+      "evidence": "HR-04 is the ONLY REQUIRED row whose text contains no explicit absence marker. The four recovered rows each state an absence outright — \"does not record\" (HR-01), \"carries no interlock test result\" (HR-06), \"shows no entry against it\" (HR-08), \"unread since\" (HR-09). HR-04 instead states a POSITIVE fact — the fastenings were last torque-checked at the annual service — and the gap must be inferred from the staleness of that date against \"this morning's pre-start check\".",
+      "markerByRow": {
+        "HR-01": true,
+        "HR-04": false,
+        "HR-06": true,
+        "HR-08": true,
+        "HR-09": true
+      },
+      "separation": "4/4 recovered rows marked, 0/1 missed row marked",
+      "isThisAnInventedMechanism": false,
+      "priorArt": "this REPLICATES the discriminating variable already documented in the §147 clarification-recall fixture set: gaps the observation ADVERTISES are recovered, gaps that are UNMARKED and must be noticed from what the text never says are missed. It is a re-observation of a known mechanism on independent material, not a new theory fitted to one row.",
+      "statisticalCaveat": "n = 1 miss. Perfect separation across five rows with a single failure is weak on its own; the weight comes from the replication, not from this sample."
+    },
+    "B_DISPLACED_VALID_FACT": {
+      "rows": [
+        "HR-05"
+      ],
+      "count": 1,
+      "evidence": "HR-05 settles auger isolation by an attempted start that did not turn the auger. Expert asked instead whether the RUNNING DRYING FANS could introduce energy at the blockage point — an adjacent energy source the observation mentions but does not settle.",
+      "withinPairContrast": "HR-08, the REQUIRED member of the same PAIR-4 scene, asked correctly about the auger drive's own local isolator. So within one scene the model targeted the owed fact on the REQUIRED side and over-asked on an adjacent source on the SILENCE side.",
+      "relationToPriorFinding": "matches the §169 displaced-valid-fact shape, where a clarification misses the owed target while remaining independently decision-critical. Under the frozen truth it is scored a precision failure and it stays scored that way.",
+      "statisticalCaveat": "n = 1."
+    },
+    "C_EVIDENCE_SUFFICIENCY_WEAKNESS": {
+      "rows": [],
+      "count": 0,
+      "finding": "NOT OBSERVED. The four recovered clarifications each demanded function-establishing evidence — a flame test, a functional interlock test, a verified de-energised isolator, a gauge reading — rather than accepting a document, an indicator or a presence. That is the exact §169 remediation target, and on this instrument it did not recur."
+    },
+    "D_TEMPORAL_SCOPE_WEAKNESS": {
+      "rows": [
+        "HR-04"
+      ],
+      "count": 1,
+      "finding": "OBSERVED, and it is the same row as pattern A rather than an independent second defect. HR-04's gap IS temporal — a torque check valid at the annual service may not be valid this morning. The model recovered temporal gaps elsewhere (HR-06 \"before restart\", HR-09 \"since\"), but in those rows the text marked the absence explicitly. The distinguishing variable is the marking, not the temporality.",
+      "doNotDoubleCount": true
+    },
+    "E_OTHER": {
+      "count": 0,
+      "finding": "no other pattern is supported. 0 contract failures, 0 normalization rejections, 0 provider errors, 0 retries, and all ten rows declared outcome ANALYZED — so no failure is attributable to transport, schema or a NOTHING_TO_ADD refusal."
+    }
+  },
+  "remediationHypothesis": {
+    "supported": true,
+    "statement": "The evidence supports ONE bounded hypothesis: Expert recovers a decision-critical gap when the observation explicitly marks an absence, and misses it when the gap must be inferred from a stale-but-positive statement. Both §175 REQUIRED failures and the §147 prior finding point at the same variable.",
+    "narrowestTarget": "prompt-level only: instruct Expert that a verification stated at a PAST occasion does not establish the state at the moment the decision is made, so a positively-stated but stale verification is an unresolved fact. Nothing else — not the schema, not the normalizer, not the verifier, not arbitration, not thresholds.",
+    "risk": "this is a recall repair and recall repairs cost precision. HR-05 already shows the model over-asking about an adjacent unsettled source, so any change must be measured on the SILENCE half before it is believed. A repair that lifts recall to 5/5 while dropping precision below 4/5 is not an improvement.",
+    "evidenceLimit": "n = 1 for each pattern on a ten-row instrument with a known shared-authorship provenance limitation. This is a hypothesis to test, not an established defect, and it does not justify a prompt change on its own."
+  },
+  "remediationPerformedInThisSlice": false,
+  "provenanceLimitation": {
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "AI_ASSISTED_STRICT_ADJUDICATION": true,
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "HUMAN_AI_AGREEMENT": "10 / 10 on labels, 4 / 4 on strict adjudication",
+    "corpusAuthoredBy": "Claude",
+    "evaluatedModelFamily": "Claude",
+    "consequence": "both the labels AND the strict verdicts are now AI-assisted, so every figure here is development-tier and none may be described as independent human validation"
+  },
+  "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+  "worktree": {
+    "runtimeFilesChanged": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

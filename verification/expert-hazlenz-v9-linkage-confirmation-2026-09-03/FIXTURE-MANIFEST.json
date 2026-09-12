@@ -1,0 +1,487 @@
+{
+  "version": "hazlenz.expert.dev-probe.fixtures.v3",
+  "frozenBy": "§143 linkage-semantics repair; NOT modified after the first provider request",
+  "provenance": "authored 2026-09-02; no reserved material opened; no spent formal-cohort row read, copied or mimicked; LP-G3 not reused verbatim; LP-B2 not surface-copied",
+  "criteria": [
+    {
+      "id": 1,
+      "name": "REQUIRED linkage",
+      "target": "all 3 REQUIRED opportunities valid (>= 3/3 when exactly three are present)"
+    },
+    {
+      "id": 2,
+      "name": "FORBIDDEN linkage",
+      "target": "0 accepted forbidden links across all 3 dedicated FORBIDDEN controls"
+    },
+    {
+      "id": 3,
+      "name": "invalid candidate keys",
+      "target": "0 unresolved bad keys accepted"
+    },
+    {
+      "id": 4,
+      "name": "no forced linkage",
+      "target": "no link where the row has no linkage opportunity"
+    },
+    {
+      "id": 5,
+      "name": "TRUE-GAP retention",
+      "target": ">= 1 of 2 — broad clarification-retention validation is INTENTIONALLY DEFERRED and this probe must not be read as closing it"
+    },
+    {
+      "id": 6,
+      "name": "NO-GAP silence",
+      "target": "no meaningful regression from v8 behaviour"
+    },
+    {
+      "id": 7,
+      "name": "arbitration",
+      "target": "natural opportunity only; ZERO events is NOT a failure when no contradiction occurs"
+    }
+  ],
+  "budget": {
+    "targetLogicalCalls": 9,
+    "hardProviderRequestCeiling": 12,
+    "hardSpendCeilingUsd": 2,
+    "arms": [
+      "BASE"
+    ],
+    "maxRetriesPerLogicalCall": 1
+  },
+  "rows": [
+    {
+      "rowId": "CL-R1",
+      "roles": [
+        "LINKAGE_REQUIRED",
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "The isolation question is the direct subject of exactly one candidate — the lockout/tagout one — and decides whether it stays ACTIVE. The atmospheric candidate is unaffected by the answer, so the referent is unique while a second candidate is genuinely available to be chosen wrongly.",
+      "whyDiagnostic": "A required link with a competing candidate present, in non-PPE wording.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "A fitter was changing the seal on the number 7 agitator with the drive selector at STOP on the local panel. The vessel still held product under a nitrogen blanket at the time, and the fitter had one arm through the side manway. The observation does not establish whether the agitator drive was isolated and locked at its motor control centre.",
+      "observationSha256": "87414bde3243eec3bb3455eff976608e287f82fef0af759d7c1147a5b4c0ec00",
+      "allowedHazardFamilies": [
+        "lockout_tagout",
+        "atmospheric_hazard",
+        "machine_guarding",
+        "fall_protection"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "lockout_tagout",
+          "atmospheric_hazard"
+        ],
+        "defensibleHazardFamilies": [
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "atmospheric_hazard"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-R1-G1",
+            "description": "whether the agitator drive is isolated and locked at its motor control centre, rather than merely selected to STOP at the local panel",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A STOP selector is not an isolation, and an arm through the manway of a blanketed vessel is a stated present exposure. The nitrogen blanket makes the atmospheric family present in its own right, which is what gives the row TWO candidates and forces the model to pick the right referent rather than linking to the only thing available."
+      }
+    },
+    {
+      "rowId": "CL-R2",
+      "roles": [
+        "LINKAGE_REQUIRED",
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "Isolation between booth and collector determines whether the fire/explosion propagation candidate remains ACTIVE. It does not change the dust-accumulation candidate, which stands on the loaded ductwork regardless, so exactly one candidate is the subject.",
+      "whyDiagnostic": "A second required link in an unrelated family, so a result is not an artefact of one scenario type.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "The dust collector serving the grinding booth was found with its explosion vent panel painted over and its ductwork visibly loaded with fine metal dust. Grinding was in progress in the booth during the observation. Whether the collector is fitted with an isolation valve or abort gate between the booth and the collector body is not established.",
+      "observationSha256": "a8e99462c929c60d663e7509f8fe2ebe85ef912ccab66f668686962bd70f7f95",
+      "allowedHazardFamilies": [
+        "combustible_dust",
+        "fire_explosion",
+        "ventilation_air_quality",
+        "noise_exposure"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "combustible_dust",
+          "fire_explosion"
+        ],
+        "defensibleHazardFamilies": [
+          "ventilation_air_quality"
+        ],
+        "forbiddenHazardFamilies": [
+          "noise_exposure"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fire_explosion"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-R2-G1",
+            "description": "whether an isolation valve or abort gate separates the grinding booth from the collector body, which decides whether a deflagration could propagate back to occupied space",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "A painted-over vent panel and loaded ductwork with grinding in progress are stated present facts. Isolation bears on the FIRE/EXPLOSION propagation candidate specifically, not on the dust accumulation one, so the referent is unique but not the only candidate available."
+      }
+    },
+    {
+      "rowId": "CL-R3",
+      "roles": [
+        "LINKAGE_REQUIRED",
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "REQUIRED",
+      "linkageRationale": "THE PRECEDENCE TEST. Control/PPE-shaped in FORM, but respiratory protection is the direct subject of exactly one candidate — the inhalation exposure — and the two answers give two different current actions. Under v8 the \"general PPE follow-up\" clause collided with this and it would have scored as a FORBIDDEN link; under v9 TEST 1 runs first and it is REQUIRED. Paired with CL-F3, which is the genuinely generic PPE question that stays FORBIDDEN.",
+      "whyDiagnostic": "The single row this operation exists to confirm.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "A technician was cleaning the spray booth extract plenum with an aerosolised solvent while kneeling inside the booth. The booth extract fan was switched off for the cleaning and the booth doors were closed. Two other workers were spraying primer in the adjacent bay, which shares a return-air path with the booth. The observation does not record what respiratory protection, if any, the technician inside the booth was wearing.",
+      "observationSha256": "5c10002cdf69af55043299e6a0edd51898ae51a6662222df1549c74f78afff9a",
+      "allowedHazardFamilies": [
+        "chemical_inhalation_contact",
+        "respiratory_protection",
+        "fire_explosion",
+        "walking_working_surfaces"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "chemical_inhalation_contact"
+        ],
+        "defensibleHazardFamilies": [
+          "respiratory_protection",
+          "fire_explosion"
+        ],
+        "forbiddenHazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-R3-G1",
+            "description": "what respiratory protection the technician inside the booth was wearing while the extract fan was off",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Solvent aerosol inside a closed booth with the extract off is a stated present inhalation exposure. Respiratory protection bears on THAT candidate and on no other: it does not touch the shared-return-air fire concern and it does not touch the walking surface. The two answers give two different current actions -- an appropriate supplied-air or cartridge respirator in use means the exposure is controlled and the finding is the fan interlock; nothing worn means immediate withdrawal from the booth. That is the REQUIRED test satisfied by a question whose FORM is about PPE, which is exactly the collision v8 could not decide."
+      }
+    },
+    {
+      "rowId": "CL-F1",
+      "roles": [
+        "LINKAGE_FORBIDDEN"
+      ],
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: ambiguous referent. Two presses of the same family in the same state, and the authorisation question applies to both identically. There is no unique candidate to name, so any link is wrong.",
+      "whyDiagnostic": "Same-family ambiguity — the v2 LP-L4 property, rebuilt so a clarification is actually owed and the FORBIDDEN denominator is real rather than empty.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "Both the east and west trim presses on line 4 were running with their light curtains muted. The mute override key was left in the panel on each machine. Operators load blanks by hand at both presses. The observation does not record whether either machine has been through the site muting-authorisation process.",
+      "observationSha256": "c1636532e6c36b726ae626882b014fa4db81b8a2ba53ab4f26e9768aa667273b",
+      "allowedHazardFamilies": [
+        "machine_guarding",
+        "lockout_tagout",
+        "training_procedure_supervision"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "machine_guarding"
+        ],
+        "defensibleHazardFamilies": [
+          "lockout_tagout",
+          "training_procedure_supervision"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "machine_guarding"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-F1-G1",
+            "description": "whether the muting arrangement on these presses has been through the site authorisation process, which the observation leaves open for both machines identically",
+            "affectedDecision": "APPLICABILITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "AMBIGUOUS REFERENT BY CONSTRUCTION. Two presses in the same family, in the same state, with the same defect. Any authorisation question applies to both identically, so a model that raises two guarding candidates has no unique referent to name."
+      }
+    },
+    {
+      "rowId": "CL-F2",
+      "roles": [
+        "LINKAGE_FORBIDDEN"
+      ],
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: different hazard. The eyewash question belongs to the emergency-equipment candidate and has no bearing on the parked lift; the two conditions share only a location. A link across them is a cross-hazard error.",
+      "whyDiagnostic": "Catches linkage driven by row co-occurrence rather than semantics.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "MULTI_HAZARD",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "A scissor lift was parked across the marked pedestrian walkway outside the paint store with its platform at full height and nobody on it. Separately, the eyewash station beside the paint store door has no inspection tag and its bowl is covered by a cardboard box. Both conditions were present throughout the walkthrough.",
+      "observationSha256": "bc4cf39072c5a8c924e0a0ec248f5278f3a2ae5711792e031667e35ebaf4cc60",
+      "allowedHazardFamilies": [
+        "mobile_equipment",
+        "emergency_equipment",
+        "walking_working_surfaces",
+        "fall_protection"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "mobile_equipment",
+          "emergency_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "forbiddenHazardFamilies": [
+          "fall_protection"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-F2-G1",
+            "description": "when the eyewash station was last inspected and flushed",
+            "affectedDecision": "REQUIRED_CONTROL"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "DIFFERENT-HAZARD REFERENT. The row deliberately carries two unrelated conditions. An eyewash inspection question is about the emergency-equipment candidate and has nothing to do with the parked lift; if a model links it to the mobile-equipment candidate that is a genuine cross-hazard linkage error. The two conditions share only the location."
+      }
+    },
+    {
+      "rowId": "CL-F3",
+      "roles": [
+        "LINKAGE_FORBIDDEN"
+      ],
+      "linkageTruth": "FORBIDDEN",
+      "linkageRationale": "POSITIVE REASON: genuinely generic PPE follow-up. A missing PPE matrix is row-level and administrative, touching three workstations equally and changing no single candidate's current decision. This is the clause v9 TEST 3 keeps, and it is the control that proves the CL-R3 permission did not simply delete the prohibition.",
+      "whyDiagnostic": "The negative half of the precedence pair. CL-R3 must link; CL-F3 must not.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED"
+      ],
+      "observation": "General walkthrough of the fabrication shop. A welder was tacking a bracket at the bench with a screen in place, a labourer was moving stock with a pallet truck in the aisle, and a fitter was deburring a plate at the pedestal grinder with the rest set correctly. Nothing in the site PPE matrix was posted at any of the three workstations.",
+      "observationSha256": "f88153e2880b51a912afaadde41a2fdd3d0662442539bb4736b330f063b09e5f",
+      "allowedHazardFamilies": [
+        "welding_fumes",
+        "material_handling_storage",
+        "machine_guarding",
+        "personal_protective_equipment"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "personal_protective_equipment"
+        ],
+        "defensibleHazardFamilies": [
+          "welding_fumes",
+          "material_handling_storage",
+          "machine_guarding"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "GENUINELY GENERIC PPE FOLLOW-UP -- the negative counterpart to CL-R3, and the pair is the whole point. A missing PPE matrix is a row-level administrative fact that touches all three workstations equally and changes no single candidate's current decision. \"What PPE is required here?\" is the question v9 TEST 3 still forbids, and CL-R3 is the question TEST 1 now permits. If a model links on both, or on neither, the precedence rule has not landed."
+      }
+    },
+    {
+      "rowId": "CL-N1",
+      "roles": [
+        "NO_LINKAGE_OPPORTUNITY",
+        "NO_GAP_CONTROL"
+      ],
+      "linkageTruth": "NOT_A_LINKAGE_TEST",
+      "linkageRationale": "This row makes NO LINKAGE CLAIM. Nothing is owed, so no clarification is expected and no linkage situation can arise. Under v2 this would have been labelled FORBIDDEN by default and would have sat in the violation denominator without ever being a linkage test. It is excluded from every linkage denominator instead.",
+      "whyDiagnostic": "The NO-GAP silence control, and the row that demonstrates the fourth truth value doing its job.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "NEGATED_OR_SAFE_STATE",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_NOT_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL"
+      ],
+      "observation": "Quarterly check of the north stair core. Handrails are continuous and secure on both flights, treads are unworn with intact nosings, the landing is clear, and emergency lighting was function-tested this month with the result recorded on the fixture tag.",
+      "observationSha256": "3a0846061dbe00b11c7a9b78286845f14be5caeab89b14c85b59a660eb50ea61",
+      "allowedHazardFamilies": [
+        "walking_working_surfaces",
+        "fall_protection",
+        "emergency_equipment"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [],
+        "defensibleHazardFamilies": [],
+        "forbiddenHazardFamilies": [
+          "walking_working_surfaces",
+          "fall_protection",
+          "emergency_equipment"
+        ],
+        "negatedOrSafeStateFamilies": [
+          "walking_working_surfaces",
+          "fall_protection",
+          "emergency_equipment"
+        ],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [],
+        "recordedInteractions": [],
+        "authoringRationale": "Every condition is affirmatively verified rather than merely unmentioned, so no candidate and no clarification are owed. Doubles as the NO-GAP silence control."
+      }
+    },
+    {
+      "rowId": "CL-T1",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "ALLOWED",
+      "linkageRationale": "The exposure question has the fall candidate as its primary subject, but it reads correctly on its own — \"is anyone scheduled on the roof\" needs no candidate to be understood or acted on. ALLOWED: linking and omitting are both correct, and omission is not scored as a failure.",
+      "whyDiagnostic": "A general positive clarification control, and an ALLOWED row so the middle category is exercised rather than assumed.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "NO_GOVERNED_RECORD",
+        "CLARIFICATION_OWED",
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+        "LIFE_CRITICAL_PRESENT"
+      ],
+      "observation": "The roof access hatch on the plant room was propped open with a length of conduit and the fixed ladder below it runs twenty feet to the floor. There is no cover, no guardrail and no gate at the hatch opening. The observation does not establish whether anyone is scheduled to work on the roof while the hatch is propped.",
+      "observationSha256": "f7b78d4116f4a5f3b2a54a2f59159218e74f9b6190252369681d7684fe620a3f",
+      "allowedHazardFamilies": [
+        "fall_protection",
+        "walking_working_surfaces",
+        "material_handling_storage"
+      ],
+      "governedStandards": [],
+      "truth": {
+        "presentHazardFamilies": [
+          "fall_protection"
+        ],
+        "defensibleHazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "forbiddenHazardFamilies": [
+          "material_handling_storage"
+        ],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [
+          "fall_protection"
+        ],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-T1-G1",
+            "description": "whether anyone is scheduled to work on the roof, and therefore to pass the propped-open hatch, during the period it is propped",
+            "affectedDecision": "EXPOSURE"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "Two branches with different current actions: work scheduled means close or guard the opening and control access now; no access until the hatch is restored means the correction can be scheduled. A general positive clarification control, retained because a linkage probe that produced no questions at all would measure nothing."
+      }
+    },
+    {
+      "rowId": "CL-T2",
+      "roles": [
+        "TRUE_GAP_CONTROL"
+      ],
+      "linkageTruth": "ALLOWED",
+      "linkageRationale": "Line contents primarily concern the hot-work candidate but the question stands alone. Also carries an unrelated APPROVED respiratory record, so governed abstention is observed without spending a dedicated row on it.",
+      "whyDiagnostic": "Second general positive control, in an unrelated family, with an incidental unrelated-governed-record check.",
+      "contradictionIsAModelError": true,
+      "caseClasses": [
+        "DETERMINISTIC_HAZARD_PRESENT",
+        "GOVERNED_RECORD_SUPPLIED",
+        "CLARIFICATION_OWED"
+      ],
+      "observation": "A contractor was hot-tapping a live process line under a permit. The permit lists a fire watch but the observation records no one standing watch at the work location, and combustible lagging is within a metre of the tap point. What the line carries is not recorded on the permit copy at the job.",
+      "observationSha256": "f4462228f2edca7a99aa0ce6d1aaeae3d698f4e2925a87120bd22f224c054751",
+      "allowedHazardFamilies": [
+        "hot_work",
+        "fire_explosion",
+        "chemical_release",
+        "contractor_coordination"
+      ],
+      "governedStandards": [
+        {
+          "title": "Respiratory protection program",
+          "backingState": "APPROVED"
+        }
+      ],
+      "truth": {
+        "presentHazardFamilies": [
+          "hot_work"
+        ],
+        "defensibleHazardFamilies": [
+          "fire_explosion",
+          "contractor_coordination",
+          "chemical_release"
+        ],
+        "forbiddenHazardFamilies": [],
+        "negatedOrSafeStateFamilies": [],
+        "lifeCriticalHazardFamilies": [],
+        "decisionCriticalGaps": [
+          {
+            "gapId": "CL-T2-G1",
+            "description": "what the live line being hot-tapped actually carries",
+            "affectedDecision": "HAZARD_SEVERITY"
+          }
+        ],
+        "recordedInteractions": [],
+        "authoringRationale": "The contents decide the magnitude and therefore the current action: an inert or aqueous service means the finding is the missing fire watch and the lagging; a flammable or toxic service means stopping the hot work now. The second general positive clarification control, in an unrelated family from CL-T1."
+      }
+    }
+  ]
+}

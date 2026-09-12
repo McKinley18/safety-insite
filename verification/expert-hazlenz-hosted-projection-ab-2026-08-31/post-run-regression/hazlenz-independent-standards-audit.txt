@@ -1,0 +1,12 @@
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:14976:13
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async classify (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-independent-standards-audit.ts:432:20)
+    at async run (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-independent-standards-audit.ts:629:20) {
+  [cause]: AggregateError
+      at internalConnectMultiple (node:net:1122:18)
+      at afterConnectMultiple (node:net:1689:7) {
+    code: 'ECONNREFUSED',
+    [errors]: [ [Error], [Error] ]
+  }
+}

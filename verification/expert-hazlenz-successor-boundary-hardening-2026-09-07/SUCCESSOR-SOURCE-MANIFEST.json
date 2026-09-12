@@ -1,0 +1,83 @@
+{
+  "artifact": "SUCCESSOR-SOURCE-MANIFEST",
+  "successorContractVersion": "hazlenz.expert.203-successor-boundary.v1",
+  "note": "Frozen identity of the §203 successor development contract. Ancestor hashes are recorded as ANCESTOR EVIDENCE and mirror -- never replace -- the §187/§192 pins. Deterministic: no timestamp, sorted keys, actual file bytes.",
+  "successorSourceHashes": {
+    "backend/scripts/generate-203-source-manifest.ts": "e90523850440a832e1fac2f938c31ce122d7a38fc569ec508a2e502bd19bfc65",
+    "backend/scripts/lib/expert-203-effective-grammar-identity.ts": "a641fb1488ea5be7957f441b9b56c16c8a84fecc2269652e8fa3a5703335baef",
+    "backend/scripts/lib/expert-203-fact-identity-collision.ts": "b50fc3a0bbbdd78e11a2bc8397fc5744afabd1ce3aed7f96c8ab9c6ff5ad683d",
+    "backend/scripts/lib/expert-203-successor-binding.ts": "144b32cf643e945c3a48bcc25e423c38639d2eb11bf9fcdc463319848de6bd29",
+    "backend/scripts/lib/expert-203-successor-identity.ts": "8b44025566a52050189fb1ef950c28a0d834d51e60b5b8a2d80c439e13e9f225",
+    "backend/scripts/lib/expert-203-successor-projection.ts": "aae50ab06db4a4766ee1607bd338bdf99dcb17d6790998969b440cc30e14e92d",
+    "backend/scripts/test-203-boundary-guards.ts": "f121d755e16ee2d56ef37e879860eb263a616257601843be5e715f814db0a8ab",
+    "backend/scripts/test-203-grammar-identity.ts": "912fc44bd16570c3c18a95225df56bc1704ba5bf02aba198e6be7aee45f61073",
+    "backend/scripts/test-203-identity-collision.ts": "9529260b5c6bf6028e69a88ee6ad50fd9c07fd8f70c37a285cffcf99d370681e",
+    "backend/scripts/test-203-schema-closure-redteam.ts": "dc12be052d98bde26c94ba30e35937c0c5578b989cad6be40600cfc58f88119c",
+    "backend/scripts/verify-203-source-integrity.ts": "3244cc7d102d82753a2c2fad6722f23e8c2d00ef5e1cac9daa15c462b556ed93",
+    "backend/scripts/verify-203-text-integrity.ts": "41067eeead97d99e3367f52ab97074a0aa730f1172399ce80ec2cc1a44e6b49f"
+  },
+  "lineage": [
+    {
+      "path": "backend/scripts/lib/expert-203-successor-identity.ts",
+      "lineage": "NEW",
+      "ancestorPath": null,
+      "owner": "AGENT_A"
+    },
+    {
+      "path": "backend/scripts/lib/expert-203-successor-projection.ts",
+      "lineage": "WRAPS",
+      "ancestorPath": "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts",
+      "owner": "AGENT_B"
+    },
+    {
+      "path": "backend/scripts/lib/expert-203-successor-binding.ts",
+      "lineage": "COPIED_FROM",
+      "ancestorPath": "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts",
+      "owner": "AGENT_B_THEN_C"
+    },
+    {
+      "path": "backend/scripts/lib/expert-203-fact-identity-collision.ts",
+      "lineage": "NEW",
+      "ancestorPath": null,
+      "owner": "AGENT_C"
+    },
+    {
+      "path": "backend/scripts/lib/expert-203-effective-grammar-identity.ts",
+      "lineage": "NEW",
+      "ancestorPath": null,
+      "owner": "AGENT_E"
+    }
+  ],
+  "plannedButAbsent": [],
+  "unplannedPresent": [],
+  "ancestorPins": {
+    "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts": {
+      "sha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+      "pinnedBy": "FROZEN_BY_RECORDED_EVIDENCE: not hash-pinned against a frozen expectation, but its sha256 is recorded inside §196/§197/§198 evidence, and verify-197:248 / verify-199:255 assert a byte-level property of it (no transition() call). Changing it would diverge the recorded historical evidence, so §203 treats it exactly as pinned"
+    },
+    "backend/scripts/lib/expert-verifier-contract-v3.ts": {
+      "sha256": "475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc",
+      "pinnedBy": "§192 verifierIdentity.admissionValidatorSha256, asserted by verify-193/194/195/196/199"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts": {
+      "sha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+      "pinnedBy": "§187 PREREGISTRATION.json firstPassIdentity.promptFileSha256"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts": {
+      "sha256": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts": {
+      "sha256": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts": {
+      "sha256": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes (verification/expert-hazlenz-required-structured-verifier-validation-2026-09-05), re-asserted by the verify-188..199 source-integrity scripts"
+    },
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts": {
+      "sha256": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245",
+      "pinnedBy": "§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199"
+    }
+  }
+}

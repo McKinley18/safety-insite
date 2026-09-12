@@ -1,0 +1,336 @@
+{
+  "artifact": "SECTION-238-FAILURE-CLASSIFICATION",
+  "version": "hazlenz.expert.238.final-confirmation.v1",
+  "additiveOnly": true,
+  "judgmentModified": false,
+  "judgmentDigestClassified": "bc8807c8abef83bfe1103cf8d9961e5623786215f45a3d6660dc807431e72d86",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "remediationPerformed": false,
+  "classification": {
+    "NO_FAILURE": [
+      "A1",
+      "A2",
+      "C2"
+    ],
+    "CONTRACT_BINDING": [
+      "B1",
+      "B2"
+    ],
+    "POSTURE_OBJECT_COHERENCE": [
+      "C1"
+    ],
+    "SEMANTIC": [],
+    "WIRE_OR_PROVIDER_REPRESENTATION": [],
+    "OTHER_CONTRACT": []
+  },
+  "theArrivalResult": {
+    "finding": "ALL SIX OUTPUTS ARRIVED CLEAN. No envelope, no stringified structured field, no malformed JSON, no absent root field, and the normalizer took no action on any call.",
+    "wireAnomalyClassesObserved": [],
+    "normalizationsNeeded": 0,
+    "driverRoleArrivedOnEveryBasisEntry": true,
+    "comparisonWithSection236": "the §236 field-omission failure did not recur. §236 lost three of nine outputs to an omitted required posture sub-field; §238 lost none, and the driverRole member arrived on every basis entry of every call. Relocating the obligation onto an entry the model already produced correctly did what §237 reasoned it would, and at n=6 that is not a rate."
+  },
+  "theSemanticResult": {
+    "finding": "THE DISTINCTION §238 EXISTS TO TEST WAS MADE CORRECTLY ON ALL SIX CASES.",
+    "postureValuePresentInEveryRawOutput": true,
+    "rawPostureMatchesFrozenTruthOn": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2"
+    ],
+    "labelledDiagnosticOnly": true,
+    "doesNotChangeAnyVerdict": true,
+    "whyItIsNotTheResult": "the §238 pass rule requires 6 / 6 admitted and scores the ADMITTED posture. Three analyses were refused and have no admitted posture, so the frozen 3 / 6 stands. A correct posture inside an inadmissible output is still a failure.",
+    "zeroUnsafeUnderConservative": 0,
+    "zeroOverConservative": 0,
+    "zeroResponseUncertaintyElevated": 0,
+    "zeroFalseCessationDrivers": 0,
+    "zeroMissingCessationDrivers": 0,
+    "theTrapsHeld": [
+      "A1: a STOP that looks like nothing. Three short cracks in a saw blade were labelled as established conditions requiring cessation and the unavailable extraction measurement did not weaken it.",
+      "A2: the §236 C2 distractor placed beside an established STOP. The model did not hold on whether anybody had ordered the part; it labelled the condemned lift as requiring cessation and stopped.",
+      "B1: the strong overcorrection trap. Medical oxygen, an unexplained pressure loss, and the model held rather than stopped, with no cessation role anywhere.",
+      "C1: the §236 C2 shape on the permissive side. The model labelled the lid-assignment question UNRESOLVED_RESPONSE_OR_FOLLOW_UP and reached CONTINUE_WITH_CONTROLS rather than a hold.",
+      "C2: the administrative case. CONTINUE with no basis entries at all and no escalation."
+    ]
+  },
+  "theThreeFailures": {
+    "B1": {
+      "code": "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "whatTheModelDid": "it put UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION on BOTH its declaration DEC-1 and on its hazard candidate reserve_bank_unexplained_pressure_loss, which it had itself marked INSUFFICIENT_EVIDENCE.",
+      "classification": "A §237 CONTRACT-BINDING DEFECT, FOUND BY §238. The §210J condition-state vocabulary contains INSUFFICIENT_EVIDENCE and UNKNOWN, which are exactly an unresolved property represented as a candidate. §237 bound every UNRESOLVED role to declarations only, on the reasoning that an unresolved fact is by definition not established. That reasoning is right about declarations and wrong about candidates, and the model was refused for a coherent statement the contract had no member for.",
+      "isThisASemanticFailure": false,
+      "wasTheSemanticJudgmentCorrect": "YES. The controlling property was identified, the role was right, and the same role was also correctly attached to the declaration."
+    },
+    "B2": {
+      "code": "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "whatTheModelDid": "the same shape, but the candidate CAND-1-BLADE-FASTENER was marked ACTIVE, not INSUFFICIENT_EVIDENCE.",
+      "classification": "DIFFERENT FROM B1 AND IT MUST NOT BE COUNTED AS THE SAME DEFECT. Here the model called a condition ACTIVE, meaning established and present, and then labelled it an unresolved property controlling continuation. Those two labels cannot both be true and refusing the analysis is the contract working as designed.",
+      "isThisASemanticFailure": "PARTIALLY. The internal inconsistency is the model's, and the posture and the declaration-level role were both correct."
+    },
+    "C1": {
+      "code": "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "whatTheModelDid": "it reached CONTINUE_WITH_CONTROLS with the right controls AND duplicated the control, fitting the hopper lid, into resumeCondition.correctionsRequired.",
+      "classification": "POSTURE OBJECT COHERENCE. This is the §234 E2 finding recurring: the schema states that both resume lists must be empty when work may continue, and the model wrote the corrective action into both places. The rule that caught it is the one §235 added and §237 retained, and it is doing exactly what it was added for.",
+      "isThisASemanticFailure": false,
+      "wasTheSemanticJudgmentCorrect": "YES. Posture, controls and the response-uncertainty role were all correct."
+    }
+  },
+  "classificationAgainstTheFourPreregisteredOptions": {
+    "theFourOptions": [
+      "accept a human-review containment boundary for this limitation, as KR-1 and exact property identity are already held",
+      "move the distinction into stronger deterministic or governed logic, which would mean finding authoritative state the first-pass contract does not currently carry",
+      "redesign the semantic component responsible",
+      "hold the Expert release"
+    ],
+    "honestReading": "NONE OF THE FOUR IS SQUARELY ON POINT, AND SAYING SO IS MORE USEFUL THAN FORCING A FIT. All four presuppose that the remaining blocker is a SEMANTIC limitation in the disputed judgment. §238 did not find one. The decision-controlling versus response distinction was made correctly on six of six, both established-property traps stopped, the overcorrection guard held, and no unsafe or over-conservative posture appeared anywhere.",
+    "whatTheEvidenceActuallyShows": "the cohort failed on THREE CONTRACT DEFECTS, two of them in the §237 role binding written one slice ago and one a posture-object coherence error the existing rules caught. That is a different kind of problem from the one the four options were written for.",
+    "whyThisIsNotAnArgumentToProceed": "the §238 pass rule is conjunctive and three of six analyses were inadmissible. The product requires a reliable admissible representation as well as a reliable semantic decision, and half this cohort did not deliver one. §238 fails.",
+    "whatTheProductOwnerNowHasToDecide": "whether a contract-binding defect found by the confirmation that was meant to close the phase counts as the semantic blocker the four options address, or as a separate and smaller repair. That is a scope judgment and it is not the engineering session's to make.",
+    "noRemediationPerformed": true,
+    "noPromptTuningOrMicroCohortStarted": true
+  },
+  "perCase": [
+    {
+      "caseId": "A1",
+      "category": "ESTABLISHED_STOP_WITH_DISTRACTOR",
+      "expectedPosture": "STOP",
+      "admittedPosture": "STOP",
+      "rawPostureDiagnosticOnly": "STOP",
+      "rawPostureMatchesFrozenTruth": true,
+      "admissible": true,
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "admitted, exact posture identity, correct decision-carrying roles.",
+      "refusalCodes": [],
+      "roleMismatches": [],
+      "resumeUnderPermittingPosture": false,
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "AT_LEAST_ONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NOT_SCORED"
+      },
+      "rolesEmitted": [
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+          "ref": "cracked-blade"
+        },
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+          "ref": "blade-fragment-struck-by"
+        },
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "role": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP",
+          "ref": "decl-dust-flow"
+        }
+      ],
+      "cessationRolesEmitted": 2,
+      "controllingRolesEmitted": 0,
+      "responseRolesEmitted": 1,
+      "distractorKind": "UNAVAILABLE_MEASUREMENT",
+      "wireAnomalies": [],
+      "outputTokens": 3344
+    },
+    {
+      "caseId": "A2",
+      "category": "ESTABLISHED_STOP_WITH_DISTRACTOR",
+      "expectedPosture": "STOP",
+      "admittedPosture": "STOP",
+      "rawPostureDiagnosticOnly": "STOP",
+      "rawPostureMatchesFrozenTruth": true,
+      "admissible": true,
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "admitted, exact posture identity, correct decision-carrying roles.",
+      "refusalCodes": [],
+      "roleMismatches": [],
+      "resumeUnderPermittingPosture": false,
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "AT_LEAST_ONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NONE"
+      },
+      "rolesEmitted": [
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+          "ref": "post3-safety-nut-defect"
+        },
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CESSATION",
+          "ref": "worker-crushing-exposure"
+        }
+      ],
+      "cessationRolesEmitted": 2,
+      "controllingRolesEmitted": 0,
+      "responseRolesEmitted": 0,
+      "distractorKind": "RESPONSE_OR_FOLLOW_UP",
+      "wireAnomalies": [],
+      "outputTokens": 2646
+    },
+    {
+      "caseId": "B1",
+      "category": "LEGITIMATE_HOLD",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "admittedPosture": null,
+      "rawPostureDiagnosticOnly": "HOLD_PENDING_VERIFICATION",
+      "rawPostureMatchesFrozenTruth": true,
+      "admissible": false,
+      "primaryFailureClass": "CONTRACT_BINDING",
+      "rootCause": "a driver role was attached to a reference kind the §237 binding does not permit.",
+      "refusalCodes": [
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "roleMismatches": [
+        {
+          "ref": "reserve_bank_unexplained_pressure_loss",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+          "candidateAssertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "classification": "COHERENT_AND_FORBIDDEN_BY_THE_SECTION_237_BINDING"
+        }
+      ],
+      "resumeUnderPermittingPosture": false,
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "AT_LEAST_ONE"
+      },
+      "rolesEmitted": [
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+          "ref": "reserve_bank_unexplained_pressure_loss"
+        },
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+          "ref": "DEC-1"
+        }
+      ],
+      "cessationRolesEmitted": 0,
+      "controllingRolesEmitted": 2,
+      "responseRolesEmitted": 0,
+      "distractorKind": "NONE",
+      "wireAnomalies": [],
+      "outputTokens": 2738
+    },
+    {
+      "caseId": "B2",
+      "category": "LEGITIMATE_HOLD",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "admittedPosture": null,
+      "rawPostureDiagnosticOnly": "HOLD_PENDING_VERIFICATION",
+      "rawPostureMatchesFrozenTruth": true,
+      "admissible": false,
+      "primaryFailureClass": "CONTRACT_BINDING",
+      "rootCause": "a driver role was attached to a reference kind the §237 binding does not permit.",
+      "refusalCodes": [
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "roleMismatches": [
+        {
+          "ref": "CAND-1-BLADE-FASTENER",
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+          "candidateAssertedConditionState": "ACTIVE",
+          "classification": "THE_MODEL_OWN_LABELS_DISAGREE"
+        }
+      ],
+      "resumeUnderPermittingPosture": false,
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "AT_LEAST_ONE"
+      },
+      "rolesEmitted": [
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+          "ref": "CAND-1-BLADE-FASTENER"
+        },
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+          "ref": "DEC-1-TENSION"
+        },
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION",
+          "ref": "CAND-2-STORED-ENERGY-PITCH"
+        }
+      ],
+      "cessationRolesEmitted": 0,
+      "controllingRolesEmitted": 2,
+      "responseRolesEmitted": 0,
+      "distractorKind": "RESPONSE_OR_FOLLOW_UP",
+      "wireAnomalies": [],
+      "outputTokens": 3630
+    },
+    {
+      "caseId": "C1",
+      "category": "PERMISSIVE_WITH_RESPONSE_UNCERTAINTY",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "admittedPosture": null,
+      "rawPostureDiagnosticOnly": "CONTINUE_WITH_CONTROLS",
+      "rawPostureMatchesFrozenTruth": true,
+      "admissible": false,
+      "primaryFailureClass": "POSTURE_OBJECT_COHERENCE",
+      "rootCause": "a resume condition was emitted under a posture that permits continued work.",
+      "refusalCodes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "roleMismatches": [],
+      "resumeUnderPermittingPosture": true,
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NONE"
+      },
+      "rolesEmitted": [
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "role": "ESTABLISHED_CONDITION_REQUIRING_CONTROLS",
+          "ref": "C1_SPRAY_POWDER_DRIFT"
+        },
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "role": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP",
+          "ref": "D1_LID_ASSIGNMENT"
+        }
+      ],
+      "cessationRolesEmitted": 0,
+      "controllingRolesEmitted": 0,
+      "responseRolesEmitted": 1,
+      "distractorKind": "RESPONSE_OR_FOLLOW_UP",
+      "wireAnomalies": [],
+      "outputTokens": 2370
+    },
+    {
+      "caseId": "C2",
+      "category": "PERMISSIVE_WITH_RESPONSE_UNCERTAINTY",
+      "expectedPosture": "CONTINUE",
+      "admittedPosture": "CONTINUE",
+      "rawPostureDiagnosticOnly": "CONTINUE",
+      "rawPostureMatchesFrozenTruth": true,
+      "admissible": true,
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "admitted, exact posture identity, correct decision-carrying roles.",
+      "refusalCodes": [],
+      "roleMismatches": [],
+      "resumeUnderPermittingPosture": false,
+      "expectedRolePresence": {
+        "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "NONE",
+        "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "NONE"
+      },
+      "rolesEmitted": [],
+      "cessationRolesEmitted": 0,
+      "controllingRolesEmitted": 0,
+      "responseRolesEmitted": 0,
+      "distractorKind": "ADMINISTRATIVE_RECORD",
+      "wireAnomalies": [],
+      "outputTokens": 1874
+    }
+  ]
+}

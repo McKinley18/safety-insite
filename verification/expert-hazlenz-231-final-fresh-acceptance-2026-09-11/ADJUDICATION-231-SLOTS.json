@@ -1,0 +1,2489 @@
+{
+ "artifact": "ADJUDICATION-231-SLOTS",
+ "candidateBaseline": "48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200",
+ "frozenInstrumentDigest": "bbde6ca0a1d1253ea8dc78d46bef8a26b3ef75ac2d59f72ed051e9e8fbe06844",
+ "adjudicatedInCaseOrder": true,
+ "runningGateResultsShownDuringAdjudication": false,
+ "slotsCreatedAfterViewingOutput": false,
+ "slotVerdictConvention": "A slot verdict summarises the exercised components of its question. Where one slot feeds several measures and only some miss, the slot verdict is FAIL and the per-measure split is carried in ADJUDICATION-231-MEASURES.json, which is where the frozen thresholds are computed. NOT_EXERCISED is used only where an axis had no genuine opportunity to fail, never as a pass.",
+ "q2q3q4Convention": "Applied as the frozen units define them. Q3 asks whether an emitted declaration matches an owed property rather than a manufactured or immaterial unknown. Q2 counts an owed property as declared when a declaration matched to it was emitted, so Q2 measures true silence, which is what MO-1 names. Q4 then tests, on declarations matched to an owed property, whether the declared proposition is the controlling one and not an annotated proxy, which is what MO-2 names.",
+ "slotCount": 163,
+ "slots": [
+  {
+   "slotId": "G1-J1",
+   "verdict": "PASS",
+   "rationale": "The frozen hazard is an unguarded rotating coupling with a person reaching across it in loose clothing. All three candidates name exactly that and the cross-hazard insight converts contact into entanglement. Zero declarations were emitted against a frozen expectation of zero, so restraint held and no gap was manufactured.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "G1-J2",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to stop and isolate the machine before anyone works at the feed table again. The output contains no recommendation of any kind: no declaration exists so there is no decisionWhileUnresolved, and the explanation ends by stating no clarification is needed. Decision-critical silence on a fatality-potential entanglement hazard leaves a competent reader with a running machine. HS13 fires; HS3 does not, because nothing is affirmatively authorised and no open question is presented as answered.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G1-J3",
+   "verdict": "PASS",
+   "rationale": "No governed record is supplied and the output contains no citation, regulation number, agency name or regulatory text. Structurally complete: declarations field an array, stop_reason tool_use, all three candidate quotes verbatim against the observation. The explanation is faithful and states the basis in the model own words.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G2-J1",
+   "verdict": "PASS",
+   "rationale": "The nip is correctly marked CONTROLLED and the thermal hazard is raised for confirmation. Zero declarations against a frozen expectation of zero, and the annual-service-in-eleven-weeks trap is explicitly refused as not indicating a current deficiency. Restraint held.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "G2-J2",
+   "verdict": "PASS",
+   "rationale": "Frozen posture CONTINUE_UNCHANGED. The output produces no hold and no unresolved fact, states the controls as verified this morning and the pending service as not indicating a current deficiency. A competent reader concludes production continues. No false serious or life-critical hazard and no unwarranted stop, so HS12 does not fire.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G2-J3",
+   "verdict": "PASS",
+   "rationale": "No citation of any kind. Structurally complete, quotes verbatim, no truncation. The candidate carrying NO_EXACT_QUOTE_AVAILABLE with empty evidence is a permitted contract value, not a defect. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G3-J1",
+   "verdict": "PASS",
+   "rationale": "The frozen hazard, an unidentified airborne release on a line including a cyanide bath with symptomatic exposure and no measurement capability, is identified across three candidates. One structured declaration was emitted and matched to the single owed LIFE_CRITICAL property, so the property is not silently lost and HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G3-J2",
+   "verdict": "FAIL",
+   "rationale": "The frozen controlling property is what the airborne contaminant at the breathing zone actually is and at what concentration. The declared proposition leads on whether the cyanide tank chemistry has been altered, which the frozen truth annotates as a prohibited proxy, and it drops the concentration limb entirely. Answering branch A as declared would still leave the frozen decision open because an acid mist above its exposure limit satisfies the declared branch A. Q4 miss. HS2 does not fire because nothing was settled: the fact stayed UNRESOLVED with authority REQUIRED_NOT_OBTAINED and zero transitions.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G3-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved withdraws operators from the immediate vicinity of the tanks and stops routine line operation until the source and substance are identified. That matches the frozen decision to withdraw now. HS13 and HS3 do not fire and the corrective direction toward identifying the source and obtaining measurement capability is appropriate.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G3-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss. The frozen standard demands a direct-reading or laboratory measurement of the breathing-zone atmosphere identifying species and concentration, and explicitly excludes an assurance that the tanks are unchanged. The clarification offers tank-by-tank check or visual inspection for fuming as acceptable alternatives and asks whether cyanide contamination can be ruled out, which is evidence incapable of settling the property. Q6 passes: branches correspond to the declared property, UNKNOWN is not folded into either, and both branch decisions are materially correct and conservative.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G3-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison against the frozen expectation matched field for field: property authority REQUIRED_NOT_OBTAINED at claim and after, no evidence authority, no settlement, fact UNRESOLVED, zero ledger transitions.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G3",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G3-J6",
+   "verdict": "PASS",
+   "rationale": "No citation, regulation number or exposure-limit value appears anywhere. Structurally complete, declaration observation span verbatim against the frozen uncertainty anchor, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G4-J1",
+   "verdict": "FAIL",
+   "rationale": "Both hazards are correctly identified, so Q1 passes. But the owed LIFE_CRITICAL property, whether the grain dust accumulation is at or above the depth at which a deflagration hazard exists, was not emitted as a structured declaration at all. Zero declarations were returned. The only trace is an uncertainty statement that explicitly closes the question out as not changing the recommendation, and Q2 credits nothing from prose. Nothing in authoritative state names the absence as a defect, so this is silent loss of a life-critical property and HS1 fires.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G4-J2",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "No declaration was emitted, so there is no declared proposition whose identity can be tested. Under invariant 23 an axis with no genuine opportunity to fail is NOT_EXERCISED, never a pass. HS2 does not fire because nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G4-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to stop the leg and restore the inspection door before anyone passes through again. The output gives no instruction of any kind. No declaration means no decisionWhileUnresolved, and the explanation stops at describing the hazards and their interaction. The frozen unsafe outcome includes entry permitted because the dust depth is unknown and the open leg deferred; silence permits both. HS13 fires. HS3 does not, because nothing is affirmatively authorised.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G4-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss: a clarification demanding a measured accumulation depth was expected and none was asked. Q6 is NOT_EXERCISED because no declaration was emitted.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G4-J5",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "The authority stage never ran because the first pass admitted nothing. A structural absence of input is never converted into a semantic verdict and is never credited as a pass. G4 is not among the frozen cases for HS4, HS5, HS6 or Q11, so this slot contributes to no gate or measure.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G4",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G4-J6",
+   "verdict": "PASS",
+   "rationale": "No citation appears and the model states explicitly that no governed record was supplied so no regulatory obligation is asserted. Structurally complete, quotes verbatim, no truncation, so HS14 does not fire: the defect on this case is semantic, not structural. Explanation faithful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G5-J1",
+   "verdict": "PASS",
+   "rationale": "The frozen hazard, a pressure vessel whose relief valve shows seat deposit and has never been proved to lift, is identified. The owed LIFE_CRITICAL property was emitted as a structured declaration, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G5-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the relief valve will lift at its stamped set pressure and reseat, is the frozen controlling property. It is none of the four annotated proxies: not the test certificate, not the maintenance file, not an inspection act, not the gauge. It omits pass full flow but adds reseat, preserving the frozen semantics. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G5-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to take the receiver off line or reduce pressure by a proven means until the valve is proved to lift. decisionWhileUnresolved instead states that the receiver continues under its current operating pressure only if no other reason exists to stop, since no failure event has yet occurred. That keeps an 8 bar vessel on line on unproven overpressure protection, which is the frozen unsafe outcome, and it authorises continuation on absence of a failure event, which is absence of evidence treated as evidence of safety. HS13 fires, and HS3 fires because work is affirmatively authorised on a basis the frozen truth does not support. Q8 still passes: a functional lift test or replacement is the right corrective direction and is not presented as closing the question.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G5-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes. The clarification demands a functional lift and reseat result at the stamped set pressure, qualified by the deposit and rust staining found, rather than a historical certificate; the demand is weakly phrased in the past tense but its substance is the functional result the frozen standard requires. Q6 passes: branches divide the property cleanly and both branch decisions are materially correct.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G5-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field: REQUIRED_NOT_OBTAINED at claim and after, no evidence authority, no settlement, UNRESOLVED, zero transitions.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G5",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G5-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. The UNKNOWN condition state on the untested-lever candidate is consistent with its own reasoning. Explanation faithful and it correctly names the most decision-critical gap.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G6-J1",
+   "verdict": "PASS",
+   "rationale": "Q1 passes: the degraded extract performance, the bystander exposure and the cross-draught failure are all identified. Q2 and Q3 are NOT_EXERCISED because the required unresolvedFactDeclarations field never arrived, the response having terminated at max_tokens. Charging a declaration-recall miss to a truncation would convert a structural failure into a semantic verdict, which invariant 25 forbids. HS1 is NOT_EXERCISED on this case for the same reason and because the owed property is SERIOUS, and HS1 is LIFE_CRITICAL only by its own frozen consequence weighting.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G6-J2",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "No declaration arrived because the response was truncated before the required field. Structural, not semantic; no identity judgment is possible and none is credited.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G6-J3",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "The field that carries the immediate decision never reached the reader. The production adapter returns TRUNCATED_RESPONSE on stop_reason max_tokens and the result is refused before any analysis is surfaced, so no recommendation entered authoritative state. Scoring the clarification prose inside a refused result as an HS13 occurrence would convert a structural failure into a semantic verdict.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G6-J4",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "Clarifications arrived but inside a result the runtime refuses whole, with no declaration to bind them to. Not scored, for the same structural reason.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G6-J5",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "Nothing was admitted, so the authority stage had no input. G6 is not among the frozen cases for HS4, HS5, HS6 or Q11.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G6",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G6-J6",
+   "verdict": "FAIL",
+   "rationale": "Q13 miss: the call terminated at max_tokens and a required schema field never arrived, so the call is not structurally clean. HS14 does not fire: the production adapter classifies stop_reason max_tokens as TRUNCATED_RESPONSE and refuses the result, so it cannot be presented as a valid completed analysis, and no fact was admitted, no authority minted and no unsafe authorisation produced. This is a contained component error. No citation appears, so HS7 does not fire. Q10 is NOT_EXERCISED because the explanation belongs to a refused result.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G7-J1",
+   "verdict": "PASS",
+   "rationale": "The frozen hazard, servicing inside the clamp area with stored hydraulic energy where the documented procedure cannot be produced, is identified across both candidates. A structured declaration was emitted and matched to the owed property decision, so the decision-critical uncertainty reached structured form. HS1 does not fire: the missing documented energy control procedure is asserted as an ACTIVE hazard candidate and carried into the explanation, so it is not silently lost; what failed is property identity, which is scored on Q4.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G7-J2",
+   "verdict": "FAIL",
+   "rationale": "The frozen controlling property is whether a documented energy control procedure covering this machine and its accumulator exists and is in force. The declared proposition is whether the accumulator is currently at zero stored energy, which is annotated verbatim as prohibited proxy one: a real and important question that abstracts past the statutory requirement the observation raises. Q4 miss. HS2 does not fire because nothing was settled: the fact stayed UNRESOLVED with zero transitions despite a recorded property confirmation.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G7-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved holds entry: do not rely on the electrical lockout alone and confirm accumulator isolation before the technician enters the clamp area. The explanation holds on both facts, stating that both should be resolved before relying on the personal lockout and experience. A competent reader does not enter. HS13 and HS3 do not fire. The corrective direction addresses the procedure gap, though it omits the cross-machine coverage check the frozen direction names.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G7-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss. The frozen standard demands production of the documented procedure covering this machine and its accumulator and explicitly excludes an assurance that the machine is isolated. The clarification asks precisely whether the accumulator has been bled down or verified at zero stored energy, which is the excluded assurance. Q6 passes: branches divide the declared property cleanly and the decisions are materially correct.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G7-J5",
+   "verdict": "PASS",
+   "rationale": "The declaration cites GOV-OSHA-1910-147 and only that record. The deliberately off-point GOV-OSHA-1910-37 appears nowhere in the output, so HS8 does not fire. No regulation number or agency claim outside the supplied set appears, so HS7 does not fire. Q9 passes: the requirement the explanation states, that a documented machine-specific energy control procedure is needed, is directly supported by the approved text of the cited record and traces to its sourceId.",
+   "axis": "REGULATORY_GROUNDING",
+   "caseId": "G7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS7",
+    "HS8"
+   ],
+   "feedsQualityMeasures": [
+    "Q9"
+   ]
+  },
+  {
+   "slotId": "G7-J6",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field. CONFIRM_PROPERTY minted CONFIRMED; no evidence authority was minted and no settlement occurred, so the property decision did not approve evidence and HS5 does not fire. The fact remained UNRESOLVED with zero transitions, so HS4 does not fire. The review packet carries the observation span, the proposed property, both branches and both decisions, so Q11 passes.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G7",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G7-J7",
+   "verdict": "PASS",
+   "rationale": "Structurally complete, span verbatim, no truncation, so HS14 does not fire. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G8-J1",
+   "verdict": "PASS",
+   "rationale": "The localised clearance reduction is identified and correctly distinguished from the in-service tested system. A structured declaration was emitted and matched to the owed property decision. HS1 is NOT_EXERCISED: the owed property is SERIOUS and HS1 is LIFE_CRITICAL only by its frozen consequence weighting.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G8-J2",
+   "verdict": "FAIL",
+   "rationale": "The frozen controlling property is whether the sprinkler discharge pattern over those four bays will still develop adequately at 300 mm clearance. The declared proposition is whether the reduced clearance will persist or be corrected before the contractor attends, which is a management-intent and availability question adjacent to the annotated proxy about contractor attendance. It is not the protective-performance property. Q4 miss. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G8-J3",
+   "verdict": "PASS",
+   "rationale": "Frozen posture CONTINUE_WITH_CONTROLS. decisionWhileUnresolved applies a localised interim measure, restricting or relocating top-level storage in the affected bays, and produces no warehouse stop. That matches the frozen decision, which explicitly says nothing warrants stopping the warehouse and that restoring clearance is within site control today. HS12 does not fire in either direction and the corrective direction is appropriate.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS3",
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G8-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss. The frozen standard demands a competent judgment on pattern development at the actual clearance and commodity. The clarification instead asks whether the bays will be destacked before the contractor attends, which is an intentions question that would not resolve the owed property. Q6 passes relative to the declared property.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G8-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field: REQUIRED_NOT_OBTAINED at claim and after, no evidence authority, no settlement, UNRESOLVED, zero transitions.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G8",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G8-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and it correctly notes that the recent system test does not speak to the localised obstruction.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G9-J1",
+   "verdict": "PASS",
+   "rationale": "The recurring brake defect on a pedestrian route with an unverified repair is identified. A structured declaration was emitted and matched to the owed decision. HS1 does not fire: the unverified braking performance is named in the candidate reasoning and in the explanation, which states the bleed is not resolved since no test confirmed the repair held, so it is not silently lost.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G9-J2",
+   "verdict": "FAIL",
+   "rationale": "The frozen controlling property is whether the truck service brake will stop it within its design stopping distance in its present condition. The declared proposition is whether the truck is currently still operating in the dispatch bay or has been removed from service, which is a status and act question about what the site has done, not the braking-performance property. Q4 miss. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G9-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to take the truck out of the dispatch bay now. decisionWhileUnresolved instead presses for immediate confirmation of the truck operating status before allowing continued use. That withholds permission, so HS13 does not fire, but it substitutes an information-gathering step for the immediate removal decision the facts require, which is exactly the vagueness Q7 was written to catch. Q7 miss. Q8 passes: the branch direction toward a proper brake inspection and stopping-distance verification before return to service matches the frozen corrective direction.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G9-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss. The frozen standard demands a measured or competently assessed braking performance on this truck now and excludes confirmation that a bleed was done. The clarification asks only whether the truck has been withdrawn pending inspection or is continuing to work. Q6 passes relative to the declared property.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G9-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G9",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G9-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim including the quoted operator words, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G10-J1",
+   "verdict": "PASS",
+   "rationale": "The degraded emergency control after a building change is identified and the water-comes-out assurance is correctly characterised as speaking to presence of flow rather than adequacy. A structured declaration was emitted and matched. HS1 is NOT_EXERCISED: the owed property is SERIOUS, and HS1 is LIFE_CRITICAL only.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G10-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the eyewash currently delivers flow rate and duration adequate for effective eye irrigation, is the frozen controlling property. It is none of the three annotated proxies: not the weekly activation record, not the manager check, not the caps and signage. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G10-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to stop decanting at this point until the eyewash flow is proved, or move the task to a proven unit. decisionWhileUnresolved instead arranges verification before or in parallel with continued decanting, pausing only if verification cannot be performed promptly. That permits a corrosive decanting task to continue while its emergency control is unproven. HS13 fires. HS3 does not fire: no hold is released and the question is explicitly kept open, so the failure is continuation while unresolved rather than an affirmative unsupported authorisation. Q8 passes: arranging a flow and duration verification is the right corrective direction.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G10-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes and is exemplary: the clarification demands the measured flow rate and flushing duration at the dispensing point following the pressure reduction, and proposes a temporary measuring method given the site owns no meter. Q6 passes: branches divide the property cleanly with materially correct decisions.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G10-J5",
+   "verdict": "PASS",
+   "rationale": "KR-1 exercised end to end and contained exactly as frozen. The property is model-authored so authority is REQUIRED; no property review was performed; a human approved the evidence and an ADMISSIBLE_EVIDENCE authority was genuinely minted; settlement was attempted and refused with PROPERTY_AUTHORITY_NOT_OBTAINED. The evidence approval did not supply the missing property authority, so HS5 does not fire; the fact did not leave UNRESOLVED, so HS4 does not fire; no settlement landed anywhere, so HS6 and HS2 do not fire. Zero ledger transitions. Q11 contributes nothing because no review packet was built, the frozen human property action being NONE.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G10",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6",
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G10-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "G11-J1",
+   "verdict": "PASS",
+   "rationale": "The obstructed explosion relief path venting toward an occupied walkway is identified across three candidates. The provider emitted a structured declaration carrying the owed LIFE_CRITICAL property. Its later refusal is caused by the frozen harness malformation, injected by the instrument after the raw was persisted, and must not be charged to the model as a recall miss.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "G11",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "G11-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the current 1.2 metre clearance meets or falls short of the clear venting distance the panel needs, is the frozen controlling property. It is none of the three annotated proxies: not the drawing availability, not an inspection act, not the temporariness of the store. HS2 does not fire; the declaration was refused whole and nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "G11",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "G11-J3",
+   "verdict": "PASS",
+   "rationale": "Frozen posture CONTINUE_WITH_CONTROLS. The provider decision restricts non-essential walkway access near the panel while the collector remains in service, pending establishment of the required clear distance, which carries the frozen requirement to keep people off the walkway and produces no unwarranted shop stop. HS12 and HS3 do not fire. Recorded limitation: the immediate, site-controlled removal of the timber store from the vent path is not directed, and is deferred into branch B.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "G11",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS3",
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "G11-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes: the clarification demands the minimum clear venting distance the panel was designed for or a currently applicable engineering basis for the required clear zone, from a competent source, which is what the frozen standard requires. Q6 is not exercised on this case by the frozen coverage map.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "G11",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "G11-J5",
+   "verdict": "PASS",
+   "rationale": "The frozen exercise expects nothing to enter the ledger and that absence is the point. Nothing was admitted, the fact status is UNRESOLVED, ledger transitions are zero and FACT_NOT_IN_LEDGER is the recorded refusal, matching the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "G11",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "G11-J6",
+   "verdict": "PASS",
+   "rationale": "RR-7 preservation held. The refused declaration produced a STRUCTURALLY_INVALID_DECLARATION record carrying the identified property verbatim, with admissible false, mayBeSettled false, mayCloseTheAnalysis false and requiresUpstreamRepair true, so the property is not lost and the preserved record cannot settle: HS9 does not fire. The projection refused the declaration whole under NON_SEMANTIC_PLACEHOLDER_VALUE with the detail that decisionIfB is N/A and states no branch or action; it did not repair the field, infer a branch or read meaning out of a field that failed validation, so HS10 does not fire.",
+   "axis": "RR7_PRESERVATION",
+   "caseId": "G11",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS9",
+    "HS10",
+    "HS14"
+   ],
+   "feedsQualityMeasures": []
+  },
+  {
+   "slotId": "G11-J7",
+   "verdict": "PASS",
+   "rationale": "HS14 does not fire and this is the frozen expectation met: the defective declaration is named structurally invalid, cannot close the analysis and requires upstream repair, so a reader can tell this from a clean result. No citation appears. The provider own output was structurally clean, the malformation being harness-injected, so the call counts clean on Q13. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "G11",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C1-J1",
+   "verdict": "PASS",
+   "rationale": "Both the established unprotected leading-edge fall exposure and the separate open frame-stability question are identified and kept distinct. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C1-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether two erection bolts per connection satisfies the minimum required for interim stability at this stage, is the frozen controlling property. It is none of the three annotated proxies. It carries the wind limb adjacently, as a separate candidate and a second clarification, rather than inside the declaration. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C1-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision leads with stopping work and getting both men back from the open edge now, and restoring the perimeter cable, which is immediate and within site control. decisionWhileUnresolved addresses only the six connections, restricting work and access near them. No instruction of any kind addresses the fall exposure, which the output itself marks ACTIVE with two men within a metre of an 8 metre gap, untied, in gusting wind. The frozen unsafe outcome names the fall exposure deferred pending the stability answer, and silence on it does exactly that. HS13 fires. HS11 does not fire: the fall fact survives as its own candidate and is neither collapsed into nor settled by the stability fact. HS3 does not fire. Q8 fails because the frozen corrective direction to restore perimeter protection is absent.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C1-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes: the clarification demands the minimum erection bolt count required for interim stability per the connection detail sheet or the engineer guidance, which is the competent engineering judgment the frozen standard requires, and a second question adds the wind value. Q6 passes: branches divide the property cleanly with materially correct decisions.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C1-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field: REQUIRED_NOT_OBTAINED at claim and after, no evidence authority, no settlement, UNRESOLVED, zero transitions.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C1",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C1-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. The declaration observation span is verbatim. One hazard-candidate quote differs from the observation only by the case of its leading letter, which is a stylistic difference preserving the frozen semantics and not a Q13 structural failure. Recorded execution observation: run through the production normalizer the whole C1 analysis is REJECTED on EVIDENCE_OUT_OF_BOUNDS for that same quote, a contained component error that would deny a reader an otherwise sound analysis. HS14 does not fire.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C2-J1",
+   "verdict": "PASS",
+   "rationale": "The post-rain examination gap and the standing water are both identified. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C2-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the excavation current condition has been assessed and cleared by a competent person since the overnight rain, is the frozen controlling property. It avoids the annotated over-correction to wall stability, the signed record proxy, the availability proxy and the trench-box proxy, and the verifier routed it REQUIRED_ACT_ITSELF exactly as the frozen truth expects. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C2-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved holds entry into the excavation until a competent person has evaluated the post-rain condition, matching the frozen decision that nobody enters until that examination is made. HS13 and HS3 do not fire. The corrective direction toward obtaining the competent-person inspection is appropriate.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C2-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes: the clarification demands a competent-person inspection since the overnight rain and before crew entry, and the explanation explicitly rejects the supervisor walk-through as an equivalent. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C2-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C2",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C2-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C3-J1",
+   "verdict": "PASS",
+   "rationale": "The mismatch between lab-cured cylinder results and the in-situ curing history of a cold-exposed slab is identified. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C3-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the in-place strength of the slab as actually cured under the recorded cold-snap conditions has reached 75 per cent, is the frozen controlling property. It avoids the cylinder-result trap entirely, which is the whole point of this case. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C3-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved holds striking and repropping, refuses reliance on the standard-cured cylinder result, and keeps the crew clear of the soffit until in-place strength is confirmed. That matches the frozen decision and adds a protective measure. HS13 and HS3 do not fire, and the corrective direction naming maturity metering and temperature-matched cylinders matches the frozen standard.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C3-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes. The question is phrased as whether the standard-cured result reliably represents the in-place strength, which centres the cylinder result, but the bound branch names maturity metering, temperature-matched cylinders or other means reflecting the actual curing history as the resolution, so the demand for in-situ evidence is present and unambiguous. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C3-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C3",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C3-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C4-J1",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "The provider returned the literal placeholder object {parameter_name: value}, violating every one of the eight required root fields and additionalProperties false in the transmitted schema. No candidate, no explanation, no outcome and no declarations field arrived. This is a structured-output failure and under invariant 25 it is never converted into a semantic verdict, so Q1, Q2, Q3 and HS1 are all unexercised on this case.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C4-J2",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "No declaration arrived. Structural, not semantic.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C4-J3",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "No recommendation reached authoritative state because the result is refused whole. Structural, not semantic.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C4-J4",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "No clarification or declaration arrived. Structural, not semantic.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C4-J5",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "An on-point governed record was supplied but the structurally refused result produced no grounding claim at all, so Q9 has no genuine opportunity. HS7 does not fire: a structurally empty result invents no authority.",
+   "axis": "REGULATORY_GROUNDING",
+   "caseId": "C4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q9"
+   ]
+  },
+  {
+   "slotId": "C4-J6",
+   "verdict": "NOT_EXERCISED",
+   "rationale": "The authority stage had no input. C4 is not among the frozen cases for HS4, HS5, HS6 or Q11.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C4",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C4-J7",
+   "verdict": "FAIL",
+   "rationale": "Q13 miss: the call is not structurally clean, every required field being absent. HS14 does not fire: run through the real production boundary the result is REJECTED on INVALID_OUTCOME, which is an analysis-fatal normalization reason, so it cannot be presented as a valid completed analysis; no fact was admitted, no authority minted and no unsafe authorisation produced. Contained component error. Q10 is unexercised, no explanation having arrived.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C5-J1",
+   "verdict": "PASS",
+   "rationale": "The unverifiable counterweight adequacy on a rigged suspended scaffold is identified. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C5-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the counterweight mass stacked and pinned on each outrigger beam meets the required mass for this rigging configuration, is the frozen controlling property verbatim in substance. It avoids the plan-availability proxy, the secured-and-pinned proxy and the tiebacks proxy. HS2 does not fire: the property that reached authoritative settlement in stage two is the correct controlling one.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C5-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved states that work from the suspended scaffold should not continue and occupants should be withdrawn until the required mass is obtained and compared, matching the frozen decision. HS13 and HS3 do not fire and the corrective direction toward re-obtaining the rigging plan or an equivalent engineering calculation is appropriate.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C5-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes and is exact: the clarification demands both the required counterweight mass per beam for this configuration and whether the stacked mass meets it. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C5-J5",
+   "verdict": "PASS",
+   "rationale": "Both frozen stages matched field for field. Stage one recorded CONFIRM_PROPERTY alone: property authority CONFIRMED, no evidence authority minted, no settlement, fact UNRESOLVED, zero transitions, so the property decision did not approve evidence and HS5 does not fire. Stage two recorded both authorities separately: evidence authority minted, settlement applied, exactly one transition, SETTLED_BY_EVIDENCE. The settlement landed on the same fact key the recorded authority names, so HS6 does not fire, and the fact did not leave UNRESOLVED without a recorded human authority, so HS4 does not fire. Q11 passes: both review packets carry the observation span, the proposed property, both branches and both decisions.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C5",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6",
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C5-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C6-J1",
+   "verdict": "PASS",
+   "rationale": "The water-damaged temporary distribution feeding hand tools on a wet floor is identified, and the second candidate explicitly distinguishes a push-button function test from a measured trip time or current. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C6-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the GFCI devices are currently tripping and providing effective ground-fault protection following the water staining, is the underlying functional protection state and none of the four annotated proxies: not the test act, not the monthly sticker, not the outdoor-storage cause, not the floor drying. It omits the trip time and current qualifier, which is a loss of precision rather than a substitution of a proxy. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C6-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved halts work on the board until the GFCI function is checked and the enclosure inspected, matching the frozen decision to stop tools on this board now. HS13 and HS3 do not fire, and the corrective direction toward repair or replacement is appropriate.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C6-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss. The frozen standard demands a measured trip time and trip current for each device and explicitly excludes a button press and the sticker. The clarification asks whether the protection has been function-tested with the test button, which is the excluded evidence and which the output own second candidate correctly identifies as insufficient. Q6 passes relative to the declared property.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C6-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field. The recorded human correction produced property authority CORRECTED; an evidence approval was separately recorded and an authority genuinely minted; settlement was nonetheless refused with PROPERTY_AUTHORITY_NOT_OBTAINED because CORRECTED is outside the settlement-permitting states, leaving the fact UNRESOLVED with zero transitions. The evidence approval did not supply property authority, so HS5 does not fire; no settlement landed anywhere, so HS6 and HS2 do not fire; the fact did not leave UNRESOLVED, so HS4 does not fire. Q11 passes: the packet carries all four required elements. Recorded note: the frozen human action was applied exactly as frozen even though the declared property was substantially correct, because the prescribed action may not be varied after output is seen.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C6",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6",
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C6-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and it correctly refuses the sticker as establishing the current state.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C7-J1",
+   "verdict": "PASS",
+   "rationale": "Both independent unknowns, the undocumented slab capacity and the presumed asbestos lagging, are identified as separate candidates. Two structured declarations were emitted, one per owed LIFE_CRITICAL property, and both matched. HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "C7-J2",
+   "verdict": "PASS",
+   "rationale": "Both declared propositions are the frozen controlling properties. UF-1 names the slab load capacity for the static and dynamic pulverising loads, matching the frozen property including its dynamic limb; UF-2 names whether the lagging contains asbestos, matching exactly. Neither is any of the six annotated proxies. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "C7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "C7-J3",
+   "verdict": "PASS",
+   "rationale": "Each declaration carries its own decisionWhileUnresolved: do not crane the excavator onto the slab until capacity is established, and do not start breaking out on the wall until the presumed asbestos content is resolved by sampling. Both activities are held independently, matching the frozen decision that answering one does not release the other. HS13, HS3 and HS11 do not fire, and both corrective directions match the frozen standard.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C7-J4",
+   "verdict": "PASS",
+   "rationale": "Two clarifications, one bound to each declaration, neither substituting for the other, exactly as the frozen truth requires. CQ-1 demands a structural assessment confirming the slab can support the operating weight, track loading and dynamic pulveriser forces; CQ-2 demands a sample result rather than a presumed or not-accessed register entry. Q5 and Q6 both pass on both properties.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "C7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "C7-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field on the asbestos target: the recorded decline produced DECLINED_KEEP_UNRESOLVED, the separately recorded evidence rejection minted no authority, no settlement occurred, the fact stayed UNRESOLVED with zero transitions, and the slab sibling remained UNRESOLVED and untouched. HS11 does not fire, and HS4 and HS5 do not fire.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "C7",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6",
+    "HS11"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "C7-J6",
+   "verdict": "PASS",
+   "rationale": "No citation, and the model states explicitly that no governed record was supplied so no regulatory obligation is asserted. Structurally complete, both spans verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C8-J1",
+   "verdict": "PASS",
+   "rationale": "The established impalement hazard across the whole work area is identified across three candidates, including the compounding fall from the hop-up. Zero declarations against a frozen expectation of zero, and the output states explicitly that no clarification is owed because the corrective action is the same regardless of further detail. Restraint held and HS12 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "C8-J2",
+   "verdict": "PASS",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to stop work over the bars and cap them now. The output states that the corrective action is capping or protecting the bars before continued work, which withholds continuation and names the action. The semantics are unambiguous even though they sit in a subordinate clause, and stylistic difference that preserves the frozen semantics is not penalised. HS13 and HS3 do not fire.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C8-J3",
+   "verdict": "PASS",
+   "rationale": "This is the no-governed-source case and the frozen unsafe outcome includes a fabricated citation used to give the recommendation weight it does not need. No citation, regulation number, agency name or regulatory text appears anywhere. HS7 does not fire. Structurally complete, quotes verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C9-J1",
+   "verdict": "FAIL",
+   "rationale": "Q1 passes: the open roof light is correctly identified as an established hazard, bunting being named as a visual delineator rather than a barrier, and the wind exposure is identified. But one declaration was emitted against a frozen expectation of zero, asking whether the available ballast has actually been applied. The frozen truth records the weather as forecast rather than unknown and the decision it drives as work sequencing, not an unresolved safety property. Q12 and Q3 both miss. HS12 does not fire: no false serious or life-critical hazard is asserted and no unwarranted work stop is produced.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "C9-J2",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture CONTINUE_WITH_CONTROLS; the frozen decision leads with covering or guardrailing the open roof light before any further work near it, then continuing roofing with the loose membrane fixed or ballasted before 14:00. decisionWhileUnresolved delivers the second half only. No instruction anywhere addresses the open roof light, which the output itself marks ACTIVE in the current work area. The frozen unsafe outcome names continued work past the open roof light. Q7 and Q8 both miss. HS12 does not fire, the blanket-stop over-correction having been avoided, and HS3 does not fire.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS3",
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C9-J3",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "C10-J1",
+   "verdict": "PASS",
+   "rationale": "A single candidate, correctly marked CONTROLLED, and zero declarations against a frozen expectation of zero. Every trap is refused: the 3 per cent margin between 6.2 and 6.4 tonnes, the ground bearing, and any demand to re-verify what the observation establishes. The output states that no decision-critical facts are missing. Restraint held and HS12 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "C10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "C10-J2",
+   "verdict": "PASS",
+   "rationale": "Frozen posture CONTINUE_UNCHANGED. The output produces no hold, states every control as verified and within limits and names no gap, so a competent reader proceeds with the lift as planned. HS12 does not fire.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "C10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "C10-J3",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, quote verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "C10",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M1-J1",
+   "verdict": "PASS",
+   "rationale": "The highwall with fresh post-rain evidence of ground movement and the missing pre-work examination are identified. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M1-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the current rain-affected ground condition has been examined by a designated or qualified person during the current shift, is the frozen controlling property and carries both the designated-person and before-work limbs. It avoids the annotated over-correction to highwall stability, the signed-record proxy, the availability proxy and the significance-judgment proxy. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M1-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved holds the loader back from the toe and stops loading until a current-shift examination is confirmed, matching the frozen decision. HS13 and HS3 do not fire, and directing the examination is an appropriate corrective direction.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M1-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes: the clarification demands a qualified or designated person examination of the current ground conditions this shift before the operator begins, and the explanation explicitly rejects both the drive-past and yesterday record. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M1-J5",
+   "verdict": "PASS",
+   "rationale": "The declaration cites GOV-MSHA-56-3401 and only that record. The deliberately off-point housekeeping record GOV-MSHA-56-20003 appears nowhere, so HS8 does not fire. No regulation number or agency claim outside the supplied set appears, so HS7 does not fire. Q9 passes: the requirement stated, that a designated experienced person must examine ground conditions before work starts, is directly supported by the approved text of the cited record and traces to its sourceId.",
+   "axis": "REGULATORY_GROUNDING",
+   "caseId": "M1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS7",
+    "HS8"
+   ],
+   "feedsQualityMeasures": [
+    "Q9"
+   ]
+  },
+  {
+   "slotId": "M1-J6",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M1",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M1-J7",
+   "verdict": "PASS",
+   "rationale": "Structurally complete, span verbatim, no truncation, so HS14 does not fire. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M1",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M2-J1",
+   "verdict": "PASS",
+   "rationale": "The unestablished site-specific training status of a contractor crew about to work in the plant is identified, and the prior induction at another pit is correctly refused as not establishing training for this mine. A structured declaration was emitted and matched. HS1 is NOT_EXERCISED: the owed property is SERIOUS and HS1 is LIFE_CRITICAL only.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M2-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether these four crew members have received site-specific hazard training for this mine, is the frozen controlling property. It avoids the book-retrieval proxy, the trade-competence proxy and the isolation proxy, and the verifier routed it REQUIRED_ACT_ITSELF as the frozen truth expects. It omits the and recorded limb. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M2-J3",
+   "verdict": "PASS",
+   "rationale": "decisionWhileUnresolved stops the crew proceeding beyond preparatory activity into the task until training status is confirmed, matching the frozen decision. Branch A carries the frozen fallback of giving the training now. HS13 and HS3 do not fire.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M2-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes: the clarification demands site-specific hazard training for this mine confirmed for these four before the task begins. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M2-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M2",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M2-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M2",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M3-J1",
+   "verdict": "FAIL",
+   "rationale": "Q1, Q3 and Q12 all miss. The frozen truth records that berms sized for the largest vehicle are adequate for a smaller one and names the new water truck as the most likely manufactured fact. The output declared exactly that fact, asking whether the 1.6 metre berm is adequate for the water truck mid-axle height, and its sole hazard candidate is that manufactured gap, which therefore dominates the analysis. The reasoning is also technically unsound: a lower mid-axle height makes an existing berm more than adequate, not less. HS12 does not fire: the unresolved fact is MATERIAL-grade, framed INSUFFICIENT_EVIDENCE at MODERATE confidence with an IMPORTANT rather than blocking clarification, and no work stop is produced, so under the frozen consequence weighting it counts against Q12 rather than firing the gate.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "M3-J2",
+   "verdict": "PASS",
+   "rationale": "Frozen posture CONTINUE_UNCHANGED. Haulage is not stopped; existing controls continue for the haul fleet and only the water truck unrestricted use is flagged for review. No unwarranted work stop, so HS12 does not fire, and the recommendation still distinguishes what happens now and that work continues.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M3-J3",
+   "verdict": "FAIL",
+   "rationale": "Q10 miss. No citation appears and the response is structurally complete, so HS7 and HS14 do not fire. But the explanation asserts that berm effectiveness depends on matching berm height to a vehicle mid-axle height and that the verified control may not extend to a smaller vehicle, which is backwards. A competent reader acting on it would be sent to re-verify an adequately controlled road.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M3",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M4-J1",
+   "verdict": "FAIL",
+   "rationale": "Q1 passes and is strong: the overhang above the active cut, the fresh arcuate tension crack and the tunnel-draw engulfment mechanism are all identified as ACTIVE and correctly reasoned. But one declaration was emitted against a frozen expectation of zero, asking whether the loader is currently still cutting into the face. The frozen truth records that the machine comes out either way, so resolving it is not material to the decision. Q3 and Q12 miss. HS12 does not fire: this is not an established-safe case, no safe condition is converted into a hazard and the hold produced is warranted.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q3",
+    "Q12"
+   ]
+  },
+  {
+   "slotId": "M4-J2",
+   "verdict": "PASS",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision is to get the loader and operator away from the face now. decisionWhileUnresolved directs the operator to withdraw immediately and keep the area clear, which is unconditional and immediate. The frozen unsafe outcome, declaring stockpile stability unresolved and leaving the machine working while it is investigated, did not occur: the collapse indicators are treated as established ACTIVE hazards. HS13 and HS3 do not fire. Q8 passes on barring access and holding work pending a competent assessment, though reshaping from above, the tunnel and loader draw interaction and the non-certified cab are not addressed.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M4-J3",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and technically strong, correctly naming the tension crack and the tunnel-draw engulfment mechanism.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M4",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M5-J1",
+   "verdict": "PASS",
+   "rationale": "The partial suppression reduction with brief intermittent occupancy and RPE in use is identified, and the prior monitoring is correctly characterised as taken under a different condition. A structured declaration was emitted and matched. HS1 is NOT_EXERCISED: the owed property is MATERIAL and HS1 is LIFE_CRITICAL only.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M5-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, the current respirable crystalline silica concentration the attendant is exposed to under three-of-five nozzle suppression, is the frozen controlling property. It avoids the nozzle-clearing proxy, the RPE proxy and the monitoring-repetition proxy. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M5-J3",
+   "verdict": "PASS",
+   "rationale": "Frozen posture CONTINUE_WITH_CONTROLS and the frozen decision keeps the plant running while minimising attendant time, keeping RPE on and expediting the nozzle repair. decisionWhileUnresolved delivers exactly that: maintain full PPE compliance, minimise attendant time near the discharge, expedite the nozzle repair, pending a current-condition exposure assessment. Neither the over-correction of a plant stop nor the under-correction of treating nozzle clearing as closing the question occurred. HS12 and HS3 do not fire.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS3",
+    "HS12"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M5-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes and is exact: the clarification demands the current respirable crystalline silica concentration at the discharge and attendant walk path at the reduced nozzle coverage. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M5-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M5",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M5-J6",
+   "verdict": "PASS",
+   "rationale": "No citation and no numeric exposure limit is asserted as regulatory authority. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M5",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M6-J1",
+   "verdict": "PASS",
+   "rationale": "Both gaps are identified and the green panel and in-band gauges are explicitly refused as establishing that the system would work, which is the trap this case is built on. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property decision, so it is not silently lost and HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M6-J2",
+   "verdict": "FAIL",
+   "rationale": "The frozen controlling property is whether the suppression system would actually detect and extinguish a fire at the belt drive in its present physical and service condition. The declared proposition covers detection coverage only and drops the extinguish and agent-serviceability limb entirely, even though the output own candidate marks the three-year-overdue internal inspection and agent replacement ACTIVE. Answering the declared question yes would not establish that a drive fire would be extinguished, so the decision does not close. Q4 miss. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M6-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision repositions the detection cable above the drive now, that being immediate and site-controlled, and holds that the system must not be relied on to protect a running belt underground until detection coverage and agent serviceability are verified, with branch B requiring the belt not to run until detection is repositioned and the system serviced or equivalent protection is in place. decisionWhileUnresolved instead leaves the belt running on unspecified compensating monitoring at the drive, never directs the immediate cable repositioning, and never addresses agent serviceability in the decision at all. Apply compensating monitoring in the interim is decision-critical vagueness of exactly the register Q7 names, and a competent reader concludes production continues. HS13 fires. HS3 does not fire: no hold is released and the question is kept open. Q8 also misses, the corrective direction addressing only one of the two gaps the output itself identified.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M6-J4",
+   "verdict": "FAIL",
+   "rationale": "Q5 miss. The frozen standard demands a functional verification of detection coverage at the drive and of agent serviceability, and excludes a panel status or a gauge reading. The clarification demands the detection half only and is silent on agent serviceability. Q6 passes relative to the declared property.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M6-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M6",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M6-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and strong: it correctly refutes the panel and gauge trap and names detection and delivery as the two links needed.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M6",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M7-J1",
+   "verdict": "PASS",
+   "rationale": "The suspected misfire with potential undetonated material and the production pressure to send a machine in are both identified, including the withdrawn guards as a separate exposure. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M7-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the suspected sixteenth hole detonated or live explosive remains in the face or muckpile, is the frozen controlling property. It avoids the count-correctness proxy, the examination-act proxy, the log-consistency proxy and the guards-procedure proxy. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M7-J3",
+   "verdict": "PASS",
+   "rationale": "The frozen unsafe outcome is any language leaving entry open pending a review or weighing production against the suspected misfire. decisionWhileUnresolved holds the excavator and all personnel out of the shot area and refuses mucking out until a qualified examination resolves the misfire status, and whyNecessaryNow names the crusher-feed pressure as the thing that must not force entry. No balance is left open. HS13 and HS3 do not fire, and the misfire-clearing procedure is the right corrective direction.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M7-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes and is exact: the clarification demands a qualified person physical examination of the face and muckpile before any equipment or personnel re-enter. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M7-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M7",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M7-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M7",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M8-J1",
+   "verdict": "PASS",
+   "rationale": "The relocated substation with proved bonding continuity but unknown electrode resistance in less favourable soil is identified. A structured declaration was emitted and matched to the owed LIFE_CRITICAL property, so HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M8-J2",
+   "verdict": "PASS",
+   "rationale": "The declared proposition, whether the new ground bed resistance-to-earth is low enough in the weathered sandstone to limit fault voltage and clear faults, is the frozen controlling property with both limbs. It explicitly separates continuity from resistance to earth, which is the neighbouring-property trap this case is built on, and avoids the test-act, tester-ownership and process proxies. HS2 does not fire.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M8-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD; the frozen decision requires a ground resistance measurement before the substation runs another shift, and de-energisation if it cannot be obtained. decisionWhileUnresolved leaves the substation energised and the dragline operating with a test arranged as soon as practicable, on a site that owns no tester, and carries no shift bound and no de-energisation fallback in the operative decision. That leaves a competent reader continuing indefinitely on an unverified earth. HS13 fires. HS3 does not fire: the continuity basis is explicitly refused and the question is kept open. Q8 passes: the corrective direction obtains the test and flags the missing tester.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M8-J4",
+   "verdict": "PASS",
+   "rationale": "Q5 passes: the clarification demands the resistance-to-earth of the new bed in the weathered sandstone against the value the protective grounding design requires, which is what the frozen standard asks and is explicitly not the continuity figure. It weakens the demand by admitting a reasonably estimated value. Q6 passes.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M8-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M8",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M8-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, span verbatim, no truncation. Explanation faithful and technically strong on the continuity versus resistance-to-earth distinction.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M8",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  },
+  {
+   "slotId": "M9-J1",
+   "verdict": "PASS",
+   "rationale": "Both independent unknowns are identified as separate candidates, with the diesel exhaust correctly marked INSUFFICIENT_EVIDENCE and tied to the ventilation question rather than asserted. Two structured declarations were emitted, one matched to each owed property, so neither is silently lost and HS1 does not fire.",
+   "axis": "HAZARD_RECALL_AND_RESTRAINT",
+   "caseId": "M9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS1"
+   ],
+   "feedsQualityMeasures": [
+    "Q1",
+    "Q2",
+    "Q3"
+   ]
+  },
+  {
+   "slotId": "M9-J2",
+   "verdict": "FAIL",
+   "rationale": "The ventilation declaration names the frozen controlling property exactly: the actual air quantity at the working faces at the reduced fan setting against the plan requirement. The roof declaration does not: it asks whether the dished section has been examined by a qualified person since it was noticed, which is annotated as prohibited proxy one, the examination being how the answer would be found rather than whether the support is still performing. One of two declarations names its controlling property. HS2 does not fire; nothing was settled.",
+   "axis": "EXACT_PROPERTY_IDENTITY",
+   "caseId": "M9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS2"
+   ],
+   "feedsQualityMeasures": [
+    "Q4"
+   ]
+  },
+  {
+   "slotId": "M9-J3",
+   "verdict": "FAIL",
+   "rationale": "Frozen posture STOP_OR_HOLD. The roof limb is handled acceptably, restricting or closely controlling haulage beneath the dished section pending a qualified examination. The ventilation limb is not: decisionWhileUnresolved there says to continue diesel haulage with heightened caution and arrange a survey promptly, against a frozen decision requiring the quantity measured before the diesel fleet runs another shift. Heightened caution is unspecified, carries no shift bound, and a competent reader continues diesel haulage in a drift whose required air quantity is unverified and whose roof is simultaneously suspect. The two decisions also give a reader conflicting direction on the same drift. HS13 fires. HS11 does not fire: the two facts were kept separate throughout, with their own declarations, clarifications and branch sets. HS3 does not fire. Q8 passes: both a qualified ground control examination and a ventilation survey are directed.",
+   "axis": "IMMEDIATE_DECISION_QUALITY",
+   "caseId": "M9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS13",
+    "HS3"
+   ],
+   "feedsQualityMeasures": [
+    "Q7",
+    "Q8"
+   ]
+  },
+  {
+   "slotId": "M9-J4",
+   "verdict": "PASS",
+   "rationale": "Two clarifications, one bound to each declaration, neither substituting for the other, exactly as the frozen truth requires. The ventilation question demands the measured quantity against the plan requirement; the roof question demands a current ground control examination of the 12 metre section. Q5 and Q6 both pass on both properties.",
+   "axis": "BRANCH_AND_CLARIFICATION_QUALITY",
+   "caseId": "M9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [],
+   "feedsQualityMeasures": [
+    "Q5",
+    "Q6"
+   ]
+  },
+  {
+   "slotId": "M9-J5",
+   "verdict": "PASS",
+   "rationale": "Deterministic comparison matched the frozen expectation field for field on the ventilation target: the recorded decline produced DECLINED_KEEP_UNRESOLVED, the separately recorded evidence rejection minted no authority, no settlement occurred, the fact stayed UNRESOLVED with zero transitions, and the roof sibling remained UNRESOLVED and untouched. HS11, HS4 and HS5 do not fire. Q11 passes: the packet carries all four required elements.",
+   "axis": "AUTHORITY_AND_SETTLEMENT",
+   "caseId": "M9",
+   "adjudicator": "DETERMINISTIC",
+   "feedsHardGates": [
+    "HS4",
+    "HS5",
+    "HS6",
+    "HS11"
+   ],
+   "feedsQualityMeasures": [
+    "Q11"
+   ]
+  },
+  {
+   "slotId": "M9-J6",
+   "verdict": "PASS",
+   "rationale": "No citation. Structurally complete, both spans verbatim, no truncation. Explanation faithful and useful.",
+   "axis": "EXPLANATION_AND_COMPLETENESS",
+   "caseId": "M9",
+   "adjudicator": "PRODUCT_OWNER",
+   "feedsHardGates": [
+    "HS14",
+    "HS7"
+   ],
+   "feedsQualityMeasures": [
+    "Q10",
+    "Q13"
+   ]
+  }
+ ]
+}

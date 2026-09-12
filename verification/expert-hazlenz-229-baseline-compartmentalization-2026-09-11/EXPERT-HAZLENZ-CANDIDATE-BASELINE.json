@@ -1,0 +1,291 @@
+{
+  "artifact": "EXPERT-HAZLENZ-CANDIDATE-BASELINE",
+  "version": "hazlenz.expert.candidate-baseline.229.v1",
+  "frozenAt": "2026-09-11",
+  "frozenBy": "\u00a7229 baseline compartmentalization, cleanup and candidate freeze",
+  "purpose": "the candidate against which FINAL FRESH EXPERT HAZLENZ ACCEPTANCE will execute",
+  "notFinallyValidated": "Expert HazLenz is NOT finally validated. This is a candidate baseline only.",
+  "sourceTree": {
+    "digest": "a50b4ad23e973a4747e74dea93d85463c3c3f382278cfff7063d4866c3fad4cd",
+    "runtimeModules": 46,
+    "contractModules": 166,
+    "runtimeRoots": [
+      "backend/src/safescope-v2/expert-hazlenz",
+      "backend/src/safescope-v2/expert-hazlenz-adapters"
+    ],
+    "contractRoot": "backend/scripts/lib"
+  },
+  "protectedIdentities": {
+    "compositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "moduleCount": 29,
+    "moduleDigests": {
+      "firstPassContractModule": "7f1000b84f466586e227852fc43b03349673d9390039ee1c1fe69418004a939c",
+      "firstPassProjectionModule": "0f0918b27409f9918a758764cd545196df5e58697bfa8cf49034673d378e898e",
+      "verifierInstructionModule": "c253e900c83b63a0e8340cd85fe999380a8d773357f56b82395fd9ea771ffe4a",
+      "verifierSchemaModule": "35c766fcfa82454c53b7d1523e38484b101c124b7f158069f81362fb220bc7fb",
+      "verifierConsistencyModule": "a3d5502124188d163435ea06ffb44df6df614dc527b8fedc3056074a9fbcdd13",
+      "verifierPayloadModule": "6728aa94ff85101751a871c4a64f0401834270b57a3da1c6f7ae0722aebd0392",
+      "scopeContainmentModule": "244d35812b046d58437c8fa7db04ce1c1d0fae9eca8affd0391f62a935107e57",
+      "propertyAuthorityModule": "fb10ef7052ad35756995876969e85b117a9b3c70b311f893df41c3657205658c",
+      "settlementReviewModule": "7f8b51b5aa4e4b22694d6068944ab1072d97393613b10d2f45efef12a2b0dcbf",
+      "owedFactLedgerModule": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+      "owedFactTypesModule": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+      "owedFactBindingModule": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+      "governedEvidenceDerivationModule": "206895009d8b7e80d1f381e2dbb6fa26d5de02e2e1f8f862debac3800b86ff32",
+      "declarationPreservationModule": "0de300283a8d8a0f71eee262c1db3eed04ab2cf79cf68fd3ee838517a6055562",
+      "firstPassInstructionVNextModule": "a81c63c8314f16290e0e5ead451b9f2c7e127d6eaa6c66e754ae605bec0e756e",
+      "verifierInstructionV3Module": "db71ce6bc91bfd791b1ddedae06260b1230d67ead17dd4f4b49d89840559bc9f",
+      "verifierRecoveryModule": "1fc657bf8777521e6c34310588b2e7a3c656cecaf84a6859adcfe7dda93c2e3b",
+      "section210bPayloadModule": "3b13ebbec8d7180efda8d76ce29c3ebf8f4d3fed189e6197d474ad8942f5a329",
+      "expertContractTypesModule": "456d736f2fb291cc405494b19e9380e82f5a2904b0c692ea02911374d6dc7e8a",
+      "anthropicAdapterModule": "050128f473a1d8980e04916bb22b74b9640df2af96c1a62233d8c7a132b5e9d4",
+      "contract226Module": "5e556a0836fdc952736f48749f6d30bd2a085f2f3e2f55f164934d1cdc46091e",
+      "contract224Module": "9732093601e9ccceb15ea079d216718e26f06bd3ccd3187514b53522a1e83007",
+      "instrument221Module": "f1603b4f43a4cefe45e84735bc0263d766924d597b8d6ff0117a252774147215",
+      "assembly221Module": "8d301bd5fd7033a350731c7c3c1e617a65f086f292c304bd94e30b6e5837c669",
+      "instrument228AModule": "945680be6534a145523b9eb1090265cdf8ff67cb1bf38b28241d7e7ecc222cd7",
+      "assembly228BModule": "42b45062da031440fdacb45d246645c4068d6a1403f2babbb273e4229d2de3ca",
+      "instrument228CModule": "7c42b9e3046876b52368d5ba4537768f0037747dc20aa3166313648c7238872d",
+      "assembly228CModule": "531ef553700c7e7d4453f18262c6636ac2db14a0625e146af1f47559571f1bd9",
+      "verifierDevelopmentBoundary": "5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245"
+    },
+    "modulePaths": {
+      "firstPassContractModule": "scripts/lib/expert-210j-first-pass-contract.ts",
+      "firstPassProjectionModule": "scripts/lib/expert-210j-declaration-projection.ts",
+      "verifierInstructionModule": "scripts/lib/expert-218-property-instruction.ts",
+      "verifierSchemaModule": "scripts/lib/expert-218-property-review-contract.ts",
+      "verifierConsistencyModule": "scripts/lib/expert-218-property-consistency.ts",
+      "verifierPayloadModule": "scripts/lib/expert-212-verifier-payload.ts",
+      "scopeContainmentModule": "scripts/lib/expert-214-scope-containment.ts",
+      "propertyAuthorityModule": "src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts",
+      "settlementReviewModule": "src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts",
+      "owedFactLedgerModule": "src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts",
+      "owedFactTypesModule": "src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts",
+      "owedFactBindingModule": "src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts",
+      "governedEvidenceDerivationModule": "src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts",
+      "declarationPreservationModule": "scripts/lib/expert-205-declaration-preservation.ts",
+      "firstPassInstructionVNextModule": "scripts/lib/expert-first-pass-instruction-vnext.ts",
+      "verifierInstructionV3Module": "scripts/lib/expert-verifier-instruction-v3.ts",
+      "verifierRecoveryModule": "scripts/lib/expert-208b-verifier-recovery.ts",
+      "section210bPayloadModule": "scripts/lib/section-210b-verifier-payload.ts",
+      "expertContractTypesModule": "src/safescope-v2/expert-hazlenz/expert-contract.types.ts",
+      "anthropicAdapterModule": "src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts",
+      "contract226Module": "scripts/lib/expert-226-property-selection-capability.ts",
+      "contract224Module": "scripts/lib/expert-224-declaration-capability.ts",
+      "instrument221Module": "scripts/lib/expert-221-integrated-instrument.ts",
+      "assembly221Module": "scripts/lib/expert-221-assembly.ts",
+      "instrument228AModule": "scripts/lib/expert-228a-integrated-instrument.ts",
+      "assembly228BModule": "scripts/lib/expert-228b-assembly.ts",
+      "instrument228CModule": "scripts/lib/expert-228c-kr1-instrument.ts",
+      "assembly228CModule": "scripts/lib/expert-228c-assembly.ts",
+      "verifierDevelopmentBoundary": "src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts"
+    }
+  },
+  "expertPromptIdentity": {
+    "contractInForce": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+    "systemPromptNoGoverned": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+    "systemPromptWithGoverned": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+    "ancestor210jNoGoverned": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+    "ancestor210jWithGoverned": "6f78f0a1d5583173df29280197ee6e4d386218c48db0e5e70da8b5393383b80b"
+  },
+  "wireSchemaIdentity": {
+    "builder": "buildExpert210jWireSchema in backend/scripts/lib/expert-210j-first-pass-contract.ts",
+    "requiredDeclarationFields": "a920591b1a200cfdbba88119db965e3cf221b8ca2de6891a9951ed3425435e89",
+    "unresolvedActionField": "decisionWhileUnresolved",
+    "unresolvedActionSchemaProperty": "aa27e4f8e7d75b81cc1a395a828e03326bb80773783dabff9c3ecd1a1ee04f07",
+    "note": "the wire schema is per-case because the governed sourceId enum is bound from the supplied record set; the per-case digests for the last executed cohorts are recorded below"
+  },
+  "firstPassContractIdentity": {
+    "version210j": "hazlenz.expert.first-pass-contract.210j-epistemic",
+    "version226": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+    "moduleDigest": "7f1000b84f466586e227852fc43b03349673d9390039ee1c1fe69418004a939c",
+    "projectionModuleDigest": "0f0918b27409f9918a758764cd545196df5e58697bfa8cf49034673d378e898e",
+    "preservationModuleDigest": "0de300283a8d8a0f71eee262c1db3eed04ab2cf79cf68fd3ee838517a6055562"
+  },
+  "verifierIdentity": {
+    "contractVersion": "hazlenz.expert.218.property-review-contract.v1",
+    "systemPrompt": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+    "responseSchema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380",
+    "semanticRoles": "12c486a15cecd068966e938ef5192dbdd4bf81600ef0138d8a8b9ef399a2e12b",
+    "validities": "d89fd6651958ec8c41c0255b90933beec133847841b8d574ed2c2cc10699371e",
+    "roleDefinitions": "b5d05180a38d2a8ca0a06a8a1dc242602095021f9feae2290b3f63f6cc5f1505",
+    "evidenceRoleCounterfactual": "a09652c670794ec816a7b07125dd71d5253d1cd8fa261f59cfa0c4761572db23",
+    "consistencyModuleDigest": "a3d5502124188d163435ea06ffb44df6df614dc527b8fedc3056074a9fbcdd13",
+    "payloadModuleDigest": "6728aa94ff85101751a871c4a64f0401834270b57a3da1c6f7ae0722aebd0392",
+    "scopeContainmentModuleDigest": "244d35812b046d58437c8fa7db04ce1c1d0fae9eca8affd0391f62a935107e57",
+    "developmentGate": "verifier-v3-development-boundary.ts \u2014 a literal false constant"
+  },
+  "owedFactIdentity": {
+    "typesModuleDigest": "102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a",
+    "ledgerModuleDigest": "4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701",
+    "bindingModuleDigest": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+    "statuses": [
+      "UNRESOLVED",
+      "COVERED",
+      "SETTLED_BY_EVIDENCE",
+      "REJECTED_BY_ARBITRATION"
+    ],
+    "transitionAuthorities": [
+      "ADMITTED_BINDING",
+      "ADMISSIBLE_EVIDENCE",
+      "RECORDED_ARBITRATION"
+    ],
+    "architecturalAbsence": "no runtime producer exists for REJECTED_BY_ARBITRATION; recorded in TRANSITION_COVERAGE_220 and not manufactured"
+  },
+  "propertyAuthorityIdentity": {
+    "moduleDigest": "fb10ef7052ad35756995876969e85b117a9b3c70b311f893df41c3657205658c",
+    "states": [
+      "NOT_REQUIRED",
+      "REQUIRED_NOT_OBTAINED",
+      "CONFIRMED",
+      "CORRECTED",
+      "DECLINED_KEEP_UNRESOLVED"
+    ],
+    "settlementPermittingStates": [
+      "NOT_REQUIRED",
+      "CONFIRMED"
+    ],
+    "kr1": "OPEN \u2014 HUMAN-GATED V1.0 LIMITATION",
+    "kr1ContainmentExercised": "\u00a7228C \u2014 KR1-A PASS, KR1-B PASS"
+  },
+  "settlementIdentity": {
+    "moduleDigest": "7f8b51b5aa4e4b22694d6068944ab1072d97393613b10d2f45efef12a2b0dcbf",
+    "reviewDecisions": [
+      "APPROVE_SETTLEMENT",
+      "REJECT_SETTLEMENT",
+      "LEAVE_UNRESOLVED"
+    ],
+    "producer": "settleByReviewedEvidence \u2014 the only call site of transition(\u2026, ADMISSIBLE_EVIDENCE) outside development harnesses"
+  },
+  "governedEvidenceIdentity": {
+    "derivationModuleDigest": "206895009d8b7e80d1f381e2dbb6fa26d5de02e2e1f8f862debac3800b86ff32",
+    "bindingModuleDigest": "a81c63c8314f16290e0e5ead451b9f2c7e127d6eaa6c66e754ae605bec0e756e"
+  },
+  "instrumentIdentity": {
+    "current228A": "b8c26ff9c6f1eb35f2881255d348e2243ae2aa94bf32aaa7a5f5b77cb7a4a0c4",
+    "kr1Completion228C": "f5d9e0c051e835f3b07122a5813479d32cca88d7e0de802d4b59772df4a2bc09",
+    "base221ModuleDigest": "f1603b4f43a4cefe45e84735bc0263d766924d597b8d6ff0117a252774147215",
+    "assembly221ModuleDigest": "8d301bd5fd7033a350731c7c3c1e617a65f086f292c304bd94e30b6e5837c669"
+  },
+  "assembledCallIdentities": {
+    "section228B": [
+      {
+        "caseId": "C1",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "667f2e3cfe414978fde3c7299396a1e357d550ffada6269956310bef42cdfaa4",
+        "wireSchema": "e7f6d4f70786ae9ad1083a5ec39ca92f3f9cd0ca8597b144eb010b82df0d698b"
+      },
+      {
+        "caseId": "C2",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "48ff7dffc38d84e658be963b39327eba554d8bfbf6830be248beeedecfcc0d22",
+        "wireSchema": "b3e878f12294830a743687ee995da054530f2efb23379a07c2703b97ff4a079f"
+      },
+      {
+        "caseId": "C3",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "374dd1c62afb481565d47c3d7c1c31b1e09de036bff5f24d14b44480e33221fa",
+        "wireSchema": "a4aa3dbd3260e23b0e93f3c8ba4e0481ab03ca13722bd1b4fff56ad217d5e2af"
+      },
+      {
+        "caseId": "C4",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "8dcea7848604be8bf3e7909b830da5456eb3ad9b5ad323ab0ac82484d49c4f86",
+        "wireSchema": "2ab96e0281a208947825e3db7fd09a9b8dbe65c382814c5819d8ec365614e708"
+      },
+      {
+        "caseId": "C5",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "0ee4c363e2f69c692a0a447df4144414183caaaefa55d8b1f285e2fb9e5eb587",
+        "wireSchema": "926d06fd21ff0f01c1bd96b38e80168751dc2e8e67ee2d861b5c2ec83126c0cc"
+      },
+      {
+        "caseId": "C6",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "628fd2ff951d4f523eaac94d7ff3b483f0f18ce50bee8018418ccaf1f9eb9ed0",
+        "wireSchema": "099c7d10b308f52b50460728359e4e17972bbb74fceece21e44f0bc28c23d21d"
+      },
+      {
+        "caseId": "C7",
+        "systemPrompt": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2",
+        "userPrompt": "74d51fae878be4fbdd18edc659f725211c3b66fe21609fa93cb792c4eb82639c",
+        "wireSchema": "f9dd9ab3b3d3dccd90f3578b7d08e01e9afdeb40a2e8ba47a7875b3ca0e2d390"
+      },
+      {
+        "caseId": "C8",
+        "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+        "userPrompt": "4ea3d1cb874cdcf2abba19389367b092add0253a497020319288313179cbc76b",
+        "wireSchema": "8b46296c230674db2358f6df1f261406cea2e74cf012d13eba2f8029c290ce35"
+      }
+    ],
+    "section228C": {
+      "caseId": "K1C",
+      "systemPrompt": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+      "userPrompt": "339797c416b68ffdfca143a8db0463fb831e9372af366b59453a18bc3a225141",
+      "wireSchema": "eb6a3d880f01b2df4196ff84dc3cb2644bfe7c70afc06f3d9c74aedb0bfeb1c9"
+    },
+    "section221VerifierLeg": {
+      "instruction": "9c3ff0c4702c2a12432656be895c3c29fddf5b507ae4856895abdbaebec9b202",
+      "schema": "0769b676d4b92818e28d047d2dfb476e4a73dae54eef41d1b61864af5a818380"
+    }
+  },
+  "currentDocsIdentity": {
+    "digest": "3a9832638d1de42e2e3807a671a3c4c3cd0f7b2c5e228f8add9f4a64ba5e330b",
+    "files": {
+      "docs/hazlenz/current/CONTEXT_INDEX.md": "701a45040d9b4e498b796be27da5647dcd605703028821bd0d471cee37641551",
+      "docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md": "17860274b3f20d97901892b2774a4258d47cf786899e037ae032c142c98adafe",
+      "docs/hazlenz/current/HAZLENZ_INVARIANTS.md": "48c1fdd37300857edaf717495bd44337d447bf255e438bd803d5d3e4c323c8da"
+    }
+  },
+  "section229ArtifactsIdentity": {
+    "SECTION-229-BASELINE-INVENTORY.md": "39084cac55270ac56db6319cd64882d50f7b30be943933c9420aa918fc1ec2c7",
+    "SECTION-229-CLEANUP-LOG.md": "919d2599f28c90e8e50d7867cf52a63b37b9185fce4bc19030ed4b619fa6deac",
+    "SECTION-229-HISTORICAL-ARCHIVE-INDEX.md": "983a3e993306a971d3bd84269cd9fe6dbd9a6b40df56b8c3be70801603072de3",
+    "SECTION-229-IMPROVEMENT-REGISTER.md": "25b955c2bf14339f08c3aae6c31639af374b0379a01bdcacdf8a69e72e5d3b3a",
+    "SECTION-229-SOURCE-OF-TRUTH-MAP.md": "7926ad46dd0c645d035d669d44a5e06adf8ab3c44bc50a26faed468ab8f0ae50",
+    "SECTION-229-VERIFICATION-RESULTS.json": "a03324fc33e3454eabe7a000d8248bdb19f7f0ef108cc7d57d6cbf4208c1643b"
+  },
+  "historicalArchiveIndexDigest": "983a3e993306a971d3bd84269cd9fe6dbd9a6b40df56b8c3be70801603072de3",
+  "verification": {
+    "protectedLadder": "17/17 PASS, 0 FAIL",
+    "ladderIdenticalBeforeAndAfter": true,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "productionBuildContentDiffering": 0,
+    "compositeIdentityUnchanged": true,
+    "section221PinnedIdentitiesStillMatch": "14 / 14"
+  },
+  "evidenceState": {
+    "section228B": "INCONCLUSIVE \u2014 12/14 hard requirements PASS, 0 FAIL, HR4 and HR7 COVERAGE_INSUFFICIENT",
+    "section228C": "KR1-A PASS, KR1-B PASS",
+    "combined": "14 / 14 targeted integrated hard requirements DEMONSTRATED",
+    "provenance": "\u00a7228B plus a separately frozen \u00a7228C coverage completion. \u00a7228B is NOT rewritten as PASS.",
+    "kr1": "OPEN \u2014 HUMAN-GATED V1.0 LIMITATION, containment exercised end to end",
+    "c7": "contained material quality defect, PRESERVED, not remediated",
+    "singleCaseLimitation": "six hard requirements rest on one case each; a single case never generalises",
+    "authoringIndependence": "the \u00a7226 remediation, the \u00a7228A/\u00a7228B cohort and the \u00a7228C case were all authored inside the development programme. Final acceptance must be substantially fresher and more independent."
+  },
+  "boundary": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "runtimeChanged": false,
+    "expertSemanticBehaviourChanged": false,
+    "providerPromptChanged": false,
+    "schemaChanged": false,
+    "authorityBehaviourChanged": false,
+    "settlementBehaviourChanged": false,
+    "historicalEvidenceModified": false,
+    "commit": false,
+    "push": false,
+    "tag": false,
+    "deploy": false
+  },
+  "nextPhase": "FINAL FRESH EXPERT HAZLENZ ACCEPTANCE",
+  "section229ArtifactsExcludedFromDigest": [
+    "EXPERT-HAZLENZ-CANDIDATE-BASELINE.json",
+    "REPORT-229.sha256",
+    "SECTION-229-FINAL-ACCEPTANCE-ENVELOPE.md",
+    "SECTION-229-REPORT.md"
+  ],
+  "baselineDigest": "48db2a0f800b3632f1434130508895b625fa8e9a53a12ef691c5013058666200"
+}

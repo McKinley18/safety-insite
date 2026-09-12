@@ -1,0 +1,39 @@
+{
+  "artifact": "SECTION-242A-PROVENANCE",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "chain": [
+    {
+      "section": "§240",
+      "role": "the original frozen instrument. Superseded as the executable instrument, preserved as evidence.",
+      "package": "verification/expert-hazlenz-240-final-fresh-acceptance-instrument-2026-09-11",
+      "digest": "cccf242b8910a1225e37bf6075b5ee706acd49b8d7ab9f2a56e225ea8f8f67a2",
+      "filesVerified": 11,
+      "mismatches": 0
+    },
+    {
+      "section": "§241",
+      "role": "official-source verification that found the three defects. 4/7.",
+      "package": "verification/expert-hazlenz-241-regulatory-source-verification-2026-09-12",
+      "digest": "5801070d809f9b642ba3ea138f2408e17e21e3b6c65975d7dfdbdcad1319a3dc",
+      "filesVerified": 12,
+      "mismatches": 0
+    },
+    {
+      "section": "§242",
+      "role": "three authorized corrections applied; refreeze blocked on the companion off-point record. 6/7.",
+      "package": "verification/expert-hazlenz-242-regulatory-truth-corrections-2026-09-12",
+      "digest": "eff00228b5bd43192fb18c49e8e9b04cb69a48928b18def3dc6fe286e20709ff",
+      "filesVerified": 20,
+      "mismatches": 0
+    },
+    {
+      "section": "§242A",
+      "role": "off-point substitution authorized and applied; instrument re-frozen. 7/7.",
+      "package": "verification/expert-hazlenz-242a-final-fresh-acceptance-instrument-refrozen-2026-09-12",
+      "digest": "see EVIDENCE-PACKAGE-DIGEST-242A.json"
+    }
+  ],
+  "priorEvidenceModified": false,
+  "priorEvidenceVerifiedAfterWriting": true
+}

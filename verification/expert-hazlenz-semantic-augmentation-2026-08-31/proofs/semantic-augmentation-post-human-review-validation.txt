@@ -1,0 +1,111 @@
+SEMANTIC AUGMENTATION VALIDATION -- FORMAL_EXPERT_SEMANTIC_AUGMENTATION_V1_CANDIDATE
+policy EXPERT_SEMANTIC_AUGMENTATION_POLICY_V1
+phase model EXPERT_SEMANTIC_AUGMENTATION_PHASE_MODEL_V1
+VALIDATION_PHASE = POST_HUMAN_REVIEW   (source: DECLARED_CORPUS_LIFECYCLE_STATE)
+declared corpus lifecycle state = POST_HUMAN_REVIEW
+phase is explicit and auditable; it is NEVER inferred from counts
+
+A. RESERVED AND RETIRED MATERIAL UNTOUCHED
+
+  PASS  A.1 retired gauntlet offset 0 REFUSED
+  PASS  A.2 retired gauntlet offset 1 REFUSED
+  PASS  A.3 retired realism offset 3 REFUSED
+  PASS  A.4 the corpus module reads NO reserved or opened corpus -- every case is newly authored
+      RESERVED_MATERIAL_OPENED = FALSE (offsets 2 and 3, realism 1 and 2 untouched)
+
+B. ROW VALIDITY AND IDENTITY
+
+  PASS  B.1 candidate row ids are unique
+  PASS  B.2 no id collides with the AUG augmentation corpus
+  PASS  B.3 no id collides with the opened gauntlet.seed corpus
+  PASS  B.4 all 35 rows pass the frozen row contract
+  PASS  B.5 exactly 35 rows
+  PASS  B.6 every observation is substantive
+  PASS  B.7 every row states an authoring rationale
+
+C. CLOSED VOCABULARIES RESPECTED
+
+  PASS  C.1 every family is inside ACCEPTED_EXPERT_TAXONOMY -- taxonomy NOT widened
+  PASS  C.2 every interaction kind is in the frozen closed vocabulary -- NOT expanded
+  PASS  C.3 every affected decision is in the frozen vocabulary
+  PASS  C.4 every family partition is disjoint AND covering -- no unclassified family
+
+D. GAP PACKET QUALITY (mechanical checks only)
+
+  PASS  D.1 every gap names a fact of at least 40 chars
+  PASS  D.2 every gap states WHY the fact is not already present
+  PASS  D.3 every gap states how plausible answers MATERIALLY diverge
+  PASS  D.4 no gap uses a forbidden generic question shape
+  PASS  D.5 gap ids are unique
+  PASS  D.6 every gap packet is carried into the row truth, and none is orphaned
+
+E. INTERACTION PACKET QUALITY (mechanical checks only)
+
+  PASS  E.1 every interaction has at least two participants
+  PASS  E.2 every participant is a PRESENT family on its own row -- no pair completed by fabrication
+  PASS  E.3 every participant carries independent supporting evidence
+  PASS  E.4 every interaction states a causal or operational relationship
+  PASS  E.5 every interaction states what independent assessment would lose
+  PASS  E.6 every interaction packet is carried into the row truth, and none is orphaned
+
+F. COMPOSITION -- POST_HUMAN_REVIEW CONTRACT
+
+      MECHANICAL SURVIVING ROW COUNTS -- properties of the applied fixture
+        rows carrying a gap          22
+        rows carrying an interaction 12
+
+  PASS  F.1R COUNTABLE CLARIFICATION cases 25 >= frozen minimum 20 (margin +5)
+  PASS  F.2R COUNTABLE CROSS_HAZARD_INTERACTION cases 17 >= frozen minimum 10 (margin +7)
+  PASS  F.6 the reviewed surviving-OWED row set matches the applied fixture EXACTLY
+  PASS  F.7 the reviewed recorded-interaction row set matches the applied fixture EXACTLY
+  PASS  F.8 clarification ledger closes: 27 authored - 5 withdrawn = 22 surviving
+  PASS  F.9 interaction ledger closes: 14 authored - 3 withdrawn - 1 vocabulary-blocked + 2 promoted = 12 recorded
+  PASS  F.10 vocabulary-blocked rows (SEM-35, SEM-09) record NO interaction and are counted NOWHERE
+  PASS  F.11 withdrawn material is genuinely absent from the applied fixture (5 clarifications, 3 interactions)
+  PASS  F.12 the owner's declared countable totals (25 / 17) equal the derived totals (25 / 17)
+  PASS  F.13 every reviewed row is present: 35 reviewed, 35 in corpus
+  PASS  F.3 CLARIFICATION_NOT_OWED controls present: 13
+  PASS  F.4 interaction-negative controls (2+ present families, NO interaction): 10
+  PASS  F.5 the construction policy's stated frozen minimums equal REQUIRED_CLASS_MINIMUMS (20 / 10)
+      rows carrying BOTH a gap and an interaction: 9
+      rows carrying a forbidden family: 5
+      interaction kinds used: CHEMICAL_PPE_VENTILATION, CONFINED_SPACE_ATMOSPHERIC, ELECTRICAL_WET_ENVIRONMENT, FALL_EXPOSURE_ANCHORAGE, LOTO_STORED_ENERGY
+
+G. ANTI-CONTAMINATION
+
+  PASS  G.1 all 35 observations yield a distinctive >=40 char fragment
+  PASS  G.2 KNOWN_PROVIDER_CASE_COPY = FALSE -- no observation appears in any existing corpus, fixture, diagnostic artifact or verification record
+
+H. CANONICAL-PATH DRY RUN, PROVIDER DISABLED
+
+  PASS  H.1 all 35 rows x 3 arms constructed through the canonical path
+  PASS  H.2 a DISABLED run produces NO score
+  PASS  H.3 TRUTH_LEAK = 0 across all 105 constructed requests
+  PASS  H.4 PROVIDER_INVOCATION_COUNT = 0, by the harness's own counter
+
+I. CAPABILITY -- COUNTABLE CASES VS INDEPENDENTLY AUTHORIZED
+
+  CURRENT INDEPENDENTLY AUTHORIZED TRUTH (unchanged by this operation)
+    CLARIFICATION_OWED        3   (frozen minimum 20)
+    CROSS_HAZARD_INTERACTION  5   (frozen minimum 10)
+  COUNTABLE REVIEWED EVALUATION MATERIAL (every determination below has been reviewed)
+    CLARIFICATION_OWED        3 + 22 = 25   margin over 20: 5
+    CROSS_HAZARD_INTERACTION  5 + 12 = 17   margin over 10: 7
+  NOTE: reviewed truth is not evaluation authorization. Nothing above enters the
+  formal cohort until the product owner authorizes the evaluation spend.
+  LIMITATION SEM-09  ACCEPTED_INTERACTION_TAXONOMY lacks a kind naming ignition of a flammable solvent atmosphere by a competent electrical ignition source with ventilation locked out
+  LIMITATION SEM-27  ACCEPTED_EXPERT_TAXONOMY lacks a thermal / hot-process hazard family covering radiant heat and hot-material ejection
+  LIMITATION SEM-35  ACCEPTED_INTERACTION_TAXONOMY lacks a kind naming vehicle movement / platform-position dependency / drive-away effects on fall protection
+  CONTRACT-CONSEQUENTIAL SEM-08  chemical_exposure removed from lifeCriticalHazardFamilies, leaving ['confined_space']. This is a consequence of the reviewed partition correction PRESENT -> DEFENSIBLE, not an independent new semantic verdict.
+
+J. HASHES
+
+      identifier   FORMAL_EXPERT_SEMANTIC_AUGMENTATION_V1_CANDIDATE
+      manifest     6a2c564c81c79acb5c267963f0b12483684a2a5ce8ad0173c9af663332b0dfdf
+      truth keys   2e4377ead15a8c349bdecb389371015185b3023bab706768d32356d333ce9812
+      provenance   16b76f48e77dc93933e595da50803d0c2de8ba2a69fe62b94b80b5ea62ff13ac
+      SEAL.json WRITTEN, status: REVIEWED -- HUMAN ADJUDICATION COMPLETE, SEALED, FORMAL EVALUATION UNSPENT
+
+46 passed, 0 failed   VALIDATION_PHASE = POST_HUMAN_REVIEW
+SEAL_STATUS = REVIEWED -- HUMAN ADJUDICATION COMPLETE, SEALED, FORMAL EVALUATION UNSPENT
+PROVIDER_INVOCATION_COUNT = 0   RESERVED_MATERIAL_OPENED = FALSE   FORMAL_COHORT_SPENT = FALSE   P4_PRESPEND_AUTHORIZATION = FALSE

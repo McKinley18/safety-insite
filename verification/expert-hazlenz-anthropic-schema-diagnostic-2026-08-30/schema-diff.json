@@ -1,0 +1,92 @@
+[
+  {
+    "path": ".properties.expertHazardCandidates.items.properties.candidateKey",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.expertHazardCandidates.items.properties.evidence.items.properties.quotedText",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.expertHazardCandidates.items.properties.evidenceBasis",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.expertHazardCandidates.items.properties.reasoning",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.decisionCriticalClarifications.items.properties.clarificationId",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.decisionCriticalClarifications.items.properties.question",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.decisionCriticalClarifications.items.properties.whyItMatters",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.decisionCriticalClarifications.items.properties.evidenceGap",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.crossHazardInsights.items.properties.insightId",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.crossHazardInsights.items.properties.participants",
+    "kind": "REMOVED",
+    "key": "minItems",
+    "from": 2
+  },
+  {
+    "path": ".properties.crossHazardInsights.items.properties.reasoning",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.disagreements.items.properties.disagreementId",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.disagreements.items.properties.targetRef",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.disagreements.items.properties.reasoning",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  },
+  {
+    "path": ".properties.expertExplanation.properties.summary",
+    "kind": "REMOVED",
+    "key": "minLength",
+    "from": 1
+  }
+]

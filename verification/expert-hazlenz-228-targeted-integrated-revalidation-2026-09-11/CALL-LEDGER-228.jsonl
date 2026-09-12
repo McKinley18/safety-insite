@@ -1,0 +1,13 @@
+{"callIndex":1,"key":"FP:C1","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C1","costUsd":0.1044,"failureClass":"OUTPUT_TRUNCATED","httpStatus":200}
+{"callIndex":2,"key":"FP:C2","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C2","costUsd":0.086904,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":3,"key":"FP:C3","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C3","costUsd":0.09144,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":4,"key":"FP:C4","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C4","costUsd":0.100272,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":5,"key":"FP:C5","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C5","costUsd":0.091298,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":6,"key":"FP:C6","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C6","costUsd":0.077454,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":7,"key":"FP:C7","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C7","costUsd":0.089212,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":8,"key":"FP:C8","leg":"FIRST_PASS","callKind":"PRIMARY","contingencyReason":null,"caseId":"C8","costUsd":0.09155,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":9,"key":"VF:C2","leg":"VERIFIER","callKind":"PRIMARY","contingencyReason":null,"caseId":"C2","costUsd":0.04068,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":10,"key":"VF:C3","leg":"VERIFIER","callKind":"PRIMARY","contingencyReason":null,"caseId":"C3","costUsd":0.038988,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":11,"key":"VF:C4","leg":"VERIFIER","callKind":"PRIMARY","contingencyReason":null,"caseId":"C4","costUsd":0.040086,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":12,"key":"VF:C7","leg":"VERIFIER","callKind":"PRIMARY","contingencyReason":null,"caseId":"C7","costUsd":0.042382,"failureClass":"NO_FAILURE","httpStatus":200}
+{"callIndex":13,"key":"VF:C8","leg":"VERIFIER","callKind":"PRIMARY","contingencyReason":null,"caseId":"C8","costUsd":0.03918,"failureClass":"NO_FAILURE","httpStatus":200}

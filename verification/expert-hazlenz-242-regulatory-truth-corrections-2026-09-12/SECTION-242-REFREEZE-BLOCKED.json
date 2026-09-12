@@ -1,0 +1,39 @@
+{
+  "artifact": "SECTION-242-REFREEZE-BLOCKED",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "producedAt": "2026-09-12",
+  "whyNoFrozenProtocolExists": "§242 authorizes a new freeze only once regulatory verification reaches 7 / 7. It reaches 6 / 7. SECTION-242-FROZEN-PROTOCOL.json is therefore deliberately absent, and no new instrument digest was issued.",
+  "blockingItem": {
+    "sourceId": "GOV-MSHA-57-15005",
+    "citation": "30 CFR 57.15005",
+    "caseId": "M4",
+    "role": "the deliberately off-point, unusually tempting comparator",
+    "whatTheDirectiveSaid": "57.15005 may remain only if its role as an off-point record is still coherent once M4 is explicitly surface jurisdiction, and if changing M4 to surface jurisdiction makes it unsuitable for a reason relevant to HS8/Q9, stop and report before substituting another source",
+    "finding": "it cannot remain, and the reason is jurisdictional rather than semantic. 30 CFR 57.1 scopes part 57 to underground metal or nonmetal mines including related surface operations, and 30 CFR 56.1 scopes part 56 to surface metal or nonmetal mines. Once M4 is explicitly a surface metal/nonmetal concentrator, part 57 is not the part that governs it, so 30 CFR 57.15005 is not an applicable federal obligation for the case. §241 verification criterion 5 requires the supplied text to represent the current applicable obligation for the case, and criterion 7 requires a deliberately off-point record to remain genuinely off point as frozen. The record now fails criterion 5 and cannot be confirmed under criterion 7, so 7 / 7 is unreachable while it stands.",
+    "relevanceToHS8AndQ9": "HS8 and Q9 are both scored against the supplied governed set. Supplying a record from a non-governing part as backingState \"approved\" corrupts the basis on which Q9 scores governed-authority use, and leaves the M4 authority model asserting that an inapplicable standard is an approved record the model may reason about.",
+    "whatIsNOTClaimed": [
+      "it is NOT claimed that the model-facing exercise is damaged. The first pass sees governed records under opaque handles with citation tokens redacted, so the provider never sees the part number in the record text, and cases[M4].jurisdiction is unchanged at \"US\". The off-point trap therefore still functions from the provider side, and the defect is in the instrument's own governed truth.",
+      "it is NOT claimed that the §240 preflight would have caught this. P11, as coded, checks structure only: allowedAuthority equals the on-point ids, the onPoint and mayCarryAuthority flags agree, and the text and rationale are not thin. It does not test jurisdictional applicability, and it still passes on the corrected development artifacts.",
+      "it is NOT claimed that a model naming the supplied off-point sourceId would wrongly fire HS8. The model may only copy supplied sourceIds and cannot write a citation at all, so the false-positive route through a model-written counterpart citation does not exist."
+    ],
+    "theObviousFixNotApplied": {
+      "substitution": "GOV-MSHA-57-15005 → GOV-MSHA-56-15005, citation 30 CFR 56.15005",
+      "quotationChangeRequired": false,
+      "evidence": "the official text of 30 CFR 56.15005 is character-identical to the frozen quotation, so the off-point design, the title, the redacted provider-visible text and the HS9 trap all survive the substitution untouched. It is exactly as mechanical as the authorized 57.14105 → 56.14105 change.",
+      "whyNotApplied": "it changes a governed source. §242 states explicitly that a new off-point record may not be chosen without explicit authorization, and instructs this section to stop and report first. One line of authorization closes it."
+    },
+    "officialText": "Safety belts and lines shall be worn when persons work where there is danger of falling; a second person shall tend the lifeline when bins, tanks, or other dangerous areas are entered.",
+    "officialCounterpartText": "Safety belts and lines shall be worn when persons work where there is danger of falling; a second person shall tend the lifeline when bins, tanks, or other dangerous areas are entered."
+  },
+  "everythingElseReady": {
+    "authorizedCorrectionsApplied": "3 / 3",
+    "unauthorizedDifferences": 0,
+    "regulatoryVerification": "6 / 7",
+    "preFreezeChecks": "30 / 30",
+    "protectedComposite": "PASS",
+    "candidateChanged": false,
+    "whatRemains": "authorize the off-point substitution, or direct a different resolution. The freeze can then be issued with no further semantic work."
+  },
+  "terminal": "EXPERT_HAZLENZ_FINAL_FRESH_ACCEPTANCE_REFREEZE_BLOCKED — PRODUCT_OWNER_REVIEW_REQUIRED"
+}

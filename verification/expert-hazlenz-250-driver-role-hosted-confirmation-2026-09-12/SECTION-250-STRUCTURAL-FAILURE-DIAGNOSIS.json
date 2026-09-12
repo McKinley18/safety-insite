@@ -1,0 +1,48 @@
+{
+  "section": "250",
+  "generated": "2026-09-12",
+  "classification": "PROVIDER STRUCTURAL/CONTRACT FAILURE",
+  "notClassification": [
+    "NOT a provider role-selection failure — no case reached inference",
+    "NOT correct fail-closed containment — the deterministic layer never ran",
+    "NOT a transport failure — the rejection is deterministic and reproducible"
+  ],
+  "outcome": "all six frozen cases rejected with HTTP 400 before generation; zero tokens billed",
+  "casesReachingInference": 0,
+  "driverRoleEvidenceObtained": "NONE",
+  "twoDistinctCauses": [
+    {
+      "id": "C1",
+      "affects": "the §247 successor wire schema",
+      "providerMessage": "Schemas contains too many parameters with union types (20 parameters with type arrays or anyOf). This causes exponential compilation cost. Reduce the number of nullable or union-typed parameters (limit: 16 parameters with union types).",
+      "mechanism": "JUSTIFICATION_SCHEMA_247 declares four nullable fields (unresolvedElement, alongsideControlConsidered, whyAlongsideControlInsufficient, dischargingControlRef) as type ['string','null']. The K6 union replicates the justification object across five role branches, so 4 x 5 = 20 union-typed parameters reach the provider against a documented limit of 16.",
+      "whyNotCaughtEarlier": "the §246 offline probe exercised only ref, refKind and driverRole. It never included the justification object, so the nullable fields were never counted. A single nullable field transmits fine (1 < 16), which is why an isolated check would have passed."
+    },
+    {
+      "id": "C2",
+      "affects": "the §239 base wire schema, and therefore the whole Expert contract line",
+      "providerMessage": "The compiled grammar is too large, which would cause performance issues. Simplify your tool schemas or reduce the number of strict tools.",
+      "mechanism": "grammar compilation happens only under strict tool schemas. The Expert wire schema is too large for the provider to compile into a constrained grammar.",
+      "significance": "this is independent of §247 and was latent. §243 transmitted the same §239 schema successfully because it sent WITHOUT the strict flag — the omission §244 identified as a defect and §246/§247 repaired. Enabling strict enforcement is what surfaced the size limit."
+    }
+  ],
+  "bisection": [
+    {"probe": "§239 full wire schema", "strict": true, "http": 400, "error": "compiled grammar is too large"},
+    {"probe": "§247 full wire schema", "strict": true, "http": 400, "error": "too many union-typed parameters (20 > 16)"},
+    {"probe": "§247 posture property only", "strict": true, "http": 400, "error": "too many union-typed parameters (20 > 16)"},
+    {"probe": "§247 basis-entry union only", "strict": true, "http": 400, "error": "too many union-typed parameters (20 > 16)"},
+    {"probe": "§239 full wire schema", "strict": false, "http": 200, "error": null},
+    {"probe": "§247 full wire schema", "strict": false, "http": 200, "error": null},
+    {"probe": "single nullable field, synthetic", "strict": true, "http": 200, "error": null}
+  ],
+  "conclusion": "The frozen executable configuration — strict structured-output enforcement applied to the Expert wire schema — cannot be transmitted to the provider at all, for either contract version. The six confirmation cases therefore produced no driver-role evidence of any kind.",
+  "notRemediated": "no schema, prompt, envelope, contract or instrument was modified. The authorization forbids remediating during execution and forbids tuning the schema.",
+  "diagnosticCalls": {
+    "count": 7,
+    "purpose": "classify the HTTP failure under the frozen instrument's HTTP-failure contingency clause",
+    "rejectedNoCharge": 5,
+    "succeededMinimal": 2,
+    "observationTextExposed": false,
+    "note": "diagnostics used a synthetic prompt ('say ok'); no frozen observation was transmitted in any diagnostic call"
+  }
+}

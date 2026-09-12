@@ -1,0 +1,355 @@
+{
+  "artifact": "SECTION-239-CONTRACT-CONSISTENCY",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "result": "PASS",
+  "passed": 9,
+  "total": 9,
+  "checks": [
+    {
+      "id": "C1",
+      "rule": "every deterministic refusal code has a registry entry",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C2",
+      "rule": "every registered rule is stated verbatim in the transmitted prompt or schema",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C3",
+      "rule": "every provider-visible RULE line is cited by exactly one registry entry",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C4",
+      "rule": "the schema, the declared inventory, the TypeScript interfaces and the fields the projection reads agree field for field, for the posture and for the basis entry",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C5",
+      "rule": "no registry entry names a code the projection does not enforce",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C6",
+      "rule": "the posture field and the driver-role field are the transmitted names",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C7",
+      "rule": "every §237 refusal code is still enforced and registered, and every §237 rule except the one deliberately replaced is still transmitted byte-identically",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C8",
+      "rule": "every reference kind the validator admits for a role is stated to the provider, and every kind the instruction offers is admitted by the validator",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "C9",
+      "rule": "the candidate states that may carry a controlling role are transmitted, are governed members, and agree with the vocabulary one layer down",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "providerVisibleRules": [
+    "RULE. whatHappensNow must say something a duty holder can act on. A placeholder such as \"n/a\", \"none\", \"unused\" or \"to be determined\" is refused.",
+    "RULE. A candidateKey or declarationId may appear in requiredBy OR in acceptedWithoutImmediateAction, never in both. Pick the one you mean.",
+    "RULE. Every unresolved-fact declaration you emit must appear in requiredBy or in acceptedWithoutImmediateAction. None may stand outside the posture.",
+    "RULE. Every hazard candidate you mark ACTIVE must appear in requiredBy or in acceptedWithoutImmediateAction. Accepting one without action is a correct answer; leaving it out is not.",
+    "RULE. If you mark a clarification BLOCKING and bind it to a declaration, the posture may not be CONTINUE.",
+    "RULE. requiredControls must be empty when the posture is CONTINUE. If a control is what makes continuation acceptable, the posture is CONTINUE_WITH_CONTROLS.",
+    "RULE. Under HOLD_PENDING_VERIFICATION or STOP, no control may carry timing DURING_CONTINUED_WORK, because no work is permitted to continue alongside it.",
+    "RULE. resumeCondition must leave both lists empty when the posture is CONTINUE or CONTINUE_WITH_CONTROLS. Work that may continue is not waiting to resume.",
+    "RULE. Every entry in requiredBy must carry a driverRole from the list above.",
+    "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate. UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration. UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION may be used on an unresolved-fact declaration, or on a hazard candidate whose assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN.",
+    "RULE. If any driverRole is ESTABLISHED_CONDITION_REQUIRING_CESSATION, the posture must be STOP.",
+    "RULE. Under HOLD_PENDING_VERIFICATION or STOP, at least one driverRole must be ESTABLISHED_CONDITION_REQUIRING_CESSATION or UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION. An unresolved fact that changes only the response, the documentation, the follow-up, the confirmation method or whether somebody has already acted cannot on its own require work to wait or to stop.",
+    "RULE. A hazard candidate carrying UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION must itself be in assertedConditionState INSUFFICIENT_EVIDENCE or UNKNOWN. A candidate you have called ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL is a condition you have placed, and it cannot also be the unresolved property that decides whether the work may go on. Where the two labels disagree the analysis is refused rather than reinterpreted."
+  ],
+  "rulesRetainedFrom237": [
+    "RULE. whatHappensNow must say something a duty holder can act on. A placeholder such as \"n/a\", \"none\", \"unused\" or \"to be determined\" is refused.",
+    "RULE. A candidateKey or declarationId may appear in requiredBy OR in acceptedWithoutImmediateAction, never in both. Pick the one you mean.",
+    "RULE. Every unresolved-fact declaration you emit must appear in requiredBy or in acceptedWithoutImmediateAction. None may stand outside the posture.",
+    "RULE. Every hazard candidate you mark ACTIVE must appear in requiredBy or in acceptedWithoutImmediateAction. Accepting one without action is a correct answer; leaving it out is not.",
+    "RULE. If you mark a clarification BLOCKING and bind it to a declaration, the posture may not be CONTINUE.",
+    "RULE. requiredControls must be empty when the posture is CONTINUE. If a control is what makes continuation acceptable, the posture is CONTINUE_WITH_CONTROLS.",
+    "RULE. Under HOLD_PENDING_VERIFICATION or STOP, no control may carry timing DURING_CONTINUED_WORK, because no work is permitted to continue alongside it.",
+    "RULE. resumeCondition must leave both lists empty when the posture is CONTINUE or CONTINUE_WITH_CONTROLS. Work that may continue is not waiting to resume.",
+    "RULE. Every entry in requiredBy must carry a driverRole from the list above.",
+    "RULE. If any driverRole is ESTABLISHED_CONDITION_REQUIRING_CESSATION, the posture must be STOP.",
+    "RULE. Under HOLD_PENDING_VERIFICATION or STOP, at least one driverRole must be ESTABLISHED_CONDITION_REQUIRING_CESSATION or UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION. An unresolved fact that changes only the response, the documentation, the follow-up, the confirmation method or whether somebody has already acted cannot on its own require work to wait or to stop."
+  ],
+  "ruleReplacedFrom237": "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate, and a driverRole beginning UNRESOLVED may be used only on an unresolved-fact declaration.",
+  "replacementRule": "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate. UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration. UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION may be used on an unresolved-fact declaration, or on a hazard candidate whose assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN.",
+  "ruleAdded": "RULE. A hazard candidate carrying UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION must itself be in assertedConditionState INSUFFICIENT_EVIDENCE or UNKNOWN. A candidate you have called ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL is a condition you have placed, and it cannot also be the unresolved property that decides whether the work may go on. Where the two labels disagree the analysis is refused rather than reinterpreted.",
+  "codesRetiredFrom237": [],
+  "codesAddedBy239": [
+    "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+  ],
+  "inheritedCitationOverrides": {
+    "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND": {
+      "rule": "candidate roles only on candidates; the response role only on declarations; the controlling role on either",
+      "promptText": "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate. UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration. UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION may be used on an unresolved-fact declaration, or on a hazard candidate whose assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN.",
+      "schemaText": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration."
+    }
+  },
+  "registry": [
+    {
+      "code": "POSTURE_MISSING",
+      "source": "233",
+      "visibleIn": "BOTH",
+      "rule": "the posture object is required on every analysis",
+      "promptText": "IMMEDIATE SAFETY POSTURE. One per analysis, always, in immediateSafetyPosture.",
+      "schemaText": "\"immediateSafetyPosture\""
+    },
+    {
+      "code": "POSTURE_NOT_AN_OBJECT",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "the posture must be an object",
+      "schemaText": "\"immediateSafetyPosture\":{\"type\":\"object\""
+    },
+    {
+      "code": "POSTURE_VALUE_INVALID",
+      "source": "233",
+      "visibleIn": "PROMPT",
+      "rule": "posture must be one of the four vocabulary members",
+      "promptText": "  posture   one of: CONTINUE | CONTINUE_WITH_CONTROLS | HOLD_PENDING_VERIFICATION | STOP"
+    },
+    {
+      "code": "POSTURE_NARRATIVE_MISSING",
+      "source": "233",
+      "visibleIn": "PROMPT",
+      "rule": "whatHappensNow must be present and non-empty",
+      "promptText": "whatHappensNow                   Say it plainly, in your own words."
+    },
+    {
+      "code": "POSTURE_NARRATIVE_PLACEHOLDER",
+      "source": "235",
+      "visibleIn": "PROMPT",
+      "rule": "whatHappensNow may not be non-semantic filler",
+      "promptText": "RULE. whatHappensNow must say something a duty holder can act on. A placeholder such as \"n/a\", \"none\", \"unused\" or \"to be determined\" is refused."
+    },
+    {
+      "code": "POSTURE_BASIS_NOT_AN_ARRAY",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "the basis lists are arrays",
+      "schemaText": "\"requiredBy\":{\"type\":\"array\""
+    },
+    {
+      "code": "POSTURE_BASIS_ITEM_MALFORMED",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "each basis entry carries ref and refKind",
+      "schemaText": "\"refKind\":{\"type\":\"string\",\"enum\":[\"HAZARD_CANDIDATE\",\"UNRESOLVED_DECLARATION\"]}"
+    },
+    {
+      "code": "POSTURE_CONTROLS_NOT_AN_ARRAY",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "requiredControls is an array",
+      "schemaText": "\"requiredControls\":{\"type\":\"array\""
+    },
+    {
+      "code": "POSTURE_CONTROL_ITEM_MALFORMED",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "each control carries control and timing",
+      "schemaText": "\"required\":[\"control\",\"timing\"]"
+    },
+    {
+      "code": "POSTURE_RESUME_CONDITION_MALFORMED",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "resumeCondition carries both lists",
+      "schemaText": "\"required\":[\"resolvedByDeclarationIds\",\"correctionsRequired\"]"
+    },
+    {
+      "code": "POSTURE_BASIS_REF_UNRESOLVED",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "every basis reference resolves inside this analysis",
+      "schemaText": "a candidateKey or a declarationId from THIS analysis"
+    },
+    {
+      "code": "POSTURE_BASIS_REF_DUPLICATED",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "a reference may not appear in both basis lists",
+      "promptText": "RULE. A candidateKey or declarationId may appear in requiredBy OR in acceptedWithoutImmediateAction, never in both. Pick the one you mean.",
+      "schemaText": "A reference may appear in this list OR in acceptedWithoutImmediateAction, never in both."
+    },
+    {
+      "code": "RESUME_CONDITION_REF_UNRESOLVED",
+      "source": "233",
+      "visibleIn": "SCHEMA",
+      "rule": "every resume declarationId resolves inside this analysis",
+      "schemaText": "declarationIds from THIS analysis whose resolution permits resumption"
+    },
+    {
+      "code": "DECLARATION_NOT_COVERED",
+      "source": "235",
+      "visibleIn": "PROMPT",
+      "rule": "every declaration is covered by the posture",
+      "promptText": "RULE. Every unresolved-fact declaration you emit must appear in requiredBy or in acceptedWithoutImmediateAction. None may stand outside the posture."
+    },
+    {
+      "code": "ACTIVE_CANDIDATE_NOT_COVERED",
+      "source": "235",
+      "visibleIn": "PROMPT",
+      "rule": "every ACTIVE candidate is covered by the posture",
+      "promptText": "RULE. Every hazard candidate you mark ACTIVE must appear in requiredBy or in acceptedWithoutImmediateAction. Accepting one without action is a correct answer; leaving it out is not."
+    },
+    {
+      "code": "RESUME_CONDITION_EMPTY",
+      "source": "233",
+      "visibleIn": "PROMPT",
+      "rule": "a non-permitting posture names what must become true",
+      "promptText": "Required when the posture is HOLD_PENDING_VERIFICATION or"
+    },
+    {
+      "code": "BLOCKING_CLARIFICATION_WITH_CONTINUE",
+      "source": "235",
+      "visibleIn": "PROMPT",
+      "rule": "a BLOCKING clarification bound to a declaration forbids CONTINUE",
+      "promptText": "RULE. If you mark a clarification BLOCKING and bind it to a declaration, the posture may not be CONTINUE."
+    },
+    {
+      "code": "CONTROLS_MISSING_FOR_CONTINUE_WITH_CONTROLS",
+      "source": "233",
+      "visibleIn": "PROMPT",
+      "rule": "CONTINUE_WITH_CONTROLS must name controls",
+      "promptText": "Required only when the posture is CONTINUE_WITH_CONTROLS."
+    },
+    {
+      "code": "CONTROLS_PRESENT_UNDER_CONTINUE",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "CONTINUE carries no required controls",
+      "promptText": "RULE. requiredControls must be empty when the posture is CONTINUE. If a control is what makes continuation acceptable, the posture is CONTINUE_WITH_CONTROLS.",
+      "schemaText": "Must be empty when the posture is CONTINUE."
+    },
+    {
+      "code": "CONTROL_CONCURRENT_WITH_EXPOSURE_UNDER_NON_PERMITTING_POSTURE",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "no concurrent control under a posture that permits no work",
+      "promptText": "RULE. Under HOLD_PENDING_VERIFICATION or STOP, no control may carry timing DURING_CONTINUED_WORK, because no work is permitted to continue alongside it.",
+      "schemaText": "no control may carry timing DURING_CONTINUED_WORK"
+    },
+    {
+      "code": "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "a posture that permits work carries no resume condition",
+      "promptText": "RULE. resumeCondition must leave both lists empty when the posture is CONTINUE or CONTINUE_WITH_CONTROLS. Work that may continue is not waiting to resume.",
+      "schemaText": "Both lists must be empty when the posture is CONTINUE or CONTINUE_WITH_CONTROLS."
+    },
+    {
+      "code": "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT",
+      "source": "235",
+      "visibleIn": "SCHEMA",
+      "rule": "every field the transmitted schema declares required must arrive, with the declared type. The root required list IS the statement of this rule.",
+      "schemaText": "\"required\":[\"expertHazardCandidates\""
+    },
+    {
+      "code": "POSTURE_DRIVER_ROLE_MISSING",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "every basis entry carries a driver role",
+      "promptText": "RULE. Every entry in requiredBy must carry a driverRole from the list above.",
+      "schemaText": "\"required\":[\"ref\",\"refKind\",\"driverRole\"]"
+    },
+    {
+      "code": "POSTURE_DRIVER_ROLE_INVALID",
+      "source": "235",
+      "visibleIn": "SCHEMA",
+      "rule": "the driver role is a member of the governed vocabulary",
+      "schemaText": "\"driverRole\":{\"type\":\"string\",\"enum\":["
+    },
+    {
+      "code": "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "candidate roles only on candidates; the response role only on declarations; the controlling role on either",
+      "promptText": "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate. UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration. UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION may be used on an unresolved-fact declaration, or on a hazard candidate whose assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN.",
+      "schemaText": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration."
+    },
+    {
+      "code": "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "a cessation driver forces STOP",
+      "promptText": "RULE. If any driverRole is ESTABLISHED_CONDITION_REQUIRING_CESSATION, the posture must be STOP.",
+      "schemaText": "If any entry is ESTABLISHED_CONDITION_REQUIRING_CESSATION the posture must be STOP."
+    },
+    {
+      "code": "NON_PERMITTING_POSTURE_WITHOUT_DECISION_CONTROLLING_DRIVER",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "a posture that does not permit work needs a driver that decides whether work is acceptable",
+      "promptText": "RULE. Under HOLD_PENDING_VERIFICATION or STOP, at least one driverRole must be ESTABLISHED_CONDITION_REQUIRING_CESSATION or UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION. An unresolved fact that changes only the response, the documentation, the follow-up, the confirmation method or whether somebody has already acted cannot on its own require work to wait or to stop.",
+      "schemaText": "Under HOLD_PENDING_VERIFICATION or STOP at least one entry must be "
+    },
+    {
+      "code": "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+      "source": "235",
+      "visibleIn": "BOTH",
+      "rule": "a candidate carrying the controlling role must itself be in a governed unresolved state",
+      "promptText": "RULE. A hazard candidate carrying UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION must itself be in assertedConditionState INSUFFICIENT_EVIDENCE or UNKNOWN. A candidate you have called ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL is a condition you have placed, and it cannot also be the unresolved property that decides whether the work may go on. Where the two labels disagree the analysis is refused rather than reinterpreted.",
+      "schemaText": "on a hazard candidate whose own assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN"
+    }
+  ],
+  "identity": {
+    "version": "hazlenz.expert.239.contract-consistency.v1",
+    "registeredCodes": 28,
+    "inheritedFrom237": 27,
+    "retiredFrom237": 0,
+    "inheritedCitationsRestated": [
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+    ],
+    "providerVisibleRules": 13,
+    "rulesRetainedFrom237": 11,
+    "rulesReplacedFrom237": 1,
+    "rulesAdded": 1,
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "analysisFieldsRead": [
+      "expertHazardCandidates[].candidateKey",
+      "expertHazardCandidates[].assertedConditionState"
+    ],
+    "registryDigest": "a9e093b494c78ce9da63a36010d00a95fc80a39a0f9a7f0506aa9f80f6658900",
+    "transmittedPromptDigest": "7224b69a57b7c10a888c070d94ae96fb9ae732aa7e17413adb0e565d8e101769",
+    "transmittedSchemaDigest": "b318bb008555f77928285b61c423a9184909feea7b2339372242013a2dc7c378"
+  },
+  "section237StillGreen": {
+    "passed": 8,
+    "total": 8
+  },
+  "section235StillGreen": {
+    "passed": 6,
+    "total": 6
+  }
+}

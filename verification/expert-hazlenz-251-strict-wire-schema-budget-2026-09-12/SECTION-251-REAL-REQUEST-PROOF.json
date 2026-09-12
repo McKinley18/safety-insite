@@ -1,0 +1,53 @@
+{
+  "section": "251",
+  "generated": "2026-09-12",
+  "databaseOperations": 0,
+  "obtainedBy": "driving runExpertHazLenzAnalysis with a capturing transport, then calling the same exported provider-native functions the hosted transport calls",
+  "fragmentOnlyProofRelied": false,
+  "observationUsed": "SYNTHETIC — no frozen §250 case was transmitted",
+  "envelope": {
+    "envelopeVersion": "hazlenz.expert.request-envelope.v1",
+    "providerId": "anthropic:claude-sonnet-5",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "strictSchema": true,
+    "firstPassMaxTokens": 8000,
+    "verifierMaxTokens": 8000,
+    "thinking": "disabled",
+    "forceToolChoice": true
+  },
+  "request": {
+    "model": "claude-sonnet-5",
+    "productionMaxTokens": 8000,
+    "probeMaxTokens": 8000,
+    "toolName": "emit_expert_analysis",
+    "strictSchema": true,
+    "forcedToolChoice": true,
+    "systemPromptSha": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957",
+    "userPromptSha": "fcb4e7b3ac0567503b65038837b613d3dac78192ed94a71783ad647c9ac2e749",
+    "canonicalWireSchemaSha": "ce4b8247e3927fb8830c600bc60b475dad685c3ef67fce041a5c0ddca11b174f",
+    "transmittedSchemaSha": "1cb71a1a2638871d1d41067c52146f5c21e0f9baeaa943f35f0a44e78facd1fc",
+    "transmittedSchemaBytes": 39082
+  },
+  "structuralMetrics": {
+    "slots": 129,
+    "objects": 23,
+    "freeStrings": 54,
+    "enumNodes": 30,
+    "enumMembers": 92,
+    "refs": 0,
+    "defs": 0,
+    "unionTypedParameters": 21,
+    "typeArrayUnions": 20,
+    "anyOfUnions": 1
+  },
+  "providerVerdict": {
+    "httpStatus": 400,
+    "accepted": false,
+    "errorType": "invalid_request_error",
+    "errorMessage": "Schemas contains too many parameters with union types (20 parameters with type arrays or anyOf). This causes exponential compilation cost. Reduce the number of nullable or union-typed parameters (limit: 16 parameters with unions)."
+  },
+  "outcome": "REAL_REQUEST_REJECTED_UNDER_STRICT",
+  "successConditionB": "NOT MET"
+}

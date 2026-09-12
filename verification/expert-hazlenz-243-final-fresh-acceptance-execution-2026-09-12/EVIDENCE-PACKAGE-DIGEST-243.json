@@ -1,0 +1,72 @@
+{
+  "artifact": "EVIDENCE-PACKAGE-DIGEST-243",
+  "providerCalls": 30,
+  "databaseOperations": 0,
+  "pathConvention": "BARE_FILENAME, flat package, declared explicitly",
+  "pathConventionDeclaredExplicitly": true,
+  "manifestRule": "FROZEN EVIDENCE ONLY. No living document is included. Raw provider bytes, deterministic derivations, human adjudications, gate and measure computation, the decision computation and the report.",
+  "verifyWith": "cd <this directory> && shasum -a 256 -c REPORT-243.sha256",
+  "fileCount": 14,
+  "files": [
+    {
+      "sha256": "fba161a3a93c951939d312e6f74c2a1a249e31937c9144d4c5741cad1ee936a0",
+      "file": "CALL-LEDGER-243.jsonl"
+    },
+    {
+      "sha256": "62ebab06af49c9f8c9d7d7bd02e57c9dba66ea10df1ca599085cab387747e230",
+      "file": "PROJECTION-243-FIRST-PASS.jsonl"
+    },
+    {
+      "sha256": "1437ed733e6fba7d99faaa4668448d4aed34e207904b751c8c544ab62385c2c9",
+      "file": "RAW-243-FIRST-PASS.jsonl"
+    },
+    {
+      "sha256": "6a10b788c0adf90ec2b41e91e10aa8dbf66f5149824e7fde033b474ac4a5a1b5",
+      "file": "RAW-243-VERIFIER.jsonl"
+    },
+    {
+      "sha256": "a5f443ec79c15d22d5eb5dabe0de168ed2f798005b40b32f34dd11670870c8f6",
+      "file": "SECTION-243-AUTHORITATIVE-STATE.json"
+    },
+    {
+      "sha256": "fd9802b48418dc5c89b7816be2903e05ed3c3f525bf59c6b8acc1f061f1bdbf2",
+      "file": "SECTION-243-CONTAINMENT-LEDGER.json"
+    },
+    {
+      "sha256": "5ff8d45d2bf3f9d82c3a69f780c086bcf30e758498aaf327621611b5c0f8d81b",
+      "file": "SECTION-243-DECISION-COMPUTATION.json"
+    },
+    {
+      "sha256": "d7a3dd32f0e211024b9f1c28e3337dd3fbc05ddd45b636d89f5e18da60e2c579",
+      "file": "SECTION-243-EXECUTION-SUMMARY.json"
+    },
+    {
+      "sha256": "dd63bb718b09f4605f1c87eafa9f0690323029d6b2855ef68dce969713f3e812",
+      "file": "SECTION-243-JUDGMENTS.json"
+    },
+    {
+      "sha256": "03966e641346aa73b80bfd4ee3b998d5023f050a73647b907e9153bf874d5ab1",
+      "file": "SECTION-243-MEASUREMENT-CONFIGURATION.json"
+    },
+    {
+      "sha256": "01f8280cca1a859d9f6a2a3f533968ee1ab4ca232173448c8ba13c2535d4feb1",
+      "file": "SECTION-243-PRE-SPEND-IDENTITY.json"
+    },
+    {
+      "sha256": "6c2b4cdf08990d9f8593f54c5e4148c9a18a82c2026b9bd07691d81c765c9271",
+      "file": "SECTION-243-REFUSAL-CLASSIFICATION.json"
+    },
+    {
+      "sha256": "abe1ab23a4e21ea027caa1f9ccee86d97a291de67448224b8c7155611f50b7bb",
+      "file": "SECTION-243-REPORT.md"
+    },
+    {
+      "sha256": "8fe6ad017263bddf6790cf5333a20523892bef346b36e6f1c86190176c94a857",
+      "file": "VERIFIER-243-NOT-RUN.jsonl"
+    }
+  ],
+  "evidencePackageDigest": "bca836f3bd405d5aedc1f7dda7f9ae094d635fd9e42af6bbfa4daf3a1c3f954e",
+  "executedInstrumentDigest": "cb36885a07fa5b14bbf257dbe69663f1829dbc9f6f4aef13a1460d05e2ec151c",
+  "executedInstrumentPackageDigest": "486d9d7666bf6c58cba7a9d3392eebb56499667e19e358194a338939aecaf5ec",
+  "finalDecision": "D_HOLD_RELEASE"
+}

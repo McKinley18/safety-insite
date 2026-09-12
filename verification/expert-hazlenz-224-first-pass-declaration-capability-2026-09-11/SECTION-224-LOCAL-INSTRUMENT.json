@@ -1,0 +1,397 @@
+{
+  "artifact": "SECTION-224-LOCAL-CAPABILITY-INSTRUMENT",
+  "instrumentVersion": "hazlenz.expert.224.declaration-capability.v1",
+  "frozenBeforeAnyRemediation": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "whatThisEstablishes": "CONTRACT_DISCRIMINATION — whether the contract's own stated rule reaches the right verdict about a first-pass output. It is a local instrument with no provider call and therefore establishes NOTHING about how a model will behave. Per HAZLENZ_INVARIANTS, a contract change is never evidence that a behavioural defect is repaired.",
+  "whatThisDoesNotEstablish": [
+    "that the remediated first pass will declare the owed property",
+    "that the remediated first pass will select the controlling property",
+    "any semantic capability claim whatsoever"
+  ],
+  "measures": [
+    "RECALL",
+    "PRECISION",
+    "PROPERTY_IDENTITY",
+    "INDEPENDENCE"
+  ],
+  "aggregateScorePermitted": false,
+  "hardRequirements": {
+    "decisionCriticalDeclarationRecall": "100% under REMEDIATED_224",
+    "exactControllingPropertyIdentity": "100% under REMEDIATED_224",
+    "independentFactPreservation": "100% under REMEDIATED_224",
+    "safeNegatedFalseDeclarations": 0,
+    "ordinaryNonDecisionCriticalFalseDeclarations": 0,
+    "deterministicSemanticInvention": 0,
+    "mayAnyOfTheseBeOffsetByAnAggregate": false
+  },
+  "contractsUnderTest": {
+    "BASELINE_210J": {
+      "declarationTrigger": "SUBORDINATE_TO_CLARIFICATION",
+      "declarationTriggerSource": "STATING AN UNRESOLVED FACT IN FULL: \"The test is the one you have already applied ... If you would not have asked about it, do not declare it.\"",
+      "negativeConclusionMustBeWitnessed": false,
+      "thresholdLimbs": [
+        "WHETHER_WORK_MAY_PROCEED",
+        "WHAT_CORRECTIVE_DECISION"
+      ],
+      "refusesPropertyKinds": [
+        "EVIDENCE_PROXY",
+        "VERIFICATION_ACT",
+        "DOCUMENT"
+      ],
+      "refusesPropertyKindsSource": "GATE 8 and GATE 12: state, not the process that would establish it",
+      "requiresOneEntryPerIndependentFact": true
+    },
+    "REMEDIATED_224": {
+      "declarationTrigger": "INDEPENDENT_OF_CLARIFICATION",
+      "declarationTriggerSource": "§224 THE DECLARATION TRIGGER",
+      "negativeConclusionMustBeWitnessed": true,
+      "thresholdLimbs": [
+        "WHETHER_WORK_MAY_PROCEED",
+        "WHICH_CONTROL_IS_REQUIRED",
+        "WHAT_CORRECTIVE_DECISION"
+      ],
+      "refusesPropertyKinds": [
+        "EVIDENCE_PROXY",
+        "VERIFICATION_ACT",
+        "DOCUMENT",
+        "CONTROL_STATE",
+        "ADJACENT_CONDITION"
+      ],
+      "refusesPropertyKindsSource": "§224 GATE 13, over GATE 8 and GATE 12",
+      "requiresOneEntryPerIndependentFact": true
+    }
+  },
+  "caseCount": 10,
+  "cases": [
+    {
+      "caseId": "C1-RECALL-WHICH-CONTROL",
+      "family": "recognized concern must become declaration",
+      "observation": "Fixed steel ladder to a syrup mezzanine, cage cut away from shoulder height up, no other fall protection. Rungs and stringers sound. Nobody has measured the rise.",
+      "outputProvenance": "SECTION_221_RECORDED",
+      "owedProperties": [
+        {
+          "key": "P-RISE",
+          "proposition": "what fall protection this ladder requires, which turns on the rise from the floor to the mezzanine deck",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "EVIDENCE_PROXY",
+              "text": "whether the rise has been measured"
+            },
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the mezzanine drawings are available"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 0,
+      "clarificationsInOutput": 0,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-unknown-rise"
+      ],
+      "expected": {
+        "RECALL": "DEFECTIVE",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C2-RECALL-CANDIDATE-CONTRADICTION",
+      "family": "recognized concern must become declaration",
+      "observation": "Spindle moulder with the Shaw guard and pressure pads removed, machinist hand feeding stock at the exposed cutter block without a push stick, intending to continue.",
+      "outputProvenance": "SECTION_221_RECORDED",
+      "owedProperties": [
+        {
+          "key": "P-GUARDING",
+          "proposition": "what guarding this cutter-block operation requires before the machine may run again",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the machine handbook is available"
+            },
+            {
+              "kind": "EVIDENCE_PROXY",
+              "text": "whether the machinist has been trained"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 0,
+      "clarificationsInOutput": 0,
+      "selfDeclaredUnresolvedCandidates": [
+        "CAND-3"
+      ],
+      "expected": {
+        "RECALL": "DEFECTIVE",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C3-PROPERTY-CONTROL-STATE",
+      "family": "exact underlying property vs control state",
+      "observation": "Plant room with a CO2 leak detection head bagged over since painting a fortnight ago. Two operatives entering and exiting during the shift. Nobody present has heard the ventilation fan start on its run-on timer.",
+      "outputProvenance": "SECTION_221_RECORDED",
+      "owedProperties": [
+        {
+          "key": "P-ATMOSPHERE",
+          "proposition": "whether the plant-room atmosphere is safe to enter",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the ventilation fan is currently running"
+            },
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the detection head is uncovered"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether a portable CO2 reading has been taken"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 1,
+      "clarificationsInOutput": 1,
+      "selfDeclaredUnresolvedCandidates": [],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "DEFECTIVE",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C4-PROPERTY-EVIDENCE-PROXY",
+      "family": "exact underlying property vs evidence proxy",
+      "observation": "Theatre flying system wire ropes in daily use. The rigging book records a proof load test two years ago and nothing since. The ropes have not been examined.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [
+        {
+          "key": "P-ROPE",
+          "proposition": "whether the wire ropes are in a condition fit to carry the flown load",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "DOCUMENT",
+              "text": "whether a current proof load test certificate exists"
+            },
+            {
+              "kind": "EVIDENCE_PROXY",
+              "text": "whether the annual proof load test has been carried out"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether the ropes have been examined"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 1,
+      "clarificationsInOutput": 1,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-rope"
+      ],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "DEFECTIVE",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C5-REQUIRED-ACT-IS-THE-PROPERTY",
+      "family": "exact property vs required act -- the act IS the property",
+      "observation": "A conveyor drive is due for belt replacement. The isolation point is a lockable disconnector on the wall. The permit is signed but nobody can say whether the lock was actually applied and the stored energy bled down before the guard came off.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [
+        {
+          "key": "P-ISOLATION",
+          "proposition": "whether the drive was locked off and the stored energy bled down before the guard was removed",
+          "kind": "REQUIRED_ACT",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "DOCUMENT",
+              "text": "whether the permit was signed"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 1,
+      "clarificationsInOutput": 1,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-iso"
+      ],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "COMPLIANT",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C6-REQUIRED-ARTIFACT-IS-THE-PROPERTY",
+      "family": "exact property vs required artifact -- the artifact IS the property",
+      "observation": "A mobile tower crane is rigged on site and due to lift tomorrow. No current thorough examination report is on site and the hire desk cannot say whether one exists.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [
+        {
+          "key": "P-TER",
+          "proposition": "whether a current thorough examination report for this crane exists, which is itself the statutory precondition for the lift",
+          "kind": "REQUIRED_ARTIFACT",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether the crane appears to be in good condition"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 1,
+      "clarificationsInOutput": 1,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-ter"
+      ],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "COMPLIANT",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C7-ADJACENT-PROPERTY-TRAP",
+      "family": "adjacent-property trap",
+      "observation": "A hopper is hand cleared between batches. The access door interlock is fitted and tested working. Nobody can say how long the rotor takes to stop after the door opens, or how quickly an operator reaches into the hopper.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [
+        {
+          "key": "P-RUNDOWN",
+          "proposition": "whether the rotor comes to rest before an operator can reach the hopper, that is whether run-down time is shorter than access time",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the access door interlock is fitted and working"
+            },
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether a means exists to verify the rotor has stopped"
+            },
+            {
+              "kind": "ADJACENT_CONDITION",
+              "text": "whether a mandatory waiting time is posted"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 1,
+      "clarificationsInOutput": 1,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-rundown"
+      ],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "DEFECTIVE",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C8-MULTI-INDEPENDENT",
+      "family": "multiple independent decision-critical facts",
+      "observation": "A confined tank is to be entered. The last atmosphere reading was taken before the tank was washed out and nobody has taken one since. Separately, the agitator supply has been switched off at the panel but the isolation has not been locked or proved.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [
+        {
+          "key": "P-ATM",
+          "proposition": "whether the tank atmosphere is safe to enter now, after the wash out",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "VERIFICATION_ACT",
+              "text": "whether a fresh atmosphere reading has been taken"
+            }
+          ]
+        },
+        {
+          "key": "P-ISO",
+          "proposition": "whether the agitator is isolated at zero energy and that isolation proved",
+          "kind": "HAZARD_STATE",
+          "forbiddenSubstitutions": [
+            {
+              "kind": "CONTROL_STATE",
+              "text": "whether the panel switch is in the off position"
+            }
+          ]
+        }
+      ],
+      "restraintBasis": null,
+      "declarationsInOutput": 1,
+      "clarificationsInOutput": 1,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-atm",
+        "cand-iso"
+      ],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "DEFECTIVE"
+      }
+    },
+    {
+      "caseId": "C9-SAFE-NEGATED-RESTRAINT",
+      "family": "genuinely safe / negated -- NO declaration is correct",
+      "observation": "A guarded bench grinder. The tool rest is set at two millimetres, the eye shield is in place and the wheel was dressed and inspected this morning with the record signed. The operator is wearing the issued face shield.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [],
+      "restraintBasis": "every control the hazard turns on is stated as present and current, and no answer to any remaining unknown would change what is done today.",
+      "declarationsInOutput": 0,
+      "clarificationsInOutput": 0,
+      "selfDeclaredUnresolvedCandidates": [],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "COMPLIANT",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    },
+    {
+      "caseId": "C10-ORDINARY-NOT-DECISION-CRITICAL",
+      "family": "ordinary non-decision-critical unknown -- NO declaration is correct",
+      "observation": "A warehouse racking run is in good order and loaded within its plated capacity. The next scheduled rack inspection date is not recorded anywhere on site, though the last one was signed off six weeks ago.",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "owedProperties": [],
+      "restraintBasis": "the next inspection date bears on a later decision, not on whether the racking may be loaded today; the current condition and the plated capacity are both established, so no answer changes what is done now.",
+      "declarationsInOutput": 0,
+      "clarificationsInOutput": 0,
+      "selfDeclaredUnresolvedCandidates": [
+        "cand-rack-next"
+      ],
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "COMPLIANT",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      }
+    }
+  ],
+  "instrumentModuleSha256": "177e1f9d8f5d189f3877a5938c776c26fdbe29deacbd64a046621c02eb28fc61",
+  "frozenAt": "2026-09-11"
+}

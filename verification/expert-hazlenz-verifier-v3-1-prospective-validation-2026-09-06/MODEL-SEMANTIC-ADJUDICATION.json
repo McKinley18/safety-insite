@@ -1,0 +1,2218 @@
+{
+  "artifact": "SECTION_192_MODEL_SEMANTIC_ADJUDICATION",
+  "date": "2026-09-06",
+  "ADJUDICATION_KIND": "MODEL_SEMANTIC_ADJUDICATION",
+  "adjudicator": "MODEL (claude-opus-5) — NOT a human reviewer",
+  "IS_THIS_A_HUMAN_ADJUDICATION": false,
+  "preregisteredAxisClass": "MODEL_DIAGNOSTIC — classified before spend; HUMAN_REQUIRED was empty",
+  "humanAcceptanceGate": "NOT DISCHARGED BY §192. It remains a separate later step.",
+  "POPULATION": "verifier-v3.1 — never combined with the §187B v3 cohort",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "thresholdProvenance": "every threshold read from the frozen preregistration at scoring time",
+  "preregistrationSha256": "68ba7ffa80fd8d111760cb628bff2493f46181cb41c124da2e0614e365f13267",
+  "executionsJudged": 39,
+  "SEMANTIC_DEVELOPMENT_GATES": [
+    {
+      "id": "G1_owedFactPreserved",
+      "scope": "the 33 executions on the 11 rows whose fact is genuinely open (all but FV-12, FV-13)",
+      "observed": "33/33",
+      "threshold": ">= 31/33",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G2_clarificationTargetCorrect",
+      "scope": "executions where a clarification exists, first-pass or proposed",
+      "observed": "30/30",
+      "threshold": ">= 90%",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G3_clarificationEvidenceSufficient",
+      "scope": "executions where a clarification exists",
+      "observed": "30/30",
+      "threshold": ">= 90%",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G4_nearbyPropertySubstitution",
+      "scope": "all 39",
+      "observed": 0,
+      "which": [],
+      "threshold": "= 0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G5_adjacentFactContained",
+      "scope": "all 39",
+      "observed": "39/39",
+      "threshold": ">= 37/39",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G6_unnecessaryClarification",
+      "scope": "the 15 executions on FV-01..03, FV-12, FV-13",
+      "observed": "0/15",
+      "which": [],
+      "threshold": "<= 1/15",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G7_missedClarificationOnOpportunities",
+      "scope": "the 18 executions on the 6 unconditional opportunity rows",
+      "observed": "15/18",
+      "threshold": "appropriate proposals >= 15/18",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G8_goodBehaviourRegression",
+      "scope": "the 9 executions on FV-01..03",
+      "observed": "9/9",
+      "threshold": "fact preserved and no unnecessary replacement >= 8/9",
+      "verdict": "PASS"
+    },
+    {
+      "id": "G9_conjunctiveSufficiency",
+      "scope": "the 6 executions on FV-04, FV-05",
+      "observed": "6/6",
+      "threshold": "insufficiency identified >= 5/6",
+      "verdict": "PASS"
+    }
+  ],
+  "G10_challenge": {
+    "id": "G10_challengeValidityAndReviewability",
+    "scope": "challenge-bearing executions",
+    "challengeBearingExecutions": 6,
+    "CHALLENGE_VALIDITY_OBSERVED": "6 / 6",
+    "CHALLENGE_REVIEWABILITY_OBSERVED": "6 / 6",
+    "threshold": "reported as x/n; NOT_MEANINGFULLY_ESTIMABLE below n=5; no threshold applied at small n",
+    "PREREGISTERED_THRESHOLD_EVALUATION": "ESTIMABLE",
+    "caveat": null
+  },
+  "ALL_SEMANTIC_DEVELOPMENT_GATES_PASS": true,
+  "CLARIFICATION_POLICY": {
+    "denominatorRule": "NEVER raw proposedClarification / total executions. Report OPPORTUNITIES, PROPOSALS, APPROPRIATE_PROPOSALS, MISSED_PROPOSALS and UNNECESSARY_PROPOSALS separately.",
+    "OPPORTUNITIES": 18,
+    "opportunityRows": [
+      "FV-06",
+      "FV-07",
+      "FV-08",
+      "FV-09",
+      "FV-10",
+      "FV-11"
+    ],
+    "opportunityPropertyFamilies": [
+      "detection_alarm_function",
+      "guarding_clearance",
+      "fall_anchor_integrity",
+      "energy_separate_source",
+      "ventilation_capture",
+      "pressure_relief_function"
+    ],
+    "PROPOSALS": 15,
+    "APPROPRIATE_PROPOSALS": 15,
+    "MISSED_PROPOSALS": 3,
+    "UNNECESSARY_PROPOSALS": 0,
+    "unnecessaryScope": "15 executions where no proposal was owed",
+    "rawRateNotUsed": "21/39 is the raw emission count and is NOT the policy denominator"
+  },
+  "items": [
+    {
+      "executionId": "FV-01-R1",
+      "rowId": "FV-01",
+      "replicate": 1,
+      "sequencePosition": 1,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — functional test of the interlock, after the seal replacement, before return to service."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. R1 performs the conjunct check explicitly and uses it to CONFIRM sufficiency: \"requires both the test to have occurred AND to have occurred in the correct window... No weaker branch is offered — the question does not use 'or'\". The new rule fired and correctly did not reject a good question."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-03-R1",
+      "rowId": "FV-03",
+      "replicate": 1,
+      "sequencePosition": 2,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — trip test of the cut-out, confirmed to shut off the gas at setpoint."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. All three distinguish a component swap from verification of the safety function: \"an inspection that swapped a component does not establish the safety function was verified\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-13-R1",
+      "rowId": "FV-13",
+      "replicate": 1,
+      "sequencePosition": 3,
+      "families": [
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [
+        "Crossing frequency is a magnitude fact. The observation already establishes a full-length physical barrier separating the walkway from the aisle plus a banksman at the aisle entrance, meaning pedestrian-vehicle segregation is already achieved by physical means independent of how often crossings occur. Since no threshold-triggered additional control is stated as contingent on crossing frequency, and the segregating control is already in place, answering this fact either way would not change what control is required today."
+      ],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared CHALLENGE_FACT_VALIDITY, which the contract types as a request that settles nothing. The fact's status did not move."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The evidence cited is the owed property itself, not a neighbour of it."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "No adjacent fact discharges anything."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "PASS",
+          "reasoning": "Crossing frequency is a magnitude fact whose governing control — a full-length physical barrier plus a banksman — is stated present, so both answers lead to the same thing being done today. This is the prompt's own MAGNITUDE exclusion applied correctly."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "The cited evidence bears directly on the property the owed fact is about."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "the challenge addresses the frequency fact as supplied rather than a different reading of it."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "The challenge states its evidence-to-fact relationship outright, so a reviewer can see exactly what is claimed and test it without reconstructing a missing premise."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "unnecessaryProposal": false,
+        "note": "No proposal was owed on this row and none was made; the fact was challenged instead, which is the defensible outcome the row was built to elicit."
+      }
+    },
+    {
+      "executionId": "FV-04-R1",
+      "rowId": "FV-04",
+      "replicate": 1,
+      "sequencePosition": 4,
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 2,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the gravity take-up tower tension been released and confirmed at zero (independent of the drive isolator) before starting work at the tail drum, and is there a corresponding entry in the take-up release log for today?",
+      "bindingFactKey": "owed:energy:conveyor_drive_isolated_and_take_up_tension_released",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under ADD_OR_REPLACE_CLARIFICATION with a real proposal — the LEGAL pairing. The coverage claim is correct because the proposed question reaches the open conjunct, so the fact is bound to something that will actually settle it. Contrast §187B HR-08 R2, where the same token was used to claim coverage by a question that could not settle the fact."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets release and zero-confirmation of the gravity take-up tension, which is the owed property's open part."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes to the proposal establishes release and zero-confirmation of the gravity take-up tension; the other conjuncts are already stated established in the observation, so the fact is reachable. All three identify that the existing question reaches only the isolation conjunct, which the observation already states was done, and name the take-up as a SEPARATE stored-energy source: \"A locked-off drive does not de-tension a gravity take-up\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The reasoning stays on the conjunct that is open and explicitly refuses to let the satisfied conjunct stand for the whole."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The satisfied conjunct is used as a CONTRAST — what the existing question already covers — rather than as a reason the fact is answered."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "conjunctiveInsufficiencyIdentified": true,
+        "note": "The §191 repair-2 target. Insufficiency identified and repaired by proposal, 3/3."
+      }
+    },
+    {
+      "executionId": "FV-09-R1",
+      "rowId": "FV-09",
+      "replicate": 1,
+      "sequencePosition": 5,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the shrink-tunnel heater bank's separate supply at the far-wall distribution board been locked out and verified de-energized before the fitter entered the tunnel to clear the jam?",
+      "bindingFactKey": "owed:energy:shrink_tunnel_heater_supply_isolated_before_work",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets isolation of the heater bank's own separate supply — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes isolation of the heater bank's own separate supply. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. A thorough, correct isolation of the MAIN panel is used as contrast, not as coverage. The separate-source distinction is drawn on all three."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-07-R1",
+      "rowId": "FV-07",
+      "replicate": 1,
+      "sequencePosition": 6,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "What is the current measured gap between the work rest and the grinding wheel face, and is it within 1/8 inch (0.125 in)?",
+      "bindingFactKey": "owed:guarding:grinder_work_rest_gap_currently_within_safe_clearance",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets the CURRENT measured work-rest gap — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes the CURRENT measured work-rest gap. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. The HR-04-analogous trap, and it was not taken: \"the work rest being 'in place' (position) is visible, but its clearance value is not\", and R3 asks for the gap \"measured now (not at the last wheel change)\". Presence and a checklist covering other items were both refused as evidence of the owed property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-05-R1",
+      "rowId": "FV-05",
+      "replicate": 1,
+      "sequencePosition": 7,
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 3,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Was the skid's local pressure indicator read and the dosing line confirmed at zero pressure before the filter housing was opened?",
+      "bindingFactKey": "owed:chemical:dosing_line_isolated_flushed_and_confirmed_zero_pressure",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under ADD_OR_REPLACE_CLARIFICATION with a real proposal — the LEGAL pairing. The coverage claim is correct because the proposed question reaches the open conjunct, so the fact is bound to something that will actually settle it. Contrast §187B HR-08 R2, where the same token was used to claim coverage by a question that could not settle the fact."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets confirmation of zero pressure at the local indicator, which is the owed property's open part."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes to the proposal establishes confirmation of zero pressure at the local indicator; the other conjuncts are already stated established in the observation, so the fact is reachable. Three conjuncts, two already stated established (padlocked valve, signed flush record). All three replicates isolate the remaining open conjunct: \"Isolation and flushing do not guarantee zero residual pressure\". R2 and R3 recite the covered conjuncts explicitly."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The reasoning stays on the conjunct that is open and explicitly refuses to let the satisfied conjunct stand for the whole."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The satisfied conjunct is used as a CONTRAST — what the existing question already covers — rather than as a reason the fact is answered."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "conjunctiveInsufficiencyIdentified": true,
+        "note": "The §191 repair-2 target. Insufficiency identified and repaired by proposal, 3/3."
+      }
+    },
+    {
+      "executionId": "FV-10-R1",
+      "rowId": "FV-10",
+      "replicate": 1,
+      "sequencePosition": 8,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Since the LEV hood at this bench was repositioned, has a capture check (e.g., face velocity or smoke-tube test) been performed and confirmed adequate at its new position?",
+      "bindingFactKey": "owed:ventilation:lev_hood_capture_effective_at_current_position",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets capture effectiveness at the hood's current position — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes capture effectiveness at the hood's current position. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. The in-date examination's STATED SCOPE (fan and ductwork) is held not to reach a property outside it: \"an examination covering fan and ductwork does not establish that capture is adequate at the new hood position\"."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-12-R1",
+      "rowId": "FV-12",
+      "replicate": 1,
+      "sequencePosition": 9,
+      "families": [
+        "FULLY_ESTABLISHED_CONTROL",
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [
+        "The observation already establishes this: the fitter opened the manual blowdown, watched the gauge fall to zero and remain there for two minutes, and a second fitter independently witnessed the zero reading, while the hatch remains bolted (not yet opened). This is precisely the venting-and-confirmation-before-opening sequence the fact questions; it is stated, not unresolved, and answering it either way would not change the control already documented as in place."
+      ],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared CHALLENGE_FACT_VALIDITY, which the contract types as a request that settles nothing. The fact's status did not move."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The evidence cited is the owed property itself, not a neighbour of it."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "No adjacent fact discharges anything."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "PASS",
+          "reasoning": "The observation states the blowdown was opened, the gauge watched to zero and held two minutes, and a second fitter independently witnessed it, with the hatch still bolted. That IS the vent-and-confirm-before-opening sequence the supplied fact claims is missing."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "The cited evidence bears directly on the property the owed fact is about."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "the challenge addresses the fact exactly as supplied — vented and confirmed at zero before the hatch is opened — and shows the text establishes it."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "The challenge states its evidence-to-fact relationship outright, so a reviewer can see exactly what is claimed and test it without reconstructing a missing premise."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "unnecessaryProposal": false,
+        "note": "No proposal was owed on this row and none was made; the fact was challenged instead, which is the defensible outcome the row was built to elicit."
+      }
+    },
+    {
+      "executionId": "FV-02-R1",
+      "rowId": "FV-02",
+      "replicate": 1,
+      "sequencePosition": 10,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — reading the gauge and confirming zero, rather than relying on the drain having been opened."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. All three invoke the unseen-control heuristic by name and hold that opening a drain is not confirming zero. The §191 boundary did not disturb the heuristic that already worked."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-08-R1",
+      "rowId": "FV-08",
+      "replicate": 1,
+      "sequencePosition": 11,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Does the roof anchor currently in use for the temporary fall-arrest line at the south edge have a load-test record showing it is current (i.e., within its required test interval), and can that record be confirmed before work continues?",
+      "bindingFactKey": "owed:fall:temporary_line_anchor_current_load_test_valid",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets whether the anchor's load test is current — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes whether the anchor's load test is current. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. R1 draws the exact distinction: the observation \"establishes the record's location, not its content\". An ID tag is identification, not testing, and the inspected guardrail belongs to a different edge."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-06-R1",
+      "rowId": "FV-06",
+      "replicate": 1,
+      "sequencePosition": 12,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the booth's low-airflow alarm been verified this year (or otherwise recently re-verified) to actually trip at its set point, confirming it is currently operable, or does the overdue verification sheet mean this has not been confirmed since commissioning three years ago?",
+      "bindingFactKey": "owed:detection:booth_low_airflow_alarm_trip_function_currently_operable",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets the alarm's trip function at its set point — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes the alarm's trip function at its set point. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. R2 excludes the adjacent property inside the question — \"(not just visually checked for a green status lamp)\". A powered panel is not a proven trip."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-11-R1",
+      "rowId": "FV-11",
+      "replicate": 1,
+      "sequencePosition": 13,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED on all three. The verifier declined to PROPOSE, but it did NOT settle, cover or remove the fact. This is the important distinction: the deviation is a proposal decision, not a preservation failure."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "The first pass asked nothing and none was proposed, so there is no clarification whose aim can be assessed."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists whose power can be assessed."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "Judged carefully, because this row LOOKS like the HR-04 failure and is not. The evidence relied on — the in-date written scheme examination certificate — is evidence the observation states COVERS the receiver examination, and the observation further states the safety valve was function-tested AS PART OF that examination. So the cited evidence is WITHIN its stated scope, unlike HR-04 where the pre-start sheet's stated scope (belt tracking and lubrication) excluded the owed property. The verifier's operative premise is regime-currency, not a substituted property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The automatic drain and the compressor running on load are not used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": false,
+        "fixtureAmbiguity": true,
+        "note": "MISSED PROPOSAL, 3/3, and the only deviation in the cohort. The verifier argued that whether a two-year-old valve test suffices \"is a matter of applicable regulatory/inspection scheme interpretation rather than something the observation leaves ambiguous as a plant fact\", and that no governed evidence established a shorter interval. THAT ARGUMENT HAS FORCE, and the fixture is the likelier defect: the row was authored with an IN-DATE certificate covering the very examination in which the valve was tested, while never stating the scheme's interval. Whether the fact is open therefore depends on an interval the observation withholds. Recorded as an authoring weakness; the frozen cohort is NOT edited and the figure is NOT adjusted to rescue a gate."
+      }
+    },
+    {
+      "executionId": "FV-05-R2",
+      "rowId": "FV-05",
+      "replicate": 2,
+      "sequencePosition": 14,
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 3,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Before opening the filter housing, was the local pressure indicator read (or another means used) to confirm the dosing line was at zero pressure, in addition to the valve being locked closed and the line flushed?",
+      "bindingFactKey": "owed:chemical:dosing_line_isolated_flushed_and_confirmed_zero_pressure",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under ADD_OR_REPLACE_CLARIFICATION with a real proposal — the LEGAL pairing. The coverage claim is correct because the proposed question reaches the open conjunct, so the fact is bound to something that will actually settle it. Contrast §187B HR-08 R2, where the same token was used to claim coverage by a question that could not settle the fact."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets confirmation of zero pressure at the local indicator, which is the owed property's open part."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes to the proposal establishes confirmation of zero pressure at the local indicator; the other conjuncts are already stated established in the observation, so the fact is reachable. Three conjuncts, two already stated established (padlocked valve, signed flush record). All three replicates isolate the remaining open conjunct: \"Isolation and flushing do not guarantee zero residual pressure\". R2 and R3 recite the covered conjuncts explicitly."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The reasoning stays on the conjunct that is open and explicitly refuses to let the satisfied conjunct stand for the whole."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The satisfied conjunct is used as a CONTRAST — what the existing question already covers — rather than as a reason the fact is answered."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "conjunctiveInsufficiencyIdentified": true,
+        "note": "The §191 repair-2 target. Insufficiency identified and repaired by proposal, 3/3."
+      }
+    },
+    {
+      "executionId": "FV-10-R2",
+      "rowId": "FV-10",
+      "replicate": 2,
+      "sequencePosition": 15,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has a capture check (e.g., velocity/smoke test) been performed and recorded confirming that the LEV hood captures welding fume effectively at its current, repositioned location at this bench?",
+      "bindingFactKey": "owed:ventilation:lev_hood_capture_effective_at_current_position",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets capture effectiveness at the hood's current position — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes capture effectiveness at the hood's current position. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. The in-date examination's STATED SCOPE (fan and ductwork) is held not to reach a property outside it: \"an examination covering fan and ductwork does not establish that capture is adequate at the new hood position\"."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-13-R2",
+      "rowId": "FV-13",
+      "replicate": 2,
+      "sequencePosition": 16,
+      "families": [
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [
+        "A full-length physical barrier already separates the walkway from the aisle, and a banksman is stationed at the aisle entrance. These controls are already in place and do not depend on knowing crossing frequency; the same segregation controls remain adequate whether crossings are frequent or rare, so answering this fact would not change any control implemented today."
+      ],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared CHALLENGE_FACT_VALIDITY, which the contract types as a request that settles nothing. The fact's status did not move."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The evidence cited is the owed property itself, not a neighbour of it."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "No adjacent fact discharges anything."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "PASS",
+          "reasoning": "Crossing frequency is a magnitude fact whose governing control — a full-length physical barrier plus a banksman — is stated present, so both answers lead to the same thing being done today. This is the prompt's own MAGNITUDE exclusion applied correctly."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "The cited evidence bears directly on the property the owed fact is about."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "the challenge addresses the frequency fact as supplied rather than a different reading of it."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "The challenge states its evidence-to-fact relationship outright, so a reviewer can see exactly what is claimed and test it without reconstructing a missing premise."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "unnecessaryProposal": false,
+        "note": "No proposal was owed on this row and none was made; the fact was challenged instead, which is the defensible outcome the row was built to elicit."
+      }
+    },
+    {
+      "executionId": "FV-06-R2",
+      "rowId": "FV-06",
+      "replicate": 2,
+      "sequencePosition": 17,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the low-airflow alarm's trip function been functionally tested (not just visually checked for a green status lamp) to confirm it will actually trip at its designated set point, and if not, can that verification be completed before spraying continues?",
+      "bindingFactKey": "owed:detection:booth_low_airflow_alarm_trip_function_currently_operable",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets the alarm's trip function at its set point — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes the alarm's trip function at its set point. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. R2 excludes the adjacent property inside the question — \"(not just visually checked for a green status lamp)\". A powered panel is not a proven trip."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-04-R2",
+      "rowId": "FV-04",
+      "replicate": 2,
+      "sequencePosition": 18,
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 2,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the gravity take-up tension been released and confirmed at zero before starting work at the tail drum, given the take-up release log has no entry for today?",
+      "bindingFactKey": "owed:energy:conveyor_drive_isolated_and_take_up_tension_released",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under ADD_OR_REPLACE_CLARIFICATION with a real proposal — the LEGAL pairing. The coverage claim is correct because the proposed question reaches the open conjunct, so the fact is bound to something that will actually settle it. Contrast §187B HR-08 R2, where the same token was used to claim coverage by a question that could not settle the fact."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets release and zero-confirmation of the gravity take-up tension, which is the owed property's open part."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes to the proposal establishes release and zero-confirmation of the gravity take-up tension; the other conjuncts are already stated established in the observation, so the fact is reachable. All three identify that the existing question reaches only the isolation conjunct, which the observation already states was done, and name the take-up as a SEPARATE stored-energy source: \"A locked-off drive does not de-tension a gravity take-up\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The reasoning stays on the conjunct that is open and explicitly refuses to let the satisfied conjunct stand for the whole."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The satisfied conjunct is used as a CONTRAST — what the existing question already covers — rather than as a reason the fact is answered."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "conjunctiveInsufficiencyIdentified": true,
+        "note": "The §191 repair-2 target. Insufficiency identified and repaired by proposal, 3/3."
+      }
+    },
+    {
+      "executionId": "FV-02-R2",
+      "rowId": "FV-02",
+      "replicate": 2,
+      "sequencePosition": 19,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — reading the gauge and confirming zero, rather than relying on the drain having been opened."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. All three invoke the unseen-control heuristic by name and hold that opening a drain is not confirming zero. The §191 boundary did not disturb the heuristic that already worked."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-03-R2",
+      "rowId": "FV-03",
+      "replicate": 2,
+      "sequencePosition": 20,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — trip test of the cut-out, confirmed to shut off the gas at setpoint."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. All three distinguish a component swap from verification of the safety function: \"an inspection that swapped a component does not establish the safety function was verified\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-12-R2",
+      "rowId": "FV-12",
+      "replicate": 2,
+      "sequencePosition": 21,
+      "families": [
+        "FULLY_ESTABLISHED_CONTROL",
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [
+        "The observation already establishes this: blowdown was opened, the gauge was watched falling to and remaining at zero for two minutes, and a second fitter independently witnessed the zero reading, with the hatch stated as still bolted (i.e., not yet opened before this confirmation). This is the dual-verified zero-pressure confirmation the fact asks about, not an open question, and answering it either way would not change the control already being followed at this workplace."
+      ],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared CHALLENGE_FACT_VALIDITY, which the contract types as a request that settles nothing. The fact's status did not move."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The evidence cited is the owed property itself, not a neighbour of it."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "No adjacent fact discharges anything."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "PASS",
+          "reasoning": "The observation states the blowdown was opened, the gauge watched to zero and held two minutes, and a second fitter independently witnessed it, with the hatch still bolted. That IS the vent-and-confirm-before-opening sequence the supplied fact claims is missing."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "The cited evidence bears directly on the property the owed fact is about."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "the challenge addresses the fact exactly as supplied — vented and confirmed at zero before the hatch is opened — and shows the text establishes it."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "The challenge states its evidence-to-fact relationship outright, so a reviewer can see exactly what is claimed and test it without reconstructing a missing premise."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "unnecessaryProposal": false,
+        "note": "No proposal was owed on this row and none was made; the fact was challenged instead, which is the defensible outcome the row was built to elicit."
+      }
+    },
+    {
+      "executionId": "FV-01-R2",
+      "rowId": "FV-01",
+      "replicate": 2,
+      "sequencePosition": 22,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — functional test of the interlock, after the seal replacement, before return to service."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. R1 performs the conjunct check explicitly and uses it to CONFIRM sufficiency: \"requires both the test to have occurred AND to have occurred in the correct window... No weaker branch is offered — the question does not use 'or'\". The new rule fired and correctly did not reject a good question."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-07-R2",
+      "rowId": "FV-07",
+      "replicate": 2,
+      "sequencePosition": 23,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "What is the current measured gap between the work rest and the grinding wheel face, and has it been checked/re-adjusted since the wheel change six weeks ago to account for wheel wear?",
+      "bindingFactKey": "owed:guarding:grinder_work_rest_gap_currently_within_safe_clearance",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets the CURRENT measured work-rest gap — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes the CURRENT measured work-rest gap. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. The HR-04-analogous trap, and it was not taken: \"the work rest being 'in place' (position) is visible, but its clearance value is not\", and R3 asks for the gap \"measured now (not at the last wheel change)\". Presence and a checklist covering other items were both refused as evidence of the owed property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-09-R2",
+      "rowId": "FV-09",
+      "replicate": 2,
+      "sequencePosition": 24,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the shrink-tunnel heater bank's separate distribution-board supply been isolated and locked out (with the fitter's own lock or verified proof of isolation) before he entered the tunnel to clear the jam?",
+      "bindingFactKey": "owed:energy:shrink_tunnel_heater_supply_isolated_before_work",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets isolation of the heater bank's own separate supply — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes isolation of the heater bank's own separate supply. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. A thorough, correct isolation of the MAIN panel is used as contrast, not as coverage. The separate-source distinction is drawn on all three."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-11-R2",
+      "rowId": "FV-11",
+      "replicate": 2,
+      "sequencePosition": 25,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED on all three. The verifier declined to PROPOSE, but it did NOT settle, cover or remove the fact. This is the important distinction: the deviation is a proposal decision, not a preservation failure."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "The first pass asked nothing and none was proposed, so there is no clarification whose aim can be assessed."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists whose power can be assessed."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "Judged carefully, because this row LOOKS like the HR-04 failure and is not. The evidence relied on — the in-date written scheme examination certificate — is evidence the observation states COVERS the receiver examination, and the observation further states the safety valve was function-tested AS PART OF that examination. So the cited evidence is WITHIN its stated scope, unlike HR-04 where the pre-start sheet's stated scope (belt tracking and lubrication) excluded the owed property. The verifier's operative premise is regime-currency, not a substituted property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The automatic drain and the compressor running on load are not used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": false,
+        "fixtureAmbiguity": true,
+        "note": "MISSED PROPOSAL, 3/3, and the only deviation in the cohort. The verifier argued that whether a two-year-old valve test suffices \"is a matter of applicable regulatory/inspection scheme interpretation rather than something the observation leaves ambiguous as a plant fact\", and that no governed evidence established a shorter interval. THAT ARGUMENT HAS FORCE, and the fixture is the likelier defect: the row was authored with an IN-DATE certificate covering the very examination in which the valve was tested, while never stating the scheme's interval. Whether the fact is open therefore depends on an interval the observation withholds. Recorded as an authoring weakness; the frozen cohort is NOT edited and the figure is NOT adjusted to rescue a gate."
+      }
+    },
+    {
+      "executionId": "FV-08-R2",
+      "rowId": "FV-08",
+      "replicate": 2,
+      "sequencePosition": 26,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Check the load-test record held in the site office for the specific anchor (matching its ID tag) used for the temporary line at the south edge: does it show a current, passed load test as of today?",
+      "bindingFactKey": "owed:fall:temporary_line_anchor_current_load_test_valid",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets whether the anchor's load test is current — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes whether the anchor's load test is current. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. R1 draws the exact distinction: the observation \"establishes the record's location, not its content\". An ID tag is identification, not testing, and the inspected guardrail belongs to a different edge."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-12-R3",
+      "rowId": "FV-12",
+      "replicate": 3,
+      "sequencePosition": 27,
+      "families": [
+        "FULLY_ESTABLISHED_CONTROL",
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [
+        "The observation already narrates the venting and dual confirmation of zero pressure (gauge watched to zero, held two minutes, independently witnessed by a second fitter) prior to the hatch being opened (hatch stated as still bolted). This directly establishes the property the fact asks about; there is no separate unobserved step left open, and answering it either way would not change what is done today since the hatch remains closed pending inspection and the described procedure has already been completed as stated."
+      ],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared CHALLENGE_FACT_VALIDITY, which the contract types as a request that settles nothing. The fact's status did not move."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The evidence cited is the owed property itself, not a neighbour of it."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "No adjacent fact discharges anything."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "PASS",
+          "reasoning": "The observation states the blowdown was opened, the gauge watched to zero and held two minutes, and a second fitter independently witnessed it, with the hatch still bolted. That IS the vent-and-confirm-before-opening sequence the supplied fact claims is missing."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "The cited evidence bears directly on the property the owed fact is about."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "the challenge addresses the fact exactly as supplied — vented and confirmed at zero before the hatch is opened — and shows the text establishes it."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "The challenge states its evidence-to-fact relationship outright, so a reviewer can see exactly what is claimed and test it without reconstructing a missing premise."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "unnecessaryProposal": false,
+        "note": "No proposal was owed on this row and none was made; the fact was challenged instead, which is the defensible outcome the row was built to elicit."
+      }
+    },
+    {
+      "executionId": "FV-11-R3",
+      "rowId": "FV-11",
+      "replicate": 3,
+      "sequencePosition": 28,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED on all three. The verifier declined to PROPOSE, but it did NOT settle, cover or remove the fact. This is the important distinction: the deviation is a proposal decision, not a preservation failure."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "The first pass asked nothing and none was proposed, so there is no clarification whose aim can be assessed."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists whose power can be assessed."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "Judged carefully, because this row LOOKS like the HR-04 failure and is not. The evidence relied on — the in-date written scheme examination certificate — is evidence the observation states COVERS the receiver examination, and the observation further states the safety valve was function-tested AS PART OF that examination. So the cited evidence is WITHIN its stated scope, unlike HR-04 where the pre-start sheet's stated scope (belt tracking and lubrication) excluded the owed property. The verifier's operative premise is regime-currency, not a substituted property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The automatic drain and the compressor running on load are not used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": false,
+        "fixtureAmbiguity": true,
+        "note": "MISSED PROPOSAL, 3/3, and the only deviation in the cohort. The verifier argued that whether a two-year-old valve test suffices \"is a matter of applicable regulatory/inspection scheme interpretation rather than something the observation leaves ambiguous as a plant fact\", and that no governed evidence established a shorter interval. THAT ARGUMENT HAS FORCE, and the fixture is the likelier defect: the row was authored with an IN-DATE certificate covering the very examination in which the valve was tested, while never stating the scheme's interval. Whether the fact is open therefore depends on an interval the observation withholds. Recorded as an authoring weakness; the frozen cohort is NOT edited and the figure is NOT adjusted to rescue a gate."
+      }
+    },
+    {
+      "executionId": "FV-05-R3",
+      "rowId": "FV-05",
+      "replicate": 3,
+      "sequencePosition": 29,
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 3,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Before the filter housing was opened, was the local pressure indicator read (or another means used) to confirm the dosing line was at zero pressure, in addition to the valve being locked closed and the line flushed?",
+      "bindingFactKey": "owed:chemical:dosing_line_isolated_flushed_and_confirmed_zero_pressure",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under ADD_OR_REPLACE_CLARIFICATION with a real proposal — the LEGAL pairing. The coverage claim is correct because the proposed question reaches the open conjunct, so the fact is bound to something that will actually settle it. Contrast §187B HR-08 R2, where the same token was used to claim coverage by a question that could not settle the fact."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets confirmation of zero pressure at the local indicator, which is the owed property's open part."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes to the proposal establishes confirmation of zero pressure at the local indicator; the other conjuncts are already stated established in the observation, so the fact is reachable. Three conjuncts, two already stated established (padlocked valve, signed flush record). All three replicates isolate the remaining open conjunct: \"Isolation and flushing do not guarantee zero residual pressure\". R2 and R3 recite the covered conjuncts explicitly."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The reasoning stays on the conjunct that is open and explicitly refuses to let the satisfied conjunct stand for the whole."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The satisfied conjunct is used as a CONTRAST — what the existing question already covers — rather than as a reason the fact is answered."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "conjunctiveInsufficiencyIdentified": true,
+        "note": "The §191 repair-2 target. Insufficiency identified and repaired by proposal, 3/3."
+      }
+    },
+    {
+      "executionId": "FV-03-R3",
+      "rowId": "FV-03",
+      "replicate": 3,
+      "sequencePosition": 30,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — trip test of the cut-out, confirmed to shut off the gas at setpoint."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. All three distinguish a component swap from verification of the safety function: \"an inspection that swapped a component does not establish the safety function was verified\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-10-R3",
+      "rowId": "FV-10",
+      "replicate": 3,
+      "sequencePosition": 31,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has a capture velocity or face velocity check been performed and recorded confirming the LEV hood captures welding fume effectively at its current, repositioned location at this bench?",
+      "bindingFactKey": "owed:ventilation:lev_hood_capture_effective_at_current_position",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets capture effectiveness at the hood's current position — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes capture effectiveness at the hood's current position. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. The in-date examination's STATED SCOPE (fan and ductwork) is held not to reach a property outside it: \"an examination covering fan and ductwork does not establish that capture is adequate at the new hood position\"."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-09-R3",
+      "rowId": "FV-09",
+      "replicate": 3,
+      "sequencePosition": 32,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the shrink-wrap tunnel's heater bank been isolated at its separate distribution board (locked out/tagged out) before the fitter entered the tunnel to clear the jam, and can that isolation be verified now?",
+      "bindingFactKey": "owed:energy:shrink_tunnel_heater_supply_isolated_before_work",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets isolation of the heater bank's own separate supply — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes isolation of the heater bank's own separate supply. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. A thorough, correct isolation of the MAIN panel is used as contrast, not as coverage. The separate-source distinction is drawn on all three."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-06-R3",
+      "rowId": "FV-06",
+      "replicate": 3,
+      "sequencePosition": 33,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "OBSTRUCTED_UNVERIFIABLE_CONTROL",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the low-airflow alarm's trip point been verified this year to actually trip and alert at the set airflow threshold, confirming it is currently operable, or does the incomplete verification sheet mean this has not been confirmed?",
+      "bindingFactKey": "owed:detection:booth_low_airflow_alarm_trip_function_currently_operable",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets the alarm's trip function at its set point — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes the alarm's trip function at its set point. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. R2 excludes the adjacent property inside the question — \"(not just visually checked for a green status lamp)\". A powered panel is not a proven trip."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-08-R3",
+      "rowId": "FV-08",
+      "replicate": 3,
+      "sequencePosition": 34,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "What is the date of the most recent load test on the roof anchor's record held in the site office, and does that date fall within the manufacturer's or site's required recertification interval (i.e., is the load test currently valid)?",
+      "bindingFactKey": "owed:fall:temporary_line_anchor_current_load_test_valid",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets whether the anchor's load test is current — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes whether the anchor's load test is current. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. R1 draws the exact distinction: the observation \"establishes the record's location, not its content\". An ID tag is identification, not testing, and the inspected guardrail belongs to a different edge."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-04-R3",
+      "rowId": "FV-04",
+      "replicate": 3,
+      "sequencePosition": 35,
+      "families": [
+        "EXISTING_INSUFFICIENT_CONJUNCTIVE_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 2,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "Has the gravity take-up tension been released and confirmed at zero (independent of the drive isolator lockout) before starting work on the tail drum belt scraper today?",
+      "bindingFactKey": "owed:energy:conveyor_drive_isolated_and_take_up_tension_released",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under ADD_OR_REPLACE_CLARIFICATION with a real proposal — the LEGAL pairing. The coverage claim is correct because the proposed question reaches the open conjunct, so the fact is bound to something that will actually settle it. Contrast §187B HR-08 R2, where the same token was used to claim coverage by a question that could not settle the fact."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets release and zero-confirmation of the gravity take-up tension, which is the owed property's open part."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes to the proposal establishes release and zero-confirmation of the gravity take-up tension; the other conjuncts are already stated established in the observation, so the fact is reachable. All three identify that the existing question reaches only the isolation conjunct, which the observation already states was done, and name the take-up as a SEPARATE stored-energy source: \"A locked-off drive does not de-tension a gravity take-up\"."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The reasoning stays on the conjunct that is open and explicitly refuses to let the satisfied conjunct stand for the whole."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "The satisfied conjunct is used as a CONTRAST — what the existing question already covers — rather than as a reason the fact is answered."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "conjunctiveInsufficiencyIdentified": true,
+        "note": "The §191 repair-2 target. Insufficiency identified and repaired by proposal, 3/3."
+      }
+    },
+    {
+      "executionId": "FV-07-R3",
+      "rowId": "FV-07",
+      "replicate": 3,
+      "sequencePosition": 36,
+      "families": [
+        "NO_EXISTING_QUESTION_REQUIRED_FACT",
+        "ADJACENT_PROPERTY_TRAP"
+      ],
+      "unconditionalProposalOpportunity": true,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "declarations": [
+        "BOUND_BY_CLARIFICATION"
+      ],
+      "proposedQuestion": "What is the current gap between the work rest and the grinding wheel, measured now (not at the last wheel change), and does it meet the required maximum of 1/8 inch (or the applicable maximum for this wheel)?",
+      "bindingFactKey": "owed:guarding:grinder_work_rest_gap_currently_within_safe_clearance",
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared BOUND_BY_CLARIFICATION under a legal ADD_OR_REPLACE pairing, bound to a question that reaches the owed property. The fact is not settled; it is routed to someone who can answer it."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The proposed question targets the CURRENT measured work-rest gap — the exact owed property, not an adjacent one."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful answer establishes the CURRENT measured work-rest gap. Single-conjunct owed fact; no disjunction admits a weaker act."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The adjacent property available on this row was explicitly refused. The HR-04-analogous trap, and it was not taken: \"the work rest being 'in place' (position) is visible, but its clearance value is not\", and R3 asks for the gap \"measured now (not at the last wheel change)\". Presence and a checklist covering other items were both refused as evidence of the owed property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts appear as contrast or context and none is allowed to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "appropriateProposal": true,
+        "note": "Unconditional proposal opportunity, taken with a question reaching the owed property."
+      }
+    },
+    {
+      "executionId": "FV-01-R3",
+      "rowId": "FV-01",
+      "replicate": 3,
+      "sequencePosition": 37,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — functional test of the interlock, after the seal replacement, before return to service."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. R1 performs the conjunct check explicitly and uses it to CONFIRM sufficiency: \"requires both the test to have occurred AND to have occurred in the correct window... No weaker branch is offered — the question does not use 'or'\". The new rule fired and correctly did not reject a good question."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-02-R3",
+      "rowId": "FV-02",
+      "replicate": 3,
+      "sequencePosition": 38,
+      "families": [
+        "EXISTING_SUFFICIENT_QUESTION"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": false,
+      "conjunctCount": 1,
+      "providerVerdict": "VERIFIED_AS_IS",
+      "declarations": [
+        "STILL_UNRESOLVED"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared STILL_UNRESOLVED. The fact emerges owed and unresolved; nothing treats it as answered, covered or unnecessary."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The first-pass question targets the owed property directly — reading the gauge and confirming zero, rather than relying on the drain having been opened."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "PASS",
+          "reasoning": "A truthful yes entails the owed property. No disjunction, no different act. All three invoke the unseen-control heuristic by name and hold that opening a drain is not confirming zero. The §191 boundary did not disturb the heuristic that already worked."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The operative premise is the owed property itself; the response reasons from what the record does NOT establish rather than from a nearby property."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "Adjacent facts are named and set aside rather than used to discharge the owed fact."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "goodBehaviourPreserved": true,
+        "unnecessaryProposal": false,
+        "note": "VERIFIED_AS_IS with no proposal — the already-sufficient question was left alone. This is the over-correction test and it passed."
+      }
+    },
+    {
+      "executionId": "FV-13-R3",
+      "rowId": "FV-13",
+      "replicate": 3,
+      "sequencePosition": 39,
+      "families": [
+        "CHALLENGE_FACT_VALIDITY_OPPORTUNITY"
+      ],
+      "unconditionalProposalOpportunity": false,
+      "challengeOpportunity": true,
+      "conjunctCount": 1,
+      "providerVerdict": "NO_CLARIFICATION_REQUIRED",
+      "declarations": [
+        "CHALLENGE_FACT_VALIDITY"
+      ],
+      "proposedQuestion": null,
+      "bindingFactKey": null,
+      "challengeReasons": [
+        "The observation states a physical barrier separates the walkway from the aisle for its full length, which is a segregation control already in place independent of crossing frequency. Since the full-length barrier already answers the segregation requirement, knowing the pedestrian crossing frequency would not change the control implemented today (no crossing point through the barrier is described as needing frequency-based control). This is a magnitude fact whose associated control is already established as present."
+      ],
+      "correctedAdmission": "ADMITTED",
+      "modelAxes": {
+        "OWED_FACT_PRESERVED": {
+          "finding": "PASS",
+          "reasoning": "Declared CHALLENGE_FACT_VALIDITY, which the contract types as a request that settles nothing. The fact's status did not move."
+        },
+        "FACTKEY_BINDING_CORRECT": {
+          "finding": "PASS",
+          "reasoning": "The correct supplied key was engaged and no other key was declared. Narrow by design: any property-level defect is recorded on NO_NEARBY_PROPERTY_SUBSTITUTION."
+        },
+        "CLARIFICATION_TARGET_CORRECT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "CLARIFICATION_EVIDENCE_SUFFICIENT": {
+          "finding": "NOT_APPLICABLE",
+          "reasoning": "No clarification exists on this row."
+        },
+        "NO_NEARBY_PROPERTY_SUBSTITUTION": {
+          "finding": "PASS",
+          "reasoning": "The evidence cited is the owed property itself, not a neighbour of it."
+        },
+        "ADJACENT_FACT_CONTAINED": {
+          "finding": "PASS",
+          "reasoning": "No adjacent fact discharges anything."
+        },
+        "CHALLENGE_CORRECTNESS": {
+          "finding": "PASS",
+          "reasoning": "Crossing frequency is a magnitude fact whose governing control — a full-length physical barrier plus a banksman — is stated present, so both answers lead to the same thing being done today. This is the prompt's own MAGNITUDE exclusion applied correctly."
+        },
+        "CHALLENGE_EVIDENCE_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "The cited evidence bears directly on the property the owed fact is about."
+        },
+        "CHALLENGE_TARGET_RELEVANCE": {
+          "finding": "PASS",
+          "reasoning": "the challenge addresses the frequency fact as supplied rather than a different reading of it."
+        },
+        "CHALLENGE_REVIEWABILITY": {
+          "finding": "REVIEWABLE",
+          "reasoning": "The challenge states its evidence-to-fact relationship outright, so a reviewer can see exactly what is claimed and test it without reconstructing a missing premise."
+        }
+      },
+      "MODEL_OUTCOME": {
+        "unnecessaryProposal": false,
+        "note": "No proposal was owed on this row and none was made; the fact was challenged instead, which is the defensible outcome the row was built to elicit."
+      }
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "label": "HUMAN_VALIDATED_BOUNDED_DEVELOPMENT_COUNTS",
+  "warning": "EXACT COUNTS over 12 draws on 2 human-authoritative rows. NOT production accuracy rates and not convertible into any.",
+  "adjudicatedBy": "PRODUCT_OWNER",
+  "adjudicatedAt": "2026-09-04",
+  "totalPairs": 12,
+  "semanticallyCorrect": 8,
+  "partiallyCorrect": 4,
+  "incorrect": 0,
+  "ambiguous": 0,
+  "affectedDecisionCorrect": "12/12",
+  "materiallyUnsupportedHazardAssumptions": 0,
+  "evidenceSufficiencyWeaknesses": {
+    "count": 3,
+    "rowId": "HS-A1",
+    "pairs": [
+      "VC-08-1",
+      "VC-08-4",
+      "VC-08-6"
+    ]
+  },
+  "temporalScopeWeaknesses": {
+    "count": 1,
+    "rowId": "HS-E1",
+    "pairs": [
+      "VC-04-1"
+    ]
+  },
+  "compound": {
+    "acceptable": 0,
+    "acceptableWithFormatRepair": 0,
+    "unacceptable": 2,
+    "pairs": [
+      "VC-08-2",
+      "VC-08-3"
+    ],
+    "separationRule": "these two are BINDING_SEMANTICALLY_CORRECT AND COMPOUND_QUESTION_REPRESENTATION = UNACCEPTABLE simultaneously. A semantic binding is NOT downgraded because the customer-facing packaging is wrong."
+  },
+  "questionA_asksTheOwedFact": "12/12",
+  "questionB_answerResolvesIt": {
+    "yes": 8,
+    "partially": 4,
+    "no": 0
+  },
+  "owedTargetPreservation": {
+    "HS-A1": "6/6",
+    "HS-E1": "6/6"
+  },
+  "additiveGapNominationOnHsA1": {
+    "observed": "5/6",
+    "status": "ADDITIVE_GAP_DISCOVERY_RECALL = NOT_CURRENTLY_A_REQUIRED_AXIS",
+    "prohibition": "must NOT be converted into a required recall threshold — the denominator is one confirmed gap on one row"
+  },
+  "theDistinctionThatMatters": "Question A is Yes on ALL TWELVE: the closed-set binding mechanism selected the right target every time and ZERO bindings were incorrect. The four partials sit on question B — whether an answer would RESOLVE the fact. The defect class is therefore not target selection but EVIDENCE SUFFICIENCY in how much the question demands of the answer.",
+  "perPair": [
+    {
+      "pairId": "VC-08-1",
+      "rowId": "HS-A1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Partially",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "Yes, minor",
+      "E_distortionOrNarrowing": "Yes, minor",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_PARTIALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-08-2",
+      "rowId": "HS-A1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No material assumption",
+      "E_distortionOrNarrowing": "No material distortion",
+      "F_independentlyAnswerableIfCompound": "Yes",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-08-3",
+      "rowId": "HS-A1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "No",
+      "F_independentlyAnswerableIfCompound": "Yes",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-08-4",
+      "rowId": "HS-A1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Partially",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "Yes, minor",
+      "E_distortionOrNarrowing": "Yes, minor",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_PARTIALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-08-5",
+      "rowId": "HS-A1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No material assumption",
+      "E_distortionOrNarrowing": "No material distortion",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-08-6",
+      "rowId": "HS-A1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Partially",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "Yes, minor",
+      "E_distortionOrNarrowing": "Yes, minor",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_PARTIALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-04-1",
+      "rowId": "HS-E1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Partially",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "Yes — temporal ambiguity",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_PARTIALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-04-2",
+      "rowId": "HS-E1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "No",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-04-3",
+      "rowId": "HS-E1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "No",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-04-4",
+      "rowId": "HS-E1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "No",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-04-5",
+      "rowId": "HS-E1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "No",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    },
+    {
+      "pairId": "VC-04-6",
+      "rowId": "HS-E1",
+      "A_asksOwedFact": "Yes",
+      "B_answerResolvesIt": "Yes",
+      "C_affectedDecision": "Correct",
+      "D_unsupportedAssumption": "No",
+      "E_distortionOrNarrowing": "No",
+      "F_independentlyAnswerableIfCompound": "N/A",
+      "disposition": "BINDING_SEMANTICALLY_CORRECT"
+    }
+  ]
+}

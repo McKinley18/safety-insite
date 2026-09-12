@@ -1,0 +1,79 @@
+{
+  "artifact": "EVIDENCE-PACKAGE-DIGEST-234",
+  "fileCount": 18,
+  "evidencePackageDigest": "18409d3fbb1a7f4db5c680f756a298a43c194e195892259400a1f2607181b0df",
+  "files": [
+    {
+      "sha256": "b141ec79ce58b8d6bb568718f48e04875bb44258fe1552a97d8e82e321a1606e",
+      "file": "CALL-LEDGER-234.jsonl"
+    },
+    {
+      "sha256": "f4cbeb236f95ac830a0363d4a0a749158604f3f842dc8d201bdcc97d3d9fb9a4",
+      "file": "PROTECTED-IDENTITIES-234-AT-EXECUTION.json"
+    },
+    {
+      "sha256": "9efbba8d1b569cadc13467eb55e21ee04c63fdfa31c0a1d1d150087bb0c9cbdf",
+      "file": "PROTECTED-IDENTITIES-234-POST-EXECUTION.json"
+    },
+    {
+      "sha256": "ec4c405e3513ee27cbbd2f32a08cc1dd5dcce89faa948f74e8968320bc14e0eb",
+      "file": "PROTECTED-IDENTITIES-234-PRE-SPEND.json"
+    },
+    {
+      "sha256": "595bc06f984b8a2d82d3b7bb853b76569e719b9fdf07e1ee4c85644a43de93d4",
+      "file": "RAW-234-FIRST-PASS.jsonl"
+    },
+    {
+      "sha256": "cbef9050c82c941567ef84d9ead97c164bdb7139357a7e7cefa8db7d7d8d619d",
+      "file": "SECTION-234-EXECUTION-SUMMARY.json"
+    },
+    {
+      "sha256": "f57cc1834ae5b80962d9ac6bda6d5cb1e78d3fc069c16d79f0e4a6b1a4e26b5d",
+      "file": "SECTION-234-FAILURE-CLASSIFICATION.json"
+    },
+    {
+      "sha256": "b70c267df237dc6b59cd7d8a31aaa8a559bf8ffb177832e69dd15f9c4b1947cc",
+      "file": "SECTION-234-FROZEN-PROTOCOL.json"
+    },
+    {
+      "sha256": "a9ea70f31175a7972456d30f6d7fbfd594b8ae027cdae89d44995db845bd8848",
+      "file": "SECTION-234-INSTRUMENT.json"
+    },
+    {
+      "sha256": "7e2ba6e89c66ac199d111a03914a99bd41ed42482c921c2a01980e199b523168",
+      "file": "SECTION-234-JUDGMENT.json"
+    },
+    {
+      "sha256": "20b25c083600fd14ad440aff6376bfcbc73dd3960adadc63f38ff30e58f6092b",
+      "file": "SECTION-234-JUDGMENT.sha256"
+    },
+    {
+      "sha256": "50fc1cb1c19d7cc77406754df44262d9156b02628b931f9ca25b152d3c2e09d0",
+      "file": "SECTION-234-PACKAGE-DIGEST.json"
+    },
+    {
+      "sha256": "d11ae91124c3611885d89d14f827badba424501f7feca3b0777bca6611776944",
+      "file": "SECTION-234-POST-EXECUTION-FREEZE.json"
+    },
+    {
+      "sha256": "8e30ccc1b15a5aa9b1f31426a40ec8fef0cf768dc4d15d35a196416a3c95ef99",
+      "file": "SECTION-234-PRE-SPEND-IDENTITY.json"
+    },
+    {
+      "sha256": "a9721b5eefdb67636ad0d0c06eea5f833a26d7523ea7f0b5c0ef5cc9e53b3333",
+      "file": "SECTION-234-REPORT.md"
+    },
+    {
+      "sha256": "b7b496301a1eec4b5bc8d1564093aa6184a30950989b818e76cd24d008c9f957",
+      "file": "SECTION-234-SCORING-RULES.json"
+    },
+    {
+      "sha256": "c553236b9b0e521e94634ce400a7f67662e9a9b97fa97e46fe4ab00dcb831bef",
+      "file": "SECTION-234-TRUTH-CONTRACT.json"
+    },
+    {
+      "sha256": "5ae100647de251fffdee1de4a8233b4136b864b331305297d2aad820682520f2",
+      "file": "SECTION-234-TRUTH-PREFLIGHT.json"
+    }
+  ]
+}

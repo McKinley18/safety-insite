@@ -1,0 +1,67 @@
+{
+  "artifact": "§153 PROSPECTIVE ADJUDICATION SIDECAR — REPLICATE 2",
+  "writeOnce": true,
+  "frozenBeforeAnyProviderCall": true,
+  "purpose": "Fix the §152 row dispositions BEFORE replicate-2 output exists, so no denominator can be chosen after seeing the data. §151 found four answer-key defects, every one in the model's favour; a denominator decided post hoc would be the same failure wearing a different hat.",
+  "appliesTo": {
+    "fixtureSet": "hazlenz.expert.hardened-development.fixtures.v9",
+    "fixtureDigest": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+    "promptVersion": "hazlenz.expert.prompt.v13"
+  },
+  "dispositions": {
+    "HS-A1": {
+      "semanticStatus": "EXECUTION_ANOMALY_IN_§152_ONLY",
+      "rowEligibleInReplicate2": true,
+      "rule": "Score normally if replicate-2 output is non-degenerate. Classify as an execution anomaly again ONLY if the degenerate detector condemns it in THIS replicate. NEVER infer that the row is invalid from §152's provider stub — the stub was the provider's, not the fixture's.",
+      "primaryRequiredDenominator": "INCLUDED"
+    },
+    "HS-F1": {
+      "fixtureStatus": "FIXTURE_CONFOUNDED",
+      "reason": "the observation says the footpath is 'open to pedestrians at the far end', leaving the near end ambiguous, and §152's model asked about exactly that ambiguity",
+      "primaryRequiredDenominator": "EXCLUDED",
+      "literalResultRetained": true
+    },
+    "HS-H1": {
+      "fixtureStatus": "AUTHORING_VALID",
+      "reason": "§152's one clean model miss — it asked about the deliberate alarm distractor rather than the authored cooling-hold selector, on a row with no wording ambiguity and three enumerated selectors",
+      "primaryRequiredDenominator": "INCLUDED",
+      "role": "PRIMARY STABILITY CHECK for the residual miss"
+    },
+    "HS-M1": {
+      "fixtureStatus": "FIXTURE_DEFECT",
+      "reason": "class C. The supplied record requires oxygen, flammable-gas AND toxic-air-contaminant testing; the observation supplies two and is silent on the third. The author's NO_SIBLING_DECISION_CRITICAL_GAP signature was false. The model was right.",
+      "primaryForbiddenDenominator": "EXCLUDED",
+      "literalResultRetained": true
+    }
+  },
+  "allOtherRows": "remain AUTHORING_VALID and eligible: HS-B1 HS-C1 HS-D1 HS-E1 HS-G1 (REQUIRED); HS-J1 HS-K1 HS-L1 HS-N1 HS-P1 HS-Q1 HS-R1 (FORBIDDEN)",
+  "preregisteredDenominators": {
+    "PRIMARY_REQUIRED": [
+      "HS-A1",
+      "HS-B1",
+      "HS-C1",
+      "HS-D1",
+      "HS-E1",
+      "HS-G1",
+      "HS-H1"
+    ],
+    "PRIMARY_REQUIRED_EXCLUDED": [
+      "HS-F1"
+    ],
+    "PRIMARY_FORBIDDEN": [
+      "HS-J1",
+      "HS-K1",
+      "HS-L1",
+      "HS-N1",
+      "HS-P1",
+      "HS-Q1",
+      "HS-R1"
+    ],
+    "PRIMARY_FORBIDDEN_EXCLUDED": [
+      "HS-M1"
+    ]
+  },
+  "HS_R1_STANDING_FALSIFIER": "HS-R1 remains the pre-registered CONSEQUENCE-MAGNITUDE probe. §152's silent result triggered its falsifier. A second silent result strengthens that; a speaking result would reopen the axis for characterization — NOT for immediate v14 implementation.",
+  "postSpendRule": "These dispositions MUST NOT be revised after seeing replicate-2 output unless an objective NEW fixture defect is discovered. If one is: preserve the literal score, flag the row separately, and DO NOT silently mutate this preregistered denominator.",
+  "v14": "NOT JUSTIFIED. NOT IMPLEMENTED. This operation does not reopen it."
+}

@@ -1,0 +1,43 @@
+EXPERT HAZLENZ -- TARGETED HOSTED CONFIRMATION (R4 x3, R6 x3, R5 control x1)
+provider   anthropic   model claude-sonnet-5
+contract   hazlenz.expert.analysis.v2   prompt hazlenz.expert.prompt.v4   (UNCHANGED)
+ceiling    7 calls   $3.00
+planned    7 calls
+
+  R4 #1 (R4_PRIMARY)  HTTP 200  25883ms  in=6922 out=2692  $0.0408
+     cand=3 clar=5 ins=1 dis=1  outcome=ANALYZED
+     R4 classification: R4_CANDIDATE_SURVIVED
+  R4 #2 (R4_PRIMARY)  HTTP 200  25894ms  in=6922 out=2812  $0.0420
+     cand=3 clar=5 ins=1 dis=1  outcome=ANALYZED
+     R4 classification: R4_CANDIDATE_SURVIVED
+  R4 #3 (R4_PRIMARY)  HTTP 200  28165ms  in=6922 out=3008  $0.0439
+     cand=3 clar=5 ins=2 dis=1  outcome=ANALYZED
+     R4 classification: R4_CANDIDATE_SURVIVED
+  R6 #1 (R6_PRIMARY)  HTTP 200  10749ms  in=6912 out=1111  $0.0249
+     cand=1 clar=2 ins=0 dis=0  outcome=ANALYZED
+     OVER-ROUTED  expertHazardCandidates[0] (unsupported candidate)  "machine_guarding / The guard was removed to perform work on the press, which exposes machine hazards (pinch points, stored mechanical hazards) unless the guard is restored before re-energization."
+     OVER-ROUTED  decisionCriticalClarifications[0] (unnecessary clarification)  "Will the guard be reinstalled and verified before lockout is removed and the press is re-energized?"
+     OVER-ROUTED  decisionCriticalClarifications[1] (unnecessary clarification)  "What task is being performed while the guard is removed, and is any residual stored energy source (e.g., springs, counterweights, or pneumatic accumulators) present beyond what was bled down?"
+  R6 #2 (R6_PRIMARY)  HTTP 200  11527ms  in=6912 out=1054  $0.0244
+     cand=1 clar=2 ins=0 dis=0  outcome=ANALYZED
+     OVER-ROUTED  expertHazardCandidates[0] (unsupported candidate)  "machine_guarding / The guard was removed to perform work on the press, and there is no statement about whether or when the guard will be reinstalled before the press is returned to service."
+     OVER-ROUTED  decisionCriticalClarifications[0] (unnecessary clarification)  "Will the guard be reinstalled and verified in place before the lockout is removed and the press is re-energized?"
+     OVER-ROUTED  decisionCriticalClarifications[1] (unnecessary clarification)  "What is the work being performed while the guard is removed, and is there any residual exposure to workers accessing the point of operation during this window?"
+  R6 #3 (R6_PRIMARY)  HTTP 200  12015ms  in=6912 out=1076  $0.0246
+     cand=1 clar=2 ins=0 dis=0  outcome=ANALYZED
+     OVER-ROUTED  expertHazardCandidates[0] (unsupported candidate)  "machine_guarding / The guard was removed to access the press after lockout, but the observation does not state whether the guard has been reinstalled or whether work is complete, leaving an open question about current guarding status."
+     OVER-ROUTED  decisionCriticalClarifications[0] (unnecessary clarification)  "What task is being performed now that the guard is removed and the press is locked out, and will the guard be reinstalled and verified before the press is returned to service?"
+     OVER-ROUTED  decisionCriticalClarifications[1] (unnecessary clarification)  "Who has authority to remove the lockout/tag, and is there a written or verified procedure confirming all workers are clear before re-energization?"
+  R5 #1 (CONTROL)  HTTP 200  20171ms  in=6926 out=2092  $0.0348
+     cand=3 clar=3 ins=2 dis=0  outcome=ANALYZED
+
+---------------- R4 VERDICT ----------------
+  3/3 survived   verdict=R4_HOSTED_FAILURE_NOT_REPRODUCED
+---------------- R6 VERDICT ----------------
+  0/3 clean   total over-routed items=9   collections=expertHazardCandidates, decisionCriticalClarifications   verdict=R6_HOSTED_OVERROUTING_REPRODUCED
+---------------- CONTROL (R5/HG11) ----------------
+  ok=true   rows=[{"candidates":3,"clarifications":3,"insights":2,"disagreements":0}]
+
+TERMINAL: EXPERT_HAZLENZ_R6_HOSTED_OVERROUTING_CONFIRMED -- HOSTED_NEGATIVE_CONTROL_REPAIR_REQUIRED
+calls: 7/7 attempted  7/7 completed clean  cost $0.2353 of $3.00
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE   EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE

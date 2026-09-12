@@ -1,0 +1,9 @@
+{
+  "//": "SECTION 218 EXPERIMENT SCOPE ONLY. Typechecks the §218 structured property-verifier files plus the §210i-§217 modules they build on, and NOTHING ELSE. Report as EXPERIMENT_SCOPE_TYPECHECK (§218), never as `tsc clean`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-21*-*.ts", "scripts/test-21*-*.ts", "scripts/verify-212-*.ts",
+    "scripts/build-21*-*.ts", "scripts/execute-21*-*.ts"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "identifier": "FORMAL_EXPERT_NEGATIVE_CONTROL_AUGMENTATION_V2",
+  "rows": 16,
+  "order": "AUG-01 .. AUG-16, authored order, immutable after seal",
+  "manifestSha256": "b2e96cc5b4fcfd61aa1159a85fcdd34915f883e3fba2d30948cdf65cad30bf64",
+  "truthKeySha256": "29a0c38e0a391d392a75c246affa9d1a848fc1f9b84eac658a6303bfdb329169",
+  "provenanceSha256": "5f0b533896ada99ab7997359019deb16a4e36ac58819d7ca636b47e3d36f233e",
+  "newNegativeControlOpportunities": 12,
+  "projectedAvailableCapability": 55,
+  "distribution": {
+    "ROWS_WITH_FORBIDDEN_FAMILY_TRUTH": {
+      "actual": 12,
+      "required": 10
+    },
+    "SAFE_RESOLVED_OR_NEGATED": {
+      "actual": 6,
+      "required": 4
+    },
+    "ACTIVE_HAZARD": {
+      "actual": 8,
+      "required": 4
+    },
+    "MULTI_FAMILY_OR_SIBLING_ROUTING": {
+      "actual": 4,
+      "required": 4
+    },
+    "CLARIFICATION_NOT_OWED": {
+      "actual": 13,
+      "required": 4
+    },
+    "CLARIFICATION_OWED": {
+      "actual": 3,
+      "required": 2
+    },
+    "GOVERNED_RECORD_MATCHABLE": {
+      "actual": 14,
+      "required": 4
+    }
+  },
+  "recordedInteractions": 3,
+  "truthLeak": 0,
+  "providerInvocationCount": 0,
+  "knownProviderCaseCopy": false
+}

@@ -1,0 +1,98 @@
+{
+  "artifact": "§154 PROSPECTIVE MEASUREMENT SIDECAR — REPLICATE 3",
+  "writeOnce": true,
+  "frozenBeforeAnyProviderCall": true,
+  "purpose": "Carry the §152/§153 semantic dispositions forward UNCHANGED and freeze the measurement instruments, so replicate 3 is scored against a denominator and a detector that both existed before its output did.",
+  "appliesTo": {
+    "fixtureSet": "hazlenz.expert.hardened-development.fixtures.v9",
+    "fixtureDigest": "434c127c44a8d6d8592c1b6e6c1cd01599428143f44737b19335a3123a7fe194",
+    "promptVersion": "hazlenz.expert.prompt.v13"
+  },
+  "instrumentsFrozen": {
+    "degenerateDetector": {
+      "version": "hazlenz.expert.degenerate-output-detector.v2",
+      "sha256": "86fa9b1653d4b66b1665c41cc67de9853b7f2e8e22adb3c5b03b790cc202856d",
+      "changeFromV1": "adds NEAR_PLACEHOLDER_GARBLING and MEANINGLESS_IDENTIFIER to close the gap §153 disclosed (its HS-A1: summary 'summary placis a a placeholder', candidateKey 'x'). The two-signal threshold is UNCHANGED, so each new rule is one signal and neither convicts alone. Closed PROSPECTIVELY, before replicate-3 output exists."
+    },
+    "familyComparisonMap": {
+      "version": "hazlenz.expert.family-comparison-map.v1",
+      "sha256": "76f86359b2622502ff28ca7a0cc151085636963d11714bec866588813faabea4"
+    }
+  },
+  "dispositionsCarriedForward": {
+    "HS-F1": {
+      "fixtureStatus": "FIXTURE_CONFOUNDED",
+      "primaryRequiredDenominator": "EXCLUDED",
+      "literalResultRetained": true
+    },
+    "HS-M1": {
+      "fixtureStatus": "FIXTURE_DEFECT",
+      "primaryForbiddenDenominator": "EXCLUDED",
+      "literalResultRetained": true
+    },
+    "HS-H1": {
+      "fixtureStatus": "AUTHORING_VALID",
+      "primaryRequiredDenominator": "INCLUDED",
+      "role": "PRIMARY RECURRENT-ROW INVESTIGATION — R1 distractor selection, R2 silence with the doubt retained in two channels"
+    },
+    "HS-E1": {
+      "fixtureStatus": "AUTHORING_VALID",
+      "primaryRequiredDenominator": "INCLUDED",
+      "role": "PRIMARY VARIANCE ROW — R1 exact recovery, R2 silence"
+    },
+    "HS-A1": {
+      "semanticStatus": "EXECUTION_ANOMALY_IN_BOTH_PRIOR_REPLICATES",
+      "rowEligibleInReplicate3": true,
+      "rule": "Score normally if replicate-3 output is non-degenerate. If detector v2 condemns it, classify DEGENERATE_EXECUTION and exclude from the EXECUTION-VALID view only — never from LITERAL or PREREGISTERED. NEVER infer the row is invalid from provider behaviour."
+    },
+    "HS-K1": {
+      "semanticStatus": "EXECUTION_ANOMALY_IN_§153_ONLY",
+      "rowEligibleInReplicate3": true,
+      "rule": "same as HS-A1"
+    }
+  },
+  "preregisteredDenominators": {
+    "PRIMARY_REQUIRED": [
+      "HS-A1",
+      "HS-B1",
+      "HS-C1",
+      "HS-D1",
+      "HS-E1",
+      "HS-G1",
+      "HS-H1"
+    ],
+    "PRIMARY_REQUIRED_EXCLUDED": [
+      "HS-F1"
+    ],
+    "PRIMARY_FORBIDDEN": [
+      "HS-J1",
+      "HS-K1",
+      "HS-L1",
+      "HS-N1",
+      "HS-P1",
+      "HS-Q1",
+      "HS-R1"
+    ],
+    "PRIMARY_FORBIDDEN_EXCLUDED": [
+      "HS-M1"
+    ]
+  },
+  "threeScoreLayers": {
+    "A_LITERAL": "frozen fixture scoring, no adjudication",
+    "B_PREREGISTERED_ADJUDICATED": "the semantic sidecar dispositions only — IDENTICAL membership to §153's, so B is directly comparable across all three replicates",
+    "C_EXECUTION_VALID_R3": "B minus rows detector v2 condemns in THIS replicate"
+  },
+  "postHocCommonDetectorDiagnostic": {
+    "permitted": true,
+    "reason": "detector v2 differs from the v1 used prospectively in §153, so the three replicates' execution-valid layers are not directly comparable. Raw wire is preserved for §152 and §153, so v2 can be applied to both.",
+    "constraints": [
+      "MUST be labelled POST HOC",
+      "MUST NOT overwrite §152 or §153 historical scores",
+      "may be used ONLY to understand execution-quality comparability"
+    ]
+  },
+  "postSpendRule": "Denominator membership MUST NOT change after seeing replicate-3 output. A genuinely new objective fixture defect is reported SEPARATELY with the literal result preserved.",
+  "rerunPolicy": "NONE. A degenerate row is recorded and continued past. No row is re-executed.",
+  "v14_v15": "NOT IMPLEMENTED. This operation does not reopen either.",
+  "threeDrawCaveat": "THREE DRAWS DO NOT ESTIMATE THE COMPLETE MODEL DISTRIBUTION. The purpose is to identify STABLE, UNSTABLE and RECURRENT behavioural shapes, not to compute probabilities."
+}

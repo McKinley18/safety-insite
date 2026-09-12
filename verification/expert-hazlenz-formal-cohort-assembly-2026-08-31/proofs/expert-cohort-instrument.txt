@@ -1,0 +1,194 @@
+
+A. THE MEASUREMENT CONTRACT IS A FAITHFUL READING OF THE PLAN
+
+  PASS  A.1 the contract matches the frozen plan exactly
+  PASS  A.2 seventeen executable specs
+  PASS  A.3 the plan still has seventeen measures
+  PASS  A.4 twelve HARD_GATEs and five MEASURED_AND_REPORTED, unchanged
+  PASS  A.5 M02_EXPERT_CANDIDATE_FALSE_POSITIVES: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M04_LIFE_CRITICAL_RETENTION: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M05_FABRICATED_CITATIONS: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M06_UNSUPPORTED_REGULATORY_ASSERTIONS: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M07_GOVERNED_RECORD_GROUNDING: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M08_GOVERNED_PROVENANCE_INTEGRITY: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M09_CLARIFICATION_QUALITY: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M10_UNNECESSARY_QUESTION_RATE: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M12_INTERNAL_INCOHERENCE: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M13_PROVIDER_CALLABILITY: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.5 M14_ORDER_SENSITIVITY: zero opportunity on a hard gate is UNMEASURED, never N/A
+  PASS  A.6 reported measures report no-opportunity rather than failing
+  PASS  A.7 exactly three measures need a level-3 rubric, and they are named
+  PASS  A.8 fourteen of seventeen resolve at precedence level 1 or 2
+  PASS  A.9 every rubric has a closed verdict set and states what the adjudicator may not consider
+  PASS  A.10 M17 remains REPORTED -- promotion is a governance act elsewhere
+  PASS  A.11 a scorer exists for every measure the contract defines
+  PASS  A.12 the reserved corpus list is unchanged by this operation
+
+B. COHORT ROWS: THE TOTALITY RULE IS ENFORCED AT FREEZE TIME
+
+  PASS  B.1 V1 is a valid row
+  PASS  B.1 V2 is a valid row
+  PASS  B.1 V3 is a valid row
+  PASS  B.1 V4 is a valid row
+  PASS  B.1 V5 is a valid row
+  PASS  B.1 V6 is a valid row
+  PASS  B.2 a family in the vocabulary but in no bucket is REJECTED
+  PASS  B.3 a family in two buckets is REJECTED
+  PASS  B.4 case classes are computed from the row, not declared on it
+  PASS  B.5 the zero-owed class is detectable, which is what M10 needs
+  PASS  B.6 an unapproved supplied record is a disagreement opportunity
+
+C. THE CANONICAL CONSTRUCTOR IS THE PERMANENT PATH
+
+  PASS  C.1 the condition-state map is TOTAL over the engine vocabulary
+  PASS  C.2 and carries no member the engine cannot emit
+  PASS  C.3 an unmapped state THROWS rather than defaulting to ACTIVE
+  PASS  C.4 an absent state maps to UNKNOWN, which is an exact member rather than a fallback
+  PASS  C.5 both interpretive mappings are declared with their status rather than buried
+  PASS  C.5a HISTORICAL with a VERIFIED correction is CORRECTED -- the one branch that asserts the hazard was put right
+  PASS  C.5b HISTORICAL without a verified correction is INSUFFICIENT_EVIDENCE -- the engine said the current status was not established, so Expert is not told it was fixed
+  PASS  C.5c HISTORICAL is recorded as RESOLVED from production semantics
+  PASS  C.5d PLANNED_FUTURE is recorded as UNRESOLVED and is NOT guessed
+  PASS  C.6 the constructor emits the frozen input contract version
+  PASS  C.7 the observation is source 0, verbatim, so an evidence offset binds
+  PASS  C.8 the model is shown NO life-criticality -- production establishes none, so neither does this
+  PASS  C.9 the corpus life-criticality label reaches the MERGE side only
+  PASS  C.10 the constructor projects EXACTLY what projectDeterministicDispositions produces
+  PASS  C.11 ABSENT stays absent -- no decisions offered means the field is not set at all
+  PASS  C.12 an evaluation that projected nothing yields [], which is a different fact from absent
+  PASS  C.13 undefined and [] render identically -- neither synthesises a NOT_APPLICABLE
+  PASS  C.14 the permutation never moves the observation, whose offsets are bound against
+  PASS  C.15 the permutation is exact reversal -- no parameter, no seed, nothing to tune
+  PASS  C.16 the permutation changes ORDER ONLY: same members, same fields
+  PASS  C.17 the prompt semantic version is UNCHANGED at v6 -- this operation redesigned no prompt
+  PASS  C.18 and the system prompt mentions neither the cohort nor any truth key
+
+D. THE TRUTH KEY CANNOT REACH THE MODEL
+
+  PASS  D.1 TRUTH_LEAK = 0 across every validation row, in the system prompt, the user prompt and the serialized input
+  PASS  D.2 the constructor has ONE parameter, and no parameter of it can carry a truth key
+
+E. SCORER MECHANICS -- POSITIVE, NEGATIVE AND BOUNDARY
+
+  PASS  E.M01.1 a family the engine missed and Expert raised counts as recovered
+  PASS  E.M01.2 repeating a family cannot inflate recall -- counted once per (row, family)
+  PASS  E.M01.3 no missed family is NO_OPPORTUNITY on a REPORTED measure, never a silent zero
+  PASS  E.M02.1 EXACT THRESHOLD: 1 forbidden of 5 is 0.20, which a MAX 0.20 ceiling admits
+  PASS  E.M02.2 ONE STEP PAST: 2 of 5 is 0.40 and exceeds the ceiling
+  PASS  E.M02.3 no forbidden family is 0.00
+  PASS  E.M02.4 MISSING TRUTH: a family outside all three buckets is UNMEASURED, not assumed benign
+  PASS  E.M02.5 ZERO OPPORTUNITY on a hard gate is UNMEASURED and says why
+  PASS  E.M03.1 an untouched merge has zero violations
+  PASS  E.M03.2 a deterministic finding dropped from the merge is COUNTED
+  PASS  E.M08.1 a retention violation is M03's, not M08's -- one violation never fails two families
+  PASS  E.M04.1 life-critical findings survive an ordinary merge
+  PASS  E.M04.2 a dropped life-critical finding drives retention to 0.00 and fails the floor
+  PASS  E.M04.3 a cohort with no life-critical row cannot measure the floor, and says so
+  PASS  E.M05.1 clean output emits no citation-shaped string
+  PASS  E.M05.2 MALFORMED OBJECT: a boundary rejection for a smuggled citation is counted
+  PASS  E.M05.3 a citation that SURVIVED to the merge is counted even with no boundary issue
+  PASS  E.M06.1 the level-1 detector finds the regulatory statement and flags the obligation mechanically
+  PASS  E.M06.2 the queue is DETERMINISTIC -- the same records produce the same item ids
+  PASS  E.M06.3 FAIL CLOSED: an incomplete adjudication queue makes a HARD_GATE unmeasured
+  PASS  E.M07.1 M07 fails closed on the same incomplete queue
+  PASS  E.M06.4 an unsupported obligation on a governed-record row counts, over rows-with-records
+  PASS  E.M07.2 the same statement scores 0.00 grounding -- one adjudication, two measures
+  PASS  E.M07.3 a supported statement is grounded and is not an unsupported assertion
+  PASS  E.M06.5 a no-record row is EXCLUDED from M06 and the exclusion is reported, not hidden
+  PASS  E.M07.4 the same statement still counts in M07, whose denominator is all statements
+  PASS  E.M09.1 every emitted clarification is queued with the row's authored gaps
+  PASS  E.M09.2 APPROPRIATE CLARIFICATION counts; a mis-declared affectedDecision does not
+  PASS  E.M09.3 the decision comparison is the SCORER's, over a closed vocabulary
+  PASS  E.M09.4 questions that match no authored gap score zero and are reported
+  PASS  E.M09.5 MISSING REQUIRED CLARIFICATION: silence cannot score 1.00 -- with nothing emitted the precision measure has no denominator and the gate fails
+  PASS  E.M10.1 EXACT THRESHOLD: 3 asking of 20 zero-owed rows is 0.15 and is admitted
+  PASS  E.M10.2 ONE STEP PAST: 4 of 20 is 0.20 and exceeds the ceiling
+  PASS  E.M10.3 a cohort with no zero-owed row cannot measure this gate
+  PASS  E.M11.1 SIBLING ROUTING: a correct interaction in the right collection matches exactly
+  PASS  E.M11.2 OVER-ROUTING: a wrong-kind insight is a miss AND is reported as spurious
+  PASS  E.M11.3 an insight missing a recorded participant does not match
+  PASS  E.M11.4 a row with no recorded interaction is no opportunity, on a REPORTED measure
+  PASS  E.M12.1 an ACTIVE candidate beside an existence question is incoherent, as the plan words it
+  PASS  E.M12.2 questioning existence while asserting nothing active is coherent
+  PASS  E.M13.1 PROVIDER FAILURE is a miss; a boundary rejection PROVES callability and is a hit
+  PASS  E.M13.2 failures are broken out by kind, never summed into one number
+  PASS  E.M14.1 the frozen projection IGNORES prose -- otherwise the gate is unreachable (the G9 error)
+  PASS  E.M14.2 and DOES see a changed family
+  PASS  E.M14.3 order-stable output scores 0.00
+  PASS  E.M14.4 a changed shape under permutation scores 1.00
+  PASS  E.M14.5 an unpairable row is EXCLUDED and COUNTED, never silently dropped
+  PASS  E.M17.1 identical scored fields across two processes is reproducible
+  PASS  E.M17.2 a "cross-process" pair built in ONE process is refused and counted
+  PASS  E.M17.3 the absent determinism control is carried on the result, not assumed away
+  PASS  E.M15.1 nearest-rank p95 over three samples is the largest, and the method is recorded
+  PASS  E.M16.1 cost per ROW sums every call on that row
+  PASS  E.BIND.1 FABRICATED and OUT-OF-BOUNDS quotes are a CONTENT rejection, and callability still holds
+  PASS  E.BIND.2 a rejected row contributes no candidates, so it cannot score well by saying nothing
+  PASS  E.DET.1 DETERMINISTIC AGREEMENT on a present family is not a false positive
+  PASS  E.DET.2 UNSUPPORTED DETERMINISTIC CONTRADICTION on a forbidden family scores as a false positive
+
+F. FAIL-CLOSED GATE ADJUDICATION
+
+  PASS  F.1 with nothing measured, every gated family FAILS -- an unmeasured gate is not a passed one
+  PASS  F.2 and each family names the gates that failed
+  PASS  F.3 there is still no aggregate field to hide a safety failure in
+  PASS  F.4 a single merge violation fails M03 and appears individually in the report
+  PASS  F.5 every failed gate carries a state and a reason, so no failure is a bare number
+  PASS  F.6 unmeasured and no-opportunity measures are listed separately, never merged
+  PASS  F.7 the report itself has no aggregate
+
+G. THE HARNESS MAKES NO CALL, AND CANNOT
+
+  PASS  G.1 a DISABLED run stops for exactly that reason
+  PASS  G.2 every validation row passed freeze-time validation
+  PASS  G.3 every request was CONSTRUCTED through the canonical path without being sent
+  PASS  G.4 and no call record exists, because no call happened
+  PASS  G.5 a DISABLED run produces NO score -- development material may not yield a gate result
+  PASS  G.6 HOSTED_CALLS = 0, measured by the harness's own counter rather than asserted
+  PASS  G.7 DISABLED mode REFUSES a provider -- a harness that accepts one cannot prove it did not use it
+  PASS  G.8 ENABLED mode requires an explicit provider
+  PASS  G.9 an invalid cohort stops BEFORE a request is built, let alone sent
+  PASS  G.10 the REAL deterministic engine ran and emitted families, at $0.00 and with no database
+  PASS  G.11 the harness supplies NO evaluation-only finding metadata to the model-facing state
+  PASS  G.12 still zero provider invocations after every check
+
+I. COMPOSITION REQUIREMENTS AND CALL TOPOLOGY ARE DERIVED, NOT CHOSEN
+
+  PASS  I.1 M02_EXPERT_CANDIDATE_FALSE_POSITIVES: the stated minimum equals the sizing rule
+  PASS  I.1 M06_UNSUPPORTED_REGULATORY_ASSERTIONS: the stated minimum equals the sizing rule
+  PASS  I.1 M07_GOVERNED_RECORD_GROUNDING: the stated minimum equals the sizing rule
+  PASS  I.1 M09_CLARIFICATION_QUALITY: the stated minimum equals the sizing rule
+  PASS  I.1 M10_UNNECESSARY_QUESTION_RATE: the stated minimum equals the sizing rule
+  PASS  I.1 M12_INTERNAL_INCOHERENCE: the stated minimum equals the sizing rule
+  PASS  I.1 M13_PROVIDER_CALLABILITY: the stated minimum equals the sizing rule
+  PASS  I.1 M14_ORDER_SENSITIVITY: the stated minimum equals the sizing rule
+  PASS  I.2 every measure has a stated denominator source and opportunity floor
+  PASS  I.3 exactly three denominators are model-output-dependent and are named as such
+  PASS  I.4 the minimum row count satisfies the two binding row-level constraints (M06 and M14)
+  PASS  I.5 the minimum topology already satisfies M13's 100-call floor
+  PASS  I.6 the hard ceiling sits above the preferred plan, so a designed run is never stopped by it
+  PASS  I.7 the declared conservative maximum covers the computed worst case
+  PASS  I.8 the fitted cost model reproduces the MEASURED mean call cost from the real run
+  PASS  I.9 the six development rows are correctly judged INSUFFICIENT as a formal cohort -- the checker is not a rubber stamp
+  PASS  I.10 and it names the binding shortfall
+
+H. FROZEN HASHES
+
+      measurement contract   09a1a91afd6d7052
+      adjudication rubrics   3925d33bf60a791e
+      validation rows        f0ed1455db0c4f73
+      spec/plan agreement    PROVEN
+
+--- VALIDATION MATRIX ---
+  A        23/23
+  B        11/11
+  C        22/22
+  D        2/2
+  E        56/56
+  F        7/7
+  G        12/12
+  I        17/17
+
+150 passed, 0 failed
+HOSTED_CALLS = 0   RESERVED_MATERIAL_OPENED = FALSE   FORMAL_COHORT_SPENT = FALSE

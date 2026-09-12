@@ -1,0 +1,485 @@
+{
+  "artifact": "SECTION-234-FAILURE-CLASSIFICATION",
+  "version": "hazlenz.expert.234.posture-discrimination.v1",
+  "additiveOnly": true,
+  "judgmentModified": false,
+  "judgmentDigestClassified": "7e2ba6e89c66ac199d111a03914a99bd41ed42482c921c2a01980e199b523168",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "classification": {
+    "NO_FAILURE": [
+      "D3",
+      "E2",
+      "E4",
+      "F2",
+      "S3"
+    ],
+    "WRONG_POSTURE_DEGREE": [
+      "S2"
+    ],
+    "WRONG_CONTROLLING_PROPERTY": [],
+    "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE": [
+      "D1",
+      "D2",
+      "D4",
+      "E1",
+      "E3",
+      "F1",
+      "F3",
+      "S1"
+    ],
+    "RECOMMENDATION_PROJECTION_DEFECT": [],
+    "CONTROL_TIMING_OR_RESUME_INCONSISTENCY": [
+      "E2"
+    ],
+    "PROVIDER_OR_TRANSPORT_ANOMALY": [
+      "F4",
+      "S4"
+    ],
+    "MANUFACTURED_DECLARATION_CARRYING_ACTION": [
+      "E2",
+      "S2",
+      "S3"
+    ]
+  },
+  "recommendationProjectionReading": {
+    "judgmentReportsContradictions": 10,
+    "ofWhichAreSimplyTheRefusedCases": 10,
+    "independentRecommendationDefectsOnAdmittedOutputs": [],
+    "conclusion": "the recommendation projection did not fail once on an output the contract admitted. Recommendation silence was structurally prevented exactly as §233 claimed."
+  },
+  "wireShapeCensus234": {
+    "calls": 16,
+    "toolCallEnvelope": 2,
+    "requiredRootFieldAbsent": 1,
+    "structuredFieldEmittedAsString": 3,
+    "duplicatedRootKey": 1,
+    "clean": 10
+  },
+  "wireShapeBaseRate231": {
+    "calls": 30,
+    "toolCallEnvelope": 1,
+    "requiredRootFieldAbsent": 1,
+    "structuredCoreFieldEmittedAsString": 0,
+    "outcomeEmittedAsString": "29/30",
+    "note": "measured from SPENT §231 evidence for DIAGNOSIS ONLY. §231 is not rescored, not reinterpreted and does not become any part of the §234 result."
+  },
+  "whatTheComparisonSupports": "Emitting `outcome` as a string is a pre-existing base-contract behaviour (29/30 in §231) and is harmless because nothing in the §233 projection reads it. Emitting a STRUCTURED field that the projection DOES read as a string was not observed once in thirty §231 calls and was observed three times in sixteen §234 calls, twice on the posture object itself. That is a hypothesis about the larger §233 payload, NOT a demonstrated cause. n=16 cannot establish a rate and this must not be reported as one.",
+  "contractInstructionGap": {
+    "finding": "THE §233 PROJECTION ENFORCES THREE RULES THE TRANSMITTED INSTRUCTION NEVER STATES.",
+    "rules": [
+      {
+        "invariant": "P2",
+        "enforced": "a reference may not appear in BOTH requiredBy and acceptedWithoutImmediateAction",
+        "statedInThePrompt": false,
+        "statedInTheSchemaDescription": false,
+        "casesRefused": [
+          "D1",
+          "D2"
+        ]
+      },
+      {
+        "invariant": "P3",
+        "enforced": "EVERY emitted declaration must appear in one of the two lists",
+        "statedInThePrompt": false,
+        "statedInTheSchemaDescription": false,
+        "casesRefused": [
+          "D4"
+        ]
+      },
+      {
+        "invariant": "P3",
+        "enforced": "EVERY self-asserted ACTIVE candidate must appear in one of the two lists",
+        "statedInThePrompt": false,
+        "statedInTheSchemaDescription": false,
+        "casesRefused": [
+          "S1"
+        ]
+      }
+    ],
+    "whyThisMatters": "this is the §139 signature the §233 implementation applied to the posture ENUM and did not apply to the LIST SEMANTICS. On D1 and D2 the model listed a hazard as both a reason for CONTINUE and as accepted without action, which is a coherent thing to mean and is refused by a rule it was never given. S1 is different: an ACTIVE candidate appears in neither list, which is a genuine model omission under any reading.",
+    "thisIsAContractDefectNotAPostureDegreeDefect": true
+  },
+  "invariantGapObserved": {
+    "finding": "a resumeCondition emitted under a posture that PERMITS continued work is not refused.",
+    "evidence": "E2 selected CONTINUE_WITH_CONTROLS and populated resumeCondition.resolvedByDeclarationIds. §233 P4 requires a resume condition when the posture does not permit work; nothing refuses one when it does.",
+    "consequence": "the projected recommendation state carries a resume gate on work the same object says may continue.",
+    "recordedNotRemediated": true
+  },
+  "manufacturedDeclarationFinding": {
+    "count": 3,
+    "cases": [
+      {
+        "caseId": "E2",
+        "declarationIds": [
+          "decl-co-rate"
+        ]
+      },
+      {
+        "caseId": "S2",
+        "declarationIds": [
+          "decl-1"
+        ]
+      },
+      {
+        "caseId": "S3",
+        "declarationIds": [
+          "decl_trolley_present"
+        ]
+      }
+    ],
+    "theOneThatCausedHarm": "S2. The model declared whether the locking ring is fully engaged as an UNRESOLVED FACT on a case whose controlling property — a door interlock defeated by a jumper wire, found and logged — is established, and used that invented unknown to select HOLD_PENDING_VERIFICATION instead of STOP. This is the §231 M4 shape, and here it produced the safety-critical under-conservative error rather than merely a restraint failure.",
+    "p3DidNotPreventIt": "P3 requires every declaration to be COVERED by the posture. A manufactured declaration placed in requiredBy is covered, so P3 admits it. Coverage was never a test of whether the declaration should exist."
+  },
+  "diagnosticPostureRead": {
+    "labelledDiagnosticOnly": true,
+    "doesNotChangeAnyVerdict": true,
+    "outputRepaired": false,
+    "whatItIs": "for each case, the posture value recoverable from the raw output by unwrapping a tool envelope or parsing a stringified field. Two malformed strings do not parse and stay unreadable.",
+    "recoverable": 13,
+    "agreeingWithFrozenTruth": 12,
+    "disagreeing": [
+      {
+        "caseId": "S2",
+        "expected": "STOP",
+        "diagnostic": "HOLD_PENDING_VERIFICATION"
+      }
+    ],
+    "whyItIsRecordedAtAll": "the product-owner remediation decision turns on whether the degree judgment underneath the wire failures is sound or unsound. Withholding that would leave the decision less informed for no gain in rigour.",
+    "whyItIsNotTheResult": "the §234 pass rule scores the AUTHORITATIVE projected posture. An output the contract refuses has no authoritative posture, and reading one out of it by hand is exactly the output repair the execution discipline forbids. The frozen judgment stands."
+  },
+  "scorerRenderingDefect": {
+    "finding": "the frozen scorer console prints \"over\" for a case with NO posture at all, because the mark expression falls through to the over-conservative branch when the primary judgment is INCORRECT and the under-conservative flag is false.",
+    "affectsTheRecordedData": false,
+    "evidence": "SECTION-234-JUDGMENT.json records conservatism NO_POSTURE for those ten cases and reports overConservative as an empty list. The console line is the only thing that is wrong.",
+    "notRepaired": "the scorer digest was frozen before the spend to prove the scoring logic was not shaped by the output. Editing it now, after seeing the output, would destroy that guarantee for a cosmetic gain. The defect is recorded instead."
+  },
+  "perCase": [
+    {
+      "caseId": "D1",
+      "expectedPosture": "CONTINUE",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "the posture was well formed on the wire and the §233 projection refused it on POSTURE_BASIS_REF_DUPLICATED.",
+      "refusalCodes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "CONTINUE",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "D2",
+      "expectedPosture": "CONTINUE",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "the posture was well formed on the wire and the §233 projection refused it on POSTURE_BASIS_REF_DUPLICATED.",
+      "refusalCodes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "CONTINUE",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "D3",
+      "expectedPosture": "CONTINUE",
+      "judgedPosture": "CONTINUE",
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "exact posture identity, structurally valid.",
+      "refusalCodes": [],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [],
+      "diagnosticPostureNotPartOfTheJudgment": "CONTINUE",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "D4",
+      "expectedPosture": "CONTINUE",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "the posture was well formed on the wire and the §233 projection refused it on DECLARATION_NOT_COVERED.",
+      "refusalCodes": [
+        "DECLARATION_NOT_COVERED"
+      ],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "CONTINUE",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "E1",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "the provider omitted root fields the wire schema marks required, the posture among them.",
+      "refusalCodes": [
+        "POSTURE_MISSING"
+      ],
+      "wireAnomalies": [
+        "REQUIRED_ROOT_FIELD_ABSENT"
+      ],
+      "wireAnomalyDetail": [
+        "required root fields absent: unresolvedFactDeclarations, uncertainty, outcome, immediateSafetyPosture"
+      ],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": null,
+      "diagnosticAgreesWithFrozenTruth": false
+    },
+    {
+      "caseId": "E2",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "judgedPosture": "CONTINUE_WITH_CONTROLS",
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "exact posture identity, structurally valid.",
+      "refusalCodes": [],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [
+        "decl-co-rate"
+      ],
+      "secondaryFailureClasses": [
+        "MANUFACTURED_DECLARATION_CARRYING_ACTION"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "CONTINUE_WITH_CONTROLS",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "E3",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "a field the projection reads was emitted as a JSON string rather than an object or array, and the string does not parse. Repairing it would be output repair.",
+      "refusalCodes": [
+        "POSTURE_NOT_AN_OBJECT"
+      ],
+      "wireAnomalies": [
+        "STRUCTURED_FIELD_EMITTED_AS_STRING",
+        "DUPLICATED_ROOT_KEY"
+      ],
+      "wireAnomalyDetail": [
+        "immediateSafetyPosture emitted as a string; the string DOES NOT PARSE",
+        "invented near-duplicate root keys: crossHazardInsights2"
+      ],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": null,
+      "diagnosticAgreesWithFrozenTruth": false
+    },
+    {
+      "caseId": "E4",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "judgedPosture": "CONTINUE_WITH_CONTROLS",
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "exact posture identity, structurally valid.",
+      "refusalCodes": [],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [],
+      "diagnosticPostureNotPartOfTheJudgment": "CONTINUE_WITH_CONTROLS",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "F1",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "a field the projection reads was emitted as a JSON string rather than an object or array, and the string does not parse. Repairing it would be output repair.",
+      "refusalCodes": [
+        "POSTURE_NOT_AN_OBJECT"
+      ],
+      "wireAnomalies": [
+        "STRUCTURED_FIELD_EMITTED_AS_STRING"
+      ],
+      "wireAnomalyDetail": [
+        "expertHazardCandidates emitted as a string; the string DOES NOT PARSE",
+        "immediateSafetyPosture emitted as a string; the string DOES NOT PARSE"
+      ],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": null,
+      "diagnosticAgreesWithFrozenTruth": false
+    },
+    {
+      "caseId": "F2",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "judgedPosture": "HOLD_PENDING_VERIFICATION",
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "exact posture identity, structurally valid.",
+      "refusalCodes": [],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [],
+      "diagnosticPostureNotPartOfTheJudgment": "HOLD_PENDING_VERIFICATION",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "F3",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "a field the projection reads was emitted as a JSON string rather than an object or array, and the string does not parse. Repairing it would be output repair.",
+      "refusalCodes": [
+        "POSTURE_BASIS_REF_UNRESOLVED",
+        "RESUME_CONDITION_REF_UNRESOLVED"
+      ],
+      "wireAnomalies": [
+        "STRUCTURED_FIELD_EMITTED_AS_STRING"
+      ],
+      "wireAnomalyDetail": [
+        "expertHazardCandidates emitted as a string; the string parses",
+        "unresolvedFactDeclarations emitted as a string; the string parses",
+        "decisionCriticalClarifications emitted as a string; the string parses"
+      ],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "HOLD_PENDING_VERIFICATION",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "F4",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "judgedPosture": null,
+      "primaryFailureClass": "PROVIDER_OR_TRANSPORT_ANOMALY",
+      "rootCause": "the provider returned the whole analysis inside an undefined tool-parameter envelope. Nothing about the posture contract was exercised.",
+      "refusalCodes": [
+        "POSTURE_MISSING"
+      ],
+      "wireAnomalies": [
+        "TOOL_CALL_ENVELOPE"
+      ],
+      "wireAnomalyDetail": [
+        "the entire answer is wrapped in a \"parameters\" envelope"
+      ],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "HOLD_PENDING_VERIFICATION",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "S1",
+      "expectedPosture": "STOP",
+      "judgedPosture": null,
+      "primaryFailureClass": "MALFORMED_OR_INCOMPLETE_STRUCTURED_POSTURE",
+      "rootCause": "the posture was well formed on the wire and the §233 projection refused it on ACTIVE_CANDIDATE_NOT_COVERED.",
+      "refusalCodes": [
+        "ACTIVE_CANDIDATE_NOT_COVERED"
+      ],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "STOP",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "S2",
+      "expectedPosture": "STOP",
+      "judgedPosture": "HOLD_PENDING_VERIFICATION",
+      "primaryFailureClass": "WRONG_POSTURE_DEGREE",
+      "rootCause": "a structurally valid posture of the wrong degree.",
+      "refusalCodes": [],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [
+        "decl-1"
+      ],
+      "secondaryFailureClasses": [
+        "MANUFACTURED_DECLARATION_CARRYING_ACTION"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "HOLD_PENDING_VERIFICATION",
+      "diagnosticAgreesWithFrozenTruth": false
+    },
+    {
+      "caseId": "S3",
+      "expectedPosture": "STOP",
+      "judgedPosture": "STOP",
+      "primaryFailureClass": "NO_FAILURE",
+      "rootCause": "exact posture identity, structurally valid.",
+      "refusalCodes": [],
+      "wireAnomalies": [
+        "NONE"
+      ],
+      "wireAnomalyDetail": [],
+      "manufacturedDeclarations": [
+        "decl_trolley_present"
+      ],
+      "secondaryFailureClasses": [
+        "MANUFACTURED_DECLARATION_CARRYING_ACTION"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "STOP",
+      "diagnosticAgreesWithFrozenTruth": true
+    },
+    {
+      "caseId": "S4",
+      "expectedPosture": "STOP",
+      "judgedPosture": null,
+      "primaryFailureClass": "PROVIDER_OR_TRANSPORT_ANOMALY",
+      "rootCause": "the provider returned the whole analysis inside an undefined tool-parameter envelope. Nothing about the posture contract was exercised.",
+      "refusalCodes": [
+        "POSTURE_MISSING"
+      ],
+      "wireAnomalies": [
+        "TOOL_CALL_ENVELOPE"
+      ],
+      "wireAnomalyDetail": [
+        "the entire answer is wrapped in a \"parameter name\" envelope"
+      ],
+      "manufacturedDeclarations": [],
+      "secondaryFailureClasses": [
+        "RECOMMENDATION_PROJECTION_DEFECT"
+      ],
+      "diagnosticPostureNotPartOfTheJudgment": "STOP",
+      "diagnosticAgreesWithFrozenTruth": true
+    }
+  ]
+}

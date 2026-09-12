@@ -1,0 +1,356 @@
+FORMAL EXPERT HAZLENZ COHORT -- DETERMINISTIC 65-ROW ASSEMBLY AND FREEZE PREPARATION
+§134. No provider call. No reserve opened. No semantic authoring. Nothing scored.
+
+1. COHORT-SIZE POLICY AMENDMENT
+
+   frozen origin policy re-read and UNCHANGED at 60/60/48 -- the §122 and §133 opening
+   records that cite its sha256 remain valid.
+
+   field                       was    now   change
+   targetRows                   60     65   AMENDED
+   hardCeiling                  60     65   AMENDED
+   minimumDefensibleRows        48     48   unchanged
+   MINIMUM_DEFENSIBLE_ROWS      48     48   unchanged
+   PREFERRED_ROWS               60     60   unchanged
+
+   PROOF NO CLASS MINIMUM CHANGED -- every entry read live from the frozen contract:
+     GOVERNED_RECORD_SUPPLIED                40   (preferred 48)
+     NO_GOVERNED_RECORD                       8   (preferred 12)
+     CLARIFICATION_NOT_OWED                  14   (preferred 20)
+     CLARIFICATION_OWED                      20   (preferred 30)
+     FORBIDDEN_FAMILY_NEGATIVE_CONTROL       48   (preferred 60)
+     LIFE_CRITICAL_PRESENT                   10   (preferred 15)
+     CROSS_HAZARD_INTERACTION                10   (preferred 15)
+     DETERMINISTIC_MISS_RECALL_OPPORTUNITY   10   (preferred 15)
+     MULTI_HAZARD                            12   (preferred 20)
+     NEGATED_OR_SAFE_STATE                   10   (preferred 15)
+     DISAGREEMENT_OPPORTUNITY                 6   (preferred 10)
+     DETERMINISTIC_HAZARD_PRESENT            30   (preferred 40)
+
+   policy version: hazlenz.expert.cohort.size.policy.v2
+   rationale: The previously frozen 60-row target/hard ceiling was proven jointly unsatisfiable under the frozen class minima and actual available class overlap. After D-86 offsets 2 and 3 were opened under owner authorization, exact analysis established a lower bound of 65 and produced a valid 65-row witness. Therefore the formal cohort build target and hard ceiling are amended to 65.
+
+2. DETERMINISTIC SELECTION
+
+   POOL -- real cohort rows only, classified by the AUTHORITATIVE classifyRow()
+     gauntlet.seed            45
+     Population A             34
+     augmentation V2          16
+     semantic §129            35
+     D-86 offset 2             8
+     D-86 offset 3             8
+     TOTAL                   146
+
+     POPULATION_A is INCLUDED, projected mechanically through the mapping §122 already
+     declares. It is required: without it, forbidden supply is 47 against a minimum of 48,
+     and the owner's accepted basis of 44 pre-reserve forbidden rows counts it.
+     Its rows are suppressed from DETERMINISTIC_MISS_RECALL_OPPORTUNITY, because §122
+     forbids the precision corpus as an M01 source -- the engine was measured against it.
+
+     POPULATION_B is STRUCTURALLY EXCLUDED, not omitted by choice. Its rows carry no
+     forbiddenDomains and no decision-critical gaps, so they are neither OWED nor FORBIDDEN,
+     and the forced structure below admits no such row. At H = 65 the composition is tight
+     enough that Population B cannot participate at all.
+
+   SELECTION RULE (declared before application):
+     canonical row order  : source rank, then rowId ascending
+     source rank          : gauntlet.seed < Population A < augmentation V2 < semantic §129 < D-86 offset 2 < D-86 offset 3
+     class priority       : the declaration order of REQUIRED_CLASS_MINIMUMS, read out of
+                            the frozen contract, restricted to still-free intrinsic classes
+                            -> LIFE_CRITICAL_PRESENT, CROSS_HAZARD_INTERACTION, DETERMINISTIC_MISS_RECALL_OPPORTUNITY, MULTI_HAZARD, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT
+     phase 0              : take every OWED-and-FORBIDDEN row (forced, no choice)
+     phase 1              : per class in priority order, close the deficit with the next
+                            canonical row carrying it whose bucket has room
+     phase 2              : fill each bucket to its forced size in canonical order
+
+   FORCED STRUCTURE at |R| = 65 (equality in the inclusion-exclusion bound):
+     OWED and FORBIDDEN       3  (every one that exists)
+     OWED not FORBIDDEN      17
+     FORBIDDEN not OWED      45
+     neither                  0
+     selected 65 rows
+
+   REPRODUCIBILITY: re-running the rule on a reordered pool yields the identical selection
+   and the identical order -- PROVEN
+   selection order sha256  ee57d5dad456b9009d46ba8d9b0a5b34aba9bb4044bbb66e18c96b4d450032d0
+
+4. GOVERNED-RECORD ATTACHMENT
+
+   snapshot sha256   a2c5dc324ded4fee8689982785682cec0f21c4ed0ce2b1128afd8f902c4d5cd3
+   §126 identity     a2c5dc324ded4fee8689982785682cec0f21c4ed0ce2b1128afd8f902c4d5cd3   MATCH
+   records           64
+   reviewState set   {mechanically_validated}   (NOT modified, NOT approved)
+
+   ATTACHMENT RULE (declared before application):
+     records sorted by citationKey ASCENDING; the first 40 rows of the frozen cohort order
+     receive exactly one record each, paired by index. The remaining rows receive none.
+
+   NO FAMILY-RELEVANCE MATCHING WAS PERFORMED, and this is deliberate. The snapshot carries
+   no hazard-family column, so pairing a citation to a row by topic would require authoring a
+   citation->family mapping that the frozen contract does not contain. The frozen measures do
+   not ask for relevance: M06 keys off record PRESENCE, M07 off detected statements, M08 is
+   exercised BY unapproved records. Recorded as a stated limitation rather than invented.
+
+3. COMPOSITION VERIFICATION -- by the AUTHORITATIVE classifyRow / evaluateComposition
+
+   row contract validity: 0 problem(s) across 65 rows
+
+   class                                  required supplied  margin  verdict
+   GOVERNED_RECORD_SUPPLIED                     40       40       0  PASS
+   NO_GOVERNED_RECORD                            8       25      17  PASS
+   CLARIFICATION_NOT_OWED                       14       45      31  PASS
+   CLARIFICATION_OWED                           20       20       0  PASS
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL            48       48       0  PASS
+   LIFE_CRITICAL_PRESENT                        10       27      17  PASS
+   CROSS_HAZARD_INTERACTION                     10       11       1  PASS
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY        10       38      28  PASS
+   MULTI_HAZARD                                 12       20       8  PASS
+   NEGATED_OR_SAFE_STATE                        10       13       3  PASS
+   DISAGREEMENT_OPPORTUNITY                      6       40      34  PASS
+   DETERMINISTIC_HAZARD_PRESENT                 30       49      19  PASS
+
+   classes with no frozen minimum: DETERMINISTIC_EXCLUSION_PROJECTED
+   FORMAL_COHORT_COMPOSITION_VALID = true
+   evaluateComposition gaps: none
+
+   SELECTED SOURCE COMPOSITION
+     gauntlet.seed           14 of  45 available
+     Population A            13 of  34 available
+     augmentation V2         13 of  16 available
+     semantic §129           21 of  35 available
+     D-86 offset 2            4 of   8 available
+     D-86 offset 3            0 of   8 available
+
+   opened D-86 rows NOT selected: 12  SRC-OSHA-009, SRC-OSHA-025, SRC-OSHA-029, SRC-OSHA-1003, SRC-MSHA-033, SRC-MSHA-042, SRC-MSHA-046, SRC-MSHA-062, SRC-OSHA-022, SRC-OSHA-034, SRC-OSHA-1012, SRC-OSHA-1028
+     The measured shortfall the reserve was opened to close was exactly 4 forbidden rows
+     (44 available against a minimum of 48), and exactly 4 D-86 rows are used. The other
+     12 are unavoidable surplus: a reserved partition is opened whole, not row by row,
+     so 16 rows were exposed to obtain the 4 that were needed. They are NOT preferred into
+     the cohort to justify having spent them -- that would be a sunk-cost rule, and no
+     frozen policy contains one.
+
+   attachment: GOVERNED_RECORD_SUPPLIED 40 >= 40   NO_GOVERNED_RECORD 25 >= 8   DISAGREEMENT_OPPORTUNITY 40 >= 6
+   REVIEWER_APPROVED_GOVERNED_RECORDS = 0 -- reported limitation, NOT promoted to a gate.
+
+5. EXECUTION IDENTITY, BOUND FROM REPOSITORY STATE
+
+   provider                       anthropic
+   providerModule                 backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts
+   modelFoundInAdapter            claude-sonnet-5
+   modelIsEnvironmentOverridable  true
+   promptVersion                  hazlenz.expert.prompt.v6
+   inputContract                  hazlenz.expert.input.v1
+   analysisContract               hazlenz.expert.analysis.v2
+   measurementContract            hazlenz.expert.measurement.v1
+   rowContract                    hazlenz.expert.cohort.row.v1
+   harness                        hazlenz.expert.cohort.harness.v1
+   sizePolicy                     hazlenz.expert.cohort.size.policy.v2
+
+6. FORMAL CALL COUNT, MEASURED FROM THE HARNESS RATHER THAN ASSUMED
+
+   FORMAL_COHORT_ROW_COUNT           65
+   arms declared by the topology     BASE, PERMUTED, CROSS_PROCESS
+   CALLS_PER_ROW                     3
+   repetitions per arm               1
+   requests ACTUALLY CONSTRUCTED     195
+     BASE                 65
+     PERMUTED             65
+     CROSS_PROCESS        65
+   PLANNED_FORMAL_PROVIDER_CALLS     195   (logical calls)
+   harness stopReason                PROVIDER_EXECUTION_DISABLED
+   PROVIDER_INVOCATION_COUNT         0
+   TRUTH_LEAK                        0
+
+   No exploratory or callability call is part of the formal count. The frozen plan names
+   none, and M13 reads the formal calls themselves.
+
+7. RETRY AND CALL-CEILING GOVERNANCE -- REQUIRED PRE-FREEZE ANALYSIS
+
+   All eight questions answered from the code, not from the field names.
+
+   (1) WHAT TRIGGERS A RETRY
+       expert-runner.ts:95  if (!result.ok && isRetryableExpertFailure(result.kind))
+       RETRYABLE  TIMEOUT, NETWORK_ERROR, HTTP_SERVER_ERROR, MALFORMED_JSON, TRUNCATED_RESPONSE, EMPTY_RESPONSE
+       NOT        HTTP_CLIENT_ERROR, RATE_LIMITED, CREDITS_EXHAUSTED, SCHEMA_INVALID_STRUCTURED_OUTPUT, PROVIDER_REFUSAL, UNEXPECTED_MODEL_IDENTITY, PROVIDER_NOT_CALLABLE, NOT_CONFIGURED
+       A boundary REJECTION (OUTPUT_REJECTED) is never retried, and neither is a refusal --
+       "asking a model to re-answer a question it just answered unsafely is how a validator
+       gets talked out of a refusal".
+
+   (2) ARE RETRIES ENABLED ON THE PATH THE FORMAL HARNESS USES
+       YES, and there is no flag that disables them. The harness calls runExpertAnalysis
+       directly (expert-cohort-harness.ts:228), which is the permanent production runner.
+
+   (3) MAXIMUM RETRIES PER LOGICAL CALL
+       ONE. The runner performs at most two attempts and the ceiling is structural -- a
+       single `if`, not a loop, so it cannot be raised by configuration.
+
+   (4) DO RETRY REQUESTS COUNT AGAINST hardCallCeiling
+       *** NO. THIS IS THE MATERIAL FINDING. ***
+       expert-cohort-harness.ts:283  `accounting.callsAttempted + 1 > options.callCeiling`
+       is evaluated ONCE PER ARM, before executeCall. executeCall then invokes
+       runExpertAnalysis, which may issue TWO HTTP requests. `callsAttempted` and
+       `providerInvocations` are both incremented ONCE per logical call.
+       => callCeiling bounds LOGICAL CALLS. It does not bound billable provider requests,
+          and no code path in the repository does.
+
+       The §121 comment on RECOMMENDED_CALL_TOPOLOGY states the ceiling "covers a full retry
+       on every planned call plus margin". That is FALSE about the mechanism. §133 inherited
+       the error and reported that a 390-request worst case "would be stopped by the
+       ceiling". It would not be. Both statements are corrected here.
+
+   (5) DOES A RETRY REPLACE THE CALL OR ADD AN OBSERVATION
+       It REPLACES it. runExpertAnalysis returns ONE ExpertRunResult per logical call and the
+       harness pushes ONE CallRecord per arm. A retry produces no extra scored observation.
+       `trace.attempts` records 1 or 2 -- but CallRecord does not carry it, so the attempt
+       count is DISCARDED at the harness boundary.
+
+   (6) DOES THE FROZEN PLAN PERMIT RETRIES
+       It neither permits nor forbids them: expert-evaluation-plan.ts defines NO retry budget
+       and NO ceiling formula. P4 requires an authorization naming "the cohort, the call
+       count and the ceiling" -- singular, and it does not distinguish logical calls from
+       billable requests. The distinction is unresolved in the frozen contract.
+
+       M13_PROVIDER_CALLABILITY does address them, and its frozen denominator is
+       "All attempted calls, every row, every repetition, RETRIES INCLUDED."
+       scoreM13 counts one per CallRecord. Since attempts are discarded (5), M13 CANNOT be
+       computed as its frozen contract specifies. This is a defect between contract and
+       implementation, reported rather than repaired -- repairing scoreM13 would be a scorer
+       change, which this operation is not authorized to make.
+
+   (7) WHAT HAPPENS WHEN hardCallCeiling IS REACHED
+       stopReason = CALL_CEILING_REACHED, the arm loop breaks, the row loop breaks, and the
+       run returns what it completed. Remaining rows carry ZERO calls.
+
+   (8) IS THE RUN INVALID, BLOCKED, OR MERELY INCOMPLETE
+       MERELY INCOMPLETE at the harness, but that is not the end of it. Unanswered rows
+       reduce every content measure's denominator, and the measurement contract makes a
+       HARD_GATE with zero eligible opportunities UNMEASURED, which FAILS. So hitting the
+       ceiling does not invalidate the run -- it silently converts it into a failing one.
+
+   THE SPEND CEILING IS ALSO INERT, AND THIS IS A SECOND INDEPENDENT FINDING.
+       harness:284 checks `accounting.spendUsd >= options.spendCeilingUsd` before each call.
+       `spendUsd` accrues ONLY from `options.usageOf(callId)` (harness:289).
+       A repository-wide search finds NO implementation of `usageOf` -- it is an optional
+       hook and no caller supplies one. It therefore defaults to {0,0,0}, spendUsd stays 0
+       forever, and the spend ceiling can NEVER fire.
+       Consequence: M16_COST_PER_ROW would report $0.00/row, which the frozen contract
+       requires to be "reported per run, never estimated".
+
+       And even if usageOf were wired to the adapter, the adapter keeps only
+       `this.lastTelemetry` (anthropic-expert-provider.ts:242), overwritten per HTTP request.
+       A retried call would report ONLY the second attempt, silently undercounting the first
+       billed request in both spend and M16.
+
+   NET: NEITHER CEILING CURRENTLY BOUNDS PROVIDER SPEND.
+       PLANNED_LOGICAL_CALL_COUNT        195
+       MAXIMUM_BILLABLE_PROVIDER_REQUESTS 390   (one retry per call, unbounded
+                                          by callCeiling = 200)
+
+8. DERIVED PROVIDER-REQUEST CEILING OPTIONS
+
+   The frozen plan defines no formula, so nothing is invented here. The options below are
+   presented with their exact consequences; choosing among them is a product-owner decision.
+
+   opt   ceiling  retries  max mean $  max worst $  consequence
+   O1        195        0        6.19        20.28  exactly the planned calls, zero retry capacity
+   O2        200        5        6.35        20.80  the existing 200, reinterpreted as a REQUEST ceiling
+   O3        215       20        6.83        22.36  planned + a 10% global retry allowance
+   O4        390      195       12.39        40.56  full theoretical one-retry-per-call maximum
+
+   EXACT CONSEQUENCES, stated rather than scored:
+     O1 (195)  the FIRST transient provider failure exhausts the budget and the run
+              stops with rows unanswered, which becomes a FAILING evaluation per (8) above.
+              Predictably fragile; the owner's own criterion rules this out.
+     O2 (200)  tolerates 5 retried calls out of 195, i.e. a 2.6% transient-failure rate.
+              §118 measured 18 of 18 calls succeeding, so 2.6% is not obviously too small --
+              but 18 calls cannot characterise a rate at that resolution, and this number was
+              chosen when the ceiling was believed to cover retries, which it does not.
+     O3 (215)  tolerates a 10% transient-failure rate.
+              This is the only option whose derivation matches the stated intent of the
+              existing conservativeMaximumSpendUsd, which already carries a "10% retry-
+              billing allowance". It reuses a number the programme already committed to
+              rather than introducing a new one.
+     O4 (390)  cannot be exceeded by construction, so it is the only option that
+              never stops a run early -- but it authorises double the spend to protect
+              against a failure rate nothing has measured. Not appropriate merely because it
+              is the theoretical maximum.
+
+   RECOMMENDATION (engineering, not a decision): O3. It is derived from an allowance the
+   frozen cost model already states, it is the smallest option that is not predictably
+   fragile, and it bounds spend at a figure below the existing recorded ceiling.
+
+   EVERY OPTION REQUIRES CODE REPAIR BEFORE IT MEANS ANYTHING. A request ceiling cannot be
+   enforced by a counter that increments once per logical call. At minimum:
+     R1  count provider REQUESTS, not logical calls, against the ceiling (runner must report
+         attempts to the harness; trace.attempts already exists and is discarded);
+     R2  implement usageOf, or the spend ceiling stays inert and M16 reports $0.00;
+     R3  accumulate adapter telemetry PER ATTEMPT, or a retried call under-reports its cost.
+   R1 also happens to make M13's frozen denominator computable. None of these is authorized
+   by this operation, and which of them is needed depends on the option chosen.
+
+   R4 IS SEPARATE AND IS REQUIRED WHATEVER CEILING IS CHOSEN -- THE MODEL IS NOT BOUND.
+     anthropic-expert-provider.ts:93  `model: process.env.EXPERT_ANTHROPIC_MODEL ||
+     'claude-sonnet-5'`, and :224 `this.qualifiedModelIdentity = config.model`.
+     The runner DOES refuse a response from an unexpected model -- but it compares the
+     response against whatever the ENVIRONMENT said, not against the cohort's frozen
+     identity. Setting EXPERT_ANTHROPIC_MODEL therefore silently reruns the formal cohort on
+     a different model and the identity guard passes. The guard protects against a provider
+     substituting a model; it does not protect against the operator doing so.
+     REPAIR: the frozen manifest names the model, and the run asserts
+     provider.qualifiedModelIdentity === manifest.model BEFORE the first request, refusing
+     otherwise. This is what "do not inherit an environment-overridable model" requires.
+
+9. SPEND CEILING, FROM LOCALLY AUTHORITATIVE PRICING
+
+   basis: verification/expert-hazlenz-hosted-projection-ab-2026-08-31 (18 calls, exact fit)
+   LOCALLY AUTHORITATIVE -- fitted to 18 recorded §118 calls, residual 0.00000000 USD.
+   No web pricing consulted. No provider call made.
+
+   expected MEAN cost, 195 planned logical calls, no retries      $6.19
+   WORST-CASE cost, 195 planned logical calls, no retries         $20.28
+   incremental cost per additional allowed request (mean)      $0.031757
+   incremental cost per additional allowed request (worst)     $0.104000
+
+   MAXIMUM SPEND UNDER EACH CEILING OPTION (worst case, the only defensible ceiling basis):
+     O1  ceiling  195  ->  $20.28   (mean $6.19)
+     O2  ceiling  200  ->  $20.80   (mean $6.35)
+     O3  ceiling  215  ->  $22.36   (mean $6.83)
+     O4  ceiling  390  ->  $40.56   (mean $12.39)
+
+   The recorded conservativeMaximumSpendUsd is $25, computed at the 200-call
+   figure. It does not move with the row count and would need to be recomputed against
+   whichever request ceiling is chosen.
+
+10. FREEZE DECISION
+
+   DETERMINATE   exact 65 rows                          65
+   DETERMINATE   exact row order                        source rank, then rowId ascending
+   DETERMINATE   exact class composition                every minimum met
+   DETERMINATE   exact governed attachment              40 records paired
+   DETERMINATE   exact provider                         anthropic
+   UNRESOLVED    exact model                            ENVIRONMENT-OVERRIDABLE -- not bound
+   DETERMINATE   exact prompt                           hazlenz.expert.prompt.v6
+   DETERMINATE   exact contracts                        hazlenz.expert.input.v1 / hazlenz.expert.analysis.v2
+   DETERMINATE   exact measurement contract             hazlenz.expert.measurement.v1
+   DETERMINATE   exact harness                          hazlenz.expert.cohort.harness.v1
+   DETERMINATE   exact planned logical calls            195
+   UNRESOLVED    exact provider-request hard ceiling    UNRESOLVED -- product-owner decision (STEP 8)
+   UNRESOLVED    exact spend ceiling                    follows from the request ceiling
+   UNRESOLVED    exact retry policy                     semantics are known; the BUDGET is not, and the ceiling cannot enforce one without R1
+   UNRESOLVED    exact stop conditions                  the spend stop condition is inert until usageOf exists (R2)
+
+   FREEZE PREREQUISITES COMPLETE = false
+
+   NOT FROZEN. COHORT_STATUS = CANDIDATE.
+   Partially freezing an object whose execution budget is unresolved is exactly what STEP
+   10 forbids, so no cohortId is minted and no manifest hash is published.
+
+CONFINEMENT
+  PROVIDER_INVOCATION_COUNT = 0
+  FORMAL_COHORT_SPENT       = FALSE
+  P4_PRESPEND_AUTHORIZATION = FALSE
+  COHORT_STATUS             = CANDIDATE
+  RESERVED_MATERIAL_OPENED  = TRUE (D86_GAUNTLET_OFFSETS_2_AND_3_ONLY, unchanged)
+  ADDITIONAL_RESERVE_OPENED = FALSE
+
+FORMAL_COHORT_READY_EXCEPT_PROVIDER_REQUEST_CEILING -- PRODUCT_OWNER_RETRY_BUDGET_DECISION_REQUIRED

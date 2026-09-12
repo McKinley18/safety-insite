@@ -1,0 +1,415 @@
+{
+  "artifact": "SECTION_197_DETERMINISTIC_RESULTS",
+  "preregistrationSha256": "fff14d4e1f9ee0daf00c39dac2ce3e645f122d9199ae4fd4b5ade1ae41613cc7",
+  "cohortVersion": "hazlenz.expert.structured-e2e-cohort.2026-09-07",
+  "TRUTH_PROVENANCE": {
+    "AI_ASSISTED_SCENARIO_AND_EXPECTATION_AUTHORING": true,
+    "PRODUCT_OWNER_REVIEWED": false,
+    "FULLY_INDEPENDENT_HUMAN_AUTHORING": false,
+    "USED_AS_THE_SEMANTIC_ORACLE": false,
+    "role": "cohort design and adjudication-packet structure only. Every semantic verdict in §197 is produced by a human reviewer, not by comparison against this file.",
+    "neverDescribeAs": "independent human truth"
+  },
+  "SCOPE": "MECHANICAL AXES ONLY. No semantic verdict is produced anywhere in this file. Axes A-I, L, M, Q and R are HUMAN_REQUIRED and appear only in ADJUDICATION-PACKET.json with null verdicts.",
+  "execution": {
+    "model": "claude-sonnet-5",
+    "respondedModels": [],
+    "providerCallsAttempted": 12,
+    "providerCallsCompleted": 0,
+    "firstPassCalls": 12,
+    "verifierCalls": 0,
+    "HARD_TOTAL_CALL_CEILING": 36,
+    "providerErrorsByClass": {
+      "HTTP_CLIENT_ERROR": 12
+    },
+    "preInferenceFailures": 12,
+    "preInferenceNote": "a rejection that never reached inference is an EXECUTION event and is never scored as model behaviour",
+    "ACTUAL_PROVIDER_SPEND_USD": 0,
+    "spendRule": "provider-returned usage only",
+    "inputTokens": 0,
+    "outputTokens": 0
+  },
+  "declarations": {
+    "rawDeclarationCount": 0,
+    "admittedDeclarationCount": 0,
+    "rejectedDeclarationCount": 0,
+    "projectedOwedFactCount": 0,
+    "refusalCodesByKind": {}
+  },
+  "perRow": [
+    {
+      "rowId": "SF-01",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-03",
+      "families": [
+        "NO_REAL_GAP",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-05",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-12",
+      "families": [
+        "NO_REAL_GAP",
+        "FUNCTION_VERSUS_APPEARANCE"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-06",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-04",
+      "families": [
+        "NO_REAL_GAP",
+        "TEMPORAL_SCOPE"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 0,
+        "max": 0
+      },
+      "countWithinPreregisteredRange": true,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-02",
+      "families": [
+        "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 2,
+        "max": 2
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-07",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "NEARBY_PROPERTY_COMPETITION"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-08",
+      "families": [
+        "CONJUNCTIVE_FACT"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 2
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-09",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY",
+        "THRESHOLD_IS_NOT_A_GAP"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-10",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    },
+    {
+      "rowId": "SF-11",
+      "families": [
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "EXPOSURE_DECISION",
+        "NOT_OBSERVED_IS_NOT_ABSENT"
+      ],
+      "executed": false,
+      "outcome": null,
+      "rawDeclarations": 0,
+      "admittedFacts": 0,
+      "refusedDeclarations": 0,
+      "clarifications": 0,
+      "hazardCandidates": 0,
+      "expectedGapCount": {
+        "min": 1,
+        "max": 1
+      },
+      "countWithinPreregisteredRange": false,
+      "countComparisonNote": "A COUNT COMPARISON, NOT A CORRECTNESS VERDICT. A row can hit the expected count while declaring entirely the wrong property; that judgement is in the packet."
+    }
+  ],
+  "countsWithinPreregisteredRange": "NOT_EXERCISED — zero executions; this axis has an empty denominator and is neither a pass nor a failure",
+  "countsNote": "This is the single most misreadable number in the package. It says the NUMBER of declared facts fell inside the preregistered range. It says NOTHING about whether they are the right facts, whether the spans are relevant, or whether the branches are plausible.",
+  "K_FACTKEY_IDENTITY_INTEGRITY": {
+    "classification": "MECHANICAL",
+    "keysAudited": 0,
+    "derivationMatches": 0,
+    "derivationMismatches": 0,
+    "independentScorerRecomputationMatches": 0,
+    "providerAuthoredFactKeyFieldAttempts": 0,
+    "result": "NOT_EXERCISED — zero executions; this axis has an empty denominator and is neither a pass nor a failure",
+    "method": "each key was derived three times — by the projection, by the executor, and again here from the persisted declaration and observation alone — and all three must agree",
+    "findings": []
+  },
+  "J_PROJECTION_FIDELITY_BYTES": {
+    "classification": "MECHANICAL",
+    "factsChecked": 0,
+    "byteFaithful": 0,
+    "violations": 0,
+    "result": "NOT_EXERCISED — zero executions; this axis has an empty denominator and is neither a pass nor a failure",
+    "method": "every EXPLICIT_UPSTREAM_FIELD compared byte for byte against the declaration that produced it; every MECHANICAL_DERIVATION compared against its frozen constant",
+    "provenanceRowsCovered": 12,
+    "findings": [],
+    "limitation": "BYTE PRESERVATION ONLY. That the projection did not ALTER the semantics is proven here; that the semantics were right in the first place is axis C, E and F, and is human."
+  },
+  "H_MULTI_GAP_STRUCTURAL": {
+    "classification": "MECHANICAL (structural half only)",
+    "opportunityRows": [
+      "SF-02"
+    ],
+    "rows": [
+      {
+        "rowId": "SF-02",
+        "rawDeclarations": 0,
+        "admitted": 0,
+        "distinctFactKeys": 0,
+        "allDistinct": true,
+        "note": "STRUCTURAL ONLY. Whether the two facts are genuinely INDEPENDENT is semantic and is in the adjudication packet."
+      }
+    ]
+  },
+  "C_ISOLATION_OBSERVATIONAL": {
+    "classification": "OBSERVATIONAL — no declaration was prompted to violate the schema",
+    "rowsWhereBothAdmittedAndRefusedOccurred": [],
+    "note": "the model produced no malformed declaration beside a well-formed one, so hosted evidence for per-declaration isolation was NOT EXERCISED. §196 case C4 establishes it deterministically; this run neither confirms nor disconfirms it."
+  },
+  "N_O_CITATION_BOUNDARY": {
+    "classification": "MECHANICAL",
+    "perVerifierCall": [],
+    "quotationOpportunityRows": [
+      "SF-09"
+    ],
+    "quotationOpportunitiesTaken": "0/0",
+    "containmentOpportunityRows": [
+      "SF-10"
+    ],
+    "containmentOpportunitiesTaken": "0/0",
+    "O_unsuppliedCitationAdmitted": 0,
+    "O_result": "NOT_EXERCISED — zero executions; this axis has an empty denominator and is neither a pass nor a failure",
+    "denominatorRule": "reported against OPPORTUNITY rows, never against total executions. An opportunity the model did not take is reported as not taken, never as a pass.",
+    "smallNRule": "n is 1 per opportunity family in this cohort. Reported as x/n literally; NOT_MEANINGFULLY_ESTIMABLE as a rate."
+  },
+  "P_SETTLEMENT_AUTHORITY": {
+    "classification": "MECHANICAL",
+    "ledger": {
+      "ledgerBuilt": false,
+      "transitions": 0,
+      "allUnresolved": true,
+      "note": "no facts projected"
+    },
+    "verifierDeclarationsClaimingSettlement": 0,
+    "everyProjectedFactStillUnresolved": true,
+    "result": "NOT_EXERCISED — zero executions; this axis has an empty denominator and is neither a pass nor a failure",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER"
+  },
+  "verifierAdmission": {
+    "executions": 0,
+    "admitted": 0,
+    "refused": 0,
+    "noAdmissionComputed": 0,
+    "codesByKind": {},
+    "verdictDistribution": {},
+    "bindingAdmitted": 0,
+    "wrongKeyBound": 0,
+    "relianceDeclared": 0
+  },
+  "HARD_FAIL_EVALUATION": {
+    "EVALUABLE": false,
+    "note": "NOT EVALUABLE. No inference occurred, so no hard-fail condition could have been triggered or cleared. \"none triggered\" on this run means \"nothing ran\", NOT \"the architecture held\".",
+    "conditions": [
+      {
+        "id": "provider-authored factKey accepted",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      },
+      {
+        "id": "projection altered branch or decision-divergence meaning",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      },
+      {
+        "id": "factKey not deterministically derived",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      },
+      {
+        "id": "v3.3 admitted unsupplied citation-shaped authority",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      },
+      {
+        "id": "provider output settled an OwedFact",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      },
+      {
+        "id": "provider-authored priority escalated UNRESOLVED_SAFETY_STATE",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      },
+      {
+        "id": "call ceiling exceeded",
+        "triggered": false,
+        "evidence": "NOT EVALUABLE — zero behavioural executions",
+        "evaluable": false
+      }
+    ],
+    "anyTriggered": null
+  }
+}

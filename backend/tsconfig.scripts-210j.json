@@ -1,0 +1,16 @@
+{
+  "//": "SECTION 210J EXPERIMENT SCOPE ONLY. This configuration typechecks the §210J epistemic schema-remediation files and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. `tsc -p tsconfig.json` covers src/** only; `scripts/**` under the project's own compiler options carries pre-existing diagnostics across unrelated legacy files. Report results as EXPERIMENT_SCOPE_TYPECHECK (§210J), never as `tsc clean`. Every include glob is §210x-namespaced, so no pre-existing file enters the scope.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "incremental": false,
+    "rootDir": "."
+  },
+  "include": [
+    "scripts/lib/expert-210i-*.ts",
+    "scripts/lib/expert-210j-*.ts",
+    "scripts/test-210i-*.ts",
+    "scripts/test-210j-*.ts"
+  ]
+}

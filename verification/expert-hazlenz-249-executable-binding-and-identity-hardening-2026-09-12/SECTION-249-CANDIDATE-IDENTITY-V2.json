@@ -1,0 +1,160 @@
+{
+  "section": "249",
+  "identityVersion": "hazlenz.expert.candidate-identity.v2.execution-derived",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "derivation": "EXECUTION_DERIVED",
+  "supersedes": "the §247 identity, which was declaration-derived and is preserved as historical evidence",
+  "mechanicallyResolved": 13,
+  "required": 17,
+  "declarationsUsed": 0,
+  "unresolved": 4,
+  "failures": [
+    "element 3: proof of semantic-path identity — production invoked build247SystemPrompt/unknown; adapter invoked build247SystemPrompt/buildExpert247WireSchema",
+    "element 6: first-pass schema — the assembled wire schema matches no known builder",
+    "element 7: driver-role/posture contract — resolved from the builders the assembled bytes reproduce",
+    "element 13: strict-schema setting — read off the assembled tool block",
+    "production and adapter invoke different contract versions",
+    "strict schema is disabled on the production request",
+    "strict schema is disabled on the adapter request"
+  ],
+  "executableIdentityDigest": null,
+  "invokedPromptBuilder": "build247SystemPrompt",
+  "invokedSchemaBuilder": null,
+  "contractClosureModules": 43,
+  "elements": [
+    {
+      "n": 1,
+      "element": "production Expert entry point",
+      "resolved": true,
+      "resolvedTo": "src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts",
+      "evidence": "the assembled request was produced by driving this entry point",
+      "sha256": "597cf9107ff5eb54bdf3744c656874244698593fb70ac3d20aa9eb655d5b9eef"
+    },
+    {
+      "n": 2,
+      "element": "acceptance entry point",
+      "resolved": true,
+      "resolvedTo": "src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts",
+      "evidence": "the adapter request was produced by driving the compatibility builder",
+      "sha256": "5077d9feb0207216f6907d79a6a831b20b5611ce706bc7be7709adb271832d7c"
+    },
+    {
+      "n": 3,
+      "element": "proof of semantic-path identity",
+      "resolved": false,
+      "resolvedTo": null,
+      "evidence": "production invoked build247SystemPrompt/unknown; adapter invoked build247SystemPrompt/buildExpert247WireSchema"
+    },
+    {
+      "n": 4,
+      "element": "semantic contract closure",
+      "resolved": true,
+      "resolvedTo": "580acd3d25ba87db9e850d66f26721ab0c4ca88c51d812be7de4b2e4bfc2b78a",
+      "evidence": "digest over the production contract tree",
+      "sha256": "580acd3d25ba87db9e850d66f26721ab0c4ca88c51d812be7de4b2e4bfc2b78a"
+    },
+    {
+      "n": 5,
+      "element": "first-pass prompt",
+      "resolved": true,
+      "resolvedTo": "build247SystemPrompt",
+      "evidence": "the assembled system prompt reproduces exactly",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 6,
+      "element": "first-pass schema",
+      "resolved": false,
+      "resolvedTo": null,
+      "evidence": "the assembled wire schema matches no known builder",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 7,
+      "element": "driver-role/posture contract",
+      "resolved": false,
+      "resolvedTo": "expert-247-posture-contract.ts",
+      "evidence": "resolved from the builders the assembled bytes reproduce",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 8,
+      "element": "verifier prompt",
+      "resolved": true,
+      "resolvedTo": "expert-218-property-instruction.ts",
+      "evidence": "reachable from the entry point verifier leg",
+      "sha256": "c253e900c83b63a0e8340cd85fe999380a8d773357f56b82395fd9ea771ffe4a"
+    },
+    {
+      "n": 9,
+      "element": "verifier schema",
+      "resolved": true,
+      "resolvedTo": "expert-218-property-review-contract.ts",
+      "evidence": "reachable from the entry point verifier leg",
+      "sha256": "35c766fcfa82454c53b7d1523e38484b101c124b7f158069f81362fb220bc7fb"
+    },
+    {
+      "n": 10,
+      "element": "request envelope",
+      "resolved": true,
+      "resolvedTo": "expert-request-envelope.ts",
+      "evidence": "the assembled body was produced by buildEnvelopeRequestBody",
+      "sha256": "d74f70aa72bc88954fed6f017f023317eccde586165ba461b44cc27cc448629f"
+    },
+    {
+      "n": 11,
+      "element": "provider/model identity",
+      "resolved": true,
+      "resolvedTo": "claude-sonnet-5",
+      "evidence": "read off the assembled request"
+    },
+    {
+      "n": 12,
+      "element": "token limits",
+      "resolved": true,
+      "resolvedTo": "8000",
+      "evidence": "read off the assembled request"
+    },
+    {
+      "n": 13,
+      "element": "strict-schema setting",
+      "resolved": false,
+      "resolvedTo": "false",
+      "evidence": "read off the assembled tool block"
+    },
+    {
+      "n": 14,
+      "element": "property authority",
+      "resolved": true,
+      "resolvedTo": "owed-facts/property-authority.ts",
+      "evidence": "the authority boundary the entry point defers to",
+      "sha256": "04287e83fce963e3a63e3c43e89e023fd6fa8a75d01a5e35a20d3d1aeb5bf4fc"
+    },
+    {
+      "n": 15,
+      "element": "evidence authority",
+      "resolved": true,
+      "resolvedTo": "owed-facts/settlement-review.ts",
+      "evidence": "the evidence review surface",
+      "sha256": "4f300ae7cd5db1ebfdb8ab24985a455b63c627a224121508d5147191cf37e86e"
+    },
+    {
+      "n": 16,
+      "element": "settlement authority",
+      "resolved": true,
+      "resolvedTo": "owed-facts/settlement-review.ts",
+      "evidence": "mintSettlementAuthority",
+      "sha256": "4f300ae7cd5db1ebfdb8ab24985a455b63c627a224121508d5147191cf37e86e"
+    },
+    {
+      "n": 17,
+      "element": "K6 representation",
+      "resolved": true,
+      "resolvedTo": "anyOf + const, 6 admissible / 0 inadmissible",
+      "evidence": "transmitted schema: union=true, admissible=6, inadmissible=0, roleJustification=true",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    }
+  ]
+}

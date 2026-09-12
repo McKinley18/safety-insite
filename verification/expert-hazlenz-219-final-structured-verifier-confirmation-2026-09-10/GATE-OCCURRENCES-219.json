@@ -1,0 +1,19 @@
+{
+  "frozenDigest": "491bf18a1094c99c22a80719001c207c7d72e92c1f547086284b3331d5918d56",
+  "perGateOccurrenceCounts": {
+    "HG1": 1,
+    "HG2": 2
+  },
+  "aggregatePercentageReported": false,
+  "gatesPendingHumanAdjudication": [
+    "HG9",
+    "HG6"
+  ],
+  "machineVerdictByCase": {
+    "A1": "INCORRECT",
+    "A2": "INCORRECT",
+    "A3": "CORRECT",
+    "A4": "CORRECT",
+    "A5": "PENDING"
+  }
+}

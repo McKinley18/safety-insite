@@ -1,0 +1,88 @@
+§193 SOURCE INTEGRITY GATE — INTEGRATION-READINESS HARDENING
+recomputed 2026-09-07T00:10:29.713Z from the files on disk
+
+RESULT: PASS   23/23
+
+OK    v3 system prompt
+        expected  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+OK    v3 response schema
+        expected  1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a
+OK    v3.1 system prompt — NOT a protocol change
+        expected  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+OK    v3.1 response schema — NOT a protocol change
+        expected  d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+OK    v3 admission validator
+        expected  475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+OK    §192 preregistration
+        expected  68ba7ffa80fd8d111760cb628bff2493f46181cb41c124da2e0614e365f13267
+OK    §187 preregistration
+        expected  9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82
+OK    first-pass expert-prompt.ts
+        expected  bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694
+OK    first-pass system prompt
+        expected  20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979
+OK    owed-facts/owed-fact.types.ts
+        expected  102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a
+OK    owed-facts/owed-fact-ledger.ts
+        expected  4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701
+OK    owed-facts/owed-fact-binding.ts
+        expected  e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0
+OK    owed-facts/verifier-v3-development-boundary.ts
+        expected  5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245
+OK    canonical CITATION_SHAPED_PATTERN reused, not redefined
+        expected  \b\d{2}\s*CFR\s*\d+
+OK    §192 cohort module
+        expected  3b4a7fafcd8acb46d52c2f1a7a11d1f50324c055386295d5028e7c99c4c5c095
+OK    §188 neutral ballot still unanswered
+        expected  PENDING_HUMAN_ADJUDICATION
+OK    §189 human gate still UNMEASURED
+        expected  65 / 112
+OK    §190 still labelled MODEL
+        expected  MODEL_SEMANTIC_ADJUDICATION
+OK    §192 raw outputs immutable
+        expected  39
+OK    repaired diff module carries zero NUL bytes
+        expected  0
+OK    repaired diff module is textually auditable
+        expected  true
+OK    backend/scripts sweep clean
+        expected  clean
+OK    expert-hazlenz src sweep clean
+        expected  clean
+
+PROTOCOL UNCHANGED — no v3.2 was created, and none was needed
+
+  §193 citation enforcement is SHARED ADMISSION/RUNTIME LOGIC in a new module. The v3.1
+  prompt and schema are byte-identical to the ones §192 executed against, so the thirty-nine
+  §192 executions remain attached to the hashes that produced them.
+
+  v3.1 prompt  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+  v3.1 schema  d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+
+FILES CHANGED BY §193
+
+  NEW       backend/scripts/lib/expert-verifier-citation-boundary.ts
+  NEW       backend/scripts/lib/expert-source-audit-integrity.ts
+  NEW       backend/scripts/replay-193-citation-boundary-2026-09-06.ts
+  NEW       backend/scripts/test-expert-193-hardening.ts
+  NEW       backend/scripts/verify-193-source-integrity-2026-09-06.ts
+  REPAIRED  backend/scripts/lib/expert-verifier-v2-v3-diff.ts   (4 NUL bytes -> \0 escape)
+            before d5405204afcabe14cdc68bff92987423df5acd5035cce68f5e4282579d201a99  20206 bytes
+            after  ebc687252ee615a2df2603adacd66a07b0a660ac725f017678745756ecc4571d  20210 bytes
+            runtime behaviour proven identical: classifyInstructionDiff output sha256
+            9e143e0c928d49de83db82d45bb41a1aa2e0f6ce92e462365420c8f5771c076d before AND after
+
+  No verifier prompt, schema, contract or semantic instruction was modified.
+
+PRIOR EVIDENCE — unchanged by §193
+
+  79129ae849cd54be2e73ba9cf84bda2d7ae4ce62003c4ea1ac127149c386cda9  §187 RESUMED-VERIFIER-EXECUTIONS.jsonl
+  39eb9513f8e1c4f718bbcdc86fdf9735827e4f5fd1468bd7ce06234d929471a8  §188 HUMAN-ADJUDICATION.json
+  cde83faffbd4f8b3566cfe73966d9785890281b4ac16d17f6f027e4f83f4564d  §189 RAW-HUMAN-ANSWERS.json
+  7eb8e08046bca21c2e6ffa642f8f7824316be5d0bcc8a21eb9bed885af228f92  §190 MODEL-ADJUDICATION.json
+  26b3d3c58b8885307ec7ea939dc67308ed05555b1e29c041205879fda63a9aae  §192 RAW-PROVIDER-OUTPUTS.jsonl
+  697f3b982ad282101b2c413c759c631766dff8b8146a709b204487a99dc4eec0  §192 MODEL-SEMANTIC-ADJUDICATION.json
+
+PROVIDER_CALLS = 0   DATABASE_OPERATIONS = 0   PRODUCTION_ACTIVATION = NONE
+§189 HUMAN GATE = UNMEASURED (65/112)   VERIFIER_V3_1_CUSTOMER_ACCEPTED = FALSE
+

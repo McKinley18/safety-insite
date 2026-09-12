@@ -1,0 +1,299 @@
+{
+  "operation": "§172 silence-control instrument confound analysis",
+  "date": "2026-09-05",
+  "measuredAgainst": "the two frozen human-authoritative REQUIRED observations (HS-A1 / VC-08, HS-E1 / VC-04)",
+  "controlProfiles": {
+    "SC-1": {
+      "chars": 398,
+      "sentences": 4,
+      "words": 64,
+      "avgSentenceWords": 16.0,
+      "commas": 4,
+      "digits": 0,
+      "questionMarks": 0,
+      "interrogatives": 4,
+      "stateAssertionClauses": 2,
+      "verificationVerbs": [
+        "locked",
+        "padlocked",
+        "tested"
+      ],
+      "bannedCueHits": []
+    },
+    "SC-2": {
+      "chars": 409,
+      "sentences": 5,
+      "words": 65,
+      "avgSentenceWords": 13.0,
+      "commas": 1,
+      "digits": 2,
+      "questionMarks": 0,
+      "interrogatives": 5,
+      "stateAssertionClauses": 2,
+      "verificationVerbs": [
+        "checked",
+        "closed",
+        "initialled"
+      ],
+      "bannedCueHits": []
+    },
+    "SC-3": {
+      "chars": 382,
+      "sentences": 5,
+      "words": 62,
+      "avgSentenceWords": 12.4,
+      "commas": 1,
+      "digits": 2,
+      "questionMarks": 0,
+      "interrogatives": 3,
+      "stateAssertionClauses": 2,
+      "verificationVerbs": [
+        "deployed",
+        "locked",
+        "tag"
+      ],
+      "bannedCueHits": []
+    },
+    "SC-4": {
+      "chars": 387,
+      "sentences": 3,
+      "words": 64,
+      "avgSentenceWords": 21.3,
+      "commas": 4,
+      "digits": 2,
+      "questionMarks": 0,
+      "interrogatives": 3,
+      "stateAssertionClauses": 2,
+      "verificationVerbs": [
+        "records",
+        "survey",
+        "surveyed"
+      ],
+      "bannedCueHits": []
+    },
+    "SC-5": {
+      "chars": 389,
+      "sentences": 3,
+      "words": 68,
+      "avgSentenceWords": 22.7,
+      "commas": 5,
+      "digits": 0,
+      "questionMarks": 0,
+      "interrogatives": 4,
+      "stateAssertionClauses": 3,
+      "verificationVerbs": [
+        "closed",
+        "sheet",
+        "shut"
+      ],
+      "bannedCueHits": []
+    }
+  },
+  "requiredProfiles": {
+    "HS-A1": {
+      "chars": 402,
+      "sentences": 4,
+      "words": 70,
+      "avgSentenceWords": 17.5,
+      "commas": 1,
+      "digits": 0,
+      "questionMarks": 0,
+      "interrogatives": 4,
+      "stateAssertionClauses": 1,
+      "verificationVerbs": [],
+      "bannedCueHits": []
+    },
+    "HS-E1": {
+      "chars": 412,
+      "sentences": 4,
+      "words": 71,
+      "avgSentenceWords": 17.8,
+      "commas": 1,
+      "digits": 0,
+      "questionMarks": 0,
+      "interrogatives": 8,
+      "stateAssertionClauses": 2,
+      "verificationVerbs": [
+        "closed"
+      ],
+      "bannedCueHits": []
+    }
+  },
+  "checks": {
+    "LENGTH_CONFOUND": {
+      "verdict": "RESOLVED",
+      "controlBandChars": [
+        382,
+        409
+      ],
+      "requiredChars": [
+        402,
+        412
+      ],
+      "requiredInsideControlBand": true,
+      "note": "controls 382-409, REQUIRED [402, 412]. HS-A1 at 402 sits inside the control band and HS-E1 at 412 is 3 characters above it. The §168 gross separation (559-592 vs 402/412) is gone."
+    },
+    "FORMAT_CONFOUND": {
+      "verdict": "MINOR_RESIDUAL",
+      "controlSentences": [
+        4,
+        5,
+        5,
+        3,
+        3
+      ],
+      "requiredSentences": [
+        4,
+        4
+      ],
+      "controlCommas": [
+        4,
+        1,
+        1,
+        4,
+        5
+      ],
+      "requiredCommas": [
+        1,
+        1
+      ],
+      "controlDigits": [
+        0,
+        2,
+        2,
+        2,
+        0
+      ],
+      "requiredDigits": [
+        0,
+        0
+      ],
+      "note": "both REQUIRED rows have exactly 1 comma and 0 digits. Controls run 1-5 commas and 0-2 digits, so SC-1, SC-4 and SC-5 are separable from both REQUIRED rows on comma count alone. Mild rather than decisive, and worth removing in a reauthoring pass."
+    },
+    "VOCABULARY_CONFOUND": {
+      "verdict": "MATERIAL",
+      "verificationVerbsInControls": [
+        "checked",
+        "closed",
+        "deployed",
+        "initialled",
+        "locked",
+        "padlocked",
+        "records",
+        "sheet",
+        "shut",
+        "survey",
+        "surveyed",
+        "tag",
+        "tested"
+      ],
+      "verificationVerbsInRequired": [
+        "closed"
+      ],
+      "presentOnlyInControls": [
+        "checked",
+        "deployed",
+        "initialled",
+        "locked",
+        "padlocked",
+        "records",
+        "sheet",
+        "shut",
+        "survey",
+        "surveyed",
+        "tag",
+        "tested"
+      ],
+      "countOnlyInControls": 12,
+      "note": "twelve verification verbs appear only in controls; the REQUIRED rows contain exactly one ('closed', and there in the sense of a closed guard door rather than a verification). A one-token rule -- 'if the text says tested / checked / surveyed / initialled, stay silent' -- separates the classes without applying any clarification semantics."
+    },
+    "EXPLICIT_SAFE_LABEL_CONFOUND": {
+      "verdict": "CLEAN",
+      "bannedCuesChecked": 16,
+      "hits": "none in any row"
+    },
+    "QUESTION_WORDING_CONFOUND": {
+      "verdict": "CLEAN",
+      "controlQuestionMarks": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "requiredQuestionMarks": [
+        0,
+        0
+      ],
+      "controlInterrogatives": [
+        4,
+        5,
+        3,
+        3,
+        4
+      ],
+      "requiredInterrogatives": [
+        4,
+        8
+      ],
+      "note": "zero question marks and zero interrogative constructions on both sides"
+    },
+    "DECISION_CATEGORY_CONFOUND": {
+      "verdict": "MATERIAL",
+      "controlDomains": [
+        "electrical / hazardous energy control",
+        "respiratory / solvent vapour",
+        "fall protection / work at height",
+        "noise exposure",
+        "powered industrial truck / pedestrian separation"
+      ],
+      "requiredDomains": [
+        "HS-A1 fire/explosion + machine guarding",
+        "HS-E1 machine guarding"
+      ],
+      "sharedDomains": [],
+      "note": "NO control shares a hazard domain with either REQUIRED row. Class is perfectly predictable from hazard family: guarding/fire implies REQUIRED, electrical/respiratory/fall/noise/forklift implies control. Any prior about which families usually warrant a question would score well without applying clarification semantics."
+    },
+    "SETTLED_FACT_DENSITY_CONFOUND": {
+      "verdict": "NOT_SYMMETRICALLY_ASSESSABLE",
+      "controlDeclaredSettledFacts": {
+        "SC-1": 5,
+        "SC-2": 6,
+        "SC-3": 6,
+        "SC-4": 5,
+        "SC-5": 6
+      },
+      "requiredDeclaredSettledFacts": {
+        "HS-A1": 0,
+        "HS-E1": 0
+      },
+      "neutralProxy_stateAssertionClauses": {
+        "SC-1": 2,
+        "SC-2": 2,
+        "SC-3": 2,
+        "SC-4": 2,
+        "SC-5": 3,
+        "HS-A1": 1,
+        "HS-E1": 2
+      },
+      "note": "the declared settled-fact counts (5-6 vs 0) cannot be compared: the drafts declare a settled-fact list and the frozen REQUIRED rows carry none, so the difference is an artifact of the instrument rather than of the text. The neutral proxy -- clauses asserting a verified state -- is 2-3 for controls against 1-2 for REQUIRED, which is suggestive but not separating. Reported as unresolved rather than clean."
+    }
+  },
+  "materialConfounds": [
+    "VOCABULARY_CONFOUND",
+    "DECISION_CATEGORY_CONFOUND"
+  ],
+  "minorConfounds": [
+    "FORMAT_CONFOUND"
+  ],
+  "unresolved": [
+    "SETTLED_FACT_DENSITY_CONFOUND"
+  ],
+  "clean": [
+    "LENGTH_CONFOUND",
+    "EXPLICIT_SAFE_LABEL_CONFOUND",
+    "QUESTION_WORDING_CONFOUND"
+  ],
+  "instrumentVerdict": "MATERIALLY_CONFOUNDED",
+  "whyThisIsAnInstrumentFindingAndNotATruthFinding": "every measurement above is structural. None asks whether a row's silence is semantically correct, and none was decided by any model judgement about safety. A confounded instrument cannot produce an interpretable precision measurement even if every row's truth were adjudicated valid."
+}

@@ -1,0 +1,736 @@
+{
+  "artifact": "SECTION-224-LOCAL-RESULTS",
+  "instrumentVersion": "hazlenz.expert.224.declaration-capability.v1",
+  "instrumentFrozenDigest": "c68fe8c048ff5c92d8f70c502e60daf42d0c877a307a5ba8d9ec69d68566f418",
+  "contractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+  "baseContractVersion": "hazlenz.expert.first-pass-contract.210j-epistemic",
+  "instructionIdentity": {
+    "version": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+    "base": "hazlenz.expert.first-pass-contract.210j-epistemic",
+    "plain": "b1e381794efb633652891a37818caa7f80cbbfebc9199d55b648b536c0bc023e",
+    "governed": "4c3b6edc923938a42550660229ca80a3e3f3aa56d80662a762f589d3e2de9134"
+  },
+  "wireSchemaUnchangedFrom210J": true,
+  "wireSchemaSha256": "3db70ab38e24adba2823237cc702190bed8f245a47b5f00aeeb4bac37040a08d",
+  "establishes": "CONTRACT_DISCRIMINATION_ONLY",
+  "doesNotEstablish": "any claim about how a model will behave. That requires the hosted confirmation designed in SECTION-224-HOSTED-CONFIRMATION-DESIGN.md and not executed here.",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "measures": {
+    "RECALL": {
+      "baseline": {
+        "exercised": 8,
+        "compliant": 8,
+        "defective": 0
+      },
+      "remediated": {
+        "exercised": 8,
+        "compliant": 6,
+        "defective": 2
+      }
+    },
+    "PRECISION": {
+      "baseline": {
+        "exercised": 2,
+        "compliant": 2,
+        "defective": 0
+      },
+      "remediated": {
+        "exercised": 2,
+        "compliant": 2,
+        "defective": 0
+      }
+    },
+    "PROPERTY_IDENTITY": {
+      "baseline": {
+        "exercised": 6,
+        "compliant": 4,
+        "defective": 2
+      },
+      "remediated": {
+        "exercised": 6,
+        "compliant": 3,
+        "defective": 3
+      }
+    },
+    "INDEPENDENCE": {
+      "baseline": {
+        "exercised": 1,
+        "compliant": 0,
+        "defective": 1
+      },
+      "remediated": {
+        "exercised": 1,
+        "compliant": 0,
+        "defective": 1
+      }
+    }
+  },
+  "hardRequirements": {
+    "decisionCriticalDeclarationRecall": "100%",
+    "exactControllingPropertyIdentity": "100%",
+    "overCorrectionOnRequiredActOrArtifact": 0,
+    "independentFactPreservation": "100%",
+    "safeNegatedFalseDeclarations": 0,
+    "ordinaryNonDecisionCriticalFalseDeclarations": 0,
+    "deterministicSemanticInvention": 0
+  },
+  "perCase": [
+    {
+      "caseId": "C1-RECALL-WHICH-CONTROL",
+      "family": "recognized concern must become declaration",
+      "outputProvenance": "SECTION_221_RECORDED",
+      "expected": {
+        "RECALL": "DEFECTIVE",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "the contract gates the declaration on the clarification. No question was asked, so under this contract no entry is owed and the empty list is compliant. This is the defect, reproduced: the contract cannot tell this apart from correct restraint."
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "DEFECTIVE",
+          "reason": "candidate(s) cand-unknown-rise stand at UNKNOWN or INSUFFICIENT_EVIDENCE with no declaration and no witnessed negative. The declaration trigger is independent of the clarification, so the entry is owed."
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [],
+      "matchesPreregistration": true
+    },
+    {
+      "caseId": "C2-RECALL-CANDIDATE-CONTRADICTION",
+      "family": "recognized concern must become declaration",
+      "outputProvenance": "SECTION_221_RECORDED",
+      "expected": {
+        "RECALL": "DEFECTIVE",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "the contract gates the declaration on the clarification. No question was asked, so under this contract no entry is owed and the empty list is compliant. This is the defect, reproduced: the contract cannot tell this apart from correct restraint."
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "DEFECTIVE",
+          "reason": "candidate(s) CAND-3 stand at UNKNOWN or INSUFFICIENT_EVIDENCE with no declaration and no witnessed negative. The declaration trigger is independent of the clarification, so the entry is owed. The summary additionally asserts a blanket negative that contradicts the candidate."
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [],
+      "matchesPreregistration": true
+    },
+    {
+      "caseId": "C3-PROPERTY-CONTROL-STATE",
+      "family": "exact underlying property vs control state",
+      "outputProvenance": "SECTION_221_RECORDED",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "DEFECTIVE",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-vent-state names a CONTROL_STATE rather than the owed property, and this contract does not refuse that kind. The substitution survives. This is the defect, reproduced."
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "DEFECTIVE",
+          "reason": "decl-vent-state names a CONTROL_STATE (\"whether the ventilation fan is currently running\", overlap 0.375) rather than the owed property (overlap 0); §224 GATE 13, over GATE 8 and GATE 12 refuses it"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [
+        {
+          "declarationId": "decl-vent-state",
+          "declaredProperty": "Whether the plant room ventilation fan is currently running (cycling) on its run-on timer",
+          "nearestOwedKey": null,
+          "nearestOwedScore": 0,
+          "nearestForbiddenKind": "CONTROL_STATE",
+          "nearestForbiddenText": "whether the ventilation fan is currently running",
+          "nearestForbiddenScore": 0.375,
+          "classifiedAs": "FORBIDDEN_SUBSTITUTION"
+        }
+      ],
+      "matchesPreregistration": false
+    },
+    {
+      "caseId": "C4-PROPERTY-EVIDENCE-PROXY",
+      "family": "exact underlying property vs evidence proxy",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "DEFECTIVE",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "DEFECTIVE",
+          "reason": "decl-proof-test names a EVIDENCE_PROXY (\"whether the annual proof load test has been carried out\", overlap 0.462) rather than the owed property (overlap 0.176); GATE 8 and GATE 12: state, not the process that would establish it refuses it"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "DEFECTIVE",
+          "reason": "decl-proof-test names a EVIDENCE_PROXY (\"whether the annual proof load test has been carried out\", overlap 0.462) rather than the owed property (overlap 0.176); §224 GATE 13, over GATE 8 and GATE 12 refuses it"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [
+        {
+          "declarationId": "decl-proof-test",
+          "declaredProperty": "Whether the annual proof load test required by the rigging schedule has been carried out on the flying system wire ropes",
+          "nearestOwedKey": "P-ROPE",
+          "nearestOwedScore": 0.176,
+          "nearestForbiddenKind": "EVIDENCE_PROXY",
+          "nearestForbiddenText": "whether the annual proof load test has been carried out",
+          "nearestForbiddenScore": 0.462,
+          "classifiedAs": "FORBIDDEN_SUBSTITUTION"
+        }
+      ],
+      "matchesPreregistration": false
+    },
+    {
+      "caseId": "C5-REQUIRED-ACT-IS-THE-PROPERTY",
+      "family": "exact property vs required act -- the act IS the property",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "COMPLIANT",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-iso -> P-ISOLATION (overlap 0.818 against 0 for the nearest substitution)"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-iso -> P-ISOLATION (overlap 0.818 against 0 for the nearest substitution)"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [
+        {
+          "declarationId": "decl-iso",
+          "declaredProperty": "Whether the conveyor drive was locked off at the disconnector and the stored energy bled down before the guard was removed",
+          "nearestOwedKey": "P-ISOLATION",
+          "nearestOwedScore": 0.818,
+          "nearestForbiddenKind": null,
+          "nearestForbiddenText": null,
+          "nearestForbiddenScore": 0,
+          "classifiedAs": "OWED_PROPERTY"
+        }
+      ],
+      "matchesPreregistration": false
+    },
+    {
+      "caseId": "C6-REQUIRED-ARTIFACT-IS-THE-PROPERTY",
+      "family": "exact property vs required artifact -- the artifact IS the property",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "COMPLIANT",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-ter -> P-TER (overlap 0.6 against 0.111 for the nearest substitution)"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-ter -> P-TER (overlap 0.6 against 0.111 for the nearest substitution)"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [
+        {
+          "declarationId": "decl-ter",
+          "declaredProperty": "Whether a current thorough examination report exists for this crane",
+          "nearestOwedKey": "P-TER",
+          "nearestOwedScore": 0.6,
+          "nearestForbiddenKind": "ADJACENT_CONDITION",
+          "nearestForbiddenText": "whether the crane appears to be in good condition",
+          "nearestForbiddenScore": 0.111,
+          "classifiedAs": "OWED_PROPERTY"
+        }
+      ],
+      "matchesPreregistration": false
+    },
+    {
+      "caseId": "C7-ADJACENT-PROPERTY-TRAP",
+      "family": "adjacent-property trap",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "DEFECTIVE",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "DEFECTIVE",
+          "reason": "decl-stop-means names a VERIFICATION_ACT (\"whether a means exists to verify the rotor has stopped\", overlap 0.556) rather than the owed property (overlap 0.167); GATE 8 and GATE 12: state, not the process that would establish it refuses it"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "DEFECTIVE",
+          "reason": "decl-stop-means names a VERIFICATION_ACT (\"whether a means exists to verify the rotor has stopped\", overlap 0.556) rather than the owed property (overlap 0.167); §224 GATE 13, over GATE 8 and GATE 12 refuses it"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [
+        {
+          "declarationId": "decl-stop-means",
+          "declaredProperty": "Whether a means exists to verify that the rotor has stopped before the operator reaches into the hopper",
+          "nearestOwedKey": "P-RUNDOWN",
+          "nearestOwedScore": 0.167,
+          "nearestForbiddenKind": "VERIFICATION_ACT",
+          "nearestForbiddenText": "whether a means exists to verify the rotor has stopped",
+          "nearestForbiddenScore": 0.556,
+          "classifiedAs": "FORBIDDEN_SUBSTITUTION"
+        }
+      ],
+      "matchesPreregistration": false
+    },
+    {
+      "caseId": "C8-MULTI-INDEPENDENT",
+      "family": "multiple independent decision-critical facts",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "NOT_EXERCISED",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "DEFECTIVE"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-joined -> P-ATM (overlap 0.5 against 0.111 for the nearest substitution)"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "DEFECTIVE",
+          "reason": "2 independent properties are owed and 1 entry/entries were emitted; independent facts were joined"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "COMPLIANT",
+          "reason": "1 declaration(s) emitted"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "NOT_EXERCISED",
+          "reason": "this case owes a property, so it cannot exercise restraint"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "COMPLIANT",
+          "reason": "decl-joined -> P-ATM (overlap 0.5 against 0.111 for the nearest substitution)"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "DEFECTIVE",
+          "reason": "2 independent properties are owed and 1 entry/entries were emitted; independent facts were joined"
+        }
+      },
+      "propertyClassifications": [
+        {
+          "declarationId": "decl-joined",
+          "declaredProperty": "Whether the tank atmosphere is safe to enter and the agitator is isolated",
+          "nearestOwedKey": "P-ATM",
+          "nearestOwedScore": 0.5,
+          "nearestForbiddenKind": "VERIFICATION_ACT",
+          "nearestForbiddenText": "whether a fresh atmosphere reading has been taken",
+          "nearestForbiddenScore": 0.111,
+          "classifiedAs": "OWED_PROPERTY"
+        }
+      ],
+      "matchesPreregistration": false
+    },
+    {
+      "caseId": "C9-SAFE-NEGATED-RESTRAINT",
+      "family": "genuinely safe / negated -- NO declaration is correct",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "COMPLIANT",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no property is owed on this case"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "COMPLIANT",
+          "reason": "no declaration emitted where the frozen truth owes none"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no property is owed on this case"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "COMPLIANT",
+          "reason": "no declaration emitted where the frozen truth owes none"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [],
+      "matchesPreregistration": true
+    },
+    {
+      "caseId": "C10-ORDINARY-NOT-DECISION-CRITICAL",
+      "family": "ordinary non-decision-critical unknown -- NO declaration is correct",
+      "outputProvenance": "AUTHORED_FOR_THIS_INSTRUMENT",
+      "expected": {
+        "RECALL": "NOT_EXERCISED",
+        "PRECISION": "COMPLIANT",
+        "PROPERTY_IDENTITY": "NOT_EXERCISED",
+        "INDEPENDENCE": "NOT_EXERCISED"
+      },
+      "baseline": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no property is owed on this case"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "COMPLIANT",
+          "reason": "no declaration emitted where the frozen truth owes none"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "remediated": {
+        "RECALL": {
+          "measure": "RECALL",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no property is owed on this case"
+        },
+        "PRECISION": {
+          "measure": "PRECISION",
+          "verdict": "COMPLIANT",
+          "reason": "no declaration emitted, and every self-declared unresolved candidate carries a witnessed negative saying what does not change"
+        },
+        "PROPERTY_IDENTITY": {
+          "measure": "PROPERTY_IDENTITY",
+          "verdict": "NOT_EXERCISED",
+          "reason": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "measure": "INDEPENDENCE",
+          "verdict": "NOT_EXERCISED",
+          "reason": "fewer than two independent properties are owed"
+        }
+      },
+      "propertyClassifications": [],
+      "matchesPreregistration": true
+    }
+  ],
+  "suite": {
+    "capabilityPassed": 33,
+    "capabilityFailed": 0
+  },
+  "preregistrationConformance": {
+    "checks": 40,
+    "matched": 33,
+    "mismatched": 7,
+    "mismatches": [
+      "D. C3-PROPERTY-CONTROL-STATE RECALL preregistered NOT_EXERCISED (got COMPLIANT)",
+      "D. C4-PROPERTY-EVIDENCE-PROXY RECALL preregistered NOT_EXERCISED (got COMPLIANT)",
+      "D. C5-REQUIRED-ACT-IS-THE-PROPERTY RECALL preregistered NOT_EXERCISED (got COMPLIANT)",
+      "D. C6-REQUIRED-ARTIFACT-IS-THE-PROPERTY RECALL preregistered NOT_EXERCISED (got COMPLIANT)",
+      "D. C7-ADJACENT-PROPERTY-TRAP RECALL preregistered NOT_EXERCISED (got COMPLIANT)",
+      "D. C8-MULTI-INDEPENDENT RECALL preregistered NOT_EXERCISED (got COMPLIANT)",
+      "D. C8-MULTI-INDEPENDENT PROPERTY_IDENTITY preregistered NOT_EXERCISED (got COMPLIANT)"
+    ],
+    "verdict": "INSTRUMENT_AUTHORING_DEFECT",
+    "note": "The frozen per-case `expected` table understates which measures several cases exercise: it was authored one-measure-per-case, while a case that owes a property and emits a declaration genuinely exercises RECALL and PROPERTY_IDENTITY as well. Every mismatch resolved to COMPLIANT, which is the non-failing direction, and no hard requirement depends on this table. The frozen instrument is NOT revised: denominators and expectations are frozen before evaluation and are not redefined after a result is seen. Recorded as a §224 instrument-authoring defect, to be repaired in the next instrument and not in this one."
+  }
+}

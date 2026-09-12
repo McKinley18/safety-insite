@@ -1,0 +1,184 @@
+{
+  "operation": "§144 Expert HazLenz v9 bounded hosted linkage confirmation probe",
+  "capturedAt": "2026-09-03T04:22:58.593Z",
+  "isFormalEvaluation": false,
+  "hashes": {
+    "probeScriptSha256": "e4f75004752a11e01f36652164a6362552d40fe3cfd8b5ef7a4fbb2cedbac7fe",
+    "fixtureManifestSha256": "888bb8b02553ae2cbaba0da0a06b2b64ab81e543cf7b102ad8e0b9ed19a757b8",
+    "systemPromptSha256": "8f5c7960c559067626f12e239d63b5da2d312c9faf7dd19d329f555cf93b60f9",
+    "wireSchemaSha256": "fc37abc7eef49499655122ac0f09000056a16500fe8bcb4e597e35b2005891b1",
+    "normalizationSha256": "a12b478d80111ac570d1f7660f7f119dc86def251045520ee5fa17522dca1d9b",
+    "contractTypesSha256": "fec3fd5fea5514929717258178883b7b63f7a4f73b4bf5a7d7412bee88bbdfdd"
+  },
+  "execution": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "promptVersion": "hazlenz.expert.prompt.v9",
+    "analysisContractVersion": "hazlenz.expert.analysis.v2"
+  },
+  "budget": {
+    "targetLogicalCalls": 9,
+    "hardProviderRequestCeiling": 12,
+    "retryRequestBudget": 3,
+    "enforcedSpendCeilingUsd": 1.248,
+    "worstCaseRequestUsd": 0.104
+  },
+  "extra": {
+    "git": {
+      "head": null,
+      "branch": null,
+      "upstream": null,
+      "dirty": null
+    },
+    "historicalProviderInvocationCount": 195,
+    "contractVersions": {
+      "input": "hazlenz.expert.input.v1",
+      "validator": "hazlenz.expert.validator.v1",
+      "measurement": "hazlenz.expert.measurement.v1",
+      "harness": "hazlenz.expert.cohort.harness.v1",
+      "runRecordStore": "hazlenz.expert.run-record-store.v1",
+      "probeMeasures": "hazlenz.expert.probe-measures.v1",
+      "fixtureSet": "hazlenz.expert.dev-probe.fixtures.v3"
+    },
+    "arms": [
+      "BASE"
+    ],
+    "m14RemediationStatus": "NOT_ATTEMPTED",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "gate": [
+      {
+        "id": "A.1 fixture count is the frozen v9 confirmation design",
+        "ok": true,
+        "detail": "9 rows (authorized 8-10)"
+      },
+      {
+        "id": "A.2 every row is structurally scoreable",
+        "ok": true,
+        "detail": "0 problems"
+      },
+      {
+        "id": "A.3 row ids are v3 confirmation ids",
+        "ok": true,
+        "detail": "CL-R1 CL-R2 CL-R3 CL-F1 CL-F2 CL-F3 CL-N1 CL-T1 CL-T2"
+      },
+      {
+        "id": "A.4 >=3 REQUIRED linkage opportunities",
+        "ok": true,
+        "detail": "CL-R1 CL-R2 CL-R3"
+      },
+      {
+        "id": "A.5 >=3 POSITIVE FORBIDDEN opportunities",
+        "ok": true,
+        "detail": "CL-F1 CL-F2 CL-F3"
+      },
+      {
+        "id": "A.6 >=1 NOT_A_LINKAGE_TEST row",
+        "ok": true,
+        "detail": "CL-N1"
+      },
+      {
+        "id": "A.7 >=2 TRUE-GAP clarification-positive controls",
+        "ok": true,
+        "detail": "5"
+      },
+      {
+        "id": "A.8 EVERY row carries a linkage rationale — no blanket defaults",
+        "ok": true,
+        "detail": "the §142 blanket-FORBIDDEN defect cannot recur"
+      },
+      {
+        "id": "A.9 every FORBIDDEN row states a POSITIVE reason",
+        "ok": true,
+        "detail": "CL-F1 CL-F2 CL-F3"
+      },
+      {
+        "id": "A.10 no fixture commissions a contradiction",
+        "ok": true,
+        "detail": "a contradiction is a MODEL ERROR and is never a positive control"
+      },
+      {
+        "id": "B.1 no formal-cohort, reserved-material or SPENT-probe path is imported",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "B.2 rows come from exactly one v3 fixture module",
+        "ok": true,
+        "detail": "hazlenz.expert.dev-probe.fixtures.v3"
+      },
+      {
+        "id": "C.1 model is exactly the bound model",
+        "ok": true,
+        "detail": "claude-sonnet-5"
+      },
+      {
+        "id": "C.2 endpoint is the vendor API host",
+        "ok": true,
+        "detail": "https://api.anthropic.com"
+      },
+      {
+        "id": "C.3 thinking disabled",
+        "ok": true,
+        "detail": "disabled"
+      },
+      {
+        "id": "C.4 credential present (never read, logged or persisted)",
+        "ok": true,
+        "detail": "ANTHROPIC_API_KEY set"
+      },
+      {
+        "id": "D.1 built one request per row, called nothing",
+        "ok": true,
+        "detail": "9 built, 0 invocations"
+      },
+      {
+        "id": "D.2 ONE ARM ONLY — M14 is not attempted",
+        "ok": true,
+        "detail": "BASE"
+      },
+      {
+        "id": "D.3 the prompt is the v9 precedence contract",
+        "ok": true,
+        "detail": "hazlenz.expert.prompt.v9"
+      },
+      {
+        "id": "E.1 no truth-key-only string reaches any request",
+        "ok": true,
+        "detail": "9 scanned"
+      },
+      {
+        "id": "F.1 system prompt carries no citation-shaped text",
+        "ok": true,
+        "detail": "clean"
+      },
+      {
+        "id": "F.2 no built user prompt carries citation-shaped text",
+        "ok": true,
+        "detail": "9 scanned"
+      },
+      {
+        "id": "F.3 redaction is EXERCISED, not assumed",
+        "ok": true,
+        "detail": "1 supplied record fields carried a citation pre-render"
+      },
+      {
+        "id": "G.1 spend ceiling is the LOWER of authorized and model-priced",
+        "ok": true,
+        "detail": "authorized $2.00, priced $1.2480 -> enforcing $1.2480"
+      },
+      {
+        "id": "G.2 request ceiling covers target plus retry allowance",
+        "ok": true,
+        "detail": "9 + 3 = 12"
+      },
+      {
+        "id": "H.1 MEASURE-ONLY: the store exists and carries records",
+        "ok": true,
+        "detail": "recomputing from persisted evidence; NO provider request will be issued"
+      }
+    ]
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "operation": "§167 scoped hosted verifier-v3 binding falsification",
+  "date": "2026-09-04",
+  "terminal": "EXPERT_HAZLENZ_VERIFIER_V3_SCOPED_FALSIFICATION_PASSED — BOUNDED_RELIABILITY_INTEGRATION_REVIEW_REQUIRED",
+  "label": "BOUNDED_DEVELOPMENT_FALSIFICATION_SAMPLE — NOT a production error rate, NOT an accuracy percentage, NOT a reliability or safety claim",
+  "evidenceDirectory": "verification/expert-hazlenz-verifier-v3-scoped-falsification-2026-09-04",
+  "providerCalls": 12,
+  "totalActualCostUsd": 0.29139,
+  "hardProspectiveCostCapUsd": 0.68,
+  "capCompliance": true,
+  "retries": 0,
+  "replacementCalls": 0,
+  "firstPassInvocations": 0,
+  "databaseOperations": 0,
+  "srcFilesChanged": 0,
+  "model": [
+    "claude-sonnet-5"
+  ],
+  "protocol": {
+    "instruction": "hazlenz.expert.verifier-instruction.v3",
+    "instructionSha256": "678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88",
+    "responseSchemaSha256": "1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a",
+    "contract": "hazlenz.expert.verifier.v3",
+    "unchangedDuringSpend": true
+  },
+  "frozenRequests": {
+    "VC-08": "c1e5407a121c60b7e395e6e7b4f9b1ebc866b79a40911f2397bea534e5c02bb6",
+    "VC-04": "94b47273776d37942cbd8b0588c28ac26ad8573b052dda27fc4ba15ff2474ab3",
+    "frozenBeforeSpend": true,
+    "assertedEqualToSection166Preflight": true
+  },
+  "allocation": {
+    "cases": [
+      "HS-A1/VC-08",
+      "HS-E1/VC-04"
+    ],
+    "drawsPerCase": 6,
+    "totalDraws": 12,
+    "preregistered": true,
+    "rebalancedAfterOutcomes": false,
+    "failedDrawsReplaced": false
+  },
+  "preSpendGate": {
+    "total": 25,
+    "passed": 25,
+    "spentAtGate": 0.0
+  },
+  "execution": {
+    "plannedRequests": 12,
+    "completedRequests": 12,
+    "retries": 0,
+    "replacementCalls": 0,
+    "firstPassInvocations": 0,
+    "executionValid": 12,
+    "contractAdmitted": 12,
+    "degenerate": 0,
+    "truncated": 0,
+    "transportFailures": 0,
+    "forbiddenFieldViolations": 0,
+    "modelIdentities": [
+      "claude-sonnet-5"
+    ],
+    "totalInputTokens": 75600,
+    "totalOutputTokens": 14019,
+    "totalActualCostUsd": 0.29139,
+    "hardProspectiveCostCapUsd": 0.68,
+    "capCompliance": true
+  },
+  "separationOfConcerns": {
+    "ARCHITECTURE_DETECTION_SUCCESS": true,
+    "MODEL_SEMANTIC_RECOVERY_SUCCESS": true,
+    "whyBothAreReported": "a schema-valid response with a populated binding field and a firing warning validates nothing on its own. The substantive question is whether explicit owed-fact state changes what the MODEL addresses, and that is scored separately against frozen human truth.",
+    "columnDisagreements": []
+  },
+  "falsifiers": {
+    "A_bindingUsability": {
+      "BINDING_PROTOCOL_HOSTED_EXERCISED": true,
+      "admittedBindings": 12,
+      "admittedBindingsToTheOwedKey": 12,
+      "FALSIFIER_A_TRIGGERED": false
+    },
+    "B_owedTargetPreservation": {
+      "frozenThreshold": {
+        "failIfUnboundOrUndeclaredDrawsAtLeast": 2,
+        "outOf": 6,
+        "statedIn": "§164/§166 falsifier B — \"binding available and the verifier still fails to bind or explicitly declare the owed authoritative fact in >= 2 of 6 relevant draws\""
+      },
+      "perCase": [
+        {
+          "rowId": "HS-A1",
+          "draws": 6,
+          "failedToBindOrDeclare": 0,
+          "failedToBind": 0
+        },
+        {
+          "rowId": "HS-E1",
+          "draws": 6,
+          "failedToBindOrDeclare": 0,
+          "failedToBind": 0
+        }
+      ],
+      "CORE_BINDING_CLAIM_FALSIFIED": false,
+      "note": "For HS-A1 an auger nomination does NOT satisfy flame-failure target coverage; the binding column is scored on the flame-failure key alone. For HS-E1 physical-switch presence does NOT satisfy the interlock function target."
+    },
+    "C_additiveNotSubstitutive": {
+      "FALSIFIER_C_TRIGGERED": false,
+      "violations": [],
+      "factsRemovedAcrossAllDraws": 0,
+      "ledgerGrewOnNominationDraws": 5
+    },
+    "D_falseQuestionManufacture": {
+      "FALSIFIER_D_TESTABLE": false,
+      "reason": "NO HUMAN-AUTHORITATIVE SILENCE TRUTH AVAILABLE",
+      "notComputed": [
+        "false-question rate",
+        "legitimate-silence specificity",
+        "manufactured-question precision"
+      ],
+      "warning": "the absence of obviously bad questions in this run is NOT evidence on D"
+    },
+    "E_coverageWarning": {
+      "FALSIFIER_E_TRIGGERED": false,
+      "violations": [],
+      "drawsWithWarningTrue": 5,
+      "drawsWithOwedTargetCovered": 12,
+      "note": "On the five HS-A1 draws that nominated additively the warning is TRUE because the NOMINATED fact remains UNRESOLVED — not because the owed target was uncovered. That is the §165 stricter rule behaving correctly, and it is reported rather than netted away."
+    },
+    "F_questionBurdenScoped": {
+      "frozenCriterion": {
+        "meanSurvivingQuestionsPerCaseCeiling": 2,
+        "anyCaseCeiling": 3,
+        "statedIn": "§164 falsifier F — \"mean surviving customer-visible questions per case exceeds 2, or any case exceeds 3\""
+      },
+      "perCase": [
+        {
+          "rowId": "HS-A1",
+          "draws": 6,
+          "distinctFactsPerDraw": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "meanDistinctFactsPerDraw": 1.8333333333333333,
+          "maxDistinctFactsInAnyDraw": 2,
+          "proposedClarificationStringsPerDraw": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "drawsEmittingACompoundQuestionString": 2,
+          "redundantDuplicateQuestions": 0
+        },
+        {
+          "rowId": "HS-E1",
+          "draws": 6,
+          "distinctFactsPerDraw": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "meanDistinctFactsPerDraw": 1,
+          "maxDistinctFactsInAnyDraw": 1,
+          "proposedClarificationStringsPerDraw": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "drawsEmittingACompoundQuestionString": 0,
+          "redundantDuplicateQuestions": 0
+        }
+      ],
+      "QUESTION_BURDEN_UNACCEPTABLE": false,
+      "scopeWarning": "measured on two authoritative REQUIRED rows only. This is NOT false-positive precision and NOT a production burden estimate."
+    }
+  },
+  "outcomeSummary": {
+    "total": 12,
+    "byOutcome": {
+      "TARGET_REACHED": 12
+    },
+    "recall": {
+      "pass": 12,
+      "miss": 0,
+      "notScoreable": 0
+    },
+    "precision": {
+      "pass": 12,
+      "defect": 0,
+      "notADefect": 0,
+      "execution": 0
+    },
+    "nettingRefused": "summariseOutcomes returns recall and precision separately and assertRecallAndPrecisionNotNetted passed",
+    "humanAuthorityViolations": []
+  },
+  "section163Comparison": [
+    {
+      "rowId": "HS-A1",
+      "section163_v2": {
+        "draws": 10,
+        "targetReached": "3/10",
+        "settledSilence": 0,
+        "wrongFactClarification": 7,
+        "sourceModeDistribution": {
+          "NOMINATED_FACT": 7,
+          "SUPPLIED_FACT": 3
+        },
+        "bindingAvailable": false
+      },
+      "section167_v3": {
+        "draws": 6,
+        "targetReached": "6/6",
+        "settledSilence": 0,
+        "unknownSemanticValidity": 0,
+        "boundOwedTarget": 6,
+        "additiveNominations": 5,
+        "bindAndNominateCoexisted": 5,
+        "bindingAvailable": true
+      },
+      "comparabilityCaveat": "EXACT COUNTS ONLY. 10 v2 draws vs 6 v3 draws on one row each; these are bounded development samples and neither is a production rate. No inferential test was preregistered and none is performed."
+    },
+    {
+      "rowId": "HS-E1",
+      "section163_v2": {
+        "draws": 10,
+        "targetReached": "1/10",
+        "settledSilence": 8,
+        "wrongFactClarification": 1,
+        "sourceModeDistribution": {
+          "(none)": 8,
+          "NOMINATED_FACT": 2
+        },
+        "bindingAvailable": false
+      },
+      "section167_v3": {
+        "draws": 6,
+        "targetReached": "6/6",
+        "settledSilence": 0,
+        "unknownSemanticValidity": 0,
+        "boundOwedTarget": 6,
+        "additiveNominations": 0,
+        "bindAndNominateCoexisted": 0,
+        "bindingAvailable": true
+      },
+      "comparabilityCaveat": "EXACT COUNTS ONLY. 10 v2 draws vs 6 v3 draws on one row each; these are bounded development samples and neither is a production rate. No inferential test was preregistered and none is performed."
+    }
+  ],
+  "augerFactDisposition": {
+    "preAdjudicated": "VALID_BUT_TARGET_DISPLACED applies to the HS-A1 auger fact ONLY when it appears WITHOUT flame-target coverage (§165 disposition, §167 authorization)",
+    "drawsWhereItAppearedWithoutFlameCoverage": 0,
+    "consequence": "the condition did not arise in this run: every HS-A1 draw that nominated the auger gap ALSO bound the flame-failure target, so no draw required that classification"
+  },
+  "determinations": {
+    "A_BINDING_PROTOCOL_HOSTED_EXERCISED": true,
+    "B_CORE_BINDING_CLAIM_FALSIFIED": false,
+    "C_FALSIFIER_C_TRIGGERED": false,
+    "D_FALSIFIER_D_TESTABLE": false,
+    "E_FALSIFIER_E_TRIGGERED": false,
+    "F_QUESTION_BURDEN_UNACCEPTABLE": false,
+    "G_ARCHITECTURE_DETECTION_SUCCESS": true,
+    "H_MODEL_SEMANTIC_RECOVERY_SUCCESS": true,
+    "I_targetDisplacementDecreasedMaterially": "YES on this bounded sample — HS-A1 7/10 displaced under v2, 0/6 under v3",
+    "J_settledSilenceDecreasedMaterially": "YES on this bounded sample — HS-E1 8/10 silent under v2, 0/6 under v3",
+    "K_furtherSemanticRemediationRequired": "NOT on the failure modes §163 measured. Two lesser defects remain and are NOT currently caught by the contract: one draw dropped a valid additive gap (HS-A1 draw 6), and two draws emitted a compound question string packing two questions into one field (HS-A1 draws 2-3).",
+    "L_boundedReliabilityIntegrationStillJustified": "YES, and the case is stronger — but note its value is now largely UNEXERCISED rather than proven: policy C's conditional second draw never fired because no draw fell silent, and the degenerate policy was never exercised because no response was degenerate."
+  },
+  "whatThisDoesNotEstablish": {
+    "threeWayConfound": "v3 differs from v2 in THREE ways at once: (1) the binding protocol, (2) the per-fact declaration requirement, (3) a substantially richer statement of the owed fact (whyUnresolved, branchA, branchB, decisionDivergence) that v2's packet did not carry. This design CANNOT attribute the movement among them. A claim that 'binding fixed displacement' overstates what was measured; what was measured is that the v3 package as a whole moved the outcome. Separating them would need a third arm supplying the richer fact statement WITHOUT binding, and no such arm was purchased.",
+    "sampleSize": "12 draws, 2 rows, one model, one day. Exact counts only. Not a rate, not an accuracy percentage, not a production property. No inferential test was preregistered and none was performed.",
+    "bothRowsAreREQUIRED": "nothing here measures behaviour where silence is the correct answer",
+    "cueInstrumentLimits": "the §162 cue instrument identifies candidate text and the classification traces to the human-authored target; it is not a semantic proof, and §160's retirement of B_selectorAccuracy as a scorer stands",
+    "singleFactClosedSet": "HS-A1's owed fact was supplied alone, deliberately; nothing here measures binding under a larger closed set",
+    "falsifierD": "NOT TESTED. The absence of obviously bad questions is NOT evidence on D."
+  },
+  "historicalIntegrity": {
+    "section163DrawRecordsSha256": "7e84cef427d8c12659d01b96bf992bf41fc42c1ed8a2f46ba6dc7ddef07d8399",
+    "section163RecordCount": 20,
+    "section163Unchanged": true,
+    "verifierV2InstructionSha256": "ffc63119b5a30ec88e09a078b75ae45e20c15b2efe82e6feef51ceaa0a8e33f4",
+    "section164_165_166ArtifactsTrackedModifications": 0,
+    "srcFilesTouchedByThisOperation": 0
+  },
+  "degeneratePolicy": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION — unchanged. 0 degenerate responses occurred, so the policy was never exercised and remains unproven in hosted use.",
+  "protectedRegression": {
+    "SOURCE_PROJECT_TSC": "exit 0, clean",
+    "suitesRun": 16,
+    "failures": 0,
+    "transcript": "PROTECTED-REGRESSION.txt"
+  },
+  "claimsRegister": {
+    "newPublicClaim": "none",
+    "sectionAdded": "§167",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED",
+    "productionMarketingCopyChanged": "none"
+  },
+  "autonomyAndModelIndependence": {
+    "hazlenzOwns": [
+      "owed facts",
+      "fact keys",
+      "coverage",
+      "binding admission",
+      "nomination admission",
+      "arbitration",
+      "state transitions",
+      "call caps",
+      "question budgeting",
+      "final output"
+    ],
+    "providerReturned": "bounded declarations only — a verdict, one question, at most one nomination, one declaration line per supplied fact",
+    "providerRemainsReplaceable": true
+  },
+  "worktreeState": {
+    "codeFilesCreated": 3,
+    "codeFilesModified": 1,
+    "codeFileModified": "backend/package.json — two npm script entries added",
+    "srcFilesTouched": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "preexistingUncommittedWorkPreserved": true
+  },
+  "nextAuthorizationRequired": [
+    "1. Human sampling of the 12 bound pairs — the §164 obligation. Column agreement is not proof a binding is truthful; 12 pairs is a small zero-cost review.",
+    "2. Decide whether to disentangle the three-way confound: a third arm supplying the richer owed-fact statement WITHOUT the binding protocol. Optional.",
+    "3. Silence-control construction and independent human review — the only route to FALSIFIER_D_TESTABLE = TRUE. Until then no over-questioning or precision claim may rest on this architecture.",
+    "4. Bounded reliability integration review — the terminal this run hands over. Note policy C's second draw was never exercised."
+  ]
+}

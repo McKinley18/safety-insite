@@ -1,0 +1,137 @@
+{
+  "artifact": "SECTION-238-PRE-SPEND-IDENTITY",
+  "executorVersion": "hazlenz.expert.238.final-confirmation-execution.v1",
+  "assemblyVersion": "hazlenz.expert.238.assembly.v1",
+  "capturedAt": "2026-09-12T02:12:52.189Z",
+  "recomputedBeforeAnyProviderCall": true,
+  "frozenPackageDigest": "a77ba19ecad8a53406684f37adbeaaffd0ac8b02aabe2c289a956ed6b8265cf5",
+  "frozenPackageDigestAuthorized": "a77ba19ecad8a53406684f37adbeaaffd0ac8b02aabe2c289a956ed6b8265cf5",
+  "frozenPackageDigestMatches": true,
+  "frozenInstrumentDigest": "21ea0832330ff73fa928aa8b8e8854fccc10a5a33a61c52a3933ec30eaa70f1f",
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "closureDigest237": "1820bfd10ae3ab9105bd4233e97d97500267c6361cf520c60438383540461755",
+  "section233Unchanged": true,
+  "section235Unchanged": true,
+  "section237Unchanged": true,
+  "moduleDigests233": {
+    "contract": "dda676aff97d6c4bbf5ac57eb8ec3fa3e89249225bdb9c0ff109ab5163a7323a",
+    "projection": "8901d0d39b8dcf50a8a045f1759ae284168ba7d5818876c255e3c82346c4f044",
+    "fixtures": "d744993f69486f510625cf11b919656b5e9a94337a463f46374558ef259448d3",
+    "suite": "61f9db3ddb2b1fb8a205f7aaae89169c0ee78841a58268ff618058a777380502"
+  },
+  "moduleDigests235": {
+    "normalization": "e895ff214a6ba1e76a2812d573f2c8dfb6847cc18d1e0414422650db1c66d5fb",
+    "contract": "4faee904803b582c54eafab636ce910dd83fcd98346088dc8b6556736e3f6201",
+    "projection": "b742b124947ffbfc31a0d4cc8f885cb17427393346682ccfacc1ccf2588533d3",
+    "consistency": "b9ed6339d28b8e8d4224286b0b13b60898c8b695525206977fe9838040696cfb",
+    "fixtures": "465bf58c13102131e654b88a5ed13fac8371f625459eb3506eed3027a7bc4fab",
+    "suite": "f5fdcc973afcc7cc3e6437be5fe47767aa63f9e24b66907e7b705ca0ec11d958"
+  },
+  "moduleDigests237": {
+    "contract": "fe881d1360bc4f34a09e48f1db1df00fa3c01ba384f16eac4773af28bfbe6324",
+    "projection": "7a6df06203403df7e02f4a229d22f6bf22c9db5ffe4361c96c2b20a0a9d79b20",
+    "consistency": "aba79f5b3a6019c6aba24b174fbf12a4b7c2addd2bcf50831247cffed9634719",
+    "fixtures": "6dac24f5fb94e7b1e37ca5ce9a300055542faa79bd8206845985dae86dfffa9e",
+    "suite": "eb08d04b05ecf25bc0d5dcb8fbe37370d57c25bdf465760bab1d035c32f3be25"
+  },
+  "fourPreregisteredOptionsFrozen": true,
+  "protectedIdentity": {
+    "compositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "moduleCount": 29,
+    "missingModules": [],
+    "unauthorizedMutations": 0
+  },
+  "providerIdentity": {
+    "endpoint": "https://api.anthropic.com",
+    "requestedModel": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "frozenExecutionConfiguration": {
+    "arm": "SINGLE",
+    "leg": "FIRST_PASS_ONLY",
+    "verifierLeg": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "pairedAttributionArm": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "firstPassMaxTokens": 8000,
+    "maxTokensRationale": "carried forward. §236 truncated nothing at 8,000 with a longest output of 3,725 tokens, and §237 adds a member to every basis entry.",
+    "semanticRetries": 0,
+    "transportRetriesAuthorized": 0,
+    "ifTransportFailureOccurs": "the authorization books exactly six calls with no retry allowance. A transport or HTTP failure that yields no adjudicable response terminates the run as EXECUTION INCOMPLETE and returns for authorization.",
+    "guardWorstCaseCallUsd": 0.15,
+    "guardBasis": "30,000 budgeted input tokens plus a full 8,000-token output at USD 2 and USD 10 per million, uplifted. Roughly 1.35x the §236 observed maximum.",
+    "ifGuardTrips": "STOP and return EXECUTION_INCOMPLETE. Never reduce coverage to fit the ceiling.",
+    "databaseOperations": 0,
+    "maximumTotalCalls": 6,
+    "spendCeilingUsd": 0.85
+  },
+  "startingProviderCallCount": 0,
+  "startingSpendLedgerUsd": 0,
+  "perCaseAssembledIdentity": [
+    {
+      "caseId": "A1",
+      "ordinal": 1,
+      "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+      "analysisId": "ANL-238-A1",
+      "observationSourceId": "OBS-238-A1",
+      "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+      "userPromptDigest": "86d530a82abe5598683897b66984d3611662d4da73c2fa0ec57b6d33a38a7c93",
+      "wireSchemaDigest": "351bd3fbee9f07418e5e09565e0b2e4f0df2c21f47fc71fb9c48fafd12bc1737"
+    },
+    {
+      "caseId": "A2",
+      "ordinal": 2,
+      "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+      "analysisId": "ANL-238-A2",
+      "observationSourceId": "OBS-238-A2",
+      "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+      "userPromptDigest": "abacf23d21e386ffc543384d3ad9f07887440766887b7c338529d873a79a00e0",
+      "wireSchemaDigest": "9dd3a8be756c7e0e423670ef63be83c36a169e5449a207e1646c5f539ffa37c3"
+    },
+    {
+      "caseId": "B1",
+      "ordinal": 3,
+      "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+      "analysisId": "ANL-238-B1",
+      "observationSourceId": "OBS-238-B1",
+      "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+      "userPromptDigest": "7c581c90fa53ec39612545a53f5202f8e324d350aa6bd9c06e9680aafac8b91e",
+      "wireSchemaDigest": "340d03573e00020876324075f55203082f5f7887b249f7fa319e78be272acea0"
+    },
+    {
+      "caseId": "B2",
+      "ordinal": 4,
+      "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+      "analysisId": "ANL-238-B2",
+      "observationSourceId": "OBS-238-B2",
+      "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+      "userPromptDigest": "7ecc634d0d364dddc07bcde53e6c49039528ef98d4f32d1c771dbb6ce14bf21e",
+      "wireSchemaDigest": "e966b9629f2aa3d23590ba157618fa4df52942cd5ad08944dca67d63df0f8fbd"
+    },
+    {
+      "caseId": "C1",
+      "ordinal": 5,
+      "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+      "analysisId": "ANL-238-C1",
+      "observationSourceId": "OBS-238-C1",
+      "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+      "userPromptDigest": "e0d6f44c267a0562f9fb8ba5f0c2d081a9b4cea158c1f356a6ae4c103e6c1e90",
+      "wireSchemaDigest": "5e23fb228ac72bbb56ddcc83749de0d8536d09337515a8d74156f078c2f9bd7c"
+    },
+    {
+      "caseId": "C2",
+      "ordinal": 6,
+      "contractVersion": "hazlenz.expert.first-pass-contract.237-posture-architecture-closure",
+      "analysisId": "ANL-238-C2",
+      "observationSourceId": "OBS-238-C2",
+      "systemPromptDigest": "b4bc7f65b25c54631fc2618a4fb6af36c986a0dd8925559a0f88d2271b9c1cb5",
+      "userPromptDigest": "05d644b68ce95404accf6c815c6a38f5a93491f40cd7c518d94731bc17efc50b",
+      "wireSchemaDigest": "b47450248e98c7ceb29590cddbbeeafe5462c51c24d74484165d8e2a86e9b28b"
+    }
+  ]
+}

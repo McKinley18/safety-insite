@@ -1,0 +1,324 @@
+{
+  "label": "PROSPECTIVE_INSTRUMENT_CORRECTED_REDERIVATION",
+  "isReplacementOfHistoricalResult": false,
+  "historicalResultUnchanged": {
+    "LINKAGE_V9_HOSTED_CONFIRMATION": "FAIL_FORBIDDEN_LINKAGE",
+    "terminal": "EXPERT_HAZLENZ_V9_LINKAGE_CONFIRMATION_FAILED — LINKAGE_SEMANTICS_OR_MODEL_BEHAVIOR_REVIEW_REQUIRED"
+  },
+  "sourceRunRecordsSha256": "1d344c44fff801d3c6259540543d8fc9a85e2a767bbd2d5151f99c6ae6892ce6",
+  "providerCalls": 0,
+  "costUsd": 0,
+  "metrics": {
+    "REQUIRED_LINKAGE_OPPORTUNITIES": 3,
+    "REQUIRED_LINKAGE_POPULATED": 3,
+    "REQUIRED_LINKAGE_VALID": 3,
+    "ALLOWED_LINKAGE_OPPORTUNITIES": 2,
+    "ALLOWED_LINKAGE_VALID": 2,
+    "FORBIDDEN_SCENARIO_INTENTS": 3,
+    "FORBIDDEN_SCENARIO_INTENTS_REALIZED": 0,
+    "FORBIDDEN_LINKAGE_OPPORTUNITIES": 0,
+    "FORBIDDEN_LINKAGE_ACCEPTED": 0,
+    "SCENARIO_INTENT_NOT_REALIZED": 3,
+    "INVALID_LINKAGE_ACCEPTED": 0,
+    "NO_LINKAGE_OPPORTUNITY": 3
+  },
+  "scenarioIntents": [
+    {
+      "rowId": "CL-R1",
+      "intent": "REQUIRED_LINKAGE_CHALLENGE",
+      "realized": true,
+      "reason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-R2",
+      "intent": "REQUIRED_LINKAGE_CHALLENGE",
+      "realized": true,
+      "reason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-R3",
+      "intent": "REQUIRED_LINKAGE_CHALLENGE",
+      "realized": true,
+      "reason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-F1",
+      "intent": "AMBIGUOUS_CANDIDATE_CHALLENGE",
+      "realized": false,
+      "reason": "the emitted link resolves to an accepted candidate OUTSIDE the presumed families (unverified_muting_authorisation:training_procedure_supervision), so the model found a unique referent the fixture did not anticipate and the intended ambiguity does not exist for this execution",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-F2",
+      "intent": "DIFFERENT_HAZARD_CHALLENGE",
+      "realized": false,
+      "reason": "no clarification was emitted, so no linkage situation arose in either direction",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-F3",
+      "intent": "GENERIC_FOLLOWUP_CHALLENGE",
+      "realized": false,
+      "reason": "no clarification was emitted, so no linkage situation arose in either direction",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-N1",
+      "intent": "NO_LINKAGE_CLAIM",
+      "realized": false,
+      "reason": "the row makes no linkage claim and is excluded from every linkage denominator",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-T1",
+      "intent": "REQUIRED_LINKAGE_CHALLENGE",
+      "realized": true,
+      "reason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-T2",
+      "intent": "REQUIRED_LINKAGE_CHALLENGE",
+      "realized": true,
+      "reason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "countsInForbiddenDenominator": false
+    }
+  ],
+  "perRow": [
+    {
+      "rowId": "CL-R1",
+      "authoredLinkageTruth": "REQUIRED",
+      "scenarioIntent": "REQUIRED_LINKAGE_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": true,
+      "intentReason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "acceptedCandidates": [
+        "cand-loto:lockout_tagout",
+        "cand-atmospheric:atmospheric_hazard"
+      ],
+      "clarificationsEmitted": 1,
+      "emittedLinks": [
+        "cand-loto"
+      ],
+      "validLinks": 1,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-R2",
+      "authoredLinkageTruth": "REQUIRED",
+      "scenarioIntent": "REQUIRED_LINKAGE_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": true,
+      "intentReason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "acceptedCandidates": [
+        "fire-explosion-vent-defeated:fire_explosion",
+        "ductwork-dust-loading:combustible_dust"
+      ],
+      "clarificationsEmitted": 1,
+      "emittedLinks": [
+        "fire-explosion-vent-defeated"
+      ],
+      "validLinks": 1,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-R3",
+      "authoredLinkageTruth": "REQUIRED",
+      "scenarioIntent": "REQUIRED_LINKAGE_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": true,
+      "intentReason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "acceptedCandidates": [
+        "cand-solvent-inhalation:chemical_inhalation_contact",
+        "cand-resp-protection-unknown:respiratory_protection",
+        "cand-fire-explosion-solvent:fire_explosion"
+      ],
+      "clarificationsEmitted": 1,
+      "emittedLinks": [
+        "cand-resp-protection-unknown"
+      ],
+      "validLinks": 1,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-F1",
+      "authoredLinkageTruth": "FORBIDDEN",
+      "scenarioIntent": "AMBIGUOUS_CANDIDATE_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": false,
+      "intentReason": "the emitted link resolves to an accepted candidate OUTSIDE the presumed families (unverified_muting_authorisation:training_procedure_supervision), so the model found a unique referent the fixture did not anticipate and the intended ambiguity does not exist for this execution",
+      "acceptedCandidates": [
+        "muted_light_curtains:machine_guarding",
+        "mute_key_left_in_panel:machine_guarding",
+        "unverified_muting_authorisation:training_procedure_supervision"
+      ],
+      "clarificationsEmitted": 1,
+      "emittedLinks": [
+        "unverified_muting_authorisation"
+      ],
+      "validLinks": 1,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-F2",
+      "authoredLinkageTruth": "FORBIDDEN",
+      "scenarioIntent": "DIFFERENT_HAZARD_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": false,
+      "intentReason": "no clarification was emitted, so no linkage situation arose in either direction",
+      "acceptedCandidates": [
+        "scissor_lift_walkway_obstruction:mobile_equipment",
+        "eyewash_no_inspection_tag:emergency_equipment",
+        "eyewash_bowl_obstructed:emergency_equipment"
+      ],
+      "clarificationsEmitted": 0,
+      "emittedLinks": [],
+      "validLinks": 0,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-F3",
+      "authoredLinkageTruth": "FORBIDDEN",
+      "scenarioIntent": "GENERIC_FOLLOWUP_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": false,
+      "intentReason": "no clarification was emitted, so no linkage situation arose in either direction",
+      "acceptedCandidates": [
+        "ppe-1:personal_protective_equipment",
+        "weld-fumes-1:welding_fumes"
+      ],
+      "clarificationsEmitted": 0,
+      "emittedLinks": [],
+      "validLinks": 0,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-N1",
+      "authoredLinkageTruth": "NOT_A_LINKAGE_TEST",
+      "scenarioIntent": "NO_LINKAGE_CLAIM",
+      "SCENARIO_INTENT_REALIZED": false,
+      "intentReason": "the row makes no linkage claim and is excluded from every linkage denominator",
+      "acceptedCandidates": [],
+      "clarificationsEmitted": 0,
+      "emittedLinks": [],
+      "validLinks": 0,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-T1",
+      "authoredLinkageTruth": "ALLOWED",
+      "scenarioIntent": "REQUIRED_LINKAGE_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": true,
+      "intentReason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "acceptedCandidates": [
+        "cand-1:walking_working_surfaces",
+        "cand-2:material_handling_storage"
+      ],
+      "clarificationsEmitted": 1,
+      "emittedLinks": [
+        "cand-1"
+      ],
+      "validLinks": 1,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    },
+    {
+      "rowId": "CL-T2",
+      "authoredLinkageTruth": "ALLOWED",
+      "scenarioIntent": "REQUIRED_LINKAGE_CHALLENGE",
+      "SCENARIO_INTENT_REALIZED": true,
+      "intentReason": "a clarification was emitted on a row that owes a uniquely-referring question",
+      "acceptedCandidates": [
+        "no_fire_watch:hot_work",
+        "combustible_lagging_proximity:fire_explosion",
+        "unknown_line_contents:chemical_release"
+      ],
+      "clarificationsEmitted": 1,
+      "emittedLinks": [
+        "unknown_line_contents"
+      ],
+      "validLinks": 1,
+      "invalidLinks": 0,
+      "countsInForbiddenDenominator": false
+    }
+  ],
+  "candidateDecompositionAnomalies": [
+    {
+      "rowId": "CL-R3",
+      "candidateKey": "cand-resp-protection-unknown",
+      "hazardFamily": "respiratory_protection",
+      "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+      "boundQuotes": 1,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "respiratory_protection is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    },
+    {
+      "rowId": "CL-R3",
+      "candidateKey": "cand-fire-explosion-solvent",
+      "hazardFamily": "fire_explosion",
+      "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+      "boundQuotes": 0,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "fire_explosion is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    },
+    {
+      "rowId": "CL-F1",
+      "candidateKey": "unverified_muting_authorisation",
+      "hazardFamily": "training_procedure_supervision",
+      "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+      "boundQuotes": 1,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "training_procedure_supervision is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    },
+    {
+      "rowId": "CL-F3",
+      "candidateKey": "weld-fumes-1",
+      "hazardFamily": "welding_fumes",
+      "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+      "boundQuotes": 1,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "welding_fumes is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    },
+    {
+      "rowId": "CL-T1",
+      "candidateKey": "cand-1",
+      "hazardFamily": "walking_working_surfaces",
+      "assertedConditionState": "ACTIVE",
+      "boundQuotes": 1,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "walking_working_surfaces is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    },
+    {
+      "rowId": "CL-T1",
+      "candidateKey": "cand-2",
+      "hazardFamily": "material_handling_storage",
+      "assertedConditionState": "ACTIVE",
+      "boundQuotes": 1,
+      "quality": "SPURIOUS_CANDIDATE",
+      "reason": "material_handling_storage is in the authored FORBIDDEN bucket for this row"
+    },
+    {
+      "rowId": "CL-T2",
+      "candidateKey": "combustible_lagging_proximity",
+      "hazardFamily": "fire_explosion",
+      "assertedConditionState": "ACTIVE",
+      "boundQuotes": 1,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "fire_explosion is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    },
+    {
+      "rowId": "CL-T2",
+      "candidateKey": "unknown_line_contents",
+      "hazardFamily": "chemical_release",
+      "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+      "boundQuotes": 1,
+      "quality": "PLAUSIBLE_BUT_UNVERIFIED",
+      "reason": "chemical_release is authored as DEFENSIBLE — a reviewer would find it defensible but would not require it, so it is neither supported nor spurious"
+    }
+  ],
+  "note": "Candidate-quality anomalies are reported on their own axis. A valid link to a non-supported candidate is LINKAGE_VALID = TRUE and a CANDIDATE_PRECISION question — never a linkage defect."
+}

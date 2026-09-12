@@ -1,0 +1,328 @@
+{
+  "operation": "§162 human-truth dispositions recorded + semantic re-derivation",
+  "builtAt": "2026-09-04T17:40:27.540Z",
+  "providerCalls": 0,
+  "costUsd": 0,
+  "productionFilesChanged": 0,
+  "historicalScoresMutated": false,
+  "terminal": "EXPERT_HAZLENZ_VERIFIER_HUMAN_TRUTH_REDERIVED — SEMANTIC_MISS_AND_PROVIDER_INSTABILITY_ESTABLISHED",
+  "MEASURE_LABEL": "HUMAN_SEMANTIC_REDERIVATION — selector correctness judged against product-owner semantic targets, NOT automated scorer output",
+  "B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY": "RETIRED — not deleted, historical results unaltered, no replacement production scorer implemented",
+  "phase1Dispositions": {
+    "HS-A1": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS",
+    "HS-E1": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS",
+    "HS-H1": "AUTHORING_AMBIGUOUS",
+    "HS-J1": "AUTHORING_INVALID",
+    "HS-N1": "AUTHORING_INVALID",
+    "HS-P1": "AUTHORING_INVALID",
+    "HS-R1": "AUTHORING_AMBIGUOUS"
+  },
+  "phase2Eligibility": {
+    "HS-A1": "ELIGIBLE",
+    "HS-E1": "ELIGIBLE",
+    "HS-H1": "INELIGIBLE",
+    "HS-J1": "INELIGIBLE",
+    "HS-N1": "INELIGIBLE",
+    "HS-P1": "INELIGIBLE",
+    "HS-R1": "INELIGIBLE"
+  },
+  "humanSemanticTargets": {
+    "HS-A1": {
+      "target": "the functional status/effectiveness of the burner flame-failure safeguard",
+      "acceptableEquivalents": [
+        "whether the flame-failure safeguard is functional",
+        "whether loss-of-flame shutdown has been function-tested",
+        "whether the burner automatically shuts fuel off on flame loss",
+        "whether the safeguard is bypassed, defeated, failed, or otherwise nonfunctional"
+      ],
+      "matchAny": [
+        [
+          "flame",
+          "function"
+        ],
+        [
+          "flame",
+          "verified as functional"
+        ],
+        [
+          "flame",
+          "tested"
+        ],
+        [
+          "flame",
+          "operational"
+        ],
+        [
+          "flame-safeguard",
+          "status"
+        ],
+        [
+          "shut",
+          "flame loss"
+        ],
+        [
+          "bypass",
+          "flame"
+        ],
+        [
+          "defeat",
+          "flame"
+        ]
+      ],
+      "mustNotRequire": "the literal phrase \"flame-failure device\"",
+      "affectedDecision": "REQUIRED_CONTROL"
+    },
+    "HS-E1": {
+      "target": "whether the rotor-guard interlock protective function was verified after reassembly / before return to service",
+      "acceptableEquivalents": [
+        "whether the interlock was function-tested after reassembly",
+        "whether opening the guard stops or prevents rotor operation",
+        "whether safeguarding function was verified before return to service"
+      ],
+      "matchAny": [
+        [
+          "interlock",
+          "function"
+        ],
+        [
+          "interlock",
+          "tested"
+        ],
+        [
+          "interlock",
+          "verif"
+        ],
+        [
+          "guard",
+          "stops"
+        ],
+        [
+          "guard",
+          "prevent"
+        ],
+        [
+          "rotor",
+          "stop"
+        ],
+        [
+          "safeguarding function",
+          "verif"
+        ]
+      ],
+      "mustNotRequire": "the literal phrase \"function-tested after the rotor tooth change\"",
+      "mustNotEncode": "that OSHA requires a specific post-maintenance test after every rotor tooth change — HS-E1 was supplied NO governed evidence, so no such requirement is independently established",
+      "affectedDecision": "REQUIRED_CONTROL"
+    }
+  },
+  "regulatoryOverreachGuard": "ARMED AND NOT TRIPPED — no semantic target asserts a regulatory requirement on a row with no governed record",
+  "observationSelfSatisfactionGuard": "ARMED AND NOT TRIPPED — the semantic cue sets are not satisfied by either observation, so this matching does not reproduce the §160 FINDING 1 defect that retired the keyword scorer. Verified by execution before any figure was emitted.",
+  "matchingLimitation": "The cue sets are lexical, but each requires BOTH a safeguard reference AND a function/status reference, so stated PRESENCE alone cannot satisfy them — the exact inference the product owner prohibited. Every match records which set it matched beside the verbatim question so a human can check it rather than trust the label. This is a re-derivation aid under human-supplied targets, NOT a replacement production scorer.",
+  "phase4Executions": [
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "section": "§156",
+      "arm": "verifier v1",
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "clarificationProduced": true,
+      "question": "Has the flame-failure (flame-safeguard) device on the burner been functionally tested or verified operational recently (e.g., per the manufacturer's or facility's test schedule), and is there a way to confirm its status without visual access behind the shroud?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominatedFactText": null,
+      "contractAdmitted": true,
+      "truncated": false,
+      "degenerate": false,
+      "stopReason": "tool_use",
+      "outputTokens": 758,
+      "inputTokens": 3801,
+      "executionValid": true,
+      "executionInvalidReason": null,
+      "semanticallyReachesTarget": true,
+      "matchedVia": "[\"flame\",\"function\"]",
+      "affectedDecisionCorrect": true,
+      "scoreableSemanticOutcome": true,
+      "semanticOutcome": "SEMANTIC_SUCCESS — clarification reaches the human target",
+      "preTruncationObservation": null
+    },
+    {
+      "rowId": "HS-A1",
+      "caseId": "VC-08",
+      "section": "§157",
+      "arm": "verifier v2",
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "clarificationProduced": true,
+      "question": "Has the flame-failure device on the burner been verified as functional (e.g., through a recent test or maintenance record), or is its operational status currently unknown/unconfirmed?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominatedFactText": null,
+      "contractAdmitted": true,
+      "truncated": false,
+      "degenerate": false,
+      "stopReason": "tool_use",
+      "outputTokens": 1412,
+      "inputTokens": 5234,
+      "executionValid": true,
+      "executionInvalidReason": null,
+      "semanticallyReachesTarget": true,
+      "matchedVia": "[\"flame\",\"function\"]",
+      "affectedDecisionCorrect": true,
+      "scoreableSemanticOutcome": true,
+      "semanticOutcome": "SEMANTIC_SUCCESS — clarification reaches the human target",
+      "preTruncationObservation": null
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "section": "§156",
+      "arm": "verifier v1",
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "clarificationProduced": true,
+      "question": "Was the debarker's rotor guard interlock functionally tested (not just visually confirmed closed) after this morning's reassembly following the overnight rotor tooth change, before the sawyer resumed work at the infeed deck?",
+      "affectedDecision": "REQUIRED_CONTROL",
+      "nominatedFactText": null,
+      "contractAdmitted": true,
+      "truncated": false,
+      "degenerate": false,
+      "stopReason": "tool_use",
+      "outputTokens": 835,
+      "inputTokens": 3165,
+      "executionValid": true,
+      "executionInvalidReason": null,
+      "semanticallyReachesTarget": true,
+      "matchedVia": "[\"interlock\",\"function\"]",
+      "affectedDecisionCorrect": true,
+      "scoreableSemanticOutcome": true,
+      "semanticOutcome": "SEMANTIC_SUCCESS — clarification reaches the human target",
+      "preTruncationObservation": null
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "section": "§157",
+      "arm": "verifier v2",
+      "verdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "clarificationProduced": false,
+      "question": null,
+      "affectedDecision": null,
+      "nominatedFactText": "Whether the rotor guard interlock switch was functionally tested/verified to actually stop or prevent rotor operation when the guard is opened, following the overnight rotor tooth change and reassembly, before the machine was returned to service.",
+      "contractAdmitted": false,
+      "truncated": true,
+      "degenerate": false,
+      "stopReason": "max_tokens",
+      "outputTokens": 1600,
+      "inputTokens": 4598,
+      "executionValid": false,
+      "executionInvalidReason": "TRUNCATED — stop_reason max_tokens; the proposal field was destroyed before emission",
+      "semanticallyReachesTarget": null,
+      "matchedVia": null,
+      "affectedDecisionCorrect": null,
+      "scoreableSemanticOutcome": false,
+      "semanticOutcome": "EXECUTION_INVALID — not scoreable",
+      "preTruncationObservation": "verdict ADD_OR_REPLACE_CLARIFICATION / sourceMode NOMINATED_FACT; a complete nominatedFact was emitted: \"Whether the rotor guard interlock switch was functionally tested/verified to actually stop or prevent rotor operation when the guard is opened, following the overnight rotor tooth change and reassembly, before the machine was returned to service.\". RECORDED AS OBSERVATION ONLY. Nothing is inferred about the destroyed field and this execution is NOT scored as a semantic success."
+    },
+    {
+      "rowId": "HS-E1",
+      "caseId": "VC-04",
+      "section": "§158",
+      "arm": "verifier v2 (measurement repair)",
+      "verdict": "NO_CLARIFICATION_REQUIRED",
+      "clarificationProduced": false,
+      "question": null,
+      "affectedDecision": null,
+      "nominatedFactText": null,
+      "contractAdmitted": true,
+      "truncated": false,
+      "degenerate": false,
+      "stopReason": "tool_use",
+      "outputTokens": 520,
+      "inputTokens": 4598,
+      "executionValid": true,
+      "executionInvalidReason": null,
+      "semanticallyReachesTarget": null,
+      "matchedVia": null,
+      "affectedDecisionCorrect": null,
+      "scoreableSemanticOutcome": true,
+      "semanticOutcome": "SEMANTIC_MISS — no clarification produced on a row where one is owed (verdict NO_CLARIFICATION_REQUIRED)",
+      "preTruncationObservation": null
+    }
+  ],
+  "phase5Metrics": {
+    "A_requiredSemanticClarificationRecall": "3/4  (COUNT ONLY — denominator far below any rate threshold)",
+    "B_semanticSelectorAccuracy_HUMAN_SEMANTIC_REDERIVATION": "3/3  (COUNT ONLY — denominator far below any rate threshold)",
+    "C_affectedDecisionAccuracy": "3/3  (COUNT ONLY — denominator far below any rate threshold)",
+    "D_falseNoClarificationRequiredCount": 1,
+    "D_cases": [
+      "VC-04 §158"
+    ],
+    "E_executionValid": "4/5",
+    "E_invalidExecutions": [
+      {
+        "case": "VC-04",
+        "section": "§157",
+        "reason": "TRUNCATED — stop_reason max_tokens; the proposal field was destroyed before emission"
+      }
+    ],
+    "F_drawToDrawStability": {
+      "onlyByteIdenticalRepeat": "VC-04 §157 vs §158",
+      "providerAttestedIdenticalInput": true,
+      "meteredInputTokensBothDraws": 4598,
+      "section157": "ADD_OR_REPLACE_CLARIFICATION (EXECUTION_INVALID — truncated)",
+      "section158": "NO_CLARIFICATION_REQUIRED (EXECUTION_VALID)",
+      "materiallyDifferentEmittedContent": true,
+      "twoMateriallyDifferentContractValidOutputs": false
+    },
+    "LEGITIMATE_SILENCE_SPECIFICITY": "INSUFFICIENT_HUMAN_TRUTH",
+    "HISTORICAL_MECHANICAL_SILENCE_BEHAVIOR": "7/7",
+    "HISTORICAL_MECHANICAL_SILENCE_BEHAVIOR_WARNING": "MECHANICAL BEHAVIOUR RECORD ONLY. Its semantic truth basis was subsequently invalidated (HS-J1, HS-N1, HS-P1 = AUTHORING_INVALID) or made ambiguous (HS-R1 = AUTHORING_AMBIGUOUS). It must NOT be reported as a semantic specificity score.",
+    "NOMINATION_FALSE_POSITIVE_COUNT": 0,
+    "NOMINATION_FALSE_POSITIVE_CAVEAT": "mechanical containment observation only; the former \"0 false nominations across 15 cases\" rested on FORBIDDEN labels now invalid or ambiguous"
+  },
+  "phase6DefectDetermination": {
+    "A_VERIFIER_DECISION_CRITICAL_DISCOVERY_DEFECT": "ESTABLISHED — VC-04 §158",
+    "B_VERIFIER_SEMANTIC_SELECTOR_DEFECT": "NOT_ESTABLISHED — every clarification produced on an authoritative row reached the target",
+    "C_VERIFIER_AFFECTED_DECISION_DEFECT": "NOT_ESTABLISHED — every produced clarification carried the correct affectedDecision",
+    "D_PROVIDER_DRAW_INSTABILITY": "ESTABLISHED. Byte-identical input — provider-attested at 4,598 metered input tokens on both draws, with the request bodies hashing identically once max_tokens is removed — produced ADD_OR_REPLACE_CLARIFICATION / NOMINATED_FACT carrying a complete nine-field nomination in §157, and NO_CLARIFICATION_REQUIRED carrying nothing in §158.",
+    "D_basisAndItsOneJudgementCall": "The §157 draw is EXECUTION_INVALID for SEMANTIC OUTCOME SCORING because truncation destroyed proposedClarification. That invalidity is scoped to semantic scoring by the operating instruction itself, and the content that DIFFERS between the two draws — the verdict, the source mode and the whole nomination — was fully and well-formedly emitted before truncation touched a different field. Instability is therefore established on validly-emitted content, independently of the semantic determination. THE ALTERNATIVE READING, stated so it can be overruled in one word: if \"materially different VALID outputs\" is read as requiring both draws to be CONTRACT-VALID, then instability drops to OBSERVED, NOT ESTABLISHED, and the terminal becomes TARGETED_SEMANTIC_REMEDIATION_AUTHORIZATION_REQUIRED instead.",
+    "D_limitation": "n = 1 case, 2 draws. This is the ONLY byte-identical repeat in the entire corpus. It establishes that instability occurs; it does not measure a rate.",
+    "E_NO_VERIFIER_SEMANTIC_DEFECT_ESTABLISHED": false,
+    "F_INSUFFICIENT_HUMAN_TRUTH": "APPLIES TO THE SILENCE SIDE ONLY — no authoritative FORBIDDEN row remains, so specificity, false-positive question rate and nomination precision cannot be measured at all."
+  },
+  "terminalDerivation": {
+    "missEstablished": true,
+    "instabilityEstablished": true,
+    "rule": "the terminal follows the two determinations rather than being asserted beside them; a consistency guard fails the run if it does not"
+  },
+  "theExactMiss": {
+    "case": "VC-04",
+    "section": "§158",
+    "verdict": "NO_CLARIFICATION_REQUIRED",
+    "row": "HS-E1",
+    "rowDisposition": "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS",
+    "whyScoreable": "complete (520 of 4,000 output tokens), contract-admitted, not degenerate",
+    "mechanism": "The execution returned a settled silence on a row where human review holds a clarification is owed. Its own rationale asserts \"the interlock is verified as engaged\" — treating the stated PHYSICAL PRESENCE of the switch as establishing its PROTECTIVE FUNCTION. The product owner named exactly this inference as impermissible for HS-A1 (\"do NOT treat physical presence alone as establishing functionality\"), and it is the same inference here.",
+    "separateFrom": "the §157 truncation, which is an instrument defect and is scored neither way"
+  },
+  "phase7ExperimentReview": {
+    "q1_humanReviewedEvidenceEstablishesADiscoveryMiss": "YES — VC-04 §158",
+    "q2_evidenceThatTheUsuallyNoClauseCausedIt": "NO. The SAME instruction version (v2, sha ffc63119…) produced a nomination that reaches the target in §157 and a silence in §158 on byte-identical input. An instruction held constant across both outcomes cannot be the differentiator.",
+    "q3_canTheCausalClaimBeDistinguishedFromDrawInstability": "NO. With one case and two draws, instruction effect and provider variance are perfectly confounded on the only evidence that bears on it.",
+    "q4_wouldTheNinetyCallExperimentTestAnEstablishedMechanism": "NO — it would CONFOUND instruction effect with provider variance. Its pre-registered endpoint also assumed a 12-draw decision-critical denominator; the authoritative denominator is now 4 executions over 2 rows.",
+    "RESULT": "EXPERIMENT_REQUIRES_REDESIGN",
+    "whatARedesignMustDo": [
+      "establish the per-draw variance of the verifier on identical input BEFORE comparing arms",
+      "size replicates from that measured variance rather than from a fixed guess",
+      "re-derive the endpoint against the authoritative denominator that now exists",
+      "expand authoritative human-reviewed truth — two rows cannot carry an arm comparison"
+    ],
+    "spendAuthorized": false
+  },
+  "phase8ReliabilityArchitecture": {
+    "DEGENERATE_OUTPUT_POLICY_STATUS": "PROVEN_LOCAL / AWAITING_HOSTED_INTEGRATION — preserved, NOT reopened by this reconciliation",
+    "assessment": "STRENGTHENED. The single reproducible phenomenon this reconciliation leaves standing is that byte-identical input produced materially different emitted content. Semantic prompt tuning cannot be measured through that variance — any arm difference would be indistinguishable from draw noise — whereas reliability integration (hosted degenerate-output handling, replay, multi-draw agreement) attacks the variance directly and is measurable without any additional authored truth.",
+    "recommendation": "NEXT ENGINEERING TARGET SHOULD BE RELIABILITY INTEGRATION RATHER THAN FURTHER SEMANTIC PROMPT TUNING. Not implemented here; this is an assessment, not a change.",
+    "implemented": false
+  },
+  "historicalImmutability": {
+    "section152to160EvidenceUnchanged": true,
+    "requiredForbiddenLabelsRewritten": false,
+    "priorFixtureAuthoringAndScoring": "HISTORICAL DEVELOPMENT EVIDENCE, NOT RETROACTIVELY CORRECTED FORMAL TRUTH"
+  }
+}

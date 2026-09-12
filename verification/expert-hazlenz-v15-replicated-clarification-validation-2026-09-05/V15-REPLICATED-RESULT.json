@@ -1,0 +1,213 @@
+{
+  "operation": "§179 — bounded replicated hosted development validation of frozen v15 clarification behaviour",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_CONTROL_PROPERTY_SUFFICIENCY_REMEDIATION_NOT_CONFIRMED — REMEDIATION_REVIEW_REQUIRED",
+  "whyThisTerminal": "HR-04, the targeted row, emitted zero clarifications on all three replicates. Strict pass is 0/3 at best, and the authorization states a 0/3 result is failure to confirm. This is determinable without adjudication: an absence cannot address the owed fact.",
+  "databaseOperations": 0,
+  "sourceCodeChanges": 0,
+  "postRunTuning": "NONE — no prompt, schema, normalizer, verifier, arbitration, scorer, threshold, truth, row-text, execution-order, aggregation or success-criterion change was made after the first provider call",
+
+  "PRE_SPEND_GATES": {
+    "result": "ALL PASSED — 30/30 preflight checks at zero provider calls",
+    "script": "backend/scripts/preflight-v15-replicated-2026-09-05.ts",
+    "frozenInstrumentAndTruth": "review packet hash unchanged since the §174 freeze, truth record hash unchanged, all ten row texts unchanged, ten verdicts match the authorization, 5 REQUIRED / 5 SILENCE",
+    "v15Identity": "EXPERT_PROMPT_VERSION = hazlenz.expert.prompt.v15; SYSTEM_PROMPT_SHA256 = 20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979; prompt file bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694 — all three reproduce the §178 record, so no prompt edit occurred after it",
+    "scorerAndNormalizer": "expert-measure-scorers.ts, expert-normalization.ts, expert-authority-merge.ts, expert-contract.types.ts and expert-runner.ts all byte-identical to their §178 values",
+    "extractionAndPersistence": "driven through the REAL exported deriveRowRecord: raw persisted before derivation, normalizeExpertOutput used, decisionCriticalClarifications is the field read, exact prose plus affectedDecision and criticality retained, NOTHING_TO_ADD distinguishable from ANALYZED, REJECTED normalization becomes CONTRACT_FAILURE and can never be scored as silence, provider failure likewise",
+    "runnerProperty": "asserted that the runner computes no strict recall anywhere"
+  },
+
+  "PREREGISTRATION": {
+    "path": "PRE-SPEND-PREREGISTRATION-V15.json",
+    "sha256": "8ea7e8499d1eda68616af937be250bb3cf25c01bf434b90f44bcbe7a4e6870f9",
+    "writtenBeforeFirstProviderCall": true,
+    "executionOrder": {
+      "method": "three interleaved blocks; each block a Fisher-Yates shuffle of the ten row ids under mulberry32 seeded from the first 8 hex characters of the frozen v15 SYSTEM_PROMPT_SHA256; a block opening on the row the previous block closed is rotated left one position and re-checked",
+      "seedHex": "20979d90",
+      "reproducible": "the preflight recomputes the order from the identity alone and compares it to the frozen list",
+      "constraintsVerified": ["every row exactly three times", "replicate numbers 1, 2, 3 per row", "no row twice consecutively", "not row-consecutive"],
+      "executedOrderMatchedFrozenOrder": true
+    }
+  },
+
+  "EXECUTION": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "returnedModelIdentityMatchedOnAllExecutions": true,
+    "promptVersion": "hazlenz.expert.prompt.v15",
+    "systemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+    "EXECUTIONS_PER_ROW": 3,
+    "PROVIDER_INVOCATION_COUNT": 30,
+    "plannedInvocations": 30,
+    "hardCallCap": 36,
+    "TOTAL_ACTUAL_COST_USD": 1.53991,
+    "dollarCap": 3.0,
+    "RETRY_COUNT": 0,
+    "PROVIDER_ERROR_COUNT": 0,
+    "CONTRACT_FAILURE_COUNT": 0,
+    "NORMALIZATION_REJECTED_COUNT": 0,
+    "allNormalizedVALID": 30,
+    "rawOutputPersistedForEveryExecution": true,
+    "totalPromptTokens": 605130,
+    "totalOutputTokens": 32965,
+    "meanLatencyMs": 34594,
+    "stopReason": null,
+    "recordsOnDisk": 30
+  },
+
+  "EXECUTION_LEVEL_RESULTS": {
+    "SILENCE_PASS_RATE": {
+      "value": "12/15",
+      "decimal": 0.8,
+      "exact": true,
+      "final": true,
+      "basis": "mechanical — frozen truth owes nothing on a SILENCE row, so any clarification there is a failure by definition"
+    },
+    "REQUIRED_LOOSE_PASS_RATE": {
+      "value": "12/15",
+      "isUpperBound": true,
+      "basis": "mechanical — at least one clarification emitted. Does NOT establish that the question addressed the owed fact."
+    },
+    "REQUIRED_STRICT_PASS_RATE": "PENDING_HUMAN_ADJUDICATION — bounded above by 12/15",
+    "OVERALL_EXECUTION_ACCURACY": "PENDING_HUMAN_ADJUDICATION — bounded above by 24/30"
+  },
+
+  "ROW_LEVEL_STABILITY": {
+    "note": "reported before and beside every pooled figure, never inside one",
+    "HR-01": { "truth": "REQUIRED", "clarifications": [1, 1, 1], "loose": "3/3", "strict": "PENDING", "disagreement": false },
+    "HR-02": { "truth": "SILENCE", "clarifications": [0, 0, 0], "exact": "3/3", "disagreement": false },
+    "HR-03": { "truth": "SILENCE", "clarifications": [0, 0, 0], "exact": "3/3", "disagreement": false },
+    "HR-04": { "truth": "REQUIRED", "clarifications": [0, 0, 0], "loose": "0/3", "strict": "0/3 — determinable, nothing was emitted", "disagreement": false },
+    "HR-05": { "truth": "SILENCE", "clarifications": [1, 1, 0], "exact": "1/3", "disagreement": true },
+    "HR-06": { "truth": "REQUIRED", "clarifications": [1, 1, 1], "loose": "3/3", "strict": "PENDING", "disagreement": false },
+    "HR-07": { "truth": "SILENCE", "clarifications": [0, 0, 1], "exact": "2/3", "disagreement": true },
+    "HR-08": { "truth": "REQUIRED", "clarifications": [1, 1, 1], "loose": "3/3", "strict": "PENDING", "disagreement": false },
+    "HR-09": { "truth": "REQUIRED", "clarifications": [1, 1, 1], "loose": "3/3", "strict": "PENDING", "disagreement": false },
+    "HR-10": { "truth": "SILENCE", "clarifications": [0, 0, 0], "exact": "3/3", "disagreement": false },
+    "WITHIN_ROW_DISAGREEMENT_COUNT": 2,
+    "disagreeingRows": ["HR-05", "HR-07"],
+    "handlingRule": "a disagreeing row has a RATE, not a pass. Neither row was majority-voted into a clean result and no minority execution was discarded."
+  },
+
+  "PREREGISTERED_CRITERIA": {
+    "1_HR04_strict_at_least_2_of_3": { "verdict": "FAIL", "observed": "0/3", "adjudicationNeeded": false, "why": "no clarification was emitted on any replicate, so strict is 0/3 at best" },
+    "2_REQUIRED_STRICT_at_least_12_of_15": { "verdict": "PENDING", "upperBound": "12/15", "note": "the bound equals the floor exactly, so this criterion is met only if EVERY one of the twelve emitting executions is adjudicated correct" },
+    "3_SILENCE_at_least_13_of_15": { "verdict": "FAIL", "observed": "12/15", "adjudicationNeeded": false },
+    "4_no_SILENCE_row_fails_2_or_more": { "verdict": "FAIL", "observed": { "HR-02": 0, "HR-03": 0, "HR-05": 2, "HR-07": 1, "HR-10": 0 }, "adjudicationNeeded": false },
+    "5_no_recovered_REQUIRED_row_below_2_of_3": { "verdict": "PENDING", "looseObserved": { "HR-01": "3/3", "HR-06": "3/3", "HR-08": "3/3", "HR-09": "3/3" } },
+    "6_contract_failures_zero": { "verdict": "PASS", "observed": 0 },
+    "7_normalization_rejected_zero": { "verdict": "PASS", "observed": 0 },
+    "8_evidence_interpretable": { "verdict": "PASS", "observed": "30/30 VALID, 0 provider errors, raw persisted, model identity matched, executed order equals frozen order" },
+    "overall": "NOT MET. Three criteria fail on mechanical evidence alone, so the outstanding strict adjudication cannot change the terminal.",
+    "V15_REMEDIATION_BEHAVIORALLY_CONFIRMED": false
+  },
+
+  "HR04_PRIMARY_TEST": {
+    "target": ">= 2/3 strict",
+    "observed": "0/3 — zero clarifications on all three replicates",
+    "authorizationReading": "a 0/3 result is failure to confirm",
+    "detail": "HR-04-DIAGNOSTIC.json carries all three raw reasonings verbatim",
+    "whatTheModelDidInstead": {
+      "replicates1and2": "pivoted to a different hazard — an operative walking the gangway beside the running belt — and closed the guard question outright ('no gap is established for the guarded nip point itself'; 'the fixed guard ... is stated to be in position, so no gap is identified there')",
+      "replicate3": "raised the nip point as CONTROLLED and stated the guard 'is confirmed in position and was included in the fitter's pre-start check, with fastenings last verified at the annual torque check, so the machine_guarding hazard ... appears currently controlled by a physical guard rather than unguarded'"
+    },
+    "theObservationThatMattersForReview": "replicate 3 REACHED the historical torque check and treated it as establishing the current controlled state. Both the §176 temporal rule and the §178 property rule were written for exactly that step, and neither fired. §178's hypothesis was that §176 failed because the reasoning never passed through its location; here the reasoning passed through the territory and the fact was closed anyway.",
+    "historicalConsistency": "HR-04 has now been missed under v13 (§175), v14 (§177) and v15 (§179 x3). Five single executions and three replicates, zero clarifications, across three prompt identities.",
+    "whatIsNotEstablished": ["that the property hypothesis is wrong", "that the §178 rule is harmful", "any cause of the failure", "that a differently worded or placed prompt rule would succeed"]
+  },
+
+  "PRECISION_RESULT": {
+    "floor": ">= 13/15 with no SILENCE row failing 2 or more of 3",
+    "observed": "12/15, and HR-05 failed 2 of 3",
+    "verdict": "FLOOR VIOLATED",
+    "HR05": {
+      "pattern": "DISPLACED_VALID_FACT, recurring",
+      "rate": "2 of 3 executions emitted",
+      "replicate1": "asked whether the running drying fans are mechanically or electrically interconnected with the locked-out auger such that they could re-energize or move it — REQUIRED_CONTROL, BLOCKING",
+      "replicate2": "asked whether the fans and heat source are isolated and whether the task involves reaching into the housing while heated airflow continues — HAZARD_EXISTENCE, IMPORTANT",
+      "replicate3": "silent",
+      "history": "HR-05 emitted at v13 (§175, scored the precision failure), was silent at v14 (§177, the row that produced the 5/5 reading), and now emits on 2 of 3 at v15",
+      "consequenceForTheSection177Reading": "the §177 5/5 silence precision rested on this single row being silent in a single draw. HR-05 is now shown to be an unstable row at a frozen identity. This retrospectively supports the §177 caveat that the 5/5 could not be interpreted; it does NOT establish anything about HR-05's rate under v14, which was never replicated."
+    },
+    "HR07": {
+      "pattern": "new — this row was silent in both §175 and §177",
+      "rate": "1 of 3 executions emitted",
+      "question": "asked how extensive dust accumulation is beyond the handrails and whether a housekeeping/dust-control programme has been applied — HAZARD_SEVERITY, IMPORTANT",
+      "note": "the row states the flame test was performed, recorded and certified; the emitted question is a severity/extent question about an adjacent housekeeping observation, which is the shape the frozen truth calls unnecessary"
+    }
+  },
+
+  "CAUSAL_BOUNDARY": {
+    "establishedByThisRun": ["V15_REPLICATED_BEHAVIOR"],
+    "notEstablished": [
+      "V15_REMEDIATION_BEHAVIORALLY_CONFIRMED — the criteria were not met",
+      "CAUSAL_EFFECT_SIZE_V14_TO_V15",
+      "PRECISION_IMPROVEMENT_CAUSED_BY_V15",
+      "PRECISION_REGRESSION_CAUSED_BY_V15"
+    ],
+    "why": "no replicated v14 comparator exists. §175 and §177 were one execution per row, so neither the §177 5/5 nor this 12/15 can be attributed to a prompt identity. The comparison available is a v15 RATE against two v14/v13 single draws, which is not a controlled comparison.",
+    "whatWouldBeNeeded": "a replicate set at v14 under this same design, or a design that randomises identity within one run"
+  },
+
+  "STRICT_ADJUDICATION": {
+    "status": "OUTSTANDING",
+    "packet": "V15-REPLICATED-STRICT-ADJUDICATION-PACKET.json",
+    "executionsAwaitingVerdict": 12,
+    "rule": "each EXECUTION is adjudicated independently, because replicates of the same row produced textually different questions. A verdict must not be copied across replicates.",
+    "modelSuppliedVerdicts": 0,
+    "whyTheTerminalDoesNotWaitForIt": "criteria 1, 3 and 4 fail on mechanical evidence alone. Adjudication can refine criteria 2 and 5 but cannot make the run a confirmation.",
+    "provenanceRequirement": "if an AI assessment is consulted before the verdicts are finalised, record AI_ASSISTED_STRICT_ADJUDICATION = TRUE and FULLY_INDEPENDENT_HUMAN_ADJUDICATION = FALSE, and carry that disclosure with every derived figure"
+  },
+
+  "CLAIM_BOUNDARY": {
+    "permitted": "At frozen Expert prompt v15 and the tested hosted provider/model, the §179 three-replicate development instrument did NOT meet the preregistered clarification recall and silence-precision stability criteria: HR-04 emitted nothing on 3 of 3 replicates and silence precision was 12/15 against a 13/15 floor.",
+    "mustNotClaim": [
+      "generalized 80/90/100% accuracy",
+      "production readiness",
+      "customer readiness",
+      "formal acceptance",
+      "independent-human validation",
+      "a causal v14 -> v15 effect size in either direction",
+      "that v15 caused the precision result"
+    ],
+    "provenance": {
+      "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+      "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+      "AI_ASSISTED_STRICT_ADJUDICATION": true,
+      "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+      "corpusAuthoredBy": "Claude",
+      "evaluatedModelFamily": "Claude"
+    }
+  },
+
+  "WHAT_THIS_RUN_DID_ESTABLISH": [
+    "the replicate design works and produces interpretable per-row rates: 30/30 VALID, zero contract failures, zero retries, zero provider errors, executed order equal to the frozen order",
+    "eight of ten rows are STABLE at this identity — four REQUIRED rows emitted on 3/3 and four SILENCE rows were silent on 3/3",
+    "two rows are genuinely unstable at a single frozen identity (HR-05 at 2/3 emitting, HR-07 at 1/3), which is the first direct measurement of within-row stochastic disagreement on this instrument",
+    "HR-04 is stable in the wrong direction — 0/3, consistent with its v13 and v14 single draws",
+    "a single-execution reading of this instrument can be misleading: HR-05 alone moved the §177 headline figure, and it is now shown to vary at a fixed identity"
+  ],
+
+  "REMAINING_UNCERTAINTY": [
+    "twelve REQUIRED executions await strict adjudication; the loose 12/15 is an upper bound and the true strict figure may be lower",
+    "no cause for the HR-04 failure is established, and three prompt identities have now failed to move it — whether a prompt-level rule can reach this behaviour at all is an open question for the review",
+    "no replicated v14 comparator exists, so nothing here attributes any difference to the v15 edit",
+    "three replicates give a rate, not a confidence interval; HR-05 at 2/3 and HR-07 at 1/3 are small-sample rates on ten rows of Claude-authored, AI-assisted development truth"
+  ],
+
+  "worktree": {
+    "filesAdded": [
+      "backend/scripts/probe-v15-replicated-clarification-2026-09-05.ts",
+      "backend/scripts/preflight-v15-replicated-2026-09-05.ts",
+      "verification/expert-hazlenz-v15-replicated-clarification-validation-2026-09-05/"
+    ],
+    "productionSourceChanges": 0,
+    "sections167To178EvidencePreserved": "unchanged",
+    "databaseOperations": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

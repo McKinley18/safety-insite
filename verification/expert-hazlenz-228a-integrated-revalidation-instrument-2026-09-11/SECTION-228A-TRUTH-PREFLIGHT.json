@@ -1,0 +1,134 @@
+{
+  "artifact": "SECTION-228A-TRUTH-PREFLIGHT",
+  "version": "hazlenz.expert.228a.targeted-integrated-revalidation.v1",
+  "machineChecked": true,
+  "ranBeforeFreeze": true,
+  "providerCalls": 0,
+  "result": "PASS",
+  "passed": 17,
+  "total": 17,
+  "checks": [
+    {
+      "id": "P1",
+      "rule": "no expected unresolved property is simultaneously established by an enumerated fact",
+      "scope": "every owed property against every established fact",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P2",
+      "rule": "the observation itself holds each owed property open, proven by a verbatim anchor, and never states the owed act as completed or as not completed",
+      "scope": "every case observation against its anchors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P3",
+      "rule": "expected declaration count equals the enumerated owed properties",
+      "scope": "every case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P4",
+      "rule": "branches divide the property rather than known from unknown, and the two decisions differ",
+      "scope": "every owed property",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P5",
+      "rule": "no prohibited adjacent or proxy property is the expected property",
+      "scope": "every owed property",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P6",
+      "rule": "each preregistered human action can logically produce the expected authority state, and every expected state is a real runtime enum member",
+      "scope": "every exercise",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P7",
+      "rule": "no exercise assumes evidence approval from a property confirmation",
+      "scope": "every exercise",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P8",
+      "rule": "no exercise assumes property confirmation from an evidence approval",
+      "scope": "every exercise",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P9",
+      "rule": "no settlement is expected without the required property and evidence authority, and a settlement moves exactly one fact on exactly one transition",
+      "scope": "every exercise",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P10",
+      "rule": "no exercise expects sibling preservation without a real sibling fact",
+      "scope": "every exercise",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P11",
+      "rule": "a governed record is expected to support only the proposition its approvedText supports, and a grounding case supplies both an on-point and an off-point record",
+      "scope": "every supplied governed record",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P12",
+      "rule": "a safe or adequately negated case contains no genuinely open decision-critical property",
+      "scope": "every restraint case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P13",
+      "rule": "the RR-7 preserved truth is the correct pre-malformation controlling property, and the malformation is applied by the harness to a persisted raw output",
+      "scope": "every RR-7 case",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P14",
+      "rule": "every one of the twelve required paths names real cases, real exercises and the concrete runtime steps that decide it",
+      "scope": "all twelve required paths",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P15",
+      "rule": "no requirement is marked exercised by a case that does not author a mandatory judgment slot feeding it",
+      "scope": "every case and every requirement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P16",
+      "rule": "each of the five §227 residual observations is instrumented on at least one case and recorded by at least one judgment slot",
+      "scope": "all five residual observations",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "P17",
+      "rule": "the instrument is structurally sound: unique ids, exercises targeting owned properties, elisions justified, enum members real, and the design size within 8 to 10",
+      "scope": "the whole instrument",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "repairsMadeBeforeFreeze": [
+    "the first preflight run failed P15 and P16. P15 found five requirement claims with no mandatory judgment slot feeding them — C3/HR1, C4/HR2, C7/HR1, C7/HR9, C8/HR1 — which is exactly the §221 authoring gap that produced six COVERAGE_INSUFFICIENT results. P16 found residual observation RO-D instrumented on seven cases and recorded by no judgment slot. Both were repaired in the development instrument before the freeze and before any spend, which is the only point at which repair is permitted."
+  ]
+}

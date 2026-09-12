@@ -1,0 +1,71 @@
+{
+  "openedAtUtc": "2026-09-01T17:04:34Z",
+  "reservedScope": "D86_GAUNTLET_OFFSETS_2_AND_3_ONLY",
+  "partitionRule": "D-86: scenarioId CMP ascending, 0-based, m=4, i%4===offset",
+  "sourceArtifact": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json",
+  "sourceSha256PreOpen": "a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+  "sourceSha256PostOpen": "a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+  "registrySha256": "cd1a114d0aaad100cc7d9eb61762da6d4e5b73c43140884da3c8ddbc6f58ef6c",
+  "policySha256": "cc69d28e74308f492271ff573357b5c346ebe915f253e692f108e9e962f94967",
+  "perOffset": [
+    {
+      "offset": 2,
+      "rowsOpened": 37,
+      "eligible": 8,
+      "eligibleForbiddenNegativeControl": 8,
+      "registryRecorded": 8,
+      "reasonBreakdown": {
+        "PRIMARY_OUTSIDE_TAXONOMY": 14,
+        "ELIGIBLE": 8,
+        "SECONDARY_OUTSIDE_TAXONOMY": 15
+      }
+    },
+    {
+      "offset": 3,
+      "rowsOpened": 37,
+      "eligible": 8,
+      "eligibleForbiddenNegativeControl": 8,
+      "registryRecorded": 8,
+      "reasonBreakdown": {
+        "PRIMARY_OUTSIDE_TAXONOMY": 18,
+        "SECONDARY_OUTSIDE_TAXONOMY": 11,
+        "ELIGIBLE": 8
+      }
+    }
+  ],
+  "registryRecordedEligibleContribution": 16,
+  "measuredEligibleRows": 16,
+  "measuredEligibleForbiddenNegativeControls": 16,
+  "eligibleForbiddenRowIds": [
+    "SRC-MSHA-019",
+    "SRC-MSHA-041",
+    "SRC-MSHA-057",
+    "SRC-OSHA-005",
+    "SRC-OSHA-009",
+    "SRC-OSHA-025",
+    "SRC-OSHA-029",
+    "SRC-OSHA-1003",
+    "SRC-MSHA-033",
+    "SRC-MSHA-042",
+    "SRC-MSHA-046",
+    "SRC-MSHA-062",
+    "SRC-OSHA-022",
+    "SRC-OSHA-034",
+    "SRC-OSHA-1012",
+    "SRC-OSHA-1028"
+  ],
+  "otherClassLabelsAmongEligible": {
+    "MULTI_HAZARD": 6,
+    "LIFE_CRITICAL_PRESENT": 8,
+    "DETERMINISTIC_HAZARD_PRESENT": 16,
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": 16,
+    "CLARIFICATION_OWED": 0,
+    "CROSS_HAZARD_INTERACTION": 0,
+    "NEGATED_OR_SAFE_STATE": 0
+  },
+  "reservedMaterialOpened": true,
+  "providerInvocationCount": 0,
+  "formalCohortSpent": false,
+  "p4PrespendAuthorization": false,
+  "cohortStatus": "CANDIDATE"
+}

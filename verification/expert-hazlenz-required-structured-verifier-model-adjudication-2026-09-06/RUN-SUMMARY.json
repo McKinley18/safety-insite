@@ -1,0 +1,155 @@
+{
+  "artifact": "SECTION_190_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "§190 model semantic adjudication of the frozen §187 REQUIRED structured-verifier cohort",
+
+  "TERMINAL": "EXPERT_HAZLENZ_REQUIRED_STRUCTURED_VERIFIER_MODEL_REVIEW_SEMANTIC_DEFECTS_IDENTIFIED — BOUNDED_REMEDIATION_REVIEW_REQUIRED",
+  "terminalReason": "The model adjudication identifies two demonstrated semantic defect classes — adjacent-property substitution on all three HR-04 replicates, and conjunctive clarification-sufficiency failure on all three HR-08 replicates — alongside the already-established structural contract defect.",
+
+  "GOVERNANCE": {
+    "ADJUDICATION_KIND": "MODEL_SEMANTIC_ADJUDICATION",
+    "adjudicator": "MODEL (claude-opus-5) — NOT a human reviewer",
+    "FROZEN_HUMAN_SEMANTIC_GATE": "UNMEASURED / NOT_COMPLETED_BY_A_HUMAN_REVIEWER",
+    "HUMAN_ADJUDICATION_COMPLETENESS": "65 / 112",
+    "MECHANICAL_CONTRACT_GATE": "FAILED (§187B, 2 contract-invalid executions)",
+    "isThisASubstituteForTheHumanGate": false,
+    "statement": "The §188 neutral ballot remains unanswered with all 112 verdict slots null. The 65 partial product-owner selections in §189 are preserved unedited. No §190 artifact is a human verdict, and verifier-v3 is NOT validated by this review.",
+    "frozenTerminalsNotIssued": "no §189 human-adjudication terminal was issued; the §187B and §188 historical terminals are unmodified"
+  },
+
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCT_RUNTIME_CHANGES": 0,
+  "PROMPT_CHANGES": 0,
+  "SCHEMA_CHANGES": 0,
+  "VERIFIER_CONTRACT_CHANGES": 0,
+  "FROZEN_SCORER_CHANGES": 0,
+  "STIMULI_REGENERATED": 0,
+  "SOURCE_INTEGRITY_GATE": "PASS 19/19",
+
+  "judgementStandard": {
+    "SUFFICIENCY_TEST": "A clarification is sufficient when a truthful 'yes' to it, AS WORDED, entails the owed property. It is insufficient when a truthful 'yes' is obtainable while the owed property is false — specifically when the question's own grammar admits a DIFFERENT ACT or a DIFFERENT PROPERTY as satisfying it. A question naming the correct verification act but asking whether it was performed rather than whether it passed is treated as sufficient. Applied identically to every row.",
+    "SUBSTITUTION_TEST": "Substitution is present when the reasoning's OPERATIVE premise — the one carrying the conclusion — concerns a property other than the owed one, or rests on a fact the observation does not state.",
+    "ORDER": "every execution judged before any total was computed; no threshold, floor or aggregate influenced any individual finding"
+  },
+
+  "MODEL_ADJUDICATED_STRICT_SEMANTIC_RESULT": {
+    "numerator": 9,
+    "denominator": 15,
+    "observed": "9/15",
+    "threshold": ">= 12/15",
+    "verdict": "FAIL",
+    "slotsJudged": "112 / 112"
+  },
+  "perRowFloors": {
+    "gate": ">= 2/3",
+    "HR-01": "3/3 PASS",
+    "HR-06": "3/3 PASS",
+    "HR-09": "3/3 PASS",
+    "HR-04": "0/3 FAIL",
+    "HR-08": "0/3 FAIL",
+    "verdict": "FAIL"
+  },
+  "ADJACENT_PROPERTY_SUBSTITUTION": {
+    "gate": "= 0",
+    "observed": 3,
+    "which": ["188-HR-04-R1", "188-HR-04-R2", "188-HR-04-R3"],
+    "verdict": "FAIL",
+    "note": "confined entirely to HR-04; zero on HR-01, HR-06, HR-08 and HR-09, where the responses actively refuse the adjacent property by name"
+  },
+  "HR04": {
+    "categories": { "188-HR-04-R1": "C", "188-HR-04-R2": "C", "188-HR-04-R3": "C" },
+    "readIndependently": true,
+    "convergenceNotAssumption": "each replicate was read on its own rationale and reached C by a different route",
+    "invalidFalseSettlementChallenge": "1/3 — PASS at the ceiling (n=1)",
+    "currentSecurementTargetPreserved": "0/3 — FAIL",
+    "providerOutputAloneLeftFactUnresolved": "3/3 — PASS (mechanical, no adjudication)"
+  },
+  "CHALLENGE_REVIEWABILITY": {
+    "n": 1,
+    "CHALLENGE_REVIEWABILITY_OBSERVED": "1 / 1",
+    "PREREGISTERED_THRESHOLD_EVALUATION": "NOT_MEANINGFULLY_ESTIMABLE",
+    "NOT_EXERCISED": false,
+    "gateModified": false,
+    "finding": "the single challenge is INVALID on all three validity axes and REVIEWABLE — it states its inference outright, so a reviewer can reject it precisely",
+    "rule": "report x/1, never a percentage"
+  },
+  "REFUSED_EXECUTIONS": {
+    "which": ["188-HR-08-R2", "188-HR-01-R3"],
+    "remainInDenominator": true,
+    "basis": "REJECTED_IS_NOT_SILENCE governs the numerator and nowhere excludes an observation from the denominator, which the gate writes literally as /15",
+    "188-HR-01-R3": "CONTRACT_INVALID and semantically PRESERVED — reasoning materially identical to its admitted siblings",
+    "188-HR-08-R2": "CONTRACT_INVALID and semantically NOT_PRESERVED — on grounds an admitted output making the same claim would fail identically",
+    "note": "that one refused execution is semantically sound and the other is not is the clearest demonstration that contract validity and semantic correctness are independent"
+  },
+  "SENSITIVITY": {
+    "mostContestableRow": "HR-08",
+    "issue": "whether 'locked out (or otherwise verified de-energized)' is sufficient for an owed fact requiring ISOLATED AND PROVED DEAD",
+    "asJudged": "9/15 FAIL",
+    "underThePermissiveReading": "12/15 PASS on the aggregate threshold",
+    "butTheConclusionIsUnchanged": "even at 12/15 the HR-04 per-row floor still fails 0/3 and adjacent-fact substitution still stands at 3 against a gate of 0. The cohort fails at least one frozen semantic gate under either reading.",
+    "disclosureOrder": "computed after all judgements were fixed"
+  },
+
+  "MODEL_VS_PARTIAL_HUMAN": {
+    "slotsCompared": 65,
+    "agreements": 46,
+    "disagreements": 19,
+    "fullAgreementOn": ["188-HR-09-R1", "188-HR-01-R1", "188-HR-06-R1", "188-HR-06-R2", "188-HR-09-R2"],
+    "disagreementsConcentratedOn": "HR-04 (14 slots) and HR-08 (5 slots) — two arguments, not nineteen",
+    "modelStatesPlainly": [
+      "the PASS answers on HR-04's two clarification axes are not supportable: no clarification existed on that row, so there was nothing whose aim or power could be assessed",
+      "HR-04 category A is not supportable: A requires the observation to establish current fastener securement, and it does not"
+    ],
+    "whereTheDisagreementIsNarrowest": "HR-04 R2's explicit 'I am not entitled to mark it answered' is real and creditable; a reviewer could weigh it more heavily toward category B than the model did",
+    "humanAnswersAltered": 0
+  },
+
+  "REMEDIATION_CLASSIFICATION": {
+    "STRUCTURAL_CONTRACT": "DEMONSTRATED (mechanical)",
+    "CLARIFICATION_EVIDENCE_SUFFICIENCY": "DEMONSTRATED (model)",
+    "ADJACENT_PROPERTY_SUBSTITUTION": "DEMONSTRATED (model)",
+    "OWED_FACT_PRESERVATION": "DEMONSTRATED as a consequence, not independently (model)",
+    "CLARIFICATION_POLICY": "INCONCLUSIVE — only three unconditional proposal opportunities existed, all on one row",
+    "CHALLENGE_POLICY": "INCONCLUSIVE — n = 1",
+    "FACTKEY_TARGETING": "NOT_DEMONSTRATED — clean on both instruments",
+    "SETTLEMENT_AUTHORITY": "NOT_DEMONSTRATED — the containment layer absorbed a real reasoning defect without the ledger moving",
+    "OTHER_firstPassQuestionQuality": "DEMONSTRATED, and it is not a verifier defect — the insufficient HR-08 question was authored by the first pass; the verifier's failure is failing to catch it"
+  },
+  "smallestJustifiedRemediation": [
+    "1. repair the three schema field descriptions (unchanged from §188; rests on mechanical evidence alone, so it does not wait on the human adjudication)",
+    "2. add a conjunct-by-conjunct sufficiency step to the verifier instruction",
+    "3. bound the unseen-control heuristic: a visible component does not make an unobservable property of it a seen control"
+  ],
+  "remediationGovernanceNote": "items 2 and 3 rest on MODEL adjudication of a 15-execution cohort; if the human instrument is later completed and disagrees, their basis changes with it. All three change an identity hash, so they should be authorized as one bounded change with a re-baselined identity rather than drip-fed. Do not touch the settlement-authority containment — it is the thing that worked.",
+
+  "filesAdded": [
+    "backend/scripts/lib/expert-model-adjudication-2026-09-06.ts",
+    "backend/scripts/build-model-adjudication-2026-09-06.ts",
+    "backend/scripts/verify-190-source-integrity-2026-09-06.ts",
+    "backend/scripts/present-189-adjudication-item-2026-09-06.ts"
+  ],
+  "section187EvidenceModified": 0,
+  "section188EvidenceModified": 0,
+  "section189HumanAnswersModified": "only to ADD the eight HR-04 R2 selections the session had recorded but not yet persisted, plus a completeness block. No existing selection was altered.",
+
+  "mustNotClaim": [
+    "verifier-v3 validated",
+    "a human semantic result",
+    "the frozen §189 gate measured",
+    "HR-04 or HR-08 settled as a matter of record",
+    "rates or population proportions from 15 executions or from n=1 challenge behaviour",
+    "customer readiness",
+    "production readiness",
+    "formal acceptance"
+  ],
+  "nextGate": "bounded remediation review. No remediation was performed. No rerun is authorized.",
+  "customerActivation": "NONE",
+  "productionChange": "NONE",
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

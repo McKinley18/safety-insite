@@ -1,0 +1,14 @@
+exit=0 -- expert-contract-foundation
+exit=0 -- expert-routing-contract
+exit=0 -- expert-grounding-contract
+exit=0 -- expert-anthropic-adapter-repair
+exit=0 -- expert-authority-merge
+exit=0 -- expert-provider-failure
+exit=0 -- expert-nocall-harness
+exit=0 -- l32i-clarification-carrier
+exit=0 -- l32j-carrier-activation
+exit=0 -- hazlenz-core
+exit=0 -- hazlenz-precision
+exit=0 -- hazlenz-level1-recall
+exit=0 -- hazlenz-actionable-coverage
+exit=0 -- backend-tsc

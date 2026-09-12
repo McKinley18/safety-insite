@@ -1,0 +1,54 @@
+{
+  "operation": "section 174 pre-adjudication wording freeze",
+  "frozenAt": "2026-09-05",
+  "rule": "This exact wording is what gets adjudicated. ROW_TEXT_MUTATION_ALLOWED = FALSE from this point. If a row text changes, that row verdict is void and the row returns to PENDING_INDEPENDENT_HUMAN_ADJUDICATION.",
+  "ROW_TEXT_MUTATION_ALLOWED": false,
+  "REVIEW_PACKET_HASH": {
+    "BLINDED-HUMAN-REVIEW-PACKET.md": "7dd2ea00ad1c0f64eb9fd118275274d753dd12e1df1019c693e36ad81776c9fb",
+    "BLINDED-HUMAN-REVIEW-PACKET.json": "85da35aa6552554fd9675d450c362d92df66cfffcef8e1f04f5de417ebf6c627"
+  },
+  "rowTextHashes": {
+    "HR-01": {
+      "charCount": 329,
+      "rowTextSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d"
+    },
+    "HR-02": {
+      "charCount": 358,
+      "rowTextSha256": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722"
+    },
+    "HR-03": {
+      "charCount": 310,
+      "rowTextSha256": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622"
+    },
+    "HR-04": {
+      "charCount": 349,
+      "rowTextSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274"
+    },
+    "HR-05": {
+      "charCount": 321,
+      "rowTextSha256": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f"
+    },
+    "HR-06": {
+      "charCount": 342,
+      "rowTextSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb"
+    },
+    "HR-07": {
+      "charCount": 331,
+      "rowTextSha256": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b"
+    },
+    "HR-08": {
+      "charCount": 317,
+      "rowTextSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0"
+    },
+    "HR-09": {
+      "charCount": 308,
+      "rowTextSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef"
+    },
+    "HR-10": {
+      "charCount": 336,
+      "rowTextSha256": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed"
+    }
+  },
+  "corroboration": "each row text verified identical in the markdown and JSON packets before hashing",
+  "verdictFieldsPrefilledAtFreeze": 0
+}

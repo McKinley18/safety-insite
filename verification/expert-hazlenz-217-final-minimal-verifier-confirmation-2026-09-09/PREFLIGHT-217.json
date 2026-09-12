@@ -1,0 +1,41 @@
+{
+  "executorVersion": "hazlenz.expert.217.final-confirmation-execution.v1",
+  "frozenDigest": "99f9f6b82842cb0ad4c0e1ea78418af3606dc4dcadde353699ed8d18998fa2a4",
+  "digestVerified": true,
+  "checks": [
+    {
+      "id": "frozen §217 digest",
+      "ok": true,
+      "detail": "99f9f6b82842cb0ad4c0e1ea78418af3606dc4dcadde353699ed8d18998fa2a4"
+    },
+    {
+      "id": "assembly reproduces the frozen call set",
+      "ok": true,
+      "detail": "seven user-prompt identities and seven fact keys match the freeze"
+    },
+    {
+      "id": "instruction identity matches the freeze",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "schema identity matches the freeze",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "api key present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "no strict flag and no cache_control in any tool block",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "callCeiling": 4,
+  "spendCeilingUsd": 0.22,
+  "retriesAuthorized": 0,
+  "cachingPosture": "DISABLED"
+}

@@ -1,0 +1,134 @@
+{
+  "section": "247",
+  "identityVersion": "hazlenz.expert.candidate-identity.v2",
+  "generated": "2026-09-12",
+  "appliesTo": "a FUTURE successor candidate. NOT retrofitted to §243, which stands at D HOLD RELEASE.",
+  "freezeRule": "the freeze FAILS when the acceptance caller and the production caller differ on any bound element. A declaration is not an acceptable substitute for a mechanically resolvable identity.",
+  "mechanicallyResolved": 17,
+  "required": 17,
+  "declarationsUsed": 0,
+  "boundElements": [
+    {
+      "n": 1,
+      "element": "production Expert entry point",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts",
+      "sha256": "f49ac79a42f3191dcfc1b9f912d70c18f7260cdabc91ef8f79e8200b55531741"
+    },
+    {
+      "n": 2,
+      "element": "acceptance entry point",
+      "resolves": true,
+      "path": "scripts/lib/expert-243-assembly.ts",
+      "sha256": "05e57c120d8f0c7afb742596316de00caacf8c3b4367a89fd7ff4b5ecc7ffe7e",
+      "note": "resolves to the production tree through §246 shims"
+    },
+    {
+      "n": 3,
+      "element": "proof of semantic-path identity",
+      "resolves": true,
+      "path": "scripts/test-246-productionization.ts",
+      "sha256": "4835ba6bad70f0bcb9a3266a58e1e7e18c305ef8c256ff90a4eab1325db545d5"
+    },
+    {
+      "n": 4,
+      "element": "semantic contract closure",
+      "resolves": true,
+      "modules": 41,
+      "closureDigest": "206855f09e7806a9bc22ff7403425bca2b4b0a756b275afdbe213c14c0924ef1"
+    },
+    {
+      "n": 5,
+      "element": "first-pass prompt",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract.ts",
+      "symbol": "build247SystemPrompt",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 6,
+      "element": "first-pass schema",
+      "resolves": true,
+      "symbol": "buildExpert247WireSchema"
+    },
+    {
+      "n": 7,
+      "element": "driver-role/posture contract",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract.ts",
+      "sha256": "7f1c4d437ee64a26d26c6a01c5382078b4d7e6171f9d5dba5f8f4554ce46ae15"
+    },
+    {
+      "n": 8,
+      "element": "verifier prompt",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/contract/expert-218-property-instruction.ts",
+      "sha256": "c253e900c83b63a0e8340cd85fe999380a8d773357f56b82395fd9ea771ffe4a"
+    },
+    {
+      "n": 9,
+      "element": "verifier schema",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/contract/expert-218-property-review-contract.ts",
+      "sha256": "35c766fcfa82454c53b7d1523e38484b101c124b7f158069f81362fb220bc7fb"
+    },
+    {
+      "n": 10,
+      "element": "request envelope",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts",
+      "sha256": "9da2ff6c88670f12deacb8519ec74af228f2cbf0926bd559f5e4f4ef5f165445"
+    },
+    {
+      "n": 11,
+      "element": "provider/model identity",
+      "resolves": true,
+      "boundIn": "EXPERT_REQUEST_ENVELOPE.providerId + .model"
+    },
+    {
+      "n": 12,
+      "element": "token limits",
+      "resolves": true,
+      "boundIn": "firstPassMaxTokens + verifierMaxTokens, per leg"
+    },
+    {
+      "n": 13,
+      "element": "strict-schema setting",
+      "resolves": true,
+      "boundIn": "EXPERT_REQUEST_ENVELOPE.strictSchema = true, written unconditionally"
+    },
+    {
+      "n": 14,
+      "element": "property authority",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts",
+      "sha256": "04287e83fce963e3a63e3c43e89e023fd6fa8a75d01a5e35a20d3d1aeb5bf4fc",
+      "modifiedIn247": true
+    },
+    {
+      "n": 15,
+      "element": "evidence authority",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts",
+      "sha256": "4f300ae7cd5db1ebfdb8ab24985a455b63c627a224121508d5147191cf37e86e",
+      "modifiedIn247": true
+    },
+    {
+      "n": 16,
+      "element": "settlement authority",
+      "resolves": true,
+      "path": "src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts",
+      "symbol": "mintSettlementAuthority"
+    },
+    {
+      "n": 17,
+      "element": "K6 representation",
+      "resolves": true,
+      "strategy": "anyOf + const",
+      "admissiblePairs": 6,
+      "inadmissibleExpressible": 0,
+      "path": "src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract.ts"
+    }
+  ],
+  "note": "All 17 resolve mechanically from the tree. No candidate has been frozen: this records that the identity CAN resolve, not that a successor candidate exists."
+}

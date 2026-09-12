@@ -1,0 +1,82 @@
+{
+  "version": "hazlenz.expert.210j.cost-and-compatibility.v1",
+  "basis": "OBSERVED_BYTES_PER_TOKEN = 69968 / 24512 = 2.8544, derived from the frozen §208 first-pass leg. An estimate from real cohort data, not a tokenizer result, and NOT a production cost claim.",
+  "instruction": {
+    "addedChars": 1461,
+    "estimatedAddedTokens": 512,
+    "identicalInBothVariants": true,
+    "oldIdentity": "0f547b124afe0f6db51af6a63af8c42273f34c81b3d1ee4f291c93d6dba76591",
+    "newIdentity": "4ac0b5d5b95502a1e9e6f8fbda51ad6c0dd345e2ef3fc4ada3b741f9256323ed",
+    "netProseRemoved": 0
+  },
+  "schema": {
+    "capabilityAbsent": {
+      "addedBytes": 527,
+      "estimatedAddedTokens": 185,
+      "grammarIdentityBefore": "33b028f90db8857d241df4a07df802b3d1f734d52c708fe41a18b98c046973bd",
+      "grammarIdentityAfter": "6e672aac9dcc0258a280c1cb15355d89bf95ea2cdd8635bbcbe964defc988e6e",
+      "grammarMoved": true
+    },
+    "capabilityPresent": {
+      "addedBytes": 527,
+      "estimatedAddedTokens": 185,
+      "grammarMoved": true
+    }
+  },
+  "requestTotal": {
+    "estimatedAddedInputTokens": 697,
+    "section210hMedianInputTokens": 27167,
+    "percentOfSection210hMedianInput": 2.57
+  },
+  "output": {
+    "measuredOn": "the four §210J design fixtures, not model output",
+    "fixtureValueBytes": [
+      156,
+      186,
+      113,
+      135
+    ],
+    "meanBytesPerDeclaration": 148,
+    "estimatedAddedOutputTokensPerDeclaration": 52,
+    "section210hMedianOutputTokens": 2329,
+    "percentOfSection210hMedianOutput": 2.23
+  },
+  "verifierPayload": {
+    "addedFields": 1,
+    "transform": "byte-exact copy of the model-authored string",
+    "estimatedAddedBytesPerFact": 120,
+    "note": "the sidecar carries the same string the declaration carried; nothing is duplicated inside the pinned ProjectedOwedFact"
+  },
+  "ancestry": {
+    "version": "hazlenz.expert.210j.ancestry-successor.v1",
+    "recordKind": "ADDITIVE_ANCESTRY_SUCCESSOR",
+    "subjectPath": "backend/scripts/lib/expert-first-pass-owed-fact-projection.ts",
+    "historicalSha256": "aab67e0b2e9c7303569c480c0eee92a19d2d9ccd4ffda04dc841dba60256432c",
+    "supportingArtifacts": [
+      "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+      "backend/scripts/test-210e-final-remediation.ts — asserts PROJECTION_REFUSAL_CODES includes NON_SEMANTIC_PLACEHOLDER_VALUE and that a filler declaration is refused end to end",
+      "backend/scripts/lib/expert-205-declaration-preservation.ts — CONTRACT_INCOMPLETENESS_CODES carries the code with an inline \"§210E R7\" attribution",
+      "verification/expert-hazlenz-210i-epistemic-representation-review-2026-09-09/ARCHITECTURE-REVIEW-210I.md §12 — where the divergence was first reported"
+    ],
+    "supportingArtifactsPresentOnDisk": [
+      "verification/expert-hazlenz-210e-final-remediation-2026-09-09/FINAL-REMEDIATION-REPORT-210E.md",
+      "backend/scripts/test-210e-final-remediation.ts",
+      "backend/scripts/lib/expert-205-declaration-preservation.ts"
+    ],
+    "historicalRecordModified": false,
+    "historicalEvidenceModified": false,
+    "newFrozenExpectationIntroduced": false,
+    "note": "this record states WHAT THE CURRENT HASH WAS WHEN IT WAS BUILT. It is not a new frozen expectation: a later edit must show up as a new divergence, not be absorbed by a pin this slice wrote.",
+    "currentSha256": "bc47df39ea9d507b404f0b0ebe283c003e3220f097c6b3ea2139739989f0f11e",
+    "classification": "ADVANCED_BY_A_LATER_AUTHORIZED_SECTION",
+    "modifyingSection": "§210E",
+    "reasonForTransition": "the R7 deterministic half added the NON_SEMANTIC_PLACEHOLDER_VALUE refusal code, the NON_SEMANTIC_FILLER closed set, isNonSemanticFiller, and the SEMANTIC_BRANCH_FIELDS check",
+    "marksPresent": [
+      "NON_SEMANTIC_PLACEHOLDER_VALUE",
+      "isNonSemanticFiller",
+      "SEMANTIC_BRANCH_FIELDS",
+      "§210E R7"
+    ],
+    "marksAbsent": []
+  }
+}

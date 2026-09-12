@@ -1,0 +1,88 @@
+§166 REMEDIATED PRE-SPEND PREFLIGHT — 12-CALL BINDING FALSIFICATION, PROTOCOL v3
+====================================================================================================
+  PROVIDER CALLS THIS SCRIPT: 0   COST: $0.00   ACTIVATION: DEVELOPMENT_INACTIVE
+
+--- A  FROZEN MATERIAL AND PROTOCOL IDENTITY
+
+ok    A.1 the §156 blinded packet is reused UNCHANGED  — 75d64197583092ed8ac826a1…
+ok    A.2 verifier instruction v2 is BYTE-UNCHANGED — v3 is a new protocol, not an edit of v2  — v2 ffc63119b5a30ec88e09a078…
+ok    A.3 verifier instruction v3 is frozen and hashed  — hazlenz.expert.verifier-instruction.v3  678160c95bc7db385d49f3b4d5077fb8…
+ok    A.4 verifier contract v3 is frozen and hashed  — hazlenz.expert.verifier.v3  schema 1bddc1a51fb2d1cad43a7444a45728a6…
+ok    A.5 the v13 first-pass prompt module is byte-identical — no v14, no v15  — unchanged
+ok    A.6 the hardened v9 fixture is byte-identical  — unchanged
+ok    A.7 both authoritative cases are present and are the only two  — HS-A1/VC-08, HS-E1/VC-04
+
+--- B  SEMANTIC PRESERVATION OF THE v2 INSTRUCTION
+
+ok    B.1 every changed instruction line is classified and no classification is stale  — 42 added, 2 removed; 0 unclassified, 0 stale
+ok    B.2 SUBSTANTIVE_SEMANTIC_CHANGE_COUNT = 0 for the instruction  — binding-protocol 39, schema-alignment 5
+ok    B.3 SUBSTANTIVE_SEMANTIC_CHANGE_COUNT = 0 for the contract  — field-level diff carries no substantive change
+ok    B.4 the "usually NO" prior and every other load-bearing v2 block survive byte-identical  — 12 blocks checked positively
+
+--- C  SUPPLIED OWED FACTS — TASK STATE, NOT GRADING TRUTH
+
+ok    C.VC-08 no evaluation-truth artefact anywhere in the request  — 8 patterns, 0 matches
+ok    C.VC-08 no fixture label, scoring state or historical verdict in the case payload  — 4 patterns, 0 matches
+ok    C.VC-04 no evaluation-truth artefact anywhere in the request  — 8 patterns, 0 matches
+ok    C.VC-04 no fixture label, scoring state or historical verdict in the case payload  — 4 patterns, 0 matches
+ok    C.0 the contract vocabulary in the system prompt and schema is BY DESIGN, not a leak  — the verdict enum is in the instruction, never in the case payload
+ok    C.3 the supplied facts carry only the fields needed to understand and bind to them  — factKey, affectedDecision, whyUnresolved, branchA, branchB, decisionDivergence, evidenceSpan
+ok    C.4 exactly one owed fact is supplied per case, and HS-A1 is NOT told about the auger gap  — supplying the auger fact would answer the displacement question instead of measuring it
+ok    C.5 each case has ONE frozen semantic request hash, reused for all six of its draws  — VC-08 c1e5407a121c60b7…  VC-04 94b47273776d3794…
+ok    C.6 no sampling or determinism control is introduced  — none present
+
+--- D  FROZEN HUMAN TRUTH
+
+ok    D.1 frozen human targets match §162 and their cues are not satisfied by the observations  — hazlenz.expert.human-semantic-targets.2026-09-04; deep-equal to §162; cues not satisfied by either observation
+ok    D.2 truth is not broadened — the two authoritative rows and no others  — HS-A1, HS-E1
+
+--- E  CALL CAP AND PROSPECTIVE COST
+
+ok    E.1 12 requests, zero retries, zero replacements, zero first-pass invocations  — 2 cases × 6 draws; no retry path is designed
+ok    E.2 the output ceiling is 4000, as the product owner directed, and was not lowered to fit a cap  — 4000 — unchanged from §158/§163
+ok    E.3 the runtime spend guard checks the WORST CASE before each call, never the expected cost  — each call is gated on spent + $0.05600 <= $0.60
+FAIL  E.4 the full 12-call design fits inside the $0.60 prospective cap  — conservative worst case $0.67200 (bound 8000 input tokens/call) · projection-based worst case $0.63550 · §163-measured expected cost $0.25231. Under strict prospective checking the cap admits 10 of 12 calls.
+ok    E.5 the raw-preservation store is empty or absent  — clean
+ok    E.6 the frozen formal invocation count is intact  — 195, immutable
+ok    E.7 the runtime draw cap is unchanged by the protocol revision  — 2 draws per analysis
+ok    E.8 this preflight cannot issue a request  — no network call, no credential read, no HTTP client
+
+--- F  IS THE MANIPULATION NOW EXPRESSIBLE? (§165 GATE F, RE-RUN AGAINST v3)
+
+ok    F.1 v3 ADMITS the additive verdict that v2 refused — the §165 blocker is closed  — binding and nomination both admitted in one response
+ok    F.2 the v3 schema carries a field in which to declare a binding  — schema fields: verdict, rationale, clarificationSourceMode, proposedClarification, bindingFactKey, nominatedFact, owedFactDeclarations
+ok    F.3 the v3 instruction contains the binding step the experiment needs  — 5/5 present
+ok    F.4 a binding key outside the closed set is still refused — the door opened, not widened  — one character off is refused; there is no fuzzy match
+
+--- G  NO SELF-VALIDATION, AND OUTCOME SEPARATION
+
+ok    G.1 no draw is shown another draw's output to judge  — 6 verdict/output tokens, 0 present in either case payload
+ok    G.2 the displaced/invalid split remains unassignable by code  — hazlenz.expert.verifier.semantic-outcome.v2
+ok    G.3 owed-target recall stays independent of clarification validity  — a displaced outcome is a recall MISS and not a precision defect
+
+--- H  HUMAN-TRUTH AUTHORITY INVENTORY AND FALSIFIER TESTABILITY
+
+ok    H.1 the human-truth inventory is complete — every row carries a disposition  — 7 rows: 2 REQUIRED eligible, 0 silence eligible, 5 ineligible
+ok    H.2 both experiment cases are human-authoritative  — HS-A1 AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS · HS-E1 AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS
+ok    H.3 FALSIFIER_D_TESTABLE is recorded honestly rather than manufactured  — FALSIFIER_D_TESTABLE = false — 0 human-valid silence rows survive. HS-J1, HS-N1, HS-P1 (AUTHORING_INVALID) and HS-R1 (AUTHORING_AMBIGUOUS) are NOT reused.
+ok    H.4 no invalid row is used as a silence control anywhere in the experiment  — the four ineligible rows appear in no request
+ok    H.5 the falsifier testability matrix is explicit and scoped  — 5 of 6 testable; D is not, and F is testable but scoped to two rows
+ok    H.6 the experiment claim is narrowed rather than the falsifier weakened  — no false-question-precision claim may be drawn from this experiment
+
+--- I  BASELINE AND HISTORICAL INTEGRITY
+
+ok    I.1 the §163 baseline records are present and are read only  — 20 draw records, untouched; no new baseline is purchased
+ok    I.2 the comparison is ACROSS the manipulation and the byte-identity claim is not overstated  — the v3 request necessarily differs from §163's v2 request — that difference IS the manipulation, and §163 remains the frozen no-binding baseline
+
+====================================================================================================
+  PRE-SPEND GATE: 44/45 PASS · 1 FAIL
+  FALSIFICATION_HARNESS_READY = FALSE
+  FALSIFIER_D_TESTABLE = false
+  PROVIDER CALLS: 0   COST: $0.00   NOTHING WAS SPENT
+====================================================================================================
+
+BLOCKERS:
+  E.4 the full 12-call design fits inside the $0.60 prospective cap
+      conservative worst case $0.67200 (bound 8000 input tokens/call) · projection-based worst case $0.63550 · §163-measured expected cost $0.25231. Under strict prospective checking the cap admits 10 of 12 calls.
+
+wrote /Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-verifier-v3-binding-protocol-2026-09-04/FALSIFICATION-HARNESS-PREFLIGHT-V3.json

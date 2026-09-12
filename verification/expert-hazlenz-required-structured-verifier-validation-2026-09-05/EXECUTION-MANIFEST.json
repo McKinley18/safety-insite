@@ -1,0 +1,125 @@
+{
+  "artifact": "SECTION_187A_EXECUTION_MANIFEST",
+  "preregistrationSha256": "9fc517b7783ba655c8d3eb6e195bb8abe313a9c0d91ffa2f5b7af406a5c48c82",
+  "plannedFirstPass": 5,
+  "plannedVerifier": 15,
+  "plannedTotal": 20,
+  "hardCallCap": 24,
+  "hardSpendCapUsd": 2.0,
+  "firstPassCompleted": 5,
+  "verifierAttempted": 15,
+  "verifierYieldingOutput": 0,
+  "providerInvocationsUsed": 20,
+  "actualSpendUsd": 0.26255,
+  "frozenOrder": [
+    {
+      "sequencePosition": 1,
+      "rowId": "HR-09",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 2,
+      "rowId": "HR-01",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 3,
+      "rowId": "HR-06",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 4,
+      "rowId": "HR-04",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 5,
+      "rowId": "HR-08",
+      "replicateNumber": 1,
+      "block": 1,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 6,
+      "rowId": "HR-06",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 7,
+      "rowId": "HR-09",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 8,
+      "rowId": "HR-08",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 9,
+      "rowId": "HR-04",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 10,
+      "rowId": "HR-01",
+      "replicateNumber": 2,
+      "block": 2,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 11,
+      "rowId": "HR-09",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 12,
+      "rowId": "HR-08",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 13,
+      "rowId": "HR-01",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 14,
+      "rowId": "HR-04",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    },
+    {
+      "sequencePosition": 15,
+      "rowId": "HR-06",
+      "replicateNumber": 3,
+      "block": 3,
+      "rotatedBy": 0
+    }
+  ],
+  "orderSeedHex": "678160c9",
+  "stopReason": "all fifteen verifier calls rejected HTTP 400 for insufficient account credit",
+  "retriesPerformed": 0,
+  "retryRefused": "a retry of the fifteen would require 35 total calls against a 24-call hard cap; the authorization's rule is STOP"
+}

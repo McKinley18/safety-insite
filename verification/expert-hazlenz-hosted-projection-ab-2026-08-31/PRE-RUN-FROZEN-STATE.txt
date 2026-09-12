@@ -1,0 +1,32 @@
+PRE-RUN FROZEN STATE — §118 hosted projection A/B (2026-08-31)
+
+HEAD: 37a5d1b50abe836eb19dd24ee18ad10557bda131
+branch: main  origin/main: de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+ahead/behind: 0	1
+stashes: 4  tags: 24
+
+--- prompt / contract versions ---
+export const EXPERT_PROMPT_VERSION = 'hazlenz.expert.prompt.v6' as const;
+export const EXPERT_ANALYSIS_CONTRACT_VERSION = 'hazlenz.expert.analysis.v2' as const;
+
+--- SHA-256: prompt, contract, normalization, scorer (frozen) ---
+e80d977abf2d169491e65910e7ca13f1b7f6476a2e1011dc912cdc928d9fa6f2  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+ca8b16cdd86abef355ee9316fa5d9fd72a90ef4622509b26fdc52dc484e7566e  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+
+--- SHA-256: §117 deterministic repair (frozen) ---
+14adf05ba77e01851fcb2281ef179395ee67f2140c2dfd09223173def4deab45  backend/src/safescope-v2/evidence/evidence-foundation.ts
+ff6df3bdd6404c1f6f9461a06c443cd8d9ea32b91fd377288b05781682ab6f29  backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+
+--- SHA-256: §116 projection design (frozen) ---
+affab139a674a90e9c72e9577a07ca18ee6085a85d0b548309d3da9e12f95209  backend/scripts/lib/expert-deterministic-projection.ts
+f7c34daab5a0c367622341c00d47ffa1052f7146e0f51b2fa9bfd49da1cca43c  backend/scripts/lib/expert-state-aware-scoring.ts
+
+--- SHA-256: fixtures (frozen) ---
+e444b6920454a9d5cee6d72eece1aadddde141b7f84ead54ea42efe6f85c70cf  backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts
+81e0d293d130a6730207d55c6d4b4847da78fe9371ae8174f931f932dafddc02  backend/src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures.ts
+7449a110b2bc5f492cd08c1d8314d6c3bbac9968b60ba4b9d87ae0daa037d3d2  backend/src/safescope-v2/expert-hazlenz/fixtures/restoration-transition-fixtures.ts
+
+--- SHA-256: hosted adapter (frozen) ---
+4b36490ac01d4f19646d4f7a16fdf347b71eabc00ff1629dec8968e1174c484c  backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts

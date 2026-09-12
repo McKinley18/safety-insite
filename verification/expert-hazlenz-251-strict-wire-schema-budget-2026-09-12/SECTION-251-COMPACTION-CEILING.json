@@ -1,0 +1,231 @@
+{
+  "section": "251",
+  "generated": "2026-09-12",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "note": "analysis artifact only; no production module was modified to produce it",
+  "perCase": [
+    {
+      "caseId": "H1",
+      "v239": {
+        "slots": 72,
+        "objects": 14,
+        "freeStrings": 35,
+        "enumNodes": 22,
+        "enumMembers": 87,
+        "refs": 0,
+        "defs": 0,
+        "unions": 0,
+        "bytes": 26327
+      },
+      "v247": {
+        "slots": 129,
+        "objects": 23,
+        "freeStrings": 54,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 0,
+        "defs": 0,
+        "unions": 21,
+        "bytes": 39076
+      },
+      "v251": {
+        "slots": 101,
+        "objects": 19,
+        "freeStrings": 44,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 5,
+        "defs": 1,
+        "unions": 3,
+        "bytes": 29705,
+        "sha": "e16079079eeb2640e50f38149c8c5c2528891db4d912ee8d8ec449a89ad2ed9f"
+      }
+    },
+    {
+      "caseId": "H2",
+      "v239": {
+        "slots": 72,
+        "objects": 14,
+        "freeStrings": 35,
+        "enumNodes": 22,
+        "enumMembers": 87,
+        "refs": 0,
+        "defs": 0,
+        "unions": 0,
+        "bytes": 26327
+      },
+      "v247": {
+        "slots": 129,
+        "objects": 23,
+        "freeStrings": 54,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 0,
+        "defs": 0,
+        "unions": 21,
+        "bytes": 39076
+      },
+      "v251": {
+        "slots": 101,
+        "objects": 19,
+        "freeStrings": 44,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 5,
+        "defs": 1,
+        "unions": 3,
+        "bytes": 29705,
+        "sha": "2e91826db62634c5da1d4d298a79ace55b3a7f1194c3f6b89a4ae90958045c6c"
+      }
+    },
+    {
+      "caseId": "H3",
+      "v239": {
+        "slots": 72,
+        "objects": 14,
+        "freeStrings": 35,
+        "enumNodes": 22,
+        "enumMembers": 88,
+        "refs": 0,
+        "defs": 0,
+        "unions": 0,
+        "bytes": 26340
+      },
+      "v247": {
+        "slots": 129,
+        "objects": 23,
+        "freeStrings": 54,
+        "enumNodes": 30,
+        "enumMembers": 93,
+        "refs": 0,
+        "defs": 0,
+        "unions": 21,
+        "bytes": 39089
+      },
+      "v251": {
+        "slots": 101,
+        "objects": 19,
+        "freeStrings": 44,
+        "enumNodes": 30,
+        "enumMembers": 93,
+        "refs": 5,
+        "defs": 1,
+        "unions": 3,
+        "bytes": 29718,
+        "sha": "9755310ded3856c435fd685a3c3181b3383a0e387b02930a90ac81d7cccc6a29"
+      }
+    },
+    {
+      "caseId": "H4",
+      "v239": {
+        "slots": 72,
+        "objects": 14,
+        "freeStrings": 35,
+        "enumNodes": 22,
+        "enumMembers": 87,
+        "refs": 0,
+        "defs": 0,
+        "unions": 0,
+        "bytes": 26317
+      },
+      "v247": {
+        "slots": 129,
+        "objects": 23,
+        "freeStrings": 54,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 0,
+        "defs": 0,
+        "unions": 21,
+        "bytes": 39066
+      },
+      "v251": {
+        "slots": 101,
+        "objects": 19,
+        "freeStrings": 44,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 5,
+        "defs": 1,
+        "unions": 3,
+        "bytes": 29695,
+        "sha": "ff43af2099a2c32d0962e1c62803ed225f38e4256fdd0ce28b65397afecbc38a"
+      }
+    },
+    {
+      "caseId": "H5",
+      "v239": {
+        "slots": 72,
+        "objects": 14,
+        "freeStrings": 35,
+        "enumNodes": 22,
+        "enumMembers": 87,
+        "refs": 0,
+        "defs": 0,
+        "unions": 0,
+        "bytes": 26323
+      },
+      "v247": {
+        "slots": 129,
+        "objects": 23,
+        "freeStrings": 54,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 0,
+        "defs": 0,
+        "unions": 21,
+        "bytes": 39072
+      },
+      "v251": {
+        "slots": 101,
+        "objects": 19,
+        "freeStrings": 44,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 5,
+        "defs": 1,
+        "unions": 3,
+        "bytes": 29701,
+        "sha": "cb84518de4af651d2b20049e7f999edb9d8f4a07cc909d0afef700ccd8b6e7a9"
+      }
+    },
+    {
+      "caseId": "H6",
+      "v239": {
+        "slots": 72,
+        "objects": 14,
+        "freeStrings": 35,
+        "enumNodes": 22,
+        "enumMembers": 87,
+        "refs": 0,
+        "defs": 0,
+        "unions": 0,
+        "bytes": 26320
+      },
+      "v247": {
+        "slots": 129,
+        "objects": 23,
+        "freeStrings": 54,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 0,
+        "defs": 0,
+        "unions": 21,
+        "bytes": 39069
+      },
+      "v251": {
+        "slots": 101,
+        "objects": 19,
+        "freeStrings": 44,
+        "enumNodes": 30,
+        "enumMembers": 92,
+        "refs": 5,
+        "defs": 1,
+        "unions": 3,
+        "bytes": 29698,
+        "sha": "230c0721dccc05cc8328653bb3a4fbe3a661e00abecefbe8d5071bb0bb3218ed"
+      }
+    }
+  ]
+}

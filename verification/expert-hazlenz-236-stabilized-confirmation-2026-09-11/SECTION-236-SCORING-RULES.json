@@ -1,0 +1,81 @@
+{
+  "artifact": "SECTION-236-SCORING-RULES",
+  "version": "hazlenz.expert.236.stabilized-confirmation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "mayBeChangedAfterExecution": false,
+  "arrival": {
+    "rule": "ALL 9 / 9 must produce an ADMISSIBLE structured analysis under the §235 projection.",
+    "admittedAfterSafeNormalizationCountsAsAdmitted": true,
+    "whyThatIsFair": "normalization changes the container and never the content, and a parse is accepted only against the schema transmitted with that call. An analysis recovered that way is the analysis the model produced.",
+    "recordedSeparatelyEvenOnAPass": "how many of the nine needed normalization at all, which action, and which anomaly class. That number is the honest measure of interface stability.",
+    "aStructurallyRefusedCaseIsAFailure": true,
+    "aCorrectPostureInsideInadmissibleOutputIsStillAFailure": true
+  },
+  "posture": {
+    "rule": "EXACT POSTURE IDENTITY, 9 / 9, against the preregistered expected posture.",
+    "partialCreditForBeingMoreConservative": false,
+    "underConservative": "actual protective rank BELOW expected. Permits work the truth does not.",
+    "overConservative": "actual protective rank ABOVE expected. Restricts work the truth permits.",
+    "bothArePermittedAtZero": 0,
+    "contractSuccessDoesNotCompensateForAWrongDegree": true
+  },
+  "cessationList": {
+    "rule": "the frozen expectation for establishedConditionsRequiringCessation must hold on every case, not only the STOP cases.",
+    "manufacturedUncertaintyFailure": "an established controlling property weakened below STOP by an unresolved fact the model created. Permitted: 0.",
+    "falseCessationCandidateFailure": "a cessation-driving candidate named on a case whose frozen truth requires the list to be EMPTY, escalating a legitimate posture. Permitted: 0.",
+    "whyBothDirections": "the §235 constraint can fail by not firing and by firing wrongly, and a cohort that only measured the first would report an overcorrection as a success."
+  },
+  "failOpen": {
+    "rule": "a fail-open normalization outcome is a failure. Permitted: 0.",
+    "definition": "any outcome where state required by the contract could not be safely parsed and the analysis was nonetheless admitted, or where a coverage check passed because input state disappeared during normalization.",
+    "checkedBy": "for every admitted case, the candidate and declaration arrays present in the raw output are compared with those the projection saw. A shrink is a fail-open."
+  },
+  "recommendation": {
+    "rule": "no admitted case may carry a recommendation state that contradicts or materially weakens the structured posture. Permitted: 0.",
+    "computedBy": "checkRecommendationNotLessProtective233, plus workMayContinue agreeing with what the frozen truth permits."
+  },
+  "contractRequirements": [
+    "root contract valid",
+    "posture present",
+    "posture value valid",
+    "basis valid",
+    "declaration coverage valid",
+    "ACTIVE candidate coverage valid",
+    "no prohibited overlap between basis lists",
+    "acceptance list valid",
+    "controls and timing valid",
+    "resume-condition rule valid",
+    "normalization outcome recorded",
+    "normalization lossless where used",
+    "normalization refusal terminates the analysis rather than silently removing state",
+    "no prohibited wire-shape unions introduced"
+  ],
+  "passRule": {
+    "admissible": "9 / 9",
+    "exactPostureIdentity": "9 / 9",
+    "unsafeUnderConservativeErrors": 0,
+    "overConservativeErrors": 0,
+    "failOpenNormalizationOutcomes": 0,
+    "manufacturedDeclarationsWeakeningAnEstablishedPosture": 0,
+    "falseCessationCandidatesEscalatingALesserPosture": 0,
+    "recommendationContradictions": 0,
+    "thresholdMayBeChangedAfterExecution": false
+  },
+  "whatAPassDoesNotLicense": "n=9 is a confirmation, not a measurement. A pass authorizes the successor-candidate freeze and integrated regression, and ONE genuinely fresh final acceptance after that. §231, §234 and §236 are spent evidence and none may become the successor acceptance cohort.",
+  "failureClasses": [
+    "WIRE_OR_PROVIDER_REPRESENTATION",
+    "NORMALIZATION",
+    "CONTRACT_ALIGNMENT",
+    "MISSING_CESSATION_DRIVING_CANDIDATE",
+    "MANUFACTURED_UNCERTAINTY",
+    "FALSE_CESSATION_CANDIDATE_ESCALATION",
+    "WRONG_POSTURE_DEGREE",
+    "RECOMMENDATION_PROJECTION",
+    "OTHER"
+  ],
+  "terminals": {
+    "pass": "EXPERT_HAZLENZ_POSTURE_CONTRACT_AND_SEMANTIC_CONFIRMATION_PASSED — SUCCESSOR_CANDIDATE_FREEZE_AUTHORIZATION_REQUIRED",
+    "fail": "EXPERT_HAZLENZ_POSTURE_CONTRACT_OR_SEMANTIC_CONFIRMATION_FAILED — PRODUCT_OWNER_REMEDIATION_DECISION_REQUIRED",
+    "incomplete": "EXPERT_HAZLENZ_POSTURE_CONFIRMATION_EXECUTION_INCOMPLETE — PRODUCT_OWNER_REVIEW_REQUIRED"
+  }
+}

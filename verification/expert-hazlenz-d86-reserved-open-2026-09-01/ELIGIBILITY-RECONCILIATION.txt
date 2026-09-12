@@ -1,0 +1,80 @@
+D-86 OFFSETS 2 AND 3 -- MEASURED ELIGIBILITY AND REGISTRY RECONCILIATION
+=======================================================================
+opened_at_utc 2026-09-01T17:04:34Z
+
+eligibility rule: reservedRowEligible (§122, backend/scripts/lib/expert-cohort-supplemental-policy.ts)
+policy sha256   : cc69d28e74308f492271ff573357b5c346ebe915f253e692f108e9e962f94967
+rule applied UNCHANGED. No eligibility redesign, no label reinterpretation, no authoring.
+
+GAUNTLET_OFFSET_2
+  rows opened                                  37
+  ELIGIBLE under the frozen §122 rule          8
+  eligible AND forbidden-negative-control      8
+  eligibility reason breakdown:
+    SECONDARY_OUTSIDE_TAXONOMY    15
+    PRIMARY_OUTSIDE_TAXONOMY      14
+    ELIGIBLE                       8
+  registry-recorded eligible contribution      8
+  MEASURED forbidden-negative contribution     8   MATCHES the registry
+
+GAUNTLET_OFFSET_3
+  rows opened                                  37
+  ELIGIBLE under the frozen §122 rule          8
+  eligible AND forbidden-negative-control      8
+  eligibility reason breakdown:
+    PRIMARY_OUTSIDE_TAXONOMY      18
+    SECONDARY_OUTSIDE_TAXONOMY    11
+    ELIGIBLE                       8
+  registry-recorded eligible contribution      8
+  MEASURED forbidden-negative contribution     8   MATCHES the registry
+
+RECONCILIATION AGAINST THE RETIREMENT REGISTRY
+  registry-recorded eligible contribution   8 + 8 = 16
+  MEASURED eligible rows                    8 + 8 = 16
+  MEASURED forbidden-negative controls      8 + 8 = 16
+
+  The registry's own evidence field describes its 8 + 8 as "negative-control-capable rows"
+  counted from LABEL METADATA ONLY, "without reading any observation". It was never a claim
+  about the §122 eligibility rule, which §131 measured as NOT reproducible from labels alone
+  (in gauntlet.seed, 8 of 100 rows carry a taxonomy-mappable primary family and are still
+  ineligible). The measured figure is the authoritative one from here on; the registry figure
+  is left as recorded, unchanged, and reported alongside rather than silently reconciled.
+
+EXACT ELIGIBLE FORBIDDEN-NEGATIVE-CONTROL ROWS
+  SRC-MSHA-019     offset 2   present [mobile_equipment]   forbidden [machine_guarding]
+  SRC-MSHA-041     offset 2   present [electrical, lockout_tagout]   forbidden [machine_guarding]
+  SRC-MSHA-057     offset 2   present [mobile_equipment]   forbidden [machine_guarding, electrical]
+  SRC-OSHA-005     offset 2   present [lockout_tagout, machine_guarding]   forbidden [chemical_exposure]
+  SRC-OSHA-009     offset 2   present [chemical_exposure]   forbidden [electrical]
+  SRC-OSHA-025     offset 2   present [chemical_exposure]   forbidden [electrical, machine_guarding]
+  SRC-OSHA-029     offset 2   present [chemical_exposure]   forbidden [electrical, machine_guarding]
+  SRC-OSHA-1003    offset 2   present [chemical_exposure]   forbidden [electrical, machine_guarding]
+  SRC-MSHA-033     offset 3   present [lockout_tagout, electrical]   forbidden [machine_guarding]
+  SRC-MSHA-042     offset 3   present [machine_guarding, lockout_tagout]   forbidden [chemical_exposure]
+  SRC-MSHA-046     offset 3   present [lockout_tagout, machine_guarding]   forbidden [electrical]
+  SRC-MSHA-062     offset 3   present [machine_guarding, lockout_tagout]   forbidden [electrical]
+  SRC-OSHA-022     offset 3   present [chemical_exposure]   forbidden [electrical]
+  SRC-OSHA-034     offset 3   present [chemical_exposure]   forbidden [electrical, machine_guarding]
+  SRC-OSHA-1012    offset 3   present [chemical_exposure]   forbidden [electrical, machine_guarding]
+  SRC-OSHA-1028    offset 3   present [chemical_exposure]   forbidden [electrical, machine_guarding]
+
+OTHER MEASURABLE CLASS LABELS CARRIED BY THE ELIGIBLE OPENED ROWS
+  MULTI_HAZARD                           6
+  LIFE_CRITICAL_PRESENT                  8
+  DETERMINISTIC_HAZARD_PRESENT           16
+  DETERMINISTIC_MISS_RECALL_OPPORTUNITY  16
+  CLARIFICATION_OWED                     0   (structural: the artifact carries no gap label)
+  CROSS_HAZARD_INTERACTION               0   (structural: no interaction label)
+  NEGATED_OR_SAFE_STATE                  0   (structural: no negation/safe-state label)
+
+  The three zeros are STRUCTURAL, not measured absences: those classes require an authored
+  Level-3 judgment the artifact does not carry, and authoring one is not authorized here.
+
+source sha256 after the read: a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4   IDENTICAL to pre-open -- byte-for-byte preserved
+
+RESERVED_MATERIAL_OPENED   = TRUE
+RESERVED_SCOPE             = D86_GAUNTLET_OFFSETS_2_AND_3_ONLY
+PROVIDER_INVOCATION_COUNT  = 0
+FORMAL_COHORT_SPENT        = FALSE
+P4_PRESPEND_AUTHORIZATION  = FALSE
+COHORT_STATUS              = CANDIDATE

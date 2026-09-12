@@ -1,0 +1,12 @@
+{"sequencePosition":1,"rowId":"SF-01","isCanary":true,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T13:59:25.374Z"}
+{"sequencePosition":2,"rowId":"SF-05","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T13:59:48.237Z"}
+{"sequencePosition":3,"rowId":"SG-01","isCanary":false,"reachedInference":false,"signature":"stage=firstpass | contract=d0713f36696e8bea | http=400 | type=invalid_request_error | msg=the compiled grammar is too large, which would cause performance issues. simplify your tool schemas or reduce the number of strict tools.","consecutive":1,"tripped":false,"timestamp":"2026-09-07T13:59:48.546Z"}
+{"sequencePosition":4,"rowId":"SF-11","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:01:02.682Z"}
+{"sequencePosition":5,"rowId":"SF-04","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:01:19.470Z"}
+{"sequencePosition":6,"rowId":"SF-08","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:02:44.820Z"}
+{"sequencePosition":7,"rowId":"SF-03","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:02:56.653Z"}
+{"sequencePosition":8,"rowId":"SG-02","isCanary":false,"reachedInference":false,"signature":"stage=firstpass | contract=243bb6766c05599f | http=400 | type=invalid_request_error | msg=the compiled grammar is too large, which would cause performance issues. simplify your tool schemas or reduce the number of strict tools.","consecutive":1,"tripped":false,"timestamp":"2026-09-07T14:02:56.990Z"}
+{"sequencePosition":9,"rowId":"SF-06","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:03:31.934Z"}
+{"sequencePosition":10,"rowId":"SF-02","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:03:58.726Z"}
+{"sequencePosition":11,"rowId":"SF-12","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:04:10.669Z"}
+{"sequencePosition":12,"rowId":"SF-07","isCanary":false,"reachedInference":true,"signature":null,"consecutive":0,"tripped":false,"timestamp":"2026-09-07T14:04:47.405Z"}

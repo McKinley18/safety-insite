@@ -1,0 +1,309 @@
+{
+  "artifact": "SECTION-230-CALL-PLAN",
+  "version": "hazlenz.expert.230.final-fresh-acceptance.v1",
+  "derivedFromFinishedCohort": true,
+  "perCase": [
+    {
+      "caseId": "G1",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "nothing is owed, so nothing is admitted for the verifier to review. Frozen before execution."
+    },
+    {
+      "caseId": "G2",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "no declaration is expected. If one arrives the leg stays elided and the declaration is itself the HS12 or Q12 finding. Frozen before execution."
+    },
+    {
+      "caseId": "G3",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G4",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G5",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G6",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G7",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G8",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G9",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G10",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "G11",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "the verifier reviews an ADMITTED declaration and nothing is admitted here by construction. Frozen before execution."
+    },
+    {
+      "caseId": "C1",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C2",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C3",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C4",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C5",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C6",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C7",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "C8",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "nothing is owed, so nothing is admitted. Frozen before execution."
+    },
+    {
+      "caseId": "C9",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "nothing is owed, so nothing is admitted. Frozen before execution."
+    },
+    {
+      "caseId": "C10",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "no declaration is expected. If one arrives the leg stays elided and the declaration is itself the finding. Frozen before execution."
+    },
+    {
+      "caseId": "M1",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "M2",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "M3",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "no declaration is expected. If one arrives the leg stays elided and the declaration is itself the finding. Frozen before execution."
+    },
+    {
+      "caseId": "M4",
+      "firstPassCalls": 1,
+      "verifierCalls": 0,
+      "otherProviderCalls": 0,
+      "maximumCalls": 1,
+      "verifierLegElided": true,
+      "elisionReason": "nothing is owed, so nothing is admitted. Frozen before execution."
+    },
+    {
+      "caseId": "M5",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "M6",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "M7",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "M8",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    },
+    {
+      "caseId": "M9",
+      "firstPassCalls": 1,
+      "verifierCalls": 1,
+      "otherProviderCalls": 0,
+      "maximumCalls": 2,
+      "verifierLegElided": false,
+      "elisionReason": null
+    }
+  ],
+  "firstPassCalls": 30,
+  "verifierCalls": 22,
+  "otherProviderCalls": 0,
+  "legitimatelyElidedVerifierLegs": 8,
+  "elisionRule": "a verifier leg is elided only where the frozen truth expects no admitted declaration. Every elision is recorded on its case before execution and none depends on what comes back.",
+  "exactPrimaryCallCount": 52,
+  "contingencyCalls": 2,
+  "maximumTotalCalls": 54,
+  "costEvidence": {
+    "firstPass": {
+      "source": "CALL-LEDGER-227 (8), CALL-LEDGER-228 (8), CALL-LEDGER-228C (1)",
+      "meanUsd": 0.091566,
+      "maxUsd": 0.1044
+    },
+    "verifier": {
+      "source": "CALL-LEDGER-228 (5), CALL-LEDGER-228C (1)",
+      "meanUsd": 0.040263,
+      "maxUsd": 0.042382
+    },
+    "section221ConstantsUsed": false
+  },
+  "projectedSpendUsd": 3.6328,
+  "worstCaseSpendUsd": 4.2732,
+  "recommendedHardCeilingUsd": 4.28,
+  "ceilingRationale": "every primary call priced at the highest unit cost observed for its leg, plus both contingency calls at the dearer leg, rounded up to the cent.",
+  "contingencyPolicy": {
+    "callsAuthorized": 2,
+    "spendableOnlyFor": "a preregistered EXECUTION FAILURE — transport failure, HTTP failure, or a response that never reached inference",
+    "neverSpendableFor": "an unfavourable, truncated, malformed or semantically disappointing answer. A truncation reached inference and is a RESULT, scored against Q13 and assessed for containment. No semantic-preference contingency call exists.",
+    "semanticPreferenceRetries": 0
+  },
+  "databaseOperations": 0
+}

@@ -1,0 +1,56 @@
+CONFINEMENT — deterministic->Expert projection design + local diagnostic (§116, 2026-08-31)
+
+ZERO hosted provider calls. 108 LOCAL calls (Ollama qwen3-coder:30b, localhost only). $0.00 spent.
+
+--- git ---
+37a5d1b50abe836eb19dd24ee18ad10557bda131
+main
+de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+ahead/behind: 0	1
+stashes: 4 (unchanged)
+tags: 24 (unchanged)
+
+--- PRODUCTION / Expert-core files: byte-unchanged, SHA-256 ---
+e80d977abf2d169491e65910e7ca13f1b7f6476a2e1011dc912cdc928d9fa6f2  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+ca8b16cdd86abef355ee9316fa5d9fd72a90ef4622509b26fdc52dc484e7566e  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+698c052473cdd01abfa59d3405b8ee56deb7c01956db77bf964e739af9346e10  backend/src/safescope-v2/expert-hazlenz/expert-runner.ts
+db5ffe30722cc7181f46e06b4e5b1efb5fddcdcba736177f23bc1483f3f57c04  backend/src/safescope-v2/expert-hazlenz/expert-authority-merge.ts
+e444b6920454a9d5cee6d72eece1aadddde141b7f84ead54ea42efe6f85c70cf  backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts
+81e0d293d130a6730207d55c6d4b4847da78fe9371ae8174f931f932dafddc02  backend/src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures.ts
+511eacd754004b168d636c0dc875cf33d517c301f0cdff504fa6eaea8665f292  backend/src/safescope-v2/expert-hazlenz/fixtures/temporal-state-fixtures.ts
+d7d091d858048baf8d73a652621c698cf67e3628a118096fd332dada64d386c2  backend/src/safescope-v2/evidence/evidence-foundation.ts
+ce37a7f0014cf241c5b154407a8a8dbc7e49234f5824a29717e1ee03e16f2db4  backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+
+--- Expert-core git diff (must remain the pre-existing 4-file §105-§113 diff) ---
+ .../expert-hazlenz/expert-contract.types.ts        |  28 +++
+ .../expert-hazlenz/expert-normalization.ts         |  70 ++++++
+ .../safescope-v2/expert-hazlenz/expert-prompt.ts   | 254 ++++++++++++++++++---
+ .../expert-hazlenz/fixtures/no-call-scenarios.ts   |   6 +
+ 4 files changed, 327 insertions(+), 31 deletions(-)
+
+--- files ADDED by this phase ---
+?? backend/scripts/diagnose-expert-deterministic-projection.ts
+?? backend/scripts/lib/expert-deterministic-projection.ts
+?? backend/scripts/lib/expert-state-aware-scoring.ts
+?? backend/src/safescope-v2/expert-hazlenz/fixtures/restoration-transition-fixtures.ts
+?? verification/expert-hazlenz-deterministic-projection-design-2026-08-31/
+
+--- who imports the new fixture file? (must be diagnostic-only) ---
+backend/scripts/diagnose-expert-deterministic-projection.ts
+
+--- who imports the prototype projection / scorer? (must be diagnostic-only) ---
+backend/scripts/diagnose-expert-deterministic-projection.ts
+backend/scripts/lib/expert-state-aware-scoring.ts
+
+--- controller/service/module references to expert-hazlenz (must be 0) ---
+0
+--- frontend references to expert-hazlenz (must be 0) ---
+0
+--- any reference to the prototype from src/ (must be 0) ---
+0
+
+--- PRESERVED pre-existing unrelated work ---
+ M frontend-next/tsconfig.json
+ D verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml

@@ -1,0 +1,873 @@
+{
+  "artifact": "SECTION-230-COVERAGE-MAP",
+  "version": "hazlenz.expert.230.final-fresh-acceptance.v1",
+  "dimensions": "CASE x DOMAIN x FAMILY x HARD GATE x QUALITY MEASURE x JUDGMENT SLOT",
+  "rule": "no family, gate, measure or obligation is marked covered unless a real case exercises it AND a real judgment slot feeds it. Preflight P14 and P15 fail the freeze otherwise.",
+  "byDomain": {
+    "OSHA_GENERAL_INDUSTRY": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8",
+      "G9",
+      "G10",
+      "G11"
+    ],
+    "OSHA_CONSTRUCTION": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "C10"
+    ],
+    "MSHA": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9"
+    ]
+  },
+  "domainCounts": {
+    "OSHA_GENERAL_INDUSTRY": 11,
+    "OSHA_CONSTRUCTION": 10,
+    "MSHA": 9
+  },
+  "byFamily": {
+    "1": {
+      "name": "ordinary clear hazard",
+      "cases": [
+        "G1",
+        "C1",
+        "C8",
+        "M1"
+      ]
+    },
+    "2": {
+      "name": "ordinary safe or negated condition",
+      "cases": [
+        "G2",
+        "C10",
+        "M3"
+      ]
+    },
+    "3": {
+      "name": "ambiguous condition requiring clarification",
+      "cases": [
+        "G3",
+        "G8",
+        "C9",
+        "M5"
+      ]
+    },
+    "4": {
+      "name": "multiple independent decision-critical facts",
+      "cases": [
+        "G4",
+        "C7",
+        "M9"
+      ]
+    },
+    "5": {
+      "name": "incomplete evidence",
+      "cases": [
+        "G3",
+        "G5",
+        "C2",
+        "C3",
+        "M2",
+        "M8"
+      ]
+    },
+    "6": {
+      "name": "exact property versus evidence proxy",
+      "cases": [
+        "G5",
+        "G10",
+        "C6",
+        "M6",
+        "M8"
+      ]
+    },
+    "7": {
+      "name": "exact property versus control-state proxy",
+      "cases": [
+        "G6",
+        "M6"
+      ]
+    },
+    "8": {
+      "name": "legitimate required act",
+      "cases": [
+        "G9",
+        "C2",
+        "C4",
+        "M1"
+      ]
+    },
+    "9": {
+      "name": "legitimate required artifact",
+      "cases": [
+        "G7",
+        "C5",
+        "M2"
+      ]
+    },
+    "10": {
+      "name": "corrective-action reasoning",
+      "cases": [
+        "G8",
+        "M5"
+      ]
+    },
+    "11": {
+      "name": "immediate decision and while-unresolved behaviour",
+      "cases": [
+        "G1",
+        "G3",
+        "C1",
+        "M4",
+        "M7"
+      ]
+    },
+    "12": {
+      "name": "work should stop or remain stopped",
+      "cases": [
+        "G1",
+        "C1",
+        "C7",
+        "C8",
+        "M1",
+        "M6",
+        "M7"
+      ]
+    },
+    "13": {
+      "name": "work may safely continue with appropriate controls",
+      "cases": [
+        "G6",
+        "G8",
+        "C9",
+        "M3",
+        "M5"
+      ]
+    },
+    "14": {
+      "name": "OSHA grounding",
+      "cases": [
+        "G7",
+        "C4"
+      ]
+    },
+    "15": {
+      "name": "MSHA grounding",
+      "cases": [
+        "M1",
+        "M2"
+      ]
+    },
+    "16": {
+      "name": "off-point governed-source trap",
+      "cases": [
+        "G7",
+        "M1"
+      ]
+    },
+    "17": {
+      "name": "no governed source — authority must not be invented",
+      "cases": [
+        "C8"
+      ]
+    },
+    "18": {
+      "name": "human CONFIRM_PROPERTY path",
+      "cases": [
+        "G7",
+        "C5"
+      ]
+    },
+    "19": {
+      "name": "human CORRECT_PROPERTY path",
+      "cases": [
+        "C6"
+      ]
+    },
+    "20": {
+      "name": "evidence-authority separation",
+      "cases": [
+        "G7",
+        "G10",
+        "C5",
+        "C6"
+      ]
+    },
+    "21": {
+      "name": "satisfactory settlement",
+      "cases": [
+        "C5"
+      ]
+    },
+    "22": {
+      "name": "adverse or KEEP_UNRESOLVED outcome",
+      "cases": [
+        "C7",
+        "M9"
+      ]
+    },
+    "23": {
+      "name": "KR-1 missing property authority",
+      "cases": [
+        "G10"
+      ]
+    },
+    "24": {
+      "name": "RR-7 malformed decision-critical declaration",
+      "cases": [
+        "G11"
+      ]
+    },
+    "25": {
+      "name": "restraint against unnecessary unresolved facts",
+      "cases": [
+        "G2",
+        "C10",
+        "M3"
+      ]
+    },
+    "26": {
+      "name": "temporal or sequence qualifier",
+      "cases": [
+        "G9",
+        "C2",
+        "C3",
+        "C4"
+      ]
+    },
+    "27": {
+      "name": "neighbouring-property distinction",
+      "cases": [
+        "C3",
+        "M4",
+        "M8"
+      ]
+    },
+    "28": {
+      "name": "corrective action that does not itself prove closure",
+      "cases": [
+        "G9"
+      ]
+    },
+    "29": {
+      "name": "competing hazards with different immediate consequences",
+      "cases": [
+        "G4",
+        "C1",
+        "C9",
+        "M9"
+      ]
+    },
+    "30": {
+      "name": "difficult but realistic professional judgment",
+      "cases": [
+        "C9",
+        "M4",
+        "M7"
+      ]
+    }
+  },
+  "familiesCovered": 30,
+  "familiesTotal": 30,
+  "familiesUncovered": [],
+  "hardGateCoverage": {
+    "HS1": {
+      "cases": [
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M1",
+        "M2",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 18
+    },
+    "HS2": {
+      "cases": [
+        "G10",
+        "C5",
+        "C6"
+      ],
+      "slots": 26
+    },
+    "HS3": {
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "M1",
+        "M2",
+        "M4",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 27
+    },
+    "HS4": {
+      "cases": [
+        "G7",
+        "G10",
+        "C5",
+        "C6",
+        "C7",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "HS5": {
+      "cases": [
+        "G7",
+        "G10",
+        "C5",
+        "C6"
+      ],
+      "slots": 23
+    },
+    "HS6": {
+      "cases": [
+        "G10",
+        "C5",
+        "C6"
+      ],
+      "slots": 23
+    },
+    "HS7": {
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "M1",
+        "M2",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    },
+    "HS8": {
+      "cases": [
+        "G7",
+        "M1"
+      ],
+      "slots": 2
+    },
+    "HS9": {
+      "cases": [
+        "G11"
+      ],
+      "slots": 1
+    },
+    "HS10": {
+      "cases": [
+        "G11"
+      ],
+      "slots": 1
+    },
+    "HS11": {
+      "cases": [
+        "G4",
+        "C1",
+        "C7",
+        "M9"
+      ],
+      "slots": 2
+    },
+    "HS12": {
+      "cases": [
+        "G2",
+        "G8",
+        "C9",
+        "C10",
+        "M3",
+        "M5"
+      ],
+      "slots": 14
+    },
+    "HS13": {
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G9",
+        "G10",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "M1",
+        "M2",
+        "M4",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "HS14": {
+      "cases": [
+        "G11"
+      ],
+      "slots": 31
+    }
+  },
+  "qualityCoverage": {
+    "Q1": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    },
+    "Q2": {
+      "cases": [
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M1",
+        "M2",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "Q3": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    },
+    "Q4": {
+      "cases": [
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M1",
+        "M2",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "Q5": {
+      "cases": [
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M1",
+        "M2",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "Q6": {
+      "cases": [
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "M1",
+        "M2",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "Q7": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    },
+    "Q8": {
+      "cases": [
+        "G1",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "M1",
+        "M2",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    },
+    "Q9": {
+      "cases": [
+        "G7",
+        "C4",
+        "M1"
+      ],
+      "slots": 3
+    },
+    "Q10": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    },
+    "Q11": {
+      "cases": [
+        "G7",
+        "G10",
+        "C5",
+        "C6",
+        "C7",
+        "M9"
+      ],
+      "slots": 23
+    },
+    "Q12": {
+      "cases": [
+        "G1",
+        "G2",
+        "G8",
+        "C8",
+        "C9",
+        "C10",
+        "M3",
+        "M4",
+        "M5"
+      ],
+      "slots": 7
+    },
+    "Q13": {
+      "cases": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9"
+      ],
+      "slots": 30
+    }
+  },
+  "measurementObligationCoverage": {
+    "MO-1": {
+      "measures": [
+        "Q2",
+        "HS1"
+      ],
+      "cases": 23
+    },
+    "MO-2": {
+      "measures": [
+        "Q4",
+        "HS2"
+      ],
+      "cases": 23
+    }
+  },
+  "immediatePostureCounts": {
+    "STOP_OR_HOLD": 23,
+    "CONTINUE_WITH_CONTROLS": 4,
+    "CONTINUE_UNCHANGED": 3
+  },
+  "consequenceClassCounts": {
+    "LIFE_CRITICAL": 19,
+    "SERIOUS": 5,
+    "MATERIAL": 1
+  },
+  "postureBalanceNote": "Twenty-three of thirty cases require work to stop or be held, four require continuation with controls and three require unchanged continuation. The skew is a property of the facts: a case owing an open LIFE_CRITICAL property usually does require a hold. Seven of thirty cases are correct ONLY if HazLenz does NOT stop the work, and those seven are what guard against a stop-everything bias. HS12 fires on an unwarranted stop just as HS13 fires on an unwarranted continuation."
+}

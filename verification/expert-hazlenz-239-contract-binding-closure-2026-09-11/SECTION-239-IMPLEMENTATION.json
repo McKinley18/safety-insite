@@ -1,0 +1,354 @@
+{
+  "artifact": "SECTION-239-IMPLEMENTATION",
+  "version": "hazlenz.expert.239.binding-closure.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false,
+  "posture": "ADDITIVE SUCCESSOR TO §237. Neither §233, §235 nor §237 is edited, so the digests the frozen §238 protocol records still hold and §238 stays reproducible from the tree. §239 widens one §237 binding rule without rewriting §237.",
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "section233Unchanged": true,
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "section235Unchanged": true,
+  "closureDigest237": "1820bfd10ae3ab9105bd4233e97d97500267c6361cf520c60438383540461755",
+  "section237Unchanged": true,
+  "section238Rescored": false,
+  "section238JudgmentDigest": "bc8807c8abef83bfe1103cf8d9961e5623786215f45a3d6660dc807431e72d86",
+  "section238VerdictPreserved": "FAILED",
+  "priorEvidencePackagesVerified": [
+    {
+      "section": "§233",
+      "files": 6,
+      "verifies": true
+    },
+    {
+      "section": "§234",
+      "files": 18,
+      "verifies": true
+    },
+    {
+      "section": "§235",
+      "files": 9,
+      "verifies": true
+    },
+    {
+      "section": "§236",
+      "files": 18,
+      "verifies": true
+    },
+    {
+      "section": "§237",
+      "files": 8,
+      "verifies": true
+    },
+    {
+      "section": "§238",
+      "files": 19,
+      "verifies": true
+    }
+  ],
+  "theThreeSection238RefusalsTreatedSeparately": {
+    "B1": {
+      "classification": "CONTRACT-BINDING DEFECT",
+      "disposition": "REPAIRED",
+      "what": "the §237 binding admitted UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION only on a declaration. The model attached it to a candidate it had itself marked INSUFFICIENT_EVIDENCE, which is the governed vocabulary's own way of naming a condition the analysis could not place."
+    },
+    "B2": {
+      "classification": "CORRECT FAIL-CLOSED REFUSAL",
+      "disposition": "PRESERVED, AND GIVEN ITS OWN CODE SO IT CAN NEVER AGAIN BE COUNTED AS B1",
+      "what": "the same role on a candidate marked ACTIVE. The model's two labels contradict each other and the analysis is refused rather than reinterpreted, repaired or supplemented."
+    },
+    "C1": {
+      "classification": "CORRECT FAIL-CLOSED REFUSAL",
+      "disposition": "PRESERVED UNTOUCHED",
+      "what": "a corrective action written into resumeCondition under CONTINUE_WITH_CONTROLS. P8 is carried forward from §235 through §237 without a character changed."
+    },
+    "notRepairedToImproveTheHistoricalScore": true
+  },
+  "reportItem1_whatWasBroadened": {
+    "broadened": [
+      {
+        "role": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+        "refKindAddedToTheBinding": "HAZARD_CANDIDATE",
+        "onlyWhenCandidateStateIsIn": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "why": "the governed candidate vocabulary contains two members that ARE an unresolved property. A candidate in one of them is the representation the contract itself offers for a condition the analysis could not place, and §237 had no member for it."
+      }
+    ],
+    "binding": {
+      "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION": [
+        "HAZARD_CANDIDATE"
+      ],
+      "ESTABLISHED_CONDITION_REQUIRING_CONTROLS": [
+        "HAZARD_CANDIDATE"
+      ],
+      "ESTABLISHED_CONDITION_REQUIRING_CESSATION": [
+        "HAZARD_CANDIDATE"
+      ],
+      "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": [
+        "UNRESOLVED_DECLARATION",
+        "HAZARD_CANDIDATE"
+      ],
+      "UNRESOLVED_RESPONSE_OR_FOLLOW_UP": [
+        "UNRESOLVED_DECLARATION"
+      ]
+    },
+    "bindingUnderSection237": {
+      "ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION": "HAZARD_CANDIDATE",
+      "ESTABLISHED_CONDITION_REQUIRING_CONTROLS": "HAZARD_CANDIDATE",
+      "ESTABLISHED_CONDITION_REQUIRING_CESSATION": "HAZARD_CANDIDATE",
+      "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": "UNRESOLVED_DECLARATION",
+      "UNRESOLVED_RESPONSE_OR_FOLLOW_UP": "UNRESOLVED_DECLARATION"
+    },
+    "stateCondition": {
+      "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION": [
+        "INSUFFICIENT_EVIDENCE",
+        "UNKNOWN"
+      ]
+    },
+    "unresolvedCandidateStates": [
+      "INSUFFICIENT_EVIDENCE",
+      "UNKNOWN"
+    ],
+    "settledCandidateStates": [
+      "ACTIVE",
+      "CONTROLLED",
+      "CORRECTED",
+      "REMOVED_FROM_SERVICE",
+      "NEGATED",
+      "HYPOTHETICAL"
+    ],
+    "vocabularySource": "EXPERT_CONDITION_STATES, filtered. No synonym is introduced and no state is inferred from prose.",
+    "governedVocabularyAgreesOneLayerDown": true,
+    "governedVocabularySize": 8,
+    "rolesAdded": 0,
+    "refKindsAdded": 0,
+    "posturesAdded": 0,
+    "fieldsAdded": 0
+  },
+  "reportItem2_whatWasDeliberatelyNotBroadened": {
+    "role": "UNRESOLVED_RESPONSE_OR_FOLLOW_UP",
+    "stillBoundTo": [
+      "UNRESOLVED_DECLARATION"
+    ],
+    "whyNotBroadened": "the §239 authorization broadens the CONTINUATION-CONTROLLING driver and names the two sources it may bind to. It does not extend the allowance to the response role, and no evidence of a model attaching the response role to an undecided candidate exists in §234, §236 or §238. Broadening it would be a speculative change to a safety contract on no evidence.",
+    "whatWouldHappenIfAModelWroteIt": "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND, and the analysis is refused. The model retains two admissible ways to say the same thing: declare the follow-up question as an unresolved-fact declaration, or place the undecided candidate in acceptedWithoutImmediateAction, which §233 P3 permits because only ACTIVE candidates must appear in requiredBy.",
+    "disposition": "DISCLOSED, NOT REPAIRED. It is a shape for the fresh final acceptance to observe."
+  },
+  "reportItem3_howB2IsPreserved": {
+    "code": "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+    "rule": "a candidate carrying UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION whose own assertedConditionState is not a governed unresolved member refuses the analysis.",
+    "comparisonIsBetweenTwoModelAuthoredLabels": true,
+    "reinterpretsActiveAsUnknown": false,
+    "repairsTheState": false,
+    "createsADeclarationOnTheModelBehalf": false,
+    "failsClosedOnAnAbsentState": true
+  },
+  "reportItem4_contractAlignment": {
+    "schema": "the driverRole description states the broadened binding and the state condition",
+    "transmittedInstruction": "a carrier paragraph is inserted before the rules, one §237 rule is replaced and one rule is added",
+    "validator": "D2 becomes a set membership test and D2S is added",
+    "projection": "the derived controlling set is exposed as a filter, so no downstream code needs to know which carrier held the role",
+    "consistencyBindings": "9/9 PASS",
+    "bidirectionalInvariantFrom235": "MAINTAINED, with C8 added in the direction B1 failed: every reference kind the validator admits is stated to the provider, and every carrier the instruction offers is admitted by the validator.",
+    "section237StillGreen": "8/8",
+    "section235StillGreen": "6/6",
+    "rulesRetainedFrom237": 11,
+    "ruleReplaced": "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate, and a driverRole beginning UNRESOLVED may be used only on an unresolved-fact declaration.",
+    "replacementRule": "RULE. A driverRole beginning ESTABLISHED_CONDITION may be used only on a hazard candidate. UNRESOLVED_RESPONSE_OR_FOLLOW_UP may be used only on an unresolved-fact declaration. UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION may be used on an unresolved-fact declaration, or on a hazard candidate whose assertedConditionState is INSUFFICIENT_EVIDENCE or UNKNOWN.",
+    "ruleAdded": "RULE. A hazard candidate carrying UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION must itself be in assertedConditionState INSUFFICIENT_EVIDENCE or UNKNOWN. A candidate you have called ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED or HYPOTHETICAL is a condition you have placed, and it cannot also be the unresolved property that decides whether the work may go on. Where the two labels disagree the analysis is refused rather than reinterpreted.",
+    "carrierParagraphLines": 20,
+    "registryEntries": 28,
+    "citationsRestated": [
+      "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+    ],
+    "analysisFieldsReadOutsideThePostureObject": [
+      {
+        "path": "expertHazardCandidates[].candidateKey",
+        "kind": "string",
+        "whyRead": "resolves a basis reference of kind HAZARD_CANDIDATE to the candidate it names"
+      },
+      {
+        "path": "expertHazardCandidates[].assertedConditionState",
+        "kind": "governed enum",
+        "whyRead": "D2S compares the model's candidate-state label with the model's driver-role label. Two labels the model authored, compared with each other. No prose is read."
+      }
+    ]
+  },
+  "reportItem5_reconstruction": {
+    "promptReducesTo237ByteForByte": true,
+    "schemaReducesTo237ByteForByte": true,
+    "rootPropertiesAdded": 0,
+    "postureSubPropertiesAdded": 0,
+    "basisEntryMembersAdded": 0,
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow"
+    ],
+    "basisEntrySubfields": [
+      "ref",
+      "refKind",
+      "driverRole"
+    ],
+    "promptBytes237": 78386,
+    "promptBytes239": 80104,
+    "schemaBytes237": 26188,
+    "schemaBytes239": 26474
+  },
+  "reportItem6_localProofs": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "suite": "backend/scripts/test-239-contract-binding-closure.ts",
+    "passed": 336,
+    "failed": 0,
+    "scenarioCount": 20,
+    "fixturesAreGeneralized": "no subject, fact pattern or candidate key from §234, §236, §237 or §238 appears in the §239 fixtures. Each proof is discharged on a synthetic case built for the SHAPE rather than on the observation that exposed it.",
+    "twelveAuthorizedProofs": {
+      "1_unknownCandidateMayControl": "PASS, and swept across the whole unresolved vocabulary",
+      "2_insufficientEvidenceCandidateMayControl": "PASS",
+      "3_unresolvedDeclarationStillControls": "PASS, identical to §237",
+      "4_activeCandidatePlusUnresolvedRoleRefused": "PASS, and swept across all six settled states",
+      "5_establishedCessationBehaviourUnchanged": "PASS",
+      "6_stopFloorUnchanged": "PASS, swept at all four postures and in both directions",
+      "7_legitimateHoldStillValid": "PASS, on a mixed basis",
+      "8_responseUncertaintyCannotBecomeControlling": "PASS, and it cannot be smuggled in by changing the carrier either",
+      "9_permissivePostureWithFalseResumePrerequisiteRefused": "PASS, both resume lists, both permitting postures",
+      "10_generalizedB1Admitted": "PASS",
+      "11_generalizedB2Refused": "PASS",
+      "12_generalizedC1Refused": "PASS"
+    },
+    "theChecksHaveTeeth": "the suite removes a registry entry and asserts C1 fails, transmits an uncited rule and asserts C3 fails, widens a binding the instruction does not offer and asserts C8 fails, and narrows the broadened binding below its own declaration and asserts C8 fails again."
+  },
+  "reportItem7_regression": {
+    "section237ScenarioEquivalence": "22/22 identical admission and identical code set under §239",
+    "section237Suite": "204 passed, 0 failed",
+    "section235Suite": "209 passed, 0 failed",
+    "section233Suite": "109 passed, 0 failed",
+    "protectedLadder": "17/17, 0 failed, 0 missing",
+    "productionTypecheck": "PASS",
+    "experimentScopeTypecheck239": "PASS with 2 pre-existing frozen-module annotation errors allowed by name",
+    "preExistingTypeErrorsDisclosed": [
+      "scripts/lib/expert-237-posture-contract.ts(193,47): error TS2552: Cannot find name 'POSTURE_REF_KINDS_237'. Did you mean 'POSTURE_REF_KINDS_233'?",
+      "scripts/lib/expert-238-final-confirmation-design.ts(18,3): error TS1355: A 'const' assertions can only be applied to references to enum members, or string, number, boolean, array, or object literals."
+    ],
+    "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "protectedModulesMutated": [],
+    "proseIndependence": "every prose field in every §239 scenario replaced with arbitrary text changes no admission and no code, and rewriting a candidate's reasoning to assert the opposite does not rescue a contradictory state."
+  },
+  "reportItem8_diagnosticReplayOfSpentEvidence": {
+    "whatItIs": "A DIAGNOSTIC ON SPENT EVIDENCE. It asks whether the deterministic rule §239 changed is the rule that refused §238 B1, and whether B2 and C1 still refuse.",
+    "whatItIsNot": [
+      "NOT an acceptance cohort. §238 is spent and may never serve as the acceptance cohort for the successor it diagnosed.",
+      "NOT a rescore. The frozen §238 judgment is FAILED, is untouched by this file, and stays FAILED.",
+      "NOT the proof of the repair. The generalized local fixtures in the §239 suite are that proof.",
+      "NOT evidence of any semantic behaviour. No provider was called."
+    ],
+    "results": [
+      {
+        "caseId": "A1",
+        "section237": "ADMITTED",
+        "section239": "ADMITTED",
+        "codes239": []
+      },
+      {
+        "caseId": "A2",
+        "section237": "ADMITTED",
+        "section239": "ADMITTED",
+        "codes239": []
+      },
+      {
+        "caseId": "B1",
+        "section237": "REFUSED",
+        "section239": "ADMITTED",
+        "codes239": []
+      },
+      {
+        "caseId": "B2",
+        "section237": "REFUSED",
+        "section239": "REFUSED",
+        "codes239": [
+          "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+        ]
+      },
+      {
+        "caseId": "C1",
+        "section237": "REFUSED",
+        "section239": "REFUSED",
+        "codes239": [
+          "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+        ]
+      },
+      {
+        "caseId": "C2",
+        "section237": "ADMITTED",
+        "section239": "ADMITTED",
+        "codes239": []
+      }
+    ],
+    "mismatches": [],
+    "section238RawUnmodified": true,
+    "section238JudgmentUnmodified": true
+  },
+  "reportItem9_filesChanged": {
+    "created": [
+      {
+        "path": "backend/scripts/lib/expert-239-posture-contract.ts",
+        "role": "the widened binding, the governed unresolved-state selection, the carrier paragraph, the rule replacement and reconstruction back to §237"
+      },
+      {
+        "path": "backend/scripts/lib/expert-239-posture-projection.ts",
+        "role": "delegates every §233 check unchanged, widens D2, adds D2S, and retains D1, D3, D4, P8 and P9 exactly as §237 left them"
+      },
+      {
+        "path": "backend/scripts/lib/expert-239-contract-consistency.ts",
+        "role": "the bidirectional registry with the two directions a widening breaks"
+      },
+      {
+        "path": "backend/scripts/lib/expert-239-posture-fixtures.ts",
+        "role": "the generalized local scenarios"
+      },
+      {
+        "path": "backend/scripts/test-239-contract-binding-closure.ts",
+        "role": "the local suite"
+      },
+      {
+        "path": "backend/scripts/replay-238-under-239.ts",
+        "role": "the diagnostic replay of spent §238 evidence. Not an acceptance cohort."
+      },
+      {
+        "path": "backend/scripts/build-239-evidence.ts",
+        "role": "this evidence package"
+      },
+      {
+        "path": "backend/tsconfig.scripts-239.json",
+        "role": "the experiment-scope typecheck"
+      }
+    ],
+    "modified": [],
+    "protectedModulesMutated": [],
+    "section233ModulesModified": [],
+    "section235ModulesModified": [],
+    "section237ModulesModified": [],
+    "section238EvidenceModified": []
+  },
+  "successCondition": {
+    "b1RepairedWithoutWeakeningB2": true,
+    "b1RepairedWithoutWeakeningC1": true,
+    "bindingBroadenedOnlyAsFarAsAuthorized": true,
+    "governedVocabularyUsedRatherThanSynonyms": true,
+    "unresolvedStateNeverInferredFromProse": true,
+    "bidirectionalContractAlignmentMaintained": true,
+    "section233And235And237Unmodified": true,
+    "section238EvidenceAndVerdictUnmodified": true,
+    "semanticBehaviourChangeProven": false,
+    "semanticBehaviourChangeClaimed": false
+  }
+}

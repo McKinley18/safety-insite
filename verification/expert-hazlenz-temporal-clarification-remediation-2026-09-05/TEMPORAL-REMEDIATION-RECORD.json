@@ -1,0 +1,122 @@
+{
+  "operation": "§176 bounded temporal-sufficiency clarification remediation",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_TEMPORAL_CLARIFICATION_REMEDIATION_COMPLETE — BOUNDED_POST_REMEDIATION_HOSTED_VALIDATION_AUTHORIZATION_REQUIRED",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "filesChanged": [
+    "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts (prompt text only)"
+  ],
+  "newTestScript": "backend/scripts/test-temporal-clarification-remediation-2026-09-05.ts",
+  "linesAdded": 28,
+  "linesRemoved": 0,
+  "promptIdentity": {
+    "fileSha256Before": "02977c309f6d3e377d97b31836f9fc6e8af8dfd64fa28d81d1a53f605a266efa",
+    "fileSha256After": "97d69364117a46ff5ff8317530d5fdd82c5445ad1d917f1a3ee524035522f735",
+    "systemPromptSha256After": "84aacb9d222d028b028aa22df1c3df85668b76022ac0c94ce50d3ff8e910d9fe",
+    "EXPERT_PROMPT_VERSION": "hazlenz.expert.prompt.v13 (UNCHANGED)"
+  },
+  "versionConstantNotBumped": {
+    "decision": "left at v13 deliberately",
+    "why": "two protected gates pin the literal — test-expert-cohort-instrument.ts:240 and test-expert-measurement-layer.ts:73 assert EXPERT_PROMPT_VERSION === \"hazlenz.expert.prompt.v13\". Bumping would require editing those gates, which is outside a prompt-only slice and would mean changing a protected assertion to make a change pass.",
+    "whyThisIsSafe": "expertPromptIdentity() records systemPromptSha256 alongside the version and expertPromptIdentityMismatches() compares it, so the behavioural change IS detectable: the system-prompt hash moved to 84aacb9d222d028b. The prompt file itself records (§138) that the version constant does not uniquely identify prompt behaviour, which is why the hash exists.",
+    "residualRisk": "a reader comparing only promptVersion would wrongly conclude nothing changed. RECOMMEND a follow-up authorization to bump to v14 and update those two frozen assertions together, so version and behaviour agree again."
+  },
+  "rootCause": "The §175 HR-04 miss was not the model ignoring an instruction — it was the model FOLLOWING one. \"CURRENT STATE, NOT HISTORICAL STATE\" tells it not to re-litigate a stated verified fact, and HR-04 stated one: the fastenings had been torque-checked. What the prompt never said is that a verification speaks for a TIME and the decision may depend on a different one. The repair is therefore placed at the boundary of the rule that produced the silence, not bolted on elsewhere.",
+  "insertions": [
+    {
+      "n": 1,
+      "where": "WHAT COUNTS AS ESTABLISHED — the \"In particular:\" list of things that do NOT establish a fact, immediately after the resemblance bullet",
+      "lines": 15,
+      "why": "this list is where the prompt already defines what fails to establish a fact, so the temporal rule belongs beside \"assumed worse state\" and \"resemblance\", not in a new section. It states the rule (a verification is scoped to its moment), gives the operative procedure (compare the two moments), and resolves rather than hedges when they match.",
+      "brakesInTheSameBullet": [
+        "THIS IS ABOUT THE DECISION, NEVER ABOUT AGE",
+        "no schedule, due date or routine period makes evidence stale or fresh",
+        "a verification performed long ago is FULLY ESTABLISHED where the decision does not depend on a later moment",
+        "a verification performed minutes ago settles nothing about a state that changed after it",
+        "three named non-reasons: record is old, interval has elapsed, re-checking would be good practice",
+        "and the five-part counterfactual test must still be met in full"
+      ]
+    },
+    {
+      "n": 2,
+      "where": "CURRENT STATE, NOT HISTORICAL STATE — immediately after \"re-litigating a stated, verified fact ... is disregarding evidence you were given\"",
+      "lines": 6,
+      "why": "without this the older rule still overrides: HR-04 read as a stated verification and was closed out. This qualifies what \"already answered\" means — answered FOR THE MOMENT THE DECISION NEEDS — and is the minimum needed for insertion 1 to bind at all.",
+      "brakes": [
+        "does not reopen a remediation the observation reports as holding",
+        "not a reason to ask whether anything might have changed since",
+        "applies only where the decision itself turns on a later moment"
+      ]
+    },
+    {
+      "n": 3,
+      "where": "NOT DECISION-CRITICAL list, after the unrelated-secondary-hazard bullet",
+      "lines": 7,
+      "why": "precision protection against the HR-05 pattern. A recall repair that did not carry this would be exactly the \"improve recall by asking more\" outcome the authorization forbids. It routes an adjacent concern to the candidate list rather than suppressing it, so nothing is lost — only its promotion to a blocking question is blocked.",
+      "brakes": [
+        "adjacent concern does not inherit the owed fact's urgency",
+        "must independently pass all five parts of the test on the decision IT governs",
+        "finding the owed fact settled is a reason to stay silent, never a prompt to hunt"
+      ]
+    }
+  ],
+  "staticProofs": {
+    "total": 30,
+    "failed": 0,
+    "providerCalls": 0,
+    "A_implicitTemporalGap": "5/5",
+    "B_explicitTemporalGap_preserved": "4/4",
+    "C_evidenceSufficiency_unchanged": "4/4",
+    "D_precision_displacedValidFact": "6/6",
+    "E_noQuestionInflation": "6/6",
+    "F_noThreshold_noFamily_noRowLeakage": "5/5",
+    "G_identity": "1/1"
+  },
+  "confirmations": {
+    "noHazardFamilySpecificWording": "F.3 — scanned the three inserted spans for 14 family and equipment terms; zero hits. NOTE: an earlier version of this check sliced a fixed 1400 characters and failed by capturing the PRE-EXISTING generality disclaimer that names families; the bounding was fixed, and the failure was in the test, never in the prompt.",
+    "noDeterministicTimeThreshold": "F.2 — regex for any number followed by a time unit across the inserted spans; zero hits. The text explicitly denies any interval reading.",
+    "noGeneralQuestionInflationRule": "E.1-E.6 and F.5 — the rule names three inflation triggers and forbids each, declares old evidence fully established where the decision allows, and denies \"might have changed since\"; no \"ask more / be thorough / when in doubt\" wording exists.",
+    "existingSemanticsPreserved": "B and C — the current-vs-past section, the re-litigation bar, the remediation-closure rule, own-inference, assumed-worse-state, resemblance and THRESHOLD-IS-NOT-A-GAP all survive verbatim. affectedDecision semantics untouched.",
+    "noRowWordingInProductionPrompt": "F.4 — scanned the WHOLE prompt for eight §175 row phrases (torque-check, pre-start check, annual service, drying fan, HR-04, HR-05, return-to-service log, discharge auger); zero hits. The repair is expressed as a general semantic rule."
+  },
+  "regressionGates": {
+    "suites": 6,
+    "assertionsPassed": 632,
+    "failed": 0,
+    "ran": [
+      "test:expert-contract-foundation 56",
+      "test:expert-nocall-harness 141",
+      "test:expert-clarification-settlement 148",
+      "test:expert-cohort-instrument 155",
+      "test:l32d-clarification-scope 71",
+      "test:l32i-clarification-carrier 61"
+    ]
+  },
+  "boundariesRespected": {
+    "schema": "unchanged",
+    "normalizer": "unchanged",
+    "verifierV3": "unchanged",
+    "arbitration": "unchanged",
+    "authorityMerge": "unchanged",
+    "runtimeRouting": "unchanged",
+    "persistence": "unchanged",
+    "scorer": "unchanged",
+    "thresholds": "unchanged",
+    "frozenInstrumentsAndTruth": "unchanged",
+    "providerCalls": 0,
+    "databaseOperations": 0
+  },
+  "whatStaticProofsCannotShow": "that the model BEHAVES differently. These proofs establish the rule is present, general and braked. Whether HR-04 is now recovered — and crucially whether SILENCE_PRECISION holds at 4/5 or better — is only answerable by a hosted run, which is a separately authorized operation and was not performed.",
+  "expectedRisk": "this is a recall repair and recall repairs cost precision. The §175 baseline to beat is REQUIRED_RECALL_STRICT 4/5 AND SILENCE_PRECISION 4/5. A post-remediation result of 5/5 recall with precision below 4/5 is a REGRESSION, not an improvement, and should be read as one.",
+  "notRetested": true,
+  "hostedCallsThisSlice": 0,
+  "sectionsPreserved": "§167–§175 unchanged",
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

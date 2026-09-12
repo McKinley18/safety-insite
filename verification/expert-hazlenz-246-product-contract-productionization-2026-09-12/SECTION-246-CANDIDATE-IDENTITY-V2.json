@@ -1,0 +1,126 @@
+{
+  "section": "246",
+  "identityVersion": "hazlenz.expert.candidate-identity.v2",
+  "generated": "2026-09-12",
+  "appliesTo": "a FUTURE successor candidate. NOT retrofitted to §243, whose result stands at D HOLD RELEASE.",
+  "freezeRule": "the freeze FAILS when the acceptance caller and the production caller differ on any bound element. A difference may not be waived by an invented written declaration.",
+  "boundElements": [
+    {
+      "n": 1,
+      "element": "production Expert entry point",
+      "resolves": true,
+      "value": "src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts",
+      "sha256": "f49ac79a42f3191dcfc1b9f912d70c18f7260cdabc91ef8f79e8200b55531741"
+    },
+    {
+      "n": 2,
+      "element": "acceptance entry point",
+      "resolves": true,
+      "value": "a thin transport around the production entry point; the acceptance assembly resolves to the same modules through §246 shims"
+    },
+    {
+      "n": 3,
+      "element": "proof of semantic-path identity",
+      "resolves": true,
+      "value": "backend/scripts/test-246-productionization.ts checks C1, E1-E4, B1-B2"
+    },
+    {
+      "n": 4,
+      "element": "complete semantic contract closure",
+      "resolves": true,
+      "value": "39 modules, 13035 lines, src/safescope-v2/expert-hazlenz/contract/"
+    },
+    {
+      "n": 5,
+      "element": "first-pass prompt",
+      "resolves": true,
+      "value": "build239SystemPrompt + buildExpertVNextUserPrompt"
+    },
+    {
+      "n": 6,
+      "element": "first-pass schema",
+      "resolves": true,
+      "value": "buildExpert239WireSchema"
+    },
+    {
+      "n": 7,
+      "element": "driver-role/posture contract",
+      "resolves": true,
+      "value": "expert-239-posture-contract.ts",
+      "sha256": "6301a0dcf7d78d03842f089c1347cabafbe584e745c2fa19f2bd81363f838935"
+    },
+    {
+      "n": 8,
+      "element": "verifier prompt",
+      "resolves": true,
+      "value": "EXPERT_VERIFIER_218_SYSTEM_PROMPT + buildVerifierV3UserPrompt"
+    },
+    {
+      "n": 9,
+      "element": "verifier schema",
+      "resolves": true,
+      "value": "VERIFIER_218_RESPONSE_SCHEMA"
+    },
+    {
+      "n": 10,
+      "element": "request-envelope configuration",
+      "resolves": true,
+      "value": "src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts",
+      "sha256": "0a505d1836ae52d9e61532e19b8c66a3e699a497ac0d5df0e6913ceced2c2a47"
+    },
+    {
+      "n": 11,
+      "element": "provider/model identity",
+      "resolves": true,
+      "value": "bound in the envelope as providerId + model"
+    },
+    {
+      "n": 12,
+      "element": "token limits",
+      "resolves": true,
+      "value": "firstPassMaxTokens and verifierMaxTokens, bound per leg"
+    },
+    {
+      "n": 13,
+      "element": "strict-schema setting",
+      "resolves": true,
+      "value": "strictSchema: true, written unconditionally by buildEnvelopeRequestBody"
+    },
+    {
+      "n": 14,
+      "element": "property authority",
+      "resolves": true,
+      "value": "src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts (UNMODIFIED in §246)"
+    },
+    {
+      "n": 15,
+      "element": "evidence authority",
+      "resolves": true,
+      "value": "src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts"
+    },
+    {
+      "n": 16,
+      "element": "settlement authority",
+      "resolves": true,
+      "value": "src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts (UNMODIFIED in §246)"
+    },
+    {
+      "n": 17,
+      "element": "review-artifact contract",
+      "resolves": true,
+      "value": "expert-218-property-review-contract.ts",
+      "sha256": "35c766fcfa82454c53b7d1523e38484b101c124b7f158069f81362fb220bc7fb"
+    }
+  ],
+  "resolvedCount": 17,
+  "requiredCount": 17,
+  "previouslyFailingAt245": [
+    1,
+    3,
+    6,
+    7,
+    9,
+    10
+  ],
+  "note": "§245 recorded six unresolved elements. All six now resolve. This is an architecture result, not release acceptance: no successor candidate has been frozen and no acceptance has been run against the productionized path."
+}

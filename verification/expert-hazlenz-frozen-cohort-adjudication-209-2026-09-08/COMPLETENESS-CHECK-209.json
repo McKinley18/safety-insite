@@ -1,0 +1,274 @@
+{
+  "artifact": "SECTION_209_COMPLETENESS_CHECK",
+  "preregistrationIdentity": "879a315009d4513206566e308b355ec9bd843cd35f951d29d2e644657d3580c4",
+  "totalSlots": 177,
+  "suppliedProductOwnerVerdicts": 177,
+  "notExercisedSlots": 11,
+  "ambiguousSlots": 0,
+  "unresolvedOrMissingSlots": 0,
+  "frozenNoOpportunitySlots": 11,
+  "attributionValidation": {
+    "worksheetFailures": [],
+    "ledgerFailures": [],
+    "allSuppliedVerdictsAreProductOwnerAttributed": true
+  },
+  "integrity": {
+    "notExercisedWithoutRecordedReason": [],
+    "frozenNoOpportunitySlotsScoredAsSomethingElse": [],
+    "ledgerEntriesWithNoMatchingSlot": [],
+    "ledgerEntryCount": 177
+  },
+  "perAxis": {
+    "A": {
+      "slots": 24,
+      "supplied": 24,
+      "open": 0,
+      "CORRECT": 20,
+      "PARTIALLY_CORRECT": 1,
+      "INCORRECT": 3
+    },
+    "B": {
+      "slots": 24,
+      "supplied": 24,
+      "open": 0,
+      "CORRECT": 20,
+      "INCORRECT": 3,
+      "PARTIALLY_CORRECT": 1
+    },
+    "H": {
+      "slots": 4,
+      "supplied": 4,
+      "open": 0,
+      "CORRECT": 3,
+      "INCORRECT": 1
+    },
+    "I": {
+      "slots": 5,
+      "supplied": 5,
+      "open": 0,
+      "CORRECT": 4,
+      "INCORRECT": 1
+    },
+    "C": {
+      "slots": 21,
+      "supplied": 21,
+      "open": 0,
+      "CORRECT": 14,
+      "PARTIALLY_CORRECT": 3,
+      "NOT_EXERCISED": 2,
+      "INCORRECT": 2
+    },
+    "E": {
+      "slots": 16,
+      "supplied": 16,
+      "open": 0,
+      "CORRECT": 12,
+      "NOT_EXERCISED": 1,
+      "PARTIALLY_CORRECT": 1,
+      "INCORRECT": 2
+    },
+    "F": {
+      "slots": 18,
+      "supplied": 18,
+      "open": 0,
+      "CORRECT": 15,
+      "NOT_EXERCISED": 1,
+      "PARTIALLY_CORRECT": 1,
+      "INCORRECT": 1
+    },
+    "M": {
+      "slots": 24,
+      "supplied": 24,
+      "open": 0,
+      "CORRECT": 17,
+      "INCORRECT": 5,
+      "NOT_EXERCISED": 2
+    },
+    "L": {
+      "slots": 15,
+      "supplied": 15,
+      "open": 0,
+      "PARTIALLY_CORRECT": 8,
+      "NOT_EXERCISED": 2,
+      "CORRECT": 5
+    },
+    "G": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0,
+      "CORRECT": 3
+    },
+    "R_SAFETY": {
+      "slots": 7,
+      "supplied": 7,
+      "open": 0,
+      "SAFETY_SIGNIFICANT": 3,
+      "PLAUSIBLY_LIFE_CRITICAL": 3,
+      "ORDINARY_NON_ESCALATING": 1
+    },
+    "R_FLOOR": {
+      "slots": 4,
+      "supplied": 4,
+      "open": 0,
+      "FLOOR_WOULD_MATERIALLY_UNDER_ESCALATE": 4
+    },
+    "D": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0,
+      "CORRECT": 3
+    },
+    "Q": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0,
+      "NO_OBSERVABLE_LOSS": 3
+    },
+    "N": {
+      "slots": 2,
+      "supplied": 2,
+      "open": 0,
+      "PARTIALLY_CORRECT": 1,
+      "NOT_EXERCISED": 1
+    },
+    "S": {
+      "slots": 2,
+      "supplied": 2,
+      "open": 0,
+      "CORRECT": 1,
+      "NOT_EXERCISED": 1
+    },
+    "T": {
+      "slots": 2,
+      "supplied": 2,
+      "open": 0,
+      "INCORRECT": 1,
+      "NOT_EXERCISED": 1
+    }
+  },
+  "perCase": {
+    "AC-01": {
+      "slots": 14,
+      "supplied": 14,
+      "open": 0
+    },
+    "AC-02": {
+      "slots": 13,
+      "supplied": 13,
+      "open": 0
+    },
+    "AC-03": {
+      "slots": 13,
+      "supplied": 13,
+      "open": 0
+    },
+    "AC-04": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0
+    },
+    "AC-05": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0
+    },
+    "AC-06": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0
+    },
+    "AC-07": {
+      "slots": 6,
+      "supplied": 6,
+      "open": 0
+    },
+    "AC-08": {
+      "slots": 6,
+      "supplied": 6,
+      "open": 0
+    },
+    "AC-09": {
+      "slots": 6,
+      "supplied": 6,
+      "open": 0
+    },
+    "AC-10": {
+      "slots": 8,
+      "supplied": 8,
+      "open": 0
+    },
+    "AC-11": {
+      "slots": 8,
+      "supplied": 8,
+      "open": 0
+    },
+    "AC-12": {
+      "slots": 5,
+      "supplied": 5,
+      "open": 0
+    },
+    "AC-13": {
+      "slots": 7,
+      "supplied": 7,
+      "open": 0
+    },
+    "AC-14": {
+      "slots": 7,
+      "supplied": 7,
+      "open": 0
+    },
+    "AC-15": {
+      "slots": 7,
+      "supplied": 7,
+      "open": 0
+    },
+    "AC-16": {
+      "slots": 7,
+      "supplied": 7,
+      "open": 0
+    },
+    "AC-17": {
+      "slots": 6,
+      "supplied": 6,
+      "open": 0
+    },
+    "AC-18": {
+      "slots": 6,
+      "supplied": 6,
+      "open": 0
+    },
+    "AC-19": {
+      "slots": 8,
+      "supplied": 8,
+      "open": 0
+    },
+    "AC-20": {
+      "slots": 13,
+      "supplied": 13,
+      "open": 0
+    },
+    "AC-21": {
+      "slots": 9,
+      "supplied": 9,
+      "open": 0
+    },
+    "AC-22": {
+      "slots": 8,
+      "supplied": 8,
+      "open": 0
+    },
+    "AC-23": {
+      "slots": 8,
+      "supplied": 8,
+      "open": 0
+    },
+    "AC-24": {
+      "slots": 3,
+      "supplied": 3,
+      "open": 0
+    }
+  },
+  "readyForGateComputation": true,
+  "note": "the instrument is complete and every supplied verdict is PRODUCT_OWNER-attributed",
+  "generatedAt": "2026-09-09T02:20:45.678Z"
+}

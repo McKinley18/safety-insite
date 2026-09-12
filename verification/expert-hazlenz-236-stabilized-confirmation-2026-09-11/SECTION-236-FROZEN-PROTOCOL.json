@@ -1,0 +1,395 @@
+{
+  "artifact": "SECTION-236-FROZEN-PROTOCOL",
+  "version": "hazlenz.expert.236.stabilized-confirmation.v1",
+  "instrumentDigest": "673d72d5f2873848317ea749464ec28de3cca347204fa735d9d85edda71a5ae4",
+  "implementationDigest233": "5517337ded68b7b8901dcb588355f98b4bdbf2dfe4ae54a4af0266af1d4ce5af",
+  "moduleDigests233": {
+    "contract": "dda676aff97d6c4bbf5ac57eb8ec3fa3e89249225bdb9c0ff109ab5163a7323a",
+    "projection": "8901d0d39b8dcf50a8a045f1759ae284168ba7d5818876c255e3c82346c4f044",
+    "fixtures": "d744993f69486f510625cf11b919656b5e9a94337a463f46374558ef259448d3",
+    "suite": "61f9db3ddb2b1fb8a205f7aaae89169c0ee78841a58268ff618058a777380502"
+  },
+  "stabilizationDigest235": "1f00a67ec9ecff5ba1c5b221ea057d63af8ce87062e520d6c61693623f03a4bd",
+  "moduleDigests235": {
+    "normalization": "e895ff214a6ba1e76a2812d573f2c8dfb6847cc18d1e0414422650db1c66d5fb",
+    "contract": "4faee904803b582c54eafab636ce910dd83fcd98346088dc8b6556736e3f6201",
+    "projection": "b742b124947ffbfc31a0d4cc8f885cb17427393346682ccfacc1ccf2588533d3",
+    "consistency": "b9ed6339d28b8e8d4224286b0b13b60898c8b695525206977fe9838040696cfb",
+    "fixtures": "465bf58c13102131e654b88a5ed13fac8371f625459eb3506eed3027a7bc4fab",
+    "suite": "f5fdcc973afcc7cc3e6437be5fe47767aa63f9e24b66907e7b705ca0ec11d958"
+  },
+  "contractIdentity235": {
+    "contractVersion": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment",
+    "baseVersions": {
+      "posture": "hazlenz.expert.first-pass-contract.233-immediate-safety-posture"
+    },
+    "cessationField": "establishedConditionsRequiringCessation",
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow",
+      "establishedConditionsRequiringCessation"
+    ],
+    "postures": "d80f83678510f91cb1202e8859af993c56c34f23161a5a1be44222883576e5eb",
+    "refKinds": "821dd271fdad2353297b18d5d4f1ee7ee49463030687d35c7ebef91d28a796be",
+    "providerVisibleRules": "28d358c9f72b5f4bba4e0fb53333800aa60c3776f61ff34e491fd035e7be9859",
+    "cessationBlockLines": "c7bc9846788c4e37920e8609072daaf81ed83bbc549f53ab817cac214d8f9432",
+    "schemaDescriptionSuffixes": "f0af844f73aaf59f2927cde0f931138532459f0586e9652302079abdd337d979",
+    "postureSchemaProperty": "7acb8724f30363c1a6e4b9a5946c7166d16f32577259e5344db14affebe13325",
+    "systemPromptNoGoverned": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+    "systemPromptGoverned": "07f7069b65bf86fd4b6c4ec408e863e6db80549285890a9f86921493f0b71578"
+  },
+  "projectionIdentity235": {
+    "projectionVersion": "hazlenz.expert.235.posture-projection.v1",
+    "refusalCodes235": [
+      "CESSATION_LIST_MISSING",
+      "CESSATION_LIST_NOT_AN_ARRAY",
+      "CESSATION_ITEM_MALFORMED",
+      "CESSATION_REF_UNRESOLVED",
+      "CESSATION_REF_NOT_A_CANDIDATE",
+      "CESSATION_CONDITION_NOT_IN_BASIS",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+    ],
+    "codeToInvariant235": {
+      "CESSATION_LIST_MISSING": "P7",
+      "CESSATION_LIST_NOT_AN_ARRAY": "P7",
+      "CESSATION_ITEM_MALFORMED": "P7",
+      "CESSATION_REF_UNRESOLVED": "P7",
+      "CESSATION_REF_NOT_A_CANDIDATE": "P7",
+      "CESSATION_CONDITION_NOT_IN_BASIS": "P7",
+      "ESTABLISHED_CESSATION_CONDITION_WITH_NON_STOP_POSTURE": "P7",
+      "RESUME_CONDITION_UNDER_PERMITTING_POSTURE": "P8",
+      "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT": "P9"
+    },
+    "delegatesTo233": true,
+    "section233CodesUnchanged": true,
+    "readsProseForMeaning": false,
+    "derivesPostureFromAnything": false,
+    "normalizesContainerOnly": true
+  },
+  "normalizationIdentity235": {
+    "version": "hazlenz.expert.235.wire-normalization.v1",
+    "anomalyClasses": [
+      "INERT_WRAPPER_ENVELOPE",
+      "SELF_NAMED_FIELD_WRAPPER",
+      "REQUIRED_ROOT_FIELD_ABSENT",
+      "STRUCTURED_FIELD_ENCODED_AS_JSON_STRING",
+      "MALFORMED_JSON_STRING",
+      "OTHER"
+    ],
+    "actions": [
+      "UNWRAPPED_INERT_ENVELOPE",
+      "PARSED_JSON_STRING_FIELD",
+      "UNWRAPPED_SELF_NAMED_FIELD_WRAPPER",
+      "REFUSED_AMBIGUOUS_ENVELOPE",
+      "REFUSED_MALFORMED_JSON_STRING",
+      "REFUSED_PARSED_VALUE_DOES_NOT_SATISFY_TRANSMITTED_SCHEMA",
+      "LEFT_UNTOUCHED"
+    ],
+    "knownInertWrapperKeys": [
+      "parameters",
+      "parameter",
+      "parameter name",
+      "parameter_name",
+      "parameterName",
+      "input",
+      "arguments",
+      "args"
+    ],
+    "normalizableFields": [
+      "expertHazardCandidates",
+      "unresolvedFactDeclarations",
+      "decisionCriticalClarifications",
+      "immediateSafetyPosture"
+    ],
+    "unwrapsSelfNamedFieldWrapperInsideAJsonStringOnly": true,
+    "unwrapsUnstringifiedSelfNamedField": false,
+    "repairsMalformedJson": false,
+    "inventsSemanticFields": false,
+    "readsProseForMeaning": false,
+    "acceptsAParseOnlyIfItExactlySatisfiesTheTransmittedSchema": true
+  },
+  "consistencyIdentity235": {
+    "version": "hazlenz.expert.235.contract-consistency.v1",
+    "registeredCodes": 29,
+    "providerVisibleRules": 12,
+    "postureSubfields": [
+      "posture",
+      "requiredBy",
+      "acceptedWithoutImmediateAction",
+      "requiredControls",
+      "resumeCondition",
+      "whatHappensNow",
+      "establishedConditionsRequiringCessation"
+    ],
+    "registryDigest": "6308c8195f91b124768d09bfd3e9a252f2c4d2592c3b10627f212e36520891cf",
+    "transmittedPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+    "transmittedSchemaDigest": "f5b59cc52842b452f6587da6bea5fa314c28b2835e667b0544363ff80ec40b5c"
+  },
+  "section235ContractConsistency": "6/6 PASS",
+  "section235ManifestVerified": [
+    {
+      "file": "LADDER-235.json",
+      "ok": true
+    },
+    {
+      "file": "PROTECTED-IDENTITIES-235.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-235-CONTRACT-CONSISTENCY.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-235-CONTRACT-IDENTITY.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-235-IMPLEMENTATION.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-235-LOCAL-SUITE-OUTPUT.txt",
+      "ok": true
+    },
+    {
+      "file": "SECTION-235-REPORT.md",
+      "ok": true
+    },
+    {
+      "file": "SECTION-235-WIRE-ANALYSIS.json",
+      "ok": true
+    },
+    {
+      "file": "SECTION-236-HOSTED-CONFIRMATION-DESIGN.json",
+      "ok": true
+    }
+  ],
+  "protectedCompositeIdentity": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+  "protectedModuleCount": 29,
+  "unauthorizedProtectedModuleMutations": 0,
+  "codeDigestsFrozenBeforeSpend": {
+    "instrumentModule": "aa6ca3e586e2fff74f4d017c87e7819e2c57f5e1bd5b6192c71a1d0a4a031eb3",
+    "assemblyModule": "5b8f27f7a355b18f217dee97d08aa61e56cb739c6e9ddd9ab11baa222e819712",
+    "scorer": "da657b8c8dfc676e46ad541b3dceeee8c8019cc4ff4da83a054f5c0aac2f7855"
+  },
+  "scorerWrittenBeforeFirstProviderCall": true,
+  "assemblyVersion": "hazlenz.expert.236.assembly.v1",
+  "assemblyIdentity": {
+    "assemblyVersion": "hazlenz.expert.236.assembly.v1",
+    "contractVersion": "hazlenz.expert.first-pass-contract.235-posture-contract-alignment",
+    "arm": "SINGLE",
+    "legs": [
+      "FIRST_PASS"
+    ],
+    "verifierLeg": "NOT_ASSEMBLED_AND_NOT_AUTHORIZED",
+    "pairedAttributionArm": "NOT_ASSEMBLED_AND_NOT_AUTHORIZED",
+    "caseCount": 9,
+    "perCase": [
+      {
+        "caseId": "A1",
+        "ordinal": 1,
+        "analysisId": "ANL-236-A1",
+        "observationSourceId": "OBS-236-A1",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "648719baeb90eebed593485da3ab79b7558d6d703507ea1fe93fc5ddbee62199",
+        "wireSchemaDigest": "885229cf391d8ccfb6ce120608c699e8191fca5eefccd1dc781f90e60bd6b71f",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "A2",
+        "ordinal": 2,
+        "analysisId": "ANL-236-A2",
+        "observationSourceId": "OBS-236-A2",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "894e618ea0e046b5acf3d9174d67283bea4319677e4677dcc64e1bdf0a5795b1",
+        "wireSchemaDigest": "93e9461c79353eeb705eba07fc2035ddc080c30d48f567deac248dd29b3b0a52",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "A3",
+        "ordinal": 3,
+        "analysisId": "ANL-236-A3",
+        "observationSourceId": "OBS-236-A3",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "ddfbe09caaf4f44c57b955c5e4fdfa557ae5068cf176fb7ae6bfe90f2f68312c",
+        "wireSchemaDigest": "c9b8899d27740140a475194bcd2bdb01474738ff4b50cb321daa4baacd364537",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "B1",
+        "ordinal": 4,
+        "analysisId": "ANL-236-B1",
+        "observationSourceId": "OBS-236-B1",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "25528d0ca34bb4c5df87b638fbaa727e6365711821c755c8a391000afd840731",
+        "wireSchemaDigest": "b0eb450deb5cced927fc69a0fa01078b0b78beeff26099001857ed007851f84d",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "B2",
+        "ordinal": 5,
+        "analysisId": "ANL-236-B2",
+        "observationSourceId": "OBS-236-B2",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "4aacfe3d7f3c182a3775842baf8e9f3386e16c7c7ede51da0b609e4d10bbf821",
+        "wireSchemaDigest": "74c520a547aeccbec321b43edfe93ceff10a9c9066c53d24da6dca68c57a57c2",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "B3",
+        "ordinal": 6,
+        "analysisId": "ANL-236-B3",
+        "observationSourceId": "OBS-236-B3",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "1a4661e88cf38c5f42fc162744382231e9342e2e9eaf9954dcdb0b5d3fd6a29a",
+        "wireSchemaDigest": "940ef04ea1aee7be2c90d6791e555fceb17c92587d4d4610fd4aab1732163885",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "C1",
+        "ordinal": 7,
+        "analysisId": "ANL-236-C1",
+        "observationSourceId": "OBS-236-C1",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "5648742b63aa29428b3af8ad8511167dd1a20b1fad0e07047455e512780914d6",
+        "wireSchemaDigest": "7247bfb59dfb4c27597df62476dfb98de0034df3ba5446ae464d77ee4d08396c",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "C2",
+        "ordinal": 8,
+        "analysisId": "ANL-236-C2",
+        "observationSourceId": "OBS-236-C2",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "46b3d8624a0c5f8b3ede8fddeb8bc8dee77311698c23be8b6b60bb35cf760ecc",
+        "wireSchemaDigest": "352e486f21d56326f6d8faad6422cc4936c6ef044bf40f9e76aa6733c00e0e91",
+        "governedRecordCount": 0
+      },
+      {
+        "caseId": "C3",
+        "ordinal": 9,
+        "analysisId": "ANL-236-C3",
+        "observationSourceId": "OBS-236-C3",
+        "systemPromptDigest": "f12d208442ac600f9e4a816f60de3f0de5b67b84871b0851880ca38b62744762",
+        "userPromptDigest": "9566056ccb136c49d38eccd4932bab65acd28b7656dd6132eb79465897ada6ba",
+        "wireSchemaDigest": "4b04303d66ac2f833d5aa31e26866c2ccfcd0c30eafc5b703dbb72802904898f",
+        "governedRecordCount": 0
+      }
+    ],
+    "systemPromptUniform": true
+  },
+  "providerIdentity": {
+    "endpoint": "https://api.anthropic.com",
+    "requestedModel": "claude-sonnet-5",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "execution": {
+    "arm": "SINGLE",
+    "leg": "FIRST_PASS_ONLY",
+    "verifierLeg": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "pairedAttributionArm": "NOT_AUTHORIZED_AND_NOT_ASSEMBLED",
+    "thinking": "disabled",
+    "cachingEnabled": false,
+    "firstPassMaxTokens": 8000,
+    "maxTokensRationale": "carried forward from §234, where it was load-bearing: the longest output was 5,100 tokens and a second 4,306, so the older 4,000 ceiling would have truncated two of sixteen. The wire-arrival slot is designed to produce longer answers still and the §235 posture object is larger again.",
+    "semanticRetries": 0,
+    "transportRetriesAuthorized": 0,
+    "ifTransportFailureOccurs": "the authorization books exactly nine calls with no retry allowance. A transport or HTTP failure that yields no adjudicable response therefore terminates the run as EXECUTION INCOMPLETE and returns for authorization. It is not silently absorbed and coverage is not reduced to fit.",
+    "guardWorstCaseCallUsd": 0.147,
+    "guardBasis": "30,000 budgeted input tokens plus a full 8,000-token output at USD 2 and USD 10 per million, uplifted five per cent. Roughly 1.2x the §234 observed maximum.",
+    "ifGuardTrips": "STOP and return EXECUTION_INCOMPLETE. Never reduce coverage to fit the ceiling.",
+    "databaseOperations": 0
+  },
+  "costEvidence": {
+    "unitCostBasis": "§234 CALL-LEDGER-234 measured mean USD 0.099861 over 16 calls, maximum USD 0.121058, mean input 35,026 tokens, mean output 2,981 tokens. Nothing is carried over from §231 or §221.",
+    "meanFirstPassUsd": 0.099861,
+    "maxObservedFirstPassUsd": 0.121058,
+    "section235PayloadUplift": "the §235 system prompt is 76,817 bytes against the §233 73,499 and the posture schema gains one array property, so roughly a five per cent input uplift.",
+    "upliftFactorApplied": 1.05
+  },
+  "callPlan": {
+    "primaryCalls": 9,
+    "maximumTotalCalls": 9,
+    "projectedSpendUsd": 0.9437,
+    "worstCaseSpendUsd": 1.144,
+    "hardCeilingUsd": 1.4,
+    "perCase": [
+      {
+        "caseId": "A1",
+        "category": "WIRE_ARRIVAL_STRESS",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "A2",
+        "category": "WIRE_ARRIVAL_STRESS",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "A3",
+        "category": "WIRE_ARRIVAL_STRESS",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "B1",
+        "category": "ESTABLISHED_PROPERTY_TRAP",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "B2",
+        "category": "ESTABLISHED_PROPERTY_TRAP",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "B3",
+        "category": "ESTABLISHED_PROPERTY_TRAP",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "C1",
+        "category": "NEIGHBOURING_DEGREE",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "C2",
+        "category": "NEIGHBOURING_DEGREE",
+        "firstPass": 1,
+        "verifier": 0
+      },
+      {
+        "caseId": "C3",
+        "category": "NEIGHBOURING_DEGREE",
+        "firstPass": 1,
+        "verifier": 0
+      }
+    ]
+  },
+  "spendLedgerStart": {
+    "providerCallsMade": 0,
+    "spendUsd": 0,
+    "retryAllowance": 0,
+    "note": "the authorization books exactly nine calls with no retry allowance. A transport failure terminates the run as EXECUTION INCOMPLETE and returns for authorization rather than being absorbed."
+  },
+  "section233Or235MayBeModifiedDuringExecution": false,
+  "databaseOperations": 0,
+  "commit": false,
+  "push": false,
+  "tag": false,
+  "deploy": false
+}

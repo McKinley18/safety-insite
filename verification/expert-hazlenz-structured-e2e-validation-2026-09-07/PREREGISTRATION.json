@@ -1,0 +1,516 @@
+{
+  "artifact": "SECTION_197_PRE_SPEND_PREREGISTRATION",
+  "writtenBeforeFirstProviderCall": true,
+  "date": "2026-09-07",
+  "operation": "§197 fresh prospective hosted DEVELOPMENT validation of the structured first-pass → deterministic projection → verifier-v3.3 pipeline",
+  "NOT_A_FORMAL_ACCEPTANCE_RUN": true,
+  "NOT_CUSTOMER_OR_PRODUCTION_ACTIVATION": true,
+  "systemUnderTest": [
+    "RAW OBSERVATION / GOVERNED CONTEXT",
+    "FIRST-PASS vNext",
+    "STRUCTURED UNRESOLVED-FACT DECLARATIONS",
+    "DETERMINISTIC VALIDATION",
+    "DETERMINISTIC PROJECTION",
+    "OwedFact / task state",
+    "VERIFIER-v3.3",
+    "ADMISSION",
+    "HUMAN-AUTHORIZED SETTLEMENT"
+  ],
+  "POPULATION_SEPARATION": {
+    "statement": "vNext and v3.3 are NEW POPULATIONS with no prior hosted evidence. No §187B (v3), §192 (v3.1) or §195 material is reused, read as stimulus, or combined with these results. The frozen §195 cohort is not executed.",
+    "v15_systemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+    "v15_promptVersion": "hazlenz.expert.prompt.v15"
+  },
+  "worktree": {
+    "branch": "main",
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "dirtyPathCount": 2485,
+    "dirtyNote": "substantial pre-existing uncommitted work from earlier slices is present and is preserved. §197 adds files and never resets, checks out, restores, stashes or cleans.",
+    "executorSha256": "0f6b9128b211b98aa0ed5004182910f661de39a770107b66ae51d7e1d0c14667",
+    "integrityGateSha256": "c8c13d5490ac72edba0cb54be6983d118aa92d89bf833a8e6b435de34c7e943b"
+  },
+  "firstPassIdentity": {
+    "instructionVersion": "hazlenz.expert.first-pass-instruction.vNext",
+    "systemPromptSha256": "05e1ad22efd1353d72f04406f63ee3985892072ca566aed5ceb34c4c29881db6",
+    "vnextModuleSha256": "ec89b349d246e983cee9e8b9b07f693941ff9491e12a9eb9257ac73e287801ed",
+    "baseV15SystemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+    "reconstructsToV15": true,
+    "wireSchemaIsPerRequest": true,
+    "wireSchemaNote": "the first-pass wire schema binds enums to each request's own vocabularies, so a per-row schema hash is frozen rather than one protocol-wide hash",
+    "toolName": "emit_expert_analysis",
+    "toolChoice": "forced tool",
+    "maxTokens": 8000,
+    "newCollection": "unresolvedFactDeclarations",
+    "clarificationBackref": "answersUnresolvedFactDeclarationId"
+  },
+  "projectionIdentity": {
+    "version": "hazlenz.expert.first-pass-owed-fact-projection.v1",
+    "moduleSha256": "f5b602a00860628690723cec1b7050c123e883c6c58c04f0ec27faaae7c9b423",
+    "projectedPriority": "OTHER",
+    "projectedStatus": "UNRESOLVED",
+    "provenanceRowCount": 12,
+    "identityForm": "FP.<affectedDecision>.<observationSourceId>.<startOffset>-<endOffset>.<ordinal>",
+    "providerAuthoredFactKeyField": "DOES NOT EXIST ON THE WIRE"
+  },
+  "verifierIdentity": {
+    "instructionVersion": "hazlenz.expert.verifier-instruction.v3.2",
+    "systemPromptSha256": "f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f",
+    "responseSchemaSha256": "83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e",
+    "admissionContractVersion": "hazlenz.expert.verifier.v3.3",
+    "admissionModuleSha256": "43497985c58cf8e7108e7132cccdab15f10485cc65a2d9cf025b67a1c948fd88",
+    "baseContractVersion": "hazlenz.expert.verifier.v3",
+    "note": "v3.3 is an ADMISSION change only. The instruction and schema executed are v3.2's, byte-unchanged. There is no v3.3 prompt.",
+    "toolName": "emit_verifier_verdict",
+    "maxTokens": 4000
+  },
+  "provider_model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "thinking": "disabled",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "cohort": {
+    "version": "hazlenz.expert.structured-e2e-cohort.2026-09-07",
+    "cohortModuleSha256": "6cb73ed67922f829ecce1be81201f8c1b82447290ce79b0959c5a7dac2a1cda1",
+    "coverage": {
+      "rows": 12,
+      "gapRows": 9,
+      "noGapRows": 3,
+      "matchedPairs": 3,
+      "expectedOwedFactsMin": 10,
+      "expectedOwedFactsMax": 11,
+      "familiesCovered": [
+        "CONJUNCTIVE_FACT",
+        "EXPOSURE_DECISION",
+        "FUNCTION_VERSUS_APPEARANCE",
+        "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY",
+        "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS",
+        "NEARBY_PROPERTY_COMPETITION",
+        "NOT_OBSERVED_IS_NOT_ABSENT",
+        "NO_REAL_GAP",
+        "SINGLE_REAL_UNRESOLVED_FACT",
+        "TEMPORAL_SCOPE",
+        "THRESHOLD_IS_NOT_A_GAP",
+        "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+      ],
+      "rowsWithGovernedEvidence": [
+        "SF-09",
+        "SF-10"
+      ],
+      "governedQuotationOpportunityRows": [
+        "SF-09"
+      ],
+      "unsuppliedCitationOpportunityRows": [
+        "SF-10"
+      ],
+      "conjunctiveRows": [
+        "SF-06",
+        "SF-02",
+        "SF-08"
+      ],
+      "multiGapRows": [
+        "SF-02"
+      ]
+    },
+    "TRUTH_PROVENANCE": {
+      "AI_ASSISTED_SCENARIO_AND_EXPECTATION_AUTHORING": true,
+      "PRODUCT_OWNER_REVIEWED": false,
+      "FULLY_INDEPENDENT_HUMAN_AUTHORING": false,
+      "USED_AS_THE_SEMANTIC_ORACLE": false,
+      "role": "cohort design and adjudication-packet structure only. Every semantic verdict in §197 is produced by a human reviewer, not by comparison against this file.",
+      "neverDescribeAs": "independent human truth"
+    },
+    "rows": [
+      {
+        "rowId": "SF-01",
+        "observationSha256": "8049fbaff8e39dc33c63dd85c6c169ea8059631d7ae3b1322c8e96f4db53b264",
+        "userPromptSha256": "5568eb143c36520c6a4e2274a987fb3bfb644187a2e61f9889e411cba913969a",
+        "wireSchemaSha256": "bf101f709889dd2faeab2b9745aefce15d389d2a3cda59bbd970fb7074b80f2c",
+        "v15WireSchemaSha256": "58ba4af8d357d445879950c986301aaf0d47824e8cfae453f247c44bd651f659",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "NEARBY_PROPERTY_COMPETITION"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-03",
+        "observationSha256": "431b9368d4c0f0b6ce78b8e97ad90b2df6751bd8a969793653b753b037685e15",
+        "userPromptSha256": "ae902aea36b7db5f6909d9bac77f9d347cffca49c10017e96853ef9ff0f8644c",
+        "wireSchemaSha256": "43ec005766093d96592095096adbe58f4a25e73d15872db237acde1a042649aa",
+        "v15WireSchemaSha256": "cf5a075791fa85c2a079526b069bc4246adf225df26ca4b3ccf4fbd7be65e757",
+        "families": [
+          "NO_REAL_GAP",
+          "NEARBY_PROPERTY_COMPETITION"
+        ],
+        "expectedGapCount": {
+          "min": 0,
+          "max": 0
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-05",
+        "observationSha256": "e3caad5bfdd32afcfc7a82b93c707f586d02b21c3aabe5cd36571a5d1b2dcbb1",
+        "userPromptSha256": "95e540034a409cc04b2d4c7af0e70217c8fcd814fae1ce5a016a5bdbc8994655",
+        "wireSchemaSha256": "071266639ec80dafde37211eca5ecab9ac5669b51d15200ec601e89e2e559d08",
+        "v15WireSchemaSha256": "efa974b7df1ff01349242afabd9a8789130c6e526fc8467d9c7c123d9b33d5ea",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "FUNCTION_VERSUS_APPEARANCE"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-12",
+        "observationSha256": "fc0657ca92eeeafa45a68f3ec663606cb2aec64150ff94a0df1c0518406697ba",
+        "userPromptSha256": "0c9c958ccdfc889e4e5ecf650b9c67dd34e35cc882a1b41e46a003906fd78b9d",
+        "wireSchemaSha256": "e4f6f00b759402cda8086300b0709194d6a9e75fc821187701ef725232f4ef62",
+        "v15WireSchemaSha256": "fa12c062b2d6d9df7c740bd432f9e1d456b06bdb9daf1a1a9dcebaefeff4a1a9",
+        "families": [
+          "NO_REAL_GAP",
+          "FUNCTION_VERSUS_APPEARANCE"
+        ],
+        "expectedGapCount": {
+          "min": 0,
+          "max": 0
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-06",
+        "observationSha256": "109ac589776ef6cd7e64aa8175444359fbe4f650c58c523fceaa0399eb280f7a",
+        "userPromptSha256": "bdab2d559754753d2638b690fb914630c0b4daa522342eae20ac40b76334a296",
+        "wireSchemaSha256": "9fc50688ba887063f3c8a8f82eb51f2ca57de49a8eba82614be47ea2554e3ed2",
+        "v15WireSchemaSha256": "f8dd19c09df93442895086c60e281bfc817abcf1311a07a341bdec58698bb9ad",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "TEMPORAL_SCOPE"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-04",
+        "observationSha256": "04a264145fe559b5cc920ad0464585cfd605fd2dd7ef135add35c931b3702caa",
+        "userPromptSha256": "8cd25fd6e4938a755163fc41471b718a45ba4608de7dbe1216ca4ffa8f38f496",
+        "wireSchemaSha256": "6a6c5b5229ac97f6d38e60da27025ae91f1a8a8cedb0945369c83ec6492eb674",
+        "v15WireSchemaSha256": "c0352f183612a6e59456485053dd190e19e829d4afb4a1129edda78ac48c2905",
+        "families": [
+          "NO_REAL_GAP",
+          "TEMPORAL_SCOPE"
+        ],
+        "expectedGapCount": {
+          "min": 0,
+          "max": 0
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-02",
+        "observationSha256": "32e9bd3c2b10e08b28f8086cf18b3525bdfb1ae6780b093a459d3c21a0e58327",
+        "userPromptSha256": "d9daeb9c00d5494f5b6cb40812bb8737176b1808115f16ec5c8a560ab0def8d8",
+        "wireSchemaSha256": "eb1a42c9c5044821c806fa6a7c899889e8a2eaf57eb0be34b0bd36a3e54db017",
+        "v15WireSchemaSha256": "9f06514fa753bc6659d528899a16ca4bfc0d07765819cdd91ddf3b760731ec4f",
+        "families": [
+          "MULTIPLE_INDEPENDENT_UNRESOLVED_FACTS"
+        ],
+        "expectedGapCount": {
+          "min": 2,
+          "max": 2
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-07",
+        "observationSha256": "ee7c6d00b71429631e61ba75fdf227791e5db6fdcd8349c4ba34abcc4231d1e7",
+        "userPromptSha256": "60bb32d0aae339f316df03821cb2d7a0d02586f97cc987eee075eb27c2662dd1",
+        "wireSchemaSha256": "20e66e64f97a52f6a5c45c826c315e743386ae9706194fa57062f476fc62930c",
+        "v15WireSchemaSha256": "f6acd68e9c6fd60ad03281acdc9e05f71108adb57fe8be4a1db9814f16fa4965",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "NEARBY_PROPERTY_COMPETITION"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-08",
+        "observationSha256": "87e792d48dd0a9ff3c890da4ec073a0206dbefceb9722f67c10ae61d2b9bd069",
+        "userPromptSha256": "3de1c77d6b6e0c4f8bedb2c2f21458ec64dc0e7d2dad8fe1959d549339f02c22",
+        "wireSchemaSha256": "7c78f366d2174f1a6df8b81f71a667af5641f620f8e2bbc55a4919a975d89d1d",
+        "v15WireSchemaSha256": "bb7a3b0e3fee7d36a72d2ff6e132d380d8f71e866880b095de6f8c8c2e2182d5",
+        "families": [
+          "CONJUNCTIVE_FACT"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 2
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      },
+      {
+        "rowId": "SF-09",
+        "observationSha256": "ce19b429b9a7534ffa15c7c62730971234823c11fff937d2687374e23f9ab999",
+        "userPromptSha256": "c4286f9e401cca8a65d6ddfb12ff48e600c76001d0e6ea505c3f426cd5c1bf8a",
+        "wireSchemaSha256": "8684ae1f326cac2c1208ac0f86c1ffb77bb30a9f9e0dc513c941189ceba23b97",
+        "v15WireSchemaSha256": "79b20e7af72c9f4ba2b73ed7053144f7de6bb3c7134a7c49f2fc93a230c1a9f4",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "GOVERNED_EVIDENCE_QUOTATION_OPPORTUNITY",
+          "THRESHOLD_IS_NOT_A_GAP"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 1,
+        "governedEvidenceSuppliedToVerifier": [
+          "GOV-ABRASIVE-01"
+        ]
+      },
+      {
+        "rowId": "SF-10",
+        "observationSha256": "ed4f29b82792d53c0de7debb8b537a362ae3759ea0fb4d85905ab7cef920365c",
+        "userPromptSha256": "e9ab09ada0100f7c713aa5f10d2ee5293aca08655751273aaeefefe73f512700",
+        "wireSchemaSha256": "734daa839bdb4bd9423497f17ad20a76cf928b8b7444130cf1ee52e5630d9631",
+        "v15WireSchemaSha256": "9fa729743177cee5d0d2335a6d320dec929abd87550330933fed1c019bc6054d",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "UNSUPPLIED_CITATION_CONTAINMENT_OPPORTUNITY"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 1,
+        "governedEvidenceSuppliedToVerifier": [
+          "GOV-HAZCOM-01"
+        ]
+      },
+      {
+        "rowId": "SF-11",
+        "observationSha256": "65445d88c07b4a33513c6d4787c9b8e04ea10a8b9bea2d7f1db730e2435096b5",
+        "userPromptSha256": "0096b8bc5877527bcb11f19f1d0020873250677d8310478ea14a6036c86d7838",
+        "wireSchemaSha256": "9e3e52b268926ba77988ece8a3b4a42a1b670c59fb7d512f74049066c6b6fb73",
+        "v15WireSchemaSha256": "cfc99001881385a7025764a9bcff866a5b2668af25eccdfddaf712423c440109",
+        "families": [
+          "SINGLE_REAL_UNRESOLVED_FACT",
+          "EXPOSURE_DECISION",
+          "NOT_OBSERVED_IS_NOT_ABSENT"
+        ],
+        "expectedGapCount": {
+          "min": 1,
+          "max": 1
+        },
+        "governedRecordsSuppliedToFirstPass": 0,
+        "governedEvidenceSuppliedToVerifier": []
+      }
+    ],
+    "freshness": "twelve fresh scenarios. No §195/§192/§187 row and no reserved formal-acceptance material is used as stimulus."
+  },
+  "executionOrder": {
+    "method": "one pass over the twelve rows; Fisher-Yates under mulberry32 seeded from the vNext system prompt sha256, re-drawn until no matched pair is adjacent",
+    "seedHex": "05e1ad22",
+    "frozenOrder": [
+      {
+        "sequencePosition": 1,
+        "rowId": "SF-08"
+      },
+      {
+        "sequencePosition": 2,
+        "rowId": "SF-09"
+      },
+      {
+        "sequencePosition": 3,
+        "rowId": "SF-10"
+      },
+      {
+        "sequencePosition": 4,
+        "rowId": "SF-01"
+      },
+      {
+        "sequencePosition": 5,
+        "rowId": "SF-04"
+      },
+      {
+        "sequencePosition": 6,
+        "rowId": "SF-02"
+      },
+      {
+        "sequencePosition": 7,
+        "rowId": "SF-03"
+      },
+      {
+        "sequencePosition": 8,
+        "rowId": "SF-05"
+      },
+      {
+        "sequencePosition": 9,
+        "rowId": "SF-11"
+      },
+      {
+        "sequencePosition": 10,
+        "rowId": "SF-06"
+      },
+      {
+        "sequencePosition": 11,
+        "rowId": "SF-12"
+      },
+      {
+        "sequencePosition": 12,
+        "rowId": "SF-07"
+      }
+    ],
+    "verifierOrderRule": "verifier calls follow the first-pass phase, in first-pass execution order and then declaration order within a row. The COUNT is an observed outcome and is deliberately not frozen."
+  },
+  "caps": {
+    "firstPassCalls": 12,
+    "verifierCallBudget": 24,
+    "HARD_TOTAL_CALL_CEILING": 36,
+    "hardSpendCapUsd": 6,
+    "worstCaseFirstPassUsd": 0.128,
+    "worstCaseVerifierUsd": 0.064,
+    "worstCaseTotalUsd": 3.072,
+    "retries": 0,
+    "onExceedingCallCeiling": "STOP before exceeding it, record CALL_CEILING_REACHED, and preserve every artifact already obtained. Facts are NEVER silently truncated to fit the budget — an unverified projected fact is reported as unverified.",
+    "onCreditRejection": "STOP on FIRST occurrence.",
+    "spendRule": "provider-returned usage only; a call reporting no usage adds zero to actual spend and its frozen worst case to the reservation"
+  },
+  "PROVIDER_ERROR_POLICY": {
+    "retries": 0,
+    "rationale": "a behavioural replicate is not the purpose of this protocol, and a retry after a refusal asks the provider to change its mind",
+    "notBehavioural": [
+      "TRANSPORT_ERROR",
+      "HTTP_SERVER_ERROR",
+      "RATE_LIMITED",
+      "ACCOUNT_CREDIT_REJECTION",
+      "HTTP_CLIENT_ERROR before inference"
+    ],
+    "notBehaviouralTreatment": "recorded as an EXECUTION/INFRASTRUCTURE event with behavioralExecution=false. NEVER scored as model behaviour, and never counted in any behavioural denominator.",
+    "behavioural": [
+      "PROVIDER_REFUSAL",
+      "a returned tool_use block of any content"
+    ],
+    "firstPassFreezeRule": "once a first-pass output is persisted it is frozen execution evidence. The verifier stage reads it and cannot re-issue a first-pass call.",
+    "noRegenerationRule": "a first-pass output is never regenerated because a later verifier call failed."
+  },
+  "AXIS_CLASSIFICATION": {
+    "note": "Frozen before spend. The deterministic validator that ADMITTED a declaration is never the oracle for whether the declaration is semantically right.",
+    "MECHANICAL_DETERMINISTIC": [
+      "provider call counts and error classes",
+      "actual provider spend",
+      "declaration admission and refusal codes",
+      "projection field provenance",
+      "factKey derivation audit (K)",
+      "projection fidelity as byte preservation (J)",
+      "verifier admission and refusal codes",
+      "citation boundary outcomes (N, O)",
+      "settlement authority (P)",
+      "multi-gap survival through projection (structural half of H)"
+    ],
+    "HUMAN_REQUIRED": [
+      "A FIRST_PASS_GAP_RECALL",
+      "B FIRST_PASS_GAP_PRECISION",
+      "C OWED_PROPERTY_SEMANTIC_CORRECTNESS",
+      "D EVIDENCE_SPAN_SEMANTIC_RELEVANCE",
+      "E BRANCH_PLAUSIBILITY",
+      "F DECISION_DIVERGENCE_VALIDITY",
+      "G AFFECTED_DECISION_CORRECTNESS",
+      "H MULTI_GAP_PRESERVATION (semantic independence)",
+      "I FALSE_GAP_SUPPRESSION",
+      "L VERIFIER_TARGET_BINDING",
+      "M CLARIFICATION_RESOLUTION_SUFFICIENCY",
+      "N GOVERNED_EVIDENCE_QUOTATION_BOUNDARY (semantic half)",
+      "Q OWED_PROPERTY_LOSS_IMPACT",
+      "R PRIORITY_FLOOR_IMPACT"
+    ],
+    "MODEL_ADJUDICATION_PERMITTED": [],
+    "whyNoModelAdjudication": "the authorization requires HUMAN semantic review of every projected fact and every first-pass row, and forbids the admitting validator from acting as the semantic oracle. §197 therefore produces a NEUTRAL ADJUDICATION PACKET and stops; it supplies no semantic verdict of its own, not even one labelled diagnostic.",
+    "verdictVocabulary": [
+      "CORRECT",
+      "PARTIALLY_CORRECT",
+      "INCORRECT",
+      "AMBIGUOUS",
+      "NOT_EXERCISED"
+    ]
+  },
+  "HARD_FAIL_CONDITIONS": [
+    "a provider-authored factKey is accepted",
+    "deterministic projection invents missing semantic content",
+    "deterministic projection alters branch or decision-divergence meaning",
+    "a malformed declaration corrupts or removes an independent valid declaration",
+    "provider output directly settles an OwedFact",
+    "provider-authored priority escalates UNRESOLVED_SAFETY_STATE",
+    "v3.3 admits unsupplied citation-shaped authority through the supplied-source exception",
+    "exact-source matching is broadened into semantic or paraphrase matching",
+    "execution mutates production, customer or database state",
+    "the source-integrity gate fails",
+    "the preregistered provider-call ceiling would be exceeded"
+  ],
+  "DENOMINATOR_POLICY": {
+    "rule": "every axis is reported as x/n against the executions where the behaviour was GENUINELY AVAILABLE, never as occurrences over total executions.",
+    "governedQuotationOpportunityRows": [
+      "SF-09"
+    ],
+    "unsuppliedCitationOpportunityRows": [
+      "SF-10"
+    ],
+    "falseGapOpportunityRows": [
+      "SF-03",
+      "SF-12",
+      "SF-04"
+    ],
+    "multiGapOpportunityRows": [
+      "SF-02"
+    ],
+    "smallNRule": "a single observation is reported as x/n literally and never as a percentage; below n=5 an axis is reported NOT_MEANINGFULLY_ESTIMABLE and no threshold is applied."
+  },
+  "KNOWN_OPEN_CONTRACT_QUESTIONS_NOT_RESOLVED_HERE": {
+    "OWED_PROPERTY_REPRESENTATION": "OwedFact has no dedicated owed-property field. §197 does not mutate owed-fact.types.ts, does not add a field, and does not fold missingFact into whyUnresolved. Axis Q collects evidence about the omission and nothing else.",
+    "PRIORITY_ESCALATION_AUTHORITY": "projected facts enter at the non-escalating OTHER floor and that is preserved. Axis R records whether a human reviewer judges a gap under-escalated. Evidence for a later policy decision, not a change to the gate.",
+    "SEMANTIC_CORRECTNESS": "structural validity does not establish semantic correctness. Measuring that risk is the primary purpose of this run."
+  },
+  "noPostHocTuning": "after the first provider call: no change to prompts, schemas, cohort, execution order, truth, scorers, thresholds or axis classification.",
+  "expectedArtifacts": [
+    "PREREGISTRATION.json",
+    "FIXTURE-MANIFEST.json",
+    "SEMANTIC-TRUTH-MANIFEST.json",
+    "EXECUTION-ORDER.json",
+    "PROTOCOL-HASHES.txt",
+    "SOURCE-INTEGRITY.txt",
+    "RAW-FIRST-PASS-OUTPUTS.jsonl",
+    "PROJECTION-PROVENANCE.jsonl",
+    "RAW-VERIFIER-OUTPUTS.jsonl",
+    "RUN-EXECUTION-SUMMARY.json",
+    "DETERMINISTIC-RESULTS.json",
+    "ADJUDICATION-PACKET.json",
+    "RUN-SUMMARY.json"
+  ]
+}

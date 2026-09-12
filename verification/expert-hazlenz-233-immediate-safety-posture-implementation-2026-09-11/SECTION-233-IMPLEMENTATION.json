@@ -1,0 +1,218 @@
+{
+  "artifact": "SECTION-233-IMPLEMENTATION",
+  "version": "hazlenz.expert.233.implementation.v1",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "commit": false, "push": false, "tag": false, "deploy": false,
+  "hostedValidationExecuted": false,
+
+  "filesChanged": {
+    "created": [
+      { "path": "backend/scripts/lib/expert-233-posture-contract.ts", "lines": 473,
+        "role": "vocabulary, types, wire-schema successor to §210J, system-prompt successor to §226, reconstruction functions, field-level checks" },
+      { "path": "backend/scripts/lib/expert-233-posture-projection.ts", "lines": 446,
+        "role": "validate / project / refuse. The six invariants, the recommendation-state projection, the declaration subordination record" },
+      { "path": "backend/scripts/lib/expert-233-posture-fixtures.ts", "lines": 280,
+        "role": "the fourteen §233 scenarios, balanced across the four postures, fresh subjects only" },
+      { "path": "backend/scripts/test-233-posture-contract.ts", "lines": 364,
+        "role": "the local deterministic suite" }
+    ],
+    "modified": [],
+    "protectedModulesMutated": [],
+    "existingFilesModified": 0
+  },
+
+  "schemaAdded": {
+    "field": "immediateSafetyPosture",
+    "level": "ANALYSIS ROOT, not per declaration",
+    "requiredOnTheWire": true,
+    "addedRootProperties": 1,
+    "addedRequiredEntries": 1,
+    "subFields": {
+      "posture": "enum CONTINUE | CONTINUE_WITH_CONTROLS | HOLD_PENDING_VERIFICATION | STOP, every member defined in the type, the prompt and the schema",
+      "requiredBy": "typed refs {ref, refKind} into this analysis",
+      "acceptedWithoutImmediateAction": "typed refs + reason. The restraint escape, first-class",
+      "requiredControls": "{control, timing} where timing is BEFORE_WORK_RESUMES | DURING_CONTINUED_WORK. The minimum sequencing representation",
+      "resumeCondition": "{resolvedByDeclarationIds[], correctionsRequired[]}. Two lists, no nullable member",
+      "whatHappensNow": "prose. Explains the posture; does not establish it"
+    },
+    "wireShapeDiscipline": {
+      "finding": "the §210J schema transmitted thirty times in §231 contains ZERO union types",
+      "firstDraftIntroduced": 2,
+      "action": "both removed before any freeze. resumeCondition became a always-present object with two arrays rather than a nullable object with a nullable string.",
+      "guard": "a local test now walks the transmitted §233 schema and fails if any union type is present",
+      "why": "an unproven wire shape cannot be exercised without a provider call and none is authorized"
+    },
+    "transmittedSizeBytes": { "base210j": 19089, "successor233": 22987 }
+  },
+
+  "invariantImplementation": {
+    "P1_POSTURE_PRESENT": {
+      "codes": ["POSTURE_MISSING", "POSTURE_NOT_AN_OBJECT", "POSTURE_VALUE_INVALID", "POSTURE_NARRATIVE_MISSING", "POSTURE_NARRATIVE_PLACEHOLDER", "POSTURE_BASIS_NOT_AN_ARRAY", "POSTURE_BASIS_ITEM_MALFORMED", "POSTURE_CONTROLS_NOT_AN_ARRAY", "POSTURE_CONTROL_ITEM_MALFORMED", "POSTURE_RESUME_CONDITION_MALFORMED"],
+      "mechanism": "required on the wire; a refused posture refuses the analysis whole and sets mayPresentAsCompletedAnalysis false",
+      "rr7Extension": "the narrative is checked against isNonSemanticFiller, IMPORTED from the frozen projection module. Extended, not reimplemented. No member added, no semantic validation introduced.",
+      "guarantees": "the posture cannot silently disappear, because its absence terminates the analysis rather than passing through"
+    },
+    "P2_REFERENTIAL_INTEGRITY": {
+      "codes": ["POSTURE_BASIS_REF_UNRESOLVED", "POSTURE_BASIS_REF_DUPLICATED", "RESUME_CONDITION_REF_UNRESOLVED"],
+      "mechanism": "every ref resolves against the analysis's own candidateKeys or declarationIds; no ref may appear in both requiredBy and acceptedWithoutImmediateAction"
+    },
+    "P3_COVERAGE": {
+      "codes": ["ACTIVE_CANDIDATE_NOT_COVERED", "DECLARATION_NOT_COVERED"],
+      "mechanism": "every self-asserted ACTIVE candidate AND every emitted declaration is either a reason for the posture or consciously accepted with a reason",
+      "extendedBeyond232": "§232 specified ACTIVE candidates. Declarations were added because that is what makes declaration-level action strings structurally incapable of standing outside the single posture, which the §233 authorization requires.",
+      "restraintProperty": "the acceptance list is what stops this becoming a stop-forcing rule. A real, present, ACTIVE hazard can be accepted without action and the analysis is admitted."
+    },
+    "P4_RESUME_CONDITION": {
+      "codes": ["RESUME_CONDITION_EMPTY"],
+      "mechanism": "HOLD_PENDING_VERIFICATION and STOP must name at least one declarationId whose resolution permits resumption or at least one correction that must be completed",
+      "closes": "the §231 M8 shape, where 'as soon as practicable' named a time rather than a condition"
+    },
+    "P5_LABEL_CONSISTENCY": {
+      "codes": ["BLOCKING_CLARIFICATION_WITH_CONTINUE"],
+      "mechanism": "a clarification the model itself marked BLOCKING and bound to a declaration forbids posture CONTINUE",
+      "revives": "EXPERT_CLARIFICATION_CRITICALITY, which §232 found declared and consumed nowhere in the pipeline",
+      "honestLimitation": "a floor, not a fix. It forbids CONTINUE only. It would NOT have caught §231 G5, G10, M6, M8 or M9, whose postures would most likely have been CONTINUE_WITH_CONTROLS."
+    },
+    "P6_MONOTONICITY_AND_COMPLETENESS": {
+      "codes": ["CONTROLS_MISSING_FOR_CONTINUE_WITH_CONTROLS", "CONTROLS_PRESENT_UNDER_CONTINUE", "CONTROL_CONCURRENT_WITH_EXPOSURE_UNDER_NON_PERMITTING_POSTURE"],
+      "completenessCodes": ["RECOMMENDATION_CONTRADICTS_POSTURE", "RECOMMENDATION_LESS_PROTECTIVE_THAN_POSTURE", "RECOMMENDATION_OMITS_OPERATIONAL_CONSEQUENCE", "RECOMMENDATION_DROPS_REQUIRED_CONTROLS", "RECOMMENDATION_DROPS_RESUME_CONDITION"],
+      "mechanism": "the recommendation state is PROJECTED FROM the posture by the single producer projectRecommendationState233, so omission would require deleting the posture, which P1 refuses. checkRecommendationNotLessProtective233 then refuses any downstream state of lower protective rank, contradicting continuation flag, missing protective sequence, dropped controls or dropped resume content.",
+      "sequencing": "a control tagged DURING_CONTINUED_WORK under a posture that does not permit continued work is refused. This is the §231 G10 shape, where a control was placed 'before or in parallel with continued decanting'.",
+      "sequenceEmitted": ["HOLD_OR_STOP", "VERIFY_OR_CORRECT", "ESTABLISH_REQUIRED_SAFE_STATE", "RESUME_IF_AUTHORIZED"]
+    }
+  },
+
+  "legacyDeclarationActionStrings": {
+    "decision": "RETAINED, DEMOTED, NEVER REPAIRED",
+    "whyRetained": "decisionWhileUnresolved is a required field of the frozen §210J contract, which is a protected module. Removing it would mutate a protected module and would be schema cleanup the §233 authorization forbids.",
+    "howDemoted": [
+      "every admitted projection emits one DeclarationSubordination233 record per declaration carrying the string VERBATIM with authority ADVISORY_NOT_AUTHORITATIVE, the analysis posture it answers to, and mayContradictAuthoritativePosture false",
+      "declarationActionAuthority233() returns typed literals the suite asserts mechanically, the counterpart to propertyAuthorityFailClosedEffect(), which §232 found asserting the authority of a field whose existence the architecture did not guarantee",
+      "P3 requires every declaration to be covered by the single analysis posture, so no declaration can stand outside it"
+    ],
+    "whatIsNotDone": "the string is never parsed, compared, scored or rewritten. Invariant 3.",
+    "demonstrated": "scenario S6 carries two legacy strings that contradict each other, one saying restrict and one saying continue running. The projection admits the analysis, marks both advisory, and the authoritative recommendation state reports workMayContinue false."
+  },
+
+  "localValidation": {
+    "suite": "backend/scripts/test-233-posture-contract.ts",
+    "providerCalls": 0, "databaseOperations": 0,
+    "passed": 109, "failed": 0,
+    "coverage": {
+      "contractAndReconstruction": "schema adds exactly one root property and one required entry; removing it reproduces the §210J schema byte for byte; the prompt successor reconstructs the §226 prompt byte for byte on both governed variants; the bases are not mutated; building twice is stable",
+      "fourteenAuthorizedScenarios": "all fourteen, each asserting admission and the specific refusal codes",
+      "sixInvariantsProvenDirectly": "both directions where a direction exists: the violation is refused AND the legitimate shape is admitted",
+      "noProseReadForMeaning": "every prose field in all fourteen scenarios is replaced with arbitrary text carrying no stop or continue vocabulary; no admission and no code changes",
+      "restraintGuard": "STOP fully expressible with zero declarations; an ACTIVE candidate accepted without action under CONTINUE is admitted; nothing active and nothing owed forces no basis; no refusal demands a posture where no candidate is active",
+      "wireShapeGuard": "the transmitted schema contains no union type"
+    }
+  },
+
+  "regression": {
+    "productionTypecheck": "PASS",
+    "protectedLadder": "17 / 17 passed, 0 failed, 0 missing",
+    "ladderCoversPreservationOf": ["first-pass contract §210E §210G §210J", "declaration and property §205 §224 §226", "verifier §212 §214 §218", "KR-1 property authority §220", "RR-7 preservation §205", "settlement, clarification settlement and unsupported settlement", "governed evidence grounding contract", "integrated preregistration §219 §221", "expert contract foundation and authority merge"],
+    "protectedCompositeIdentityBefore": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "protectedCompositeIdentityAfter": "37ce9eb8e9db62288b0a4953072bb487f38beab962d4716ad74be47036e2e2cb",
+    "protectedIdentityRecordByteIdenticalBeforeAndAfter": true,
+    "spentEvidenceIntact": { "section230": "8 / 8 OK", "section231": "15 / 15 OK", "section232": "3 / 3 OK" },
+    "section231AcceptanceRerun": false
+  },
+
+  "architectureAssumptionsChanged": [
+    {
+      "assumption": "§232 specified P3 coverage over ACTIVE candidates only",
+      "change": "extended to cover emitted declarations as well",
+      "why": "the §233 authorization requires that unresolved-fact declarations cannot independently create conflicting authoritative work postures. Covering declarations is what makes that structural rather than advisory.",
+      "protectedIdentityEffect": "none"
+    },
+    {
+      "assumption": "§232 sketched resumeCondition with a nullable correction string",
+      "change": "two always-present arrays",
+      "why": "the proven §210J wire shape contains no union types and no provider call is authorized to prove a new one",
+      "protectedIdentityEffect": "none"
+    },
+    {
+      "assumption": "§232 named the fourth posture CONTINUE_UNCHANGED",
+      "change": "CONTINUE, per the §233 authorization's own enumeration",
+      "why": "the §233 authorization enumerates the four values explicitly. The §230 frozen truth vocabulary maps CONTINUE_UNCHANGED to CONTINUE and STOP_OR_HOLD to the STOP / HOLD_PENDING_VERIFICATION pair. §231 is not rescored and no §231 case is re-labelled.",
+      "protectedIdentityEffect": "none"
+    }
+  ],
+
+  "remainingKnownLimitations": [
+    {
+      "id": "L1", "severity": "MATERIAL, AND THE CENTRAL ONE",
+      "limitation": "POSTURE DEGREE IS NOT GUARANTEED. A semantically wrong CONTINUE where HOLD_PENDING_VERIFICATION was required is structurally valid, and so is an unnecessary STOP.",
+      "whyItCannotBeClosedLocally": "choosing the degree is a semantic judgment. No deterministic invariant refutes it without reading prose, which invariant 3 forbids.",
+      "governedBy": "invariant 27. A schema change is never evidence that a behavioural defect is repaired.",
+      "fourOfTheTenEventsAreOfThisKind": ["G5 HS13", "G5 HS3", "M6 HS13", "M9 HS13"]
+    },
+    {
+      "id": "L2",
+      "limitation": "P5 forbids CONTINUE only. An under-protective CONTINUE_WITH_CONTROLS alongside a BLOCKING clarification is still admitted.",
+      "disposition": "a floor, disclosed rather than claimed as a fix"
+    },
+    {
+      "id": "L3",
+      "limitation": "the §233 contract is not wired to any assembly or executor",
+      "why": "no provider call is authorized, so an executor would be dead code. Wiring is the first step under hosted authorization.",
+      "affectsSuccessCondition": false
+    },
+    {
+      "id": "L4",
+      "limitation": "Expert HazLenz has no production activation under invariant 30, so the user-visible recommendation path is the projected authoritative state rather than a rendered UI",
+      "disposition": "unchanged by §233 and correctly out of scope"
+    }
+  ],
+
+  "recordedSeparatelyNotRemediated": [
+    {
+      "id": "R1", "family": "EXACT PROPERTY IDENTITY",
+      "evidence": "§231 Q4 16/22 = 0.7273 against a 0.90 threshold; Q5 largely downstream, 5 of 7 misses on a case that also missed Q4",
+      "disposition": "contained capability limitation at the human property-review boundary, the same disposition KR-1 holds. §231 recorded HS2 at zero occurrences on three opportunities and KR-1 contained end to end.",
+      "explicitly": "NOT remediated in §233, not claimed solved, and §233 was not permitted to become a third property-identity instruction cycle"
+    },
+    {
+      "id": "R2", "family": "WHOLE-ANALYSIS REJECTION ON A QUOTE CAPITALISATION DIFFERENCE",
+      "evidence": "§231 C1: one hazard-candidate quote differs from the observation by the case of its leading letter and the production normalizer rejects the entire analysis on EVIDENCE_OUT_OF_BOUNDS",
+      "disposition": "pre-existing, contained, unrelated to the posture architecture. Recorded in the §231 evidence and not touched here."
+    }
+  ],
+
+  "hostedUncertainty": {
+    "theExactRemainingQuestion": "Can the remediated Expert HazLenz semantic path correctly discriminate among CONTINUE, CONTINUE_WITH_CONTROLS, HOLD_PENDING_VERIFICATION and STOP on cases it has not seen, without systematic under- or over-conservatism?",
+    "whyLocalWorkCannotAnswerIt": "the local suite synthesizes analyses. It proves the contract and the projection behave correctly given an input; it cannot produce a model judgment.",
+    "secondaryQuestionTheSameCallsAnswer": "does the model populate the new structured fields well enough for the projection to admit them at all, or does the added object degrade output completeness. §231 already recorded one truncation at 4000 max_tokens on the smaller §210J schema.",
+    "proposedCohort": {
+      "design": "SINGLE ARM. Sixteen fresh scenarios, four per posture, §233 contract only, first-pass leg only, no verifier leg.",
+      "whySingleArm": "the §233 authorization asks whether the remediated path discriminates, not what the change is attributable to. A paired §210J arm would double the cost to answer a question that was not asked, and §232's twenty-four-call figure assumed that paired design.",
+      "whyFourPerPosture": "three per posture cannot separate a systematic lean from noise on the permissive half, and detecting OVER-conservatism is as much the point as detecting under-conservatism",
+      "preregistrationRequired": "expected posture per scenario frozen before any call, per invariant 21",
+      "freshness": "no §231 subject, industry, equipment, observation or property shape. §231 is spent evidence and may not be tuned against.",
+      "whatItIs": "CHARACTERIZATION, not acceptance. It cannot become the successor acceptance cohort.",
+      "optionalAttributionArm": "a paired §210J arm would add 16 calls if the product owner wants attribution as well as discrimination"
+    },
+    "providerCallEstimate": 16,
+    "spendEstimateUsd": 1.4325,
+    "worstCaseSpendUsd": 1.6694,
+    "unitCostBasis": "§231 CALL-LEDGER-231 first-pass mean USD 0.089530 over 30 calls, max USD 0.104338. No §221 or §227 constants imported.",
+    "withOptionalAttributionArm": { "providerCalls": 32, "spendEstimateUsd": 2.8650 },
+    "authorized": false
+  },
+
+  "successCondition": {
+    "analysisLevelPostureExists": true,
+    "structurallyAuthoritative": true,
+    "sixInvariantsHold": true,
+    "recommendationSilenceStructurallyPrevented": true,
+    "establishedHazardsNeedNoManufacturedDeclaration": true,
+    "contradictoryDeclarationAuthorityEliminated": true,
+    "sequencingConstraintsPreserved": true,
+    "allLocalAndRegressionTestsPass": true,
+    "noUnauthorizedProtectedModuleModified": true,
+    "semanticPostureDegreeCorrectnessProven": false,
+    "semanticPostureDegreeCorrectnessClaimed": false
+  }
+}

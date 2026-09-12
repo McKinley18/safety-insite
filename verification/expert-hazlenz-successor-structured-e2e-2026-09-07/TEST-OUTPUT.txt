@@ -1,0 +1,48 @@
+ok    A1. the cohort has no design defects  — []
+ok    A2. twelve rows total
+ok    A3. ten reused, two replaced  — replaced SG-01,SG-02
+ok    A4. SF-09 and SF-10 are absent from the cohort
+ok    A5. every reused row names its §197 origin  — traceability: §197 id → §199 id → REUSED_BEHAVIORALLY_UNSPENT
+ok    A6. every replacement row names the §197 row it replaces
+ok    B1. no reused observation drifted from its §197 original
+ok    B2. no reused truth drifted from its §197 original  — the truth carries forward unchanged and is re-hashed prospectively, not rewritten
+ok    B3. no reused family list drifted
+ok    B4. reuse is by REFERENCE, so there is no second copy to drift
+ok    C1. SG-01 is not a reskin of SF-09  — content-word overlap 13%
+ok    C2. SG-02 is not a reskin of SF-10  — content-word overlap 13%
+ok    C3. the replacements use different hazard families from the rows they replace
+ok    C4. the owed-property SHAPES differ from the replaced rows  — unmeasured distance → unverified sustained capability; absent arrangement → unverified pre-task check
+ok    D1. both replacement rows supply governed evidence, so the capability is PRESENT
+ok    D2. SG-01 is the governed-QUOTATION opportunity
+ok    D3. SG-02 is the unsupplied-citation CONTAINMENT opportunity
+ok    D4. SG-01's governed record genuinely bears on its owed fact
+ok    D5. SG-02's governed record is deliberately OFF POINT  — operator training versus a hot-work sump check
+ok    D6. both governed records carry a citation, so the verifier surface is exercisable
+ok    E1.SG-01. every acceptable span is verbatim in the OBSERVATION, not the governed text  — the owed fact is established by the observation alone
+ok    E2.SG-01. the owed property is stated without reference to the governed record
+ok    E3.SG-01. the observation carries no citation-shaped string  — so a refusal cannot be an artefact of our own stimulus
+ok    E1.SG-02. every acceptable span is verbatim in the OBSERVATION, not the governed text  — the owed fact is established by the observation alone
+ok    E2.SG-02. the owed property is stated without reference to the governed record
+ok    E3.SG-02. the observation carries no citation-shaped string  — so a refusal cannot be an artefact of our own stimulus
+ok    F1. the canary is in the cohort  — SF-01
+ok    F2. the canary is a NON-GOVERNED row  — the first question is whether the ORDINARY remediated request is accepted at all
+ok    F3. the canary is a REUSED row
+ok    F4. the canary has an unambiguous preregistered expectation  — expected exactly 1
+ok    F5. the canary request carries the capability-ABSENT schema
+ok    G1. the frozen order puts the canary first
+ok    G2. the frozen order covers every row exactly once
+ok    G3. no matched pair is adjacent in the frozen order  — near-identical texts are separated so order cannot be read as a confound
+ok    H1. prompt and schema agree on capability for every row
+ok    H2. no row carries maxItems — the §197 rejection cause is gone from all twelve
+ok    H3. every supplied sourceId is visible in its row's user prompt  — the §197 impossible contract is closed for both governed rows
+ok    H4. ten rows are capability-ABSENT and two are PRESENT
+ok    H5. the vNext user prompt still reduces to the v15 user prompt on a capability-absent row
+ok    H6. the governed rows show their record in BOTH the v15 block and the AVAILABLE block  — the "(none supplied)" contradiction §199 found pre-spend is closed
+ok    I1. truth provenance is carried, and is not claimed as human truth
+ok    I2. the cohort version is new, not §197's
+ok    I3. coverage is preserved across the replacement  — 10-11 expected facts
+
+====================================================================================================
+  43/43 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0   CUSTOMER ACTIVATION: NONE
+====================================================================================================

@@ -1,0 +1,92 @@
+=== A0 REPLAY ===
+§181 STAGE A0 — EXISTING-ARCHITECTURE REPLAY.  provider calls: 0   database operations: 0
+
+--- F. §180 FINDINGS RE-DERIVED FROM SOURCE
+ok    F1.a src/ mints ADMITTED_BINDING exactly once  [1]
+ok    F1.b src/ mints ADMISSIBLE_EVIDENCE nowhere  [0]
+ok    F1.c src/ mints RECORDED_ARBITRATION nowhere  [0]
+ok    F1.d the transition itself ACCEPTS ADMISSIBLE_EVIDENCE — the state is un-invoked, not sealed  [reachable by any caller; no runtime caller exists]
+ok    F1.e and refuses any other authority for that status
+ok    F2.a CHALLENGE_FACT_VALIDITY produces an ArbitrationRequest
+ok    F2.b arbitrationRequests appears in src/ only as production and observability carriage  [6 references, none converting to a RECORDED_ARBITRATION transition]
+ok    F3.a the projection carries the settlement target and no settlement-status field  [acceptableEvidence,affectedDecision,branchA,branchB,decisionDivergence,evidenceSpan,factKey,whyUnresolved]
+ok    F3.b there is no field requiring the provider to say what its evidence ESTABLISHES  [STRUCTURED_EVIDENCE_PROPERTY_DECLARATION = ABSENT]
+ok    F4 the §179 runner and harness import nothing from owed-facts  [the §179 rows ran outside the ledger entirely]
+
+--- 1. HR-04 STRUCTURAL REPLAY: can presence erase the owed securement fact?
+ok    1.1 the owed securement fact is admitted and UNRESOLVED  [owed:guarding:current_securement_of_fixed_guard]
+ok    1.2 it carries a governed settlement target derived from app-mg-01, with NO new field  [Evidence establishing guarding_status by a verification method the governed record for 1910.212 recognises.]
+ok    1.3 representing presence does NOT remove the securement fact  [both facts coexist; the ledger is append-only]
+ok    1.4 settling the PRESENCE fact leaves the SECUREMENT fact untouched  [ANSWER: presence cannot structurally erase securement — they are different factKeys]
+ok    1.5 no new settlement field was needed to express the distinction  [the distinction is carried by factKey identity plus acceptableEvidence.requirement]
+      SEMANTIC_JUDGMENT_REQUIRED — whether the app-mg-01 criterion actually settles
+      securement is a semantic question this replay does not and may not answer.
+
+--- 2. SETTLED_BY_EVIDENCE: what is required, and can a provider cause it?
+ok    2.1 required authority is ADMISSIBLE_EVIDENCE and nothing else
+ok    2.2 there is no provider declaration that maps to it  [applyAdmittedDeclarations mints ADMITTED_BINDING only]
+ok    2.3 the strongest provider-driven outcome is COVERED, never SETTLED_BY_EVIDENCE  [provider output cannot reach the evidence authority]
+
+--- 3. CHALLENGE_FACT_VALIDITY: producer to terminal state
+ok    3.1 a challenge is admitted and produces exactly one ArbitrationRequest  [1]
+ok    3.2 it is typed settles:false and factStatusUnchanged:true
+ok    3.3 the fact is STILL UNRESOLVED after the challenge  [a challenge changes no status — DEAD AS A DECISION INPUT, LIVE AS OBSERVABILITY]
+ok    3.4 a challenge with no reason is refused
+
+--- 4. DISPLACED-VALID-FACT REPLAY (HR-05, HR-07 shapes)
+ok    4.1 an adjacent fact can be NOMINATED while the owed fact is settled  [legitimate new hazards are NOT suppressed]
+ok    4.2 the nominated fact CANNOT replace the owed fact  [ADJACENT VALID FACT != SUBSTITUTE OWED FACT — substitution is unrepresentable]
+ok    4.3 the nominated fact does NOT inherit the owed fact's entitlement  [it carries its own status and must be admitted on its own proof burden]
+ok    4.4 a declaration cannot bind an adjacent question to a non-UNRESOLVED owed fact  [BINDING_MODE_CARRIES_A_NOMINATION,BOUND_FACT_NOT_UNRESOLVED]
+ok    4.5 a nomination whose span is not verbatim is refused
+ok    4.6 HR-07 shape: an adjacent question cannot bind to the settled owed fact  [BOUND_FACT_NOT_UNRESOLVED]
+
+--- 5. POSITIVE CONTROLS
+ok    5.1 HR-06 (function owed): a bound question clears the coverage warning
+ok    5.2 HR-08 (LIFE_CRITICAL, isolation owed): an unbound life-critical fact warns
+ok    5.3 HR-08 carries a governed criterion from app-loto-01  [Evidence establishing energy_isolation_status by a verification method the governed record for 1910.147 recognises.]
+ok    5.4 HR-10 (settled control): a settled fact leaves the unresolved set  [a settled fact stops competing for the question budget without being dropped]
+
+--- P. REQUIRED PROOFS
+ok    P1 the inactive boundary is unchanged
+ok    P2 no customer path reaches this harness or a DEVELOPMENT ledger
+ok    P2b a DEVELOPMENT_HUMAN_TRUTH fact is refused by a PRODUCTION ledger  [DEVELOPMENT_HUMAN_TRUTH_IN_PRODUCTION_POPULATION -- fact owe]
+ok    P3 frozen row text unchanged  [0 drifted]
+ok    P4 governed records were read only — hashes recorded for comparison  [fb23bcfa4c2e 604982c5e945 d0e9fc54365b]
+ok    P5 no semantic matcher introduced by this harness  [comments stripped; code only]
+ok    P6 the HR-04 owed fact is not deleted merely because presence is represented
+ok    P7 an adjacent nominated fact cannot overwrite another factKey
+ok    P8 exact factKey coverage remains deterministic  [declaration.bindingMode | declaration.coversFactKey | owedFact.factKey | owedFact.status | owedFact.evidenceSpan (byte equality against the observation only)]
+ok    P9 acceptableEvidence remains guidance — nothing compares it to anything
+ok    P10 SETTLED_BY_EVIDENCE cannot be minted by provider output alone
+
+A0 REPLAY PASSED — provider calls: 0   database operations: 0
+
+=== GOVERNED EVIDENCE ALIGNMENT AUDIT ===
+§181 GOVERNED EVIDENCE ALIGNMENT AUDIT — read-only, 0 provider calls, 0 database operations
+
+TOTAL_APPROVED_RECORDS_REVIEWED        20
+RECORDS_WITH_BOTH_QUESTIONS_AND_METHODS 20
+TOTAL_EVIDENCE_QUESTIONS               28
+
+ALIGNMENT_CLEAR                        21
+QUESTION_STRONGER_THAN_METHOD          4
+METHOD_STRONGER_THAN_QUESTION          1
+AMBIGUOUS                              2
+NO_VERIFICATION_METHOD                 0
+UNCLASSIFIED                           0
+
+QUESTION_STRONGER_THAN_METHOD:
+  app-mg-01 :: "Is the guard functional?"  vs  [physical_inspection]
+  rec-msha-30-56-12 :: "Is equipment properly grounded?"  vs  [physical_inspection]
+  app-haul-01 :: "Can persons contact moving parts?"  vs  [inspection]
+  app-ppe-02 :: "Is appropriate PPE provided?"  vs  [observation]
+
+AMBIGUOUS:
+  app-fall-01 :: "Is edge protected?"  vs  [physical_inspection]
+  app-mat-01 :: "Is material stable?"  vs  [physical_inspection]
+
+placeholder-citation records (derivation refuses these): app-rig-01, app-mat-01
+no functional-test verification method exists anywhere in the registry: true
+
+written: GOVERNED-EVIDENCE-ALIGNMENT-AUDIT.json

@@ -1,0 +1,13 @@
+{
+  "//": "SECTION 208 EXPERIMENT SCOPE ONLY. This configuration typechecks the §208 acceptance-cohort execution, scoring and adjudication-packet scripts and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. Report results as EXPERIMENT_SCOPE_TYPECHECK (§208), never as `tsc clean`. The §207 and §205 modules it imports were already clean under their own scoped configurations.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/execute-208-acceptance-cohort.ts",
+    "scripts/preflight-208-acceptance-cohort.ts",
+    "scripts/score-208-deterministic.ts",
+    "scripts/build-208-adjudication.ts",
+    "scripts/compute-208-gates.ts",
+    "scripts/rederive-208-projection.ts"
+  ]
+}

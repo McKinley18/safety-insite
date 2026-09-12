@@ -1,0 +1,118 @@
+{
+  "version": "hazlenz.expert.210j.compatibility-measurement.v1",
+  "source": "verification/expert-hazlenz-210h-hosted-confirmation-2026-09-09/RAW-FIRST-PASS-210H.jsonl",
+  "readOnly": true,
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "perCase": [
+    {
+      "caseId": "G1",
+      "declarations": 1,
+      "formats": [
+        "LEGACY_PRE_210J"
+      ],
+      "unchangedBasePath": {
+        "admitted": 1,
+        "refused": 0,
+        "safetyStateComplete": true,
+        "factKeys": [
+          "FP.REQUIRED_CONTROL.OBS-G1.701-810.1"
+        ]
+      },
+      "successor210jPath": {
+        "admitted": 0,
+        "refused": 1,
+        "demoted": [
+          "decl_tie_test_performed"
+        ],
+        "legacyFormatCount": 1,
+        "codes": [
+          [
+            "REQUIRED_FIELD_MISSING"
+          ]
+        ],
+        "safetyStateComplete": false,
+        "preservedProperties": [
+          "Whether the first tie in each pattern on this scaffold achieved the required pull-test resistance value at installation"
+        ],
+        "totalLossOnThisRow": true,
+        "invented": 0
+      }
+    },
+    {
+      "caseId": "G2",
+      "declarations": 1,
+      "formats": [
+        "LEGACY_PRE_210J"
+      ],
+      "unchangedBasePath": {
+        "admitted": 1,
+        "refused": 0,
+        "safetyStateComplete": true,
+        "factKeys": [
+          "FP.REQUIRED_CONTROL.OBS-G2.644-758.1"
+        ]
+      },
+      "successor210jPath": {
+        "admitted": 0,
+        "refused": 1,
+        "demoted": [
+          "D1"
+        ],
+        "legacyFormatCount": 1,
+        "codes": [
+          [
+            "REQUIRED_FIELD_MISSING"
+          ]
+        ],
+        "safetyStateComplete": false,
+        "preservedProperties": [
+          "whether the rising leg above the joint currently holds a solidified plug and/or trapped hydraulic head"
+        ],
+        "totalLossOnThisRow": true,
+        "invented": 0
+      }
+    },
+    {
+      "caseId": "G3",
+      "declarations": 1,
+      "formats": [
+        "LEGACY_PRE_210J"
+      ],
+      "unchangedBasePath": {
+        "admitted": 1,
+        "refused": 0,
+        "safetyStateComplete": true,
+        "factKeys": [
+          "FP.REQUIRED_CONTROL.OBS-G3.558-663.1"
+        ]
+      },
+      "successor210jPath": {
+        "admitted": 0,
+        "refused": 1,
+        "demoted": [
+          "D1"
+        ],
+        "legacyFormatCount": 1,
+        "codes": [
+          [
+            "REQUIRED_FIELD_MISSING"
+          ]
+        ],
+        "safetyStateComplete": false,
+        "preservedProperties": [
+          "Whether the second crane has been booked off the runway and its driver told in person, per the bay's standing handover arrangement, before the walkway is used"
+        ],
+        "totalLossOnThisRow": true,
+        "invented": 0
+      }
+    }
+  ],
+  "conclusions": {
+    "historicalOutputsStillProjectUnderTheUnchangedPath": true,
+    "historicalOutputsAreLegacyFormat": true,
+    "historicalOutputsFailClosedUnderTheSuccessorContract": true,
+    "identifiedPropertyPreservedInEveryCase": true,
+    "nothingInvented": true
+  }
+}

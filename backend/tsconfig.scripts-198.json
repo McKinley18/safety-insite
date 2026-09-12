@@ -1,0 +1,38 @@
+{
+  // §198. A SCOPED typecheck for the §196-§198 file set.
+  //
+  // `tsconfig.json` includes only `src/**/*`, so `tsc -p tsconfig.json` does NOT typecheck
+  // anything under `scripts/`. §198 discovered that the hard way: renaming an export left a broken
+  // import in the §196 suite, and the project typecheck reported clean.
+  //
+  // The whole `scripts/` directory cannot simply be added — it carries 2000+ pre-existing errors in
+  // unrelated legacy scripts, and fixing those is not this slice's work. So this config checks
+  // exactly the files §196-§198 own, under the SAME compiler options the project uses. Using the
+  // project's own options matters: an ad-hoc `--strict false` invocation produced false errors in
+  // `anthropic-expert-provider.ts`, because loose narrowing changes how a discriminated union
+  // reads.
+  //
+  // `rootDir` is dropped: it exists in the base config to pin the emit layout, and this program
+  // spans `scripts/` and `src/` while emitting nothing.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "incremental": false,
+    "rootDir": "."
+  },
+  "files": [
+    "scripts/lib/expert-first-pass-instruction-vnext.ts",
+    "scripts/lib/expert-first-pass-owed-fact-projection.ts",
+    "scripts/lib/expert-governed-citation-reuse.ts",
+    "scripts/lib/expert-verifier-contract-v3-3.ts",
+    "scripts/lib/expert-197-cohort-2026-09-07.ts",
+    "scripts/lib/expert-pre-inference-circuit-breaker.ts",
+    "scripts/lib/expert-empty-run-safety.ts",
+    "scripts/lib/expert-source-semantic-scan.ts",
+    "scripts/lib/expert-superseded-claims.ts",
+    "scripts/test-196-structured-first-pass-owed-facts.ts",
+    "scripts/test-198-transport-remediation.ts",
+    "scripts/verify-198-source-integrity-2026-09-07.ts"
+  ]
+}

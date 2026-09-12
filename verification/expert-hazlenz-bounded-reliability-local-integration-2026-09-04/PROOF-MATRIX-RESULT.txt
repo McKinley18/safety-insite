@@ -1,0 +1,93 @@
+§165 BOUNDED RELIABILITY + TARGET COVERAGE — LOCAL PROOF MATRIX
+====================================================================================================
+  packet   75d64197583092ed8ac826a1c3c85d86…
+  draws    7e84cef427d8c12659d01b96bf992bf4…  (20 records)
+  versions hazlenz.expert.owed-facts.v1 · hazlenz.expert.owed-fact-binding.v1 · hazlenz.expert.target-coverage.v1
+           hazlenz.expert.question-budget.v1 · hazlenz.expert.bounded-reliability-state-machine.v1
+           hazlenz.expert.reliability-observability.v1 · hazlenz.expert.verifier.semantic-outcome.v2
+  activation DEVELOPMENT_INACTIVE
+
+--- A–E  HS-A1 SHAPE: AN ADDITIVE NOMINATION CANNOT ERASE THE OWED TARGET
+
+ok    A. the owed flame-failure fact survives an additive auger nomination  — owed:hs-a1:flame_failure_safeguard_functional_status is present and UNRESOLVED; 0 facts removed
+ok    B. both facts coexist in one ledger  — flame_failure_safeguard_functional_status + discharge_auger_drive_isolation_state
+ok    C. binding the auger fact does NOT cover the flame-failure fact  — auger COVERED, flame-failure still UNRESOLVED — no implicit sibling coverage
+ok    D. the flame-failure key remains in uncoveredFactKeys  — TARGET_COVERAGE_WARNING=true, uncovered=[owed:hs-a1:flame_failure_safeguard_functional_status]
+ok    E. the additive nomination preserved the original owed fact byte for byte  — 0 preservation violations; the owed fact object is unchanged
+
+--- F–I  HS-E1 SHAPE: SILENCE, THE SECOND DRAW, AND WHAT TWO NOs DO NOT PROVE
+
+ok    F. NO_CLARIFICATION_REQUIRED while the interlock fact is unresolved raises the warning  — uncovered=[rotor_guard_interlock_function_verified]
+ok    G. a trigger-positive admitted silence makes exactly one second draw eligible  — trigger fired [T_WHOLLY_EMPTY_ANALYSIS]; SECOND_DRAW_ELIGIBLE=true
+ok    H. a second silence clears nothing  — SETTLED_SILENCE drawCount 2; owed fact still UNRESOLVED
+ok    I. two matching NO draws do not produce COVERED and do not clear the warning  — no COVERED fact, warning still TRUE, consensusClaimed=false, 0 state-machine violations
+
+--- J–L  THE ONLY THREE WAYS A FACT LEAVES UNRESOLVED
+
+ok    J. an explicit admitted binding produces COVERED and clears the warning  — COVERED via ADMITTED_BINDING; warning FALSE; 1 recorded transition
+ok    K. SETTLED_BY_EVIDENCE requires the evidence authority and refuses any other  — ADMISSIBLE_EVIDENCE accepted; ADMITTED_BINDING refused
+ok    L. REJECTED_BY_ARBITRATION requires a recorded reason  — recorded reason required; an empty one is refused
+
+--- M–N  DEDUPLICATION IS IDENTITY, NEVER SIMILARITY
+
+ok    M. an exact factKey collision deduplicates and changes nothing  — 1 fact, 0 preservation violations
+ok    N. two facts with near-identical text and different keys BOTH survive  — similarity merges nothing — merging is how a gap disappears
+
+--- O  THE BUDGET NEVER SILENTLY DISCARDS A LIFE-CRITICAL GAP
+
+ok    O. a life-critical gap that will not fit surfaces an unresolved safety state, not a short list  — budget 1 · selected 1 · surviving 3 · unresolved life-critical [owed:life-critical-2] · deferred 1
+
+--- P–Q  THE CALL CAP, AND THE SEPARATION OF THE TWO RETRY BUDGETS
+
+ok    P. the bounded path is exactly 5 provider calls and the sixth is refused  — 1 first pass + 1 degenerate reissue + 2 draws + 1 re-check = 5
+ok    Q. an exhausted channel cannot borrow another channel's allowance in either direction  — degenerate exhaustion does not block a draw; draw exhaustion does not unlock a reissue; and the gate refuses when its own channel is spent
+
+--- R  DEVELOPMENT HUMAN TRUTH CANNOT ENTER A PRODUCTION LEDGER
+
+ok    R. a DEVELOPMENT_HUMAN_TRUTH fact is refused by a PRODUCTION ledger at creation and at add  — both entry points throw; the permitted-source list omits it; a rule-derived fact is accepted
+ok    R2. a production owed fact sourced only from model output cannot alone justify fail-closed  — modelAuthored=true and the reliance is reported, not silently honoured
+
+--- S  A MODEL EXPLANATION IS NOT AN AUTHORITY
+
+ok    S. no authority member exists for a model explanation, and a terminal status cannot be reopened  — authorities = [ADMITTED_BINDING, ADMISSIBLE_EVIDENCE, RECORDED_ARBITRATION]
+
+--- T  RAW ATTEMPT HISTORY IS APPEND-ONLY
+
+ok    T. two draws are both retained, and an overwrite of the first is reported as a violation  — 2 attempts preserved; an edited attempt 1 raises ATTEMPT_OVERWRITTEN
+ok    T2. the record reconstructs all 17 required facts  — 17 obligations, 0 gaps
+
+--- X  ADVERSARIAL CASES
+
+ok    X1. a binding to a key outside the closed set is refused  — owed:not-in-the-set is not a member of the 1-fact closed set
+ok    X2. a binding to an already-COVERED fact is refused  — owed:hs-a1:flame_failure_safeguard_functional_status is already COVERED
+ok    X3. a nomination that reuses an unresolved owed fact's key is refused  — a rename is not a nomination
+ok    X4. two declarations binding the same fact: the second is refused  — one binding per fact
+ok    X5. a nomination whose evidence span is not verbatim in the observation is refused  — no invented hazard reaches the ledger
+ok    X6. a nomination whose two branches lead to the same action is refused  — a fact whose answer changes nothing is not a clarification
+ok    X7. a hand-built successor ledger with the owed fact deleted is caught  — FACT_DELETED is reported rather than silently accepted
+ok    X8. the displaced/invalid split is unreachable except through named human adjudication  — deterministic classification returns UNKNOWN_SEMANTIC_VALIDITY; a forged provenance is caught
+ok    X9. a displaced outcome is a recall MISS and is refused as a recall success  — recall 1 pass / 3 miss, precision 3 NOT_A_DEFECT / 0 defect — reported separately, never netted
+ok    X10. neither the coverage postcondition nor the binding rule contains a semantic matcher  — no similarity machinery; the admission rule never reads question text
+ok    X11. a third draw is refused structurally  — DRAW_COUNT_OUT_OF_BOUNDS
+ok    X12. the budget is never exceeded and every unselected fact is accounted for  — 2 selected, 2 deferred and recorded, 4 preserved internally
+ok    X13. a warning that cleared with no recorded transition is caught  — the postcondition never silently clears
+ok    X14. combination requires all four declared conditions and defaults to not combining  — no declaration → no combination; different equipment → no combination
+
+--- COMPOSITION WITH THE DEGENERATE POLICY
+
+ok    C1. the degenerate policy is unchanged and the reliability layer never reissues a degenerate response  — degenerate → DEGENERATE_POLICY_PATH; the reliability gate declines jurisdiction
+ok    C2. the composition order is the frozen one  — 9 stages
+
+--- REPLAY OF THE REAL §163 DRAWS THROUGH THE BINDING ARCHITECTURE
+
+ok    R1. HS-A1 — across all 10 real draws the owed flame-failure fact is never erased  — 0 erasures · 7 draws carried both facts · 3 draws bound the owed key · TARGET_COVERAGE_WARNING true on 7/10
+ok    R2. HS-E1 — across all 10 real draws the owed interlock fact is never erased  — 0 erasures · 0 draws bound the owed key · TARGET_COVERAGE_WARNING true on 10/10
+ok    C3. no new module imports from src/, names a provider, or can issue a network request  — 7 modules · 0 src/ imports · 0 provider/network/credential tokens · this suite imports no credential loader
+ok    C4. the default draw function refuses to execute  — DEVELOPMENT_INACTIVE
+ok    C5. every frozen enum is the size §164 specified  — 9 outcomes · 4 statuses · 5 sources · 3 authorities · 3 responses · 4 channels
+ok    C6. permitted responses to a warning are the bounded ordered three  — no "accept anyway" member exists
+
+====================================================================================================
+  44/44 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   COST: $0.00   DATABASE ACCESS: none   src/ CHANGES: none
+====================================================================================================

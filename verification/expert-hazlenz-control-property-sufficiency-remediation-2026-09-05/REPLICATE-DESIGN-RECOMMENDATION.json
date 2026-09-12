@@ -1,0 +1,82 @@
+{
+  "artifact": "SECTION_178_RECOMMENDED_REPLICATE_DESIGN",
+  "status": "RECOMMENDATION ONLY — NOT EXECUTED, NOT PREREGISTERED, NOT AUTHORIZED",
+  "date": "2026-09-05",
+  "requires": "a new product-owner authorization permitting provider spend. §178 made zero provider calls and this file changes that in no way.",
+
+  "whyAReplicateDesignIsNowMandatory": {
+    "problem": "§175 attempt 2 and §177 phase B each executed ONE stochastic sample per row over ten rows. Nine rows behaved identically and one changed. That design cannot attribute a one-row difference to a prompt edit, which is why PRECISION_IMPROVEMENT_CAUSALLY_ESTABLISHED = FALSE stands against an otherwise attractive 5/5.",
+    "consequence": "a third single-execution run under v15 would produce another number nobody may interpret. The instrument is not exhausted, but the one-shot design is.",
+    "precedent": "the programme already owns the pattern — the §152–§154 hardened baseline/replicate2/replicate3 triplet at one fixed identity."
+  },
+
+  "parametersToPreregisterBEFOREAnySpend": {
+    "1_promptIdentity": {
+      "EXPERT_PROMPT_VERSION": "hazlenz.expert.prompt.v15",
+      "SYSTEM_PROMPT_SHA256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+      "systemPromptChars": 38377,
+      "wireSchemaSha256": "recompute at preregistration from the representative schema built from the same input shape, exactly as the §177 preregistration did",
+      "rule": "bind the hash, not only the label — §138 established that the version string does not uniquely identify behaviour, and §177 is the case where the label moved while the bytes did not"
+    },
+    "2_providerAndModel": {
+      "provider": "anthropic",
+      "model": "the exact model identity, pinned and asserted against the returned model on every row",
+      "thinking": "state it explicitly",
+      "maxTokens": "state it explicitly",
+      "rule": "an execution budget and model identity that are unresolved at freeze time make the object unfreezable"
+    },
+    "3_rowsAndTruth": {
+      "instrument": "the frozen ten-row balanced instrument, unchanged",
+      "rowTextHashes": "the §174 frozen hashes, re-verified from the actual bytes at preflight",
+      "truth": "the §174 HUMAN_CLARIFICATION_REQUIRED verdicts, unchanged and not re-authored",
+      "rule": "ROW_TEXT_MUTATION_ALLOWED = FALSE still holds; if a row text moves, its verdict is void"
+    },
+    "4_replicateCount": {
+      "requirement": "fixed BEFORE any output is seen, and never chosen or extended after looking at results",
+      "guidance": "the design must be able to separate a per-row rate from a single draw. Three replicates per row is the programme's own precedent (§152–§154); more is better and costs linearly. State the number, the total call count and the resulting cost in the preregistration.",
+      "forbidden": "selecting, extending or truncating the replicate count after seeing any output"
+    },
+    "5_executionOrder": "state the row order and the replicate interleaving explicitly. Executing all replicates of a row consecutively and executing round-robin are different designs; pick one and record it.",
+    "6_scoring": {
+      "SILENCE_PRECISION": "exact and mechanical per execution — a SILENCE row is correct iff zero clarifications were emitted",
+      "REQUIRED_RECALL_LOOSE": "mechanical per execution — at least one clarification emitted; an upper bound only, never promoted to strict",
+      "REQUIRED_RECALL_STRICT": "human adjudication of each emitted clarification against the owed fact. The model must not supply these verdicts. Emit a neutral packet pairing every emission with its row, exactly as §175 and §177 did.",
+      "rule": "adjudication attaches to the exact wording executed; the packet must carry the emissions verbatim and their row text must hash to the frozen value"
+    },
+    "7_aggregation": {
+      "perRow": "report the per-row rate across replicates — e.g. 2 of 3 executions recovered the owed fact — before any pooling",
+      "perMetric": "report the pooled figure only alongside the per-row rates that produced it",
+      "forbidden": "reporting a pooled percentage without the per-row distribution, which is what makes a one-row flip look like a trend"
+    },
+    "8_withinRowDisagreement": {
+      "requirement": "decide the rule in advance and write it down: a row whose replicates disagree is a row with a RATE, not a row that passed or failed",
+      "forbidden": "majority-voting a row into a clean pass, or discarding a minority execution as an outlier"
+    },
+    "9_providerContractAndRetryRules": {
+      "retries": "zero, or an explicitly stated policy. A failed call is RECORDED as a failure, never silently retried and never dropped.",
+      "contractFailure": "recorded as CONTRACT_FAILURE and scored as no clarification emitted",
+      "replacementEvidence": "if any mechanism replaces a value, the evidence that the original event occurred must be persisted, not reconstructed afterwards",
+      "rawPersistence": "raw provider output persisted per execution, before normalization"
+    },
+    "10_caps": {
+      "providerCallHardCap": "state a number; abort at it",
+      "dollarHardCap": "state a number; abort at it"
+    },
+    "11_successAndRegressionCriteria": {
+      "mustPreserveBoth": "REQUIRED recall AND SILENCE precision. A recall gain accompanied by a precision regression is NOT remediation success.",
+      "baseline": "§175 (4/5 strict recall, 4/5 silence precision) is the causally interpretable baseline. §177's 5/5 precision is an observation whose cause is not established and must not be treated as the bar without its own replicate evidence.",
+      "writeTheVerdictTableFirst": "state, before spend, which combinations of (recall rate, precision rate) count as improvement, as no change, and as regression",
+      "HR04": "state in advance what an HR-04 recovery rate would and would not establish, given that the property hypothesis was derived from that row"
+    }
+  },
+
+  "interpretationLimitsThatSurviveAnyResult": [
+    "the corpus is Claude-authored and the evaluated model is Claude-family; a high score does not remove that provenance confound",
+    "the truth is PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH with AI_ASSISTED_HUMAN_VERDICT_GENERATION = TRUE and FULLY_INDEPENDENT_HUMAN_ADJUDICATION = FALSE; a replicate design improves the statistics, not the provenance",
+    "ten rows is ten rows. No result generalises beyond this instrument, and none of it establishes production readiness, formal acceptance or customer readiness.",
+    "HR-04 recovering under v15 would be consistent with the property repair working AND with the run drawing differently; only the per-row rate across replicates, compared against a v14 replicate set, speaks to the difference",
+    "if no v14 replicate set is executed, the comparison is a v15 rate against a v14 single sample, which is better than what exists today but still not a controlled comparison. State which of the two designs is being bought."
+  ],
+
+  "notInScopeOfThisRecommendation": "nothing here authorizes spend, selects a replicate count, or preregisters anything. It lists the parameters a future preregistration must fix before the first call."
+}

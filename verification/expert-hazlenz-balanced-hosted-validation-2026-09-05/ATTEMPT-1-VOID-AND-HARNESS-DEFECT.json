@@ -1,0 +1,169 @@
+{
+  "operation": "§175 bounded hosted balanced clarification validation — ATTEMPT 1, VOID",
+  "date": "2026-09-05",
+  "terminal": "BALANCED_CLARIFICATION_HOSTED_VALIDATION_INCONCLUSIVE — EVIDENCE_OR_EXECUTION_REVIEW_REQUIRED",
+  "whyThisTerminal": "the authorization's own terminal for execution that cannot produce interpretable evidence. The calls succeeded; the harness could not read what came back.",
+  "PRE_SPEND_INTEGRITY": "INTACT",
+  "preregistrationSha256": "397aed8f73cf47de7a585878d2cea97104ca4918d22ea84ed48b3e6d3cecc508",
+  "preregistrationWrittenBeforeFirstCall": true,
+  "model": "claude-sonnet-5",
+  "systemPromptSha256Prefix": "c4b3162439988e74",
+  "PROVIDER_INVOCATION_COUNT": 10,
+  "TOTAL_ACTUAL_COST_USD": 0.47437,
+  "callCapRemaining": 2,
+  "retries": 0,
+  "providerErrors": 0,
+  "allTenCallsReturnedOk": true,
+  "totalOutputTokens": 11009,
+  "meanLatencyMs": 41864,
+  "HARNESS_DEFECT": {
+    "whatWentWrong": "The probe read res.analysis.clarifications off the provider result. ExpertProviderSuccess carries raw: unknown and NOTHING else — raw output must pass through normalizeExpertOutput to become a validated analysis, and the collections are named expertHazardCandidates and decisionCriticalClarifications. So res.analysis was undefined on every row and every count defaulted to zero.",
+    "howItWasCaught": "candidateCount was also 0 on all ten rows while the model returned 788-1563 output tokens with stop_reason=tool_use. Structured content was plainly returned, so a uniform zero was a reading failure rather than a model behaviour.",
+    "attribution": "HARNESS_DEFECT — not a model failure, not an instrument failure",
+    "secondDefect": "raw provider output was NOT persisted. Only derived counts were written, so when the extraction proved wrong the ten responses became unrecoverable. $0.47437 of model output was destroyed by the harness that measured it."
+  },
+  "MEASUREMENT_STATUS": "VOID",
+  "whatMayNotBeConcluded": [
+    "the recorded 0/5 REQUIRED_RECALL_LOOSE is a harness artifact and is NOT a model result",
+    "the recorded 5/5 SILENCE_PRECISION is equally an artifact — a harness that reads zero clarifications everywhere scores every SILENCE row correct for free",
+    "no REQUIRED_RECALL, SILENCE_PRECISION, BALANCED_ACCURACY or ROW_LEVEL_ACCURACY figure from this attempt may be reported, carried forward, or cited",
+    "Expert HazLenz clarification behaviour on the balanced instrument remains entirely unmeasured"
+  ],
+  "voidedRowRecords": [
+    {
+      "rowId": "HR-01",
+      "truth": "REQUIRED",
+      "providerOk": true,
+      "outputTokens": 1362,
+      "latencyMs": 56445,
+      "costUsd": 0.050024,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-02",
+      "truth": "SILENCE",
+      "providerOk": true,
+      "outputTokens": 875,
+      "latencyMs": 10641,
+      "costUsd": 0.045226,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-03",
+      "truth": "SILENCE",
+      "providerOk": true,
+      "outputTokens": 1113,
+      "latencyMs": 46925,
+      "costUsd": 0.047588,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-04",
+      "truth": "REQUIRED",
+      "providerOk": true,
+      "outputTokens": 799,
+      "latencyMs": 34532,
+      "costUsd": 0.04441200000000001,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-05",
+      "truth": "SILENCE",
+      "providerOk": true,
+      "outputTokens": 1498,
+      "latencyMs": 55805,
+      "costUsd": 0.05137,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-06",
+      "truth": "REQUIRED",
+      "providerOk": true,
+      "outputTokens": 1095,
+      "latencyMs": 45230,
+      "costUsd": 0.047354,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-07",
+      "truth": "SILENCE",
+      "providerOk": true,
+      "outputTokens": 788,
+      "latencyMs": 33183,
+      "costUsd": 0.044302,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-08",
+      "truth": "REQUIRED",
+      "providerOk": true,
+      "outputTokens": 1563,
+      "latencyMs": 55057,
+      "costUsd": 0.052017999999999995,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-09",
+      "truth": "REQUIRED",
+      "providerOk": true,
+      "outputTokens": 1128,
+      "latencyMs": 47841,
+      "costUsd": 0.047734,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    },
+    {
+      "rowId": "HR-10",
+      "truth": "SILENCE",
+      "providerOk": true,
+      "outputTokens": 788,
+      "latencyMs": 32981,
+      "costUsd": 0.044342,
+      "derivedCountsVoid": true,
+      "rawOutputPersisted": false
+    }
+  ],
+  "REPAIR": {
+    "probe": "backend/scripts/probe-balanced-clarification-hosted-2026-09-05.ts",
+    "changes": [
+      "raw output is now passed through the production normalizeExpertOutput before anything is read",
+      "collections read by their real names: decisionCriticalClarifications, expertHazardCandidates",
+      "rawProviderOutput is PERSISTED per row before any figure is derived from it",
+      "normalizationState and every normalization issue are recorded per row",
+      "a REJECTED normalization now scores as a contract failure, never as silence",
+      "the declared outcome is captured, so a deliberate NOTHING_TO_ADD is distinguishable from an ANALYZED carrying no clarification"
+    ],
+    "provenWithZeroCalls": "a payload carrying one clarification was passed through the real normalizer and the repaired extraction read it: state=VALID, clarifications=1, question recovered verbatim. No provider call.",
+    "runtimeUnchanged": "prompt, schema, normalizer, verifier, arbitration, scorer and thresholds are untouched; the repair is confined to the probe script"
+  },
+  "BLOCKER_FOR_RERUN": {
+    "reason": "10 of the 12 authorized calls are spent. A clean ten-row re-run needs 10 and only 2 remain, so it cannot be executed under this authorization.",
+    "requested": "a fresh call budget of 10 (12 with headroom) at the same $3.00 ceiling, against the same frozen instrument, same preregistration, same model and prompt identity",
+    "expectedAdditionalCost": "approximately $0.48 at observed rates",
+    "nothingElseChanges": "the instrument, the frozen truth, the pair map and the preregistration all stand unmodified"
+  },
+  "provenanceLimitation": {
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "HUMAN_AI_AGREEMENT": "10 / 10",
+    "mustNotBeDescribedAs": "independent human adjudication"
+  },
+  "historicalEvidenceUnchanged": true,
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED",
+    "databaseOperations": 0,
+    "runtimeFilesChanged": 0
+  }
+}

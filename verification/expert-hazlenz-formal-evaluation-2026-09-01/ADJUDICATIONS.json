@@ -1,0 +1,1220 @@
+[
+  {
+    "itemId": "GAUNTLET-005::REG::expertExplanation.summary",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1910.120 record supports emergency-response requirements for hazardous-substance releases, but it does not support the statement’s hazard-communication violation, tank labeling, integrity, or worker-handling assertions; the statement therefore extends beyond the supplied record."
+  },
+  {
+    "itemId": "GAUNTLET-007::REG::decisionCriticalClarifications[1].whyItMatters",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1910.1200 record concerns hazard communication and container labeling, not permit-required confined-space testing, ventilation, or entry authorization procedures."
+  },
+  {
+    "itemId": "GAUNTLET-054::REG::expertExplanation.summary",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1910.179 record concerns overhead and gantry cranes and does not establish the asserted scaffold-foundation stability, fall, or collapse hazard."
+  },
+  {
+    "itemId": "POPA-A-16::REG::decisionCriticalClarifications[0].question",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1910.303 record concerns electrical requirements and does not support the question’s suggested lockout/tagout or maintenance-procedure context for forklift tine-pin servicing."
+  },
+  {
+    "itemId": "POPA-A-24::REG::expertExplanation.summary",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1910.36 exit-route record does not establish that the pedestal grinder configuration is compliant or that no machine-guarding hazard or clarification is warranted."
+  },
+  {
+    "itemId": "AUG-01::REG::expertHazardCandidates[0].evidenceBasis",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1926.1425 crane/load-clearance record does not establish a permissible work-rest gap or any bench-grinder guarding requirement."
+  },
+  {
+    "itemId": "AUG-05::REG::decisionCriticalClarifications[2].whyItMatters",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "The supplied 29 CFR 1926.251 rigging record does not establish safe operating limits for travelling with an elevated load on the stand-up reach truck."
+  },
+  {
+    "itemId": "SEM-15::REG::decisionCriticalClarifications[0].whyItMatters",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "No governed record was supplied on this row, so the compressed-air cleaning regulatory assertions cannot be supported by a supplied record under the frozen rule."
+  },
+  {
+    "itemId": "SRC-MSHA-057::REG::decisionCriticalClarifications[2].whyItMatters",
+    "rubricId": "EXPERT_REG_SUPPORT_V1",
+    "verdict": "NOT_SUPPORTED_BY_SUPPLIED_RECORD",
+    "supportingCitation": null,
+    "reason": "No governed record was supplied on this row, so the statement cannot be supported by a supplied record under the frozen rule."
+  },
+  {
+    "itemId": "GAUNTLET-002::CLR::clar-energized",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-002 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-002::CLR::clar-exposure",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-002 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-002::CLR::clar-location",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-002 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-004::CLR::clar-employee-exposure",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-004 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-004::CLR::clar-interim-controls",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-004 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-004::CLR::clar-duration",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-004 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-005::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-005::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-005::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-005::CLR::clar-4",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-007::CLR::clar-attendant",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-007 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-007::CLR::clar-permit",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-007 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-007::CLR::clar-rescue",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-007 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-007::CLR::clar-connected-equipment",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-007 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-015::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-015 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-015::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-015 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-015::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-015 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-019::CLR::clar-ladder-inuse",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-019::CLR::clar-rung-location",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-019::CLR::clar-ladder-angle-securing",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-062::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-062 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-062::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-062 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-082::CLR::vehicle-still-in-service",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-082 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-082::CLR::terrain-grade-pit-edge",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-082 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-082::CLR::compensating-controls",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-082 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-13::CLR::extinguisher-removal-reason",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-13 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-13::CLR::charging-room-activity-status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-13 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-13::CLR::alternate-fire-protection",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-13 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-14::CLR::chem-agents-used",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-14 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-14::CLR::why-no-flow",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-14 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-14::CLR::current-work-status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-14 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-15::CLR::cc-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-15 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-15::CLR::cc-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-15 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-16::CLR::clar-loto-relevance",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-16 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-20::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-20 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-20::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-20 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-27::CLR::cover-load-rating",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-27 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-27::CLR::hazcom-basis",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-27 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-32::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-32 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-32::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-32 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-019::CLR::clar-worker-use",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-022::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-022 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-022::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-022 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-022::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-022 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-023::CLR::cq-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-023 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-023::CLR::cq-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-023 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-023::CLR::cq-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-023 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-023::CLR::cq-4",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-023 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-032::CLR::clar-access-frequency",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-032 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-032::CLR::clar-interim-controls",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-032 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-033::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-033 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-033::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-033 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-033::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-033 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-045::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-045 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-045::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-045 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-045::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-045 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-054::CLR::scaffold_load_occupancy",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-054 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-054::CLR::ground_condition_assessment",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-054 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-054::CLR::scaffold_height_and_leveling",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-054 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "GAUNTLET-062::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "GAUNTLET-062 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-33::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-33 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-33::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-33 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "POPA-A-33::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "POPA-A-33 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-01::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-01 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-01::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-01 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-02::CLR::clar-guard-removal-scope",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-02 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-02::CLR::clar-loto-scope-verification",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-02 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-03::CLR::fall-protection-means",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-03 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-03::CLR::roof-edge-full-perimeter",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-03 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-03::CLR::service-drop-distance-and-status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-03 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-05::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-05 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-05::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-05 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-05::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-05 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-06::CLR::cord-deenergize-status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-06 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-06::CLR::worker-proximity",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-06 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-06::CLR::gfci-protection",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-06 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-08::CLR::clar-fall-protection-retrieval",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-08 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-08::CLR::clar-loto-other-energy-sources",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-08 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-08::CLR::clar-walking-surface-detail",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-08 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-09::CLR::clar-guard-inspection",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-09 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-09::CLR::clar-sump-barricade-type",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-09 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-10::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "AUG-10-G1",
+    "reason": "Asking whether the sprayed two-part epoxy contains isocyanates directly supplies the missing fact identified by AUG-10-G1."
+  },
+  {
+    "itemId": "AUG-10::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns fall protection at the scaffold and does not ask whether the epoxy contains isocyanates."
+  },
+  {
+    "itemId": "AUG-10::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns equipment-bay ventilation and does not supply whether the epoxy contains isocyanates."
+  },
+  {
+    "itemId": "AUG-11::CLR::accumulator-bled-status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "AUG-11-G1",
+    "reason": "Asking whether the hydraulic accumulator was actually bled down or depressurized directly supplies the missing stored-energy fact identified by AUG-11-G1."
+  },
+  {
+    "itemId": "AUG-11::CLR::crew-return-and-verification",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks about a future zero-energy verification before work resumes, not whether the accumulator was in fact bled to zero after the disconnect was opened."
+  },
+  {
+    "itemId": "AUG-11::CLR::loto-scope-completeness",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks whether the written lockout procedure includes a hydraulic-energy step, not whether the accumulator was actually bled to zero in this event."
+  },
+  {
+    "itemId": "AUG-12::CLR::clar-gfci",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-12 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-12::CLR::clar-atm-results",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-12 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-12::CLR::clar-permit",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-12 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "AUG-12::CLR::clar-fall-protection-detail",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "AUG-12 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SEM-01::CLR::clar-gas-readings",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-01-G1",
+    "reason": "Asking for the current oxygen, LEL, H2S and CO readings directly supplies the pre-entry atmospheric-reading fact identified by SEM-01-G1."
+  },
+  {
+    "itemId": "SEM-01::CLR::clar-line-isolation",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns sludge-line isolation and does not ask for the pre-entry atmospheric readings identified by SEM-01-G1."
+  },
+  {
+    "itemId": "SEM-01::CLR::clar-permit-completeness",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns permit completeness and does not itself supply the actual pre-entry atmospheric readings identified by SEM-01-G1."
+  },
+  {
+    "itemId": "SEM-01::CLR::clar-rescue-provisions",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns rescue equipment and procedures and does not ask for the atmospheric readings identified by SEM-01-G1."
+  },
+  {
+    "itemId": "SEM-02::CLR::arbor_pinned_or_blocked",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-02-G1",
+    "reason": "Asking whether the blade arbor was mechanically pinned, blocked, or otherwise restrained against gravity-induced movement directly supplies the fact identified by SEM-02-G1."
+  },
+  {
+    "itemId": "SEM-02::CLR::second_person_at_panel",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns whether a second person is required at the panel and does not ask whether the arbor was mechanically pinned or blocked."
+  },
+  {
+    "itemId": "SEM-02::CLR::loto_verification_zero_energy",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks whether a zero-energy or try-out verification was performed, but does not establish the specific missing fact of whether the arbor was mechanically pinned or blocked against gravity return."
+  },
+  {
+    "itemId": "SEM-03::CLR::clar-gfci",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-03-G1",
+    "reason": "Asking whether the circuit supplying the sump-pump extension cord is GFCI protected directly supplies the fact identified by SEM-03-G1."
+  },
+  {
+    "itemId": "SEM-03::CLR::clar-loto-energy",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns hazardous-energy sources and isolation in the vault and does not ask whether the sump-pump receptacle is GFCI protected."
+  },
+  {
+    "itemId": "SEM-03::CLR::clar-confined-space-permit",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns confined-space classification, permitting, and atmospheric testing and does not ask whether the sump-pump receptacle is GFCI protected."
+  },
+  {
+    "itemId": "SEM-03::CLR::clar-fall-protection-detail",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns fall protection for vault entry and does not ask whether the sump-pump receptacle is GFCI protected."
+  },
+  {
+    "itemId": "SEM-04::CLR::clar-plate-rating",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-04-G1",
+    "reason": "Asking for the floor plate load rating and whether it is adequate for the scissor lift wheel loading directly supplies the fact identified by SEM-04-G1."
+  },
+  {
+    "itemId": "SEM-04::CLR::clar-spotter-absence",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns the absence or requirement of a spotter and does not supply the trench-cover plate load rating relative to the scissor lift wheel load."
+  },
+  {
+    "itemId": "SEM-04::CLR::clar-trench-condition",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns trench condition, depth, and protection and does not supply the cover plate load rating relative to the scissor lift wheel load."
+  },
+  {
+    "itemId": "SEM-04::CLR::clar-sprinkler-isolation",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns sprinkler-line isolation and does not supply the trench-cover plate load rating relative to the scissor lift wheel load."
+  },
+  {
+    "itemId": "SEM-07::CLR::clq-disconnect-loto",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns electrical disconnect lockout and does not ask whether the nitrogen dosing header was isolated and bled."
+  },
+  {
+    "itemId": "SEM-07::CLR::clq-nitrogen-bleed-status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-07-G1",
+    "reason": "Asking whether the nitrogen header was isolated and bled down before the guard was opened directly supplies the fact identified by SEM-07-G1."
+  },
+  {
+    "itemId": "SEM-07::CLR::clq-operator-position",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns the operator's current position and does not ask whether the nitrogen header was isolated and bled before the guard was opened."
+  },
+  {
+    "itemId": "SEM-08::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks whether atmospheric monitoring was performed but does not ask for or otherwise supply the actual oxygen concentration identified by SEM-08-G1."
+  },
+  {
+    "itemId": "SEM-08::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns whether an attendant is assigned and does not supply the fermenter's oxygen concentration."
+  },
+  {
+    "itemId": "SEM-08::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns isolation of the CIP caustic line and does not supply the fermenter's oxygen concentration."
+  },
+  {
+    "itemId": "SEM-08::CLR::clar-4",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns physical isolation from the CIP system and does not supply the fermenter's oxygen concentration."
+  },
+  {
+    "itemId": "SEM-09::CLR::light-rating",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-09-G1",
+    "reason": "Asking whether the corded shop light is rated explosion-proof or vapor-proof for the flammable atmosphere directly supplies the equipment-rating fact identified by SEM-09-G1."
+  },
+  {
+    "itemId": "SEM-09::CLR::respiratory-protection",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns respiratory protection, ventilation, and monitoring and does not ask whether the shop light has the required hazardous-location rating."
+  },
+  {
+    "itemId": "SEM-09::CLR::vapor-concentration",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns vapor concentration and does not ask whether the shop light is a rated hazardous-location fitting."
+  },
+  {
+    "itemId": "SEM-10::CLR::clar-gfci",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-10-G1",
+    "reason": "Asking whether the cord reel or another part of its circuit provides GFCI protection directly supplies the fact identified by SEM-10-G1."
+  },
+  {
+    "itemId": "SEM-10::CLR::clar-rescue",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns rescue and retrieval provisions and does not ask whether the cord reel circuit provides GFCI protection."
+  },
+  {
+    "itemId": "SEM-10::CLR::clar-permit",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns confined-space assessment, permitting, and entry controls and does not ask whether the cord reel circuit provides GFCI protection."
+  },
+  {
+    "itemId": "SEM-10::CLR::clar-vehicle-barrier",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns vehicle-separation controls and does not ask whether the cord reel circuit provides GFCI protection."
+  },
+  {
+    "itemId": "SEM-15::CLR::clar-wand-pressure",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-15-G1",
+    "reason": "Asking for the compressed-air wand outlet pressure directly supplies the regulated outlet-pressure fact identified by SEM-15-G1."
+  },
+  {
+    "itemId": "SEM-15::CLR::clar-silica-ppe",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns respiratory protection for silica exposure and does not ask for the regulated outlet pressure of the compressed-air wand."
+  },
+  {
+    "itemId": "SEM-15::CLR::clar-hood-capture",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns dust-capture effectiveness and does not ask for the regulated outlet pressure of the compressed-air wand."
+  },
+  {
+    "itemId": "SEM-16::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-16-G1",
+    "reason": "Asking whether the sanitiser dilution ratio was verified and what the result was directly supplies whether the proportioner is actually delivering the intended labelled use dilution identified by SEM-16-G1."
+  },
+  {
+    "itemId": "SEM-16::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns group lockout procedure and worker participation and does not ask whether the proportioner is delivering the intended sanitiser dilution."
+  },
+  {
+    "itemId": "SEM-16::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns PPE used during sanitiser spraying and does not ask whether the proportioner is delivering the intended sanitiser dilution."
+  },
+  {
+    "itemId": "SEM-17::CLR::disconnect-lockable",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-17-G1",
+    "reason": "Asking whether the disconnect is capable of accepting a lock directly supplies the lockability fact identified by SEM-17-G1."
+  },
+  {
+    "itemId": "SEM-17::CLR::who-else-has-access",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns access to the disconnect and prevention of unauthorized re-energization and does not ask whether the disconnect can accept a lockout device."
+  },
+  {
+    "itemId": "SEM-17::CLR::fall-protection-hatch-ladder",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns fall protection at the roof hatch and ladder and does not ask whether the disconnect can accept a lockout device."
+  },
+  {
+    "itemId": "SEM-18::CLR::isolation_status",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-18-G1",
+    "reason": "Asking whether the crusher drive was physically isolated at its disconnect or only stopped at the local control station directly supplies the isolation-status fact identified by SEM-18-G1."
+  },
+  {
+    "itemId": "SEM-18::CLR::energy_verification",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks whether a zero-energy state was verified and does not establish whether the crusher drive was isolated at its disconnect or only stopped at the local control station."
+  },
+  {
+    "itemId": "SEM-18::CLR::authorized_procedure",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns the existence and use of an isolation procedure and does not establish whether the crusher drive was actually isolated at its disconnect or only locally stopped."
+  },
+  {
+    "itemId": "SEM-19::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks about a written exposure-control or equivalent program and does not supply the dye's exact identity and concentration or establish whether the weighing operation is within the required regulated-area and control regime identified by SEM-19-G1."
+  },
+  {
+    "itemId": "SEM-19::CLR::clar-2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns adequacy of the respirator, gloves, fit testing, and respiratory-protection program and does not supply the dye's exact identity and concentration or establish the complete regulated-area and control-regime fact identified by SEM-19-G1."
+  },
+  {
+    "itemId": "SEM-19::CLR::clar-3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns a possible confined-space issue and does not supply either part of the regulatory-interpretation fact identified by SEM-19-G1."
+  },
+  {
+    "itemId": "SEM-21::CLR::coating-lead-chromate-testing",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-21-G1",
+    "reason": "Asking whether the coating was tested or confirmed for lead or chromate content directly supplies whether the coating contains lead or hexavalent chromium as identified by SEM-21-G1."
+  },
+  {
+    "itemId": "SEM-21::CLR::respirator-selection-basis",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns the basis for respirator selection and does not ask whether the coating contains lead or hexavalent chromium."
+  },
+  {
+    "itemId": "SEM-21::CLR::vacuum-shroud-effectiveness",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns effectiveness of the vacuum-shroud dust-control system and does not ask whether the coating contains lead or hexavalent chromium."
+  },
+  {
+    "itemId": "SEM-24::CLR::clar-steam-isolation",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-24-G1",
+    "reason": "Asking whether the steam header stop valve was double-blocked and bled or only closed directly supplies the isolation-state fact identified by SEM-24-G1."
+  },
+  {
+    "itemId": "SEM-24::CLR::clar-blank-list-scope",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks whether the posted blank list includes the valve and specifies its isolation state, but does not itself ask which isolation state was actually established before the manway was opened."
+  },
+  {
+    "itemId": "SEM-24::CLR::clar-entry-permit",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns confined-space permitting, atmospheric testing, and attendant arrangements and does not ask whether the steam header connection was double-blocked and bled before entry."
+  },
+  {
+    "itemId": "SEM-30::CLR::calibration_date",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_GAP",
+    "mappedGapId": "SEM-30-G1",
+    "reason": "Asking when the ammonia detector heads were last calibrated and whether that date is within the applicable calibration interval directly supplies whether the detector heads are currently within their required calibration interval as identified by SEM-30-G1."
+  },
+  {
+    "itemId": "SEM-30::CLR::calibration_records_location",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question asks whether a maintenance or calibration log exists and can be checked, but does not itself supply whether the detector heads are currently within their applicable calibration or functional-verification interval and reliable for service."
+  },
+  {
+    "itemId": "SEM-30::CLR::scba_readiness",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "The question concerns readiness of the self-contained breathing sets and does not ask whether the ammonia detector heads are currently within their calibration or functional-verification interval and reliable for service."
+  },
+  {
+    "itemId": "SEM-31::CLR::clar-spill-source",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SEM-31 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SEM-31::CLR::clar-spill-proximity-electrical",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SEM-31 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SEM-31::CLR::clar-spill-response",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SEM-31 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SEM-32::CLR::clar-coolant-ppe",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SEM-32 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SEM-33::CLR::clar-hazcom-basis",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SEM-33 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SEM-34::CLR::clar-1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SEM-34 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-019::CLR::clar-brake-control",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-019::CLR::clar-warning-system",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-019::CLR::clar-injury-extent",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-019::CLR::clar-grade-terrain",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-019 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-041::CLR::c1",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-041 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-041::CLR::c2",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-041 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-041::CLR::c3",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-041 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-057::CLR::clar-injuries-damage",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-057 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-057::CLR::clar-intersection-controls",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-057 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-057::CLR::clar-speed-limits",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-057 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-MSHA-057::CLR::clar-stationary-vehicle-occupied",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-MSHA-057 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-OSHA-005::CLR::energy-type-present",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-OSHA-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-OSHA-005::CLR::worker-still-exposed",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-OSHA-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-OSHA-005::CLR::guarding-state",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-OSHA-005 has no authored decision-critical gap to which this clarification can map."
+  },
+  {
+    "itemId": "SRC-OSHA-005::CLR::other-workers-nearby",
+    "rubricId": "EXPERT_CLARIFICATION_MAPPING_V1",
+    "verdict": "MAPPED_TO_NO_GAP",
+    "mappedGapId": null,
+    "reason": "SRC-OSHA-005 has no authored decision-critical gap to which this clarification can map."
+  }
+]

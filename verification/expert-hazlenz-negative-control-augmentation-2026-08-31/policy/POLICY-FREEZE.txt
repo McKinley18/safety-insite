@@ -1,0 +1,12 @@
+AUGMENTATION CONSTRUCTION POLICY -- FROZEN BEFORE ANY CASE WAS AUTHORED
+frozen_at_utc : 2026-08-31T21:21:25Z
+policy_file   : backend/scripts/lib/expert-augmentation-construction-policy.ts
+policy_sha256 : 9865e7d09f9b1fbb1d23ceea150e642315693216f35c5441ed36d05f51eabcbf
+
+RETIREMENT REGISTRY (governance overlay, created in the same phase, before authoring)
+registry_file   : backend/src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry.ts
+registry_sha256 : cd1a114d0aaad100cc7d9eb61762da6d4e5b73c43140884da3c8ddbc6f58ef6c
+
+STRUCTURAL PROHIBITION: neither module imports a provider, a probe artifact or a run record,
+so 'construction may not be informed by provider behaviour' is enforced by the dependency
+graph rather than by discipline.

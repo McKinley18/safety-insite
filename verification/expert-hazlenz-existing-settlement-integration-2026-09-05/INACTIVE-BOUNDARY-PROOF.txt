@@ -1,0 +1,29 @@
+=== INACTIVE BOUNDARY PROOF (§182) ===
+
+41:export const EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED: false = false;
+
+--- customer service references to the new module: expect none ---
+0
+
+--- any import of settlement-review outside owed-facts/ and scripts/: expect none ---
+(none)
+
+--- env/config/db/network in the new module: expect none ---
+1
+
+--- tsc ---
+tsc: 0 errors
+
+--- NOTE on the single grep hit above ---
+The one match is the word "repository" inside a doc comment on line 274:
+  "THE PRODUCER. The only function in the repository that constructs an ADMISSIBLE_EVIDENCE ..."
+It is prose, not a TypeORM repository. In-suite proof P1f performs the same check with comments
+stripped and passes with zero matches, so the module performs no database or network operation.
+
+--- SUMMARY ---
+EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED  : false = false (literal type, unchanged)
+customer route to the new module        : NONE
+imports of settlement-review outside it : NONE (only its own file and the §182 test script)
+environment / config reads              : NONE
+database / network operations           : NONE
+TypeScript                              : 0 errors

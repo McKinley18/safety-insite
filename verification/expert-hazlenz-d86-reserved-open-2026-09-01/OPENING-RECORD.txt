@@ -1,0 +1,172 @@
+D-86 RESERVED MATERIAL OPENING RECORD -- GAUNTLET OFFSETS 2 AND 3
+================================================================
+opened_at_utc:        2026-09-01T17:04:34Z
+operator:             Claude Code, acting under the 2026-09-01 product-owner authorization
+                      "OPTION B -- USE EXISTING D-86 RESERVED NEGATIVE-CONTROL SUPPLY"
+process:              local ts-node, no network egress, no provider client constructed,
+                      no database connection
+
+AUTHORIZED SCOPE (exact, and nothing else):
+  D86_GAUNTLET_OFFSETS_2_AND_3_ONLY
+
+ARTIFACT OPENED
+  path                safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  sha256 (pre-open)   a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  registry sha256     a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4   MATCH -- artifact unmodified since the registry recorded it
+  total rows          150
+
+PARTITION RULE (verbatim from the authoritative retirement registry)
+  offset 2            D-86: i%4===2
+  offset 3            D-86: i%4===3
+  executed as         sort scenarioId CMP ascending (UTF-8 byte-wise, no case folding, no
+                      collation, no normalization); 0-based index; m = 4; i % 4 === offset
+  k = parseInt(sha256.slice(-8),16) % 4 = 0   (identifies which partition is OFFSET_0)
+  byte-wise CMP and JS relational sort agree: true   (all scenarioIds are ASCII)
+  measured partition sizes  38 / 38 / 37 / 37
+  registry-expected sizes   38 / 38 / 37 / 37
+
+  NOT the §123 historical analytical i % 5 partition. The product owner resolved the identity
+  question in favour of the retirement registry scheme; §131 measured that the two schemes
+  designate materially different row sets, and opening is irreversible.
+
+OFFSETS OPENED, AND THEIR EXPECTED ROW COUNTS
+  GAUNTLET_OFFSET_2   expected 37   measured 37   MATCH
+  GAUNTLET_OFFSET_3   expected 37   measured 37   MATCH
+
+PRIOR RETIREMENT / OPEN STATE OF EVERY PARTITION OF THIS ARTIFACT
+  GAUNTLET_OFFSET_0    RETIRED      mayEverReopen=false §61 (Run 1). OMITTED from EVALUATION_CORPUS_POLICY.closed -- see this file's header.
+  GAUNTLET_OFFSET_1    RETIRED      mayEverReopen=false §66-era Run 2. Present in EVALUATION_CORPUS_POLICY.closed.
+  GAUNTLET_OFFSET_2    RESERVED     mayEverReopen=true  EVALUATION_CORPUS_POLICY.reserved
+  GAUNTLET_OFFSET_3    RESERVED     mayEverReopen=true  EVALUATION_CORPUS_POLICY.reserved
+
+FAIL-CLOSED GUARD VERDICTS, TAKEN BEFORE THE READ
+  GAUNTLET_OFFSET_2   allowed=true   registryStatus=RESERVED   planSaysClosed=false
+     Permitted: RESERVED. Opened ONCE, for one pre-registered exam, and spent whether the result is good or bad.
+  GAUNTLET_OFFSET_3   allowed=true   registryStatus=RESERVED   planSaysClosed=false
+     Permitted: RESERVED. Opened ONCE, for one pre-registered exam.
+
+  EVALUATION_CORPUS_POLICY.reserved (frozen plan, verbatim):
+     gauntlet offsets 2 and 3
+     realism offsets 1 and 2
+     the unopened 100-row gauntlet.seed
+  EVALUATION_CORPUS_POLICY.closed (frozen plan, verbatim):
+     hazlenz-l3-sealed-acceptance-2026-08-25 (Run 1)
+     hazlenz-l3-run2-sealed-acceptance-2026-08-25 (Run 2, 93 rows)
+     GAUNTLET_OFFSET_1 (retired)
+     REALISM_OFFSET_0 (retired)
+  The plan names "gauntlet offsets 2 and 3" as RESERVED and does not name them CLOSED. Both
+  sources agree the material is openable, which is the only condition under which
+  assertMayOpen returns allowed.
+
+NOT OPENED -- these remain available as future single-use exams, hashes recorded so a later
+reader can prove they were untouched by this operation:
+  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+     sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb   (REALISM_OFFSET_1 and REALISM_OFFSET_2 remain RESERVED)
+
+ALL RELEVANT SOURCE HASHES AT OPEN TIME
+  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+     a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  safescope-data/gauntlets/safescope-gauntlet.seed.json   (opened in §122, unchanged)
+     49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json   (untouched)
+     6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+  backend/src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry.ts
+     cd1a114d0aaad100cc7d9eb61762da6d4e5b73c43140884da3c8ddbc6f58ef6c   version hazlenz.expert.corpus.retirement.v1
+  backend/scripts/lib/expert-cohort-supplemental-policy.ts   (the §122 eligibility rule, frozen before any reserved row was seen)
+     cc69d28e74308f492271ff573357b5c346ebe915f253e692f108e9e962f94967
+  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+     0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8
+
+AUTHORIZED PURPOSE
+  Apply the EXISTING §122 eligibility rule to the opened rows; measure their existing class
+  labels; feed the measured supply into local exact joint-feasibility analysis.
+FORBIDDEN PURPOSE
+  Provider execution; prompt development; semantic authoring of any kind; editing or
+  reinterpreting any label; redesigning the eligibility rule; freezing a cohort.
+
+RESERVED_MATERIAL_OPENED = TRUE
+RESERVED_SCOPE          = D86_GAUNTLET_OFFSETS_2_AND_3_ONLY
+PROVIDER_INVOCATION_COUNT = 0
+
+EXACT ROW IDENTIFIERS EXPOSED BY THIS OPENING
+
+  GAUNTLET_OFFSET_2  (37 rows, scenarioId ASCENDING)
+    SRC-MSHA-003
+    SRC-MSHA-007
+    SRC-MSHA-011
+    SRC-MSHA-015
+    SRC-MSHA-019
+    SRC-MSHA-028
+    SRC-MSHA-032
+    SRC-MSHA-036
+    SRC-MSHA-041
+    SRC-MSHA-045
+    SRC-MSHA-049
+    SRC-MSHA-053
+    SRC-MSHA-057
+    SRC-MSHA-061
+    SRC-MSHA-065
+    SRC-MSHA-069
+    SRC-OSHA-001
+    SRC-OSHA-005
+    SRC-OSHA-009
+    SRC-OSHA-013
+    SRC-OSHA-017
+    SRC-OSHA-021
+    SRC-OSHA-025
+    SRC-OSHA-029
+    SRC-OSHA-033
+    SRC-OSHA-037
+    SRC-OSHA-041
+    SRC-OSHA-045
+    SRC-OSHA-049
+    SRC-OSHA-1003
+    SRC-OSHA-1007
+    SRC-OSHA-1011
+    SRC-OSHA-1015
+    SRC-OSHA-1019
+    SRC-OSHA-1023
+    SRC-OSHA-1027
+    SRC-OSHA-1031
+
+  GAUNTLET_OFFSET_3  (37 rows, scenarioId ASCENDING)
+    SRC-MSHA-004
+    SRC-MSHA-008
+    SRC-MSHA-012
+    SRC-MSHA-016
+    SRC-MSHA-020
+    SRC-MSHA-029
+    SRC-MSHA-033
+    SRC-MSHA-037
+    SRC-MSHA-042
+    SRC-MSHA-046
+    SRC-MSHA-050
+    SRC-MSHA-054
+    SRC-MSHA-058
+    SRC-MSHA-062
+    SRC-MSHA-066
+    SRC-MSHA-070
+    SRC-OSHA-002
+    SRC-OSHA-006
+    SRC-OSHA-010
+    SRC-OSHA-014
+    SRC-OSHA-018
+    SRC-OSHA-022
+    SRC-OSHA-026
+    SRC-OSHA-030
+    SRC-OSHA-034
+    SRC-OSHA-038
+    SRC-OSHA-042
+    SRC-OSHA-046
+    SRC-OSHA-1000
+    SRC-OSHA-1004
+    SRC-OSHA-1008
+    SRC-OSHA-1012
+    SRC-OSHA-1016
+    SRC-OSHA-1020
+    SRC-OSHA-1024
+    SRC-OSHA-1028
+    SRC-OSHA-1032
+
+THIS OPENING IS IRREVERSIBLE. Both partitions are SPENT as of the timestamp above, whether or
+not the material proves useful. They may never be opened again for a different exam.

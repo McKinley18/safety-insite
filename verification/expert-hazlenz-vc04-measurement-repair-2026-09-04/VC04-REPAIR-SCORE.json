@@ -1,0 +1,88 @@
+{
+  "scoredAt": "2026-09-04T15:44:37.097Z",
+  "scope": "§158 VC-04 measurement repair, one hosted call, instrument repair only",
+  "providerCallsThisScript": 0,
+  "supersedes": {
+    "artifact": "VC04-REPAIR-RESULT.json",
+    "field": "partAScoring[5].detail (question 6)",
+    "reason": "the probe printed a fixed string asserting the §157 truncation condition reproduced. It did not: stop_reason was tool_use at 520 of 4000 tokens. The proposal is absent because the verdict was NO_CLARIFICATION_REQUIRED, under which the contract forbids one. The probe artifact is preserved unaltered; this record corrects the label."
+  },
+  "partAScoring": [
+    {
+      "id": "1. did the verifier nominate a previously unsupplied fact",
+      "answer": "NO",
+      "detail": "no nomination was emitted; the verdict returned was NO_CLARIFICATION_REQUIRED, under which the v2 contract forbids a nomination"
+    },
+    {
+      "id": "2. was the fact inside observation/evidence bounds",
+      "answer": "NOT_EXERCISED",
+      "detail": "no nomination to bound-check"
+    },
+    {
+      "id": "3. were both counterfactual branches supplied",
+      "answer": "NOT_EXERCISED",
+      "detail": "no nomination to carry branches"
+    },
+    {
+      "id": "4. did the decisions genuinely diverge under the existing authored truth",
+      "answer": "NOT_EXERCISED",
+      "detail": "authored truth records the divergence independently of this execution: \"If no function test was made after the guard was refitted, the debarker must come out of service until the interlock is proved, because nothing else stands between an opened guard and a turning rotor. A closed guard and a present switch look identical whether the interlock was tested or not.\""
+    },
+    {
+      "id": "5. was affectedDecision valid",
+      "answer": "NOT_EXERCISED",
+      "detail": "authored truth names REQUIRED_CONTROL"
+    },
+    {
+      "id": "6. was proposedClarification present",
+      "answer": "NO",
+      "detail": "ABSENT, AND CORRECTLY SO FOR THE VERDICT RETURNED. The v2 contract requires a proposal only on ADD_OR_REPLACE_CLARIFICATION and forbids one on NO_CLARIFICATION_REQUIRED. THIS IS NOT THE §157 TRUNCATION CONDITION: the response stopped at tool_use after 520 of 4000 permitted output tokens. The probe artifact VC04-REPAIR-RESULT.json carries a fixed string on this line that says the truncation condition reproduced; that string is wrong and this entry supersedes it."
+    },
+    {
+      "id": "7. did the contract accept the result",
+      "answer": "YES",
+      "detail": "admitted whole"
+    },
+    {
+      "id": "8. did any forbidden field change",
+      "answer": "NO",
+      "detail": "none of 14 forbidden fields present in the wire output"
+    }
+  ],
+  "instrumentRepair": {
+    "truncationRecurred": false,
+    "stopReason": "tool_use",
+    "outputTokensUsed": 520,
+    "outputTokensPermitted": 4000,
+    "HARNESS_TRUNCATION_DEFECT_REPAIRED": true
+  },
+  "semanticOutcome": {
+    "originalVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+    "originalSourceMode": "NOMINATED_FACT",
+    "originalOutputTokens": 1600,
+    "originalStopReason": "max_tokens",
+    "repairedVerdict": "NO_CLARIFICATION_REQUIRED",
+    "repairedSourceMode": null,
+    "repairedOutputTokens": 520,
+    "repairedStopReason": "tool_use",
+    "nominationReproduced": false,
+    "identicalInputAttestedByProvider": true,
+    "meteredInputTokensBothExecutions": 4598,
+    "againstFrozenTruth": {
+      "correctVerdict": "ADD_OR_REPLACE_CLARIFICATION",
+      "repairedVerdictMatches": false,
+      "selectorReachedOwedFact": null,
+      "owedFact": "whether the guard interlock was function-tested after the overnight rotor tooth change",
+      "TRUTH_AUTHORITY_CAVEAT": "the standard was authored by the model family being graded and has not been independently reviewed"
+    },
+    "DRAW_DISAGREEMENT_AT_N_EQUALS_2": "two executions of byte-identical input returned different verdicts. Recorded as an observation. It is not sufficient to characterise the verifier's nomination rate, and it is not evidence for or against the instruction-suppression hypothesis, which remains unexecuted."
+  },
+  "VC04_BOUNDED_NOMINATION_MECHANISM_HOSTED_DEMONSTRATED": false,
+  "VERIFIER_ARCHITECTURE_STATUS": "NOT_UPGRADED",
+  "historicalIntegrity": {
+    "section157RunRecordsUntouched": true,
+    "section157ScoresUntouched": true,
+    "originalTruncatedExecutionPreserved": "verification/expert-hazlenz-verifier-v2-remediation-2026-09-04/VERIFIER-V2-RUN-RECORDS.jsonl",
+    "repairedExecutionPreserved": "verification/expert-hazlenz-vc04-measurement-repair-2026-09-04/VC04-REPAIR-RUN-RECORD.jsonl"
+  }
+}

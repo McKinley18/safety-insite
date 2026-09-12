@@ -1,0 +1,103 @@
+FORMAL EXPERT HAZLENZ EVALUATION -- EXECUTION
+§136. P4 authorization received. Nothing has been spent yet.
+
+A. PRE-SPEND HARD GATE -- no provider constructed, no request issued
+
+    1. PASS  cohort ID matches exactly                          hazlenz.expert.formal.cohort.65.v1+d7c8f9c15f0a
+    2. PASS  manifest SHA-256 matches exactly                   1da79ff32bd6e9b194c3b230091a6560068b260c8f7004e03ed9e6435a2b31e3
+    3. PASS  row count = 65                                     65
+    4. PASS  selection hash matches                             ee57d5dad456b9009d46...
+    5. PASS  row order matches                                  
+    6. PASS  all corpus/truth/provenance hashes match           
+    7. PASS  governed attachment mapping hash matches           
+    8. PASS  provider = anthropic                               
+    9. PASS  exact bound model = claude-sonnet-5                claude-sonnet-5
+   10. PASS  prompt identity/hash matches frozen manifest       hazlenz.expert.prompt.v6
+   11. PASS  input/analysis/validator/scorer/measurement/row/harness match 
+   12. PASS  deterministic projection enabled in the permanent path 
+   13. PASS  PLANNED_LOGICAL_CALLS = 195                        
+   14. PASS  GLOBAL_RETRY_REQUEST_BUDGET = 20                   
+   15. PASS  HARD_PROVIDER_REQUEST_CEILING = 215                
+   16. PASS  HARD_SPEND_CEILING_USD = 22.36                     worstCaseRequestUsd $0.104000
+   17. PASS  frozen retry causes and max-one-retry semantics match 
+   18. PASS  provider credential is available                   presence only; value never read into the report
+   19. PASS  provider-request ceiling enforcement is active     
+   20. PASS  prospective spend enforcement is active            
+   21. PASS  per-attempt telemetry persistence is active        2 attempts, cause TIMEOUT
+   22. PASS  model override mismatch protection is active       EXECUTION_IDENTITY_MISMATCH
+   23. PASS  TRUTH_LEAK = 0                                     0
+   24. PASS  corpus semantic validation remains green           0 row problems
+   25. PASS  no semantic corpus mutation after freeze           290df2f78b66b41909c8...
+   26. PASS  no prompt/schema/scorer/normalizer/projection mutation after freeze 
+   27. PASS  no additional reserved material opened after freeze realism offsets 1 and 2 still RESERVED
+   28. PASS  P4_PRESPEND_AUTHORIZATION = TRUE                   
+
+   PRE-SPEND GATE: PASS  (28/28)
+   provider requests issued so far: 0  (the replay probes above touch no network)
+
+B. FIRST-CALL SPEND BOUNDARY
+
+   runId             formal-run-65523fbb-eea3-4322-a47b-632fa2eae341
+   firstSpendUtc     2026-09-02T00:41:23Z
+   run record FLUSHED to disk (fsync) before the first request
+
+   *** FORMAL_COHORT_SPENT = TRUE from the next line onward. IRREVERSIBLE. ***
+
+C. RUN COMPLETE
+
+   stopReason                    COMPLETED
+   elapsed                       3793s
+   logical calls started         195 / 195
+   logical calls completed       195
+   provider requests attempted   195 / 215
+   retry requests                0 / 20
+   retries refused by budget     0
+   input tokens                  1,846,749
+   output tokens                 323,674
+   ACTUAL SPEND                  $6.9302 of $22.36
+   margin remaining              $15.4298
+   latency p50 / p95 / max       17896 / 31203 / 168183 ms
+   integrity hashes unchanged    true
+
+   FAILURE TOTALS BY CLASS
+     none
+
+D. MEASURES
+
+   M01_ADDITIVE_HAZARD_RECALL                 MEASURED          0.8462  44 / 52
+   M02_EXPERT_CANDIDATE_FALSE_POSITIVES       MEASURED          0.1250  11 / 88
+   M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY MEASURED          0.0000  0 / -
+   M04_LIFE_CRITICAL_RETENTION                MEASURED          1.0000  10 / 10
+   M05_FABRICATED_CITATIONS                   MEASURED          2.0000  2 / -
+   M06_UNSUPPORTED_REGULATORY_ASSERTIONS      UNMEASURED      -  - / -
+       reason: 9 detected regulatory statement(s) are unadjudicated; a HARD_GATE with an incomplete adjudication queue is UNMEASURED and therefore fails
+   M07_GOVERNED_RECORD_GROUNDING              UNMEASURED      -  - / -
+       reason: 9 detected regulatory statement(s) are unadjudicated; a HARD_GATE with an incomplete adjudication queue is UNMEASURED and therefore fails
+   M08_GOVERNED_PROVENANCE_INTEGRITY          MEASURED          0.0000  0 / -
+   M09_CLARIFICATION_QUALITY                  UNMEASURED      -  - / -
+       reason: 165 emitted clarification(s) are unadjudicated; a HARD_GATE with an incomplete adjudication queue is UNMEASURED and therefore fails
+   M10_UNNECESSARY_QUESTION_RATE              MEASURED          0.8444  38 / 45
+   M11_CROSS_HAZARD_REASONING                 MEASURED          0.4545  5 / 11
+   M12_INTERNAL_INCOHERENCE                   MEASURED          0.1719  11 / 64
+   M13_PROVIDER_CALLABILITY                   MEASURED          1.0000  195 / 195
+   M14_ORDER_SENSITIVITY                      MEASURED          0.9219  59 / 64
+   M15_LATENCY_P95                            MEASURED        31203.0000  31203 / -
+   M16_COST_PER_ROW                           MEASURED          0.1066  6.930238000000001 / 65
+   M17_CROSS_PROCESS_REPRODUCIBILITY          NO_OPPORTUNITY  -  0 / 0
+       reason: the cohort supplied no eligible opportunity; reported rather than scored
+
+   FAMILY VERDICTS
+     SAFETY                   PASS
+     REGULATORY_INTEGRITY     FAIL   failed: M05_FABRICATED_CITATIONS, M06_UNSUPPORTED_REGULATORY_ASSERTIONS, M07_GOVERNED_RECORD_GROUNDING
+     REASONING_QUALITY        FAIL   failed: M09_CLARIFICATION_QUALITY, M10_UNNECESSARY_QUESTION_RATE, M12_INTERNAL_INCOHERENCE
+     RELIABILITY              FAIL   failed: M14_ORDER_SENSITIVITY
+
+   UNMEASURED       M06_UNSUPPORTED_REGULATORY_ASSERTIONS, M07_GOVERNED_RECORD_GROUNDING, M09_CLARIFICATION_QUALITY
+   NO_OPPORTUNITY   M17_CROSS_PROCESS_REPRODUCIBILITY
+   adjudication queue size: 174 (unadjudicated)
+
+CONFINEMENT
+  PRODUCTION_ACCESS = FALSE   DATABASE_ACCESS = FALSE   DEPLOYMENT = FALSE
+  CUSTOMER_ACTIVATION = FALSE  COMMIT = FALSE  PUSH = FALSE  TAG = FALSE
+  FORMAL_COHORT_SPENT = TRUE   RESERVED_MATERIAL_OPENED_THIS_RUN = FALSE
+  PROVIDER_INVOCATION_COUNT = 195

@@ -1,0 +1,12 @@
+EXPERT HAZLENZ — HOSTED TRANSPORT PROBE
+provider   anthropic   model claude-sonnet-5
+contract   hazlenz.expert.analysis.v2   prompt hazlenz.expert.prompt.v3
+thinking   disabled   max_tokens 8000
+ceiling    8 calls   $3.00
+worst/call $0.0900   worst total $0.6300
+planned    7 calls
+
+pre-flight  both grounding anchors verified verbatim in their sources
+
+BLOCKED — ANTHROPIC_API_KEY is not reachable. No call attempted, $0.00 spent.
+Terminal: EXPERT_HAZLENZ_HOSTED_TRANSPORT_PROBE_BLOCKED — VALID_HOSTED_PROVIDER_CREDENTIAL_REQUIRED

@@ -1,0 +1,18 @@
+{
+  "artifact": "SECTION_192_RUN_EXECUTION_SUMMARY",
+  "preregistrationSha256": "68ba7ffa80fd8d111760cb628bff2493f46181cb41c124da2e0614e365f13267",
+  "plannedCalls": 39,
+  "attempted": 39,
+  "stopReason": null,
+  "spendAccounting": {
+    "actualProviderSpendUsd": 0.87129,
+    "budgetReservedUsd": 0.87129,
+    "callsAttempted": 39,
+    "callsWithNoProviderUsage": 0,
+    "syntheticReservationUsd": 0,
+    "accountingRule": "ACTUAL SPEND = provider-returned usage only; a call reporting no usage adds zero. BUDGET RESERVED = actual spend plus the frozen worst case for every call that reported no usage. The reserved figure governs the ceiling and is never reported as money spent."
+  },
+  "ACTUAL_PROVIDER_SPEND_USD": 0.87129,
+  "spendCeilingUsd": 3.25,
+  "hardCallCap": 44
+}

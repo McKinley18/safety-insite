@@ -1,0 +1,48 @@
+WORKTREE STATE -- EXPERT HAZLENZ FORMAL COHORT INFRASTRUCTURE (2026-08-31)
+
+HEAD:      37a5d1b50abe836eb19dd24ee18ad10557bda131
+BRANCH:    main
+ORIGIN:    de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+AHEAD/BEHIND vs origin/main (left=origin,right=HEAD): 0	1
+STAGED:    0
+TRACKED MODIFIED: 14
+STASHES:   4
+TAGS:      24
+
+== TRACKED MODIFIED ==
+backend/package.json
+backend/scripts/probe-expert-routing.ts
+backend/scripts/test-expert-contract-foundation.ts
+backend/scripts/test-expert-routing-contract.ts
+backend/src/safescope-v2/evidence/evidence-foundation.ts
+backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts
+docs/INSITE_CURRENT_STATE.json
+docs/INSITE_ENGINEERING_BLUEPRINT.md
+frontend-next/tsconfig.json
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+
+== ONLY TRACKED FILE THIS OPERATION MODIFIED: backend/package.json (+2 script lines) ==
+ backend/package.json | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+== FILES ADDED BY THIS OPERATION (all new, none overwritten) ==
+  ??  backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts
+  ??  backend/src/safescope-v2/expert-hazlenz/expert-cohort-contract.ts
+  ??  backend/src/safescope-v2/expert-hazlenz/expert-input-constructor.ts
+  ??  backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts
+  ??  backend/src/safescope-v2/expert-hazlenz/expert-cohort-composition.ts
+  ??  backend/src/safescope-v2/expert-hazlenz/fixtures/cohort-validation-fixtures.ts
+  ??  backend/scripts/lib/expert-cohort-harness.ts
+  ??  backend/scripts/test-expert-cohort-instrument.ts
+  ??  backend/scripts/analyze-reserved-cohort-sufficiency.ts
+
+== BYTE-UNCHANGED PROOF (hashes identical to operation start) ==
+e02c15ea2f9439def5cef2ba0b00cda3cb892bf1e85fef3bb9a461f3b36cf458  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+f1cc7a61cf957a45449274eaa1763fece0bd9cfee095a636421cd5a0ff88e467  backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts
+0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+84a79c08e379b3ca3adeea9cb63439ddf617bcef869773a65c9668a3d730b5ab  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts

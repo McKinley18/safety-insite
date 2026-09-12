@@ -1,0 +1,397 @@
+{
+  "artifact": "SECTION_179_PRE_SPEND_PREREGISTRATION",
+  "writtenBeforeFirstProviderCall": true,
+  "operation": "§179 replicated hosted development validation of frozen v15 clarification behaviour",
+  "1_provider_model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10,
+    "expectedReturnedModelIdentity": "claude-sonnet-5",
+    "returnedModelIsAsserted": "every execution records telemetry.respondedModel; a mismatch is recorded, never corrected"
+  },
+  "2_prompt_identity": {
+    "promptVersion": "hazlenz.expert.prompt.v15",
+    "systemPromptSha256": "20979d90c0fe0b81843d75edeb1c7d01c637f95ad76be877e6ea44d390b42979",
+    "systemPromptChars": 38377,
+    "promptFileSha256": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+    "frozenAt": "§178"
+  },
+  "3_contract_schema": {
+    "analysisContractVersion": "hazlenz.expert.analysis.v2",
+    "inputContractVersion": "hazlenz.expert.input.v1",
+    "validatorVersion": "hazlenz.expert.validator.v1",
+    "wireSchemaSha256": "96ceed875bc2ff8af2a67b171b2e1fddc4eaae9932ac18f30a9e81202ea80bf5"
+  },
+  "4_frozen_rows": [
+    {
+      "id": "HR-01",
+      "textSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-02",
+      "textSha256": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-03",
+      "textSha256": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-04",
+      "textSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-05",
+      "textSha256": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-06",
+      "textSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-07",
+      "textSha256": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b",
+      "truthRequired": false
+    },
+    {
+      "id": "HR-08",
+      "textSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-09",
+      "textSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef",
+      "truthRequired": true
+    },
+    {
+      "id": "HR-10",
+      "textSha256": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed",
+      "truthRequired": false
+    }
+  ],
+  "5_frozen_truth": {
+    "source": "verification/expert-hazlenz-balanced-clarification-instrument-2026-09-05/HUMAN-ADJUDICATION-RECORD.json",
+    "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "AI_ASSISTED_STRICT_ADJUDICATION": true,
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "requiredRows": [
+      "HR-01",
+      "HR-04",
+      "HR-06",
+      "HR-08",
+      "HR-09"
+    ],
+    "silenceRows": [
+      "HR-02",
+      "HR-03",
+      "HR-05",
+      "HR-07",
+      "HR-10"
+    ],
+    "mutationAllowed": false
+  },
+  "6_executions_per_row": 3,
+  "7_execution_order": {
+    "method": "three interleaved blocks; each block a Fisher-Yates shuffle of the ten row ids under mulberry32 seeded from the first 8 hex characters of the frozen v15 SYSTEM_PROMPT_SHA256; a block whose first row equals the previous block's last row is rotated left one position and re-checked. Fully deterministic and reproducible from the identity alone.",
+    "seedHex": "20979d90",
+    "constraintsAsserted": [
+      "every row occurs exactly three times",
+      "each row carries replicate numbers 1, 2 and 3",
+      "no row occurs twice consecutively"
+    ],
+    "frozenOrder": [
+      {
+        "sequencePosition": 1,
+        "rowId": "HR-09",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 2,
+        "rowId": "HR-10",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 3,
+        "rowId": "HR-08",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 4,
+        "rowId": "HR-06",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 5,
+        "rowId": "HR-01",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 6,
+        "rowId": "HR-07",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 7,
+        "rowId": "HR-02",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 8,
+        "rowId": "HR-05",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 9,
+        "rowId": "HR-03",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 10,
+        "rowId": "HR-04",
+        "replicateNumber": 1,
+        "block": 1,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 11,
+        "rowId": "HR-06",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 12,
+        "rowId": "HR-02",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 13,
+        "rowId": "HR-10",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 14,
+        "rowId": "HR-03",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 15,
+        "rowId": "HR-07",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 16,
+        "rowId": "HR-09",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 17,
+        "rowId": "HR-04",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 18,
+        "rowId": "HR-05",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 19,
+        "rowId": "HR-08",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 20,
+        "rowId": "HR-01",
+        "replicateNumber": 2,
+        "block": 2,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 21,
+        "rowId": "HR-06",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 22,
+        "rowId": "HR-08",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 23,
+        "rowId": "HR-07",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 24,
+        "rowId": "HR-04",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 25,
+        "rowId": "HR-09",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 26,
+        "rowId": "HR-01",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 27,
+        "rowId": "HR-02",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 28,
+        "rowId": "HR-03",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 29,
+        "rowId": "HR-05",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      },
+      {
+        "sequencePosition": 30,
+        "rowId": "HR-10",
+        "replicateNumber": 3,
+        "block": 3,
+        "rotatedBy": 0
+      }
+    ]
+  },
+  "8_scoring_rules": {
+    "SILENCE_EXECUTION": "EXACT AND MECHANICAL. Frozen truth owes nothing on a SILENCE row, so an execution is correct iff it normalized VALID and emitted ZERO clarifications. An independently plausible but displaced question is still a precision failure. A contract failure or REJECTED normalization is NEVER counted as silence.",
+    "REQUIRED_EXECUTION_LOOSE": "MECHANICAL UPPER BOUND. Correct iff the execution normalized VALID and emitted at least one clarification. This does NOT establish that the question addressed the owed fact and must never be promoted to strict.",
+    "REQUIRED_EXECUTION_STRICT": "NOT COMPUTED BY THIS SCRIPT. Requires human semantic adjudication of each emitting execution independently. Every emitted clarification is exported verbatim per execution. This model does not decide it.",
+    "contractFailureHandling": "recorded as CONTRACT_FAILURE, scored as no clarification emitted on a REQUIRED row and as NOT-silence on a SILENCE row. Never silently retried, never dropped."
+  },
+  "9_aggregation": {
+    "executionLevel": [
+      "REQUIRED_STRICT_PASS_RATE = strictly correct REQUIRED executions / 15 (pending adjudication)",
+      "REQUIRED_LOOSE_PASS_RATE = emitting REQUIRED executions / 15 (mechanical upper bound)",
+      "SILENCE_PASS_RATE = correct SILENCE executions / 15 (mechanical, exact)",
+      "OVERALL_EXECUTION_ACCURACY = correct executions / 30"
+    ],
+    "rowLevel": "each row reported as 0/3, 1/3, 2/3 or 3/3 correct, always beside the pooled figure",
+    "withinRowDisagreement": "a row is internally disagreeing if its three executions do not share the same semantic PASS/FAIL result. WITHIN_ROW_DISAGREEMENT_COUNT is reported explicitly and instability is never hidden inside an aggregate percentage.",
+    "forbidden": "majority-voting a disagreeing row into a clean pass; discarding a minority execution as an outlier"
+  },
+  "10_retry_policy": {
+    "retries": 0,
+    "note": "zero. A failed call is recorded as a failure and counts against the cap."
+  },
+  "11_caps": {
+    "plannedInvocations": 30,
+    "hardProviderInvocationCap": 36,
+    "dollarHardCapUsd": 3,
+    "worstCasePerCallUsd": 0.104,
+    "onExceeding": "STOP and report INCOMPLETE replicated validation. The replicate count is NEVER silently reduced after spend begins."
+  },
+  "12_success_criteria": {
+    "note": "preregistered DEVELOPMENT evidence, not a statistical population claim",
+    "HR04_strictPass": ">= 2/3 — 1/3 is unstable and does NOT confirm; 0/3 is failure to confirm; 3/3 is strong development evidence",
+    "REQUIRED_STRICT_PASS": ">= 12/15",
+    "SILENCE_EXECUTION_PASS": ">= 13/15",
+    "noSilenceRowFails": "no SILENCE row may fail 2 or more of its 3 executions",
+    "noRequiredRegression": "no previously recovered REQUIRED row (HR-01, HR-06, HR-08, HR-09) may fall below 2/3",
+    "contractFailures": 0,
+    "normalizationRejected": 0,
+    "interpretability": "provider execution evidence must remain interpretable"
+  },
+  "13_causal_boundary": {
+    "establishable": [
+      "V15_REPLICATED_BEHAVIOR",
+      "V15_REMEDIATION_BEHAVIORALLY_CONFIRMED if the criteria are met"
+    ],
+    "notEstablishable": [
+      "CAUSAL_EFFECT_SIZE_V14_TO_V15",
+      "PRECISION_IMPROVEMENT_CAUSED_BY_V15"
+    ],
+    "why": "no replicated v14 comparator exists. §175 and §177 were one execution per row.",
+    "strongestPermittedClaim": "At frozen Expert prompt v15 and the tested hosted provider/model, the §179 three-replicate development instrument met the preregistered clarification recall and silence-precision stability criteria."
+  },
+  "14_no_post_hoc_tuning": "after the first provider call, no change to prompt, schema, normalizer, verifier, arbitration, scorer, thresholds, truth, row text, execution order, aggregation or success criteria. A defect discovered mid-run preserves evidence and stops; it is never repaired and continued inside the same experiment.",
+  "15_provenance_limitation": {
+    "sharedAuthorship": "Claude authored the rows; GPT-5.6 Sol reviewed before owner finalization; Expert HazLenz is Claude-family. A high score does NOT remove provenance uncertainty.",
+    "ifAllThirtyCorrect": "PERFECT_REPLICATED_DEVELOPMENT_CONCORDANCE = TRUE. Do NOT call the system formally validated. A provenance-independent challenge remains required.",
+    "truthIsNotRedefined": "frozen verdicts are never edited to agree with Expert"
+  },
+  "uniformInputDecision": {
+    "allowedHazardFamilies": [
+      "confined_space",
+      "conveyors",
+      "fire_explosion",
+      "guarding_interlocks",
+      "machine_guarding",
+      "suspended_loads"
+    ],
+    "derivation": "union of families the real deterministic decomposer emits across the ten frozen observations; IDENTICAL for every row and every replicate, so it cannot separate the classes",
+    "jurisdiction": "osha-general-industry",
+    "inspectionContext": "location null, task null, for every execution",
+    "governedStandards": "none supplied, for every execution",
+    "unchangedFrom": "§175 and §177, so the input is not a new variable in this comparison"
+  }
+}

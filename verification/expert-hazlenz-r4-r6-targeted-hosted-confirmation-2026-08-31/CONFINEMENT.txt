@@ -1,0 +1,22 @@
+CONFINEMENT — R4/R6 TARGETED HOSTED CONFIRMATION, 2026-08-31
+
+A. controllers/services/modules referencing the Expert module:
+   NONE (0 matches)
+
+B. frontend references:
+   NONE (0 matches)
+
+C. importers of the HOSTED (Anthropic) adapter (construct match):
+backend/scripts/test-expert-anthropic-adapter-repair.ts:15:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+backend/scripts/diagnose-anthropic-schema-compatibility.ts:46:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+backend/scripts/diagnose-r4-r6-local-repair.ts:31:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+backend/scripts/probe-expert-hosted-transport.ts:37:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+backend/scripts/probe-expert-hosted-r4-r6-targeted-confirmation.ts:43:} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+
+D. did this phase modify any production/customer or Expert-core file? (git diff since session start)
+ .../expert-hazlenz/expert-contract.types.ts        |  28 ++++
+ .../expert-hazlenz/expert-normalization.ts         |  70 +++++++++
+ .../safescope-v2/expert-hazlenz/expert-prompt.ts   | 156 +++++++++++++++++----
+ .../expert-hazlenz/fixtures/no-call-scenarios.ts   |   6 +
+ 4 files changed, 229 insertions(+), 31 deletions(-)
+   (0 files changed vs. the pre-existing §105-108 working-tree diff means this phase touched none of it further)

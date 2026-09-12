@@ -1,0 +1,165 @@
+{
+  "frozenRequirements": {
+    "GOVERNED_RECORD_SUPPLIED": {
+      "minimum": 40,
+      "preferred": 48
+    },
+    "NO_GOVERNED_RECORD": {
+      "minimum": 8,
+      "preferred": 12
+    },
+    "CLARIFICATION_NOT_OWED": {
+      "minimum": 14,
+      "preferred": 20
+    },
+    "CLARIFICATION_OWED": {
+      "minimum": 20,
+      "preferred": 30
+    },
+    "FORBIDDEN_FAMILY_NEGATIVE_CONTROL": {
+      "minimum": 48,
+      "preferred": 60
+    },
+    "LIFE_CRITICAL_PRESENT": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "CROSS_HAZARD_INTERACTION": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "DETERMINISTIC_MISS_RECALL_OPPORTUNITY": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "MULTI_HAZARD": {
+      "minimum": 12,
+      "preferred": 20
+    },
+    "NEGATED_OR_SAFE_STATE": {
+      "minimum": 10,
+      "preferred": 15
+    },
+    "DISAGREEMENT_OPPORTUNITY": {
+      "minimum": 6,
+      "preferred": 10
+    },
+    "DETERMINISTIC_HAZARD_PRESENT": {
+      "minimum": 30,
+      "preferred": 40
+    }
+  },
+  "cohortSizePolicy": {
+    "targetRows": 60,
+    "minimumDefensibleRows": 48,
+    "supplementalCount": "EXACTLY 60 minus the number of eligible reserved rows selected",
+    "hardCeiling": 60,
+    "onInsufficiency": "If 60 rows cannot satisfy every frozen composition requirement, STOP and report the exact reason. The cohort is NEVER silently enlarged and a requirement is NEVER relaxed."
+  },
+  "ledger": [
+    {
+      "caseClass": "CLARIFICATION_OWED",
+      "required": 20,
+      "availableWithoutReserve": 25,
+      "availableWithReserve": 25,
+      "status": "ok"
+    },
+    {
+      "caseClass": "CLARIFICATION_NOT_OWED",
+      "required": 14,
+      "availableWithoutReserve": 127,
+      "availableWithReserve": 201,
+      "status": "ok"
+    },
+    {
+      "caseClass": "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+      "required": 48,
+      "availableWithoutReserve": 44,
+      "availableWithReserve": 115,
+      "status": "ok"
+    },
+    {
+      "caseClass": "CROSS_HAZARD_INTERACTION",
+      "required": 10,
+      "availableWithoutReserve": 17,
+      "availableWithReserve": 17,
+      "status": "ok"
+    },
+    {
+      "caseClass": "MULTI_HAZARD",
+      "required": 12,
+      "availableWithoutReserve": 61,
+      "availableWithReserve": 135,
+      "status": "ok"
+    },
+    {
+      "caseClass": "LIFE_CRITICAL_PRESENT",
+      "required": 10,
+      "availableWithoutReserve": 72,
+      "availableWithReserve": 120,
+      "status": "ok"
+    },
+    {
+      "caseClass": "NEGATED_OR_SAFE_STATE",
+      "required": 10,
+      "availableWithoutReserve": 45,
+      "availableWithReserve": 45,
+      "status": "ok"
+    },
+    {
+      "caseClass": "DETERMINISTIC_HAZARD_PRESENT",
+      "required": 30,
+      "availableWithoutReserve": 123,
+      "availableWithReserve": 197,
+      "status": "ok"
+    },
+    {
+      "caseClass": "DETERMINISTIC_MISS_RECALL_OPPORTUNITY",
+      "required": 10,
+      "availableWithoutReserve": 33,
+      "availableWithReserve": 33,
+      "status": "ok"
+    },
+    {
+      "caseClass": "GOVERNED_RECORD_SUPPLIED",
+      "required": 40,
+      "availableWithoutReserve": "ATTACHMENT",
+      "availableWithReserve": "ATTACHMENT",
+      "status": "SATISFIABLE_BY_ATTACHMENT"
+    },
+    {
+      "caseClass": "NO_GOVERNED_RECORD",
+      "required": 8,
+      "availableWithoutReserve": "ATTACHMENT",
+      "availableWithReserve": "ATTACHMENT",
+      "status": "SATISFIABLE_BY_ATTACHMENT"
+    },
+    {
+      "caseClass": "DISAGREEMENT_OPPORTUNITY",
+      "required": 6,
+      "availableWithoutReserve": "ATTACHMENT",
+      "availableWithReserve": "ATTACHMENT",
+      "status": "SATISFIABLE_BY_ATTACHMENT"
+    }
+  ],
+  "poolRowCount": 226,
+  "poolRowCountWithoutReserve": 152,
+  "feasibility": {
+    "rule": "H >= |OWED| + |FORBIDDEN| - |OWED n FORBIDDEN|  =>  overlap >= O + F - H",
+    "O": 20,
+    "F": 48,
+    "H": 60,
+    "requiredOverlap": 8,
+    "availableOverlapOpenPool": 3,
+    "availableOverlapIncludingReserve": 3,
+    "overlapRowIds": [
+      "AUG-10",
+      "AUG-11",
+      "SEM-30"
+    ],
+    "maxAchievableForbiddenAtMinimumOwed": 43,
+    "feasible": false
+  },
+  "reservedMaterialOpened": false,
+  "providerInvocationCount": 0
+}

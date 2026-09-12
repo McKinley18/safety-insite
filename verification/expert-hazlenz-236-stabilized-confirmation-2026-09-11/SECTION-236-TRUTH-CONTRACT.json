@@ -1,0 +1,438 @@
+{
+  "artifact": "SECTION-236-TRUTH-CONTRACT",
+  "version": "hazlenz.expert.236.stabilized-confirmation.v1",
+  "frozenBeforeAnyProviderCall": true,
+  "mayBeAuthoredOrAlteredAfterExecutionBegins": false,
+  "truthAxis": "IS THE SAFETY PROPERTY THAT CONTROLS CONTINUED WORK ESTABLISHED OR UNRESOLVED? ESTABLISHED and safe with no new control owed -> CONTINUE. ESTABLISHED and safe only once a NEW control is in effect -> CONTINUE_WITH_CONTROLS. UNRESOLVED and its resolution controls continuation -> HOLD_PENDING_VERIFICATION. ESTABLISHED and unsafe, requiring cessation or isolation -> STOP.",
+  "frozenDisambiguation": "carried forward from §234 verbatim: a control counts towards CONTINUE_WITH_CONTROLS only if it is NOT CURRENTLY IN EFFECT and must be put in effect because of the analysed condition.",
+  "postureCounts": {
+    "CONTINUE": 2,
+    "CONTINUE_WITH_CONTROLS": 2,
+    "HOLD_PENDING_VERIFICATION": 2,
+    "STOP": 3
+  },
+  "cessationExpectationCounts": {
+    "MUST_BE_EMPTY": 6,
+    "MUST_BE_POPULATED": 3
+  },
+  "perCase": [
+    {
+      "caseId": "A1",
+      "category": "WIRE_ARRIVAL_STRESS",
+      "sector": "AGRICULTURAL_ANAEROBIC_DIGESTION",
+      "decisionUnderAnalysis": "whether biogas may be admitted to the engine and the gas train opened",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "controllingSafetyProperty": "whether the in-line flame arrestor is fitted in the digester gas line to the engine",
+      "controllingPropertyState": "UNRESOLVED",
+      "expectedCessationList": "MUST_BE_EMPTY",
+      "expectedCessationDriver": null,
+      "activeWorkState": {
+        "workInProgress": false,
+        "peopleCurrentlyExposed": false,
+        "description": "the engine is on standby and the gas train is isolated; nobody is on the plant and no gas is flowing to the engine"
+      },
+      "controlsAlreadyInPlace": [
+        "double block and bleed isolation on the gas train",
+        "a proved flare",
+        "fixed hydrogen sulphide detection in the pump room",
+        "a fenced and locked compound",
+        "trained operators"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": false,
+      "requiredResumeCondition": "the presence and correct fitment of the flame arrestor in the gas line confirmed, from the service company return documentation or by breaking the joint and inspecting, before gas is admitted to the engine",
+      "legitimateSeparateUnresolvedProperties": [
+        "whether the new hydrogen sulphide sampling point was commissioned",
+        "whether the gas holder relief valve is within its service interval"
+      ],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "admitting biogas to an engine when it cannot be established that the flame arrestor is fitted is not supported by current evidence. The arrestor is the barrier against flame propagation back to the digester.",
+        "CONTINUE_WITH_CONTROLS": "no control substitutes for knowing whether the barrier is in the line. Purging, monitoring or a fire watch do not establish the property that governs admitting gas.",
+        "STOP": "nothing established requires cessation or withdrawal. The engine is on standby, the gas train is isolated, nobody is exposed, and the question is settled by a document or by opening one joint."
+      },
+      "truthAnchors": [
+        "The service company paperwork has not arrived",
+        "cannot be seen without breaking the joint",
+        "The engine is on standby and the gas train is isolated"
+      ],
+      "establishedFacts": [
+        "the arrestor was removed for service and the return is not evidenced",
+        "the housing cannot be inspected without breaking the joint",
+        "the engine is on standby and the gas train is isolated at the double block and bleed",
+        "the flare is available and was proved this week",
+        "the gas holder is at forty per cent and the compound is fenced and locked"
+      ],
+      "expectedCandidateCountAtLeast": 4,
+      "expectedDeclarationCountAtLeast": 2
+    },
+    {
+      "caseId": "A2",
+      "category": "WIRE_ARRIVAL_STRESS",
+      "sector": "POULTRY_PROCESSING",
+      "decisionUnderAnalysis": "whether the processing line may continue running with operatives crossing the scalder walkway",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "controllingSafetyProperty": "whether operatives crossing the scalder walkway are protected from hot standing water underfoot",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_EMPTY",
+      "expectedCessationDriver": null,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "six operatives cross the affected walkway every few minutes while the line runs"
+      },
+      "controlsAlreadyInPlace": [
+        "a tested scalder high temperature cut-out",
+        "real time peracetic acid monitoring at the breathing zone",
+        "the untrained operative moved off the respirator task",
+        "a scheduled seal repair"
+      ],
+      "newControlsRequired": [
+        "clear the blocked drain and remove the standing water now",
+        "barrier or reroute the walkway between the killing line and the defeathering machines until the seal is replaced",
+        "add a check of that bay at intervals through the shift"
+      ],
+      "verificationMayOccurConcurrentlyWithWork": true,
+      "requiredResumeCondition": null,
+      "legitimateSeparateUnresolvedProperties": [
+        "whether the altered chiller extraction meets its design airflow",
+        "whether the moved operative has a valid face fit for the respirator issued to her"
+      ],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "hot standing water on a walkway crossed every few minutes is not acceptable as it stands. A drain clear and a barrier are new controls, not existing ones.",
+        "HOLD_PENDING_VERIFICATION": "nothing decision-controlling is open. The exposure is measured now, the source is identified and the repair is scheduled, and the two open questions bear on later decisions rather than on whether the line runs today.",
+        "STOP": "clearing the drain and barriering the walkway make the crossing acceptable. Stopping the line is unnecessary restriction."
+      },
+      "truthAnchors": [
+        "the water is standing about five millimetres deep",
+        "at 0.09 parts per million",
+        "she has been moved to the packing station for today"
+      ],
+      "establishedFacts": [
+        "hot water is standing about five millimetres deep on a walkway crossed every few minutes",
+        "the drain in that bay is partly blocked",
+        "the scalder high temperature cut-out is tested and signed",
+        "peracetic acid is measured this morning at roughly a quarter of the limit at the breathing zone",
+        "the operative without a face fit record has been moved off the respirator task today",
+        "the seal repair is scheduled and on the issued shutdown list"
+      ],
+      "expectedCandidateCountAtLeast": 4,
+      "expectedDeclarationCountAtLeast": 2
+    },
+    {
+      "caseId": "A3",
+      "category": "WIRE_ARRIVAL_STRESS",
+      "sector": "DISTILLING",
+      "decisionUnderAnalysis": "whether the spirit run may continue as the still house is set up",
+      "expectedPosture": "CONTINUE",
+      "controllingSafetyProperty": "whether a flammable atmosphere can be present and ignited in the still house during this run",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_EMPTY",
+      "expectedCessationDriver": null,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "two trained stillmen are working a spirit run in a classified area whose atmosphere was tested to zero this morning"
+      },
+      "controlsAlreadyInPlace": [
+        "a current hazardous area classification with routine gas testing",
+        "tested earth continuity on the filling line",
+        "a function tested emergency shutdown",
+        "a running permit system",
+        "two trained stillmen"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": null,
+      "requiredResumeCondition": null,
+      "legitimateSeparateUnresolvedProperties": [
+        "whether the tun room booster pump installation was assessed against the area classification",
+        "whether the spirit receiver overfill alarm is within its proof test schedule"
+      ],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE_WITH_CONTROLS": "everything that makes the run acceptable is already in effect and evidenced, and neither open question bears on this run. Restating the existing regime as a required immediate control reports established state as new restriction.",
+        "HOLD_PENDING_VERIFICATION": "neither unknown controls today. The booster pump is thirty metres away in an unclassified area behind a fire door, and an overfill cannot be reached by a run adding nine hundred litres into six thousand litres of headroom.",
+        "STOP": "nothing established requires cessation. The area tested gas free at all four routine points and the earthing and shutdown certificates are current."
+      },
+      "truthAnchors": [
+        "read zero at all four marked points",
+        "thirty metres away behind a fire door and is not a classified area",
+        "nine hundred litres against six thousand litres of headroom"
+      ],
+      "establishedFacts": [
+        "the gas test this morning read zero at all four marked points",
+        "the earth continuity certificate is current and in the file",
+        "the emergency shutdown was function tested at the same inspection",
+        "the booster pump is thirty metres away behind a fire door in an unclassified area",
+        "the run adds nine hundred litres into six thousand litres of headroom"
+      ],
+      "expectedCandidateCountAtLeast": 3,
+      "expectedDeclarationCountAtLeast": 2
+    },
+    {
+      "caseId": "B1",
+      "category": "ESTABLISHED_PROPERTY_TRAP",
+      "sector": "COLD_CHAIN_LOGISTICS",
+      "decisionUnderAnalysis": "whether picking may continue in aisle four beneath the evaporator",
+      "expectedPosture": "STOP",
+      "controllingSafetyProperty": "whether an eight hundred kilogram suspended unit with two failed and one cracked support remains secure above an occupied aisle",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_POPULATED",
+      "expectedCessationDriver": "the ceiling suspended evaporator with two failed brackets, a cracked third bracket and a measured drop, hanging above an occupied aisle",
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "two order pickers are working directly beneath the unit now, on the main route to despatch"
+      },
+      "controlsAlreadyInPlace": [
+        "a routine inspection regime that found and photographed the condition"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": null,
+      "requiredResumeCondition": "the aisle cleared and closed off, the unit independently supported or removed, and the support arrangement assessed and made good by a competent engineer, before picking resumes beneath it",
+      "legitimateSeparateUnresolvedProperties": [],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "two failed supports, a cracked third and a measured drop above people is an established failure in progress.",
+        "CONTINUE_WITH_CONTROLS": "no control operated alongside continued picking makes an eight hundred kilogram unit with failed supports safe to stand under. People have to be withdrawn.",
+        "HOLD_PENDING_VERIFICATION": "the residual capacity of the four remaining brackets is genuinely unknown and it is not what decides today. The failed welds, the cracked bracket and the measured drop are observed facts and they already require the aisle to be cleared. Waiting underneath the unit for a calculation is the error this case is built to detect."
+      },
+      "truthAnchors": [
+        "Two of its six support brackets have corroded through at the weld and hang free",
+        "Two order pickers are working directly beneath it",
+        "Nobody has calculated what the four remaining brackets will carry"
+      ],
+      "establishedFacts": [
+        "two of six brackets have corroded through at the weld and hang free",
+        "a third bracket is cracked across the root",
+        "the unit has measurably dropped forty millimetres at that end",
+        "it weighs about eight hundred kilograms and hangs three metres above people",
+        "two pickers are working directly beneath it now"
+      ],
+      "expectedCandidateCountAtLeast": 1,
+      "expectedDeclarationCountAtLeast": 0
+    },
+    {
+      "caseId": "B2",
+      "category": "ESTABLISHED_PROPERTY_TRAP",
+      "sector": "FUEL_DISTRIBUTION",
+      "decisionUnderAnalysis": "whether loading may continue on bay three",
+      "expectedPosture": "STOP",
+      "controllingSafetyProperty": "whether the tanker is bonded to the gantry while gasoline is being loaded",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_POPULATED",
+      "expectedCessationDriver": "gasoline loading in progress into an unbonded tanker with the bonding interlock defeated at the panel",
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "loading is live, nine thousand of fourteen thousand litres delivered, with the driver on the gantry deck"
+      },
+      "controlsAlreadyInPlace": [
+        "a bay layout with a designated gantry earth point",
+        "a bonding interlock, currently defeated"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": null,
+      "requiredResumeCondition": "loading stopped and the bay made safe, the bonding lead repaired and proved and the interlock bypass removed and the interlock proved, and the emergency shutdown function tested from the deck pushbutton, before loading resumes on bay three",
+      "legitimateSeparateUnresolvedProperties": [
+        "whether the gantry emergency shutdown operates from the deck pushbutton after the July panel upgrade"
+      ],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "gasoline is being loaded into an unbonded tanker with the bonding interlock defeated. Static discharge is the event the bond exists to prevent.",
+        "CONTINUE_WITH_CONTROLS": "no control operated alongside continued loading restores the bond. Loading has to cease.",
+        "HOLD_PENDING_VERIFICATION": "the untested emergency shutdown is a real open question and it is not what decides today. The detached clamp and the defeated interlock are observed facts and they already require loading to stop."
+      },
+      "truthAnchors": [
+        "has snapped off its lead and is lying on the deck",
+        "the bonding interlock has been defeated at the panel",
+        "it cannot be established whether the shutdown will operate from the deck pushbutton"
+      ],
+      "establishedFacts": [
+        "the bonding clamp is off the tanker and lying on the deck",
+        "the bonding interlock is defeated with the bypass key in the keyswitch",
+        "gasoline loading is in progress and nine thousand litres have been delivered",
+        "a driver is on the deck and a second tanker is waiting"
+      ],
+      "expectedCandidateCountAtLeast": 2,
+      "expectedDeclarationCountAtLeast": 1
+    },
+    {
+      "caseId": "B3",
+      "category": "ESTABLISHED_PROPERTY_TRAP",
+      "sector": "INDUSTRIAL_HIGH_VOLTAGE",
+      "decisionUnderAnalysis": "whether the switching operation may begin",
+      "expectedPosture": "HOLD_PENDING_VERIFICATION",
+      "controllingSafetyProperty": "whether the eleven thousand volt feeder is supplied from one source or from two",
+      "controllingPropertyState": "UNRESOLVED",
+      "expectedCessationList": "MUST_BE_EMPTY",
+      "expectedCessationDriver": null,
+      "activeWorkState": {
+        "workInProgress": false,
+        "peopleCurrentlyExposed": false,
+        "description": "nothing has been operated, no earths applied, nobody on the motor control centre and the permit not issued"
+      },
+      "controlsAlreadyInPlace": [
+        "a permit to work system, raised and not yet issued",
+        "arc rated clothing and insulated tools in date",
+        "a clean switchgear service report",
+        "an authorised person controlling the operation"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": false,
+      "requiredResumeCondition": "the current network configuration confirmed against the network operator records or an updated single line diagram, establishing every source that can supply the feeder, before any switching is carried out",
+      "legitimateSeparateUnresolvedProperties": [],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "switching an eleven thousand volt feeder without knowing every source that can supply it is not supported by current evidence.",
+        "CONTINUE_WITH_CONTROLS": "no control substitutes for knowing the configuration. Proving dead at one point does not establish that a second source cannot re-energise the circuit.",
+        "STOP": "nothing established requires cessation or withdrawal. Nothing has been operated, nobody is on the equipment, the switchgear is in order and a call to the network operator settles it within the hour. Naming a cessation condition here would be the escalation this case exists to detect."
+      },
+      "truthAnchors": [
+        "cannot establish whether the feeder is supplied from one source or from two",
+        "Nothing has been operated, no earths have been applied and nobody is working on the motor control centre",
+        "the network operator can confirm the configuration from their records within the hour"
+      ],
+      "establishedFacts": [
+        "the framed single line diagram predates the interconnector by two years",
+        "the drawing office cannot confirm whether it was updated",
+        "nothing has been operated and nobody is working on the equipment",
+        "the switchgear service report is clean and the protective equipment is in date",
+        "the network operator can confirm the configuration within the hour"
+      ],
+      "expectedCandidateCountAtLeast": 1,
+      "expectedDeclarationCountAtLeast": 1
+    },
+    {
+      "caseId": "C1",
+      "category": "NEIGHBOURING_DEGREE",
+      "sector": "ENERGY_FROM_WASTE",
+      "decisionUnderAnalysis": "whether normal bunker operation and boiler feeding may resume as usual",
+      "expectedPosture": "CONTINUE",
+      "controllingSafetyProperty": "whether combustion is still present in the refuse bunker",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_EMPTY",
+      "expectedCessationDriver": null,
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": false,
+        "description": "the crane is worked remotely from the control room and nobody enters the bunker"
+      },
+      "controlsAlreadyInPlace": [
+        "infrared hot spot scanning",
+        "an automatic monitor cannon",
+        "headspace carbon monoxide monitoring",
+        "proved bunker extraction",
+        "a verified fire system reset and logged water pressure"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": null,
+      "requiredResumeCondition": null,
+      "legitimateSeparateUnresolvedProperties": [],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE_WITH_CONTROLS": "no new control arises. The scanning, the cannon, the carbon monoxide monitoring and the extraction are already in effect and were all verified after the event.",
+        "HOLD_PENDING_VERIFICATION": "the question was resolved by two thermal scans two hours apart and by turning the material twice. Nothing decision-critical remains open.",
+        "STOP": "there is no established unsafe condition. A hot spot that was detected, fought, verified out twice and reset is evidence that the bunker fire system works."
+      },
+      "truthAnchors": [
+        "show the area at ambient plus three degrees with no gradient",
+        "reads six parts per million against an alarm at fifty",
+        "The fire system was reset and the reset verified"
+      ],
+      "establishedFacts": [
+        "the hot spot was detected and the monitor cannon operated",
+        "the material has been turned over twice across the affected area",
+        "two thermal scans two hours apart read ambient plus three with no gradient",
+        "headspace carbon monoxide is six parts per million against an alarm at fifty",
+        "the fire system reset was verified and the water pressure logged"
+      ],
+      "expectedCandidateCountAtLeast": 1,
+      "expectedDeclarationCountAtLeast": 0
+    },
+    {
+      "caseId": "C2",
+      "category": "NEIGHBOURING_DEGREE",
+      "sector": "LEISURE_AND_SPORT",
+      "decisionUnderAnalysis": "whether the auto belay walls may be used for the evening session",
+      "expectedPosture": "CONTINUE_WITH_CONTROLS",
+      "controllingSafetyProperty": "whether the auto belays will arrest a fall for the remaining period before the bulletin work is done",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_EMPTY",
+      "expectedCessationDriver": null,
+      "activeWorkState": {
+        "workInProgress": false,
+        "peopleCurrentlyExposed": false,
+        "description": "the evening session has not started; the decision is whether to open the walls"
+      },
+      "controlsAlreadyInPlace": [
+        "signed monthly function and visual checks",
+        "fall arrest matting within its inspection date",
+        "checked ground anchors",
+        "an instructor to climber ratio meeting the operating procedure"
+      ],
+      "newControlsRequired": [
+        "take unit seven out of use and label it until the bulletin work is done",
+        "add a daily function check on the remaining eleven units until the service agent attends"
+      ],
+      "verificationMayOccurConcurrentlyWithWork": true,
+      "requiredResumeCondition": null,
+      "legitimateSeparateUnresolvedProperties": [],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "unit seven is at the edge of tolerance and the bulletin interval is three weeks away. New controls are required for the period in between.",
+        "HOLD_PENDING_VERIFICATION": "nothing decision-controlling is open. The age is known, the checks are current and signed, unit seven retraction was measured and is inside tolerance, and the bulletin interval has not been reached.",
+        "STOP": "nothing established requires closure. Eleven units are behaving normally inside their interval and the twelfth can simply be taken out of use."
+      },
+      "truthAnchors": [
+        "two years and ten months old and the bulletin work is booked with the service agent for next Tuesday",
+        "at four point one seconds over the measured drop against a manufacturer tolerance of four point five"
+      ],
+      "establishedFacts": [
+        "the units are two years and ten months old against a three year bulletin interval",
+        "the bulletin work is booked for next Tuesday",
+        "all twelve passed signed monthly function and visual checks two days ago",
+        "unit seven measured four point one seconds against a four point five tolerance",
+        "matting, anchors and supervision ratios are all in order"
+      ],
+      "expectedCandidateCountAtLeast": 1,
+      "expectedDeclarationCountAtLeast": 0
+    },
+    {
+      "caseId": "C3",
+      "category": "NEIGHBOURING_DEGREE",
+      "sector": "FOOD_MANUFACTURING",
+      "decisionUnderAnalysis": "whether the line may keep running with operatives at the outfeed",
+      "expectedPosture": "STOP",
+      "controllingSafetyProperty": "whether nitrogen is being injected into a space with the exhaust off and people standing in the spilling vapour",
+      "controllingPropertyState": "ESTABLISHED",
+      "expectedCessationList": "MUST_BE_POPULATED",
+      "expectedCessationDriver": "liquid nitrogen injection running with the tunnel exhaust switched off and vapour spilling across an occupied walkway",
+      "activeWorkState": {
+        "workInProgress": true,
+        "peopleCurrentlyExposed": true,
+        "description": "two operatives are packing inside the spilling vapour and a third crosses the aisle every few minutes while injection runs"
+      },
+      "controlsAlreadyInPlace": [
+        "a stop control at the packing station",
+        "a nitrogen wall valve outside the room"
+      ],
+      "newControlsRequired": [],
+      "verificationMayOccurConcurrentlyWithWork": null,
+      "requiredResumeCondition": "the nitrogen injection closed at the wall valve and the operatives withdrawn from the outfeed, the tunnel exhaust restored and proved, the oxygen depletion monitor repaired and reading, and the area shown to be at normal oxygen concentration, before the line restarts",
+      "legitimateSeparateUnresolvedProperties": [],
+      "whyEachOtherPostureIsWrong": {
+        "CONTINUE": "nitrogen is being injected with the exhaust off and vapour lying across an occupied walkway.",
+        "CONTINUE_WITH_CONTROLS": "no control operated alongside continued production addresses an asphyxiant already displacing air where people stand. They must be withdrawn and the injection stopped.",
+        "HOLD_PENDING_VERIFICATION": "the actual oxygen concentration is genuinely unknown because the monitor has faulted, and that is not what decides today. Injection running with the exhaust off and visible spill into an occupied walkway is observed and already requires the line to stop. Waiting in the vapour for a measurement is the error."
+      },
+      "truthAnchors": [
+        "The tunnel exhaust fan was found switched off at its isolator",
+        "Two operatives are working at the outfeed packing station inside the vapour",
+        "is displaying a sensor fault code and is not measuring"
+      ],
+      "establishedFacts": [
+        "the tunnel exhaust fan is switched off at its isolator",
+        "liquid nitrogen injection is running at the set rate",
+        "cold vapour is spilling continuously and lying across the walkway",
+        "two operatives are working inside the vapour and a third crosses the aisle",
+        "the oxygen depletion monitor is faulted and is not measuring"
+      ],
+      "expectedCandidateCountAtLeast": 2,
+      "expectedDeclarationCountAtLeast": 0
+    }
+  ]
+}

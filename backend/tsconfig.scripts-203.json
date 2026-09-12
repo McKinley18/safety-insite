@@ -1,0 +1,11 @@
+{
+  "//": "SECTION 203 EXPERIMENT SCOPE ONLY. This configuration typechecks the §203 successor development files and NOTHING ELSE. It is not repository-wide and it is not SRC_TYPECHECK. `tsc -p tsconfig.json` covers src/** only; `scripts/**` under the project's own compiler options carries 181 pre-existing diagnostics across unrelated legacy files. Report results as EXPERIMENT_SCOPE_TYPECHECK (§203), never as `tsc clean`. Every include glob is §203-namespaced, so no pre-existing file enters the scope; §203 files are picked up automatically as agents create them.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-203-*.ts",
+    "scripts/test-203-*.ts",
+    "scripts/verify-203-*.ts",
+    "scripts/generate-203-*.ts"
+  ]
+}

@@ -1,0 +1,33 @@
+CANDIDATE COHORT: 45 rows from the opened reserve, scenarioId ASCENDING
+
+ROW VALIDITY: 0 problem(s) across 45 rows
+
+DISABLED DRY RUN THROUGH THE REAL PERMANENT PATH
+  stopReason                : PROVIDER_EXECUTION_DISABLED
+  requests CONSTRUCTED      : 135 (45 rows x 3 arms)
+  requests SENT             : 0
+  PROVIDER_INVOCATION_COUNT : 0
+  TRUTH_LEAK                : 0
+  serialized input bytes    : min 594 mean 910 max 1594
+  user prompt chars         : min 1457 mean 1993 max 3422
+
+COMPOSITION AGAINST THE FROZEN CONTRACT (level: minimum)
+  rows 45 / target 48 minimum, 60 preferred
+  FORMAL_COHORT_COMPOSITION_VALID = false
+
+  class                                  required  present  shortfall
+  GOVERNED_RECORD_SUPPLIED                  40        0         40  SHORT
+  NO_GOVERNED_RECORD                         8        8          0  ok
+  CLARIFICATION_NOT_OWED                    14       14          0  ok
+  CLARIFICATION_OWED                        20        0         20  SHORT
+  FORBIDDEN_FAMILY_NEGATIVE_CONTROL         48       14         34  SHORT
+  LIFE_CRITICAL_PRESENT                     10       10          0  ok
+  CROSS_HAZARD_INTERACTION                  10        0         10  SHORT
+  DETERMINISTIC_MISS_RECALL_OPPORTUNITY     10       10          0  ok
+  MULTI_HAZARD                              12       12          0  ok
+  NEGATED_OR_SAFE_STATE                     10        0         10  SHORT
+  DISAGREEMENT_OPPORTUNITY                   6        0          6  SHORT
+  DETERMINISTIC_HAZARD_PRESENT              30       30          0  ok
+
+PROVIDER_INVOCATION_COUNT = 0   FORMAL_COHORT_SPENT = FALSE
+candidate written to manifest/candidate-rows.json (NOT FROZEN)

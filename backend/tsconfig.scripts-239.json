@@ -1,0 +1,10 @@
+{
+  "//": "SECTION 239 EXPERIMENT SCOPE ONLY. Typechecks the §233/§235/§237/§239 posture-contract stack and nothing else. Report as EXPERIMENT_SCOPE_TYPECHECK (§239), never as `tsc clean`. NOTE: scripts/lib/expert-237-posture-contract.ts carries one PRE-EXISTING type-annotation error (TS2552 at 193:47, a reference to POSTURE_REF_KINDS_237 that does not exist). It is frozen §237 evidence, it is erased at emit and has no runtime effect, and §239 does not modify it. The §239 evidence builder allows exactly that one error and no other.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "incremental": false, "rootDir": "." },
+  "include": [
+    "scripts/lib/expert-233-*.ts", "scripts/lib/expert-235-*.ts",
+    "scripts/lib/expert-237-*.ts", "scripts/lib/expert-239-*.ts",
+    "scripts/test-239-*.ts", "scripts/replay-238-under-239.ts"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "evaluatedAt": "preflight, before any provider call",
+  "formalCohortSpent": false,
+  "providerInvocationCount": 0,
+  "gates": [
+    {
+      "id": "SCORER_MATCHES_PREREGISTRATION",
+      "requirement": "scorer/gates match the frozen preregistration",
+      "value": true,
+      "evidence": "assertContractMatchesPlan(): 0 problems; scorer hazlenz.expert.scorers.v1"
+    },
+    {
+      "id": "CORPUS_TRUTH_UNCHANGED",
+      "requirement": "no corpus truth changed since the successful POST_HUMAN_REVIEW validation",
+      "value": true,
+      "evidence": "all three sealed hashes recomputed from the fixture and compared"
+    },
+    {
+      "id": "FROZEN_COHORT_EXISTS",
+      "requirement": "formal cohort definition matches the frozen preregistration",
+      "value": false,
+      "evidence": "the only cohort artifact in the repository declares itself \"FORMAL_EXPERT_COHORT_CANDIDATE_NOT_FROZEN\""
+    },
+    {
+      "id": "COHORT_RUN_IDENTIFIER_PREREGISTERED",
+      "requirement": "an exact cohort/run identifier is preregistered",
+      "value": false,
+      "evidence": "no cohort identifier and no run identifier exist in any repository artifact"
+    },
+    {
+      "id": "CALL_AND_COST_CAP_PREREGISTERED",
+      "requirement": "an exact call count and cost/call hard cap are already preregistered",
+      "value": false,
+      "evidence": "callCeiling and spendCeilingUsd are caller-supplied HarnessOptions parameters with no frozen value anywhere; COHORT_SIZE_POLICY states row counts only (target 60, hard ceiling 60)"
+    },
+    {
+      "id": "P4_PRESPEND_AUTHORIZATION_COMPLETE",
+      "requirement": "P4 as frozen: an owner authorization naming the cohort, the call count and the ceiling",
+      "value": false,
+      "evidence": "the authorization declares the bit TRUE but names none of the three required elements, and the cohort it points at does not exist"
+    },
+    {
+      "id": "COMPOSITION_SUPPLY_SUFFICIENT",
+      "requirement": "every frozen composition minimum is reachable from authorized sources",
+      "value": false,
+      "evidence": "short at the upper bound: GOVERNED_RECORD_SUPPLIED 0 < 40 (short 40); FORBIDDEN_FAMILY_NEGATIVE_CONTROL 44 < 48 (short 4); DISAGREEMENT_OPPORTUNITY 0 < 6 (short 6). GOVERNED_RECORD_SUPPLIED and DISAGREEMENT_OPPORTUNITY are wiring gaps with an authorized source available; FORBIDDEN_FAMILY_NEGATIVE_CONTROL is a genuine supply shortfall unless gauntlet offsets 2+3 are opened (+16 capability, §124 label metadata), which is its own authorization."
+    },
+    {
+      "id": "PROVIDER_CREDENTIAL_AVAILABLE",
+      "requirement": "provider credential available",
+      "value": true,
+      "evidence": "ANTHROPIC_API_KEY present in backend/.env (presence and length only; never read or printed)"
+    },
+    {
+      "id": "PROJECTION_ENABLED_IN_EVALUATED_PATH",
+      "requirement": "permanent deterministic -> Expert projection enabled in the evaluated path",
+      "value": true,
+      "evidence": "D-131 / §119: projectDeterministicDispositions is on the permanent path and the harness calls buildExpertAnalysisInputFromAnalysis + runExpertAnalysis, not a copy"
+    },
+    {
+      "id": "MODEL_CALLABLE_WITHOUT_SPENDING_COHORT",
+      "requirement": "the exact intended provider/model is callable by the configured adapter",
+      "value": "AMBIGUOUS",
+      "evidence": "prior hosted probes established transport and adapter callability, but no frozen model is preregistered FOR THIS COHORT, so there is no \"exact intended model\" to confirm. No hosted call was made by this preflight."
+    }
+  ],
+  "verdict": "FAILED",
+  "notTrue": [
+    "FROZEN_COHORT_EXISTS",
+    "COHORT_RUN_IDENTIFIER_PREREGISTERED",
+    "CALL_AND_COST_CAP_PREREGISTERED",
+    "P4_PRESPEND_AUTHORIZATION_COMPLETE",
+    "COMPOSITION_SUPPLY_SUFFICIENT",
+    "MODEL_CALLABLE_WITHOUT_SPENDING_COHORT"
+  ]
+}

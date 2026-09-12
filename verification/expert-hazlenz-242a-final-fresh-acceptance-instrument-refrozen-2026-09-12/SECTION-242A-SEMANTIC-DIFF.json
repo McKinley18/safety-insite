@@ -1,0 +1,187 @@
+{
+  "artifact": "SECTION-242A-SEMANTIC-DIFF",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "baseline": "verification/expert-hazlenz-240-final-fresh-acceptance-instrument-2026-09-11, the original §240 frozen artifacts",
+  "method": "field-level flatten of each §240 artifact against its §242A successor, every differing path classified against the authorized correction families. Paths present on one side only are reported as <ABSENT>.",
+  "semanticFieldChanges": 18,
+  "unauthorizedSemanticDifferences": 0,
+  "authorizedFamilies": {
+    "F1 M4": "explicit surface metal/nonmetal jurisdiction, 57.14105 → 56.14105, 57.15005 → 56.15005, and mechanically dependent authority references",
+    "F2 G2": "applicability based on obstructed immediate access to the functioning drenching facility",
+    "F3 C1": "applicability/task description corrected to handheld-grinder mortar removal"
+  },
+  "countsByFamily": {
+    "F1_M4_JURISDICTION": 4,
+    "F1_M4_MECHANICAL_SLOT_REFERENCE": 1,
+    "F1_M4_OFFPOINT_SUBSTITUTION": 4,
+    "F1_M4_ONPOINT_CITATION": 5,
+    "F2_G2_APPLICABILITY": 2,
+    "F3_C1_APPLICABILITY": 2
+  },
+  "changes": [
+    {
+      "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+      "path": ".governedRecords[0].whyFrozen",
+      "before": "the decision is whether hydrofluoric acid work may continue where the drenching facility in the work area cannot be shown to function. This record is that obligation.",
+      "after": "the decision is whether the hydrofluoric acid etch recipe may continue to run in this bay. The drench shower and the eyewash in the bay were both tested this morning and both flowed, so the facility FUNCTIONS; G2 records its inoperability as a non-fact. What is established is that the route from the etch bench to that functioning facility is half obstructed by a pallet of empty carboys. This record is the obligation that answers the decision, because it requires suitable drenching or flushing facilities to be provided WITHIN THE WORK AREA FOR IMMEDIATE EMERGENCY USE, and a facility that cannot be reached immediately is not provided for immediate emergency use. Nothing in this record's applicability depends on the facility being unproven or inoperable.",
+      "family": "F2_G2_APPLICABILITY"
+    },
+    {
+      "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+      "path": ".governedRecords[3].whyFrozen",
+      "before": "the decision is whether dry shotcrete application may continue on the controls in use. This record states the two lawful routes and is the obligation that answers it.",
+      "after": "the decision is whether removing mortar joints with a handheld grinder may continue on the controls in use, with a labourer working below inside the falling dust. Handheld grinders for mortar removal is a Table 1 task. This record states the two lawful routes, implementing the Table 1 controls for the task or assessing and limiting exposure under paragraph (d), and is the obligation that answers it.",
+      "family": "F3_C1_APPLICABILITY"
+    },
+    {
+      "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+      "path": ".governedRecords[5].citation",
+      "before": "30 CFR 57.14105",
+      "after": "30 CFR 56.14105",
+      "family": "F1_M4_ONPOINT_CITATION"
+    },
+    {
+      "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+      "path": ".governedRecords[5].sourceId",
+      "before": "GOV-MSHA-57-14105",
+      "after": "GOV-MSHA-56-14105",
+      "family": "F1_M4_ONPOINT_CITATION"
+    },
+    {
+      "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+      "path": ".governedRecords[6].citation",
+      "before": "30 CFR 57.15005",
+      "after": "30 CFR 56.15005",
+      "family": "F1_M4_OFFPOINT_SUBSTITUTION"
+    },
+    {
+      "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+      "path": ".governedRecords[6].sourceId",
+      "before": "GOV-MSHA-57-15005",
+      "after": "GOV-MSHA-56-15005",
+      "family": "F1_M4_OFFPOINT_SUBSTITUTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].allowedAuthority[0]",
+      "before": "GOV-MSHA-57-14105",
+      "after": "GOV-MSHA-56-14105",
+      "family": "F1_M4_ONPOINT_CITATION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].governedRecords[0].citation",
+      "before": "30 CFR 57.14105",
+      "after": "30 CFR 56.14105",
+      "family": "F1_M4_ONPOINT_CITATION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].governedRecords[0].sourceId",
+      "before": "GOV-MSHA-57-14105",
+      "after": "GOV-MSHA-56-14105",
+      "family": "F1_M4_ONPOINT_CITATION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].governedRecords[1].citation",
+      "before": "30 CFR 57.15005",
+      "after": "30 CFR 56.15005",
+      "family": "F1_M4_OFFPOINT_SUBSTITUTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].governedRecords[1].sourceId",
+      "before": "GOV-MSHA-57-15005",
+      "after": "GOV-MSHA-56-15005",
+      "family": "F1_M4_OFFPOINT_SUBSTITUTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].governingMshaPart",
+      "before": "<ABSENT>",
+      "after": "30 CFR part 56",
+      "family": "F1_M4_JURISDICTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].jurisdictionBasis",
+      "before": "<ABSENT>",
+      "after": "M4 is a SURFACE metal or nonmetal mineral concentrator. 30 CFR 56.1 scopes part 56 to each surface metal or nonmetal mine, and 30 CFR 57.1 scopes part 57 to each underground metal or nonmetal mine including related surface operations. A surface concentrator is therefore governed by part 56, and the repairs-or-maintenance obligation that answers the M4 entry decision is 30 CFR 56.14105, whose official text is character-identical to the quotation frozen at §240.",
+      "family": "F1_M4_JURISDICTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].mineClassification",
+      "before": "<ABSENT>",
+      "after": "SURFACE_METAL_OR_NONMETAL",
+      "family": "F1_M4_JURISDICTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[19].setting",
+      "before": "A mineral concentrator, ball mill relining.",
+      "after": "A surface metal/nonmetal mineral concentrator, ball mill relining.",
+      "family": "F1_M4_JURISDICTION"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[1].governedRecords[0].whyFrozen",
+      "before": "the decision is whether hydrofluoric acid work may continue where the drenching facility in the work area cannot be shown to function. This record is that obligation.",
+      "after": "the decision is whether the hydrofluoric acid etch recipe may continue to run in this bay. The drench shower and the eyewash in the bay were both tested this morning and both flowed, so the facility FUNCTIONS; G2 records its inoperability as a non-fact. What is established is that the route from the etch bench to that functioning facility is half obstructed by a pallet of empty carboys. This record is the obligation that answers the decision, because it requires suitable drenching or flushing facilities to be provided WITHIN THE WORK AREA FOR IMMEDIATE EMERGENCY USE, and a facility that cannot be reached immediately is not provided for immediate emergency use. Nothing in this record's applicability depends on the facility being unproven or inoperable.",
+      "family": "F2_G2_APPLICABILITY"
+    },
+    {
+      "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+      "path": ".cases[8].governedRecords[0].whyFrozen",
+      "before": "the decision is whether dry shotcrete application may continue on the controls in use. This record states the two lawful routes and is the obligation that answers it.",
+      "after": "the decision is whether removing mortar joints with a handheld grinder may continue on the controls in use, with a labourer working below inside the falling dust. Handheld grinders for mortar removal is a Table 1 task. This record states the two lawful routes, implementing the Table 1 controls for the task or assessing and limiting exposure under paragraph (d), and is the obligation that answers it.",
+      "family": "F3_C1_APPLICABILITY"
+    },
+    {
+      "artifact": "SECTION-240-JUDGMENT-SLOTS.json → SECTION-242A-JUDGMENT-SLOTS.json",
+      "path": ".slots[111].question",
+      "before": "Does every regulatory authority claim trace to GOV-MSHA-57-14105 and is the stated requirement supported by that record's approved text? Does any supplied off-point record enter controlling reasoning or get cited as the authority for this decision? Does any citation, regulation number, agency requirement or quoted regulatory text outside the supplied set appear anywhere in either leg?",
+      "after": "Does every regulatory authority claim trace to GOV-MSHA-56-14105 and is the stated requirement supported by that record's approved text? Does any supplied off-point record enter controlling reasoning or get cited as the authority for this decision? Does any citation, regulation number, agency requirement or quoted regulatory text outside the supplied set appear anywhere in either leg?",
+      "family": "F1_M4_MECHANICAL_SLOT_REFERENCE"
+    }
+  ],
+  "unchangedRecords": [
+    "GOV-OSHA-1910-212A1 — 29 CFR 1910.212(a)(1) carries no correction in any section"
+  ],
+  "nonSemanticProvenanceLabels": {
+    "note": "the successor artifacts additionally carry their own artifact names and the successor version string. These are provenance labels, not instrument content, and are listed here rather than counted as semantic changes.",
+    "labels": [
+      {
+        "artifact": "SECTION-240-INSTRUMENT.json → SECTION-242A-INSTRUMENT.json",
+        "path": ".artifact",
+        "before": "SECTION-240-INSTRUMENT",
+        "after": "SECTION-242A-INSTRUMENT"
+      },
+      {
+        "artifact": "SECTION-240-TRUTH-CONTRACT.json → SECTION-242A-TRUTH-CONTRACT.json",
+        "path": ".artifact",
+        "before": "SECTION-240-TRUTH-CONTRACT",
+        "after": "SECTION-242A-TRUTH-CONTRACT"
+      },
+      {
+        "artifact": "SECTION-240-JUDGMENT-SLOTS.json → SECTION-242A-JUDGMENT-SLOTS.json",
+        "path": ".artifact",
+        "before": "SECTION-240-JUDGMENT-SLOTS",
+        "after": "SECTION-242A-JUDGMENT-SLOTS"
+      },
+      {
+        "artifact": "SECTION-242A-INSTRUMENT.json",
+        "path": ".version",
+        "before": "hazlenz.expert.240.final-fresh-successor-acceptance.v1",
+        "after": "hazlenz.expert.242a.final-fresh-successor-acceptance.refrozen.v1"
+      }
+    ]
+  },
+  "artifactsCarriedForwardUnchangedInContent": [
+    "SECTION-240-COVERAGE-MAP.json content, re-verified by regeneration from the corrected cases",
+    "SECTION-240-CANDIDATE-IDENTITY.json values",
+    "PROTECTED-IDENTITIES-240.json values"
+  ]
+}

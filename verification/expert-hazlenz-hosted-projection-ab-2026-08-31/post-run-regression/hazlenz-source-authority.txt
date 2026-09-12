@@ -1,0 +1,16 @@
+-- source-level regulatory authority, by hazard family and regime --
+  [NO_STANDARD_APPLICABLE] excavation_trenching / osha-general-industry
+  [NO_STANDARD_APPLICABLE] confined_space / msha
+  [NO_STANDARD_APPLICABLE] environmental_release / msha
+  [NO_STANDARD_APPLICABLE] traffic_control / osha-general-industry
+  [NO_STANDARD_APPLICABLE] ground_control / osha-general-industry
+
+  governed source citations: 72
+  matrix families: 24   cells: 72
+  SOURCE_AUTHORITY_PRESENT : 67
+  NO_STANDARD_APPLICABLE   : 5
+  SOURCE_AUTHORITY_MISSING : 0
+  OUT_OF_SCOPE             : 0
+  families with a finding-level rule today: 11 / 24
+
+PASS HazLenz source-authority gate — every named provision is in the governed source set

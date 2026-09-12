@@ -1,0 +1,17 @@
+{
+  "plannedCalls": 18,
+  "attempted": 18,
+  "completedClean": 18,
+  "projectedWorstCaseSpendUsd": 1.833378,
+  "actualSpendUsd": 0.571626,
+  "spendCeilingUsd": 3,
+  "callCeiling": 18,
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "promptVersion": "hazlenz.expert.prompt.v6",
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "thinking": "disabled",
+  "p2DeterminismControl": "ABSENT",
+  "retriesUsed": 0,
+  "note": "Frozen measurement. Nothing was repaired. No retry was used to improve any score."
+}

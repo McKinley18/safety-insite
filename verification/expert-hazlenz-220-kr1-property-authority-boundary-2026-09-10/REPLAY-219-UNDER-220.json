@@ -1,0 +1,133 @@
+{
+  "artifact": "SECTION-220-REPLAY-OF-219-UNDER-PROPERTY-AUTHORITY",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "section219FrozenDigest": "491bf18a1094c99c22a80719001c207c7d72e92c1f547086284b3331d5918d56",
+  "section219DigestUnchanged": true,
+  "structuredSignatureA1": {
+    "role": "REQUIRED_ACT_ITSELF",
+    "validity": "VALID",
+    "verdict": "VERIFIED_AS_IS",
+    "declaration": "STILL_UNRESOLVED",
+    "challengeGround": null,
+    "propertyMismatchKind": null,
+    "representationConcern": "NONE",
+    "nominatedFactPresent": false,
+    "clarificationSourceMode": null
+  },
+  "structuredSignatureA3": {
+    "role": "REQUIRED_ACT_ITSELF",
+    "validity": "VALID",
+    "verdict": "VERIFIED_AS_IS",
+    "declaration": "STILL_UNRESOLVED",
+    "challengeGround": null,
+    "propertyMismatchKind": null,
+    "representationConcern": "NONE",
+    "nominatedFactPresent": false,
+    "clarificationSourceMode": null
+  },
+  "a1AndA3AreIndistinguishableStructurally": true,
+  "perCase": [
+    {
+      "caseId": "A1",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-A1.412-510.1",
+      "factSource": "FIRST_PASS_MODEL",
+      "propertyAuthorityRequirement": "REQUIRED",
+      "section218Route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "analysisBlockedBy220": false,
+      "settlementWithoutPropertyAuthority": {
+        "applied": false,
+        "refusedBecause": [
+          "PROPERTY_AUTHORITY_NOT_OBTAINED"
+        ],
+        "statusAfter": "UNRESOLVED"
+      },
+      "settlementWithHumanConfirmation": {
+        "applied": true,
+        "statusAfter": "SETTLED_BY_EVIDENCE"
+      }
+    },
+    {
+      "caseId": "A2",
+      "factKey": "FP.EXPOSURE.OBS-A2.384-517.1",
+      "factSource": "FIRST_PASS_MODEL",
+      "propertyAuthorityRequirement": "REQUIRED",
+      "section218Route": "FAIL_CLOSED",
+      "analysisBlockedBy220": false,
+      "settlementWithoutPropertyAuthority": {
+        "applied": false,
+        "refusedBecause": [
+          "PROPERTY_AUTHORITY_NOT_OBTAINED"
+        ],
+        "statusAfter": "UNRESOLVED"
+      },
+      "settlementWithHumanConfirmation": {
+        "applied": true,
+        "statusAfter": "SETTLED_BY_EVIDENCE"
+      }
+    },
+    {
+      "caseId": "A3",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-A3.603-683.1",
+      "factSource": "FIRST_PASS_MODEL",
+      "propertyAuthorityRequirement": "REQUIRED",
+      "section218Route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "analysisBlockedBy220": false,
+      "settlementWithoutPropertyAuthority": {
+        "applied": false,
+        "refusedBecause": [
+          "PROPERTY_AUTHORITY_NOT_OBTAINED"
+        ],
+        "statusAfter": "UNRESOLVED"
+      },
+      "settlementWithHumanConfirmation": {
+        "applied": true,
+        "statusAfter": "SETTLED_BY_EVIDENCE"
+      }
+    },
+    {
+      "caseId": "A4",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-A4.645-762.1",
+      "factSource": "FIRST_PASS_MODEL",
+      "propertyAuthorityRequirement": "REQUIRED",
+      "section218Route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "analysisBlockedBy220": false,
+      "settlementWithoutPropertyAuthority": {
+        "applied": false,
+        "refusedBecause": [
+          "PROPERTY_AUTHORITY_NOT_OBTAINED"
+        ],
+        "statusAfter": "UNRESOLVED"
+      },
+      "settlementWithHumanConfirmation": {
+        "applied": true,
+        "statusAfter": "SETTLED_BY_EVIDENCE"
+      }
+    },
+    {
+      "caseId": "A5",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-A5.341-476.1",
+      "factSource": "FIRST_PASS_MODEL",
+      "propertyAuthorityRequirement": "REQUIRED",
+      "section218Route": "PROPERTY_ACCEPTED_REVIEW_MAY_PROCEED",
+      "analysisBlockedBy220": false,
+      "settlementWithoutPropertyAuthority": {
+        "applied": false,
+        "refusedBecause": [
+          "PROPERTY_AUTHORITY_NOT_OBTAINED"
+        ],
+        "statusAfter": "UNRESOLVED"
+      },
+      "settlementWithHumanConfirmation": {
+        "applied": true,
+        "statusAfter": "SETTLED_BY_EVIDENCE"
+      }
+    }
+  ],
+  "a1CorrectedOutcome": {
+    "state": "CORRECTED",
+    "applied": false,
+    "statusAfter": "UNRESOLVED"
+  },
+  "generatedAt": "2026-09-10"
+}

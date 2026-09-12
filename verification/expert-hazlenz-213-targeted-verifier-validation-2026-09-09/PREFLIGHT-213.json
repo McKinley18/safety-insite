@@ -1,0 +1,243 @@
+{
+  "executorVersion": "hazlenz.expert.213.frozen-verifier-validation-execution.v1",
+  "frozenPreregistrationSha256": "3d325fd38f55eafbc46d03841bb362cefbee9c90533e19aa28460796f26cf4a7",
+  "frozenDigestMatches": true,
+  "systemPromptIdentity": "cad728b58920f4fa1ae3d64b619424830f683aa80f7e16ac90d107e4926c4fde",
+  "schemaIdentity": "571dadaf51751e390363e302868cff72450a8825e5ac74f406305d1520a6d4e8",
+  "baseSchemaIdentity": "83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e",
+  "protocolIdentities": {
+    "baseVersion": "hazlenz.expert.verifier-instruction.v3.2",
+    "successorArtifact": "hazlenz.expert.212.verifier-protocol-successor",
+    "protocolVersionClaimed": null,
+    "prompt": {
+      "baseSha256": "f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f",
+      "successorSha256": "cad728b58920f4fa1ae3d64b619424830f683aa80f7e16ac90d107e4926c4fde",
+      "baseChars": 12998,
+      "successorChars": 16901,
+      "addedChars": 3903,
+      "netProseRemoved": 0
+    },
+    "schema": {
+      "baseSha256": "83071b51edc3673896b068277cc447d0a5438be4e95e9603da0fdb315609a54e",
+      "successorSha256": "571dadaf51751e390363e302868cff72450a8825e5ac74f406305d1520a6d4e8",
+      "baseBytes": 4994,
+      "successorBytes": 6094,
+      "addedBytes": 1100,
+      "baseNodes": 35,
+      "successorNodes": 38,
+      "addedNodes": 3,
+      "baseEnums": 6,
+      "successorEnums": 9,
+      "addedEnums": 3,
+      "baseEnumMembers": 25,
+      "successorEnumMembers": 35,
+      "addedEnumMembers": 10
+    },
+    "grammarCostCaveat": "the provider's stated metric is COMPILED GRAMMAR COMPLEXITY and the threshold is undocumented. An enum expands far beyond its serialised length, so byte size alone establishes nothing. §199 was refused at ~19,060 first-pass bytes and accepted at ~18,620; the verifier schema is a different, much smaller request with visible headroom, and that headroom is the reason this is proposed rather than a claim that it will pass."
+  },
+  "cachingPosture": "DISABLED — no cache_control constructed anywhere",
+  "callCeiling": 11,
+  "spendCeilingUsd": 0.43,
+  "retriesAuthorized": 0,
+  "requests": [
+    {
+      "caseId": "T1",
+      "ordinal": 1,
+      "declarationId": "T1-D1",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-T1.306-403.1",
+      "userPromptIdentity": "bec75e2583e53d4ba0a7fed812e3f2c0630c392a224375c74a7bccc9e9f76d84",
+      "userPromptBytes": 3209,
+      "retainedClarificationIds": [
+        "T1-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T2",
+      "ordinal": 1,
+      "declarationId": "T2-D1",
+      "factKey": "FP.APPLICABILITY.OBS-T2.228-278.1",
+      "userPromptIdentity": "7b05cf28bf3201e2769b22e0dd11c7beac7ae37add8d02af1759dc6b846f8e43",
+      "userPromptBytes": 2814,
+      "retainedClarificationIds": [
+        "T2-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T3",
+      "ordinal": 1,
+      "declarationId": "T3-D1",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-T3.303-345.1",
+      "userPromptIdentity": "5ec56d7da5dc2cd30fcc6e44a6c6189f0cc4beed0507beb698cb403838713cb2",
+      "userPromptBytes": 2773,
+      "retainedClarificationIds": [
+        "T3-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T4",
+      "ordinal": 1,
+      "declarationId": "T4-D1",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-T4.480-538.1",
+      "userPromptIdentity": "3b3f0c93707b046e05b936a5563f309ac4f33a1f71fda88420b39a9a51504664",
+      "userPromptBytes": 3307,
+      "retainedClarificationIds": [
+        "T4-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T5",
+      "ordinal": 1,
+      "declarationId": "T5-D1",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-T5.157-251.1",
+      "userPromptIdentity": "071e5f80cbb2546be1633f56cb0cc7a2d0552e60a01b6bbff3777de0b92a5976",
+      "userPromptBytes": 3277,
+      "retainedClarificationIds": [
+        "T5-C1",
+        "T5-C2"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T6",
+      "ordinal": 1,
+      "declarationId": "T6-D1",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-T6.191-278.1",
+      "userPromptIdentity": "00ea3ebbc9ae11fb14f99c97b3bc34a5c249c13a6f7696bedeafec8ee4c51a2d",
+      "userPromptBytes": 3255,
+      "retainedClarificationIds": [
+        "T6-C1"
+      ],
+      "excludedClarificationIds": [
+        "T6-C2"
+      ]
+    },
+    {
+      "caseId": "T6",
+      "ordinal": 2,
+      "declarationId": "T6-D2",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-T6.343-412.1",
+      "userPromptIdentity": "eadd5e998a90f0b66693d3a39a1cd0801b93687e6f01ec76aec1f422f8d0f08c",
+      "userPromptBytes": 3013,
+      "retainedClarificationIds": [
+        "T6-C2"
+      ],
+      "excludedClarificationIds": [
+        "T6-C1"
+      ]
+    },
+    {
+      "caseId": "T7",
+      "ordinal": 1,
+      "declarationId": "T7-D1",
+      "factKey": "FP.REQUIRED_CONTROL.OBS-T7.223-294.1",
+      "userPromptIdentity": "92b8573a53729bf20fab8c8359c6e2a1655643cb356ea085d4e31a5f88d4a0bb",
+      "userPromptBytes": 3017,
+      "retainedClarificationIds": [
+        "T7-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T8",
+      "ordinal": 1,
+      "declarationId": "T8-D1",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-T8.232-313.1",
+      "userPromptIdentity": "28972b2ae0a3329ffe82eadc671eacbef578af7bc0682f2eb02a6a282804d026",
+      "userPromptBytes": 3121,
+      "retainedClarificationIds": [
+        "T8-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T9",
+      "ordinal": 1,
+      "declarationId": "T9-D1",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-T9.203-279.1",
+      "userPromptIdentity": "0ee1f623e86ce824402947ecdfc7e290c8bdc8750b78379cb8ea0a13c51da1e1",
+      "userPromptBytes": 2902,
+      "retainedClarificationIds": [
+        "T9-C1"
+      ],
+      "excludedClarificationIds": []
+    },
+    {
+      "caseId": "T10",
+      "ordinal": 1,
+      "declarationId": "T10-D1",
+      "factKey": "FP.HAZARD_EXISTENCE.OBS-T10.205-254.1",
+      "userPromptIdentity": "f7ff3231c51148d6b4657eb7ba1e48b9447733f24617c3db882d738f8e76b236",
+      "userPromptBytes": 2942,
+      "retainedClarificationIds": [
+        "T10-C1"
+      ],
+      "excludedClarificationIds": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "frozen §211 preregistration digest",
+      "ok": true,
+      "detail": "3d325fd38f55eafbc46d03841bb362cefbee9c90533e19aa28460796f26cf4a7"
+    },
+    {
+      "id": "ten frozen cases adapt with no refusal",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "eleven requests, all built",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "every semantic field byte-identical to frozen §211",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "the §212 prompt reconstructs to v3.2 byte for byte",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "the §212 schema reconstructs to v3.2 exactly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "successor grammar is the expected size",
+      "ok": true,
+      "detail": "4994 -> 6094 bytes"
+    },
+    {
+      "id": "api key present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "eleven requests constructed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "every request reconstructs to its base prompt byte for byte",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "no strict flag anywhere in any transmitted body",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "no cache_control is constructed anywhere",
+      "ok": true,
+      "detail": "CACHING_DISABLED, the posture every prior section froze"
+    }
+  ]
+}

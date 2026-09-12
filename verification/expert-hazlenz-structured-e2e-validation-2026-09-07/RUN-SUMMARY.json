@@ -1,0 +1,218 @@
+{
+  "artifact": "SECTION_197_RUN_SUMMARY",
+  "date": "2026-09-07",
+  "operation": "§197 fresh prospective hosted DEVELOPMENT validation of the structured first-pass → deterministic projection → verifier-v3.3 pipeline",
+  "TERMINAL": "EXPERT_HAZLENZ_STRUCTURED_PIPELINE_VALIDATION_INCONCLUSIVE — EXECUTION_REVIEW_REQUIRED",
+  "terminalReason": "All twelve first-pass requests were rejected by the provider with HTTP 400 BEFORE inference began, with an identical message: \"tools.0.custom: For 'array' type, property 'maxItems' is not supported\". Zero output tokens, $0.00 actual spend, no model behaviour observed. The cause is a transport incompatibility introduced by §196 and not covered by the §108 Anthropic keyword strip. Every candidate correction changes a hashed treatment artifact frozen in the §197 preregistration, so the failure is recorded and returned for review rather than repaired and re-run.",
+  "terminalChoiceNote": "This is the terminal the authorization wrote for exactly this case. The failure is INFRASTRUCTURE/EXECUTION, not model behaviour and not an architectural invariant failure — no hard-fail condition was triggered, and none could have been, because nothing ran.",
+
+  "EXECUTED_INFERENCE": false,
+  "PROVIDER_CALLS_ATTEMPTED": 12,
+  "PROVIDER_CALLS_COMPLETED": 0,
+  "ACTUAL_PROVIDER_SPEND_USD": 0.0,
+  "OUTPUT_TOKENS": 0,
+  "INPUT_TOKENS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "CUSTOMER_ACTIVATION": "NONE",
+  "existingRuntimeFilesModified": 0,
+
+  "PHASES_COMPLETED": {
+    "phase0_readAndPreserve": "COMPLETE",
+    "freshPreregistration": "COMPLETE — frozen before any provider call, sha256 in PROTOCOL-HASHES.txt",
+    "sourceIntegrityGate": "PASS 60/60, run immediately before spend",
+    "boundedHostedExecution": "ATTEMPTED — 12 calls, 0 reached inference",
+    "deterministicScoring": "COMPLETE over what exists, which is twelve pre-inference rejections",
+    "humanSemanticAdjudication": "NOT_ADJUDICABLE — there is no model output to adjudicate",
+    "verifierPhase": "NOT RUN — no OwedFact was projected, so there was nothing to verify"
+  },
+
+  "PRE_SPEND_GATES": {
+    "sourceIntegrity": "PASS 60/60",
+    "cohortDesignDefects": 0,
+    "vNextReconstructsToV15": true,
+    "noFactKeyPropertyInAnyOfTheTwelveRequestSchemas": true,
+    "provenanceTableCoversProjectedOwedFactExactly": true,
+    "v33BoundaryLiveChecks": "admits a supplied-source citation; refuses an absent one; refuses under reliance NONE",
+    "gateInstrumentDefectFoundAndFixedPreSpend": "the gate's first draft grepped for /MODEL/ near TRANSITION_AUTHORITIES and failed 57/58 on the module's own COMMENT explaining that there is deliberately no member for a model explanation. Replaced with an assertion over the exported constant's VALUES. This is the §170 lesson — a source scan must read code, not prose — arriving one gate later, and it is recorded rather than quietly corrected."
+  },
+
+  "THE_BLOCKER": {
+    "providerError": "tools.0.custom: For 'array' type, property 'maxItems' is not supported",
+    "httpStatus": 400,
+    "occurrences": 12,
+    "identicalAcrossAllRows": true,
+    "preInference": true,
+    "rootCause": "§196's vNext schema emits `maxItems: 0` on unresolvedFactDeclarations.items.properties.governedEvidenceSourceIds whenever no governed evidence was supplied, so that a model with no governed records has no legal way to name one. Anthropic's strict tool-schema mode rejects `maxItems` on an array and refuses the whole request.",
+    "whyNotCaughtEarlier": "`stripAnthropicUnsupportedKeywords` (§108) removes `minLength` and `minItems` only. Its own comment records that no `maxItems` existed in the schema at the time it was written. §196 introduced the first one and nothing connected the new keyword to the adapter. §196's suite passed 91/91 because it tested the schema as a DOCUMENT; the strip only matters for the schema as a REQUEST.",
+    "diagnosisMethod": "all twelve request bodies rebuilt offline and their schema keywords compared against v15's, which has executed hosted many times. Exactly one keyword is introduced by vNext — `maxItems` — occurring once per row. Stripping it removes exactly one keyword kind and touches no property, type, enum, required list or description. ZERO further provider calls were made to establish this.",
+    "evidence": "TRANSPORT-REJECTION-DIAGNOSIS.json"
+  },
+
+  "WHAT_THIS_FALSIFIES": {
+    "section196_caseK3": "K3 asserted 'with no governed evidence supplied, the wire schema forbids naming one at all' and summarised the design as 'transport refuses it, and the boundary refuses it again'. On the actual hosted transport the FIRST HALF DOES NOT HOLD: the transport does not refuse the id, it refuses the entire request.",
+    "whatStillHolds": "The BOUNDARY half is untouched. §196 cases K1 and K2 refuse an unsupplied governed sourceId at the projection, deterministically. The safety property survives; the claimed SECOND LAYER does not.",
+    "honestRestatement": "the two-layer claim was correct about the schema as a document and wrong about the schema as a request. A structural guarantee that cannot be transmitted to the provider is not a structural guarantee on the hosted path.",
+    "section196RemainsOtherwiseIntact": "the other 90 of §196's 91 cases are unaffected: they concern the projection, identity, provenance, multi-gap isolation, the citation reuse rule and the reconstruction invariants, none of which this defect touches."
+  },
+
+  "CANDIDATE_CORRECTIONS_FOR_OWNER_DECISION": [
+    {
+      "option": "A",
+      "change": "extend the §108 Anthropic compatibility strip to remove `maxItems`, as it already removes `minLength` and `minItems`",
+      "effect": "the request becomes transportable; `governedEvidenceSourceIds` becomes an unbounded string array, so a model COULD emit an id and the projection would refuse it as GOVERNED_SOURCE_ID_NOT_IN_SUPPLIED_SET",
+      "gives_up": "the transport-level guarantee",
+      "keeps": "the boundary-level guarantee, which is where this product's protection has always actually lived",
+      "size": "smallest change; squarely the §108 precedent applied to a third keyword",
+      "requires": "a fresh successor preregistration — every per-row wireSchemaSha256 moves"
+    },
+    {
+      "option": "B",
+      "change": "omit `governedEvidenceSourceIds` entirely when the supplied set is empty, rather than bounding it at zero",
+      "effect": "no `maxItems` is ever emitted, and a model given no governed evidence has NO FIELD AT ALL to put an id in",
+      "gives_up": "nothing on the safety side",
+      "keeps": "a guarantee STRONGER than maxItems:0, and one the transport accepts",
+      "size": "a vNext PROTOCOL REVISION, not a transport workaround; makes the declaration item shape vary by request, which the schema already does for enums",
+      "requires": "a vNext protocol revision plus a fresh successor preregistration"
+    },
+    {
+      "option": "C",
+      "change": "always supply the row's real governed sourceIds",
+      "effect": "rows with governed evidence get an enum; rows with none still need A or B",
+      "size": "incomplete on its own",
+      "requires": "combination with A or B"
+    }
+  ],
+  "myReading": "B is the better architecture and A is the smaller change. The choice turns on whether the transport-level guarantee is worth a protocol revision. §197 DOES NOT MAKE THAT CHOICE.",
+
+  "SECOND_FINDING_PRE_SPEND": {
+    "name": "the first-pass governed binding is currently unexercisable",
+    "what": "buildExpertUserPrompt renders governed records to the first pass under OPAQUE HANDLES (R1, R2, …) with citations redacted by redactCitationTokens, and never shows a sourceId. §196's governedEvidenceSourceIds asks the first pass to name a supplied governed sourceId THAT IT IS NEVER SHOWN.",
+    "consequence": "the binding cannot be legitimately populated at the first pass today",
+    "howSection197HandledIt": "the governed-evidence families were scoped to the VERIFIER stage, where buildVerifierV3UserPrompt renders {sourceId, text} verbatim with citations intact — which is where §195 found the collision and where v3.3 actually lives. That scoping is sound and needs no change.",
+    "whatRemainsOpen": "a future protocol revision that closes the first-pass binding must decide whether to expose sourceIds to the first pass without exposing citations. §197 does not decide it.",
+    "foundBeforeAnySpend": true
+  },
+
+  "THIRD_FINDING_HARNESS_DEFECT": {
+    "what": "the executor did not stop after the first identical pre-inference rejection; it issued all twelve",
+    "cost": "$0.00 — no request reached inference, so nothing was wasted in money",
+    "whyItMatters": "this is the §187A failure mode in a new costume. §192's own preregistration named it: a credit rejection stops the run on FIRST occurrence rather than reproving the account condition 39 times. §197's stopping rules covered credit rejection and the call and spend ceilings; they did NOT cover a systematic pre-inference rejection.",
+    "missingRuleForTheSuccessor": "stop on the SECOND consecutive pre-inference rejection carrying the same provider error message"
+  },
+
+  "FOURTH_FINDING_SCORER_DEFECT": {
+    "what": "the scorer's first draft printed 'P settlement = NO_PROVIDER_OUTPUT_SETTLED_ANY_FACT' and 'HARD FAILS = none triggered' on a run where NOTHING EXECUTED",
+    "whyItMatters": "both statements were literally true and both read as passes. This is the §193 lesson on a different instrument: an audit that cannot see its subject must say so rather than return clean.",
+    "correction": "every axis result is routed through a helper returning NOT_EXERCISED on an empty denominator, and the hard-fail block reports EVALUABLE:false with the note that 'none triggered' on this run means 'nothing ran', NOT 'the architecture held'",
+    "recordedNotHidden": true
+  },
+
+  "AXIS_RESULTS": {
+    "note": "EVERY axis is NOT_EXERCISED. No axis passed and no axis failed. A zero denominator is not a pass.",
+    "A_FIRST_PASS_GAP_RECALL": "NOT_EXERCISED",
+    "B_FIRST_PASS_GAP_PRECISION": "NOT_EXERCISED",
+    "C_OWED_PROPERTY_SEMANTIC_CORRECTNESS": "NOT_EXERCISED",
+    "D_EVIDENCE_SPAN_SEMANTIC_RELEVANCE": "NOT_EXERCISED",
+    "E_BRANCH_PLAUSIBILITY": "NOT_EXERCISED",
+    "F_DECISION_DIVERGENCE_VALIDITY": "NOT_EXERCISED",
+    "G_AFFECTED_DECISION_CORRECTNESS": "NOT_EXERCISED",
+    "H_MULTI_GAP_PRESERVATION": "NOT_EXERCISED",
+    "I_FALSE_GAP_SUPPRESSION": "NOT_EXERCISED",
+    "J_PROJECTION_FIDELITY": "NOT_EXERCISED — 0 facts projected",
+    "K_FACTKEY_IDENTITY_INTEGRITY": "NOT_EXERCISED — 0 keys computed",
+    "L_VERIFIER_TARGET_BINDING": "NOT_EXERCISED — the verifier phase never ran",
+    "M_CLARIFICATION_RESOLUTION_SUFFICIENCY": "NOT_EXERCISED",
+    "N_GOVERNED_EVIDENCE_QUOTATION_BOUNDARY": "NOT_EXERCISED",
+    "O_UNSUPPLIED_CITATION_CONTAINMENT": "NOT_EXERCISED",
+    "P_SETTLEMENT_AUTHORITY": "NOT_EXERCISED — no fact existed to settle. PROVIDER_SETTLEMENT_AUTHORITY = NEVER is unchanged as a contract, and is UNTESTED by this run.",
+    "Q_OWED_PROPERTY_LOSS_IMPACT": "NOT_EXERCISED",
+    "R_PRIORITY_FLOOR_IMPACT": "NOT_EXERCISED"
+  },
+
+  "HARD_FAIL_CONDITIONS": {
+    "EVALUABLE": false,
+    "anyTriggered": null,
+    "note": "No hard-fail condition was triggered AND none could have been, because no inference occurred. 'None triggered' on this run means 'nothing ran', not 'the architecture held'."
+  },
+
+  "ARTIFACTS_PRODUCED": [
+    "PREREGISTRATION.json",
+    "FIXTURE-MANIFEST.json",
+    "SEMANTIC-TRUTH-MANIFEST.json",
+    "EXECUTION-ORDER.json",
+    "PROTOCOL-HASHES.txt",
+    "SOURCE-INTEGRITY.txt",
+    "RAW-FIRST-PASS-OUTPUTS.jsonl",
+    "PROJECTION-PROVENANCE.jsonl",
+    "FIRST-PASS-EXECUTION-SUMMARY.json",
+    "TRANSPORT-REJECTION-DIAGNOSIS.json",
+    "DETERMINISTIC-RESULTS.json",
+    "ADJUDICATION-PACKET.json",
+    "EXECUTION-BLOCKER.md",
+    "RUN-SUMMARY.json"
+  ],
+  "ARTIFACTS_NOT_PRODUCED_BECAUSE_NOTHING_EXECUTED": [
+    "RAW-VERIFIER-OUTPUTS.jsonl",
+    "RUN-EXECUTION-SUMMARY.json"
+  ],
+  "artifactsNotProducedNote": "listed as absent deliberately. An evidence package that silently omitted them could be mistaken for a completed run.",
+
+  "ADJUDICATION_PACKET_STATUS": {
+    "status": "NOT_ADJUDICABLE",
+    "verdictSlots": 48,
+    "verdictsSupplied": 0,
+    "reason": "no inference occurred, so there is no model output to adjudicate. The packet is retained as the structure a re-authorized run would fill, NOT as work awaiting a reviewer.",
+    "modelSuppliedVerdicts": 0,
+    "whyNoModelVerdicts": "the authorization requires HUMAN semantic review and forbids the deterministic validator that admitted a declaration from acting as the semantic oracle. §197 produces a neutral packet and supplies no semantic verdict of its own, not even one labelled diagnostic. This would have held equally had the run succeeded."
+  },
+
+  "PRESERVED": {
+    "section196": "UNCHANGED — terminal, 91/91 matrix, 34/34 source integrity, and the recorded NUL-byte incident (initial 33/34 failure and its correction) are all intact and were asserted by the §197 gate",
+    "section195": "UNCHANGED — EXECUTED=false, 0 calls, $0.00, and each of its eleven absent execution artifacts asserted STILL ABSENT file by file. Not executed, not read as stimulus, not reinterpreted.",
+    "expertPromptTs": "UNCHANGED — v15 sha256 20979d90… and EXPERT_PROMPT_VERSION hazlenz.expert.prompt.v15",
+    "owedFactContract": "UNCHANGED — all four §187-pinned owed-facts module hashes",
+    "verifierProtocols": "v3, v3.1, v3.2 prompts and schemas byte-identical",
+    "section192": "PASS immutable",
+    "section189HumanSemanticGate": "UNMEASURED at 65/112",
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "threeOpenContractQuestions": "ALL THREE REMAIN OPEN AND UNRESOLVED — owed-property representation, priority escalation authority, semantic correctness. §197 resolved none and was not authorized to."
+  },
+
+  "MUST_NOT_CLAIM": [
+    "any end-to-end pipeline result",
+    "any first-pass owed-fact recall, precision, or semantic measurement",
+    "that the structured pipeline behaves correctly under hosted execution",
+    "that the structured pipeline behaves incorrectly under hosted execution",
+    "vNext hosted validated",
+    "v3.3 hosted validated",
+    "that any hard-fail condition was cleared",
+    "that PROVIDER_SETTLEMENT_AUTHORITY was tested",
+    "Expert HazLenz accepted, provider-validated or customer-ready",
+    "the §189 human gate measured"
+  ],
+
+  "NEXT_GATE": "PRODUCT-OWNER DECISION between corrections A, B and C for the `maxItems` transport incompatibility, followed by a fresh successor preregistration. Every per-row wireSchemaSha256 moves under any of them, so the §197 preregistration cannot be reused and this cohort must be re-frozen under the corrected protocol. The twelve scenarios, the semantic truth manifest and the adjudication packet structure are all reusable unchanged.",
+
+  "SPEND_ACCOUNTING": {
+    "rule": "ACTUAL SPEND = provider-returned usage only. A call reporting no usage adds zero.",
+    "actualProviderSpendUsd": 0.0,
+    "budgetReservedUsd": 1.536,
+    "syntheticReservationUsd": 1.536,
+    "reservationNote": "the reservation is a BUDGET GUARD figure and is NEVER money. All twelve calls were rejected before inference and consumed zero tokens, so they cost nothing. Reporting the reservation as spend is precisely the §187A defect the §188 ledger exists to prevent.",
+    "ceilingUsd": 6.0,
+    "callCeiling": 36,
+    "callsUsed": 12
+  },
+
+  "worktree": {
+    "branch": "main",
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "branchCreated": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "unrelatedUncommittedWork": "PRESERVED — no reset, checkout, restore, stash or clean was performed"
+  }
+}

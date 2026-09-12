@@ -1,0 +1,88 @@
+{
+  "artifact": "SECTION_210F_TOKEN_REPORT",
+  "executorVersion": "hazlenz.expert.210f.final-confirmation-execution.v1",
+  "authorizationReference": "SECTION-210F-PRODUCT-OWNER-EXECUTION-AUTHORIZATION-2026-09-09",
+  "preregistrationSha256": "2c186aa15734728c81e88e54ec313cba48377083ecc5e775ed01bf1281d0c24a",
+  "instructionVersion": "hazlenz.expert.first-pass-instruction.210e-R4-R7",
+  "instructionIdentitySha256": "874d26d4d036ca419dd0ffaee2a43f89ecec26f6b6bfba93e7a423a10658d831",
+  "model": "claude-sonnet-5",
+  "respondedModels": [
+    "claude-sonnet-5"
+  ],
+  "cachingEnabled": false,
+  "cacheCreationInputTokens": "NOT_APPLICABLE — CACHING_DISABLED",
+  "cacheReadInputTokens": "NOT_APPLICABLE — CACHING_DISABLED",
+  "cacheNote": "Caching was deliberately disabled. Absent or zero provider cache fields in this run are NOT evidence about cache effectiveness and may not be read as such.",
+  "callsAttempted": 4,
+  "callsReachingInference": 4,
+  "transportFailures": [],
+  "structurallyBlockedCases": [],
+  "anyCallReachedMaxTokens": false,
+  "retries": 0,
+  "verifierCalls": 0,
+  "governedStageCalls": 0,
+  "databaseOperations": 0,
+  "perCall": [
+    {
+      "caseId": "E1",
+      "inputTokens": 26167,
+      "outputTokens": 2504,
+      "costUsd": 0.077374,
+      "latencyMs": 32627,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "E2",
+      "inputTokens": 26202,
+      "outputTokens": 2394,
+      "costUsd": 0.076344,
+      "latencyMs": 29190,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "E3",
+      "inputTokens": 26178,
+      "outputTokens": 3766,
+      "costUsd": 0.090016,
+      "latencyMs": 42876,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    },
+    {
+      "caseId": "E4",
+      "inputTokens": 26251,
+      "outputTokens": 1782,
+      "costUsd": 0.070322,
+      "latencyMs": 23027,
+      "stopReason": "tool_use",
+      "failureClass": "NO_FAILURE"
+    }
+  ],
+  "logicalInputTokensTotal": 104798,
+  "outputTokensTotal": 10446,
+  "medianInputTokens": 26190,
+  "medianOutputTokens": 2449,
+  "cumulativeCostUsd": 0.314056,
+  "costPerObservationUsd": 0.078514,
+  "hardCeilingUsd": 0.45,
+  "withinCeiling": true,
+  "projectedSpendUsd": 0.3224,
+  "projectedInputTokensPerCall": 26184,
+  "comparisonWith210D": {
+    "section210b3bMedianInputTokens": 24034,
+    "section210b3bMedianOutputTokens": 2824,
+    "section210dMedianInputTokens": 24988,
+    "section210dMedianOutputTokens": 2515,
+    "section210dCumulativeCostUsd": 0.3526,
+    "section210dCostPerObservationUsd": 0.07052,
+    "section210fMedianInputTokens": 26190,
+    "section210fMedianOutputTokens": 2449,
+    "cumulativeEstimatedStaticDeltaTokens": 2150,
+    "consistencyStatement": "The observed median-input delta is NOT a clean measurement of the §210E static delta. The §210F observations are different texts from the §210D stimuli, with different lengths and different per-case schema enums, so per-case input varies for several reasons at once. Reported as broadly consistent or not, without claiming precision an uncontrolled comparison cannot support. §210D figures are read from its own token report at adjudication time and restated there."
+  },
+  "productionEconomicsClaim": "NONE. Four development cases do not establish production token economics and none is claimed.",
+  "stopped": null,
+  "timestamp": "2026-09-09T21:26:08.524Z"
+}

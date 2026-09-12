@@ -1,0 +1,16 @@
+§192 FROZEN IDENTITY — recorded before the first provider call
+
+v3.1 instruction version   hazlenz.expert.verifier-instruction.v3.1
+v3.1 system prompt sha256  7e73d175162320db8f4d93c9b1094fdadc1e4028b61fd95f586ca9a31bb2fb2c
+v3.1 schema sha256         d39c86bc2755451fd27bdba34cba82c2bfee5b090134a40d1622e25d199bde65
+admission contract version hazlenz.expert.verifier.v3
+admission validator sha256 475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc
+executor version           hazlenz.expert.v3-1.prospective-executor.v1
+cohort version             hazlenz.expert.v3-1.prospective-cohort.2026-09-06
+cohort module sha256       3b4a7fafcd8acb46d52c2f1a7a11d1f50324c055386295d5028e7c99c4c5c095
+model                      claude-sonnet-5
+preregistration sha256     68ba7ffa80fd8d111760cb628bff2493f46181cb41c124da2e0614e365f13267
+
+NOT THIS POPULATION — verifier-v3, whose §187B results are never combined with these:
+  v3 system prompt sha256  678160c95bc7db385d49f3b4d5077fb84d63076f41a198925fd80ae0ff43cd88
+  v3 schema sha256         1bddc1a51fb2d1cad43a7444a45728a6ca10296d448183fd2d3af60f02ca662a

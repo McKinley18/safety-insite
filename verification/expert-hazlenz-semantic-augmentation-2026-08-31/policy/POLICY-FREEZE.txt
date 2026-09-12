@@ -1,0 +1,12 @@
+2eff227febef2b36b5c8db65b1957564c101675299f03e0a9b3abd338ef94454  backend/scripts/lib/expert-semantic-augmentation-construction-policy.ts
+policy frozen at 2026-09-01T02:41:20Z, BEFORE any case was authored
+
+--- AMENDMENT, RECORDED RATHER THAN RE-FROZEN SILENTLY ---
+The policy as first frozen did not compile: TS1355, an `as const` assertion applied to a
+concatenated string expression on OVERLAP_RULE. The fix replaces `as const` with an explicit
+`: string` annotation. The rule TEXT is byte-identical; no target, requirement, prohibition or
+threshold changed. This is recorded because the amendment landed AFTER the cases were authored,
+which is precisely the situation a policy freeze exists to make visible.
+
+original hash (pre-compile-fix) : 2eff227febef2b36b5c8db65b1957564c101675299f03e0a9b3abd338ef94454
+effective hash (syntax fix only)  : c7dc1c682ccde56e54e4259632154b7ba364012e51d6c646e9173648355ebe4f  backend/scripts/lib/expert-semantic-augmentation-construction-policy.ts

@@ -1,0 +1,157 @@
+{
+  "operation": "§177 — Phase A v14 identity alignment + Phase B post-remediation hosted validation",
+  "date": "2026-09-05",
+  "terminal": "EXPERT_HAZLENZ_TEMPORAL_CLARIFICATION_REMEDIATION_NOT_CONFIRMED — REMEDIATION_REVIEW_REQUIRED",
+  "whyThisTerminal": "HR-04, the specific temporal-sufficiency target, remains missed.",
+  "PHASE_A": {
+    "status": "COMPLETE_AND_GREEN",
+    "providerCalls": 0,
+    "promptFileSha256Before": "97d69364117a46ff5ff8317530d5fdd82c5445ad1d917f1a3ee524035522f735",
+    "promptFileSha256After": "70fbc0d3cf3b307ad52523c4fd34de710b20e0636f0d9665bc7fffbb180eedc4",
+    "EXPERT_PROMPT_VERSION": "hazlenz.expert.prompt.v14",
+    "SYSTEM_PROMPT_SHA256": "84aacb9d222d028b028aa22df1c3df85668b76022ac0c94ce50d3ff8e910d9fe",
+    "PROMPT_TEXT_EXCLUDING_VERSION_IDENTITY": "BYTE_EQUIVALENT",
+    "proofStrength": "the version string does not appear in the prompt text at all, so the proof is stronger than \"excluding version identity\": SYSTEM_PROMPT_SHA256 is byte-identical before and after the bump. Phase A changed zero prompt semantics.",
+    "semanticPromptEditRequired": false,
+    "livePinsReAnchored": 12,
+    "correctionToSection176": "the §176 report said TWO protected gates pinned the literal. That was wrong — there are TWELVE live pins across the suites. The undercount came from reading only the head of a grep. The decision §176 took (do not bump without authorization) was still right; the count was not.",
+    "historicalPinsDeliberatelyLeftAtV13": [
+      "hardened-development-set-v9.ts authoredUnder — states which version the fixture set WAS authored under; it has no live consumer and changing it would falsify provenance",
+      "probe-expert-hardened-v13-baseline / replicate2 / replicate3 and probe-expert-retention-bridge — spent historical probes recording what a past run actually executed under",
+      "evidence directory names and past-run statements such as \"First-pass prompt version v13\""
+    ],
+    "theEscapedDotPin": "test-expert-projection-equivalence F.2 writes its pin as a regex with escaped dots, so a bulk literal replace updated its MESSAGE while leaving the regex on v13 — the assertion failed loudly rather than passing under the wrong version. Its own comment records that this same pin was missed in §143 and again later; §177 makes it three. The pin is doing exactly what it exists to do and was left written that way.",
+    "regression": {
+      "suites": 17,
+      "assertionsApprox": 1475,
+      "failures": 0,
+      "section176StaticProofs": "30/30 pass"
+    }
+  },
+  "PHASE_B": {
+    "preSpendGates": {
+      "frozenRowAndTruthHashes": "PASS",
+      "v14PromptIdentityAndHash": "PASS",
+      "scorerUnchanged": "PASS — expert-measure-scorers.ts and expert-normalization.ts mtimes predate §176",
+      "harnessCapabilities": "PASS — 20/20 preflight, zero provider calls",
+      "syntheticHarnessChecks": "PASS"
+    },
+    "preregistrationSha256": "ffdc21433b0f2ba9fa47ede1b9881b97c4c124065b94872de98e31b87c68217d",
+    "section175PreregistrationPreservedUnchanged": "397aed8f73cf47de7a585878d2cea97104ca4918d22ea84ed48b3e6d3cecc508",
+    "model": "claude-sonnet-5",
+    "returnedModelIdentity": [
+      "claude-sonnet-5"
+    ],
+    "promptVersion": "hazlenz.expert.prompt.v14",
+    "promptSha256": "84aacb9d222d028b028aa22df1c3df85668b76022ac0c94ce50d3ff8e910d9fe",
+    "PROVIDER_INVOCATION_COUNT": 10,
+    "TOTAL_ACTUAL_COST_USD": 0.49406,
+    "RETRY_COUNT": 0,
+    "PROVIDER_ERROR_COUNT": 0,
+    "CONTRACT_FAILURE_COUNT": 0,
+    "NORMALIZATION_REJECTED_COUNT": 0,
+    "totalPromptTokens": 189830,
+    "totalOutputTokens": 11440,
+    "meanLatencyMs": 38455,
+    "rawOutputPersistedForAllRows": true
+  },
+  "CUMULATIVE_SECTION_175_177": {
+    "calls": 30,
+    "costUsd": 1.44358
+  },
+  "METRICS": {
+    "SILENCE_PRECISION": {
+      "value": "5/5",
+      "decimal": 1.0,
+      "exact": true,
+      "baseline": "4/5",
+      "change": "+1 row (HR-05)"
+    },
+    "REQUIRED_RECALL_STRICT": {
+      "value": "PENDING_HUMAN_ADJUDICATION",
+      "range": "0/5 to 4/5",
+      "definiteFailures": [
+        "HR-04"
+      ],
+      "baseline": "4/5 strict",
+      "note": "loose recall is 4/5, unchanged from baseline. Strict must not be promoted from loose."
+    },
+    "BALANCED_ACCURACY": {
+      "range": [
+        0.5,
+        0.9
+      ],
+      "pointEstimateAvailable": false,
+      "baseline": 0.8
+    },
+    "ROW_LEVEL_ACCURACY": {
+      "range": [
+        0.5,
+        0.9
+      ],
+      "pointEstimateAvailable": false,
+      "baseline": 0.8
+    }
+  },
+  "SPECIAL_HR04": {
+    "outcome": "STILL MISSED — no clarification emitted, exactly as in §175",
+    "declaredOutcome": "ANALYZED",
+    "hazardCandidates": 1,
+    "uncertaintyStatements": "empty",
+    "whatTheModelDidInstead": "it raised the conveyor nip point as a candidate in state CONTROLLED, reasoning that \"the observation confirms the guard is currently in place\". It settled the present state on the guard being physically IN POSITION, so the staleness of the torque check never became a live question.",
+    "diagnosis": "the temporal rule did not fire because the model never reached a temporal question. It closed the fact on PHYSICAL PRESENCE. That is the §169 evidence-sufficiency failure — presence is not securement — arriving ahead of the temporal one, so a temporal instruction placed in the established-facts list was never consulted for this row.",
+    "remediationTargetHit": false
+  },
+  "SPECIAL_HR05": {
+    "outcome": "NOW SILENT — the unnecessary adjacent-energy-source question was not repeated",
+    "baselineQuestion": "Are the drying fans and any other energy sources connected to or capable of moving the discharge auger or its surrounding equipment (e.g., shared drive train, airflow-driven components) while the auger drive isolator remains locked out?",
+    "precisionFailurePreserved": "not applicable this run; the row passed",
+    "cautionAgainstOverreading": "see runToRunVariance below — this is a single row flipping between two single-sample runs and is NOT established as an effect of the repair."
+  },
+  "runToRunVariance": {
+    "rowsChangedOutOfTen": 1,
+    "changed": [
+      "HR-05: 1 -> 0 clarifications"
+    ],
+    "unchanged": [
+      "HR-01",
+      "HR-02",
+      "HR-03",
+      "HR-04",
+      "HR-06",
+      "HR-07",
+      "HR-08",
+      "HR-09",
+      "HR-10"
+    ],
+    "THE_LIMITATION": "both §175 attempt 2 and §177 phase B are ONE sample per row against a stochastic model at temperature default. A single row differing between two single-sample runs is not evidence that the prompt caused it. The HR-05 improvement is consistent with the precision brake working AND equally consistent with ordinary sampling noise, and this run cannot separate them.",
+    "whatWouldSeparateThem": "replicate runs at the same identity — the programme already has the pattern from the §152-§154 hardened baseline/replicate2/replicate3 triplet."
+  },
+  "successCriterion": {
+    "required": "REQUIRED_RECALL_STRICT >= 4/5 AND SILENCE_PRECISION >= 4/5 AND at least one improves AND neither regresses",
+    "SILENCE_PRECISION >= 4/5": "MET — 5/5",
+    "at least one improves": "MET on the arithmetic — precision 4/5 -> 5/5 — but see runToRunVariance; a one-row change between single samples does not establish an improvement",
+    "REQUIRED_RECALL_STRICT >= 4/5": "UNDETERMINED — pending human adjudication of four emissions; upper bound is 4/5, so it can at best equal the baseline, never exceed it",
+    "neither regresses": "UNDETERMINED for recall until adjudication",
+    "overall": "NOT MET AS A REMEDIATION CLAIM. The repair targeted HR-04 and HR-04 is unchanged."
+  },
+  "remediationConfirmed": false,
+  "provenanceLimitation": {
+    "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "AI_ASSISTED_STRICT_ADJUDICATION": true,
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "corpusAuthoredBy": "Claude",
+    "evaluatedModelFamily": "Claude",
+    "consequence": "development evidence only, even at 10/10"
+  },
+  "pendingWork": "strict human adjudication of the four §177 emissions (HR-01, HR-06, HR-08, HR-09)",
+  "worktree": {
+    "databaseOperations": 0,
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

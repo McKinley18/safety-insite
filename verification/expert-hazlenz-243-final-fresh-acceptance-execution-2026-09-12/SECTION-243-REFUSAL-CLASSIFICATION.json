@@ -1,0 +1,289 @@
+{
+  "artifact": "SECTION-243-REFUSAL-CLASSIFICATION",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "rule": "every refusal is classified by its own demonstrated cause. A refusal is never repaired and never redrawn.",
+  "refusedCalls": 14,
+  "callsExecuted": 30,
+  "firstPassCalls": 24,
+  "verifierCalls": 6,
+  "classification": {
+    "SEMANTIC_COHERENCE_REFUSAL": [
+      "G1",
+      "G2",
+      "C1",
+      "C4",
+      "C6",
+      "C7",
+      "C8",
+      "M2",
+      "M4",
+      "M6"
+    ],
+    "SCHEMA_CONFORMANCE_ONLY": [
+      "G4",
+      "G8",
+      "C3",
+      "M5"
+    ],
+    "DEGENERATE_PLACEHOLDER": [
+      "C7",
+      "M5"
+    ]
+  },
+  "degeneratePlaceholderDetail": "C7 returned a tool input whose only key was \"parameters\" and M5 one whose only key was \"$PARAMETER_NAME\". Neither carried any analysis content. These are schema-artifact payloads, not analyses.",
+  "records": [
+    {
+      "caseId": "G1",
+      "codes": [
+        "POSTURE_NARRATIVE_MISSING",
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "schemaEnforceableCodes": [
+        "POSTURE_NARRATIVE_MISSING"
+      ],
+      "semanticCoherenceCodes": [
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE",
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "STOP",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of STOP; 1 of 2 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "G2",
+      "codes": [
+        "POSTURE_NARRATIVE_MISSING",
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+      ],
+      "schemaEnforceableCodes": [
+        "POSTURE_NARRATIVE_MISSING"
+      ],
+      "semanticCoherenceCodes": [
+        "UNRESOLVED_DRIVER_ROLE_CONTRADICTS_CANDIDATE_STATE"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of CONTINUE_WITH_CONTROLS; 1 of 1 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "G4",
+      "codes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "schemaEnforceableCodes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "semanticCoherenceCodes": [],
+      "unclassifiedCodes": [],
+      "refusalCause": "SCHEMA_CONFORMANCE_ONLY",
+      "wouldStrictModeHavePreventedIt": "POSSIBLY \u2014 every code here is a required-field conformance failure that the product adapter's strict:true tool mode is designed to prevent",
+      "emittedPostureBeforeRefusal": null,
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "whatTheSemanticsAppearedToBe": "posture None against a frozen expectation of HOLD_PENDING_VERIFICATION; 0 of 0 declarations admitted against a frozen expectation of 1",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "G8",
+      "codes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "schemaEnforceableCodes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "semanticCoherenceCodes": [],
+      "unclassifiedCodes": [],
+      "refusalCause": "SCHEMA_CONFORMANCE_ONLY",
+      "wouldStrictModeHavePreventedIt": "POSSIBLY \u2014 every code here is a required-field conformance failure that the product adapter's strict:true tool mode is designed to prevent",
+      "emittedPostureBeforeRefusal": null,
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "whatTheSemanticsAppearedToBe": "posture None against a frozen expectation of CONTINUE_WITH_CONTROLS; 0 of 0 declarations admitted against a frozen expectation of 1",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "C1",
+      "codes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "whatTheSemanticsAppearedToBe": "posture CONTINUE_WITH_CONTROLS against a frozen expectation of CONTINUE_WITH_CONTROLS; 1 of 1 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "C3",
+      "codes": [
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "schemaEnforceableCodes": [
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "semanticCoherenceCodes": [],
+      "unclassifiedCodes": [],
+      "refusalCause": "SCHEMA_CONFORMANCE_ONLY",
+      "wouldStrictModeHavePreventedIt": "POSSIBLY \u2014 every code here is a required-field conformance failure that the product adapter's strict:true tool mode is designed to prevent",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "STOP",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of STOP; 2 of 2 declarations admitted against a frozen expectation of 1",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "C4",
+      "codes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of CONTINUE_WITH_CONTROLS; 1 of 1 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "C6",
+      "codes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of HOLD_PENDING_VERIFICATION; 2 of 2 declarations admitted against a frozen expectation of 2",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "C7",
+      "codes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": null,
+      "frozenExpectedPosture": "STOP",
+      "whatTheSemanticsAppearedToBe": "posture None against a frozen expectation of STOP; 0 of 0 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "C8",
+      "codes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "POSTURE_BASIS_REF_DUPLICATED"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "CONTINUE",
+      "frozenExpectedPosture": "CONTINUE",
+      "whatTheSemanticsAppearedToBe": "posture CONTINUE against a frozen expectation of CONTINUE; 0 of 0 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "M2",
+      "codes": [
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "DRIVER_ROLE_INCOMPATIBLE_WITH_REF_KIND"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of HOLD_PENDING_VERIFICATION; 1 of 1 declarations admitted against a frozen expectation of 1",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "M4",
+      "codes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "ESTABLISHED_CESSATION_DRIVER_WITH_NON_STOP_POSTURE"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "HOLD_PENDING_VERIFICATION",
+      "frozenExpectedPosture": "STOP",
+      "whatTheSemanticsAppearedToBe": "posture HOLD_PENDING_VERIFICATION against a frozen expectation of STOP; 2 of 2 declarations admitted against a frozen expectation of 1",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "M5",
+      "codes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "schemaEnforceableCodes": [
+        "POSTURE_MISSING",
+        "WIRE_OUTPUT_DID_NOT_ARRIVE_INTACT"
+      ],
+      "semanticCoherenceCodes": [],
+      "unclassifiedCodes": [],
+      "refusalCause": "SCHEMA_CONFORMANCE_ONLY",
+      "wouldStrictModeHavePreventedIt": "POSSIBLY \u2014 every code here is a required-field conformance failure that the product adapter's strict:true tool mode is designed to prevent",
+      "emittedPostureBeforeRefusal": null,
+      "frozenExpectedPosture": "HOLD_PENDING_VERIFICATION",
+      "whatTheSemanticsAppearedToBe": "posture None against a frozen expectation of HOLD_PENDING_VERIFICATION; 0 of 0 declarations admitted against a frozen expectation of 2",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    },
+    {
+      "caseId": "M6",
+      "codes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "schemaEnforceableCodes": [],
+      "semanticCoherenceCodes": [
+        "RESUME_CONDITION_UNDER_PERMITTING_POSTURE"
+      ],
+      "unclassifiedCodes": [],
+      "refusalCause": "SEMANTIC_COHERENCE_REFUSAL",
+      "wouldStrictModeHavePreventedIt": "NO \u2014 the semantic-coherence codes are not schema-enforceable and would still refuse",
+      "emittedPostureBeforeRefusal": "CONTINUE_WITH_CONTROLS",
+      "frozenExpectedPosture": "CONTINUE_WITH_CONTROLS",
+      "whatTheSemanticsAppearedToBe": "posture CONTINUE_WITH_CONTROLS against a frozen expectation of CONTINUE_WITH_CONTROLS; 2 of 2 declarations admitted against a frozen expectation of 0",
+      "semanticCreditTaken": "NONE. Invariant 25 withdraws this case from every semantic denominator."
+    }
+  ]
+}

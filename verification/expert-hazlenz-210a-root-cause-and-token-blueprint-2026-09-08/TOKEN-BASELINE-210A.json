@@ -1,0 +1,106 @@
+{
+  "artifact": "TOKEN_BASELINE_210A",
+  "pricingDerivedFromLedger": {
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10,
+    "note": "solved from CALL-LEDGER-208 first-pass rows; reproduces every recorded costUsd exactly"
+  },
+  "stages": [
+    {
+      "stage": "FIRST_PASS (§208, authoritative)",
+      "calls": 24,
+      "measured": true,
+      "inputTokensTotal": 586555,
+      "inputTokensMedian": 24440,
+      "inputTokensP95": 24493,
+      "inputTokensMin": 24388,
+      "inputTokensMax": 24512,
+      "inputSpreadAcrossCohort": 124,
+      "outputTokensTotal": 52398,
+      "outputTokensMedian": 2355,
+      "costUsd": 1.69709
+    },
+    {
+      "stage": "GOVERNED_STAGE (§208, authoritative)",
+      "calls": 1,
+      "measured": true,
+      "inputTokensTotal": 2778,
+      "inputTokensMedian": 2778,
+      "inputTokensP95": 2778,
+      "inputTokensMin": 2778,
+      "inputTokensMax": 2778,
+      "inputSpreadAcrossCohort": 0,
+      "outputTokensTotal": 145,
+      "outputTokensMedian": 145,
+      "costUsd": 0.007006
+    },
+    {
+      "stage": "VERIFIER (§208B recovered, authoritative)",
+      "calls": 24,
+      "measured": true,
+      "inputTokensTotal": 217911,
+      "inputTokensMedian": 9106,
+      "inputTokensP95": 9493,
+      "inputTokensMin": 8759,
+      "inputTokensMax": 9553,
+      "inputSpreadAcrossCohort": 794,
+      "outputTokensTotal": 17625,
+      "outputTokensMedian": 732,
+      "costUsd": 0.612072
+    },
+    {
+      "stage": "VERIFIER (§208 DEFECTIVE_INPUT_DIAGNOSTIC_EVIDENCE — excluded from baseline)",
+      "calls": 24,
+      "measured": true,
+      "inputTokensTotal": 207019,
+      "inputTokensMedian": 8613,
+      "inputTokensP95": 8753,
+      "inputTokensMin": 8520,
+      "inputTokensMax": 8945,
+      "inputSpreadAcrossCohort": 425,
+      "outputTokensTotal": 19042,
+      "outputTokensMedian": 726,
+      "costUsd": 0.604458
+    }
+  ],
+  "callsPerObservation": {
+    "firstPass": 1,
+    "verifier": 1,
+    "governed": 0.041666666666666664,
+    "note": "the governed stage ran once across three governed cases: AC-23 and AC-24 admitted zero facts so there was nothing to bind. That is TBR-4 deterministic elision already working."
+  },
+  "callsPerAdmittedOwedFact": {
+    "admittedOwedFacts": 24,
+    "verifierCalls": 24,
+    "ratio": 1
+  },
+  "deterministicallyElidedCalls": {
+    "verifierCallsNotMadeBecauseZeroAdmittedFacts": [
+      "AC-04",
+      "AC-06",
+      "AC-23",
+      "AC-24"
+    ],
+    "governedCallsNotMadeBecauseZeroAdmittedFacts": [
+      "AC-23",
+      "AC-24"
+    ]
+  },
+  "staticPayloadReuse": {
+    "verifierDistinctSystemPromptIdentities": 1,
+    "verifierDistinctSchemaIdentities": 1,
+    "verifierDistinctWrapperIdentities": 1,
+    "verifierDistinctUserPromptIdentities": 24,
+    "firstPassDistinctTransmittedSchemaSha256": 24,
+    "firstPassDistinctGrammarIds": 3,
+    "firstPassSchemaBytesMedian": 18670,
+    "firstPassBodyBytesMin": 69624,
+    "firstPassBodyBytesMax": 69968
+  },
+  "unavailableMeasurements": [
+    "cached input tokens — the §208/§208B ledgers record no cache-read or cache-write token field, so no cached-token baseline exists and none is inferred",
+    "per-component token attribution inside a single request — the ledgers record whole-request inputTokens only, so the static/dynamic split below is BOUNDED by the observed cohort spread rather than measured directly",
+    "governed-stage token detail beyond the single executed call"
+  ],
+  "generatedAt": "2026-09-09T02:35:36.099Z"
+}

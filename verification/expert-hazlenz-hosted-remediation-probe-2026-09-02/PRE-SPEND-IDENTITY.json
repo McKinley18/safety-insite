@@ -1,0 +1,219 @@
+{
+  "operation": "§140 Expert HazLenz hosted development remediation probe",
+  "isFormalEvaluation": false,
+  "capturedAt": "2026-09-03T02:31:18.792Z",
+  "git": {
+    "head": "37a5d1b50abe836eb19dd24ee18ad10557bda131",
+    "branch": "main",
+    "worktreeDirtyFiles": null
+  },
+  "providerInvocationCountHistoricalFormal": 195,
+  "providerInvocationCountThisProcessBeforeSpend": 0,
+  "executionIdentity": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "endpoint": "https://api.anthropic.com",
+    "apiVersion": "2023-06-01",
+    "maxTokens": 8000,
+    "thinking": "disabled",
+    "inputUsdPerMTok": 2,
+    "outputUsdPerMTok": 10
+  },
+  "promptIdentity": {
+    "promptVersion": "hazlenz.expert.prompt.v7",
+    "contractVersion": "hazlenz.expert.analysis.v2",
+    "systemPromptSha256": "d0506f67022196c9f0ac8d155e46992d602d459829d638f59f5a412f4b0bd2c5",
+    "wireSchemaSha256": "65d6fe4cbe1e52d3e0d1c851c5061a0c3aab283acee0901149a1a579a6c0c870"
+  },
+  "contractVersions": {
+    "input": "hazlenz.expert.input.v1",
+    "analysis": "hazlenz.expert.analysis.v2",
+    "validator": "hazlenz.expert.validator.v1",
+    "measurement": "hazlenz.expert.measurement.v1",
+    "harness": "hazlenz.expert.cohort.harness.v1",
+    "runRecordStore": "hazlenz.expert.run-record-store.v1",
+    "fixtureSet": "hazlenz.expert.dev-probe.fixtures.v1"
+  },
+  "budget": {
+    "targetLogicalCalls": 16,
+    "hardProviderRequestCeiling": 20,
+    "retryRequestBudget": 4,
+    "maxRetriesPerLogicalCall": 1,
+    "authorizedSpendCeilingUsd": 3,
+    "modelPricedCeilingUsd": 2.08,
+    "enforcedSpendCeilingUsd": 2.08,
+    "worstCaseRequestUsd": 0.104,
+    "enforcement": "prospective, before each request, at the frozen worst case"
+  },
+  "arms": [
+    "BASE"
+  ],
+  "m14RemediationStatus": "NOT_ATTEMPTED",
+  "sourceHashes": {
+    "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts": "3dd172666aa7eb9916a98ae441870787df39b3307d3af38ad606c169c6ad6f09",
+    "backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts": "5705870db16edca69828538e4f734b37e813bb7ef70109feff744c5bf9a40ae0",
+    "backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts": "a69932b8ec4f2c9dd6894cdb69da0bc6448efc0c6ad76b9804fadf6307107b51",
+    "backend/src/safescope-v2/expert-hazlenz/expert-runner.ts": "26dac3049b2203750492fa5368c7cff76b19054166fbdc42d1770e206aeb6736",
+    "backend/src/safescope-v2/expert-hazlenz/expert-provider.ts": "da0f6e1cec81ebde86ca10ce043c1ea74fcd29de827b60edf5bd035b94429c1e",
+    "backend/src/safescope-v2/expert-hazlenz/expert-input-constructor.ts": "72dab946616496bdd4fcb529828b14041ce7ae7723e857961c1f253fe4ff8279",
+    "backend/src/safescope-v2/expert-hazlenz/expert-authority-merge.ts": "db5ffe30722cc7181f46e06b4e5b1efb5fddcdcba736177f23bc1483f3f57c04",
+    "backend/src/safescope-v2/expert-hazlenz/fixtures/hosted-remediation-probe-v1.ts": "d6961c1919f276fbe0b0d03b665b7420f47c93258304b8d6ab5345a6c0dd1b91",
+    "backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts": "050128f473a1d8980e04916bb22b74b9640df2af96c1a62233d8c7a132b5e9d4",
+    "backend/scripts/lib/expert-cohort-harness.ts": "76b8fb7c74f122e3c13ae0d7ef0112e58d1f0c5dd1b6466927054a59a2ac142d",
+    "backend/scripts/lib/expert-run-record-store.ts": "2dfbafe14cae421dcfc0189e03f53e6262cefe473aeba8c5de06c68169a4ad55",
+    "backend/scripts/lib/expert-execution-budget.ts": "82794b07f9e996061ef7c9d1e24d2621834f272ca3a86a0c2be47c948bcee306",
+    "backend/scripts/probe-expert-hosted-remediation-2026-09-02.ts": "063b179b7d0587d183ccf7e1ef4c8949806deaff4d041fd6d53a89985e3716d5"
+  },
+  "gate": [
+    {
+      "id": "A.1 fixture count",
+      "ok": true,
+      "detail": "16 rows (target 16)"
+    },
+    {
+      "id": "A.2 every row is structurally scoreable",
+      "ok": true,
+      "detail": "validateCohortRow: 0 problems"
+    },
+    {
+      "id": "A.3 row ids are development ids",
+      "ok": true,
+      "detail": "DP-A1 DP-A2 DP-A3 DP-A4 DP-B1 DP-B2 DP-B3 DP-B4 DP-C1 DP-C2 DP-C3 DP-D1 DP-D2 DP-D3 DP-D4 DP-E1"
+    },
+    {
+      "id": "A.4 row ids are unique",
+      "ok": true,
+      "detail": "no duplicate row id"
+    },
+    {
+      "id": "A.5 >=4 NO-GAP negative controls",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "id": "A.6 >=4 TRUE-GAP positive controls",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "id": "A.7 >=2 active-candidate/existence conflict rows",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "id": "A.8 governed relevance quartet present",
+      "ok": true,
+      "detail": "relevant 1, unrelated 2, absent 1, narrower 1"
+    },
+    {
+      "id": "A.9 >=1 citation adversarial row",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "id": "A.10 >=2 empty-collection routing controls",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "id": "A.11 each TRUE-GAP row carries EXACTLY one gap",
+      "ok": true,
+      "detail": "DP-B1:1 DP-B2:1 DP-B3:1 DP-B4:1"
+    },
+    {
+      "id": "A.12 TRUE-GAP rows cover distinct affectedDecision values",
+      "ok": true,
+      "detail": "EXPOSURE REQUIRED_CONTROL APPLICABILITY HAZARD_SEVERITY"
+    },
+    {
+      "id": "A.13 each NO-GAP control owes NO gap",
+      "ok": true,
+      "detail": "decisionCriticalGaps empty on all NO-GAP controls"
+    },
+    {
+      "id": "B.1 no formal-cohort or reserved-material path is imported",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "id": "B.2 rows come from exactly one development fixture module",
+      "ok": true,
+      "detail": "hazlenz.expert.dev-probe.fixtures.v1"
+    },
+    {
+      "id": "C.1 model identity is exactly the authorized model",
+      "ok": true,
+      "detail": "claude-sonnet-5"
+    },
+    {
+      "id": "C.2 endpoint is the vendor API host",
+      "ok": true,
+      "detail": "https://api.anthropic.com"
+    },
+    {
+      "id": "C.3 thinking is disabled, as on every prior hosted run",
+      "ok": true,
+      "detail": "disabled"
+    },
+    {
+      "id": "C.4 a credential is present (value never read, logged or persisted)",
+      "ok": true,
+      "detail": "ANTHROPIC_API_KEY set"
+    },
+    {
+      "id": "D.1 dry run built one request per row and called nothing",
+      "ok": true,
+      "detail": "16 requests built, 0 provider invocations"
+    },
+    {
+      "id": "B.3 every built request is the BASE arm — M14 is not attempted",
+      "ok": true,
+      "detail": "1 distinct arm(s): BASE"
+    },
+    {
+      "id": "D.2 prompt label is the remediated version",
+      "ok": true,
+      "detail": "hazlenz.expert.prompt.v7"
+    },
+    {
+      "id": "E.1 no truth-key-only string appears in any built request",
+      "ok": true,
+      "detail": "16 requests scanned"
+    },
+    {
+      "id": "F.1 the system prompt carries no citation-shaped text",
+      "ok": true,
+      "detail": "EXPERT_SYSTEM_PROMPT clean"
+    },
+    {
+      "id": "F.2 no built user prompt carries citation-shaped text",
+      "ok": true,
+      "detail": "16 prompts scanned"
+    },
+    {
+      "id": "F.3 the redaction was actually exercised (records DID carry citations pre-render)",
+      "ok": true,
+      "detail": "4 row(s) supplied citation-bearing record text"
+    },
+    {
+      "id": "G.1 spend ceiling is the LOWER of authorized and model-priced",
+      "ok": true,
+      "detail": "authorized $3.00, model-priced $2.0800 -> enforcing $2.0800"
+    },
+    {
+      "id": "G.2 request ceiling covers the target calls plus the retry allowance",
+      "ok": true,
+      "detail": "16 + 4 = 20"
+    },
+    {
+      "id": "G.3 prospective worst case is priced from the frozen cost model",
+      "ok": true,
+      "detail": "$0.104000 per request"
+    },
+    {
+      "id": "H.1 MEASURE-ONLY: the run-record store exists and carries records",
+      "ok": true,
+      "detail": "recomputing diagnostics from persisted evidence; NO provider request will be issued"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "TEMPLATE": true,
+  "ledgerVersion": "hazlenz.expert.verifier.row-truth-dispositions.v2",
+  "supersedesSchemaOf": "ROW-TRUTH-DISPOSITIONS.json (v1) — THE LIVE LEDGER IS NOT MODIFIED BY THIS FILE",
+  "INSTRUCTIONS": "This is the SHAPE the §161 admission standard requires, not a ledger. The live ROW-TRUTH-DISPOSITIONS.json is untouched; extending it is the product owner's to approve. Set each of the six observationOnlyTruthAdmission keys to true only where the human reviewer has established it. All six are required TOGETHER — five of six is not admission, and an unrecorded key counts as NOT ESTABLISHED. A row with no disposition is not thereby valid.",
+  "policy161": {
+    "B_SELECTOR_ACCURACY_KEYWORD_SCORER_PROSPECTIVE_AUTHORITY": "RETIRED",
+    "OBSERVATION_ONLY_TRUTH_ALLOWED": true,
+    "OBSERVATION_ONLY_TRUTH_REQUIREMENTS": [
+      "HUMAN_REVIEWED",
+      "FACT_GENUINELY_UNRESOLVED",
+      "PLAUSIBLE_ALTERNATIVE_STATES",
+      "MATERIAL_CURRENT_DECISION_DIVERGENCE",
+      "NECESSARY_NOW",
+      "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP"
+    ],
+    "governedEvidenceMandatory": "NO — unless the claimed decision distinction itself depends on regulatory interpretation",
+    "deterministicSupportMandatory": "NO",
+    "replacementSelectorScorerAuthorized": false,
+    "historicalFiguresImmutable": true
+  },
+  "allowedDispositions": [
+    "AUTHORING_VALID_UNIQUE_SELECTOR",
+    "AUTHORING_VALID_MULTIPLE_ACCEPTABLE_SELECTORS",
+    "AUTHORING_AMBIGUOUS",
+    "AUTHORING_INVALID",
+    "INSUFFICIENT_INFORMATION_FOR_HUMAN_ADJUDICATION"
+  ],
+  "denominatorKeys": [
+    "A_decisionCriticalRecall",
+    "B_selectorAccuracy",
+    "C_legitimateSilenceSpecificity",
+    "E_nominationAccuracy"
+  ],
+  "rows": [
+    {
+      "rowId": "HS-H1",
+      "authoredClass": "REQUIRED",
+      "disposition": "AUTHORING_AMBIGUOUS",
+      "dispositionedBy": "PRODUCT_OWNER",
+      "dispositionedAt": "2026-09-04",
+      "excludeFromDenominators": [
+        "A_decisionCriticalRecall",
+        "B_selectorAccuracy",
+        "E_nominationAccuracy"
+      ],
+      "note": "General concern valid; the cooling-hold selector is not uniquely supported because the observation does not establish load type, cycle type, manufacturer/SOP unload criteria, or that a cooling hold is the applicable safe-unloading mechanism.",
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": true,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "HUMAN_REVIEWED is true; the remaining five are left null because the disposition was AUTHORING_AMBIGUOUS and the row is excluded from the selector-based denominators, so admission is not sought. No condition is asserted on the reviewer's behalf."
+    },
+    {
+      "rowId": "HS-A1",
+      "authoredClass": "REQUIRED",
+      "disposition": null,
+      "dispositionedBy": null,
+      "dispositionedAt": null,
+      "excludeFromDenominators": null,
+      "note": null,
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": null,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "awaiting human adjudication — no condition asserted"
+    },
+    {
+      "rowId": "HS-E1",
+      "authoredClass": "REQUIRED",
+      "disposition": null,
+      "dispositionedBy": null,
+      "dispositionedAt": null,
+      "excludeFromDenominators": null,
+      "note": null,
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": null,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "awaiting human adjudication — no condition asserted"
+    },
+    {
+      "rowId": "HS-J1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": null,
+      "dispositionedBy": null,
+      "dispositionedAt": null,
+      "excludeFromDenominators": null,
+      "note": null,
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": null,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "awaiting human adjudication — no condition asserted"
+    },
+    {
+      "rowId": "HS-N1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": null,
+      "dispositionedBy": null,
+      "dispositionedAt": null,
+      "excludeFromDenominators": null,
+      "note": null,
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": null,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "awaiting human adjudication — no condition asserted"
+    },
+    {
+      "rowId": "HS-P1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": null,
+      "dispositionedBy": null,
+      "dispositionedAt": null,
+      "excludeFromDenominators": null,
+      "note": null,
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": null,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "awaiting human adjudication — no condition asserted"
+    },
+    {
+      "rowId": "HS-R1",
+      "authoredClass": "FORBIDDEN",
+      "disposition": null,
+      "dispositionedBy": null,
+      "dispositionedAt": null,
+      "excludeFromDenominators": null,
+      "note": null,
+      "observationOnlyTruthAdmission": {
+        "HUMAN_REVIEWED": null,
+        "FACT_GENUINELY_UNRESOLVED": null,
+        "PLAUSIBLE_ALTERNATIVE_STATES": null,
+        "MATERIAL_CURRENT_DECISION_DIVERGENCE": null,
+        "NECESSARY_NOW": null,
+        "SEMANTIC_SELECTOR_MATCH_NOT_KEYWORD_OVERLAP": null
+      },
+      "admissionNote": "awaiting human adjudication — no condition asserted"
+    }
+  ]
+}

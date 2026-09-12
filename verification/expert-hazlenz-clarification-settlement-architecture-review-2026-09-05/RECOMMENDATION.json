@@ -1,0 +1,118 @@
+{
+  "artifact": "SECTION_180_RECOMMENDATION",
+  "date": "2026-09-05",
+  "operation": "§180 — bounded clarification settlement architecture review (LOCAL, zero provider calls)",
+  "terminal": "EXPERT_HAZLENZ_CLARIFICATION_SETTLEMENT_ARCHITECTURE_REVIEW_COMPLETE — BOUNDED_INACTIVE_SETTLEMENT_INTEGRATION_AUTHORIZATION_REQUIRED",
+
+  "RECOMMENDATION": "B — STRUCTURED_SETTLEMENT_REPRESENTATION_JUSTIFIED",
+  "shape": "option B/C delivered as one staged design, beginning with stage A0 which exercises the EXISTING architecture and can still overturn the recommendation before any new field is written",
+
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "sourceCodeChanges": 0,
+  "governedRecordsModified": 0,
+  "implementationPerformed": "NONE",
+
+  "evidenceBase": [
+    {
+      "finding": "the settlement state already exists and is unreachable",
+      "detail": "SETTLED_BY_EVIDENCE requires an ADMISSIBLE_EVIDENCE authority, and no code path in the repository mints it. The single minting site produces ADMITTED_BINDING. Today a fact can only leave UNRESOLVED by being asked about.",
+      "source": "owed-fact.types.ts:178, owed-fact-binding.ts:355, repository-wide search"
+    },
+    {
+      "finding": "the challenge channel has a producer and no consumer",
+      "detail": "CHALLENGE_FACT_VALIDITY — instructed as 'the observation already settles it', which is HR-04's sentence — produces an ArbitrationRequest that nothing consumes.",
+      "source": "expert-verifier-instruction-v3.ts:166, owed-fact-binding.ts:283"
+    },
+    {
+      "finding": "the provider is never asked what property its evidence establishes",
+      "detail": "it receives the target and returns one of three bookkeeping tokens. The comparison §178 tried to teach in prose is the one step the structured channel does not represent.",
+      "source": "expert-verifier-instruction-v3.ts:155-170, verifier-v3-development-boundary.ts:145"
+    },
+    {
+      "finding": "both §179 failure shapes occurred where the architecture is absent",
+      "detail": "HR-04, HR-05 and HR-07 ran through the first-pass v15 prompt, which has no ledger, no factKey and no binding. §179 is therefore NOT evidence against the existing architecture.",
+      "source": "probe-balanced-clarification-hosted-2026-09-05.ts execution path; §179 run records"
+    }
+  ],
+
+  "justification": [
+    "the proposal completes two structures the architecture already committed to, rather than inventing a new concept: a declared-but-unreachable settlement state, and a claims queue with no consumer",
+    "§179 showed the settlement decision being made in prose with no structured trace — a diagnosis problem before it is a correctness problem, and prompt-only continuation cannot fix a diagnosis problem",
+    "the determinism and semantic boundaries survive intact: every new check is a property of form, the semantic judgement stays human, acceptableEvidence stays guidance, the status set stays closed at four, and no closed property ontology is introduced",
+    "it degrades gracefully — where a governed criterion is null, which is most facts today, behaviour is identical to today with the gap reported rather than filled by invention",
+    "three prompt identities have now failed to move HR-04, and §179 replicate 3 reasoned explicitly through presence, the pre-start check and the historical torque verification before settling the fact"
+  ],
+
+  "whyNotEachAlternative": {
+    "A_CONTINUE_PROMPT_ONLY": "not refuted as a category and explicitly not barred — but as the sole next step it repeats a loop that has failed three times and, more importantly, cannot report why. Every attempt costs a replicated hosted validation to evaluate.",
+    "C_ARCHITECTURE_CHANGE_NOT_YET_JUSTIFIED": "this was the closest competitor, on the strength of Finding 4 — the existing architecture has never run on the failing rows. It is answered by making stage A0, not a new field, the first thing that happens. The recommendation is staged so this objection is tested rather than argued.",
+    "D_GOVERNED_KNOWLEDGE_REMEDIATION_REQUIRED_FIRST": "rejected as a prerequisite because the architecture must fail transparently on null and coarse criteria regardless; if it needed a clean registry to be safe it would be the wrong architecture. The AUDIT half is recommended early, in parallel.",
+    "E_DETERMINISTIC_SEMANTIC_GATE": "refused outright — violates non-negotiable constraint 2 and rebuilds the keyword scorer §160/§161 retired."
+  },
+
+  "constraintCompliance": {
+    "1_verifier_v3_remains_inactive": "PRESERVED — EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED stays the literal false through every proposed stage; no environment flag, settings toggle, customer toggle or runtime activation path is proposed. Customer activation is not in the sequence.",
+    "2_semantic_sufficiency_remains_semantic": "PRESERVED — no similarity threshold, embedding score, keyword score, overlap percentage, regex or property matcher is proposed, and stage E must prove none exists. CLARIFICATION_EVIDENCE_SUFFICIENCY = SEMANTIC_JUDGMENT_REQUIRED is unchanged. Exact factKey coverage remains deterministic.",
+    "3_acceptableEvidence_remains_guidance": "PRESERVED — it is what a human compares a declaration against, never what code compares it against. It is not proof that supplied evidence satisfies the criterion and does not become a validator.",
+    "4_no_closed_property_ontology": "PRESERVED — Q1 selects reuse of acceptableEvidence.requirement, a SENTENCE, over any new property field or enum. Status stays closed; reasons stay open text.",
+    "5_governed_knowledge_limitation_stays_visible": "PRESERVED — coarse criteria are projected unchanged, provenance is carried into observability, a claim against a null criterion is flagged, and the architecture never pretends to stronger source knowledge than the governed record provides.",
+    "6_adjacent_hazards_remain_additive": "PRESERVED — nomination stays additive and structurally cannot express replacement; the review explicitly rejects any rule that suppresses adjacent nominations because the owed fact was settled."
+  },
+
+  "governedKnowledgeGapClassification": {
+    "item": "EVIDENCE_QUESTION_TO_VERIFICATION_METHOD_ALIGNMENT",
+    "classification": "PARALLEL_REMEDIATION",
+    "auditHalfRecommendedEarly": true,
+    "reason": "not a prerequisite because the architecture must fail transparently on null and coarse criteria anyway; not merely a later improvement because the misalignment is documented and concrete (app-mg-01 asks presence AND function while its verification method may establish only inspection/presence)",
+    "prohibition": "governed records must never be strengthened to make this architecture work"
+  },
+
+  "firstAuthorizationSought": {
+    "stage": "A0 — exercise the existing architecture on the frozen §179 rows, plus the alignment AUDIT",
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "whyThisFirst": "it is the cheapest thing that could overturn this recommendation, and it costs no new code and no new schema",
+    "note": "authorizing A0 is NOT authorizing stages A through G. Each stage is separately authorized."
+  },
+
+  "CLAIM_BOUNDARY": {
+    "mustNotClaim": [
+      "that the architecture fixes HR-04",
+      "that the architecture fixes displaced-valid-fact leakage",
+      "customer readiness",
+      "production readiness",
+      "formal validation",
+      "deterministic semantic sufficiency"
+    ],
+    "alsoNotClaimed": [
+      "PROMPT_ENGINEERING_CANNOT_SOLVE_SETTLEMENT — not established, and v15 was one wording at one placement",
+      "that the existing inactive architecture would have prevented the §179 failures — it was never running on those rows and the question is unmeasured in both directions"
+    ],
+    "whatThisReviewIs": "a design recommendation supported by reading the implementation. Any behavioural claim requires implementation and later hosted evidence."
+  },
+
+  "unchangedByThisReview": {
+    "V15_REMEDIATION_BEHAVIORALLY_CONFIRMED": false,
+    "PROMPT_ONLY_CONTROL_PROPERTY_REPAIR_CONFIRMED_EFFECTIVE": false,
+    "PROMPT_ONLY_SETTLEMENT_CONTROL_RELIABILITY": "NOT_ESTABLISHED",
+    "CLARIFICATION_EVIDENCE_SUFFICIENCY": "SEMANTIC_JUDGMENT_REQUIRED",
+    "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED": false,
+    "CUSTOMER_QUESTION_BUDGET": "REQUIRES_REMEDIATION",
+    "FINAL_LEGAL_IP_LAUNCH_GATE": "NOT_YET_EXECUTED",
+    "section179Figures": "12/15 strict REQUIRED, 12/15 SILENCE, 24/30 overall — unchanged and not re-measured"
+  },
+
+  "worktree": {
+    "filesAdded": ["verification/expert-hazlenz-clarification-settlement-architecture-review-2026-09-05/"],
+    "sourceCodeChanges": 0,
+    "promptChanges": 0,
+    "governedRecordChanges": 0,
+    "sections167To179EvidencePreserved": "unchanged",
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED",
+    "customerActivation": "NOT PERFORMED"
+  }
+}

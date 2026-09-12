@@ -1,0 +1,1835 @@
+{
+  "provider": "local-ollama",
+  "model": "qwen3-coder:30b",
+  "repeats": 3,
+  "calls": 30,
+  "hostedCalls": 0,
+  "costUsd": 0,
+  "routing": {
+    "TYPED_ROUTING_OPPORTUNITIES": 48,
+    "TYPED_ROUTING_HITS": 45,
+    "TYPED_ROUTING_MISSES": 3,
+    "TYPED_ROUTING_OVER_ROUTED": 0,
+    "EXPLANATION_ONLY_LOSSES": 5,
+    "byCollection": {
+      "expertHazardCandidates": {
+        "opportunities": 18,
+        "hits": 15,
+        "misses": 3,
+        "overRouted": 0
+      },
+      "decisionCriticalClarifications": {
+        "opportunities": 15,
+        "hits": 15,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "crossHazardInsights": {
+        "opportunities": 9,
+        "hits": 9,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "disagreements": {
+        "opportunities": 6,
+        "hits": 6,
+        "misses": 0,
+        "overRouted": 0
+      }
+    }
+  },
+  "outcomesByCase": {
+    "R1": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ],
+    "R2": [
+      null,
+      null,
+      null
+    ],
+    "R3": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ],
+    "R4": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ],
+    "R5": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ],
+    "R6": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "R7": [
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD",
+      "NOTHING_TO_ADD"
+    ],
+    "H7": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ],
+    "H8": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ],
+    "G1": [
+      "ANALYZED",
+      "ANALYZED",
+      "ANALYZED"
+    ]
+  },
+  "grounding": {
+    "EVIDENCE_OPPORTUNITIES": 6,
+    "EVIDENCE_QUOTES_EMITTED": 3,
+    "EVIDENCE_QUOTES_EXACTLY_BOUND": 3,
+    "EVIDENCE_QUOTES_UNBINDABLE": 0,
+    "QUOTES_SUPPORTING_ANCHOR": 0,
+    "GROUNDED_TYPED_OBJECTS": 3,
+    "UNGROUNDED_TYPED_OBJECTS": 0,
+    "iterationsWithSupportingQuote": 0,
+    "iterationsTotal": 6
+  },
+  "evidenceUnavailableControl": {
+    "iterations": 3,
+    "iterationsWithFailClosed": 0,
+    "candidatesRaised": 3,
+    "quotesEmitted": 3
+  },
+  "outcomeInconsistencies": 0,
+  "groundingClaimFailures": 3,
+  "groundingStatusInvalid": 0,
+  "observations": [
+    {
+      "caseId": "R1",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 2,
+      "evidenceExactlyBound": 2,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 2,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "vault",
+          "bound": true
+        },
+        {
+          "text": "transformer bay",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R1",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 2,
+      "evidenceExactlyBound": 2,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 2,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "vault",
+          "bound": true
+        },
+        {
+          "text": "transformer bay",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R1",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 2,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 2,
+      "evidenceExactlyBound": 2,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 2,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "vault",
+          "bound": true
+        },
+        {
+          "text": "transformer bay",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R2",
+      "iteration": 1,
+      "ok": false,
+      "outcome": null,
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [
+        "EVIDENCE_OUT_OF_BOUNDS"
+      ],
+      "score": null,
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R2",
+      "iteration": 2,
+      "ok": false,
+      "outcome": null,
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [
+        "EVIDENCE_OUT_OF_BOUNDS"
+      ],
+      "score": null,
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R2",
+      "iteration": 3,
+      "ok": false,
+      "outcome": null,
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [
+        "EVIDENCE_OUT_OF_BOUNDS"
+      ],
+      "score": null,
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R3",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A millwright had the conveyor drive guard off and was working on the take-up pulley",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R3",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A millwright had the conveyor drive guard off and was working on the take-up pulley",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R3",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A millwright had the conveyor drive guard off and was working on the take-up pulley",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R4",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 2,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "below-grade sump",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R4",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "below-grade sump",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R4",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "below-grade sump",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R5",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A forklift was charging beside the battery room door with the aisle wet from a washdown, and pickers walked past the charger while it was connected",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R5",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [
+          {
+            "label": "battery / hydrogen / chemical hazard",
+            "collection": "expertHazardCandidates",
+            "foundIn": "summary"
+          }
+        ],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A forklift was charging beside the battery room door with the aisle wet from a washdown, and pickers walked past the charger while it was connected",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R5",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [
+          {
+            "label": "battery / hydrogen / chemical hazard",
+            "collection": "expertHazardCandidates",
+            "foundIn": "summary"
+          }
+        ],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A forklift was charging beside the battery room door with the aisle wet from a washdown, and pickers walked past the charger while it was connected",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "R6",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R6",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R6",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R7",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R7",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "R7",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "NOTHING_TO_ADD",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "H7",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A technician was staging tools at the roof access hatch for a rooftop unit repair",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "H7",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A technician was staging tools at the roof access hatch for a rooftop unit repair",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "H7",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "H7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A technician was staging tools at the roof access hatch for a rooftop unit repair",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "H8",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [
+        "GROUNDING_CLAIM_UNSUPPORTED",
+        "GROUNDING_CLAIM_UNSUPPORTED"
+      ],
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 0,
+            "verdict": "INCORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 0,
+        "misses": 1,
+        "overRouted": 0,
+        "explanationOnlyLosses": [
+          {
+            "label": "confined space / solvent vapour with ventilation offline",
+            "collection": "expertHazardCandidates",
+            "foundIn": "both"
+          }
+        ],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "H8",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [
+        "GROUNDING_CLAIM_UNSUPPORTED"
+      ],
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 0,
+            "verdict": "INCORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 0,
+        "misses": 1,
+        "overRouted": 0,
+        "explanationOnlyLosses": [
+          {
+            "label": "confined space / solvent vapour with ventilation offline",
+            "collection": "expertHazardCandidates",
+            "foundIn": "both"
+          }
+        ],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "H8",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 0,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "issues": [
+        "GROUNDING_CLAIM_UNSUPPORTED"
+      ],
+      "score": {
+        "fixtureId": "H8",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 0,
+            "verdict": "INCORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 0,
+        "misses": 1,
+        "overRouted": 0,
+        "explanationOnlyLosses": [
+          {
+            "label": "confined space / solvent vapour with ventilation offline",
+            "collection": "expertHazardCandidates",
+            "foundIn": "both"
+          }
+        ],
+        "zeroCandidateClarificationPresent": true,
+        "uncertaintyStatementCount": 2
+      },
+      "evidenceEmitted": 0,
+      "evidenceExactlyBound": 0,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 0,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": []
+    },
+    {
+      "caseId": "G1",
+      "iteration": 1,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "G1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A pallet of fittings was staged on the mezzanine deck",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "G1",
+      "iteration": 2,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "G1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A pallet of fittings was staged on the mezzanine deck",
+          "bound": true
+        }
+      ]
+    },
+    {
+      "caseId": "G1",
+      "iteration": 3,
+      "ok": true,
+      "outcome": "ANALYZED",
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "issues": [],
+      "score": {
+        "fixtureId": "G1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 2,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 0,
+        "hits": 0,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 1
+      },
+      "evidenceEmitted": 1,
+      "evidenceExactlyBound": 1,
+      "evidenceUnbindable": 0,
+      "quotesSupportingAnchor": 0,
+      "groundedObjects": 1,
+      "ungroundedObjects": 0,
+      "attemptedQuotes": [
+        {
+          "text": "A pallet of fittings was staged on the mezzanine deck",
+          "bound": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1274 @@
+{
+  "artifact": "SECTION-226-LOCAL-RESULTS",
+  "instrumentVersion": "hazlenz.expert.226.semantic-property.v1",
+  "frozenInstrumentDigest": "a8de1a56ed87502fd9257633e54ec98d7d9488878f7606b3bf6e8da49fffc31a",
+  "contractVersion": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+  "baseContractVersion": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+  "instructionIdentity": {
+    "version": "hazlenz.expert.first-pass-contract.226-decision-keyed-semantics",
+    "base": "hazlenz.expert.first-pass-contract.224-declaration-capability",
+    "plain": "dcf2f2bdfcff97378f40a86a36201a0d53043489faebd0b28d8fe935a50712c0",
+    "governed": "154a04a60dc6fb5c42a319120afdcb628b4557cb656ec9733d516134053036b2"
+  },
+  "wireSchemaSha256": "3db70ab38e24adba2823237cc702190bed8f245a47b5f00aeeb4bac37040a08d",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "aggregateScoreComputed": false,
+  "scope": {
+    "schemaChanged": false,
+    "wireGrammarIdentityMoves": false,
+    "newSemanticAuthorityIntroduced": false,
+    "deterministicSemanticInferenceIntroduced": false,
+    "newArchitectureLayerIntroduced": false,
+    "verifierChanged": false,
+    "projectionChanged": false,
+    "ledgerChanged": false,
+    "runtimeModulesChanged": 0,
+    "instructionOnly": true,
+    "section224TextRewritten": false,
+    "basis": "§225 established that output shape, token pressure and representation capacity are not the blocker. The remaining mechanism is reachable by instruction alone."
+  },
+  "rootCauses": [
+    {
+      "id": "RC5",
+      "family": "CANDIDATE_STATE_BYPASS",
+      "cause": "DECLARATION_TRIGGER_KEYED_ON_SELF_REPORTED_CANDIDATE_STATE",
+      "demonstratedBy": "§224 THE DECLARATION TRIGGER enumerates its input set out of the model's own labels: \"Take every candidate you yourself put at UNKNOWN or INSUFFICIENT_EVIDENCE, every candidate you marked requiresUserConfirmation true, and every unknown you named in an uncertainty statement.\" On §225 H5 the remediated arm asserted every concern ACTIVE at HIGH with requiresUserConfirmation false and no uncertainty statement, including one whose own reasoning says the soil classification \"cannot be relied upon to judge whether the unsupported sides will hold\". The enumerated set was empty and the trigger never fired.",
+      "observedIn": [
+        "H5"
+      ],
+      "gatesCost": [
+        "G1_DECLARATION_RECALL",
+        "G3_INDEPENDENCE"
+      ],
+      "remedy": "CANDIDATE_STATE_NOT_TRIGGER_LINES — the input set becomes every materially relevant candidate, whatever state the model assigned, and the label is named an output conclusion"
+    },
+    {
+      "id": "RC6",
+      "family": "PROPERTY_SELECTION",
+      "cause": "PROPERTY_GATE_REACHABLE_ONLY_BY_SELF_CLASSIFICATION",
+      "demonstratedBy": "§224 GATE 13 is framed throughout as a rule about controls -- its title, its worked list, and its test, which opens \"take your own branchA -- THE CONTROL WORKING EXACTLY AS INTENDED\". A model reaches the test only after classifying its own property as control-shaped. §225 H2 declared \"whether the supply circuit has functioning residual current protection\" and H3 \"whether the extraction system is moving sufficient air\". GATE 13 forbids both and neither was tested against it.",
+      "observedIn": [
+        "H2",
+        "H3"
+      ],
+      "gatesCost": [
+        "G2_PROPERTY_IDENTITY"
+      ],
+      "remedy": "GATE 14 — one sufficiency test applied to EVERY entry with no self-classification precondition, run from the decision rather than from the shape of the property"
+    },
+    {
+      "id": "RC7",
+      "family": "REQUIRED_ARTIFACT",
+      "cause": "REQUIRED_ARTIFACT_CARVE_OUT_ASSERTED_BY_224_BUT_ABSENT_FROM_THE_BASE",
+      "demonstratedBy": "§224 GATE 13 says \"unless that act or that artifact is itself the governing requirement, which GATE 8 already carves out\". GATE 8 carves out the ACT only -- \"where performing the act is itself what changes today's action, the act IS the state\" -- and closes by sending records away: \"A missing record or an old reading belongs in `notEstablishedBecause` ... and stays there.\" GATE 12 terminates its choosing test on the act for the same reason. On §225 H7 both arms named the underlying examination rather than the current examination report that the written scheme makes the precondition for running the boiler, so this is inherited from the base contract and was not introduced by §224.",
+      "observedIn": [
+        "H7"
+      ],
+      "gatesCost": [
+        "G6_REQUIRED_ARTIFACT_CONTROL"
+      ],
+      "remedy": "the WHERE THE RECORD IS THE REQUIREMENT paragraph inside GATE 14, which states the artifact carve-out the base holds for the act, and separates a record that is evidence about a state from a record whose existence or currency is itself the requirement"
+    }
+  ],
+  "outOfScope": [
+    {
+      "defect": "H4_BRANCH_DRIFT_AFTER_PROPERTY_CORRECTION",
+      "why": "GATE 12 already forbids branches that divide inspected from not-inspected. §225 recorded it as material and not gated. Adding instruction for it is outside the bounded authorization for the demonstrated remaining mechanism, and it is reported, not fixed."
+    },
+    {
+      "defect": "SECTION_225_H5_P2_AUTHORING_ERROR",
+      "why": "H5's second owed property was stated as established by its own observation. §225 recorded the error and did not revise the frozen protocol. The §226 instrument is authored fresh and preflights against exactly that class of error; the §225 record stands as it is."
+    }
+  ],
+  "contracts": {
+    "BASE_224": {
+      "declarationTriggerReach": "SELF_REPORTED_UNRESOLVED_STATES_ONLY",
+      "declarationTriggerSource": "§224 THE DECLARATION TRIGGER: \"Take every candidate you yourself put at UNKNOWN or INSUFFICIENT_EVIDENCE, every candidate you marked requiresUserConfirmation true, and every unknown you named in an uncertainty statement.\"",
+      "propertyRule": "DENY_LIST_OF_ENUMERATED_KINDS",
+      "propertyRuleSource": "§224 GATE 13, over GATE 8 and GATE 12",
+      "refusedPropertyKinds": [
+        "CONTROL_STATE",
+        "EVIDENCE_PROXY",
+        "VERIFICATION_ACT",
+        "DOCUMENT",
+        "ADJACENT_CONDITION"
+      ],
+      "requiredArtifactCarveOutStated": false,
+      "requiredArtifactCarveOutNote": "§224 GATE 13 asserts \"which GATE 8 already carves out\". GATE 8 carves out the ACT only, and closes by sending a missing record to notEstablishedBecause. There is no artifact carve-out in the base, so an over-correction from the artifact to the act it records is not refused.",
+      "requiresOneEntryPerIndependentFact": true
+    },
+    "REMEDIATED_226": {
+      "declarationTriggerReach": "EVERY_MATERIALLY_RELEVANT_CANDIDATE",
+      "declarationTriggerSource": "§226 THAT ENUMERATION IS WHERE YOU START AND NOT WHERE YOU STOP: \"Take EVERY candidate that bears materially on the decision in front of you, whatever state you gave it.\"",
+      "propertyRule": "SUFFICIENCY_TEST_PER_ENTRY",
+      "propertyRuleSource": "§226 GATE 14: grant branchA outright and ask whether the safety decision is then made. Applies to every entry with no precondition that the model first classify its property.",
+      "refusedPropertyKinds": [
+        "CONTROL_STATE",
+        "EVIDENCE_PROXY",
+        "VERIFICATION_ACT",
+        "DOCUMENT",
+        "PROCESS_STEP",
+        "ADJACENT_CONDITION",
+        "ADJACENT_PROPERTY",
+        "UNDERLYING_ACT_BENEATH_ARTIFACT"
+      ],
+      "requiredArtifactCarveOutStated": true,
+      "requiredArtifactCarveOutNote": "§226 GATE 14 WHERE THE RECORD IS THE REQUIREMENT states the carve-out the base holds for the act, and gives the test that separates a record that is evidence from a record whose existence or currency is itself the requirement.",
+      "requiresOneEntryPerIndependentFact": true
+    }
+  },
+  "owedMatchFloor": 0.3,
+  "preflight": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "P1",
+        "what": "no owed property collides with a stated established fact",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P1b",
+        "what": "every owed property records why it is genuinely open",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P2",
+        "what": "expected declaration count equals the number of owed properties",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P2b",
+        "what": "expected controlling property keys match the owed set exactly",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P3",
+        "what": "every measure is preregistered for every case under both contracts",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P4",
+        "what": "no two owed properties in a case are the same property reworded",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P4b",
+        "what": "no prohibited near neighbour is the owed property reworded",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P5",
+        "what": "restraint cases owe nothing and declare nothing; owing cases state no restraint basis",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P6",
+        "what": "every owed kind and every prohibited kind is in its closed set",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P7",
+        "what": "required act and artifact flags agree with the owed kinds",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P8",
+        "what": "no enumerated non-fact is also an established fact or an owed property",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P9",
+        "what": "each fixture matches its stated emitted count and carries each owed property once",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P10",
+        "what": "every preregistered bypass case has a carrier the §224 trigger cannot reach",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P11",
+        "what": "each owed proposition classifies as the owed property against its own near neighbours",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P12",
+        "what": "each §226 root cause is exercised by a case whose preregistered verdicts differ",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P13",
+        "what": "a legitimate required act and a legitimate required artifact are both present",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P14",
+        "what": "case identifiers are unique",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P15",
+        "what": "every emitted declaration is attributed to an owed property of its own case",
+        "passed": true,
+        "detail": "clean"
+      },
+      {
+        "id": "P16",
+        "what": "the preregistered expectations and the evaluator already agree, both contracts",
+        "passed": true,
+        "detail": "clean"
+      }
+    ]
+  },
+  "perCase": [
+    {
+      "caseId": "L1-BYPASS-ACTIVE",
+      "family": "candidate-state bypass",
+      "exercisesRootCause": "RC5",
+      "owedProperties": [
+        {
+          "key": "L1-P1",
+          "kind": "HAZARD_STATE",
+          "proposition": "whether the sides of this trench will stand unsupported at this depth in this ground"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 0,
+      "truth": {
+        "omits": true,
+        "substitutes": false,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-ground-conditions",
+          "assertedConditionState": "ACTIVE",
+          "under224": {
+            "candidateKey": "cand-ground-conditions",
+            "owedPropertyKey": "L1-P1",
+            "reached": false,
+            "why": "the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is ACTIVE at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label"
+          },
+          "under226": {
+            "candidateKey": "cand-ground-conditions",
+            "owedPropertyKey": "L1-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is ACTIVE and is reached"
+          }
+        }
+      ],
+      "classifications": [],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "1 owed property/properties are unnamed, and the contract's own declaration trigger never reaches the candidate(s) carrying them: the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is ACTIVE at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label. Under this contract the empty list is compliant. This is the defect, reproduced: the contract cannot tell this apart from correct restraint.",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "owed property/properties L1-P1 are named by no entry, and the contract's declaration trigger reaches the candidate(s) carrying them, so the entry/entries are owed."
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no declaration was emitted, so no property was selected to judge",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "DEFECTIVE",
+          "evaluatedUnder224": "DEFECTIVE",
+          "reasonUnder224": "cand-ground-conditions: the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is ACTIVE at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every candidate carrying an undeclared owed property is reached by this contract's declaration trigger (L1-P1); no self-reported state exempts a candidate from the declaration analysis"
+        }
+      }
+    },
+    {
+      "caseId": "L2-BYPASS-CONTROLLED",
+      "family": "candidate-state bypass",
+      "exercisesRootCause": "RC5",
+      "owedProperties": [
+        {
+          "key": "L2-P1",
+          "kind": "HAZARD_STATE",
+          "proposition": "whether this extraction controls the chromium fume from stainless welding at this bench to a level that is safe to breathe"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 0,
+      "truth": {
+        "omits": true,
+        "substitutes": false,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-fume-extraction",
+          "assertedConditionState": "CONTROLLED",
+          "under224": {
+            "candidateKey": "cand-fume-extraction",
+            "owedPropertyKey": "L2-P1",
+            "reached": false,
+            "why": "the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is CONTROLLED at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label"
+          },
+          "under226": {
+            "candidateKey": "cand-fume-extraction",
+            "owedPropertyKey": "L2-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is CONTROLLED and is reached"
+          }
+        }
+      ],
+      "classifications": [],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "1 owed property/properties are unnamed, and the contract's own declaration trigger never reaches the candidate(s) carrying them: the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is CONTROLLED at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label. Under this contract the empty list is compliant. This is the defect, reproduced: the contract cannot tell this apart from correct restraint.",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "owed property/properties L2-P1 are named by no entry, and the contract's declaration trigger reaches the candidate(s) carrying them, so the entry/entries are owed. The summary additionally asserts a blanket negative that contradicts the candidate."
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no declaration was emitted, so no property was selected to judge",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "DEFECTIVE",
+          "evaluatedUnder224": "DEFECTIVE",
+          "reasonUnder224": "cand-fume-extraction: the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is CONTROLLED at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every candidate carrying an undeclared owed property is reached by this contract's declaration trigger (L2-P1); no self-reported state exempts a candidate from the declaration analysis"
+        }
+      }
+    },
+    {
+      "caseId": "L3-CONTROL-STATE-ANTICIPATED",
+      "family": "underlying state vs control-state proxy",
+      "exercisesRootCause": null,
+      "owedProperties": [
+        {
+          "key": "L3-P1",
+          "kind": "HAZARD_STATE",
+          "proposition": "whether the atmosphere inside this booth is safe to occupy without respiratory protection"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 1,
+      "truth": {
+        "omits": false,
+        "substitutes": true,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-isocyanate",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "under224": {
+            "candidateKey": "cand-isocyanate",
+            "owedPropertyKey": "L3-P1",
+            "reached": true,
+            "why": "the §224 trigger enumerates it: state INSUFFICIENT_EVIDENCE, requiresUserConfirmation true, named in an uncertainty statement false"
+          },
+          "under226": {
+            "candidateKey": "cand-isocyanate",
+            "owedPropertyKey": "L3-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is INSUFFICIENT_EVIDENCE and is reached"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "declarationId": "DECL-1",
+          "declaredProperty": "whether the extraction system is moving sufficient air through the booth",
+          "nearestOwedKey": "L3-P1",
+          "nearestOwedScore": 0.071,
+          "nearestProhibitedKind": "CONTROL_STATE",
+          "nearestProhibitedText": "whether the extraction system is moving sufficient air",
+          "nearestProhibitedScore": 0.714,
+          "classifiedAs": "PROHIBITED_SUBSTITUTION"
+        }
+      ],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "every owed property is named by an entry (L3-P1)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every owed property is named by an entry (L3-P1)"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "DEFECTIVE",
+          "evaluatedUnder224": "DEFECTIVE",
+          "reasonUnder224": "DECL-1 names a CONTROL_STATE (\"whether the extraction system is moving sufficient air\", overlap 0.714) rather than the owed property (overlap 0.071); §224 GATE 13, over GATE 8 and GATE 12 refuses it",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "DECL-1 names a CONTROL_STATE (\"whether the extraction system is moving sufficient air\", overlap 0.714) rather than the owed property (overlap 0.071); §226 GATE 14: grant branchA outright and ask whether the safety decision is then made. Applies to every entry with no precondition that the model first classify its property. refuses it"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "every owed property was declared, so the trigger had no opportunity to be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "every owed property was declared, so the trigger had no opportunity to be bypassed"
+        }
+      }
+    },
+    {
+      "caseId": "L4-SUBSTITUTION-UNANTICIPATED",
+      "family": "underlying state vs an adjacent property outside the deny list",
+      "exercisesRootCause": "RC6",
+      "owedProperties": [
+        {
+          "key": "L4-P1",
+          "kind": "HAZARD_STATE",
+          "proposition": "whether this appliance is in a condition safe to use in a wet location"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 1,
+      "truth": {
+        "omits": false,
+        "substitutes": true,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-electric-shock",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "under224": {
+            "candidateKey": "cand-electric-shock",
+            "owedPropertyKey": "L4-P1",
+            "reached": true,
+            "why": "the §224 trigger enumerates it: state INSUFFICIENT_EVIDENCE, requiresUserConfirmation true, named in an uncertainty statement false"
+          },
+          "under226": {
+            "candidateKey": "cand-electric-shock",
+            "owedPropertyKey": "L4-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is INSUFFICIENT_EVIDENCE and is reached"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "declarationId": "DECL-1",
+          "declaredProperty": "whether the wash bay socket circuit is protected by a functioning residual current device",
+          "nearestOwedKey": null,
+          "nearestOwedScore": 0,
+          "nearestProhibitedKind": null,
+          "nearestProhibitedText": null,
+          "nearestProhibitedScore": 0,
+          "classifiedAs": "UNMATCHED"
+        }
+      ],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "every owed property is named by an entry (L4-P1)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every owed property is named by an entry (L4-P1)"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "DECL-1 names neither the owed property nor any enumerated near neighbour, and a deny-list rule has nothing to match it against, so the substitution survives. This is the defect, reproduced.",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "DECL-1 names no owed proposition (best overlap 0 against a floor of 0.3) and matches no enumerated near neighbour either; §226 GATE 14: grant branchA outright and ask whether the safety decision is then made. Applies to every entry with no precondition that the model first classify its property. refuses it because granting branchA leaves the decision unmade, without anyone having had to enumerate this substitution first"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "every owed property was declared, so the trigger had no opportunity to be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "every owed property was declared, so the trigger had no opportunity to be bypassed"
+        }
+      }
+    },
+    {
+      "caseId": "L5-REQUIRED-ACT-LEGITIMATE",
+      "family": "legitimate required act",
+      "exercisesRootCause": null,
+      "owedProperties": [
+        {
+          "key": "L5-P1",
+          "kind": "REQUIRED_ACT",
+          "proposition": "whether the second isolation was applied and proved at the bleed before entry"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 1,
+      "truth": {
+        "omits": false,
+        "substitutes": false,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-stored-energy",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "under224": {
+            "candidateKey": "cand-stored-energy",
+            "owedPropertyKey": "L5-P1",
+            "reached": true,
+            "why": "the §224 trigger enumerates it: state INSUFFICIENT_EVIDENCE, requiresUserConfirmation true, named in an uncertainty statement false"
+          },
+          "under226": {
+            "candidateKey": "cand-stored-energy",
+            "owedPropertyKey": "L5-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is INSUFFICIENT_EVIDENCE and is reached"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "declarationId": "DECL-1",
+          "declaredProperty": "whether the second isolation was applied and proved at the bleed before entry, as the permit requires",
+          "nearestOwedKey": "L5-P1",
+          "nearestOwedScore": 0.75,
+          "nearestProhibitedKind": "DOCUMENT",
+          "nearestProhibitedText": "whether the permit box has been filled in",
+          "nearestProhibitedScore": 0.1,
+          "classifiedAs": "OWED_PROPERTY"
+        }
+      ],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "every owed property is named by an entry (L5-P1)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every owed property is named by an entry (L5-P1)"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "DECL-1 -> L5-P1 (overlap 0.75 against 0.1 for the nearest near neighbour)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "DECL-1 -> L5-P1 (overlap 0.75 against 0.1 for the nearest near neighbour)"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "the owed REQUIRED_ACT is named and the contract does not push it one level deeper; artifact carve-out stated by this contract: false",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "the owed REQUIRED_ACT is named and the contract does not push it one level deeper; artifact carve-out stated by this contract: true"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "every owed property was declared, so the trigger had no opportunity to be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "every owed property was declared, so the trigger had no opportunity to be bypassed"
+        }
+      }
+    },
+    {
+      "caseId": "L6-ARTIFACT-UNDERCUT-BY-ACT",
+      "family": "required artifact, undercut to the act it records",
+      "exercisesRootCause": "RC7",
+      "owedProperties": [
+        {
+          "key": "L6-P1",
+          "kind": "REQUIRED_ARTIFACT",
+          "proposition": "whether a current report of examination exists for this vessel under its written scheme"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 1,
+      "truth": {
+        "omits": false,
+        "substitutes": true,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-pressure-system",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "under224": {
+            "candidateKey": "cand-pressure-system",
+            "owedPropertyKey": "L6-P1",
+            "reached": true,
+            "why": "the §224 trigger enumerates it: state INSUFFICIENT_EVIDENCE, requiresUserConfirmation true, named in an uncertainty statement false"
+          },
+          "under226": {
+            "candidateKey": "cand-pressure-system",
+            "owedPropertyKey": "L6-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is INSUFFICIENT_EVIDENCE and is reached"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "declarationId": "DECL-1",
+          "declaredProperty": "whether a competent person examination of the boiler was actually carried out and passed in the spring",
+          "nearestOwedKey": "L6-P1",
+          "nearestOwedScore": 0.063,
+          "nearestProhibitedKind": "UNDERLYING_ACT_BENEATH_ARTIFACT",
+          "nearestProhibitedText": "whether an examination of the vessel was actually carried out and passed",
+          "nearestProhibitedScore": 0.5,
+          "classifiedAs": "PROHIBITED_SUBSTITUTION"
+        }
+      ],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "every owed property is named by an entry (L6-P1)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every owed property is named by an entry (L6-P1)"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "DECL-1 names a UNDERLYING_ACT_BENEATH_ARTIFACT, which this contract does not refuse. The substitution survives. This is the defect, reproduced.",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "DECL-1 names a UNDERLYING_ACT_BENEATH_ARTIFACT (\"whether an examination of the vessel was actually carried out and passed\", overlap 0.5) rather than the owed property (overlap 0.063); §226 GATE 14: grant branchA outright and ask whether the safety decision is then made. Applies to every entry with no precondition that the model first classify its property. refuses it"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "no entry names the owed REQUIRED_ARTIFACT, so there is nothing for this contract to over-correct. The property-identity measure carries that failure; this measure is about the opposite error and records none.",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "no entry names the owed REQUIRED_ARTIFACT, so there is nothing for this contract to over-correct. The property-identity measure carries that failure; this measure is about the opposite error and records none."
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "every owed property was declared, so the trigger had no opportunity to be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "every owed property was declared, so the trigger had no opportunity to be bypassed"
+        }
+      }
+    },
+    {
+      "caseId": "L7-REQUIRED-ARTIFACT-LEGITIMATE",
+      "family": "legitimate required artifact",
+      "exercisesRootCause": null,
+      "owedProperties": [
+        {
+          "key": "L7-P1",
+          "kind": "REQUIRED_ARTIFACT",
+          "proposition": "whether a current thorough examination certificate is in force for this crane"
+        }
+      ],
+      "expectedDeclarationCount": 1,
+      "emittedDeclarationCount": 1,
+      "truth": {
+        "omits": false,
+        "substitutes": false,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-lifting-equipment",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "under224": {
+            "candidateKey": "cand-lifting-equipment",
+            "owedPropertyKey": "L7-P1",
+            "reached": true,
+            "why": "the §224 trigger enumerates it: state INSUFFICIENT_EVIDENCE, requiresUserConfirmation true, named in an uncertainty statement false"
+          },
+          "under226": {
+            "candidateKey": "cand-lifting-equipment",
+            "owedPropertyKey": "L7-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is INSUFFICIENT_EVIDENCE and is reached"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "declarationId": "DECL-1",
+          "declaredProperty": "whether a current thorough examination certificate is in force for this crane",
+          "nearestOwedKey": "L7-P1",
+          "nearestOwedScore": 1,
+          "nearestProhibitedKind": "ADJACENT_CONDITION",
+          "nearestProhibitedText": "whether the crane is in sound mechanical condition",
+          "nearestProhibitedScore": 0.111,
+          "classifiedAs": "OWED_PROPERTY"
+        }
+      ],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "every owed property is named by an entry (L7-P1)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every owed property is named by an entry (L7-P1)"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "DECL-1 -> L7-P1 (overlap 1 against 0.111 for the nearest near neighbour)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "DECL-1 -> L7-P1 (overlap 1 against 0.111 for the nearest near neighbour)"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "the owed REQUIRED_ARTIFACT is named and the contract does not push it one level deeper; artifact carve-out stated by this contract: false",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "the owed REQUIRED_ARTIFACT is named and the contract does not push it one level deeper; artifact carve-out stated by this contract: true"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "every owed property was declared, so the trigger had no opportunity to be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "every owed property was declared, so the trigger had no opportunity to be bypassed"
+        }
+      }
+    },
+    {
+      "caseId": "L8-INDEPENDENCE-TWO-PROPERTIES",
+      "family": "two independent unresolved properties",
+      "exercisesRootCause": "RC5",
+      "owedProperties": [
+        {
+          "key": "L8-P1",
+          "kind": "HAZARD_STATE",
+          "proposition": "whether the load in the basket is within the machine's rated platform capacity"
+        },
+        {
+          "key": "L8-P2",
+          "kind": "HAZARD_STATE",
+          "proposition": "whether the suspended slab will carry the machine's wheel loads at this position"
+        }
+      ],
+      "expectedDeclarationCount": 2,
+      "emittedDeclarationCount": 1,
+      "truth": {
+        "omits": true,
+        "substitutes": false,
+        "absorbs": true,
+        "falseDeclares": false
+      },
+      "triggerReach": [
+        {
+          "candidateKey": "cand-overload",
+          "assertedConditionState": "INSUFFICIENT_EVIDENCE",
+          "under224": {
+            "candidateKey": "cand-overload",
+            "owedPropertyKey": "L8-P1",
+            "reached": true,
+            "why": "the §224 trigger enumerates it: state INSUFFICIENT_EVIDENCE, requiresUserConfirmation true, named in an uncertainty statement false"
+          },
+          "under226": {
+            "candidateKey": "cand-overload",
+            "owedPropertyKey": "L8-P1",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is INSUFFICIENT_EVIDENCE and is reached"
+          }
+        },
+        {
+          "candidateKey": "cand-ground-bearing",
+          "assertedConditionState": "ACTIVE",
+          "under224": {
+            "candidateKey": "cand-ground-bearing",
+            "owedPropertyKey": "L8-P2",
+            "reached": false,
+            "why": "the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is ACTIVE at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label"
+          },
+          "under226": {
+            "candidateKey": "cand-ground-bearing",
+            "owedPropertyKey": "L8-P2",
+            "reached": true,
+            "why": "the §226 trigger takes every candidate that bears materially on the decision, whatever state was assigned; this one is ACTIVE and is reached"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "declarationId": "DECL-1",
+          "declaredProperty": "whether the load in the basket is within the machine's rated platform capacity",
+          "nearestOwedKey": "L8-P1",
+          "nearestOwedScore": 1,
+          "nearestProhibitedKind": "VERIFICATION_ACT",
+          "nearestProhibitedText": "whether the basket load has been weighed",
+          "nearestProhibitedScore": 0.25,
+          "classifiedAs": "OWED_PROPERTY"
+        }
+      ],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "1 owed property/properties are unnamed, and the contract's own declaration trigger never reaches the candidate(s) carrying them: the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is ACTIVE at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label. Under this contract the empty list is compliant. This is the defect, reproduced: the contract cannot tell this apart from correct restraint.",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "owed property/properties L8-P2 are named by no entry, and the contract's declaration trigger reaches the candidate(s) carrying them, so the entry/entries are owed."
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "DECL-1 -> L8-P1 (overlap 1 against 0.25 for the nearest near neighbour)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "DECL-1 -> L8-P1 (overlap 1 against 0.25 for the nearest near neighbour)"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "1 sibling property/properties are unnamed, and the contract's own declaration trigger never reaches the candidate(s) carrying them, so it cannot require a second entry. This is the defect, reproduced: a sibling is absorbed and the contract cannot see it.",
+          "preregisteredUnder226": "DEFECTIVE",
+          "evaluatedUnder226": "DEFECTIVE",
+          "reasonUnder226": "2 independent properties are owed and 1 were named; L8-P2 is/are carried by a candidate the trigger reaches and was absorbed rather than declared"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "this case owes a property, so it cannot exercise restraint",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "this case owes a property, so it cannot exercise restraint"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "DEFECTIVE",
+          "evaluatedUnder224": "DEFECTIVE",
+          "reasonUnder224": "cand-ground-bearing: the §224 trigger enumerates candidates at UNKNOWN or INSUFFICIENT_EVIDENCE, candidates at requiresUserConfirmation true, and unknowns named in an uncertainty statement. This candidate is ACTIVE at HIGH confidence with requiresUserConfirmation false and is named in no uncertainty statement, so the trigger never reaches it. The label the model chose decided whether the model had to declare the fact that would justify the label",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "every candidate carrying an undeclared owed property is reached by this contract's declaration trigger (L8-P2); no self-reported state exempts a candidate from the declaration analysis"
+        }
+      }
+    },
+    {
+      "caseId": "L9-RESTRAINT-SAFE-NEGATED",
+      "family": "safe or negated restraint",
+      "exercisesRootCause": null,
+      "owedProperties": [],
+      "expectedDeclarationCount": 0,
+      "emittedDeclarationCount": 0,
+      "truth": {
+        "omits": false,
+        "substitutes": false,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [],
+      "classifications": [],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no property is owed on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no property is owed on this case"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no declaration was emitted, so no property was selected to judge",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "no declaration emitted where the frozen truth owes none, and every recognised unknown the trigger reaches carries a witnessed negative (0 reached)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "no declaration emitted where the frozen truth owes none, and every recognised unknown the trigger reaches carries a witnessed negative (0 reached)"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no property is owed, so no declaration can be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no property is owed, so no declaration can be bypassed"
+        }
+      }
+    },
+    {
+      "caseId": "L10-RESTRAINT-ORDINARY-UNKNOWN",
+      "family": "ordinary non-decision-critical restraint",
+      "exercisesRootCause": null,
+      "owedProperties": [],
+      "expectedDeclarationCount": 0,
+      "emittedDeclarationCount": 0,
+      "truth": {
+        "omits": false,
+        "substitutes": false,
+        "absorbs": false,
+        "falseDeclares": false
+      },
+      "triggerReach": [],
+      "classifications": [],
+      "verdicts": {
+        "DECLARATION_RECALL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no property is owed on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no property is owed on this case"
+        },
+        "PROPERTY_IDENTITY": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no declaration was emitted, so no property was selected to judge",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no declaration was emitted, so no property was selected to judge"
+        },
+        "INDEPENDENCE": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "fewer than two independent properties are owed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "fewer than two independent properties are owed"
+        },
+        "RESTRAINT": {
+          "preregisteredUnder224": "COMPLIANT",
+          "evaluatedUnder224": "COMPLIANT",
+          "reasonUnder224": "no declaration emitted where the frozen truth owes none, and every recognised unknown the trigger reaches carries a witnessed negative (1 reached)",
+          "preregisteredUnder226": "COMPLIANT",
+          "evaluatedUnder226": "COMPLIANT",
+          "reasonUnder226": "no declaration emitted where the frozen truth owes none, and every recognised unknown the trigger reaches carries a witnessed negative (0 reached)"
+        },
+        "REQUIRED_ACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ACT semantics do not apply on this case"
+        },
+        "REQUIRED_ARTIFACT_CONTROL": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "REQUIRED_ARTIFACT semantics do not apply on this case",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "REQUIRED_ARTIFACT semantics do not apply on this case"
+        },
+        "CANDIDATE_STATE_BYPASS": {
+          "preregisteredUnder224": "NOT_EXERCISED",
+          "evaluatedUnder224": "NOT_EXERCISED",
+          "reasonUnder224": "no property is owed, so no declaration can be bypassed",
+          "preregisteredUnder226": "NOT_EXERCISED",
+          "evaluatedUnder226": "NOT_EXERCISED",
+          "reasonUnder226": "no property is owed, so no declaration can be bypassed"
+        }
+      }
+    }
+  ],
+  "hardRequirements": {
+    "decisionCriticalDeclarationRecall": "100%",
+    "exactControllingPropertyIdentity": "100%",
+    "independentPropertyPreservation": "100%",
+    "restraintFalseDeclarations": 0,
+    "requiredActOverCorrection": 0,
+    "requiredArtifactOverCorrection": 0,
+    "candidateStateBypassCases": 0,
+    "deterministicSemanticInvention": 0
+  },
+  "capabilityAssertions": {
+    "passed": 31,
+    "failed": 0,
+    "failures": []
+  },
+  "preregistrationConformance": {
+    "matched": 140,
+    "mismatched": []
+  },
+  "establishes": "CONTRACT DISCRIMINATION ONLY. No behavioural claim is made or implied (HAZLENZ_INVARIANTS 27)."
+}

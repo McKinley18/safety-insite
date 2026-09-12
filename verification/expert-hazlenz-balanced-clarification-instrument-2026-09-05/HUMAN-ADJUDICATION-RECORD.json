@@ -1,0 +1,210 @@
+{
+  "operation": "section 174 independent human adjudication record",
+  "status": "HUMAN_VERDICTS_RECORDED",
+  "HUMAN_VERDICTS_FROZEN": true,
+  "PAIR_MAP_UNBLINDED_AFTER_FREEZE": false,
+  "MODEL_ADJUDICATED_ROWS": 0,
+  "PROVIDER_ADJUDICATED_ROWS": 0,
+  "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+  "reviewer": "product owner",
+  "reviewDate": "2026-09-05",
+  "boundToFrozenHashes": {
+    "HR-01": {
+      "charCount": 329,
+      "rowTextSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d"
+    },
+    "HR-02": {
+      "charCount": 358,
+      "rowTextSha256": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722"
+    },
+    "HR-03": {
+      "charCount": 310,
+      "rowTextSha256": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622"
+    },
+    "HR-04": {
+      "charCount": 349,
+      "rowTextSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274"
+    },
+    "HR-05": {
+      "charCount": 321,
+      "rowTextSha256": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f"
+    },
+    "HR-06": {
+      "charCount": 342,
+      "rowTextSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb"
+    },
+    "HR-07": {
+      "charCount": 331,
+      "rowTextSha256": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b"
+    },
+    "HR-08": {
+      "charCount": 317,
+      "rowTextSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0"
+    },
+    "HR-09": {
+      "charCount": 308,
+      "rowTextSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef"
+    },
+    "HR-10": {
+      "charCount": 336,
+      "rowTextSha256": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed"
+    }
+  },
+  "rows": [
+    {
+      "REVIEW_ROW_ID": "HR-01",
+      "rowTextSha256": "0dc91a617174b057eb7fc7e8fc32c849220ffbd4691d7dfed50a567580c2a55d",
+      "HUMAN_CLARIFICATION_REQUIRED": true,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-02",
+      "rowTextSha256": "5539f1c3bf0dca65ab78aba85c0f1dfa2d48b6856729feba7d62885018697722",
+      "HUMAN_CLARIFICATION_REQUIRED": false,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-03",
+      "rowTextSha256": "6e976eec78e49b864f5cc4f2b59ffab9df1eb8e1ca05b426bcc39d48992c6622",
+      "HUMAN_CLARIFICATION_REQUIRED": false,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-04",
+      "rowTextSha256": "53f30725556f8fe5d3a3a3b6c3341f3e8817b6c8f364ea08e421bbadbf844274",
+      "HUMAN_CLARIFICATION_REQUIRED": true,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-05",
+      "rowTextSha256": "25f695fc2a4258183b1ab608eab9f56e1de48d68e57673294c757602c980696f",
+      "HUMAN_CLARIFICATION_REQUIRED": false,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-06",
+      "rowTextSha256": "386c318ed94f405dbdaadbfd7c1a847d51ef0a36106d286670159a6b765814bb",
+      "HUMAN_CLARIFICATION_REQUIRED": true,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-07",
+      "rowTextSha256": "1f2fbad184d362a06d67fbf76ebf3d1e19ebd6ce64d12fb52ec37a212253003b",
+      "HUMAN_CLARIFICATION_REQUIRED": false,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-08",
+      "rowTextSha256": "c3d9a4d3384f09f3b5b6a63e009bc010ad253c2a4eead02d1e8ae946849653b0",
+      "HUMAN_CLARIFICATION_REQUIRED": true,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-09",
+      "rowTextSha256": "dd3c70393cbc5d9c03457c926214b1751b097da763df04da5a158603920862ef",
+      "HUMAN_CLARIFICATION_REQUIRED": true,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    },
+    {
+      "REVIEW_ROW_ID": "HR-10",
+      "rowTextSha256": "a01cbb98c3e420c56f84ebec9435075a5330cf107fc397d29881d0f13be79eed",
+      "HUMAN_CLARIFICATION_REQUIRED": false,
+      "HUMAN_CONFIDENCE": "HIGH",
+      "MATERIAL_UNRESOLVED_FACTS": null,
+      "EVIDENCE_SUFFICIENCY_CONCERN": null,
+      "TEMPORAL_SCOPE_CONCERN": null,
+      "COUNTERFACTUAL_DECISION_CHANGE": null,
+      "HUMAN_RATIONALE": null,
+      "verdictProvenance": "PRODUCT_OWNER_SUPPLIED_AI_ASSISTED",
+      "whyNarrativeFieldsAreNull": "not supplied by the product owner; not inferred"
+    }
+  ],
+  "INDEPENDENCE_DISCLOSURE": {
+    "AI_REVIEW_VISIBLE_BEFORE_HUMAN_FINALIZATION": true,
+    "assistingSystem": "GPT-5.6 Sol",
+    "HUMAN_AI_AGREEMENT": "10 / 10",
+    "FULLY_INDEPENDENT_HUMAN_ADJUDICATION": false,
+    "AI_ASSISTED_HUMAN_VERDICT_GENERATION": true,
+    "productOwnerStatement": "Before finalizing these verdicts, the product owner reviewed an independent GPT-5.6 Sol assessment of the same frozen ten rows. The product owner independently agrees with all ten assessments.",
+    "mandatoryRepresentation": "Do NOT represent this review as AI-free human adjudication. The product-owner verdicts remain the recorded human judgments, but this disclosure must remain attached to this evidence.",
+    "whatThisCostsTheEvidence": "Concordance between authoring intent and these verdicts is NOT independent confirmation of the authored truth. The rows were authored by one AI system and pre-assessed by another before the human finalised, so agreement is partly a measurement of AI-to-AI consistency. Any concordance figure computed from this record must carry this caveat wherever it is reported."
+  },
+  "truthClass": "PRODUCT_OWNER_REVIEWED_DEVELOPMENT_TRUTH",
+  "whatThisTruthDoesNotEstablish": [
+    "Expert HazLenz performance",
+    "clarification precision",
+    "clarification recall",
+    "customer readiness",
+    "production acceptance",
+    "AI-free independent human truth"
+  ],
+  "counts": {
+    "HUMAN_AUTHORITATIVE_REQUIRED_ROWS": 5,
+    "HUMAN_AUTHORITATIVE_SILENCE_ROWS": 5,
+    "total": 10,
+    "bothClassesRepresented": true
+  }
+}

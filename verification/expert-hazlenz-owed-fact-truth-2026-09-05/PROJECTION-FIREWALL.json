@@ -1,0 +1,48 @@
+{
+  "artifact": "SECTION_184_PROJECTION_FIREWALL",
+  "purpose": "mechanical record of which truth fields may reach a provider and which may never, so a future run cannot leak the adjudication into the stimulus",
+  "PROVIDER_VISIBLE": {
+    "fields": [
+      "factKey",
+      "affectedDecision",
+      "whyUnresolved",
+      "branchA",
+      "branchB",
+      "decisionDivergence",
+      "evidenceSpan",
+      "acceptableEvidence"
+    ],
+    "source": "ProjectedOwedFact in verifier-v3-development-boundary.ts \u2014 the EXISTING projection. \u00a7184 adds no provider field.",
+    "note": "acceptableEvidence is projected with provenance stripped, as it already is."
+  },
+  "WITHHELD_EVALUATION_TRUTH": {
+    "fields": [
+      "expectedClarificationDisposition",
+      "evaluationRationale",
+      "settledFromObservation",
+      "productOwnerVerdict",
+      "productOwnerFinalText",
+      "sourceBasis",
+      "authoringNotes",
+      "governedEvidenceClass",
+      "pairId",
+      "pairPartner"
+    ],
+    "plusAlreadyForbidden": [
+      "historical provider performance",
+      "\u00a7179 outcomes",
+      "human adjudication dispositions",
+      "expected results",
+      "settlement correctness labels"
+    ],
+    "why": "expectedClarificationDisposition is the answer to the test. evaluationRationale is the adjudication \u00a7183 identified as the answer key \u2014 on HR-04 it is literally the sentence that says the pre-start check and annual torque check do not report current securement."
+  },
+  "HR04_SEPARATION": {
+    "A_owedFactTruth": "Whether the fixed guard over the head drum nip point is currently secured sufficiently for safe operation.",
+    "A_whyUnresolved": "the observation does not state the current securement of the guard fastenings",
+    "B_evaluationRationale_WITHHELD": "The pre-start check the observation reports covers belt tracking and lubrication, and the only fastening verification named is at the annual service. Nothing in the observation reports the current securement of the fastenings. THIS IS EVALUATION TRUTH AND MUST NOT REACH A PROVIDER \u2014 it is the adjudication \u00a7183 identified as the answer key.",
+    "theTestApplied": "layer A names the property the decision needs and what the observation does not state. It does not argue that presence fails to establish securement, and it does not mention the annual torque check. That argument is layer B.",
+    "neutralityEvidence": "the identical layer-A sentence serves HR-10, where the fastenings were torque-checked this morning and recorded tight."
+  },
+  "enforcementStatus": "DECLARATIVE. \u00a7184 changes no code, so this is a record of what a future integration must honour, not a runtime guard. A future run must assert the projected payload contains none of the withheld fields."
+}

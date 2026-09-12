@@ -1,0 +1,546 @@
+{
+  "artifact": "SECTION-214-VERIFIER-SEMANTIC-REMEDIATION-RECORD",
+  "version": "hazlenz.expert.214.verifier-semantic-remediation",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "schemaChanged": false,
+  "kr1Status": "OPEN — local fixtures show the behaviour is representable; hosted mitigation is not established",
+  "supersession": {
+    "ledger": [
+      {
+        "section": "BEFORE ANY OF THAT, THE FACT ITSELF / do not reconstruct the property",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "§213 shows the remit widening worked: the verifier judged the property on every call"
+      },
+      {
+        "section": "THE TEST FOR THE PROPERTY (perfect-knowledge counterfactual)",
+        "disposition": "REPLACED",
+        "rule": "R-V1",
+        "why": "§213 T1 read \"see the workplace exactly as it is\" as VISUAL INSPECTION and concluded the crack test was the property because a sound-looking weld looks like an untested one. The counterfactual was right and the phrasing invited the wrong reading, so the phrasing goes."
+      },
+      {
+        "section": "THAT SECOND CASE IS COMMON AND YOU MUST NOT SPEND IT",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "§213 T4 and T8 were both clean. This paragraph is why, and it is not touched."
+      },
+      {
+        "section": "WHERE THE PROPERTY IS WRONG + the two mismatch kinds",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "§213 T3 used the challenge route correctly. The vocabulary is not the problem."
+      },
+      {
+        "section": "A CHALLENGE IS A REQUEST FOR HUMAN REVIEW",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "zero settlement-authority violations across eleven calls"
+      },
+      {
+        "section": "THREE WORLDS, AND EACH FIELD BELONGS TO ONE OF THEM",
+        "disposition": "ADDED",
+        "rule": "R-V2",
+        "why": "names the epistemic state explicitly and assigns each field to a world, so \"not established\" has somewhere to be that is not branchB"
+      },
+      {
+        "section": "BRANCHES_DO_NOT_PARTITION_THE_PROPERTY",
+        "disposition": "REPLACED",
+        "rule": "R-V2",
+        "why": "§213 T10 verified as-is a branchB reading \"unproven, or does not carry\", and T1 affirmed \"unconfirmed or inadequate\" as a genuine partition. The successor names the phrases, names the \"or\" smuggle, carries the counterfactual check, and keeps the absence-is-the-state exception explicit so the fix does not become the next overcorrection."
+      },
+      {
+        "section": "UNRESOLVED_ACTION_PRESUMES_A_BRANCH",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "§213 T9 returned exactly this concern on exactly the case built for it"
+      },
+      {
+        "section": "TWO THINGS ABOUT WHAT IS DONE WHILE THE FACT IS OPEN",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "no verdict flagged similarity to decisionIfB and none read a hold as proof of branchB"
+      },
+      {
+        "section": "YOUR AUTHORITY IS UNCHANGED BY ANY OF THIS",
+        "disposition": "CARRIED_VERBATIM",
+        "rule": null,
+        "why": "held on all eleven calls"
+      },
+      {
+        "section": "AND YOU ARE REVIEWING ONE FACT",
+        "disposition": "ADDED",
+        "rule": "R-V3",
+        "why": "§213 T6 bound both targets correctly and then nominated the sibling. The paragraph permits conversational awareness and refuses structured nomination, which is the distinction the authorization drew."
+      }
+    ],
+    "carriedVerbatimFraction": 0.7916666666666666
+  },
+  "size": {
+    "promptCharsV32": 12998,
+    "promptChars212": 16901,
+    "promptChars214": 19014,
+    "addedCharsVsV32": 6016,
+    "addedCharsVs212": 2113,
+    "estimatedAddedTokensVsV32": 2108,
+    "estimatedAddedTokensVs212": 740,
+    "blockChars212": 3902,
+    "blockChars214": 6015,
+    "blockLines212": 62,
+    "blockLines214": 93,
+    "sectionsCarriedVerbatim": 7,
+    "sectionsReplaced": [
+      "THE TEST FOR THE PROPERTY (perfect-knowledge counterfactual)",
+      "BRANCHES_DO_NOT_PARTITION_THE_PROPERTY"
+    ],
+    "sectionsAdded": [
+      "THREE WORLDS, AND EACH FIELD BELONGS TO ONE OF THEM",
+      "AND YOU ARE REVIEWING ONE FACT"
+    ],
+    "sectionsRemovedOutright": [],
+    "identityV32": "f2522995f0b08afd3747c9f081bde74e7daf0fe356238d60e3574ec49b96b83f",
+    "identity212": "cad728b58920f4fa1ae3d64b619424830f683aa80f7e16ac90d107e4926c4fde",
+    "identity214": "8230d4ea9a780fef057e64f9fbeab109d399f29548eed6146f80a1754b613776",
+    "schemaChanged": false,
+    "tokenEstimateBasis": "OBSERVED_BYTES_PER_TOKEN = 69968 / 24512, from the frozen §208 first-pass leg. An estimate, not a tokenizer result, and not a production cost claim.",
+    "note": "the §212 block is SUPERSEDED, not followed. §214 is built from v3.2 at the same anchor, so no reminder is layered on top of a reminder."
+  },
+  "blockLines": 93,
+  "vocabularyUnchanged": {
+    "challengeGrounds": [
+      "THE_OBSERVATION_ALREADY_ESTABLISHES_IT",
+      "BOTH_ANSWERS_LEAD_TO_THE_SAME_ACTION",
+      "PROPERTY_IDENTITY_MISMATCH"
+    ],
+    "propertyMismatchKinds": [
+      "EVIDENCE_PROXY_FOR_UNDERLYING_STATE",
+      "ADJACENT_PROPERTY_SUBSTITUTED"
+    ],
+    "representationConcerns": [
+      "NONE",
+      "BRANCHES_DO_NOT_PARTITION_THE_PROPERTY",
+      "UNRESOLVED_ACTION_PRESUMES_A_BRANCH"
+    ],
+    "membersAdded": [],
+    "verdictsAdded": [],
+    "schemaChanged": false
+  },
+  "overcorrectionGuards": [
+    {
+      "rule": "R-V1",
+      "risk": "a role test could be read as \"anything named after a test is wrong\", which would break the act-as-property cases §213 got right",
+      "guard": "the NO branch of the test names three legitimate act properties, and the unchanged \"YOU MUST NOT SPEND IT\" paragraph follows immediately",
+      "protects": "SECTION_213_T4, SECTION_213_T8"
+    },
+    {
+      "rule": "R-V2",
+      "risk": "naming the absence phrases could be read as \"an absence-shaped branchB is always wrong\"",
+      "guard": "the exception is stated in the same list item, with two worked examples, and says to leave such a branch alone",
+      "protects": "CONTROL_C5"
+    },
+    {
+      "rule": "R-V3",
+      "risk": "a scope rule could be read as \"never mention another hazard\", suppressing useful review prose",
+      "guard": "the paragraph says in terms that saying so in reasoning is useful and that nobody is asking the verifier to pretend it did not notice",
+      "protects": "CONTROL_C6, and the authorization's \"conversational awareness\" carve-out"
+    }
+  ],
+  "scopeContainment": {
+    "codes": [
+      "NOMINATION_OUTSIDE_TARGET_SCOPE",
+      "CLARIFICATION_BOUND_TO_A_NOMINATION_OUTSIDE_SCOPE",
+      "SOURCE_MODE_CLAIMS_A_NOMINATION_OUTSIDE_SCOPE",
+      "DECLARED_KEY_NOT_SUPPLIED",
+      "TARGET_FACT_NOT_DECLARED"
+    ],
+    "decisionInputs": [
+      "scope.suppliedFactKeys.length",
+      "scope.multiFactValidationRequested",
+      "scope.targetFactKey",
+      "output.nominatedFact (presence only)",
+      "output.clarificationSourceMode (closed-set membership only)",
+      "output.owedFactDeclarations[].factKey (exact string equality only)"
+    ],
+    "effect": {
+      "readsNominationText": false,
+      "readsRationaleProse": false,
+      "readsAnyFreeText": false,
+      "addsAVerdict": false,
+      "addsAChallengeGround": false,
+      "usesAKeywordList": false,
+      "contractDriven": true
+    }
+  },
+  "controls": [
+    {
+      "id": "C1",
+      "name": "ACT_AS_PROPERTY",
+      "statement": "where performing the act is itself the requirement, an act-shaped property is valid",
+      "equivalentTo": "§213 T4, which was clean and must stay clean"
+    },
+    {
+      "id": "C2",
+      "name": "FULLY_CORRECT_FACT",
+      "statement": "a correct declaration is left alone; the verifier does not invent a problem",
+      "equivalentTo": "§213 T8, which was clean and must stay clean"
+    },
+    {
+      "id": "C3",
+      "name": "MISSING_RECORD_STATE_SATISFACTORY",
+      "statement": "evidence is missing and the underlying state is actually fine; the fact stays unresolved and never becomes adverse",
+      "equivalentTo": "the R-V2 residual, from §213 T1 and T10"
+    },
+    {
+      "id": "C4",
+      "name": "MISSING_RECORD_STATE_ADVERSE",
+      "statement": "absence alone does not establish the adverse branch, and separate admissible evidence may",
+      "equivalentTo": "the other half of R-V2, so the fix does not become a refusal to ever find B"
+    },
+    {
+      "id": "C5",
+      "name": "REQUIRED_RECORD_IS_THE_PROPERTY",
+      "statement": "where the existence of the record is itself the controlling requirement, a record-shaped property is valid and an absence-shaped branchB is correct",
+      "equivalentTo": "the R-V1 and R-V2 overcorrection guards"
+    },
+    {
+      "id": "C6",
+      "name": "TWO_INDEPENDENT_FACTS",
+      "statement": "the target fact is evaluated without an additive sibling nomination",
+      "equivalentTo": "§213 T6, the R-V3 residual"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "A1_EXAMINATION_AS_EVIDENCE",
+      "pair": "A_THOROUGH_EXAMINATION",
+      "shape": "missing certificate; the decision turns on an underlying machine state",
+      "controls": [
+        "C3"
+      ],
+      "noun": "thorough examination",
+      "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+      "requiredOutcome": "CHALLENGE_PROPERTY_IDENTITY_EVIDENCE_PROXY",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": "the receiver shell is unsound"
+    },
+    {
+      "id": "A2_EXAMINATION_AS_THE_PROPERTY",
+      "pair": "A_THOROUGH_EXAMINATION",
+      "shape": "the examination having been carried out is itself the controlling requirement",
+      "controls": [
+        "C1",
+        "C5"
+      ],
+      "noun": "thorough examination",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "B1_PROOF_LOAD_AS_EVIDENCE",
+      "pair": "B_PROOF_LOAD",
+      "shape": "absent test record; the decision turns on underlying fixing capacity",
+      "controls": [
+        "C3"
+      ],
+      "noun": "proof load",
+      "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+      "requiredOutcome": "CHALLENGE_PROPERTY_IDENTITY_EVIDENCE_PROXY",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": "the anchors will not carry the davit"
+    },
+    {
+      "id": "B2_PROOF_LOAD_AS_THE_PROPERTY",
+      "pair": "B_PROOF_LOAD",
+      "shape": "a pre-use test mandated each shift; performing it is the requirement",
+      "controls": [
+        "C1"
+      ],
+      "noun": "proof load",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "C1F_ABSENCE_INSIDE_THE_ADVERSE_BRANCH",
+      "pair": "C_ABSENCE_SHAPED_BRANCH",
+      "shape": "correct property; branchB absorbs the unresolved world",
+      "controls": [
+        "C3"
+      ],
+      "noun": "an absence-shaped disjunct in branchB",
+      "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+      "requiredOutcome": "ACCEPT_PROPERTY_FLAG_BRANCHES",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": "the baseplate bolts will not carry the load"
+    },
+    {
+      "id": "C2F_ABSENCE_IS_THE_ADVERSE_STATE",
+      "pair": "C_ABSENCE_SHAPED_BRANCH",
+      "shape": "the absence itself IS the substantive adverse property",
+      "controls": [
+        "C5"
+      ],
+      "noun": "an absence-shaped disjunct in branchB",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "D1_TEMPTING_SIBLING",
+      "pair": "D_FACT_SCOPE",
+      "shape": "a correct target beside a genuinely open sibling fact",
+      "controls": [
+        "C6"
+      ],
+      "noun": "a sibling fact in the same observation",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "MUST_NOT_NOMINATE",
+      "representable": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "D2_SIBLING_IN_REASONING_ONLY",
+      "pair": "D_FACT_SCOPE",
+      "shape": "the same row, where the sibling is named in prose and not nominated",
+      "controls": [
+        "C6"
+      ],
+      "noun": "a sibling fact in the same observation",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "MENTION_IN_PROSE_ONLY",
+      "representable": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "E1_PROCESS_COMPLETED_STATE_MAY_REMAIN",
+      "pair": null,
+      "shape": "a required process demonstrably completed while the hazardous state may remain",
+      "controls": [
+        "C3"
+      ],
+      "noun": "a completed procedure",
+      "role": "EVIDENCE_FOR_ANOTHER_PROPERTY",
+      "requiredOutcome": "CHALLENGE_PROPERTY_IDENTITY_EVIDENCE_PROXY",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": "the reactor atmosphere is unsafe"
+    },
+    {
+      "id": "E2_INSUFFICIENT_EVIDENCE_FAIL_CLOSED",
+      "pair": null,
+      "shape": "correct property, insufficient evidence, and a fail-closed unresolved action",
+      "controls": [
+        "C3"
+      ],
+      "noun": "a fail-closed hold under uncertainty",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": "the tail lift creeps under load"
+    },
+    {
+      "id": "E3_ADVERSE_ESTABLISHED_BY_SEPARATE_EVIDENCE",
+      "pair": null,
+      "shape": "the adverse branch established by admissible evidence rather than by absence",
+      "controls": [
+        "C4"
+      ],
+      "noun": "evidence establishing the adverse branch",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": null
+    },
+    {
+      "id": "E4_FULLY_CORRECT_DECLARATION",
+      "pair": null,
+      "shape": "everything correct; the verifier must invent no problem",
+      "controls": [
+        "C2"
+      ],
+      "noun": "a correct declaration",
+      "role": "THE_PROPERTY_ITSELF",
+      "requiredOutcome": "ACCEPT_PROPERTY_UNCHANGED",
+      "siblingHandling": "NOT_APPLICABLE",
+      "representable": true,
+      "mustNotAssert": null
+    }
+  ],
+  "pairs": [
+    {
+      "pair": "A_THOROUGH_EXAMINATION",
+      "members": [
+        "A1_EXAMINATION_AS_EVIDENCE",
+        "A2_EXAMINATION_AS_THE_PROPERTY"
+      ]
+    },
+    {
+      "pair": "B_PROOF_LOAD",
+      "members": [
+        "B1_PROOF_LOAD_AS_EVIDENCE",
+        "B2_PROOF_LOAD_AS_THE_PROPERTY"
+      ]
+    },
+    {
+      "pair": "C_ABSENCE_SHAPED_BRANCH",
+      "members": [
+        "C1F_ABSENCE_INSIDE_THE_ADVERSE_BRANCH",
+        "C2F_ABSENCE_IS_THE_ADVERSE_STATE"
+      ]
+    },
+    {
+      "pair": "D_FACT_SCOPE",
+      "members": [
+        "D1_TEMPTING_SIBLING",
+        "D2_SIBLING_IN_REASONING_ONLY"
+      ]
+    }
+  ],
+  "blanketRuleNegativeControl": {
+    "correct": 8,
+    "wrong": 4,
+    "total": 12,
+    "wrongOn": [
+      "A2_EXAMINATION_AS_THE_PROPERTY",
+      "B2_PROOF_LOAD_AS_THE_PROPERTY",
+      "C2F_ABSENCE_IS_THE_ADVERSE_STATE",
+      "E1_PROCESS_COMPLETED_STATE_MAY_REMAIN"
+    ]
+  },
+  "fixtureEffect": {
+    "providerCalls": 0,
+    "databaseOperations": 0,
+    "establishesHostedBehaviour": false,
+    "reclassifiesAnySection213Failure": false,
+    "blanketRuleIsReachableFromArchitecture": false
+  },
+  "hostedConfirmationRecommendation": {
+    "status": "RECOMMENDED_NOT_FROZEN",
+    "cases": [
+      {
+        "id": "H1",
+        "shape": "evidence-proxy latent state — a test standing in for a physical condition",
+        "residual": "R-V1",
+        "whyItIsNeeded": "§213 T1 accepted the proxy and its rationale shows the perfect-knowledge phrasing was misread. R-V1 replaced that phrasing, and only a hosted call shows whether the role test reads correctly.",
+        "hardFailureIfWrong": "HF-1",
+        "calls": 1,
+        "mayReuseA213Observation": false
+      },
+      {
+        "id": "H2",
+        "shape": "absent-record latent state — a certificate standing in for a physical state",
+        "residual": "R-V1",
+        "whyItIsNeeded": "§213 T2 is the harder half: the verifier there reasoned that the required verification act WAS the property. H1 and H2 differ in whether the artifact is a test or a document, which is the distinction §213 shows the verifier handling differently.",
+        "hardFailureIfWrong": "HF-1",
+        "calls": 1,
+        "mayReuseA213Observation": false
+      },
+      {
+        "id": "H3",
+        "shape": "insufficient evidence against adverse truth — branchB absorbing \"unproven\"",
+        "residual": "R-V2",
+        "whyItIsNeeded": "§213 T10 verified as-is a branchB that sends a sound workplace to the adverse side. R-V2 names the phrases and adds the counterfactual; this measures whether it fires.",
+        "hardFailureIfWrong": "HF-4",
+        "calls": 1,
+        "mayReuseA213Observation": false
+      },
+      {
+        "id": "H4",
+        "shape": "legitimate act-as-property — the mandatory anti-overcorrection control",
+        "residual": "CONTROL",
+        "whyItIsNeeded": "R-V1 and R-V2 both create pressure toward challenging anything shaped like a test or an absence. §213 T4 was clean and this is the case that proves the remediation did not spend it. Non-negotiable.",
+        "hardFailureIfWrong": "act-as-property overcorrection",
+        "calls": 1,
+        "mayReuseA213Observation": false
+      },
+      {
+        "id": "H5",
+        "shape": "multi-fact row — sibling containment with two independent facts",
+        "residual": "R-V3",
+        "whyItIsNeeded": "§213 T6 bound correctly and nominated the sibling anyway. R-V3 has an instruction half and a deterministic half; the deterministic half is proved locally, and this measures whether the instruction half keeps the structured answer on the target.",
+        "hardFailureIfWrong": "structured sibling nomination outside target",
+        "calls": 2,
+        "mayReuseA213Observation": false
+      },
+      {
+        "id": "H6",
+        "shape": "fully correct declaration — the false-positive control",
+        "residual": "CONTROL",
+        "whyItIsNeeded": "without it a verifier that challenges everything passes H1, H2 and H3 and looks repaired. §213 T8 was clean and the same risk applies to every case here.",
+        "hardFailureIfWrong": "fully correct declaration disturbed",
+        "calls": 1,
+        "mayReuseA213Observation": false
+      }
+    ],
+    "calls": 7,
+    "cost": {
+      "calls": 7,
+      "projectedInputTokensPerCall": 10711,
+      "projectedOutputTokensPerCall": 1050,
+      "projectedUsd": 0.2235,
+      "recommendedCeilingUsd": 0.31,
+      "ceilingBasis": "35% headroom, the same basis §211 used and §213 stayed inside",
+      "retriesAuthorized": 0,
+      "comparedToSection213": "7 calls against §213's 11 — the settled axes are not re-measured",
+      "basisNote": "projected from §213 MEASURED tokens, not from an estimate. Still a projection, and not a production cost claim."
+    },
+    "successCriteria": [
+      {
+        "criterion": "HF-1 evidence proxy accepted as the property",
+        "threshold": "ZERO_OCCURRENCE"
+      },
+      {
+        "criterion": "HF-4 insufficient evidence became adverse truth",
+        "threshold": "ZERO_OCCURRENCE"
+      },
+      {
+        "criterion": "structured sibling nomination outside target",
+        "threshold": "ZERO_OCCURRENCE"
+      },
+      {
+        "criterion": "act-as-property overcorrection",
+        "threshold": "ZERO_OCCURRENCE"
+      },
+      {
+        "criterion": "fully correct declaration disturbed",
+        "threshold": "ZERO_OCCURRENCE"
+      },
+      {
+        "criterion": "authority violations",
+        "threshold": "ZERO_OCCURRENCE"
+      },
+      {
+        "criterion": "target-binding violations",
+        "threshold": "ZERO_OCCURRENCE"
+      }
+    ],
+    "alreadySettledBy213": [
+      "transport and provider compatibility with the successor grammar at 6,094 bytes",
+      "structural admission — 11/11 admitted with zero codes",
+      "target binding — zero foreign keys on eleven calls",
+      "settlement containment — zero authority violations",
+      "V3 act-as-property, V7 decisionWhileUnresolved, V8 adjacent drift, V10 challenge reviewability"
+    ],
+    "limits": [
+      "this is a recommendation and not a preregistration; nothing here is frozen by sha256",
+      "the six observations are NOT authored here. Authoring them, freezing them and computing a digest is the next slice, under its own authorization.",
+      "no §213 observation may be reused as a scored confirmation case",
+      "a clean result would confirm the three residuals on new cases; it would not establish Expert HazLenz acceptance, production readiness, G6 closure, S6 or end-to-end acceptance"
+    ]
+  },
+  "generatedAt": "2026-09-09"
+}

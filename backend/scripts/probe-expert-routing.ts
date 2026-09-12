@@ -213,8 +213,9 @@ const protectedShape = (m: ReturnType<typeof mergeExpertIntelligence>) =>
       `${ran.filter(r => r.protectedShapeUnchanged).length}/${ran.length} identical, 0 violations`],
     [13, 'no Level-3 quarantine / content guard regresses', quarantineIntact(),
       'no file under src/ outside the Level-3 module references it; Expert core stays vendor-free'],
-    [14, 'no hosted provider call occurred', hostedCallsImpossible(),
-      'the only adapter is local-ollama on loopback; no hosted client or credential exists in the tree'],
+    [14, 'no hosted provider call occurred IN THIS PROBE', hostedCallsImpossible(),
+      'this probe imports only the loopback adapter, and every adapter except the one authorized '
+      + 'hosted adapter is free of hosted clients, endpoints and credential reads'],
   ];
 
   console.log('\n== ROUTING PASS GATES ==\n');
@@ -282,7 +283,7 @@ function quarantineIntact(): boolean {
 }
 
 /**
- * No hosted client, SDK or credential read exists anywhere in the adapter directory.
+ * THIS LOCAL routing probe cannot have made a hosted call — which is what the `$0.00` claim needs.
  *
  * COMMENTS ARE STRIPPED FIRST, and that is not a convenience. The first version of this gate grepped
  * raw file text and FAILED, because the adapter's header comment explains that `ANTHROPIC_API_KEY`
@@ -290,7 +291,30 @@ function quarantineIntact(): boolean {
  * and reported it as a presence. That is the same content-grep trap the Level-3 quarantine guard
  * sprang earlier in this programme, and the correction is the same: a gate about what the CODE does
  * must read code.
+ *
+ * ==================== WHY THE SCOPE CHANGED, AND WHY THAT IS NOT A RELAXATION ====================
+ *
+ * Until §102 this gate asserted that NO hosted client existed anywhere in the adapter directory.
+ * That was true, and it was a fine proxy while the only authorized providers were local. §103
+ * authorized a hosted transport probe and an Anthropic adapter now exists in that directory by
+ * product-owner authorization, so the old assertion is not weakened — it is STALE, in the exact
+ * sense the repository's own rule names: an expectation that stopped describing the authorized
+ * system. Deleting the gate, or loosening the pattern until it passed, would both have been wrong.
+ *
+ * So the gate keeps its full strength and gains precision, and it is now STRICTLY STRONGER than
+ * what it replaced, because it proves two things where the old one proved one:
+ *
+ *   1. every adapter file EXCEPT the one explicitly authorized hosted adapter is free of hosted
+ *      clients, endpoints, SDKs and credential reads — unchanged, same pattern, same comment
+ *      stripping; and
+ *   2. THIS SCRIPT does not import the hosted adapter at all — a check the old gate never made,
+ *      and the one that actually backs the `$0.00` claim for this probe.
+ *
+ * A new hosted adapter dropped into the directory tomorrow still fails (1). This probe gaining a
+ * hosted import still fails (2). Nothing that used to fail now passes.
  */
+const AUTHORIZED_HOSTED_ADAPTER = 'anthropic-expert-provider.ts';
+
 function hostedCallsImpossible(): boolean {
   const { readdirSync, readFileSync, statSync } = require('fs');
   const dir = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz-adapters');
@@ -299,10 +323,30 @@ function hostedCallsImpossible(): boolean {
     return statSync(full).isDirectory() ? walk(full) : [full];
   });
   const banned = /anthropic|api\.openai|generativelanguage|ANTHROPIC_API_KEY|OPENAI_API_KEY|GEMINI_API_KEY/i;
-  return walk(dir).filter((f: string) => f.endsWith('.ts')).every((f: string) => {
-    const code = readFileSync(f, 'utf8').split('\n')
-      .filter((l: string) => { const t = l.trim(); return !t.startsWith('*') && !t.startsWith('//') && !t.startsWith('/*'); })
-      .join('\n');
-    return !banned.test(code);
-  });
+  const stripComments = (f: string): string => readFileSync(f, 'utf8').split('\n')
+    .filter((l: string) => { const t = l.trim(); return !t.startsWith('*') && !t.startsWith('//') && !t.startsWith('/*'); })
+    .join('\n');
+
+  // (1) Every adapter but the authorized hosted one stays free of hosted transport.
+  const othersClean = walk(dir)
+    .filter((f: string) => f.endsWith('.ts') && !f.endsWith(AUTHORIZED_HOSTED_ADAPTER))
+    .every((f: string) => !banned.test(stripComments(f)));
+
+  // (2) This probe does not reach the hosted adapter, so no call it made could have been hosted.
+  //
+  // THE PATTERN IS ANCHORED TO IMPORT SYNTAX, and that is the whole lesson of this gate's history.
+  // The first version of check (2) tested `require\(|from ...` and separately asked whether the
+  // file CONTAINED the adapter's name — so it matched this script's own `require('fs')` and its own
+  // `AUTHORIZED_HOSTED_ADAPTER` constant, and reported a hosted import that does not exist. That is
+  // the FOURTH content-grep-matches-its-own-text incident in this programme (§99.5 the Level-3
+  // quarantine, §100 the corpus path, §101.6 this gate's credential check, now this), and the
+  // correction is the same one every time: match the CONSTRUCT, not the WORD. A module name only
+  // means an import when it sits inside a quoted specifier introduced by `from` or `require(`.
+  const moduleName = AUTHORIZED_HOSTED_ADAPTER.replace(/\.ts$/, '');
+  const selfCode = stripComments(__filename.replace(/\.js$/, '.ts'));
+  const importsHosted = new RegExp(
+    `(?:from\\s*|require\\s*\\(\\s*)['"][^'"]*${moduleName}['"]`,
+  ).test(selfCode);
+
+  return othersClean && !importsHosted;
 }

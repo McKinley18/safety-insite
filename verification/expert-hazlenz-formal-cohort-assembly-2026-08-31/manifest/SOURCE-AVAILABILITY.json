@@ -1,0 +1,135 @@
+{
+  "artifact": "FORMAL_COHORT_SOURCE_AVAILABILITY_ANALYSIS",
+  "operation": "section 122 -- Assemble, Truth-Key and Freeze Formal Expert Cohort",
+  "conclusion": "FORMAL_COHORT_COMPOSITION_VALID = FALSE. Three frozen composition requirements cannot be satisfied at ANY row count from the sources this authorization permits. The blocker is SOURCE AVAILABILITY, not the 60-row target.",
+  "candidatePool": {
+    "reservedEligible": 45,
+    "reservedTotal": 100,
+    "populationAEligible": 24,
+    "populationBEligible": 8,
+    "totalCandidateRows": 77,
+    "note": "77 candidate rows exceed the 60-row target, so row count is NOT the constraint."
+  },
+  "classAvailability": [
+    {
+      "caseClass": "DETERMINISTIC_HAZARD_PRESENT",
+      "minimum": 30,
+      "maxAchievable": 53,
+      "sources": "45 reserved + 8 Population B",
+      "status": "SATISFIABLE"
+    },
+    {
+      "caseClass": "DETERMINISTIC_MISS_RECALL_OPPORTUNITY",
+      "minimum": 10,
+      "maxAchievable": 33,
+      "sources": "reserved only, per the frozen policy",
+      "status": "SATISFIABLE"
+    },
+    {
+      "caseClass": "MULTI_HAZARD",
+      "minimum": 12,
+      "maxAchievable": 21,
+      "sources": "14 reserved + 7 Population B",
+      "status": "SATISFIABLE"
+    },
+    {
+      "caseClass": "CROSS_HAZARD_INTERACTION",
+      "minimum": 10,
+      "maxAchievable": 13,
+      "sources": "reserved multi-hazard rows whose family pair is named in the CLOSED EXPERT_INTERACTION_KINDS vocabulary",
+      "status": "SATISFIABLE_WITH_LEVEL_3_AUTHORING"
+    },
+    {
+      "caseClass": "LIFE_CRITICAL_PRESENT",
+      "minimum": 10,
+      "maxAchievable": 27,
+      "sources": "19 reserved severityExpectation=critical + 8 Population B lifeCritical groups",
+      "status": "SATISFIABLE"
+    },
+    {
+      "caseClass": "NO_GOVERNED_RECORD",
+      "minimum": 8,
+      "maxAchievable": 77,
+      "sources": "any row",
+      "status": "SATISFIABLE"
+    },
+    {
+      "caseClass": "CLARIFICATION_NOT_OWED",
+      "minimum": 14,
+      "maxAchievable": 15,
+      "sources": "Population A rows with zero required domains",
+      "status": "SATISFIABLE_WITH_LEVEL_3_AUTHORING",
+      "margin": "ONE row of margin -- every one of the 15 must survive authoring."
+    },
+    {
+      "caseClass": "CLARIFICATION_OWED",
+      "minimum": 20,
+      "maxAchievable": 45,
+      "sources": "reserved hazard rows",
+      "status": "SATISFIABLE_WITH_LEVEL_3_AUTHORING"
+    },
+    {
+      "caseClass": "NEGATED_OR_SAFE_STATE",
+      "minimum": 10,
+      "maxAchievable": 14,
+      "sources": "1 reserved (engine HISTORICAL) + 13 Population A rows carrying a taxonomy-expressible forbidden domain",
+      "status": "SATISFIABLE_WITH_LEVEL_3_AUTHORING"
+    },
+    {
+      "caseClass": "FORBIDDEN_FAMILY_NEGATIVE_CONTROL",
+      "minimum": 48,
+      "maxAchievable": 27,
+      "shortfall": 21,
+      "sources": "14 reserved rows whose unacceptableStandardFamilies map into the accepted taxonomy + 13 Population A rows with a taxonomy-expressible forbiddenDomain",
+      "status": "BLOCKED"
+    },
+    {
+      "caseClass": "GOVERNED_RECORD_SUPPLIED",
+      "minimum": 40,
+      "maxAchievable": 0,
+      "shortfall": 40,
+      "sources": "NONE",
+      "status": "BLOCKED"
+    },
+    {
+      "caseClass": "DISAGREEMENT_OPPORTUNITY",
+      "minimum": 6,
+      "maxAchievable": 0,
+      "shortfall": 6,
+      "sources": "NONE -- requires a supplied record whose backingState is not APPROVED",
+      "status": "BLOCKED"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "BLOCKER_1_NO_AUTHORIZED_GOVERNED_RECORD_SOURCE",
+      "affects": [
+        "GOVERNED_RECORD_SUPPLIED (40 required, 0 achievable)",
+        "DISAGREEMENT_OPPORTUNITY (6 required, 0 achievable)"
+      ],
+      "cascadesToMeasures": [
+        "M06_UNSUPPORTED_REGULATORY_ASSERTIONS (HARD 0.05)",
+        "M07_GOVERNED_RECORD_GROUNDING (HARD 0.95)"
+      ],
+      "statement": "No authorized file-based source of governed records exists in this repository. safescope-data/approved-knowledge/approved-knowledge-registry.v1.json contains ZERO records. The governed release -- the authority that defines governed regulatory content -- lives in the database, which this authorization does not permit touching. safescope-standards.data.ts holds 8 legacy records, and the blueprint records standards_master as COMPATIBILITY_EVIDENCE_ONLY, explicitly NOT the authority defining governed regulatory content. Raw eCFR XML exists under verification/hazlenz-governed-knowledge-growth-2026-08-19 kg-3d and kg-3e source-evidence, but turning raw regulatory source into a GovernedStandardView carrying a backingState would be constructing governed content outside the governed pipeline, and asserting APPROVED for text nobody approved is exactly what EXPERT_CANNOT_APPROVE_AN_UNAPPROVED_RECORD and EXPERT_CANNOT_FABRICATE_GOVERNED_PROVENANCE exist to prevent.",
+      "consequenceIfIgnored": "M06 would be UNMEASURED at a zero denominator, and an unmeasured HARD_GATE FAILS. The REGULATORY_INTEGRITY family would fail by construction rather than on the model's behaviour -- burning the reserve to measure our own cohort defect, which is the exact section 100.4 failure this programme already paid for once."
+    },
+    {
+      "id": "BLOCKER_2_TAXONOMY_LIMITS_THE_NEGATIVE_CONTROL",
+      "affects": [
+        "FORBIDDEN_FAMILY_NEGATIVE_CONTROL (48 required, 27 achievable)"
+      ],
+      "cascadesToMeasures": [
+        "M02_EXPERT_CANDIDATE_FALSE_POSITIVES (HARD 0.20)"
+      ],
+      "statement": "All 100 reserved rows carry unacceptableStandardFamilies, but only 14 of the 45 eligible rows have one that maps into the accepted seven-family Expert taxonomy through the frozen toExpertFamily. Population A adds 13, for 27. The remaining rows name unacceptable families the taxonomy cannot express -- Housekeeping, PPE, Emergency egress, Material Handling and similar. Closing the gap needs either widening toExpertFamily, which this authorization prohibits by name and which would change the accepted section 119 projection, or labelling families forbidden on rows where no corpus says they are, which is fabricating truth for a HARD gate's numerator.",
+      "consequenceIfIgnored": "Either a semantic product change smuggled in during cohort construction, or an answer key whose forbidden set was authored to fill a denominator. Both are what the truth-precedence rules exist to forbid."
+    }
+  ],
+  "whatIsNotBlocked": {
+    "rowCount": "77 candidate rows against a 60-row target.",
+    "pipeline": "45 real reserved rows built, validated with 0 problems, and executed through the REAL permanent Expert path to the provider boundary: 135 requests constructed, 0 sent, PROVIDER_INVOCATION_COUNT = 0, TRUTH_LEAK = 0.",
+    "conditionMappingHistorical": "RESOLVED from production semantics and implemented.",
+    "levelThreeAuthoringRemaining": "CLARIFICATION_OWED, CLARIFICATION_NOT_OWED, CROSS_HAZARD_INTERACTION and NEGATED_OR_SAFE_STATE are satisfiable once level-3 authoring is done. Remaining WORK, not blockers -- though CLARIFICATION_NOT_OWED has only one row of margin."
+  }
+}

@@ -1,0 +1,79 @@
+§170 BOUNDED DEVELOPMENT INTEGRATION — PROOF MATRIX
+====================================================================================================
+  EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED = false
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0
+
+--- A–B  FEATURE BOUNDARY AND ACTIVE-PATH INVARIANCE
+
+ok    A. the feature is default OFF, reads no configuration, and cannot be enabled by environment  — declared as the literal false; the module reads no environment variable at all
+ok    B. the active merge path is byte-identical with the new optional parameter absent  — no owedFactCoverage key; the 6 pre-§170 keys in the same order
+
+--- C–F  LEDGER, BINDING AND ADDITIVITY
+
+ok    C. an owed fact enters UNRESOLVED  — UNRESOLVED with 0 transitions
+ok    D. an exact binding covers only the named fact  — one transition, via ADMITTED_BINDING, zero side effects
+ok    E. the sibling with byte-identical descriptive text remains UNRESOLVED and uncovered  — identical whyUnresolved prose; only the bound key moved
+ok    F. an additive nomination creates another fact without replacing the first  — 2 facts, 0 removed
+
+--- G–J  acceptableEvidence AND ITS PROVENANCE BOUNDARY
+
+ok    G. acceptableEvidence projects intact and the projection leaks no grading state  — requirement + 4 insufficientExamples; 11 forbidden fields, 0 present
+ok    H. a provider cannot mutate acceptableEvidence — the declaration is refused whole  — refused; the criterion is unchanged
+ok    I. acceptableEvidence: null is accepted and projects as null  — no criterion is invented where none exists
+ok    J. development truth, adjudication labels and model self-authorship are all refused in PRODUCTION  — 4 permitted provenances, 3 forbidden, all three throw
+
+--- K–L  NO SEMANTIC GATE
+
+ok    K. a question matching the owed fact word for word settles nothing without a binding  — admitted as a nomination; the owed fact stays UNRESOLVED
+ok    L. no topic cue, similarity score or threshold exists in the integrated admission code  — resolution sufficiency stays SEMANTIC_JUDGMENT_REQUIRED
+
+--- M–Q  STRUCTURAL QUESTION REPRESENTATION
+
+ok    M. one structural question object binds exactly one factKey  — 2 question objects, 0 representation violations
+ok    N. two independent facts create two slots, not one  — one slot per fact
+ok    O. the provider's single string cannot consume one slot for two facts  — the string belongs to the bound fact; the nominated fact gets no invented wording
+ok    P. the raw compound prose is preserved diagnostically and never parsed  — retained for diagnostics; the module contains no string-splitting machinery at all
+ok    Q. the nominated fact remains UNRESOLVED when no valid second question exists  — the warning stays live rather than wording being invented
+
+--- R–S  BUDGET CANNOT SETTLE OR DROP
+
+ok    R. question suppression cannot mark a fact covered  — 1 selected, 1 suppressed, 0 transitions recorded by selection
+ok    S. a budget cannot remove life-critical unresolved state  — both surface as an unresolved safety state; deterministic findings still shown
+
+--- T–X  RELIABILITY BOUNDARIES, UNCHANGED AND INACTIVE
+
+ok    T. two NO outcomes do not settle a fact  — SETTLED_SILENCE with drawCount 2; nothing cleared
+ok    U. policy C remains inactive and unintegrated  — no second-draw machinery was integrated into src/
+ok    V. the degenerate hosted reissue remains inactive and its policy unchanged  — policy unchanged in scripts/; no reissue path integrated into src/
+ok    W. the retry budgets remain separate in both directions  — neither channel lends to the other
+ok    X. the hard total-call bound is structurally maintained  — 5-call cap across 4 channels; the sixth is refused
+
+--- Y–AB  AUTHORITY AND SCORING BOUNDARIES
+
+ok    Y. arbitration exclusively owns the rejection transition  — 3 authorities; a binding cannot reject
+ok    Z. explanation text cannot mutate fact state — no authority member exists for it  — authorities = [ADMITTED_BINDING, ADMISSIBLE_EVIDENCE, RECORDED_ARBITRATION]
+ok    AA. the coverage warning is a deterministic set difference  — stable and repeatable over the same inputs
+ok    AB. the absence of an additive nomination is not scored as a failure  — no admission code exists for a missing nomination
+
+--- AC–AH  CONFINEMENT
+
+ok    AC. fixture-truth population refuses rather than filters  — throws in PRODUCTION, accepted in DEVELOPMENT
+ok    AD. the v2 active path is unchanged — the merge gained one optional parameter and no branch  — the merge depends on 2 modules, unchanged, neither of them the owed-fact module; and its code never references the gate
+ok    AE. the owed-fact stage cannot run without explicit development enablement  — attaches nothing; the merged result is unchanged
+ok    AF. no customer-facing toggle exists — the modules import nothing outside their own directory  — 12 module dependencies across 6 files, all intra-directory; no settings, config, flag service or environment read exists to carry a toggle
+ok    AG. no database access is required or possible from the integrated modules  — 0 persistence primitives across 6 modules
+ok    AH. raw attempt history is append-only and the record reconstructs every obligation  — 2 attempts preserved; an overwrite is reported; 18 obligations, 0 gaps
+
+--- AI–AK  §169 HUMAN FINDINGS SURVIVE DETERMINISTIC HANDLING
+
+ok    AI. VC-08-2 — semantic binding CORRECT and representation defect recorded separately  — binding not downgraded; the compound string yields 2 slots and 1 diagnostic
+ok    AI. VC-08-3 — semantic binding CORRECT and representation defect recorded separately  — binding not downgraded; the compound string yields 2 slots and 1 diagnostic
+ok    AJ. VC-08-1/4/6 keep their evidence-sufficiency weakness and are not promoted to fully correct  — VC-08-1, VC-08-4, VC-08-6 remain PARTIALLY_CORRECT; no code promotes them
+ok    AK. VC-04-1 keeps its temporal-scope weakness  — VC-04-1 remains PARTIALLY_CORRECT against 5 fully-correct siblings
+ok    AE2. the default draw function still refuses to execute  — DEVELOPMENT_INACTIVE
+ok    C2. every integrated enum is the size the contract specifies  — 4 statuses · 3 authorities · 4 production sources · 10 forbidden provider fields
+
+====================================================================================================
+  40/40 PASS  ·  0 FAIL
+  PROVIDER CALLS: 0   DATABASE OPERATIONS: 0   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED: false
+====================================================================================================

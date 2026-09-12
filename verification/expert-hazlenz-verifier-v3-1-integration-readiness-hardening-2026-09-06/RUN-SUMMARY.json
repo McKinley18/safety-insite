@@ -1,0 +1,117 @@
+{
+  "artifact": "SECTION_193_RUN_SUMMARY",
+  "date": "2026-09-06",
+  "operation": "\u00a7193 verifier-v3.1 integration-readiness hardening",
+  "TERMINAL": "EXPERT_HAZLENZ_VERIFIER_V3_1_CITATION_CONTRACT_MISMATCH \u2014 REPRESENTATION_REVIEW_REQUIRED",
+  "terminalReason": "The citation prohibition AS STATED cannot be deterministically enforced under the current representation without unacceptable false positives. The enforceable subset (citation-shaped strings) is now enforced on the verifier path where nothing enforced it before, but the class FV-07 actually fell into \u2014 a regulatory requirement asserted in prose with no citation string \u2014 is not deterministically decidable, and FV-07 R1/R3 remain admitted. The NUL/audit half of \u00a7193 IS complete; the terminal reflects the citation half.",
+  "whyNotHardeningComplete": "the HARDENING_COMPLETE terminal requires citation enforcement to be completed. Only the enforceable subset was. Claiming completion would misrepresent what the architecture delivers.",
+  "PROVIDER_CALLS": 0,
+  "DATABASE_OPERATIONS": 0,
+  "PRODUCTION_ACTIVATION": "NONE",
+  "DETERMINISTIC_TESTS": "46/46 PASS",
+  "SOURCE_INTEGRITY": "PASS 23/23",
+  "PRESERVED_FROM_192": {
+    "section192_result": "MODEL-ADJUDICATED DEVELOPMENT VALIDATION = PASS \u2014 not reinterpreted as human acceptance",
+    "section189_human_gate": "UNMEASURED at 65/112",
+    "populations": "verifier-v3 historical != verifier-v3.1 prospective; never combined",
+    "verifier_v3_1": "DEVELOPMENT VALIDATED, NOT YET CUSTOMER ACCEPTED",
+    "G7": "15/18 \u2014 PASS exactly at the preregistered threshold; zero-slack interpretation preserved, not upgraded",
+    "FV_11": "preserved as observed; not excluded, truth unchanged, denominator unchanged, G7 unchanged, three misses not reclassified. The 15/15 exclusion figure remains sensitivity analysis only.",
+    "section192_admission_results": "IMMUTABLE \u2014 the \u00a7193 replay is diagnostic and rewrites nothing"
+  },
+  "CITATION_ENFORCEMENT": {
+    "existingCanonicalMechanismFound": true,
+    "mechanism": "CITATION_SHAPED_PATTERN = /\\b\\d{2}\\s*CFR\\s*\\d+/i in expert-contract.types.ts:701",
+    "reusedNotInvented": true,
+    "alreadyUsedOn": "the first-pass path (expert-normalization.ts refuses smuggled citations and redacts citation-shaped spans)",
+    "gapClosed": "the verifier admission path had NO citation check of any kind; a verdict containing 29 CFR 1910.212(a)(1) was ADMITTED by the unchanged v3 boundary (proof A.3, B.2). It is now refused whole with PROHIBITED_REGULATORY_CITATION.",
+    "fieldsScanned": "rationale, all four proposedClarification fields, all nine nominatedFact fields, every challengeReason",
+    "gapNOTClosed": "REGULATORY_REQUIREMENT_ASSERTED_IN_PROSE \u2014 FV-07's class. Recorded in code as NOT_DETERMINISTICALLY_DECIDABLE.",
+    "falsePositiveEvidence": {
+      "canonical": "0/39 matches \u2014 correct, but does not reach FV-07",
+      "naive_OSHA": "3/39 all FV-07, but the user prompt contains 'JURISDICTION: osha-general-industry', so the rule would refuse any verdict naming the jurisdiction it was handed",
+      "naive_regulat": "4 executions across FV-11 and FV-13, where the verifier reasons CORRECTLY about the ABSENCE of governed evidence \u2014 a false positive on the wanted behaviour",
+      "conclusion": "no broader deterministic rule separates the prohibited class from the wanted one without a keyword list, and keyword instruments were retired at \u00a7160 FINDING 1"
+    },
+    "contractSilentlyWeakened": false,
+    "promptTextChanged": false,
+    "recommendedRepresentationOptions": [
+      "1. structured citation declaration (optional regulatoryBasis field) \u2014 closes the gap; largest change; a v3.2 protocol",
+      "2. reword the fail-closed claim to what is actually enforced \u2014 smallest honest change; also a v3.2",
+      "3. accept the residual as a known bounded non-fail-closed instruction and surface prose regulatory assertions for human review"
+    ],
+    "recommendationOwner": "product-contract decision, not an engineering one; \u00a7193 does not make it"
+  },
+  "CITATION_REPLAY": {
+    "executions": 39,
+    "OLD_ADMITTED": 39,
+    "NEW_ADMITTED": 39,
+    "admissionChanged": 0,
+    "canonicalViolations": 0,
+    "FV07_refused": false,
+    "condition": "the authorization required refusal IF AND ONLY IF the outputs meet the canonical definition; they do not",
+    "diagnosticOnly": true
+  },
+  "AUDIT_TOOLING_RELIABILITY": {
+    "classification": "AUDIT_TOOLING_RELIABILITY \u2014 kept out of every verifier behavioural score",
+    "defectConfirmedBeforeModification": true,
+    "file": "backend/scripts/lib/expert-verifier-v2-v3-diff.ts",
+    "nulBytes": 4,
+    "bytesWereIntentional": "YES \u2014 a deliberate delimiter in a composite map key (keyOf), chosen because NUL cannot collide with prompt-line content. The design was sound; only the ENCODING was wrong: a literal control character where the source should have carried the \\0 escape.",
+    "howTheyEntered": "NOT recoverable \u2014 the file is untracked and has no git history. The bytes show a raw U+0000 emitted where a JavaScript escape was meant; the evidence supports no more than that.",
+    "repair": "4 literal U+0000 -> two-character \\0 escape; nothing else touched",
+    "before": "d5405204afcabe14cdc68bff92987423df5acd5035cce68f5e4282579d201a99 (20206 bytes)",
+    "after": "ebc687252ee615a2df2603adacd66a07b0a660ac725f017678745756ecc4571d (20210 bytes)",
+    "semanticsProvenIdentical": "classifyInstructionDiff output sha256 9e143e0c928d49de83db82d45bb41a1aa2e0f6ce92e462365420c8f5771c076d BEFORE and AFTER, exercising both keyOf call sites and both .replace paths",
+    "existingSuiteRerun": "\u00a7166 test-expert-verifier-v3-binding-protocol.ts \u2014 49/49 PASS",
+    "theRealFailureMode": "grep returned NO OUTPUT and exit 0 on patterns that were present \u2014 indistinguishable from a genuinely clean audit. Any grep-driven integrity scan over that file would have reported clean while inspecting nothing.",
+    "ruleAdopted": "an audit that cannot actually read its target must fail LOUDLY rather than return clean",
+    "newModule": "expert-source-audit-integrity.ts \u2014 grepAuditable returns a discriminated SEARCHED|UNAUDITABLE outcome, so an unreadable file can never yield zero matches",
+    "sweepCaughtARealInstance": "on the first run the sweep failed on the \u00a7193 test file itself, where the NUL fixture had been written as a literal control character \u2014 recorded rather than quietly fixed, as evidence the sweep works on something nobody planted",
+    "sweepState": "backend/scripts 681 files clean; expert-hazlenz src 43 files clean",
+    "resolved": true
+  },
+  "VERSIONING": {
+    "v3_unchanged": "prompt 678160c9\u2026, schema 1bddc1a5\u2026",
+    "v3_1_unchanged": "prompt 7e73d175\u2026, schema d39c86bc\u2026",
+    "v3_2_created": false,
+    "why": "\u00a7193 citation enforcement is SHARED ADMISSION/RUNTIME LOGIC in a new module, not a protocol change, so \u00a7192 stays attached to the hashes that produced it. Had the prompt wording changed, a prospective version would have been required \u2014 it did not.",
+    "admissionValidatorUnchanged": "475a9577\u2026 \u2014 composed with, never mutated"
+  },
+  "NO_VERIFIER_SEMANTIC_RETUNING": {
+    "conjunctiveSufficiencyInstructions": "unchanged",
+    "adjacentPropertyBoundary": "unchanged",
+    "clarificationPolicyInstructions": "unchanged",
+    "challengeBehaviour": "unchanged",
+    "owedFactSemantics": "unchanged",
+    "settlementAuthority": "unchanged \u2014 PROVIDER_SETTLEMENT_AUTHORITY = NEVER",
+    "v3_1SemanticThresholds": "unchanged",
+    "G7_optimised": false
+  },
+  "filesAdded": [
+    "backend/scripts/lib/expert-verifier-citation-boundary.ts",
+    "backend/scripts/lib/expert-source-audit-integrity.ts",
+    "backend/scripts/replay-193-citation-boundary-2026-09-06.ts",
+    "backend/scripts/test-expert-193-hardening.ts",
+    "backend/scripts/verify-193-source-integrity-2026-09-06.ts"
+  ],
+  "filesRepaired": [
+    "backend/scripts/lib/expert-verifier-v2-v3-diff.ts"
+  ],
+  "priorEvidenceModified": 0,
+  "mustNotClaim": [
+    "verifier-v3.1 customer accepted",
+    "the citation prohibition is now enforced as written",
+    "end-to-end Expert HazLenz validation complete",
+    "the \u00a7189 human gate measured",
+    "\u00a7192 upgraded beyond a model-adjudicated development validation",
+    "production or customer readiness"
+  ],
+  "nextValidationTarget": "FRESH END-TO-END EXPERT -> OWED-FACT -> VERIFIER-V3.1 PIPELINE VALIDATION, using raw observations as inputs with NO hand-authored first-pass state. NOT executed in \u00a7193.",
+  "worktree": {
+    "commit": "NOT PERFORMED",
+    "push": "NOT PERFORMED",
+    "tag": "NOT PERFORMED",
+    "deploy": "NOT PERFORMED"
+  }
+}

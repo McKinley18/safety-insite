@@ -1,0 +1,42 @@
+{
+  "artifact": "SECTION_175_STRICT_ADJUDICATION_PACKET",
+  "purpose": "For each REQUIRED row that emitted a clarification, a human decides whether the question addresses the material unresolved fact. This model did not decide it and must not.",
+  "rows": [
+    {
+      "rowId": "HR-01",
+      "observation": "A grain dryer runs on the drying floor. The burner sits behind a steel shroud and the flame-failure device cannot be seen from the walkway. At Monday's service the engineer filed the certificate; it lists a nozzle change and filter clean but does not record whether the burner was flame-tested. Dust has settled on the handrails.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-04",
+      "observation": "A belt conveyor runs in the packing hall and an operative walks the gangway alongside. The fixed guard over the head drum nip point is in position. At this morning's pre-start check the fitter initialled the sheet, which covers belt tracking and lubrication; the fastenings were last torque-checked at the annual service. No tools rest on the guard.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-06",
+      "observation": "A debarker runs and a sawyer rolls logs onto the infeed chain. The guard door over the rotor is closed and its interlock switch is in place. After last night's tooth change the fitter signed the return-to-service log before restart; it recorded the tooth change but carries no interlock test result. The sawyer does not reach into the throat.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-08",
+      "observation": "An operative clears a blockage at a grain dryer's discharge auger while the drying fans run on. Before starting he locked off the main dryer panel, applied a personal lock and proved that panel dead; the auger drive has its own local isolator and the lockout log shows no entry against it. The key hangs at the panel.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    },
+    {
+      "rowId": "HR-09",
+      "observation": "A fitter is about to break a hydraulic hose on a baler ram. The pump is stopped and the isolator locked with his own lock; a second fitter witnessed the pump stop. He cycled the manual dump valve and left it open, and the accumulator gauge sits behind the tank shroud unread since. The ram guard is refitted.",
+      "emittedClarifications": [],
+      "HUMAN_ADDRESSES_THE_OWED_FACT": null,
+      "HUMAN_RATIONALE": null
+    }
+  ],
+  "silenceFailures": []
+}

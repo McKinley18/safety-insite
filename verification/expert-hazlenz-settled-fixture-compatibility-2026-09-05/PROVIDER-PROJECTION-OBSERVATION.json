@@ -1,0 +1,77 @@
+{
+  "artifact": "SECTION_185_PROVIDER_PROJECTION_OBSERVATION",
+  "note": "OBSERVED ONLY. §185 changed no projection field and did not redesign the firewall.",
+  "projectedFieldsForUnresolvedRows": [
+    "acceptableEvidence",
+    "affectedDecision",
+    "branchA",
+    "branchB",
+    "decisionDivergence",
+    "evidenceSpan",
+    "factKey",
+    "whyUnresolved"
+  ],
+  "projectedFieldsForSettledRows": [
+    "acceptableEvidence",
+    "affectedDecision",
+    "branchA",
+    "branchB",
+    "decisionDivergence",
+    "evidenceSpan",
+    "factKey",
+    "whyUnresolved"
+  ],
+  "factStatementProjected": false,
+  "targetDecisionProjected": false,
+  "whyUnresolvedOnUnresolvedRows": "string, byte-identical to the §184 approved text",
+  "whyUnresolvedOnSettledRows": null,
+  "ledgerLevelProjectionCountForSettledRow": 0,
+  "ledgerLevelProjectionCountForUnresolvedRow": 1,
+  "ledgerLevelProjectionNote": "projectOwedFactsForVerifier filters to unresolvedFacts(). A settled row's ledger therefore projects ZERO facts and an unresolved row's projects one, so the five settled rows never reach a verifier request through that function at all. A direct projectOwedFact call on a settled fact now yields whyUnresolved: null rather than an invented sentence.",
+  "withheldFieldsAsserted": [
+    "expectedClarificationDisposition",
+    "evaluationRationale",
+    "settledFromObservation",
+    "productOwnerVerdict",
+    "productOwnerFinalText",
+    "sourceBasis",
+    "authoringNotes",
+    "governedEvidenceClass",
+    "pairId",
+    "pairPartner",
+    "truthClass",
+    "PRODUCT_OWNER_REVIEWED"
+  ],
+  "withheldFieldsFound": [],
+  "openGapsObservedNotFixed": [
+    "PROJECTION-FIREWALL.json enforcementStatus remains DECLARATIVE; no runtime guard asserts the projected payload, this proof suite does it externally",
+    "factStatement and targetDecision are still classified by the firewall as neither projected nor withheld. OBSERVED: neither appears in the actual projected payload.",
+    "owedFact() accepts a terminal status directly, so a fact can be constructed as settled without a transition record. Pre-existing, unchanged by §185, and required by the §184 settled controls, which are settled from the observation and were never unresolved."
+  ],
+  "sampleUnresolvedPayload": {
+    "factKey": "owed:guarding:fixed_guard_fastenings_currently_secure",
+    "affectedDecision": "REQUIRED_CONTROL",
+    "whyUnresolved": "the observation does not state the current securement of the guard fastenings",
+    "branchA": "established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+    "branchB": "not established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+    "decisionDivergence": {
+      "ifA": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+      "ifB": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation"
+    },
+    "evidenceSpan": "the fastenings were last torque-checked at the annual service",
+    "acceptableEvidence": null
+  },
+  "sampleSettledPayload": {
+    "factKey": "owed:guarding:fixed_guard_fastenings_currently_secure",
+    "affectedDecision": "REQUIRED_CONTROL",
+    "whyUnresolved": null,
+    "branchA": "established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+    "branchB": "not established: the fixed guard over the head drum nip point is currently secured sufficiently for safe operation",
+    "decisionDivergence": {
+      "ifA": "no additional control is required on account of uncertainty about the current securement of the fixed guard over the head drum nip point",
+      "ifB": "the conveyor must be stopped until the fixed guard is confirmed currently secure for safe operation"
+    },
+    "evidenceSpan": "the fitter torque-checked all six guard fastenings; he recorded them tight",
+    "acceptableEvidence": null
+  }
+}

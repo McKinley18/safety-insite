@@ -1,0 +1,363 @@
+FORMAL EXPERT HAZLENZ COHORT -- EXACT JOINT FEASIBILITY ON REAL, FULLY-OPEN SUPPLY
+§133. D-86 offsets 2 and 3 are OPEN. No synthetic row. No provider. Nothing frozen.
+
+0. OPENED RESERVE, AS RECORDED
+   opened_at_utc                     2026-09-01T17:04:34Z
+   scope                             D86_GAUNTLET_OFFSETS_2_AND_3_ONLY
+   source sha256 pre-open            a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+   source sha256 post-open           a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4   PRESERVED
+   registry-recorded contribution    16
+   MEASURED eligible rows            16
+   MEASURED forbidden-neg controls   16
+
+A. FROZEN COMPOSITION REQUIREMENTS (unchanged, and not changed by this operation)
+   COHORT_CASE_CLASSES declared: 13
+   hard ceiling 60   target 60   minimum defensible 48   preferred 60
+
+   GOVERNED_RECORD_SUPPLIED               minimum  40   (attachment)
+   NO_GOVERNED_RECORD                     minimum   8   (attachment)
+   CLARIFICATION_NOT_OWED                 minimum  14   (intrinsic)
+   CLARIFICATION_OWED                     minimum  20   (intrinsic)
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL      minimum  48   (intrinsic)
+   LIFE_CRITICAL_PRESENT                  minimum  10   (intrinsic)
+   CROSS_HAZARD_INTERACTION               minimum  10   (intrinsic)
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY  minimum  10   (intrinsic)
+   MULTI_HAZARD                           minimum  12   (intrinsic)
+   NEGATED_OR_SAFE_STATE                  minimum  10   (intrinsic)
+   DISAGREEMENT_OPPORTUNITY               minimum   6   (attachment)
+   DETERMINISTIC_HAZARD_PRESENT           minimum  30   (intrinsic)
+
+B. COMPLETE REAL POOL -- every row exists, none is synthetic
+
+   gauntlet.seed            45 rows
+   D-86 offset 2             8 rows
+   D-86 offset 3             8 rows
+   Population A             34 rows
+   Population B             22 rows
+   augmentation V2          16 rows
+   semantic §129            35 rows
+   TOTAL                   168 rows
+
+   Ineligible opened D-86 rows are counted in NO class. 74 rows were exposed; 58 are
+   ineligible under the frozen §122 rule and contribute nothing.
+
+C. FORBIDDEN-FAMILY NEGATIVE-CONTROL SUPPLY  (STEP 3)
+
+   previously open eligible forbidden controls   44
+   newly opened eligible forbidden controls      16
+   TOTAL available eligible forbidden controls   60
+   frozen class minimum                          48
+   SATISFIABLE -- surplus 12
+
+   class                                   req  supply  of which D-86  absolute
+   CLARIFICATION_OWED                       20      25              0  ok
+   CLARIFICATION_NOT_OWED                   14     143             16  ok
+   FORBIDDEN_FAMILY_NEGATIVE_CONTROL        48      60             16  ok
+   CROSS_HAZARD_INTERACTION                 10      17              0  ok
+   MULTI_HAZARD                             12      67              6  ok
+   LIFE_CRITICAL_PRESENT                    10      80              8  ok
+   NEGATED_OR_SAFE_STATE                    10      45              0  ok
+   DETERMINISTIC_HAZARD_PRESENT             30     139             16  ok
+   DETERMINISTIC_MISS_RECALL_OPPORTUNITY    10      49             16  ok
+
+D. EXACT JOINT-FEASIBILITY SOLVE  (STEPS 4 and 5)
+
+   Analytic lower bound on |R|:
+      34  OWED (20) + NOT_OWED (14) -- complementary, they add
+      48  GOVERNED (40) + NO_GOVERNED (8) -- complementary attachment, they add
+      65  OWED (20) + FORBIDDEN (48) - overlap available (3)
+      48  largest single class minimum
+      48  MINIMUM_DEFENSIBLE_ROWS (48)
+     => H >= 65
+
+   MULTICOVER incumbent over the intrinsic classes 65
+   complementary attachment floor (40 + 8)         48
+   MINIMUM JOINTLY FEASIBLE H                      65
+   witness verified against every frozen class     YES
+   nodes explored                                  20000055   (NODE CEILING HIT)
+
+   PROOF OF MINIMALITY
+
+     SEARCH STATUS, STATED HONESTLY: the branch-and-bound search did NOT complete. It
+     exhausted its 20,000,000-node ceiling, so IT ALONE PROVES NOTHING ABOUT MINIMALITY --
+     its 65 is an incumbent, i.e. an upper bound. The larger real supply
+     (60 forbidden rows against 48 required) widens the search tree enormously compared
+     with §132, where the modelled supply was exactly 48 and the choice was forced.
+
+     THE MINIMUM IS NEVERTHELESS EXACT, proven by an independent argument that needs no
+     search at all:
+
+     LOWER BOUND (inclusion-exclusion over ONE selected row set R):
+       every admissible R has |OWED n R| >= 20 and |FORBIDDEN n R| >= 48, so
+       |R| >= |OWED u FORBIDDEN| = |OWED| + |FORBIDDEN| - |OWED n FORBIDDEN|
+       The whole pool contains only 3 rows that are BOTH, so the
+       intersection term can never exceed 3:
+         |R| >= 20 + 48 - 3 = 65
+       This is a property of the POOL, not of any search, and no selection can evade it.
+
+     UPPER BOUND: the witness below is an actual selection of 65 REAL rows, verified
+       class by class against every frozen minimum, and its attachment assignment is
+       feasible.
+
+     BOUND 65 MEETS WITNESS 65  =>  MINIMUM_FEASIBLE_H = 65 IS PROVEN EXACT.
+
+   §132 CONDITIONAL PREDICTION: H = 67 if the reserve supplied >= 4 eligible
+   non-OWED forbidden controls.
+   MEASURED: H = 65   =>  THE PREDICTION DOES NOT HOLD. It was 2 rows PESSIMISTIC.
+
+   WHY IT DIFFERS -- ATTRIBUTED BY MEASUREMENT, NOT BY ARGUMENT.
+
+   §132 modelled the reserve as exactly 4 bare synthetic rows carrying ONLY
+   CLARIFICATION_NOT_OWED + FORBIDDEN_FAMILY_NEGATIVE_CONTROL. That was deliberately
+   conservative on two independent axes, and the real material differs on both:
+
+     AXIS 1  QUANTITY. It modelled the minimum contribution that clears the shortfall (4),
+             on the stated reasoning that extra rows of an identical bare type cannot
+             lower the minimum. The reserve actually supplied 16, taking forbidden
+             supply to 60 against a requirement of 48 -- a surplus of 12, which converts a
+             FORCED selection into a CHOICE.
+     AXIS 2  RICHNESS. The real rows are not bare. Of the 16:
+               CLARIFICATION_NOT_OWED                    16
+               FORBIDDEN_FAMILY_NEGATIVE_CONTROL         16
+               MULTI_HAZARD                               6
+               LIFE_CRITICAL_PRESENT                      8
+               DETERMINISTIC_HAZARD_PRESENT              16
+               DETERMINISTIC_MISS_RECALL_OPPORTUNITY     16
+
+   ISOLATING THE TWO AXES. Re-solve with the pool restricted to the FIRST FOUR opened
+   forbidden rows in scenarioId ascending order -- real rows, real class vectors, but the
+   quantity §132 modelled:
+     rows kept from the reserve: SRC-MSHA-019, SRC-MSHA-033, SRC-MSHA-041, SRC-MSHA-042
+     analytic lower bound 65   witness 65   EXACT
+
+     At the modelled QUANTITY of 4 the answer is ALREADY 65, not §132's 67.
+
+     AXIS 2 (RICHNESS) IS THE WHOLE OF THE DIFFERENCE. Quantity contributes nothing:
+     with only four reserve rows the forbidden supply is exactly 48, so all 48 forbidden
+     rows are FORCED into the selection and there is no choice left to exploit -- and the
+     answer is still 65. What changed is what those four rows carry. §132's synthetic
+     rows covered nothing beyond FORBIDDEN, so two additional rows were needed to reach
+     the NEGATED_OR_SAFE_STATE and DETERMINISTIC_MISS_RECALL_OPPORTUNITY minimums. The
+     real rows carry MISS_RECALL (16 of 16) and LIFE_CRITICAL (8 of 16) themselves, so
+     those two extra rows are no longer needed and the analytic bound becomes reachable.
+
+     §132 was right to model it that way. Assuming secondary classes it could not see
+     would have UNDERSTATED the requirement, and understating it is the dangerous error.
+     The conservative model was 2 rows pessimistic, which is the direction to be wrong in.
+
+E. FIRST REAL DIAGNOSTIC WITNESS  (STEP 6)
+DIAGNOSTIC ONLY. This is NOT the formal cohort, NOT frozen, and NOT a selection.
+
+   row count 65
+
+     CLARIFICATION_OWED                      20 required   20 supplied  margin   0  PASS
+     CLARIFICATION_NOT_OWED                  14 required   45 supplied  margin  31  PASS
+     FORBIDDEN_FAMILY_NEGATIVE_CONTROL       48 required   48 supplied  margin   0  PASS
+     CROSS_HAZARD_INTERACTION                10 required   11 supplied  margin   1  PASS
+     MULTI_HAZARD                            12 required   27 supplied  margin  15  PASS
+     LIFE_CRITICAL_PRESENT                   10 required   31 supplied  margin  21  PASS
+     NEGATED_OR_SAFE_STATE                   10 required   17 supplied  margin   7  PASS
+     DETERMINISTIC_HAZARD_PRESENT            30 required   61 supplied  margin  31  PASS
+     DETERMINISTIC_MISS_RECALL_OPPORTUNITY   10 required   24 supplied  margin  14  PASS
+     GOVERNED_RECORD_SUPPLIED                40 required   40 attachable            PASS
+     NO_GOVERNED_RECORD                       8 required   25 remaining  margin  17  PASS
+     DISAGREEMENT_OPPORTUNITY                 6 required   40 attachable            PASS   (all 64 records resolve UNAPPROVED_RECORD)
+
+   witness source composition:
+     gauntlet.seed             14
+     augmentation V2           11
+     D-86 offset 2              8
+     D-86 offset 3              8
+     Population A               5
+     semantic §129             19
+
+   newly opened D-86 rows participating: 16 of 16
+     SRC-OSHA-009     D-86 offset 2
+     SRC-OSHA-025     D-86 offset 2
+     SRC-OSHA-029     D-86 offset 2
+     SRC-OSHA-1003    D-86 offset 2
+     SRC-OSHA-022     D-86 offset 3
+     SRC-OSHA-034     D-86 offset 3
+     SRC-OSHA-1012    D-86 offset 3
+     SRC-OSHA-1028    D-86 offset 3
+     SRC-MSHA-041     D-86 offset 2
+     SRC-OSHA-005     D-86 offset 2
+     SRC-MSHA-033     D-86 offset 3
+     SRC-MSHA-042     D-86 offset 3
+     SRC-MSHA-046     D-86 offset 3
+     SRC-MSHA-062     D-86 offset 3
+     SRC-MSHA-019     D-86 offset 2
+     SRC-MSHA-057     D-86 offset 2
+
+   EXACT WITNESS ROW IDS, with source:
+     GAUNTLET-002       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-004       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     GAUNTLET-007       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-01             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-03             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     GAUNTLET-005       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-015       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-022       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-054       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-062       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-082       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-009       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-025       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-029       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-1003      D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-022       D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-034       D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-1012      D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-1028      D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     GAUNTLET-019       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT]
+     GAUNTLET-032       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT]
+     GAUNTLET-033       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT]
+     GAUNTLET-045       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT]
+     POPA-A-32          Population A             [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, DETERMINISTIC_HAZARD_PRESENT]
+     GAUNTLET-023       gauntlet.seed            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-041       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-OSHA-005       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-033       D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-042       D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-046       D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-062       D-86 offset 3            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-019       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     SRC-MSHA-057       D-86 offset 2            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT, DETERMINISTIC_MISS_RECALL_OPPORTUNITY]
+     POPA-A-12          Population A             [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE]
+     POPA-A-13          Population A             [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE]
+     POPA-A-14          Population A             [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE]
+     POPA-A-15          Population A             [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE]
+     AUG-02             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-05             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-06             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-08             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-09             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-31             semantic §129            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-32             semantic §129            [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-04             augmentation V2          [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-01             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-02             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-03             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-04             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-05             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-07             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-10             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-24             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-10             augmentation V2          [CLARIFICATION_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, MULTI_HAZARD, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-11             augmentation V2          [CLARIFICATION_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     AUG-12             augmentation V2          [CLARIFICATION_NOT_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-09             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-15             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-16             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-25             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-17             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-26             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-35             semantic §129            [CLARIFICATION_OWED, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-18             semantic §129            [CLARIFICATION_OWED, CROSS_HAZARD_INTERACTION, MULTI_HAZARD, LIFE_CRITICAL_PRESENT, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+     SEM-30             semantic §129            [CLARIFICATION_OWED, FORBIDDEN_FAMILY_NEGATIVE_CONTROL, LIFE_CRITICAL_PRESENT, NEGATED_OR_SAFE_STATE, DETERMINISTIC_HAZARD_PRESENT]
+
+F. GOVERNED-RECORD ATTACHMENT FEASIBILITY  (STEP 5, second half)
+
+   authoritative snapshot present   true
+   snapshot sha256                  a2c5dc324ded4fee8689982785682cec0f21c4ed0ce2b1128afd8f902c4d5cd3
+   §126-recorded identity           a2c5dc324ded4fee8689982785682cec0f21c4ed0ce2b1128afd8f902c4d5cd3   MATCH
+   64 governed records, release federal-core-2026-08-28.1. NOT read for content here, NOT
+   modified, NOT approved. Only the record COUNT and the §126 backing-state resolution are
+   used, both of which are already-derived governance facts.
+
+   GOVERNED_RECORD_SUPPLIED >= 40   NO_GOVERNED_RECORD >= 8   DISAGREEMENT_OPPORTUNITY >= 6
+   The two are complementary, so any cohort of 48 rows or more can satisfy both by
+   assignment. At H = 65 there are 25 rows left after the 40 governed-supplied
+   ones, against a requirement of 8: FEASIBLE with margin 17.
+
+   DISAGREEMENT_OPPORTUNITY: all 64 records resolve to UNAPPROVED_RECORD under the §126
+   mapping, so every governed-supplied row is a disagreement opportunity. Satisfied whenever
+   GOVERNED_RECORD_SUPPLIED is: 40 >= 6.
+
+   REPORTED LIMITATION, unchanged and not promoted to a requirement:
+     REVIEWER_APPROVED_GOVERNED_RECORDS = 0. No record carries a reviewer decision, so the
+     cohort cannot exercise an APPROVED_EXACT backing state at all. This is a real gap in
+     what the evaluation can measure, and it is not closed by opening the reserve.
+
+G. GOVERNANCE IMPACT  (STEP 7) -- REPORTED, NOT APPLIED
+
+   CURRENT COHORT_SIZE_POLICY
+     targetRows            60
+     hardCeiling           60
+     minimumDefensibleRows 48
+     supplementalCount     EXACTLY 60 minus the number of eligible reserved rows selected
+
+   MEASURED REQUIREMENT
+     minimum jointly feasible H = 65
+     EXCEEDS the hard ceiling by 5
+
+   MINIMUM POLICY CHANGE REQUIRED
+     hardCeiling: 60 -> at least 65
+
+   MUST `targetRows` ALSO CHANGE? The two fields are NOT interchangeable, so the question
+   is answered from each one's actual role, checked against how the code uses it:
+
+     hardCeiling  a REFUSAL threshold. onInsufficiency: "If 60 rows cannot satisfy every
+                  frozen composition requirement, STOP and report the exact reason. The
+                  cohort is NEVER silently enlarged." A ceiling below the feasible minimum
+                  makes assembly refuse outright. THIS ONE MUST MOVE.
+     targetRows   the size the cohort is BUILT TO. supplementalCount is written as
+                  "EXACTLY 60 minus the number of eligible reserved rows selected", so the
+                  build size is pinned to the target by the policy TEXT.
+
+     EVIDENCE, so this is not asserted from the field names: a repository-wide search shows
+     `COHORT_SIZE_POLICY.targetRows` is only ever PRINTED -- by this script, §131 and the
+     execution preflight. No assembler reads it to size a selection. The 60-row build is
+     therefore enforced by the POLICY TEXT and by the operator following it, NOT by code.
+
+     CONCLUSION: BOTH must change. Raising hardCeiling alone to 65 while leaving
+     targetRows at 60 would PERMIT a 65-row cohort while the policy still instructs a
+     60-row build -- and the 60-row build is exactly what is proven infeasible. The result
+     would be a policy that contradicts itself rather than one that has been decided.
+     They need NOT be equal: hardCeiling may sit above targetRows to leave assembly
+     headroom. The requirement is only that BOTH be at least 65.
+
+     NOT REQUIRED TO CHANGE: MINIMUM_DEFENSIBLE_ROWS (48) and PREFERRED_ROWS (60) live in
+     expert-cohort-composition.ts and are DERIVED from the measure sizing rule, not from
+     the ceiling. MINIMUM_DEFENSIBLE_ROWS = 40 + 8 is still a correct FLOOR and its
+     derivation is untouched. It is simply no longer ATTAINABLE: a 48-row cohort cannot
+     carry 48 forbidden controls and 20 OWED rows at once when only 3 rows are both.
+     Changing it to match H would be tuning a derived constant to a measured outcome, and
+     this analysis does not propose it.
+
+H. COST IMPACT  (STEP 8) -- informational. NO PROVIDER CALL WAS MADE.
+
+   pricing basis: verification/expert-hazlenz-hosted-projection-ab-2026-08-31 (18 calls, exact fit)
+   LOCALLY AUTHORITATIVE: fitted from 18 recorded §118 calls to a residual of 0.00000000 USD.
+   input 2 USD/M   output 10 USD/M   mean cost/call 0.031757 USD
+   topology: 3 calls per row (BASE, PERMUTED, CROSS_PROCESS)
+
+   The 60-row line is a REFERENCE POINT, not an alternative: a 60-row cohort is proven
+   infeasible above. It is shown so the delta is legible against the figure the current
+   policy names.
+
+   plan                    rows  calls   input tok  output tok  mean USD  worst USD
+   60-row (INFEASIBLE ref)    60    180   1,706,580     230,220      5.72      18.72
+   H = 65 execution          65    195   1,848,795     249,405      6.19      20.28
+   DELTA                      5     15     142,215      19,185      0.48       1.56
+
+   OPERATIONAL CONSEQUENCE: 195 planned calls against the frozen
+   hardCallCeiling of 200. HEADROOM 5 calls -- but the runner
+   retries ONCE on a retryable failure and that retry BILLS, so the effective worst case is
+   390 calls, which EXCEEDS the ceiling of 200. The ceiling stops the run rather than
+   overspending, which is its purpose, but it is a second policy value the owner should
+   look at before authorizing a larger cohort.
+
+   conservativeMaximumSpendUsd currently recorded: 25 USD (computed at the 200-call
+   ceiling, so it does NOT move with the row count).
+
+CONFINEMENT STATE
+  RESERVED_MATERIAL_OPENED   = TRUE
+  RESERVED_SCOPE             = D86_GAUNTLET_OFFSETS_2_AND_3_ONLY
+  PROVIDER_INVOCATION_COUNT  = 0
+  FORMAL_COHORT_SPENT        = FALSE
+  P4_PRESPEND_AUTHORIZATION  = FALSE
+  COHORT_STATUS              = CANDIDATE
+  COHORT_SIZE_POLICY         = UNCHANGED (hardCeiling still 60, target still 60)
+
+FORMAL_COHORT_REAL_SUPPLY_FEASIBLE -- COHORT_SIZE_POLICY_GOVERNANCE_DECISION_REQUIRED

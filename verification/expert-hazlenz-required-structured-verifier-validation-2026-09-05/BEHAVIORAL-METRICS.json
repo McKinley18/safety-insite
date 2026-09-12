@@ -1,0 +1,104 @@
+{
+  "artifact": "SECTION_187A_BEHAVIORAL_METRICS",
+  "MEASURABLE": false,
+  "why": "zero of fifteen verifier executions produced provider output. Every call was rejected at the request level for insufficient account credit, before any model inference.",
+  "hardGates": {
+    "providerErrors": {
+      "observed": 15,
+      "gate": 0,
+      "verdict": "NOT_MET",
+      "classification": "TRANSPORT_BILLING_FAILURE, not model behaviour. Must not be read as a behavioural failure."
+    },
+    "contractInvalidVerifierExecutions": {
+      "observed": 0,
+      "note": "no execution reached contract admission; the 15 recorded contractFailure flags are downstream of the transport failure and are NOT contract results"
+    },
+    "wrongFactKeyBindings": {
+      "observed": 0,
+      "gate": 0,
+      "verdict": "NOT_EXERCISED"
+    },
+    "unauthorizedSettlementTransitions": {
+      "observed": 0,
+      "gate": 0,
+      "verdict": "VACUOUSLY_TRUE — no provider output existed to attempt one"
+    },
+    "PROVIDER_SETTLEMENT_AUTHORITY": {
+      "observed": "NEVER",
+      "note": "structurally true and unchanged by §187A; NOT newly evidenced here"
+    },
+    "adjacentFactSubstitution": {
+      "observed": 0,
+      "verdict": "NOT_EXERCISED"
+    }
+  },
+  "REQUIRED_SEMANTIC_GATE": {
+    "gate": ">= 12/15",
+    "result": "NOT_EXERCISED"
+  },
+  "perRowFloors": {
+    "HR-01": {
+      "gate": ">= 2/3",
+      "result": "NOT_EXERCISED"
+    },
+    "HR-04": {
+      "gate": ">= 2/3",
+      "result": "NOT_EXERCISED"
+    },
+    "HR-06": {
+      "gate": ">= 2/3",
+      "result": "NOT_EXERCISED"
+    },
+    "HR-08": {
+      "gate": ">= 2/3",
+      "result": "NOT_EXERCISED"
+    },
+    "HR-09": {
+      "gate": ">= 2/3",
+      "result": "NOT_EXERCISED"
+    }
+  },
+  "HR04_CLASSIFICATION": {
+    "A_noChallengePreserved": 0,
+    "B_validChallenge": 0,
+    "C_invalidFalseSettlementChallenge": 0,
+    "D_other": 0,
+    "result": "NOT_EXERCISED",
+    "gate": "C <= 1/3"
+  },
+  "CHALLENGE_REVIEWABILITY": "NOT_EXERCISED",
+  "reviewabilityNote": "zero challenge opportunities occurred. Per the authorization this is NOT proof that free-text representation is adequate.",
+  "secondaryMeasures": {
+    "REQUIRED clarification emission rate": "NOT_EXERCISED",
+    "strict semantic sufficiency": "NOT_EXERCISED",
+    "correct binding rate": "NOT_EXERCISED",
+    "declaration rate": "NOT_EXERCISED",
+    "CHALLENGE_FACT_VALIDITY rate": "NOT_EXERCISED",
+    "challenge reviewability rate": "NOT_EXERCISED",
+    "adjacent candidate rate": "NOT_EXERCISED",
+    "cross-hazard insight rate": "NOT_EXERCISED",
+    "disagreement rate": "NOT_EXERCISED"
+  },
+  "firstPassObservations": {
+    "note": "reported separately and NOT scored as the §187A primary result, per the authorization",
+    "callsCompleted": 5,
+    "allNormalizedValid": true,
+    "clarificationsEmitted": {
+      "HR-01": 1,
+      "HR-04": 0,
+      "HR-06": 1,
+      "HR-08": 1,
+      "HR-09": 1
+    },
+    "hazardCandidates": {
+      "HR-01": 0,
+      "HR-04": 0,
+      "HR-06": 0,
+      "HR-08": 0,
+      "HR-09": 0
+    },
+    "FIRST_PASS_STIMULUS_CONFOUND": "MINOR",
+    "confoundRationale": "HR-04 emitted zero clarifications while the other four each emitted one on-target question, so HR-04's verifier task would have been 'raise what was missed' rather than 'verify what was asked'. Classified MINOR because it is a genuine product of the real path, the owed-fact treatment is uniform, and the design already isolates HR-04 with its own gate.",
+    "hr04Observation": "HR-04's first pass asked nothing. §179 recorded HR-04 emitting zero clarifications on all three first-pass replicates. OBSERVED RESULT ONLY — one fresh sample, no causal claim, and §179 is historical evidence rather than a contemporaneous control."
+  }
+}

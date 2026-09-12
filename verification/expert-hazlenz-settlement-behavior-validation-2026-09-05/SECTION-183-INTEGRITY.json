@@ -1,0 +1,98 @@
+{
+  "artifact": "SECTION_183_INTEGRITY",
+  "date": "2026-09-05",
+  "operation": "§183 — bounded inactive settlement behavior validation: STOPPED BEFORE SPEND",
+  "terminal": "EXPERT_HAZLENZ_SETTLEMENT_BEHAVIOR_VALIDATION_INCONCLUSIVE — EVIDENCE_OR_EXECUTION_REVIEW_REQUIRED",
+  "stoppedBefore": "the first provider call",
+
+  "SPEND": {
+    "PROVIDER_CALLS": 0,
+    "TOTAL_COST_USD": 0.0,
+    "callCap": 36,
+    "costCap": 3.0,
+    "DATABASE_OPERATIONS": 0,
+    "note": "the authorization instructs STOP before spend if the cohort cannot be made valid without materially changing the instrument. It cannot. Nothing was spent."
+  },
+
+  "WHY_STOPPED": {
+    "summary": "the §182 settlement path requires owed facts, and the owed-fact content required to construct them does not exist in the frozen instrument. Constructing it means authoring the discrimination that §183's primary target exists to test.",
+    "detail": "OWED-FACT-CONSTRUCTION-ANALYSIS.md",
+    "blockers": [
+      {
+        "id": "B1",
+        "finding": "the frozen §174 truth carries MATERIAL_UNRESOLVED_FACTS = null on 10 of 10 rows, with every narrative field null and annotated 'not supplied by the product owner; not inferred'",
+        "consequence": "there is no product-owner statement of what fact any row owes. The rows are authoritative for WHETHER a clarification is required, not for WHAT fact is owed.",
+        "precedent": "§175 hit the same wall and recorded it verbatim; it has since blocked strict scoring at §177, §179 and now §183"
+      },
+      {
+        "id": "B2",
+        "finding": "the only per-row owed-fact content that exists is §173's PAIR-MAP, headed AUTHORING-SIDE ONLY with intendedRoleIsNotTruth, and it lacks whyUnresolved, both branches and the decision divergence that a valid OwedFact requires",
+        "consequence": "the four narrative fields that make an owed fact an owed fact must be written by someone"
+      },
+      {
+        "id": "B3",
+        "finding": "DECISIVE — for HR-04 any wording specific enough to be a genuine owed fact states the presence/securement distinction outright, which is the exact discrimination the experiment tests whether the model can make",
+        "consequence": "a pass would measure the stimulus this model wrote, not the architecture. The alternative — deriving the framing from app-mg-01 — yields guarding_status, which cannot express the property at all.",
+        "rootCause": "§181's GOVERNED_FUNCTIONAL_TEST_METHOD_PRESENT = FALSE, arriving at construction time rather than at review time",
+        "precedent": "§167 already measured this confound and recorded that it could not attribute its result, because the manipulation included 'a substantially richer statement of the owed fact'"
+      },
+      {
+        "id": "B4",
+        "finding": "human-authoritative owed-fact targets exist for exactly two rows — HS-A1 and HS-E1 — both REQUIRED-shaped, from §162 and reviewed at §169",
+        "consequence": "a defensible cohort exists but cannot test containment or settled positive controls, because there are zero human-authoritative rows carrying a SETTLED owed fact"
+      }
+    ]
+  },
+
+  "WHAT_WAS_NOT_DONE": {
+    "preregistrationFrozen": false,
+    "whyNot": "a preregistration is a pre-spend freeze of a run that is going to happen. Writing one for a run that will not happen would misrepresent the record.",
+    "runRecords": "none — no execution occurred",
+    "reviewPacket": "none — there are no claims to review",
+    "humanVerdicts": "none, and none were to be supplied by this model in any case",
+    "sourceChanges": 0,
+    "promptChanges": 0,
+    "governedRecordChanges": 0,
+    "documentationUpdated": "yes — additively, recording the stop"
+  },
+
+  "INTEGRITY_AT_STOP": {
+    "method": "hashes recomputed from the actual files at the moment of stopping",
+    "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts": "bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694",
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts": "1c300ff178638b11c677aef1091f777a7a4e3ae71e5137383013105863891bd2",
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts": "f77c7febb55a056271174c4efd4375506145344bd0748e5d56f93c698074c1d1",
+    "backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts": "e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0",
+    "verification/.../HUMAN-ADJUDICATION-RECORD.json": "4412990912bef4e91c23286823bc685520c1d124259abb59acb9431e30dac2ff",
+    "verification/.../PAIR-MAP.json": "adc34192579e1f8fc1fcf9156e799f74db407c1409a8baddd24a4ad88ff8b91f",
+    "allUnchangedFromSection182": true,
+    "EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED": "false = false, unchanged",
+    "sections167To182EvidencePreserved": "unchanged"
+  },
+
+  "SECTION_182_STATE_UNCHANGED": {
+    "CLASSIFICATION": "EXISTING_SETTLEMENT_INTEGRATION_COMPLETE",
+    "RUNTIME_SETTLEMENT_AUTHORITY_PRODUCER_PRESENT": true,
+    "CHALLENGE_FACT_VALIDITY_CONSUMER_PRESENT": true,
+    "PROVIDER_SETTLEMENT_AUTHORITY": "NEVER",
+    "note": "§183 measured nothing and therefore neither confirms nor disturbs any §182 finding. The structural proofs stand as implementation evidence exactly as recorded."
+  },
+
+  "CLAIM_BOUNDARY": {
+    "established": "nothing about behaviour. No provider ran.",
+    "mustNotClaim": [
+      "that the settlement architecture behaves correctly",
+      "that challenge reasons are or are not reviewable",
+      "that HR-04, HR-05 or HR-07 behave differently under the structured path",
+      "production readiness, customer readiness, formal acceptance",
+      "any comparison against §179"
+    ],
+    "whatIsEstablished": "one thing, and it is a fact about the instrument rather than the system: the frozen ten-row instrument cannot supply owed facts, and constructing them for HR-04 requires authoring the discrimination under test"
+  },
+
+  "NEXT": {
+    "options": "COHORT-OPTIONS.json — five, with what each buys and cannot answer",
+    "recommendation": "OPTION_1, the product owner supplies the owed facts, optionally alongside OPTION_2's six-call two-row cohort for an earlier answer to the declaration-field question",
+    "parallelUnchanged": "governed evidence alignment remediation, now with a second reason behind it",
+    "authorizationRequired": "any of the five options needs new product-owner authorization; none was taken"
+  }
+}
