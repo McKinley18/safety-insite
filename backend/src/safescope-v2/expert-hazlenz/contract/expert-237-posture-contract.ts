@@ -190,7 +190,7 @@ Readonly<Record<PostureDriverRole237, string>> = {
 
 /** Which reference kind each role may be used on. Pure lookup; nothing is inferred. */
 export const DRIVER_ROLE_REF_KIND_237:
-Readonly<Record<PostureDriverRole237, (typeof POSTURE_REF_KINDS_237)[number]>> = {
+Readonly<Record<PostureDriverRole237, (typeof POSTURE_REF_KINDS_233)[number]>> = {
   ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION: 'HAZARD_CANDIDATE',
   ESTABLISHED_CONDITION_REQUIRING_CONTROLS: 'HAZARD_CANDIDATE',
   ESTABLISHED_CONDITION_REQUIRING_CESSATION: 'HAZARD_CANDIDATE',

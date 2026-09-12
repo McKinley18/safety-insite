@@ -1,0 +1,57 @@
+{
+  "section": "258",
+  "generated": "2026-09-12",
+  "artifact": "EXPERT_HAZLENZ_CANDIDATE_SUCCESSOR_IDENTITY_258",
+  "providerCalls": 0,
+  "databaseOperations": 0,
+  "derivation": "sha256 over the newline-joined \"key=value\" lines of elements[], in the listed order",
+  "note": "Binds the same candidate-defining execution path as v2.3 plus the exact §258 repaired source. v2.3 remains the historical identity of the §254 validated candidate and is not rewritten.",
+  "elements": [
+    {
+      "k": "historicalCandidateIdentityV23",
+      "v": "293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf"
+    },
+    {
+      "k": "repairedSourcePath",
+      "v": "backend/src/safescope-v2/expert-hazlenz/contract/expert-237-posture-contract.ts"
+    },
+    {
+      "k": "repairedSourceSha256",
+      "v": "540e2df7ff9bc74999c09c12ee29d9d1db171df09e61530fd01c82c3a8b1935c"
+    },
+    {
+      "k": "protectedCompositeIdentity",
+      "v": "9b3964b523c6fe513c1c38bb425a1f6860843de584c4a6a3eb4903f120ab85e9"
+    },
+    {
+      "k": "systemPromptIdentity",
+      "v": "a2f53370753526ad2a5ae8c07a8b81956c91bbdc67fc7b82e84da9e110d6a957"
+    },
+    {
+      "k": "emittedJavaScriptManifestSha256",
+      "v": "509638f357e8b3fcb0fe502fcd5627c4db33b0767bd50f9d34d7bbee474bf612"
+    }
+  ],
+  "preimageLineCount": 6,
+  "successorCandidateIdentity258": "10c9712d9da6217a7958a8763ebc845a7fb80f1f8b810dd969727329fb70b2ad",
+  "historicalCandidateIdentityV23": "293697746d7de52c1c5b8492592189e93211a0c986975832d8d8401bb258cfbf",
+  "v23StillReDerivesUnchanged": true,
+  "v23ReDerivationNote": "G1 of the §254 pre-spend gate still re-derives v2.3 exactly, because the repaired file is neither one of the 29 protected modules nor an element of the v2.3 derivation, and the runtime values it defines are unchanged.",
+  "repairedFile": {
+    "path": "backend/src/safescope-v2/expert-hazlenz/contract/expert-237-posture-contract.ts",
+    "sha256Before": "757c41a598b80893c8a301a9de9bb393d8847dea926d752a2f660efeb4bf5695",
+    "sha256After": "540e2df7ff9bc74999c09c12ee29d9d1db171df09e61530fd01c82c3a8b1935c",
+    "linesChanged": 1,
+    "tokensChanged": 1
+  },
+  "emittedOutput": {
+    "javascriptFiles": 1118,
+    "javascriptManifestSha256Before": "509638f357e8b3fcb0fe502fcd5627c4db33b0767bd50f9d34d7bbee474bf612",
+    "javascriptManifestSha256After": "509638f357e8b3fcb0fe502fcd5627c4db33b0767bd50f9d34d7bbee474bf612",
+    "javascriptByteIdentical": true,
+    "declarationFilesDiffering": 1,
+    "declarationFileBefore": "ff0e4901489da8853cc4bcbdfd48423b1a3f691057ec810be88249c481a0994a",
+    "declarationFileAfter": "e70c0d03904b775b332e30c55fc84922f2dafc60e6fbd8f8c275196063516bb9",
+    "declarationChange": "one line: the type annotation now names POSTURE_REF_KINDS_233, which is defined and imported, instead of POSTURE_REF_KINDS_237, which was never defined. The prior declaration was itself unresolvable."
+  }
+}
