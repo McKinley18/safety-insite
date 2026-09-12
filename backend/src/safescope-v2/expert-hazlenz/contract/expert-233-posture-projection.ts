@@ -340,12 +340,29 @@ export function projectPosture233(analysisRaw: unknown): PostureProjectionResult
   // ---- a reason for the posture or consciously accepted. This is what removes the incentive to
   // ---- manufacture a declaration in order to have somewhere to put an instruction, and the
   // ---- acceptance list is what stops it becoming a stop-forcing rule.
+  //
+  // §259. THE RESUME CONDITION IS A THIRD COVERING REFERENCE, AND ALWAYS WAS ONE.
+  //
+  // `resolvedByDeclarationIds` names declarations BY THEIR STABLE IDENTIFIER and is already
+  // validated above: an id naming no emitted declaration raises RESUME_CONDITION_REF_UNRESOLVED.
+  // Naming a declaration there is the most consequential placement the contract offers, because it
+  // states that work does not resume until that declaration is resolved. Reading only the two basis
+  // lists let an analysis reference a declaration by exact id as the condition gating resumption and
+  // still be refused for not covering it -- which is what happened on §254 H3. This is an
+  // incompleteness in the rule, not a relaxation of it: coverage is still exact-id, still
+  // model-authored, still fail-closed on omission, and no prose is inspected. Candidates are
+  // deliberately NOT covered this way; the resume condition cannot name a candidate.
   const covered = new Set([...requiredBy, ...accepted].map(r => `${r.refKind}:${r.ref}`));
   for (const k of seen.activeCandidateKeys) {
     if (!covered.has(`HAZARD_CANDIDATE:${k}`)) codes.push('ACTIVE_CANDIDATE_NOT_COVERED');
   }
+  const coveredDeclarations = new Set<string>([
+    ...[...requiredBy, ...accepted]
+      .filter(r => r.refKind === 'UNRESOLVED_DECLARATION').map(r => r.ref),
+    ...resume.resolvedByDeclarationIds.filter(id => seen.declarationIds.has(id)),
+  ]);
   for (const id of seen.declarationIds) {
-    if (!covered.has(`UNRESOLVED_DECLARATION:${id}`)) codes.push('DECLARATION_NOT_COVERED');
+    if (!coveredDeclarations.has(id)) codes.push('DECLARATION_NOT_COVERED');
   }
 
   if (postureValid) {

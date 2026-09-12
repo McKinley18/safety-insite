@@ -52,6 +52,12 @@ export const WIRE_SCHEMA = buildExpert247WireSchema(INPUT, governedBindingFor([]
 
 const CONTROL_TEXT = 'confirm the slab loading capacity with the structural engineer before '
   + 'the platform is repositioned';
+/**
+ * §259. Controls carry an identity and `dischargingControlRef` names it. Before §259 the reference
+ * reproduced CONTROL_TEXT verbatim, which is the H4 mechanism. The BASELINE moves to the successor
+ * representation; not one expected disposition below changes.
+ */
+const CONTROL_ID = 'ctl-slab-capacity';
 
 export function validOutput(): any {
   return {
@@ -107,7 +113,7 @@ export function validOutput(): any {
               + 'an unverified part of the slab during this shift',
             alongsideControlConsidered: null,
             whyAlongsideControlInsufficient: null,
-            dischargingControlRef: CONTROL_TEXT,
+            dischargingControlRef: CONTROL_ID,
           },
         },
         {
@@ -128,7 +134,7 @@ export function validOutput(): any {
         },
       ],
       acceptedWithoutImmediateAction: [],
-      requiredControls: [{ control: CONTROL_TEXT, timing: 'BEFORE_WORK_RESUMES' }],
+      requiredControls: [{ controlId: CONTROL_ID, control: CONTROL_TEXT, timing: 'BEFORE_WORK_RESUMES' }],
       resumeCondition: { resolvedByDeclarationIds: [], correctionsRequired: [] },
       whatHappensNow: 'the platform continues on spreader plates and the slab capacity is confirmed '
         + 'with the structural engineer before it is repositioned',

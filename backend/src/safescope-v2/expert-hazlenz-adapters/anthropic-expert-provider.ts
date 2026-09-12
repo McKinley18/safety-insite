@@ -54,9 +54,13 @@ import {
 } from '../expert-hazlenz/contract/expert-first-pass-instruction-vnext';
 // §249: the SAME successor builders the production entry point invokes. Selecting a builder is
 // binding, not semantics; none of the §247 contract is altered here.
-import { build247SystemPrompt } from '../expert-hazlenz/contract/expert-247-posture-contract';
+// §259. The adapter selects the SAME link of the chain as the production entry point. The candidate
+// identity requires both assembled paths to reproduce one wire schema, so this import moves with it.
+import {
+  build259SystemPrompt, buildExpert259WireSchema,
+} from '../expert-hazlenz/contract/expert-259-control-identity-contract';
 // §253: the schema successor the production entry point invokes. The prompt is unchanged.
-import { buildExpert253WireSchema } from '../expert-hazlenz/contract/expert-253-posture-contract';
+
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, buildEnvelopeRequestBody,
   type AnthropicExpertConfig,
@@ -192,7 +196,7 @@ export function buildAnthropicRequestBody(
   const governedRecords: readonly { sourceId: string; text: string }[] = [];
   const body = buildEnvelopeRequestBody({
     leg: 'FIRST_PASS',
-    systemPrompt: build247SystemPrompt(governedRecords.length),
+    systemPrompt: build259SystemPrompt(governedRecords.length),
     userPrompt: buildExpertVNextUserPrompt(input, governedRecords),
     toolName: EXPERT_TOOL_NAME,
     toolDescription: 'Emit the Expert HazLenz advisory analysis. This is the ONLY way to answer.',
@@ -200,7 +204,7 @@ export function buildAnthropicRequestBody(
     // (`additionalProperties: false`) -> the §108 Anthropic-only compatibility strip
     // (`minLength` / `minItems`). Only the transmitted request is affected.
     inputSchema: stripAnthropicUnsupportedKeywords(applyStrictSchemaWrapper(
-      buildExpert253WireSchema(input, governedBindingFor(governedRecords)))),
+      buildExpert259WireSchema(input, governedBindingFor(governedRecords)))),
   });
   // The per-call timeout stays a property of this transport, not of the envelope; `config` is kept
   // in the signature because historical callers pass one, and its transport fields are read by

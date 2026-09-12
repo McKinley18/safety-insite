@@ -57,7 +57,6 @@ import {
  * semantics is touched. What changed is which link of one byte-reversible chain the executable path
  * reads, exactly as §247 Closure A changed the adapter.
  */
-import { build247SystemPrompt } from './contract/expert-247-posture-contract';
 /**
  * ==================== §253 ALONGSIDE-CONTROL CONSISTENCY ====================
  *
@@ -67,13 +66,23 @@ import { build247SystemPrompt } from './contract/expert-247-posture-contract';
  * and report -- all three read a null pair as a confrontation that did not happen -- and repaired
  * the side that was wrong, which is the transmitted schema.
  *
- * The SCHEMA builder is the §253 successor. The PROMPT builder is still `build247SystemPrompt`,
- * unchanged and byte-identical, because the transmitted instruction block never mentioned null and
- * §253 introduces no prompt of its own.
+ * §253 changed the schema only, because the transmitted instruction block never mentioned null and
+ * §253 introduced no prompt of its own. Both builders are now selected one link further along the
+ * chain, at §259 below; each §259 builder reduces back to its §253 form byte for byte.
+ */
+/**
+ * ==================== §259 CONTROL IDENTITY ====================
+ *
+ * §253 left `dischargingControlRef` naming a control by reproducing its prose, and §254 H4 was
+ * refused for paraphrasing its own control. §259 gives each required control a `controlId` and
+ * retargets the reference at it, so the model authors the control once and identity belongs to the
+ * structure. The M8 invariant is unchanged and still fail-closed.
+ *
+ * Both builders are the §259 successors. Each reduces back to its §253 form byte for byte.
  */
 import {
-  buildExpert253WireSchema, FIRST_PASS_CONTRACT_253_VERSION,
-} from './contract/expert-253-posture-contract';
+  buildExpert259WireSchema, build259SystemPrompt, FIRST_PASS_CONTRACT_259_VERSION,
+} from './contract/expert-259-control-identity-contract';
 import {
   checkRoleJustification247, type RoleJustificationCode247,
 } from './contract/expert-247-role-justification-projection';
@@ -165,7 +174,7 @@ export type ExpertHazLenzStatus =
 
 export interface ExpertHazLenzResult {
   readonly status: ExpertHazLenzStatus;
-  readonly contractVersion: typeof FIRST_PASS_CONTRACT_253_VERSION;
+  readonly contractVersion: typeof FIRST_PASS_CONTRACT_259_VERSION;
   readonly entryVersion: typeof EXPERT_PRODUCTION_ENTRY_VERSION;
   /** Null whenever the posture projection refused. Never synthesized. */
   readonly posture: unknown;
@@ -204,12 +213,12 @@ export async function runExpertHazLenzAnalysis(
   const { input, observation, governedRecords, governedEvidence } = request;
 
   const binding = governedBindingFor(governedRecords);
-  const systemPrompt = build247SystemPrompt(governedRecords.length);
+  const systemPrompt = build259SystemPrompt(governedRecords.length);
   const userPrompt = buildExpertVNextUserPrompt(input, governedRecords);
-  const wireSchema = buildExpert253WireSchema(input, binding);
+  const wireSchema = buildExpert259WireSchema(input, binding);
 
   const base = {
-    contractVersion: FIRST_PASS_CONTRACT_253_VERSION,
+    contractVersion: FIRST_PASS_CONTRACT_259_VERSION,
     entryVersion: EXPERT_PRODUCTION_ENTRY_VERSION,
   } as const;
   const noVerifier = (why: string): ExpertHazLenzResult['verifier'] =>

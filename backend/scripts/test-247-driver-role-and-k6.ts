@@ -129,21 +129,21 @@ ok('F2 C5: a cessation driver that DOES confront it is admitted -- the content i
 const m8Controls = checkRoleJustification247(
   [{ ref: 'c2', refKind: 'HAZARD_CANDIDATE',
     driverRole: 'ESTABLISHED_CONDITION_REQUIRING_CONTROLS', roleJustification: J() }],
-  [{ control: 'move the second man', timing: 'BEFORE_WORK_RESUMES' }]);
+  [{ controlId: 'ctl-1', control: 'move the second man', timing: 'BEFORE_WORK_RESUMES' }]);
 ok('F3 M8/M1: a controls driver with no discharging control is refused',
   m8Controls.codes.includes('CONTROLS_DRIVER_WITHOUT_DISCHARGING_CONTROL'));
 const m8Dangling = checkRoleJustification247(
   [{ ref: 'c2', refKind: 'HAZARD_CANDIDATE',
     driverRole: 'ESTABLISHED_CONDITION_REQUIRING_CONTROLS',
     roleJustification: J({ dischargingControlRef: 'a procedure already in force' }) }],
-  [{ control: 'move the second man', timing: 'BEFORE_WORK_RESUMES' }]);
+  [{ controlId: 'ctl-1', control: 'move the second man', timing: 'BEFORE_WORK_RESUMES' }]);
 ok('F4 M8: a discharging reference that matches none of the model own controls is refused',
   m8Dangling.codes.includes('DISCHARGING_CONTROL_NOT_IN_REQUIRED_CONTROLS'));
 const m8Ok = checkRoleJustification247(
   [{ ref: 'c2', refKind: 'HAZARD_CANDIDATE',
     driverRole: 'ESTABLISHED_CONDITION_REQUIRING_CONTROLS',
-    roleJustification: J({ dischargingControlRef: 'move the second man' }) }],
-  [{ control: 'move the second man', timing: 'BEFORE_WORK_RESUMES' }]);
+    roleJustification: J({ dischargingControlRef: 'ctl-1' }) }],
+  [{ controlId: 'ctl-1', control: 'move the second man', timing: 'BEFORE_WORK_RESUMES' }]);
 ok('F5 M8: a controls driver tied to one of its own controls is admitted', m8Ok.admitted);
 
 // M8 storm cell: a future contingency the model itself labels manufactured.

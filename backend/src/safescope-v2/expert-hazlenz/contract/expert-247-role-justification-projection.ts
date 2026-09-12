@@ -45,6 +45,9 @@ export const ROLE_JUSTIFICATION_CODES_247 = [
   'CESSATION_DRIVER_WITHOUT_ALONGSIDE_CONTROL_ASSESSMENT',
   'CONTROLS_DRIVER_WITHOUT_DISCHARGING_CONTROL',
   'DISCHARGING_CONTROL_NOT_IN_REQUIRED_CONTROLS',
+  // §259. Consequences of giving a control an identity. Both fail closed.
+  'REQUIRED_CONTROL_WITHOUT_CONTROL_ID',
+  'DUPLICATE_CONTROL_ID',
 ] as const;
 export type RoleJustificationCode247 = (typeof ROLE_JUSTIFICATION_CODES_247)[number];
 
@@ -76,15 +79,54 @@ const nonEmpty = (v: unknown): v is string => typeof v === 'string' && v.trim() 
 export function checkRoleJustification247(
   requiredBy: readonly unknown[], requiredControls: readonly unknown[],
 ): RoleJustificationResult247 {
-  const controlTexts = new Set(
-    requiredControls
-      .map(c => (c ?? {}) as Record<string, unknown>)
-      .map(c => (typeof c.control === 'string' ? c.control.trim() : ''))
-      .filter(t => t !== ''));
+  /**
+   * §259. IDENTITY, NOT PROSE.
+   *
+   * Until §259 this was a set of trimmed `control` STRINGS and M8 was trim-normalized exact string
+   * equality, so a controls driver that named its own control in different words was refused. That
+   * is §254 H4. The control now carries a `controlId` and the reference resolves against it.
+   *
+   * The invariant is unchanged and is enforced exactly as strictly. A controls driver must still
+   * bind to a control that exists in THIS analysis; a nonexistent id is still refused; an id naming
+   * a different control is still the wrong control. Nothing here compares prose, and nothing infers
+   * that two differently worded controls are the same.
+   *
+   * Two refusals are added, both fail-closed. A control with no usable id cannot be referenced at
+   * all, and a duplicated id would make a reference ambiguous -- an ambiguous safety reference is
+   * refused, never resolved to whichever entry happened to come first.
+   */
+  const controlIds = new Set<string>();
+  const seenControlIds = new Set<string>();
+  let controlIdMissing = false;
+  let controlIdDuplicated = false;
+  for (const raw of requiredControls) {
+    const c = (raw ?? {}) as Record<string, unknown>;
+    const id = typeof c.controlId === 'string' ? c.controlId.trim() : '';
+    if (id === '') { controlIdMissing = true; continue; }
+    if (seenControlIds.has(id)) { controlIdDuplicated = true; continue; }
+    seenControlIds.add(id);
+    controlIds.add(id);
+  }
+  // A duplicated id is removed from the resolvable set entirely rather than resolved to the first
+  // occurrence, so an ambiguous reference cannot be satisfied by accident.
+  if (controlIdDuplicated) {
+    const counts = new Map<string, number>();
+    for (const raw of requiredControls) {
+      const c = (raw ?? {}) as Record<string, unknown>;
+      const id = typeof c.controlId === 'string' ? c.controlId.trim() : '';
+      if (id !== '') counts.set(id, (counts.get(id) ?? 0) + 1);
+    }
+    for (const [id, n] of counts) if (n > 1) controlIds.delete(id);
+  }
 
   const perEntry: RoleJustificationEntryResult247[] = [];
   const all = new Set<RoleJustificationCode247>();
   let manufacturedCount = 0;
+
+  // §259. Whole-output conditions: they are properties of the control list, not of any one driver,
+  // so they are raised once rather than attributed to an entry that may be entirely well formed.
+  if (controlIdMissing) all.add('REQUIRED_CONTROL_WITHOUT_CONTROL_ID');
+  if (controlIdDuplicated) all.add('DUPLICATE_CONTROL_ID');
 
   requiredBy.forEach((raw, index) => {
     const codes: RoleJustificationCode247[] = [];
@@ -139,10 +181,11 @@ export function checkRoleJustification247(
     }
 
     // ---- the M8 mechanism: a controls driver must tie to one of the model's own controls.
+    // ---- §259: resolved by controlId. The tie must exist; only how it is named has changed.
     if (driverRole === CONTROLS_ROLE_247) {
       if (!nonEmpty(jr.dischargingControlRef)) {
         fail('CONTROLS_DRIVER_WITHOUT_DISCHARGING_CONTROL');
-      } else if (!controlTexts.has((jr.dischargingControlRef as string).trim())) {
+      } else if (!controlIds.has((jr.dischargingControlRef as string).trim())) {
         fail('DISCHARGING_CONTROL_NOT_IN_REQUIRED_CONTROLS');
       }
     }
