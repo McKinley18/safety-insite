@@ -15,7 +15,11 @@ import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entit
 import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual-evidence-reasoning.types';
 import { RealImageAnalysisInput } from './real-image-analysis/real-image-analysis.types';
 import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.types';
-import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
+import { UserGovernanceContext } from './workspace-governance-access/workspace-governance.types';
+import {
+  localDevBypassUserId, requireGovernanceUserId, resolveSafeScopeGovernanceContext,
+} from './workspace-governance-access/safescope-governance-context';
+import { scopesForRegulatoryContext } from './evidence/regulatory-scopes';
 import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitizer";
 import { enforceHazLenzEvidenceBoundary } from './display/hazlenz-evidence-boundary';
 import { applyEvidenceFoundation, applyFindingScopedStandards } from './evidence/evidence-foundation';
@@ -24,22 +28,6 @@ import { normalizeHazardObservationText } from './display/hazlenz-evidence-bound
 import { attachGuidedFindingResponse } from './display/guided-finding-response';
 import { InspectionService } from '../inspection/inspection.service';
 import { regulatoryContextProvenance } from '../inspection/inspection.entity';
-
-/**
- * Maps the inspection-level regulatory context onto BOTH jurisdiction vocabularies the
- * classify pipeline consumes (structuredObservation.jurisdiction for the evidence-fact /
- * applicability engine, and `scopes` for the classifier's standards search), so the two
- * engines can never disagree about which regime governs the inspection.
- */
-function scopesForRegulatoryContext(context: string): string[] | undefined {
-  switch (context) {
-    case 'msha': return ['msha'];
-    case 'osha-general-industry': return ['osha_general_industry'];
-    case 'osha-construction': return ['osha_construction'];
-    default: return undefined;
-  }
-}
-
 
 function ensureVisiblePrimaryCitationContract(response: any, observationText = ''): any {
   if (!response || typeof response !== 'object') return response;
@@ -212,94 +200,21 @@ export class SafescopeV2Controller {
   }
 
   private requireUserId(user: any): string {
-    const userId = user?.userId || user?.id || user?.sub;
-
-    if (!userId) {
-      throw new UnauthorizedException('Authenticated user context is required.');
-    }
-
-    return String(userId);
+    return requireGovernanceUserId(user);
   }
 
   private getLocalDevBypassUserId(): string {
-    if (
-      process.env.DEV_AUTH_BYPASS === 'true' &&
-      process.env.NODE_ENV !== 'production'
-    ) {
-      return 'local-dev-bypass-user';
-    }
-
-    throw new UnauthorizedException('Authenticated user context is required.');
+    return localDevBypassUserId();
   }
 
+  /**
+   * §262 EXTRACTION. The role map, the fail-safe viewer default and the local development bypass
+   * moved verbatim to `workspace-governance-access/safescope-governance-context.ts` so the
+   * authoritative Expert execution path resolves the SAME governance context from the SAME
+   * definition. This method is now the controller's adapter from the request onto that function.
+   */
   private getGovernanceContext(req: Request & { user?: any }): UserGovernanceContext {
-      const user = req.user;
-      const roleMap: Record<string, SafeScopeRole> = {
-          'ORG_OWNER': 'owner',
-          'OWNER': 'owner',
-          'SUPER_ADMIN': 'admin',
-          'ADMIN': 'admin',
-          'SAFETY_DIRECTOR': 'safety_manager',
-          'SAFETY_MANAGER': 'safety_manager',
-          'SUPERVISOR': 'safety_manager',
-          'AUDITOR': 'compliance_admin',
-          'COMPLIANCE_ADMIN': 'compliance_admin',
-          'WORKER': 'field_inspector',
-          'FIELD_INSPECTOR': 'field_inspector',
-          'INDIVIDUAL': 'field_inspector',
-          'MEMBER': 'field_inspector',
-          'MANAGER': 'safety_manager',
-          'ORGANIZATION_ADMIN': 'admin',
-          'VIEWER': 'viewer'
-      };
-
-      const normalizeRole = (value?: string) =>
-          String(value || '')
-              .trim()
-              .replace(/([a-z])([A-Z])/g, '$1_$2')
-              .replace(/[\s-]+/g, '_')
-              .toUpperCase();
-
-      const localDevAuthBypassEnabled =
-          process.env.DEV_AUTH_BYPASS === 'true' &&
-          process.env.NODE_ENV !== 'production';
-
-      const normalizedRole = user ? normalizeRole(user.role) : '';
-      const mappedRole = user ? roleMap[normalizedRole] || 'viewer' : 'viewer';
-
-      // Local/dev bypass should behave like an operational test user so the UI can exercise SafeScope.
-      // Production and normal unauthenticated requests remain fail-safe as viewer.
-      if (localDevAuthBypassEnabled && (!user || mappedRole === 'viewer')) {
-          return {
-              userId: this.getLocalDevBypassUserId(),
-              workspaceId: user?.organizationId || user?.workspaceId || 'dev-local-workspace',
-              role: 'safety_manager',
-              planTier: 'company',
-              jurisdictionScopes: ['msha', 'osha_general_industry', 'osha_construction'],
-              reviewerQualifications: ['local_development']
-          };
-      }
-
-      // Fail-safe defaults for missing context
-      if (!user) {
-          return {
-              userId: this.requireUserId(user),
-              workspaceId: 'default',
-              role: 'viewer',
-              planTier: 'individual',
-              jurisdictionScopes: [],
-              reviewerQualifications: []
-          };
-      }
-
-      return {
-          userId: this.requireUserId(user),
-          workspaceId: user.organizationId || user.workspaceId || 'default',
-          role: mappedRole,
-          planTier: user.planTier || user.planCode || user.organizationPlanCode || 'individual',
-          jurisdictionScopes: [],
-          reviewerQualifications: []
-      };
+    return resolveSafeScopeGovernanceContext(req.user);
   }
 
   @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)

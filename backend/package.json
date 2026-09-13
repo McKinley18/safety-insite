@@ -362,7 +362,9 @@
     "score:197-deterministic": "ts-node scripts/score-197-deterministic-2026-09-07.ts",
     "diagnose:197-transport": "ts-node scripts/diagnose-197-transport-rejection-2026-09-07.ts",
     "test:261-confirmation-rule": "ts-node scripts/test-261-confirmation-rule.ts",
-    "test:261-expert-persistence-foundation": "ts-node scripts/test-261-expert-persistence-foundation.ts"
+    "test:261-expert-persistence-foundation": "ts-node scripts/test-261-expert-persistence-foundation.ts",
+    "test:262-expert-authoritative-route": "ts-node scripts/test-262-expert-authoritative-route.ts",
+    "verify:262-candidate-identity": "ts-node scripts/verify-262-candidate-identity.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

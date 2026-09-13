@@ -1,0 +1,94 @@
+§262 BUILD AND REGRESSION
+==========================
+Provider calls (real): 0
+Production database operations: 0
+Pushes: 0   Tags: 0   Deploys: 0
+
+BUILDS
+------
+  npm run build          exit 0
+  npm run build:render   exit 0
+
+  Both were also exit 0 immediately before the first §262 edit (the §261 commit is the
+  baseline and its own record states the same), so the green result is not inherited
+  from a build that was already broken.
+
+§262 SUITES
+-----------
+  test:262-expert-authoritative-route   exit 0   94 passed, 0 failed
+      run twice: once against test_insite_262_20260912205319 and once from a CLEAN
+      database, test_insite_262_clean_210344, created empty and migrated from zero.
+      Both runs 94/94. The clean run is the recorded artifact.
+  verify:262-candidate-identity          exit 0   22 elements, drift 0, IDENTITY MATCH
+      read-only: 0 provider calls, 0 database operations, 0 files written.
+
+§261 FOUNDATION SUITES (re-run under §262)
+------------------------------------------
+  test:261-confirmation-rule                  exit 0   60 passed, 0 failed  (0 database ops)
+  test:261-expert-persistence-foundation      exit 0   69 passed, 0 failed
+      disposable database test_insite_261_regr_210413, created and migrated for this run.
+
+PRODUCT REGRESSION SUITES
+-------------------------
+Run against disposable database test_insite_262_reg_210435 with the server booted on
+port 4232 against that same disposable database.
+
+  test:expert-nocall-harness              exit 0   141 passed, 0 failed
+  test:persisted-decomposition-findings   exit 0
+  test:finding-scoped-reviews             exit 0
+  test:canonical-workflow                 exit 0
+      25 scenarios, 3 analyses persisted, 4 cross-user denials,
+      massAssignmentRejected true
+  test:knowledge-release-provenance       exit 1  -- ENVIRONMENTAL, NOT A §262 REGRESSION
+
+STORAGE-DEPENDENT SUITE: THE MECHANISM WAS INVESTIGATED BECAUSE IT FIRST LOOKED CHANGED
+---------------------------------------------------------------------------------------
+§261 recorded the cause as "STORAGE_S3_BUCKET is required."  The first §262 run instead
+produced "STORAGE_LOCAL_ROOT is required for local test storage."  §262 requires that a
+changed failure mechanism be investigated rather than reclassified, so it was.
+
+Established, not inferred:
+
+  - src/storage/storage.service.ts:34 selects the provider as
+        process.env.STORAGE_PROVIDER || (process.env.NODE_ENV === 'test' ? 'local_test' : 's3')
+    so the branch taken is decided by the SERVER PROCESS's NODE_ENV, not by any §262 code.
+  - The first §262 run booted the server with NODE_ENV=test, which selects local_test.
+    §261 booted it without, which selects s3. That is the entire difference.
+  - Re-running the suite against a server booted the way §261 booted it (port 4233,
+    NODE_ENV not set to test) reproduces §261's cause exactly:
+        [ExceptionsHandler] STORAGE_S3_BUCKET is required.
+    The suite fails at POST /inspections/:id/reports with 500, as it did in §261.
+  - STORAGE_S3_BUCKET occurs 0 times in backend/.env; no STORAGE_* variable is set.
+  - §262 changed 0 files under src/storage and 0 files under src/reports
+    (git status --porcelain over both paths returns 0 lines).
+  - §262 explicitly prohibits configuring object storage to make this suite green, and
+    STORAGE_LOCAL_ROOT was therefore NOT set either: setting it would be configuring
+    object storage to turn an unrelated suite green, which is the prohibited act
+    regardless of which provider the variable belongs to.
+
+Classification: UNVERIFIED / ENVIRONMENTALLY BLOCKED. The mechanism did not change; the
+observed message changed because the §262 runner's server process had a different
+NODE_ENV, and the §261 mechanism was reproduced on demand.
+
+PROTECTED MODULES
+-----------------
+  29 present, 0 missing, 0 modified by §262.
+
+  One recorded digest in PROTECTED-IDENTITIES.json does not equal the file on disk:
+  anthropicAdapterModule records 5077d9fe... (the §229 snapshot) while the file digests
+  to 9878b580... This is PRE-EXISTING and is not a §262 change:
+
+  - the working tree copy is byte-identical to HEAD
+    (git show HEAD:...anthropic-expert-provider.ts | shasum -a 256 == worktree digest);
+  - the file was last modified in commit 40936be1, which is §259;
+  - 9878b580... is exactly the value the frozen §259 identity records for its `adapter`
+    element, and that element verifies with drift 0.
+
+  PROTECTED-IDENTITIES.json is a §229 artifact and was NOT rewritten: an additive
+  successor never edits a historical record to agree with a later one.
+
+APPLICATION BOOT
+----------------
+  The Nest application boots against the §261 schema with the §262 code and maps the new
+  route exactly once:
+      Mapped {/inspections/observations/:id/expert-analyses, POST} route

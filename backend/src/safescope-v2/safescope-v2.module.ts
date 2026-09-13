@@ -74,5 +74,10 @@ import { InspectionModule } from "../inspection/inspection.module";
     RealImageAnalysisService,
     OfflineReasoningMobileResilienceService,
   ],
+  // §262. Exported so the authoritative Expert execution path can run the DETERMINISTIC analysis
+  // server-side rather than receiving one in a request body. Exporting the service does not export
+  // the route: the classify endpoint's guard profile is unaffected, and the Expert route carries
+  // that same profile independently.
+  exports: [SafescopeV2Service],
 })
 export class SafescopeV2Module {}

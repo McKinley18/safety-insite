@@ -492,11 +492,37 @@ export class InspectionService {
     return saved;
   }
 
+  /**
+   * The tenant choke point for every observation-scoped route.
+   *
+   * ONE INDISTINGUISHABLE ANSWER FOR BOTH WAYS OF NOT REACHING AN OBSERVATION. §262 measured this
+   * and found it disclosing: an observation that does not exist answered "Observation not found."
+   * while one belonging to ANOTHER workspace answered "Inspection not found." — the same 404, but
+   * two different bodies, so a caller could enumerate which observation ids are real by reading the
+   * message. Both branches now answer identically, so a cross-workspace attempt reveals nothing
+   * about whether the target exists.
+   *
+   * The status code was already correct; this closes the message-level difference behind it, and it
+   * closes it HERE rather than at any one route, so every observation route — analyses, reviews,
+   * findings, user-authored findings, updates and the Expert route — gains it at once and none can
+   * drift back.
+   */
   private async accessibleObservation(rawUser: unknown, observationId: string) {
     const observation = await this.observations.findOne({ where: { id: observationId } });
     if (!observation) throw new NotFoundException('Observation not found.');
-    const inspection = await this.findAccessible(rawUser, observation.inspectionId);
-    return { observation, inspection };
+    try {
+      const inspection = await this.findAccessible(rawUser, observation.inspectionId);
+      return { observation, inspection };
+    } catch (error) {
+      // Only the not-found answer is normalised. An UnauthorizedException from a missing principal
+      // means the caller is not authenticated at all, which is a different fact and must keep its
+      // own status: converting it to 404 would tell an unauthenticated caller that the resource
+      // does not exist, which is a claim the server has not established.
+      if (error instanceof NotFoundException) {
+        throw new NotFoundException('Observation not found.');
+      }
+      throw error;
+    }
   }
 
   async authorizeObservation(rawUser: unknown, observationId: string) {

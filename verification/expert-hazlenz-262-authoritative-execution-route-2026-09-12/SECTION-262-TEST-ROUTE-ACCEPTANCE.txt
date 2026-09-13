@@ -1,0 +1,185 @@
+
+> safety-insite-backend@1.0.0 test:262-expert-authoritative-route
+> ts-node scripts/test-262-expert-authoritative-route.ts
+
+resolved target host=127.0.0.1 port=5432 database=test_insite_262_clean_210344
+target proven disposable
+
+application listening on http://127.0.0.1:58256
+
+---- R0. the route carries the analysis-production authorization profile ----
+
+ok    R0-A JwtGuard is attached to the route  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    R0-B EntitlementGuard is attached
+ok    R0-C RolesGuard is attached
+ok    R0-D the required entitlement is fullSafeScope  [fullSafeScope]
+ok    R0-E a dedicated throttle is attached and stricter than classify's 30/60s  [limit=10 ttl=60000]
+ok    R0-F the route declares the same role list the classify route does  [INDIVIDUAL,MEMBER,MANAGER,ORGANIZATION_ADMIN,ORG_OWNER,SAFETY_DIRECTOR,SUPERVISOR,AUDITOR,WORKER]
+
+---- R1. authorization (§262 cases A-F of the authorization matrix) ----
+
+ok    R1-B an unauthenticated caller is rejected  [401]
+ok    R1-C a caller without fullSafeScope is rejected with PAYMENT_REQUIRED  [402 PAID_SUBSCRIPTION_REQUIRED]
+ok    R1-D a caller whose role is outside the route's list is rejected  [403]
+ok    R1-E a cross-workspace observation answers NotFound  [404]
+ok    R1-E2 and it is INDISTINGUISHABLE from an observation that does not exist  [404:Observation not found. vs 404:Observation not found.]
+ok    R1-E3 the refused cross-workspace attempt created no execution in the target workspace  [executions=0]
+ok    R1-F an idempotency key is scoped to its observation and cannot reach another workspace's execution  [201/201 b22ae0b6-0145-4fd0-a31b-2fe90175d6e0 vs 9f0f680d-7864-4a0a-83a5-71decadc99c3]
+
+---- R2. acceptance A: an ordinary admitted analysis requiring no confirmation ----
+
+ok    R2-A the route answers 201  [201]
+ok    R2-B the stored analysis state is ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    R2-C confirmation is not required, and the stored row says so
+ok    R2-D the row is server_authored
+ok    R2-E the row names the execution that authored it
+ok    R2-F the response states the authority position without calling it approved or final  [This Expert analysis is available for review. No human confirmation of its operational conclusion is required.]
+
+---- R3. acceptance B: an admitted analysis that requires confirmation ----
+
+ok    R3-A the stored analysis state is ANALYSIS_AWAITING_CONFIRMATION  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    R3-B confirmation is required, and the flag was computed once and stored
+ok    R3-C the rule that produced the flag is recorded on the execution  [hazlenz.expert.confirmation-required.261-unresolved-classification-boundary]
+ok    R3-D the client is TOLD confirmation is required and never has to infer it  [This Expert analysis is available for review, and its operational conclusion requires a person to confirm it before it is acted on. It has not been confirmed.]
+ok    R3-E the verifier leg was reached and recorded  [reached=true factKey=FP.REQUIRED_CONTROL.observation.133-181.1]
+
+---- R3b. H3 and H4 structural identity survive persistence and the response ----
+
+ok    R3b-H3a declarationId survives into the persisted snapshot  [["decl-stored-energy-state"]]
+ok    R3b-H3b the projected posture references the declaration by ID, not by prose  [["HAZARD_CANDIDATE:drive-stored-energy","UNRESOLVED_DECLARATION:decl-stored-energy-state"]]
+ok    R3b-H4a controlId survives into the persisted snapshot  [["ctl-isolate-drive"]]
+ok    R3b-H4b dischargingControlRef carries the control ID and NOT the control prose  [ctl-isolate-drive]
+ok    R3b-H4c the same identities survive into the response the client receives
+
+---- R3c. acceptance J: server-authored provenance ----
+
+ok    R3c-A the frozen §259 candidate identity is persisted  [0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee]
+ok    R3c-B contract, entry, admission and projection versions are persisted  [hazlenz.expert.first-pass.259 | hazlenz.expert.production-entry.v1 | hazlenz.expert.252.structural-admission.v1 | hazlenz.expert.239.posture-projection.v1]
+ok    R3c-C the transmitted system prompt digest is the frozen §259 element  [680f5127776427963d89244eafa32ce57973575ffbfae2f3326ed92fc17be34a]
+ok    R3c-D the transmitted wire schema digest is recorded
+ok    R3c-E the organization, inspection and observation are the SERVER's, not the request's
+ok    R3c-F the admission disposition and timestamps are persisted
+ok    R3c-G the server-established basis is recorded on the snapshot  ["osha-general-industry"]
+
+---- R3d. the analysis-creation audit event ----
+
+ok    R3d-A an analysis_created audit event was written  [present]
+ok    R3d-B it names the actor and the organization the server established
+ok    R3d-C no raw provider payload reached generic audit metadata  [874 chars]
+
+---- R4. acceptance E: whole-analysis refusal ----
+
+ok    R4-A a refused output is ANALYSIS_REFUSED and never ANALYSIS_AVAILABLE  [ANALYSIS_REFUSED]
+ok    R4-B the refusal is still server_authored: the server owns its own refusal
+ok    R4-C confirmation is NOT required of a refusal
+ok    R4-D the structured refusal codes are persisted  [["DECLARATION_NOT_COVERED"]]
+ok    R4-E no admitted Expert content is carried in the snapshot
+ok    R4-F the response says the answer was refused, not that no hazards were found  [The Expert layer answered and the answer did not meet the contract, so it was refused in full and no part of it is shown. The deterministic analysis is unaffected.]
+
+---- R5. acceptance F: a CONTAINED declaration refusal ----
+
+ok    R5-A the contained refusal does not present as an available analysis  [ANALYSIS_UNRESOLVED]
+ok    R5-B exactly one declaration was refused, and it is recorded  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    R5-C the analysis was otherwise usable: the posture ADMITTED and survives in the snapshot  [[]]
+
+---- R6. acceptance G: preserved unresolved truth ----
+
+ok    R6-A a preserved-unresolved outcome is ANALYSIS_UNRESOLVED  [ANALYSIS_UNRESOLVED]
+ok    R6-B the admission disposition PRESERVE_UNRESOLVED is persisted, not flattened to REFUSE  [PRESERVE_UNRESOLVED]
+ok    R6-C nothing was admitted, and the response offers no operational conclusion
+ok    R6-D the declaration whose truth was preserved is recorded
+
+---- R7. provider/transport failure is an OUTCOME, not a generic error ----
+
+ok    R7-A the execution settles as ANALYSIS_FAILED  [ANALYSIS_FAILED]
+ok    R7-B no analysis row is created, so nothing can render as a result  [analysisRow=none]
+ok    R7-C the failure kind is preserved, distinguishable from a refusal  [TRANSPORT_TIMEOUT]
+ok    R7-D the response says the layer was unavailable, not that there are no hazards  [The Expert layer could not be reached, so it produced no analysis. This is not a finding that there are no hazards. The deterministic analysis is unaffected.]
+
+---- R8. a verifier-leg failure does not invalidate an admitted first pass ----
+
+ok    R8-A the first pass is still admitted  [ADMIT]
+ok    R8-B the verifier is recorded as NOT REACHED, never as a pass  [VERIFIER_LEG_FAILED:TRANSPORT_TIMEOUT]
+ok    R8-C the analysis still carries its confirmation requirement
+
+---- R9. acceptance I: pre-spend idempotency under concurrent duplicates ----
+
+ok    R9-A exactly ONE execution identity governs the operation  [executions=1]
+ok    R9-B exactly one caller won spend authority  [executed=1 reused=2]
+ok    R9-C every other caller was answered without entering the provider seam
+ok    R9-D the simulated provider-entry count is the ONE winner's legs, not three callers' legs  [{"total":1,"firstPass":1,"verifier":0}]
+ok    R9-E no duplicate server-authored analysis was created  [analyses=1]
+ok    R9-F all three callers resolve to the same execution identity  [201:EXECUTED 201:REUSED_RUNNING 201:REUSED_RUNNING]
+ok    R9-G a later duplicate reuses the authoritative result and still does not spend  [REUSED_SETTLED entries 1 -> 1]
+
+---- R10. every server-owned field is unreachable from the request body ----
+
+ok    R10 forging producer is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging candidateIdentity is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging confirmationRequired is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging analysisState is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging expertExecutionId is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging resultSnapshot is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging providerId/respondedModel is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging engineVersion is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging contractVersion is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging admission is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10-Z every server-owned field attempted was refused  [10/10]
+ok    R10-Y raw SQL cannot mint server_authored without a real execution  [new row for relation "hazlenz_analyses" violates check constraint "ck_hazlenz_analysis_producer_execution"]
+
+---- R11. no downstream finding is materialized from an unconfirmed conclusion ----
+
+ok    R11-A the awaiting-confirmation analysis reconciled no findings  [findings=0]
+ok    R11-B no server-authored analysis reconciled findings in this slice at all  [findings=0]
+ok    R11-C the response states it, so no client infers a finding was created
+
+---- R12. server-authored rows coexist with historical client_supplied rows ----
+
+ok    R12-A the legacy snapshot persisted as client_supplied and was not rewritten  [[{"producer":"client_supplied","status":"superseded","analysisState":"ANALYSIS_AVAILABLE"},{"producer":"server_authored","status":"current","analysisState":"ANALYSIS_AVAILABLE"}]]
+ok    R12-B the server-authored row coexists with it
+ok    R12-C the legacy row was superseded by revision, not deleted or relabelled
+ok    R12-D no server-authored analysis exists without an execution
+ok    R12-E no client-supplied analysis names an execution
+ok    R12-F both producers are present, so the invariants are not vacuous  [server_authored=10 client_supplied=1]
+
+---- R13. the response never labels an unconfirmed conclusion as settled ----
+
+ok    R13-A no response labels an Expert result approved, final, settled or completed
+ok    R13-B no response carries the raw provider payload
+ok    R13-C the raw provider output IS retained on the execution record for later comparison
+
+---- T1. the route is actually behind its throttle ----
+
+ok    T1-A the route returns 429 once its own limit is exceeded  [first 429 at attempt 11]
+
+---- Z. spend accounting ----
+
+simulated provider entries, whole run: {"total":23,"firstPass":21,"verifier":2,"windowsReset":2}
+simulated provider entries since the idempotency window was opened: {"total":12,"firstPass":12,"verifier":0}
+ok    Z-A the deterministic transport was in force for the whole run
+ok    Z-B every settled execution records the local deterministic seam, and none records a hosted one  [{"local":20,"other":0,"total":21}]
+ok    Z-C this run contains a genuine opportunity to have spent, so Z-B is not vacuous  [legs=23 (verifier 2) credentialPresent=true]
+
+================ §262 acceptance cases, reported individually
+
+  A  PASS  ordinary admitted analysis requiring no confirmation
+        ANALYSIS_AVAILABLE, confirmationRequired=false, server_authored
+  B  PASS  admitted analysis requiring confirmation
+        ANALYSIS_AWAITING_CONFIRMATION, confirmationRequired=true, stated in the response
+  E  PASS  whole-analysis refusal
+        ANALYSIS_REFUSED, no Expert content rendered, refusal codes persisted
+  F  PASS  contained declaration refusal / partially usable analysis
+        ANALYSIS_UNRESOLVED with the posture contained and one declaration refused
+  G  PASS  preserved unresolved truth
+        ANALYSIS_UNRESOLVED, PRESERVE_UNRESOLVED persisted, no conclusion offered
+  H  PASS  unauthorized cross-workspace access
+        NotFound, indistinguishable from a non-existent observation, no execution created
+  I  PASS  duplicate / idempotent execution behaviour
+        1 execution, 1 spender, 1 simulated provider entry, 1 analysis
+  J  PASS  candidate and version provenance persistence
+        candidate identity, contract/entry/admission/projection versions, transmitted prompt digest
+  C  RESERVED  human confirmation accepted unchanged (the confirmation action does not exist yet; not faked)
+  D  RESERVED  human override / change (the override action does not exist yet; not faked)
+
+================ §262 route acceptance: 94 passed, 0 failed
+{"realProviderCalls":0,"simulatedProviderEntries":{"total":23,"firstPass":21,"verifier":2,"windowsReset":2},"simulatedProviderEntriesInIdempotencyWindow":{"total":12,"firstPass":12,"verifier":0},"productionDatabaseOperations":0,"database":"test_insite_262_clean_210344","disposable":true,"passed":94,"failed":0,"casesPassed":["A","B","E","F","G","H","I","J"],"casesFailed":[],"casesReserved":["C","D"]}

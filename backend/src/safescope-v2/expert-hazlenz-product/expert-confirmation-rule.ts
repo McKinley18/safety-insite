@@ -200,6 +200,38 @@ export function deriveConfirmationRequired(posture: unknown): ConfirmationDeterm
   };
 }
 
+/**
+ * §262 — THE DETERMINATION FOR AN OUTCOME THAT HAS NO ADMITTED OPERATIONAL CONCLUSION.
+ *
+ * A provider failure, a whole-output refusal and a preserved-unresolved refusal all produce an
+ * analysis record with NO admitted posture. Running the rule on them would fail closed and store
+ * `confirmationRequired = true`, which reads as "a human must settle this classification" about a
+ * classification that does not exist — inviting a reviewer to confirm a refusal, and making the
+ * flag mean two different things on two different rows.
+ *
+ * FALSE HERE IS A FACT, NOT A DEFAULT, and it is the same fact §261 records for a client-supplied
+ * row: there is no server-authored operational conclusion, so there is nothing for a human to
+ * settle and the rule never ran. `failedClosed` is FALSE because nothing was unreadable — the rule
+ * was inapplicable, which is a different thing from being defeated, and conflating the two would
+ * hide genuine fail-closed events in a population of refusals.
+ *
+ * THIS DOES NOT WEAKEN THE RULE. It is unreachable for an ADMITTED analysis: the caller selects it
+ * only where `status === COMPLETE && admission === ADMIT` is false, and in that case the product
+ * state is ANALYSIS_FAILED, ANALYSIS_REFUSED or ANALYSIS_UNRESOLVED — none of which the
+ * confirmation action can act on.
+ */
+export function confirmationNotApplicable(): ConfirmationDetermination {
+  return {
+    ruleVersion: CONFIRMATION_RULE_VERSION,
+    confirmationRequired: false,
+    failedClosed: false,
+    failClosedCode: null,
+    posture: null,
+    posturePermitsContinuedWork: null,
+    triggers: [],
+  };
+}
+
 /** Convenience for a caller holding the whole admitted analysis rather than its posture. */
 export function deriveConfirmationRequiredFromAnalysis(
   analysis: unknown,

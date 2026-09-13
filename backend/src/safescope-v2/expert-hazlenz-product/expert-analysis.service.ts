@@ -16,7 +16,7 @@ import {
   deriveAnalysisState,
 } from './expert-analysis-authority';
 import {
-  CONFIRMATION_RULE_VERSION, type ConfirmationDetermination,
+  CONFIRMATION_RULE_VERSION, type ConfirmationDetermination, confirmationNotApplicable,
   deriveConfirmationRequiredFromAnalysis,
 } from './expert-confirmation-rule';
 
@@ -171,6 +171,29 @@ export class ExpertAnalysisService {
   }
 
   /**
+   * §262. Resolve the analysis an ALREADY-SETTLED execution produced, so a duplicate request can be
+   * answered with the authoritative result instead of running a second one.
+   *
+   * NO AUTHORIZATION IS PERFORMED OR NEEDED HERE, and that is safe for one reason: the execution
+   * record was itself resolved under `findOne({ id, observationId })` after the observation was
+   * authorized, so the caller has already been proven to reach this observation. The analysis is
+   * then constrained to the SAME observation and the SAME execution, so an execution row whose
+   * `analysisId` somehow named a foreign analysis resolves to null rather than to that analysis.
+   */
+  async loadAnalysisForExecution(
+    execution: ExpertAnalysisExecution,
+  ): Promise<HazLenzAnalysis | null> {
+    if (!execution.analysisId) return null;
+    return this.analyses.findOne({
+      where: {
+        id: execution.analysisId,
+        observationId: execution.observationId,
+        expertExecutionId: execution.id,
+      },
+    });
+  }
+
+  /**
    * THE DETERMINISTIC CONFIRMATION DETERMINATION, exposed so a caller can see it without a
    * database. Delegates to the pure rule and adds nothing: no service-level override exists, and
    * there is deliberately no parameter by which a caller could influence the answer.
@@ -209,7 +232,16 @@ export class ExpertAnalysisService {
     const user = requireAuthenticatedUser(rawUser);
     const { observation } = await this.inspections.authorizeObservation(user, observationId);
 
-    const determination = this.determineConfirmation(result.admittedAnalysis);
+    // §262. THE RULE RUNS ONLY WHERE THERE IS AN ADMITTED OPERATIONAL CONCLUSION TO SETTLE.
+    //
+    // §261 ran it unconditionally, which was harmless while nothing produced a refusal through this
+    // method and wrong the moment §262 did: an unreadable posture fails closed, so a REFUSED or
+    // FAILED row would have been stored with `confirmationRequired = true` — asking a human to
+    // confirm a classification that does not exist. The flag now means one thing on every row.
+    const admitted = result.status === 'COMPLETE' && result.admission === 'ADMIT';
+    const determination = admitted
+      ? this.determineConfirmation(result.admittedAnalysis)
+      : confirmationNotApplicable();
     const analysisState = deriveAnalysisState({
       status: result.status,
       admission: result.admission,

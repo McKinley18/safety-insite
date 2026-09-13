@@ -1,0 +1,198 @@
+{
+  "section": "262",
+  "generated": "2026-09-12",
+  "kind": "AUTHORITATIVE_SERVER_SIDE_EXPERT_EXECUTION_ROUTE",
+  "providerCalls": 0,
+  "simulatedProviderEntries": { "total": 23, "firstPass": 21, "verifier": 2 },
+  "productionDatabaseOperations": 0,
+  "pushes": 0, "tags": 0, "deploys": 0,
+  "historicalEvidencePackagesMutated": 0,
+  "predecessor": {
+    "successorIdentity259": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "commit261": "82a34dd8173c45c2971c27c50d402115c4294990",
+    "packageDigest261": "b7f68301c7ad381dbbc7fa2b490ffd199740d137e357018a8b08b3f85a2ca4a3"
+  },
+  "candidateIntegrity": {
+    "successorIdentity259Before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "successorIdentity259After": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "elementsChecked": 22,
+    "elementDrift": 0,
+    "candidateChanged": false,
+    "recomputationWasReadOnly": true,
+    "filesWrittenByRecomputation": 0,
+    "protectedModulesPresent": 29,
+    "protectedModulesMissing": 0,
+    "protectedModulesModifiedBy262": 0,
+    "candidateDefiningFilesModified": 0,
+    "productionConstantCheckedAgainstRecomputation": true,
+    "executionDerivedBinding": "the digest of the first-pass system prompt the transport ACTUALLY received is compared to frozen element 2 before any result is attributed to the candidate; a mismatch settles the execution as ANALYSIS_FAILED rather than persisting an unattributable analysis"
+  },
+  "route": {
+    "method": "POST",
+    "path": "/inspections/observations/:id/expert-analyses",
+    "controller": "src/safescope-v2/expert-hazlenz-product/expert-analysis.controller.ts",
+    "guards": ["JwtGuard", "EntitlementGuard", "RolesGuard"],
+    "entitlement": "fullSafeScope",
+    "roles": ["INDIVIDUAL", "MEMBER", "MANAGER", "ORGANIZATION_ADMIN", "ORG_OWNER", "SAFETY_DIRECTOR", "SUPERVISOR", "AUDITOR", "WORKER"],
+    "throttle": { "limit": 10, "ttl": 60000 },
+    "throttleStricterThanClassify": true,
+    "inheritedWeakPersistenceProfile": false,
+    "tenantCheck": "InspectionService.authorizeObservation -> findAccessible",
+    "crossTenantResponse": "NotFound, indistinguishable from a non-existent observation",
+    "throttleProvenBy": ["route metadata inspection", "a live 429 after the limit"]
+  },
+  "acceptedRequestFields": ["idempotencyKey", "requestVersion", "taskContext", "answeredClarifications[].clarificationId", "answeredClarifications[].answer"],
+  "rejectedServerOwnedFields": {
+    "mechanism": "the DTO declares none of them and the global ValidationPipe is whitelist + forbidNonWhitelisted, so an undeclared property is a 400 before the controller runs",
+    "attemptedAndRefused": ["producer", "candidateIdentity", "confirmationRequired", "analysisState", "expertExecutionId", "resultSnapshot", "providerId", "respondedModel", "engineVersion", "contractVersion", "admission"],
+    "attempted": 10, "refused": 10, "rowsCreatedByAForgedRequest": 0,
+    "rawSqlForgeryRejectedBy": "ck_hazlenz_analysis_producer_execution"
+  },
+  "authoritativeContext": {
+    "loader": "src/safescope-v2/expert-hazlenz-product/expert-analysis-context.ts",
+    "deterministicAnalysisRunServerSide": true,
+    "deterministicAnalysisAcceptedFromClient": false,
+    "observationTextSource": "observations.rawText",
+    "jurisdictionSource": "inspections.regulatoryContext",
+    "locationSource": "sites.name",
+    "allowedHazardFamiliesSource": "safescope-data/hazard-taxonomy coverage map (41 domains) unioned with families the deterministic decomposition emitted, minus the non-routed 'unknown' marker",
+    "governedEvidence": "EMPTY BY DESIGN in §262; a server-side governed loader bound to the inspection's release is a later slice, and taking governed text from a client-supplied snapshot would let a request inject regulatory text into the transmitted prompt",
+    "canonicalConstructorUsed": "buildExpertAnalysisInputFromAnalysis (§121)",
+    "customerDisplayPipelineReproduced": false
+  },
+  "executionFlow": [
+    "authenticate", "authorize observation via the existing choke point",
+    "CLAIM the execution in ANALYSIS_RUNNING before any transport contact",
+    "reuse the authoritative outcome when this caller is not the winning spender",
+    "load server-owned context and run the deterministic analysis",
+    "construct the §259 request through the canonical constructor",
+    "invoke runExpertHazLenzAnalysis",
+    "bind the transmitted system prompt to the frozen candidate",
+    "derive the product state", "compute confirmationRequired once",
+    "persist the analysis, supersede the prior current row, settle the execution and write the audit event in ONE transaction",
+    "return the product-safe representation"
+  ],
+  "entryPointInvocation": {
+    "symbol": "runExpertHazLenzAnalysis",
+    "importedBy": "src/safescope-v2/expert-hazlenz-product/expert-analysis-execution.service.ts",
+    "lowerLevelProviderCodeCalledDirectly": false,
+    "authorityServiceStillHasNoProviderDependency": true
+  },
+  "verifierLeg": {
+    "architectureChanged": false,
+    "reachedOnAnAdmittingAnalysisWithAnAdmittedDeclaration": true,
+    "verifierOutcomePersisted": ["verifierReached", "verifierFactKey", "verifierNotReachedBecause", "rawVerifier"],
+    "verifierFailureInvalidatesAdmittedFirstPass": false,
+    "verifierFailureProvenSeparately": "R8"
+  },
+  "stateMapping": {
+    "ADMIT + confirmationRequired=false": "ANALYSIS_AVAILABLE",
+    "ADMIT + confirmationRequired=true": "ANALYSIS_AWAITING_CONFIRMATION",
+    "PRESERVE_UNRESOLVED": "ANALYSIS_UNRESOLVED",
+    "FIRST_PASS_REFUSED / REFUSE": "ANALYSIS_REFUSED",
+    "PROVIDER_FAILED": "ANALYSIS_FAILED, and NO analysis row is created",
+    "refusedEverPresentedAsAvailable": false
+  },
+  "confirmationRuleChange262": {
+    "change": "the rule now runs only where status COMPLETE and admission ADMIT; every other outcome records confirmationNotApplicable()",
+    "why": "§261 ran it unconditionally, so a REFUSED or FAILED row would have stored confirmationRequired=true from a fail-closed read of an absent posture, inviting a human to confirm a classification that does not exist",
+    "failClosedBehaviourOnAnAdmittedAnalysis": "unchanged",
+    "sixtyOneTestsStillPass": true
+  },
+  "sharedSecurityChange262": {
+    "file": "src/inspection/inspection.service.ts",
+    "method": "accessibleObservation",
+    "change": "a cross-workspace observation and a non-existent observation now answer with one identical NotFound body; previously they answered 'Inspection not found.' and 'Observation not found.', which let a caller enumerate real observation ids",
+    "statusCodeWasAlreadyIdentical": true,
+    "blastRadius": "every observation-scoped route: analyses, reviews, findings, user-authored findings, updates, and the new Expert route",
+    "unauthorizedIsNotNormalisedToNotFound": true,
+    "testsAssertingTheOldMessages": 0
+  },
+  "extractionsForOneDefinition": [
+    "src/safescope-v2/evidence/regulatory-scopes.ts — scopesForRegulatoryContext, moved out of the classify controller, body unchanged",
+    "src/safescope-v2/workspace-governance-access/safescope-governance-context.ts — the principal-to-governance-context mapping, moved out of the classify controller, body unchanged"
+  ],
+  "serverAuthoredProvenancePersisted": [
+    "producer=server_authored", "analysisState", "confirmationRequired", "expertExecutionId",
+    "candidateIdentity", "contractVersion", "entryVersion", "admissionVersion", "projectionVersion",
+    "confirmationRuleVersion", "systemPromptSha (as transmitted)", "wireSchemaSha (as transmitted)",
+    "providerId (the seam that answered)", "admission", "postureRefusalCodes",
+    "conformanceViolations", "roleJustificationCodes", "declarationRefusals",
+    "verifierReached", "verifierFactKey", "verifierNotReachedBecause",
+    "rawFirstPass", "rawVerifier", "requestedByUserId", "organizationId", "inspectionId",
+    "observationId", "createdAt", "completedAt",
+    "resultSnapshot.basis (the server-established deterministic premises and their digest)"
+  ],
+  "rawResultHandling": {
+    "rawProviderPayloadPersisted": "expert_analysis_executions.rawFirstPass / rawVerifier",
+    "rawProviderPayloadReturnedToClient": false,
+    "rawProviderPayloadInGenericAuditMetadata": false,
+    "clientReceives": "the ADMITTED, projected representation under resultSnapshot.analysis"
+  },
+  "structuralIdentity": {
+    "declarationIdPersistedAndReturned": true,
+    "resumeConditionResolvedByDeclarationIdsPreserved": true,
+    "controlIdPersistedAndReturned": true,
+    "dischargingControlRefCarriesTheIdNotTheProse": true,
+    "mapperBetweenAdmittedStructureAndColumn": "none",
+    "flattenedToProse": false
+  },
+  "preSpendIdempotency": {
+    "concurrentDuplicateRequests": 3,
+    "executionRowsCreated": 1,
+    "spendersPermitted": 1,
+    "simulatedProviderEntriesForTheConcurrentCohort": 1,
+    "duplicateServerAuthoredAnalysesCreated": 0,
+    "laterDuplicateReusesTheAuthoritativeResult": true,
+    "laterDuplicateSpentAnything": false
+  },
+  "audit": {
+    "action": "analysis_created",
+    "emittedForServerAuthored": true,
+    "sameTransactionAsRow": true,
+    "rawProviderPayloadInMetadata": false
+  },
+  "findingReconciliation": {
+    "performedOnTheExpertPath": false,
+    "findingsCreatedFromAnAwaitingConfirmationAnalysis": 0,
+    "findingsCreatedFromAnyServerAuthoredAnalysis": 0,
+    "legacyDeterministicPathUnchanged": true,
+    "statedInTheResponse": "findingsReconciled: false"
+  },
+  "readBoundary": {
+    "confirmationRequirementReturnedExplicitly": true,
+    "clientMustInferIt": false,
+    "wordsForbiddenAndAbsent": ["approved", "final", "settled", "completed"]
+  },
+  "analysisHistory": {
+    "serverAuthoredCoexistsWithClientSupplied": true,
+    "historicalRowsRewritten": 0,
+    "listOrReadEndpointsChanged": 0
+  },
+  "acceptanceCases": {
+    "A": "PASS", "B": "PASS", "E": "PASS", "F": "PASS",
+    "G": "PASS", "H": "PASS", "I": "PASS", "J": "PASS",
+    "C": "RESERVED — the confirmation action does not exist yet and was not faked",
+    "D": "RESERVED — the override action does not exist yet and was not faked"
+  },
+  "tests": {
+    "route": { "passed": 94, "failed": 0, "database": "disposable test_* only, and once from clean" },
+    "confirmationRule261": { "passed": 60, "failed": 0, "databaseOperations": 0 },
+    "persistenceFoundation261": { "passed": 69, "failed": 0 },
+    "expertNoCallHarness": { "passed": 141, "failed": 0 }
+  },
+  "notDoneInThisSection": [
+    "human confirmation action", "override action", "frontend confirmation UI",
+    "downstream finding finalization", "report finalization from unconfirmed posture",
+    "production storage configuration", "billing configuration", "deployment configuration",
+    "cost optimization", "provider caching", "verifier redesign", "semantic Expert changes",
+    "server-side governed evidence loading"
+  ],
+  "statedLimitations": [
+    "GOVERNED EVIDENCE IS EMPTY. Every §262 execution transmits zero governed records, so Expert may cite nothing. This is the fail-closed choice, not an oversight, and it means §262 has NOT exercised the governed-citation path at all.",
+    "THE DETERMINISTIC ANALYSIS IS RUN A SECOND TIME. The server runs its own classify for Expert's input rather than reading the client-supplied snapshot the user is looking at. That is what makes the premises server-owned, and it means Expert may reason from a deterministic analysis that differs from the one displayed if the two runs diverge. Reconciling the two is a later-slice product question.",
+    "ANALYSIS_UNRESOLVED COVERS TWO DIFFERENT SHAPES. A contained declaration refusal with an admitted posture (case F) and a whole-output refusal with preserved truth (case G) both derive to ANALYSIS_UNRESOLVED, because §252 gives PRESERVE_UNRESOLVED precedence. They remain distinguishable on the execution record, not in the product state.",
+    "VERIFICATION RAN ON A WORKTREE THAT ALSO CONTAINS UNRELATED UNCOMMITTED §117 CHANGES to evidence-foundation.ts and shared-evidence-facts.ts. Those files are NOT in the §262 commit. The §262 assertions concern authority, state, provenance and idempotency rather than which hazard families the deterministic layer finds, so they are not expected to depend on those changes — but that expectation is reasoned, not measured."
+  ],
+  "terminal": "EXPERT_HAZLENZ_AUTHORITATIVE_EXECUTION_ROUTE_IMPLEMENTED — HUMAN_CONFIRMATION_ACTION_AUTHORIZATION_REQUIRED"
+}
