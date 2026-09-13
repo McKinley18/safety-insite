@@ -1,0 +1,24 @@
+{
+  "database": "test_insite_validation_275",
+  "note": "Disposable validation database created for \u00a7275. The development database 'safescope' was never written to.",
+  "tableRowCounts": {
+    "audit_logs": 6,
+    "corrective_actions": 6,
+    "entitlement_grants": 1,
+    "expert_analysis_executions": 1,
+    "hazlenz_analyses": 2,
+    "human_reviews": 2,
+    "inspection": 1,
+    "inspection_findings": 2,
+    "inspection_report_versions": 1,
+    "inspection_reports": 1,
+    "migrations": 53,
+    "observations": 1,
+    "refresh_tokens": 17,
+    "security_audit_events": 15,
+    "site": 1,
+    "storage_objects": 1,
+    "tasks": 5,
+    "user": 2
+  }
+}
