@@ -28,7 +28,10 @@
     "audit:mobile-responsive": "node scripts/audit-mobile-responsive.mjs",
     "audit:text-contrast": "node scripts/audit-text-contrast.mjs",
     "check:hydration": "node scripts/check-hydration.mjs",
-    "check:expert-request-construction": "node scripts/capture-expert-request.mjs"
+    "check:expert-request-construction": "node scripts/capture-expert-request.mjs",
+    "check:release-contract-parity": "node scripts/check-release-contract-parity.mjs",
+    "test:279-release-version-check": "npx tsx lib/release/__tests__/releaseVersionCheck.test.ts",
+    "validate:279-update-delivery": "node scripts/validate-279-update-delivery.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

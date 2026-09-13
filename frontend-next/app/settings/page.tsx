@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getPlanDisplayName, getStoredPlanCode, getVerifiedPlanCode } from "@/lib/planEntitlements";
+import ApplicationVersionPanel from "@/components/system/ApplicationVersionPanel";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -508,6 +509,23 @@ export default function SettingsHubPage() {
               onClick={() => updateRegulatoryScope(id)}
             />
           ))}
+        </div>
+      </AppPanel>
+
+      {/*
+        §279. The application's own version, in the lowest-noise place it can be reached from:
+        the bottom of Settings. It is here rather than on /about because /about is a marketing
+        page a signed-out visitor reads, and this is a support surface for a signed-in user.
+      */}
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="About"
+          title="Version"
+          description="Which version of Safety InSite this device is running, and whether it is current."
+        />
+
+        <div className="mt-4">
+          <ApplicationVersionPanel />
         </div>
       </AppPanel>
 

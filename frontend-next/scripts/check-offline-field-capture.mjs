@@ -256,8 +256,14 @@ assert(
   source.layout.includes("<ServiceWorkerRegistrar />"),
   "2. the shell worker is registered from the root layout",
 );
+// §279. The script URL now carries the build generation (`/sw.js?v=<build>`), because a
+// byte-identical worker gives the browser no reason to reinstall and the worker's own purge of
+// previous cache generations therefore never ran. The three properties this assertion exists to
+// protect are unchanged and are still each required: the script is `/sw.js`, the scope is the whole
+// application, and the script itself is never served from the browser's cache.
 assert(
-  /register\("\/sw\.js", \{ scope: "\/", updateViaCache: "none" \}\)/.test(source.registrar),
+  /register\(\s*[`"]\/sw\.js(?:\?v=\$\{[^}]+\})?[`"]\s*,\s*\{ scope: "\/", updateViaCache: "none" \}\)/
+    .test(source.registrar),
   "2. registration matches the documented Next.js service-worker call",
 );
 

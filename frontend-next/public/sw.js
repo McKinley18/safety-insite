@@ -24,7 +24,21 @@
  * account-independent bytes are allowed into it.
  */
 
-const CACHE_VERSION = "insite-shell-v1";
+/**
+ * §279 — THE CACHE GENERATION IS STAMPED BY THE BUILD, NOT WRITTEN HERE.
+ *
+ * It was the literal `v1`. The `activate` handler below already deletes every `insite-shell-*`
+ * cache that is not the current generation -- correct code, which had never once run, because the
+ * generation it compared against never changed. So the asset cache accumulated the content-hashed
+ * chunks of every release the installation had ever seen and nothing ever removed them.
+ *
+ * The registrar now registers this worker as `/sw.js?v=<build>`, so a new release is a new script
+ * URL, which is a new worker, which installs and activates -- and the purge finally has something
+ * true to compare against. `v1` remains the fallback for a build that could not establish an
+ * identity, which keeps the behaviour of an unstamped build exactly what it was before.
+ */
+const BUILD_GENERATION = new URL(self.location.href).searchParams.get("v") || "v1";
+const CACHE_VERSION = `insite-shell-${BUILD_GENERATION}`;
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const ASSET_CACHE = `${CACHE_VERSION}-assets`;
 

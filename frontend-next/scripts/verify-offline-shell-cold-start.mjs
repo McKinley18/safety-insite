@@ -228,11 +228,17 @@ try {
   const page = first.page;
   const context = first.context;
 
-  const hasAssetCache = first.snapshot.names.includes("insite-shell-v1-assets");
+  // §279. The asset cache is now named for the BUILD GENERATION (`insite-shell-<sha12>-assets`)
+  // rather than the fixed `insite-shell-v1-assets`, because the fixed name meant the worker's
+  // purge of previous generations never had anything to purge. The property being measured here
+  // was always "the application-controlled asset cache exists and holds the shell's chunks", not
+  // "it is called v1", so the name is resolved from the snapshot instead of asserted.
+  const assetCacheName = first.snapshot.names.find((name) => /^insite-shell-.+-assets$/.test(name));
+  const hasAssetCache = Boolean(assetCacheName);
   if (EXPECT_ASSET_CACHE) {
     assert(hasAssetCache, "1. a FIRST online visit creates the application-controlled asset cache", JSON.stringify(first.snapshot.names));
 
-    const cachedAssetPaths = (first.snapshot.byName["insite-shell-v1-assets"] || []).map((url) => new URL(url).pathname);
+    const cachedAssetPaths = (first.snapshot.byName[assetCacheName] || []).map((url) => new URL(url).pathname);
     const missing = referencedAssets.filter((asset) => !cachedAssetPaths.includes(asset.split("?")[0]));
     assert(
       missing.length === 0,

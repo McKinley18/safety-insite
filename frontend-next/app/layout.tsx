@@ -1,6 +1,7 @@
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 import ClientCacheCleanup from "@/components/system/ClientCacheCleanup";
+import ReleaseVersionGuard from "@/components/system/ReleaseVersionGuard";
 import ServiceWorkerRegistrar from "@/components/system/ServiceWorkerRegistrar";
 import ThemeController from "@/components/system/ThemeController";
 import { APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/brand";
@@ -127,6 +128,7 @@ export default function RootLayout({
       <body>
         <ClientCacheCleanup />
         <ServiceWorkerRegistrar />
+        <ReleaseVersionGuard />
         <ThemeController />
         <AppShell>
           {children}

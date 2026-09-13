@@ -24,8 +24,14 @@ export default function ServiceWorkerRegistrar() {
 
     const register = () => {
       if (cancelled) return;
+      // §279. The build generation is part of the script URL, so a release produces a NEW worker
+      // rather than a byte-identical one the browser has no reason to reinstall. That is what
+      // makes the worker's own `activate` purge of previous generations run at all. `scope: "/"`
+      // is unchanged and is what keeps the worker controlling the whole application despite the
+      // query string.
+      const generation = process.env.NEXT_PUBLIC_SHELL_CACHE_GENERATION || "v1";
       navigator.serviceWorker
-        .register("/sw.js", { scope: "/", updateViaCache: "none" })
+        .register(`/sw.js?v=${encodeURIComponent(generation)}`, { scope: "/", updateViaCache: "none" })
         .catch(() => {
           // A blocked or unsupported registration must never break the application; offline draft
           // storage (IndexedDB) works without it, only shell reopening does not.

@@ -1,3 +1,5 @@
+import { blocksMutation, getReleaseStatus, StaleClientError } from "./release/versionCheck";
+
 // Auth is wired in via dynamic import (not a static import of "./auth") to
 // avoid a module init cycle: auth.ts -> cloudReports.ts -> apiFetch.ts.
 // Dynamic import resolves lazily at call time, once the module graph is
@@ -44,6 +46,23 @@ export async function apiFetch(
   const retries = options.retries ?? 1;
   const url = String(input);
   const isAuthLifecycleCall = /\/auth\/(refresh|login|register|logout)(\?|$)/.test(url);
+
+  // §279 — THE STALE-CLIENT WRITE GATE.
+  //
+  // Every frontend call to the API passes through here, which is why the gate lives here and not
+  // in each caller: a gate that has to be remembered at thirty call sites is a gate with holes.
+  //
+  // It refuses only MUTATIONS, and only when the server has POSITIVELY said this client is below
+  // the supported floor or a major ahead of it. Reads still work, sign-out still works, and a
+  // server that could not be reached teaches the client nothing -- so an inspector on a bad
+  // connection is never stopped. `blocksMutation` holds all of that; this is the enforcement.
+  //
+  // Throwing rather than returning a synthetic Response is deliberate. Callers here branch on
+  // `response.ok` and would treat a fabricated 409 as an ordinary server rejection and show the
+  // inspector a generic failure; an error with a name carries the reason all the way up.
+  if (blocksMutation(init.method, url)) {
+    throw new StaleClientError(getReleaseStatus().result.state);
+  }
 
   let lastError: unknown;
 
