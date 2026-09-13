@@ -1,11 +1,11 @@
 import {
   runHazLenzClassify,
   runHazLenzOffline,
-} from "@/lib/hazlenz";
+} from "@/lib/hazlenzClient";
 import type {
   HazLenzClarificationAnswerInput,
   StructuredObservationInput,
-} from "@/lib/safescope";
+} from "@/lib/hazlenzClient";
 import {
   getHazLenzScopeLabel,
   getHazLenzScopesForAgencyMode,
@@ -52,8 +52,8 @@ export async function runInspectionHazLenzReview(input: {
     };
   }
 
-  const safeScopeScopes = getHazLenzScopesForAgencyMode(input.agencyMode);
-  const safeScopeScopeLabel = getHazLenzScopeLabel(input.agencyMode);
+  const hazLenzScopes = getHazLenzScopesForAgencyMode(input.agencyMode);
+  const hazLenzScopeLabel = getHazLenzScopeLabel(input.agencyMode);
 
   const result = await runHazLenzClassify({
     text: [
@@ -61,9 +61,9 @@ export async function runInspectionHazLenzReview(input: {
       `Observed condition: ${input.description || "No description provided"}`,
       `Location: ${input.location || "No location provided"}`,
       `Evidence notes: ${input.evidenceNotes || "No evidence notes provided"}`,
-      `Regulatory scope: ${safeScopeScopeLabel}`,
+      `Regulatory scope: ${hazLenzScopeLabel}`,
     ].join("\n"),
-    scopes: safeScopeScopes,
+    scopes: hazLenzScopes,
     riskProfileId: input.riskProfileId,
     structuredObservation: input.structuredObservation,
     priorStructuredObservation: input.priorStructuredObservation,

@@ -9,8 +9,8 @@ type Props = {
   setIncludeActionsInReport: (value: boolean) => void;
   includePhotosInReport: boolean;
   setIncludePhotosInReport: (value: boolean) => void;
-  includeSafeScopeNotesInReport: boolean;
-  setIncludeSafeScopeNotesInReport: (value: boolean) => void;
+  includeHazLenzNotesInReport: boolean;
+  setIncludeHazLenzNotesInReport: (value: boolean) => void;
   generateReport: () => void | Promise<void>;
 };
 
@@ -70,8 +70,8 @@ export default function GenerateReportSection({
   setIncludeActionsInReport,
   includePhotosInReport,
   setIncludePhotosInReport,
-  includeSafeScopeNotesInReport,
-  setIncludeSafeScopeNotesInReport,
+  includeHazLenzNotesInReport,
+  setIncludeHazLenzNotesInReport,
   generateReport,
 }: Props) {
   if (currentStep !== 5) return null;
@@ -146,9 +146,9 @@ export default function GenerateReportSection({
 
           <ReportOptionRow
             label="HazLenz AI Notes"
-            enabled={includeSafeScopeNotesInReport}
+            enabled={includeHazLenzNotesInReport}
             onToggle={() =>
-              setIncludeSafeScopeNotesInReport(!includeSafeScopeNotesInReport)
+              setIncludeHazLenzNotesInReport(!includeHazLenzNotesInReport)
             }
           />
 

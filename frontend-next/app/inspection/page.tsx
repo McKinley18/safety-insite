@@ -7,7 +7,7 @@ import { runInspectionHazLenzReview } from "@/lib/inspection/hazlenzInspectionSe
 import type {
   HazLenzClarificationAnswerInput,
   StructuredObservationInput,
-} from "@/lib/safescope";
+} from "@/lib/hazlenzClient";
 import {
   submitHazLenzStandardFeedback,
   submitHazLenzValidationReview,
@@ -104,7 +104,7 @@ export default function InspectionPage() {
     const savedRegulatoryScope = window.localStorage.getItem("sentinel_regulatory_scope");
     if (savedRegulatoryScope) setAgencyMode(savedRegulatoryScope);
   }, []);
-  const [safeScopeStatus, setSafeScopeStatus] = useState("");
+  const [hazLenzStatus, setHazLenzStatus] = useState("");
   const [safeScopeResult, setsafeScopeResult] = useState<any>(null);
   const [hazLenzStructuredObservation, setHazLenzStructuredObservation] =
     useState<StructuredObservationInput | undefined>(undefined);
@@ -139,14 +139,14 @@ export default function InspectionPage() {
     useState(true);
   const [includeActionsInReport, setIncludeActionsInReport] = useState(true);
   const [includePhotosInReport, setIncludePhotosInReport] = useState(true);
-  const [includeSafeScopeNotesInReport, setIncludeSafeScopeNotesInReport] =
+  const [includeHazLenzNotesInReport, setIncludeHazLenzNotesInReport] =
     useState(false);
-  const [safeScopeHelpOpen, setSafeScopeHelpOpen] = useState(false);
-  const [safeScopeDetailsOpen, setSafeScopeDetailsOpen] = useState(false);
-  const [safeScopeStandardsOpen, setSafeScopeStandardsOpen] = useState(false);
-  const [safeScopeCompactDetailsOpen, setSafeScopeCompactDetailsOpen] =
+  const [hazLenzHelpOpen, setHazLenzHelpOpen] = useState(false);
+  const [hazLenzDetailsOpen, setHazLenzDetailsOpen] = useState(false);
+  const [hazLenzStandardsOpen, setHazLenzStandardsOpen] = useState(false);
+  const [hazLenzCompactDetailsOpen, setHazLenzCompactDetailsOpen] =
     useState(false);
-  const [safeScopeAdvancedOpen, setSafeScopeAdvancedOpen] = useState(false);
+  const [hazLenzAdvancedOpen, setHazLenzAdvancedOpen] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [inspectionContext, setInspectionContext] = useState<any>(null);
   const [activeEditReport, setActiveEditReport] = useState<any>(null);
@@ -228,8 +228,8 @@ export default function InspectionPage() {
       );
       setIncludeActionsInReport(editReport.includeActionsInReport !== false);
       setIncludePhotosInReport(editReport.includePhotosInReport !== false);
-      setIncludeSafeScopeNotesInReport(
-        Boolean(editReport.includeSafeScopeNotesInReport),
+      setIncludeHazLenzNotesInReport(
+        Boolean(editReport.includeHazLenzNotesInReport),
       );
 
       if (editReport.reportPackageMode) {
@@ -353,19 +353,19 @@ export default function InspectionPage() {
     }
   }, []);
 
-  async function handleRunSafeScope(
+  async function handleRunHazLenz(
     forceOffline: boolean = false,
     structuredObservation?: StructuredObservationInput,
     clarificationAnswers?: HazLenzClarificationAnswerInput[],
   ) {
-    console.log("[HazLenz AI] handleRunSafeScope entered");
+    console.log("[HazLenz AI] handleRunHazLenz entered");
 
-    setSafeScopeStatus("Starting HazLenz AI review...");
+    setHazLenzStatus("Starting HazLenz AI review...");
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      setSafeScopeStatus("Running HazLenz AI match...");
+      setHazLenzStatus("Running HazLenz AI match...");
 
       const effectiveClarificationAnswers = clarificationAnswers || hazLenzClarificationAnswers;
       const priorStructuredObservation =
@@ -387,7 +387,7 @@ export default function InspectionPage() {
       });
 
       if (!review.ok) {
-        setSafeScopeStatus(review.status);
+        setHazLenzStatus(review.status);
         setsafeScopeResult(null);
         return;
       }
@@ -403,11 +403,11 @@ export default function InspectionPage() {
       setsafeScopeResult(nextResult);
       setHazLenzStructuredObservation(nextResult?.structuredObservation || structuredObservation || priorStructuredObservation);
       setHazLenzClarificationAnswers(effectiveClarificationAnswers);
-      setSafeScopeCompactDetailsOpen(false);
-      setSafeScopeAdvancedOpen(false);
+      setHazLenzCompactDetailsOpen(false);
+      setHazLenzAdvancedOpen(false);
       setSelectedStandards(review.autoSelectedStandards);
       setSelectedGeneratedActions(review.autoSelectedActions);
-      setSafeScopeStatus(review.status);
+      setHazLenzStatus(review.status);
     } catch (error: any) {
       console.error("[HazLenz AI] Review failed", error);
 
@@ -418,7 +418,7 @@ export default function InspectionPage() {
             ? error.message
             : "Unknown HazLenz AI error.";
 
-      setSafeScopeStatus(`HazLenz AI review failed: ${errorMessage}`);
+      setHazLenzStatus(`HazLenz AI review failed: ${errorMessage}`);
       setsafeScopeResult(null);
     }
   }
@@ -452,7 +452,7 @@ export default function InspectionPage() {
     action: "accepted" | "rejected" | "flagged",
   ) {
     try {
-      setSafeScopeStatus(`Submitting ${action} feedback...`);
+      setHazLenzStatus(`Submitting ${action} feedback...`);
 
       await submitHazLenzStandardFeedback({
         standard,
@@ -482,21 +482,21 @@ export default function InspectionPage() {
         );
       }
 
-      setSafeScopeStatus(
+      setHazLenzStatus(
         action === "accepted"
           ? `Standard selected: ${standard.citation}`
           : `Feedback saved: ${action} ${standard.citation}`,
       );
     } catch (error) {
-      setSafeScopeStatus(
+      setHazLenzStatus(
         "Feedback could not be saved. Please make sure you are signed in and the backend is running.",
       );
     }
   }
 
-  async function submitSafeScopeValidation(decision: HazLenzValidationDecision) {
+  async function submitHazLenzValidation(decision: HazLenzValidationDecision) {
     try {
-      setSafeScopeStatus("Submitting supervisor validation...");
+      setHazLenzStatus("Submitting supervisor validation...");
 
       const validation = await submitHazLenzValidationReview({
         safeScopeResult,
@@ -504,9 +504,9 @@ export default function InspectionPage() {
         feedbackNotes,
       });
 
-      setSafeScopeStatus(validation.status);
+      setHazLenzStatus(validation.status);
     } catch {
-      setSafeScopeStatus(
+      setHazLenzStatus(
         "Supervisor validation could not be saved. Please confirm the backend is running.",
       );
     }
@@ -605,7 +605,7 @@ export default function InspectionPage() {
     setEvidenceNotes("");
     setPhotos([]);
     setAgencyMode("all");
-    setSafeScopeStatus("");
+    setHazLenzStatus("");
     setsafeScopeResult(null);
     setHazLenzStructuredObservation(undefined);
     setHazLenzClarificationAnswers([]);
@@ -795,7 +795,7 @@ export default function InspectionPage() {
       includeStandardsInReport,
       includeActionsInReport,
       includePhotosInReport,
-      includeSafeScopeNotesInReport,
+      includeHazLenzNotesInReport,
     });
 
     router.push("/inspection-review");
@@ -842,32 +842,32 @@ export default function InspectionPage() {
         setAnnotationExpanded={setAnnotationExpanded}
         handlePhotoUpload={handlePhotoUpload}
         removePhoto={removePhoto}
-        safeScopeHelpOpen={safeScopeHelpOpen}
-        setSafeScopeHelpOpen={setSafeScopeHelpOpen}
+        hazLenzHelpOpen={hazLenzHelpOpen}
+        setHazLenzHelpOpen={setHazLenzHelpOpen}
         agencyMode={agencyMode}
         riskProfileId={riskProfileId}
-        handleRunSafeScope={handleRunSafeScope}
-        safeScopeStatus={safeScopeStatus}
+        handleRunHazLenz={handleRunHazLenz}
+        hazLenzStatus={hazLenzStatus}
         safeScopeResult={safeScopeResult}
         hazLenzClarificationAnswers={hazLenzClarificationAnswers}
         setHazLenzClarificationAnswers={setHazLenzClarificationAnswers}
         onUseHazardFragment={useHazardFragmentForNewFinding}
         setIsOfflineMode={setIsOfflineMode}
-        submitSafeScopeValidation={submitSafeScopeValidation}
-        safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
-        setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
-        safeScopeAdvancedOpen={safeScopeAdvancedOpen}
-        setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
+        submitHazLenzValidation={submitHazLenzValidation}
+        hazLenzCompactDetailsOpen={hazLenzCompactDetailsOpen}
+        setHazLenzCompactDetailsOpen={setHazLenzCompactDetailsOpen}
+        hazLenzAdvancedOpen={hazLenzAdvancedOpen}
+        setHazLenzAdvancedOpen={setHazLenzAdvancedOpen}
         feedbackNotes={feedbackNotes}
         setFeedbackNotes={setFeedbackNotes}
         selectedStandards={selectedStandards}
         getStandardKey={getStandardKey}
         toggleSelectedStandard={toggleSelectedStandard}
         handleFeedback={handleFeedback}
-        safeScopeDetailsOpen={safeScopeDetailsOpen}
-        setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
-        safeScopeStandardsOpen={safeScopeStandardsOpen}
-        setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
+        hazLenzDetailsOpen={hazLenzDetailsOpen}
+        setHazLenzDetailsOpen={setHazLenzDetailsOpen}
+        hazLenzStandardsOpen={hazLenzStandardsOpen}
+        setHazLenzStandardsOpen={setHazLenzStandardsOpen}
         activeRiskScale={getActiveRiskScale()}
         severity={severity}
         setSeverity={setSeverity}
@@ -920,8 +920,8 @@ export default function InspectionPage() {
         setIncludeActionsInReport={setIncludeActionsInReport}
         includePhotosInReport={includePhotosInReport}
         setIncludePhotosInReport={setIncludePhotosInReport}
-        includeSafeScopeNotesInReport={includeSafeScopeNotesInReport}
-        setIncludeSafeScopeNotesInReport={setIncludeSafeScopeNotesInReport}
+        includeHazLenzNotesInReport={includeHazLenzNotesInReport}
+        setIncludeHazLenzNotesInReport={setIncludeHazLenzNotesInReport}
         generateReport={generateReport}
       />
 

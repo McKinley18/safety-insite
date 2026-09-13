@@ -2,7 +2,7 @@
 
 import { FormEvent, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { API_BASE_URL } from "@/lib/safescope";
+import { API_BASE_URL } from "@/lib/hazlenzClient";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";

@@ -1,22 +1,22 @@
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { SafeScopeOfflineNotice } from "@/components/inspection/SafeScopeOfflineNotice";
+import { HazLenzOfflineNotice } from "@/components/inspection/HazLenzOfflineNotice";
 import {
-  SafeScopeRealImageAnalysisAppendix,
-  SafeScopeVisualEvidenceAppendix,
-  SafeScopeEquipmentReasoningAppendix,
-  SafeScopeKnowledgeRouteAppendix,
-} from "@/components/inspection/SafeScopeResultAppendix";
+  HazLenzRealImageAnalysisAppendix,
+  HazLenzVisualEvidenceAppendix,
+  HazLenzEquipmentReasoningAppendix,
+  HazLenzKnowledgeRouteAppendix,
+} from "@/components/inspection/HazLenzResultAppendix";
 import {
   getFindingTitle,
   getFindingActionsForReview,
   getActionTitle,
   getStandardCitation,
   getRiskTone,
-  getSafeScopeValidationStatus,
-  formatSafeScopeValidationStatus,
-  isSafeScopeValidationComplete,
+  getHazLenzValidationStatus,
+  formatHazLenzValidationStatus,
+  isHazLenzValidationComplete,
 } from "@/lib/inspection/reportReviewHelpers";
 
 export function FindingsReviewList({
@@ -54,9 +54,9 @@ export function FindingsReviewList({
             const photos = report.includePhotosInReport === false ? [] : finding.photos || [];
             const risk = finding.safeScopeResult?.risk?.riskBand || finding.safeScopeResult?.risk?.operationalRisk?.matrixBand || finding.riskBand || finding.riskScore || "Not rated";
             const confidence = finding.safeScopeResult?.confidenceIntelligence?.overallConfidence ?? finding.safeScopeResult?.confidence;
-            const validationStatus = getSafeScopeValidationStatus(finding);
-            const validationLabel = formatSafeScopeValidationStatus(validationStatus);
-            const validationComplete = isSafeScopeValidationComplete(validationStatus);
+            const validationStatus = getHazLenzValidationStatus(finding);
+            const validationLabel = formatHazLenzValidationStatus(validationStatus);
+            const validationComplete = isHazLenzValidationComplete(validationStatus);
             const traceabilityAvailable = Boolean(finding.safeScopeResult?.reasoningSnapshotId || finding.safeScopeResult?.knowledgeBrain?.matches?.length || finding.safeScopeResult?.fieldOutput?.evidenceGaps?.length || finding.safeScopeResult?.fieldOutput?.supervisorQuestions?.length || finding.safeScopeResult?.fieldOutput?.warnings?.length || finding.safeScopeResult?.knowledgeBrain?.evidenceGaps?.length || finding.safeScopeResult?.confidenceIntelligence?.missingCriticalInformation?.length || finding.safeScopeResult?.confidenceIntelligence?.reviewTriggers?.length || finding.safeScopeResult?.trendIntelligence || finding.safeScopeResult?.equipmentReasoningSummary || finding.safeScopeResult?.equipmentTaskMechanismContext || finding.safeScopeResult?.equipmentArchetypeContext || finding.safeScopeResult?.siteMemory || finding.safeScopeResult?.workspaceLearning || finding.safeScopeResult?.correlationIntelligence || finding.safeScopeResult?.reasoningDrift || finding.safeScopeResult?.knowledgeRoute);
 
             return (
@@ -107,16 +107,16 @@ export function FindingsReviewList({
                     </div>
                   )}
                 </div>
-                {traceabilityAvailable && (reportPackage.includesSafeScopeTraceability || reportPackage.includesEvidenceGaps || reportPackage.includesConfidence || reportPackage.includesRepeatIntelligence) && (
+                {traceabilityAvailable && (reportPackage.includesHazLenzTraceability || reportPackage.includesEvidenceGaps || reportPackage.includesConfidence || reportPackage.includesRepeatIntelligence) && (
                   <details className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                     <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">HazLenz AI appendix</summary>
                     <div className="space-y-2 border-t border-slate-200 dark:border-slate-800 px-3 py-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                       {finding.safeScopeResult?.reasoningSnapshotId && <p>Reasoning snapshot: {finding.safeScopeResult.reasoningSnapshotId}</p>}
-                      <SafeScopeOfflineNotice safeScopeResult={finding.safeScopeResult} />
-                      <SafeScopeRealImageAnalysisAppendix safeScopeResult={finding.safeScopeResult} />
-                      <SafeScopeVisualEvidenceAppendix safeScopeResult={finding.safeScopeResult} />
-                      <SafeScopeEquipmentReasoningAppendix safeScopeResult={finding.safeScopeResult} />
-                      <SafeScopeKnowledgeRouteAppendix safeScopeResult={finding.safeScopeResult} />
+                      <HazLenzOfflineNotice safeScopeResult={finding.safeScopeResult} />
+                      <HazLenzRealImageAnalysisAppendix safeScopeResult={finding.safeScopeResult} />
+                      <HazLenzVisualEvidenceAppendix safeScopeResult={finding.safeScopeResult} />
+                      <HazLenzEquipmentReasoningAppendix safeScopeResult={finding.safeScopeResult} />
+                      <HazLenzKnowledgeRouteAppendix safeScopeResult={finding.safeScopeResult} />
                     </div>
                   </details>
                 )}

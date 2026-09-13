@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "./safescope";
+import { API_BASE_URL } from "./hazlenzClient";
 import { apiFetch } from "./apiFetch";
 import { lockSession } from "./pinSecurity";
 import { stripInlinePhotoData } from "./cloudReports";
@@ -13,8 +13,8 @@ const SENSITIVE_LOCAL_STORAGE_KEYS = [
   "sentinel_user",
   "sentinel_profile",
   "sentinel_workspace",
-  "safescope_user",
-  "safescope_profile",
+  "hazlenz_user",
+  "hazlenz_profile",
   "insite_user",
   "insite_profile",
   "insite_workspace",

@@ -6,7 +6,7 @@ export function normalizePdfPercent(value: any) {
   return numeric <= 1 ? Math.round(numeric * 100) : Math.round(numeric);
 }
 
-export function formatSafeScopeValidationStatusForPdf(status: any) {
+export function formatHazLenzValidationStatusForPdf(status: any) {
   const value = String(status || "manual");
   const labels: Record<string, string> = {
     manual: "Manual finding",

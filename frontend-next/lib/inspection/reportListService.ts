@@ -161,7 +161,7 @@ export function getReportIntegrity(report: Report) {
     (finding: any) => finding.photos || [],
   ).length;
 
-  const safeScopeCount = findings.filter(
+  const hazLenzCount = findings.filter(
     (finding: any) => finding.safeScopeResult,
   ).length;
 
@@ -182,11 +182,11 @@ export function getReportIntegrity(report: Report) {
 
   return {
     evidenceCount,
-    safeScopeCount,
+    hazLenzCount,
     actionCount,
     standardsCount,
     hasEvidence: evidenceCount > 0,
-    hasSafeScope: safeScopeCount > 0,
+    hasHazLenz: hazLenzCount > 0,
     hasActions: actionCount > 0,
   };
 }

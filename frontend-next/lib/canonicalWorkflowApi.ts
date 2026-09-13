@@ -1,6 +1,6 @@
 import { authHeaders, getAuthToken } from "./auth";
 import { apiFetch } from "./apiFetch";
-import { API_BASE_URL } from "./safescope";
+import { API_BASE_URL } from "./hazlenzClient";
 
 export type PersistedSite = {
   id: string;

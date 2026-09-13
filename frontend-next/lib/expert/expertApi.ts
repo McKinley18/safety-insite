@@ -1,6 +1,6 @@
 import { authHeaders } from "@/lib/auth";
 import { apiFetch } from "@/lib/apiFetch";
-import { API_BASE_URL } from "@/lib/safescope";
+import { API_BASE_URL } from "@/lib/hazlenzClient";
 import type {
   ExpertAnalysisExecuted,
   ExpertAnalysisRead,

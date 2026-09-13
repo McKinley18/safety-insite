@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { API_BASE_URL } from "@/lib/safescope";
+import { API_BASE_URL } from "@/lib/hazlenzClient";
 import { clearAuthSession } from "@/lib/auth";
 import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";

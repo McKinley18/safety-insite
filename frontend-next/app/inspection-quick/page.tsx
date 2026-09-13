@@ -56,7 +56,7 @@ export default function QuickInspectionPage() {
   const [priority, setPriority] = useState("Medium");
   const [due, setDue] = useState("");
   const [status, setStatus] = useState("");
-  const [safeScopeQuickResult, setSafeScopeQuickResult] = useState<any>(null);
+  const [hazLenzQuickResult, setHazLenzQuickResult] = useState<any>(null);
 
   const canSave = useMemo(
     () =>
@@ -66,12 +66,12 @@ export default function QuickInspectionPage() {
           description ||
           photos.length ||
           actionTitle ||
-          safeScopeQuickResult,
+          hazLenzQuickResult,
       ),
-    [hazardCategory, location, description, photos.length, actionTitle, safeScopeQuickResult],
+    [hazardCategory, location, description, photos.length, actionTitle, hazLenzQuickResult],
   );
 
-  const canRunSafeScope = Boolean(description.trim() || hazardCategory || photos.length);
+  const canRunHazLenz = Boolean(description.trim() || hazardCategory || photos.length);
 
   async function handlePhotoUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files || []);
@@ -98,8 +98,8 @@ export default function QuickInspectionPage() {
     setAnnotationExpanded(false);
   }
 
-  function runSafeScopeQuickReview() {
-    if (!canRunSafeScope) {
+  function runHazLenzQuickReview() {
+    if (!canRunHazLenz) {
       setStatus("Add a photo, category, or observed condition before running HazLenz AI Quick Review.");
       return;
     }
@@ -112,7 +112,7 @@ export default function QuickInspectionPage() {
         photosLength: photos.length,
       });
 
-    setSafeScopeQuickResult(result);
+    setHazLenzQuickResult(result);
 
     if (!hazardCategory) setHazardCategory(suggestedCategory);
     if (!actionTitle) setActionTitle(suggestedAction);
@@ -131,7 +131,7 @@ export default function QuickInspectionPage() {
     const now = new Date().toISOString();
     const quickActionTitle =
       actionTitle.trim() ||
-      safeScopeQuickResult?.generatedActions?.[0]?.title ||
+      hazLenzQuickResult?.generatedActions?.[0]?.title ||
       "";
 
     const action = quickActionTitle
@@ -140,18 +140,18 @@ export default function QuickInspectionPage() {
           title: quickActionTitle,
           priority:
             priority ||
-            safeScopeQuickResult?.generatedActions?.[0]?.priority ||
+            hazLenzQuickResult?.generatedActions?.[0]?.priority ||
             "Medium",
           status: "Open",
           due,
-          source: safeScopeQuickResult ? "HazLenz AI Quick Review" : "Quick Inspection",
+          source: hazLenzQuickResult ? "HazLenz AI Quick Review" : "Quick Inspection",
           createdAt: now,
         }
       : null;
 
     const finalCategory =
       hazardCategory ||
-      safeScopeQuickResult?.classification ||
+      hazLenzQuickResult?.classification ||
       "Quick Inspection";
 
     const report = {
@@ -171,8 +171,8 @@ export default function QuickInspectionPage() {
           photos,
           correctiveActions: action ? [action] : [],
           manualActions: action ? [action] : [],
-          selectedGeneratedActions: safeScopeQuickResult?.generatedActions || [],
-          safeScopeResult: safeScopeQuickResult,
+          selectedGeneratedActions: hazLenzQuickResult?.generatedActions || [],
+          safeScopeResult: hazLenzQuickResult,
           quickCapture: true,
           createdAt: now,
         },
@@ -237,7 +237,7 @@ export default function QuickInspectionPage() {
             [String(photos.length), "Photos"],
             [location ? "Yes" : "No", "Location"],
             [description ? "Yes" : "No", "Condition"],
-            [safeScopeQuickResult ? "Ready" : "Preview", "HazLenz AI"],
+            [hazLenzQuickResult ? "Ready" : "Preview", "HazLenz AI"],
           ].map(([value, label]) => (
             <div
               key={label}
@@ -414,7 +414,7 @@ export default function QuickInspectionPage() {
           action={
             <AppButton
               type="button"
-              onClick={runSafeScopeQuickReview}
+              onClick={runHazLenzQuickReview}
               size="sm"
               className="insite-inspection-action insite-inspection-action-blue insite-inspection-action-sm"
             >
@@ -423,7 +423,7 @@ export default function QuickInspectionPage() {
           }
         />
 
-        {safeScopeQuickResult ? (
+        {hazLenzQuickResult ? (
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-none">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
@@ -431,16 +431,16 @@ export default function QuickInspectionPage() {
                   Likely Issue
                 </p>
                 <h3 className="mt-1 text-sm font-black text-slate-900 dark:text-white sm:text-lg">
-                  {safeScopeQuickResult.classification}
+                  {hazLenzQuickResult.classification}
                 </h3>
               </div>
 
               <span
                 className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-wide ${riskTone(
-                  safeScopeQuickResult.risk?.riskBand,
+                  hazLenzQuickResult.risk?.riskBand,
                 )}`}
               >
-                {safeScopeQuickResult.risk?.riskBand} Risk Signal
+                {hazLenzQuickResult.risk?.riskBand} Risk Signal
               </span>
             </div>
 
@@ -449,7 +449,7 @@ export default function QuickInspectionPage() {
                 Suggested Immediate Action
               </p>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
-                {safeScopeQuickResult.generatedActions?.[0]?.title}
+                {hazLenzQuickResult.generatedActions?.[0]?.title}
               </p>
             </div>
 
@@ -533,11 +533,11 @@ export default function QuickInspectionPage() {
             </p>
             <p>
               <span className="text-slate-900 dark:text-slate-100">Category:</span>{" "}
-              {hazardCategory || safeScopeQuickResult?.classification || "Pending"}
+              {hazardCategory || hazLenzQuickResult?.classification || "Pending"}
             </p>
             <p>
               <span className="text-slate-900 dark:text-slate-100">HazLenz AI:</span>{" "}
-              {safeScopeQuickResult ? "Reviewed" : "Optional"}
+              {hazLenzQuickResult ? "Reviewed" : "Optional"}
             </p>
             <p>
               <span className="text-slate-900 dark:text-slate-100">Action:</span>{" "}

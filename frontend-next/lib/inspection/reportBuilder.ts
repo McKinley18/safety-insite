@@ -6,7 +6,7 @@ export function buildInspectionReport(input: {
   includeStandardsInReport: boolean;
   includeActionsInReport: boolean;
   includePhotosInReport: boolean;
-  includeSafeScopeNotesInReport: boolean;
+  includeHazLenzNotesInReport: boolean;
   reportPackageMode?: string;
 }) {
   const coverPage = input.coverPage || {};
@@ -31,7 +31,7 @@ export function buildInspectionReport(input: {
     includeStandardsInReport: input.includeStandardsInReport,
     includeActionsInReport: input.includeActionsInReport,
     includePhotosInReport: input.includePhotosInReport,
-    includeSafeScopeNotesInReport: input.includeSafeScopeNotesInReport,
+    includeHazLenzNotesInReport: input.includeHazLenzNotesInReport,
     reportPackageMode: input.reportPackageMode || "professional_compliance",
     findings: input.findings,
   };

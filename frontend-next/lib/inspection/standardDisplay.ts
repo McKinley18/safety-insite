@@ -130,7 +130,7 @@ export type StandardDisplayText = {
 };
 
 // NOTE: standardText/regulatoryText/regulationText/fullText are populated by
-// hand-typed or auto-derived paraphrases (see safescope-standards.seed.ts and
+// hand-typed or auto-derived paraphrases (see hazlenz-standards.seed.ts and
 // sync-standards-intelligence-to-master.ts's `standardText()` helper), never
 // by verbatim CFR/MSHA source text — no verbatim-text store is currently wired
 // into this display path (see P1_STANDARDS_INTEGRITY_CONTRACT.md). This tier

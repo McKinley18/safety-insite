@@ -39,7 +39,7 @@ export async function generateInspectionReportPackage(input: {
   includeStandardsInReport: boolean;
   includeActionsInReport: boolean;
   includePhotosInReport: boolean;
-  includeSafeScopeNotesInReport: boolean;
+  includeHazLenzNotesInReport: boolean;
 }) {
   const coverPage = (await getCoverPage<any>()) || {};
 
@@ -53,7 +53,7 @@ export async function generateInspectionReportPackage(input: {
     includeStandardsInReport: input.includeStandardsInReport,
     includeActionsInReport: input.includeActionsInReport,
     includePhotosInReport: input.includePhotosInReport,
-    includeSafeScopeNotesInReport: input.includeSafeScopeNotesInReport,
+    includeHazLenzNotesInReport: input.includeHazLenzNotesInReport,
     reportPackageMode,
   });
 

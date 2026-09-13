@@ -21,9 +21,9 @@ export function ReportExportOptionsPanel({ report, updateReportOption }: { repor
             report.includePhotosInReport !== false,
           ],
           [
-            "includeSafeScopeNotesInReport",
+            "includeHazLenzNotesInReport",
             "HazLenz AI Notes",
-            Boolean(report.includeSafeScopeNotesInReport),
+            Boolean(report.includeHazLenzNotesInReport),
           ],
         ].map(([key, label, checked]: any) => (
           <button

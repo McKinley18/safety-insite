@@ -12,7 +12,7 @@ import {
   setAuthUser,
   updateMyProfile,
 } from "@/lib/auth";
-import { API_BASE_URL } from "@/lib/safescope";
+import { API_BASE_URL } from "@/lib/hazlenzClient";
 import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";

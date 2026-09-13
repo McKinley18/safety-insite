@@ -354,7 +354,7 @@ export default function DashboardPage() {
 
     const recentActivity = activityEvents.slice(0, 3);
 
-    const safeScopeReviewed = findings.filter((finding) =>
+    const hazLenzReviewed = findings.filter((finding) =>
       Boolean(finding.safeScopeResult),
     ).length;
 
@@ -366,7 +366,7 @@ export default function DashboardPage() {
       blockedActions: blockedActions.length,
       inProgressActions: inProgressActions.length,
       criticalFindings: criticalFindings.length,
-      safeScopeReviewed,
+      hazLenzReviewed,
       highPriorityActions,
       latestReports,
       recentActivity,

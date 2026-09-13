@@ -1,6 +1,6 @@
 import { getAuthToken } from "./auth";
 import { apiFetch } from "./apiFetch";
-import { API_BASE_URL } from "./safescope";
+import { API_BASE_URL } from "./hazlenzClient";
 
 
 function getDevOrganizationId() {

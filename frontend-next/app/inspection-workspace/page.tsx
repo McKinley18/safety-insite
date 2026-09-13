@@ -29,7 +29,7 @@ import {
   type CompletionReadiness,
   type InspectionReportSummary,
 } from "@/lib/canonicalWorkflowApi";
-import { StandardCitationHeading } from "@/components/inspection/SafeScopeStandardsSection";
+import { StandardCitationHeading } from "@/components/inspection/HazLenzStandardsSection";
 import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 import { getStandardBackingPresentation } from "@/lib/inspection/standardDisplay";
 import { getInspectionRiskScale } from "@/lib/inspection/inspectionPageHelpers";

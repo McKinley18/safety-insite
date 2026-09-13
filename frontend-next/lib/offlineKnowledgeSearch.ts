@@ -1,6 +1,6 @@
 import {
   loadOfflineBrainBundle,
-  type SafeScopeOfflineBrainBundle,
+  type HazLenzOfflineBrainBundle,
 } from "./offlineBrainStorage";
 
 const STOP_WORDS = new Set([
@@ -41,7 +41,7 @@ const STOP_WORDS = new Set([
   "review",
   "safe",
   "safety",
-  "safescope",
+  "hazlenz",
   "photo",
   "attached",
   "area",
@@ -191,7 +191,7 @@ export function searchOfflineKnowledgeBrain(input: {
   query: string;
   agency?: string;
   limit?: number;
-  bundle?: SafeScopeOfflineBrainBundle | null;
+  bundle?: HazLenzOfflineBrainBundle | null;
 }) {
   const bundle = input.bundle || loadOfflineBrainBundle();
   const query = String(input.query || "").trim();

@@ -18,11 +18,11 @@ import {
 } from "@/lib/inspection/reviewReportPersistenceService";
 import { getStoredPlanCode, getVerifiedPlanCode } from "@/lib/planEntitlements";
 import {
-  SafeScopeRealImageAnalysisAppendix,
-  SafeScopeVisualEvidenceAppendix,
-  SafeScopeEquipmentReasoningAppendix,
-} from "@/components/inspection/SafeScopeResultAppendix";
-import { SafeScopeOfflineNotice } from "@/components/inspection/SafeScopeOfflineNotice";
+  HazLenzRealImageAnalysisAppendix,
+  HazLenzVisualEvidenceAppendix,
+  HazLenzEquipmentReasoningAppendix,
+} from "@/components/inspection/HazLenzResultAppendix";
+import { HazLenzOfflineNotice } from "@/components/inspection/HazLenzOfflineNotice";
 import { ReportDetailsPanel } from "@/components/inspection/ReportDetailsPanel";
 import { ReportExportOptionsPanel } from "@/components/inspection/ReportExportOptionsPanel";
 import { FindingsReviewList } from "@/components/inspection/FindingsReviewList";
@@ -37,7 +37,7 @@ import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
-  getSafeScopeReviewSummary,
+  getHazLenzReviewSummary,
   formatReviewDate,
   isSamePersistentReport,
 } from "@/lib/inspection/reportReviewHelpers";
@@ -229,7 +229,7 @@ export default function InspectionReviewPage() {
 
       <ReportExportOptionsPanel report={report} updateReportOption={updateReportOption} />
 
-      {getSafeScopeReviewSummary(findings).total > 0 && (
+      {getHazLenzReviewSummary(findings).total > 0 && (
         <AppPanel padding="md" className="border-amber-200 bg-amber-50/60">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
@@ -237,8 +237,8 @@ export default function InspectionReviewPage() {
                 HazLenz AI Review Status
               </p>
               <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
-                {getSafeScopeReviewSummary(findings).unvalidated
-                  ? `${getSafeScopeReviewSummary(findings).unvalidated} HazLenz AI finding(s) need qualified review`
+                {getHazLenzReviewSummary(findings).unvalidated
+                  ? `${getHazLenzReviewSummary(findings).unvalidated} HazLenz AI finding(s) need qualified review`
                   : "All HazLenz AI findings show reviewed status"}
               </h3>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
@@ -249,15 +249,15 @@ export default function InspectionReviewPage() {
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
                 <p className="text-[10px] font-black uppercase text-slate-600 dark:text-slate-300">HazLenz AI</p>
-                <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getSafeScopeReviewSummary(findings).total}</p>
+                <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getHazLenzReviewSummary(findings).total}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
                 <p className="text-[10px] font-black uppercase text-slate-600 dark:text-slate-300">Open</p>
-                <p className="text-lg font-black text-amber-700">{getSafeScopeReviewSummary(findings).unvalidated}</p>
+                <p className="text-lg font-black text-amber-700">{getHazLenzReviewSummary(findings).unvalidated}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
                 <p className="text-[10px] font-black uppercase text-slate-600 dark:text-slate-300">Escalated</p>
-                <p className="text-lg font-black text-red-700">{getSafeScopeReviewSummary(findings).escalated}</p>
+                <p className="text-lg font-black text-red-700">{getHazLenzReviewSummary(findings).escalated}</p>
               </div>
             </div>
           </div>

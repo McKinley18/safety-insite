@@ -212,8 +212,8 @@ export function renderAuditTraceAppendix(
     if (trace.advisoryBoundary) {
       boundaryParts.push(`Advisory Boundary: ${trace.advisoryBoundary}`);
     }
-    if (Array.isArray(trace.safeScopeLimitations) && trace.safeScopeLimitations.length) {
-      boundaryParts.push(`HazLenz AI Limitations: ${trace.safeScopeLimitations.join("; ")}`);
+    if (Array.isArray(trace.hazLenzLimitations) && trace.hazLenzLimitations.length) {
+      boundaryParts.push(`HazLenz AI Limitations: ${trace.hazLenzLimitations.join("; ")}`);
     }
 
     const boundaryLines = doc.splitTextToSize(boundaryParts.join("\n"), pageWidth - 40);

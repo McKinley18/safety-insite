@@ -1,8 +1,8 @@
 import { localExporter } from "@/lib/localExporter";
 import {
   getFindingActionsForReview,
-  getSafeScopeValidationStatus,
-  formatSafeScopeValidationStatus,
+  getHazLenzValidationStatus,
+  formatHazLenzValidationStatus,
   formatReviewDate,
 } from "@/lib/inspection/reportReviewHelpers";
 
@@ -50,19 +50,19 @@ export async function runInspectionExport(input: {
       report.includeActionsInReport !== false,
     ),
     photos: report.includePhotosInReport === false ? [] : finding.photos || [],
-    safeScopeValidationStatus: getSafeScopeValidationStatus(finding),
-    safeScopeValidationStatusLabel: formatSafeScopeValidationStatus(
-      getSafeScopeValidationStatus(finding),
+    hazLenzValidationStatus: getHazLenzValidationStatus(finding),
+    hazLenzValidationStatusLabel: formatHazLenzValidationStatus(
+      getHazLenzValidationStatus(finding),
     ),
     safeScopeResult:
-      report.includeSafeScopeNotesInReport === false
+      report.includeHazLenzNotesInReport === false
         ? null
         : finding.safeScopeResult
           ? {
               ...finding.safeScopeResult,
-              validationStatus: getSafeScopeValidationStatus(finding),
-              validationStatusLabel: formatSafeScopeValidationStatus(
-                getSafeScopeValidationStatus(finding),
+              validationStatus: getHazLenzValidationStatus(finding),
+              validationStatusLabel: formatHazLenzValidationStatus(
+                getHazLenzValidationStatus(finding),
               ),
             }
           : null,

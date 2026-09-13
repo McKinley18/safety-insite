@@ -1,7 +1,7 @@
 const BRAIN_BUNDLE_STORAGE_KEY = "sentinel_safescope_brain_bundle_v1";
 const BRAIN_BUNDLE_META_KEY = "sentinel_safescope_brain_bundle_meta_v1";
 
-export type SafeScopeOfflineBrainBundle = {
+export type HazLenzOfflineBrainBundle = {
   version: string;
   generatedAt: string;
   source?: string;
@@ -16,7 +16,7 @@ export type SafeScopeOfflineBrainBundle = {
   };
 };
 
-export function saveOfflineBrainBundle(bundle: SafeScopeOfflineBrainBundle) {
+export function saveOfflineBrainBundle(bundle: HazLenzOfflineBrainBundle) {
   if (typeof window === "undefined") return;
 
   window.localStorage.setItem(BRAIN_BUNDLE_STORAGE_KEY, JSON.stringify(bundle));
@@ -34,7 +34,7 @@ export function saveOfflineBrainBundle(bundle: SafeScopeOfflineBrainBundle) {
   );
 }
 
-export function loadOfflineBrainBundle(): SafeScopeOfflineBrainBundle | null {
+export function loadOfflineBrainBundle(): HazLenzOfflineBrainBundle | null {
   if (typeof window === "undefined") return null;
 
   const raw = window.localStorage.getItem(BRAIN_BUNDLE_STORAGE_KEY);

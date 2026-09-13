@@ -120,9 +120,9 @@ export function getFindingCategoryForPdf(f: any) {
   );
 }
 
-export function getSafeScopeValidationStatusForPdf(f: any) {
+export function getHazLenzValidationStatusForPdf(f: any) {
   return (
-    f.safeScopeValidationStatus ||
+    f.hazLenzValidationStatus ||
     f.safeScopeResult?.validationStatus ||
     f.safeScopeResult?.snapshotSummary?.validationStatus ||
     (f.safeScopeResult?.reasoningSnapshotId ? "generated" : f.safeScopeResult ? "local_unvalidated" : "manual")

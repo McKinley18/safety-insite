@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";
-import { API_BASE_URL } from "@/lib/safescope";
+import { API_BASE_URL } from "@/lib/hazlenzClient";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");

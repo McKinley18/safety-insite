@@ -5,7 +5,7 @@ import { renderCoverPage, renderExecutiveSummary } from "./inspection/pdfSummary
 import { renderAuditTraceAppendix } from "./inspection/pdfAppendixRenderer";
 import {
   formatEquipmentReasoningModeForPdf,
-  formatSafeScopeValidationStatusForPdf,
+  formatHazLenzValidationStatusForPdf,
   getStandardCitationForPdf,
   getStandardSummaryForPdf,
   normalizePdfPercent,
@@ -17,7 +17,7 @@ import {
   getFindingMechanismChainForPdf,
   getFindingRiskForPdf,
   getFindingStandardsForPdf,
-  getSafeScopeValidationStatusForPdf,
+  getHazLenzValidationStatusForPdf,
 } from "./inspection/pdfDataMappingHelpers";
 import { buildEquipmentReasoningNotesForPdf, asPdfList } from "./inspection/pdfEquipmentHelpers";
 
@@ -98,8 +98,8 @@ export const localExporter = {
       label: "Field Report",
       shortLabel: "Basic",
       includesExecutiveSummary: false,
-      includesSafeScopeSummary: false,
-      includesSafeScopeTraceability: false,
+      includesHazLenzSummary: false,
+      includesHazLenzTraceability: false,
       includesEvidenceGaps: false,
       includesConfidence: false,
       includesRepeatIntelligence: false,
@@ -509,25 +509,25 @@ export const localExporter = {
       currentY += actionLines.length * 5 + 15;
       const confidence = getFindingConfidenceForPdf(f);
       const riskBand = getFindingRiskForPdf(f);
-      const safeScopeNotes = [];
+      const hazLenzNotes = [];
 
       if (f.safeScopeResult) {
-        safeScopeNotes.push(
+        hazLenzNotes.push(
           `Classification: ${f.safeScopeResult.classification || getFindingCategoryForPdf(f)}`,
         );
-        safeScopeNotes.push(`Risk: ${riskBand}`);
-        safeScopeNotes.push(
-          `HazLenz AI review status: ${formatSafeScopeValidationStatusForPdf(getSafeScopeValidationStatusForPdf(f))}`,
+        hazLenzNotes.push(`Risk: ${riskBand}`);
+        hazLenzNotes.push(
+          `HazLenz AI review status: ${formatHazLenzValidationStatusForPdf(getHazLenzValidationStatusForPdf(f))}`,
         );
         if (reportPackage.includesConfidence && confidence !== null) {
-          safeScopeNotes.push(`Confidence: ${confidence}%`);
+          hazLenzNotes.push(`Confidence: ${confidence}%`);
         }
 
         if (
-          reportPackage.includesSafeScopeTraceability &&
+          reportPackage.includesHazLenzTraceability &&
           f.safeScopeResult.reasoningSnapshotId
         ) {
-          safeScopeNotes.push(
+          hazLenzNotes.push(
             `Reasoning snapshot: ${f.safeScopeResult.reasoningSnapshotId}`,
           );
         }
@@ -540,7 +540,7 @@ export const localExporter = {
           : f.safeScopeResult.confidenceIntelligence?.reviewTriggers || [];
 
         if (reportPackage.includesConfidence && reviewTriggers.length) {
-          safeScopeNotes.push(
+          hazLenzNotes.push(
             `Supervisor review trigger(s): ${reviewTriggers.slice(0, 3).join("; ")}`,
           );
         }
@@ -553,7 +553,7 @@ export const localExporter = {
           : f.safeScopeResult.knowledgeBrain?.evidenceGaps || [];
 
         if (reportPackage.includesEvidenceGaps && evidenceGaps.length) {
-          safeScopeNotes.push(
+          hazLenzNotes.push(
             `Evidence gap(s): ${evidenceGaps.slice(0, 4).join("; ")}`,
           );
         }
@@ -562,7 +562,7 @@ export const localExporter = {
           f.safeScopeResult.fieldOutput?.supervisorQuestions,
         );
         if (reportPackage.includesEvidenceGaps && supervisorQuestions.length) {
-          safeScopeNotes.push(
+          hazLenzNotes.push(
             `Supervisor question(s): ${supervisorQuestions.slice(0, 4).join("; ")}`,
           );
         }
@@ -572,32 +572,32 @@ export const localExporter = {
           f.safeScopeResult.executiveJudgment?.auditReadySummary ||
           f.safeScopeResult.explanation;
 
-        if (reportPackage.includesSafeScopeSummary && decisionSummary) {
-          safeScopeNotes.push(`HazLenz AI summary: ${decisionSummary}`);
+        if (reportPackage.includesHazLenzSummary && decisionSummary) {
+          hazLenzNotes.push(`HazLenz AI summary: ${decisionSummary}`);
         }
 
         if (reportPackage.includesRepeatIntelligence) {
           const duplicate = f.safeScopeResult.duplicateIntelligence;
           if (duplicate?.possibleDuplicate) {
-            safeScopeNotes.push(
+            hazLenzNotes.push(
               `Repeat intelligence: ${duplicate.recommendedSplitOrMergeAction || "Possible repeat finding requires review."}`,
             );
           }
         }
 
         if (
-          reportPackage.includesSafeScopeSummary ||
-          reportPackage.includesSafeScopeTraceability ||
+          reportPackage.includesHazLenzSummary ||
+          reportPackage.includesHazLenzTraceability ||
           reportPackage.includesEvidenceGaps
         ) {
-          safeScopeNotes.push(
+          hazLenzNotes.push(
             ...buildEquipmentReasoningNotesForPdf(f.safeScopeResult),
           );
         }
 
         const mechanismChain = getFindingMechanismChainForPdf(f);
-        if (reportPackage.includesSafeScopeSummary && mechanismChain) {
-          safeScopeNotes.push(
+        if (reportPackage.includesHazLenzSummary && mechanismChain) {
+          hazLenzNotes.push(
             `Mechanism chain: ${[
               mechanismChain.observedCondition,
               mechanismChain.failureMode,
@@ -606,19 +606,19 @@ export const localExporter = {
             ].filter(Boolean).join(" | ")}`,
           );
           if (Array.isArray(mechanismChain.evidenceGaps) && mechanismChain.evidenceGaps.length) {
-            safeScopeNotes.push(
+            hazLenzNotes.push(
               `Mechanism evidence to confirm: ${mechanismChain.evidenceGaps.slice(0, 3).join("; ")}`,
             );
           }
           if (Array.isArray(mechanismChain.controlFocus) && mechanismChain.controlFocus.length) {
-            safeScopeNotes.push(
+            hazLenzNotes.push(
               `Mechanism control focus: ${mechanismChain.controlFocus.slice(0, 3).join("; ")}`,
             );
           }
         }
       }
 
-      if (reportPackage.includesSafeScopeSummary && safeScopeNotes.length) {
+      if (reportPackage.includesHazLenzSummary && hazLenzNotes.length) {
         ensureFindingSpace(42);
         doc.setTextColor(15, 23, 42);
         doc.setFont("helvetica", "bold");
@@ -626,12 +626,12 @@ export const localExporter = {
         doc.setTextColor(71, 85, 105);
         doc.setFont("helvetica", "normal");
 
-        const safeScopeLines = doc.splitTextToSize(
-          safeScopeNotes.join("\n"),
+        const hazLenzLines = doc.splitTextToSize(
+          hazLenzNotes.join("\n"),
           pageWidth - 40,
         );
-        doc.text(safeScopeLines, 20, currentY + 6);
-        currentY += safeScopeLines.length * 5 + 15;
+        doc.text(hazLenzLines, 20, currentY + 6);
+        currentY += hazLenzLines.length * 5 + 15;
       }
 
 
@@ -702,7 +702,7 @@ export const localExporter = {
       }
 
       // --- HazLenz AI Reasoning Audit Trace Appendix ---
-      if (reportPackage.includesSafeScopeTraceability) {
+      if (reportPackage.includesHazLenzTraceability) {
       renderAuditTraceAppendix(doc, findings, pageWidth, pageHeight, formatPdfDate);
       }
 

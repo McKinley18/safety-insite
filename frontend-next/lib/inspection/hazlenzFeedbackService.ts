@@ -1,5 +1,5 @@
-import { sendHazLenzFeedback } from "@/lib/hazlenz";
-import { submitSupervisorValidation } from "@/lib/safescope";
+import { sendHazLenzFeedback } from "@/lib/hazlenzClient";
+import { submitSupervisorValidation } from "@/lib/hazlenzClient";
 import { buildHazLenzObservationText } from "./inspectionWorkflowHelpers";
 
 export type HazLenzFeedbackAction = "accepted" | "rejected" | "flagged";

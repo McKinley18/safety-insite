@@ -1,0 +1,326 @@
+import AnnotationEditor from "@/components/evidence/AnnotationEditor";
+import {
+  asReviewList,
+  formatEquipmentReasoningMode,
+} from "@/lib/inspection/reportReviewHelpers";
+
+export function HazLenzRealImageAnalysisAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const realImage = safeScopeResult?.realImageAnalysis;
+  if (!realImage || !realImage.visualSignals?.length) return null;
+
+  return (
+    <div className="mt-3 rounded-xl bg-indigo-50 px-3 py-2 ring-1 ring-indigo-200 dark:bg-indigo-950/35 dark:ring-indigo-900/60">
+      {/* Renders only when `realImageAnalysis.visualSignals` is populated, which in v1.0
+          never happens: the field is produced by POST /safescope-v2/real-image-analysis/evaluate,
+          which the frontend does not call and which is Pro-gated on the server. The label
+          previously read "AI Photo Analysis (Beta)" -- v1.0 ships no Beta labelling, and this
+          heading now describes what the block actually shows if it is ever populated rather
+          than advertising a capability. */}
+      <p className="text-[10px] font-black uppercase tracking-wide text-indigo-700">
+        Photo evidence signals
+      </p>
+
+      <div className="mt-2 space-y-2">
+        {realImage.visualSignals.map((sig: any, idx: number) => (
+          <div key={idx} className="flex items-start gap-2">
+            <div className={`mt-1 h-1.5 w-1.5 rounded-full shrink-0 ${
+              sig.support === 'supports_observation' ? 'bg-emerald-500' :
+              sig.support === 'conflicts_with_observation' ? 'bg-red-500' :
+              'bg-amber-500'
+            }`} />
+            <div>
+              <p className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                {sig.signal.replace(/_/g, " ")} 
+                <span className="ml-1 text-[10px] font-black uppercase text-slate-600 dark:text-slate-300 italic">
+                  ({sig.support.replace(/_/g, " ")})
+                </span>
+              </p>
+              <p className="text-[10px] text-slate-600 dark:text-slate-300">Basis: {sig.basis.join(', ')}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!!realImage.recommendedPhotoFollowups?.length && (
+        <div className="mt-2">
+          <p className="text-[10px] font-black uppercase text-indigo-700">Recommended Follow-ups</p>
+          <ul className="mt-1 list-inside list-disc text-[10px] font-semibold text-indigo-800">
+            {realImage.recommendedPhotoFollowups.map((f: string) => <li key={f}>{f}</li>)}
+          </ul>
+        </div>
+      )}
+
+      <p className="mt-2 text-[10px] font-bold leading-relaxed text-slate-600 dark:text-slate-300 italic">
+        {realImage.advisoryBoundary} {realImage.imageEvidenceLimitations.join(' · ')}
+      </p>
+    </div>
+  );
+}
+
+export function HazLenzVisualEvidenceAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const visual = safeScopeResult?.visualEvidenceReasoning;
+  if (!visual || visual.visualSupportLevel === 'not_evaluated') return null;
+
+  return (
+    <div className="rounded-xl bg-blue-50 px-3 py-2 ring-1 ring-blue-200 dark:bg-blue-950/35 dark:ring-blue-900/60">
+      <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+        Visual evidence analysis
+      </p>
+
+      <div className="mt-2 grid gap-2 md:grid-cols-2">
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Status:</span>{" "}
+          {visual.visualSupportLevel.replace(/_/g, " ")}
+        </p>
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Score:</span>{" "}
+          {visual.photoEvidenceScore}/10
+        </p>
+      </div>
+
+      {!!visual.visualConsistencyFlags?.length && (
+        <div className="mt-2">
+          <p className="text-[10px] font-black uppercase text-red-700">Consistency Conflicts</p>
+          <ul className="mt-1 list-inside list-disc text-xs font-bold text-red-800">
+            {visual.visualConsistencyFlags.map((f: string) => <li key={f}>{f}</li>)}
+          </ul>
+        </div>
+      )}
+
+      {!!visual.missingVisualEvidence?.length && (
+        <div className="mt-2">
+          <p className="text-[10px] font-black uppercase text-amber-700">Missing Views</p>
+          <ul className="mt-1 list-inside list-disc text-xs font-semibold text-amber-800">
+            {visual.missingVisualEvidence.map((m: string) => <li key={m}>{m}</li>)}
+          </ul>
+        </div>
+      )}
+
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-700 dark:text-white italic">
+        {visual.advisoryBoundary}
+      </p>
+    </div>
+  );
+}
+
+export function HazLenzKnowledgeRouteAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const route = safeScopeResult?.knowledgeRoute;
+  if (!route?.shardKey) return null;
+
+  const sourceKeys = Array.isArray(route.sourceKeys) ? route.sourceKeys : [];
+  const bundleIds = Array.isArray(route.bundleIds) ? route.bundleIds : [];
+  const reasons = Array.isArray(route.reasons) ? route.reasons : [];
+  const shardSummary = route.shardSummary || {};
+  const shardCitations = Array.isArray(shardSummary.citations) ? shardSummary.citations : [];
+  const evidenceNeeded = Array.isArray(shardSummary.evidenceNeeded) ? shardSummary.evidenceNeeded : [];
+  const correctiveActionPatterns = Array.isArray(shardSummary.correctiveActionPatterns)
+    ? shardSummary.correctiveActionPatterns
+    : [];
+
+  return (
+    <div className="rounded-xl bg-cyan-50 px-3 py-2 ring-1 ring-cyan-200 dark:bg-cyan-950/30 dark:ring-cyan-900/60">
+      <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+        HazLenz knowledge route
+      </p>
+
+      <div className="mt-2 grid gap-2 md:grid-cols-2">
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Opened shard:</span>{" "}
+          {route.shardKey}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Confidence:</span>{" "}
+          {route.confidence !== undefined && route.confidence !== null
+            ? `${route.confidence}%`
+            : "Not scored"}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Hazard family:</span>{" "}
+          {String(route.hazardFamily || "unknown").replace(/_/g, " ")}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Mechanism:</span>{" "}
+          {String(route.taskMechanism || "unknown").replace(/_/g, " ")}
+        </p>
+      </div>
+
+      {!!sourceKeys.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Source keys:</span>{" "}
+          {sourceKeys.slice(0, 4).join(" · ")}
+        </p>
+      )}
+
+      {!!bundleIds.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Bundles:</span>{" "}
+          {bundleIds.slice(0, 4).join(" · ")}
+        </p>
+      )}
+
+      {!!shardCitations.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Focused citations:</span>{" "}
+          {shardCitations.slice(0, 5).join(" · ")}
+        </p>
+      )}
+
+      {!!evidenceNeeded.length && (
+        <div className="mt-2 rounded-lg bg-white/70 px-2 py-2 ring-1 ring-cyan-100 dark:bg-slate-950/40 dark:ring-cyan-900/40">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+            Evidence HazLenz looked for
+          </p>
+          <ul className="mt-1 list-inside list-disc space-y-0.5 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            {evidenceNeeded.slice(0, 4).map((item: string) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {!!correctiveActionPatterns.length && (
+        <div className="mt-2 rounded-lg bg-white/70 px-2 py-2 ring-1 ring-cyan-100 dark:bg-slate-950/40 dark:ring-cyan-900/40">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+            Control patterns from shard
+          </p>
+          <ul className="mt-1 list-inside list-disc space-y-0.5 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            {correctiveActionPatterns.slice(0, 4).map((item: string) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {!!reasons.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Routing basis:</span>{" "}
+          {reasons.slice(0, 4).join(" · ")}
+        </p>
+      )}
+
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-700 dark:text-white italic">
+        HazLenz uses this route to focus standards and knowledge retrieval. This
+        route is advisory and requires qualified review.
+      </p>
+    </div>
+  );
+}
+
+export function HazLenzEquipmentReasoningAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const summary = safeScopeResult?.equipmentReasoningSummary;
+  const taskContext = safeScopeResult?.equipmentTaskMechanismContext;
+  const archetypeContext = safeScopeResult?.equipmentArchetypeContext;
+
+  if (!summary && !taskContext?.matched && !archetypeContext?.matched) {
+    return null;
+  }
+
+  const primarySpecific = taskContext?.primaryMatch;
+  const primaryArchetype = archetypeContext?.primaryMatch;
+
+  const mechanisms = asReviewList(
+    primarySpecific?.harmMechanisms || primaryArchetype?.harmMechanisms,
+  )
+    .slice(0, 5)
+    .map((item) => item.replace(/_/g, " "));
+
+  const domains = asReviewList(
+    primarySpecific?.likelyHazardDomains || primaryArchetype?.likelyHazardDomains,
+  )
+    .slice(0, 5)
+    .map((item) => item.replace(/_/g, " "));
+
+  const evidenceQuestions = asReviewList(summary?.evidenceGaps).slice(0, 4);
+  const cautions = asReviewList(summary?.cautions).slice(0, 3);
+  const rankingReasons = asReviewList(summary?.rankingReasons).slice(0, 3);
+
+  return (
+    <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
+      <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+        Equipment reasoning
+      </p>
+
+      <div className="mt-2 grid gap-2 md:grid-cols-2">
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Mode:</span>{" "}
+          {formatEquipmentReasoningMode(summary?.primaryReasoningMode)}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Primary context:</span>{" "}
+          {summary?.primaryEquipmentContext || "Unknown"}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Mechanism/archetype:</span>{" "}
+          {summary?.primaryMechanismOrArchetype || "Unknown"}
+        </p>
+
+        {!!summary?.supportingContext?.length && (
+          <p>
+            <span className="font-black text-slate-800 dark:text-slate-200">Support:</span>{" "}
+            {summary.supportingContext.slice(0, 2).join(" · ")}
+          </p>
+        )}
+
+        {!!mechanisms.length && (
+          <p>
+            <span className="font-black text-slate-800 dark:text-slate-200">Mechanisms:</span>{" "}
+            {mechanisms.join(" · ")}
+          </p>
+        )}
+
+        {!!domains.length && (
+          <p>
+            <span className="font-black text-slate-800 dark:text-slate-200">Domains:</span>{" "}
+            {domains.join(" · ")}
+          </p>
+        )}
+      </div>
+
+      {!!rankingReasons.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Ranking basis:</span>{" "}
+          {rankingReasons.join(" · ")}
+        </p>
+      )}
+
+      {!!evidenceQuestions.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Evidence questions:</span>{" "}
+          {evidenceQuestions.join(" · ")}
+        </p>
+      )}
+
+      {!!cautions.length && (
+        <p className="mt-2 font-black text-amber-800">
+          Cautions: {cautions.join(" · ")}
+        </p>
+      )}
+
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-700 dark:text-white italic">
+        Equipment reasoning is context-only and requires qualified review. It
+        does not declare violations, create citations, or override regulations.
+      </p>
+    </div>
+  );
+}

@@ -95,7 +95,7 @@ export function formatReviewDate(value?: string) {
   });
 }
 
-export function getSafeScopeValidationStatus(finding: any) {
+export function getHazLenzValidationStatus(finding: any) {
   const status =
     finding?.safeScopeResult?.validationStatus ||
     finding?.safeScopeResult?.snapshotSummary?.validationStatus ||
@@ -109,7 +109,7 @@ export function getSafeScopeValidationStatus(finding: any) {
   return "manual";
 }
 
-export function formatSafeScopeValidationStatus(status: any) {
+export function formatHazLenzValidationStatus(status: any) {
   const value = String(status || "manual");
 
   const labels: Record<string, string> = {
@@ -127,25 +127,25 @@ export function formatSafeScopeValidationStatus(status: any) {
   return labels[value] || value.replace(/_/g, " ");
 }
 
-export function isSafeScopeValidationComplete(status: any) {
+export function isHazLenzValidationComplete(status: any) {
   return ["validated_accepted", "validated_modified", "validated_rejected"].includes(
     String(status || ""),
   );
 }
 
-export function getSafeScopeReviewSummary(findings: any[]) {
-  const safeScopeFindings = findings.filter((finding) => finding.safeScopeResult);
-  const unvalidated = safeScopeFindings.filter(
-    (finding) => !isSafeScopeValidationComplete(getSafeScopeValidationStatus(finding)),
+export function getHazLenzReviewSummary(findings: any[]) {
+  const hazLenzFindings = findings.filter((finding) => finding.safeScopeResult);
+  const unvalidated = hazLenzFindings.filter(
+    (finding) => !isHazLenzValidationComplete(getHazLenzValidationStatus(finding)),
   );
-  const escalated = safeScopeFindings.filter((finding) =>
+  const escalated = hazLenzFindings.filter((finding) =>
     ["requires_escalation", "requires_more_evidence", "requires_review"].includes(
-      getSafeScopeValidationStatus(finding),
+      getHazLenzValidationStatus(finding),
     ),
   );
 
   return {
-    total: safeScopeFindings.length,
+    total: hazLenzFindings.length,
     unvalidated: unvalidated.length,
     escalated: escalated.length,
   };

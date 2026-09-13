@@ -2,14 +2,14 @@
 
 import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSection";
 import FindingReviewEditor from "@/components/inspection/FindingReviewEditor";
-import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
+import HazLenzInspectionStep from "@/components/inspection/HazLenzInspectionStep";
 import InspectionStepOne from "./steps/InspectionStepOne";
 import InspectionStepTwo from "./steps/InspectionStepTwo";
 import InspectionStepThree from "./steps/InspectionStepThree";
 import type {
   HazLenzClarificationAnswerInput,
   StructuredObservationInput,
-} from "@/lib/safescope";
+} from "@/lib/hazlenzClient";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -124,22 +124,22 @@ type InspectionStepRendererProps = {
   handlePhotoUpload: (event: any) => void;
   removePhoto: (id: string) => void;
 
-  safeScopeHelpOpen: boolean;
-  setSafeScopeHelpOpen: ToggleSetter;
+  hazLenzHelpOpen: boolean;
+  setHazLenzHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
-  handleRunSafeScope: (
+  handleRunHazLenz: (
     forceOffline?: boolean,
     structuredObservation?: StructuredObservationInput,
     clarificationAnswers?: HazLenzClarificationAnswerInput[],
   ) => void;
-  safeScopeStatus: string;
+  hazLenzStatus: string;
   safeScopeResult: any;
   hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
   setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
   onUseHazardFragment: (hazard: any) => void;
   setIsOfflineMode?: (value: boolean) => void;
-  submitSafeScopeValidation: (
+  submitHazLenzValidation: (
     decision:
       | "accepted"
       | "modified"
@@ -147,10 +147,10 @@ type InspectionStepRendererProps = {
       | "escalated"
       | "insufficient_evidence",
   ) => Promise<void>;
-  safeScopeCompactDetailsOpen: boolean;
-  setSafeScopeCompactDetailsOpen: ToggleSetter;
-  safeScopeAdvancedOpen: boolean;
-  setSafeScopeAdvancedOpen: ToggleSetter;
+  hazLenzCompactDetailsOpen: boolean;
+  setHazLenzCompactDetailsOpen: ToggleSetter;
+  hazLenzAdvancedOpen: boolean;
+  setHazLenzAdvancedOpen: ToggleSetter;
   feedbackNotes: string;
   setFeedbackNotes: (value: string) => void;
   selectedStandards: any[];
@@ -160,10 +160,10 @@ type InspectionStepRendererProps = {
     standard: any,
     action: "accepted" | "rejected" | "flagged",
   ) => Promise<void>;
-  safeScopeDetailsOpen: boolean;
-  setSafeScopeDetailsOpen: ToggleSetter;
-  safeScopeStandardsOpen: boolean;
-  setSafeScopeStandardsOpen: ToggleSetter;
+  hazLenzDetailsOpen: boolean;
+  setHazLenzDetailsOpen: ToggleSetter;
+  hazLenzStandardsOpen: boolean;
+  setHazLenzStandardsOpen: ToggleSetter;
 
   activeRiskScale: any;
   severity: number | null;
@@ -211,32 +211,32 @@ export default function InspectionStepRenderer({
   setAnnotationExpanded,
   handlePhotoUpload,
   removePhoto,
-  safeScopeHelpOpen,
-  setSafeScopeHelpOpen,
+  hazLenzHelpOpen,
+  setHazLenzHelpOpen,
   agencyMode,
   riskProfileId,
-  handleRunSafeScope,
-  safeScopeStatus,
+  handleRunHazLenz,
+  hazLenzStatus,
   safeScopeResult,
   hazLenzClarificationAnswers,
   setHazLenzClarificationAnswers,
   onUseHazardFragment,
   setIsOfflineMode,
-  submitSafeScopeValidation,
-  safeScopeCompactDetailsOpen,
-  setSafeScopeCompactDetailsOpen,
-  safeScopeAdvancedOpen,
-  setSafeScopeAdvancedOpen,
+  submitHazLenzValidation,
+  hazLenzCompactDetailsOpen,
+  setHazLenzCompactDetailsOpen,
+  hazLenzAdvancedOpen,
+  setHazLenzAdvancedOpen,
   feedbackNotes,
   setFeedbackNotes,
   selectedStandards,
   getStandardKey,
   toggleSelectedStandard,
   handleFeedback,
-  safeScopeDetailsOpen,
-  setSafeScopeDetailsOpen,
-  safeScopeStandardsOpen,
-  setSafeScopeStandardsOpen,
+  hazLenzDetailsOpen,
+  setHazLenzDetailsOpen,
+  hazLenzStandardsOpen,
+  setHazLenzStandardsOpen,
   activeRiskScale,
   severity,
   setSeverity,
@@ -283,32 +283,32 @@ export default function InspectionStepRenderer({
         <InspectionStepTwo
           hazardCategory={hazardCategory}
           setHazardCategory={setHazardCategory}
-          safeScopeHelpOpen={safeScopeHelpOpen}
-          setSafeScopeHelpOpen={setSafeScopeHelpOpen}
+          hazLenzHelpOpen={hazLenzHelpOpen}
+          setHazLenzHelpOpen={setHazLenzHelpOpen}
           agencyMode={agencyMode}
           riskProfileId={riskProfileId}
-          handleRunSafeScope={handleRunSafeScope}
-          safeScopeStatus={safeScopeStatus}
+          handleRunHazLenz={handleRunHazLenz}
+          hazLenzStatus={hazLenzStatus}
           safeScopeResult={safeScopeResult}
           hazLenzClarificationAnswers={hazLenzClarificationAnswers}
           setHazLenzClarificationAnswers={setHazLenzClarificationAnswers}
           onUseHazardFragment={onUseHazardFragment}
           setIsOfflineMode={setIsOfflineMode}
-          submitSafeScopeValidation={submitSafeScopeValidation}
-          safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
-          setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
-          safeScopeAdvancedOpen={safeScopeAdvancedOpen}
-          setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
+          submitHazLenzValidation={submitHazLenzValidation}
+          hazLenzCompactDetailsOpen={hazLenzCompactDetailsOpen}
+          setHazLenzCompactDetailsOpen={setHazLenzCompactDetailsOpen}
+          hazLenzAdvancedOpen={hazLenzAdvancedOpen}
+          setHazLenzAdvancedOpen={setHazLenzAdvancedOpen}
           feedbackNotes={feedbackNotes}
           setFeedbackNotes={setFeedbackNotes}
           selectedStandards={selectedStandards}
           getStandardKey={getStandardKey}
           toggleSelectedStandard={toggleSelectedStandard}
           handleFeedback={handleFeedback}
-          safeScopeDetailsOpen={safeScopeDetailsOpen}
-          setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
-          safeScopeStandardsOpen={safeScopeStandardsOpen}
-          setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
+          hazLenzDetailsOpen={hazLenzDetailsOpen}
+          setHazLenzDetailsOpen={setHazLenzDetailsOpen}
+          hazLenzStandardsOpen={hazLenzStandardsOpen}
+          setHazLenzStandardsOpen={setHazLenzStandardsOpen}
         />
       )}
       {currentStep === 3 && (
