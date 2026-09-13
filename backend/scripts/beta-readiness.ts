@@ -249,30 +249,31 @@ async function main(): Promise<void> {
   // what it actually is: still open, or established elsewhere and by what.
   section('NOT ESTABLISHED BY THIS COMMAND — it contacts nothing live, by design');
   for (const [state, item] of [
-    ['done', 'object storage — §269 verified the live R2 bucket end to end (upload, authorised '
+    ['§269', 'object storage — §269 verified the live R2 bucket end to end (upload, authorised '
       + 'download with checksum, unsigned access refused, delete, no residue)'],
-    ['done', 'database backup and restore — §269 took a full logical backup of production and '
+    ['§269', 'database backup and restore — §269 took a full logical backup of production and '
       + 'rehearsed a restore: 76/76 tables, 7049/7049 rows, zero differences'],
-    ['done', 'the running production SHA — §269 read de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 from '
+    ['§269', 'the running production SHA — §269 read de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 from '
       // The platform commit variable is not named as a literal here for the same reason as the
       // provider credential below: the registry classifies any file naming it as requiring a live
       // environment, and this command contacts nothing live.
       + '/health/version, sourced from the platform-supplied commit variable'],
-    ['done', 'error-monitoring INGESTION — §269 induced a production request and retrieved that '
+    ['§269', 'error-monitoring INGESTION — §269 induced a production request and retrieved that '
       + 'exact record from the Render log store. Review path: npm run ops:events'],
     // The provider credential variable is deliberately NOT named as a literal here. The script
     // registry classifies any file naming it as PROVIDER_CALLING, and this command calls no
     // provider — a false warning on a default safety command is how a registry gets ignored.
-    ['done', 'provider credential — configured in production at §270 and validated against the '
+    ['§270', 'provider credential — configured in production at §270 and validated against the '
       + 'provider model-list endpoint, which invokes no model and bills nothing'],
-    ['OPEN', 'contracting legal entity — UNRESOLVED (§270). No entity, address, contact, governing '
+    ['open', 'contracting legal entity — UNRESOLVED (§270). No entity, address, contact, governing '
       + 'law or beta term is established, and a counsel review cannot begin without them'],
-    ['OPEN', 'Terms, Privacy Notice and third-party model disclosure — drafted at §269, counsel '
+    ['open', 'Terms, Privacy Notice and third-party model disclosure — drafted at §269, counsel '
       + 'packet prepared at §270, all still classified LEGAL COUNSEL REVIEW REQUIRED BEFORE BETA'],
-    ['OPEN', 'backend is still on the free plan and sleeps when idle — §270 could not complete the '
-      + 'paid-plan upgrade (API returns 500, probably no payment method on the workspace)'],
+    ['\u00a7272', 'backend compute plan — CLOSED. The service runs on the paid 0.5c-512mb plan, '
+      + '1 instance, oregon. The plan change auto-triggered deploy dep-dajckf3m8hqs73fp3u90 on the '
+      + 'same artifact (SHA unchanged). /health/ready went from 41.8 s cold on free to 0.23 s'],
   ] as const) {
-    console.log(`  ${state === 'done' ? '§269' : 'open'}  ${item}`);
+    console.log(`  ${state.padEnd(4)}  ${item}`);
   }
   console.log('\n  Live evidence: verification/expert-hazlenz-269-live-infrastructure-legal-'
     + '2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json');

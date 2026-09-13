@@ -1,0 +1,26 @@
+# Safety InSite — editor baseline.
+#
+# Deliberately minimal. This repository has no Prettier configuration and §272 did not add one:
+# introducing an opinionated formatter would rewrite thousands of lines across the validated
+# HazLenz engine, including modules whose byte-level identity is a frozen acceptance artifact.
+# These settings are the subset every editor honours without reformatting existing code.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{py,sh}]
+indent_size = 4
+
+# Frozen evidence: never normalised, because the bytes are the record.
+[verification/**]
+trim_trailing_whitespace = false
+insert_final_newline = false

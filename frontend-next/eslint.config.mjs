@@ -9,6 +9,10 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    // Scratch build outputs. `.gitignore` already carries `/.next-*/`, but ESLint did not, so
+    // every throwaway `next build --distdir` left thousands of generated files in the lint
+    // report — 52k of ~55k problems came from six of them.
+    ".next-*/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
