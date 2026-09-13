@@ -10,10 +10,39 @@ For the open release blockers as a decision list rather than a narrative, read
 [`PRODUCT-OVERVIEW.md`](PRODUCT-OVERVIEW.md).
 
 Refreshed at **§269** (2026-09-13), amended at §270/§272, relocated here at §273 from
-`docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md`. Supersedes the §229 text, which described a
+`docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md`, and given the §278 status block below. Supersedes the §229 text, which described a
 layer with no production caller — that has not been true since §246.
 
 Everything below is **current truth only**. It is not a history. Evidence pointers are at the end.
+
+---
+
+## 0. Where the product stands — §278
+
+| | |
+|---|---|
+| **LOCAL PRODUCT BASELINE** | **VALIDATED AND FROZEN** |
+| **ENGINEERING RELEASE READINESS** | **READY** |
+| **LEGAL RELEASE READINESS** | **BLOCKED** |
+| **PRODUCTION RELEASE** | **NOT STARTED** |
+| **CONTROLLED BETA** | **NOT YET AUTHORIZED** |
+| **LIVE PROVIDER TRANSPORT** | **NOT YET EXERCISED** |
+
+The validated baseline is `709ee151b932095020ea69d25daa04a337ccba16`, frozen at §278 with its
+gates, digests and remaining items in
+[`../../verification/current/LOCAL-PRODUCT-BASELINE.json`](../../verification/current/LOCAL-PRODUCT-BASELINE.json).
+Local P0 **0**, local P1 **0**, local P2 **2** — D-029 (an API shape no product surface sends)
+and D-030 (no governed electrical rule; a controlled-beta capability decision recorded in
+[`CAPABILITY-REGISTER.md`](CAPABILITY-REGISTER.md) section B).
+
+**The baseline does not change without explicit product-owner authorization tied to a concrete
+defect or release requirement.** The next blocker is legal, not engineering, and nothing
+engineering does can move it — what the product owner must provide or obtain is listed in
+[`../legal/README.md`](../legal/README.md) under *The legal handoff checklist*. The release
+procedure is [`CONTROLLED-RELEASE-HANDOFF.md`](CONTROLLED-RELEASE-HANDOFF.md), unexecuted and
+blocked at Step 1.
+
+Sections 1–12 below describe the engine and the product as built. They are unchanged by §278.
 
 ---
 
@@ -29,14 +58,23 @@ It is **advisory**. Deterministic HazLenz remains the customer-authoritative ana
 
 | | |
 |---|---|
-| identity | `0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee` |
-| label | §259 successor |
+| identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
+| label | §274 successor |
+| supersedes | `0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee` — the §259 successor |
 | contract | `hazlenz.expert.first-pass.259` |
 | protected modules | 29 |
-| verify it | `npm run hazlenz:verify` |
+| verify it | `npm run hazlenz:verify` · `npm run verify:274-successor-identity` |
 
 The identity is a digest over 22 elements. `hazlenz:verify` recomputes all of them from live source
 and writes nothing.
+
+**Corrected at §278.** This table named `0b12adf6…` as the current identity, which is the
+**predecessor**. §274 moved the candidate to `8c163b31…` when it removed the retired SafeScope
+namespace; 20 of the 22 elements are byte-identical and the two that moved — the adapter and the
+envelope — did so by the authorised path rename alone. `verify:274-successor-identity` prints both
+and reports 0 failures, so the discrepancy was always visible from the command and only ever wrong
+in this document. Nothing in the engine changed at §278; the identity has been `8c163b31…` since
+§274 and is the value carried in `verification/current/LOCAL-PRODUCT-BASELINE.json`.
 
 ## 3. Product integration status
 

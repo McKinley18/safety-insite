@@ -151,3 +151,50 @@ between those two statements is the whole reason this gate exists.
 **Because material items require counsel approval that has not occurred, the §269 legal P0 remains
 OPEN.** It is open on a review dependency, not on a drafting or engineering dependency: the drafts
 exist, they are complete, and nothing further is owed by engineering.
+
+---
+
+## The legal handoff checklist
+
+Added at **§278**, when the local product baseline was accepted and frozen. Engineering has
+stopped; this is the complete list of what the **product owner** must provide or obtain before
+engineering release work can resume. Nothing on it is engineering work, and no amount of
+engineering shortens it.
+
+Re-confirmed against the documents themselves at §278: all seven artifacts still carry
+`LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED`, and all five placeholders are still unresolved.
+
+### A. Decisions and facts only the product owner can supply
+
+| # | what | resolves | why it blocks |
+|---|---|---|---|
+| A1 | **Establish the contracting entity** — or obtain counsel's specific advice that an individual arrangement is appropriate for this cohort | `[LEGAL ENTITY]`, `[ENTITY ADDRESS]` | Counsel review cannot meaningfully begin without knowing who contracts. Who controls the data and which law governs both follow from it. The §271 policy is that this is **not** defaulted to an informal individual arrangement; the exception must be asked for, not arrived at |
+| A2 | **A monitored contact address** for privacy and support | `[CONTACT EMAIL]` | A privacy notice naming an unmonitored or non-existent address is not a defensible notice |
+| A3 | **The beta's start and intended end date** | `[BETA TERM]` | Terms and the retention representations both reference it |
+| A4 | **Confirm the participant cohort** — 3–5 named U.S. safety professionals across 1–2 organisations | scope of the counsel review | The review is deliberately scoped to this cohort. A larger or non-U.S. cohort changes the documents: §270 recorded U.S.-only, and admitting any non-U.S. participant requires a transfer mechanism and jurisdiction-specific rights disclosures, neither of which exists |
+| A5 | **Decide D-030** — narrowly governed electrical coverage later (option A), or explicit limitation/disclosure during the initial beta (option B) | `PRODUCT-LIMITATIONS.md` | **Sequencing matters.** If option B is chosen, `PRODUCT-LIMITATIONS.md` gains a limitation entry and must change **before** counsel review, not after — otherwise counsel reviews a limitations document that omits a known limitation. See `../current/CAPABILITY-REGISTER.md` section B |
+
+### B. Obtained from counsel
+
+| # | what | note |
+|---|---|---|
+| B1 | **Engage counsel** and deliver [`COUNSEL-REVIEW-PACKET.md`](COUNSEL-REVIEW-PACKET.md) | The packet is prepared and complete: all seven artifacts, a one-page architecture and data-flow summary, the verified service-provider list, and twelve questions ordered by how much each changes the documents |
+| B2 | **Governing law and venue**, determined by counsel | `[GOVERNING LAW]`. Engineering must not infer this from the formation state or from the product owner's residence, and has not |
+| B3 | **Answers to the twelve packet questions** | Two are structural rather than editorial: question 2 (liability allocation) and question 3 (indemnity) correspond to Terms clause 11, which is **deliberately undrafted** — there is no draft language for counsel to edit, by design |
+| B4 | **Counsel approval of all seven artifacts**, reclassifying each from `LEGAL COUNSEL REVIEW REQUIRED BEFORE BETA` | Engineering does not change these classifications. Only counsel's decision does |
+| B5 | **The signed beta acknowledgement instrument**, for out-of-product execution | The §269 Option A decision. Each participant returns a signed acknowledgement **before** their account is created, and the signed copies are retained outside the product |
+
+### C. What engineering will do once A and B are complete
+
+Nothing further is owed before then. On clearance, the work is **execution of an existing
+procedure**, not development:
+[`../current/CONTROLLED-RELEASE-HANDOFF.md`](../current/CONTROLLED-RELEASE-HANDOFF.md),
+fifteen steps, currently blocked at Step 1.
+
+### What engineering deliberately did NOT do at §278
+
+No substantive legal language was edited. No legal fact was inferred. No governing law was
+selected. No document was marked approved, and no classification was changed. The registration
+checkbox at `frontend-next/app/register/page.tsx:79` remains client-side only and **must not**
+be relied upon as evidence of acceptance — there is no record anywhere in the system that any
+user accepted anything, which is precisely why Option A exists.

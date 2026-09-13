@@ -2,6 +2,31 @@
 
 **Status: NOT READY. The blocker is legal, not engineering.**
 
+## §278 — the engineering freeze, in six lines
+
+| | |
+|---|---|
+| **LOCAL PRODUCT BASELINE** | **VALIDATED AND FROZEN** |
+| **ENGINEERING RELEASE READINESS** | **READY** |
+| **LEGAL RELEASE READINESS** | **BLOCKED** |
+| **PRODUCTION RELEASE** | **NOT STARTED** |
+| **CONTROLLED BETA** | **NOT YET AUTHORIZED** |
+| **LIVE PROVIDER TRANSPORT** | **NOT YET EXERCISED** |
+
+The validated baseline is `709ee151b932095020ea69d25daa04a337ccba16`, recorded with its gates,
+digests and remaining items in [`../../verification/current/LOCAL-PRODUCT-BASELINE.json`](../../verification/current/LOCAL-PRODUCT-BASELINE.json).
+Local P0 **0**, local P1 **0**, local P2 **2** (D-029, D-030).
+
+**The baseline is frozen.** It does not change without an explicit product-owner authorization
+tied to a concrete defect or release requirement. Refactors, polish, renames, HazLenz tuning,
+prompt edits, schema changes, compatibility-identifier cleanup, ordinary P3 debt, mass lint
+fixes and repository reorganization are all out of scope until then — not because they are
+worthless, but because each one invalidates the thing that was validated.
+
+What engineering still owes is **execution**, not development:
+[`CONTROLLED-RELEASE-HANDOFF.md`](CONTROLLED-RELEASE-HANDOFF.md) is the authoritative
+procedure, and it is **blocked at Step 1** by the legal gate below.
+
 This document distinguishes *release blockers* from *historical findings*. Everything under
 "Closed" was a blocker and is no longer one; it is recorded so the question is not reopened.
 
@@ -18,12 +43,18 @@ actually gate a release.
 | 2 | **Counsel not engaged** | product owner | The packet is prepared and waiting |
 | 3 | **Terms, Privacy Notice and AI-provider disclosure unapproved** | counsel | Drafted; all still carry `INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW REQUIRED BEFORE BETA` |
 | 4 | **Production migrations not run** | engineering | Must precede deploy — that ordering is the safety property |
-| 5 | **Beta candidate not deployed** | engineering | Production runs `de655d2f…`; the validated candidate is 15 unpushed commits on the beta branch |
+| 5 | **Beta candidate not deployed** | engineering | Production runs `de655d2f…`; the validated candidate `709ee151…` is **41** unpushed commits on the beta branch (was 15 when this row was written; §§275–278 added the rest) |
 | 6 | **Expert execution disabled** | engineering | `EXPERT_EXECUTION_ENABLED=false`. Enabling it is a runbook step, not a default |
 | 7 | **Live provider transport unverified** | engineering | The credential is configured and was validated against the model-list endpoint, which invokes no model. The transport itself has never carried a real analysis in production |
 
 
 Items 1–3 are the real gate. Items 4–7 are a single runbook execution once 1–3 clear.
+
+**§278 re-confirmed 1–3 against the drafts themselves**: all seven still carry
+`LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED`, and all five contracting placeholders remain
+unresolved. Nothing about the legal gate has moved since §271 — which is expected, because
+nothing engineering does can move it. What the product owner must provide or obtain is listed
+in [`../legal/README.md`](../legal/README.md) under *The legal handoff checklist*.
 
 The engine-directory rename that stood here as item 8 was **closed at §274**: the engine now
 lives at `backend/src/hazlenz/`, no active SafeScope route or module remains, and the candidate
