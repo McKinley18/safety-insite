@@ -108,6 +108,14 @@ export default function RiskReviewSection({
                   <button
                     key={`${s.score}-${l.score}`}
                     type="button"
+                    /*
+                     * §276. The cell's only visible content is its score, so to a screen
+                     * reader -- and to any automated walkthrough -- the whole matrix was
+                     * twenty-five unlabelled buttons reading "3", "4", "6"... The label
+                     * states what pressing it actually decides.
+                     */
+                    aria-label={`Severity ${s.score} by likelihood ${l.score}, score ${score}, ${band.label} risk`}
+                    data-testid={`risk-cell-${s.score}-${l.score}`}
                     onClick={() => {
                       setSeverity(s.score);
                       setLikelihood(l.score);

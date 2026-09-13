@@ -9,11 +9,6 @@ import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import {
-  InspectionProgramRecord,
-  getInspectionProgram,
-  seedInspectionProgramIfEmpty,
-} from "@/lib/inspectionProgramStorage";
-import {
   getStoredPlanCode,
   getVerifiedPlanCode,
   hasPlanEntitlement,
@@ -99,26 +94,37 @@ function formatSavedAt(value: string) {
     + date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
 }
 
-function getProgramStatus(programs: InspectionProgramRecord[]) {
+/**
+ * §276 / D-015 — THE COUNTS ARE THE USER'S OWN INSPECTIONS.
+ *
+ * §275 measured this page reporting **3 SCHEDULED** against **1** stored inspection, and
+ * recorded a guess at the cause ("the number tracked the three tasks created at the time").
+ * The real cause is worse: `seedInspectionProgramIfEmpty()` wrote three fabricated records
+ * -- "Workplace Exam", "General Safety Inspection", "Regulatory Review" -- into
+ * `localStorage` on first visit, and these tiles counted them. A brand-new account with no
+ * inspections at all was shown three scheduled inspections it had never scheduled, on the
+ * page whose job is to tell it what work is outstanding.
+ *
+ * Nothing else in the product read that store. It existed only to populate these four
+ * numbers, so it is gone and the tiles are derived from the inspections the server actually
+ * holds. The labels changed with them: `scheduled`, `in progress` and `action required` were
+ * states the product does not have, so no honest number could have been put under them.
+ * `draft`, `in_review`, `completed` and `archived` are the states an inspection is in.
+ */
+function getInspectionCounts(inspections: PersistedInspection[]) {
+  const countOf = (status: PersistedInspection["status"]) =>
+    inspections.filter((inspection) => inspection.status === status).length;
+
   return {
-    scheduled: programs.length || 0,
-    inProgress: programs.filter((program) =>
-      String(program.status || "").toLowerCase().includes("progress"),
-    ).length,
-    review: programs.filter((program) =>
-      String(program.status || "").toLowerCase().includes("review"),
-    ).length,
-    actionRequired: programs.filter((program) =>
-      String(program.status || "").toLowerCase().includes("action"),
-    ).length,
+    draft: countOf("draft"),
+    inReview: countOf("in_review"),
+    completed: countOf("completed"),
+    saved: inspections.filter((inspection) => inspection.status !== "archived").length,
   };
 }
 
 export default function InspectionsPage() {
   const router = useRouter();
-  const [inspectionPrograms, setInspectionPrograms] = useState<
-    InspectionProgramRecord[]
-  >([]);
   const [selectedWorkflow, setSelectedWorkflow] = useState(workflowOptions[0]);
   const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>(null);
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
@@ -136,9 +142,7 @@ export default function InspectionsPage() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    const seeded = seedInspectionProgramIfEmpty();
     queueMicrotask(() => {
-      setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
       setPlanCode(getStoredPlanCode());
       const storedScope = window.localStorage.getItem("sentinel_regulatory_scope") || "all";
       setRegulatoryScope(storedScope);
@@ -170,9 +174,9 @@ export default function InspectionsPage() {
       });
   }, []);
 
-  const programStatus = useMemo(
-    () => getProgramStatus(inspectionPrograms),
-    [inspectionPrograms],
+  const inspectionCounts = useMemo(
+    () => getInspectionCounts(persistedInspections),
+    [persistedInspections],
   );
 
   async function startInspection(workflow = selectedWorkflow) {
@@ -299,10 +303,10 @@ export default function InspectionsPage() {
 
         <div className="mx-auto mt-4 grid max-w-[390px] grid-cols-2 justify-center gap-2 sm:gap-2.5">
           {[
-            [String(programStatus.scheduled), "Scheduled"],
-            [String(programStatus.inProgress), "In Progress"],
-            [String(programStatus.review), "Awaiting Review"],
-            [String(programStatus.actionRequired), "Action Required"],
+            [String(inspectionCounts.draft), "In Progress"],
+            [String(inspectionCounts.inReview), "In Review"],
+            [String(inspectionCounts.completed), "Completed"],
+            [String(inspectionCounts.saved), "Saved"],
           ].map(([value, label]) => (
             <div
               key={label}

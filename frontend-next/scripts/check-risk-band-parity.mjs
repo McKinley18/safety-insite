@@ -2,7 +2,7 @@
 /**
  * Risk-band parity check.
  *
- * The frontend cannot import `backend/src/safescope-v2/risk/risk-profiles.ts` (separate package,
+ * The frontend cannot import `backend/src/hazlenz/risk/risk-profiles.ts` (separate package,
  * separate build), so `lib/inspection/riskBands.ts` mirrors it. A mirror nobody verifies is how
  * the UI came to display "Moderate" for a 5x5 score of 12 while the engine, the saved finding and
  * the report all said "High".
@@ -15,7 +15,18 @@ import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const backendProfiles = resolve(here, "../../backend/src/safescope-v2/risk/risk-profiles.ts");
+/**
+ * §276. This pointed at `backend/src/safescope-v2/risk/risk-profiles.ts`, which §274
+ * deleted when it removed the retired namespace. The gate therefore threw ENOENT on every
+ * run -- and a gate that cannot open its own input is not a gate, it is a gap.
+ *
+ * It is the same defect §275 recorded as D-018 (32 script entries pointing at the deleted
+ * directory), in a file that sweep did not reach because the path is inside the script
+ * rather than in `package.json`. It matters here in particular: this is the check that
+ * holds the browser's risk-band table to the server's profiles, which is the arithmetic
+ * D-008 turns on.
+ */
+const backendProfiles = resolve(here, "../../backend/src/hazlenz/risk/risk-profiles.ts");
 const frontendBands = resolve(here, "../lib/inspection/riskBands.ts");
 
 function fail(message) {
@@ -153,7 +164,7 @@ for (const label of dueLabels) {
 }
 
 if (process.exitCode) {
-  console.error("\nThe UI risk bands no longer match backend/src/safescope-v2/risk/risk-profiles.ts.");
+  console.error("\nThe UI risk bands no longer match backend/src/hazlenz/risk/risk-profiles.ts.");
   console.error("Update lib/inspection/riskBands.ts to match the server profile exactly.");
   process.exit(1);
 }

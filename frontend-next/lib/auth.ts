@@ -238,6 +238,18 @@ export function setAuthUser(user: AuthUser) {
 export function clearAuthSession() {
   if (typeof window === "undefined") return;
 
+  /**
+   * §276. Drop the cached plan tier and billing read with the session.
+   *
+   * `getBillingMe()` now shares one in-flight read and reuses a result for a few seconds to
+   * collapse a page's mount storm. Without this, the first read after a sign-out -- or
+   * after the next account signs in on the same device -- could be answered from the
+   * previous account's response. The window is small, and a small window for showing one
+   * account another account's plan is still the wrong size.
+   */
+  void import("./planEntitlements").then((module) => module.invalidateVerifiedPlanCode()).catch(() => {});
+  void import("./billing").then((module) => module.clearBillingCache()).catch(() => {});
+
   for (const key of AUTH_TOKEN_KEYS) {
     window.localStorage.removeItem(key);
   }

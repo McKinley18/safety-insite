@@ -201,6 +201,32 @@ export class HazLenzService {
       }
 
       switch (questionId) {
+        /**
+         * §276. THE QUESTION THE ENGINE ACTUALLY ASKS.
+         *
+         * `clarificationQuestions[0].id` is `jurisdiction` -- "Which regulatory authority
+         * governs this inspection site?", `decisionCritical: true`, material to
+         * standard-applicability, risk and corrective action. This switch had a case for
+         * `jurisdiction-work-environment` and none for `jurisdiction`, so the answer fell
+         * to `default` and was recorded as
+         *
+         *     { questionId: "jurisdiction", reason: "Unknown question ID ignored." }
+         *
+         * while the evidence layer -- which reads `clarificationAnswers` directly -- applied
+         * it and returned `jurisdictionProvenance: USER_CONFIRMED`. The analysis was right
+         * and its own record of how it got there said the opposite. A reviewer reading that
+         * state would conclude their decision-critical answer had been discarded.
+         *
+         * This makes the structured observation agree with the evidence layer. It does not
+         * confer any new authority: jurisdiction was already user-confirmed by the path that
+         * actually consumes it.
+         */
+        case "jurisdiction":
+          if (first === "MSHA") structured.jurisdiction = "msha";
+          else if (first === "OSHA Construction") structured.jurisdiction = "osha-construction";
+          else if (first === "OSHA General Industry") structured.jurisdiction = "osha-general-industry";
+          addFact("jurisdiction", structured.jurisdiction || "unknown", questionId);
+          break;
         case "jurisdiction-work-environment":
           if (first === "Mine or quarry") {
             structured.jurisdiction = "msha";

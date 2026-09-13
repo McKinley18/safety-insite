@@ -215,17 +215,24 @@ export default function ProfilePage() {
 
           {!identityEditing ? (
             <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white text-slate-900 shadow-none ring-1 ring-white/70">
+              {/*
+                §276. `uppercase` on the wrapper applied to the VALUE as well as the label,
+                so the account showed its owner's own name and email shouted back at them:
+                "VALIDATION-276-A@EXAMPLE.TEST". A label is styling; a value is the user's
+                data, and an email address in particular is case-preserving. The label keeps
+                its uppercase treatment and the value is rendered as it is stored.
+              */}
               <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
-                <SummaryRow label="First Name" value={firstName || "Not provided"} />
+                <SummaryRow label="First Name" value={firstName || "Not provided"} valueClassName="normal-case text-[#102A43] dark:text-slate-100" />
               </div>
               <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
-                <SummaryRow label="Last Name" value={lastName || "Not provided"} />
+                <SummaryRow label="Last Name" value={lastName || "Not provided"} valueClassName="normal-case text-[#102A43] dark:text-slate-100" />
               </div>
               <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
-                <SummaryRow label="Email Address" value={profileEmail || "Not provided"} />
+                <SummaryRow label="Email Address" value={profileEmail || "Not provided"} valueClassName="normal-case text-[#102A43] dark:text-slate-100" />
               </div>
               <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
-                <SummaryRow label="Plan" value={planLabel} last />
+                <SummaryRow label="Plan" value={planLabel} valueClassName="normal-case text-[#102A43] dark:text-slate-100" last />
               </div>
             </div>
           ) : (

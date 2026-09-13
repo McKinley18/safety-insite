@@ -20,7 +20,7 @@
     "check:risk-band-parity": "node scripts/check-risk-band-parity.mjs",
     "check:effective-severity-parity": "node scripts/check-effective-severity-parity.mjs",
     "check:expert-authority-boundary": "node scripts/check-expert-frontend-authority-boundary.mjs",
-    "test:expert-presentation": "tsx lib/expert/__tests__/expertPresentation.test.ts",
+    "test:expert-presentation": "npx tsx lib/expert/__tests__/expertPresentation.test.ts",
     "test:calendar-reconciliation": "npx tsx lib/calendar/__tests__/calendarReconciliation.test.ts",
     "verify:offline-field-capture": "node scripts/verify-offline-field-capture.mjs",
     "verify:offline-shell-cold-start": "node scripts/verify-offline-shell-cold-start.mjs",

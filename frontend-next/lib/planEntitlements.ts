@@ -230,6 +230,32 @@ export function requiredPlanForArea(area: ProtectedArea) {
 
 
 /**
+ * §276. In-flight de-duplication and a short freshness window for the plan lookup.
+ *
+ * §276 Part 5F measured the Settings page issuing **ten** identical `GET /billing/status`
+ * requests for one visit, and the Inspections page four: several independent components
+ * each call `getVerifiedPlanCode()` on mount and every call went to the network. Nothing
+ * was wrong with any one of them; there was simply nothing coordinating them.
+ *
+ * Concurrent callers now share one request, and a result is reused for a few seconds. This
+ * is UI VISIBILITY ONLY and confers nothing: the backend entitlement guards remain the
+ * source of truth for protected access, and they are evaluated per request regardless of
+ * what this returns. The window is deliberately short -- long enough to collapse a single
+ * page's mount storm, too short to keep showing a stale plan after an upgrade.
+ */
+const PLAN_CODE_FRESHNESS_MS = 5000;
+let planCodeInFlight: Promise<BillingTier> | null = null;
+let planCodeCachedAt = 0;
+let planCodeCached: BillingTier | null = null;
+
+/** Drops the cached plan so the next read goes to the server. Used after sign-in/sign-out. */
+export function invalidateVerifiedPlanCode() {
+  planCodeInFlight = null;
+  planCodeCachedAt = 0;
+  planCodeCached = null;
+}
+
+/**
  * Returns the best available billing tier from the backend.
  * Falls back to local auth-user plan only when billing cannot be loaded.
  *
@@ -237,6 +263,27 @@ export function requiredPlanForArea(area: ProtectedArea) {
  * source of truth for protected API access.
  */
 export async function getVerifiedPlanCode(): Promise<BillingTier> {
+  if (typeof window === "undefined") return "free";
+
+  if (planCodeCached && Date.now() - planCodeCachedAt < PLAN_CODE_FRESHNESS_MS) {
+    return planCodeCached;
+  }
+  if (planCodeInFlight) return planCodeInFlight;
+
+  planCodeInFlight = resolveVerifiedPlanCode()
+    .then((tier) => {
+      planCodeCached = tier;
+      planCodeCachedAt = Date.now();
+      return tier;
+    })
+    .finally(() => {
+      planCodeInFlight = null;
+    });
+
+  return planCodeInFlight;
+}
+
+async function resolveVerifiedPlanCode(): Promise<BillingTier> {
   if (typeof window === "undefined") return "free";
 
   // Local beta access deliberately bypasses live billing. Do not let the

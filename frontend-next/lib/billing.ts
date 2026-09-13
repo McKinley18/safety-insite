@@ -98,11 +98,56 @@ export function isBillingTier(value?: string | null): value is BillingCheckoutTi
   return normalized === "pro";
 }
 
-export async function getBillingMe() {
+/**
+ * §276. One in-flight billing read, shared, with a short freshness window.
+ *
+ * Part 5F measured a single Settings visit issuing **six** identical
+ * `GET /billing/status` requests: the page, the billing panel, the app shell and several
+ * entitlement gates each ask independently on mount, and every ask went to the network.
+ * Nothing was wrong with any one caller; there was nothing coordinating them.
+ *
+ * De-duplication lives HERE rather than in `getVerifiedPlanCode` because several callers
+ * reach this function directly. It is UI VISIBILITY ONLY: backend entitlement guards are
+ * evaluated per request and are unaffected by anything cached here. The window is short on
+ * purpose -- long enough to collapse one page's mount storm, too short to keep showing a
+ * stale plan after an upgrade -- and `clearBillingCache()` drops it on sign-out so one
+ * account can never be answered from another's response.
+ */
+const BILLING_FRESHNESS_MS = 5000;
+let billingInFlight: Promise<BillingResponse> | null = null;
+let billingCached: BillingResponse | null = null;
+let billingCachedAt = 0;
+
+export function clearBillingCache() {
+  billingInFlight = null;
+  billingCached = null;
+  billingCachedAt = 0;
+}
+
+export async function getBillingMe(): Promise<BillingResponse> {
   if (isLocalDevAuthBypass()) {
     return getLocalDevBillingMe();
   }
 
+  if (billingCached && Date.now() - billingCachedAt < BILLING_FRESHNESS_MS) {
+    return billingCached;
+  }
+  if (billingInFlight) return billingInFlight;
+
+  billingInFlight = fetchBillingMe()
+    .then((value) => {
+      billingCached = value;
+      billingCachedAt = Date.now();
+      return value;
+    })
+    .finally(() => {
+      billingInFlight = null;
+    });
+
+  return billingInFlight;
+}
+
+async function fetchBillingMe(): Promise<BillingResponse> {
   const response = await apiFetch(`${API_BASE_URL}/billing/status`, {
     headers: authHeaders(),
   });
