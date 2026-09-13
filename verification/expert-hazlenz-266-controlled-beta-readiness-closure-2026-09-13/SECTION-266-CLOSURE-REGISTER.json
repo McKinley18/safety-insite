@@ -1,0 +1,87 @@
+{
+  "artifact": "SECTION-266-CONTROLLED-BETA-CLOSURE-REVIEW",
+  "generated": "2026-09-13",
+  "kind": "WHOLE_PRODUCT_BETA_READINESS_REVIEW",
+  "verdict": "NOT_YET_READY",
+  "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
+  "case": "B",
+  "providerCalls": 0,
+  "productionDatabaseOperations": 0,
+  "productionCodeChanges": 0,
+  "pushes": 0,
+  "tags": 0,
+  "deploys": 0,
+  "predecessor": {
+    "commit265": "0ebafb5f",
+    "packageDigest265": "d6ed5f7153e9b2031204b4b19f7dfad3e0dc715c6ccbed7738a4ad986aaab237",
+    "successorIdentity259": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee"
+  },
+  "candidateIntegrity": {
+    "identityBefore": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "identityAfter": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "elementDrift": 0,
+    "protectedModulesPresent": 29,
+    "protectedModulesModifiedBy266": 0
+  },
+  "authoritativeRegister": "verification/current/BETA-BLOCKERS.json",
+  "competingRegisterCreated": false,
+  "digestIndexDiscrepancy": {
+    "classification": "CURRENT_STATE_INDEX_METADATA_DEFECT",
+    "frozenEvidenceCorruption": false,
+    "rootCause": "0be6f8c3… is the §262 package digest; §264 carried it forward into the living index",
+    "reproducible264": "a5cc5de113566d79de071457d245b735d87cd70ac38fa456420a3c0cad778ec3",
+    "reproducible262": "0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae",
+    "allPackagesVerifyClean": true,
+    "correctedAt": "§265; root cause recorded at §266",
+    "correctionLimitedToMutableSurface": true,
+    "historicalMembersModified": 0
+  },
+  "worktreeIncident": {
+    "processControlIncident": {
+      "what": "git checkout -- used in §265 contrary to CLAUDE.md",
+      "contentLost": false,
+      "classification": "PROCESS_CONTROL_INCIDENT"
+    },
+    "siblingChurn": {
+      "classification": "A_LOCAL_WORKTREE_HYGIENE",
+      "betaReadinessIntegrityRisk": false,
+      "evidence": [
+        "' 3.xml' birth 2026-08-26, inode 15701482 — predates the session",
+        "all copies byte-identical d3dc555e…b182",
+        "tracked file clean vs HEAD",
+        "SHA256SUMS.txt references only the canonical path",
+        "no ' N.xml' duplicate was ever tracked in any commit",
+        "2 such files repo-wide, one directory"
+      ],
+      "attributionEstablished": false,
+      "caseDApplies": false
+    }
+  },
+  "measuredProbe": {
+    "method": "disposable test_insite_* database, substituted transport",
+    "providerCalls": 0,
+    "repoFilesLeftBehind": 0,
+    "results": {
+      "shippedClientExpertRun": "409 A newer analysis request already exists; 1 provider leg spent; execution ANALYSIS_FAILED/PERSISTENCE_CONFLICT",
+      "expertAtCorrectVersion": "201; deterministic row becomes superseded, Expert becomes current",
+      "inspectionPayloadExposure": "GET /inspections/:id serves server_authored resultSnapshot incl. posture; entitlement guard ABSENT"
+    }
+  },
+  "liveSmoke": {
+    "authorizedToRun": false,
+    "maxProviderLegs": 2,
+    "spendCeilingUsd": 0.5,
+    "successOutcomes": [
+      "ADMIT",
+      "REFUSE",
+      "PRESERVE_UNRESOLVED"
+    ],
+    "semanticBenchmark": false
+  },
+  "cohort": {
+    "size": "3-5 named safety professionals across 1-2 organizations",
+    "regulatoryScope": "OSHA General Industry first; Construction after monitoring; MSHA last",
+    "unpaid": "provisionable via pilot entitlement grants with no plan bypass"
+  },
+  "nextRecommendedAuthorization": "§267 — Expert product integration defect closure (P0-1, P0-2, inspection-payload exposure)"
+}

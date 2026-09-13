@@ -1,8 +1,8 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_STATE",
-  "establishedBy": "§263, refreshed at §265",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266",
   "role": "POINTER AND INDEX. This file states current truth and points at the evidence that established it. It does not reproduce evidence, and a future session should be able to answer the ordinary questions from this file alone without reading §§229-262.",
-  "asOf": "2026-09-12",
+  "asOf": "2026-09-13",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
   "candidate": {
     "identity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
@@ -144,7 +144,8 @@
     "predecessorPackageDigest264": {
       "reproducible": "a5cc5de113566d79de071457d245b735d87cd70ac38fa456420a3c0cad778ec3",
       "previouslyRecordedHere": "0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae",
-      "note": "the previously recorded value does not reproduce under the established method, which derives §263's recorded digest exactly. The §264 package itself verifies clean (shasum -c REPORT-264.sha256, 4/4 OK), so the frozen bytes are intact and only this living index held a value that cannot be derived from them. Recorded rather than silently replaced. See §265 report section 9."
+      "note": "the previously recorded value does not reproduce under the established method, which derives §263's recorded digest exactly. The §264 package itself verifies clean (shasum -c REPORT-264.sha256, 4/4 OK), so the frozen bytes are intact and only this living index held a value that cannot be derived from them. Recorded rather than silently replaced. See §265 report section 9.",
+      "rootCause": "ESTABLISHED AT §266: 0be6f8c3… is the §262 package digest, reproducible today from verification/expert-hazlenz-262-…/REPORT-262.sha256. §264 carried §262's value forward into this living index instead of computing its own. This is a CURRENT-STATE INDEX METADATA DEFECT, not frozen-evidence corruption: all six §26x packages verify byte-clean under shasum -c, and the §265 commit touched no frozen package member."
     }
   },
   "confirmationTrigger": {
@@ -257,11 +258,25 @@
     "historicalArchiveIndex": "verification/expert-hazlenz-229-baseline-compartmentalization-2026-09-11/SECTION-229-HISTORICAL-ARCHIVE-INDEX.md",
     "protectedIdentities": "PROTECTED-IDENTITIES.json",
     "humanConfirmation264": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/",
-    "frontendProductWorkflow265": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/"
+    "frontendProductWorkflow265": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/",
+    "betaReadinessClosure266": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/"
   },
-  "nextAuthorizedWork": "Beta readiness closure review. The two §263 beta blockers are now one: report generation remains environmentally blocked. Carried forward and not blocking the local workflow: the remaining §260 section 11 downstream guards, the governed-evidence loader, reviewer revision of a settled analysis, and everything under knownGaps that requires a live environment.",
+  "nextAuthorizedWork": "§267 — Expert product integration defect closure: server-side requestVersion allocation, producer-scoped analysis currency, and removal of the raw Expert snapshot from the inspection payload. Until it closes, the Expert workflow does not function against a real observation, which makes every other closure lane premature. LEGAL and LIVE INFRASTRUCTURE lanes have no engineering prerequisite and should start in parallel immediately.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"
+  },
+  "betaReadiness": {
+    "reviewedBy": "§266",
+    "verdict": "NOT_YET_READY",
+    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
+    "architectureSound": true,
+    "p0Count": 9,
+    "register": "verification/current/BETA-BLOCKERS.json — the ONE authoritative register",
+    "evidence": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
+    "productionCodeChanged": 0,
+    "providerCalls": 0,
+    "productionDatabaseOperations": 0,
+    "packageDigest266": "fadd0eeebe13e007f64cef767c71262ee046226259de4b5e8a4615bba6eb508e"
   }
 }

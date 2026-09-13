@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CAPABILITY_REGISTER",
-  "establishedBy": "§263, refreshed at §265",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266",
   "role": "ONE row per capability. The single answer to 'what can this thing do, and what is that claim worth'. Supersedes reading §§229-262 to reconstruct it.",
   "statuses": {
     "ACCEPTED": "proven and usable as it stands",
@@ -171,5 +171,54 @@
       "boundary": "this is a deliberate beta scope decision, NOT a statement that the decision is permanently irreversible",
       "nextAction": "a product-owner decision, including what re-opening means for a downstream finding already finalized on the settled conclusion"
     }
-  ]
+  ],
+  "betaReadinessDomains": {
+    "assignedBy": "§266",
+    "vocabulary": [
+      "READY",
+      "READY_WITH_ACCEPTED_LIMITATION",
+      "BLOCKER",
+      "UNVERIFIED_LIVE",
+      "DEFERRED_POST_BETA"
+    ],
+    "domains": {
+      "1_expertCapability": "READY_WITH_ACCEPTED_LIMITATION",
+      "2_deterministicSafetyContainment": "READY",
+      "3_humanConfirmationBoundary": "READY",
+      "4_frontendExpertWorkflow": "BLOCKER",
+      "5_downstreamAuthorityContainment": "READY_WITH_ACCEPTED_LIMITATION",
+      "6_authentication": "READY",
+      "7_authorizationTenantIsolation": "READY",
+      "8_rolesEntitlement": "READY",
+      "9_throttlingAbuseControls": "READY_WITH_ACCEPTED_LIMITATION",
+      "10_billingSubscriptions": "READY_WITH_ACCEPTED_LIMITATION",
+      "11_planAndSeatEnforcement": "READY",
+      "12_objectStorage": "BLOCKER",
+      "13_productionDatabaseMigrations": "BLOCKER",
+      "14_productionDeployment": "BLOCKER",
+      "15_runningProductionSha": "UNVERIFIED_LIVE",
+      "16_productionInstanceSizing": "UNVERIFIED_LIVE",
+      "17_providerTransport": "UNVERIFIED_LIVE",
+      "18_providerCredentialsConfig": "UNVERIFIED_LIVE",
+      "19_providerCostSpendGuards": "BLOCKER",
+      "20_loggingErrorMonitoring": "BLOCKER",
+      "21_auditability": "READY",
+      "22_rollback": "READY_WITH_ACCEPTED_LIMITATION",
+      "23_releaseUpdateMechanism": "BLOCKER",
+      "24_backupsRetention": "UNVERIFIED_LIVE",
+      "25_privacyControls": "BLOCKER",
+      "26_betaTermsLegalDisclosures": "BLOCKER",
+      "27_aiProviderDisclosure": "BLOCKER",
+      "28_advertisingPerformanceClaims": "READY_WITH_ACCEPTED_LIMITATION",
+      "29_securitySensitiveSecretsConfig": "READY",
+      "30_supportIncidentResponse": "DEFERRED_POST_BETA",
+      "31_feedbackCapture": "READY_WITH_ACCEPTED_LIMITATION",
+      "32_versionProvenance": "READY_WITH_ACCEPTED_LIMITATION",
+      "33_historicalEvidenceIntegrity": "READY",
+      "34_currentStateDocumentationIntegrity": "READY",
+      "35_uxReadiness": "BLOCKER"
+    },
+    "blockerDomains": 10,
+    "note": "A BLOCKER domain does not mean the domain is architecturally wrong. Every one of the ten maps to a finite item in BETA-BLOCKERS.json, and none requires redesign."
+  }
 }
