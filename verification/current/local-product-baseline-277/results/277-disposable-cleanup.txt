@@ -1,0 +1,62 @@
+registry sandbox: /var/folders/vx/966zplm54zjbq90fpd851h0h0000gn/T/insite-277-registry-xjNtxP/disposable-resources.json
+
+ok    S1 both databases exist to begin with  [test_insite_1789334162314_bystander, test_insite_1789335162313_owned]
+ok    S2 only the new run's database is registered  [test_insite_1789335162313_owned]
+ok    S3 the bystander is NOT registered, exactly as a crashed run would leave it
+ok    C1 cleanup of the new run succeeds  [{
+  "action": "run 8bfbf042-ebe9-4764-ad74-3a9d5fcd48d9",
+  "dryRun": false,
+  "targets": 1,
+  "results": [
+    {
+      "name": "test_insite_1789335162313_owned",
+      "runId": "8bfbf042-ebe9-4764-ad]
+ok    C2 THE OLDER UNRELATED DATABASE SURVIVES  [test_insite_1789334162314_bystander — §276 dropped four databases of exactly this shape]
+ok    C3 the run's own database is gone  [test_insite_1789335162313_owned]
+ok    C4 and its ledger row is released
+ok    P1 cleanup enumerates no databases from the server
+ok    P2 it accepts no pattern, prefix or regex argument
+ok    P3 the registry exposes no pattern-based ownership question
+ok    A1 a dry run reports what it would remove and removes nothing  [{
+  "action": "abandoned",
+  "dryRun": true,
+  "targets": 1,
+  "results": [
+    {
+      "name": "test_insite_1789335162313_orphan",
+      "runId": "2fd8fd14-722]
+ok    A2 the abandoned resource is removed  [test_insite_1789335162313_orphan]
+ok    A3 and the bystander STILL survives that too  [test_insite_1789334162314_bystander]
+ok    D1 the default mode deletes nothing
+ok    D2 and reports the outstanding resource  [{
+  "registry": "disposable-resources",
+  "totalRows": 3,
+  "outstanding": 1,
+  "released": 2,
+  "resources": [
+    {
+      "name": "test_insite_1789335162313_o]
+/Users/mckinley/Desktop/Safety_InSite/backend/scripts/disposable/registry.ts:81
+    throw new Error(
+          ^
+Error: §277 REFUSED: the disposable-resource registry at /var/folders/vx/966zplm54zjbq90fpd851h0h0000gn/T/insite-277-registry-xjNtxP/disposable-resources.json could not be read. Refusing to proceed: an unreadable ledger is not an empty one, and treating it as empty would make every existing resource look unowned.
+    at readRegistry (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/disposable/registry.ts:81:11)
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/disposable/cleanup.ts:74:27)
+    at Object.<anonymous> (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/disposable/cleanup.ts:138:1)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module.m._compile (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+ok    R1 a corrupted registry causes a refusal, not an empty-ledger assumption  [/Users/mckinley/Desktop/Safety_InSite/backend/scripts/disposable/registry.ts:81
+    throw new Error(
+          ^
+Error: §277 REFUSED: the disposable-resource re]
+ok    R2 and nothing was deleted during that refusal  [test_insite_1789334162314_bystander]
+ok    Z1 the gate removes its own fixtures
+ok    Z2 and leaves no registry sandbox behind
+
+19 passed, 0 failed.
+§277 disposable-resource cleanup safety: PASS

@@ -1,0 +1,23 @@
+{
+  "database": "test_insite_validation_275",
+  "tables": {
+    "security_audit_events": 302,
+    "refresh_tokens": 67,
+    "migrations": 53,
+    "inspection_findings": 53,
+    "hazlenz_analyses": 46,
+    "observations": 39,
+    "inspection": 39,
+    "site": 36,
+    "audit_logs": 31,
+    "corrective_actions": 30,
+    "tasks": 25,
+    "human_reviews": 21,
+    "storage_objects": 20,
+    "inspection_report_versions": 13,
+    "inspection_reports": 12,
+    "user": 4,
+    "entitlement_grants": 3,
+    "expert_analysis_executions": 3
+  }
+}

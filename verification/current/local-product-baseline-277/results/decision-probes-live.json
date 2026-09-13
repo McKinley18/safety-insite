@@ -1,0 +1,171 @@
+{
+  "D-023": {
+    "withoutAssertion": {
+      "decisions": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "status": "UNKNOWN",
+          "confidence": 0.45,
+          "missing": [
+            "moving or accessible energy"
+          ],
+          "predicates": [
+            {
+              "name": "general-industry jurisdiction",
+              "status": "SUPPORTED",
+              "provenance": null
+            },
+            {
+              "name": "machine guard condition",
+              "status": "SUPPORTED",
+              "provenance": null
+            },
+            {
+              "name": "moving or accessible energy",
+              "status": "UNKNOWN",
+              "provenance": null
+            },
+            {
+              "name": "current condition",
+              "status": "SUPPORTED",
+              "provenance": null
+            }
+          ],
+          "explanation": "Candidate only; missing: moving or accessible energy."
+        }
+      ],
+      "hazards": [
+        {
+          "domainId": "machine_guarding",
+          "confidence": 0.2
+        }
+      ],
+      "routingNotes": [
+        "Decomposed fragment \"the point of operation guard has been removed from the press brake in bay 2\" routed to machine_guarding"
+      ],
+      "clarificationAnswerState": {
+        "answeredQuestionIds": [],
+        "invalidAnswers": []
+      }
+    },
+    "withExplicitAssertion": {
+      "decisions": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "status": "SUPPORTED",
+          "confidence": 0.96,
+          "missing": [],
+          "predicates": [
+            {
+              "name": "general-industry jurisdiction",
+              "status": "SUPPORTED",
+              "provenance": null
+            },
+            {
+              "name": "machine guard condition",
+              "status": "SUPPORTED",
+              "provenance": null
+            },
+            {
+              "name": "moving or accessible energy",
+              "status": "SUPPORTED",
+              "provenance": "human_asserted"
+            },
+            {
+              "name": "current condition",
+              "status": "SUPPORTED",
+              "provenance": null
+            }
+          ],
+          "explanation": "Supported by submitted evidence for OSHA General Industry machine guarding; qualified review remains required. One predicate was settled by an explicit answer from a person rather than by the observation: moving or accessible energy."
+        }
+      ],
+      "hazards": [
+        {
+          "domainId": "machine_guarding",
+          "confidence": 0.2
+        }
+      ],
+      "routingNotes": [
+        "Decomposed fragment \"the point of operation guard has been removed from the press brake in bay 2\" routed to machine_guarding"
+      ],
+      "clarificationAnswerState": {
+        "answeredQuestionIds": [
+          "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy"
+        ],
+        "invalidAnswers": []
+      }
+    },
+    "withGenericConfirmation": {
+      "decisions": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "status": "UNKNOWN",
+          "confidence": 0.45,
+          "missing": [
+            "moving or accessible energy"
+          ],
+          "predicates": [
+            {
+              "name": "general-industry jurisdiction",
+              "status": "SUPPORTED",
+              "provenance": null
+            },
+            {
+              "name": "machine guard condition",
+              "status": "SUPPORTED",
+              "provenance": null
+            },
+            {
+              "name": "moving or accessible energy",
+              "status": "UNKNOWN",
+              "provenance": null
+            },
+            {
+              "name": "current condition",
+              "status": "SUPPORTED",
+              "provenance": null
+            }
+          ],
+          "explanation": "Candidate only; missing: moving or accessible energy."
+        }
+      ],
+      "hazards": [
+        {
+          "domainId": "machine_guarding",
+          "confidence": 0.2
+        }
+      ],
+      "routingNotes": [
+        "Decomposed fragment \"the point of operation guard has been removed from the press brake in bay 2\" routed to machine_guarding"
+      ],
+      "clarificationAnswerState": {
+        "answeredQuestionIds": [
+          "finding-confirmation"
+        ],
+        "invalidAnswers": [
+          {
+            "questionId": "finding-confirmation",
+            "reason": "Unknown question ID ignored."
+          }
+        ]
+      }
+    }
+  },
+  "D-024b": {
+    "safeObservation": {
+      "decisions": [],
+      "hazards": [],
+      "routingNotes": [
+        "Decomposed fragment \"isolated at the wall\" routed to ground_control",
+        "Preserved independently evidenced active hot-work mechanism alongside adjacent hazards.",
+        "Not proposed as a finding: hot_work was assessed SAFE_VERIFIED from the observation's own wording.",
+        "Not proposed as a finding: ground_control was routed at confidence 0.2 on [\"wall\"] with no governed standard, which is below the 0.5 customer-visible routing floor."
+      ],
+      "clarificationAnswerState": {
+        "answeredQuestionIds": [],
+        "invalidAnswers": []
+      }
+    }
+  }
+}

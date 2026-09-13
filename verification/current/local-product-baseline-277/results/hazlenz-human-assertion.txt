@@ -1,0 +1,62 @@
+--- A: generic confirmation does not establish a fact ---
+PASS A0 the predicate starts genuinely unknown
+PASS A0b and the decision is a candidate, not supported
+PASS A1 an "agree with finding" acceptance leaves the predicate UNKNOWN
+PASS A2 an "agree with finding" acceptance leaves the decision a candidate
+PASS A3 an "agree with finding" acceptance claims no human provenance
+PASS A1 a bare yes with no question named leaves the predicate UNKNOWN
+PASS A2 a bare yes with no question named leaves the decision a candidate
+PASS A3 a bare yes with no question named claims no human provenance
+PASS A1 a review decision leaves the predicate UNKNOWN
+PASS A2 a review decision leaves the decision a candidate
+PASS A3 a review decision claims no human provenance
+PASS A1 a settlement-shaped acceptance leaves the predicate UNKNOWN
+PASS A2 a settlement-shaped acceptance leaves the decision a candidate
+PASS A3 a settlement-shaped acceptance claims no human provenance
+PASS A1 an empty answer to the right question leaves the predicate UNKNOWN
+PASS A2 an empty answer to the right question leaves the decision a candidate
+PASS A3 an empty answer to the right question claims no human provenance
+PASS A4 echoing engine-extracted facts back as user-confirmed settles no predicate
+
+--- B: an explicit factual answer may establish the fact ---
+PASS B1 the named predicate becomes SUPPORTED
+PASS B2 with provenance human_asserted
+PASS B3 naming the question the person answered
+PASS B4 the decision resolves from candidate to supported
+PASS B5 nothing is left missing
+PASS B6 an explicit NO contradicts the predicate rather than supporting it
+PASS B7 and still carries human provenance
+PASS B8 "Not sure" leaves the predicate UNKNOWN
+PASS B9 and claims no human settlement
+
+--- B: an assertion settles the unknown, never the observed ---
+PASS B10 a predicate the OBSERVATION established is not overturned by an answer
+PASS B11 and does not acquire human provenance
+
+--- C: a severity or action override moves no predicate ---
+PASS C1 a severity override leaves every predicate as the evidence left it
+PASS C1 a matrix confirmation leaves every predicate as the evidence left it
+PASS C1 a corrective-action confirmation leaves every predicate as the evidence left it
+PASS C1 an Expert settlement decision leaves every predicate as the evidence left it
+PASS C2 an assertion about one predicate leaves the others without human provenance
+PASS C3 and does not change their statuses
+
+--- D: the provenance is visible and auditable ---
+PASS D1 the assertion is recorded as an evidence fact
+PASS D2 under a source that is NOT user_confirmation
+PASS D3 naming the question and the answer
+PASS D4 the decision SAYS a person settled a predicate, in the sentence a reviewer reads
+PASS D5 and names which predicate
+PASS D6 a decision with no assertion carries no such sentence
+PASS D7 a generic confirmation leaves no human-assertion fact behind
+
+--- the assertion channel excludes what it must ---
+PASS E1 a jurisdiction predicate question is not routed through this channel
+PASS E2 the consolidated jurisdiction question is not either
+PASS E3 a non-predicate question id is ignored
+PASS E4 a predicate question IS recognised
+PASS E5 the slugifier round-trips the predicate name the question id was built from
+
+======================================================================
+checks: 47   failures: 0
+HazLenz human-assertion / regulatory-predicate regression: all invariants passed, 0 failed

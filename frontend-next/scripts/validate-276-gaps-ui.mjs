@@ -294,21 +294,19 @@ async function main() {
         record("E", "E04", "answering resumes the analysis without losing the inspection",
           /FINDING YOU ARE BUILDING|Applicable standard/i.test(recomputed) ? "PASS" : "FAIL");
         /**
-         * §276. A PREDICATE clarification answer is accepted by the interface and changes
-         * nothing. The panel is captioned "What would raise this" and offers Yes / No /
-         * Not sure; answering Yes leaves the candidate at the same confidence with the
-         * same missing predicate.
+         * §276 measured this FAILING: a predicate clarification answer was accepted by the
+         * interface and changed nothing, under a panel captioned "What would raise this".
+         * §276 declined to repair it, because whether a reviewer's assertion may promote a
+         * regulatory predicate is a safety-semantics decision rather than a scoping bug.
          *
-         * Deliberately NOT repaired here. Whether a reviewer's unsupported assertion may
-         * promote a regulatory predicate -- and carry a citation from Candidate to
-         * Supported with no corroborating observation text -- is a safety-semantics
-         * decision about what a human assertion establishes, not a scoping bug. It is
-         * recorded as a §276 defect for the product owner. The direction of the error is
-         * the safe one: the finding stays at lower confidence rather than being promoted.
+         * §277 / D-023 settled it: an explicit answer about a NAMED fact may settle that
+         * predicate, with `human_asserted` provenance, while a generic confirmation still
+         * settles nothing. The assertion is kept here because it is the product-path proof
+         * that the decision reaches the screen a reviewer uses.
          */
         record("E", "E05", "a PREDICATE clarification answer changes the recomputed result",
           afterConfidence && afterConfidence !== beforeConfidence ? "PASS" : "FAIL",
-          `confidence ${beforeConfidence || "?"} -> ${afterConfidence || "?"} — recorded as a §276 defect requiring a product decision`);
+          `confidence ${beforeConfidence || "?"} -> ${afterConfidence || "?"} — §277 / D-023`);
         record("E", "E05b", "and the finding is not DAMAGED by answering",
           /Applicable standard \(1\)/i.test(recomputed)
           && !/guardstate=|=absent_or_ineffective/i.test(recomputed) ? "PASS" : "FAIL",

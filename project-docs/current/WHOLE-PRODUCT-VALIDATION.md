@@ -1,7 +1,94 @@
-# Whole-product local validation — §276
+# Whole-product local validation — §275 → §276 → §277
 
-**Terminal: `SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_COMPLETE_WITH_LIVE_GAPS —
-CONTROLLED_RELEASE_VERIFICATION_REQUIRED`**
+**Terminal: `SAFETY_INSITE_LOCAL_PRODUCT_BASELINE_FROZEN — CONTROLLED_RELEASE_GATE_READY`**
+
+§277 closed the three product-owner decisions §276 left open and froze the baseline. It did
+not reopen whole-product validation: the matrix below is §276's, re-stated with §277's
+outcome recorded against the checks §277 touched. The §276 terminal
+(`SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_COMPLETE_WITH_LIVE_GAPS`) and the §275 terminal
+(`SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_BLOCKED`) are history, not errors — each was the
+honest reading at the time.
+
+---
+
+## §277 — the three decisions, closed
+
+| Decision | Was | Now | Proven by |
+|---|---|---|---|
+| **D-023** human assertion vs regulatory predicates | OPEN — a predicate clarification answer changed nothing | **RESOLVED** | 47 checks |
+| **D-024b** low-confidence routing floor | OPEN — a 0.2-confidence hazard routed on the word "wall" | **RESOLVED** | 26 checks |
+| **D-028** report revision | OPEN — a renderer correction could not reach an issued report, and regeneration destroyed the old one | **RESOLVED** | 38 checks |
+
+### D-023 — an assertion is not an acceptance
+
+A generic review or confirmation never establishes an unresolved regulatory fact. Only an
+explicit answer about that named fact may, and only with `human_asserted` provenance.
+
+The mechanism is keyed on **the predicate the engine itself named in its own clarification
+question**, which is what makes it general rather than another hand-maintained per-predicate
+table — and it is why a generic confirmation, which carries no question id at all, cannot
+reach the code. Three limits hold it: only an **UNKNOWN** predicate may be settled, so an
+assertion can never overturn what the observation recorded; only a predicate the engine
+asked about can be settled; and the settlement always carries its provenance — on the
+predicate, as an evidence fact under source `human_assertion`, and in the sentence the
+reviewer reads.
+
+Measured live: `UNKNOWN 0.45` → `SUPPORTED 0.96` on an explicit "Yes", and unmoved under
+every generic confirmation shape tried, including a caller echoing the engine's own
+extraction back as user-confirmed.
+
+### D-024b — a matched word is not a candidate
+
+The floor for customer-visible candidate routing is **0.50**. The exception — governed
+deterministic evidence — is not a carve-out but **the main path**, and that was measured
+before anything was written:
+
+> Almost every legitimate hazard routes at **0.2**. The router fires at 0.2 on a single
+> entity word, for the real hazards and the spurious ones alike. "the point of operation
+> guard … has been removed" routes on `['guard']`; "isolated at the wall" routes on
+> `['wall']`. Both at 0.2, both with exactly one single-word signal.
+
+So the discriminator cannot be the confidence number, and it cannot be the count or length
+of the matched signals either. It is whether **anything other than the lexical router**
+supports the candidate — a governed standard candidate, or a whole-observation decision in
+the same family. A bare threshold would have suppressed the §275 guarding case, the MSHA
+case and the fall-protection case along with the noise.
+
+Deterministic conclusions are never touched; the floor applies to the candidate list a
+customer is shown, and a withheld route is recorded in `routingNotes` rather than dropped
+silently.
+
+**The measured consequence, stated rather than absorbed.** The floor also withholds a
+*genuine* hazard. §276's electrical path — a missing cover plate on a 480-volt disconnect
+with energised terminals at chest height — routes at 0.2 on the word "panel" and carries no
+standard, because the governed knowledge base has no electrical rule that fires on it. The
+product now reports that it did not establish a hazard rather than asserting one on a
+matched word. That is the rule working, and it exposes a real coverage gap rather than
+creating one; it is recorded as **D-030**.
+
+### D-028 — an issued report is immutable
+
+A correction creates a **new revision** with its own id, timestamp and checksum. The prior
+artifact is marked `superseded`, points at the revision that replaced it, keeps its bytes,
+and stays downloadable. A later revision never rewrites an earlier one's supersession
+pointer — that was caught by the gate and repaired.
+
+The trigger is the report fingerprint now covering the **generator** as well as the
+snapshot, so a renderer, severity or branding correction produces a revision deliberately,
+when `GENERATOR_VERSION` is bumped, rather than on every unrelated deploy.
+
+**No migration was required.** `superseded` was already in the status vocabulary and
+`supersededByVersionId` was already on the table; the schema had been built for this and
+only the write path had not used it.
+
+Measured live on inspection #6: revision 2 (`safety-insite-pdf/2`, the §276 rendering)
+superseded by revision 3 (`safety-insite-pdf/3`, carrying the §276 severity-basis
+correction). Both downloadable; revision 2 still byte-identical to the checksum recorded
+when it was issued.
+
+---
+
+## §276 — the validation this rests on
 
 | | |
 |---|---|
@@ -332,6 +419,27 @@ risk bands to the server's profiles, which is the arithmetic D-008 turns on.
 instance, and live billing — both recorded in `CURRENT-STATE.md` §10 as `UNVERIFIED_LIVE`,
 unchanged by §276.
 
-The full terminal is deliberately not claimed. P0 and P1 are zero and every mandatory
-NOT_EXECUTED area is executed, but gaps remain beyond a clean local baseline and they are
-named above rather than absorbed into a pass.
+The §276 terminal deliberately did not claim a clean baseline, because three product-owner
+decisions were still open. **§277 closed all three.**
+
+---
+
+## What remains after §277
+
+**Local P0: 0. Local P1: 0. Local P2: 2**, and neither is a decision left open —
+
+| ID | Sev | What |
+|---|---|---|
+| D-029 | P2 | A corrective action created with no `findingId` is not deduplicated on replay. No product surface sends that shape; the path the product uses keeps one canonical action per finding, measured. |
+| D-030 | P2 | The governed knowledge base has no electrical rule, so after D-024b a genuine electrical hazard is not proposed. Knowledge authoring, not product scoping. |
+
+**Local P3 / debt:** D-010 (a one-time data migration over pre-D-001 due dates), D-011
+(`/inspection-quick` reachable only by URL), D-014 (cover-page numbering convention),
+D-016 (sign-in error placement), D-017 (missing `<h1>` on three routes; the risk-matrix
+cells were labelled at §276).
+
+**Live / external, not closable on localhost:** live provider transport from a deployed
+instance, and live billing. Both recorded in `CURRENT-STATE.md` §10 as `UNVERIFIED_LIVE`
+and unchanged by §276 or §277.
+
+The local product baseline is frozen at `verification/current/LOCAL-PRODUCT-BASELINE.json`.

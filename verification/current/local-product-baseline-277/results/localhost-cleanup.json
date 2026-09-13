@@ -1,0 +1,64 @@
+{
+  "section": 277,
+  "when": "2026-09-13, after every \u00a7277 gate passed",
+  "processesStopped": [
+    "frontend (next dev, port 3000)",
+    "backend (ts-node src/main.ts, port 4000)"
+  ],
+  "deleted": [
+    {
+      "kind": "database",
+      "name": "test_insite_validation_275",
+      "why": "The disposable validation database \u00a7275 created and \u00a7276/\u00a7277 reused. Validation-owned by provenance and named for deletion by \u00a7277 item 8.",
+      "contentsAtTeardown": "797 rows across 18 tables, all synthetic, VALIDATION-27x prefixed. Row counts frozen in final-db-reconciliation.json."
+    },
+    {
+      "kind": "storage-root",
+      "name": "scratchpad/storage-275",
+      "why": "\u00a7275 local_test object storage: validation-only uploads and generated report artifacts.",
+      "files": 17
+    },
+    {
+      "kind": "storage-root",
+      "name": "scratchpad/276/{storage,storage-277,storage-report-test}",
+      "why": "\u00a7276/\u00a7277 local_test object storage: validation-only uploads and temporary report files.",
+      "files": 13
+    },
+    {
+      "kind": "run-output",
+      "name": "scratchpad run directories",
+      "why": "Working copies of walkthrough/gap/report/expert runs. Everything durable was copied into the evidence packages first."
+    },
+    {
+      "kind": "credential-cache",
+      "name": "scratchpad session tokens and the synthetic test password",
+      "why": "Validation-only credentials for synthetic accounts in a database that no longer exists."
+    },
+    {
+      "kind": "file",
+      "name": "frontend-next/.env.local.276-backup",
+      "why": "A temporary safety copy taken before \u00a7276 changed the port and the bypasses. Compared against the current file first: same five keys, differing only in the four values \u00a7276 deliberately changed, nothing unique to preserve."
+    }
+  ],
+  "deliberatelyNotDeleted": [
+    {
+      "what": "~150 pre-existing test_* databases from earlier sections",
+      "why": "None is attributable to \u00a7275/\u00a7276/\u00a7277. \u00a7276 dropped four databases of exactly this shape by matching their names; \u00a7277 built the ownership registry precisely so that cannot recur, and the registry reported 0 outstanding resources."
+    },
+    {
+      "what": "safescope (the development database)",
+      "why": "Never written to by any validation section."
+    },
+    {
+      "what": "frontend-next/.env.local.backup, .env.local.dev-backup, .env.local.pre-visual-polish-backup",
+      "why": "Pre-existing developer backups this work did not create. Only the \u00a7276 backup was in scope."
+    },
+    {
+      "what": "frontend-next/.env.local",
+      "why": "Retained as the current local configuration, untracked, bypasses false."
+    }
+  ],
+  "databasesBefore": 155,
+  "databasesAfter": 154,
+  "registryOutstandingAtTeardown": 0
+}

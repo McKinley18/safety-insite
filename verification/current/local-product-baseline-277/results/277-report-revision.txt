@@ -1,0 +1,55 @@
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789335167331_1683
+registered as run d4ce1d18-6774-4f49-9885-3c350325d5db
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+resolved target host=127.0.0.1 database=test_insite_1789335167331_1683
+target proven disposable
+
+application listening on http://127.0.0.1:64531
+
+ok    SEED0 the observation produced findings to review  [1]
+ok    SEED1.1 finding 1 of 1 is finalized  [status 201 ]
+ok    SEED1b the inspection moves to in_review  [status 201 ]
+ok    SEED2 the inspection completes  [status 201 ]
+ok    R1 a report is issued  [status 201]
+ok    R2 it carries a checksum  [e79e7926b75a876b]
+ok    R3 the issued bytes match the recorded checksum  [e79e7926b75a876b vs e79e7926b75a876b]
+ok    U1 an unchanged regeneration returns the same revision  [c7e6bb98-7f46-4772-96df-84f1158ddec0 vs c7e6bb98-7f46-4772-96df-84f1158ddec0]
+ok    U2 with the same checksum
+ok    U3 and creates no second revision  [1 revision(s)]
+ok    C1 a correction issues a NEW revision  [4d8be431-cf01-4d5e-9107-b1ecdb2b49c2]
+ok    C2 with a distinct revision number  [1 -> 2]
+ok    C3 and its own generation timestamp  [2026-09-13T21:32:55.356Z -> 2026-09-13T21:32:55.408Z]
+ok    I1 the original revision still exists  [[2,1]]
+ok    I2 it is marked superseded, not deleted  [superseded]
+ok    I3 it names the revision that superseded it  [4d8be431-cf01-4d5e-9107-b1ecdb2b49c2]
+ok    I4 its checksum is unchanged
+ok    I5 the superseded artifact is STILL DOWNLOADABLE  [status 200]
+ok    I6 and byte-identical to what was issued  [e79e7926b75a876b vs e79e7926b75a876b]
+ok    N1 the correction is the current revision
+ok    N2 it is not itself superseded  [null]
+ok    N3 exactly one revision is current  [1]
+ok    N4 the distinct checksums differ
+ok    N5 the inspection resolves to the corrected revision
+ok    N6 and downloading "the report" gives the corrected bytes  [c9c7795d0d8f34c1 vs c9c7795d0d8f34c1]
+ok    H1 the history holds both revisions  [2]
+ok    H2 each carries its own identity
+ok    H3 each carries its own checksum
+ok    H4 each carries the generator that produced it  [["safety-insite-pdf/3","safety-insite-pdf/3"]]
+ok    H5 newest first
+ok    H6 the superseded revision's stored artifact is alive, not retired  [[{"status":"ready","deletedAt":null}]]
+ok    T1 a third revision is added, not substituted  [3]
+ok    T2 the first revision is still superseded by the SECOND, not rewritten to the third
+ok    T3 the second is now superseded by the third
+ok    T4 still exactly one current revision
+ok    T5 every earlier artifact remains downloadable
+ok    X1 another workspace cannot read the revision history  [status 404]
+ok    X2 nor download a superseded revision  [status 404]
+
+38 passed, 0 failed.
+§277 D-028 report revision: PASS
+dropped test_insite_1789335167331_1683

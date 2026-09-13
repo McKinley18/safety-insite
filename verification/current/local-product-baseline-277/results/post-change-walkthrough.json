@@ -1,0 +1,184 @@
+{
+  "section": 276,
+  "runTag": "VALIDATION-277-CONFIRM",
+  "appUrl": "http://localhost:3000",
+  "apiUrl": "http://localhost:4000",
+  "developmentBypass": false,
+  "steps": [
+    {
+      "id": "W01",
+      "title": "real sign-in establishes a session",
+      "outcome": "PASS",
+      "detail": "session token persisted"
+    },
+    {
+      "id": "W02",
+      "title": "dashboard renders for a signed-in user",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W03",
+      "title": "a site is created through the product",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W04",
+      "title": "the guided Pro inspection opens",
+      "outcome": "PASS",
+      "detail": "http://localhost:3000/inspection-workspace"
+    },
+    {
+      "id": "W05",
+      "title": "HazLenz returns an analysis for the observation",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W06",
+      "title": "D-009: the guarding finding carries its standard on the candidate card",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W07",
+      "title": "D-009: it is not presented as a low-confidence candidate missing energy",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "W08",
+      "title": "the reviewer's candidate selection is accepted",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W10",
+      "title": "the matrix reports the score and band it computed",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W11",
+      "title": "the first finding is saved",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W12",
+      "title": "the second finding is headed by a hazard NAME, not an internal clause",
+      "outcome": "PASS",
+      "detail": "§275 used HazLenz's `mechanism` clause as a page heading"
+    },
+    {
+      "id": "W13",
+      "title": "HazLenz states its own suggested risk for finding 2",
+      "outcome": "PASS",
+      "detail": "Severity 4 × Likelihood 4 = 16 High"
+    },
+    {
+      "id": "W14",
+      "title": "both findings are saved",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W15",
+      "title": "the finalize screen states the reviewed severity for each finding",
+      "outcome": "PASS",
+      "detail": "\"High\" appears 2 time(s)"
+    },
+    {
+      "id": "W16",
+      "title": "no finding on the finalize screen reads Critical",
+      "outcome": "PASS",
+      "detail": "D-008: the reviewer confirmed High on both"
+    },
+    {
+      "id": "W17",
+      "title": "the inspection completes and the report is ready",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W18",
+      "title": "D-008: the completion record states High, never Critical",
+      "outcome": "PASS"
+    },
+    {
+      "id": "D007-BROWSER",
+      "title": "server-persisted due work reaches the Safety Calendar",
+      "outcome": "PASS",
+      "detail": "43 on the server, 40 displayed — §275 read 9 and 0"
+    },
+    {
+      "id": "W19",
+      "title": "the calendar shows the corrective actions this inspection created",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W20",
+      "title": "and the follow-up tasks",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W21",
+      "title": "a refresh reproduces the same calendar",
+      "outcome": "PASS",
+      "detail": "40 vs 40"
+    },
+    {
+      "id": "W22",
+      "title": "the finished inspection appears in the report library",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W23",
+      "title": "the completed inspection is in saved history",
+      "outcome": "PASS"
+    },
+    {
+      "id": "W24",
+      "title": "D-015: the inspection counts are the user's own inspections",
+      "outcome": "PASS",
+      "detail": "§275 saw 3 SCHEDULED against 1 stored inspection"
+    },
+    {
+      "id": "W25",
+      "title": "the dashboard reconciles with the work just created",
+      "outcome": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "label": "initial app load (/login)",
+      "ms": 162
+    },
+    {
+      "label": "sign in",
+      "ms": 267
+    },
+    {
+      "label": "dashboard",
+      "ms": 1570
+    },
+    {
+      "label": "inspections page",
+      "ms": 2535
+    },
+    {
+      "label": "HazLenz analysis (deterministic)",
+      "ms": 1029
+    },
+    {
+      "label": "save finding (normal save)",
+      "ms": 3022
+    },
+    {
+      "label": "report generation (finish inspection)",
+      "ms": 3161
+    },
+    {
+      "label": "calendar load",
+      "ms": 3550
+    },
+    {
+      "label": "reports page",
+      "ms": 3053
+    }
+  ],
+  "consoleErrors": [],
+  "netFailures": []
+}

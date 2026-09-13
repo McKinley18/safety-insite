@@ -1,6 +1,6 @@
 {
   "artifact": "SAFETY_INSITE_WHOLE_PRODUCT_LOCAL_VALIDATION",
-  "section": "\u00a7276",
+  "section": "\u00a7277",
   "validatedAt": "2026-09-13",
   "commitSha": "9b4a201b78633872b3156661b8be8d0103794084",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
@@ -304,6 +304,10 @@
       "section276": {
         "status": "PASS",
         "evidence": "Re-driven across five product paths: OSHA second domain, MSHA, safe/negated, multiple independent hazards, unresolved."
+      },
+      "section277": {
+        "status": "PASS",
+        "note": "D-024b applied at \u00a7277: a candidate below 0.50 supported only by weak lexical routing is no longer proposed. Governed deterministic evidence still routes at any confidence."
       }
     },
     {
@@ -326,6 +330,10 @@
       "section276": {
         "status": "PASS_WITH_LIMITATION",
         "evidence": "Scored per path from the DEFAULT screen: 826-1076 rendered characters against an ~83KB payload, zero internal-token leaks, the inspector's own words quoted. Two presentation defects repaired (a mechanism clause used as a heading; a fact token quoted as the inspector's words). The corrective-action template remains a recorded content-design limitation."
+      },
+      "section277": {
+        "status": "PASS_WITH_LIMITATION",
+        "note": "Unchanged at \u00a7277. No presentation change was made."
       }
     },
     {
@@ -345,6 +353,10 @@
         "status": "PASS_WITH_LIMITATION",
         "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. The decision-critical jurisdiction clarification works end to end: three candidate regimes collapse to one and provenance becomes USER_CONFIRMED. Two defects found and repaired (D-021, D-022). One open: a PREDICATE answer changes nothing (D-023).",
         "checksExecuted": 10
+      },
+      "section277": {
+        "status": "PASS_WITH_LIMITATION",
+        "note": "D-023 resolved at \u00a7277. A predicate clarification answer now settles the named predicate with human_asserted provenance; a generic confirmation still settles nothing."
       }
     },
     {
@@ -511,6 +523,10 @@
       "section276": {
         "status": "PASS",
         "evidence": "Re-driven. Reports generated for every completed inspection; downloaded bytes matched the recorded checksum in every case."
+      },
+      "section277": {
+        "status": "PASS",
+        "note": "D-028 resolved at \u00a7277. An issued report is immutable; a correction creates a new revision and the prior artifact is marked superseded and retained."
       }
     },
     {
@@ -538,6 +554,10 @@
         "status": "PASS",
         "evidence": "FOUND FAIL IN \u00a7275 (mis-branded and severity-inconsistent) -> REMEDIATED IN \u00a7276 -> RETESTED. Four report shapes inspected from extracted PDF text: canonical brand, reviewer-confirmed severity, labelled HazLenz provenance, no internal vocabulary, readable dates, page numbering, no clipping.",
         "checksExecuted": 92
+      },
+      "section277": {
+        "status": "PASS",
+        "note": "D-028 resolved at \u00a7277. Report revision history is retrievable and distinguishes revisions."
       }
     },
     {
@@ -815,10 +835,63 @@
     "p1Unresolved": 0,
     "newLintErrors": 0,
     "section117": "16/16, 0 dangerous",
-    "successorIdentity": "unchanged \u2014 8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee"
+    "successorIdentity": "unchanged \u2014 8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "p2Unresolved": 2,
+    "p2UnresolvedDetail": "D-029 (an unbound corrective action is not deduplicated; no product surface sends that shape) and D-030 (no governed electrical rule). D-023, D-024b and D-028 were resolved at \u00a7277. D-010 remains as a one-time data migration over pre-D-001 due dates."
   },
-  "terminal": "SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_COMPLETE_WITH_LIVE_GAPS \u2014 CONTROLLED_RELEASE_VERIFICATION_REQUIRED",
-  "supersedes": "\u00a7275 \u2014 every \u00a7275 status is preserved on each check under `section275`. Nothing was erased.",
-  "terminalReasoning": "P0 unresolved 0, P1 unresolved 0, previously NOT_EXECUTED mandatory areas 0, customer-visible retired brands 0, calendar server/local disagreement 0, finding/report effective-severity disagreement 0, new lint violations 0, \u00a7117 16/16, \u00a7274 identity unchanged. The full terminal is NOT claimed: alongside the genuinely live gaps (live provider transport from a deployed instance, live billing) FOUR LOCAL P2 ITEMS REMAIN OPEN, three of them awaiting a product-owner decision \u2014 D-023 (a predicate clarification answer changes nothing), D-024(b) (a 0.2-confidence routing noise hazard on a safe observation), D-028 (a renderer correction does not re-issue an already-issued report) and D-029 (an unbound corrective action is not deduplicated). Stating this as the second terminal rather than the first is the conservative reading: gaps remain beyond a clean local baseline, and they are named rather than absorbed.",
-  "evidencePackage": "verification/current/local-product-validation-276/"
+  "terminal": "SAFETY_INSITE_LOCAL_PRODUCT_BASELINE_FROZEN \u2014 CONTROLLED_RELEASE_GATE_READY",
+  "supersedes": "\u00a7276, which superseded \u00a7275. Every check still carries its \u00a7275 status under `section275` and its \u00a7276 status under `section276`. Nothing was erased, and the three decisions \u00a7276 left open are recorded below as having been open before they were resolved.",
+  "terminalReasoning": "The three accepted P2 decisions are implemented, tested and retested. P0 unresolved 0, P1 unresolved 0. Two P2 items remain and neither is a product decision left open: D-029 is an API shape no product surface sends, and D-030 is a knowledge-authoring gap exposed by D-024b rather than created by it. The local product baseline is frozen; what remains is live/external verification that cannot be performed on localhost.",
+  "evidencePackage": "verification/current/local-product-validation-276/",
+  "decisionsResolvedAtSection277": [
+    {
+      "id": "D-023",
+      "title": "Human assertion / regulatory predicates",
+      "severity": "P2",
+      "raisedAt": "\u00a7276",
+      "statusAtSection276": "OPEN_PRODUCT_DECISION",
+      "statusAtSection277": "RESOLVED",
+      "section276Finding": "A predicate clarification answer changed nothing. The panel is captioned \"What would raise this\" and offers Yes / No / Not sure; answering Yes left the candidate at the same confidence with the same missing predicate.",
+      "decision": "A generic review/confirmation action does not establish a previously unresolved regulatory fact. A regulatory predicate may become human-settled only when the user explicitly asserts the underlying fact, with provenance human_asserted. No silent predicate promotion.",
+      "implementation": "An explicit assertion channel keyed on the predicate the ENGINE named in its own clarification question, so the mechanism is general rather than another hand-maintained per-predicate table. Three limits hold it: only an UNKNOWN predicate may be settled (an assertion never overturns observed evidence), only a predicate the engine asked about can be settled (a generic confirmation carries no question id and cannot reach the code), and the settlement always carries provenance -- on the predicate, as an evidence fact under source `human_assertion`, and in the sentence the reviewer reads.",
+      "verification": "npm run test:hazlenz-human-assertion \u2014 47 checks, 0 failures. Measured live: the candidate moves UNKNOWN 0.45 -> SUPPORTED 0.96 on an explicit \"Yes\", and stays UNKNOWN under every generic confirmation shape tried."
+    },
+    {
+      "id": "D-024b",
+      "title": "Low-confidence routing floor",
+      "severity": "P2",
+      "raisedAt": "\u00a7276",
+      "statusAtSection276": "OPEN_PRODUCT_DECISION",
+      "statusAtSection277": "RESOLVED",
+      "section276Finding": "On a deliberately safe observation -- a bench grinder correctly guarded, switched off and \"isolated at the wall\" -- the product proposed a ground_control hazard whose entire evidence was the single word \"wall\", routed at confidence 0.2 with no standard matched.",
+      "decision": "A candidate below 0.50 must not appear as a normal primary finding solely from weak semantic/lexical routing. Explicit governed deterministic evidence may route a hazard regardless of the semantic confidence. The threshold applies to routing/candidate generation, never as a universal rejection threshold for admitted Expert conclusions.",
+      "implementation": "A customer-visible candidate floor of 0.50 applied at the display boundary, so a below-floor route remains internal and is recorded in routingNotes rather than being dropped silently. The exception is the load-bearing half and was measured before it was written: ALMOST EVERY legitimate hazard routes at 0.2, so a bare threshold would have suppressed the \u00a7275 guarding case, the MSHA case and the fall-protection case. The discriminator is whether anything OTHER than the lexical router supports the candidate -- a governed standard candidate, or a whole-observation decision in the same family. Deterministic conclusions themselves are never touched.",
+      "verification": "npm run test:hazlenz-routing-floor \u2014 26 checks including the known 0.2 \"wall\" case, 0.49/0.50/0.51 boundaries, and governed-evidence exemption. \u00a7117 remains 16/16 and the scoped-evidence suite 22/22.",
+      "measuredConsequence": "The floor also withholds a GENUINE hazard: the \u00a7276 electrical path -- a missing cover plate on a 480-volt disconnect with energised terminals exposed -- routes at 0.2 on the word \"panel\" and carries no standard, because the governed knowledge base has no electrical rule that fires on it. The product now reports that it did not establish a hazard rather than asserting one on a matched word, and the inspector's own \"add a finding HazLenz missed\" path remains. This is the rule working and exposing a real coverage gap in the knowledge base, and it is recorded as D-030 rather than absorbed."
+    },
+    {
+      "id": "D-028",
+      "title": "Report revision / immutable issued artifacts",
+      "severity": "P2",
+      "raisedAt": "\u00a7276",
+      "statusAtSection276": "OPEN_PRODUCT_DECISION",
+      "statusAtSection277": "RESOLVED",
+      "section276Finding": "A renderer correction did not reach a report that had already been issued: the report fingerprint covered the inspection snapshot alone, so nothing about an unchanged inspection had moved. Separately, whenever the write path DID regenerate, it deleted the previous rows and destroyed their PDFs.",
+      "decision": "Issued reports are immutable artifacts. A correction creates a NEW revision with a new identity, timestamp and checksum, referencing the superseded report; the prior artifact is marked SUPERSEDED rather than deleted.",
+      "implementation": "The report fingerprint now covers the GENERATOR as well as the snapshot, so an authoritative renderer, severity or branding correction produces a new revision -- deliberately, when someone bumps GENERATOR_VERSION, not on every deploy. Superseded revisions are retained with status `superseded` and a pointer to the revision that replaced them, their artifacts are not retired, and they remain downloadable as the immutable record of what was issued. A later revision never rewrites an earlier one's supersession pointer. NO MIGRATION WAS REQUIRED: `superseded` was already in the status vocabulary and `supersededByVersionId` was already on the table; only the write path had not used them.",
+      "verification": "npm run test:277-report-revision:db \u2014 38 checks, 0 failures. Measured live on inspection #6: revision 2 (safety-insite-pdf/2) superseded by revision 3 (safety-insite-pdf/3), both downloadable, revision 2 byte-identical to its recorded checksum, revision 3 carrying the \u00a7276 severity-basis correction."
+    }
+  ],
+  "newDefectsAtSection277": [
+    {
+      "id": "D-030",
+      "severity": "P2",
+      "area": "HazLenz knowledge coverage",
+      "status": "OPEN_KNOWLEDGE_GAP",
+      "defect": "The governed knowledge base establishes no standard for an exposed-live-parts electrical condition, so after the D-024b floor a genuine electrical hazard is no longer proposed as a candidate.",
+      "finding": "Exposed by implementing D-024b, not caused by it: the hazard was previously surfaced on the lexical route \"panel\" alone, which is precisely what D-024b forbids. The correct remedy is a governed electrical rule, which is knowledge authoring rather than product scoping, and it is out of scope for a baseline-closure section.",
+      "direction": "Under-surfacing on a family with no governed rule. The inspector's own \"add a finding HazLenz missed\" path remains available and was verified present."
+    }
+  ],
+  "baselineRecord": "verification/current/LOCAL-PRODUCT-BASELINE.json"
 }

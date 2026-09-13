@@ -1,0 +1,21 @@
+PASS A (VERIFIED_ISOLATION_NO_EXPOSURE) [mirrors R6]: stays NOT_APPLICABLE
+PASS K (GUARD_PRESENT): stays NOT_APPLICABLE
+PASS L (HISTORICAL_RESOLVED): stays NOT_APPLICABLE
+PASS B (WORKER_IN_MACHINE_AREA): current-exposure recall survives
+PASS H (POINT_OF_OPERATION_CONTACT) [mirrors V7]: current-exposure recall survives
+PASS C (STORED_ENERGY_REMAINS) [mirrors V2]: current-exposure recall survives
+PASS D (SECOND_SOURCE_LIVE) [mirrors V4]: current-exposure recall survives
+PASS E (MERELY_STOPPED) [mirrors V5]: current-exposure recall survives
+PASS F (AUTO_RESTART_CAPABLE) [mirrors V6]: current-exposure recall survives
+PASS G (ISOLATION_NOT_VERIFIED) [mirrors V1]: current-exposure recall survives
+PASS I (RE_ENERGIZING_NOW) [mirrors R6-H]: current-exposure recall survives
+PASS J (OPERATING_UNGUARDED) [mirrors R6-I]: current-exposure recall survives
+PASS M (CROSS_JURISDICTION_MSHA): emits no machine guarding decision
+PASS N (CROSS_FAMILY_LOTO): current-exposure recall survives
+PASS O (CROSS_FAMILY_ELECTRICAL): current-exposure recall survives
+PASS P (NO_GUARD_FACT): emits no machine guarding decision
+PASS A: NOT_APPLICABLE is predicate-coherent (moving-or-accessible energy CONTRADICTED)
+PASS no decision reports NOT_APPLICABLE while a hazard predicate is SUPPORTED
+======================================================================
+cases: 16   failures: 0   dangerous failures: 0
+HazLenz machine-guarding applicability precedence regression: all invariants passed, 0 failed
