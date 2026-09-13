@@ -391,6 +391,7 @@
     "test:268-deployment-safety": "ts-node scripts/hazlenz/with-disposable-db.ts test:268-deployment-safety:inner",
     "test:268-deployment-safety:inner": "ts-node scripts/test-268-deployment-safety.ts",
     "beta:readiness": "ts-node scripts/beta-readiness.ts",
+    "test:270-build-metadata": "ts-node scripts/test-270-build-metadata.ts",
     "ops:events": "node scripts/ops/review-operational-events.js"
   },
   "dependencies": {

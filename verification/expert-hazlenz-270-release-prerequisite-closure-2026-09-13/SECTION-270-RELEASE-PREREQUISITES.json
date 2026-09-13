@@ -1,0 +1,236 @@
+{
+  "artifact": "SECTION_270_RELEASE_PREREQUISITE_CLOSURE",
+  "section": 270,
+  "date": "2026-09-13",
+  "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "predecessor": { "commit": "44d296db1fe2813c86f1608b52d5f30febe4c684", "digest": "ae19fe0e71846da54fe05f4f89f3c9445147af6c3612e3ea992e739428036474" },
+  "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_REVIEW_INCOMPLETE — LEGAL_CLOSURE_REQUIRED",
+
+  "constraintsHeld": {
+    "providerSemanticCalls": 0,
+    "productionMigrations": 0,
+    "candidateDeployments": 0,
+    "applicationPushes": 0,
+    "expertExecutionEnabled": false,
+    "expertSemanticsModified": false,
+    "candidateIdentityAltered": false,
+    "secretValuesPrintedOrStored": 0,
+    "saphyrApiModified": false,
+    "sameShaRestarts": 1,
+    "restartJustification": "required so that ENABLE_MAINTENANCE_SEED=false took effect in the running process; §270 requires verifying the seed route after disable. A restart re-runs the already-live build and creates no deploy — the deploy list was byte-identical before and after and /health/version still reports de655d2f."
+  },
+
+  "legalLane": {
+    "classificationUnchanged": "INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED",
+    "deliberatelyNotRelabelled": true,
+    "counselReviewPacket": {
+      "path": "docs/legal/COUNSEL_REVIEW_PACKET.md",
+      "contents": "all seven artifacts, a one-page architecture and data-flow summary, the verified service-provider list, and 12 specific questions requiring a counsel decision",
+      "scope": "bounded to 3-5 named U.S. safety professionals across 1-2 organisations; explicitly excludes enterprise agreements, global commercialisation and public-launch terms",
+      "counselEngaged": false,
+      "counselReviewer": "NONE — no attorney has been engaged"
+    },
+    "geographicScope": {
+      "decision": "UNITED STATES PARTICIPANTS ONLY for the initial controlled beta",
+      "recordedBy": "product owner, §270",
+      "effect": "resolves the §269 international-transfer gap: all processing is in the United States and no transfer out of it occurs for this cohort",
+      "preservedAs": "future expansion requirement — admitting any non-U.S. participant requires a transfer mechanism and jurisdiction-specific rights disclosures, neither of which exists",
+      "appliedTo": "docs/legal/BETA_PRIVACY_NOTICE.md section 8, rewritten from a blocking gap to a scope statement"
+    },
+    "placeholders": {
+      "status": "ALL FIVE UNRESOLVED",
+      "unresolved": ["[LEGAL ENTITY]", "[ENTITY ADDRESS]", "[CONTACT EMAIL]", "[GOVERNING LAW]", "[BETA TERM]"],
+      "method": "§270 searched the repository for entity and business facts and found none — only development and test artefacts (a .local development address, a personal +tag gmail address, and a .test acceptance domain)",
+      "notInvented": "§270 forbids inventing corporate or legal facts, and none were invented",
+      "consequence": "recorded as the P0 LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED. A counsel review cannot meaningfully begin without knowing who contracts: the data controller, the party bearing liability and the governing law all follow from it"
+    },
+    "acknowledgementMechanism": {
+      "decision": "OPTION A ACCEPTED — signed out-of-product controlled-beta agreement, executed before account creation",
+      "newConsentUiBuilt": false,
+      "registrationCheckboxDisposition": "REJECTED as acceptance evidence. frontend-next/app/register/page.tsx lines 36, 79 and 343 are its only occurrences; it is evaluated client-side, never transmitted to the backend, never persisted, and appears nowhere in backend/src. There is therefore no record anywhere in the system that any user accepted anything.",
+      "expiry": "this decision covers the initial invited cohort only. In-product acceptance becomes necessary before self-service registration, cohort growth beyond individually-invited named users, or admission of any participant outside the originally agreed organisations"
+    },
+    "artifactStatus": {
+      "controlledBetaTerms": "DRAFTED / COUNSEL REVIEW REQUIRED",
+      "privacyNotice": "DRAFTED / COUNSEL REVIEW REQUIRED — section 8 updated for U.S.-only scope",
+      "aiProviderDisclosure": "DRAFTED / COUNSEL REVIEW REQUIRED",
+      "safetyResponsibility": "DRAFTED / COUNSEL REVIEW REQUIRED",
+      "productLimitations": "DRAFTED / COUNSEL REVIEW REQUIRED",
+      "feedbackImprovementBoundary": "DRAFTED / COUNSEL REVIEW REQUIRED",
+      "claimsGuardrails": "DRAFTED / COUNSEL REVIEW REQUIRED"
+    }
+  },
+
+  "providerCredential": {
+    "before": "ABSENT",
+    "after": "PRESENT / CONFIGURED",
+    "variable": "the provider API key, set through Render environment configuration",
+    "valueDisclosed": false,
+    "writtenToRepository": false,
+    "validation": {
+      "method": "GET https://api.anthropic.com/v1/models",
+      "whyThisIsNotASemanticCall": "the model-list endpoint enumerates available models. It invokes no model, sends no prompt, and bills no tokens.",
+      "result": "HTTP 200 — credential valid, 11 models visible",
+      "betaModelAvailable": "claude-sonnet-5 present in the list",
+      "semanticRequestsSent": 0
+    },
+    "frontendExposure": "unchanged from §269 — no provider reference in frontend source, and 0 occurrences across 714,019 bytes of live deployed frontend chunks",
+    "recommendation": "The credential configured is the same one present in the local development environment. A DEDICATED production key is recommended before the cohort widens, for revocation independence, rate-limit separation and cost attribution. Recorded as a recommendation, not a blocker."
+  },
+
+  "expertKillSwitch": {
+    "value": "false",
+    "unchangedThroughSection270": true,
+    "validatorReRunAfterAllChanges": {
+      "method": "the COMPILED dist/config/validate-production-environment.js executed against the live 43-variable production environment map, after a fresh tsc build",
+      "result": "BOOTS",
+      "toggleStillProven": "re-resolving the same live environment with the switch true flips the pre-spend decision from refused to permitted, with no code change"
+    },
+    "preSpendDecisionWithSwitchFalse": "all probe cases refuse with EXPERT_EXECUTION_DISABLED, evaluated before usage is read"
+  },
+
+  "maintenanceSeed": {
+    "before": "true",
+    "after": "false",
+    "preSeedingConfirmation": {
+      "question": "does any remaining required pre-beta seeding operation depend on this route?",
+      "answer": "no",
+      "measuredReadOnly": {
+        "knowledgeChunks": 2274,
+        "knowledgeDocuments": 138,
+        "standardsMaster": 2390,
+        "chunksWithEmptyText": 0,
+        "chunksOrphanedWithNoDocument": 0,
+        "newestKnowledgeDocument": "2026-05-24T03:31:15Z"
+      },
+      "conclusion": "the knowledge base is fully seeded, internally consistent, and last changed almost four months ago. No controlled seed remains outstanding."
+    },
+    "appliedToRunningProcess": "yes — by a same-SHA restart at 15:17:11Z; the service returned healthy on the first probe afterwards",
+    "verification": {
+      "unauthenticated": "POST /maintenance/seed-safescope -> HTTP 401 'No token provided', both before and after. The JwtGuard is applied at the controller class, so it is evaluated before the feature flag and the route is not reachable at all without authentication.",
+      "authenticatedPath": "NOT EXERCISED LIVE — §270 supplies no participant credential. The deterministic code path is unambiguous: `if (process.env.ENABLE_MAINTENANCE_SEED !== 'true') throw new NotFoundException()`, so with the value 'false' any authenticated caller receives 404.",
+      "honestLimit": "the 404-for-authenticated-caller branch was verified by reading the executable path and by confirming the environment value, not by an authenticated live request."
+    },
+    "whyItMattered": "the route runs ALTER TABLE DDL and dataSource.synchronize(false) against the live database, bypassing TYPEORM_SYNCHRONIZE=false and the migration discipline the release procedure exists to enforce"
+  },
+
+  "billingRedirects": {
+    "finding": "THE PREMISE WAS DIFFERENT FROM WHAT IT APPEARED. BILLING_SUCCESS_URL and BILLING_CANCEL_URL are NOT READ BY THE APPLICATION. No source file references either name.",
+    "actualMechanism": "billing.service.ts builds the Stripe redirects from frontendUrl(), which resolves FRONTEND_APP_URL -> APP_URL -> FRONTEND_URL -> localhost and strips a trailing slash. FRONTEND_URL is https://safety-insite.vercel.app/, so the live redirects were ALREADY canonical.",
+    "liveRedirectsInEffect": {
+      "success": "https://safety-insite.vercel.app/profile?billing=success",
+      "cancel": "https://safety-insite.vercel.app/pricing?billing=cancelled"
+    },
+    "redirectTargetTests": {
+      "successTarget": "HTTP 200",
+      "cancelTarget": "HTTP 200",
+      "routesExistInFrontend": "frontend-next/app/profile and frontend-next/app/pricing both present"
+    },
+    "urlParsingBefore": {
+      "BILLING_SUCCESS_URL": "https://sentinelsafety.vercel.app/settings?billing=success — parses, but names the legacy alias",
+      "BILLING_CANCEL_URL": "https://sentinel safety.vercel.app/settings?billing=cancel — DOES NOT PARSE, literal space in the hostname"
+    },
+    "after": {
+      "BILLING_SUCCESS_URL": "https://safety-insite.vercel.app/profile?billing=success",
+      "BILLING_CANCEL_URL": "https://safety-insite.vercel.app/pricing?billing=cancelled"
+    },
+    "actionTaken": "both corrected to the canonical origin and to the paths the application actually uses, so configuration and behaviour now agree and the malformed value is gone",
+    "residual": "they remain DEAD configuration that nothing reads. Deleting them is cleaner than leaving plausible values implying a control that does not exist, and is recommended as release cleanup. §270 corrected rather than deleted them because removing an environment variable is the more destructive of the two options.",
+    "canonicalFrontendOrigin": "https://safety-insite.vercel.app — confirmed by CORS_ORIGINS, FRONTEND_URL and PASSWORD_RESET_FRONTEND_URL",
+    "legacyAliasNote": "sentinelsafety.vercel.app is a live Vercel alias of the same deployment, so the old success URL did resolve. It is not canonical and is not retained."
+  },
+
+  "renderInstance": {
+    "planBefore": "free",
+    "planAfter": "free — UPGRADE BLOCKED",
+    "attempted": "starter (the smallest always-on paid plan)",
+    "failure": {
+      "request": "PATCH /v1/services/srv-d7kl74jeo5us73deaor0 with serviceDetails.plan",
+      "result": "HTTP 500 {\"message\":\"internal server error\"} on four attempts across three casings",
+      "slugIsValid": "an invalid slug returns a clean HTTP 400 naming [starter, standard, pro, pro_plus, pro_max, pro_ultra], so 'starter' is correct and the 500 is server-side",
+      "probableCause": "no payment method on the Render workspace. Both services in the workspace are on free, and no billing endpoint is exposed by the public API.",
+      "whyNotResolvedHere": "adding a payment method requires entering payment credentials in the Render dashboard. It is not a command that can be executed from this session."
+    },
+    "instanceCount": 1,
+    "region": "oregon",
+    "runtime": "node",
+    "sleepBehaviour": "STILL SLEEPS WHEN IDLE. Measured at §269: 39.8 s to an initial 503, then 5.2 s to a healthy response.",
+    "disclosed": "docs/legal/PRODUCT_LIMITATIONS.md",
+    "saphyrApi": "untouched"
+  },
+
+  "healthCheck": {
+    "before": "\"\" (empty — Render probed nothing)",
+    "after": "/health/ready",
+    "verifiedOn": "the service record, re-read after the PATCH",
+    "whyNotHealthLive": "/health/live reports only that the process is up. /health/ready additionally consults the database and, in the §268 candidate, the expected schema version — so it distinguishes 'running' from 'safe to serve'.",
+    "exercisedBy": "the same-SHA restart; the service returned HTTP 200 ready on the first probe afterwards",
+    "releaseConsequence": "once the candidate is deployed, /health/ready also evaluates schema readiness. If the migrations have not been applied, the health check fails and Render will not treat the deploy as live — which is the fail-closed ordering the runbook exists to enforce, now enforced by the platform rather than by a human remembering."
+  },
+
+  "buildMetadata": {
+    "defectBefore": "backend/src/build-info.ts hardcodes buildTimestamp 2026-06-19T20:42:00Z. getBuildMetadata() resolved gitCommit from a chain of environment variables but read buildTimestamp from the literal alone, so /health/version reported a date four months older than the running build and would have done so for every future release.",
+    "fix": "buildTimestamp now resolves BUILD_TIMESTAMP -> RENDER_BUILD_TIMESTAMP -> VERCEL_DEPLOYMENT_CREATED_AT -> SOURCE_DATE_EPOCH -> the checked-in literal, and a new buildTimestampSourceStatus field reports which source answered — on the same footing as versionSourceStatus does for the commit.",
+    "notAnotherHandMaintainedDate": true,
+    "malformedInputRejected": "a value that does not parse is rejected rather than echoed onto the health endpoint, and falls through to the next usable source",
+    "epochAccepted": "SOURCE_DATE_EPOCH is normalised from Unix seconds to ISO-8601",
+    "injectionMechanism": "Dockerfile accepts a BUILD_TIMESTAMP build ARG, mirroring the existing GIT_COMMIT ARG; the release process sets it immediately before deploying",
+    "optionChosen": "the third of the three §270 permitted options — release-process injection rather than a stamping build step. build:render is bare tsc and Render supplies no build-time timestamp, and changing the build pipeline immediately before a first release is the riskier trade.",
+    "whyForgettingItIsNowSafe": "a missing injection yields buildTimestampSourceStatus BUILD_FALLBACK, which states on its face that the value is not a stamp. The silent-wrong-answer failure mode is gone; that visibility is the actual fix.",
+    "gitCommitMechanism": "UNCHANGED — still resolved from the platform commit variable first, reported as versionSourceStatus, and release:verify-sha still refuses a BUILD_FALLBACK answer",
+    "test": "npm run test:270-build-metadata — 12 checks, PASS, covering precedence, epoch normalisation, fallback identification, malformed-input rejection and fall-through, and unchanged commit resolution"
+  },
+
+  "regressionIntroducedAndFixed": {
+    "whatHappened": "Two §269/§270 documentation edits inside executable code broke checks that depend on it, and both were caught by running the checks rather than by review.",
+    "one": {
+      "defect": "naming the provider credential variable and the platform commit variable as string literals in scripts/beta-readiness.ts caused the script registry to classify it PROVIDER_CALLING and LIVE_ENVIRONMENT. It calls no provider and contacts nothing live.",
+      "whyItMatters": "the classifier's own docblock warns that a registry whose loudest warnings sit on its safety tooling is one people learn to ignore",
+      "fix": "reworded to describe the variables without naming them; beta-readiness is plain READ_ONLY again and PROVIDER_CALLING returned to its 63 baseline"
+    },
+    "two": {
+      "defect": "the §270 runbook preamble quoted the later step titles DEPLOY THE EXACT SHA and VERIFY THE RUNNING SHA above the migration sections. beta:readiness asserts step ordering by FIRST occurrence, so it reported that DEPLOY preceded MIGRATE — failing the two checks that guard the release's core safety property.",
+      "fix": "the preamble now refers to 'step 6 below' and 'step 7 below' without quoting the titles. The check was not weakened. Ordering re-verified as strictly monotonic across all eight steps."
+    }
+  },
+
+  "preservedFromSection269": {
+    "monitoring": "CLOSED — preserved. Not reopened merely because the §268 vocabulary has not appeared in production; that code is not deployed, and first observation is a release-smoke verification.",
+    "backup": "ACCEPTED — pg_dump sha256 db0246acad623aa7b288beb84dd0c524a6342f554864749156580db7fdaadc64, isolated restore at 76/76 tables and 7049/7049 rows with zero differences. A fresh release-time backup is a release step and was NOT taken at §270.",
+    "storage": "READY — not reopened. Known policy limitation recorded: no lifecycle rule and no automated sweeper, which counsel must confirm the retention language does not overstate.",
+    "backendAutoDeploy": "no / off — re-verified after every §270 change",
+    "frontendGitAutoDeploy": "disabled — unchanged",
+    "runningProductionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 — unchanged throughout §270"
+  },
+
+  "p0Reconciliation": {
+    "before": 5,
+    "after": 4,
+    "composition": "3 legal, 1 configuration. ZERO development, architecture or engineering blockers.",
+    "closed": [{ "id": "PRODUCTION_PROVIDER_CREDENTIAL_ABSENT", "by": "configured and non-semantically validated" }],
+    "reclassifiedAsReleaseExecutionSteps": ["PRODUCTION_MIGRATION_NOT_YET_EXECUTED", "BETA_CANDIDATE_NOT_PUSHED"],
+    "added": [
+      { "id": "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED", "kind": "legal" },
+      { "id": "BACKEND_NOT_ON_ALWAYS_ON_PLAN", "kind": "config" }
+    ],
+    "remaining": [
+      "NO_TERMS_NO_PRIVACY_POLICY",
+      "NO_THIRD_PARTY_MODEL_DISCLOSURE",
+      "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED",
+      "BACKEND_NOT_ON_ALWAYS_ON_PLAN"
+    ],
+    "releaseExecutionStepsNotBlockers": 8
+  },
+
+  "verification": {
+    "hazlenzVerify": "PASS — candidate identity drift 0, 29/29 protected modules, accepted evidence drift 0 new",
+    "betaReadiness": "PASS — 58 checks",
+    "buildMetadataTest": "PASS — 12 checks",
+    "deploymentSafetySuite": "PASS — 65 passed, 0 failed, 6 provider legs all answered by the substituted deterministic transport, zero hosted calls",
+    "typecheck": "clean",
+    "identityBefore": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "identityAfter": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "protectedModules": "29/29 unchanged",
+    "evidenceDrift": "0 new"
+  }
+}

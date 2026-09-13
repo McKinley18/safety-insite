@@ -35,19 +35,47 @@ claim in it.
 
 ---
 
-## Placeholders that MUST be resolved before any document is issued
+## §270 — geographic scope decision
 
-These are unknown to engineering and were deliberately not invented:
+**The initial controlled beta is UNITED STATES PARTICIPANTS ONLY.** Recorded by the product owner
+at §270.
 
-| placeholder | what it needs |
-|---|---|
-| `[LEGAL ENTITY]` | the contracting entity's exact registered name and form |
-| `[ENTITY ADDRESS]` | registered address |
-| `[CONTACT EMAIL]` | a monitored address for privacy and support contact |
-| `[GOVERNING LAW]` | governing law and venue |
-| `[BETA TERM]` | the beta's start and intended end date |
+This resolves what the §269 Privacy Notice flagged as a blocking gap. All processing is in the
+United States, no transfer out of it occurs for this cohort, and no transfer mechanism is therefore
+required. It is **preserved as a future expansion requirement**: admitting any non-U.S. participant
+requires a transfer mechanism and jurisdiction-specific rights disclosures, neither of which exists.
+Re-check before widening the cohort.
 
-A document issued with an unresolved placeholder is not a defensible document.
+## Placeholders — UNRESOLVED, and blocking
+
+These are unknown to engineering and were deliberately **not invented**. §270 searched the
+repository and found no legal entity, no registered address and no business contact address — only
+development and test artefacts.
+
+| placeholder | what it needs | status |
+|---|---|---|
+| `[LEGAL ENTITY]` | the contracting entity's exact registered name and form | **UNRESOLVED** |
+| `[ENTITY ADDRESS]` | registered address | **UNRESOLVED** |
+| `[CONTACT EMAIL]` | a monitored address for privacy and support contact | **UNRESOLVED** |
+| `[GOVERNING LAW]` | governing law and venue | **UNRESOLVED** |
+| `[BETA TERM]` | the beta's start and intended end date | **UNRESOLVED** |
+
+A document issued with an unresolved placeholder is not a defensible document, and a counsel review
+cannot meaningfully begin without knowing who is contracting — who contracts, who controls the data
+and which law governs all follow from it.
+
+Tracked as `LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED` in
+`verification/current/BETA-BLOCKERS.json`. If no entity has been formed, whether the beta may be run
+by an individual is itself the first question for counsel — see
+[`COUNSEL_REVIEW_PACKET.md`](COUNSEL_REVIEW_PACKET.md) question 1.
+
+## The counsel review packet
+
+[`COUNSEL_REVIEW_PACKET.md`](COUNSEL_REVIEW_PACKET.md) — prepared at §270. It bundles all seven
+artifacts with a one-page architecture and data-flow summary, the verified service-provider list,
+and **twelve specific questions** requiring a counsel decision, ordered by how much each changes the
+documents. It scopes the review deliberately: 3–5 named U.S. participants across 1–2 organisations,
+not enterprise agreements or public-launch terms.
 
 ---
 

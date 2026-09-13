@@ -30,6 +30,15 @@ ENV NODE_OPTIONS=--max-old-space-size=512
 ARG GIT_COMMIT=""
 ENV GIT_COMMIT=$GIT_COMMIT
 
+# §270. The same problem, for the build TIME. `src/build-info.ts` also carries a hand-maintained
+# `buildTimestamp`, and unlike the commit it had no environment chain at all — so /health/version
+# reported a date four months older than the running build, confidently, and would have kept doing
+# so for every future release. `getBuildMetadata()` now resolves BUILD_TIMESTAMP first and reports
+# which source answered, so a fallback can no longer pass for a stamp.
+#   docker build --build-arg BUILD_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ) .
+ARG BUILD_TIMESTAMP=""
+ENV BUILD_TIMESTAMP=$BUILD_TIMESTAMP
+
 COPY package*.json ./
 RUN npm install --omit=dev
 

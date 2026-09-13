@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_STATE",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266; live infrastructure verified and legal minimum drafted at §269",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266; live infrastructure verified and legal minimum drafted at §269; release-prerequisite closure at §270",
   "role": "POINTER AND INDEX. This file states current truth and points at the evidence that established it. It does not reproduce evidence, and a future session should be able to answer the ordinary questions from this file alone without reading §§229-262.",
   "asOf": "2026-09-13",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
@@ -302,7 +302,8 @@
     "productionMigration": "npm run migrate:prod  (and migrate:prod:dry-run)",
     "verifyRunningSha": "npm run release:verify-sha -- --url=<host> --expected=<sha>",
     "buildContextGuard": "npm run release:check-build-context",
-    "operatorEventReview": "npm run ops:events   (read-only; queries the Render log store via the authenticated CLI)"
+    "operatorEventReview": "npm run ops:events   (read-only; queries the Render log store via the authenticated CLI)",
+    "buildMetadataTest": "npm run test:270-build-metadata"
   },
   "evidencePointers": {
     "candidateIdentity259": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/",
@@ -319,26 +320,43 @@
     "betaInfrastructureOperations268": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/",
     "section269": "verification/expert-hazlenz-269-live-infrastructure-legal-2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json",
     "section269Legal": "docs/legal/ (7 artifacts + README index)",
-    "section269Monitoring": "docs/operations/MONITORING_AND_ALERTING.md"
+    "section269Monitoring": "docs/operations/MONITORING_AND_ALERTING.md",
+    "section270": "verification/expert-hazlenz-270-release-prerequisite-closure-2026-09-13/SECTION-270-RELEASE-PREREQUISITES.json",
+    "section270CounselPacket": "docs/legal/COUNSEL_REVIEW_PACKET.md"
   },
-  "nextAuthorizedWork": "THE RELEASE, plus a counsel review that no engineering work can substitute for. §269 closed the live-infrastructure lane: deployment control is off on BOTH platforms (Render autoDeploy=no/off, Vercel createDeployments=disabled), the running production SHA is de655d2f, production storage is verified end to end, a backup was taken and a restore rehearsed at 76/76 tables and 7049/7049 rows, the migration mechanism was dry-run against production, spend ceilings are configured (25 analyses / USD 10 per workspace per 24h), and a log collector was verified ingesting live. §269 also found and fixed the one condition that would have broken the release: EXPERT_EXECUTION_ENABLED was ABSENT, and the candidate could not have booted in production. It is now false. REMAINING, in order: (1) product owner classifies the seven legal drafts in docs/legal/ — this is the only remaining P0 that is not a release execution step; (2) set ANTHROPIC_API_KEY on the Render service; (3) set healthCheckPath to /health/ready; (4) decide ENABLE_MAINTENANCE_SEED (currently true, and it can reshape the production schema); (5) execute docs/operations/BETA_DEPLOYMENT_RUNBOOK.md, ending with one Expert live smoke at <=2 provider legs and <= USD 0.50.",
+  "nextAuthorizedWork": "TWO PRODUCT-OWNER ACTIONS, then the release. §270 closed every release-prerequisite it could reach: provider credential configured and validated with zero model calls; maintenance-seed route disabled and the change applied by restart; health check pointed at /health/ready; billing redirect defect closed (and found to be dead configuration the application never read — the real redirects come from FRONTEND_URL and were already canonical); stale buildTimestamp replaced by a derived chain that reports its own source. REMAINING: (1) establish the contracting legal entity and the four other legal facts, then obtain the bounded counsel review prepared in docs/legal/COUNSEL_REVIEW_PACKET.md; (2) add a payment method to the Render workspace so the backend can move to an always-on plan. Then execute the eight release-execution steps in verification/current/BETA-BLOCKERS.json#releaseExecutionSteps.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"
   },
   "betaReadiness": {
-    "p0Remaining": 5,
-    "p0ClosedAtSection269": [
-      "REPORT_GENERATION_BLOCKED",
-      "NO_ERROR_MONITORING"
-    ],
-    "p0AddedAtSection269": [
+    "p0Remaining": 4,
+    "p0Composition": "3 legal, 1 configuration. ZERO development, architecture or engineering blockers.",
+    "p0ClosedAtSection270": [
       "PRODUCTION_PROVIDER_CREDENTIAL_ABSENT"
     ],
+    "p0ReclassifiedAtSection270": [
+      "PRODUCTION_MIGRATION_NOT_YET_EXECUTED",
+      "BETA_CANDIDATE_NOT_PUSHED"
+    ],
+    "p0AddedAtSection270": [
+      "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED",
+      "BACKEND_NOT_ON_ALWAYS_ON_PLAN"
+    ],
     "register": "verification/current/BETA-BLOCKERS.json — the only authoritative register",
-    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_BLOCKER — PRODUCT_OWNER_DECISION_REQUIRED",
-    "liveInfrastructureLane": "closed, or converted to execution steps belonging to the release",
-    "legalLane": "all seven artifacts drafted at §269; every one classified INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED",
-    "betaAcknowledgementDecision": "Option A — out-of-product signed beta agreement before account creation. No new consent UI. The existing registration checkbox is client-side only (register/page.tsx:36,79,343; never transmitted, never persisted) and must not be relied upon as acceptance evidence."
+    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_REVIEW_INCOMPLETE — LEGAL_CLOSURE_REQUIRED",
+    "alsoOpen": "backend still on the Render free plan; paid-plan PATCH returns HTTP 500, probably no payment method on the workspace",
+    "liveConfiguration": {
+      "providerCredential": "PRESENT / CONFIGURED — validated non-semantically, 0 model calls",
+      "expertExecutionEnabled": "false",
+      "enableMaintenanceSeed": "false — applied to the running process by a same-SHA restart",
+      "healthCheckPath": "/health/ready",
+      "renderPlan": "free (upgrade blocked)",
+      "backendAutoDeploy": "no / off",
+      "frontendGitAutoDeploy": "disabled",
+      "runningSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 — unchanged throughout §270"
+    },
+    "legalLane": "seven artifacts + counsel review packet in docs/legal/. All still classified INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED, deliberately not relabelled. Initial cohort scope: UNITED STATES ONLY.",
+    "betaAcknowledgementDecision": "Option A ACCEPTED — signed out-of-product controlled-beta agreement before account creation. The registration checkbox is client-side only, never transmitted, never persisted, not auditable, and provides no acceptance evidence."
   }
 }

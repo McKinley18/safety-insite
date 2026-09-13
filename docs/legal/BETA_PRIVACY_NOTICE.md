@@ -131,12 +131,21 @@ To exercise any of these, contact `[CONTACT EMAIL]`.
 CCPA/CPRA or a comparable regime, you have rights this draft does not list and mechanisms it does
 not describe. Counsel review is required before this notice is issued to anyone.
 
-## 8. International transfer
+## 8. Location of processing
 
-The service is hosted in the United States. If you are outside the United States, your information
-will be transferred there. No transfer mechanism (Standard Contractual Clauses, adequacy, or
-equivalent) has been put in place. **If any beta participant is outside the United States, this is a
-blocking issue requiring counsel before their account is created.**
+The service is hosted in the United States. All service providers listed in section 3 process your
+information in the United States.
+
+**This controlled beta is limited to participants located in the United States.** That is a
+deliberate scope decision recorded by the product owner at §270, and it is why this notice does not
+describe an international transfer mechanism: none is needed, because no transfer out of the United
+States occurs for this cohort.
+
+> **Future expansion requirement, not a current gap.** Admitting any participant outside the United
+> States requires a transfer mechanism (Standard Contractual Clauses, an adequacy decision, or
+> equivalent) and the jurisdiction-specific rights disclosures noted in section 7, both of which
+> require counsel. Neither exists today. This constraint must be re-checked before the cohort is
+> widened beyond the initial invited U.S. participants.
 
 ## 9. Changes
 

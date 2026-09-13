@@ -1,38 +1,10 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
   "asOf": "2026-09-13",
   "blocksExternalBetaNow": [
-    {
-      "id": "PRODUCTION_MIGRATION_NOT_YET_EXECUTED",
-      "priority": "P0",
-      "severity": "BLOCKER",
-      "kind": "config",
-      "statement": "The three backlog migrations have not been applied to production. The mechanism exists and is proven: npm run migrate:prod runs plain JavaScript against dist/, needs no ts-node and no src/, fails closed non-zero, is idempotent, and verifies schema through the same evaluator /health/ready uses.",
-      "measured": "§269 ran migrate:prod:dry-run against the live Neon production database: it connected and reported migrations PENDING, exit 0, no writes. Read-only SQL confirmed production is at max timestamp 1800000018000 with 1800000019000, 1800000020000 and 1800000021000 all ABSENT. State unchanged after the dry run.",
-      "consequence": "Deploying this branch against the current production schema breaks far more than Expert. The HazLenzAnalysis entity now declares producer, analysisState, confirmationRequired, expertExecutionId (019000) and settlementReviewId (020000); TypeORM selects all of them, so EVERY read of hazlenz_analyses fails — including the core deterministic finalizeFinding path. Render autoDeploy is on, so a push is the trigger.",
-      "requiredAction": "Add a migration step that runs against the COMPILED datasource — typeorm is already a production dependency and dist/database/{data-source,migrations} are already in the image, so `typeorm -d dist/database/data-source.js migration:run` works. Run it as a release command BEFORE the new code serves traffic, and record the applied version.",
-      "owner": "engineering + live infrastructure",
-      "dependency": null,
-      "closureProof": "autoDeploy disabled (or a pre-deploy migrate hook configured), then one migrate-then-serve deploy rehearsal completed with /health/ready reporting schema current",
-      "§267": "The unapplied count is now THREE, not two. §267 added 1800000021000 (ProducerScopedAnalysisCurrentness), which replaces the single-currentness partial unique index with a producer-scoped one. It is index-only — no column, no data — but it is still schema that must be applied before the code that depends on it serves traffic, so it raises the stakes of this blocker rather than changing its nature. NO PRODUCTION MIGRATION WAS EXECUTED at §267; the migration was applied only to disposable test_* databases created and dropped by the §263 wrapper.",
-      "§268engineeringClosed": "THE MECHANISM NOW EXISTS AND IS PROVEN LOCALLY. `npm run migrate:prod` runs `scripts/release/migrate.js`, which loads the COMPILED `dist/database/data-source.js` and uses the production `typeorm` dependency — no ts-node, no src/, no devDependency, no interactive step. It applies migrations, then verifies the schema in the SAME command using the same evaluator the running application serves at /health/ready, and exits non-zero on any failure. Measured on a never-migrated disposable database: all three backlog migrations applied in ascending order; a second invocation was a clean no-op; a failure exited non-zero and `migrate && start` never reached `start`.",
-      "§268stillOpen": "EXECUTION AND DEPLOYMENT CONTROL, both of which are live acts §268 was forbidden to perform. (1) Render autoDeploy is still ON — with it on, pushing IS deploying, and there is no point in the sequence at which migrations can run first. It must be disabled, or a pre-deploy hook set to `npm run migrate:prod`, before any push. (2) The migrations have not been run against production. Until both are done this remains a P0.",
-      "§268defenceInDepth": "If the release step is skipped anyway, /health/ready now fails closed on missing migrations, so the instance never becomes ready rather than silently serving broken reads. That is a backstop, not a substitute for the ordering.",
-      "runbook": "docs/operations/BETA_DEPLOYMENT_RUNBOOK.md",
-      "renamedAt": "§269",
-      "renamedFrom": "NO_PRODUCTION_MIGRATION_MECHANISM",
-      "renameReason": "The mechanism no longer absent. §268 built it; §269 proved it reaches production. The old name asserted a gap that has closed, and leaving it would misdescribe what remains.",
-      "status": "MECHANISM_READY / LIVE_EXECUTION_PENDING_RELEASE",
-      "section269": {
-        "action": "dry-run against production; deployment control confirmed off",
-        "evidence": "verification/expert-hazlenz-269-live-infrastructure-legal-2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json#productionDatabase",
-        "remainingDependency": "the release itself — run npm run migrate:prod, then deploy",
-        "closureProof": "applied count 3 and /health/ready reporting expectedSchemaVersion 1800000021000"
-      }
-    },
     {
       "id": "NO_TERMS_NO_PRIVACY_POLICY",
       "priority": "P0",
@@ -61,6 +33,14 @@
           "[BETA TERM]"
         ],
         "note": "Liability allocation in the Terms is deliberately undrafted and requires counsel. If any participant is outside the United States, the international-transfer gap in the Privacy Notice is blocking."
+      },
+      "section270": {
+        "action": "counsel review packet prepared; U.S.-only scope applied; documents otherwise unchanged and NOT relabelled",
+        "evidence": "docs/legal/COUNSEL_REVIEW_PACKET.md",
+        "classification": "INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED (unchanged, deliberately)",
+        "scopeResolved": "International-transfer gap resolved by the product owner’s U.S.-only cohort decision; preserved as a future expansion requirement",
+        "remainingDependency": "counsel review — which cannot begin until the contracting entity is established",
+        "closureProof": "a recorded counsel approval, or an explicit product-owner acceptance of INTERNAL BETA DRAFT ACCEPTED FOR CONTROLLED TEST"
       }
     },
     {
@@ -91,42 +71,40 @@
           "[BETA TERM]"
         ],
         "note": "Liability allocation in the Terms is deliberately undrafted and requires counsel. If any participant is outside the United States, the international-transfer gap in the Privacy Notice is blocking."
+      },
+      "section270": {
+        "action": "counsel review packet prepared; U.S.-only scope applied; documents otherwise unchanged and NOT relabelled",
+        "evidence": "docs/legal/COUNSEL_REVIEW_PACKET.md",
+        "classification": "INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED (unchanged, deliberately)",
+        "scopeResolved": "International-transfer gap resolved by the product owner’s U.S.-only cohort decision; preserved as a future expansion requirement",
+        "remainingDependency": "counsel review — which cannot begin until the contracting entity is established",
+        "closureProof": "a recorded counsel approval, or an explicit product-owner acceptance of INTERNAL BETA DRAFT ACCEPTED FOR CONTROLLED TEST"
       }
     },
     {
-      "id": "BETA_CANDIDATE_NOT_PUSHED",
+      "id": "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED",
       "priority": "P0",
       "severity": "BLOCKER",
-      "kind": "live-verification",
-      "statement": "The entire Expert product integration is local-only. HEAD is 9 commits ahead of origin/main and 0 behind. Nothing deployed can contain any of it.",
-      "measured": "git rev-list --left-right --count origin/main...HEAD => 0 12 (was 9 at §266; §267 and §268 added three). Running production SHA de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 equals origin/main exactly.",
-      "consequence": "There is no deployable commit for the beta candidate, and the controlled-beta candidate must be traceable to exactly one. This also explains why production's schema being applied only through 018000 is currently CONSISTENT: production has neither the code nor the schema.",
-      "requiredAction": "push the candidate branch, then decide the deploy commit deliberately — with Render autoDeploy ON, pushing to the deployed branch IS deploying.",
-      "owner": "product owner + engineering",
-      "dependency": "NO_PRODUCTION_MIGRATION_MECHANISM must close first, or the push deploys code ahead of schema",
-      "closureProof": "one named SHA, confirmed by GET /health/version against the running instance",
-      "§268": "The dependency is now SATISFIABLE rather than blocked: a production-capable migration path exists and the deployment order is documented as an executable runbook. What is still required before the push is the LIVE half — disable autoDeploy, run the migrations, then deploy the named SHA. HEAD is now 12 commits ahead of origin/main.",
-      "section269": {
-        "action": "not actionable at §269 — push and deploy are forbidden. Deployment control was established instead so that the push, when it happens, does NOT deploy.",
-        "evidence": "Render autoDeploy=no/off; Vercel gitProviderOptions.createDeployments=disabled",
-        "remainingDependency": "the release itself",
-        "closureProof": "release:verify-sha against the deployed host returning the named RELEASE_SHA"
-      }
+      "kind": "legal",
+      "discoveredAt": "§270",
+      "statement": "No contracting legal entity, registered address, business contact address, governing law or beta term is established. All five placeholders in the seven legal artifacts remain unresolved.",
+      "measured": "§270 searched the repository for entity and business facts and found none — only development and test artefacts (dev@sentinelsafety.local, a personal +tag gmail address, and a .test acceptance domain). §270 explicitly forbids inventing corporate or legal facts.",
+      "whyItBlocks": "A counsel review cannot meaningfully begin without knowing who contracts: the controller of participant data, the party bearing liability and the governing law all follow from it. Documents issued with unresolved placeholders are not defensible documents.",
+      "status": "OPEN / PRODUCT_OWNER_INPUT_REQUIRED",
+      "closureProof": "the five placeholders resolved with actual business facts supplied by the product owner, or — if no entity is formed — a counsel determination that the beta may be run by an individual and on what terms"
     },
     {
-      "id": "PRODUCTION_PROVIDER_CREDENTIAL_ABSENT",
+      "id": "BACKEND_NOT_ON_ALWAYS_ON_PLAN",
       "priority": "P0",
       "severity": "BLOCKER",
       "kind": "config",
-      "discoveredAt": "§269",
-      "statement": "ANTHROPIC_API_KEY is not set on the production Render service. The Expert live smoke cannot run without it.",
-      "measured": "§269 read all 37 production environment variable names from the Render API. ANTHROPIC_API_KEY was absent. It is read at call time (anthropic-expert-provider.ts:273, expert-semantic-transport.ts:74), not at boot, so its absence does NOT block deploying the candidate — it blocks only the smoke.",
-      "status": "OPEN / RELEASE_EXECUTION_STEP",
-      "section269": {
-        "action": "identified and recorded; not set, because §269 supplies no production provider credential and the local development key must not be promoted to production by default",
-        "remainingDependency": "the product owner sets the production provider credential immediately before the smoke",
-        "closureProof": "one successful live smoke within 2 provider legs and USD 0.50"
-      }
+      "discoveredAt": "§270",
+      "statement": "The backend remains on the Render FREE plan and therefore still sleeps when idle. §270 authorized a move to the smallest suitable always-on paid plan; the change could not be completed.",
+      "measured": "PATCH /v1/services/{id} with serviceDetails.plan=starter returned HTTP 500 {\"message\":\"internal server error\"} on four attempts across three casings. The slug is valid — an invalid slug returns a clean HTTP 400 naming [starter, standard, pro, pro_plus, pro_max, pro_ultra]. Both services in the workspace (safety-insite-backend and the unrelated Saphyr-api) are on free, and no billing endpoint is exposed by the public API.",
+      "probableCause": "No payment method on the Render workspace. A paid-plan upgrade is a billing action that cannot be performed through the API without one, and adding one requires entering payment credentials in the Render dashboard.",
+      "consequence": "Measured cold start 39.8 s returning 503, then 5.2 s. The first request of a session will frequently be slow or fail and need retrying. Tolerable for 3-5 named users who can retry; it is disclosed in docs/legal/PRODUCT_LIMITATIONS.md.",
+      "status": "OPEN / PRODUCT_OWNER_ACTION_REQUIRED",
+      "closureProof": "plan=starter (or larger) on the service record, and no 503 on a first request after an idle period"
     }
   ],
   "canRunInParallelWithTheBlockers": [
@@ -448,16 +426,148 @@
       "resolution": "A real collector exists and was verified ingesting live. §269 induced a production request at a unique path and retrieved that exact record from the Render log store seconds later with structured labels (method, statusCode, host, path, level, type). Render indexes app and request streams by level, type, path, status and time. §268 emission is severity-routed so warning and error land on stderr and are labelled accordingly. An operator review command (npm run ops:events) and a signal-to-responder table (docs/operations/MONITORING_AND_ALERTING.md) turn that from reviewable-in-principle into reviewed-in-practice. Push alerting on service failure is Render notifyOnFail.",
       "residual": "The §268 event VOCABULARY has never appeared in production because the emitting code is not deployed. First observation of a real operational event is a release-sequence verification step. §269 verified the shape instead: 8 of 8 representative events emitted by the compiled emitter parsed back by the reviewer, with a planted provider key, observation text and Authorization header all reduced to [redacted].",
       "notClaimed": "The emission layer is not reported as monitoring. The collector, not the emitter, is what closes this."
+    },
+    {
+      "id": "PRODUCTION_PROVIDER_CREDENTIAL_ABSENT",
+      "priority": "P0",
+      "severity": "BLOCKER",
+      "kind": "config",
+      "discoveredAt": "§269",
+      "statement": "ANTHROPIC_API_KEY is not set on the production Render service. The Expert live smoke cannot run without it.",
+      "measured": "§269 read all 37 production environment variable names from the Render API. ANTHROPIC_API_KEY was absent. It is read at call time (anthropic-expert-provider.ts:273, expert-semantic-transport.ts:74), not at boot, so its absence does NOT block deploying the candidate — it blocks only the smoke.",
+      "status": "OPEN / RELEASE_EXECUTION_STEP",
+      "section269": {
+        "action": "identified and recorded; not set, because §269 supplies no production provider credential and the local development key must not be promoted to production by default",
+        "remainingDependency": "the product owner sets the production provider credential immediately before the smoke",
+        "closureProof": "one successful live smoke within 2 provider legs and USD 0.50"
+      },
+      "resolvedAt": "§270",
+      "resolution": "ANTHROPIC_API_KEY configured on srv-d7kl74jeo5us73deaor0 through Render environment configuration. Validated NON-SEMANTICALLY against GET https://api.anthropic.com/v1/models, which lists models, invokes none and bills no tokens: HTTP 200, credential valid, 11 models visible, claude-sonnet-5 present. 0 semantic/model requests were sent. The value was never printed, never written to any repository file, and is recorded only as PRESENT.",
+      "residual": "The credential configured is the same one present in the local development environment. A DEDICATED production key is recommended before the cohort widens, for revocation independence, rate-limit separation and cost attribution. Recorded as a recommendation, not a blocker."
     }
   ],
   "verdict": {
     "question": "Is the current Safety InSite v1.0 product ready for a controlled human beta?",
-    "answer": "NOT YET — and what remains is no longer engineering.",
-    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_BLOCKER — PRODUCT_OWNER_DECISION_REQUIRED",
+    "answer": "NOT YET. Every engineering and release-hygiene prerequisite is closed. Two blockers remain and neither is engineering.",
+    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_REVIEW_INCOMPLETE — LEGAL_CLOSURE_REQUIRED",
+    "alsoOpen": "SAFETY_INSITE_CONTROLLED_BETA_CONFIGURATION_BLOCKER — the backend is still on the free plan. Subordinate to the legal blocker: legal gates admitting any participant at all, the plan gates only beta quality.",
     "architectureSound": true,
-    "p0Before269": 6,
-    "p0After269": 5,
-    "why": "The LIVE INFRASTRUCTURE lane is effectively closed. §269 verified deployment control on both platforms, the running production SHA, the production database and its migration state, a defensible backup with a byte-verified restore rehearsal, production object storage end to end, the full production security configuration, the instance shape, spend ceilings resolved from the live environment, and a real log collector ingesting production events. It also found and fixed the single condition that would have made the release fail: EXPERT_EXECUTION_ENABLED was absent, and the beta candidate could not have booted in production without it. What is left in Lane A are execution steps that belong to the release by design — run the migrations, set the provider credential, deploy the named SHA, run one smoke. What is left in Lane B is not engineering at all: all seven legal artifacts are drafted, and none can be closed by engineering because closing them is a counsel review and an explicit product-owner classification.",
-    "measuredNotInferred": "§269 contacted production read-only except for five authorized environment-variable writes and one Vercel project setting. 0 provider analysis calls, 0 production migrations, 0 production database writes, 0 application pushes, 0 application deploys. The running SHA was verified unchanged after every configuration change."
+    "p0Before270": 5,
+    "p0After270": 4,
+    "closedAt270": [
+      "PRODUCTION_PROVIDER_CREDENTIAL_ABSENT"
+    ],
+    "reclassifiedAt270": [
+      "PRODUCTION_MIGRATION_NOT_YET_EXECUTED",
+      "BETA_CANDIDATE_NOT_PUSHED"
+    ],
+    "addedAt270": [
+      "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED",
+      "BACKEND_NOT_ON_ALWAYS_ON_PLAN"
+    ],
+    "why": "§270 closed every item it could reach: the provider credential is configured and validated without a single model call; the maintenance-seed route that could reshape the production schema is disabled and the change applied by a same-SHA restart; the health check now points at /health/ready rather than nothing; the billing redirect defect is closed, and was found to be dead configuration the application never read; the stale buildTimestamp is now derived with a source-status field so a fallback can never again pass for a stamp. What remains needs the product owner: a contracting entity and a counsel review, and a payment method on the Render workspace.",
+    "measuredNotInferred": "0 provider semantic calls, 0 production migrations, 0 candidate deployments, 0 pushes. One same-SHA restart of the already-running production version, which created no deploy — the deploy list is byte-identical before and after and /health/version still reports de655d2f6e4c0ff7b0de17f9ccfbd3668138a936."
+  },
+  "releaseExecutionSteps": {
+    "role": "§270. Scheduled actions that belong to the release procedure. These are NOT blockers and NOT unresolved defects. Every one is proven ready; none has been performed.",
+    "runbook": "docs/operations/BETA_DEPLOYMENT_RUNBOOK.md",
+    "steps": [
+      {
+        "step": 1,
+        "action": "fresh release-time backup under the §269-proven pg_dump mechanism",
+        "status": "MECHANISM_PROVEN_NOT_RUN"
+      },
+      {
+        "step": 2,
+        "action": "run the three production migrations (npm run migrate:prod)",
+        "status": "MECHANISM_PROVEN_NOT_RUN",
+        "detail": "dry-run reached production at §269; 019/020/021 confirmed absent"
+      },
+      {
+        "step": 3,
+        "action": "set BUILD_TIMESTAMP, then deploy the exact named SHA",
+        "status": "NOT_RUN"
+      },
+      {
+        "step": 4,
+        "action": "verify running SHA and readiness (release:verify-sha, /health/ready)",
+        "status": "NOT_RUN"
+      },
+      {
+        "step": 5,
+        "action": "set EXPERT_EXECUTION_ENABLED=true",
+        "status": "NOT_RUN",
+        "detail": "currently false; toggle proven to work without code change"
+      },
+      {
+        "step": 6,
+        "action": "one Expert live smoke — 1 analysis, <=2 provider legs, <= USD 0.50",
+        "status": "NOT_RUN"
+      },
+      {
+        "step": 7,
+        "action": "monitor via npm run ops:events; confirm §268 operational events appear",
+        "status": "NOT_RUN"
+      },
+      {
+        "step": 8,
+        "action": "accept, or roll back / disable Expert",
+        "status": "NOT_RUN"
+      }
+    ],
+    "carriedForward": [
+      {
+        "id": "PRODUCTION_MIGRATION_NOT_YET_EXECUTED",
+        "priority": "P0",
+        "severity": "BLOCKER",
+        "kind": "config",
+        "statement": "The three backlog migrations have not been applied to production. The mechanism exists and is proven: npm run migrate:prod runs plain JavaScript against dist/, needs no ts-node and no src/, fails closed non-zero, is idempotent, and verifies schema through the same evaluator /health/ready uses.",
+        "measured": "§269 ran migrate:prod:dry-run against the live Neon production database: it connected and reported migrations PENDING, exit 0, no writes. Read-only SQL confirmed production is at max timestamp 1800000018000 with 1800000019000, 1800000020000 and 1800000021000 all ABSENT. State unchanged after the dry run.",
+        "consequence": "Deploying this branch against the current production schema breaks far more than Expert. The HazLenzAnalysis entity now declares producer, analysisState, confirmationRequired, expertExecutionId (019000) and settlementReviewId (020000); TypeORM selects all of them, so EVERY read of hazlenz_analyses fails — including the core deterministic finalizeFinding path. Render autoDeploy is on, so a push is the trigger.",
+        "requiredAction": "Add a migration step that runs against the COMPILED datasource — typeorm is already a production dependency and dist/database/{data-source,migrations} are already in the image, so `typeorm -d dist/database/data-source.js migration:run` works. Run it as a release command BEFORE the new code serves traffic, and record the applied version.",
+        "owner": "engineering + live infrastructure",
+        "dependency": null,
+        "closureProof": "autoDeploy disabled (or a pre-deploy migrate hook configured), then one migrate-then-serve deploy rehearsal completed with /health/ready reporting schema current",
+        "§267": "The unapplied count is now THREE, not two. §267 added 1800000021000 (ProducerScopedAnalysisCurrentness), which replaces the single-currentness partial unique index with a producer-scoped one. It is index-only — no column, no data — but it is still schema that must be applied before the code that depends on it serves traffic, so it raises the stakes of this blocker rather than changing its nature. NO PRODUCTION MIGRATION WAS EXECUTED at §267; the migration was applied only to disposable test_* databases created and dropped by the §263 wrapper.",
+        "§268engineeringClosed": "THE MECHANISM NOW EXISTS AND IS PROVEN LOCALLY. `npm run migrate:prod` runs `scripts/release/migrate.js`, which loads the COMPILED `dist/database/data-source.js` and uses the production `typeorm` dependency — no ts-node, no src/, no devDependency, no interactive step. It applies migrations, then verifies the schema in the SAME command using the same evaluator the running application serves at /health/ready, and exits non-zero on any failure. Measured on a never-migrated disposable database: all three backlog migrations applied in ascending order; a second invocation was a clean no-op; a failure exited non-zero and `migrate && start` never reached `start`.",
+        "§268stillOpen": "EXECUTION AND DEPLOYMENT CONTROL, both of which are live acts §268 was forbidden to perform. (1) Render autoDeploy is still ON — with it on, pushing IS deploying, and there is no point in the sequence at which migrations can run first. It must be disabled, or a pre-deploy hook set to `npm run migrate:prod`, before any push. (2) The migrations have not been run against production. Until both are done this remains a P0.",
+        "§268defenceInDepth": "If the release step is skipped anyway, /health/ready now fails closed on missing migrations, so the instance never becomes ready rather than silently serving broken reads. That is a backstop, not a substitute for the ordering.",
+        "runbook": "docs/operations/BETA_DEPLOYMENT_RUNBOOK.md",
+        "renamedAt": "§269",
+        "renamedFrom": "NO_PRODUCTION_MIGRATION_MECHANISM",
+        "renameReason": "The mechanism no longer absent. §268 built it; §269 proved it reaches production. The old name asserted a gap that has closed, and leaving it would misdescribe what remains.",
+        "status": "MECHANISM_READY / LIVE_EXECUTION_PENDING_RELEASE",
+        "section269": {
+          "action": "dry-run against production; deployment control confirmed off",
+          "evidence": "verification/expert-hazlenz-269-live-infrastructure-legal-2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json#productionDatabase",
+          "remainingDependency": "the release itself — run npm run migrate:prod, then deploy",
+          "closureProof": "applied count 3 and /health/ready reporting expectedSchemaVersion 1800000021000"
+        },
+        "reclassifiedAt": "§270",
+        "reclassification": "RELEASE_EXECUTION_STEP — not a development, configuration or architecture defect. §270 directs that scheduled release actions are not to be carried as unresolved blockers."
+      },
+      {
+        "id": "BETA_CANDIDATE_NOT_PUSHED",
+        "priority": "P0",
+        "severity": "BLOCKER",
+        "kind": "live-verification",
+        "statement": "The entire Expert product integration is local-only. HEAD is 9 commits ahead of origin/main and 0 behind. Nothing deployed can contain any of it.",
+        "measured": "git rev-list --left-right --count origin/main...HEAD => 0 12 (was 9 at §266; §267 and §268 added three). Running production SHA de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 equals origin/main exactly.",
+        "consequence": "There is no deployable commit for the beta candidate, and the controlled-beta candidate must be traceable to exactly one. This also explains why production's schema being applied only through 018000 is currently CONSISTENT: production has neither the code nor the schema.",
+        "requiredAction": "push the candidate branch, then decide the deploy commit deliberately — with Render autoDeploy ON, pushing to the deployed branch IS deploying.",
+        "owner": "product owner + engineering",
+        "dependency": "NO_PRODUCTION_MIGRATION_MECHANISM must close first, or the push deploys code ahead of schema",
+        "closureProof": "one named SHA, confirmed by GET /health/version against the running instance",
+        "§268": "The dependency is now SATISFIABLE rather than blocked: a production-capable migration path exists and the deployment order is documented as an executable runbook. What is still required before the push is the LIVE half — disable autoDeploy, run the migrations, then deploy the named SHA. HEAD is now 12 commits ahead of origin/main.",
+        "section269": {
+          "action": "not actionable at §269 — push and deploy are forbidden. Deployment control was established instead so that the push, when it happens, does NOT deploy.",
+          "evidence": "Render autoDeploy=no/off; Vercel gitProviderOptions.createDeployments=disabled",
+          "remainingDependency": "the release itself",
+          "closureProof": "release:verify-sha against the deployed host returning the named RELEASE_SHA"
+        },
+        "reclassifiedAt": "§270",
+        "reclassification": "RELEASE_EXECUTION_STEP — not a development, configuration or architecture defect. §270 directs that scheduled release actions are not to be carried as unresolved blockers."
+      }
+    ]
   }
 }

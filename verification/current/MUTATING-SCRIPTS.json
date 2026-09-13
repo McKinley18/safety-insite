@@ -13,13 +13,13 @@
     "UNKNOWN_WRITE_BEHAVIOR"
   ],
   "totals": {
-    "scripts": 1050,
-    "READ_ONLY": 667,
+    "scripts": 1051,
+    "READ_ONLY": 668,
     "WRITES_HISTORICAL_OUTPUT": 253,
     "UNKNOWN_WRITE_BEHAVIOR": 128,
     "MUTATES_DATABASE": 48,
     "PROVIDER_CALLING": 63,
-    "LIVE_ENVIRONMENT": 34,
+    "LIVE_ENVIRONMENT": 35,
     "WRITES_SUCCESSOR_OUTPUT": 2
   },
   "writesAcceptedHistoricalEvidence": [
@@ -4171,6 +4171,15 @@
       "sandboxRequired": false
     },
     {
+      "npmScript": "test:270-build-metadata",
+      "script": "backend/scripts/test-270-build-metadata.ts",
+      "classes": [
+        "LIVE_ENVIRONMENT",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false
+    },
+    {
       "npmScript": "test:approval-contract",
       "script": "backend/scripts/test-approval-contract.ts",
       "classes": [
@@ -5307,6 +5316,7 @@
         "READ_ONLY"
       ],
       "writesLiteralPaths": [
+        "\\n  Live evidence: verification/expert-hazlenz-269-live-infrastructure-legal-",
         "verification/current/MUTATING-SCRIPTS.json"
       ],
       "evidencePackagesNamed": [],
@@ -14404,6 +14414,20 @@
       "unresolvedWriteCalls": 0,
       "sandboxRequired": false,
       "notes": []
+    },
+    {
+      "script": "backend/scripts/test-270-build-metadata.ts",
+      "classes": [
+        "LIVE_ENVIRONMENT",
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": [
+        "requires a live environment: storage, a running server, a browser or billing"
+      ]
     },
     {
       "script": "backend/scripts/test-applicable-standards.ts",

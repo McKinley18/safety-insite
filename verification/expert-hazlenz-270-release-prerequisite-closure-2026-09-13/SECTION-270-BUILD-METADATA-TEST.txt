@@ -1,0 +1,29 @@
+
+§270 — BUILD METADATA RESOLUTION
+
+TIMESTAMP SOURCE PRECEDENCE
+
+  ok    an explicit BUILD_TIMESTAMP wins  [2026-09-13T12:00:00.000Z]
+  ok    and is normalised to ISO-8601
+  ok    BUILD_TIMESTAMP outranks a platform value
+  ok    SOURCE_DATE_EPOCH is accepted as Unix seconds  [2026-09-13T11:46:40.000Z]
+
+FALLBACK — THE §269 DEFECT
+
+  ok    with no source supplied it falls back to the literal  [2026-06-19T20:42:00.000Z]
+  ok    and the fallback IDENTIFIES ITSELF rather than passing for a stamp
+
+MALFORMED INPUT IS REJECTED, NOT ECHOED
+
+  ok    a malformed BUILD_TIMESTAMP does not reach the health endpoint
+  ok    and it falls through to the next usable source  [BUILD_FALLBACK]
+  ok    a malformed value falls through to a VALID later source
+
+COMMIT RESOLUTION IS UNCHANGED
+
+  ok    RENDER_GIT_COMMIT still wins
+  ok    and is reported verbatim
+  ok    with no commit source it reports BUILD_FALLBACK, which release:verify-sha refuses
+
+§270 BUILD METADATA: PASS  —  12 checks passed
+

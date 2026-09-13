@@ -28,28 +28,52 @@ the starting state of this runbook. Read this before step 0.
 | 9 — verify storage | **INFRASTRUCTURE CLOSED.** R2 bucket `insite-production` verified live: upload, authorised download with checksum match, delete, no residue, unsigned access refused, no public policy. The *product-route* round-trip in step 9 still stands |
 | 4/5 — migrate and verify | **MECHANISM PROVEN, NOT RUN.** `migrate:prod --dry-run` executed against production: reached the database and correctly reported migrations pending. Production remains at `1800000018000` with `019000/020000/021000` all absent |
 
-**New steps §269 discovered. These are additions to the sequence, not optional:**
+**The four steps §269 flagged were CLOSED at §270 — confirm, do not repeat:**
 
-1. **Set `ANTHROPIC_API_KEY` on the Render service before step 11.** It is **absent in production**.
-   The Expert live smoke cannot run without it. It is read at call time, not at boot, so its absence
-   does not block the deploy — it blocks only the smoke.
-2. **Set `healthCheckPath` to `/health/ready` on the Render service, during this release.** It is
-   currently empty, so Render does not probe readiness and will neither restart nor refuse a deploy
-   on an unready instance. §269 did not set it because doing so risks triggering a deploy.
-3. **Decide `ENABLE_MAINTENANCE_SEED` before participants are admitted.** It is currently `true` in
-   production. It gates `POST /maintenance/seed-safescope`, which runs `ALTER TABLE` and
-   `dataSource.synchronize(false)` against the live database — bypassing the migration discipline
-   this runbook exists to enforce. It is defended by three factors (a valid JWT, a 32-character
-   token, an exact confirmation phrase), so it is not remotely exploitable, but it should be `false`
-   while beta participants have accounts. Left `true` by §269 in case pre-beta knowledge seeding
-   needs it.
-4. **`EXPERT_EXECUTION_ENABLED` is now set to `false` in production** and must be flipped to `true`
-   only immediately before step 11, then reconsidered after. Spend ceilings are configured: 25
-   analyses and USD 10 per workspace per 24h.
+| §269 flagged | §270 result |
+|---|---|
+| `ANTHROPIC_API_KEY` absent | **CONFIGURED.** Validated non-semantically against `GET /v1/models` (lists models, invokes none, bills nothing): credential valid, `claude-sonnet-5` available |
+| `healthCheckPath` empty | **SET to `/health/ready`.** Verified on the service record and exercised by a restart |
+| `ENABLE_MAINTENANCE_SEED=true` | **SET to `false`**, after confirming the knowledge base is fully seeded (2274 chunks, 138 documents, 2390 standards, 0 empty, 0 orphaned, newest document 2026-05-24). Applied to the running process by a same-SHA restart |
+| `EXPERT_EXECUTION_ENABLED=false` | **UNCHANGED — still `false`**, and must stay false until step 11 |
 
-**Carried forward as a defect, not a blocker:** `backend/src/build-info.ts` hardcodes
-`buildTimestamp: "2026-06-19T20:42:00Z"`. `gitCommit` provenance is accurate (`RENDER_GIT_COMMIT`);
-only the timestamp is stale. Fix it in the release commit or accept it knowingly.
+**Also closed at §270:** the billing redirect defect, and the stale `buildTimestamp`.
+
+---
+
+### §270 — BUILD TIMESTAMP IS NOW A RELEASE STEP
+
+`getBuildMetadata()` now resolves `buildTimestamp` from `BUILD_TIMESTAMP` →
+`RENDER_BUILD_TIMESTAMP` → `VERCEL_DEPLOYMENT_CREATED_AT` → `SOURCE_DATE_EPOCH` → the checked-in
+literal, and reports which source answered in a new `buildTimestampSourceStatus` field. A malformed
+value is rejected rather than echoed onto the health endpoint.
+
+`build:render` is bare `tsc` and Render supplies no build-time timestamp, so §270 took the third of
+the three options §270 permitted — injection by the release process rather than a stamping build
+step, because changing the build pipeline immediately before a first release is the riskier trade.
+
+**Add to step 6 below**, immediately before the deployment is triggered:
+
+```bash
+# Set BUILD_TIMESTAMP on the service first, so /health/version reports when this build was
+# actually produced rather than falling back to the checked-in literal.
+BUILD_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+```
+
+**Forgetting this is now safe.** It no longer produces a confident wrong date — it produces
+`buildTimestampSourceStatus: "BUILD_FALLBACK"`, which says on its face that the timestamp is not a
+stamp. That visibility is the actual fix; the injection is the convenience.
+
+**Add to step 7 below:** confirm `/health/version` reports
+`buildTimestampSourceStatus: "BUILD_TIMESTAMP"` and a timestamp within minutes of the deploy. If it
+reports `BUILD_FALLBACK`, the injection was missed — not a release stopper, but fix it before the
+next one.
+
+> **A note on why this section never names the later step titles literally.** `beta:readiness`
+> asserts the runbook's ordering by first occurrence of each step title, and that ordering — migrate
+> and verify schema BEFORE deploy — is the whole safety property this document exists to enforce.
+> A preamble that quoted the later titles would move their first occurrence above the migration
+> steps and break the check. The check is right; the prose defers to it.
 
 ---
 

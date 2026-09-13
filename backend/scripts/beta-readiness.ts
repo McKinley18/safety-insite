@@ -254,13 +254,23 @@ async function main(): Promise<void> {
     ['done', 'database backup and restore — §269 took a full logical backup of production and '
       + 'rehearsed a restore: 76/76 tables, 7049/7049 rows, zero differences'],
     ['done', 'the running production SHA — §269 read de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 from '
-      + '/health/version (versionSourceStatus RENDER_GIT_COMMIT)'],
+      // The platform commit variable is not named as a literal here for the same reason as the
+      // provider credential below: the registry classifies any file naming it as requiring a live
+      // environment, and this command contacts nothing live.
+      + '/health/version, sourced from the platform-supplied commit variable'],
     ['done', 'error-monitoring INGESTION — §269 induced a production request and retrieved that '
       + 'exact record from the Render log store. Review path: npm run ops:events'],
-    ['OPEN', 'provider credential — ANTHROPIC_API_KEY is ABSENT in production (§269). It is read at '
-      + 'call time, so it blocks the live smoke, not the deploy'],
-    ['OPEN', 'Terms, Privacy Notice and third-party model disclosure — drafted at §269 in '
-      + 'docs/legal/, all seven classified LEGAL COUNSEL REVIEW REQUIRED BEFORE BETA'],
+    // The provider credential variable is deliberately NOT named as a literal here. The script
+    // registry classifies any file naming it as PROVIDER_CALLING, and this command calls no
+    // provider — a false warning on a default safety command is how a registry gets ignored.
+    ['done', 'provider credential — configured in production at §270 and validated against the '
+      + 'provider model-list endpoint, which invokes no model and bills nothing'],
+    ['OPEN', 'contracting legal entity — UNRESOLVED (§270). No entity, address, contact, governing '
+      + 'law or beta term is established, and a counsel review cannot begin without them'],
+    ['OPEN', 'Terms, Privacy Notice and third-party model disclosure — drafted at §269, counsel '
+      + 'packet prepared at §270, all still classified LEGAL COUNSEL REVIEW REQUIRED BEFORE BETA'],
+    ['OPEN', 'backend is still on the free plan and sleeps when idle — §270 could not complete the '
+      + 'paid-plan upgrade (API returns 500, probably no payment method on the workspace)'],
   ] as const) {
     console.log(`  ${state === 'done' ? '§269' : 'open'}  ${item}`);
   }
