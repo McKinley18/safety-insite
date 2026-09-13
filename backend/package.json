@@ -267,6 +267,7 @@
     "test:hazlenz-field-output-smoke": "node src/hazlenz/tests/smoke/hazlenz-field-output-smoke.js",
     "test:hazlenz-guarding-applicability": "ts-node src/hazlenz/tests/hazlenz-machine-guarding-applicability-precedence-regression.ts",
     "test:hazlenz-scoped-evidence": "ts-node src/hazlenz/tests/hazlenz-scoped-evidence-applicability-regression.ts",
+    "test:hazlenz-routing-floor": "ts-node src/hazlenz/tests/hazlenz-routing-floor-regression.ts",
     "test:hazlenz-human-assertion": "ts-node src/hazlenz/tests/hazlenz-human-assertion-regression.ts",
     "test:hazlenz-independent-standards-audit": "ts-node src/hazlenz/tests/hazlenz-independent-standards-audit.ts",
     "test:hazlenz-level1-recall": "ts-node src/hazlenz/tests/hazlenz-level1-recall-regression.ts",

@@ -117,6 +117,142 @@ function ensureVisiblePrimaryCitationContract(response: any, observationText = '
  * than this filter (it also rewrites the standards display for a verified control), and
  * removing it would be a separate change with a separate justification.
  */
+/**
+ * §277 / D-024b — A CUSTOMER-VISIBLE CANDIDATE NEEDS MORE THAN A MATCHED WORD.
+ *
+ * ==================== THE DEFECT THIS EXISTS TO FIX ====================
+ *
+ * §276 drove a deliberately SAFE observation -- a bench grinder correctly guarded, tool
+ * rest set, switched off and "isolated at the wall" -- and the product proposed a
+ * `ground_control` hazard from it. The whole of that hazard's evidence was the single word
+ * **"wall"**: mechanism `wall`, supporting signals `['wall']`, routing confidence **0.2**,
+ * and no standard matched. An inspector documenting a compliant machine was told there was
+ * a hazard, and had to dismiss it.
+ *
+ * ==================== THE RULE (D-024b) ====================
+ *
+ * The floor for ordinary customer-visible candidate routing is **0.50**. A candidate below
+ * it must not appear as a normal primary finding **solely from weak semantic/lexical
+ * routing**. It may remain internal, or be surfaced as uncertain where the product has an
+ * explicit state for that.
+ *
+ * The exception is the load-bearing half: **explicit governed deterministic evidence may
+ * route a hazard regardless of semantic routing confidence, where the deterministic rule
+ * independently establishes the candidate.**
+ *
+ * ==================== WHY THE EXCEPTION IS THE MAIN PATH, NOT A CARVE-OUT ====================
+ *
+ * Measured before writing this, across every §276 product path: **almost every legitimate
+ * hazard routes at 0.2.** The router is a lexical matcher that fires at 0.2 on a single
+ * entity word, and it does so for the real hazards and the spurious ones alike --
+ *
+ *   "the point of operation guard on the 60-ton punch press ... has been removed"
+ *      -> machine_guarding, confidence 0.2, signals ['guard']
+ *   "isolated at the wall"
+ *      -> ground_control,   confidence 0.2, signals ['wall']
+ *
+ * A bare threshold would therefore have suppressed the §275 machine-guarding case, the MSHA
+ * case and the fall-protection case along with the noise. The discriminator cannot be the
+ * confidence number, and it cannot be the count or length of the matched signals either --
+ * both fragments above have exactly one single-word signal.
+ *
+ * What separates them is whether ANYTHING OTHER THAN THE LEXICAL ROUTER supports the
+ * candidate. The guarding fragment carries `29 CFR 1910.212(a)(1)`, produced by the
+ * deterministic applicability engine from that finding's own evidence. The "wall" fragment
+ * carries nothing. That is precisely D-024b's "solely from weak semantic/lexical routing",
+ * and it is what this tests.
+ *
+ * A `candidate` standard counts as well as a `direct` one: the deterministic rule evaluated
+ * this hazard's evidence, produced a citation and named the predicates still missing. That
+ * is the engine independently establishing a candidate, and the product has an explicit
+ * uncertain state for it -- the card that reads "Candidate · Confidence: Low · missing: ...".
+ *
+ * ==================== WHAT THIS DELIBERATELY DOES NOT DO ====================
+ *
+ * It does not touch `applicabilityDecisions`, `evidenceSnapshot` or any deterministic
+ * conclusion. Established deterministic hazard truth is never suppressed -- the floor
+ * applies to the CANDIDATE LIST a customer is shown, and a hazard the deterministic engine
+ * established is exempt from it by construction.
+ *
+ * A withheld route is recorded in `routingNotes`, never dropped silently: a reviewer asking
+ * "why did it not raise the grinder?" must be able to find the answer, and an auditor must
+ * be able to see that a route was considered and set aside rather than never made.
+ *
+ * ==================== THE MEASURED CONSEQUENCE, STATED ====================
+ *
+ * This withholds a genuine hazard as well as the noise. The §276 electrical path -- a
+ * missing cover plate on a 480-volt disconnect with energised terminals exposed at chest
+ * height -- routes at 0.2 on the word "panel" and carries NO standard, because the governed
+ * knowledge base has no electrical rule that fires on it. Under D-024b that candidate is
+ * supported solely by weak lexical routing and is withheld, so the product now says it did
+ * not establish a hazard rather than asserting one on a matched word.
+ *
+ * That is the rule working, and it exposes a real coverage gap in the governed knowledge
+ * base rather than creating one. It is recorded as a §277 finding, not absorbed.
+ */
+export const CUSTOMER_VISIBLE_ROUTING_FLOOR = 0.5;
+
+export function withholdWeaklyRoutedHazards(response: any): any {
+  if (!response || typeof response !== 'object') return response;
+
+  /**
+   * Whether something other than the lexical router supports this candidate.
+   *
+   * Read from the hazard's own `standardCandidates`, which `applyFindingScopedStandards`
+   * derived by running the unmodified deterministic engine over that finding's evidence,
+   * and from any whole-observation decision in the same family.
+   */
+  const observationDecisions = Array.isArray(response.applicabilityDecisions)
+    ? response.applicabilityDecisions
+    : [];
+  const familyOf = (value: unknown) => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  const deterministicallyEstablished = (hazard: any) => {
+    const candidates = Array.isArray(hazard?.standardCandidates) ? hazard.standardCandidates : [];
+    if (candidates.some((item: any) => item && typeof item.citation === 'string' && item.citation.trim())) {
+      return true;
+    }
+    const hazardFamilies = new Set([familyOf(hazard?.domainId), familyOf(hazard?.hazardFamily)].filter(Boolean));
+    return observationDecisions.some((decision: any) =>
+      hazardFamilies.has(familyOf(decision?.family)) && String(decision?.status || '') !== 'NOT_APPLICABLE');
+  };
+
+  const belowFloor = (hazard: any) => {
+    const confidence = Number(hazard?.confidence);
+    if (!Number.isFinite(confidence)) return false;
+    return confidence < CUSTOMER_VISIBLE_ROUTING_FLOOR;
+  };
+
+  const withheld = (hazard: any) => belowFloor(hazard) && !deterministicallyEstablished(hazard);
+
+  const decomposition = response.multiHazardDecomposition;
+  if (decomposition && typeof decomposition === 'object' && Array.isArray(decomposition.hazards)) {
+    const kept = decomposition.hazards.filter((hazard: any) => !withheld(hazard));
+    if (kept.length !== decomposition.hazards.length) {
+      response.multiHazardDecomposition = {
+        ...decomposition,
+        hazards: kept,
+        hazardCount: kept.length,
+        isMultiHazard: kept.length > 1,
+        primaryHazard: kept.find((hazard: any) => hazard === decomposition.primaryHazard) || kept[0],
+        routingNotes: [
+          ...(Array.isArray(decomposition.routingNotes) ? decomposition.routingNotes : []),
+          ...decomposition.hazards.filter(withheld).map((hazard: any) =>
+            `Not proposed as a finding: ${hazard?.domainId || 'hazard'} was routed at confidence `
+            + `${hazard?.confidence} on ${JSON.stringify(hazard?.supportingSignals || [])} with no governed `
+            + `standard, which is below the ${CUSTOMER_VISIBLE_ROUTING_FLOOR} customer-visible routing floor.`),
+        ],
+      };
+    }
+  }
+
+  if (Array.isArray(response.additionalHazards)) {
+    response.additionalHazards = response.additionalHazards.filter((hazard: any) => !withheld(hazard));
+  }
+
+  return response;
+}
+
 function withdrawResolvedHazards(response: any): any {
   if (!response || typeof response !== 'object') return response;
 
@@ -368,12 +504,12 @@ export class HazLenzController {
           applyFindingScopedStandards(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(source, body), body), body),
           cutover,
         );
-        const guided = withdrawResolvedHazards(enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
+        const guided = withholdWeaklyRoutedHazards(withdrawResolvedHazards(enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
           sanitizeHazLenzDisplayOutput(
             applyFinalizationGate(foundation),
           ),
           body.text,
-        ), body), body.text));
+        ), body), body.text)));
         // Re-apply the evidence boundary after the compatibility response adapter
         // so legacy serialization cannot reintroduce a suppressed citation.
         return enforceHazLenzEvidenceBoundary(guided, body);
