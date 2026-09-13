@@ -12,7 +12,7 @@ documentation root; this file is only enough to get the repository running.
 | where | what |
 |---|---|
 | `backend/` | NestJS API. Bootstrap is `backend/src/main.ts` |
-| `backend/src/safescope-v2/` | the HazLenz engine (directory name is a recorded exception — see below) |
+| `backend/src/hazlenz/` | the HazLenz engine (directory name is a recorded exception — see below) |
 | `backend/src/hazlenz-knowledge/` | governed regulatory knowledge: ingestion, review, retrieval |
 | `frontend-next/` | Next.js App Router client |
 | `project-docs/` | **all project documentation** |
@@ -59,7 +59,7 @@ eighteen files are digested into the frozen §259 candidate identity. Editing on
 formatting, imports or a comment — changes an acceptance artifact. Run `npm run hazlenz:verify`
 before and after any engine change; it must report drift 0.
 
-> **Naming.** The engine directory is `safescope-v2`. Nine protected modules resolve under it and two
+> **Naming.** The engine directory is `hazlenz`. Nine protected modules resolve under it and two
 > name it in a comment while also being §259-digested, so it cannot be renamed without breaking a
 > frozen artifact. Recorded in
 > [`project-docs/current/BRAND-COMPATIBILITY-REGISTER.md`](project-docs/current/BRAND-COMPATIBILITY-REGISTER.md).

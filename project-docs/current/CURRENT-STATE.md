@@ -74,7 +74,7 @@ eligibility rule, one concurrency guarantee, one audit path, one state-machine e
 - The result is persisted with `producer = server_authored`, protected by a database CHECK
   constraint requiring a real execution row.
 
-Source: `backend/src/safescope-v2/expert-hazlenz-product/`.
+Source: `backend/src/hazlenz/expert-hazlenz-product/`.
 
 ## 4. What is proven
 
@@ -146,7 +146,7 @@ dropped.** An unreadable posture fails closed.
 
 | path | what the server knows |
 |---|---|
-| deterministic | the client calls `/safescope-v2/classify`, holds the result, posts it back. The server does **not** establish that what it stores equals what it returned. Every historical row is `client_supplied`. |
+| deterministic | the client calls `/hazlenz/classify`, holds the result, posts it back. The server does **not** establish that what it stores equals what it returned. Every historical row is `client_supplied`. |
 | Expert | the server ran it. `server_authored` is assigned from a literal in one service and cannot be conferred by metadata. |
 
 ## 9. Analysis states and the human boundary

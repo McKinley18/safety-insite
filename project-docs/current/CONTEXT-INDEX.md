@@ -24,11 +24,11 @@ About 2,500 words. That is the whole default context. For a machine consumer the
 
 | domain | where | note |
 |---|---|---|
-| **Expert engine (candidate-defining)** | `backend/src/safescope-v2/expert-hazlenz/` | contract, projections, admission, owed facts, the production entry point. **Changing anything here moves the candidate identity.** |
-| **Expert transport adapters** | `backend/src/safescope-v2/expert-hazlenz-adapters/` | the vendor lives here and nowhere else |
-| **Product integration** | `backend/src/safescope-v2/expert-hazlenz-product/` | routes, execution service, authority, persistence, confirmation rule, response, the effective-decision service and its leaf module |
+| **Expert engine (candidate-defining)** | `backend/src/hazlenz/expert-hazlenz/` | contract, projections, admission, owed facts, the production entry point. **Changing anything here moves the candidate identity.** |
+| **Expert transport adapters** | `backend/src/hazlenz/expert-hazlenz-adapters/` | the vendor lives here and nowhere else |
+| **Product integration** | `backend/src/hazlenz/expert-hazlenz-product/` | routes, execution service, authority, persistence, confirmation rule, response, the effective-decision service and its leaf module |
 | **Expert frontend** | `frontend-next/lib/expert/` and `frontend-next/components/inspection/expert/` | §265. Presentation and decision capture. Derives no authority; a source check enforces that. |
-| **Deterministic HazLenz** | `backend/src/safescope-v2/` (the rest) | the customer-authoritative path |
+| **Deterministic HazLenz** | `backend/src/hazlenz/` (the rest) | the customer-authoritative path |
 | **Migrations** | `backend/src/database/migrations/` | §261 added `1800000019000-ExpertAnalysisAuthorityFoundation` |
 | **Current verification and tooling** | `backend/scripts/hazlenz/` | the §263 command surface; everything here is read-only except the disposable-DB wrapper |
 | **Current state, machine-readable** | `verification/current/` | state, capability register, beta register, mutating-script registry, evidence baseline |
@@ -40,11 +40,11 @@ About 2,500 words. That is the whole default context. For a machine consumer the
 
 ## WHEN MODIFYING THE EXPERT CONTRACT OR PROMPT
 
-- `backend/src/safescope-v2/expert-hazlenz/contract/expert-259-control-identity-contract.ts` — the
+- `backend/src/hazlenz/expert-hazlenz/contract/expert-259-control-identity-contract.ts` — the
   current first-pass contract and wire schema
-- `backend/src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext.ts` — the
+- `backend/src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext.ts` — the
   user prompt builder
-- `backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts` — input contract types
+- `backend/src/hazlenz/expert-hazlenz/expert-contract.types.ts` — input contract types
 
 Do not read the ancestor instruction modules (`210b2`, `210c`, `210e`, `210g`, `247`, `253`) unless
 you are changing the additive chain itself. §259 composes them.

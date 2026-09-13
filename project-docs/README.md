@@ -42,7 +42,7 @@ them evidence. `verification/current/` holds the machine-readable current-state 
 `npm run hazlenz:verify` checks.
 
 Code-adjacent technical notes stay next to the code they describe (for example
-`backend/src/safescope-v2/coverage/RENDER_PRODUCTION_DIAGNOSTICS.md`). They document a module, not
+`backend/src/hazlenz/coverage/RENDER_PRODUCTION_DIAGNOSTICS.md`). They document a module, not
 the product.
 
 ## Source-of-truth rule

@@ -14,7 +14,7 @@ the API. There is no separate analysis service; HazLenz is a set of modules the 
   backend  (NestJS)
    ├── auth, organizations, entitlements      who you are, what you may do
    ├── inspection / observations / findings   the product workflow
-   ├── HazLenz engine  (src/safescope-v2/)    hazard analysis and standards binding
+   ├── HazLenz engine  (src/hazlenz/)    hazard analysis and standards binding
    ├── hazlenz-knowledge                      governed regulatory corpus
    ├── standards, regulatory, applicable-standards
    ├── reports, pdf, transparency             customer-facing output
@@ -46,10 +46,9 @@ misconfigured production instance therefore fails to start rather than starting 
 Domain modules are organised by product concept (`inspection`, `reports`, `billing`, `auth`,
 `standards`), with the engine in its own tree.
 
-> **Naming.** The engine directory is `src/safescope-v2/` despite the engine being HazLenz. Nine of
-> the twenty-nine protected modules resolve under that path, and two of them name it in a comment
-> while also being digested into the frozen §259 identity — so renaming the directory would break a
-> frozen acceptance artifact. This is a recorded exception, not an oversight.
+> **Naming.** §274 renamed this directory from `src/safescope-v2/` to `src/hazlenz/` and removed
+> every remaining active SafeScope route and module. The rename moved the candidate identity, which
+> was authorised: see [HAZLENZ-ARCHITECTURE.md](HAZLENZ-ARCHITECTURE.md).
 
 ## Persistence and storage
 

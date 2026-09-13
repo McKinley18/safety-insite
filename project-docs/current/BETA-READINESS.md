@@ -21,9 +21,13 @@ actually gate a release.
 | 5 | **Beta candidate not deployed** | engineering | Production runs `de655d2f…`; the validated candidate is 15 unpushed commits on the beta branch |
 | 6 | **Expert execution disabled** | engineering | `EXPERT_EXECUTION_ENABLED=false`. Enabling it is a runbook step, not a default |
 | 7 | **Live provider transport unverified** | engineering | The credential is configured and was validated against the model-list endpoint, which invokes no model. The transport itself has never carried a real analysis in production |
-| 8 | **Engine directory rename undecided** | product owner | `src/safescope-v2/` cannot be renamed without editing two protected, §259-digested modules and re-freezing the identity. Cosmetic, but it is the last large naming inconsistency. See the [brand compatibility register](BRAND-COMPATIBILITY-REGISTER.md) |
+
 
 Items 1–3 are the real gate. Items 4–7 are a single runbook execution once 1–3 clear.
+
+The engine-directory rename that stood here as item 8 was **closed at §274**: the engine now
+lives at `backend/src/hazlenz/`, no active SafeScope route or module remains, and the candidate
+identity moved to the §274 successor `8c163b31…` under authorisation.
 
 ## Closed — do not reopen
 
@@ -38,6 +42,7 @@ Items 1–3 are the real gate. Items 4–7 are a single runbook execution once 1
 | §272 | `healthCheckPath` unset | Now `/health/ready`, so Render probes readiness and restarts an unready instance |
 | §272 | Auto-deploy left on | Off on both platforms. A deploy is now always a deliberate act |
 | §272 | Maintenance seed enabled | `ENABLE_MAINTENANCE_SEED=false`; the route that would `ALTER TABLE` against production is unreachable |
+| §274 | Active SafeScope namespace | Engine directory, API routes and the dead v1 module all removed. Candidate identity moved to the authorised successor `8c163b31…`, with §259 preserved as provenance |
 
 ## Verified live configuration
 

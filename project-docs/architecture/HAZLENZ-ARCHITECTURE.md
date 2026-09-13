@@ -23,7 +23,7 @@ The boundaries below are deliberate. They are not merged to reduce file count.
 | **Governed evidence** | `expert-hazlenz/owed-facts/governed-evidence-derivation.ts` | derives citable evidence from the governed corpus only |
 | **Product integration** | `expert-hazlenz-product/` | persistence, execution budget, operational controls, candidate provenance |
 | **Knowledge** | `src/hazlenz-knowledge/` | ingestion, review queue, retrieval over approved regulatory sources |
-| **Validation** | `backend/scripts/` + `src/safescope-v2/tests/` | instruments, scorers and harnesses |
+| **Validation** | `backend/scripts/` + `src/hazlenz/tests/` | instruments, scorers and harnesses |
 
 ## Owed facts and settlement
 
@@ -44,11 +44,22 @@ never rendered as an available analysis.
 
 ## Identity and the protected boundary
 
-The engine's behaviour is pinned by a **frozen candidate identity**, §259
-(`0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee`): a digest over twenty-two
-elements, nineteen of them SHA-256 digests of source files, plus the contract version, the
-transmitted system prompt and the wire schema. Twenty-nine modules are **protected**, with digests
-recorded in `PROTECTED-IDENTITIES.json`.
+The engine's behaviour is pinned by a **candidate identity**: a digest over twenty-two elements,
+nineteen of them SHA-256 digests of source files, plus the contract version, the transmitted system
+prompt and the wire schema. Twenty-nine modules are **protected**.
+
+The live identity is the **§274 successor**,
+`8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee`. It supersedes §259
+(`0b12adf6…`), which is preserved unchanged as provenance. The two differ because §274 renamed this
+directory from `src/safescope-v2/`, and two digested files each carry one doc comment that named the
+old path. Twenty of the twenty-two elements — including the system prompt, the wire schema and the
+contract identities — are byte-identical across that boundary, which is what makes "the semantics
+did not move" a checked statement.
+
+Manifests: `verification/current/SECTION-274-SUCCESSOR-IDENTITY.json` and
+`SECTION-274-PROTECTED-IDENTITIES.json`. The §229 snapshot `PROTECTED-IDENTITIES.json` and the §259
+artifact are retained and must not be regenerated — `verify-229-protected-identities.ts` writes to
+the file it checks.
 
 Editing a protected module — even to reformat, sort imports, or fix a comment — changes an
 acceptance artifact. That is a stop-and-ask event, not an implementation detail. Verify with
