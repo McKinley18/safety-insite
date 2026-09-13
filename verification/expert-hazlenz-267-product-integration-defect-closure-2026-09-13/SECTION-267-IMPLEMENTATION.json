@@ -1,0 +1,131 @@
+{
+  "artifact": "SECTION-267-IMPLEMENTATION",
+  "section": "§267 Expert product integration defect closure",
+  "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "baseCommit": "01459250",
+  "candidateIdentity": {
+    "before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "after": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "protectedModules": "29/29 unchanged",
+    "semanticLayersChanged": 0
+  },
+  "spend": {
+    "providerCalls": 0,
+    "productionDatabaseOperations": 0,
+    "productionMigrationsExecuted": 0,
+    "push": 0,
+    "tag": 0,
+    "deploy": 0
+  },
+  "newProductionModules": [
+    {
+      "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-currentness.ts",
+      "role": "producer-scoped currentness, the cross-producer supersession prohibition, and the server-derived Expert request-version adjudication"
+    },
+    {
+      "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-read-projection.ts",
+      "role": "the Expert read boundary for generic inspection payloads"
+    },
+    {
+      "path": "backend/src/database/migrations/1800000021000-ProducerScopedAnalysisCurrentness.ts",
+      "role": "replaces uq_hazlenz_analysis_current with uq_hazlenz_analysis_current_by_producer; index-only, no column, no data",
+      "appliedInProduction": false
+    }
+  ],
+  "modifiedProductionModules": [
+    {
+      "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis.service.ts",
+      "change": "claimExecution derives and reserves the execution ordinal under the advisory lock and adjudicates any client-supplied version pre-spend; persistAuthoritativeAnalysis supersedes only within the Expert family"
+    },
+    {
+      "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-execution.service.ts",
+      "change": "requestVersion is optional through the orchestration"
+    },
+    {
+      "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis.controller.ts",
+      "change": "passes null when the client sends no version"
+    },
+    {
+      "path": "backend/src/safescope-v2/expert-hazlenz-product/dto/request-expert-analysis.dto.ts",
+      "change": "requestVersion becomes optional so it can be adjudicated rather than obeyed or silently rejected"
+    },
+    {
+      "path": "backend/src/inspection/inspection.service.ts",
+      "change": "addAnalysis checks the ordinal across both tables and supersedes only within the deterministic family; get() applies the Expert read projection; the finalization authority gate is scoped to the finalized branch"
+    },
+    {
+      "path": "frontend-next/lib/expert/expertApi.ts",
+      "change": "sends no requestVersion"
+    },
+    {
+      "path": "frontend-next/components/inspection/expert/ExpertAnalysisPanel.tsx",
+      "change": "no longer passes requestVersion: 1"
+    },
+    {
+      "path": "frontend-next/lib/canonicalWorkflowApi.ts",
+      "change": "adds currentDeterministicAnalysis, the only selector the workspace may use; the analyses type carries producer and an optional resultSnapshot"
+    },
+    {
+      "path": "frontend-next/app/inspection-workspace/page.tsx",
+      "change": "four restoration sites use the producer-scoped selector; both restore sites guard the optional snapshot"
+    }
+  ],
+  "newInstruments": [
+    {
+      "path": "backend/scripts/test-267-product-integration-defects.ts",
+      "command": "npm run test:267-product-integration-defects",
+      "registeredIn": "hazlenz:integration:inner",
+      "assertions": "50 passed, 0 failed"
+    },
+    {
+      "path": "frontend-next/scripts/capture-expert-request.mjs",
+      "command": "cd frontend-next && npm run check:expert-request-construction",
+      "role": "executes the real expertApi.ts and reports the request it actually transmits; the backend suite spawns it and posts the captured bytes verbatim"
+    }
+  ],
+  "historicalExpectationsReversed": [
+    {
+      "case": "§261 P4-G",
+      "was": "the prior current analysis was superseded by the Expert run",
+      "why": "the row is client_supplied, so the assertion required cross-producer supersession, which §267 prohibits",
+      "now": "three assertions pinning the whole currentness model; suite 69 -> 71 assertions"
+    },
+    {
+      "case": "§262 R12-C",
+      "was": "the legacy row was superseded",
+      "why": "same: rows[0] is the client_supplied row",
+      "now": "its substantive clause is unchanged and a second case asserts one current row per producer; suite 94 -> 95 assertions"
+    }
+  ],
+  "instrumentIntegrityFix": {
+    "defect": "hazlenz:precommit could not pass twice: test-265 rewrote its own frozen SECTION-265-READ-PAYLOAD-SHAPE.json on every run, and hazlenz:evidence then reported the DIGEST_MISMATCH its own earlier step had caused",
+    "measured": "three runs, three digests: recorded 3860eeddf39e81f0, run A 4e8813174bf6dbad, run B de2e9ccb6ec1c2fd; the diff was confined entirely to per-run UUIDs and timestamps",
+    "preExisting": "yes, by construction. §265 passed only because its manifest was computed after that write. §267 is the first section to re-run precommit after §265 froze.",
+    "fix": "the §265 suite's evidence writes are opt-in via SECTION_265_WRITE_EVIDENCE=1; no assertion was weakened and the accepted bytes were restored",
+    "sectionOwnArtifact": "SECTION-267-ACCEPTANCE.json redacts identifiers, so re-running this suite reproduces it byte for byte"
+  },
+  "commandResults": {
+    "hazlenz:verify": "PASS — 22 elements, drift 0; 29/29 protected modules; accepted evidence drift 0 new",
+    "hazlenz:test": "PASS — 141 passed, 0 failed",
+    "hazlenz:integration:test": "PASS — §261 71/71, §262 95/95, §264 78/78, §265 76/76, §267 50/50",
+    "hazlenz:build": "PASS",
+    "hazlenz:precommit": "PASS (exit 0)",
+    "hazlenz:evidence": "PASS — 0 new",
+    "frontend build": "PASS",
+    "frontend check:expert-authority-boundary": "PASS",
+    "frontend check:expert-request-construction": "PASS",
+    "frontend expertPresentation test": "PASS (executed via jiti; the tsx binary declared by test:expert-presentation is not installed in this workspace)",
+    "frontend lint": "no new error-level findings in changed files; the two errors in page.tsx are pre-existing at HEAD"
+  },
+  "notFixedDeliberately": {
+    "id": "EXPERT_CLIENT_MISREADS_THE_ENTITLEMENT_REFUSAL",
+    "priority": "P2",
+    "statement": "EntitlementGuard refuses with 402 PAID_SUBSCRIPTION_REQUIRED; expertApi.ts maps only 403 to EXPERT_NOT_ENTITLED",
+    "consequence": "a wrong message, not a wrong authorization: the read is refused and no Expert content is served",
+    "why": "not one of the four defects §267 authorized and not raised by §266"
+  },
+  "carriedForward": [
+    "verification/current/MUTATING-SCRIPTS.json is stale: generated at §263, it has no entry for test-264 or test-265, both of which are in hazlenz:integration:inner. Regenerating it is outside §267 scope.",
+    "frontend-next test:expert-presentation declares tsx, which is not installed in this workspace."
+  ]
+}

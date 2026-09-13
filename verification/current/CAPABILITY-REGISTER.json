@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CAPABILITY_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267",
   "role": "ONE row per capability. The single answer to 'what can this thing do, and what is that claim worth'. Supersedes reading §§229-262 to reconstruct it.",
   "statuses": {
     "ACCEPTED": "proven and usable as it stands",
@@ -142,10 +142,11 @@
     {
       "capability": "Expert frontend workflow",
       "status": "ACCEPTED",
-      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/ (76/76 server, 59/59 frontend presentation, 8/8 authority-boundary source checks)",
+      "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/ (76/76 server, 59/59 frontend presentation, 8/8 authority-boundary source checks); verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/",
       "productConsequence": "an inspector can request an Expert review from the inspection workspace, read the result, and settle a classification the analysis turns on",
       "boundary": "the browser derives NO authority. It renders analysisState, confirmationRequired, the server-supplied confirmation subject and effectiveDecision.settledForUse as served, and a source check fails the build if a local derivation of any of them reappears.",
-      "nextAction": null
+      "nextAction": null,
+      "§267": "The workflow now FUNCTIONS against a real product observation. §266 measured every Expert run from the shipped client failing 409 after a provider leg, because the panel only renders once a deterministic analysis exists and the client hardcoded requestVersion 1. §267 removed client-side sequencing entirely and proved the repair with a request body constructed by expertApi.ts itself, posted onto an observation already carrying a deterministic analysis."
     },
     {
       "capability": "Downstream authority guard on finding finalization",
@@ -153,7 +154,8 @@
       "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-ACCEPTANCE.json cases L, M, N",
       "productConsequence": "a finding cannot be finalized from an Expert analysis whose operational conclusion no person has settled; once settled, the SAME review finalizes, and an override is consumed as the human value rather than the Expert proposal",
       "boundary": "ONE consumer. The deterministic path is untouched — a review citing no analysis, or a client_supplied one, is unaffected. Completion readiness, report finalization, notifications and the executive summary are not yet guarded.",
-      "nextAction": "the remaining §260 section 11 guards"
+      "nextAction": "the remaining §260 section 11 guards",
+      "§267": "SCOPED TO FINALIZATION. The gate no longer runs on the dismissal branch: dismissal rejects the proposed finding and consumes no operational conclusion, so requiring Expert settlement first was over-restriction. Finalization remains gated, unchanged."
     },
     {
       "capability": "Server-side read of the current Expert analysis",
@@ -161,7 +163,8 @@
       "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/ P0 and cases A-J",
       "productConsequence": "an interface can recover the whole authority picture after a reload without re-executing, so a page refresh costs nothing and cannot be served from a stale client copy",
       "boundary": "same guard profile as the two writes; writes nothing; never returns the raw provider payload",
-      "nextAction": null
+      "nextAction": null,
+      "§267": "It is now the ONLY route that serves Expert analysis content. GET /inspections/:id previously returned server_authored resultSnapshot rows whole behind JwtGuard alone; it now projects them to lifecycle metadata with the snapshot withheld."
     },
     {
       "capability": "Reviewer revision of a settled Expert analysis",
@@ -170,10 +173,27 @@
       "productConsequence": "an ANALYSIS_CONFIRMED or ANALYSIS_OVERRIDDEN analysis cannot be re-opened. The beta workflow is one settlement per analysis.",
       "boundary": "this is a deliberate beta scope decision, NOT a statement that the decision is permanently irreversible",
       "nextAction": "a product-owner decision, including what re-opening means for a downstream finding already finalized on the settled conclusion"
+    },
+    {
+      "capability": "Producer-scoped analysis currentness (deterministic / Expert coexistence)",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/ — cases P0-2-A..H, CAST-1..2, LIN-1..4, RERUN-1..4",
+      "productConsequence": "Deterministic HazLenz and Expert HazLenz coexist on one observation as two independent analysis families. Each has its own current analysis; neither supersedes the other; the deterministic UI receives only deterministic snapshots and the Expert panel only the server-authored Expert representation.",
+      "boundary": "`requestVersion` remains a SHARED per-observation request ordinal and confers no authority. Two Expert lineages on one observation are not modelled — there is one Expert family per observation, not one per user or per task context.",
+      "schema": "migration 1800000021000 replaces uq_hazlenz_analysis_current with uq_hazlenz_analysis_current_by_producer. UNAPPLIED IN PRODUCTION, like 019000 and 020000.",
+      "nextAction": null
+    },
+    {
+      "capability": "Pre-spend adjudication of Expert execution identity",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/ — cases PRE-1..6, measured as a provider-entry DELTA of 0 across the refused requests",
+      "productConsequence": "A stale or invented execution version is refused before the transport is reachable, so a conflicting request costs nothing. This extends the §261 pre-spend claim from \"duplicate identity\" to \"conflicting version\".",
+      "boundary": "It bounds waste on KNOWABLE conflicts only. It is not a spend ceiling: NO_SPEND_CEILING_OR_KILL_SWITCH remains an open P0 and total Expert cost is still unbounded.",
+      "nextAction": "the per-workspace spend ceiling and the explicit Expert enable flag"
     }
   ],
   "betaReadinessDomains": {
-    "assignedBy": "§266",
+    "assignedBy": "§266, updated at §267",
     "vocabulary": [
       "READY",
       "READY_WITH_ACCEPTED_LIMITATION",
@@ -185,7 +205,7 @@
       "1_expertCapability": "READY_WITH_ACCEPTED_LIMITATION",
       "2_deterministicSafetyContainment": "READY",
       "3_humanConfirmationBoundary": "READY",
-      "4_frontendExpertWorkflow": "BLOCKER",
+      "4_frontendExpertWorkflow": "READY",
       "5_downstreamAuthorityContainment": "READY_WITH_ACCEPTED_LIMITATION",
       "6_authentication": "READY",
       "7_authorizationTenantIsolation": "READY",
@@ -219,6 +239,7 @@
       "35_uxReadiness": "BLOCKER"
     },
     "blockerDomains": 10,
-    "note": "A BLOCKER domain does not mean the domain is architecturally wrong. Every one of the ten maps to a finite item in BETA-BLOCKERS.json, and none requires redesign."
+    "note": "A BLOCKER domain does not mean the domain is architecturally wrong. Every one of the ten maps to a finite item in BETA-BLOCKERS.json, and none requires redesign.",
+    "§267": "Domain 4 moves BLOCKER -> READY: the two P0 defects that made the shipped Expert workflow non-functional are closed and proven against the real client request path. Domain 5 (downstream authority containment) keeps READY_WITH_ACCEPTED_LIMITATION, but the limitation is now smaller — the inspection-payload bypass that made containment a property of what happens to be written rather than of a guard is closed. Every other domain is unchanged; §267 touched no infrastructure, operations or legal surface."
   }
 }

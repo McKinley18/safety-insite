@@ -25,7 +25,8 @@
     "verify:v1-customer-journeys": "node scripts/verify-v1-customer-journeys.mjs",
     "audit:mobile-responsive": "node scripts/audit-mobile-responsive.mjs",
     "audit:text-contrast": "node scripts/audit-text-contrast.mjs",
-    "check:hydration": "node scripts/check-hydration.mjs"
+    "check:hydration": "node scripts/check-hydration.mjs",
+    "check:expert-request-construction": "node scripts/capture-expert-request.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

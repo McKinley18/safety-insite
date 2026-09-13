@@ -120,9 +120,11 @@ export default function ExpertAnalysisPanel({
     // screen while a new one is in flight.
     setRead(null);
     try {
+      // §267. NO `requestVersion`. This call previously hardcoded 1, which collided with the
+      // deterministic analysis that must already exist for this panel to be rendered at all --
+      // after a provider leg had been spent. The server allocates the execution version.
       const executed = await requestExpertAnalysis(observationId, {
         idempotencyKey: expertIdempotencyKey(observationId, attempt.current),
-        requestVersion: 1,
         taskContext,
       });
       // Render what the execution returned immediately -- it is the only surface on which

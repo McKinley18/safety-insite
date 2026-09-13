@@ -1,0 +1,48 @@
+diff --git a/verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-READ-PAYLOAD-SHAPE.json b/verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-READ-PAYLOAD-SHAPE.json
+index 9be54452..f1e75e8a 100644
+--- a/verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-READ-PAYLOAD-SHAPE.json
++++ b/verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-READ-PAYLOAD-SHAPE.json
+@@ -1,7 +1,7 @@
+ {
+   "responseVersion": "hazlenz.expert.265.read-response.v1",
+   "present": true,
+-  "analysisId": "7ee60087-d61d-4339-94ee-da518f1a0788",
++  "analysisId": "4c820c68-97fc-4358-a32b-3633f942ab9c",
+   "analysisState": "ANALYSIS_AVAILABLE",
+   "producer": "server_authored",
+   "confirmationRequired": false,
+@@ -31,9 +31,9 @@
+   "analysis": {
+     "kind": "EXPERT_HAZLENZ_SERVER_AUTHORED_ANALYSIS",
+     "basis": {
+-      "inspectionId": "618fa782-e443-4393-a71f-7c960765fd4e",
++      "inspectionId": "165fb861-9477-403f-8809-c2d825f82896",
+       "jurisdiction": "osha-general-industry",
+-      "observationId": "3b24dedf-8b5c-4723-a2d3-460cd40ba2b4",
++      "observationId": "02f9835b-86ff-4b68-a321-627670dfb932",
+       "organizationId": null,
+       "governedRecordCount": 0,
+       "contextBuilderVersion": "hazlenz.expert.262.server-context.v1",
+@@ -160,18 +160,18 @@
+     "admission": "ADMIT",
+     "verifierReached": false,
+     "verifierNotReachedBecause": "NO_ADMITTED_DECLARATION",
+-    "requestedAt": "2026-09-13T02:59:11.574Z",
+-    "completedAt": "2026-09-13T02:59:12.065Z"
++    "requestedAt": "2026-09-13T13:10:20.476Z",
++    "completedAt": "2026-09-13T13:10:20.973Z"
+   },
+   "failure": null,
+   "history": [
+     {
+-      "analysisId": "7ee60087-d61d-4339-94ee-da518f1a0788",
++      "analysisId": "4c820c68-97fc-4358-a32b-3633f942ab9c",
+       "producer": "server_authored",
+       "analysisState": "ANALYSIS_AVAILABLE",
+       "requestVersion": 1,
+       "status": "current",
+-      "createdAt": "2026-09-13T02:59:12.061Z",
++      "createdAt": "2026-09-13T13:10:20.969Z",
+       "humanSettled": false
+     }
+   ],

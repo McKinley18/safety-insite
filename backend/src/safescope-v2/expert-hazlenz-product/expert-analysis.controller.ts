@@ -80,7 +80,8 @@ export class ExpertAnalysisController {
   ): Promise<ExpertAnalysisResponse> {
     const result = await this.executions.execute(req.user, observationId, {
       idempotencyKey: dto.idempotencyKey,
-      requestVersion: dto.requestVersion,
+      // §267. `null` means "the server allocates", which is the ordinary path.
+      requestVersion: dto.requestVersion ?? null,
       taskContext: dto.taskContext ?? null,
       answeredClarifications: dto.answeredClarifications ?? [],
     });

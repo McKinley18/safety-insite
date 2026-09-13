@@ -305,11 +305,37 @@ async function main(): Promise<void> {
 
   // The shape a frontend actually renders, captured once so the presentation layer is written
   // against the REAL payload rather than against an assumption about it.
+  //
+  // -------------------------------------------------------------------------------------------
+  // §267 — THE WRITES ARE OPT-IN NOW, AND THIS SUITE'S ASSERTIONS ARE NOT AFFECTED BY IT.
+  //
+  // This suite is part of `hazlenz:integration:inner`, so it re-runs on every later section's
+  // `hazlenz:precommit`. It writes into the §265 evidence package, which is FROZEN and whose
+  // digests are recorded in `REPORT-265.sha256`. The payload-shape artifact contains per-run UUIDs
+  // and timestamps, so a re-run cannot reproduce it: §267 measured three digests across three runs
+  // (recorded 3860eedd…, then 4e881317…, then de2e9ccb…), differing only in identifiers and times.
+  //
+  // The consequence was that `hazlenz:precommit` could not pass twice. Its last step,
+  // `hazlenz:evidence`, correctly reported the DIGEST_MISMATCH that its own earlier step had just
+  // caused. §265 itself passed only because its manifest was computed AFTER this write; every
+  // section after it inherited a gate that fails on a clean tree. §267 is the first section to
+  // re-run precommit after §265 froze, which is why it surfaced here.
+  //
+  // NOTHING IS WEAKENED. Every assertion above and below still runs and still fails the build. Only
+  // the SIDE EFFECT of overwriting an accepted package is removed, and removing it is what makes
+  // the evidence guard able to mean "something changed" rather than "the suite ran again". The
+  // §265 bytes on disk remain exactly the bytes §265 accepted.
+  //
+  // Set SECTION_265_WRITE_EVIDENCE=1 to regenerate the package deliberately — which also requires
+  // recomputing `REPORT-265.sha256`, and is therefore an authorized act rather than a side effect.
+  const WRITE_EVIDENCE = process.env.SECTION_265_WRITE_EVIDENCE === '1';
   const evidenceDir = join(__dirname, '..', '..', 'verification',
     'expert-hazlenz-265-frontend-product-workflow-2026-09-12');
-  mkdirSync(evidenceDir, { recursive: true });
-  writeFileSync(join(evidenceDir, 'SECTION-265-READ-PAYLOAD-SHAPE.json'),
-    JSON.stringify(a.read.body, null, 2));
+  if (WRITE_EVIDENCE) {
+    mkdirSync(evidenceDir, { recursive: true });
+    writeFileSync(join(evidenceDir, 'SECTION-265-READ-PAYLOAD-SHAPE.json'),
+      JSON.stringify(a.read.body, null, 2));
+  }
 
   // ================================================================ B
 
@@ -728,7 +754,11 @@ async function main(): Promise<void> {
   ok('SPEND every leg was answered by the substituted deterministic transport, so zero hosted '
     + 'calls were made', true, `${legs.total} local legs`);
 
-  writeFileSync(join(evidenceDir, 'SECTION-265-ACCEPTANCE.json'), JSON.stringify({
+  // §267. Gated for the same reason as the payload shape above, even though this artifact happens
+  // to be run-stable today: a frozen package should not be written by a routine re-run at all, and
+  // relying on "it happens to produce the same bytes" is the property that quietly stopped holding
+  // one file up.
+  if (WRITE_EVIDENCE) writeFileSync(join(evidenceDir, 'SECTION-265-ACCEPTANCE.json'), JSON.stringify({
     artifact: 'SECTION-265-LOCAL-PRODUCT-ACCEPTANCE',
     candidateIdentity: EXPERT_CANDIDATE_IDENTITY_259,
     providerCalls: 0,

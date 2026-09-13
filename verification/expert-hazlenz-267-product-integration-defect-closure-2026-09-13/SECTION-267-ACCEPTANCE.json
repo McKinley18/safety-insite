@@ -1,0 +1,80 @@
+{
+  "artifact": "SECTION-267-PRODUCT-INTEGRATION-DEFECT-CLOSURE-ACCEPTANCE",
+  "candidateIdentity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+  "providerCalls": 0,
+  "localTransportLegs": {
+    "total": 7,
+    "firstPass": 6,
+    "verifier": 1,
+    "windowsReset": 0
+  },
+  "assertions": {
+    "pass": 50,
+    "fail": 0
+  },
+  "cases": [
+    {
+      "id": "P0-1",
+      "title": "the real shipped frontend Expert request succeeds after a deterministic analysis",
+      "passed": true,
+      "detail": "client_supplied@v1 server_authored@v2"
+    },
+    {
+      "id": "PRE-SPEND",
+      "title": "stale and invented execution versions are adjudicated before provider contact",
+      "passed": true,
+      "detail": "provider-entry delta 0"
+    },
+    {
+      "id": "P0-2",
+      "title": "deterministic and Expert currentness are independent",
+      "passed": true,
+      "detail": "deterministic=current expert=current"
+    },
+    {
+      "id": "CAST",
+      "title": "a deterministic consumer cannot read an Expert snapshot from the generic payload",
+      "passed": true,
+      "detail": "resultSnapshot absent"
+    },
+    {
+      "id": "D1->E1->E2",
+      "title": "Expert supersession is scoped to the Expert family",
+      "passed": true,
+      "detail": "client_supplied@v1=current server_authored@v2=superseded server_authored@v3=current"
+    },
+    {
+      "id": "D1->E1->D2",
+      "title": "deterministic supersession is scoped to the deterministic family",
+      "passed": true,
+      "detail": "client_supplied@v1=superseded server_authored@v2=current client_supplied@v3=current"
+    },
+    {
+      "id": "P1-READ",
+      "title": "the generic inspection payload withholds raw Expert snapshots",
+      "passed": true,
+      "detail": "no posture, no snapshotKind, deterministic unchanged"
+    },
+    {
+      "id": "DISMISSAL",
+      "title": "dismissal no longer requires Expert settlement; finalization still does",
+      "passed": true,
+      "detail": "state=ANALYSIS_AWAITING_CONFIRMATION"
+    },
+    {
+      "id": "HISTORY",
+      "title": "history preserves both producers and does not confer authority",
+      "passed": true,
+      "detail": "server_authored@v3 server_authored@v2 client_supplied@v1"
+    }
+  ],
+  "realFrontendRequest": {
+    "source": "frontend-next/lib/expert/expertApi.ts, executed by frontend-next/scripts/capture-expert-request.mjs",
+    "transmittedBodyShape": "{\"idempotencyKey\":\"expert-<uuid>-0\",\"taskContext\":\"changing the drive belt on the packaging line\"}",
+    "transmittedFields": [
+      "idempotencyKey",
+      "taskContext"
+    ],
+    "carriesRequestVersion": false
+  }
+}

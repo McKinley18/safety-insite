@@ -57,9 +57,26 @@ export class RequestExpertAnalysisDto {
   @MaxLength(128)
   idempotencyKey: string;
 
+  /**
+   * §267 — OPTIONAL, AND THE SHIPPED CLIENT NO LONGER SENDS IT.
+   *
+   * §266 measured the §265 client hardcoding `1` here while the observation's deterministic
+   * analysis already held version 1, so every Expert request from the real workflow spent a
+   * provider leg and then collided. The server now DERIVES the execution version at claim time,
+   * under the advisory lock, before the transport is reachable.
+   *
+   * IT IS STILL DECLARED, AND NOT SILENTLY DROPPED. Removing the property entirely would make the
+   * global `forbidNonWhitelisted` pipe reject an older client with a generic 400 that says nothing
+   * about why. Declaring it optional lets the request be ADJUDICATED instead: a value equal to the
+   * ordinal the server would allocate is accepted as agreement, and a stale or invented one is
+   * refused pre-spend with a sentence that names the conflict. What is NOT permitted is obeying it,
+   * which was the defect, or ignoring it, which would execute a request whose stated identity the
+   * server privately disagreed with.
+   */
+  @IsOptional()
   @IsInt()
   @Min(1)
-  requestVersion: number;
+  requestVersion?: number;
 
   /** The inspector's own task/area note. Carried as a source; never as a conclusion. */
   @IsOptional()

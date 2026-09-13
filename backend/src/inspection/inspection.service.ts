@@ -33,6 +33,12 @@ import {
   CLIENT_SUPPLIED_ANALYSIS_STATE,
 } from '../safescope-v2/expert-hazlenz-product/expert-analysis-authority';
 import {
+  DETERMINISTIC_PRODUCER, highestReservedRequestVersion, maySupersede,
+} from '../safescope-v2/expert-hazlenz-product/expert-analysis-currentness';
+import {
+  projectAnalysesForGenericRead,
+} from '../safescope-v2/expert-hazlenz-product/expert-analysis-read-projection';
+import {
   ExpertEffectiveDecisionService,
 } from '../safescope-v2/expert-hazlenz-product/expert-effective-decision.service';
 import { HumanReview } from './entities/human-review.entity';
@@ -275,12 +281,39 @@ export class InspectionService {
     return query.getMany();
   }
 
+  /**
+   * §267 — THE GENERIC INSPECTION READ, WITH THE EXPERT READ BOUNDARY APPLIED.
+   *
+   * §266 measured this payload returning `server_authored` Expert rows whole — `resultSnapshot`
+   * included, posture included, in any state — behind `JwtGuard` alone: no `fullSafeScope`
+   * entitlement, no `effectiveDecision`, no confirmation framing. The Expert review representation
+   * has a dedicated route carrying the full authority profile, and this is a second, weaker way to
+   * read the same content. It stops being one here.
+   *
+   * DETERMINISTIC BEHAVIOUR IS UNCHANGED IN EVERY RESPECT. `client_supplied` rows pass through
+   * byte-for-byte, so workspace restoration, the standards panel and the report snapshot — which
+   * reaches its inspection through THIS method — all read exactly what they always did.
+   *
+   * THIS METHOD DOES NOT RECONSTRUCT `effectiveDecision`, deliberately. §267 forbids making
+   * ordinary inspection reads derive Expert authority: doing so would put a second derivation of
+   * the product's most consequential question on its least-guarded route. The projection withholds;
+   * it does not interpret.
+   */
   async get(rawUser: unknown, id: string) {
     const inspection = await this.findAccessible(rawUser, id);
-    return this.inspections.findOne({
+    const loaded = await this.inspections.findOne({
       where: { id: inspection.id },
       relations: ['observations', 'observations.analyses', 'observations.reviews', 'findings', 'assignments'],
     });
+    if (!loaded) return loaded;
+    for (const observation of loaded.observations ?? []) {
+      // Reassigned on the loaded graph rather than mapped into a new inspection object: every
+      // caller of this method — the report snapshot among them — expects the entity shape, and a
+      // structural rewrite here would be a far larger change than the boundary requires.
+      (observation as { analyses: unknown }).analyses =
+        projectAnalysesForGenericRead(observation.analyses);
+    }
+    return loaded;
   }
 
   async update(rawUser: unknown, id: string, dto: UpdateInspectionDto) {
@@ -701,17 +734,37 @@ export class InspectionService {
           `SELECT pg_advisory_xact_lock(hashtext($1))`,
           [`hazlenz-analysis:${observationId}`],
         );
-        const latest = await repository.findOne({
-          where: { observationId },
+        // -------------------------------------------------------------------------------------
+        // §267. THE ORDINAL AND THE CURRENTNESS ARE TWO DIFFERENT QUESTIONS.
+        //
+        //   1. IS THE ORDINAL FREE?  Asked across every producer AND across reserved-but-unwritten
+        //      Expert executions. `uq_hazlenz_analysis_observation_version` does not care who wrote
+        //      a row, and an Expert claim holds its ordinal for the length of two hosted legs
+        //      during which it appears nowhere in this table. Consulting only this table would let
+        //      a deterministic rerun allocate an ordinal an in-flight Expert execution already owns
+        //      and fail on the unique index as a 500; this makes it the truthful 409 the client
+        //      already knows how to resynchronise from.
+        //
+        //   2. WHAT DOES THIS SUPERSEDE?  Only the prior DETERMINISTIC analysis. §266 measured the
+        //      collision in the other direction — Expert superseding the customer-authoritative
+        //      deterministic row — and the same prohibition applies here: a deterministic rerun
+        //      must not erase the Expert provenance merely because it is newer. After D1 -> E1 ->
+        //      D2, D2 is the current deterministic analysis and E1 is still the current Expert one.
+        const highestReserved = await highestReservedRequestVersion(manager, observationId);
+        if (dto.requestVersion <= highestReserved) {
+          throw new ConflictException('A newer analysis request already exists.');
+        }
+        const currentDeterministic = await repository.findOne({
+          where: { observationId, producer: DETERMINISTIC_PRODUCER, status: 'current' },
           order: { requestVersion: 'DESC' },
           lock: { mode: 'pessimistic_write' },
         });
-        if (latest && dto.requestVersion <= latest.requestVersion) {
-          throw new ConflictException('A newer analysis request already exists.');
-        }
-        if (latest?.status === 'current') {
-          latest.status = 'superseded';
-          await repository.save(latest);
+        if (currentDeterministic) {
+          if (!maySupersede({ producer: DETERMINISTIC_PRODUCER }, currentDeterministic)) {
+            throw new ConflictException('Cross-producer supersession is prohibited.');
+          }
+          currentDeterministic.status = 'superseded';
+          await repository.save(currentDeterministic);
         }
         const saved = await repository.save(repository.create({
           observationId,
@@ -1314,12 +1367,51 @@ export class InspectionService {
     // IT RUNS BEFORE THE TRANSACTION OPENS. A refusal must not leave a partially written finding,
     // and the check needs no lock — it reads rows a settlement can only move FORWARD, and a
     // settlement landing after this point produces a retryable refusal rather than a wrong write.
-    const expertVerdict = await this.expertAuthority.authorizeFindingFinalization(
-      review.analysisId, observationId,
-    );
-    if (!expertVerdict.allowed) {
-      throw new ConflictException(expertVerdict.refusal ?? 'This Expert analysis carries no settled '
-        + 'operational conclusion, so a finding cannot be finalized from it.');
+    //
+    // ---------------------------------------------------------------------------------------
+    // §267. THE GATE APPLIES TO FINALIZATION AND NOT TO DISMISSAL. PRODUCT-OWNER DECISION.
+    //
+    // §265 put this check ahead of the finalized/dismissed branch, so it refused a DISMISSAL of a
+    // finding whose review cited an unsettled Expert analysis. §266 raised that as
+    // over-restriction under the standing rule that every safety remediation is checked for
+    // overcorrection, and §267 decided it: THE TWO ACTS CONSUME DIFFERENT THINGS.
+    //
+    //   FINALIZATION asserts an authoritative finding ON THE BASIS OF an operational conclusion. It
+    //   writes a finding the report reads and, on this branch, creates a corrective action whose
+    //   urgency derives from that conclusion. It consumes the conclusion, so it needs it settled.
+    //
+    //   DISMISSAL REJECTS the proposed finding. It asserts that there is no finding here to carry
+    //   forward. It does not adopt, endorse, or depend on HazLenz's posture or driver-role
+    //   classification — so requiring the reviewer to settle a classification for a hazard they are
+    //   REJECTING demands a decision the act does not use. It also trapped the user: a dismissed
+    //   finding is how an inspection reaches completion, so the reviewer could not finish without
+    //   confirming an Expert conclusion they had just declined to act on.
+    //
+    // WHAT DISMISSAL STILL MUST NOT DO, and does not, by construction rather than by promise:
+    //
+    //   * it does not mark the Expert analysis CONFIRMED or OVERRIDDEN. Nothing on this path writes
+    //     `analysisState` or `settlementReviewId`; those move only through the §264 settlement
+    //     transition, which is a different route with its own eligibility rule.
+    //   * it does not create an effective operational conclusion. `deriveEffectiveDecision` reads
+    //     the analysis state and the settlement, neither of which this touches, so the analysis
+    //     remains ANALYSIS_AWAITING_CONFIRMATION and unsettled afterwards — which §267 states is
+    //     the acceptable and expected outcome.
+    //   * it does not rewrite `resultSnapshot`, and it implies neither "safe" nor "no hazard
+    //     exists": it records one reviewer rejecting one proposed finding, attributably.
+    //   * it remains separately auditable — the `finding_review_finalized` event below carries
+    //     `status: 'dismissed'`, the reviewer, the review and the analysis it cited.
+    //
+    // THE FINALIZATION GUARD IS OTHERWISE UNTOUCHED. It is still the §260 section 11 gate, still
+    // asks the one derivation, still refuses on the finalized branch, and is still the only
+    // activated downstream consumer of `effectiveDecision`.
+    if (status === 'finalized') {
+      const expertVerdict = await this.expertAuthority.authorizeFindingFinalization(
+        review.analysisId, observationId,
+      );
+      if (!expertVerdict.allowed) {
+        throw new ConflictException(expertVerdict.refusal ?? 'This Expert analysis carries no settled '
+          + 'operational conclusion, so a finding cannot be finalized from it.');
+      }
     }
 
     return this.dataSource.transaction(async manager => {

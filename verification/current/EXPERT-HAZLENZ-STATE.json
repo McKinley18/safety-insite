@@ -18,10 +18,10 @@
     "frozenRecord": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/SECTION-259-SUCCESSOR-IDENTITY.json"
   },
   "integration": {
-    "stage": "LOCAL EXPERT PRODUCT WORKFLOW IMPLEMENTED",
-    "commit": "§265 (see evidencePointers.frontendProductWorkflow265)",
-    "packageDigest": "d6ed5f7153e9b2031204b4b19f7dfad3e0dc715c6ccbed7738a4ad986aaab237",
-    "terminal": "EXPERT_HAZLENZ_LOCAL_PRODUCT_WORKFLOW_IMPLEMENTED — BETA_READINESS_CLOSURE_REVIEW_AUTHORIZATION_REQUIRED",
+    "stage": "EXPERT PRODUCT INTEGRATION DEFECTS CLOSED (local)",
+    "commit": "§267 (see evidencePointers.productIntegrationDefectClosure267)",
+    "packageDigest": "b2a7e1e0eb6e9ecb5cd989e83e860d6f76992e80bf2de7e80c446cb4057e83f4",
+    "terminal": "EXPERT_HAZLENZ_PRODUCT_INTEGRATION_DEFECTS_CLOSED — BETA_INFRASTRUCTURE_AND_OPERATIONS_CLOSURE_AUTHORIZATION_REQUIRED",
     "route": {
       "method": "POST",
       "path": "/inspections/observations/:id/expert-analyses",
@@ -35,11 +35,12 @@
       "crossTenantResponse": "NotFound, indistinguishable from a non-existent observation",
       "acceptedRequestFields": [
         "idempotencyKey",
-        "requestVersion",
+        "requestVersion (OPTIONAL since §267)",
         "taskContext",
         "answeredClarifications"
       ],
-      "serverOwnedFieldsReachableFromTheBody": 0
+      "serverOwnedFieldsReachableFromTheBody": 0,
+      "§267requestVersion": "The shipped client sends NO requestVersion. The server derives the execution ordinal in `claimExecution` under the `hazlenz-analysis:<observationId>` advisory lock, from the highest ordinal already reserved across `hazlenz_analyses` AND `expert_analysis_executions`. A supplied version is ADJUDICATED: equal to the allocation it is accepted; stale or invented it is refused 409 pre-spend, with a provider-entry count of 0."
     },
     "producers": [
       "client_supplied",
@@ -146,7 +147,27 @@
       "previouslyRecordedHere": "0be6f8c33bc494cf0bf50440de4a3a933f3a00843e09183ed674358c596bfdae",
       "note": "the previously recorded value does not reproduce under the established method, which derives §263's recorded digest exactly. The §264 package itself verifies clean (shasum -c REPORT-264.sha256, 4/4 OK), so the frozen bytes are intact and only this living index held a value that cannot be derived from them. Recorded rather than silently replaced. See §265 report section 9.",
       "rootCause": "ESTABLISHED AT §266: 0be6f8c3… is the §262 package digest, reproducible today from verification/expert-hazlenz-262-…/REPORT-262.sha256. §264 carried §262's value forward into this living index instead of computing its own. This is a CURRENT-STATE INDEX METADATA DEFECT, not frozen-evidence corruption: all six §26x packages verify byte-clean under shasum -c, and the §265 commit touched no frozen package member."
-    }
+    },
+    "currentness": {
+      "establishedBy": "§267",
+      "rule": "Currentness is scoped BY PRODUCER. There is a CURRENT DETERMINISTIC ANALYSIS and a CURRENT EXPERT ANALYSIS, and neither supersedes the other. Cross-producer supersession is prohibited and is decided by one predicate, `maySupersede`.",
+      "requestVersionMeans": "A per-observation REQUEST ORDINAL, shared by both producers, conferring no authority. It exists to keep `uq_hazlenz_analysis_observation_version` satisfiable and to give history a stable order. History ordering does not define currentness.",
+      "statusMeans": "Currentness within one analysis family.",
+      "enforcedBy": "uq_hazlenz_analysis_current_by_producer — UNIQUE (observationId, producer) WHERE status = current, created by migration 1800000021000, replacing §5's single-slot uq_hazlenz_analysis_current.",
+      "oneImplementation": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-currentness.ts (server) and `currentDeterministicAnalysis` in frontend-next/lib/canonicalWorkflowApi.ts (browser). There is deliberately no selector that answers \"the newest non-superseded analysis\" without naming a producer."
+    },
+    "genericInspectionReadBoundary": {
+      "establishedBy": "§267",
+      "rule": "GET /inspections/:id returns client_supplied analyses unchanged and projects server_authored ones to a summary WITHOUT `resultSnapshot`, marked `expertResultWithheld: true` and pointing at the Expert read route.",
+      "doesNotDerive": "effectiveDecision. Ordinary inspection reads never reconstruct Expert authority.",
+      "implementation": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-read-projection.ts, applied in InspectionService.get"
+    },
+    "downstreamAuthorityGate": {
+      "establishedBy": "§265, scoped by §267",
+      "finalization": "GATED on effectiveDecision. Unchanged.",
+      "dismissal": "NOT GATED, by §267 product-owner decision. Dismissal rejects the proposed finding and consumes no operational conclusion, so it does not require settling the Expert classification. It leaves the analysis in ANALYSIS_AWAITING_CONFIRMATION, writes no settlement, creates no corrective action and creates no effective decision."
+    },
+    "packageDigestNote": "sha256 of REPORT-267.sha256, which is the manifest over every other member of verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
   },
   "confirmationTrigger": {
     "deterministic": true,
@@ -247,7 +268,8 @@
     "buildTier3": "npm run hazlenz:build",
     "fastAfterASmallChange": "npm run hazlenz:check",
     "beforeAnAuthorizedCommit": "npm run hazlenz:precommit",
-    "reclassifyScripts": "npm run hazlenz:scripts:classify"
+    "reclassifyScripts": "npm run hazlenz:scripts:classify",
+    "realFrontendExpertRequest": "cd frontend-next && npm run check:expert-request-construction"
   },
   "evidencePointers": {
     "candidateIdentity259": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/",
@@ -259,24 +281,26 @@
     "protectedIdentities": "PROTECTED-IDENTITIES.json",
     "humanConfirmation264": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/",
     "frontendProductWorkflow265": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/",
-    "betaReadinessClosure266": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/"
+    "betaReadinessClosure266": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
+    "productIntegrationDefectClosure267": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
   },
-  "nextAuthorizedWork": "§267 — Expert product integration defect closure: server-side requestVersion allocation, producer-scoped analysis currency, and removal of the raw Expert snapshot from the inspection payload. Until it closes, the Expert workflow does not function against a real observation, which makes every other closure lane premature. LEGAL and LIVE INFRASTRUCTURE lanes have no engineering prerequisite and should start in parallel immediately.",
+  "nextAuthorizedWork": "BETA INFRASTRUCTURE AND OPERATIONS. The Expert product integration defects are closed as of §267, so the remaining P0s are no longer blocked behind a broken workflow. In dependency order: production migration mechanism (now THREE unapplied migrations, 1800000019000/020000/021000) before any push, because Render autoDeploy is on; object storage provisioning, which production cannot boot without; a spend ceiling and an explicit Expert kill switch; error monitoring. The LEGAL lane — Terms, Privacy Notice and third-party model disclosure — has no engineering prerequisite and should already be running in parallel. See verification/current/BETA-BLOCKERS.json.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"
   },
   "betaReadiness": {
-    "reviewedBy": "§266",
+    "reviewedBy": "§266, defect-closure updated at §267",
     "verdict": "NOT_YET_READY",
     "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
     "architectureSound": true,
-    "p0Count": 9,
+    "p0Count": 7,
     "register": "verification/current/BETA-BLOCKERS.json — the ONE authoritative register",
     "evidence": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
     "productionCodeChanged": 0,
     "providerCalls": 0,
     "productionDatabaseOperations": 0,
-    "packageDigest266": "fadd0eeebe13e007f64cef767c71262ee046226259de4b5e8a4615bba6eb508e"
+    "packageDigest266": "fadd0eeebe13e007f64cef767c71262ee046226259de4b5e8a4615bba6eb508e",
+    "§267": "Two of §266's nine P0s are closed — EXPERT_CLIENT_VERSION_COLLISION and EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS — along with two P1s: the inspection-payload Expert read boundary and the dismissal over-restriction. The seven that remain are infrastructure, operations and legal; none is an Expert architecture defect and none requires redesign."
   }
 }

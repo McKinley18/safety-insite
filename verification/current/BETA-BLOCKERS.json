@@ -1,38 +1,10 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
   "asOf": "2026-09-13",
   "blocksExternalBetaNow": [
-    {
-      "id": "EXPERT_CLIENT_VERSION_COLLISION",
-      "priority": "P0",
-      "severity": "BLOCKER",
-      "kind": "code",
-      "statement": "The shipped §265 frontend hardcodes requestVersion: 1, but the Expert panel only renders once a deterministic analysis exists, and that analysis already occupies requestVersion 1. Every Expert run from the real workflow is refused.",
-      "measured": "HTTP 409 'A newer analysis request already exists.'; execution row ANALYSIS_FAILED / PERSISTENCE_CONFLICT; 1 provider leg spent BEFORE the refusal.",
-      "consequence": "Expert is unusable in the product it was built for, and each attempt spends real money on a hosted leg to reach a conflict. In beta this is both a broken feature and an uncapped cost per retry.",
-      "requiredAction": "Allocate requestVersion server-side, or have the client send max(existing requestVersion) + 1 the way the deterministic path already does at frontend-next/app/inspection-workspace/page.tsx:1410. Server-side allocation is preferred: a client-chosen version is a client-chosen collision.",
-      "owner": "engineering",
-      "dependency": null,
-      "closureProof": "an integration case that runs Expert on an observation that ALREADY carries a deterministic analysis — the case §265's suite never exercised, because every §265 case used a fresh observation.",
-      "introducedBy": "§265 (the client); the constraint itself is §261"
-    },
-    {
-      "id": "EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS",
-      "priority": "P0",
-      "severity": "BLOCKER",
-      "kind": "code",
-      "statement": "Expert and deterministic analyses share one per-observation requestVersion sequence and one status='current' slot in hazlenz_analyses. A successful Expert run marks the deterministic analysis superseded and becomes 'current' itself.",
-      "measured": "after Expert at requestVersion 2: client_supplied row status='superseded', server_authored row status='current'.",
-      "consequence": "The workspace restores the newest non-superseded analysis and casts its resultSnapshot to HazLenzAnalysisResult (page.tsx:778, 855, 969, 1814). After any Expert run it therefore restores an EXPERT snapshot into the deterministic UI — the HazLenz step degrades to blanks and analysisId points subsequent reviews at the Expert analysis. It also means an ADVISORY layer supersedes the customer-authoritative record, which inverts invariant 30 at the data level.",
-      "requiredAction": "Make producer-scoped currency explicit: readers of the deterministic flow must filter to producer='client_supplied', and supersession must not cross producers. Do not redesign the shared table — scope the reads and the supersession.",
-      "owner": "engineering",
-      "dependency": "EXPERT_CLIENT_VERSION_COLLISION (same code path)",
-      "closureProof": "restore-after-Expert-run renders the deterministic analysis unchanged",
-      "introducedBy": "§261 (shared currency); first reachable by a user at §265"
-    },
     {
       "id": "NO_PRODUCTION_MIGRATION_MECHANISM",
       "priority": "P0",
@@ -44,7 +16,8 @@
       "requiredAction": "Add a migration step that runs against the COMPILED datasource — typeorm is already a production dependency and dist/database/{data-source,migrations} are already in the image, so `typeorm -d dist/database/data-source.js migration:run` works. Run it as a release command BEFORE the new code serves traffic, and record the applied version.",
       "owner": "engineering + live infrastructure",
       "dependency": null,
-      "closureProof": "a deploy rehearsal on a disposable database proving migrate-then-serve ordering"
+      "closureProof": "a deploy rehearsal on a disposable database proving migrate-then-serve ordering",
+      "§267": "The unapplied count is now THREE, not two. §267 added 1800000021000 (ProducerScopedAnalysisCurrentness), which replaces the single-currentness partial unique index with a producer-scoped one. It is index-only — no column, no data — but it is still schema that must be applied before the code that depends on it serves traffic, so it raises the stakes of this blocker rather than changing its nature. NO PRODUCTION MIGRATION WAS EXECUTED at §267; the migration was applied only to disposable test_* databases created and dropped by the §263 wrapper."
     },
     {
       "id": "NO_TERMS_NO_PRIVACY_POLICY",
@@ -133,38 +106,15 @@
   ],
   "canRunInParallelWithTheBlockers": [
     {
-      "id": "EXPERT_ANALYSIS_READABLE_OUTSIDE_THE_AUTHORITY_BOUNDARY",
-      "priority": "P1",
-      "kind": "code",
-      "classification": "DIRECT BYPASS EXISTS",
-      "statement": "GET /inspections/:id returns observations.analyses unfiltered — including server_authored Expert rows in any state, with resultSnapshot whole. The route carries JwtGuard only: no fullSafeScope entitlement, no effectiveDecision, no authorityStatement, no confirmationRequired framing.",
-      "measured": "the probe read snapshotKind=EXPERT_HAZLENZ_SERVER_AUTHORED_ANALYSIS and posture=CONTINUE_WITH_CONTROLS from GET /inspections/:id; entitlement guard ABSENT.",
-      "whyNotP0Today": "no consumer renders it. The frontend reads observation.analyses only to restore the deterministic analysis, and the report PDF's extractStandard cannot read an Expert snapshot because it looks for executiveJudgment / standardsReasoning / primaryCitation, none of which an Expert snapshot has. So an unsettled proposal does not BECOME an authoritative product fact today.",
-      "whyItStillMatters": "this is the bypass §260 section 11 was written to prevent, and it is invisible: a future feature could render resultSnapshot.posture from the inspection payload with no compiler error, no runtime error and no guard. The §265 frontend authority boundary covers the Expert routes, not this one.",
-      "requiredAction": "filter server_authored rows out of the inspection payload, or project them through the same authority shape the Expert read route uses.",
-      "owner": "engineering",
-      "closureProof": "GET /inspections/:id carries no raw Expert posture"
-    },
-    {
       "id": "EXPERT_SNAPSHOT_COPIED_INTO_REPORT_SNAPSHOT",
-      "priority": "P1",
+      "priority": "RESOLVED_TRANSITIVELY",
       "kind": "code",
       "classification": "TRANSITIVELY_CONTAINED",
       "statement": "canonical-reports.service.snapshotInspection copies observation.analyses verbatim into the persisted report snapshot, unfiltered by producer or state.",
       "whyNotP0": "generation requires inspection.status='completed', which requires every active finding finalized or dismissed, which the §265 guard now gates. The snapshot is data at rest: the report list and detail routes deliberately exclude sourceSnapshot, and the PDF renderer cannot extract Expert shapes.",
       "requiredAction": "exclude server_authored rows from the report snapshot, or project them",
-      "owner": "engineering"
-    },
-    {
-      "id": "FINALIZATION_GUARD_ALSO_BLOCKS_DISMISSAL",
-      "priority": "P1",
-      "kind": "code",
-      "statement": "The §265 downstream guard runs before the finalized/dismissed branch, so it refuses a DISMISSAL of a finding whose review cites an unsettled Expert analysis.",
-      "whyItMatters": "dismissing a finding asserts that there is no finding — it consumes no operational conclusion — so requiring settlement first is over-restriction, and §260 section 11 blocked 'finding finalization' on the grounds that finalization asserts a settled conclusion. A dismissal does not. It also traps the user: a dismissed finding is how an inspection reaches completion, so the reviewer must settle a classification for a hazard they are rejecting.",
-      "requiredAction": "product-owner decision, then either move the guard after the dismissal branch or state deliberately that dismissal is gated too.",
-      "owner": "product owner + engineering",
-      "introducedBy": "§265",
-      "note": "raised under the standing rule that every safety remediation is checked for overcorrection"
+      "owner": "engineering",
+      "§267": "CLOSED BY THE SAME CHANGE, not separately. `CanonicalReportsService.generate` obtains its inspection from `InspectionService.get`, so `snapshotInspection` now copies the PROJECTED analyses: an Expert row reaching the persisted report snapshot carries no `resultSnapshot`. This was not a §267 work item and is recorded as a consequence rather than claimed as a separately verified fix — §267 asserts the projection at the `GET /inspections/:id` payload, and the report path inherits it by sharing the method."
     },
     {
       "id": "REMAINING_DOWNSTREAM_AUTHORITY_GUARDS",
@@ -182,7 +132,8 @@
       },
       "evidence": "the ONLY production readers of HazLenzAnalysis are inspection.service.ts, the expert-hazlenz-product module, and entity relation declarations. reports, pdf, notifications, intelligence, action-engine and corrective-actions reference neither the entity nor the table.",
       "productOwnerQuestion": "is transitive containment sufficient for a controlled beta? §266 recommends YES for the five, because four of them never read an analysis at all — but only once EXPERT_ANALYSIS_READABLE_OUTSIDE_THE_AUTHORITY_BOUNDARY is closed, since that is the one place the containment is a property of what happens to be written rather than of a guard.",
-      "owner": "product owner"
+      "owner": "product owner",
+      "§267": "The precondition §266 attached to its recommendation is now met: EXPERT_ANALYSIS_READABLE_OUTSIDE_THE_AUTHORITY_BOUNDARY is closed, so the containment of the other five consumers no longer rests on what happens to be written. The product-owner question — is transitive containment sufficient for a controlled beta — remains open and is still theirs."
     },
     {
       "id": "NO_CI_ON_THE_BETA_BRANCH",
@@ -257,6 +208,18 @@
       "kind": "code",
       "statement": "src/reports/executive/executive.service.ts.bak and .broken are tracked in git.",
       "consequence": "hygiene only; the runtime image copies dist and four src subdirectories, not these",
+      "owner": "engineering"
+    },
+    {
+      "id": "EXPERT_CLIENT_MISREADS_THE_ENTITLEMENT_REFUSAL",
+      "priority": "P2",
+      "kind": "code",
+      "discoveredBy": "§267, incidentally, while asserting that an unentitled Expert read stays blocked",
+      "statement": "`EntitlementGuard` refuses a missing plan feature with HTTP 402 (PAID_SUBSCRIPTION_REQUIRED). `frontend-next/lib/expert/expertApi.ts` maps only 403 to EXPERT_NOT_ENTITLED, so an unentitled user reaches the generic branch.",
+      "measured": "§267 READ-5 observed 402 where the client expects 403.",
+      "consequence": "COSMETIC AND CONTAINED. The read is correctly refused and no Expert content is served; the user sees \"The Expert analysis could not be completed.\" instead of \"Expert analysis is not included in this plan.\" It is a wrong message, not a wrong authorization.",
+      "whyNotFixedAtSection267": "It is not one of the four defects §267 authorized, and it was not raised by §266. Fixing it opportunistically would be an unrelated change in an authorized bounded commit.",
+      "requiredAction": "map 402 to EXPERT_NOT_ENTITLED alongside 403 in expertApi.ts",
       "owner": "engineering"
     }
   ],
@@ -340,6 +303,38 @@
       "resolvedBy": "§265 activated finding finalization as the first consumer. It asks ExpertEffectiveDecisionService and refuses to finalize a finding that rests on an Expert analysis with no settled operational conclusion.",
       "evidence": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/SECTION-265-ACCEPTANCE.json cases L, M, N",
       "residual": "ONE consumer is activated. Completion readiness, report finalization, notifications and the executive summary remain unguarded on the Expert path, and are listed under canRunInParallelWithTheBlockers."
+    },
+    {
+      "id": "EXPERT_CLIENT_VERSION_COLLISION",
+      "was": "P0 / BLOCKER",
+      "resolvedBy": "§267. The client no longer sequences Expert requests at all: `requestVersion` is gone from expertApi.ts and from the Expert panel. The server derives the execution ordinal in `claimExecution`, inside the transaction that holds the `hazlenz-analysis:<observationId>` advisory lock, from the highest version already reserved across BOTH `hazlenz_analyses` and `expert_analysis_executions` — the second table being what reserves an ordinal for the length of a provider call. A version a client DOES supply is adjudicated rather than obeyed or ignored: equal to the allocation it is accepted as agreement, and stale or invented it is refused pre-spend.",
+      "measured": "§267 cases P0-1-A..F and PRE-1..6. The request body was CONSTRUCTED BY frontend-next/lib/expert/expertApi.ts, captured out of that module's own network seam, and posted verbatim onto an observation already carrying a deterministic analysis at version 1: 201, ANALYSIS_AVAILABLE, server_authored@v2 beside client_supplied@v1. The §266 payload (requestVersion 1) is now refused 409 with a provider-entry DELTA of 0, and so is an invented version that skips ahead.",
+      "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/",
+      "residual": "The refusal path is proven against the local stack only, like every §265 result."
+    },
+    {
+      "id": "EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS",
+      "was": "P0 / BLOCKER",
+      "resolvedBy": "§267 split one overloaded concept into two. `requestVersion` orders REQUESTS and confers no authority; `status` carries CURRENTNESS and is now scoped BY PRODUCER. Supersession is decided by `maySupersede`, which permits it only within one analysis family, and every reader names the family it means — the ambiguous \"newest non-superseded analysis\" question is no longer askable, in the backend or in the browser.",
+      "migrationRequired": "YES, and this is the ONE place query repair was insufficient. `uq_hazlenz_analysis_current` (created by §5, UNIQUE on observationId WHERE status = current) is the single-currentness rule expressed in the schema, and it REFUSED the repaired code: the §267 suite measured `duplicate key value violates unique constraint \"uq_hazlenz_analysis_current\"` surfacing as PERSISTENCE_FAILED_AFTER_PROVIDER_ANSWERED. Migration 1800000021000 replaces it with `uq_hazlenz_analysis_current_by_producer`, UNIQUE on (observationId, producer) WHERE status = current — same table, same partial predicate, one column narrower in scope, no column added or dropped and no row rewritten.",
+      "measured": "§267 cases P0-2-A..H, CAST-1..2, LIN-1..4, RERUN-1..4. After an Expert run the deterministic analysis is still current and the workspace reload selects it; the Expert panel receives the Expert representation under a different analysis id. D1->E1->E2 leaves D1 current and supersedes E1 within the Expert lineage only; D1->E1->D2 leaves E1 current and supersedes D1 within the deterministic lineage only.",
+      "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
+    },
+    {
+      "id": "EXPERT_ANALYSIS_READABLE_OUTSIDE_THE_AUTHORITY_BOUNDARY",
+      "was": "P1 / DIRECT BYPASS EXISTS",
+      "resolvedBy": "§267 applies a read projection in `InspectionService.get`. `client_supplied` rows pass through byte-for-byte, so no deterministic behaviour changes. `server_authored` rows are projected to a summary that WITHHOLDS `resultSnapshot` entirely and serves only lifecycle metadata — id, observationId, producer, status, analysisState, requestVersion, engineVersion, createdAt — plus `expertResultWithheld: true` and a pointer to the Expert route, so a consumer can tell a withheld result from an empty one. The projection CONSTRUCTS the summary rather than deleting a field, so a column added to the entity later does not leak by default.",
+      "deliberatelyNotDone": "The generic read does NOT reconstruct `effectiveDecision`. §267 forbids making ordinary inspection reads derive Expert authority, which would put a second derivation of the product's most consequential question on its least-guarded route.",
+      "measured": "§267 READ-1..6: the payload carries no posture, no snapshotKind, no effectiveDecision and no Expert resultSnapshot, still carries the deterministic snapshot, and the Expert read route still refuses an unentitled principal (402 PAID_SUBSCRIPTION_REQUIRED) and an unauthenticated one (401).",
+      "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
+    },
+    {
+      "id": "FINALIZATION_GUARD_ALSO_BLOCKS_DISMISSAL",
+      "was": "P1, awaiting a product-owner decision",
+      "productOwnerDecision": "§267: THIS IS OVER-RESTRICTION. Finalization asserts an authoritative finding ON THE BASIS OF an operational conclusion and therefore consumes it. Dismissal REJECTS the proposed finding and consumes nothing — a reviewer must not be made to settle a classification for a hazard they are rejecting.",
+      "resolvedBy": "§267 moved the §265 authority gate inside the `status === 'finalized'` branch in `InspectionService.finalizeFinding`. The finalization gate itself is otherwise untouched.",
+      "measured": "§267 DIS-1..8. Finalization on an ANALYSIS_AWAITING_CONFIRMATION analysis is still refused 409. Dismissal of the same finding succeeds; the analysis remains ANALYSIS_AWAITING_CONFIRMATION with `settlementReviewId` NULL; `deriveEffectiveDecision` still answers NONE_AWAITING_HUMAN_CONFIRMATION with settledForUse false, humanSettled false and no entries; no corrective action is created; and the `finding_review_finalized` audit event records status `dismissed` with the reviewer, review and analysis.",
+      "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
     }
   ],
   "verdict": {
@@ -347,7 +342,7 @@
     "answer": "NO",
     "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
     "architectureSound": true,
-    "why": "The safety-authority architecture is sound and proven: server-authored execution, deterministic admission, the persisted confirmation gate, human settlement, one effective-decision derivation and an activated downstream guard all hold under §262/§264/§265 evidence. What blocks beta is INTEGRATION and OPERATIONS: the shipped Expert client cannot execute at all against a real observation, a successful Expert run supersedes the customer-authoritative deterministic analysis, production has no migration mechanism, and no Terms or Privacy Policy exist. Every P0 below is finite and none requires redesign.",
-    "measuredNotInferred": "§266 ran a read-only probe against a disposable database with a substituted transport and zero provider calls. P0-1, P0-2 and P0-3 are measured results, not code reading."
+    "why": "The safety-authority architecture is sound and proven, and as of §267 the Expert PRODUCT INTEGRATION defects are closed: the shipped client executes against a real observation, conflicts are adjudicated before spend, deterministic and Expert currentness are independent, the generic inspection read no longer serves raw Expert snapshots, and finding dismissal no longer requires settling an Expert classification. What blocks beta is now purely INFRASTRUCTURE, OPERATIONS AND LEGAL: production has no migration mechanism (and now three unapplied migrations), no Terms or Privacy Policy exist, no third-party model disclosure exists, report generation has no object storage, there is no spend ceiling or kill switch, there is no error monitoring, and the candidate has never been pushed. Every remaining P0 is finite and none requires redesign.",
+    "measuredNotInferred": "§266 ran a read-only probe and measured P0-1, P0-2 and P0-3. §267 closed the first two and the two P1 items against a disposable database over real HTTP with zero provider calls, using a request body constructed by the shipped frontend module itself."
   }
 }

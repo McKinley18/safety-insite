@@ -343,9 +343,38 @@ async function main(): Promise<void> {
     && persisted.analysis.confirmationRequired === true);
   ok('P4-F the execution records WHICH confirmation rule produced the flag',
     persisted.execution.confirmationRuleVersion === CONFIRMATION_RULE_VERSION);
-  ok('P4-G the prior current analysis was superseded, not duplicated',
-    (await repo<HazLenzAnalysis>(HazLenzAnalysis).findOne({ where: { id: forged.id } }))!.status
-      === 'superseded');
+  // -------------------------------------------------------------------------------------------
+  // P4-G WAS REVERSED BY §267, AND THE REVERSAL IS THE POINT.
+  //
+  // §261 asserted here that the prior CURRENT analysis was superseded by the Expert run. `forged`
+  // is a CLIENT_SUPPLIED row — P2-A above asserts exactly that — so the old assertion required an
+  // Expert analysis to supersede the customer-authoritative deterministic one. §261 wrote it in
+  // good faith: at the time `hazlenz_analyses` had one currentness slot per observation and
+  // "the prior current analysis" had only one possible meaning.
+  //
+  // §266 then measured what that rule does in the product. A successful Expert run marked the
+  // deterministic analysis superseded, the workspace restored the newest non-superseded row, and
+  // the deterministic UI was handed an Expert snapshot it read through the wrong schema — an
+  // ADVISORY layer displacing the customer-authoritative record at the data level. §267 decided it:
+  // cross-producer supersession is PROHIBITED.
+  //
+  // So this expectation is stale rather than wrong-at-the-time, and it is REVERSED rather than
+  // relaxed. The three assertions below are strictly stronger than the one they replace: the old
+  // one checked a single row's status, these pin the whole currentness model — within-family
+  // supersession still happens, cross-family supersession does not, and both families end with
+  // exactly one current row.
+  const forgedAfter = (await repo<HazLenzAnalysis>(HazLenzAnalysis)
+    .findOne({ where: { id: forged.id } }))!;
+  const legacyAfter = (await repo<HazLenzAnalysis>(HazLenzAnalysis)
+    .findOne({ where: { id: legacy.id } }))!;
+  ok('P4-G §267: the Expert run did NOT supersede the current DETERMINISTIC analysis',
+    forgedAfter.status === 'current' && forgedAfter.producer === 'client_supplied',
+    `${forgedAfter.producer}/${forgedAfter.status}`);
+  ok('P4-G2 within-family supersession still holds: the older deterministic row is superseded',
+    legacyAfter.status === 'superseded', legacyAfter.status);
+  ok('P4-G3 the Expert analysis is current within its OWN family, so each producer has exactly one',
+    persisted.analysis.status === 'current' && persisted.analysis.producer === 'server_authored',
+    `${persisted.analysis.producer}/${persisted.analysis.status}`);
 
   console.log('\n---- P5 (req. 9). the confirmation flag is STORED, never recomputed on read ----\n');
 

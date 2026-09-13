@@ -735,9 +735,28 @@ async function main(): Promise<void> {
     JSON.stringify(rows));
   ok('R12-B the server-authored row coexists with it',
     alongside.status === 201 && rows.length === 2 && rows[1]?.producer === 'server_authored');
-  ok('R12-C the legacy row was superseded by revision, not deleted or relabelled',
-    rows[0]?.status === 'superseded' && rows[1]?.status === 'current'
-    && rows[0]?.analysisState === 'ANALYSIS_AVAILABLE');
+  // -------------------------------------------------------------------------------------------
+  // R12-C WAS REVERSED BY §267, FOR THE SAME REASON AS §261's P4-G.
+  //
+  // The clause this case exists for — the legacy row is NOT DELETED AND NOT RELABELLED — is
+  // unchanged and still asserted below. What §267 reversed is the `superseded` clause: `rows[0]` is
+  // the CLIENT_SUPPLIED row (R12-A asserts exactly that), so requiring it to be superseded by the
+  // Expert run required cross-producer supersession — an advisory layer displacing the
+  // customer-authoritative record. §266 measured the consequence in the product and §267 prohibited
+  // it. Currentness is now scoped by producer, so BOTH rows are current: one per family.
+  //
+  // Note what has NOT changed and is still checked: the legacy row keeps `client_supplied` and
+  // `ANALYSIS_AVAILABLE`. Not superseding it is not the same as promoting it, and §261's trust
+  // boundary is untouched.
+  ok('R12-C §267: the legacy row was neither deleted nor relabelled, and the Expert run did not '
+    + 'supersede it',
+    rows[0]?.status === 'current' && rows[0]?.producer === 'client_supplied'
+    && rows[0]?.analysisState === 'ANALYSIS_AVAILABLE',
+    JSON.stringify(rows));
+  ok('R12-C2 §267: each producer holds exactly one current row on the observation',
+    rows[1]?.status === 'current' && rows[1]?.producer === 'server_authored'
+    && rows.filter((r: any) => r.status === 'current').length === 2,
+    JSON.stringify(rows.map((r: any) => `${r.producer}=${r.status}`)));
   const [globalInvariant] = await q(`
     SELECT
       count(*) FILTER (WHERE "producer" = 'server_authored' AND "expertExecutionId" IS NULL)::int AS orphaned,

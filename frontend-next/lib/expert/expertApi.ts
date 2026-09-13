@@ -13,12 +13,26 @@ import type {
  * ---------------------------------------------------------------------------------------------
  * ONLY THE ACCEPTED §262/§264 FIELDS ARE EVER SENT.
  *
- * The execution body carries `idempotencyKey`, `requestVersion` and the two genuinely user-authored
- * context fields. The settlement body carries the decision, the rationale, the replacements and a
- * key. There is no producer, no analysis state, no confirmation flag, no candidate identity, no
- * reviewer id — the reviewer is the authenticated principal and a reviewer id a client could send
- * is a reviewer id a client could forge. The server rejects anything else with 400 before its
- * controller runs, so this file's job is to not try.
+ * The execution body carries `idempotencyKey` and the two genuinely user-authored context fields.
+ * The settlement body carries the decision, the rationale, the replacements and a key. There is no
+ * producer, no analysis state, no confirmation flag, no candidate identity, no reviewer id — the
+ * reviewer is the authenticated principal and a reviewer id a client could send is a reviewer id a
+ * client could forge. The server rejects anything else with 400 before its controller runs, so this
+ * file's job is to not try.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * §267 — AND IT NO LONGER CARRIES `requestVersion`. THE CLIENT DOES NOT SEQUENCE EXPERT REQUESTS.
+ *
+ * §265 sent `requestVersion: 1` on every Expert request. The Expert panel only renders once a
+ * deterministic analysis exists, and that analysis already occupies version 1 — so §266 measured
+ * every Expert run from the real workflow spending a provider leg and THEN colliding, returning
+ * 409 "A newer analysis request already exists" against money that was already gone.
+ *
+ * The lesson is not "compute the version more carefully here". A client-chosen version is a
+ * client-chosen collision: the browser does not hold the observation's analysis history, cannot see
+ * an Expert execution another tab has in flight, and has no way to reserve an ordinal. The server
+ * derives it under the advisory lock that serialises the table, at claim time, before the transport
+ * is reachable. So this module sends no version at all, and there is no field here to get wrong.
  *
  * ---------------------------------------------------------------------------------------------
  * THE IDEMPOTENCY KEY IS PER USER ACTION, NOT PER REQUEST.
@@ -91,14 +105,13 @@ export async function requestExpertAnalysis(
   observationId: string,
   input: {
     idempotencyKey: string;
-    requestVersion: number;
     taskContext?: string;
     answeredClarifications?: Array<{ clarificationId: string; answer: string }>;
   },
 ): Promise<ExpertAnalysisExecuted> {
+  // §267. NO `requestVersion`. The server allocates the execution version; see the header.
   const body: Record<string, unknown> = {
     idempotencyKey: input.idempotencyKey,
-    requestVersion: input.requestVersion,
   };
   // Omitted rather than sent null: the DTO permits absence, and sending an empty value would put a
   // context statement into the Expert input that the inspector never wrote.

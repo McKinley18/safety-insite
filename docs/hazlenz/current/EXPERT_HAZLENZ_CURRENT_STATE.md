@@ -3,7 +3,7 @@
 **Read this and `HAZLENZ_INVARIANTS.md`. That is the default context.** Together about 2,500 words.
 Machine-readable equivalent: `verification/current/EXPERT-HAZLENZ-STATE.json`.
 
-Refreshed at **§265** (2026-09-12). Supersedes the §229 text, which described a layer with no
+Refreshed at **§267** (2026-09-13). Supersedes the §229 text, which described a layer with no
 production caller — that has not been true since §246.
 
 Everything below is **current truth only**. It is not a history. Evidence pointers are at the end.
@@ -52,9 +52,17 @@ The settlement route serves confirm and override as **one** action with two outc
 eligibility rule, one concurrency guarantee, one audit path, one state-machine edge.
 
 - The server runs the deterministic analysis itself and builds the Expert input from it.
-- The client may send only `idempotencyKey`, `requestVersion`, and optional `taskContext` and
+- The client may send only `idempotencyKey` and optional `requestVersion`, `taskContext` and
   `answeredClarifications`. **No server-owned field is declarable**, so the DTO plus the global
   `whitelist + forbidNonWhitelisted` pipe rejects any attempt with 400.
+- **§267: the shipped client sends no `requestVersion` and the server derives it.** The execution
+  ordinal is allocated in `claimExecution`, under the `hazlenz-analysis:<observationId>` advisory
+  lock, from the highest ordinal already reserved across `hazlenz_analyses` **and**
+  `expert_analysis_executions` — the second table being what holds an ordinal for the length of a
+  provider call. A version a client *does* send is adjudicated rather than obeyed: equal to the
+  allocation it is accepted as agreement; stale or invented it is refused **409 before the
+  transport is reachable**, with a provider-entry count of zero. §265 hardcoded `1`, which the
+  deterministic analysis already owned, so every real Expert run spent a leg and then collided.
 - An execution row is written in `ANALYSIS_RUNNING` **before** any provider contact.
 - The result is persisted with `producer = server_authored`, protected by a database CHECK
   constraint requiring a real execution row.
@@ -187,7 +195,44 @@ There is still one implementation; it is now reachable from both sides.
 `hazlenz:verify` reports these as their own outcomes. They are never converted into a pass or a
 failure.
 
-## 10b. The frontend, as of §265
+## 9c. Two producers, two currentness slots — §267
+
+Deterministic HazLenz and Expert HazLenz **coexist on one observation and are not interchangeable
+versions of one analysis.** §266 measured what happens when they are treated as one linear stream:
+an Expert run marked the customer-authoritative deterministic analysis `superseded`, the workspace
+restored the newest non-superseded row, and the deterministic UI was handed an Expert snapshot it
+read through the wrong schema.
+
+| field | means | scope |
+|---|---|---|
+| `requestVersion` | a **request ordinal** | shared across producers; **confers no authority** |
+| `status` | **currentness** | scoped **per producer** |
+
+- There is a **current deterministic analysis** and a **current Expert analysis**. Neither
+  supersedes the other; `maySupersede` permits supersession only within one family.
+- Enforced by `uq_hazlenz_analysis_current_by_producer` — UNIQUE `(observationId, producer)` WHERE
+  `status = 'current'` — created by migration **1800000021000**, which replaced §5's single-slot
+  index. This is the one place query repair was insufficient: the old index refused the repaired
+  code outright.
+- **History ordering does not define currentness.** After `D1 → E1 → E2`, D1 is still the current
+  deterministic analysis; after `D1 → E1 → D2`, E1 is still the current Expert analysis.
+- One implementation each side: `expert-analysis-currentness.ts` on the server,
+  `currentDeterministicAnalysis` in `frontend-next/lib/canonicalWorkflowApi.ts`. There is
+  deliberately **no** selector that answers "the newest non-superseded analysis" without naming a
+  producer.
+
+**`GET /inspections/:id` withholds Expert content.** `client_supplied` rows pass through unchanged;
+`server_authored` rows are projected to lifecycle metadata with `resultSnapshot` removed and
+`expertResultWithheld: true` set. That payload never reconstructs `effectiveDecision` — the Expert
+read route, under the full authority profile, is the only place Expert analysis content is served.
+
+**Dismissal is not gated; finalization still is.** Finalization asserts a finding *on the basis of*
+an operational conclusion, so it consumes one. Dismissal *rejects* the proposed finding and consumes
+nothing, so §267 released it: a reviewer is not made to settle a classification for a hazard they
+are rejecting. A dismissal leaves the analysis in `ANALYSIS_AWAITING_CONFIRMATION`, writes no
+settlement, creates no corrective action, and creates no effective decision.
+
+## 10b. The frontend, as of §265, amended at §267
 
 `frontend-next/components/inspection/expert/`, reached from the HazLenz step of the inspection
 workspace. It is **additive**: the deterministic analysis is unchanged and is still rendered in full
@@ -213,19 +258,33 @@ the read shape and passed through the same total state map rather than through a
 
 ## 11. Current beta blockers
 
-**One.** See `verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
+**Seven P0s, none of them an Expert architecture defect.** See
+`verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
 `RELEASE_BLOCKERS.md` files under `verification/` record blockers that were live at the time and are
 not current status.
 
-1. report generation blocked (environmental, can be worked in parallel)
+Infrastructure, operations and legal only: no production migration mechanism (with **three**
+unapplied migrations — 019000, 020000 and §267's 021000); no Terms or Privacy Policy; no
+third-party model disclosure; report generation blocked on object storage; no spend ceiling or
+Expert kill switch; no error monitoring; the candidate has never been pushed.
 
-§265 closed `NO_EXPERT_FRONTEND`.
+§265 closed `NO_EXPERT_FRONTEND`. §267 closed `EXPERT_CLIENT_VERSION_COLLISION`,
+`EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS`,
+`EXPERT_ANALYSIS_READABLE_OUTSIDE_THE_AUTHORITY_BOUNDARY` and
+`FINALIZATION_GUARD_ALSO_BLOCKS_DISMISSAL`.
 
 ## 12. Next implementation step
 
-**Beta readiness closure review.** Carried forward, none of it blocking the local workflow: the
-remaining five §260 section 11 downstream guards; the governed-evidence loader; reviewer revision of
-a settled analysis; and everything under section 10 that needs a live environment.
+**Beta infrastructure and operations.** The Expert workflow now functions against a real
+observation, so the remaining lanes are no longer blocked behind it. In dependency order: the
+production migration mechanism **before any push** (Render autoDeploy is on); object storage, which
+production cannot boot without; a spend ceiling and an explicit Expert enable flag; error
+monitoring. The **legal** lane has no engineering prerequisite and should already be running in
+parallel.
+
+Carried forward, none of it blocking: the remaining five §260 section 11 downstream guards; the
+governed-evidence loader; reviewer revision of a settled analysis; and everything under section 10
+that needs a live environment.
 
 ## 13. Safe commands
 
@@ -238,10 +297,25 @@ npm run hazlenz:precommit           before an authorized commit     (everything 
 npm run hazlenz:evidence            did accepted evidence change
 ```
 
+```
+cd frontend-next && npm run check:expert-request-construction
+```
+§267. Runs the real `lib/expert/expertApi.ts` and reports the request it actually transmits. §265's
+acceptance hand-authored its request bodies and therefore could not see that the shipped client
+sent a different one; this measures the code that constructs it.
+
 **Before running any other `verification`-adjacent script**, check
 `verification/current/MUTATING-SCRIPTS.json`. 252 scripts write into accepted historical evidence
 packages and 101 more have write behaviour a static reader could not resolve. §258 ran two of them
 without noticing.
+
+**That registry is stale, and `hazlenz:precommit` itself trips the hazard.** It was generated at
+§263 and carries no entry for `test-264-expert-human-confirmation.ts` or
+`test-265-expert-product-acceptance.ts`, both of which are in `hazlenz:integration:inner`. §267
+observed the §265 suite rewriting its own accepted
+`SECTION-265-READ-PAYLOAD-SHAPE.json`, producing a `DIGEST_MISMATCH` against `REPORT-265.sha256`;
+the bytes differed only in per-run UUIDs and timestamps and were restored. **Always run
+`npm run hazlenz:evidence` and `git status verification/` after `hazlenz:precommit`.**
 
 ## 14. Evidence pointers
 
@@ -256,6 +330,8 @@ Do not load these for ordinary development.
 | recall optimization §263 | `verification/expert-hazlenz-263-.../` |
 | human confirmation boundary §264 | `verification/expert-hazlenz-264-.../` |
 | frontend workflow and first downstream consumer §265 | `verification/expert-hazlenz-265-.../` |
+| beta readiness closure review §266 | `verification/expert-hazlenz-266-.../` |
+| product integration defect closure §267 | `verification/expert-hazlenz-267-.../` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |
 | what to read for a given task | `docs/hazlenz/current/CONTEXT_INDEX.md` |
 | rules that must not be violated | `docs/hazlenz/current/HAZLENZ_INVARIANTS.md` |

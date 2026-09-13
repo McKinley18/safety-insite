@@ -29,6 +29,10 @@ import {
   CONFIRMATION_RULE_VERSION, type ConfirmationDetermination, confirmationNotApplicable,
   deriveConfirmationRequiredFromAnalysis,
 } from './expert-confirmation-rule';
+import {
+  EXPERT_PRODUCER, adjudicateExpertRequestVersion, expertRequestVersionRefusal,
+  highestReservedRequestVersion, isExpertAnalysis, maySupersede,
+} from './expert-analysis-currentness';
 
 /**
  * §261 — THE SERVER-SIDE EXPERT INTEGRATION FOUNDATION.
@@ -99,11 +103,39 @@ export class ExpertAnalysisService {
    * convention for this table and is what keeps `requestVersion` monotonic. The same lock name the
    * legacy path uses is taken deliberately, so a legacy analysis and an Expert execution on one
    * observation cannot interleave.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * §267 — THE EXECUTION VERSION IS DERIVED HERE, WHICH IS THE POINT AT WHICH IT BECOMES PRE-SPEND.
+   *
+   * §266 measured the §265 client sending `requestVersion: 1` on every Expert request while the
+   * observation's deterministic analysis already held version 1. Nothing adjudicated it here, so
+   * the request proceeded, TWO HOSTED LEGS WERE SPENT, and the collision was discovered by
+   * `persistAuthoritativeAnalysis` on the far side of the money — surfacing as 409 "A newer
+   * analysis request already exists" against an execution that had already cost real spend.
+   *
+   * The version is now derived by the server, inside this transaction, under the advisory lock that
+   * already serialises this table. The lock is what makes read-then-allocate correct rather than
+   * racy, and the execution row this method writes is what RESERVES the allocated ordinal for the
+   * whole length of the provider call.
+   *
+   * A CLIENT-SUPPLIED VERSION IS ADJUDICATED, NOT OBEYED AND NOT IGNORED. Obeying it is the defect.
+   * Ignoring it would silently execute a request whose stated identity the server disagreed with,
+   * which is the same class of quiet mismatch. It is checked against the allocation and a stale or
+   * invented value is refused HERE — before `mayCallProvider` can be true, and therefore with a
+   * provider-entry count of zero.
    */
   async claimExecution(
     rawUser: unknown,
     observationId: string,
-    claim: { readonly idempotencyKey: string; readonly requestVersion: number },
+    claim: {
+      readonly idempotencyKey: string;
+      /**
+       * §267. OPTIONAL, and the shipped client no longer sends it. Present only so a request that
+       * states a version can be adjudicated rather than quietly overridden; `null`/absent is the
+       * ordinary path and means "the server allocates".
+       */
+      readonly requestVersion?: number | null;
+    },
   ): Promise<{
     readonly outcome: ExecutionClaimOutcome;
     readonly execution: ExpertAnalysisExecution;
@@ -125,6 +157,18 @@ export class ExpertAnalysisService {
           `SELECT pg_advisory_xact_lock(hashtext($1))`,
           [`hazlenz-analysis:${observationId}`],
         );
+        // §267. Derived under the lock, across BOTH the analyses table and the executions table,
+        // so an Expert claim whose provider call is still in flight has genuinely reserved its
+        // ordinal and a concurrent deterministic rerun cannot allocate the same one.
+        const highestReserved = await highestReservedRequestVersion(manager, observationId);
+        const adjudication = adjudicateExpertRequestVersion(
+          highestReserved, claim.requestVersion ?? null,
+        );
+        if (adjudication.outcome !== 'ALLOCATED') {
+          // PRE-SPEND. Thrown from inside the claim transaction, so no execution row is written, no
+          // context is built and the transport is never constructed — the refusal costs nothing.
+          throw new ConflictException(expertRequestVersionRefusal(adjudication));
+        }
         const repository = manager.getRepository(ExpertAnalysisExecution);
         const claimed = await repository.save(repository.create({
           observationId,
@@ -135,7 +179,7 @@ export class ExpertAnalysisService {
           organizationId: inspection.organizationId ?? null,
           analysisId: null,
           idempotencyKey: claim.idempotencyKey,
-          requestVersion: claim.requestVersion,
+          requestVersion: adjudication.requestVersion,
           executionState: 'ANALYSIS_RUNNING',
           producer: 'server_authored',
           attempts: 0,
@@ -681,17 +725,48 @@ export class ExpertAnalysisService {
       }
 
       const analyses = manager.getRepository(HazLenzAnalysis);
-      const latest = await analyses.findOne({
+
+      // ---------------------------------------------------------------------------------------
+      // §267. TWO SEPARATE QUESTIONS, WHICH §261 ASKED AS ONE AND §266 MEASURED THE COST OF.
+      //
+      //   1. IS THE ORDINAL STILL FREE?  Asked across ALL rows, because
+      //      `uq_hazlenz_analysis_observation_version` is scoped to (observationId, requestVersion)
+      //      and does not care which producer wrote it. This is now a BACKSTOP rather than the
+      //      product's version control: the ordinal was allocated and reserved at claim time, so
+      //      reaching this branch means something raced in a way the advisory lock should have
+      //      prevented, and the honest answer is to refuse rather than to reallocate. Reallocating
+      //      here would silently give the analysis a different identity from the execution that
+      //      paid for it.
+      //
+      //   2. WHAT DOES THIS ANALYSIS SUPERSEDE?  Asked ONLY WITHIN THE EXPERT FAMILY. §266 measured
+      //      what the unscoped version of this question did: a successful Expert run marked the
+      //      customer-authoritative DETERMINISTIC analysis `superseded`, the workspace restored the
+      //      newest non-superseded row, and the deterministic UI was handed an Expert snapshot.
+      //      An advisory layer had displaced the customer-authoritative record at the data level,
+      //      which inverts the trust boundary §261 exists to hold. A new Expert analysis supersedes
+      //      the prior EXPERT analysis and nothing else.
+      const latestAnyProducer = await analyses.findOne({
         where: { observationId },
         order: { requestVersion: 'DESC' },
         lock: { mode: 'pessimistic_write' },
       });
-      if (latest && execution.requestVersion <= latest.requestVersion) {
+      if (latestAnyProducer && execution.requestVersion <= latestAnyProducer.requestVersion) {
         throw new ConflictException('A newer analysis request already exists.');
       }
-      if (latest?.status === 'current') {
-        latest.status = 'superseded';
-        await analyses.save(latest);
+      const currentExpert = await analyses.findOne({
+        where: { observationId, producer: EXPERT_PRODUCER, status: 'current' },
+        order: { requestVersion: 'DESC' },
+        lock: { mode: 'pessimistic_write' },
+      });
+      if (currentExpert) {
+        // Checked rather than assumed. The predicate is the one place cross-producer supersession
+        // is decided, so the write goes through it even where the query already constrained the
+        // producer — a future change to either must be made in agreement with the other.
+        if (!maySupersede({ producer: EXPERT_PRODUCER }, currentExpert)) {
+          throw new ConflictException('Cross-producer supersession is prohibited.');
+        }
+        currentExpert.status = 'superseded';
+        await analyses.save(currentExpert);
       }
 
       const analysis = await analyses.save(analyses.create({

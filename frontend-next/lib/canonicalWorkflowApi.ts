@@ -94,9 +94,59 @@ export type PersistedObservation = {
   rawText: string;
   evidenceSource: string;
   version: number;
-  analyses?: Array<{ id: string; resultSnapshot: Record<string, unknown>; requestVersion?: number; status?: "current" | "superseded" }>;
+  /**
+   * §267. THE PRODUCER IS PART OF THE SHAPE, because the two families are NOT interchangeable
+   * versions of one analysis and a reader that cannot tell them apart will restore the wrong one.
+   *
+   * `resultSnapshot` is OPTIONAL, and its absence is the read boundary showing through: the generic
+   * inspection payload withholds `resultSnapshot` from `server_authored` rows and marks them
+   * `expertResultWithheld`. The Expert review representation is served only by the Expert read
+   * route, under the Expert authority profile. Use `currentDeterministicAnalysis` below rather than
+   * picking the newest row — see the reason there.
+   */
+  analyses?: Array<{
+    id: string;
+    resultSnapshot?: Record<string, unknown>;
+    requestVersion?: number;
+    status?: "current" | "superseded";
+    producer?: "client_supplied" | "server_authored";
+    expertResultWithheld?: boolean;
+  }>;
   reviews?: Array<{ id: string; decision: string; rationale: string }>;
 };
+
+/**
+ * §267 — THE CURRENT *DETERMINISTIC* ANALYSIS. THE ONLY SELECTOR THE WORKSPACE MAY USE.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * WHAT §266 MEASURED, AND WHY THE ANSWER IS A NAMED FUNCTION RATHER THAN A FIXED FILTER.
+ *
+ * Four places in the inspection workspace independently asked for "the newest non-superseded
+ * analysis" and cast the answer to `HazLenzAnalysisResult`. That question has no correct answer
+ * once two producers write to the same table: after any Expert run the newest non-superseded row
+ * was the EXPERT row, so the deterministic HazLenz step was handed an Expert snapshot, read it
+ * through the wrong schema and degraded to blanks — and `analysisId` then pointed subsequent
+ * reviews at the Expert analysis.
+ *
+ * Repairing the four call sites in place would have left the ambiguous question askable, and the
+ * fifth call site someone adds next would ask it again. So the ambiguous question is replaced by a
+ * SPECIFIC one that names its producer, and it exists exactly once.
+ *
+ * ---------------------------------------------------------------------------------------------
+ * WHY THE FALLBACK IS "DETERMINISTIC", NOT "EXPERT".
+ *
+ * A row with no `producer` is treated as deterministic. That matches the column's own default and
+ * it fails in the safe direction: a row whose family cannot be established must not be promoted
+ * into the Expert surface, and it must not be excluded from the deterministic one — pre-§261 rows
+ * carry the customer's own analyses and dropping them would blank a real inspection.
+ */
+export function currentDeterministicAnalysis(
+  observation: PersistedObservation | null | undefined,
+): NonNullable<PersistedObservation["analyses"]>[number] | undefined {
+  return (observation?.analyses || [])
+    .filter((item) => item.producer !== "server_authored" && item.status !== "superseded")
+    .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+}
 
 /**
  * One card in the report library. An inspection has ONE report, so there is no version array:

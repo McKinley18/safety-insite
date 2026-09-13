@@ -97,7 +97,8 @@ export class ExpertAnalysisExecutionService {
     observationId: string,
     request: {
       readonly idempotencyKey: string;
-      readonly requestVersion: number;
+      /** §267. Absent means the server derives the execution version. See `claimExecution`. */
+      readonly requestVersion?: number | null;
       readonly taskContext?: string | null;
       readonly answeredClarifications?: ReadonlyArray<{
         readonly clarificationId: string; readonly answer: string;
@@ -114,7 +115,7 @@ export class ExpertAnalysisExecutionService {
 
     const claim = await this.authority.claimExecution(user, observationId, {
       idempotencyKey: request.idempotencyKey,
-      requestVersion: request.requestVersion,
+      requestVersion: request.requestVersion ?? null,
     });
     if (!claim.mayCallProvider) {
       // NOT AN ERROR. A duplicate request's honest answer is the authoritative outcome that already

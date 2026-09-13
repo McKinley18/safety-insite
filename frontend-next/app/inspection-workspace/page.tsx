@@ -9,6 +9,7 @@ import {
   createPersistedTask,
   createUserAuthoredFinding,
   getCompletionReadiness,
+  currentDeterministicAnalysis,
   finalizePersistedFinding,
   generatePersistedReport,
   getPersistedInspection,
@@ -775,9 +776,9 @@ export default function InspectionWorkspacePage() {
         const persistedObservation =
           (restoreTarget && (value.observations || []).find((item) => item.id === restoreTarget.observationId))
           || value.observations?.[0];
-        const currentAnalysis = persistedObservation?.analyses
-          ?.filter((item) => item.status !== "superseded")
-          .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+        // §267. DETERMINISTIC ONLY. Before this, an Expert run made the newest non-superseded row
+        // the Expert one and this restored an Expert snapshot into the deterministic UI.
+        const currentAnalysis = currentDeterministicAnalysis(persistedObservation);
         // Observation restoration and analysis restoration are deliberately SEPARATE.
         //
         // These were previously one `persistedObservation && currentAnalysis` block, which meant a
@@ -791,7 +792,11 @@ export default function InspectionWorkspacePage() {
           setObservation(persistedObservation.rawText);
           setRevisionText(persistedObservation.rawText);
         }
-        if (persistedObservation && currentAnalysis) {
+        // §267. `resultSnapshot` is optional on the wire because the generic inspection payload
+        // withholds it from Expert rows. A DETERMINISTIC row always carries one, so an absent
+        // snapshot here means the selector returned something it should not have -- restoring
+        // nothing is the fail-closed answer, and it is a blank analysis rather than a wrong one.
+        if (persistedObservation && currentAnalysis?.resultSnapshot) {
           setAnalysisId(currentAnalysis.id);
           analysisRequestVersion.current = currentAnalysis.requestVersion || 0;
           const restoredAnalysis = currentAnalysis.resultSnapshot as HazLenzAnalysisResult;
@@ -852,10 +857,8 @@ export default function InspectionWorkspacePage() {
     const finding = (snapshot.findings || []).find((item) => item.id === findingId);
     if (!finding || finding.observationId === observationId) return false;
     const owning = (snapshot.observations || []).find((item) => item.id === finding.observationId);
-    const current = owning?.analyses
-      ?.filter((item) => item.status !== "superseded")
-      .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
-    if (!owning || !current) return false;
+    const current = currentDeterministicAnalysis(owning);
+    if (!owning || !current?.resultSnapshot) return false;
 
     setObservationId(owning.id);
     setAnalysisId(current.id);
@@ -966,9 +969,7 @@ export default function InspectionWorkspacePage() {
   async function recordCandidateRejection(finding: PersistedFinding, rationale: string) {
     const owningObservation = (inspection?.observations || [])
       .find((item) => item.id === finding.observationId);
-    const currentAnalysis = owningObservation?.analyses
-      ?.filter((item) => item.status !== "superseded")
-      .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+    const currentAnalysis = currentDeterministicAnalysis(owningObservation);
     const review = await saveHumanReview(finding.observationId, {
       findingId: finding.id,
       idempotencyKey: `reject:${finding.id}:${finding.revision}`,
@@ -1811,9 +1812,7 @@ export default function InspectionWorkspacePage() {
     try {
       const owningObservation = (inspection.observations || [])
         .find((item) => item.id === finding.observationId);
-      const currentAnalysis = owningObservation?.analyses
-        ?.filter((item) => item.status !== "superseded")
-        .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+      const currentAnalysis = currentDeterministicAnalysis(owningObservation);
       const review = await saveHumanReview(finding.observationId, {
         findingId: finding.id,
         idempotencyKey: `dismiss:${finding.id}:${finding.revision}`,
