@@ -91,11 +91,23 @@ export function WeekAtAGlancePanel({
                 : ""
             } ${getWeekDayTone(dateKey, events)}`}
           >
-            <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-white sm:left-2 sm:top-2 sm:text-[10px]">
+            {/*
+              §279. The weekday and the date were BOTH absolutely positioned on the same line --
+              one pinned to the left corner, one to the right. At 390px the seven cells are about
+              40px wide, and "SUN" in 9px black uppercase with tracking plus a two-digit date does
+              not fit between those corners: the number painted ON TOP OF the label, so Sunday the
+              13th read as "SUN3" and Monday the 14th as "MON4". A dashboard week strip showing the
+              wrong date is not a cosmetic problem, and no overflow measurement finds it -- each
+              span fits its own box; they simply occupy the same one.
+
+              Below `sm` they stack in normal flow. From `sm` up the original corner layout is
+              restored exactly, so nothing changes on a tablet or a desktop.
+            */}
+            <span className="block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-white sm:absolute sm:left-2 sm:top-2 sm:text-[10px]">
               {date.toLocaleDateString("en-US", { weekday: "short" })}
             </span>
 
-            <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-white sm:right-2 sm:top-2 sm:text-[10px]">
+            <span className="mt-1 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-white sm:absolute sm:right-2 sm:top-2 sm:mt-0 sm:text-[10px]">
               {date.getDate()}
             </span>
 
