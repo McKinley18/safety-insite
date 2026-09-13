@@ -757,6 +757,157 @@ export interface FindingStandardCandidate {
  * legitimate result is an empty array (no applicable/candidate standard for
  * that finding); this function does not fabricate one.
  */
+/**
+ * §276 / D-009 — SCOPED EVIDENCE: THE FINDING'S FRAGMENT PLUS THE PARENT FACTS THAT
+ * EXPLICITLY MODIFY IT.
+ *
+ * ==================== THE DEFECT THIS EXISTS TO FIX ====================
+ *
+ * §275 drove a real observation with four sentences:
+ *
+ *   1  "The point of operation guard on the 60-ton punch press ... has been removed ..."
+ *   2  "The press is energized and cycling on production parts, and the operator's hands
+ *       enter the die area between strokes ..."
+ *   3  "There is no light curtain or two-hand control fitted."
+ *   4  "A maintenance lock and tag were applied to this press last week ... but have since
+ *       been removed and the press returned to service."
+ *
+ * Decomposition claimed sentence 1 for the guarding finding and sentence 3 for the second.
+ * Sentences 2 and 4 were claimed by nobody. Evaluated against sentence 1 alone the finding
+ * read **"Candidate only; missing: moving or accessible energy"** -- while the very same
+ * engine, given the whole observation, rated `1910.212(a)(1)` **SUPPORTED at 0.96**.
+ *
+ * The energy and exposure facts that make the hazard real were sitting in sentence 2, about
+ * the same machine, and the finding could not see them.
+ *
+ * ==================== THE RULE (D-009) ====================
+ *
+ *   finding-specific evidence + applicable parent-observation facts -> applicability
+ *
+ * This is a SCOPED-EVIDENCE rule, not fragment isolation and not a return to
+ * whole-observation evaluation. Two things must both remain true:
+ *
+ *   an unrelated clause elsewhere in a multi-condition observation must NOT make another
+ *   finding applicable or not-applicable;
+ *
+ *   parent context that EXPLICITLY modifies the same hazard must NOT be discarded.
+ *
+ * ==================== HOW "EXPLICITLY MODIFIES THE SAME HAZARD" IS DECIDED ====================
+ *
+ * Three conditions, all required, all deterministic:
+ *
+ *   1. THE SENTENCE IS UNCLAIMED. A sentence that contains another finding's fragment is
+ *      that finding's evidence and is never forwarded. This is the anti-contamination
+ *      invariant the finding-scoping exists for, and it is unchanged.
+ *
+ *   2. IT CO-REFERENCES THE FINDING'S SUBJECT. It repeats at least one salient noun from
+ *      the finding's own evidence -- "press" here. Generic safety vocabulary (machine,
+ *      area, operator, hazard, equipment...) is excluded, because a word that appears in
+ *      every observation identifies nothing and would forward everything to everyone.
+ *
+ *   3. IT NAMES NO OTHER UNIT. A sentence carrying a unit discriminator ("press 7",
+ *      "line 3", "unit B") absent from the finding's own evidence is talking about a
+ *      different thing that happens to share a noun, so it is not forwarded. This is what
+ *      keeps "the guard on press 4 has been removed" from being modified by "the guard on
+ *      press 7 is fitted and interlocked".
+ *
+ * A finding whose fragment cannot be located in any sentence gets no forwarding at all: the
+ * position is unknown, so ownership cannot be established, and the conservative answer is
+ * the finding's own text.
+ *
+ * NOTE ON THE §117 GATE. That regression drives `applyEvidenceFoundation` over the WHOLE
+ * observation and is untouched by this function. It is re-run as part of §276 anyway,
+ * because "the suite I did not change still passes" is a claim worth measuring rather than
+ * assuming.
+ */
+
+/**
+ * Words that identify nothing. A term here can never establish co-reference, because it
+ * appears in most observations regardless of subject.
+ */
+const GENERIC_SUBJECT_TERMS = new Set([
+  'about', 'above', 'access', 'after', 'again', 'also', 'another', 'anything', 'area', 'areas',
+  'around', 'because', 'been', 'before', 'being', 'below', 'beside', 'between', 'both',
+  'building', 'cannot', 'company', 'condition', 'conditions', 'could', 'crew', 'currently',
+  'department', 'during', 'each', 'employee', 'employees', 'equipment', 'every', 'facility',
+  'floor', 'from', 'further', 'hazard', 'hazards', 'have', 'having', 'however', 'incident',
+  'inspection', 'inspector', 'into', 'issue', 'issues', 'machine', 'machines', 'made', 'more',
+  'most', 'must', 'near', 'none', 'noted', 'observation', 'observed', 'only', 'operator',
+  'operators', 'other', 'over', 'people', 'person', 'personnel', 'plant', 'present', 'risk',
+  'safety', 'shift', 'should', 'site', 'some', 'staff', 'such', 'supervisor', 'than', 'that',
+  'their', 'them', 'then', 'there', 'these', 'they', 'this', 'those', 'through', 'time',
+  'under', 'until', 'upon', 'used', 'using', 'very', 'walkthrough', 'were', 'what', 'when',
+  'where', 'which', 'while', 'will', 'with', 'within', 'without', 'work', 'worker', 'workers',
+  'working', 'would', 'zone',
+]);
+
+/** Salient nouns from a finding's own evidence: the terms that can establish co-reference. */
+function salientSubjectTerms(text: string): Set<string> {
+  const terms = new Set<string>();
+  for (const raw of String(text || '').toLowerCase().split(/[^a-z0-9-]+/)) {
+    const token = raw.replace(/^-+|-+$/g, '');
+    if (token.length < 4) continue;
+    if (GENERIC_SUBJECT_TERMS.has(token)) continue;
+    terms.add(token);
+    // "presses" co-references "press"; a naive exact match would miss it.
+    if (token.endsWith('es') && token.length > 5) terms.add(token.slice(0, -2));
+    else if (token.endsWith('s') && token.length > 4) terms.add(token.slice(0, -1));
+  }
+  return terms;
+}
+
+/**
+ * A unit discriminator: a designation that distinguishes one piece of equipment from
+ * another of the same kind. `press 7`, `line 3`, `bay 12`, `unit b`, `#4`.
+ *
+ * Matched as noun-then-designator so that ordinary quantities ("60-ton", "two-hand",
+ * "last week") are not mistaken for identity.
+ */
+function unitDiscriminators(text: string): Set<string> {
+  const found = new Set<string>();
+  const source = String(text || '').toLowerCase();
+  const pattern = /\b([a-z]{3,})\s+(?:no\.?\s*|#\s*)?([0-9]{1,3}|[a-z])\b/g;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(source)) !== null) {
+    const noun = match[1];
+    const designator = match[2];
+    if (GENERIC_SUBJECT_TERMS.has(noun)) continue;
+    // A bare single letter is only a designator after an identity noun, never after a verb.
+    if (/^[a-z]$/.test(designator) && !/\b(unit|line|press|bay|cell|room|zone|machine|tank|pump|panel)$/.test(noun)) {
+      continue;
+    }
+    found.add(`${noun}:${designator}`);
+  }
+  return found;
+}
+
+/**
+ * Whether an unclaimed parent sentence explicitly modifies this finding's hazard.
+ * Conditions 2 and 3 of the rule above; condition 1 is applied by the caller.
+ */
+export function parentSentenceModifiesFinding(sentence: string, findingEvidence: string): boolean {
+  const findingTerms = salientSubjectTerms(findingEvidence);
+  if (findingTerms.size === 0) return false;
+
+  const sentenceTerms = salientSubjectTerms(sentence);
+  let coReferences = false;
+  for (const term of sentenceTerms) {
+    if (findingTerms.has(term)) { coReferences = true; break; }
+  }
+  if (!coReferences) return false;
+
+  // Condition 3. A designation the finding's own evidence never names means this sentence
+  // is about a different unit that happens to share a noun.
+  const findingUnits = unitDiscriminators(findingEvidence);
+  for (const unit of unitDiscriminators(sentence)) {
+    const noun = unit.split(':')[0];
+    const findingNamesThisNoun = [...findingUnits].some((item) => item.split(':')[0] === noun);
+    if (findingNamesThisNoun && !findingUnits.has(unit)) return false;
+    if (!findingNamesThisNoun && findingTerms.has(noun)) return false;
+  }
+  return true;
+}
+
 export function applyFindingScopedStandards(result: any, request: ClassifyDto) {
   if (!result || typeof result !== 'object') return result;
   const hazards = Array.isArray(result?.multiHazardDecomposition?.hazards)
@@ -808,7 +959,22 @@ export function applyFindingScopedStandards(result: any, request: ClassifyDto) {
     const supportingSignals = Array.isArray(hazard.supportingSignals)
       ? hazard.supportingSignals.map((item: unknown) => String(item || '').trim()).filter(Boolean)
       : [];
-    const findingText = [fragment, mechanism, ...supportingSignals].filter(Boolean).join('. ');
+    /**
+     * §276 / D-009. The parent facts that explicitly modify THIS hazard.
+     *
+     * Only sentences nobody else owns, only when they co-reference this finding's own
+     * subject, and only when they do not name a different unit. Everything else in the
+     * observation stays out -- which is what stops an unrelated clause from deciding
+     * another finding's applicability.
+     */
+    const contextualSentences = sentenceIndex < 0 ? [] : sentences.filter((sentence, index) => {
+      if (index === sentenceIndex) return false;
+      if ((sentenceOwners.get(index) || 0) > 0) return false;
+      return parentSentenceModifiesFinding(sentence, fragment);
+    });
+
+    const findingText = [fragment, mechanism, ...supportingSignals, ...contextualSentences]
+      .filter(Boolean).join('. ');
     if (!findingText) {
       hazard.standardCandidates = [];
       continue;

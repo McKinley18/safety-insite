@@ -85,6 +85,78 @@ function ensureVisiblePrimaryCitationContract(response: any, observationText = '
   return response;
 }
 
+/**
+ * §276 — A HAZARD THE ENGINE ITSELF CALLED VERIFIED SAFE IS NOT A PROPOSED FINDING.
+ *
+ * ==================== THE DEFECT THIS EXISTS TO FIX ====================
+ *
+ * §276 drove a deliberately SAFE observation as a product path:
+ *
+ *   "The fixed guard on the bench grinder in the maintenance shop is in place, correctly
+ *    adjusted and secured with all fasteners present. The tool rest is set within one
+ *    eighth of an inch of the wheel. Nobody was working at the grinder and it was switched
+ *    off and isolated at the wall."
+ *
+ * The interface answered "HazLenz found 2 possible findings", offered a `hot_work` hazard
+ * built from that entire sentence, and pre-ticked a candidate. The engine had ALREADY
+ * decided the truth: that hazard carried `conditionState: SAFE_VERIFIED`.
+ *
+ * The rule existed. `enforceVerifiedControlDisplay` below drops `SAFE_VERIFIED` and
+ * `HISTORICAL` hazards -- but only after a gate that requires the WHOLE observation text to
+ * match one of four narrow phrasings ("guard ... tested", "locked out ... verified", ...).
+ * An inspector who writes "in place, correctly adjusted and secured with all fasteners
+ * present" matches none of them, so the engine's own per-hazard determination was discarded
+ * in favour of a regex that had not been taught that wording.
+ *
+ * This applies the same rule unconditionally. It is a SCOPING correction, not a semantic
+ * one: nothing here decides whether a condition is safe -- the engine already did that, per
+ * hazard -- and nothing is invented. What changes is that the product stops proposing as a
+ * hazard something its own analysis records as verified safe or historical.
+ *
+ * The narrower `enforceVerifiedControlDisplay` is left in place and still runs: it does more
+ * than this filter (it also rewrites the standards display for a verified control), and
+ * removing it would be a separate change with a separate justification.
+ */
+function withdrawResolvedHazards(response: any): any {
+  if (!response || typeof response !== 'object') return response;
+
+  const isResolved = (hazard: any) =>
+    ['SAFE_VERIFIED', 'HISTORICAL'].includes(String(hazard?.conditionState || '').toUpperCase());
+
+  const decomposition = response.multiHazardDecomposition;
+  if (decomposition && typeof decomposition === 'object' && Array.isArray(decomposition.hazards)) {
+    const kept = decomposition.hazards.filter((hazard: any) => !isResolved(hazard));
+    if (kept.length !== decomposition.hazards.length) {
+      response.multiHazardDecomposition = {
+        ...decomposition,
+        hazards: kept,
+        hazardCount: kept.length,
+        isMultiHazard: kept.length > 1,
+        primaryHazard: kept.find((hazard: any) => hazard === decomposition.primaryHazard) || kept[0],
+        /**
+         * The withdrawal is RECORDED, not silent. A reviewer asking "why did it not raise
+         * the grinder?" must be able to find the answer, and an auditor must be able to see
+         * that a hazard was considered and set aside rather than never noticed.
+         */
+        routingNotes: [
+          ...(Array.isArray(decomposition.routingNotes) ? decomposition.routingNotes : []),
+          ...decomposition.hazards
+            .filter((hazard: any) => isResolved(hazard))
+            .map((hazard: any) =>
+              `Not proposed as a finding: ${hazard?.domainId || 'hazard'} was assessed `
+              + `${String(hazard?.conditionState || '').toUpperCase()} from the observation's own wording.`),
+        ],
+      };
+    }
+  }
+
+  if (Array.isArray(response.additionalHazards)) {
+    response.additionalHazards = response.additionalHazards.filter((hazard: any) => !isResolved(hazard));
+  }
+
+  return response;
+}
+
 function enforceVerifiedControlDisplay(response: any, observationText: string): any {
   if (!response || typeof response !== 'object') return response;
   const text = String(observationText || '');
@@ -296,12 +368,12 @@ export class HazLenzController {
           applyFindingScopedStandards(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(source, body), body), body),
           cutover,
         );
-        const guided = enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
+        const guided = withdrawResolvedHazards(enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
           sanitizeHazLenzDisplayOutput(
             applyFinalizationGate(foundation),
           ),
           body.text,
-        ), body), body.text);
+        ), body), body.text));
         // Re-apply the evidence boundary after the compatibility response adapter
         // so legacy serialization cannot reintroduce a suppressed citation.
         return enforceHazLenzEvidenceBoundary(guided, body);

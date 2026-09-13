@@ -48,7 +48,10 @@ export class PdfService {
     doc
       .fontSize(20)
       .fillColor('#1f4e79')
-      .text('InSite', 95, 60);
+      // §276 / D-013. Canonical product name. This renderer is NOT mounted -- ExecutiveController
+      // is absent from reports.module.ts -- so it is not a customer surface today; it is corrected
+      // so that mounting it later cannot reintroduce the wrong brand on a compliance artifact.
+      .text('Safety InSite', 95, 60);
 
     doc
       .fontSize(10)

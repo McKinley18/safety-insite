@@ -173,6 +173,97 @@ function isCustomerVisible(line: string, brand: string): boolean {
 }
 
 /**
+ * §276 / D-013 — TIER 1B: THE LIVE BRAND, RENDERED WRONG.
+ *
+ * Tier 1 asks whether a RETIRED brand reaches a customer. §275 found a defect it could not
+ * see: the generated report was branded `INSITE` on its cover and `InSite ·` in its running
+ * header. Neither is a retired brand, so the budget of zero was satisfied while a
+ * compliance artifact left the building under a name the product does not have.
+ *
+ * The canonical product name is **Safety InSite**. A bare `InSite` in customer-visible text
+ * is therefore a Tier 1B hit. `HazLenz` is the engine and is correct wherever it appears;
+ * it is not matched here.
+ *
+ * Deliberately narrow: it matches the word `InSite` only when it is NOT already preceded by
+ * `Safety`, so `Safety InSite` -- the correct rendering -- never registers. Possessives and
+ * punctuation after the word are irrelevant to the match.
+ */
+const LIVE_PRODUCT_NAME = 'Safety InSite';
+const BARE_INSITE = /(?<!safety[\s_-]{1,3})\bin[\s_-]?site\b/i;
+
+/**
+ * Tier 1B's own visibility rule, deliberately NOT `isCustomerVisible`.
+ *
+ * Two reasons it cannot delegate.
+ *
+ * FALSE NEGATIVE, and it is the one that matters. `isCustomerVisible` recognises JSX text and
+ * `prop="..."` assignments. The D-013 defect was neither: it was `doc.text('INSITE', ...)`
+ * inside the PDF renderer and `info: { Title: 'InSite Inspection Report' }` in the document
+ * metadata. Delegating was measured against the reintroduced defect and reported PASS --
+ * a gate that cannot see the thing it was written for. In the document-emitting trees the
+ * rule is therefore: ANY string literal containing the bare product name is document copy,
+ * because those trees exist to emit documents.
+ *
+ * FALSE POSITIVE. `isCustomerVisible` treats any `name`-suffixed attribute as rendered copy,
+ * which is right for a retired brand and wrong here: the product's own short name is a
+ * legitimate CSS class prefix, and `className="insite-inspection-action"` is a stylesheet
+ * hook no customer reads. Matching those makes the gate noise, and a noisy gate gets
+ * switched off.
+ */
+const DOCUMENT_EMITTING_TREES = ['backend/src/email', 'backend/src/pdf', 'backend/src/reports', 'backend/src/transparency'];
+
+/** A quoted string or template literal on this line that contains the bare product name. */
+function inStringLiteral(line: string, spelling: string): boolean {
+  const literals = line.match(/"[^"]*"|'[^']*'|`[^`]*`/g) || [];
+  return literals.some((literal) => new RegExp(`(^|[^\\w./-])${spelling}([^\\w./-]|$)`, 'i').test(literal));
+}
+
+function isRenderedProductName(file: string, line: string, spelling: string): boolean {
+  const t = line.trim();
+  if (t.startsWith('//') || t.startsWith('*') || t.startsWith('/*')) return false;
+  if (/^import\s|require\(/.test(t)) return false;
+  if (/\bclass(Name)?\s*[:=]/.test(line)) return false;
+  if (/^[.#][a-z0-9_-]*insite/i.test(t) || /--[a-z0-9-]*insite/i.test(line)) return false;
+
+  if (DOCUMENT_EMITTING_TREES.some((tree) => file.startsWith(tree))) {
+    return inStringLiteral(line, spelling);
+  }
+
+  // Frontend trees: rendered text, user-facing props, and page/document metadata.
+  if (new RegExp(`>[^<>{}]*${spelling}[^<>]*<`, 'i').test(line)) return true;
+  const prop = '(?:^|[^\\w])(title|label|placeholder|aria-label|alt|description|heading|subtitle|applicationName|short_name|tagline|summary|siteName|ogTitle)';
+  if (new RegExp(`${prop}\\s*[:=]\\s*["'\`][^"'\`]*${spelling}`, 'i').test(line)) return true;
+  return false;
+}
+
+export function scanNonCanonicalProductName(): Hit[] {
+  const hits: Hit[] = [];
+  for (const [g] of TIER1_GLOBS) {
+    const files: string[] = [];
+    walk(join(REPO, g), files);
+    for (const f of files) {
+      let content: string;
+      try { content = readFileSync(f, 'utf8'); } catch { continue; }
+      content.split('\n').forEach((line, i) => {
+        const m = line.match(BARE_INSITE);
+        if (!m) return;
+        const rel = relative(REPO, f).split(sep).join('/');
+        if (!isRenderedProductName(rel, line, m[0])) return;
+        hits.push({
+          file: rel,
+          line: i + 1,
+          brand: LIVE_PRODUCT_NAME,
+          spelling: m[0],
+          compatibility: null,
+          text: line.trim().slice(0, 120),
+        });
+      });
+    }
+  }
+  return hits;
+}
+
+/**
  * Which register entry, if any, explains this line. Classified against the FULL line, never the
  * truncated `text` a Hit carries for display — a compatibility identifier that happens to sit past
  * the display cut-off is still a compatibility identifier.
@@ -260,6 +351,7 @@ export const COMPATIBILITY_BUDGET = Number(process.env.BRAND_COMPAT_BUDGET ?? ''
 
 function main(): void {
   const tier1 = scan(TIER1_GLOBS, true);
+  const tier1b = scanNonCanonicalProductName();
   const all = scan(TIER2_GLOBS, false).concat(scan(TIER1_GLOBS, false));
   const retained = all.filter((h) => h.compatibility !== null);
   const tier2 = all.filter((h) => h.compatibility === null);
@@ -270,6 +362,9 @@ function main(): void {
 
   console.log(`  TIER 1  customer-visible retired brand        ${tier1.length === 0 ? 'PASS' : 'FAIL'}   ${tier1.length} hit(s)`);
   for (const h of tier1) console.log(`            ${h.file}:${h.line}  [${h.spelling}]  ${h.text}`);
+
+  console.log(`  TIER 1B customer-visible non-canonical product name  ${tier1b.length === 0 ? 'PASS' : 'FAIL'}   ${tier1b.length} hit(s)`);
+  for (const h of tier1b) console.log(`            ${h.file}:${h.line}  [${h.spelling}]  ${h.text}`);
 
   const budget = TIER2_BUDGET;
   const t2status = tier2.length <= budget ? 'PASS' : 'FAIL';
@@ -300,6 +395,7 @@ function main(): void {
 
   console.log(JSON.stringify({
     tier1CustomerVisible: tier1.length,
+    tier1bNonCanonicalProductName: tier1b.length,
     tier2InternalIdentifiers: tier2.length,
     tier2Budget: budget,
     retainedCompatibilityIdentifiers: retained.length,
@@ -309,6 +405,11 @@ function main(): void {
   }));
 
   if (tier1.length > 0) { console.log('\nBRAND AUDIT FAIL — a retired brand reaches the customer\n'); process.exit(1); }
+  if (tier1b.length > 0) {
+    console.log('\nBRAND AUDIT FAIL — the live product name is rendered non-canonically to a customer.'
+      + ' The product is "Safety InSite"; "InSite" alone is not its name (§276 / D-013).\n');
+    process.exit(1);
+  }
   if (t2status === 'FAIL') { console.log('\nBRAND AUDIT FAIL — Tier 2 budget exceeded\n'); process.exit(1); }
   if (cstatus === 'FAIL') { console.log('\nBRAND AUDIT FAIL — the retained-identifier set grew\n'); process.exit(1); }
   console.log('\nBRAND AUDIT PASS\n');

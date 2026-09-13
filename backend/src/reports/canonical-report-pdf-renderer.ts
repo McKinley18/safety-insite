@@ -2,7 +2,7 @@ import PDFDocument = require('pdfkit');
 
 import { resolveEffectiveSeverity, severityBasisLine } from '../common/effective-severity';
 
-// Professional inspection-report PDF renderer (InSite Production Polish Phase 2).
+// Professional inspection-report PDF renderer (Safety InSite Production Polish Phase 2).
 // Renders directly from an immutable report snapshot (see CanonicalReportsService.snapshotInspection) —
 // no risk/classification recalculation happens here; every value shown is read verbatim from the
 // persisted snapshot. Internal orchestrator fields (mechanism chains, evidence-fact arrays,
@@ -241,8 +241,17 @@ function coverPage(doc: PDFKit.PDFDocument, snapshot: Snapshot, findingCount: nu
   const left = PAGE.margins.left;
   const centred = { width: CONTENT_WIDTH, align: 'center' as const };
 
+  /**
+   * §276 / D-013. The canonical product name is **Safety InSite**.
+   *
+   * The cover carried the bare wordmark 'INSITE' and the running header 'InSite ·'. Neither
+   * is the product's name, and this is a compliance artifact that leaves the building with
+   * a client or a regulator: the name on the cover is the name the record is filed under.
+   * Engine attribution stays HazLenz, which the basis-and-limitations statement and the
+   * per-finding standard summaries already use.
+   */
   doc.font('Helvetica-Bold').fontSize(10).fillColor('#1D72B8')
-    .text('INSITE', left, 130, { ...centred, characterSpacing: 2 });
+    .text('SAFETY INSITE', left, 130, { ...centred, characterSpacing: 2 });
 
   doc.font('Helvetica-Bold').fontSize(28).fillColor(INK)
     .text('Inspection Report', left, 150, centred);
@@ -965,7 +974,8 @@ function applyHeaderFooter(doc: PDFKit.PDFDocument, snapshot: Snapshot) {
     if (i === range.start) continue; // cover page carries no running header/footer
 
     doc.font('Helvetica').fontSize(8).fillColor(FAINT)
-      .text(`InSite · ${snapshot.site?.name || 'Field Inspection'} · Inspection Report`, PAGE.margins.left, 30, { width: CONTENT_WIDTH });
+      // §276 / D-013. Canonical product name, on every page that carries a running header.
+      .text(`Safety InSite · ${snapshot.site?.name || 'Field Inspection'} · Inspection Report`, PAGE.margins.left, 30, { width: CONTENT_WIDTH });
 
     // Drawing below the content boundary (page.height - margins.bottom) would make pdfkit
     // think the text overflows and silently insert a fresh page to hold it. Footers live in
@@ -985,7 +995,9 @@ function applyHeaderFooter(doc: PDFKit.PDFDocument, snapshot: Snapshot) {
 
 export function renderInspectionReportPdf(snapshot: Snapshot): Promise<Buffer> {
   return new Promise((resolve, reject) => {
-    const doc = new PDFDocument({ ...PAGE, bufferPages: true, info: { Title: 'InSite Inspection Report' } });
+    const doc = new PDFDocument({ ...PAGE, bufferPages: true, // §276 / D-013. The PDF's own metadata title, which is what a file manager, a browser
+    // tab and an email preview display. It was branded 'InSite' too.
+    info: { Title: 'Safety InSite Inspection Report' } });
     const chunks: Buffer[] = [];
     doc.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
     doc.on('end', () => resolve(Buffer.concat(chunks)));
