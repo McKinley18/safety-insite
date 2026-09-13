@@ -17,11 +17,11 @@ import { dirname } from 'path';
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { negationScopes, governingNegation } from '../src/safescope-v2/reasoning-l3/negation-scope';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { negationScopes, governingNegation } from '../src/hazlenz/reasoning-l3/negation-scope';
 
 function mk(text: string, families: string[]): ReasoningInput {
   return buildReasoningInput({

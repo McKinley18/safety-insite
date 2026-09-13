@@ -36,7 +36,7 @@ async function main() {
     }, 201);
     users.push({ ...registered, token: login.token });
   }
-  const classify = (token: string, expected: number) => call('/safescope-v2/classify', {
+  const classify = (token: string, expected: number) => call('/hazlenz/classify', {
     method: 'POST',
     headers: { authorization: `Bearer ${token}` },
     body: JSON.stringify({

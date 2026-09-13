@@ -35,7 +35,7 @@
  * development diagnostics and may never produce a formal result.
  */
 
-import { CITATION_SHAPED_PATTERN } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { CITATION_SHAPED_PATTERN } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 export const PROBE_MEASURES_VERSION = 'hazlenz.expert.probe-measures.v1' as const;
 

@@ -2,7 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Standard } from '../entities/standard.entity';
-import { STANDARDS_INTELLIGENCE_SEED } from '../../safescope-v2/standards-intelligence/standards-intelligence.seed';
+import { STANDARDS_INTELLIGENCE_SEED } from '../../hazlenz/standards-intelligence/standards-intelligence.seed';
 import { normalizeAgency, normalizeCitationForMatch, toPayload } from './standards-intelligence-projection';
 import { LegacyCorpusGuardRefused, assertSeedableCorpus } from './legacy-corpus-guard';
 

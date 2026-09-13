@@ -18,7 +18,7 @@ import { Standard, AgencyCode, StandardScope } from '../entities/standard.entity
 type AnyRecord = Record<string, any>;
 
 /**
- * The curated 19-standard seed (safescope-standards.seed.ts, run before this
+ * The curated 19-standard seed (hazlenz-standards.seed.ts, run before this
  * script) and this larger intelligence catalog do not agree on a citation
  * string format for the same regulation -- one uses "1910.147", the other
  * "29 CFR 1910.147". Matching on the raw citation string treats those as two

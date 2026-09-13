@@ -90,7 +90,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope mobile equipment pedestrian draft pack validation passed.');
+  console.log('✅ HazLenz mobile equipment pedestrian draft pack validation passed.');
 }
 
 validate().catch(err => {

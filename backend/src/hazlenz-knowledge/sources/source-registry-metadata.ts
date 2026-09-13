@@ -1,14 +1,14 @@
 import {
-  getSafeScopeSourceByKey,
-  SAFESCOPE_SOURCE_REGISTRY,
+  getHazLenzSourceByKey,
+  HAZLENZ_SOURCE_REGISTRY,
 } from "./hazlenz-source-registry";
 
 export function buildSourceRegistryMetadata(sourceKey: string) {
-  const source = getSafeScopeSourceByKey(sourceKey);
+  const source = getHazLenzSourceByKey(sourceKey);
 
   if (!source) {
     throw new Error(
-      `SafeScope source registry entry not found for sourceKey: ${sourceKey}`,
+      `HazLenz source registry entry not found for sourceKey: ${sourceKey}`,
     );
   }
 
@@ -32,8 +32,8 @@ export function buildSourceRegistryMetadata(sourceKey: string) {
   };
 }
 
-export function listSafeScopeSourceKeys() {
-  return SAFESCOPE_SOURCE_REGISTRY.map((source) => source.sourceKey);
+export function listHazLenzSourceKeys() {
+  return HAZLENZ_SOURCE_REGISTRY.map((source) => source.sourceKey);
 }
 
 export function mergeUniqueTags(

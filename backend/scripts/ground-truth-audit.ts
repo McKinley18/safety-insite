@@ -81,7 +81,7 @@ async function runGroundTruthAudit() {
   console.log(`- Successful Precision Matches: ${successfulMatches}`);
   console.log(`- Scientific Precision Rate: ${precision.toFixed(1)}%`);
   console.log(`- Average Decision Latency: ${avgLatency}ms`);
-  console.log('\nMARKETING DATA POINT: "SafeScope Multi-Term Analysis achieves 100% correlation with <10ms decision latency."');
+  console.log('\nMARKETING DATA POINT: "HazLenz Multi-Term Analysis achieves 100% correlation with <10ms decision latency."');
   console.log('========================================================\n');
 
   await ds.destroy();

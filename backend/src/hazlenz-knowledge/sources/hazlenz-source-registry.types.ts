@@ -1,4 +1,4 @@
-export type SafeScopeSourceAgency =
+export type HazLenzSourceAgency =
   | "MSHA"
   | "OSHA"
   | "NIOSH"
@@ -13,7 +13,7 @@ export type SafeScopeSourceAgency =
   | "MANUFACTURER"
   | "INTERNAL";
 
-export type SafeScopeSourceType =
+export type HazLenzSourceType =
   | "regulation"
   | "policy_manual"
   | "standard_interpretation"
@@ -39,9 +39,9 @@ export type SafeScopeSourceType =
   | "internal_training_record"
   | "internal_near_miss";
 
-export type SafeScopeAuthorityTier = 1 | 2 | 3 | 4 | 5;
+export type HazLenzAuthorityTier = 1 | 2 | 3 | 4 | 5;
 
-export type SafeScopeAllowedUse =
+export type HazLenzAllowedUse =
   | "primary_regulatory_authority"
   | "official_guidance"
   | "incident_learning"
@@ -49,7 +49,7 @@ export type SafeScopeAllowedUse =
   | "context_only"
   | "internal_workspace_learning";
 
-export type SafeScopeRefreshCadence =
+export type HazLenzRefreshCadence =
   | "manual"
   | "daily"
   | "weekly"
@@ -57,13 +57,13 @@ export type SafeScopeRefreshCadence =
   | "quarterly"
   | "annual";
 
-export interface SafeScopeSourceRegistryEntry {
+export interface HazLenzSourceRegistryEntry {
   sourceKey: string;
   displayName: string;
-  agency: SafeScopeSourceAgency;
-  sourceType: SafeScopeSourceType;
-  authorityTier: SafeScopeAuthorityTier;
-  allowedUse: SafeScopeAllowedUse;
+  agency: HazLenzSourceAgency;
+  sourceType: HazLenzSourceType;
+  authorityTier: HazLenzAuthorityTier;
+  allowedUse: HazLenzAllowedUse;
 
   baseUrl: string;
   description: string;
@@ -76,7 +76,7 @@ export interface SafeScopeSourceRegistryEntry {
 
   requiresApproval: boolean;
   approvedForAutoIngestion: boolean;
-  refreshCadence: SafeScopeRefreshCadence;
+  refreshCadence: HazLenzRefreshCadence;
 
   ingestionNotes: string;
   reviewerNotes: string;

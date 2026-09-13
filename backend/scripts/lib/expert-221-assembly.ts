@@ -20,7 +20,7 @@ import { createHash } from 'crypto';
 
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   type VNextGovernedEvidenceRecord, buildExpertVNextUserPrompt, governedBindingFor,
 } from './expert-first-pass-instruction-vnext';

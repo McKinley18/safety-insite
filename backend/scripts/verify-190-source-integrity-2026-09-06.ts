@@ -12,14 +12,14 @@ import { createHash } from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-import { EXPERT_SYSTEM_PROMPT } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+import { EXPERT_SYSTEM_PROMPT } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_VERIFIER_V3_SYSTEM_PROMPT, VERIFIER_V3_RESPONSE_SCHEMA,
   EXPERT_VERIFIER_INSTRUCTION_V3_VERSION,
 } from './lib/expert-verifier-instruction-v3';
 
 const ROOT = join(__dirname, '..', '..');
-const SRC = join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz');
+const SRC = join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz');
 const V = (n: string): string => join(ROOT, 'verification', n);
 const EVID187 = V('expert-hazlenz-required-structured-verifier-validation-2026-09-05');
 const EVID188 = V('expert-hazlenz-required-structured-verifier-remediation-review-2026-09-06');

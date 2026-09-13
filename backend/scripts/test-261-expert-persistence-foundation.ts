@@ -25,16 +25,16 @@ import { SecurityAuditEvent } from '../src/audit/entities/security-audit-event.e
 import { CorrectiveAction } from '../src/corrective-actions/entities/corrective-action.entity';
 import { InspectionService } from '../src/inspection/inspection.service';
 import { ExpertEffectiveDecisionService }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-effective-decision.service';
+  from '../src/hazlenz/expert-hazlenz-product/expert-effective-decision.service';
 import { ExpertAnalysisExecution }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-execution.entity';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis-execution.entity';
 import {
   ExpertAnalysisService, type AuthoritativeExpertResult,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-analysis.service';
+} from '../src/hazlenz/expert-hazlenz-product/expert-analysis.service';
 import { CONFIRMATION_RULE_VERSION }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-confirmation-rule';
+  from '../src/hazlenz/expert-hazlenz-product/expert-confirmation-rule';
 import { ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-audit';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis-audit';
 import { dataSource as applicationDataSource } from '../src/database/data-source';
 
 // ================================================================ the disposable-target guard
@@ -205,7 +205,7 @@ async function main(): Promise<void> {
   console.log('\n---- P0. the service that owns Expert authority makes no provider call ----\n');
   const serviceSource = require('fs').readFileSync(
     require('path').join(__dirname, '..',
-      'src/safescope-v2/expert-hazlenz-product/expert-analysis.service.ts'), 'utf8');
+      'src/hazlenz/expert-hazlenz-product/expert-analysis.service.ts'), 'utf8');
   // Asserted against the IMPORT GRAPH rather than against any mention of the symbol: the service's
   // own documentation names the entry point in order to state that it is deliberately absent, and
   // a substring check would read that sentence as the thing it denies.

@@ -28,7 +28,7 @@ import { join } from 'path';
 
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildExpertVNextWireSchema, governedBindingFor,
 } from './lib/expert-first-pass-instruction-vnext';

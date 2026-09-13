@@ -62,7 +62,7 @@ const GOVERNED_MODULES = [
  * are excluded — the question is whether the CUSTOMER path reaches into them.
  */
 const CUSTOMER_PATH_DIRS = [
-  'safescope-v2',
+  'hazlenz',
   'applicable-standards',
   'inspection',
   'reports',
@@ -189,7 +189,7 @@ async function main() {
   // subsystem. Asserted positively rather than merely excluded, so the exclusion cannot later hide
   // a real wiring: whatever that subsystem means by "approved", it must not be the regulatory
   // release corpus.
-  const aksDir = join(SRC, 'safescope-v2', 'approved-knowledge-search');
+  const aksDir = join(SRC, 'hazlenz', 'approved-knowledge-search');
   let aksFiles: string[] = [];
   try { aksFiles = walk(aksDir); } catch { /* subsystem absent is fine */ }
   const aksLeaks = aksFiles.filter(file => {

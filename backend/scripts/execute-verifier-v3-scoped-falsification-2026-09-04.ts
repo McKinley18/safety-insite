@@ -214,11 +214,11 @@ async function main(): Promise<void> {
   gate('A.5 the §156 blinded packet is unchanged',
     sha256File(join(SRC163, 'VERIFIER-PACKET.json')) === PINNED.packetSha, 'unchanged');
   gate('A.6 the v13 first-pass prompt module is unchanged — no first-pass call will occur',
-    sha256File(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'))
+    sha256File(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'))
       === PINNED.v13PromptModuleSha, 'unchanged');
   gate('A.7 the hardened v9 fixture is unchanged',
     sha256File(join(ROOT,
-      'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
+      'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
       === PINNED.v9FixtureSha, 'unchanged');
 
   // ---- B. the frozen payload and the preregistered allocation.

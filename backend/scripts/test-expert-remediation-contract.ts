@@ -36,13 +36,13 @@ import { join } from 'path';
 import {
   EXPERT_AFFECTED_DECISIONS, EXPERT_INPUT_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
   expertPromptIdentity, expertPromptIdentityMismatches, buildExpertUserPrompt,
   redactCitationTokens, stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
 import {
   createRunRecordStore, readRunRecordStore, runRecordCompletenessProblems, RUN_RECORD_FILE,
 } from './lib/expert-run-record-store';
@@ -134,7 +134,7 @@ section('B. the affectedDecision vocabulary is defined');
 {
   const sys = EXPERT_SYSTEM_PROMPT;
   const schema = stableStringify(buildExpertWireSchema(input()));
-  const types = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const types = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'expert-contract.types.ts'), 'utf8');
 
   for (const member of EXPERT_AFFECTED_DECISIONS) {
@@ -418,7 +418,7 @@ section('H. prompt identity is content, not a label');
 section('M14 — explicitly NOT repaired');
 {
   const files = ['expert-prompt.ts', 'expert-normalization.ts', 'expert-contract.types.ts']
-    .map(f => readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', f), 'utf8'))
+    .map(f => readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', f), 'utf8'))
     .join('\n');
   assert(!/canonicali[sz]e|canonicalInput|deterministicSemanticId/i.test(files),
     'M14.1 no canonicalization or deterministic-id change was made — §138 found NOTHING supports it');

@@ -17,7 +17,7 @@
  * ==================== WHY THE GUARDS LIVE HERE AND NOT AT THE BOUNDARY ====================
  *
  * The narrowest boundary for most findings below is inside
- * `backend/src/safescope-v2/expert-hazlenz/owed-facts/`. Four of those files --
+ * `backend/src/hazlenz/expert-hazlenz/owed-facts/`. Four of those files --
  * `owed-fact.types.ts`, `owed-fact-ledger.ts`, `owed-fact-binding.ts` and
  * `verifier-v3-development-boundary.ts` -- have their sha256 PINNED by §187's
  * `PREREGISTRATION.json:owedFactSourceHashes` and re-asserted by eleven `verify-19x-source-integrity`
@@ -51,22 +51,22 @@ import {
   type AcceptableEvidence, type OwedFact,
   ACCEPTABLE_EVIDENCE_PROVENANCES, OWED_FACT_PRIORITIES,
   PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   type OwedFactLedger, factOf,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import type {
   BindingCheckResult, ClarificationDeclaration,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import type {
   StructuralQuestion,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 import {
   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   FORBIDDEN_EXPERT_FIELD_NAMES,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { DECLARING_STAGES } from './expert-first-pass-owed-fact-projection';
 
 export const AUTHORITY_BOUNDARY_GUARDS_VERSION =
@@ -697,7 +697,7 @@ export const CALL_SITE_INSERTIONS: readonly {
   },
   {
     findingId: 'ABF-3',
-    file: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts',
+    file: 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts',
     afterLine: '182  } else {   (the NOMINATED_NEW branch, once `n` is known to be an object)',
     insertion: 'for (const forbidden of PROVIDER_FORBIDDEN_OWED_FACT_FIELDS) {\n'
       + "  if (forbidden === 'priority') continue;   // see ABF-4: the contracts disagree\n"
@@ -716,7 +716,7 @@ export const CALL_SITE_INSERTIONS: readonly {
   },
   {
     findingId: 'ABF-8',
-    file: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts',
+    file: 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts',
     afterLine: '122  maxNominations = 1,',
     insertion: 'export const FROZEN_NOMINATION_CEILING = 1 as const;   // and default to it',
     pinned: true,

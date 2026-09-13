@@ -1,6 +1,6 @@
-import { ApprovedKnowledgeReviewApiService } from '../src/safescope-v2/approved-knowledge-review-api/approved-knowledge-review-api.service';
-import { ApprovedKnowledgeRecord } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-record.types';
-import { ReviewMetadata } from '../src/safescope-v2/approved-knowledge-review-api/approved-knowledge-review-api.types';
+import { ApprovedKnowledgeReviewApiService } from '../src/hazlenz/approved-knowledge-review-api/approved-knowledge-review-api.service';
+import { ApprovedKnowledgeRecord } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-record.types';
+import { ReviewMetadata } from '../src/hazlenz/approved-knowledge-review-api/approved-knowledge-review-api.types';
 
 async function validate() {
   const service = new ApprovedKnowledgeReviewApiService();

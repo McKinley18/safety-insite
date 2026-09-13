@@ -1,11 +1,11 @@
 import { Msha30CfrConnector } from "../ingestion/connectors/msha-30-cfr.connector";
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
+import { HAZLENZ_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import { getGovernanceConfig } from "../ingestion/ingestion-control-plane";
 
 async function verify() {
   console.log("MSHA 30 CFR Ingestion Verification:");
 
-  const source = SAFESCOPE_SOURCE_REGISTRY.find(
+  const source = HAZLENZ_SOURCE_REGISTRY.find(
     (s) => s.sourceKey === "msha-30-cfr-standards",
   );
   if (!source) {

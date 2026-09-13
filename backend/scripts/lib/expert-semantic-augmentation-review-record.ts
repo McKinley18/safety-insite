@@ -52,7 +52,7 @@
  * else. It opens no reserved material, reads no run record, and calls no provider.
  */
 
-import { REQUIRED_CLASS_MINIMUMS } from '../../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+import { REQUIRED_CLASS_MINIMUMS } from '../../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { CANDIDATE_TARGETS } from './expert-semantic-augmentation-construction-policy';
 
 export const SEMANTIC_AUGMENTATION_PHASE_MODEL_VERSION =

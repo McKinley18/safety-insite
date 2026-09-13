@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { HAZARD_UNIVERSE_REGISTRY } from '../src/safescope-v2/hazard-universe/hazard-universe.registry';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HAZARD_UNIVERSE_REGISTRY } from '../src/hazlenz/hazard-universe/hazard-universe.registry';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 // Mock dependencies
 class StubActionEngine { async generateActionsFromReport() { return []; } }
@@ -37,7 +37,7 @@ class StubOrchestrator {
                 primaryDomain: hazardFamily,
                 confidence,
                 fieldAssessment: 'Analysis of ' + (primaryFamily?.displayName || 'Unknown'),
-                advisoryBoundaries: ['SafeScope provides advisory information only.'],
+                advisoryBoundaries: ['HazLenz provides advisory information only.'],
                 correctiveActions: [
                     { title: primaryFamily ? primaryFamily.preferredControlFamilies[0] : 'General fix', priority: 'High' }
                 ]
@@ -53,7 +53,7 @@ class StubOrchestrator {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Full Hazard Coverage Expansion v1 ---');
+  console.log('--- Testing HazLenz Full Hazard Coverage Expansion v1 ---');
 
   // 1. Verify Registry Completeness
   const requiredFields = [
@@ -75,7 +75,7 @@ async function validate() {
   const scenarioPackPath = path.resolve(__dirname, '../../safescope-data/field-test-scenarios/full-hazard-coverage-expansion-v1.json');
   const pack = JSON.parse(fs.readFileSync(scenarioPackPath, 'utf-8'));
 
-  const service = new SafescopeV2Service(
+  const service = new HazLenzService(
       new StubActionEngine() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
@@ -113,7 +113,7 @@ async function validate() {
       console.log('[PASS]');
   }
 
-  console.log('✅ SafeScope full hazard coverage expansion validation passed.');
+  console.log('✅ HazLenz full hazard coverage expansion validation passed.');
 }
 
 validate().catch(err => {

@@ -12,22 +12,22 @@
 import { createHash } from 'crypto';
 import type {
   ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   CITATION_SHAPED_PATTERN,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_SYSTEM_PROMPT, buildExpertWireSchema, stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   createOwedFactLedger, unresolvedFacts,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   projectOwedFactsForVerifier, PROJECTION_FORBIDDEN_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import type {
   AcceptableEvidence,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 
 import {
   EXPERT_FIRST_PASS_VNEXT_SYSTEM_PROMPT,

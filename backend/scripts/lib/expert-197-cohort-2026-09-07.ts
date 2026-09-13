@@ -43,7 +43,7 @@
 
 import type {
   DeterministicFindingView, GovernedStandardView,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 export const SECTION_197_COHORT_VERSION = 'hazlenz.expert.structured-e2e-cohort.2026-09-07' as const;
 

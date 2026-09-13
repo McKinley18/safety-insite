@@ -38,21 +38,21 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {
   REQUIRED_CLASS_MINIMUMS, MINIMUM_DEFENSIBLE_ROWS,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
-import { COHORT_CASE_CLASSES } from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
+import { COHORT_CASE_CLASSES } from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { COHORT_SIZE_POLICY, ACCEPTED_EXPERT_TAXONOMY } from
   './lib/expert-cohort-supplemental-policy';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
-import { EXPERT_INTERACTION_KINDS } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
+import { EXPERT_INTERACTION_KINDS } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { CORPUS_RETIREMENT_REGISTRY } from
-  '../src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry';
+  '../src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry';
 import { POPULATION_A, POPULATION_B } from
-  '../src/safescope-v2/tests/hazlenz-decomposition-precision-corpus';
+  '../src/hazlenz/tests/hazlenz-decomposition-precision-corpus';
 import { AUGMENTATION_ROWS } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 import { solveMulticover, type CoverType } from './lib/exact-multicover';
 import { SEMANTIC_ROWS } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const out: string[] = [];

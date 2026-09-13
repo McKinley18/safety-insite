@@ -1,13 +1,13 @@
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
+import { HAZLENZ_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import {
   getGovernanceConfig,
   GovernanceConfig,
 } from "../ingestion/ingestion-control-plane";
 
 function verify() {
-  console.log("SafeScope Knowledge Ingestion Control Plane Audit:");
+  console.log("HazLenz Knowledge Ingestion Control Plane Audit:");
 
-  const sources = SAFESCOPE_SOURCE_REGISTRY;
+  const sources = HAZLENZ_SOURCE_REGISTRY;
   const configMap = sources.map((s) => ({
     ...s,
     config: getGovernanceConfig(

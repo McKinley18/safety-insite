@@ -89,9 +89,9 @@ const MUST_INCLUDE = [
   'scripts/release/migrate.js',
   'scripts/release/verify-running-sha.js',
   // The four src/safescope-v2 data directories the runtime stage copies out of the build stage.
-  'src/safescope-v2/hazard-taxonomy-coverage',
-  'src/safescope-v2/site-policy-isolation',
-  'src/safescope-v2/scenario-expansion',
+  'src/hazlenz/hazard-taxonomy-coverage',
+  'src/hazlenz/site-policy-isolation',
+  'src/hazlenz/scenario-expansion',
 ];
 
 // ------------------------------------------------------------------ dockerignore evaluation

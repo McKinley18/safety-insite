@@ -69,7 +69,7 @@ async function persistAnalysis(token: string, label: string): Promise<{ analysis
   if (observation.status >= 400) return { analysisId: null, status: observation.status };
   const observationId = observation.body?.id;
 
-  const classified = await post(token, '/safescope-v2/classify', {
+  const classified = await post(token, '/hazlenz/classify', {
     text: OBSERVATION_TEXT, scopes: ['osha_construction'],
   });
   if (classified.status === 429) throw new Error('THROTTLED; the runner must pace, not the server relax');
@@ -159,7 +159,7 @@ async function main(): Promise<void> {
   ];
 
   for (const forgery of FORGERIES) {
-    const response = await post(tokenB, '/safescope-v2/classify', {
+    const response = await post(tokenB, '/hazlenz/classify', {
       text: 'The bench grinder is missing its tongue guard.',
       scopes: ['osha_general_industry'],
       ...forgery.body,
@@ -176,7 +176,7 @@ async function main(): Promise<void> {
   }
 
   // Forged headers cannot enable it either.
-  const headerProbe = await fetch(API + '/safescope-v2/classify', {
+  const headerProbe = await fetch(API + '/hazlenz/classify', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ async function main(): Promise<void> {
     'forged HEADERS do not grant governed content to a non-eligible account');
 
   // An unauthenticated request cannot reach the classify path at all.
-  const anonymous = await fetch(API + '/safescope-v2/classify', {
+  const anonymous = await fetch(API + '/hazlenz/classify', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text: 'anything' }),
   });

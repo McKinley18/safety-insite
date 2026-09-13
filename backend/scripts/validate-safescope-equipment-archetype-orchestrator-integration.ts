@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: boolean, message: string) {
   }
 }
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const unknownRotating = service.reason({
   hazardObservation:
@@ -132,7 +132,7 @@ assert(
   'Vague scenario should include archetype evidence gaps.',
 );
 
-console.log('✅ SafeScope equipment archetype orchestrator integration validation passed.');
+console.log('✅ HazLenz equipment archetype orchestrator integration validation passed.');
 console.log(
   `Unknown rotating archetype: ${rotatingPrimary.archetypeId} score=${rotatingPrimary.score}`,
 );

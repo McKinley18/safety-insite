@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { HAZARD_UNIVERSE_REGISTRY } from '../src/safescope-v2/hazard-universe/hazard-universe.registry';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HAZARD_UNIVERSE_REGISTRY } from '../src/hazlenz/hazard-universe/hazard-universe.registry';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 // Mock dependencies
 class StubActionEngine { async generateActionsFromReport() { return []; } }
@@ -69,12 +69,12 @@ class StubOrchestrator {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Response Appropriateness v1 ---');
+  console.log('--- Testing HazLenz Response Appropriateness v1 ---');
 
   const scenarioPackPath = path.resolve(__dirname, '../../safescope-data/field-test-scenarios/full-hazard-coverage-expansion-v1.json');
   const pack = JSON.parse(fs.readFileSync(scenarioPackPath, 'utf-8'));
 
-  const service = new SafescopeV2Service(
+  const service = new HazLenzService(
       new StubActionEngine() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
@@ -114,7 +114,7 @@ async function validate() {
       console.log('[PASS]');
   }
 
-  console.log('✅ SafeScope response appropriateness validation passed.');
+  console.log('✅ HazLenz response appropriateness validation passed.');
 }
 
 validate().catch(err => {

@@ -1,5 +1,5 @@
-import { KnowledgePackValidator } from '../src/safescope-v2/knowledge-packs/knowledge-pack.validator';
-import { KnowledgePack } from '../src/safescope-v2/knowledge-packs/knowledge-pack.types';
+import { KnowledgePackValidator } from '../src/hazlenz/knowledge-packs/knowledge-pack.validator';
+import { KnowledgePack } from '../src/hazlenz/knowledge-packs/knowledge-pack.types';
 
 async function validate() {
   const validator = KnowledgePackValidator;

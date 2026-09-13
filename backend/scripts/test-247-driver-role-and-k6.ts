@@ -7,19 +7,19 @@
  */
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   build247PostureSchemaProperty, buildBasisEntryUnion247, admissiblePairs247,
   expressiblePairsUnder239, reconstruct239PostureSchemaProperty, build247SystemPrompt,
   reconstruct239SystemPrompt, EPISTEMIC_CHARACTERS_247, ROLE_EPISTEMIC_CHARACTERS_247,
   CONTROLLING_ROLES_247, contractIdentities247, ROLE_JUSTIFICATION_FIELD,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import {
   build239PostureSchemaProperty, build239SystemPrompt, POSTURE_DRIVER_ROLES_239,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
 import {
   checkRoleJustification247, roleJustificationEffect247,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-role-justification-projection';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-role-justification-projection';
 
 let passed = 0; let failed = 0; const failures: string[] = [];
 const ok = (id: string, cond: boolean, detail = ''): void => {

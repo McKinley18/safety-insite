@@ -52,14 +52,14 @@ import { createHash } from 'crypto';
 import {
   L3_CONDITION_STATES, L3_CONTROL_HIERARCHY_LEVELS,
   type ReasoningInput, type L3RegulatoryContextValue,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { L3_SYSTEM_PROMPT, buildUserPrompt } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { L3_2_INFERENCE_CONFIG } from '../src/safescope-v2/reasoning-l3/ollama-reasoning-provider';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { L3_SYSTEM_PROMPT, buildUserPrompt } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { L3_2_INFERENCE_CONFIG } from '../src/hazlenz/reasoning-l3/ollama-reasoning-provider';
 import {
   coerceStateFacts, resolveConditionState, checkResolutionAgreement, stateFactsSchemaFragment,
   type L3StateFacts,
-} from '../src/safescope-v2/reasoning-l3/state-facts';
+} from '../src/hazlenz/reasoning-l3/state-facts';
 
 // =====================================================================================
 // PROMPT VARIANTS. The B text is imported verbatim, never retyped -- §34.1's frozen-variant rule

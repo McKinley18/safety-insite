@@ -24,20 +24,20 @@ import { join } from 'path';
 
 import {
   type ExpertAnalysisInput, EXPERT_INPUT_CONTRACT_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   OWED_FACT_STATUSES, WHY_UNRESOLVED_STATUS_INVARIANT,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   createOwedFactLedger, factOf,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   type ReviewDecisionRecord,
   consumeSettlementClaims, mintSettlementAuthority, attachPropertyAuthority,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   buildPropertyReviewPacket, mintPropertyAuthority,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 import {
   buildExpertVNextWireSchema, governedBindingFor,
 } from './lib/expert-first-pass-instruction-vnext';
@@ -706,15 +706,15 @@ ok('F8. an unattributable divergence would be reported as UNVERIFIED, not explai
 console.log('\n---- G. LIMITS AND BOUNDARIES ----');
 
 const PINNED = [
-  ['src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts',
     '102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a'],
-  ['src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger.ts',
     '4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701'],
-  ['src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts',
     'e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0'],
-  ['src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
     '5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245'],
-  ['src/safescope-v2/expert-hazlenz/expert-prompt.ts',
+  ['src/hazlenz/expert-hazlenz/expert-prompt.ts',
     'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694'],
 ] as const;
 

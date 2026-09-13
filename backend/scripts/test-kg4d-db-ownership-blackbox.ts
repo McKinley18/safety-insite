@@ -197,7 +197,7 @@ async function main(): Promise<void> {
     encoding: 'utf8', timeout: 300_000,
   });
   check(migrate.status === 0, 'the owned database migrates successfully');
-  const seed = spawnSync('npm', ['run', 'seed:safescope-standards'], {
+  const seed = spawnSync('npm', ['run', 'seed:hazlenz-standards'], {
     cwd: process.cwd(), env: { ...process.env, DATABASE_URL: url(OWNED) },
     encoding: 'utf8', timeout: 600_000,
   });

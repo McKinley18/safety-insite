@@ -24,10 +24,10 @@ import { join } from 'path';
 
 import {
   OWED_FACT_STATUSES, WHY_UNRESOLVED_STATUS_INVARIANT, PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   PROJECTION_FORBIDDEN_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import { PROJECTION_RESIDUAL_LIMITS } from './lib/expert-first-pass-owed-fact-projection';
 import {
   EPISTEMIC_REPRESENTATION_VERSION, PROVIDER_CALLS, DATABASE_OPERATIONS,

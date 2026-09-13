@@ -21,14 +21,14 @@ import { join } from 'path';
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
 import {
   resolveConditionState, checkResolutionAgreement, coerceStateFacts, stateFactsSchemaFragment,
   L3_CONTROL_READINGS, type L3StateFacts,
-} from '../src/safescope-v2/reasoning-l3/state-facts';
+} from '../src/hazlenz/reasoning-l3/state-facts';
 
 let passed = 0; const failures: string[] = [];
 function ok(cond: boolean, label: string) {
@@ -339,7 +339,7 @@ function survives(text: string, family: string, quote: string, state: HazardCand
     'D1 the L3-2f scorer reads BOTH decomposition keys');
 
   const holdout = JSON.parse(readFileSync(
-    join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3', 'eval', 'holdout-l32f.json'), 'utf8'));
+    join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3', 'eval', 'holdout-l32f.json'), 'utf8'));
   const rows = holdout.scenarios || holdout;
   const mh = rows.filter((r: any) => r?.expect
     && (r.expect.minCandidates !== undefined || r.expect.minimumCandidates !== undefined));
@@ -352,7 +352,7 @@ function survives(text: string, family: string, quote: string, state: HazardCand
 // E. CONTAINMENT. `state-facts.ts` must not have acquired customer authority.
 // =====================================================================================
 {
-  const src = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3', 'state-facts.ts'), 'utf8');
+  const src = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3', 'state-facts.ts'), 'utf8');
   ok(!/@(Injectable|Entity|Column|InjectRepository)/.test(src),
     'E1 state-facts.ts carries no Nest or TypeORM decorator');
   ok(!/\bimport\b[^\n]*(typeorm|@nestjs)/.test(src),
@@ -367,10 +367,10 @@ function survives(text: string, family: string, quote: string, state: HazardCand
   const outsideL3 = importers.filter((p: string) => !p.includes('reasoning-l3') && !p.includes('/scripts/'));
   ok(outsideL3.length === 0, `E3 no importer outside reasoning-l3 (found: ${outsideL3.join(', ')})`);
 
-  const runner = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3', 'reasoning-runner.ts'), 'utf8');
+  const runner = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3', 'reasoning-runner.ts'), 'utf8');
   ok(!runner.includes('state-facts'),
     'E4 the shipped validation sequence does NOT consume state-facts -- architecture evidence only');
-  const prompt = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3', 'reasoning-prompt.ts'), 'utf8');
+  const prompt = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3', 'reasoning-prompt.ts'), 'utf8');
   ok(!prompt.includes('state-facts'),
     'E5 the shipped prompt/schema is unchanged by L3-2g -- the structural schema lives in the harness');
 }

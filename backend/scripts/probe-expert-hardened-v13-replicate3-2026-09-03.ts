@@ -67,27 +67,27 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   HARDENED_FIXTURES, HARDENED_ROWS, HARDENED_SET_VERSION, HARDENED_SET_STATUS,
   CANONICAL_DETERMINISTIC_FAMILIES,
   HARDENED_FORMS, hardenedFixtureByRowId, type HardenedFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   EXPERT_SYSTEM_PROMPT, buildExpertUserPrompt, expertPromptIdentity,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   CITATION_SHAPED_PATTERN, EXPERT_AFFECTED_DECISIONS, EXPERT_ANALYSIS_CONTRACT_VERSION,
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import type {
   ExpertProvider, ExpertProviderResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-provider';
+} from '../src/hazlenz/expert-hazlenz/expert-provider';
 import { EXPERT_MEASUREMENT_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
+  '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
 import {
   runFormalCohort, providerInvocationCount, resetProviderInvocationCount,
   EXPERT_COHORT_HARNESS_VERSION,
@@ -116,7 +116,7 @@ import {
   writeRemeasureIdentity, type PreSpendIdentity,
 } from './lib/expert-probe-identity';
 import type { CallRecord, CohortRunRecord } from
-  '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+  '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 const ROOT = join(__dirname, '..', '..');
 const OUT = join(ROOT, 'verification', 'expert-hazlenz-hardened-v13-replicate3-2026-09-03');
@@ -171,10 +171,10 @@ const BOUND_MODEL = 'claude-sonnet-5';
 const HISTORICAL_PROVIDER_INVOCATION_COUNT = 195;
 
 const SCRIPT = 'backend/scripts/probe-expert-hardened-v13-replicate3-2026-09-03.ts';
-const FIXTURES = 'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts';
-const PROMPT = 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts';
-const NORMALIZATION = 'backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts';
-const CONTRACT_TYPES = 'backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts';
+const FIXTURES = 'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts';
+const PROMPT = 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts';
+const NORMALIZATION = 'backend/src/hazlenz/expert-hazlenz/expert-normalization.ts';
+const CONTRACT_TYPES = 'backend/src/hazlenz/expert-hazlenz/expert-contract.types.ts';
 
 /**
  * §151's frozen digest. A mismatch blocks the run at $0.00: the whole value of this baseline is that

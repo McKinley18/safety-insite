@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 // Mock dependencies for service instantiation
 class StubActionEngine { async generateActionsFromReport() { return []; } }
@@ -51,7 +51,7 @@ class StubOrchestrator {
                 primaryDomain,
                 confidence,
                 fieldAssessment: 'Calibration assessment',
-                advisoryBoundaries: ['SafeScope provides advisory information only.'],
+                advisoryBoundaries: ['HazLenz provides advisory information only.'],
                 correctiveActions: input.proposedActions ? input.proposedActions.map((a: string) => ({ title: a, priority: 'Low' })) : [],
                 multiHazardDecomposition
             },
@@ -71,7 +71,7 @@ async function validate() {
   const packPath = path.resolve(__dirname, '../../safescope-data/field-test-scenarios/failure-mode-calibration-pack-v1.json');
   const pack = JSON.parse(fs.readFileSync(packPath, 'utf-8'));
   
-  const service = new SafescopeV2Service(
+  const service = new HazLenzService(
       new StubActionEngine() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
@@ -84,7 +84,7 @@ async function validate() {
       new StubKnowledgeShard() as any
   );
 
-  console.log('--- Testing SafeScope Failure-Mode Calibration Pack v1 ---');
+  console.log('--- Testing HazLenz Failure-Mode Calibration Pack v1 ---');
 
   let failed = 0;
   for (const scenario of pack.scenarios) {
@@ -133,7 +133,7 @@ async function validate() {
       throw new Error(failed + ' calibration scenarios failed.');
   }
 
-  console.log('✅ SafeScope failure-mode calibration validation passed.');
+  console.log('✅ HazLenz failure-mode calibration validation passed.');
 }
 
 validate().catch(err => {

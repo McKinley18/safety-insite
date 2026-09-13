@@ -1,4 +1,4 @@
-import { SiteMemoryService } from '../src/safescope-v2/site-memory/site-memory.service';
+import { SiteMemoryService } from '../src/hazlenz/site-memory/site-memory.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Temporal Hazard Memory ---');
+  console.log('--- Testing HazLenz Temporal Hazard Memory ---');
 
   const service = new SiteMemoryService();
   const currentDate = new Date('2026-06-01');
@@ -128,7 +128,7 @@ async function validate() {
   assert(res5.degradationRisk === 'medium', 'Degradation risk should be medium due to operational pattern.');
   assert(res5.temporalRecurrence.escalationLevel === 'none', 'Escalation level should remain none (locations differ).');
 
-  console.log('✅ SafeScope Temporal Hazard Memory validation passed.');
+  console.log('✅ HazLenz Temporal Hazard Memory validation passed.');
 }
 
 validate().catch(err => {

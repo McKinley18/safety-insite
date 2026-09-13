@@ -12,12 +12,12 @@
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import { HAZARD_TAXONOMY } from '../src/safescope-v2/taxonomy/hazard-taxonomy';
-import { buildReasoningInput, describeEgress } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { OllamaReasoningProvider, L3_2_INFERENCE_CONFIG } from '../src/safescope-v2/reasoning-l3/ollama-reasoning-provider';
-import { runValidatedReasoning } from '../src/safescope-v2/reasoning-l3/reasoning-runner';
-import { L3_PROMPT_VERSION } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import type { AdvisorySignal, L3RegulatoryContextValue } from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+import { HAZARD_TAXONOMY } from '../src/hazlenz/taxonomy/hazard-taxonomy';
+import { buildReasoningInput, describeEgress } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { OllamaReasoningProvider, L3_2_INFERENCE_CONFIG } from '../src/hazlenz/reasoning-l3/ollama-reasoning-provider';
+import { runValidatedReasoning } from '../src/hazlenz/reasoning-l3/reasoning-runner';
+import { L3_PROMPT_VERSION } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import type { AdvisorySignal, L3RegulatoryContextValue } from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 
 /** The closed vocabulary, taken from the engine's own taxonomy (KEEP_AS_GUARDRAIL, section 29.7). */
 const ALLOWED_FAMILIES = [...new Set(HAZARD_TAXONOMY.map(p => p.id))].sort();

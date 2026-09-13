@@ -72,7 +72,7 @@ const SENSITIVE_LOCAL_STORAGE_KEYS = [
 // a separate decision from data isolation and is recorded rather than assumed.
 const SENSITIVE_LOCAL_STORAGE_PREFIXES = ["sentinel_encrypted_", "sentinel_secure_"];
 
-export type SentinelAuthUser = {
+export type AuthUser = {
   firstName?: string;
   lastName?: string;
   name?: string;
@@ -114,8 +114,8 @@ export function getRefreshToken() {
 
 export function setAuthSession(
   token: string,
-  refreshTokenOrUser?: string | SentinelAuthUser | null,
-  maybeUser?: SentinelAuthUser | null,
+  refreshTokenOrUser?: string | AuthUser | null,
+  maybeUser?: AuthUser | null,
 ) {
   if (typeof window === "undefined") return;
 
@@ -211,7 +211,7 @@ export async function logout() {
   clearAuthSession();
 }
 
-export function getAuthUser<T extends SentinelAuthUser = SentinelAuthUser>() {
+export function getAuthUser<T extends AuthUser = AuthUser>() {
   if (typeof window === "undefined") return {} as T;
 
   try {
@@ -221,7 +221,7 @@ export function getAuthUser<T extends SentinelAuthUser = SentinelAuthUser>() {
   }
 }
 
-export function setAuthUser(user: SentinelAuthUser) {
+export function setAuthUser(user: AuthUser) {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
 }
@@ -272,7 +272,7 @@ export async function getMyProfile() {
     throw new Error("Unable to load your profile.");
   }
 
-  return (await response.json()) as SentinelAuthUser;
+  return (await response.json()) as AuthUser;
 }
 
 export async function updateMyProfile(payload: { firstName?: string; lastName?: string }) {
@@ -296,7 +296,7 @@ export async function updateMyProfile(payload: { firstName?: string; lastName?: 
     throw new Error(message);
   }
 
-  return (await response.json()) as SentinelAuthUser;
+  return (await response.json()) as AuthUser;
 }
 
 export async function getOrganizationSettings() {

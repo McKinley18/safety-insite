@@ -90,7 +90,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope confined space atmospheric draft pack validation passed.');
+  console.log('✅ HazLenz confined space atmospheric draft pack validation passed.');
 }
 
 validate().catch(err => {

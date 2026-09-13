@@ -42,16 +42,16 @@ import { DataSource } from 'typeorm';
 import { AppModule } from '../src/app.module';
 import { REQUIRED_ENTITLEMENT_KEY } from '../src/auth/entitlements/entitlement.guard';
 import { ExpertAnalysisController }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis.controller';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis.controller';
 import {
   substituteExpertSemanticTransportForVerification, expertTransportLifetimeCounts,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-semantic-transport.provider';
+} from '../src/hazlenz/expert-hazlenz-product/expert-semantic-transport.provider';
 import {
-  EXPERT_CANDIDATE_IDENTITY_259,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-candidate-provenance';
+  EXPERT_CANDIDATE_IDENTITY_274,
+} from '../src/hazlenz/expert-hazlenz-product/expert-candidate-provenance';
 import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
 import { evidenceWritesEnabled } from './lib/evidence-write-gate';
 
@@ -700,7 +700,7 @@ async function main(): Promise<void> {
 
   console.log('\n---- J. provenance and version persistence ----\n');
   ok('J-1 the read serves the frozen §259 candidate identity',
-    a.read.body.provenance?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_259,
+    a.read.body.provenance?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_274,
     String(a.read.body.provenance?.candidateIdentity));
   ok('J-2 the contract, entry, admission, projection and confirmation-rule versions all persist',
     ['contractVersion', 'entryVersion', 'admissionVersion', 'projectionVersion',
@@ -715,7 +715,7 @@ async function main(): Promise<void> {
     && a.read.body.history.every((h: Json) => typeof h.producer === 'string'),
     JSON.stringify(a.read.body.history?.map((h: Json) => h.producer)));
   recordCase('J', 'provenance / version persistence',
-    a.read.body.provenance?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_259,
+    a.read.body.provenance?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_274,
     `identity=${String(a.read.body.provenance?.candidateIdentity).slice(0, 16)}`);
 
   // ---- history: a legacy client-supplied analysis stays distinguishable and is not promoted.
@@ -763,7 +763,7 @@ async function main(): Promise<void> {
   // one file up.
   if (WRITE_EVIDENCE) writeFileSync(join(evidenceDir, 'SECTION-265-ACCEPTANCE.json'), JSON.stringify({
     artifact: 'SECTION-265-LOCAL-PRODUCT-ACCEPTANCE',
-    candidateIdentity: EXPERT_CANDIDATE_IDENTITY_259,
+    candidateIdentity: EXPERT_CANDIDATE_IDENTITY_274,
     providerCalls: 0,
     localTransportLegs: legs,
     assertions: { pass, fail },

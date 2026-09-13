@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 const snapshotPath = path.join(
   __dirname,
-  '../src/safescope-v2/reasoning-orchestrator/reports/reasoning-orchestrator-snapshot.json',
+  '../src/hazlenz/reasoning-orchestrator/reports/reasoning-orchestrator-snapshot.json',
 );
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const machineGuardingSnapshot = service.reason({
   hazardObservation: 'Unguarded conveyor tail pulley with employee access during cleanup.',
@@ -28,7 +28,7 @@ const snapshot = {
   mode: 'contract_snapshot_test_only',
   generatedAt: new Date().toISOString(),
   purpose:
-    'Document and validate the SafeScope reasoning orchestrator output contract before UI or production reasoning integration.',
+    'Document and validate the HazLenz reasoning orchestrator output contract before UI or production reasoning integration.',
   scenarios: {
     machineGuardingSnapshot,
     uncertainSnapshot,
@@ -65,13 +65,13 @@ const snapshot = {
       uncertainSnapshot.conclusionBoundary.requiresQualifiedReview === true,
   },
   sourceBoundary:
-    'This snapshot is a test-only contract artifact. It does not wire the reasoning orchestrator into production, declare violations, create citations, bypass human review, or modify SafeScope native reasoning.',
+    'This snapshot is a test-only contract artifact. It does not wire the reasoning orchestrator into production, declare violations, create citations, bypass human review, or modify HazLenz native reasoning.',
 };
 
 fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
 fs.writeFileSync(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`);
 
-console.log('✅ SafeScope reasoning orchestrator snapshot generated.');
+console.log('✅ HazLenz reasoning orchestrator snapshot generated.');
 console.log(`Snapshot: ${snapshotPath}`);
 console.log(`Machine guarding jurisdiction: ${machineGuardingSnapshot.jurisdictionAssessment.likelyJurisdiction}`);
 console.log(`Machine guarding domain: ${machineGuardingSnapshot.hazardClassification.primaryDomain}`);

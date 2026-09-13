@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 import { join } from 'path';
 
-import { SAFESCOPE_HAZARD_UNIVERSE_REGISTRY } from '../src/safescope-v2/brain/hazard-universe/hazard-universe.registry';
-import { SAFESCOPE_REGULATORY_BRAIN_REGISTRY } from '../src/safescope-v2/brain/regulatory-brain/regulatory-knowledge.registry';
-import { SAFESCOPE_MECHANISM_BRAIN_REGISTRY } from '../src/safescope-v2/brain/mechanism-brain/mechanism-knowledge.registry';
-import { SAFESCOPE_CONTROLS_BRAIN_REGISTRY } from '../src/safescope-v2/brain/controls-brain/controls-knowledge.registry';
-import { SAFESCOPE_EVIDENCE_BRAIN_REGISTRY } from '../src/safescope-v2/brain/evidence-brain/evidence-knowledge.registry';
+import { HAZLENZ_HAZARD_UNIVERSE_REGISTRY } from '../src/hazlenz/brain/hazard-universe/hazard-universe.registry';
+import { HAZLENZ_REGULATORY_BRAIN_REGISTRY } from '../src/hazlenz/brain/regulatory-brain/regulatory-knowledge.registry';
+import { HAZLENZ_MECHANISM_BRAIN_REGISTRY } from '../src/hazlenz/brain/mechanism-brain/mechanism-knowledge.registry';
+import { HAZLENZ_CONTROLS_BRAIN_REGISTRY } from '../src/hazlenz/brain/controls-brain/controls-knowledge.registry';
+import { HAZLENZ_EVIDENCE_BRAIN_REGISTRY } from '../src/hazlenz/brain/evidence-brain/evidence-knowledge.registry';
 
 type CoverageBand = 'covered' | 'partial' | 'thin' | 'gap';
 
@@ -65,7 +65,7 @@ const benchmarkText = normalized(
 
 function hasRegulatoryCoverage(domain: string, terms: string[]): boolean {
   const domainNorm = normalized(domain);
-  return SAFESCOPE_REGULATORY_BRAIN_REGISTRY.some((record) => {
+  return HAZLENZ_REGULATORY_BRAIN_REGISTRY.some((record) => {
     const text = normalized([
       record.title,
       record.citation,
@@ -82,13 +82,13 @@ function hasRegulatoryCoverage(domain: string, terms: string[]): boolean {
 }
 
 function hasMechanismCoverage(mechanisms: string[]): boolean {
-  const mechanismIds = SAFESCOPE_MECHANISM_BRAIN_REGISTRY.map((record) => normalized(record.mechanismId));
+  const mechanismIds = HAZLENZ_MECHANISM_BRAIN_REGISTRY.map((record) => normalized(record.mechanismId));
   return mechanisms.some((mechanism) => mechanismIds.includes(normalized(mechanism)));
 }
 
 function hasControlsCoverage(domain: string, mechanisms: string[], terms: string[]): boolean {
   const domainNorm = normalized(domain);
-  return SAFESCOPE_CONTROLS_BRAIN_REGISTRY.some((record) => {
+  return HAZLENZ_CONTROLS_BRAIN_REGISTRY.some((record) => {
     const text = normalized([
       record.controlId,
       ...record.hazardDomains,
@@ -109,7 +109,7 @@ function hasControlsCoverage(domain: string, mechanisms: string[], terms: string
 
 function hasEvidenceCoverage(domain: string, mechanisms: string[], terms: string[]): boolean {
   const domainNorm = normalized(domain);
-  return SAFESCOPE_EVIDENCE_BRAIN_REGISTRY.some((record) => {
+  return HAZLENZ_EVIDENCE_BRAIN_REGISTRY.some((record) => {
     const text = normalized([
       record.evidenceId,
       ...record.hazardDomains,
@@ -136,7 +136,7 @@ function hasScenarioCoverage(domain: string, mechanisms: string[], scenarioTerms
   );
 }
 
-const rows: HazardUniverseCoverageRow[] = SAFESCOPE_HAZARD_UNIVERSE_REGISTRY.map((record) => {
+const rows: HazardUniverseCoverageRow[] = HAZLENZ_HAZARD_UNIVERSE_REGISTRY.map((record) => {
   const terms = unique([
     record.label,
     record.domain,
@@ -204,7 +204,7 @@ function buildMarkdown(rows: HazardUniverseCoverageRow[]): string {
   }, {});
 
   const lines: string[] = [
-    '# SafeScope Hazard Universe Coverage',
+    '# HazLenz Hazard Universe Coverage',
     '',
     '## Summary',
     '',
@@ -238,9 +238,9 @@ function buildMarkdown(rows: HazardUniverseCoverageRow[]): string {
     '## Interpretation',
     '',
     '- This matrix is broader than the 25-case benchmark.',
-    '- A covered row means SafeScope has some regulatory, mechanism, control, evidence, and scenario representation.',
+    '- A covered row means HazLenz has some regulatory, mechanism, control, evidence, and scenario representation.',
     '- A partial/thin/gap row identifies where expansion should happen before claiming full hazard coverage.',
-    '- This is the roadmap for expanding SafeScope from benchmark AI behavior toward broad safety-intelligence coverage.',
+    '- This is the roadmap for expanding HazLenz from benchmark AI behavior toward broad safety-intelligence coverage.',
     '',
   ];
 
@@ -259,7 +259,7 @@ const counts = rows.reduce<Record<string, number>>((acc, row) => {
   return acc;
 }, {});
 
-console.log('✅ SafeScope Hazard Universe Coverage audit complete.');
+console.log('✅ HazLenz Hazard Universe Coverage audit complete.');
 console.log(`Results JSON: ${resultsPath}`);
 console.log(`Results MD: ${markdownPath}`);
 console.log(`Hazard universe records: ${rows.length}`);

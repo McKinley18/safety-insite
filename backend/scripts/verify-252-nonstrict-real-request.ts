@@ -27,15 +27,15 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, classifyHttpFailure, errorTypeOf,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody, envelopeBoundOptions, EXPERT_REQUEST_ENVELOPE,
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const OUT = join(__dirname, '..', '..', 'verification',
   'expert-hazlenz-252-nonstrict-admission-architecture-2026-09-12');

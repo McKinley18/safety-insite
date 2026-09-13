@@ -1,9 +1,9 @@
-import { SafeScopeEquipmentArchetypeDetectorService } from '../src/safescope-v2/equipment-knowledge/equipment-archetype-detector.service';
-import { SafeScopeEquipmentArchetypeId } from '../src/safescope-v2/equipment-knowledge/equipment-archetype.types';
+import { HazLenzEquipmentArchetypeDetectorService } from '../src/hazlenz/equipment-knowledge/equipment-archetype-detector.service';
+import { HazLenzEquipmentArchetypeId } from '../src/hazlenz/equipment-knowledge/equipment-archetype.types';
 import {
-  SafeScopeHarmMechanism,
-  SafeScopeTaskContext,
-} from '../src/safescope-v2/equipment-knowledge/equipment-task-mechanism.types';
+  HazLenzHarmMechanism,
+  HazLenzTaskContext,
+} from '../src/hazlenz/equipment-knowledge/equipment-task-mechanism.types';
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -14,13 +14,13 @@ function assert(condition: boolean, message: string) {
 type ArchetypeScenario = {
   name: string;
   description: string;
-  taskContext?: SafeScopeTaskContext;
-  expectedArchetypeId: SafeScopeEquipmentArchetypeId;
+  taskContext?: HazLenzTaskContext;
+  expectedArchetypeId: HazLenzEquipmentArchetypeId;
   expectedDomains: string[];
-  expectedMechanisms: SafeScopeHarmMechanism[];
+  expectedMechanisms: HazLenzHarmMechanism[];
 };
 
-const detector = new SafeScopeEquipmentArchetypeDetectorService();
+const detector = new HazLenzEquipmentArchetypeDetectorService();
 
 const scenarios: ArchetypeScenario[] = [
   {
@@ -130,4 +130,4 @@ assert(vague.evidenceGaps.length > 0, 'Vague archetype result should include evi
 assert(vague.cautions.length > 0, 'Vague archetype result should include cautions.');
 
 console.log('✅ vague archetype guardrail');
-console.log('✅ SafeScope equipment archetype detector validation passed.');
+console.log('✅ HazLenz equipment archetype detector validation passed.');

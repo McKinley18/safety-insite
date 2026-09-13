@@ -21,34 +21,34 @@ import { createHash } from 'crypto';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
   EXPERT_INTERACTION_KINDS,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { EXPERT_PROMPT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { EXPERT_SCORER_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { EXPERT_PROMPT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { EXPERT_SCORER_VERSION } from '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 import {
   EXPERT_MEASUREMENT_CONTRACT_VERSION, assertContractMatchesPlan, gatedMeasureIds, reportedMeasureIds,
   frozenFieldsFor,
-} from '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
-import { EVALUATION_PRECONDITIONS } from '../src/safescope-v2/expert-hazlenz/expert-evaluation-plan';
+} from '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
+import { EVALUATION_PRECONDITIONS } from '../src/hazlenz/expert-hazlenz/expert-evaluation-plan';
 import {
   COHORT_COMPOSITION_VERSION, REQUIRED_CLASS_MINIMUMS, MINIMUM_DEFENSIBLE_ROWS, PREFERRED_ROWS,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { FORMAL_COHORT_ROW_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+  '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   EXPERT_COHORT_HARNESS_VERSION, providerInvocationCount, resetProviderInvocationCount,
 } from './lib/expert-cohort-harness';
 import { CANONICAL_EXPERT_INPUT_BUILDER_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+  '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import { ACCEPTED_EXPERT_TAXONOMY, COHORT_SIZE_POLICY } from
   './lib/expert-cohort-supplemental-policy';
 import { POPULATION_A, POPULATION_B } from
-  '../src/safescope-v2/tests/hazlenz-decomposition-precision-corpus';
+  '../src/hazlenz/tests/hazlenz-decomposition-precision-corpus';
 import { AUGMENTATION_ROWS } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 import {
   SEMANTIC_ROWS, SEMANTIC_AUGMENTATION_IDENTIFIER,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
+} from '../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
 import { CORPUS_LIFECYCLE_STATE } from './lib/expert-semantic-augmentation-review-record';
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -93,7 +93,7 @@ function main(): void {
   say('');
   const model = process.env.EXPERT_ANTHROPIC_MODEL || 'claude-sonnet-5';
   const rows: Array<[string, string]> = [
-    ['provider adapter', 'src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts'],
+    ['provider adapter', 'src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts'],
     ['provider', 'anthropic'],
     ['model (default; EXPERT_ANTHROPIC_MODEL overridable)', model],
     ['prompt version', EXPERT_PROMPT_VERSION],
@@ -392,12 +392,12 @@ function main(): void {
   say('');
   say('ARTIFACT HASHES');
   for (const p of [
-    'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts',
-    'backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts',
-    'backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts',
-    'backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts',
-    'backend/src/safescope-v2/expert-hazlenz/expert-cohort-composition.ts',
-    'backend/src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1.ts',
+    'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts',
+    'backend/src/hazlenz/expert-hazlenz/expert-measure-scorers.ts',
+    'backend/src/hazlenz/expert-hazlenz/expert-measurement-contract.ts',
+    'backend/src/hazlenz/expert-hazlenz/expert-evaluation-plan.ts',
+    'backend/src/hazlenz/expert-hazlenz/expert-cohort-composition.ts',
+    'backend/src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1.ts',
     'backend/scripts/lib/expert-cohort-harness.ts',
     'backend/scripts/preflight-formal-cohort-execution.ts',
   ]) say(`   ${fileSha(path.join(ROOT, p))}  ${p}`);

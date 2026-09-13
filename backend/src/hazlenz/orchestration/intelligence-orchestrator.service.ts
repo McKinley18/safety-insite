@@ -1,0 +1,950 @@
+import { Injectable, Optional } from '@nestjs/common';
+import { MultiHazardDecompositionService } from '../multi-hazard-decomposition/multi-hazard-decomposition.service';
+import { ConfidenceGovernanceService } from '../confidence-governance/confidence-governance.service';
+import { CausalRiskService } from '../causal-risk/causal-risk.service';
+import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
+import { OutputPolicyService } from '../output-policy/output-policy.service';
+import { DefensibleCorrectiveActionService } from '../defensible-corrective-action/dca.service';
+import { HumanReviewLearningGovernanceService } from '../human-review-learning-governance/hrlg.service';
+import { SourceBackedApplicabilityGovernanceService } from '../source-backed-applicability-governance/sbag.service';
+import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
+import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
+import { ApprovedKnowledgePromotionService } from '../approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.service';
+import { HazardInformationAbsorptionService } from '../hazard-information-absorption/hazard-information-absorption.service';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { FieldOutputComposerV1Service } from '../field-output-composer-v1/field-output-composer-v1.service';
+import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
+import { LearningCandidateQueueService } from '../learning-candidate-queue/learning-candidate-queue.service';
+import { EvidenceQuestionGenerationService } from '../evidence-question-generation/evidence-question-generation.service';
+import { ApprovedKnowledgeRegistryValidator } from '../approved-knowledge-registry/approved-knowledge-registry.validator';
+import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
+
+import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
+import { OperationalReasoningService } from '../reasoning/operational-reasoning.service';
+import { MultidisciplinaryExpertService } from '../multidisciplinary-expert/multidisciplinary-expert.service';
+import { ControlIntelligenceService } from '../control-intelligence/control-intelligence.service';
+import { DecisionExplainabilityService } from '../explainability/decision-explainability.service';
+import { EvidenceQualityService } from '../evidence-quality/evidence-quality.service';
+import { StandardsReasoningService } from '../standards-reasoning/standards-reasoning.service';
+import { CorrelationIntelligenceService } from '../correlation-intelligence/correlation-intelligence.service';
+import { EnergyTransferIntelligenceService } from '../energy-intelligence/energy-transfer-intelligence.service';
+import { BarrierIntelligenceService } from '../barrier-intelligence/barrier-intelligence.service';
+import { ActionEffectivenessService } from '../action-effectiveness/action-effectiveness.service';
+import { EventSequenceService } from '../event-sequence/event-sequence.service';
+import { OperationalStateService } from '../operational-state/operational-state.service';
+import { HumanFactorsService } from '../human-factors/human-factors.service';
+import { ContradictionIntelligenceService } from '../contradiction-intelligence/contradiction-intelligence.service';
+import { CounterfactualIntelligenceService } from '../counterfactual-intelligence/counterfactual-intelligence.service';
+import { SiteMemoryService } from '../site-memory/site-memory.service';
+import { HazardGraphService } from '../hazard-graph/hazard-graph.service';
+import { ExposurePathService } from '../exposure-path/exposure-path.service';
+import { ConfidenceCalibrationService } from '../validation/confidence-calibration.service';
+import { ReasoningDriftService } from '../validation/reasoning-drift.service';
+import { WorkspaceLearningService } from '../learning/workspace-learning.service';
+import { HazLenzLearningMemoryService } from '../learning-memory/learning-memory.service';
+import { HazLenzLearningGovernanceService } from '../learning/learning-governance.service';
+import { ConfinedSpaceIntelligenceService } from '../reference-intelligence/confined-space/confined-space-intelligence.service';
+import { LotoIntelligenceService } from '../reference-intelligence/loto/loto-intelligence.service';
+import { MobileEquipmentIntelligenceService } from '../reference-intelligence/mobile-equipment/mobile-equipment-intelligence.service';
+import { TrenchingIntelligenceService } from '../reference-intelligence/trenching/trenching-intelligence.service';
+import { ElectricalIntelligenceService } from '../reference-intelligence/electrical/electrical-intelligence.service';
+import { LiftingRiggingIntelligenceService } from '../reference-intelligence/lifting-rigging/lifting-rigging-intelligence.service';
+import { HazcomGhsIntelligenceService } from '../reference-intelligence/hazcom-ghs/hazcom-ghs-intelligence.service';
+import { CrossDomainInteractionService } from '../reference-intelligence/cross-domain/cross-domain-interaction.service';
+import { ApplicabilityIntelligenceService } from '../applicability/applicability-intelligence.service';
+import { ScenarioIntelligenceService } from '../brain/scenario-intelligence/scenario-intelligence.service';
+import { StandardFamilyMapperService } from '../brain/standard-family-mapper/standard-family-mapper.service';
+import { CitationReviewBrainService } from '../brain/citation-review-brain/citation-review.service';
+import { RiskReasoningBrainService } from '../brain/risk-reasoning/risk-reasoning.service';
+import { ObservationContextService } from '../brain/observation-context/observation-context.service';
+import { ObservationUnderstandingService } from '../understanding/observation-understanding.service';
+import { NarrativeGeneratorService } from '../brain/narrative-generator/narrative.service';
+import { EvidenceGapQuestionGeneratorService } from '../brain/evidence-gap-question-generator/evidence-gap-question.service';
+import { CorrectiveActionBrainService } from '../brain/corrective-action-brain/corrective-action.service';
+import { ExecutiveJudgmentService } from '../executive-judgment/executive-judgment.service';
+import { HazLenzPersistenceService } from '../persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
+import { CalibrationMeta } from '../types/hazlenz-intelligence.types';
+import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
+import { buildEvidenceFacts } from '../evidence/shared-evidence-facts';
+
+export type HazLenzIntelligenceOrchestratorInput = {
+  fusedText: string;
+  promotedPrimary: any;
+  classifierResult: any;
+  evidenceTexts?: string[];
+  visualAttachments?: any[];
+  expandedContext: any;
+  primaryStandardsResult: any;
+  generatedActions: any[];
+  additionalHazards: any[];
+  priorFindings?: any[];
+  workspaceId?: string;
+  standardsFeedback?: any[];
+  correctiveActionOutcomes?: any[];
+  supervisorValidations?: any[];
+  user?: any;
+};
+
+@Injectable()
+export class HazLenzIntelligenceOrchestrator {
+  private confidenceEngine = new ConfidenceIntelligenceService();
+  private governanceEngine = new ConfidenceGovernanceService();
+  private trendEngine = new TrendIntelligenceService();
+  private reasoningEngine = new OperationalReasoningService();
+  private multidisciplinaryExpertEngine = new MultidisciplinaryExpertService();
+  private controlEngine = new ControlIntelligenceService();
+  private explainabilityEngine = new DecisionExplainabilityService();
+  private evidenceQualityEngine = new EvidenceQualityService();
+  private standardsReasoningEngine = new StandardsReasoningService();
+  private correlationEngine = new CorrelationIntelligenceService();
+  private energyEngine = new EnergyTransferIntelligenceService();
+  private barrierEngine = new BarrierIntelligenceService();
+  private actionEffectivenessEngine = new ActionEffectivenessService();
+  private eventSequenceEngine = new EventSequenceService();
+  private operationalStateEngine = new OperationalStateService();
+  private humanFactorsEngine = new HumanFactorsService();
+  private contradictionEngine = new ContradictionIntelligenceService();
+  private counterfactualEngine = new CounterfactualIntelligenceService();
+  private siteMemoryEngine = new SiteMemoryService();
+  private hazardGraphEngine = new HazardGraphService();
+  private exposurePathEngine = new ExposurePathService();
+  private confidenceCalibrationEngine = new ConfidenceCalibrationService();
+  private reasoningDriftEngine = new ReasoningDriftService();
+  private workspaceLearningEngine = new WorkspaceLearningService();
+  private learningMemoryEngine = new HazLenzLearningMemoryService();
+  private learningGovernanceEngine = new HazLenzLearningGovernanceService();
+  private confinedSpaceEngine = new ConfinedSpaceIntelligenceService();
+  private lotoEngine = new LotoIntelligenceService();
+  private mobileEquipmentEngine = new MobileEquipmentIntelligenceService();
+  private trenchingEngine = new TrenchingIntelligenceService();
+  private electricalEngine = new ElectricalIntelligenceService();
+  private liftingRiggingEngine = new LiftingRiggingIntelligenceService();
+  private hazcomGhsEngine = new HazcomGhsIntelligenceService();
+  private crossDomainEngine = new CrossDomainInteractionService();
+  private applicabilityEngine = new ApplicabilityIntelligenceService();
+  private scenarioEngine = new ScenarioIntelligenceService();
+  private standardMapper = new StandardFamilyMapperService();
+  private citationReviewEngine = new CitationReviewBrainService();
+  private riskEngine = new RiskReasoningBrainService();
+  private observationContextEngine = new ObservationContextService();
+  private observationUnderstandingEngine = new ObservationUnderstandingService();
+  private narrativeEngine = new NarrativeGeneratorService();
+  private questionGenerator = new EvidenceGapQuestionGeneratorService();
+  private correctiveActionEngine = new CorrectiveActionBrainService();
+  private causalRiskEngine = new CausalRiskService();
+  private evidenceSufficiencyEngine = new EvidenceSufficiencyService();
+  private outputPolicyEngine = new OutputPolicyService();
+  private dcaEngine = new DefensibleCorrectiveActionService();
+  private hrlgEngine = new HumanReviewLearningGovernanceService();
+  private sbagEngine = new SourceBackedApplicabilityGovernanceService();
+  private askigEngine = new ApprovedSourceKnowledgeIntakeGovernanceService();
+  private akpwgEngine = new ApprovedKnowledgePromotionWorkflowGovernanceService();
+  private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
+  private promotionEngine = new ApprovedKnowledgePromotionService();
+  private absorptionEngine = new HazardInformationAbsorptionService();
+  private retrievalEngine: ApprovedKnowledgeRetrievalOutputV1Service;
+  private composerEngine: FieldOutputComposerV1Service;
+  private lcqEngine = new LearningCandidateQueueService();
+  private evgEngine = new EvidenceQuestionGenerationService();
+  private executiveJudgmentEngine = new ExecutiveJudgmentService();
+  private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
+  private multiHazardEngine = new MultiHazardDecompositionService();
+
+  constructor(
+    @Optional()
+    persistence?: HazLenzPersistenceService,
+    @Optional()
+    gates?: RoleBasedApprovalGatesService,
+    @Optional()
+    access?: WorkspaceGovernanceAccessService,
+  ) {
+      const p = persistence || new HazLenzPersistenceService();
+      const g = gates || new RoleBasedApprovalGatesService();
+      const a = access || new WorkspaceGovernanceAccessService();
+      this.retrievalEngine = new ApprovedKnowledgeRetrievalOutputV1Service(p, g, a);
+      this.composerEngine = new FieldOutputComposerV1Service(this.retrievalEngine);
+  }
+
+  async evaluate(input: HazLenzIntelligenceOrchestratorInput) {
+    const {
+      fusedText,
+      promotedPrimary,
+      classifierResult,
+      evidenceTexts,
+      visualAttachments,
+      expandedContext,
+      primaryStandardsResult,
+      generatedActions,
+      additionalHazards,
+      priorFindings,
+      workspaceId,
+      standardsFeedback,
+      correctiveActionOutcomes,
+      supervisorValidations,
+      user
+    } = input;
+
+    const observationContext = this.observationContextEngine.normalize(fusedText);
+    const observationUnderstanding = this.observationUnderstandingEngine.evaluate(fusedText);
+    const multiHazardDecomposition = this.multiHazardEngine.decompose(fusedText);
+    const combined = fusedText + ' ' + observationContext.normalizedText;
+    // V5-C02: shared evidence-fact foundation, computed once per request from fusedText (this
+    // orchestrator stage only receives fusedText/scopes, not the fuller structuredObservation the
+    // protected hazlenz.service.ts holds -- see V5_C02_SHARED_FACT_CONTRACT.md). Attached as
+    // additive provenance on evidenceSufficiency's output only; does not affect any existing
+    // decision in this method.
+    const sharedEvidenceFacts = buildEvidenceFacts({ text: fusedText, scopes: expandedContext?.scopes });
+
+    const photosAttached = (evidenceTexts || []).some((item) =>
+      String(item).toLowerCase().includes('photo')
+    );
+
+    const confidenceIntelligence = this.confidenceEngine.evaluate({
+      text: combined.toLowerCase(),
+      classification: promotedPrimary.classification,
+      classifierConfidence: promotedPrimary.confidence,
+      evidenceTexts,
+      evidenceTokens: promotedPrimary.evidenceTokens,
+      ambiguityWarnings: [...(classifierResult.ambiguityWarnings || [])],
+      expandedContext,
+      suggestedStandards: primaryStandardsResult.suggestedStandards,
+      photosAttached,
+    });
+
+    const operationalReasoning = this.reasoningEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      expandedContext,
+      risk: promotedPrimary.risk,
+    });
+
+    const trendIntelligence = this.trendEngine.evaluate({
+      classification: promotedPrimary.classification,
+      location: (expandedContext as any)?.location || undefined,
+      riskScore: promotedPrimary.risk?.riskScore,
+      priorFindings,
+    });
+
+    const energyTransferIntelligence = this.energyEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      operationalReasoning,
+      risk: promotedPrimary.risk,
+    });
+
+    const controlIntelligence = this.controlEngine.evaluate({
+      classification: promotedPrimary.classification,
+      risk: promotedPrimary.risk,
+      generatedActions,
+      suggestedStandards: primaryStandardsResult.suggestedStandards,
+      trendIntelligence,
+      operationalReasoning,
+    });
+
+    const barrierIntelligence = this.barrierEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      energyTransferIntelligence,
+      controlIntelligence,
+      operationalReasoning,
+    });
+
+    const eventSequence = this.eventSequenceEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      operationalReasoning,
+      energyTransferIntelligence,
+      barrierIntelligence,
+    });
+
+    const operationalState = this.operationalStateEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      eventSequence,
+      energyTransferIntelligence,
+    });
+
+    const humanFactors = this.humanFactorsEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      operationalState,
+      eventSequence,
+      energyTransferIntelligence,
+    });
+
+    const contradictionIntelligence = this.contradictionEngine.evaluate({
+      text: fusedText,
+      operationalState,
+      energyTransferIntelligence,
+      barrierIntelligence,
+      humanFactors,
+      photosAttached,
+      evidenceTexts,
+    });
+
+    const actionEffectiveness = this.actionEffectivenessEngine.evaluate({
+      generatedActions,
+      operationalReasoning,
+      energyTransferIntelligence,
+      barrierIntelligence,
+      controlIntelligence,
+    });
+
+    const counterfactualIntelligence = this.counterfactualEngine.evaluate({
+      classification: promotedPrimary.classification,
+      operationalReasoning,
+      energyTransferIntelligence,
+      barrierIntelligence,
+      controlIntelligence,
+      actionEffectiveness,
+    });
+
+    const standardsReasoning = this.standardsReasoningEngine.evaluate({
+      classification: promotedPrimary.classification,
+      standards: primaryStandardsResult.suggestedStandards,
+      operationalReasoning,
+      expandedContext,
+      risk: promotedPrimary.risk,
+    });
+
+    const hazardGraph = this.hazardGraphEngine.evaluate({
+      classification: promotedPrimary.classification,
+      additionalHazards,
+      energyTransferIntelligence,
+      humanFactors,
+      operationalState,
+      barrierIntelligence,
+    });
+
+    const exposurePathIntelligence = this.exposurePathEngine.evaluate({
+      classification: promotedPrimary.classification,
+      text: fusedText,
+      operationalState,
+      energyTransferIntelligence,
+      humanFactors,
+    });
+
+    const correlationIntelligence = this.correlationEngine.evaluate({
+      classification: promotedPrimary.classification,
+      additionalHazards,
+      trendIntelligence,
+      controlIntelligence,
+      operationalReasoning,
+      priorFindings,
+    });
+
+    const siteMemory = this.siteMemoryEngine.evaluate({
+      currentClassification: promotedPrimary.classification,
+      currentLocation: (expandedContext as any)?.area || (expandedContext as any)?.location,
+      priorFindings,
+      trendIntelligence,
+      correlationIntelligence,
+    });
+
+    const evidenceQuality = this.evidenceQualityEngine.evaluate({
+      text: fusedText,
+      evidenceTexts,
+      photosAttached,
+      operationalReasoning,
+      confidenceIntelligence,
+    });
+
+    const applicabilityIntelligence = this.applicabilityEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      expandedContext,
+      operationalReasoning,
+      energyTransferIntelligence,
+      barrierIntelligence,
+      evidenceQuality,
+      suggestedStandards: primaryStandardsResult.suggestedStandards,
+      agencyMode: (expandedContext as any)?.agencyMode,
+    });
+
+    const scenarioIntelligence = this.scenarioEngine.evaluate({
+      text: fusedText,
+      classification: promotedPrimary.classification,
+      operationalReasoning,
+      risk: promotedPrimary.risk,
+      suggestedStandards: primaryStandardsResult.suggestedStandards,
+      evidenceGaps: evidenceQuality.gaps || [],
+      confidence: confidenceIntelligence.overallConfidence || 0,
+    });
+
+    const standardFamilyCandidates = this.standardMapper.map(scenarioIntelligence);
+    const citationLevelCandidates = this.citationReviewEngine.evaluate(scenarioIntelligence, evidenceQuality.gaps || []);
+    const evidenceGapQuestions = this.questionGenerator.generate(scenarioIntelligence.scenarioFamilyId);
+    
+    let narrative = this.narrativeEngine.generate({
+        scenarioIntelligence,
+        evidenceGapQuestions
+    } as any, 'professional');
+
+    const correctiveActionReasoning = this.correctiveActionEngine.evaluate(
+        scenarioIntelligence,
+        evidenceQuality.gaps || [],
+        observationUnderstanding
+    );
+
+    const riskReasoning = this.riskEngine.evaluate(
+        scenarioIntelligence,
+        evidenceQuality.gaps || []
+    );
+
+    // The narrative generator is deliberately enriched only from already
+    // computed, evidence-bound reasoning. This prevents the response layer
+    // from replacing mechanism, risk, evidence-gap, and corrective-action
+    // outputs with generic placeholder prose.
+    narrative = this.narrativeEngine.enrich(narrative, {
+      scenarioIntelligence,
+      correctiveActionReasoning,
+      riskReasoning,
+      standardFamilyCandidates,
+      evidenceGapQuestions,
+    });
+
+    const causalRiskReasoning = await this.causalRiskEngine.analyzeCausalRisk(observationUnderstanding, fusedText);
+    
+    const evidenceSufficiency = await this.evidenceSufficiencyEngine.evaluateEvidenceSufficiency(
+        observationUnderstanding,
+        causalRiskReasoning,
+        fusedText,
+        sharedEvidenceFacts.facts
+    );
+    // V5-C04 DEFER_WITH_EXPLICIT_MARKER (2026-08-16): confirmed via runtime instrumentation
+    // that this is a real, non-placeholder computation (it is genuinely consumed as input
+    // by actionQuality, hazardDomainIntelligence, safetyHealthDomainMatrix,
+    // regulatoryApplicability, and causalChain below, plus controlEffectiveness in
+    // native-reasoning.service.ts). Its top-level sufficiencyLevel/overallScore/
+    // confidenceImpact verdict is intentionally hidden from the API response by
+    // hazlenz-display-sanitizer.ts (a heavy internal reasoning block, same as several
+    // sibling engines), which is correct display behavior and not a defect. The narrower,
+    // audit-identified gap is that this top-level verdict is never read by
+    // hazlenz.service.ts's resultStage/mayFinalize decision (confirmed by a
+    // whole-file grep for "evidenceSufficiency" returning zero matches in that
+    // hash-protected file). Do not wire this verdict into finalize/clarification gating
+    // during V5-C04 -- that is a product-behavior change requiring dedicated validation.
+    // Intentionally deferred to V5-C02/C03.
+
+    const understandingTopScenario = observationUnderstanding.scenarioUnderstanding?.topScenario;
+    const understandingTopMechanism = observationUnderstanding.mechanismCandidates?.[0];
+
+    const understandingScenarioFamily =
+      understandingTopScenario?.scenarioId && (understandingTopScenario as any).confidence >= 0.40
+        ? understandingTopScenario.scenarioId
+        : undefined;
+
+    const jurisdictionResult = this.jurisdictionService.evaluate({ 
+      observationText: fusedText,
+      scenarioFamily: understandingScenarioFamily
+    });
+    let jurisdiction = jurisdictionResult.primaryJurisdiction;
+    const routedJurisdiction = String(expandedContext?.knowledgeRoute?.jurisdiction || '').toLowerCase();
+    if (
+      ['unknown', 'unclear', ''].includes(String(jurisdiction || '').toLowerCase()) &&
+      ['osha_general_industry', 'osha_construction', 'msha'].includes(routedJurisdiction)
+    ) {
+      jurisdiction = routedJurisdiction as any;
+    }
+
+    const scenarioSpecificMechanismOverrides = [
+      'electrical_panel_access',
+      'fire_extinguisher_access_inspection'
+    ];
+
+    const understandingScenarioMechanism =
+      understandingTopScenario?.mechanism &&
+      understandingTopScenario.mechanism !== 'unknown' &&
+      (
+        (understandingTopScenario as any).confidence >= 0.40 ||
+        scenarioSpecificMechanismOverrides.includes(understandingTopScenario.scenarioId)
+      )
+        ? understandingTopScenario.mechanism
+        : undefined;
+
+    const understandingMechanism =
+      understandingTopMechanism?.mechanism &&
+      understandingTopMechanism.mechanism !== 'unknown' &&
+      (understandingTopMechanism as any).confidence >= 0.40
+        ? understandingTopMechanism.mechanism
+        : undefined;
+
+    const understandingHazardFamily =
+      understandingTopScenario?.hazardFamily && (understandingTopScenario as any).confidence >= 0.40
+        ? understandingTopScenario.hazardFamily
+        : undefined;
+
+    const normScenarioFamilyForStd = understandingScenarioFamily ? understandingScenarioFamily.replace(/-/g, '_') : undefined;
+
+    const understandingStandardFamily =
+      normScenarioFamilyForStd === 'conveyor_cleanup' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'rotating_shaft_guarding' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'unguarded_conveyor_pulley' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'point_of_operation_guarding' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'fall_protection_unprotected_edge' ? 'fall_protection' :
+      normScenarioFamilyForStd === 'chemical_label_sds_gap' ? 'hazard_communication' :
+      normScenarioFamilyForStd === 'damaged_cord_wet_location' ? 'electrical' :
+      normScenarioFamilyForStd === 'electrical_panel_access' ? 'electrical' :
+      normScenarioFamilyForStd === 'housekeeping_slip_trip' ? 'walking_working_surfaces' :
+      normScenarioFamilyForStd === 'mobile_equipment_pedestrian_interaction' ? 'powered_industrial_trucks' :
+      normScenarioFamilyForStd === 'unexpected_startup_energy_isolation' ? 'lockout_tagout' :
+      normScenarioFamilyForStd === 'permit_required_confined_space_entry' ? 'confined_space' :
+      normScenarioFamilyForStd === 'suspended_load_line_of_fire' ? 'cranes_rigging' :
+      normScenarioFamilyForStd === 'pressurized_hose_failure' ? 'compressed_air_stored_energy' :
+      undefined;
+
+    const understandingRiskBand =
+      understandingScenarioFamily === 'permit_required_confined_space_entry' ? 'critical' :
+      understandingScenarioFamily === 'suspended_load_line_of_fire' ? 'critical' :
+      understandingScenarioFamily === 'pressurized_hose_failure' ? 'high' :
+      understandingScenarioFamily === 'fall_protection_unprotected_edge' ? 'high' :
+      undefined;
+
+    const calibrationMeta: CalibrationMeta = {
+        hazardFamily: understandingHazardFamily || scenarioIntelligence.hazardCategory || 'unknown',
+        scenarioFamily: understandingScenarioFamily || scenarioIntelligence.scenarioFamilyId,
+        jurisdiction: jurisdiction,
+        mechanism: understandingScenarioMechanism || understandingMechanism || scenarioIntelligence.mechanismOfInjury,
+        riskBand: understandingRiskBand || riskReasoning.initialRiskLevel,
+        standardFamily: understandingStandardFamily || scenarioIntelligence.candidateStandardFamily || 'unknown',
+        evidenceGaps: expandedContext?.isCalibrationMode ? [] : [
+          ...(scenarioIntelligence.evidenceGaps || []),
+          ...(observationUnderstanding.evidenceGaps || [])
+        ].filter((gap, index, all) => all.indexOf(gap) === index)
+    };
+
+    const confidenceGovernance = this.governanceEngine.govern({
+      observationUnderstanding,
+      causalRiskReasoning,
+      evidenceSufficiency,
+      scenarioIntelligence,
+      riskReasoning,
+      standardsReasoning,
+      calibrationMeta,
+      fusedText
+    });
+
+    const outputPolicy = await this.outputPolicyEngine.evaluateOutputPolicy(
+      confidenceGovernance,
+      evidenceSufficiency,
+      causalRiskReasoning,
+      observationUnderstanding,
+      calibrationMeta,
+      fusedText
+    );
+
+    const dca = await this.dcaEngine.evaluateDCA(
+        confidenceGovernance,
+        evidenceSufficiency,
+        causalRiskReasoning,
+        observationUnderstanding,
+        calibrationMeta,
+        outputPolicy,
+        fusedText
+    );
+    
+    const hrlg = await this.hrlgEngine.evaluateHRLG(
+        confidenceGovernance,
+        evidenceSufficiency,
+        causalRiskReasoning,
+        dca,
+        observationUnderstanding,
+        calibrationMeta,
+        outputPolicy
+    );
+
+    const sbag = await this.sbagEngine.evaluateApplicability(
+        confidenceGovernance,
+        evidenceSufficiency,
+        causalRiskReasoning,
+        dca,
+        observationUnderstanding,
+        calibrationMeta,
+        outputPolicy,
+        fusedText,
+        standardFamilyCandidates,
+        [
+          ...citationLevelCandidates,
+          ...(primaryStandardsResult?.suggestedStandards || []),
+        ]
+    );
+    
+    const askig = await this.askigEngine.evaluateIntake(
+        {},
+        {
+            observationUnderstanding,
+            calibrationMeta
+        }
+    );
+    
+    const akpwg = await this.akpwgEngine.evaluatePromotion(askig);
+
+    const akrwg = await this.akrwgEngine.evaluateWriteGuard(
+        askig,
+        akpwg,
+        {},
+        {},
+        {}
+    );
+    
+    const promotionSourceCandidate =
+      primaryStandardsResult?.suggestedStandards?.[0] ||
+      primaryStandardsResult?.needsMoreEvidenceStandards?.[0] ||
+      primaryStandardsResult?.supportingStandards?.[0] ||
+      {
+        citation: '1910.147',
+        title: 'Lockout / Tagout',
+        summary: 'Fallback approval candidate used when no standards candidate is available.',
+        standardFamily: 'loto',
+        hazardFamily: 'Lockout / Stored Energy',
+      };
+    const promotionCitation = String(
+      typeof promotionSourceCandidate === 'string'
+        ? promotionSourceCandidate
+        : promotionSourceCandidate.citation || promotionSourceCandidate.standard || promotionSourceCandidate.reference || '1910.147',
+    );
+    const promotionJurisdiction = /^30 CFR\b/i.test(promotionCitation)
+      ? 'msha'
+      : 'osha_general_industry';
+    const promotionStandardFamily = String(
+      typeof promotionSourceCandidate === 'string'
+        ? 'general'
+        : promotionSourceCandidate.standardFamily ||
+          promotionSourceCandidate.hazardFamily ||
+      'general',
+    ).toLowerCase();
+    const promotionHazardFamilies = promotionStandardFamily.includes('electrical')
+      ? ['Electrical']
+      : promotionStandardFamily.includes('machine')
+        ? ['Machine Guarding']
+        : promotionStandardFamily.includes('walking')
+          ? ['Walking/Working Surfaces']
+          : promotionStandardFamily.includes('hazcom') || promotionStandardFamily.includes('hazard')
+            ? ['Hazard Communication']
+            : promotionStandardFamily.includes('mobile')
+              ? ['Mobile Equipment / Traffic']
+              : promotionStandardFamily.includes('fall')
+                ? ['Fall Protection']
+                : promotionStandardFamily.includes('compressed')
+                  ? ['Compressed Gas Cylinders']
+                  : ['General'];
+    const dummyRecord: any = {
+        recordId: 'rec-1',
+        version: '1.0.0',
+        status: 'draft_candidate',
+        authority: {
+            agency: promotionJurisdiction === 'msha' ? 'MSHA' : 'OSHA',
+            authorityTier: 'primary_regulation',
+            jurisdiction: promotionJurisdiction,
+            sourceUrl: 'http://osha.gov',
+            citation: promotionCitation,
+            title: String(
+              typeof promotionSourceCandidate === 'string'
+                ? promotionSourceCandidate
+                : promotionSourceCandidate.title || promotionSourceCandidate.titleSummary || promotionSourceCandidate.summary || promotionCitation,
+            ),
+            effectiveDate: '2026-01-01',
+            revisionDate: '2026-01-01',
+            sourceDateStatus: 'current'
+        },
+        mapping: {
+            standardFamily: promotionStandardFamily,
+            hazardFamilies: promotionHazardFamilies,
+            mechanisms: ['unexpected_startup'],
+            equipmentGroups: [String(typeof promotionSourceCandidate === 'string' ? 'general' : promotionSourceCandidate.equipmentGroup || promotionSourceCandidate.equipmentFamily || 'general')],
+            taskContexts: [String(typeof promotionSourceCandidate === 'string' ? 'inspection' : promotionSourceCandidate.taskContext || 'inspection')],
+            applicabilitySignals: [String(typeof promotionSourceCandidate === 'string' ? promotionCitation : promotionSourceCandidate.applicabilitySignal || promotionSourceCandidate.citation || 'candidate_standard')],
+            requiredFacts: [String(typeof promotionSourceCandidate === 'string' ? 'confirm applicability' : promotionSourceCandidate.requiredFact || 'confirm applicability')],
+            disqualifyingFacts: [],
+            evidenceQuestions: !Array.isArray(promotionSourceCandidate) && typeof promotionSourceCandidate !== 'string' && Array.isArray(promotionSourceCandidate.evidenceNeeded) && promotionSourceCandidate.evidenceNeeded.length
+              ? promotionSourceCandidate.evidenceNeeded
+              : ['Confirm jurisdiction, exposure, and applicability details.']
+        },
+        applicability: {
+            plainLanguageSummary: String(typeof promotionSourceCandidate === 'string' ? promotionSourceCandidate : promotionSourceCandidate.summary || promotionSourceCandidate.titleSummary || 'Candidate standard'),
+            appliesWhen: String(typeof promotionSourceCandidate === 'string' ? 'observed condition' : promotionSourceCandidate.appliesWhen || promotionSourceCandidate.titleSummary || 'observed condition'),
+            doesNotApplyWhen: String(typeof promotionSourceCandidate === 'string' ? 'conditions not established' : promotionSourceCandidate.doesNotApplyWhen || 'conditions not established'),
+            requiredReviewerChecks: ['Qualified review of applicability']
+        },
+        correctiveActionLinks: {
+            preferredControlFamilies: [String(promotionStandardFamily || 'controls')],
+            verificationMethods: ['qualified review'],
+            commonWeakActionsToAvoid: ['unverified assumption']
+        },
+        governance: {
+            supersedesRecordIds: [],
+            duplicateKeys: [String(promotionCitation).toLowerCase().replace(/\s+/g, '-')],
+            advisoryOnly: true,
+            doesNotDeclareViolation: true,
+            doesNotCreateCitation: true,
+            requiresQualifiedReview: true
+        }
+    };
+    
+    const promotion = await this.promotionEngine.promote(
+        dummyRecord,
+        {
+            approvedBy: 'SafetyMgr',
+            approvedAt: '2026-06-06',
+            reviewerRole: 'Safety Manager',
+            changeReason: 'Initial approval',
+            sourceVerified: true,
+            applicabilityVerified: true,
+            guardrailsVerified: true,
+            duplicateReviewCompleted: true
+        }
+    );
+    
+    const absorption = await this.absorptionEngine.absorb(
+        fusedText,
+        {}
+    );
+    
+    const retrieval = await this.retrievalEngine.retrieve(
+        fusedText,
+        {
+            visualAttachments,
+            attachments: visualAttachments,
+            user
+        }
+    );
+    
+    const composer = await this.composerEngine.compose(
+        fusedText,
+        {
+            visualAttachments,
+            attachments: visualAttachments,
+            user
+        }
+    );
+    
+    const evg = this.evgEngine.generateQuestions(
+        observationUnderstanding,
+        {},
+        {}
+    );
+
+    const lcq = this.lcqEngine.createCandidate(
+        {},
+        hrlg
+    );
+
+    const domainIntelligence = {
+      confinedSpace: this.confinedSpaceEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+      loto: this.lotoEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+      mobileEquipment: this.mobileEquipmentEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+      trenching: this.trenchingEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+      electrical: this.electricalEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+      liftingRigging: this.liftingRiggingEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+      hazcomGhs: this.hazcomGhsEngine.evaluate({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+      }),
+    };
+
+    const crossDomainInteraction = this.crossDomainEngine.evaluate({
+      domainIntelligence,
+      text: fusedText,
+    });
+
+    const workspaceLearning = this.workspaceLearningEngine.evaluate({
+      workspaceId,
+      classification: promotedPrimary.classification,
+      priorFindings,
+      standardsFeedback,
+      correctiveActionOutcomes,
+    });
+
+    const confidenceCalibration = this.confidenceCalibrationEngine.evaluate({
+      classification: promotedPrimary.classification,
+      confidenceIntelligence,
+      contradictionIntelligence,
+      evidenceQuality,
+      standardsReasoning,
+      actionEffectiveness,
+    });
+
+    const learningGovernance = this.learningGovernanceEngine.evaluate({
+      workspaceLearning,
+      feedbackSignals: standardsFeedback,
+      supervisorValidations,
+      confidenceCalibration,
+      nativeReasoning: undefined,
+    });
+
+    const reasoningDrift = this.reasoningDriftEngine.evaluate({
+      classification: promotedPrimary.classification,
+      confidenceCalibration,
+      contradictionIntelligence,
+      standardsReasoning,
+      operationalReasoning,
+      priorFindings,
+    });
+
+    const learningMemory = this.learningMemoryEngine.evaluate({
+      classification: promotedPrimary.classification,
+      workspaceLearning,
+      learningGovernance,
+      confidenceCalibration,
+      reasoningDrift,
+      priorFindings,
+    });
+
+    const decisionExplainability = this.explainabilityEngine.evaluate({
+      classification: promotedPrimary.classification,
+      confidenceIntelligence,
+      risk: promotedPrimary.risk,
+      suggestedStandards: primaryStandardsResult.suggestedStandards,
+      operationalReasoning,
+      trendIntelligence,
+      controlIntelligence,
+    });
+
+    const executiveJudgment = this.executiveJudgmentEngine.evaluate({
+      classification: promotedPrimary.classification,
+      risk: promotedPrimary.risk,
+      confidenceIntelligence,
+      evidenceQuality,
+      operationalReasoning,
+      energyTransferIntelligence,
+      barrierIntelligence,
+      controlIntelligence,
+      standardsReasoning,
+      generatedActions,
+      contradictionIntelligence,
+      crossDomainInteraction,
+      domainIntelligence,
+    });
+
+    const multidisciplinaryExpertSynthesis = this.multidisciplinaryExpertEngine.evaluate({
+      classification: promotedPrimary.classification,
+      observationText: fusedText,
+      causalRiskReasoning,
+      exposurePathIntelligence,
+      siteMemory,
+    });
+
+    return {
+      intelligenceMetadata: {
+        engineName: 'HazLenz Intelligence Orchestrator',
+        engineVersion: '0.1.0',
+        generatedAt: new Date().toISOString(),
+        layersExecuted: [
+          'observation_context',
+          'observation_understanding',
+          'scenario',
+          'citation_level_review',
+          'risk_reasoning',
+          'evidence_gap_questions',
+          'corrective_action',
+          'confidence',
+          'operational_reasoning',
+          'trend',
+          'energy_transfer',
+          'evidence_quality',
+          'control',
+          'barrier',
+          'event_sequence',
+          'operational_state',
+          'human_factors',
+          'contradiction_detection',
+          'action_effectiveness',
+          'counterfactual',
+          'standards_reasoning',
+          'applicability_intelligence',
+          'decision_explainability',
+          'hazard_graph',
+          'exposure_path',
+          'correlation',
+          'site_memory',
+          'confidence_calibration',
+          'reasoning_drift',
+          'workspace_learning',
+          'learning_governance',
+          'learning_memory',
+          'domain_intelligence',
+          'cross_domain_interaction',
+          'executive_judgment',
+          'registry_schema_foundation',
+        ],
+      },
+      observationContext,
+      observationUnderstanding,
+      narrative,
+      domainIntelligence,
+      scenarioIntelligence,
+      multiHazardDecomposition,
+      riskReasoning,
+      causalRiskReasoning,
+      evidenceSufficiency,
+      outputPolicy,
+      dca,
+      hrlg,
+      sbag,
+      askig,
+      akpwg,
+      akrwg,
+      promotion,
+      absorption,
+      retrieval,
+      composer,
+      lcq,
+      evg,
+      registryValidator: ApprovedKnowledgeRegistryValidator,
+      confidenceGovernance,
+      calibrationMeta,
+      standardFamilyCandidates,
+      citationLevelCandidates,
+      evidenceGapQuestions,
+      correctiveActionReasoning,
+      crossDomainInteraction,
+      workspaceLearning,
+      learningGovernance,
+      learningMemory,
+      confidenceIntelligence,
+      operationalReasoning,
+      trendIntelligence,
+      energyTransferIntelligence,
+      evidenceQuality,
+      controlIntelligence,
+      barrierIntelligence,
+      eventSequence,
+      operationalState,
+      humanFactors,
+      contradictionIntelligence,
+      actionEffectiveness,
+      counterfactualIntelligence,
+      standardsReasoning,
+      applicabilityIntelligence,
+      decisionExplainability,
+      executiveJudgment,
+      hazardGraph,
+      exposurePathIntelligence,
+      correlationIntelligence,
+      siteMemory,
+      confidenceCalibration,
+      reasoningDrift,
+      multidisciplinaryExpertSynthesis,
+    };
+  }
+}

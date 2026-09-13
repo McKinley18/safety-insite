@@ -1,4 +1,4 @@
-import { HazardInformationAbsorptionService } from '../src/safescope-v2/hazard-information-absorption/hazard-information-absorption.service';
+import { HazardInformationAbsorptionService } from '../src/hazlenz/hazard-information-absorption/hazard-information-absorption.service';
 
 async function validate() {
   const service = new HazardInformationAbsorptionService();

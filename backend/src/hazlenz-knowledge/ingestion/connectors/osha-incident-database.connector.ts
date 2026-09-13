@@ -113,7 +113,7 @@ export class OshaIncidentDatabaseConnector {
     private readonly sourceListPath = join(
       process.cwd(),
       "src",
-      "safescope-knowledge",
+      "hazlenz-knowledge",
       "ingestion",
       "source-lists",
       "osha-incident-database.json",
@@ -138,7 +138,7 @@ export class OshaIncidentDatabaseConnector {
     for (const item of urls) {
       const response = await fetch(item.url, {
         headers: {
-          "User-Agent": "SentinelSafetySafeScope/0.1 local governed safety research ingestion",
+          "User-Agent": "SafetyInSiteHazLenz/0.1 local governed safety research ingestion",
         },
       });
 
@@ -153,8 +153,8 @@ export class OshaIncidentDatabaseConnector {
 
       const fallbackText = [
         item.titleHint || "OSHA Accident Investigation Search",
-        "OSHA's accident investigation and fatality/catastrophe information is used by SafeScope as an official incident-database source profile for incident-pattern learning, trend intelligence, recurrence detection, and fatality prevention context.",
-        "This source is not treated as an enforceable citation by itself. It supports incident learning and pattern recognition only, and SafeScope must continue to rely on OSHA standards, MSHA standards, and qualified review for final compliance determinations.",
+        "OSHA's accident investigation and fatality/catastrophe information is used by HazLenz as an official incident-database source profile for incident-pattern learning, trend intelligence, recurrence detection, and fatality prevention context.",
+        "This source is not treated as an enforceable citation by itself. It supports incident learning and pattern recognition only, and HazLenz must continue to rely on OSHA standards, MSHA standards, and qualified review for final compliance determinations.",
         "Relevant learning signals include fatality and catastrophe patterns, accident investigation summaries, event type, task context, equipment involved, causal themes, and recurrence prevention opportunities.",
       ].join(" ");
 

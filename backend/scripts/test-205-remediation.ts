@@ -51,7 +51,7 @@ import { projectDeclaredOwedFacts203 } from './lib/expert-203-successor-projecti
 import { PRODUCT_OWNER_ATTRIBUTION, type Worksheet202 } from './lib/expert-202-adjudication-grouping';
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 // ================================================================ harness
 

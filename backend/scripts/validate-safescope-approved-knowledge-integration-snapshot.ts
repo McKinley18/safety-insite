@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
 
 const snapshotPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/integration/reports/approved-knowledge-integration-snapshot.json',
+  '../src/hazlenz/knowledge-intake/integration/reports/approved-knowledge-integration-snapshot.json',
 );
 
 assert(
@@ -69,8 +69,8 @@ assert(
 );
 
 assert(
-  String(snapshot.sourceBoundary).includes('alter SafeScope native reasoning'),
+  String(snapshot.sourceBoundary).includes('alter HazLenz native reasoning'),
   'Snapshot sourceBoundary must preserve native reasoning boundary.',
 );
 
-console.log('✅ SafeScope approved knowledge integration snapshot validation passed.');
+console.log('✅ HazLenz approved knowledge integration snapshot validation passed.');

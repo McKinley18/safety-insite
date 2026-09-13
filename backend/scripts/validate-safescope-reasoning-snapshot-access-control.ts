@@ -1,6 +1,6 @@
 import { ForbiddenException } from '@nestjs/common';
-import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
-import { SafeScopeReasoningSnapshot } from '../src/safescope-v2/snapshots/reasoning-snapshot.entity';
+import { ReasoningSnapshotService } from '../src/hazlenz/snapshots/reasoning-snapshot.service';
+import { HazLenzReasoningSnapshot } from '../src/hazlenz/snapshots/reasoning-snapshot.entity';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -24,14 +24,14 @@ async function main() {
     fullIntelligenceSnapshot: {
       stored: true,
     },
-  } as SafeScopeReasoningSnapshot;
+  } as HazLenzReasoningSnapshot;
 
   const missingWorkspaceSnapshot = {
     id: 'snapshot-no-workspace',
     workspaceId: null,
     classification: 'Machine Guarding',
     validationStatus: 'generated',
-  } as unknown as SafeScopeReasoningSnapshot;
+  } as unknown as HazLenzReasoningSnapshot;
 
   (service as any).findOne = async (id: string) => {
     if (id === 'snapshot-access-test-1') return snapshot;
@@ -118,7 +118,7 @@ async function main() {
     process.env.NODE_ENV = previousNodeEnv;
   }
 
-  console.log('✅ SafeScope reasoning snapshot access-control validation passed.');
+  console.log('✅ HazLenz reasoning snapshot access-control validation passed.');
   console.log('Allowed workspace: workspace-alpha');
 }
 

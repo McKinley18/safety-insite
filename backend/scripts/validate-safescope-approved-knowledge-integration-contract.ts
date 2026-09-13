@@ -1,4 +1,4 @@
-import { ApprovedKnowledgeIntegrationAdapterService } from '../src/safescope-v2/knowledge-intake/integration/approved-knowledge-integration-adapter.service';
+import { ApprovedKnowledgeIntegrationAdapterService } from '../src/hazlenz/knowledge-intake/integration/approved-knowledge-integration-adapter.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -71,4 +71,4 @@ assert(
   'Enabled adapter recordsUsed must contain only approved_by_human and approvedForUse records.',
 );
 
-console.log('✅ SafeScope approved knowledge integration contract validation passed.');
+console.log('✅ HazLenz approved knowledge integration contract validation passed.');

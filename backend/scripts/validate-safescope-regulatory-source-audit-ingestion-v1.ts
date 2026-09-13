@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { RegulatorySourceAuditService } from '../src/safescope-v2/regulatory-source-audit/regulatory-source-audit.service';
-import { RegulatoryDifferentialComparisonService } from '../src/safescope-v2/regulatory-source-audit/regulatory-differential-comparison.service';
-import { RegulatorySourceIngestionAdapter } from '../src/safescope-v2/regulatory-source-audit/regulatory-source-ingestion.adapter';
-import { ECfrRegulatorySourceConnector } from '../src/safescope-v2/regulatory-source-audit/connectors/ecfr-regulatory-source.connector';
-import { MshaFatalitySourceConnector } from '../src/safescope-v2/regulatory-source-audit/connectors/msha-fatality-source.connector';
-import { OshaFatalitySourceConnector } from '../src/safescope-v2/regulatory-source-audit/connectors/osha-fatality-source.connector';
-import { OshaInvestigationSourceConnector } from '../src/safescope-v2/regulatory-source-audit/connectors/osha-investigation-source.connector';
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { RegulatorySourceAuditService } from '../src/hazlenz/regulatory-source-audit/regulatory-source-audit.service';
+import { RegulatoryDifferentialComparisonService } from '../src/hazlenz/regulatory-source-audit/regulatory-differential-comparison.service';
+import { RegulatorySourceIngestionAdapter } from '../src/hazlenz/regulatory-source-audit/regulatory-source-ingestion.adapter';
+import { ECfrRegulatorySourceConnector } from '../src/hazlenz/regulatory-source-audit/connectors/ecfr-regulatory-source.connector';
+import { MshaFatalitySourceConnector } from '../src/hazlenz/regulatory-source-audit/connectors/msha-fatality-source.connector';
+import { OshaFatalitySourceConnector } from '../src/hazlenz/regulatory-source-audit/connectors/osha-fatality-source.connector';
+import { OshaInvestigationSourceConnector } from '../src/hazlenz/regulatory-source-audit/connectors/osha-investigation-source.connector';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
 
 // Mock dependencies
 class StubReviewerCandidateConsoleService {
@@ -19,7 +19,7 @@ class StubReviewerCandidateConsoleService {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Regulatory Source Audit + Differential Ingestion v1 ---');
+  console.log('--- Testing HazLenz Regulatory Source Audit + Differential Ingestion v1 ---');
 
   const normalizationService = new ApprovedKnowledgeCitationNormalizationService();
   const auditService = new RegulatorySourceAuditService(normalizationService);
@@ -30,7 +30,7 @@ async function validate() {
   // 1. Audit Existing Inventory
   const inventory = await auditService.generateInventoryReport();
   if (inventory.summary.totalApprovedRecords === 0 && inventory.summary.totalDraftRecords === 0) {
-      throw new Error('SafeScope local inventory is unexpectedly empty. Scanner failed to load approved or draft records.');
+      throw new Error('HazLenz local inventory is unexpectedly empty. Scanner failed to load approved or draft records.');
   }
 
   console.log(`[PASS] Inventory generated. Approved: ${inventory.summary.totalApprovedRecords}, Drafts: ${inventory.summary.totalDraftRecords}`);
@@ -118,7 +118,7 @@ async function validate() {
   if (foundProhibitedLanguage) throw new Error('Prohibited language detected in ingested candidates.');
 
   console.log(`[PASS] Governed ingestion created ${consoleService.candidates.length} candidates.`);
-  console.log('✅ SafeScope regulatory source audit and ingestion validation passed.');
+  console.log('✅ HazLenz regulatory source audit and ingestion validation passed.');
 }
 
 validate().catch(err => {

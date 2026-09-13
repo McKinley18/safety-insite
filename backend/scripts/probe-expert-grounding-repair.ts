@@ -21,16 +21,16 @@ import { mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import { OllamaExpertProvider, EXPERT_PROBE_INFERENCE_CONFIG } from
-  '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { GROUNDING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/grounding-fixtures';
+  '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { GROUNDING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/grounding-fixtures';
 import { scoreRouting, totalRouting, type RoutingScore } from
-  '../src/safescope-v2/expert-hazlenz/expert-routing-metrics';
+  '../src/hazlenz/expert-hazlenz/expert-routing-metrics';
 import { EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysis, type ExpertAnalysisInput }
-  from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import type { ConceptProbe, RoutingExpectations } from
-  '../src/safescope-v2/expert-hazlenz/expert-routing-metrics';
+  '../src/hazlenz/expert-hazlenz/expert-routing-metrics';
 
 const REPEATS = Number(process.env.PROBE_REPEATS || 3);
 const NOW = '2026-08-30T00:00:00.000Z';

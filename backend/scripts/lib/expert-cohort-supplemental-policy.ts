@@ -35,7 +35,7 @@
  * below supplies that class without spending anything reserved.
  */
 
-import { POPULATION_A, POPULATION_B } from '../../src/safescope-v2/tests/hazlenz-decomposition-precision-corpus';
+import { POPULATION_A, POPULATION_B } from '../../src/hazlenz/tests/hazlenz-decomposition-precision-corpus';
 
 export const SUPPLEMENTAL_POLICY_VERSION = 'hazlenz.expert.cohort.supplemental.policy.v1' as const;
 
@@ -130,7 +130,7 @@ export const RESERVED_SELECTION_ORDER = 'scenarioId ASCENDING' as const;
  * opportunity must come from reserved rows, where the engine has never been tuned.
  */
 export const SUPPLEMENTAL_SOURCE = {
-  artifact: 'backend/src/safescope-v2/tests/hazlenz-decomposition-precision-corpus.ts',
+  artifact: 'backend/src/hazlenz/tests/hazlenz-decomposition-precision-corpus.ts',
   status: 'ALREADY-OPEN authoritative safety-domain corpus; NOT reserved, NOT closed, never shown '
     + 'to any provider',
   authored: '2026-08-27, before any Expert provider output existed',

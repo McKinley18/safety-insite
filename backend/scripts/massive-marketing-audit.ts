@@ -31,7 +31,7 @@ function generateEliteObservation(std: RegulatorySection, index: number) {
 async function run10kMLAudit() {
   console.log('\n🛡️  SENTINEL SAFETY: 10,000-SCENARIO MACHINE LEARNING AUDIT (v20.0)');
   console.log('====================================================================');
-  console.log('Validating SafeScope v15.0 ML FEEDBACK LOOP.\n');
+  console.log('Validating HazLenz v15.0 ML FEEDBACK LOOP.\n');
 
   if (!dataSource.isInitialized) await dataSource.initialize();
   const repo = dataSource.getRepository(RegulatorySection);
@@ -139,7 +139,7 @@ async function run10kMLAudit() {
   console.log('2. 100x Rank Boost: Previously verified standards bypass standard text-correlation flaws, achieving near-perfect precision.');
   console.log('3. Adaptive Taxonomy: The engine continuously refines its internal mapping of user-defined hazard categories to official citations.');
   
-  console.log('\nFINAL MARKETING CLAIM: "Powered by a continuously learning ML feedback loop, SafeScope AI achieves 97%+ Top-1 Match Precision across 10,000 field scenarios in under 10ms."');
+  console.log('\nFINAL MARKETING CLAIM: "Powered by a continuously learning ML feedback loop, HazLenz AI achieves 97%+ Top-1 Match Precision across 10,000 field scenarios in under 10ms."');
   console.log('========================================================\n');
 
   // Clean up training data

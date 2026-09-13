@@ -1,11 +1,11 @@
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
+import { HAZLENZ_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import { getGovernanceConfig } from "../ingestion/ingestion-control-plane";
 import { getConnectorPriority } from "../ingestion/connector-priority-planner";
 
 function verify() {
-  console.log("SafeScope Knowledge Connector Priority Audit:");
+  console.log("HazLenz Knowledge Connector Priority Audit:");
 
-  const sources = SAFESCOPE_SOURCE_REGISTRY;
+  const sources = HAZLENZ_SOURCE_REGISTRY;
   const configMap = sources.map((s) => {
     const gov = getGovernanceConfig(
       s.sourceKey,

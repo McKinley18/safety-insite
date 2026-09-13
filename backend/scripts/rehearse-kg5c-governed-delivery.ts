@@ -12,7 +12,7 @@ import { RegulatoryReleaseRecordReview } from '../src/standards/releases/regulat
 import { KnowledgeReleaseEvent } from '../src/standards/releases/knowledge-release-event.entity';
 import { Standard } from '../src/standards/entities/standard.entity';
 import { ApplicableStandardsService } from '../src/applicable-standards/applicable-standards.service';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 import { GovernedCutoverContext } from '../src/standards/cutover/governed-cutover-context';
 
 /**
@@ -142,7 +142,7 @@ async function main() {
 
     // ---------------------------------------------------------------- customer path, no release
     const applicable = new ApplicableStandardsService(ds.getRepository(Standard) as any);
-    const safescope = Object.create(SafescopeV2Service.prototype) as SafescopeV2Service;
+    const safescope = Object.create(HazLenzService.prototype) as HazLenzService;
     (safescope as any).applicableStandards = applicable;
     const governedEnv = {
       GOVERNED_CUTOVER_MODE: 'GOVERNED_WITH_FALLBACK',

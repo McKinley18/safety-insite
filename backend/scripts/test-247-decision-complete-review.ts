@@ -6,13 +6,13 @@
  */
 import {
   buildPropertyReviewPacket, PROPERTY_CONFIRMATION_DECISIONS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 import {
   buildEvidenceReviewPacket, EVIDENCE_REVIEW_DECISIONS, EVIDENCE_APPROVAL_IS_NOT_SETTLEMENT,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   buildDecisionReviewContext, projectPropertyResidual,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/decision-review-model';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/decision-review-model';
 
 let passed = 0; let failed = 0; const failures: string[] = [];
 const ok = (id: string, cond: boolean, d = ''): void => {

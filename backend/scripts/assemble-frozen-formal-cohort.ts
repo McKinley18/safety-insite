@@ -38,19 +38,19 @@ import * as path from 'path';
 import { createHash } from 'crypto';
 import {
   REQUIRED_CLASS_MINIMUMS, MINIMUM_DEFENSIBLE_ROWS, PREFERRED_ROWS,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { COHORT_SIZE_POLICY, ACCEPTED_EXPERT_TAXONOMY } from
   './lib/expert-cohort-supplemental-policy';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
-import { EXPERT_INTERACTION_KINDS } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
+import { EXPERT_INTERACTION_KINDS } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { CORPUS_RETIREMENT_REGISTRY, assertMayOpen } from
-  '../src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry';
+  '../src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry';
 import { POPULATION_A, POPULATION_B } from
-  '../src/safescope-v2/tests/hazlenz-decomposition-precision-corpus';
+  '../src/hazlenz/tests/hazlenz-decomposition-precision-corpus';
 import { AUGMENTATION_ROWS } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 import { SEMANTIC_ROWS } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const sha = (s: string | Buffer) => createHash('sha256').update(s).digest('hex');

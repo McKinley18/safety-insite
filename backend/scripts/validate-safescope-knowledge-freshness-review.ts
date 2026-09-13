@@ -1,4 +1,4 @@
-import { KnowledgeFreshnessReviewService } from '../src/safescope-v2/knowledge-freshness-review/knowledge-freshness-review.service';
+import { KnowledgeFreshnessReviewService } from '../src/hazlenz/knowledge-freshness-review/knowledge-freshness-review.service';
 
 async function validate() {
   const service = new KnowledgeFreshnessReviewService();

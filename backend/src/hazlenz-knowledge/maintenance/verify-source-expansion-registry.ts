@@ -1,4 +1,4 @@
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
+import { HAZLENZ_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import { getSourceGovernance } from "../sources/source-governance-helper";
 import { getSourceRole } from "../sources/source-role-helper";
 
@@ -34,7 +34,7 @@ const expectedSourceKeys = [
   "internal-near-misses",
 ];
 
-const sources = SAFESCOPE_SOURCE_REGISTRY;
+const sources = HAZLENZ_SOURCE_REGISTRY;
 const keys = sources.map((source) => source.sourceKey);
 const duplicates = keys.filter((key, index) => keys.indexOf(key) !== index);
 
@@ -129,7 +129,7 @@ for (const source of sources) {
   }
 }
 
-console.log("SafeScope Source Expansion Registry Verification");
+console.log("HazLenz Source Expansion Registry Verification");
 console.log(`Total registry count: ${sources.length}`);
 
 console.log("\nSources by authority tier:");

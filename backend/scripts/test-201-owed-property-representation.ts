@@ -23,13 +23,13 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-import type { OwedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { OwedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   owedFactDefects, createOwedFactLedger, unresolvedFacts,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   projectOwedFact, PROJECTION_FORBIDDEN_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   OWED_FACT_FIELD_PROVENANCE, NON_PROJECTING_DECLARATION_FIELDS,
   type StructuredUnresolvedFactDeclaration,
@@ -521,7 +521,7 @@ const PROTOTYPE_IMPORTS = [...new Set(
 ok('I7. the prototype module\'s entire dependency set is three modules, none of which can reach a '
   + 'provider or a database',
   JSON.stringify(PROTOTYPE_IMPORTS) === JSON.stringify([
-    '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types',
+    '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types',
     './expert-first-pass-owed-fact-projection',
     'crypto',
   ])

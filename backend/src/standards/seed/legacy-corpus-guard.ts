@@ -9,7 +9,7 @@ import { releaseCitationKey } from '../releases/citation-identity';
  * =====================================================================================
  *
  * KG-5B replaces governed release construction with `release -- prepare`, which never writes to
- * `standards_master`. But `seed:safescope-standards` -- the pipeline KG-5A measured destroying a
+ * `standards_master`. But `seed:hazlenz-standards` -- the pipeline KG-5A measured destroying a
  * production-shaped corpus -- is still wired, still callable, and still NEEDED: something has to
  * populate a clean disposable database, and roughly a dozen KG verification suites depend on it
  * doing exactly what it does today.

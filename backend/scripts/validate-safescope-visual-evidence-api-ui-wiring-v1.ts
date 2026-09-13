@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { VisualEvidenceReasoningValidator } from '../src/safescope-v2/visual-evidence-reasoning/visual-evidence-reasoning.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { VisualEvidenceReasoningValidator } from '../src/hazlenz/visual-evidence-reasoning/visual-evidence-reasoning.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -48,7 +48,7 @@ async function validate() {
   }
   console.log('[PASS] Missing required view flagged.');
 
-  console.log('✅ SafeScope visual evidence API/UI wiring validation passed.');
+  console.log('✅ HazLenz visual evidence API/UI wiring validation passed.');
 }
 
 validate().catch(err => {

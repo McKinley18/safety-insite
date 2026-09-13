@@ -28,7 +28,7 @@ import { join } from 'path';
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME, applyStrictSchemaWrapper,
   stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import { ACCEPTANCE_CASES_230, CANDIDATE_BASELINE_230, instrumentDigest230 }
   from './lib/expert-230-final-acceptance-instrument';
 import {

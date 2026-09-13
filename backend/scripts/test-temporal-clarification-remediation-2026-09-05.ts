@@ -12,7 +12,7 @@
  * operation. What these can show is that the rule is present, is general, and carries its brakes.
  */
 
-import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { createHash } from 'crypto';
 
 let failed = 0;

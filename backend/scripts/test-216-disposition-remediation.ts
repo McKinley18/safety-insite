@@ -432,9 +432,9 @@ ok('H9. the recommendation states its limits, including the process stopping rul
 console.log('\n---- I. BOUNDARIES ----');
 
 const PINNED = [
-  ['src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts',
     '102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a'],
-  ['src/safescope-v2/expert-hazlenz/expert-prompt.ts',
+  ['src/hazlenz/expert-hazlenz/expert-prompt.ts',
     'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694'],
   ['scripts/lib/expert-verifier-contract-v3.ts',
     '475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc'],

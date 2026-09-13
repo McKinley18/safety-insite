@@ -23,7 +23,7 @@ import {
 } from './lib/expert-first-pass-owed-fact-projection';
 import { citationTokens } from './lib/expert-governed-citation-reuse';
 import { createOwedFactLedger } from
-  '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+  '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   axisResult, axisRatio, hardFailEvaluability, emptyRunReportingViolations, NOT_EXERCISED,
   EMPTY_RUN_SAFETY_VERSION,

@@ -34,13 +34,13 @@ import { createHash } from 'crypto';
 import {
   L3_UNDECIDED_STATES, REASONING_PROPOSAL_CONTRACT_VERSION,
   type ReasoningInput,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 import {
   L3_CARRIER_DECLARATION_ANCHOR, L3_PROMPT_VERSION, L3_SYSTEM_PROMPT,
   bindProposal, buildProposalSchema,
-} from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
+} from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
 
 let passed = 0;
 const failures: string[] = [];
@@ -50,7 +50,7 @@ function ok(cond: boolean, label: string, detail?: unknown) {
 }
 
 const SCRIPTS = __dirname;
-const SRC = join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3');
+const SRC = join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3');
 const EVIDENCE = join(__dirname, '..', '..', 'verification', 'hazlenz-l3-2j-carrier-activation-2026-08-24');
 const sha = (s: string | Buffer) => createHash('sha256').update(s).digest('hex');
 

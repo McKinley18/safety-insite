@@ -1,4 +1,4 @@
-import { ApprovedKnowledgeBridgeService } from '../src/safescope-v2/knowledge-intake/bridge/approved-knowledge-bridge.service';
+import { ApprovedKnowledgeBridgeService } from '../src/hazlenz/knowledge-intake/bridge/approved-knowledge-bridge.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -63,4 +63,4 @@ assert(
   'Bridge recordsUsed must contain only approved_by_human and approvedForUse records.',
 );
 
-console.log('✅ SafeScope approved knowledge bridge contract validation passed.');
+console.log('✅ HazLenz approved knowledge bridge contract validation passed.');

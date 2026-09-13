@@ -25,7 +25,7 @@ import 'dotenv/config';
 import {
   applyEvidenceFoundation,
   applyFindingScopedStandards,
-} from '../src/safescope-v2/evidence/evidence-foundation';
+} from '../src/hazlenz/evidence/evidence-foundation';
 
 const checks: string[] = [];
 let failed = 0;

@@ -1,4 +1,4 @@
-import { ApprovedKnowledgeRegistryIoService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-registry-io.service';
+import { ApprovedKnowledgeRegistryIoService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-registry-io.service';
 
 async function validate() {
   const service = new ApprovedKnowledgeRegistryIoService();

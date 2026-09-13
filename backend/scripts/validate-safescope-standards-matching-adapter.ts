@@ -1,16 +1,16 @@
 import {
   StandardsMatchingServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
-import { StandardsBridgeService } from '../src/safescope-v2/standards-bridge.service';
-import { StandardsReasoningService } from '../src/safescope-v2/standards-reasoning/standards-reasoning.service';
+import { StandardsBridgeService } from '../src/hazlenz/standards-bridge.service';
+import { StandardsReasoningService } from '../src/hazlenz/standards-reasoning/standards-reasoning.service';
 
 async function run() {
   const bridge = new StandardsBridgeService();
   const reasoning = new StandardsReasoningService();
   const adapter = new StandardsMatchingServiceAdapter(bridge, reasoning);
 
-  const context: SafeScopeAdapterContext = {
+  const context: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText: 'Worker standing on pallet raised by forklift with no fall protection.',
       regulatoryContext: 'OSHA_CONSTRUCTION',

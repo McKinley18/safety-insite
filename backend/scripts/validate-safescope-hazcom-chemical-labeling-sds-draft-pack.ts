@@ -90,7 +90,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope HazCom chemical labeling SDS draft pack validation passed.');
+  console.log('✅ HazLenz HazCom chemical labeling SDS draft pack validation passed.');
 }
 
 validate().catch(err => {

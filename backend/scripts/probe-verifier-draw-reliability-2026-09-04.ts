@@ -194,11 +194,11 @@ async function main(): Promise<void> {
     EXPERT_VERIFIER_CONTRACT_V2_VERSION === 'hazlenz.expert.verifier.v2',
     EXPERT_VERIFIER_CONTRACT_V2_VERSION);
   check('A.5 the v13 first-pass prompt module is byte-identical',
-    sha256File(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'))
+    sha256File(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'))
       === EXPECTED_PROMPT_MODULE_SHA, 'unchanged');
   check('A.6 the hardened v9 fixture is byte-identical',
     sha256File(join(ROOT,
-      'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
+      'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
       === EXPECTED_V9_FILE_SHA, 'unchanged');
 
   const packet = JSON.parse(readFileSync(packetPath, 'utf8')) as { cases: PacketCase[] };

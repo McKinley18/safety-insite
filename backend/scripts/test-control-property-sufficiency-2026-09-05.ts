@@ -29,8 +29,8 @@ import { createHash } from 'crypto';
 import {
   EXPERT_SYSTEM_PROMPT,
   EXPERT_PROMPT_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let failed = 0;
 const check = (name: string, ok: boolean, detail = ''): void => {
@@ -43,7 +43,7 @@ const at = (s: string) => P.indexOf(s);
 
 const ROOT = join(__dirname, '..', '..');
 const MODULE_SRC = readFileSync(
-  join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'), 'utf8');
+  join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'), 'utf8');
 
 // The §178 region, bounded by its own first and last line. Bounding it this way -- rather than by
 // a character count -- is the lesson §176's own proof file records: slicing past the insertion runs
@@ -202,7 +202,7 @@ const PROTECTED: Array<[string, string, string]> = [
 ];
 for (const [file, expected, provenance] of PROTECTED) {
   const actual = createHash('sha256')
-    .update(readFileSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz', file)))
+    .update(readFileSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz', file)))
     .digest('hex');
   check(`I.5 ${file} is byte-identical — §178 changed the prompt only`,
     actual === expected, `${provenance}; ${actual.slice(0, 16)}…`);

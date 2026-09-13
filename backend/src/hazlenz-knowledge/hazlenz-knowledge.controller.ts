@@ -7,7 +7,7 @@ import { RolesGuard } from "../auth/guards/roles.guard";
 
 @UseGuards(JwtGuard, EntitlementGuard)
 @RequireEntitlement("auditTrail")
-@Controller("safescope-knowledge")
+@Controller("hazlenz-knowledge")
 export class HazLenzKnowledgeController {
   constructor(
     private readonly hazLenzKnowledgeService: HazLenzKnowledgeService,

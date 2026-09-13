@@ -17,10 +17,10 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import {
   MINIMUM_DEFENSIBLE_ROWS, PREFERRED_ROWS, REQUIRED_CLASS_MINIMUMS,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 
 /** Fields whose values are CASE CONTENT. Nothing drawn from one of these may ever be printed. */
 const CONTENT_FIELDS = new Set([

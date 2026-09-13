@@ -12,19 +12,19 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, buildAnthropicRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody, EXPERT_REQUEST_ENVELOPE, envelopeBoundOptions,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import { build239SystemPrompt, buildExpert239WireSchema }
-  from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
-import { build247SystemPrompt } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+  from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
+import { build247SystemPrompt } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import { ADMISSION_252_VERSION }
-  from '../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+  from '../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import { type AssembledRequest252, type BehaviouralProof252 }
   from './lib/expert-252-candidate-identity';
 import {
@@ -32,7 +32,7 @@ import {
 } from './lib/expert-253-candidate-identity';
 import {
   buildExpert253WireSchema, FIRST_PASS_CONTRACT_253_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-253-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-253-posture-contract';
 import { OBS, INPUT, validOutput } from './verify-252-admission-matrix';
 
 const BACKEND = join(__dirname, '..');
@@ -48,13 +48,13 @@ const ok = (id: string, cond: boolean, d = ''): void => {
   else { fail++; failures.push(id); console.log(`FAIL  ${id}${d ? '  [' + d + ']' : ''}`); }
 };
 
-const S = 'src/safescope-v2/expert-hazlenz/';
+const S = 'src/hazlenz/expert-hazlenz/';
 const C = `${S}contract/`;
 const contractFiles = readdirSync(join(BACKEND, C)).filter(f => f.endsWith('.ts')).sort();
 const moduleDigests: Record<string, string> = {
   entryPoint: fsha(`${S}expert-hazlenz-analysis.ts`),
-  adapter: fsha('src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts'),
-  envelope: fsha('src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts'),
+  adapter: fsha('src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts'),
+  envelope: fsha('src/hazlenz/expert-hazlenz-adapters/expert-request-envelope.ts'),
   postureContract: fsha(`${C}expert-247-posture-contract.ts`),
   postureProjection: fsha(`${C}expert-239-posture-projection.ts`),
   roleJustificationProjection: fsha(`${C}expert-247-role-justification-projection.ts`),

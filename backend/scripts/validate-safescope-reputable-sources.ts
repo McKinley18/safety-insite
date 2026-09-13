@@ -1,4 +1,4 @@
-import { StandardsReasoningService } from '../src/safescope-v2/standards-reasoning/standards-reasoning.service';
+import { StandardsReasoningService } from '../src/hazlenz/standards-reasoning/standards-reasoning.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Reputable Sources Intelligence Core ---');
+  console.log('--- Testing HazLenz Reputable Sources Intelligence Core ---');
 
   const service = new StandardsReasoningService();
 
@@ -90,7 +90,7 @@ async function validate() {
   const std4 = res4.topDefensible[0];
   assert(std4.reputableSupplement?.standard === 'NFPA 70E', `Should match domain fallback NFPA 70E, got ${std4.reputableSupplement?.standard}`);
 
-  console.log('✅ SafeScope Reputable Sources Intelligence validation passed.');
+  console.log('✅ HazLenz Reputable Sources Intelligence validation passed.');
 }
 
 validate().catch(err => {

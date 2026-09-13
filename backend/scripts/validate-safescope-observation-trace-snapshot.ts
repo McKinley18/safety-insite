@@ -1,4 +1,4 @@
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -139,7 +139,7 @@ class StubAccessService {
     can() { return { allowed: true }; } 
 }
 
-const service = new SafescopeV2Service(
+const service = new HazLenzService(
   new StubActionEngine() as any,
   new StubEvidenceFusion() as any,
   new StubApplicableStandards() as any,
@@ -249,7 +249,7 @@ async function main() {
     });
   }
 
-  console.log('✅ SafeScope observation trace snapshot validation passed.');
+  console.log('✅ HazLenz observation trace snapshot validation passed.');
   console.log('Trace cases: ' + traces.length);
 }
 

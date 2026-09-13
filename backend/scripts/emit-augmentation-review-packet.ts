@@ -16,7 +16,7 @@
  */
 
 import { AUGMENTATION_ROWS, AUGMENTATION_IDENTIFIER } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 
 const FAMILY_LABEL: Record<string, string> = {
   chemical_exposure: 'chemical exposure',

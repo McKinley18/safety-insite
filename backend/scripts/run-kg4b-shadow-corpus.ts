@@ -152,7 +152,7 @@ const KG4B_FIXTURES: CorpusCase[] = [
 /**
  * Request pacing for the classify throttle.
  *
- * `/safescope-v2/classify` is throttled at 30 requests / 60s. This runner issues THREE calls per
+ * `/hazlenz/classify` is throttled at 30 requests / 60s. This runner issues THREE calls per
  * case (two LEGACY to measure volatility, one SHADOW), so an unpaced 42-case run exhausts the
  * window after ten cases and every subsequent response is a 429.
  *
@@ -284,11 +284,11 @@ async function main() {
 
     // Two LEGACY runs to measure volatility, then one SHADOW run to compare against.
     await paceClassify();
-    const legacy1 = await call(legacyToken, 'POST', '/safescope-v2/classify', payload);
+    const legacy1 = await call(legacyToken, 'POST', '/hazlenz/classify', payload);
     await paceClassify();
-    const legacy2 = await call(legacyToken, 'POST', '/safescope-v2/classify', payload);
+    const legacy2 = await call(legacyToken, 'POST', '/hazlenz/classify', payload);
     await paceClassify();
-    const shadow = await call(shadowToken, 'POST', '/safescope-v2/classify', payload);
+    const shadow = await call(shadowToken, 'POST', '/hazlenz/classify', payload);
 
     // A throttled response is NOT a comparison. Two identical 429s would satisfy every invariance
     // assertion below while proving nothing at all, so the run fails loudly instead.

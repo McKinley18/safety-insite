@@ -1,8 +1,8 @@
-import { OfflineTraceConflictResolverService } from '../src/safescope-v2/offline-sync-conflict-resolver/offline-sync-conflict-resolver.service';
+import { OfflineTraceConflictResolverService } from '../src/hazlenz/offline-sync-conflict-resolver/offline-sync-conflict-resolver.service';
 import * as assert from 'assert';
 
 async function validate() {
-  console.log('--- Testing SafeScope Offline Sync Conflict Resolution Service (P0) ---');
+  console.log('--- Testing HazLenz Offline Sync Conflict Resolution Service (P0) ---');
   const service = new OfflineTraceConflictResolverService();
 
   // Test Case 1: Clean non-concurrent merge (older server, newer client - 1 hour diff)
@@ -85,7 +85,7 @@ async function validate() {
   assert(case3.conflictDetails[0].includes('Concurrent field-level conflict on "repairCode"'));
   console.log('[PASS] Concurrent metadata field conflict verified.');
 
-  console.log('✅ SafeScope offline sync conflict resolution validation passed.');
+  console.log('✅ HazLenz offline sync conflict resolution validation passed.');
 }
 
 validate().catch((err) => {

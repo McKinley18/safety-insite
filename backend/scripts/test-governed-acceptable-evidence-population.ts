@@ -12,31 +12,31 @@ import { join } from 'path';
 
 import type {
   ApprovedKnowledgeRecord,
-} from '../src/safescope-v2/expert-hazlenz/../approved-knowledge-registry/approved-knowledge-record.types';
+} from '../src/hazlenz/expert-hazlenz/../approved-knowledge-registry/approved-knowledge-record.types';
 import {
   deriveAcceptableEvidence, REQUIREMENT_TEMPLATE, PLACEHOLDER_CITATION_MARKERS,
   GOVERNED_EVIDENCE_DERIVATION_VERSION, DERIVATION_LIMITS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/governed-evidence-derivation';
 import {
   type OwedFact, PRODUCTION_PERMITTED_EVIDENCE_PROVENANCES,
   PRODUCTION_FORBIDDEN_EVIDENCE_PROVENANCES, PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   owedFact, createOwedFactLedger, factOf, factsRemoved, preservationViolations, unresolvedFacts,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   type ClarificationDeclaration,
   checkBindingDeclarations, applyAdmittedDeclarations, evaluateTargetCoverage,
   CLARIFICATION_EVIDENCE_SUFFICIENCY,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   projectOwedFactsForVerifier, EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED,
   runOwedFactCoverageStage, verifierV3BoundaryState,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import { projectStructuralQuestions } from
-  '../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+  '../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 import { mergeExpertIntelligence } from
-  '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+  '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 
 const ROOT = join(__dirname, '..', '..');
 const REGISTRY_DIR = join(ROOT, 'safescope-data', 'approved-knowledge', 'registry');
@@ -138,7 +138,7 @@ ok('B.4 the derivation is byte-stable across repeated calls',
   'identical bytes on re-derivation');
 
 ok('B.5 no evaluation or human-disposition material is an input to the derivation',
-  !readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts',
+  !readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts',
     'governed-evidence-derivation.ts'), 'utf8')
     .match(/HS-[A-Z]\d|VC-\d\d|disposition|BINDING_|adjudicat/i),
   'the derivation module names no evaluation row, disposition or adjudication');
@@ -169,7 +169,7 @@ ok('C.2 an unapproved record, a methodless record and a missing record all refus
   'four named refusals, all yielding null rather than a weaker criterion');
 
 ok('C.3 the derivation never searches for a record — it cannot infer one from a hazard family',
-  !readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts',
+  !readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts',
     'governed-evidence-derivation.ts'), 'utf8')
     .match(/\.find\(|\.filter\(\s*r\s*=>|hazardFamilies|readdir|readFile/),
   'no lookup, no registry read, no hazard-family matching in the derivation module');
@@ -295,7 +295,7 @@ ok('F.3 an arbitrary runtime literal provenance is not a member and cannot be ad
   'anything outside the four permitted provenances fails closed');
 
 ok('F.4 the derivation can only ever emit GOVERNED_EVIDENCE',
-  !readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts',
+  !readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts',
     'governed-evidence-derivation.ts'), 'utf8')
     .match(/provenance: '(?!GOVERNED_EVIDENCE)/),
   'one provenance literal in the module, and it is GOVERNED_EVIDENCE');
@@ -304,7 +304,7 @@ ok('F.4 the derivation can only ever emit GOVERNED_EVIDENCE',
 
 console.log('\n--- G  NO SEMANTIC SUFFICIENCY SCORER WAS INTRODUCED\n');
 
-const derivSrc = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+const derivSrc = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
   'owed-facts', 'governed-evidence-derivation.ts'), 'utf8');
 /**
  * Comments AND string literals are stripped. The module's own prose says it performs no comparison,

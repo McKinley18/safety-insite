@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
-import { KnowledgeReviewService } from '../src/safescope-v2/knowledge-intake/review/knowledge-review.service';
-import { ApprovedKnowledgeBridgeService } from '../src/safescope-v2/knowledge-intake/bridge/approved-knowledge-bridge.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
+import { KnowledgeReviewService } from '../src/hazlenz/knowledge-intake/review/knowledge-review.service';
+import { ApprovedKnowledgeBridgeService } from '../src/hazlenz/knowledge-intake/bridge/approved-knowledge-bridge.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -11,7 +11,7 @@ function assert(condition: boolean, message: string): void {
 
 const quarantinedDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/quarantined',
+  '../src/hazlenz/knowledge-intake/records/quarantined',
 );
 
 const fixturePath = path.join(quarantinedDir, '_fixture-approved-bridge-test.json');
@@ -108,7 +108,7 @@ try {
   assert(enabled.reasoningUseBoundary.canUseUnapprovedRecords === false, 'Bridge cannot use unapproved records.');
   assert(enabled.reasoningUseBoundary.productionReasoningModified === false, 'Bridge must not modify production reasoning.');
 
-  console.log('✅ SafeScope approved knowledge bridge validation passed.');
+  console.log('✅ HazLenz approved knowledge bridge validation passed.');
 } finally {
   if (fs.existsSync(fixturePath)) {
     fs.unlinkSync(fixturePath);

@@ -1,12 +1,12 @@
 import {
   RiskAssessmentServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
 
 async function run() {
   const adapter = new RiskAssessmentServiceAdapter();
 
-  const context: SafeScopeAdapterContext = {
+  const context: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText: 'Worker standing near open edge with fall protection missing.',
       regulatoryContext: 'OSHA_CONSTRUCTION',

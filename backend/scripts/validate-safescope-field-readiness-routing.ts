@@ -1,4 +1,4 @@
-import { SafeScopeBrainSnapshotBuilderService } from '../src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.service';
+import { HazLenzBrainSnapshotBuilderService } from '../src/hazlenz/brain/snapshot-builder/brain-snapshot-builder.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -15,7 +15,7 @@ type FieldReadinessCase = {
   expectedMechanism: string;
 };
 
-const builder = new SafeScopeBrainSnapshotBuilderService();
+const builder = new HazLenzBrainSnapshotBuilderService();
 
 const cases: FieldReadinessCase[] = [
   {
@@ -120,5 +120,5 @@ for (const testCase of cases) {
   );
 }
 
-console.log('✅ SafeScope Field Readiness Routing validation passed.');
+console.log('✅ HazLenz Field Readiness Routing validation passed.');
 console.log(`Cases: ${cases.length}`);

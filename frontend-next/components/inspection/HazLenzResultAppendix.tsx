@@ -15,7 +15,7 @@ export function HazLenzRealImageAnalysisAppendix({
   return (
     <div className="mt-3 rounded-xl bg-indigo-50 px-3 py-2 ring-1 ring-indigo-200 dark:bg-indigo-950/35 dark:ring-indigo-900/60">
       {/* Renders only when `realImageAnalysis.visualSignals` is populated, which in v1.0
-          never happens: the field is produced by POST /safescope-v2/real-image-analysis/evaluate,
+          never happens: the field is produced by POST /hazlenz/real-image-analysis/evaluate,
           which the frontend does not call and which is Pro-gated on the server. The label
           previously read "AI Photo Analysis (Beta)" -- v1.0 ships no Beta labelling, and this
           heading now describes what the block actually shows if it is ever populated rather

@@ -41,7 +41,7 @@ function loadEnvFile(path: string): void {
 loadEnvFile(join(__dirname, '..', '.env'));
 
 import { EXPERT_HOSTED_INFERENCE_CONFIG } from
-  '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+  '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   EXPERT_VERIFIER_V3_1_SYSTEM_PROMPT, VERIFIER_V3_1_RESPONSE_SCHEMA,
   EXPERT_VERIFIER_INSTRUCTION_V3_1_VERSION, buildVerifierV3UserPrompt,

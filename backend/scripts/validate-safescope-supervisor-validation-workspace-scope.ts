@@ -1,6 +1,6 @@
 import { ForbiddenException, NotFoundException } from '@nestjs/common';
-import { SupervisorValidationService } from '../src/safescope-v2/validation/supervisor-validation.service';
-import { SafeScopeReasoningSnapshot } from '../src/safescope-v2/snapshots/reasoning-snapshot.entity';
+import { SupervisorValidationService } from '../src/hazlenz/validation/supervisor-validation.service';
+import { HazLenzReasoningSnapshot } from '../src/hazlenz/snapshots/reasoning-snapshot.entity';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -18,7 +18,7 @@ async function main() {
     reportId: 'report-alpha',
     classification: 'Machine Guarding',
     validationStatus: 'generated',
-  } as SafeScopeReasoningSnapshot;
+  } as HazLenzReasoningSnapshot;
 
   const reasoningSnapshots = {
     findOne: async (id: string) => {
@@ -26,7 +26,7 @@ async function main() {
       return null;
     },
     assertSnapshotAccess: (
-      candidate: SafeScopeReasoningSnapshot | null,
+      candidate: HazLenzReasoningSnapshot | null,
       user: any,
     ) => {
       if (!candidate) return;
@@ -168,7 +168,7 @@ async function main() {
 
   assert(invalidDecisionBlocked, 'Unsupported validation decision should be blocked.');
 
-  console.log('✅ SafeScope supervisor validation workspace-scope validation passed.');
+  console.log('✅ HazLenz supervisor validation workspace-scope validation passed.');
   console.log(`Snapshot status after acceptance: ${snapshotStatuses[snapshot.id]}`);
 }
 

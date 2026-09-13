@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: boolean, message: string) {
   }
 }
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const tailPulleyGuard = service.reason({
   hazardObservation: 'Missing guard on conveyor tail pulley with employee access to the nip point at the aggregate plant.',
@@ -121,7 +121,7 @@ assert(
   'Vague scenario should include task-mechanism evidence gaps.',
 );
 
-console.log('✅ SafeScope task-mechanism orchestrator integration validation passed.');
+console.log('✅ HazLenz task-mechanism orchestrator integration validation passed.');
 console.log(
   `Tail pulley context: ${tailPulleyPrimary.equipmentId}/${tailPulleyPrimary.componentId}/${tailPulleyPrimary.failureModeId} score=${tailPulleyPrimary.score}`,
 );

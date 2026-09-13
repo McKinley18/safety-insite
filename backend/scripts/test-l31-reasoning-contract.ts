@@ -9,12 +9,12 @@
 import {
   L3_CONDITION_STATES, REASONING_INPUT_CONTRACT_VERSION, REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { L3_VALIDATOR_VERSION } from '../src/safescope-v2/reasoning-l3/validated-reasoning.types';
-import { UnavailableReasoningProvider } from '../src/safescope-v2/reasoning-l3/unavailable-reasoning-provider';
-import { isRetryableProviderFailure } from '../src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider';
-import { carriesHazardConclusion, isInfrastructureFailure, type L3ReasoningOutcome } from '../src/safescope-v2/reasoning-l3/reasoning-outcome';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { L3_VALIDATOR_VERSION } from '../src/hazlenz/reasoning-l3/validated-reasoning.types';
+import { UnavailableReasoningProvider } from '../src/hazlenz/reasoning-l3/unavailable-reasoning-provider';
+import { isRetryableProviderFailure } from '../src/hazlenz/reasoning-l3/hazlenz-reasoning-provider';
+import { carriesHazardConclusion, isInfrastructureFailure, type L3ReasoningOutcome } from '../src/hazlenz/reasoning-l3/reasoning-outcome';
 
 let passed = 0, failed = 0;
 const assert = (c: unknown, m: string) => { if (c) { passed++; console.log(`ok    ${m}`); } else { failed++; console.log(`FAIL  ${m}`); } };

@@ -1,4 +1,4 @@
-import { HazardTaxonomyCoverageService } from '../src/safescope-v2/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
+import { HazardTaxonomyCoverageService } from '../src/hazlenz/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
 
 async function validate() {
   const service = new HazardTaxonomyCoverageService();
@@ -38,7 +38,7 @@ async function validate() {
       }
   }
   
-  console.log('✅ SafeScope hazard taxonomy coverage validation passed.');
+  console.log('✅ HazLenz hazard taxonomy coverage validation passed.');
 }
 
 validate().catch(err => {

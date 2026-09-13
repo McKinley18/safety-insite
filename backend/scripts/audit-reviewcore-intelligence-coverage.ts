@@ -1,7 +1,7 @@
-import * as hazardUniverseModule from '../src/safescope-v2/brain/hazard-universe/hazard-universe.registry';
-import { SCENARIO_FAMILY_REGISTRY } from '../src/safescope-v2/brain/scenario-family-knowledge/scenario-family.registry';
-import { EVIDENCE_GAP_QUESTION_REGISTRY } from '../src/safescope-v2/brain/evidence-gap-question-generator/evidence-gap-question.registry';
-import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../src/safescope-v2/corrective-actions/corrective-action-template.registry';
+import * as hazardUniverseModule from '../src/hazlenz/brain/hazard-universe/hazard-universe.registry';
+import { SCENARIO_FAMILY_REGISTRY } from '../src/hazlenz/brain/scenario-family-knowledge/scenario-family.registry';
+import { EVIDENCE_GAP_QUESTION_REGISTRY } from '../src/hazlenz/brain/evidence-gap-question-generator/evidence-gap-question.registry';
+import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../src/hazlenz/corrective-actions/corrective-action-template.registry';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -22,11 +22,11 @@ type Row = {
 
 const repoRoot = path.resolve(__dirname, '..', '..');
 const scriptsDir = path.join(repoRoot, 'backend', 'scripts');
-const mechanismFile = path.join(repoRoot, 'backend', 'src', 'safescope-v2', 'mechanism-intelligence', 'mechanism-intelligence.service.ts');
-const standardsIntentFile = path.join(repoRoot, 'backend', 'src', 'safescope-v2', 'standards-intent-intelligence', 'standards-intent-intelligence.service.ts');
+const mechanismFile = path.join(repoRoot, 'backend', 'src', 'hazlenz', 'mechanism-intelligence', 'mechanism-intelligence.service.ts');
+const standardsIntentFile = path.join(repoRoot, 'backend', 'src', 'hazlenz', 'standards-intent-intelligence', 'standards-intent-intelligence.service.ts');
 
 const hazardUniverseRegistry: any[] =
-  (hazardUniverseModule as any).SAFESCOPE_HAZARD_UNIVERSE_REGISTRY ||
+  (hazardUniverseModule as any).HAZLENZ_HAZARD_UNIVERSE_REGISTRY ||
   (hazardUniverseModule as any).HAZARD_UNIVERSE_REGISTRY ||
   (hazardUniverseModule as any).HAZARD_UNIVERSE ||
   (hazardUniverseModule as any).hazardUniverseRegistry ||

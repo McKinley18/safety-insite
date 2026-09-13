@@ -1,5 +1,5 @@
-import { SafeScopeIntelligenceOrchestrator } from "../src/safescope-v2/orchestration/intelligence-orchestrator.service";
-import { SafeScopeIntelligenceOrchestratorInput } from "../src/safescope-v2/orchestration/intelligence-orchestrator.service";
+import { HazLenzIntelligenceOrchestrator } from "../src/hazlenz/orchestration/intelligence-orchestrator.service";
+import { HazLenzIntelligenceOrchestratorInput } from "../src/hazlenz/orchestration/intelligence-orchestrator.service";
 
 type RiskCalibrationCase = {
   id: string;
@@ -21,12 +21,12 @@ const cases: RiskCalibrationCase[] = [
 ];
 
 async function runRiskCalibrationBenchmark() {
-  console.log(`Starting SafeScope Risk Calibration Benchmark with ${cases.length} scenarios...`);
-  const orchestrator = new SafeScopeIntelligenceOrchestrator();
+  console.log(`Starting HazLenz Risk Calibration Benchmark with ${cases.length} scenarios...`);
+  const orchestrator = new HazLenzIntelligenceOrchestrator();
   
   for (const scenario of cases) {
     console.log(`Validating ${scenario.id}: ${scenario.title}`);
-    const input: SafeScopeIntelligenceOrchestratorInput = {
+    const input: HazLenzIntelligenceOrchestratorInput = {
       fusedText: scenario.text,
       promotedPrimary: {} as any,
       classifierResult: { ambiguityWarnings: [] } as any,
@@ -49,7 +49,7 @@ async function runRiskCalibrationBenchmark() {
     console.log(`Risk level: ${result.riskReasoning?.initialRiskLevel}, Urgency: ${result.correctiveActionReasoning?.urgencyLevel}`);
   }
   
-  console.log("SafeScope Risk Calibration Benchmark passed.");
+  console.log("HazLenz Risk Calibration Benchmark passed.");
 }
 
 runRiskCalibrationBenchmark();

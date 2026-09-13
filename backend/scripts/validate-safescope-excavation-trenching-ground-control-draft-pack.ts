@@ -98,7 +98,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope excavation trenching ground control draft pack validation passed.');
+  console.log('✅ HazLenz excavation trenching ground control draft pack validation passed.');
 }
 
 validate().catch(err => {

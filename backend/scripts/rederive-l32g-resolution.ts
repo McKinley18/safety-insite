@@ -69,10 +69,10 @@
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import type { L3ConditionState } from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+import type { L3ConditionState } from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 import {
   resolveConditionState, type L3StateFacts, type L3StateResolution,
-} from '../src/safescope-v2/reasoning-l3/state-facts';
+} from '../src/hazlenz/reasoning-l3/state-facts';
 
 type Ordering = 'R0_HAZARD_FIRST' | 'R1_MISSING_FIRST' | 'R2_MISSING_UNLESS_CONTROL_STATED';
 

@@ -1,4 +1,4 @@
-import { SourceIngestionStagingService } from '../src/safescope-v2/source-ingestion-staging/source-ingestion-staging.service';
+import { SourceIngestionStagingService } from '../src/hazlenz/source-ingestion-staging/source-ingestion-staging.service';
 
 async function validate() {
   const service = new SourceIngestionStagingService();

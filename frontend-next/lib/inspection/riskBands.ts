@@ -2,7 +2,7 @@
  * THE risk-band table for the frontend. One representation, imported by every consumer.
  *
  * This MIRRORS the authoritative server profiles in
- * `backend/src/safescope-v2/risk/risk-profiles.ts`. That file decides the band that is computed,
+ * `backend/src/hazlenz/risk/risk-profiles.ts`. That file decides the band that is computed,
  * persisted on the finding, and printed in the report; anything the UI shows must agree with it or
  * the customer reads one risk on screen and a different one in the document.
  *

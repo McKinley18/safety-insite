@@ -1,5 +1,5 @@
 import * as assert from 'node:assert/strict';
-import { attachGuidedFindingResponse } from '../src/safescope-v2/display/guided-finding-response';
+import { attachGuidedFindingResponse } from '../src/hazlenz/display/guided-finding-response';
 
 const baseRequest: any = {
   text: 'Employee can reach an unguarded moving coupling while the machine is operating.',

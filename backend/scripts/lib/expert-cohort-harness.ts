@@ -28,28 +28,28 @@
  * raises a ceiling mid-run.
  */
 
-import { MultiHazardDecompositionService } from '../../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service';
-import { applyEvidenceFoundation } from '../../src/safescope-v2/evidence/evidence-foundation';
-import type { ClassifyDto } from '../../src/safescope-v2/dto/classify.dto';
+import { MultiHazardDecompositionService } from '../../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service';
+import { applyEvidenceFoundation } from '../../src/hazlenz/evidence/evidence-foundation';
+import type { ClassifyDto } from '../../src/hazlenz/dto/classify.dto';
 import {
   buildExpertAnalysisInputFromAnalysis, permuteForOrderSensitivity,
   type HazLenzAnalysisState,
-} from '../../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { runExpertAnalysis } from '../../src/safescope-v2/expert-hazlenz/expert-runner';
-import type { ExpertProvider } from '../../src/safescope-v2/expert-hazlenz/expert-provider';
-import type { ExpertAnalysisInput } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { runExpertAnalysis } from '../../src/hazlenz/expert-hazlenz/expert-runner';
+import type { ExpertProvider } from '../../src/hazlenz/expert-hazlenz/expert-provider';
+import type { ExpertAnalysisInput } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   mergeExpertIntelligence, verifyMergeInvariants,
   type DeterministicAuthorityResult, type GovernedAuthorityResult,
-} from '../../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../../src/hazlenz/expert-hazlenz/expert-authority-merge';
 import {
   validateCohortRow, type CohortRowProblem, type FormalCohortRow,
-} from '../../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   buildAdjudicationQueue, buildScoringReport,
   type AdjudicationQueueItem, type AdjudicationRecord, type CallArm, type CallRecord,
   type CohortRunRecord, type ScoringReport,
-} from '../../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+} from '../../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 export const EXPERT_COHORT_HARNESS_VERSION = 'hazlenz.expert.cohort.harness.v1' as const;
 

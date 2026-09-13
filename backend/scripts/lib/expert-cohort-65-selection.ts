@@ -19,16 +19,16 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {
   FORMAL_COHORT_ROW_CONTRACT_VERSION, classifyRow, type FormalCohortRow,
-} from '../../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { REQUIRED_CLASS_MINIMUMS } from
-  '../../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+  '../../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { toExpertFamily } from
-  '../../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+  '../../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import { AUGMENTATION_ROWS } from
-  '../../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+  '../../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 import { SEMANTIC_ROWS } from
-  '../../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
-import { POPULATION_A } from '../../src/safescope-v2/tests/hazlenz-decomposition-precision-corpus';
+  '../../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
+import { POPULATION_A } from '../../src/hazlenz/tests/hazlenz-decomposition-precision-corpus';
 import { ACCEPTED_EXPERT_TAXONOMY } from './expert-cohort-supplemental-policy';
 import { runDeterministicSide } from './expert-cohort-harness';
 

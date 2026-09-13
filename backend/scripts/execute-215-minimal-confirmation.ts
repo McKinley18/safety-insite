@@ -22,7 +22,7 @@ import { join } from 'path';
 
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import { VERIFIER_TOOL_NAME } from './lib/expert-208b-verifier-recovery';
 import { checkDeclarationEntry212 } from './lib/expert-212-challenge-vocabulary';
 import { checkScopeContainment } from './lib/expert-214-scope-containment';

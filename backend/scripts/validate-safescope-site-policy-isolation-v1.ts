@@ -1,8 +1,8 @@
-import { SitePolicyIsolationService } from '../src/safescope-v2/site-policy-isolation/site-policy-isolation.service';
-import { SitePolicyGovernanceService } from '../src/safescope-v2/site-policy-isolation/site-policy-governance.service';
+import { SitePolicyIsolationService } from '../src/hazlenz/site-policy-isolation/site-policy-isolation.service';
+import { SitePolicyGovernanceService } from '../src/hazlenz/site-policy-isolation/site-policy-governance.service';
 
 async function validate() {
-    console.log('--- Testing SafeScope Site Policy Isolation v1 ---');
+    console.log('--- Testing HazLenz Site Policy Isolation v1 ---');
     
     const governance = new SitePolicyGovernanceService();
     const service = new SitePolicyIsolationService(governance);
@@ -48,7 +48,7 @@ async function validate() {
     }
     console.log('[PASS] Governance blocked prohibited language.');
 
-    console.log('✅ SafeScope site policy isolation validation passed.');
+    console.log('✅ HazLenz site policy isolation validation passed.');
 }
 
 validate().catch(err => {

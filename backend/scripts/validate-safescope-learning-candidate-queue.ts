@@ -1,4 +1,4 @@
-import { LearningCandidateQueueService } from '../src/safescope-v2/learning-candidate-queue/learning-candidate-queue.service';
+import { LearningCandidateQueueService } from '../src/hazlenz/learning-candidate-queue/learning-candidate-queue.service';
 
 async function validate() {
   const service = new LearningCandidateQueueService();

@@ -1,7 +1,7 @@
 import { assertCutoverConfigurationSafeForProduction } from '../standards/cutover/cutover-mode';
 import {
   EXPERT_EXECUTION_ENABLED_VAR,
-} from '../safescope-v2/expert-hazlenz-product/expert-operational-controls';
+} from '../hazlenz/expert-hazlenz-product/expert-operational-controls';
 
 const INSECURE_JWT_VALUES = new Set([
   'dev-only-secret-change-me',

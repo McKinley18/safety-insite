@@ -15,16 +15,16 @@ import { join } from 'path';
 import {
   buildBasisEntryUnion247, build247SystemPrompt, CESSATION_ROLE_247, ROLE_JUSTIFICATION_FIELD,
   DRIVER_ROLE_FIELD_247,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import {
   buildBasisEntryUnion253, reconstruct247BasisEntryUnion, buildExpert253WireSchema,
   reconstruct247WireSchema, contractIdentities253, FIELDS_MADE_NON_NULLABLE_253,
   NULLABLE_FIELDS_RETAINED_253, NULL_SENTENCE_REPLACED_FROM_247, ALONGSIDE_SENTENCE_253,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-253-posture-contract';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-253-posture-contract';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
 import { conformsToContract252, closeObjectNodes252 }
-  from '../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+  from '../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import { admitThroughProductionPath } from './lib/expert-252-replay-path';
 import { OBS, INPUT, validOutput } from './verify-252-admission-matrix';
 
@@ -76,7 +76,7 @@ async function main(): Promise<void> {
   const reportSrc = readFileSync(join(__dirname, '..', '..', 'verification',
     'expert-hazlenz-247-canonical-closure-and-remediation-2026-09-12',
     'SECTION-247-REPORT.md'), 'utf8');
-  const projSrc = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const projSrc = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'contract', 'expert-247-role-justification-projection.ts'), 'utf8');
 
   ok('J1 the frozen §247 fixture reads a null pair as a confrontation that did not happen',

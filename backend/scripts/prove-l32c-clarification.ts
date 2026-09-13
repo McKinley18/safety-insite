@@ -7,10 +7,10 @@
  */
 import { writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import { HAZARD_TAXONOMY } from '../src/safescope-v2/taxonomy/hazard-taxonomy';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { OllamaReasoningProvider } from '../src/safescope-v2/reasoning-l3/ollama-reasoning-provider';
-import { runValidatedReasoning } from '../src/safescope-v2/reasoning-l3/reasoning-runner';
+import { HAZARD_TAXONOMY } from '../src/hazlenz/taxonomy/hazard-taxonomy';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { OllamaReasoningProvider } from '../src/hazlenz/reasoning-l3/ollama-reasoning-provider';
+import { runValidatedReasoning } from '../src/hazlenz/reasoning-l3/reasoning-runner';
 
 const FAMILIES = [...new Set(HAZARD_TAXONOMY.map(p => p.id))].sort();
 

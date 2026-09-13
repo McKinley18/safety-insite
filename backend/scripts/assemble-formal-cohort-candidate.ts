@@ -14,15 +14,15 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import {
   FORMAL_COHORT_ROW_CONTRACT_VERSION, classifyRow, truthOnlyStrings, validateCohortRow,
   type FormalCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   evaluateComposition, REQUIRED_CLASS_MINIMUMS, MINIMUM_DEFENSIBLE_ROWS, PREFERRED_ROWS,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
-import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
+import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { ACCEPTED_EXPERT_TAXONOMY } from './lib/expert-cohort-supplemental-policy';
 import { providerInvocationCount, resetProviderInvocationCount, runFormalCohort } from './lib/expert-cohort-harness';
 

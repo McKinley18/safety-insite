@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataSource } from '../src/database/data-source';
-import { applyFindingScopedStandards } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyFindingScopedStandards } from '../src/hazlenz/evidence/evidence-foundation';
 import { resolveGovernedCitation } from '../src/standards/releases/governed-corpus-lookup';
 import { resolveStandardsBacking } from '../src/standards/display/standards-backing-contract';
 import { releaseCitationKey } from '../src/standards/releases/citation-identity';
@@ -33,7 +33,7 @@ const EXPECTED_GOLD_SET_SHA256 =
   '93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3';
 
 const EXPERT_RULES = join(__dirname, '..',
-  'src/safescope-v2/inspection-intelligence/standard-applicability.rules.ts');
+  'src/hazlenz/inspection-intelligence/standard-applicability.rules.ts');
 
 interface GoldCase {
   id: string; area: string;
@@ -284,7 +284,7 @@ async function main() {
       goldSetPath: 'verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts',
       goldSetSha256: sha256,
       goldSetCases: cases.length,
-      declaredRuleSurface: 'backend/src/safescope-v2/inspection-intelligence/standard-applicability.rules.ts',
+      declaredRuleSurface: 'backend/src/hazlenz/inspection-intelligence/standard-applicability.rules.ts',
       usageCountMeaning: 'number of gold-set observations whose selection returns this citation; a ' +
         'measured usage signal for PRIORITISATION ONLY. High usage is never evidence of correctness.',
     },

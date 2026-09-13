@@ -1,5 +1,5 @@
-import { SafeScopeEvidenceGapIntelligenceService } from '../src/safescope-v2/brain/evidence-gap-intelligence/evidence-gap-intelligence.service';
-import { SAFESCOPE_EVIDENCE_GAP_INTELLIGENCE_REGISTRY } from '../src/safescope-v2/brain/evidence-gap-intelligence/evidence-gap-intelligence.registry';
+import { HazLenzEvidenceGapIntelligenceService } from '../src/hazlenz/brain/evidence-gap-intelligence/evidence-gap-intelligence.service';
+import { HAZLENZ_EVIDENCE_GAP_INTELLIGENCE_REGISTRY } from '../src/hazlenz/brain/evidence-gap-intelligence/evidence-gap-intelligence.registry';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,9 +7,9 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const service = new SafeScopeEvidenceGapIntelligenceService();
+const service = new HazLenzEvidenceGapIntelligenceService();
 
-for (const record of SAFESCOPE_EVIDENCE_GAP_INTELLIGENCE_REGISTRY) {
+for (const record of HAZLENZ_EVIDENCE_GAP_INTELLIGENCE_REGISTRY) {
   assert(record.gapId.trim().length > 0, 'Evidence gap record must have gapId.');
   assert(record.label.trim().length > 0, `${record.gapId} must have label.`);
   assert(record.hazardDomains.length > 0, `${record.gapId} must have hazard domains.`);
@@ -76,8 +76,8 @@ for (const result of [guarding, electrical, mobile, loto]) {
   assert(result.boundary.canBypassHumanReview === false, 'Evidence Gap Intelligence must not bypass human review.');
 }
 
-console.log('✅ SafeScope Evidence Gap Intelligence v1 validation passed.');
-console.log(`Evidence gap records: ${SAFESCOPE_EVIDENCE_GAP_INTELLIGENCE_REGISTRY.length}`);
+console.log('✅ HazLenz Evidence Gap Intelligence v1 validation passed.');
+console.log(`Evidence gap records: ${HAZLENZ_EVIDENCE_GAP_INTELLIGENCE_REGISTRY.length}`);
 console.log(`Guarding top gap: ${guarding.matches[0]?.record.gapId}`);
 console.log(`Electrical disposition: ${electrical.recommendedDisposition}`);
 console.log(`Mobile top gap: ${mobile.matches[0]?.record.gapId}`);

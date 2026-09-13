@@ -26,7 +26,7 @@ import { join } from 'path';
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME, applyStrictSchemaWrapper,
   stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   KR1_CASE_228C, CALL_PLAN_228C, instrumentDigest228C, runTruthPreflight228C,
 } from './lib/expert-228c-kr1-instrument';
@@ -39,14 +39,14 @@ import { checkScopeContainment } from './lib/expert-214-scope-containment';
 import { project210jDeclarations } from './lib/expert-210j-declaration-projection';
 
 import type { OwedFact, ArbitrationRequest }
-  from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+  from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import { createOwedFactLedger, factOf }
-  from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+  from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   consumeSettlementClaims, mintSettlementAuthority, settleByReviewedEvidence,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import { propertyAuthorityRequirementFor, mayBeSettledUnderPropertyAuthority }
-  from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+  from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 
 const EXECUTOR_VERSION = 'hazlenz.expert.228c.kr1-execution.v1';
 const OUT = join(__dirname, '..', '..', 'verification',

@@ -52,10 +52,10 @@ loadEnvFile(join(__dirname, '..', '.env'));
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME, applyStrictSchemaWrapper,
   stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { buildExpertUserPrompt, EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, stableStringify } from
-  '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_FIRST_PASS_VNEXT_SYSTEM_PROMPT, EXPERT_FIRST_PASS_INSTRUCTION_VNEXT_VERSION,
   buildExpertVNextWireSchema, UNRESOLVED_FACT_DECLARATIONS_FIELD,
@@ -67,9 +67,9 @@ import {
   computeFactKey, OWED_FACT_FIELD_PROVENANCE,
 } from './lib/expert-first-pass-owed-fact-projection';
 import { projectOwedFact } from
-  '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+  '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import { createOwedFactLedger } from
-  '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+  '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   EXPERT_VERIFIER_V3_2_SYSTEM_PROMPT, VERIFIER_V3_2_RESPONSE_SCHEMA,
   EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION, buildVerifierV3UserPrompt,

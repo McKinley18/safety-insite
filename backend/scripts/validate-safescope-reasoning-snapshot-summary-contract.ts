@@ -1,5 +1,5 @@
-import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
-import { SafeScopeReasoningSnapshot } from '../src/safescope-v2/snapshots/reasoning-snapshot.entity';
+import { ReasoningSnapshotService } from '../src/hazlenz/snapshots/reasoning-snapshot.service';
+import { HazLenzReasoningSnapshot } from '../src/hazlenz/snapshots/reasoning-snapshot.entity';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -57,7 +57,7 @@ const snapshot = {
   fullIntelligenceSnapshot: {
     largeRawPayload: true,
   },
-} as SafeScopeReasoningSnapshot;
+} as HazLenzReasoningSnapshot;
 
 const summary = service.buildSnapshotSummary(snapshot);
 
@@ -93,5 +93,5 @@ assert(summary?.reviewBoundary.requiresQualifiedReview === true, 'Summary must r
 const missing = service.buildSnapshotSummary(null);
 assert(missing === null, 'Null snapshot should return null summary.');
 
-console.log('✅ SafeScope reasoning snapshot summary contract validation passed.');
+console.log('✅ HazLenz reasoning snapshot summary contract validation passed.');
 console.log(`Snapshot summary mode: ${summary?.equipmentReasoningSummary?.primaryReasoningMode}`);

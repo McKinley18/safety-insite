@@ -31,11 +31,11 @@ import {
 } from './lib/expert-203-effective-grammar-identity';
 import {
   type OwedFactLedger, createOwedFactLedger, factOf, owedFact, transition,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
-import type { BindingCheckResult } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
+import type { BindingCheckResult } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   projectStructuralQuestions,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 import type { ProjectionInput } from './lib/expert-first-pass-owed-fact-projection';
 
 // ================================================================ harness

@@ -298,7 +298,7 @@ section('§210F EVIDENCE PRESERVED -- nothing frozen or persisted was touched');
       'CONFIRMATION-PREREGISTRATION-210D.json')))
     === '55510f9cc4e9424d543332e1c2f5db5a86d26757adba28d21730cc882420f30f');
   ok('PRES.pinned-v15-prompt-unchanged',
-    sha(readFileSync(join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz',
+    sha(readFileSync(join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz',
       'expert-prompt.ts')))
     === 'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694');
 }

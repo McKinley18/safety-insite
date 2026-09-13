@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
-import { KnowledgeReviewService } from '../src/safescope-v2/knowledge-intake/review/knowledge-review.service';
-import { ApprovedKnowledgeQueryService } from '../src/safescope-v2/knowledge-intake/query/approved-knowledge-query.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
+import { KnowledgeReviewService } from '../src/hazlenz/knowledge-intake/review/knowledge-review.service';
+import { ApprovedKnowledgeQueryService } from '../src/hazlenz/knowledge-intake/query/approved-knowledge-query.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -11,7 +11,7 @@ function assert(condition: boolean, message: string): void {
 
 const quarantinedDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/quarantined',
+  '../src/hazlenz/knowledge-intake/records/quarantined',
 );
 
 const fixturePath = path.join(quarantinedDir, '_fixture-approved-query-test.json');
@@ -96,7 +96,7 @@ try {
   const empty = queryService.query({ limit: 5 });
   assert(empty.matchCount >= 1, 'Empty approved query should return available approved records up to limit.');
 
-  console.log('✅ SafeScope approved knowledge query validation passed.');
+  console.log('✅ HazLenz approved knowledge query validation passed.');
 } finally {
   if (fs.existsSync(fixturePath)) {
     fs.unlinkSync(fixturePath);

@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 type ExpectedCase = {
   id: string;
@@ -44,7 +44,7 @@ const cases: ExpectedCase[] = [
   },
 ];
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 let failures = 0;
 
@@ -111,4 +111,4 @@ if (failures > 0) {
   throw new Error(`${failures} fire extinguisher/HazCom disambiguation regression case(s) failed.`);
 }
 
-console.log('✅ SafeScope fire extinguisher label disambiguation validation passed.');
+console.log('✅ HazLenz fire extinguisher label disambiguation validation passed.');

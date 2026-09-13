@@ -8,9 +8,9 @@
  * The ladder is recorded as one runnable file so the §251 conclusion is reproducible rather than
  * narrated. Re-running it re-spends; it is guarded behind an explicit flag.
  */
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
-import { buildExpert239WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+import { buildExpert239WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import { transmitted, inputFor, CASES_251 } from './analyze-251-wire-budget';
 import { buildCompact251WireSchema, slotProfile } from './analyze-251-compaction-ceiling';
 import { runSchemaProbe, summarize, probeCallCount, probeSpend } from './probe-251-strict-schema';

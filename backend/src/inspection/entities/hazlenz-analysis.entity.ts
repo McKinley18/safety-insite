@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, Primary
 import { Observation } from './observation.entity';
 import type {
   AnalysisProducer, AnalysisState,
-} from '../../safescope-v2/expert-hazlenz-product/expert-analysis-authority';
+} from '../../hazlenz/expert-hazlenz-product/expert-analysis-authority';
 
 @Entity('hazlenz_analyses')
 @Index('idx_hazlenz_analysis_observation_created', ['observationId', 'createdAt'])
@@ -62,7 +62,7 @@ export class HazLenzAnalysis {
    * §261 additive column 1 of 4 — THE TRUST BOUNDARY, MADE EXPLICIT IN DATA.
    *
    * `client_supplied` means the snapshot arrived in a request body: the deterministic HazLenz path
-   * calls /safescope-v2/classify, holds the result client-side and posts it back, and the server
+   * calls /hazlenz/classify, holds the result client-side and posts it back, and the server
    * does not establish that what it stores equals what it returned. That is acceptable for the
    * advisory deterministic path and it is what every row in this table was before §261.
    *

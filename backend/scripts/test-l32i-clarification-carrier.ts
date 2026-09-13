@@ -25,14 +25,14 @@ import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   L3_UNDECIDED_STATES,
   type ClarificationDecision, type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { NON_BLOCKING_VALIDATION_REASONS } from '../src/safescope-v2/reasoning-l3/validation-result.types';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { NON_BLOCKING_VALIDATION_REASONS } from '../src/hazlenz/reasoning-l3/validation-result.types';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
 import {
   L3_CARRIER_DECLARATION_ANCHOR, L3_SYSTEM_PROMPT, bindProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { L3_VALIDATOR_VERSION } from '../src/safescope-v2/reasoning-l3/validated-reasoning.types';
+} from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { L3_VALIDATOR_VERSION } from '../src/hazlenz/reasoning-l3/validated-reasoning.types';
 
 let passed = 0;
 const failures: string[] = [];
@@ -199,7 +199,7 @@ function activeCandidate(): HazardCandidate {
     && L3_UNDECIDED_STATES.includes('INSUFFICIENT_EVIDENCE') && L3_UNDECIDED_STATES.includes('UNKNOWN'),
     'B7 "the decision was not made" has exactly ONE definition, shared by both layers');
   const binderSrc = readFileSync(
-    join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3', 'semantic-evidence-binding.ts'), 'utf8');
+    join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3', 'semantic-evidence-binding.ts'), 'utf8');
   ok(binderSrc.includes('L3_UNDECIDED_STATES'),
     'B8 the semantic binder consumes that one definition rather than a second copy');
 }
@@ -352,7 +352,7 @@ function activeCandidate(): HazardCandidate {
 // F. CONTAINMENT -- the locked instrument and the customer path
 // =====================================================================================
 {
-  const src = join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3');
+  const src = join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3');
 
   // F1 -- THE LOCKED HARNESS'S INPUT. L3-2h's comparison rests on this exact prompt.
   //

@@ -1,6 +1,6 @@
-import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../src/safescope-v2/approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
-import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../src/safescope-v2/approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
-import { ApprovedKnowledgeRegistryWriteGuardService } from '../src/safescope-v2/approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
+import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../src/hazlenz/approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
+import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../src/hazlenz/approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
+import { ApprovedKnowledgeRegistryWriteGuardService } from '../src/hazlenz/approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
 
 const intakeEngine = new ApprovedSourceKnowledgeIntakeGovernanceService();
 const promotionEngine = new ApprovedKnowledgePromotionWorkflowGovernanceService();
@@ -249,7 +249,7 @@ async function main() {
     throw new Error(`${failures} approved-knowledge-registry-write-guard validation case(s) failed.`);
   }
 
-  console.log('✅ SafeScope approved knowledge registry write guard validation passed.');
+  console.log('✅ HazLenz approved knowledge registry write guard validation passed.');
 }
 
 main().catch((error) => {

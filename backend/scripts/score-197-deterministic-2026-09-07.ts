@@ -35,7 +35,7 @@ import {
 } from './lib/expert-first-pass-owed-fact-projection';
 import { citationTokens } from './lib/expert-governed-citation-reuse';
 import { createOwedFactLedger } from
-  '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+  '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 
 const ROOT = join(__dirname, '..', '..');
 const EVID = join(ROOT, 'verification', 'expert-hazlenz-structured-e2e-validation-2026-09-07');

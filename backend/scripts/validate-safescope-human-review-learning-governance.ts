@@ -1,10 +1,10 @@
-import { ObservationUnderstandingService } from '../src/safescope-v2/understanding/observation-understanding.service';
-import { CausalRiskService } from '../src/safescope-v2/causal-risk/causal-risk.service';
-import { EvidenceSufficiencyService } from '../src/safescope-v2/evidence-sufficiency-core/evidence-sufficiency.service';
-import { ConfidenceGovernanceService } from '../src/safescope-v2/confidence-governance/confidence-governance.service';
-import { OutputPolicyService } from '../src/safescope-v2/output-policy/output-policy.service';
-import { DefensibleCorrectiveActionService } from '../src/safescope-v2/defensible-corrective-action/dca.service';
-import { HumanReviewLearningGovernanceService } from '../src/safescope-v2/human-review-learning-governance/hrlg.service';
+import { ObservationUnderstandingService } from '../src/hazlenz/understanding/observation-understanding.service';
+import { CausalRiskService } from '../src/hazlenz/causal-risk/causal-risk.service';
+import { EvidenceSufficiencyService } from '../src/hazlenz/evidence-sufficiency-core/evidence-sufficiency.service';
+import { ConfidenceGovernanceService } from '../src/hazlenz/confidence-governance/confidence-governance.service';
+import { OutputPolicyService } from '../src/hazlenz/output-policy/output-policy.service';
+import { DefensibleCorrectiveActionService } from '../src/hazlenz/defensible-corrective-action/dca.service';
+import { HumanReviewLearningGovernanceService } from '../src/hazlenz/human-review-learning-governance/hrlg.service';
 
 const observationEngine = new ObservationUnderstandingService();
 const causalEngine = new CausalRiskService();
@@ -233,7 +233,7 @@ async function main() {
     throw new Error(`${failures} human-review-learning-governance validation case(s) failed.`);
   }
 
-  console.log('✅ SafeScope human review learning governance validation passed.');
+  console.log('✅ HazLenz human review learning governance validation passed.');
 }
 
 main().catch((error) => {

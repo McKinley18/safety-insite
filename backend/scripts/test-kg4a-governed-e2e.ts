@@ -93,7 +93,7 @@ async function main() {
 
   // ---------------------------------------------------------------- classify
   section('Phase 3/4 — what the allowlisted customer actually receives');
-  const classify = await call(tokenA, 'POST', '/safescope-v2/classify', { text: OBSERVATION, scopes: ['msha'] });
+  const classify = await call(tokenA, 'POST', '/hazlenz/classify', { text: OBSERVATION, scopes: ['msha'] });
   assert(classify.status === 201 || classify.status === 200, `classify succeeded (${classify.status})`);
   const decisions: any[] = classify.body?.standardDecisions || [];
   assert(decisions.length > 0, `the analysis produced ${decisions.length} standard decisions`);
@@ -136,7 +136,7 @@ async function main() {
 
   // ---------------------------------------------------------------- tenancy
   section('Phase 18 — enablement does not leak between accounts');
-  const classifyB = await call(tokenB, 'POST', '/safescope-v2/classify', { text: OBSERVATION, scopes: ['msha'] });
+  const classifyB = await call(tokenB, 'POST', '/hazlenz/classify', { text: OBSERVATION, scopes: ['msha'] });
   const decisionsB: any[] = classifyB.body?.standardDecisions || [];
   assert(decisionsB.length > 0, `the non-allowlisted account also gets a full analysis (${decisionsB.length} decisions)`);
   assert(decisionsB.length > 0 && decisionsB.every(d => d.governedDeliveryState === undefined),

@@ -70,7 +70,7 @@ const doc = {
   boundaryVersion: VERIFIER_CITATION_BOUNDARY_VERSION,
   canonicalMechanism: {
     name: 'CITATION_SHAPED_PATTERN',
-    source: 'backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts',
+    source: 'backend/src/hazlenz/expert-hazlenz/expert-contract.types.ts',
     pattern: '\\b\\d{2}\\s*CFR\\s*\\d+',
     reused: true,
     invented: false,

@@ -18,7 +18,7 @@ import { createHash } from 'crypto';
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
-import { hardenedFixtureByRowId } from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+import { hardenedFixtureByRowId } from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 import { HUMAN_SEMANTIC_TARGETS } from './lib/expert-human-semantic-targets-2026-09-04';
 
 const ROOT = join(__dirname, '..', '..');
@@ -77,7 +77,7 @@ function main(): void {
   w('## 1. Exact observation');
   w();
   w(`Fixture file sha256 \`${sha256File(join(ROOT,
-    'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))}\``);
+    'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))}\``);
   w();
   w('> ' + observation);
   w();

@@ -107,7 +107,7 @@ assert(
 
 assert(
   existsSync(join(backendRoot, 'scripts', 'verify-safescope-production-readiness.ts')),
-  'Backend SafeScope production readiness script is missing.',
+  'Backend HazLenz production readiness script is missing.',
 );
 
 if (isProduction) {

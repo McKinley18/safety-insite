@@ -147,7 +147,7 @@ function main(): void {
     productionBuild: {
       command: 'npx tsc --noEmit',
       errors: buildErrors.length,
-      allowedError: 'src/safescope-v2/expert-hazlenz/contract/expert-237-posture-contract.ts(193,47) '
+      allowedError: 'src/hazlenz/expert-hazlenz/contract/expert-237-posture-contract.ts(193,47) '
         + 'TS2552 POSTURE_REF_KINDS_237',
       unexpectedErrors: unexpectedTs,
       status: unexpectedTs.length === 0

@@ -21,16 +21,16 @@ import {
 import {
   checkBindingDeclarations, applyAdmittedDeclarations, bindingSideEffects,
   type BindingCheckResult, type ClarificationDeclaration,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   type OwedFactLedger, createOwedFactLedger, factOf, owedFact, preservationViolations, transition,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   OWED_FACT_STATUSES, REQUIRED_AUTHORITY, type OwedFactStatus,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   projectStructuralQuestions, type StructuralQuestion,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 
 // ================================================================ harness
 

@@ -1,4 +1,4 @@
-import { SafeScopeStandardsIntentIntelligenceService } from '../src/safescope-v2/standards-intent-intelligence/standards-intent-intelligence.service';
+import { HazLenzStandardsIntentIntelligenceService } from '../src/hazlenz/standards-intent-intelligence/standards-intent-intelligence.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: any, message: string) {
   }
 }
 
-const service = new SafeScopeStandardsIntentIntelligenceService();
+const service = new HazLenzStandardsIntentIntelligenceService();
 
 const scenarios = [
   {
@@ -245,5 +245,5 @@ for (const scenario of scenarios) {
   });
 }
 
-console.log('✅ SafeScope standards intent gauntlet passed.');
+console.log('✅ HazLenz standards intent gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

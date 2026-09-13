@@ -1,4 +1,4 @@
-import { SOURCE_AUTHORITY_REGISTRY } from '../src/safescope-v2/brain/source-governance/source-authority.registry';
+import { SOURCE_AUTHORITY_REGISTRY } from '../src/hazlenz/brain/source-governance/source-authority.registry';
 
 function validate() {
   console.log("Validating Source Authority Registry...");

@@ -1,6 +1,6 @@
-import { ApprovedKnowledgePromotionService } from '../src/safescope-v2/approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.service';
-import { ApprovedKnowledgeRecord } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-record.types';
-import { PromotionMetadata } from '../src/safescope-v2/approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.types';
+import { ApprovedKnowledgePromotionService } from '../src/hazlenz/approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.service';
+import { ApprovedKnowledgeRecord } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-record.types';
+import { PromotionMetadata } from '../src/hazlenz/approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.types';
 
 async function validate() {
   const service = new ApprovedKnowledgePromotionService();

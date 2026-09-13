@@ -1,4 +1,4 @@
-import { SafeScopeDecisionConfidenceService } from '../src/safescope-v2/brain/decision-confidence/decision-confidence.service';
+import { HazLenzDecisionConfidenceService } from '../src/hazlenz/brain/decision-confidence/decision-confidence.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const service = new SafeScopeDecisionConfidenceService();
+const service = new HazLenzDecisionConfidenceService();
 
 const strong = service.assess({
   nativePrimaryCitation: '30 CFR 56.14107',
@@ -83,7 +83,7 @@ for (const result of [strong, misaligned, hold]) {
   assert(result.boundary.canBypassHumanReview === false, 'Decision Confidence must not bypass human review.');
 }
 
-console.log('✅ SafeScope Decision Confidence v1 validation passed.');
+console.log('✅ HazLenz Decision Confidence v1 validation passed.');
 console.log(`Strong score: ${strong.defensibilityScore} / ${strong.confidenceLevel}`);
 console.log(`Misaligned score: ${misaligned.defensibilityScore} / ${misaligned.confidenceLevel}`);
 console.log(`Hold score: ${hold.defensibilityScore} / ${hold.confidenceLevel}`);

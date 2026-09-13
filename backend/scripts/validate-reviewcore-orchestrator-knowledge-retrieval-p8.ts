@@ -1,6 +1,6 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
-const orchestrator = new SafeScopeReasoningOrchestratorService();
+const orchestrator = new HazLenzReasoningOrchestratorService();
 
 const testCases = [
   { observation: 'conveyor nip point', domain: 'machine_guarding' },

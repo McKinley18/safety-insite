@@ -2,17 +2,17 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 import {
-  InMemoryReviewCoreKnowledgeReviewQueuePersistenceRepository,
-  ReviewCoreKnowledgeReviewQueueAuditEntity,
-  ReviewCoreKnowledgeReviewQueuePersistenceAdapter,
-  ReviewCoreKnowledgeReviewQueueProvider,
-  ReviewCoreKnowledgeReviewQueueRecordEntity,
-  ReviewCoreQueueActor,
-} from '../src/safescope-v2/knowledge-architecture';
+  InMemoryKnowledgeReviewQueuePersistenceRepository,
+  KnowledgeReviewQueueAuditEntity,
+  KnowledgeReviewQueuePersistenceAdapter,
+  KnowledgeReviewQueueProvider,
+  KnowledgeReviewQueueRecordEntity,
+  KnowledgeQueueActor,
+} from '../src/hazlenz/knowledge-architecture';
 import {
-  ReviewCoreKnowledgeAuthorityTier,
-  ReviewCoreKnowledgeRecordStatus,
-} from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-record.types';
+  KnowledgeAuthorityTier,
+  KnowledgeRecordStatus,
+} from '../src/hazlenz/knowledge-architecture/knowledge-record.types';
 
 const repoRoot = path.resolve(__dirname, '../..');
 
@@ -36,29 +36,29 @@ async function runValidation() {
   console.log('--- Starting P16 Persistence Validation ---');
 
   [
-    'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.persistence-types.ts',
-    'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.record.entity.ts',
-    'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.audit.entity.ts',
-    'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.repository.ts',
-    'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.persistence-adapter.ts',
-    'backend/scripts/validate-reviewcore-knowledge-review-queue-persistence-p16.ts',
-    'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-persistence-p16-summary.md',
+    'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.persistence-types.ts',
+    'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.record.entity.ts',
+    'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.audit.entity.ts',
+    'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.repository.ts',
+    'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.persistence-adapter.ts',
+    'backend/scripts/validate-knowledge-review-queue-persistence-p16.ts',
+    'project-docs/historical/08-audits/knowledge-review-queue-persistence-p16-summary.md',
   ].forEach(assertExists);
 
-  const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/safescope-v2/knowledge-architecture/index.ts'), 'utf8');
+  const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/hazlenz/knowledge-architecture/index.ts'), 'utf8');
   [
-    'reviewcore-knowledge-review-queue.persistence-types',
-    'reviewcore-knowledge-review-queue.record.entity',
-    'reviewcore-knowledge-review-queue.audit.entity',
-    'reviewcore-knowledge-review-queue.repository',
-    'reviewcore-knowledge-review-queue.persistence-adapter',
+    'knowledge-review-queue.persistence-types',
+    'knowledge-review-queue.record.entity',
+    'knowledge-review-queue.audit.entity',
+    'knowledge-review-queue.repository',
+    'knowledge-review-queue.persistence-adapter',
   ].forEach((token) => assert.ok(indexText.includes(token), `Missing index export for ${token}`));
 
-  assert.ok(ReviewCoreKnowledgeReviewQueueRecordEntity, 'Record entity should import');
-  assert.ok(ReviewCoreKnowledgeReviewQueueAuditEntity, 'Audit entity should import');
+  assert.ok(KnowledgeReviewQueueRecordEntity, 'Record entity should import');
+  assert.ok(KnowledgeReviewQueueAuditEntity, 'Audit entity should import');
 
-  const repository = new InMemoryReviewCoreKnowledgeReviewQueuePersistenceRepository();
-  const adapter = new ReviewCoreKnowledgeReviewQueuePersistenceAdapter(repository);
+  const repository = new InMemoryKnowledgeReviewQueuePersistenceRepository();
+  const adapter = new KnowledgeReviewQueuePersistenceAdapter(repository);
   repository.resetForValidation();
 
   const readiness = adapter.persistenceReadiness();
@@ -122,10 +122,10 @@ async function runValidation() {
   await repository.archiveRecord('row-1');
   assert.equal((await repository.listActiveRetrievalRecords()).length, 0, 'archived records must not remain active');
 
-  const admin: ReviewCoreQueueActor = { actorId: 'p16-admin', role: 'admin', planTier: 'company' };
-  const providerRepository = new InMemoryReviewCoreKnowledgeReviewQueuePersistenceRepository();
-  const providerAdapter = new ReviewCoreKnowledgeReviewQueuePersistenceAdapter(providerRepository);
-  const provider = new ReviewCoreKnowledgeReviewQueueProvider(providerAdapter as any);
+  const admin: KnowledgeQueueActor = { actorId: 'p16-admin', role: 'admin', planTier: 'company' };
+  const providerRepository = new InMemoryKnowledgeReviewQueuePersistenceRepository();
+  const providerAdapter = new KnowledgeReviewQueuePersistenceAdapter(providerRepository);
+  const provider = new KnowledgeReviewQueueProvider(providerAdapter as any);
   provider.resetForValidation();
 
   const draft = provider.createDraft({
@@ -133,10 +133,10 @@ async function runValidation() {
     content: 'Source-backed record for persistence adapter validation.',
     domain: 'machine_guarding',
     tags: ['machine_guarding'],
-    authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
+    authorityTier: KnowledgeAuthorityTier.CORE,
     primaryCitation: '30 CFR 56.14107(a)',
     fingerprint: 'p16-adapter-approved',
-    status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+    status: KnowledgeRecordStatus.PENDING_VALIDATION,
   }, admin) as any;
 
   const approved = provider.approve(draft.data.result.id, {}, admin) as any;
@@ -153,9 +153,9 @@ async function runValidation() {
     content: 'Missing source should block active retrieval.',
     domain: 'machine_guarding',
     tags: ['machine_guarding'],
-    authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
+    authorityTier: KnowledgeAuthorityTier.CORE,
     fingerprint: 'p16-blocked-missing-source',
-    status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+    status: KnowledgeRecordStatus.PENDING_VALIDATION,
   }, admin) as any;
   const blocked = provider.approve(blockedDraft.data.result.id, {}, admin) as any;
   assert.equal(blocked.data.result.approved, false, 'blocked approval should remain denied');
@@ -165,25 +165,25 @@ async function runValidation() {
   assert.ok(deniedEvents.length >= 1, 'denied audit event should persist');
   assert.equal((await providerAdapter.listActiveRetrievalRecords()).some((record) => record.id === blockedDraft.data.result.id), false, 'blocked record must not become active');
 
-  const noArgProvider = new ReviewCoreKnowledgeReviewQueueProvider();
+  const noArgProvider = new KnowledgeReviewQueueProvider();
   noArgProvider.resetForValidation();
   const noArgQueue = noArgProvider.listQueue(admin) as any;
   assert.ok(noArgQueue.guardrails, 'P15 no-arg provider must still work');
 
   const snapshot = await providerAdapter.exportPersistenceSnapshot();
-  const rehydratedRepository = new InMemoryReviewCoreKnowledgeReviewQueuePersistenceRepository(snapshot);
-  const rehydratedAdapter = new ReviewCoreKnowledgeReviewQueuePersistenceAdapter(rehydratedRepository);
+  const rehydratedRepository = new InMemoryKnowledgeReviewQueuePersistenceRepository(snapshot);
+  const rehydratedAdapter = new KnowledgeReviewQueuePersistenceAdapter(rehydratedRepository);
   const rehydratedSnapshot = await rehydratedAdapter.exportPersistenceSnapshot();
 
   assert.deepEqual(rehydratedSnapshot.activeRetrievalRecordIds, snapshot.activeRetrievalRecordIds, 'rehydrated active retrieval IDs must match');
   assert.equal((await rehydratedAdapter.listActiveRetrievalRecords()).length, 1, 'rehydrated active rows must match original active rows');
   assertNoProhibitedLanguage({ snapshot, rehydratedSnapshot, readiness, approved, blocked });
 
-  console.log('P16 ReviewCore Persistence Validation Successful!');
+  console.log('P16 Knowledge Persistence Validation Successful!');
 }
 
 runValidation().catch((error) => {
-  console.error('P16 ReviewCore Persistence Validation Failed');
+  console.error('P16 Knowledge Persistence Validation Failed');
   console.error(error);
   process.exit(1);
 });

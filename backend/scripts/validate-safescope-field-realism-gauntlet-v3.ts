@@ -1,4 +1,4 @@
-import { SafeScopeIntelligenceOrchestrator } from "../src/safescope-v2/orchestration/intelligence-orchestrator.service";
+import { HazLenzIntelligenceOrchestrator } from "../src/hazlenz/orchestration/intelligence-orchestrator.service";
 
 type RealismCaseV3 = {
   id: string;
@@ -30,8 +30,8 @@ const cases: RealismCaseV3[] = [
 ];
 
 async function runV3Gauntlet() {
-  console.log(`Starting SafeScope Field Realism Gauntlet v3 with ${cases.length} scenarios...`);
-  const orchestrator = new SafeScopeIntelligenceOrchestrator();
+  console.log(`Starting HazLenz Field Realism Gauntlet v3 with ${cases.length} scenarios...`);
+  const orchestrator = new HazLenzIntelligenceOrchestrator();
   
   for (const scenario of cases) {
     console.log(`Validating ${scenario.id}: ${scenario.title}`);
@@ -58,7 +58,7 @@ async function runV3Gauntlet() {
     // Validate domain
     assert(result.scenarioIntelligence?.scenarioFamilyId !== undefined, `Missing scenario family for ${scenario.id}`);
     
-    // Validate evidence gaps across current ReviewCore output locations.
+    // Validate evidence gaps across current Knowledge output locations.
     if (scenario.requireEvidenceGap) {
       const evidenceGapCount =
         (Array.isArray(result.evidenceGapQuestions) ? result.evidenceGapQuestions.length : 0) +
@@ -70,7 +70,7 @@ async function runV3Gauntlet() {
     }
   }
   
-  console.log("SafeScope Field Realism Gauntlet v3 validation passed.");
+  console.log("HazLenz Field Realism Gauntlet v3 validation passed.");
 }
 
 runV3Gauntlet();

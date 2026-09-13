@@ -45,7 +45,7 @@ async function main() {
     guard,
     'auditTrail',
     { planCode: 'basic', type: 'basic' },
-    'Basic SafeScope Knowledge access',
+    'Basic HazLenz Knowledge access',
   );
 
   assertBlocks(
@@ -66,7 +66,7 @@ async function main() {
     guard,
     'auditTrail',
     { planCode: 'company', type: 'company' },
-    'Company SafeScope Knowledge access',
+    'Company HazLenz Knowledge access',
   );
 
   assertAllows(

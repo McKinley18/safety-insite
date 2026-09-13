@@ -458,12 +458,12 @@ const steps: ValidationStep[] = [
   {
     label: 'Golden domain intelligence tests',
     command: 'npx',
-    args: ['ts-node', 'src/safescope-v2/tests/golden-domain-intelligence-tests.ts'],
+    args: ['ts-node', 'src/hazlenz/tests/golden-domain-intelligence-tests.ts'],
   },
   {
     label: 'Golden operational reasoning tests',
     command: 'npx',
-    args: ['ts-node', 'src/safescope-v2/tests/golden-operational-reasoning-tests.ts'],
+    args: ['ts-node', 'src/hazlenz/tests/golden-operational-reasoning-tests.ts'],
   },
   {
     label: 'Precision batch 001',
@@ -488,7 +488,7 @@ const steps: ValidationStep[] = [
   {
     label: 'Understanding engine',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-understanding-engine.ts'],
+    args: ['ts-node', 'scripts/validate-hazlenz-understanding-engine.ts'],
   },
   {
     label: 'Main output observation understanding',
@@ -549,7 +549,7 @@ function runStep(step: ValidationStep, index: number): void {
 }
 
 function main(): void {
-  console.log('--- Starting SafeScope Full Validation Suite ---');
+  console.log('--- Starting HazLenz Full Validation Suite ---');
 
   steps.forEach(runStep);
 
@@ -557,7 +557,7 @@ function main(): void {
 
   console.log('');
   console.log(`✅ ${steps.length}/${steps.length} validation steps passed.`);
-  console.log('✅ SafeScope full validation suite passed.');
+  console.log('✅ HazLenz full validation suite passed.');
 }
 
 main();

@@ -9,9 +9,9 @@
  *
  * Local provider only. $0.00.
  */
-import { OllamaExpertProvider } from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { GROUNDING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/grounding-fixtures';
+import { OllamaExpertProvider } from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { GROUNDING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/grounding-fixtures';
 
 const WANTED = (process.env.DIAG_CASES || 'R5,H7,H8').split(',');
 const REPEATS = Number(process.env.DIAG_REPEATS || 2);

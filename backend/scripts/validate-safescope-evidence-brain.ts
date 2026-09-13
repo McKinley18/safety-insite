@@ -1,5 +1,5 @@
-import { SAFESCOPE_EVIDENCE_BRAIN_REGISTRY } from '../src/safescope-v2/brain/evidence-brain/evidence-knowledge.registry';
-import { SafeScopeEvidenceBrainService } from '../src/safescope-v2/brain/evidence-brain/evidence-brain.service';
+import { HAZLENZ_EVIDENCE_BRAIN_REGISTRY } from '../src/hazlenz/brain/evidence-brain/evidence-knowledge.registry';
+import { HazLenzEvidenceBrainService } from '../src/hazlenz/brain/evidence-brain/evidence-brain.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -9,7 +9,7 @@ function assert(condition: boolean, message: string): void {
 
 const ids = new Set<string>();
 
-for (const record of SAFESCOPE_EVIDENCE_BRAIN_REGISTRY) {
+for (const record of HAZLENZ_EVIDENCE_BRAIN_REGISTRY) {
   assert(record.evidenceId.trim().length > 0, 'Every evidence record must have an evidenceId.');
   assert(!ids.has(record.evidenceId), `Duplicate evidenceId: ${record.evidenceId}`);
   ids.add(record.evidenceId);
@@ -31,7 +31,7 @@ for (const record of SAFESCOPE_EVIDENCE_BRAIN_REGISTRY) {
   }
 }
 
-const service = new SafeScopeEvidenceBrainService();
+const service = new HazLenzEvidenceBrainService();
 
 const machineGuardingQuery = service.query({
   hazardDomain: 'machine_guarding',
@@ -110,8 +110,8 @@ assert(
   'Electrical query should rank exposed live parts evidence first.',
 );
 
-console.log('✅ SafeScope Evidence Brain validation passed.');
-console.log(`Evidence Brain records: ${SAFESCOPE_EVIDENCE_BRAIN_REGISTRY.length}`);
+console.log('✅ HazLenz Evidence Brain validation passed.');
+console.log(`Evidence Brain records: ${HAZLENZ_EVIDENCE_BRAIN_REGISTRY.length}`);
 console.log(`Top machine guarding query: ${machineGuardingQuery.matches[0]?.record.evidenceId}`);
 console.log(`Top silica query: ${silicaQuery.matches[0]?.record.evidenceId}`);
 console.log(`Top confined-space query: ${confinedQuery.matches[0]?.record.evidenceId}`);

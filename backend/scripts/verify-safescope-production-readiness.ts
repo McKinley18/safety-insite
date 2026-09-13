@@ -46,111 +46,111 @@ const steps: Step[] = [
   {
     label: 'Standards scope-fit ranking',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-standards-scope-fit-ranking.ts'],
+    args: ['ts-node', 'scripts/validate-hazlenz-standards-scope-fit-ranking.ts'],
   },
   {
-    label: 'SafeScope Brain snapshot builder',
+    label: 'HazLenz Brain snapshot builder',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-brain-snapshot-builder.ts'],
+    args: ['ts-node', 'scripts/validate-hazlenz-brain-snapshot-builder.ts'],
   },
   {
-    label: 'SafeScope Brain query orchestrator',
+    label: 'HazLenz Brain query orchestrator',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-brain-query-orchestrator.ts'],
+    args: ['ts-node', 'scripts/validate-hazlenz-brain-query-orchestrator.ts'],
   },
   {
-    label: 'SafeScope Canonical Pipeline Contract',
+    label: 'HazLenz Canonical Pipeline Contract',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-canonical-pipeline-contract.ts'],
   },
   {
-    label: 'SafeScope Field Readiness Routing',
+    label: 'HazLenz Field Readiness Routing',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-readiness-routing.ts'],
   },
   {
-    label: 'SafeScope Field Output Contract',
+    label: 'HazLenz Field Output Contract',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-output-contract.ts'],
   },
   {
-    label: 'SafeScope Field Output Scenarios',
+    label: 'HazLenz Field Output Scenarios',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-output-scenarios.ts'],
   },
   {
-    label: 'SafeScope Field Realism Gauntlet',
+    label: 'HazLenz Field Realism Gauntlet',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-realism-gauntlet.ts'],
   },
   {
-    label: 'SafeScope Field Realism Pack v2',
+    label: 'HazLenz Field Realism Pack v2',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-realism-pack-v2.ts'],
   },
   {
-    label: 'SafeScope Evidence Brain',
+    label: 'HazLenz Evidence Brain',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-evidence-brain.ts'],
   },
   {
-    label: 'SafeScope Evidence Gap Intelligence',
+    label: 'HazLenz Evidence Gap Intelligence',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-evidence-gap-intelligence.ts'],
   },
   {
-    label: 'SafeScope Decision Confidence',
+    label: 'HazLenz Decision Confidence',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-decision-confidence.ts'],
   },
   {
-    label: 'SafeScope Learning Memory',
+    label: 'HazLenz Learning Memory',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-learning-memory.ts'],
   },
   {
-    label: 'SafeScope Improvement Candidate Engine',
+    label: 'HazLenz Improvement Candidate Engine',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-improvement-candidate-engine.ts'],
   },
   {
-    label: 'SafeScope Controls Brain',
+    label: 'HazLenz Controls Brain',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-controls-brain.ts'],
   },
   {
-    label: 'SafeScope Mechanism Brain',
+    label: 'HazLenz Mechanism Brain',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-mechanism-brain.ts'],
+    args: ['ts-node', 'scripts/validate-hazlenz-mechanism-brain.ts'],
   },
   {
-    label: 'SafeScope Regulatory Brain',
+    label: 'HazLenz Regulatory Brain',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-regulatory-brain.ts'],
   },
   {
-    label: 'SafeScope Scenario Disambiguation',
+    label: 'HazLenz Scenario Disambiguation',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-scenario-disambiguation.ts'],
   },
 
   {
-    label: 'SafeScope Brain foundation',
+    label: 'HazLenz Brain foundation',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-brain-foundation.ts'],
+    args: ['ts-node', 'scripts/validate-hazlenz-brain-foundation.ts'],
   },
   {
-    label: 'SafeScope Brain alignment audit',
+    label: 'HazLenz Brain alignment audit',
     command: 'npx',
-    args: ['ts-node', 'scripts/audit-safescope-brain-alignment.ts'],
+    args: ['ts-node', 'scripts/audit-hazlenz-brain-alignment.ts'],
   },
   {
-    label: 'SafeScope Brain coverage matrix',
+    label: 'HazLenz Brain coverage matrix',
     command: 'npx',
-    args: ['ts-node', 'scripts/audit-safescope-brain-coverage-matrix.ts'],
+    args: ['ts-node', 'scripts/audit-hazlenz-brain-coverage-matrix.ts'],
   },
   {
-    label: 'SafeScope finding audit',
+    label: 'HazLenz finding audit',
     command: 'npm',
     args: ['run', 'audit:safescope-findings'],
   },
@@ -161,7 +161,7 @@ const steps: Step[] = [
   },
 ];
 
-console.log('\nSafeScope Production Readiness Verification');
+console.log('\nHazLenz Production Readiness Verification');
 console.log('==========================================\n');
 
 for (const step of steps) {
@@ -182,5 +182,5 @@ for (const step of steps) {
 }
 
 console.log('\n==========================================');
-console.log('✅ SafeScope production readiness verification passed.');
+console.log('✅ HazLenz production readiness verification passed.');
 console.log('==========================================\n');

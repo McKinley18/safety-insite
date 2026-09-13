@@ -140,7 +140,7 @@ async function run() {
     const observationId = String(persisted.body.id);
     // The request shape the product sends: the inspection is named, so the server is the authority
     // for both jurisdiction and governing release.
-    const classify = await call('POST', '/safescope-v2/classify',
+    const classify = await call('POST', '/hazlenz/classify',
       { text: observation.text, inspectionId }, token, 201);
     await call('POST', `/inspections/observations/${observationId}/analyses`, {
       engineVersion: 'release-scoped-acceptance',
@@ -366,7 +366,7 @@ async function run() {
 
   const reopenedObservation = await call('POST', `/inspections/${inspectionId}/observations`,
     { rawText: OBSERVATIONS[0].text, evidenceSource: 'direct_observation' }, token, 201);
-  const reclassify = await call('POST', '/safescope-v2/classify',
+  const reclassify = await call('POST', '/hazlenz/classify',
     { text: OBSERVATIONS[0].text, inspectionId }, token, 201);
   await call('POST', `/inspections/observations/${String(reopenedObservation.body.id)}/analyses`, {
     engineVersion: 'release-scoped-acceptance',
@@ -406,7 +406,7 @@ async function run() {
   const freshObservation = await call('POST', `/inspections/${freshId}/observations`,
     { rawText: OBSERVATIONS[0].text, evidenceSource: 'direct_observation' }, token, 201);
   void freshObservation;
-  await call('POST', '/safescope-v2/classify',
+  await call('POST', '/hazlenz/classify',
     { text: OBSERVATIONS[0].text, inspectionId: freshId }, token, 201);
   const freshBinding = await ds.query(
     `SELECT "knowledgeReleaseId" FROM inspection WHERE id = $1`, [freshId]);

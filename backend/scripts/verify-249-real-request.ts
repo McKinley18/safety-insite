@@ -17,15 +17,15 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, buildAnthropicRequestBody,
   EXPERT_TOOL_NAME,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody, envelopeBoundOptions, EXPERT_REQUEST_ENVELOPE,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const OUT = join(__dirname, '..', '..', 'verification',
   'expert-hazlenz-249-executable-binding-and-identity-hardening-2026-09-12');
@@ -129,7 +129,7 @@ async function main(): Promise<void> {
     method: 'the production entry point runExpertHazLenzAnalysis was driven with a capturing '
       + 'transport; the captured bytes were passed through the same envelope and provider-native '
       + 'functions the hosted transport calls. Nothing was reimplemented and nothing was sent.',
-    entryPoint: 'src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts',
+    entryPoint: 'src/hazlenz/expert-hazlenz/expert-hazlenz-analysis.ts',
     invokedContractVersion: result.contractVersion,
     requirements: {
       discriminatedUnion: prod.discriminatedUnionPresent ? 'PRESENT' : 'ABSENT',

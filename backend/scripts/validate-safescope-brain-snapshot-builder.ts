@@ -1,5 +1,5 @@
-import { SafeScopeBrainSnapshotBuilderService } from '../src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.service';
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzBrainSnapshotBuilderService } from '../src/hazlenz/brain/snapshot-builder/brain-snapshot-builder.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
   }
 }
 
-const snapshotBuilder = new SafeScopeBrainSnapshotBuilderService();
+const snapshotBuilder = new HazLenzBrainSnapshotBuilderService();
 
 const directSnapshot = snapshotBuilder.build({
   hazardObservation:
@@ -59,7 +59,7 @@ assert(
   `Direct snapshot should understand the primary observation entity as conveyor, got ${directSnapshot.situationalAwarenessPacket.summary.observationPrimaryEntityLabel}.`,
 );
 
-const orchestrator = new SafeScopeReasoningOrchestratorService();
+const orchestrator = new HazLenzReasoningOrchestratorService();
 
 const reasoningResult = orchestrator.reason({
   hazardObservation:
@@ -107,7 +107,7 @@ assert(
   'Reasoning Brain snapshot should provide evidence questions.',
 );
 
-console.log('✅ SafeScope Brain Snapshot Builder validation passed.');
+console.log('✅ HazLenz Brain Snapshot Builder validation passed.');
 console.log(`Direct snapshot citation: ${directSnapshot.situationalAwarenessPacket.summary.likelyCitation}`);
 console.log(`Reasoning snapshot citation: ${reasoningResult.brainSnapshot.situationalAwarenessPacket.summary.likelyCitation}`);
 console.log(`Reasoning snapshot mechanism: ${reasoningResult.brainSnapshot.situationalAwarenessPacket.summary.likelyMechanism}`);

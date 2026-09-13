@@ -1,5 +1,5 @@
-import { SAFESCOPE_CURATED_STANDARDS } from '../../safescope-v2/standards/safescope-standards.data';
-import { STANDARDS_INTELLIGENCE_SEED } from '../../safescope-v2/standards-intelligence/standards-intelligence.seed';
+import { HAZLENZ_CURATED_STANDARDS } from '../../hazlenz/standards/hazlenz-standards.data';
+import { STANDARDS_INTELLIGENCE_SEED } from '../../hazlenz/standards-intelligence/standards-intelligence.seed';
 import {
   normalizeAgency,
   normalizeCitationForMatch,
@@ -40,7 +40,7 @@ import { releaseCitationKey } from './citation-identity';
  * into a release, derived PURELY from version-controlled data, with ZERO database access.
  *
  * Its inputs are the two authoritative source artifacts that already existed and were already
- * reviewed -- `SAFESCOPE_CURATED_STANDARDS` and `STANDARDS_INTELLIGENCE_SEED` -- and it applies
+ * reviewed -- `HAZLENZ_CURATED_STANDARDS` and `STANDARDS_INTELLIGENCE_SEED` -- and it applies
  * exactly the projection the sync script applies, imported from
  * `standards-intelligence-projection.ts` rather than reimplemented. A candidate record and a
  * synced corpus row are therefore the same projection by construction. That equality is not
@@ -185,11 +185,11 @@ export function buildGovernedSourceSet(): GovernedSourceSet {
   const byExactCitation = new Map<string, GovernedSourceRecord>();
   const byNormalizedCitation = new Map<string, GovernedSourceRecord>();
 
-  // ---- Stage 1: the curated SafeScope standards, matched on EXACT (agency, citation).
-  // `safescope-standards.seed.ts` uses `repo.findOne({ agencyCode, citation })`, an exact match,
+  // ---- Stage 1: the curated HazLenz standards, matched on EXACT (agency, citation).
+  // `hazlenz-standards.seed.ts` uses `repo.findOne({ agencyCode, citation })`, an exact match,
   // so two curated entries differing only in citation format would be two records. They do not,
   // but replaying the real matcher rather than a tidier one keeps this a reproduction.
-  for (const standard of SAFESCOPE_CURATED_STANDARDS as Array<Record<string, any>>) {
+  for (const standard of HAZLENZ_CURATED_STANDARDS as Array<Record<string, any>>) {
     const exactKey = `${standard.agencyCode}::${standard.citation}`;
     const existing = byExactCitation.get(exactKey);
     if (existing) {

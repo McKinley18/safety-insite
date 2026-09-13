@@ -14,7 +14,7 @@ import { RegulatoryReleaseRecordReview } from '../src/standards/releases/regulat
 import { KnowledgeReleaseEvent } from '../src/standards/releases/knowledge-release-event.entity';
 import { Standard } from '../src/standards/entities/standard.entity';
 import { ApplicableStandardsService } from '../src/applicable-standards/applicable-standards.service';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 import { GovernedCutoverContext } from '../src/standards/cutover/governed-cutover-context';
 import {
   DeliveryEquivalence, EquivalenceClass, classifyEquivalence,
@@ -37,7 +37,7 @@ import { releaseCitationKey } from '../src/standards/releases/citation-identity'
  * So this harness does not reimplement anything. It calls:
  *
  *   ApplicableStandardsService.hydrateStandardReferences()   the real legacy hydration
- *   SafescopeV2Service.hydrateFindingScopedStandards()       the real customer composition
+ *   HazLenzService.hydrateFindingScopedStandards()       the real customer composition
  *   GovernedCutoverContext.create()/resolveStandard()        the real governed resolution
  *   decideFallback() / resolveStandardsBacking()             the real delivery + backing contracts
  *
@@ -180,13 +180,13 @@ async function main() {
     const applicable = new ApplicableStandardsService(standardRepo as any);
     // `hydrateFindingScopedStandards` touches only `this.applicableStandards`, so this executes
     // the production method body rather than a reimplementation of it.
-    const safescope = Object.create(SafescopeV2Service.prototype) as SafescopeV2Service;
+    const safescope = Object.create(HazLenzService.prototype) as HazLenzService;
     (safescope as any).applicableStandards = applicable;
 
     check('the harness calls the production hydration method, not a copy',
-      typeof (SafescopeV2Service.prototype as any).hydrateFindingScopedStandards === 'function'
+      typeof (HazLenzService.prototype as any).hydrateFindingScopedStandards === 'function'
       && (safescope as any).hydrateFindingScopedStandards
-        === (SafescopeV2Service.prototype as any).hydrateFindingScopedStandards);
+        === (HazLenzService.prototype as any).hydrateFindingScopedStandards);
 
     const governedEnv = {
       GOVERNED_CUTOVER_MODE: 'GOVERNED_WITH_FALLBACK',
@@ -470,7 +470,7 @@ async function main() {
     evidence.approvedRecords = scope.governedRecords;
     evidence.totalRecords = scope.totalRecords;
     evidence.customerPaths = {
-      pathB: 'finding-scoped standardDecisions via SafescopeV2Service.hydrateFindingScopedStandards -> mark(); legacy body = plain_language_summary (mark() does not spread hydrated standardText)',
+      pathB: 'finding-scoped standardDecisions via HazLenzService.hydrateFindingScopedStandards -> mark(); legacy body = plain_language_summary (mark() does not spread hydrated standardText)',
       pathA: 'ApplicableStandardsService.suggest(); legacy body = standard_text from its own corpus SELECT (the full eCFR section dump)',
     };
     evidence.classificationTallyPathB = { all35: tallyAllB, approved27: tallyApprovedB };

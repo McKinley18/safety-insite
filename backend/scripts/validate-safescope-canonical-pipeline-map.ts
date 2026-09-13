@@ -1,4 +1,4 @@
-import { CANONICAL_PIPELINE_REGISTRY } from '../src/safescope-v2/orchestration/contract/pipeline.registry';
+import { CANONICAL_PIPELINE_REGISTRY } from '../src/hazlenz/orchestration/contract/pipeline.registry';
 
 function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);

@@ -9,14 +9,14 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { createHash } from 'crypto';
 import { join } from 'path';
 
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
 import {
   buildExpert247WireSchema, build247SystemPrompt, FIRST_PASS_CONTRACT_247_VERSION,
   contractIdentities247,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import {
   envelopeBoundOptions, EXPERT_REQUEST_ENVELOPE,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
 import { transmitted, inputFor, CASES_251, countUnions } from './analyze-251-wire-budget';
 import { buildCompact251WireSchema, slotProfile } from './analyze-251-compaction-ceiling';
 
@@ -134,7 +134,7 @@ function main(): void {
       value: shaFile(join(__dirname, 'verify-251-k6-and-normalization.ts')), executionDerived: false },
     { n: 9, element: 'deterministic admission identity',
       derivedFrom: 'sha256 of the §247 role-justification projection module',
-      value: shaFile(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'contract',
+      value: shaFile(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'contract',
         'expert-247-role-justification-projection.ts')), executionDerived: true },
   ];
   writeFileSync(join(OUT, 'SECTION-251-CANDIDATE-IDENTITY-V2-1.json'), JSON.stringify({

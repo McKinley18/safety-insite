@@ -35,20 +35,20 @@ import { DataSource } from 'typeorm';
 import { AppModule } from '../src/app.module';
 import {
   substituteExpertSemanticTransportForVerification, expertTransportLifetimeCounts,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-semantic-transport.provider';
+} from '../src/hazlenz/expert-hazlenz-product/expert-semantic-transport.provider';
 import {
   EXPERT_CANDIDATE_IDENTITY_259,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-candidate-provenance';
+} from '../src/hazlenz/expert-hazlenz-product/expert-candidate-provenance';
 import {
   EXPERT_EXECUTION_ENABLED_VAR,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-operational-controls';
+} from '../src/hazlenz/expert-hazlenz-product/expert-operational-controls';
 import {
   captureOperationalEventsForVerification, type OperationalEventLine,
 } from '../src/observability/operational-events';
 import { evaluateSchemaReadiness } from '../src/database/schema-readiness';
 import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
 import { writeEvidenceFile } from './lib/evidence-write-gate';
 

@@ -16,7 +16,7 @@ import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entit
 import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
 import {
   ExpertEffectiveDecisionModule,
-} from '../safescope-v2/expert-hazlenz-product/expert-effective-decision.module';
+} from '../hazlenz/expert-hazlenz-product/expert-effective-decision.module';
 
 @Module({
   imports: [

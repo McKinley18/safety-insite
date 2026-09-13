@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import {
   type ExpertAnalysisInput, EXPERT_INPUT_CONTRACT_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { governedBindingFor } from './lib/expert-first-pass-instruction-vnext';
 import {
   instructionIdentities210j, schemaDelta210j, UNRESOLVED_ACTION_FIELD,

@@ -31,7 +31,7 @@ import { join } from 'path';
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME, applyStrictSchemaWrapper,
   stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   CONFIRMATION_CASES_238, instrumentDigest238, FROZEN_EXECUTION_CONFIGURATION_238,
 } from './lib/expert-238-confirmation-instrument';

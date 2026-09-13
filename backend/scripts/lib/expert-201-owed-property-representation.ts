@@ -37,10 +37,10 @@
  */
 
 import { createHash } from 'crypto';
-import type { OwedFact } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { OwedFact } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import type {
   DeclaringStage, StructuredUnresolvedFactDeclaration,
 } from './expert-first-pass-owed-fact-projection';
@@ -435,7 +435,7 @@ export interface OptionAssessment {
 
 /** The file whose sha256 §187 pins, and the pinned value, recorded so a test can recompute it. */
 export const PINNED_CONTRACT_FILE =
-  'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts' as const;
+  'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts' as const;
 export const SECTION_187_PINNED_SHA256 =
   '102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a' as const;
 

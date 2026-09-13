@@ -35,7 +35,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 import { hardenedFixtureByRowId, HARDENED_SET_VERSION }
-  from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+  from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 
 const ROOT = join(__dirname, '..', '..');
 const V = join(ROOT, 'verification');
@@ -138,10 +138,10 @@ function main(): void {
   w();
   w('## 1. Exact original HS-H1 observation');
   w();
-  w(`Source: \`backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts\``);
+  w(`Source: \`backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts\``);
   w(`Fixture version: \`${HARDENED_SET_VERSION}\``);
   w(`File SHA-256: \`${sha256File(join(ROOT,
-    'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))}\``);
+    'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))}\``);
   w(`Observation SHA-256: \`${sha256(observation)}\`  ·  length ${observation.length} characters`);
   w();
   w('> ' + observation);
@@ -483,9 +483,9 @@ function main(): void {
   w('| Artifact | SHA-256 |');
   w('|---|---|');
   const provenance: Array<[string, string]> = [
-    ['backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts',
+    ['backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts',
       sha256File(join(ROOT,
-        'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))],
+        'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))],
     ...runs.map(r => [r.path, r.sha256] as [string, string]),
     ['verification/expert-hazlenz-verifier-accuracy-2026-09-03/VERIFIER-PACKET.json',
       sha256File(join(SRC, 'VERIFIER-PACKET.json'))],

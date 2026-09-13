@@ -40,9 +40,9 @@
  */
 
 import { MEASURED_COST_MODEL, projectedCostUsd } from
-  '../../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+  '../../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { RETRYABLE_EXPERT_FAILURES } from
-  '../../src/safescope-v2/expert-hazlenz/expert-provider';
+  '../../src/hazlenz/expert-hazlenz/expert-provider';
 
 export const EXECUTION_BUDGET_VERSION = 'hazlenz.expert.execution.budget.v1' as const;
 

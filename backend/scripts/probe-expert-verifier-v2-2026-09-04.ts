@@ -167,19 +167,19 @@ async function main(): Promise<void> {
     'the over-questioning guard is in the instruction, not only in the rule');
 
   check('C.1 the v13 first-pass prompt module is byte-identical',
-    sha256File(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'))
+    sha256File(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'))
       === EXPECTED_PROMPT_MODULE_SHA, 'unchanged');
   check('C.2 the hardened v9 fixture is byte-identical',
     sha256File(join(ROOT,
-      'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
+      'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
       === EXPECTED_V9_FILE_SHA, 'unchanged');
   check('C.3 verifier contract v1 is byte-preserved as §156 evidence',
     existsSync(join(ROOT, 'backend/scripts/lib/expert-verifier-contract.ts'))
       && readFileSync(join(ROOT, 'backend/scripts/lib/expert-verifier-contract.ts'), 'utf8')
         .includes("'hazlenz.expert.verifier.v1'"), 'v1 intact beside v2');
   check('C.4 v14 and v15 do not exist',
-    !existsSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt-v14.ts'))
-      && !existsSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt-v15.ts')),
+    !existsSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt-v14.ts'))
+      && !existsSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt-v15.ts')),
     'absent');
 
   const ownImports = readFileSync(__filename, 'utf8').split('\n').filter(l => /^import /.test(l));

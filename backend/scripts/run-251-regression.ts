@@ -98,7 +98,7 @@ function main(): void {
     productionBuild: {
       command: 'npx tsc --noEmit',
       errors: buildErrors.length,
-      allowedError: 'src/safescope-v2/expert-hazlenz/contract/expert-237-posture-contract.ts(193,47) TS2552 POSTURE_REF_KINDS_237',
+      allowedError: 'src/hazlenz/expert-hazlenz/contract/expert-237-posture-contract.ts(193,47) TS2552 POSTURE_REF_KINDS_237',
       unexpectedErrors: unexpected,
       status: unexpected.length === 0 ? 'PASS subject only to the frozen known TypeScript provenance error' : 'FAIL',
       frozenErrorRepaired: false,

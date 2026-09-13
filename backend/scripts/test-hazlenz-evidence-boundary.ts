@@ -1,5 +1,5 @@
-import { enforceHazLenzEvidenceBoundary } from '../src/safescope-v2/display/hazlenz-evidence-boundary';
-import { ClassifyDto } from '../src/safescope-v2/dto/classify.dto';
+import { enforceHazLenzEvidenceBoundary } from '../src/hazlenz/display/hazlenz-evidence-boundary';
+import { ClassifyDto } from '../src/hazlenz/dto/classify.dto';
 
 const baseResult = () => ({
   primaryCitation: '29 CFR 1910.147',

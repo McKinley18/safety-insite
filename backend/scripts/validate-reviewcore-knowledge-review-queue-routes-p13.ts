@@ -1,14 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import {
-  ReviewCoreKnowledgeReviewQueueController,
-  ReviewCoreKnowledgeReviewQueueService,
-  ReviewCoreKnowledgeReviewQueueStore,
-} from '../src/safescope-v2/knowledge-architecture';
+  KnowledgeReviewQueueController,
+  KnowledgeReviewQueueService,
+  KnowledgeReviewQueueStore,
+} from '../src/hazlenz/knowledge-architecture';
 import {
-  ReviewCoreKnowledgeAuthorityTier,
-  ReviewCoreKnowledgeRecordStatus,
-} from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-record.types';
+  KnowledgeAuthorityTier,
+  KnowledgeRecordStatus,
+} from '../src/hazlenz/knowledge-architecture/knowledge-record.types';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -26,20 +26,20 @@ function assertGuardrails(value: any, label: string) {
 
 const repoRoot = path.resolve(__dirname, '../..');
 [
-  'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.store.ts',
-  'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.controller.ts',
-  'backend/scripts/validate-reviewcore-knowledge-review-queue-routes-p13.ts',
-  'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-routes-p13-summary.md',
+  'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.store.ts',
+  'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.controller.ts',
+  'backend/scripts/validate-knowledge-review-queue-routes-p13.ts',
+  'project-docs/historical/08-audits/knowledge-review-queue-routes-p13-summary.md',
 ].forEach((relativePath) => {
   assert(fs.existsSync(path.join(repoRoot, relativePath)), `Missing required P13 file: ${relativePath}`);
 });
 
-const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/safescope-v2/knowledge-architecture/index.ts'), 'utf8');
-assert(indexText.includes('ReviewCoreKnowledgeReviewQueueStore'), 'index.ts must export ReviewCoreKnowledgeReviewQueueStore');
-assert(indexText.includes('ReviewCoreKnowledgeReviewQueueController'), 'index.ts must export ReviewCoreKnowledgeReviewQueueController');
+const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/hazlenz/knowledge-architecture/index.ts'), 'utf8');
+assert(indexText.includes('KnowledgeReviewQueueStore'), 'index.ts must export KnowledgeReviewQueueStore');
+assert(indexText.includes('KnowledgeReviewQueueController'), 'index.ts must export KnowledgeReviewQueueController');
 
-const store = new ReviewCoreKnowledgeReviewQueueStore();
-const controller = new ReviewCoreKnowledgeReviewQueueController(store, new ReviewCoreKnowledgeReviewQueueService());
+const store = new KnowledgeReviewQueueStore();
+const controller = new KnowledgeReviewQueueController(store, new KnowledgeReviewQueueService());
 
 const draft = controller.createDraft(
   {
@@ -48,7 +48,7 @@ const draft = controller.createDraft(
     content: 'Draft local queue record.',
     domain: 'machine_guarding',
     tags: ['machine_guarding'],
-    authorityTier: ReviewCoreKnowledgeAuthorityTier.EXPERIMENTAL,
+    authorityTier: KnowledgeAuthorityTier.EXPERIMENTAL,
   },
   'reviewer',
 );
@@ -74,8 +74,8 @@ const blockedCore = {
   content: 'Core record missing source reference.',
   domain: 'machine_guarding',
   tags: ['machine_guarding'],
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+  authorityTier: KnowledgeAuthorityTier.CORE,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
   fingerprint: 'blocked-core-p13',
   createdAt: new Date(),
   updatedAt: new Date(),
@@ -87,7 +87,7 @@ const blockedApprove = controller.approve(blockedCore.id, 'reviewer');
 assertGuardrails(blockedApprove, 'blocked approve');
 assert(blockedApprove.data.activeRetrievalEligible === false, 'blocked approve must not be active');
 assert((blockedApprove.data.result as any).approved === false, 'missing-citation core record must be blocked');
-assert(store.getRecord(blockedCore.id)?.status !== ReviewCoreKnowledgeRecordStatus.GOVERNED, 'blocked approval must not persist approved/governed status');
+assert(store.getRecord(blockedCore.id)?.status !== KnowledgeRecordStatus.GOVERNED, 'blocked approval must not persist approved/governed status');
 
 const validCore = {
   ...blockedCore,
@@ -102,7 +102,7 @@ const approved = controller.approve(validCore.id, 'reviewer');
 assertGuardrails(approved, 'approve valid');
 assert(approved.data.activeRetrievalEligible === true, 'valid approved record should be active eligible');
 assert((approved.data.result as any).approved === true, 'valid record should approve');
-assert(store.getRecord(validCore.id)?.status === ReviewCoreKnowledgeRecordStatus.GOVERNED, 'valid approval should persist governed status');
+assert(store.getRecord(validCore.id)?.status === KnowledgeRecordStatus.GOVERNED, 'valid approval should persist governed status');
 
 const active = controller.listActiveRetrievalRecords();
 assertGuardrails(active, 'listActiveRetrievalRecords');
@@ -117,20 +117,20 @@ assert(String(store.getRecord(validCore.id)?.status).toLowerCase() === 'rejected
 const moreInfoRecord = {
   ...validCore,
   id: 'more-info-p13',
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
   fingerprint: 'more-info-p13',
 } as any;
 store.saveRecord(moreInfoRecord);
 const moreInfo = controller.requestMoreInfo(moreInfoRecord.id, 'reviewer', 'confirm source scope');
 assertGuardrails(moreInfo, 'requestMoreInfo');
 assert(moreInfo.data.activeRetrievalEligible === false, 'requestMoreInfo must be inactive');
-assert(store.getRecord(moreInfoRecord.id)?.status === ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION, 'requestMoreInfo must persist pending status');
+assert(store.getRecord(moreInfoRecord.id)?.status === KnowledgeRecordStatus.PENDING_VALIDATION, 'requestMoreInfo must persist pending status');
 assert((store.getRecord(moreInfoRecord.id) as any)?.reviewNote === 'confirm source scope', 'requestMoreInfo must persist note/history');
 
 const supersedeBase = {
   ...validCore,
   id: 'supersede-base-p13',
-  status: ReviewCoreKnowledgeRecordStatus.GOVERNED,
+  status: KnowledgeRecordStatus.GOVERNED,
   fingerprint: 'supersede-base-p13',
 } as any;
 store.saveRecord(supersedeBase);
@@ -145,7 +145,7 @@ const superseded = controller.supersede(
 );
 assertGuardrails(superseded, 'supersede');
 assert(String(store.getRecord(supersedeBase.id)?.status).toLowerCase() === 'superseded', 'supersede must persist old inactive status');
-assert(store.getRecord('supersede-replacement-p13')?.status === ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION, 'replacement must remain pending');
+assert(store.getRecord('supersede-replacement-p13')?.status === KnowledgeRecordStatus.PENDING_VALIDATION, 'replacement must remain pending');
 const activeAfterSupersede = controller.listActiveRetrievalRecords().data.records;
 assert(!activeAfterSupersede.some((record: any) => record.id === supersedeBase.id), 'old superseded record must not be active');
 assert(!activeAfterSupersede.some((record: any) => record.id === 'supersede-replacement-p13'), 'pending replacement must not be active');

@@ -25,7 +25,7 @@
  * reorder one. It is read-only with respect to §211.
  */
 
-import type { OwedFact } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { OwedFact } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import { project210jDeclarations } from './expert-210j-declaration-projection';
 import type { ProjectionResult } from './expert-first-pass-owed-fact-projection';
 import {

@@ -49,7 +49,7 @@ function buildRepresentativeFieldOutput(): FieldOutputContract {
     version: 'field_output_v1',
     primaryMessage: 'Stop exposed work and correct the condition before resuming normal operation.',
     summary:
-      'SafeScope field output summarizes immediate controls, corrective actions, verification evidence, and review triggers for field use.',
+      'HazLenz field output summarizes immediate controls, corrective actions, verification evidence, and review triggers for field use.',
     priority: 'High',
     recommendedDisposition: 'proceed_with_human_review',
     immediateControls: [
@@ -68,7 +68,7 @@ function buildRepresentativeFieldOutput(): FieldOutputContract {
         ],
         verification:
           'Photo evidence and supervisor verification required before closure.',
-        source: 'SafeScope field output',
+        source: 'HazLenz field output',
       },
     ],
     verificationEvidence: [
@@ -84,7 +84,7 @@ function buildRepresentativeFieldOutput(): FieldOutputContract {
       'What evidence confirms the correction was completed?',
     ],
     warnings: [
-      'SafeScope output requires qualified review before final report use.',
+      'HazLenz output requires qualified review before final report use.',
     ],
     boundary: {
       requiresQualifiedReview: true,
@@ -174,13 +174,13 @@ try {
   const representative = buildRepresentativeFieldOutput();
   validateFieldOutputContract(representative);
 
-  console.log('✅ SafeScope field output contract validation passed.');
+  console.log('✅ HazLenz field output contract validation passed.');
   console.log(`Version: ${representative.version}`);
   console.log(`Actions: ${representative.correctiveActions.length}`);
   console.log(`Evidence gaps: ${representative.evidenceGaps.length}`);
   console.log(`Supervisor questions: ${representative.supervisorQuestions.length}`);
 } catch (error) {
-  console.error('❌ SafeScope field output contract validation failed.');
+  console.error('❌ HazLenz field output contract validation failed.');
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 }

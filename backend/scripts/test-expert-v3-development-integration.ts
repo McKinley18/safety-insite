@@ -18,31 +18,31 @@ import {
   OWED_FACT_STATUSES, TRANSITION_AUTHORITIES, PRODUCTION_PERMITTED_SOURCES,
   PRODUCTION_PERMITTED_EVIDENCE_PROVENANCES, PRODUCTION_FORBIDDEN_EVIDENCE_PROVENANCES,
   NULL_ACCEPTABLE_EVIDENCE_IS_VALID, PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   type OwedFactLedger,
   owedFact, createOwedFactLedger, transition, factOf, factsRemoved, preservationViolations,
   unresolvedFacts,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   type ClarificationDeclaration,
   checkBindingDeclarations, applyAdmittedDeclarations, bindingSideEffects,
   parseOwedFactDeclarations, evaluateTargetCoverage,
   CLARIFICATION_EVIDENCE_SUFFICIENCY, COVERAGE_COMPUTATION_METHOD,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   projectStructuralQuestions, selectQuestionsForBudget, questionRepresentationViolations,
   questionBudgetViolations,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 import {
   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED, verifierV3BoundaryState, runOwedFactCoverageStage,
   projectOwedFactsForVerifier, PROJECTION_FORBIDDEN_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   emptyObservabilityRecord, appendAttempt, observabilityViolations, reconstructionGaps,
   type ProviderAttemptObservation,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-observability';
-import { mergeExpertIntelligence } from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-observability';
+import { mergeExpertIntelligence } from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 
 // ---- the §165 prototypes, still the authority for the components NOT integrated
 import {
@@ -56,7 +56,7 @@ const ROOT = join(__dirname, '..', '..');
 const V = join(ROOT, 'verification');
 const S167 = join(V, 'expert-hazlenz-verifier-v3-scoped-falsification-2026-09-04');
 const S169 = join(V, 'expert-hazlenz-verifier-v3-human-binding-review-2026-09-04');
-const SRC_DIR = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz');
+const SRC_DIR = join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz');
 
 let passed = 0;
 let failed = 0;

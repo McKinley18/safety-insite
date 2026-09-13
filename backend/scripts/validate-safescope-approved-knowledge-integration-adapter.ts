@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
-import { KnowledgeReviewService } from '../src/safescope-v2/knowledge-intake/review/knowledge-review.service';
-import { ApprovedKnowledgeIntegrationAdapterService } from '../src/safescope-v2/knowledge-intake/integration/approved-knowledge-integration-adapter.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
+import { KnowledgeReviewService } from '../src/hazlenz/knowledge-intake/review/knowledge-review.service';
+import { ApprovedKnowledgeIntegrationAdapterService } from '../src/hazlenz/knowledge-intake/integration/approved-knowledge-integration-adapter.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -11,7 +11,7 @@ function assert(condition: boolean, message: string): void {
 
 const quarantinedDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/quarantined',
+  '../src/hazlenz/knowledge-intake/records/quarantined',
 );
 
 const fixturePath = path.join(quarantinedDir, '_fixture-approved-integration-adapter-test.json');
@@ -117,7 +117,7 @@ try {
   assert(enabled.adapterUseBoundary.canBypassHumanReview === false, 'Adapter must not bypass human review.');
   assert(enabled.adapterUseBoundary.canUseUnapprovedRecords === false, 'Adapter must not use unapproved records.');
 
-  console.log('✅ SafeScope approved knowledge integration adapter validation passed.');
+  console.log('✅ HazLenz approved knowledge integration adapter validation passed.');
 } finally {
   if (fs.existsSync(fixturePath)) {
     fs.unlinkSync(fixturePath);

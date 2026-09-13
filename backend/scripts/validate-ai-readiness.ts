@@ -12,7 +12,7 @@ const requiredSections = [
   '3. Governance and Advisory Guardrails',
   '4. Current Validation Status',
   '5. Remaining Maturity Gaps',
-  '6. What SafeScope Does Not Do'
+  '6. What HazLenz Does Not Do'
 ];
 
 console.log("Validating AI Readiness Manifest...");

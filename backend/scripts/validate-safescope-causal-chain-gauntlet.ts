@@ -1,4 +1,4 @@
-import { SafeScopeCausalChainService } from '../src/safescope-v2/causal-chain/causal-chain.service';
+import { HazLenzCausalChainService } from '../src/hazlenz/causal-chain/causal-chain.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: any, message: string) {
   }
 }
 
-const service = new SafeScopeCausalChainService();
+const service = new HazLenzCausalChainService();
 
 const scenarios = [
   {
@@ -275,5 +275,5 @@ for (const action of expectedCorrectiveActions) {
 
 console.log('✅ Dedicated oil container causal-chain validation passed successfully.');
 
-console.log('✅ SafeScope causal chain gauntlet passed.');
+console.log('✅ HazLenz causal chain gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

@@ -6,5 +6,5 @@ export * from './backend-types/corrective-action.types';
 export * from './backend-types/evidence-gap-question.types';
 export * from './backend-types/narrative.types';
 export * from './backend-types/risk-reasoning.types';
-export * from './backend-types/safescope-intelligence.types';
+export * from './backend-types/hazlenz-intelligence.types';
 export * from './backend-types/scenario-family.types';

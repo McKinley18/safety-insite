@@ -22,10 +22,10 @@ import { createHash } from 'crypto';
 
 import {
   build247SystemPrompt, buildExpert247WireSchema, FIRST_PASS_CONTRACT_247_VERSION,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import {
   build239SystemPrompt, buildExpert239WireSchema, FIRST_PASS_CONTRACT_239_VERSION,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
 
 export const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');
 
@@ -148,10 +148,10 @@ export function deriveExecutableIdentity(io: IdentityInputs): ExecutableIdentity
   const SUCCESSOR_SCHEMA = 'buildExpert247WireSchema';
 
   add(1, 'production Expert entry point', true,
-    'src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts',
+    'src/hazlenz/expert-hazlenz/expert-hazlenz-analysis.ts',
     'the assembled request was produced by driving this entry point', 'entryPoint');
   add(2, 'acceptance entry point', true,
-    'src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts',
+    'src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts',
     'the adapter request was produced by driving the compatibility builder', 'adapter');
   add(3, 'proof of semantic-path identity',
     prompt.name === SUCCESSOR_PROMPT && schema.name === SUCCESSOR_SCHEMA

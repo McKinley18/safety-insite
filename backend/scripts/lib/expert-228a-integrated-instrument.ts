@@ -48,15 +48,15 @@ import { createHash } from 'crypto';
 
 import {
   OWED_FACT_STATUSES, type OwedFactStatus,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   PROPERTY_AUTHORITY_STATES, SETTLEMENT_PERMITTING_STATES,
   PROPERTY_CONFIRMATION_DECISIONS,
   type PropertyAuthorityState, type PropertyConfirmationDecision,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 import {
   REVIEW_DECISIONS, type ReviewDecision,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   PROPERTY_SEMANTIC_ROLES_218, PROPERTY_VALIDITIES_218,
   type PropertySemanticRole218, type PropertyValidity218,

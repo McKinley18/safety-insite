@@ -57,7 +57,7 @@ async function completeAndFinalize(inspectionId: string, token: string, suffix: 
   const observation = await call('POST', `/inspections/${inspectionId}/observations`,
     { rawText: OBSERVATION, evidenceSource: 'direct_observation' }, token, 201);
   const observationId = String(observation.body.id);
-  const classify = await call('POST', '/safescope-v2/classify',
+  const classify = await call('POST', '/hazlenz/classify',
     { text: OBSERVATION, inspectionId }, token, 201);
   await call('POST', `/inspections/observations/${observationId}/analyses`, {
     engineVersion: 'canonical-report-contract', idempotencyKey: `${suffix}-${round}`,

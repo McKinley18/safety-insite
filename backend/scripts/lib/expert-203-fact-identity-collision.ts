@@ -39,13 +39,13 @@
 
 import {
   type OwedFact, type OwedFactStatus, OWED_FACT_STATUSES,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   type OwedFactLedger, factOf,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import type {
   StructuralQuestion,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 
 export const FACT_IDENTITY_COLLISION_CONTRACT_VERSION =
   'hazlenz.expert.203-fact-identity-collision.v1' as const;

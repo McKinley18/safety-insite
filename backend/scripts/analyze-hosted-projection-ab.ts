@@ -10,10 +10,10 @@
 
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { scoreRouting } from '../src/safescope-v2/expert-hazlenz/expert-routing-metrics';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { ADVERSARIAL_RECALL_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures';
-import { RESTORATION_TRANSITION_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/restoration-transition-fixtures';
+import { scoreRouting } from '../src/hazlenz/expert-hazlenz/expert-routing-metrics';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { ADVERSARIAL_RECALL_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/hazard-actuality-fixtures';
+import { RESTORATION_TRANSITION_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/restoration-transition-fixtures';
 
 const OUT = join(__dirname, '..', '..', 'verification', 'expert-hazlenz-hosted-projection-ab-2026-08-31');
 const rows = readFileSync(join(OUT, 'transport', 'projection-ab.jsonl'), 'utf8')

@@ -18,7 +18,7 @@
  * comparison derives them empirically from two same-configuration LEGACY runs rather than declaring
  * them in an ignore list.
  *
- * PACED INSIDE THE THROTTLE. `/safescope-v2/classify` is 30/60s. This paces at 3s and REFUSES a 429
+ * PACED INSIDE THE THROTTLE. `/hazlenz/classify` is 30/60s. This paces at 3s and REFUSES a 429
  * rather than recording it -- two identical error responses compare equal and prove nothing.
  *
  * Env: API_BASE_URL, KG4E_EMAIL, KG4E_PASSWORD, OUT_DIR, LABEL
@@ -174,7 +174,7 @@ async function runCase(entry: Case, siteId: string): Promise<Record<string, unkn
 
   // THE request-path call. On the SHADOW server this is the four-run orchestration; the payload
   // returned is the pristine legacy branch. Nothing downstream knows or can know which it was.
-  const classified = must(await api('POST', '/safescope-v2/classify', {
+  const classified = must(await api('POST', '/hazlenz/classify', {
     text: entry.text, scopes: entry.scopes,
   }), 'classify ' + entry.id);
 

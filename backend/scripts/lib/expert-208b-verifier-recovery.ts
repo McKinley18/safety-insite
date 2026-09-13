@@ -45,7 +45,7 @@ import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
 import { projectOwedFact } from
-  '../../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+  '../../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION, EXPERT_VERIFIER_V3_2_SYSTEM_PROMPT,
   VERIFIER_V3_2_RESPONSE_SCHEMA, buildVerifierV3UserPrompt,

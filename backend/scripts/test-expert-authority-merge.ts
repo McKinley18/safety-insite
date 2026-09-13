@@ -18,11 +18,11 @@ import {
   EMPTY_EXPERT_ADVISORY, EXPERT_LAYER_STATUSES, MERGE_INVARIANTS,
   mergeExpertIntelligence, verifyMergeInvariants,
   type DeterministicAuthorityResult, type ExpertLayerInput, type GovernedAuthorityResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
   type ExpertAnalysis, type ValidatedExpertAnalysis,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let passed = 0, failed = 0;
 const assert = (c: unknown, m: string) => { if (c) { passed++; console.log(`ok    ${m}`); } else { failed++; console.log(`FAIL  ${m}`); } };

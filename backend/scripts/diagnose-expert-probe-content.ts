@@ -8,9 +8,9 @@
  */
 import { mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { OllamaExpertProvider } from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
-import { EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { OllamaExpertProvider } from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
+import { EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const OBS = 'An extension cord ran through standing water to a sump pump while a worker reached into '
   + 'the pump housing to clear a blockage.';

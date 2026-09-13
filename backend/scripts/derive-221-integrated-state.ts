@@ -28,18 +28,18 @@ import {
 } from './lib/expert-221-integrated-instrument';
 import { observationSourceIdFor, analysisIdFor } from './lib/expert-221-assembly';
 
-import type { OwedFact, ArbitrationRequest } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { OwedFact, ArbitrationRequest } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   createOwedFactLedger, factOf,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   consumeSettlementClaims, mintSettlementAuthority, settleByReviewedEvidence,
   attachPropertyAuthority, recordPropertyAuthorityDeclined,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   buildPropertyReviewPacket, mintPropertyAuthority, propertyAuthorityRequirementFor,
   type PropertyConfirmationDecision, type PropertyReviewPacket,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 
 const ROOT = join(__dirname, '..', '..');
 const EVID = join(ROOT, 'verification',

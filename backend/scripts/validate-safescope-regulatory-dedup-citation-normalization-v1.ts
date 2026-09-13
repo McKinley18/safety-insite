@@ -1,6 +1,6 @@
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
-import { ApprovedKnowledgeCitationNormalizationValidator } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.validator';
-import { ApprovedKnowledgeRecord } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-record.types';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { ApprovedKnowledgeCitationNormalizationValidator } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.validator';
+import { ApprovedKnowledgeRecord } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-record.types';
 
 async function validate() {
   const service = new ApprovedKnowledgeCitationNormalizationService();
@@ -50,7 +50,7 @@ async function validate() {
 
   console.log('[PASS] Deduplication and overlap governance verified.');
 
-  console.log('✅ SafeScope regulatory deduplication and citation normalization validation passed.');
+  console.log('✅ HazLenz regulatory deduplication and citation normalization validation passed.');
 }
 
 validate().catch(err => {

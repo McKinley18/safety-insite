@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 type RealismCase = {
   id: string;
@@ -166,7 +166,7 @@ const cases: RealismCase[] = [
 ];
 
 async function main() {
-  const service = new SafeScopeReasoningOrchestratorService();
+  const service = new HazLenzReasoningOrchestratorService();
   const failures: string[] = [];
 
   for (const testCase of cases) {
@@ -216,7 +216,7 @@ async function main() {
   fs.mkdirSync(docsDir, { recursive: true });
 
   const artifact = {
-    audit: 'SafeScope Field Realism Gauntlet',
+    audit: 'HazLenz Field Realism Gauntlet',
     version: 'field_realism_v1',
     generatedAt: new Date().toISOString(),
     caseCount: cases.length,
@@ -237,12 +237,12 @@ async function main() {
   };
 
   const jsonPath = path.join(outputDir, 'safescope-field-realism-gauntlet-results.v1.json');
-  const mdPath = path.join(docsDir, 'SAFESCOPE_FIELD_REALISM_GAUNTLET_RESULTS.md');
+  const mdPath = path.join(docsDir, 'HAZLENZ_FIELD_REALISM_GAUNTLET_RESULTS.md');
 
   fs.writeFileSync(jsonPath, JSON.stringify(artifact, null, 2));
 
   const md = [
-    '# SafeScope Field Realism Gauntlet Results',
+    '# HazLenz Field Realism Gauntlet Results',
     '',
     `Generated: ${artifact.generatedAt}`,
     '',
@@ -260,8 +260,8 @@ async function main() {
     '',
     '## Boundary',
     '',
-    '- SafeScope remains decision support.',
-    '- SafeScope does not declare violations.',
+    '- HazLenz remains decision support.',
+    '- HazLenz does not declare violations.',
     '- Qualified review is required before final report use.',
     '',
     '## Cases',
@@ -272,7 +272,7 @@ async function main() {
 
   fs.writeFileSync(mdPath, md);
 
-  console.log('✅ SafeScope field realism gauntlet passed.');
+  console.log('✅ HazLenz field realism gauntlet passed.');
   console.log(`Cases: ${cases.length}`);
   console.log(`Results JSON: ${jsonPath}`);
   console.log(`Results MD: ${mdPath}`);
@@ -282,7 +282,7 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope field realism gauntlet failed.');
+  console.error('❌ HazLenz field realism gauntlet failed.');
   if (error instanceof Error) {
     console.error(error.stack || error.message);
   } else {

@@ -23,7 +23,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import {
   admissiblePairs247, CESSATION_ROLE_247, CONTROLS_ROLE_247,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 
 const ROOT = join(__dirname, '..', '..');
 const DIR = join(ROOT, 'verification',

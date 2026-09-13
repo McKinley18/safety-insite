@@ -1,4 +1,4 @@
-import { SafeScopeNativeReasoningService } from '../src/safescope-v2/native-reasoning/native-reasoning.service';
+import { HazLenzNativeReasoningService } from '../src/hazlenz/native-reasoning/native-reasoning.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const service = new SafeScopeNativeReasoningService();
+const service = new HazLenzNativeReasoningService();
 
 const scenarios = [
   {
@@ -129,12 +129,12 @@ async function main() {
     });
   }
 
-  console.log('✅ SafeScope evidence sufficiency gauntlet passed.');
+  console.log('✅ HazLenz evidence sufficiency gauntlet passed.');
   console.log(JSON.stringify(results, null, 2));
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope evidence sufficiency gauntlet failed.');
+  console.error('❌ HazLenz evidence sufficiency gauntlet failed.');
   console.error(error);
   process.exit(1);
 });

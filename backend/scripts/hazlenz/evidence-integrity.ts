@@ -109,6 +109,48 @@ function baseline(): Baseline {
   return JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as Baseline;
 }
 
+/**
+ * §274 — AUTHORISED PATH MIGRATION.
+ *
+ * A manifest member that has MOVED is not a member that has VANISHED, but the guard cannot tell the
+ * difference from an absent path alone, so by default it calls both a fault. That default is right:
+ * it is what stops anyone quietly deleting something the evidence base depends on.
+ *
+ * §274 renamed `backend/src/safescope-v2/` to `backend/src/hazlenz/` under explicit product-owner
+ * authorisation, which made 1246 recorded members absent at once. This resolves such a member
+ * through a recorded, reviewable map and then STILL REQUIRES A FILE TO BE THERE. A member that
+ * resolves to nothing is absent exactly as before. This is deliberately not a baseline entry:
+ * a baseline forgives, whereas this relocates and re-checks.
+ */
+const MIGRATION_PATH = join(__dirname, '..', '..', '..',
+  'verification', 'current', 'SECTION-274-PATH-MIGRATION.json');
+
+interface PathMigration {
+  orderedRules: [string, string][];
+  basenameRules: [string, string][];
+}
+
+function pathMigration(): PathMigration {
+  if (!existsSync(MIGRATION_PATH)) return { orderedRules: [], basenameRules: [] };
+  return JSON.parse(readFileSync(MIGRATION_PATH, 'utf8')) as PathMigration;
+}
+
+/** Apply the recorded rules to one member name. Returns null when no rule touches it. */
+function migrate(name: string, m: PathMigration): string | null {
+  let out = name;
+  for (const [from, to] of m.orderedRules) {
+    if (out.startsWith(from)) { out = to + out.slice(from.length); break; }
+  }
+  const cut = out.lastIndexOf('/');
+  const dir = cut === -1 ? '' : out.slice(0, cut + 1);
+  let base = cut === -1 ? out : out.slice(cut + 1);
+  for (const [from, to] of m.basenameRules) {
+    if (base.startsWith(from)) { base = to + base.slice(from.length); break; }
+  }
+  out = dir + base;
+  return out === name ? null : out;
+}
+
 function git(args: string[]): string {
   return execFileSync('git', args, { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
 }
@@ -148,6 +190,7 @@ export function checkEvidenceIntegrity(): EvidenceIntegrityResult {
   }
 
   // ---- 2. each package's own manifest, recomputed.
+  const migration = pathMigration();
   const inPackage: { manifest: string; member: string; reason: string }[] = [];
   const external: { manifest: string; member: string }[] = [];
   let members = 0;
@@ -171,6 +214,11 @@ export function checkEvidenceIntegrity(): EvidenceIntegrityResult {
         : existsSync(repoRelative) ? repoRelative : null;
       const record = { manifest: relative(REPO, manifest), member: name };
       if (target === null) {
+        // §274: before calling a member absent, see whether an AUTHORISED rename moved it, and
+        // require the file to actually be at the migrated path. Content there may differ, exactly
+        // as it may for any repository source a manifest points at; only absence is a fault.
+        const migrated = migrate(name, migration);
+        if (migrated !== null && existsSync(join(REPO, migrated))) { external.push(record); continue; }
         // A manifest line that names no file. Some manifests digest a whole PACKAGE under a bare
         // name rather than a file; those are recorded as external references rather than as an
         // absent member, because there is no file for them to be absent from.

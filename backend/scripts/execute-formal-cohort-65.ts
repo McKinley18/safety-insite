@@ -42,24 +42,24 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow, FORMAL_COHORT_ROW_CONTRACT_VERSION,
   type FormalCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { REQUIRED_CLASS_MINIMUMS, RECOMMENDED_CALL_TOPOLOGY } from
-  '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+  '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { EXPERT_MEASUREMENT_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
+  '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
 import { EXPERT_SCORER_VERSION, buildScoringReport, buildAdjudicationQueue, attemptCount } from
-  '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+  '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 import { ReplayExpertProvider } from
-  '../src/safescope-v2/expert-hazlenz/replay-expert-provider';
+  '../src/hazlenz/expert-hazlenz/replay-expert-provider';
 import { COHORT_SIZE_POLICY_V2, assertFrozenOriginUnchanged } from './lib/expert-cohort-size-policy';
 import {
   FORMAL_EXECUTION_BUDGET, WORST_CASE_REQUEST_USD, assertBudgetInternallyConsistent,
@@ -71,7 +71,7 @@ import {
   EXPERT_COHORT_HARNESS_VERSION,
 } from './lib/expert-cohort-harness';
 import { CORPUS_RETIREMENT_REGISTRY } from
-  '../src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry';
+  '../src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry';
 import {
   createRunRecordStore, readRunRecordStore, runRecordCompletenessProblems,
 } from './lib/expert-run-record-store';
@@ -98,17 +98,17 @@ const P4 = {
 
 /** Files whose bytes must not move across the run. Requirement W. */
 const INTEGRITY_FILES = [
-  'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-measure-scorers.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-measurement-contract.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-cohort-contract.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-deterministic-projection.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-runner.ts',
-  'backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts',
-  'backend/src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1.ts',
-  'backend/src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1.ts',
-  'backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-normalization.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-measure-scorers.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-measurement-contract.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-cohort-contract.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-deterministic-projection.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-runner.ts',
+  'backend/src/hazlenz/expert-hazlenz/expert-normalization.ts',
+  'backend/src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1.ts',
+  'backend/src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1.ts',
+  'backend/src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts',
   'backend/scripts/lib/expert-cohort-harness.ts',
   'backend/scripts/lib/expert-execution-budget.ts',
   'backend/scripts/lib/expert-cohort-65-selection.ts',

@@ -19,16 +19,16 @@
  */
 
 import { ReplayExpertProvider } from
-  '../src/safescope-v2/expert-hazlenz/replay-expert-provider';
-import type { ExpertProviderResult } from '../src/safescope-v2/expert-hazlenz/expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
+  '../src/hazlenz/expert-hazlenz/replay-expert-provider';
+import type { ExpertProviderResult } from '../src/hazlenz/expert-hazlenz/expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
 import {
   FORMAL_COHORT_ROW_CONTRACT_VERSION, type FormalCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { scoreM13, scoreM16, attemptCount } from
-  '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+  '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 import { buildExpertAnalysisInputFromAnalysis } from
-  '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
+  '../src/hazlenz/expert-hazlenz/expert-input-constructor';
 import { ACCEPTED_EXPERT_TAXONOMY } from './lib/expert-cohort-supplemental-policy';
 import {
   FORMAL_EXECUTION_BUDGET, WORST_CASE_REQUEST_USD, assertBudgetInternallyConsistent,

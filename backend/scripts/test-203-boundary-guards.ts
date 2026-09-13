@@ -47,11 +47,11 @@ import {
 import {
   checkBindingDeclarations, applyAdmittedDeclarations,
   type ClarificationDeclaration,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   type OwedFactLedger, createOwedFactLedger, factOf, owedFact, transition,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
-import type { AcceptableEvidence } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
+import type { AcceptableEvidence } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 
 // ================================================================ harness
 

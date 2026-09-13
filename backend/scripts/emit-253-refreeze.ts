@@ -19,18 +19,18 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody, envelopeBoundOptions, EXPERT_REQUEST_ENVELOPE,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
 import { ADMISSION_252_VERSION }
-  from '../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+  from '../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import { FIRST_PASS_CONTRACT_253_VERSION, contractIdentities253 }
-  from '../src/safescope-v2/expert-hazlenz/contract/expert-253-posture-contract';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  from '../src/hazlenz/expert-hazlenz/contract/expert-253-posture-contract';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const ROOT = join(__dirname, '..', '..');
 const SRC252 = join(ROOT, 'verification',

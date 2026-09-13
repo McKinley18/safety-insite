@@ -12,13 +12,13 @@ import { createHash } from 'crypto';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_SYSTEM_PROMPT, buildExpertWireSchema, buildExpertUserPrompt, stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 
 import {
   EXPERT_FIRST_PASS_VNEXT_SYSTEM_PROMPT, EXPERT_FIRST_PASS_VNEXT_SYSTEM_PROMPT_WITH_GOVERNED_BINDING,
@@ -521,7 +521,7 @@ ok('N8. the forbidden-phrase list covers a CLASS, not one remembered string',
 // ================================================================ O. INTEGRITY COMMENT FALSE POSITIVE
 
 const LEDGER_SRC = readFileSync(
-  join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts', 'owed-fact-ledger.ts'),
+  join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts', 'owed-fact-ledger.ts'),
   'utf8');
 
 ok('O1. the exact §197 false positive is reproduced against the raw source',
@@ -529,7 +529,7 @@ ok('O1. the exact §197 false positive is reproduced against the raw source',
   'the naive scan still matches the module\'s own explanatory comment');
 ok('O2. on a real file, a comment-only occurrence is removed by stripping',
   (() => {
-    const TYPES_SRC = readFileSync(join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz',
+    const TYPES_SRC = readFileSync(join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz',
       'owed-facts', 'owed-fact.types.ts'), 'utf8');
     const phrase = 'no member for a model explanation';
     return TYPES_SRC.includes(phrase) && !stripComments(TYPES_SRC).includes(phrase);

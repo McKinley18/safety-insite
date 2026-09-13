@@ -14,8 +14,8 @@ import { join } from 'path';
 import { governedBindingFor } from './lib/expert-first-pass-instruction-vnext';
 import {
   EXPERT_CONDITION_STATES,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { L3_UNDECIDED_STATES } from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { L3_UNDECIDED_STATES } from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 import {
   contractIdentities233, FIRST_PASS_CONTRACT_233_VERSION,
 } from './lib/expert-233-posture-contract';

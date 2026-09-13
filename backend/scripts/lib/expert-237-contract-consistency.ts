@@ -22,7 +22,7 @@ import { createHash } from 'crypto';
 
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { governedBindingFor } from './expert-first-pass-instruction-vnext';
 import { POSTURE_FIELD } from './expert-233-posture-contract';
 import { POSTURE_REFUSAL_CODES_233 } from './expert-233-posture-projection';

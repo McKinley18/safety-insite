@@ -13,13 +13,13 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { EXPERT_INTERACTION_KINDS } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { EXPERT_INTERACTION_KINDS } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { REQUIRED_CLASS_MINIMUMS, PREFERRED_ROWS } from
-  '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+  '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import { ACCEPTED_EXPERT_TAXONOMY } from './lib/expert-cohort-supplemental-policy';
-import { POPULATION_A, POPULATION_B } from '../src/safescope-v2/tests/hazlenz-decomposition-precision-corpus';
-import { AUGMENTATION_ROWS } from '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+import { POPULATION_A, POPULATION_B } from '../src/hazlenz/tests/hazlenz-decomposition-precision-corpus';
+import { AUGMENTATION_ROWS } from '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 
 const ROOT = path.resolve(__dirname, '..', '..');
 

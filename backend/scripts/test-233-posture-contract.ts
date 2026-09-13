@@ -25,7 +25,7 @@ import {
 } from './lib/expert-233-posture-projection';
 import { SCENARIOS_233, analysis, posture } from './lib/expert-233-posture-fixtures';
 import { EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput }
-  from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let passed = 0; const failures: string[] = [];
 function ok(name: string, cond: boolean, detail = ''): void {
@@ -88,7 +88,7 @@ ok('A7 the enum reaches the model in the schema',
  * exercised without a provider call. The first draft of §233 introduced two and they were removed.
  */
 {
-  const strip = require('../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider');
+  const strip = require('../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider');
   const asSent = strip.stripAnthropicUnsupportedKeywords(strip.applyStrictSchemaWrapper(
     buildExpert233WireSchema(INPUT, GOV)));
   let unions = 0;

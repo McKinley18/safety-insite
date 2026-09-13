@@ -33,7 +33,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
 import { hardenedFixtureByRowId, HARDENED_SET_VERSION, CANONICAL_DETERMINISTIC_FAMILIES }
-  from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+  from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 
 const ROOT = join(__dirname, '..', '..');
 const V = join(ROOT, 'verification');
@@ -48,9 +48,9 @@ const PERCENTAGE_FLOOR = 10;
 
 /** PHASE 1. Byte-for-byte freeze. Any drift stops the operation. */
 const FROZEN: Array<[string, string]> = [
-  ['backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts',
+  ['backend/src/hazlenz/expert-hazlenz/expert-prompt.ts',
     '02977c309f6d3e377d97b31836f9fc6e8af8dfd64fa28d81d1a53f605a266efa'],
-  ['backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts',
+  ['backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts',
     '09195af8fb7ce07c693c8d056526745196a81c4170d5d801eaccfe1e1f1545cb'],
   ['verification/expert-hazlenz-verifier-accuracy-2026-09-03/VERIFIER-PACKET.json',
     '75d64197583092ed8ac826a1c3c85d86666fd36d7eca52737d1d6eec942afc5a'],

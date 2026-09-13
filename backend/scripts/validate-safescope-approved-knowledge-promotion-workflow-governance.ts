@@ -1,4 +1,4 @@
-import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../src/safescope-v2/approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
+import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../src/hazlenz/approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
 
 async function validate() {
   const service = new ApprovedKnowledgePromotionWorkflowGovernanceService();

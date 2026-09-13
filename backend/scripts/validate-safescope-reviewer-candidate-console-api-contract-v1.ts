@@ -1,10 +1,10 @@
-import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
-import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
-import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
-import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
+import { ReviewerCandidateConsoleService } from '../src/hazlenz/reviewer-candidate-console/reviewer-candidate-console.service';
+import { HazLenzPersistenceService } from '../src/hazlenz/persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../src/hazlenz/role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../src/hazlenz/workspace-governance-access/workspace-governance-access.service';
 
 async function validate() {
-  const persistence = new SafeScopePersistenceService();
+  const persistence = new HazLenzPersistenceService();
   const gates = new RoleBasedApprovalGatesService();
   const access = new WorkspaceGovernanceAccessService();
   const service = new ReviewerCandidateConsoleService(persistence, gates, access);
@@ -39,7 +39,7 @@ async function validate() {
   }
   console.log('[PASS] Action updates verified.');
 
-  console.log('✅ SafeScope reviewer candidate console API contract validation passed.');
+  console.log('✅ HazLenz reviewer candidate console API contract validation passed.');
 }
 
 validate().catch(err => {

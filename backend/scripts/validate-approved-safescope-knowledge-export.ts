@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
 
 type ApprovedKnowledgeBundle = {
   engine?: string;
@@ -23,7 +23,7 @@ function assert(condition: boolean, message: string): void {
 
 const approvedBundlePath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/approved/approved-knowledge-bundle.json',
+  '../src/hazlenz/knowledge-intake/records/approved/approved-knowledge-bundle.json',
 );
 
 assert(fs.existsSync(approvedBundlePath), 'Approved knowledge bundle does not exist. Run export-approved-hazlenz-knowledge.ts first.');
@@ -56,5 +56,5 @@ for (const [index, record] of records.entries()) {
   assert(record.sourceBoundary !== 'prohibited', `${label}: prohibited records cannot be exported.`);
 }
 
-console.log('✅ SafeScope approved knowledge export validation passed.');
+console.log('✅ HazLenz approved knowledge export validation passed.');
 console.log(`Approved records validated: ${records.length}`);

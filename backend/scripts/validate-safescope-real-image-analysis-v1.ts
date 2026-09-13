@@ -1,5 +1,5 @@
-import { RealImageAnalysisService } from '../src/safescope-v2/real-image-analysis/real-image-analysis.service';
-import { RealImageAnalysisValidator } from '../src/safescope-v2/real-image-analysis/real-image-analysis.validator';
+import { RealImageAnalysisService } from '../src/hazlenz/real-image-analysis/real-image-analysis.service';
+import { RealImageAnalysisValidator } from '../src/hazlenz/real-image-analysis/real-image-analysis.validator';
 
 async function validate() {
   const service = new RealImageAnalysisService();
@@ -109,7 +109,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope real image analysis validation passed.');
+  console.log('✅ HazLenz real image analysis validation passed.');
 }
 
 validate().catch(err => {

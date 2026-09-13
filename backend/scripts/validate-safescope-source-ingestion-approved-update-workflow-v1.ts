@@ -1,15 +1,15 @@
-import { SourceIngestionApprovedUpdateWorkflowService } from '../src/safescope-v2/source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.service';
-import { SourceIngestionApprovedUpdateWorkflowValidator } from '../src/safescope-v2/source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.validator';
-import { ApprovedKnowledgeRegistrySearchService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-registry-search.service';
-import { SourceFreshnessGovernanceService } from '../src/safescope-v2/source-freshness-governance/source-freshness-governance.service';
-import { JurisdictionApplicabilityDecisionTreeService } from '../src/safescope-v2/jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
-import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
-import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
-import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
-import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
+import { SourceIngestionApprovedUpdateWorkflowService } from '../src/hazlenz/source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.service';
+import { SourceIngestionApprovedUpdateWorkflowValidator } from '../src/hazlenz/source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.validator';
+import { ApprovedKnowledgeRegistrySearchService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-registry-search.service';
+import { SourceFreshnessGovernanceService } from '../src/hazlenz/source-freshness-governance/source-freshness-governance.service';
+import { JurisdictionApplicabilityDecisionTreeService } from '../src/hazlenz/jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
+import { ReviewerCandidateConsoleService } from '../src/hazlenz/reviewer-candidate-console/reviewer-candidate-console.service';
+import { HazLenzPersistenceService } from '../src/hazlenz/persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../src/hazlenz/role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../src/hazlenz/workspace-governance-access/workspace-governance-access.service';
 
 async function validate() {
-  const persistence = new SafeScopePersistenceService();
+  const persistence = new HazLenzPersistenceService();
   const gates = new RoleBasedApprovalGatesService();
   const access = new WorkspaceGovernanceAccessService();
   const search = new ApprovedKnowledgeRegistrySearchService();
@@ -106,7 +106,7 @@ async function validate() {
   }
   console.log('[PASS] Promotion blocked correctly for missing duplicate review.');
 
-  console.log('✅ SafeScope source ingestion and approved update workflow validation passed.');
+  console.log('✅ HazLenz source ingestion and approved update workflow validation passed.');
 }
 
 validate().catch(err => {

@@ -1,9 +1,9 @@
-import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
-import { RegulatoryCrawlerService } from '../src/safescope-v2/regulatory-crawler/regulatory-crawler.service';
-import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
-import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
-import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
-import { JurisdictionApplicabilityDecisionTreeService } from '../src/safescope-v2/jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
+import { ReviewerCandidateConsoleService } from '../src/hazlenz/reviewer-candidate-console/reviewer-candidate-console.service';
+import { RegulatoryCrawlerService } from '../src/hazlenz/regulatory-crawler/regulatory-crawler.service';
+import { HazLenzPersistenceService } from '../src/hazlenz/persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../src/hazlenz/role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../src/hazlenz/workspace-governance-access/workspace-governance-access.service';
+import { JurisdictionApplicabilityDecisionTreeService } from '../src/hazlenz/jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -12,9 +12,9 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope State-Plans and Regulatory Crawler ---');
+  console.log('--- Testing HazLenz State-Plans and Regulatory Crawler ---');
 
-  const persistence = new SafeScopePersistenceService();
+  const persistence = new HazLenzPersistenceService();
   const gates = new RoleBasedApprovalGatesService();
   const access = new WorkspaceGovernanceAccessService();
   const consoleService = new ReviewerCandidateConsoleService(persistence, gates, access);
@@ -56,7 +56,7 @@ async function validate() {
   assert(resWA.primaryJurisdiction === 'wa_dosh', `Should map to wa_dosh, got ${resWA.primaryJurisdiction}`);
   assert(resWA.matchedJurisdictionSignals.includes('wisha'), 'Must match wisha signal.');
 
-  console.log('✅ SafeScope State-Plans and Regulatory Crawler validation passed.');
+  console.log('✅ HazLenz State-Plans and Regulatory Crawler validation passed.');
 }
 
 validate().catch(err => {

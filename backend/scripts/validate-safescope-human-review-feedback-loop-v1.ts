@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { HumanReviewFeedbackLoopValidator } from '../src/safescope-v2/human-review-feedback-loop/human-review-feedback-loop.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { HumanReviewFeedbackLoopValidator } from '../src/hazlenz/human-review-feedback-loop/human-review-feedback-loop.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -92,7 +92,7 @@ async function validate() {
       console.log('[PASS] Case: ' + tc.name);
   }
 
-  console.log('✅ SafeScope human review feedback loop validation passed.');
+  console.log('✅ HazLenz human review feedback loop validation passed.');
 }
 
 validate().catch(err => {

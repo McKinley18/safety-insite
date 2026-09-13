@@ -15,7 +15,7 @@ type SourceRegisterEntry = {
 
 const registerPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/source-register/source-register.seed.json',
+  '../src/hazlenz/knowledge-intake/source-register/source-register.seed.json',
 );
 
 function assert(condition: boolean, message: string): void {
@@ -59,4 +59,4 @@ for (const [index, entry] of entries.entries()) {
   validCount += 1;
 }
 
-console.log(`✅ SafeScope source register validation passed. Sources validated: ${validCount}`);
+console.log(`✅ HazLenz source register validation passed. Sources validated: ${validCount}`);

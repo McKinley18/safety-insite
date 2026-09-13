@@ -9,16 +9,16 @@ import {
   CLASSIFICATION_FOR_DRIVER_ROLE, HUMAN_CLASSIFICATIONS, SETTLEMENT_DECISIONS,
   resolveConfirmationSubject, settleEntries, validateReplacements,
   type SubjectEntry,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-settlement-contract';
+} from '../src/hazlenz/expert-hazlenz-product/expert-settlement-contract';
 import {
   deriveEffectiveDecision,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-effective-decision';
+} from '../src/hazlenz/expert-hazlenz-product/expert-effective-decision';
 import {
   CONFIRMATION_RULE_VERSION,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-confirmation-rule';
+} from '../src/hazlenz/expert-hazlenz-product/expert-confirmation-rule';
 import type {
   AnalysisState,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-authority';
+} from '../src/hazlenz/expert-hazlenz-product/expert-analysis-authority';
 
 let pass = 0; let fail = 0; const failures: string[] = [];
 const ok = (id: string, cond: boolean, d = ''): void => {

@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -31,7 +31,7 @@ const allowedEquipmentReasoningModes = [
 
 const allowedConfidenceLevels = ['low', 'moderate', 'high'];
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const cases = [
   {
@@ -162,4 +162,4 @@ for (const testCase of cases) {
   console.log(`✅ ${testCase.name}: contract mode ${result.equipmentReasoningSummary.primaryReasoningMode}`);
 }
 
-console.log('✅ SafeScope reasoning result contract validation passed.');
+console.log('✅ HazLenz reasoning result contract validation passed.');

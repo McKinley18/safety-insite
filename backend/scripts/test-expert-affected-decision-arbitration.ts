@@ -37,14 +37,14 @@
 import {
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_AFFECTED_DECISIONS,
   EXPERT_ANALYSIS_CONTRACT_VERSION, type ExpertAnalysisInput, type ExpertAffectedDecision,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
   stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { normalizeExpertOutput, isFatal } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { normalizeExpertOutput, isFatal } from '../src/hazlenz/expert-hazlenz/expert-normalization';
 import { CLARIFICATION_RECALL_FIXTURES } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/clarification-recall-probe-v5';
+  '../src/hazlenz/expert-hazlenz/fixtures/clarification-recall-probe-v5';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string, detail = ''): void {

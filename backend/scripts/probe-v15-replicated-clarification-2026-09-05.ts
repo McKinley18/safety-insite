@@ -72,15 +72,15 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { buildExpertAnalysisInputFromAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { buildExpertAnalysisInputFromAnalysis } from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
 import {
   EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION, expertPromptIdentity,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { MultiHazardDecompositionService } from '../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { MultiHazardDecompositionService } from '../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service';
 // The REAL derivation and the REAL frozen-row loader from the §175/§177 harness. Reused rather than
 // reimplemented: a new copy would be a second thing to get wrong, and the §175 attempt-1 void is
 // exactly what happens when the scoring path is not the path that was proven.
@@ -187,7 +187,7 @@ async function main(): Promise<void> {
   const freezeOnly = process.argv.includes('--freeze');
 
   // ---- GATE: the live tree must still be the frozen §178 identity
-  const promptFileSha = shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'));
+  const promptFileSha = shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'));
   const systemPromptSha = sha(EXPERT_SYSTEM_PROMPT);
   if (EXPERT_PROMPT_VERSION !== FROZEN_V15.promptVersion) {
     throw new Error(`ABORT before spend: prompt version ${EXPERT_PROMPT_VERSION}, expected ${FROZEN_V15.promptVersion}`);

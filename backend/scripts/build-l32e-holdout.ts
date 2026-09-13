@@ -33,7 +33,7 @@ import { join } from 'path';
 
 const REPO = join(__dirname, '..', '..');
 const FIELD = join(REPO, 'safescope-data/benchmarks/safescope-field-validation-dataset.v1.json');
-const EVAL = join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval');
+const EVAL = join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval');
 const OUT = join(EVAL, 'holdout-l32e.json');
 
 const HIGH_CONSEQUENCE = [

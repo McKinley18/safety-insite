@@ -262,7 +262,7 @@ export class MshaFatalityConnector {
     private readonly sourceListPath = join(
       process.cwd(),
       "src",
-      "safescope-knowledge",
+      "hazlenz-knowledge",
       "ingestion",
       "source-lists",
       "msha-fatality-urls.json",
@@ -288,7 +288,7 @@ export class MshaFatalityConnector {
       const response = await fetch(item.url, {
         headers: {
           "User-Agent":
-            "SentinelSafetySafeScope/0.1 local governed safety research ingestion",
+            "SafetyInSiteHazLenz/0.1 local governed safety research ingestion",
         },
       });
 

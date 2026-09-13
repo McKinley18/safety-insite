@@ -80,7 +80,7 @@
 import {
   type OwedFactStatus, type OwedFactPriority, type OwedFactAffectedDecision,
   OWED_FACT_STATUSES,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import { isNonSemanticFiller } from './expert-first-pass-owed-fact-projection';
 
 export const EPISTEMIC_REPRESENTATION_VERSION =
@@ -126,8 +126,8 @@ export interface CarrierRow {
  *
  * Sources, so a reviewer can check every row without trusting this table:
  *   declaration  scripts/lib/expert-first-pass-instruction-vnext.ts unresolvedFactDeclarationItemSchema
- *   OwedFact     src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts
- *   verifier     src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts
+ *   OwedFact     src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts
+ *   verifier     src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts
  *   sidecar      scripts/lib/section-210b-verifier-payload.ts
  */
 export const CARRIER_AUDIT: readonly CarrierRow[] = [

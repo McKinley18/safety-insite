@@ -22,13 +22,13 @@
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_GROUNDING_STATUSES, EXPERT_INPUT_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   ANALYSIS_FATAL_REASONS, normalizeExpertOutput,
-} from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-normalization';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string): void {

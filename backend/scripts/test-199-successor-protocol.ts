@@ -11,9 +11,9 @@ import { createHash } from 'crypto';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { buildExpertUserPrompt, stableStringify } from
-  '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   buildExpertVNextWireSchema, buildExpertVNextUserPrompt, buildExpertVNextSystemPrompt,
   governedBindingFor, governedBindingCapability, UNRESOLVED_FACT_DECLARATIONS_FIELD,

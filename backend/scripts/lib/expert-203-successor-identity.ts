@@ -49,7 +49,7 @@ export interface AncestorPin {
  */
 export const ANCESTOR_PINS: readonly AncestorPin[] = [
   {
-    path: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts',
+    path: 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts',
     sha256: '102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a',
     pinnedBy: '§187 PREREGISTRATION.json owedFactSourceHashes (verification/'
       + 'expert-hazlenz-required-structured-verifier-validation-2026-09-05), re-asserted by the '
@@ -57,25 +57,25 @@ export const ANCESTOR_PINS: readonly AncestorPin[] = [
     ancestorVersion: null,
   },
   {
-    path: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts',
+    path: 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger.ts',
     sha256: '4fe3319046281bdbc6e527aad04042fa3892e4b4117a5a9c2362141144ab3701',
     pinnedBy: '§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199',
     ancestorVersion: null,
   },
   {
-    path: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts',
+    path: 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts',
     sha256: 'e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0',
     pinnedBy: '§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199',
     ancestorVersion: 'hazlenz.expert.owed-fact-binding.runtime.v1',
   },
   {
-    path: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
+    path: 'backend/src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
     sha256: '5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245',
     pinnedBy: '§187 PREREGISTRATION.json owedFactSourceHashes, re-asserted by verify-188..199',
     ancestorVersion: null,
   },
   {
-    path: 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts',
+    path: 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts',
     sha256: 'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694',
     pinnedBy: '§187 PREREGISTRATION.json firstPassIdentity.promptFileSha256',
     ancestorVersion: 'hazlenz.expert.prompt.v15',
@@ -130,7 +130,7 @@ export const SUCCESSOR_MODULE_PLAN: readonly SuccessorModulePlan[] = [
   {
     path: 'backend/scripts/lib/expert-203-successor-binding.ts',
     lineage: 'COPIED_FROM',
-    ancestorPath: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts',
+    ancestorPath: 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts',
     owner: 'AGENT_B_THEN_C',
     purpose: 'successor checkBindingDeclarations / applyAdmittedDeclarations carrying ABF-3, ABF-8, '
       + 'the Ruling-5 non-authoritative urgency nomination, and the Ruling-3 FACT_IDENTITY_COLLISION '

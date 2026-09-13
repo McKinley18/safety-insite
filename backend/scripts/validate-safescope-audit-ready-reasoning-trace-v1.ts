@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { AuditReadyReasoningTraceValidator } from '../src/safescope-v2/audit-ready-reasoning-trace/audit-ready-reasoning-trace.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { AuditReadyReasoningTraceValidator } from '../src/hazlenz/audit-ready-reasoning-trace/audit-ready-reasoning-trace.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -76,7 +76,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name} (Trace ID: ${trace.traceId})`);
   }
 
-  console.log('✅ SafeScope audit-ready reasoning trace validation passed.');
+  console.log('✅ HazLenz audit-ready reasoning trace validation passed.');
 }
 
 validate().catch(err => {

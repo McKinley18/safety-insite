@@ -28,10 +28,10 @@
  * admits it; the §203 result is carried intact for differential evidence.
  */
 
-import type { OwedFactLedger } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+import type { OwedFactLedger } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   OWED_FACT_AFFECTED_DECISIONS,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   applyAdmittedDeclarations203, checkBindingDeclarations203,
   type SuccessorApplyResult, type SuccessorBindingCheckResult,

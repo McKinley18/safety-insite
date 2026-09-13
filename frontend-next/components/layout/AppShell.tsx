@@ -249,7 +249,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
     // The offline HazLenz brain bundle prefetch is disabled for v1.0.
     //
-    // downloadHazLenzBrainBundle() requests GET {API}/offline/safescope-brain-bundle.json,
+    // downloadHazLenzBrainBundle() requests GET {API}/offline/hazlenz-brain-bundle.json,
     // and the API exposes no such route: the bundle is written to backend/dist/offline/ by the
     // manual `export:hazlenz-knowledge` script, and the backend registers no static-asset
     // handler, so the request 404s in every environment. The failure was already swallowed, but

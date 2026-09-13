@@ -98,72 +98,72 @@ const steps: PipelineStep[] = [
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-approved-knowledge-integration-snapshot.ts'],
   },
   {
-    name: 'Validate SafeScope reasoning orchestrator v1',
+    name: 'Validate HazLenz reasoning orchestrator v1',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-reasoning-orchestrator.ts'],
   },
   {
-    name: 'Validate SafeScope applicability analysis',
+    name: 'Validate HazLenz applicability analysis',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-applicability-analysis.ts'],
   },
   {
-    name: 'Validate SafeScope corrective action reasoning',
+    name: 'Validate HazLenz corrective action reasoning',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-corrective-action-reasoning.ts'],
   },
   {
-    name: 'Validate SafeScope reasoning scenarios',
+    name: 'Validate HazLenz reasoning scenarios',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-reasoning-scenarios.ts'],
   },
   {
-    name: 'Validate SafeScope domain candidate scoring',
+    name: 'Validate HazLenz domain candidate scoring',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-domain-candidate-scoring.ts'],
   },
   {
-    name: 'Validate SafeScope equipment knowledge registry',
+    name: 'Validate HazLenz equipment knowledge registry',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-equipment-knowledge.ts'],
   },
   {
-    name: 'Validate SafeScope equipment context detector',
+    name: 'Validate HazLenz equipment context detector',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-equipment-context-detector.ts'],
   },
   {
-    name: 'Validate SafeScope equipment task mechanisms',
+    name: 'Validate HazLenz equipment task mechanisms',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-equipment-task-mechanisms.ts'],
   },
   {
-    name: 'Generate SafeScope reasoning scenario coverage',
+    name: 'Generate HazLenz reasoning scenario coverage',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/generate-safescope-reasoning-scenario-coverage.ts'],
   },
   {
-    name: 'Validate SafeScope reasoning scenario coverage',
+    name: 'Validate HazLenz reasoning scenario coverage',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-reasoning-scenario-coverage.ts'],
   },
   {
-    name: 'Generate SafeScope reasoning scenario maturity',
+    name: 'Generate HazLenz reasoning scenario maturity',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/generate-safescope-reasoning-scenario-maturity.ts'],
   },
   {
-    name: 'Validate SafeScope reasoning scenario maturity',
+    name: 'Validate HazLenz reasoning scenario maturity',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-reasoning-scenario-maturity.ts'],
   },
   {
-    name: 'Generate SafeScope reasoning orchestrator snapshot',
+    name: 'Generate HazLenz reasoning orchestrator snapshot',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/generate-safescope-reasoning-orchestrator-snapshot.ts'],
   },
   {
-    name: 'Validate SafeScope reasoning orchestrator snapshot',
+    name: 'Validate HazLenz reasoning orchestrator snapshot',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-reasoning-orchestrator-snapshot.ts'],
   },
@@ -174,7 +174,7 @@ const steps: PipelineStep[] = [
   },
 ];
 
-console.log('🚦 Starting SafeScope knowledge pipeline validation...\n');
+console.log('🚦 Starting HazLenz knowledge pipeline validation...\n');
 
 for (const [index, step] of steps.entries()) {
   console.log(`\n[${index + 1}/${steps.length}] ${step.name}`);
@@ -184,4 +184,4 @@ for (const [index, step] of steps.entries()) {
   });
 }
 
-console.log('\n✅ SafeScope knowledge pipeline validation passed.');
+console.log('\n✅ HazLenz knowledge pipeline validation passed.');

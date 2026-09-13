@@ -29,9 +29,9 @@ import { createHash } from 'crypto';
 import {
   PROPERTY_AUTHORITY_STATES, SETTLEMENT_PERMITTING_STATES,
   type PropertyAuthorityState,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
-import { REVIEW_DECISIONS } from '../../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
-import { OWED_FACT_STATUSES } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
+import { REVIEW_DECISIONS } from '../../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
+import { OWED_FACT_STATUSES } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   PROPERTY_SEMANTIC_ROLES_218, PROPERTY_VALIDITIES_218,
   type PropertySemanticRole218, type PropertyValidity218,

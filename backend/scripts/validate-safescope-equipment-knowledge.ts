@@ -1,10 +1,10 @@
-import { SAFESCOPE_EQUIPMENT_KNOWLEDGE_REGISTRY } from '../src/safescope-v2/equipment-knowledge/equipment-knowledge.registry';
+import { HAZLENZ_EQUIPMENT_KNOWLEDGE_REGISTRY } from '../src/hazlenz/equipment-knowledge/equipment-knowledge.registry';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const registry = SAFESCOPE_EQUIPMENT_KNOWLEDGE_REGISTRY;
+const registry = HAZLENZ_EQUIPMENT_KNOWLEDGE_REGISTRY;
 
 assert(registry.engine === 'safescope_equipment_knowledge_registry_v1', 'Equipment registry engine changed.');
 assert(registry.mode === 'read_only_test_only_context', 'Equipment registry mode changed.');
@@ -57,5 +57,5 @@ for (const record of registry.records) {
   }
 }
 
-console.log('✅ SafeScope equipment knowledge registry validation passed.');
+console.log('✅ HazLenz equipment knowledge registry validation passed.');
 console.log(`Equipment records validated: ${registry.records.length}`);

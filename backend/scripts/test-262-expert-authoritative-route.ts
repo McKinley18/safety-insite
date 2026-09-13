@@ -28,23 +28,23 @@ import { DataSource } from 'typeorm';
 
 import { AppModule } from '../src/app.module';
 import { ExpertAnalysisController }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis.controller';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis.controller';
 import {
   substituteExpertSemanticTransportForVerification,
   resetExpertTransportEntryCountsForVerification,
   expertTransportEntryCounts,
   expertTransportIsSubstituted,
   expertTransportLifetimeCounts,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-semantic-transport.provider';
+} from '../src/hazlenz/expert-hazlenz-product/expert-semantic-transport.provider';
 import { ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-audit';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis-audit';
 import { CONFIRMATION_RULE_VERSION }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-confirmation-rule';
-import { EXPERT_CANDIDATE_IDENTITY_259 }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-candidate-provenance';
+  from '../src/hazlenz/expert-hazlenz-product/expert-confirmation-rule';
+import { EXPERT_CANDIDATE_IDENTITY_274 }
+  from '../src/hazlenz/expert-hazlenz-product/expert-candidate-provenance';
 import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
 
 // ================================================================ the disposable-target guard
@@ -452,7 +452,7 @@ async function main(): Promise<void> {
 
   console.log('\n---- R3c. acceptance J: server-authored provenance ----\n');
   ok('R3c-A the frozen §259 candidate identity is persisted',
-    b.executionRow?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_259,
+    b.executionRow?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_274,
     b.executionRow?.candidateIdentity);
   ok('R3c-B contract, entry, admission and projection versions are persisted',
     b.executionRow?.contractVersion === 'hazlenz.expert.first-pass.259'
@@ -485,7 +485,7 @@ async function main(): Promise<void> {
     && b.response.body.confirmationRequired === true,
     'ANALYSIS_AWAITING_CONFIRMATION, confirmationRequired=true, stated in the response');
   recordCase('J', 'candidate and version provenance persistence',
-    b.executionRow?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_259
+    b.executionRow?.candidateIdentity === EXPERT_CANDIDATE_IDENTITY_274
     && b.executionRow?.systemPromptSha
       === '680f5127776427963d89244eafa32ce57973575ffbfae2f3326ed92fc17be34a',
     'candidate identity, contract/entry/admission/projection versions, transmitted prompt digest');

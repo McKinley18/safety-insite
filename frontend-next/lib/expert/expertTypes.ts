@@ -5,7 +5,7 @@
  * THESE ARE MIRRORS, NOT MODELS.
  *
  * Every field here exists on the server in
- * `backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-response.ts`, and this file
+ * `backend/src/hazlenz/expert-hazlenz-product/expert-analysis-response.ts`, and this file
  * adds nothing to it. In particular there is no client-side notion of "is this settled", "does
  * this need confirming" or "what is this asking me" — those are `effectiveDecision.settledForUse`,
  * `confirmationRequired` and `confirmationSubject`, all served, all authoritative.

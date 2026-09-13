@@ -369,6 +369,7 @@
     "verify:204-source-integrity": "ts-node scripts/verify-204-source-integrity.ts",
     "verify:204-text-integrity": "ts-node scripts/verify-204-text-integrity.ts",
     "verify:262-candidate-identity": "ts-node scripts/verify-262-candidate-identity.ts",
+    "verify:274-successor-identity": "ts-node scripts/verify-274-successor-identity.ts",
     "verify:canonical-report-frontend-contract": "ts-node scripts/verify-canonical-report-frontend-contract.ts",
     "verify:formal-recovered-measures": "ts-node scripts/verify-formal-recovered-measures.ts",
     "verify:governed-record-source": "ts-node scripts/verify-governed-record-against-source.ts",

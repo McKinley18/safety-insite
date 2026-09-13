@@ -50,16 +50,25 @@ export interface Check {
 
 const sha256 = (buffer: Buffer): string => createHash('sha256').update(buffer).digest('hex');
 
-/** §259 candidate identity, recomputed from live sources by the §262 read-only verifier. */
+/**
+ * The live candidate identity, recomputed from source by the §274 read-only successor verifier.
+ *
+ * This used to call the §262 recomputation, which checks the frozen §259 identity. §274 renamed the
+ * engine directory under authorisation, which moved two of the twenty-two elements, so §262 now
+ * legitimately reports that delta and is retained as the HISTORICAL check. The live gate is the
+ * successor verifier, which is strictly stronger: it recomputes every element, requires the twenty
+ * semantic ones to be byte-identical to §259, and requires each of the two moved ones to be
+ * explicable by the authorised rename alone.
+ */
 function candidateIdentity(): Check[] {
   try {
     const output = execFileSync('npx',
-      ['ts-node', 'scripts/verify-262-candidate-identity.ts'],
+      ['ts-node', 'scripts/verify-274-successor-identity.ts'],
       { cwd: BACKEND, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
-    const summary = /\{[^{}]*"identityMatch"[^{}]*\}/.exec(output);
+    const summary = /\{[^{}]*"successor"[^{}]*\}/.exec(output);
     const parsed = summary ? JSON.parse(summary[0]) as {
-      elementsChecked: number; elementDrift: number; identityMatch: boolean;
-      productionConstantMatch: boolean; filesWritten: number;
+      elementsChecked: number; elementsMoved: number; failures: number;
+      predecessor: string; successor: string;
     } : null;
     if (!parsed) {
       return [{ name: 'Candidate identity', status: 'FAIL', detail: 'no summary was produced' }];
@@ -67,13 +76,15 @@ function candidateIdentity(): Check[] {
     return [
       {
         name: 'Candidate identity',
-        status: parsed.identityMatch ? 'PASS' : 'FAIL',
-        detail: `${parsed.elementsChecked} elements, drift ${parsed.elementDrift}`,
+        status: parsed.failures === 0 ? 'PASS' : 'FAIL',
+        detail: `${parsed.elementsChecked} elements, ${parsed.elementsMoved} moved by the `
+          + `authorised §274 rename, ${parsed.failures} failure(s)`,
       },
       {
         name: 'Identity constant in the build',
-        status: parsed.productionConstantMatch ? 'PASS' : 'FAIL',
-        detail: 'the compiled-in identity equals the recomputation',
+        status: parsed.failures === 0 ? 'PASS' : 'FAIL',
+        detail: `successor ${parsed.successor.slice(0, 12)}… supersedes `
+          + `${parsed.predecessor.slice(0, 12)}…`,
       },
     ];
   } catch (error) {
@@ -97,11 +108,19 @@ function candidateIdentity(): Check[] {
  * what catches the second case.
  */
 function protectedModules(): Check[] {
-  const manifestPath = join(REPO, 'PROTECTED-IDENTITIES.json');
+  // §274 SUPERSEDES THE §229 SNAPSHOT, WITHOUT REWRITING IT. The engine directory moved, so nine of
+  // the recorded paths no longer resolve against the §229 file. The successor manifest records the
+  // same twenty-nine modules at their new paths with their current digests; the §229 artifact stays
+  // exactly as frozen, which also keeps it safe from verify-229-protected-identities.ts, the one
+  // instrument here that WRITES to the thing it checks.
+  const successorPath = join(REPO, 'verification', 'current',
+    'SECTION-274-PROTECTED-IDENTITIES.json');
+  const manifestPath = existsSync(successorPath)
+    ? successorPath : join(REPO, 'PROTECTED-IDENTITIES.json');
   if (!existsSync(manifestPath)) {
     return [{
       name: 'Protected modules', status: 'ENVIRONMENTALLY_BLOCKED',
-      detail: 'PROTECTED-IDENTITIES.json is absent',
+      detail: 'no protected-identity manifest is present',
     }];
   }
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as {

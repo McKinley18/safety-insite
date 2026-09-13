@@ -1,12 +1,12 @@
-import { SafeScopeOrchestratorService } from '../src/safescope/safescope-orchestrator.service';
+import { HazLenzOrchestratorService } from '../src/safescope/safescope-orchestrator.service';
 import {
   HazardClassificationServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
-import { WeightedClassifierService } from '../src/safescope-v2/classifier/weighted-classifier.service';
+import { WeightedClassifierService } from '../src/hazlenz/classifier/weighted-classifier.service';
 
 async function run() {
-  const orchestrator = new SafeScopeOrchestratorService();
+  const orchestrator = new HazLenzOrchestratorService();
   const classifier = new WeightedClassifierService();
   const classificationAdapter = new HazardClassificationServiceAdapter(classifier);
 
@@ -21,7 +21,7 @@ async function run() {
 
   const baseAnalysis = orchestrator.analyze(request);
 
-  const adapterContext: SafeScopeAdapterContext = {
+  const adapterContext: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText: request.observationText,
       regulatoryContext: request.regulatoryContext,

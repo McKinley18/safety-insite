@@ -32,7 +32,7 @@ import { join } from 'path';
 
 const REPO = join(__dirname, '..', '..');
 const FIELD = join(REPO, 'safescope-data/benchmarks/safescope-field-validation-dataset.v1.json');
-const EVAL = join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval');
+const EVAL = join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval');
 const OUT = join(EVAL, 'holdout-l32c.json');
 
 /** Unchanged from L3-2 and L3-2b so the high-consequence gate means the same thing across phases. */

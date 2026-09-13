@@ -14,7 +14,7 @@ export interface ActionInput {
   location: string;
   override: boolean;
   isVague?: boolean;
-  safeScope?: {
+  hazLenz?: {
     classification?: string;
     riskBand?: "Low" | "Moderate" | "High" | "Critical";
     requiresShutdown?: boolean;
@@ -71,9 +71,9 @@ export class ActionEngineService {
 
     // 1. Determine Priority
     let priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" = "LOW";
-    const normalizedRiskLevel = String(report.safeScope?.riskBand || report.riskLevel || "").toUpperCase();
+    const normalizedRiskLevel = String(report.hazLenz?.riskBand || report.riskLevel || "").toUpperCase();
 
-    if (report.override || report.safeScope?.requiresShutdown || report.safeScope?.imminentDanger) {
+    if (report.override || report.hazLenz?.requiresShutdown || report.hazLenz?.imminentDanger) {
       priority = "CRITICAL";
     } else if (normalizedRiskLevel === "CRITICAL" || report.riskScore >= 80) {
       priority = "CRITICAL";
@@ -91,7 +91,7 @@ export class ActionEngineService {
     else now.setDate(now.getDate() + 14);
 
     // 3. Map Title
-    const rawActionCategory = (report.safeScope?.classification || report.category || "unknown").toLowerCase();
+    const rawActionCategory = (report.hazLenz?.classification || report.category || "unknown").toLowerCase();
 
     const actionCategoryAliases: Record<string, string> = {
       "machine guarding": "machine",
@@ -108,13 +108,13 @@ export class ActionEngineService {
     const title = this.actionMap[actionCategory] || "Perform general safety audit";
 
     // 🔷 4. INTELLIGENCE LOOKUP: Find Best Match for Fixes
-    const isVagueInput = Boolean(report.isVague || report.safeScope?.isVague);
+    const isVagueInput = Boolean(report.isVague || report.hazLenz?.isVague);
 
     const reference = isVagueInput
       ? null
       : this.hazardFixService.findBestMatch(
-          report.description || report.safeScope?.classification || report.category,
-          report.safeScope?.classification || report.category
+          report.description || report.hazLenz?.classification || report.category,
+          report.hazLenz?.classification || report.category
         );
 
     // 🔷 5. FEEDBACK LOOP: Integrate Learned Fixes
@@ -131,10 +131,10 @@ export class ActionEngineService {
     }
 
     const contextualControls = buildContextualControls({
-      classification: report.safeScope?.classification || report.category,
+      classification: report.hazLenz?.classification || report.category,
       text: report.description || report.category,
-      requiresShutdown: report.safeScope?.requiresShutdown,
-      imminentDanger: report.safeScope?.imminentDanger,
+      requiresShutdown: report.hazLenz?.requiresShutdown,
+      imminentDanger: report.hazLenz?.imminentDanger,
       isVague: isVagueInput,
     });
 
@@ -164,19 +164,19 @@ export class ActionEngineService {
         const patternStrings = report.patterns.map(p => `${p.count} occurrences of ${p.type} hazards`);
         description = `${patternStrings.join(" and ")} detected in ${report.location}. Immediate investigation required.`;
       } else {
-        description = `Observed ${report.safeScope?.classification || report.category} hazard requires corrective action based on HazLenz AI intelligence in ${report.location}.`;
+        description = `Observed ${report.hazLenz?.classification || report.category} hazard requires corrective action based on HazLenz AI intelligence in ${report.location}.`;
       }
 
-      if (report.safeScope?.requiresShutdown) {
+      if (report.hazLenz?.requiresShutdown) {
         description += " Immediate shutdown or isolation is recommended until effective controls are verified.";
       }
 
-      if (report.safeScope?.imminentDanger) {
+      if (report.hazLenz?.imminentDanger) {
         description += " Imminent-danger indicators were detected and require immediate competent-person review.";
       }
 
-      if (report.safeScope?.reasoning?.length) {
-        description += " HazLenz AI reasoning: " + report.safeScope.reasoning.join("; ");
+      if (report.hazLenz?.reasoning?.length) {
+        description += " HazLenz AI reasoning: " + report.hazLenz.reasoning.join("; ");
       }
 
       if (contextualControls.competentPersonReview) {
@@ -207,8 +207,8 @@ export class ActionEngineService {
       assignedRole,
       source: "AI_ENGINE",
       reportId: report.id,
-      referenceStandards: report.safeScope?.standards?.length
-        ? report.safeScope.standards.map((standard) => standard.citation)
+      referenceStandards: report.hazLenz?.standards?.length
+        ? report.hazLenz.standards.map((standard) => standard.citation)
         : [],
       suggestedFixes: finalFixes,
       originalSuggestion,

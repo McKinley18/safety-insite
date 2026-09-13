@@ -30,7 +30,7 @@ import { join } from 'path';
 
 const REPO = join(__dirname, '..', '..');
 const MATRIX = join(REPO, 'verification/hazlenz-capability-acceptance-2026-08-22/contracts/hazlenz-acceptance-matrix.json');
-const OUT = join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval/holdout-l32.json');
+const OUT = join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval/holdout-l32.json');
 
 /**
  * Declared BEFORE any result is observed. A miss on one of these families is a hard gate under

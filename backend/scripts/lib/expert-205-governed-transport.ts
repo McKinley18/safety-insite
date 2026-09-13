@@ -65,7 +65,7 @@ import {
 } from './expert-202-governed-stage-pipeline';
 import { describeGrammarProjection203 } from './expert-203-effective-grammar-identity';
 import { buildExpertR2SystemPrompt } from './expert-205-first-pass-instruction-r2';
-import type { ExpertAnalysisInput } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysisInput } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 export const GOVERNED_TRANSPORT_205_VERSION =
   'hazlenz.expert.205.governed-transport.v1' as const;

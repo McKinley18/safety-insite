@@ -35,7 +35,7 @@ function check(condition: unknown, message: string): void {
 }
 
 const SRC = resolve(__dirname, '..', 'src');
-const CONTROLLER = join(SRC, 'safescope-v2', 'safescope-v2.controller.ts');
+const CONTROLLER = join(SRC, 'hazlenz', 'safescope-v2.controller.ts');
 const PERSISTENCE = join(SRC, 'inspection', 'inspection.service.ts');
 
 /** Resolves a relative TypeScript import to a file on disk. */

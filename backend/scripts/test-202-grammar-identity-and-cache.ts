@@ -19,11 +19,11 @@ import { createHash } from 'crypto';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { stableStringify } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { stableStringify } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildExpertVNextWireSchema, governedBindingFor, governedBindingCapability,
 } from './lib/expert-first-pass-instruction-vnext';

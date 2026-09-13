@@ -15,13 +15,13 @@ import { createHash } from 'crypto';
 
 import {
   POSTURE_DRIVER_ROLES_239, DRIVER_ROLE_REF_KINDS_239, buildExpert239WireSchema,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
 import {
   ROLE_EPISTEMIC_CHARACTERS_247, EPISTEMIC_CHARACTER_DEFINITIONS_247, CESSATION_ROLE_247,
   CONTROLS_ROLE_247, buildExpert247WireSchema,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
-import { POSTURE_FIELD } from '../src/safescope-v2/expert-hazlenz/contract/expert-233-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+import { POSTURE_FIELD } from '../src/hazlenz/expert-hazlenz/contract/expert-233-posture-contract';
 import { transmitted, inputFor, CASES_251, countUnions, grammarMetrics } from './analyze-251-wire-budget';
 
 const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');

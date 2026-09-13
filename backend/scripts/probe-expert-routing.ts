@@ -17,19 +17,19 @@ import { mkdirSync, writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 import {
   OllamaExpertProvider, EXPERT_PROBE_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
-import { mergeExpertIntelligence, verifyMergeInvariants } from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
+} from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
+import { mergeExpertIntelligence, verifyMergeInvariants } from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
 import {
   scoreRouting, totalRouting, type RoutingScore,
-} from '../src/safescope-v2/expert-hazlenz/expert-routing-metrics';
+} from '../src/hazlenz/expert-hazlenz/expert-routing-metrics';
 import {
   CITATION_SHAPED_PATTERN, EXPERT_ANALYSIS_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { EXPERT_PROMPT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import type { ExpertProviderResult } from '../src/safescope-v2/expert-hazlenz/expert-provider';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { EXPERT_PROMPT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import type { ExpertProviderResult } from '../src/hazlenz/expert-hazlenz/expert-provider';
 
 const MAX_LOCAL_REPROBE_CALLS = 12;
 
@@ -268,7 +268,7 @@ function quarantineIntact(): boolean {
     .split('\n').map((s: string) => s.trim()).filter(Boolean);
   if (!importers.every(p => p.includes(l3))) return false;
 
-  const core = join(src, 'safescope-v2', 'expert-hazlenz');
+  const core = join(src, 'hazlenz', 'expert-hazlenz');
   const walk = (dir: string): string[] => readdirSync(dir).flatMap((n: string) => {
     const full = join(dir, n);
     return statSync(full).isDirectory() ? walk(full) : [full];
@@ -317,7 +317,7 @@ const AUTHORIZED_HOSTED_ADAPTER = 'anthropic-expert-provider.ts';
 
 function hostedCallsImpossible(): boolean {
   const { readdirSync, readFileSync, statSync } = require('fs');
-  const dir = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz-adapters');
+  const dir = join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz-adapters');
   const walk = (d: string): string[] => readdirSync(d).flatMap((n: string) => {
     const full = join(d, n);
     return statSync(full).isDirectory() ? walk(full) : [full];

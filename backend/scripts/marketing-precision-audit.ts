@@ -24,7 +24,7 @@ async function runPrecisionTest() {
   for (const scenario of scenarios) {
     const start = performance.now();
     
-    // Simulating SafeScope characteristic-based matching logic
+    // Simulating HazLenz characteristic-based matching logic
     const matches = await repo.find({
       where: [
         { heading: require('typeorm').ILike(`%${scenario.query}%`) },
@@ -58,7 +58,7 @@ async function runPrecisionTest() {
   console.log(`- Total Standards Scanned: 422`);
   console.log(`- Successful Correlations: ${totalMatches}`);
   console.log(`- Total Execution Time: ${totalDuration.toFixed(2)}ms`);
-  console.log('\nMARKETING CLAIM: "SafeScope AI identifies regulatory standards 10x faster than manual reference lookup."');
+  console.log('\nMARKETING CLAIM: "HazLenz AI identifies regulatory standards 10x faster than manual reference lookup."');
   console.log('============================================\n');
 
   await ds.destroy();

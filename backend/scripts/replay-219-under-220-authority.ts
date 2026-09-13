@@ -25,19 +25,19 @@ import { checkScopeContainment } from './lib/expert-214-scope-containment';
 import { checkPropertyReview218 } from './lib/expert-218-property-consistency';
 import { CONFIRMATION_CASES_219 } from './lib/expert-219-structured-confirmation-instrument';
 
-import type { ArbitrationRequest, OwedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { ArbitrationRequest, OwedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   createOwedFactLedger, factOf,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   consumeSettlementClaims, mintSettlementAuthority, settleByReviewedEvidence,
   attachPropertyAuthority, recordPropertyAuthorityDeclined, observeSettlementReview,
   type ReviewDecisionRecord,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   buildPropertyReviewPacket, mintPropertyAuthority, propertyAuthorityRequirementFor,
   type PropertyConfirmationDecision, type PropertyDecisionRecord, type PropertyReviewPacket,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 
 const ROOT = join(__dirname, '..', '..');
 const EVID_219 = join(ROOT, 'verification',

@@ -1,4 +1,4 @@
-import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../src/safescope-v2/approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
+import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../src/hazlenz/approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
 
 const service = new ApprovedSourceKnowledgeIntakeGovernanceService();
 
@@ -286,7 +286,7 @@ async function main() {
     throw new Error(`${failures} approved-source-knowledge-intake-governance validation case(s) failed.`);
   }
 
-  console.log('✅ SafeScope approved source knowledge intake governance validation passed.');
+  console.log('✅ HazLenz approved source knowledge intake governance validation passed.');
 }
 
 main().catch((error) => {

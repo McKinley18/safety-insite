@@ -174,7 +174,7 @@ section('§210B-1 STRUCTURAL BEHAVIOUR UNCHANGED');
   const prereg = JSON.parse(readFileSync(join(ROOT, 'verification',
     'expert-hazlenz-required-structured-verifier-validation-2026-09-05',
     'PREREGISTRATION.json'), 'utf8'));
-  const base = join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts');
+  const base = join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts');
   let allPinned = true;
   for (const [file, expected] of Object.entries<string>(prereg.owedFactSourceHashes)) {
     if (createHash('sha256').update(readFileSync(join(base, file))).digest('hex') !== expected) {
@@ -183,7 +183,7 @@ section('§210B-1 STRUCTURAL BEHAVIOUR UNCHANGED');
   }
   ok('B1.pinned-owed-fact-sources-unchanged', allPinned);
   ok('B1.pinned-v15-prompt-file-unchanged',
-    createHash('sha256').update(readFileSync(join(ROOT, 'backend', 'src', 'safescope-v2',
+    createHash('sha256').update(readFileSync(join(ROOT, 'backend', 'src', 'hazlenz',
       'expert-hazlenz', 'expert-prompt.ts'))).digest('hex')
     === 'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694',
     'the semantic block is an overlay; the pinned v15 file was never edited');

@@ -1,0 +1,15 @@
+{
+  "engine": "safescope_approved_knowledge_export",
+  "mode": "human_reviewed_only",
+  "generatedAt": "2026-06-20T15:55:11.306Z",
+  "sourceDirectory": "/Users/mckinley/Sentinel_Safety/backend/src/hazlenz/knowledge-intake/records/quarantined",
+  "approvedRecordCount": 0,
+  "records": [],
+  "guardrails": {
+    "onlyApprovedByHuman": true,
+    "requiresApprovedForUse": true,
+    "excludesQuarantinedUnreviewedRecords": true,
+    "doesNotModifyProductionReasoning": true,
+    "doesNotDeclareViolations": true
+  }
+}

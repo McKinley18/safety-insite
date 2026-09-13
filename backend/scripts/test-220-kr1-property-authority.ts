@@ -12,19 +12,19 @@ import { createHash } from 'crypto';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import type { OwedFact, ArbitrationRequest } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { OwedFact, ArbitrationRequest } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   createOwedFactLedger, factOf, owedFact,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   checkBindingDeclarations, applyAdmittedDeclarations,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   consumeSettlementClaims, mintSettlementAuthority, settleByReviewedEvidence,
   attachPropertyAuthority, recordPropertyAuthorityDeclined,
   PROPERTY_AUTHORITY_ATTACH_REFUSAL_CODES, APPLICATION_REFUSAL_CODES,
   type ReviewDecisionRecord,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   PROPERTY_AUTHORITY_CONTRACT_VERSION, KR1_STATUS, KR1_PROVIDER_CAPABILITY_REMEDIATED,
   AUTONOMOUS_PROPERTY_IDENTIFICATION_VALIDATED, PROVIDER_PROPERTY_AUTHORITY,
@@ -36,7 +36,7 @@ import {
   propertyAuthorityFailClosedEffect, propertyAuthorityEffect, REVIEWER_QUESTION,
   CONFIRMATION_IS_NOT_SETTLEMENT,
   type PropertyDecisionRecord, type PropertyReviewPacket,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 
 const ROOT = join(__dirname, '..', '..');
 const sha = (s: string): string => createHash('sha256').update(s).digest('hex');
@@ -47,7 +47,7 @@ const ok = (name: string, pass: boolean, detail = ''): void => {
 };
 
 const MODULE = join(ROOT,
-  'backend/src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts');
+  'backend/src/hazlenz/expert-hazlenz/owed-facts/property-authority.ts');
 const moduleSrc = readFileSync(MODULE, 'utf8');
 /** Source with comments stripped, so a word appearing in prose is never read as behaviour. */
 const moduleCode = moduleSrc.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
@@ -183,7 +183,7 @@ ok('S9 a clarification binding still produces COVERED with no property authority
   'unchanged from before §220');
 ok('S10 the binding module is not aware of §220 at all',
   !readFileSync(join(ROOT,
-    'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8')
+    'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8')
     .includes('property-authority'));
 ok('S11 the transition coverage records exactly which transitions §220 gates',
   TRANSITION_COVERAGE_220.length === 3
@@ -362,7 +362,7 @@ ok('S38 the module version is recorded',
 // ================================================================ 7. boundaries
 console.log('\n--- 7. INACTIVE AND GOVERNED BOUNDARIES');
 const serviceSrc = readFileSync(
-  join(ROOT, 'backend/src/safescope-v2/safescope-v2.service.ts'), 'utf8');
+  join(ROOT, 'backend/src/hazlenz/safescope-v2.service.ts'), 'utf8');
 ok('S39 no customer route reaches the property-authority producer',
   !serviceSrc.includes('property-authority') && !serviceSrc.includes('mintPropertyAuthority'));
 ok('S40 the module reads no configuration, environment flag, database or network',
@@ -370,7 +370,7 @@ ok('S40 the module reads no configuration, environment flag, database or network
   && !/repository|dataSource|query\(|fetch\(|axios|http/i.test(moduleCode));
 ok('S41 §220 modified exactly one existing owed-facts module, and it is settlement-review',
   (() => {
-    const dir = join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts');
+    const dir = join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts');
     const touched = ['owed-fact.types.ts', 'owed-fact-binding.ts', 'owed-fact-ledger.ts',
       'owed-fact-observability.ts', 'structural-questions.ts', 'governed-evidence-derivation.ts',
       'verifier-v3-development-boundary.ts']

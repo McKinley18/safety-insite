@@ -47,8 +47,8 @@ async function main() {
   assert(healthResponse.ok, `Health check failed: ${healthResponse.status} ${JSON.stringify(health)}`);
   console.log("✅ Health check passed");
 
-  console.log("\n▶ SafeScope classify");
-  const classifyResponse = await fetch(`${API_BASE_URL}/safescope-v2/classify`, {
+  console.log("\n▶ HazLenz classify");
+  const classifyResponse = await fetch(`${API_BASE_URL}/hazlenz/classify`, {
     method: "POST",
     headers: headers(),
     body: JSON.stringify({
@@ -60,10 +60,10 @@ async function main() {
   });
 
   const classify = await readJson(classifyResponse);
-  assert(classifyResponse.ok, `SafeScope classify failed: ${classifyResponse.status} ${JSON.stringify(classify)}`);
-  assert(!classify.fallbackMode, "SafeScope classify returned fallbackMode=true.");
+  assert(classifyResponse.ok, `HazLenz classify failed: ${classifyResponse.status} ${JSON.stringify(classify)}`);
+  assert(!classify.fallbackMode, "HazLenz classify returned fallbackMode=true.");
   assert(classify.classification === "Machine Guarding", `Expected Machine Guarding, got ${classify.classification}`);
-  assert(classify.reasoningSnapshotId, "SafeScope classify did not return reasoningSnapshotId.");
+  assert(classify.reasoningSnapshotId, "HazLenz classify did not return reasoningSnapshotId.");
 
   const topCitation = classify.suggestedStandards?.[0]?.citation;
   assert(
@@ -71,13 +71,13 @@ async function main() {
     `Expected top MSHA MNM surface citation to include 56.14107, got ${topCitation}`,
   );
 
-  console.log(`✅ SafeScope classify passed`);
+  console.log(`✅ HazLenz classify passed`);
   console.log(`Snapshot ID: ${classify.reasoningSnapshotId}`);
   console.log(`Top citation: ${topCitation}`);
 
   console.log("\n▶ Reasoning snapshot summary");
   const snapshotResponse = await fetch(
-    `${API_BASE_URL}/safescope-v2/reasoning-snapshots/${classify.reasoningSnapshotId}`,
+    `${API_BASE_URL}/hazlenz/reasoning-snapshots/${classify.reasoningSnapshotId}`,
     { headers: headers() },
   );
   const snapshot = await readJson(snapshotResponse);
@@ -88,7 +88,7 @@ async function main() {
 
   console.log("\n▶ Wrong workspace snapshot block");
   const blockedResponse = await fetch(
-    `${API_BASE_URL}/safescope-v2/reasoning-snapshots/${classify.reasoningSnapshotId}`,
+    `${API_BASE_URL}/hazlenz/reasoning-snapshots/${classify.reasoningSnapshotId}`,
     { headers: headers("workspace-wrong") },
   );
 
@@ -103,7 +103,7 @@ async function main() {
   }
 
   console.log("\n▶ Supervisor validation");
-  const validationResponse = await fetch(`${API_BASE_URL}/safescope-v2/supervisor-validations`, {
+  const validationResponse = await fetch(`${API_BASE_URL}/hazlenz/supervisor-validations`, {
     method: "POST",
     headers: headers(),
     body: JSON.stringify({

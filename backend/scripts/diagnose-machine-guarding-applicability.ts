@@ -19,11 +19,11 @@
 
 import { mkdirSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { applyEvidenceFoundation } from '../src/safescope-v2/evidence/evidence-foundation';
-import { buildEvidenceFacts } from '../src/safescope-v2/evidence/shared-evidence-facts';
+import { applyEvidenceFoundation } from '../src/hazlenz/evidence/evidence-foundation';
+import { buildEvidenceFacts } from '../src/hazlenz/evidence/shared-evidence-facts';
 import {
   GUARDING_APPLICABILITY_CORPUS, type GuardingCase,
-} from '../src/safescope-v2/tests/machine-guarding-applicability-corpus';
+} from '../src/hazlenz/tests/machine-guarding-applicability-corpus';
 
 const label = (process.argv.find(a => a.startsWith('--label=')) ?? '--label=unlabeled').split('=')[1];
 const OUT = join(__dirname, '..', '..', 'verification',

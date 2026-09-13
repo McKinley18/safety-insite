@@ -22,8 +22,8 @@ import { join } from 'path';
 import { createHash } from 'crypto';
 
 import { deriveRowRecord, analysisStateFor, loadFrozenRows } from './probe-balanced-clarification-hosted-2026-09-05';
-import { buildExpertAnalysisInputFromAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { buildExpertAnalysisInputFromAnalysis } from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const INSTR = join(__dirname, '..', '..', 'verification', 'expert-hazlenz-balanced-clarification-instrument-2026-09-05');
 const PREREG = join(__dirname, '..', '..', 'verification', 'expert-hazlenz-balanced-hosted-validation-2026-09-05', 'PRE-SPEND-PREREGISTRATION.json');

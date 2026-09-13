@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
+import { HazLenzIntelligenceOrchestrator } from '../src/hazlenz/orchestration/intelligence-orchestrator.service';
 
-const orchestrator = new SafeScopeIntelligenceOrchestrator();
+const orchestrator = new HazLenzIntelligenceOrchestrator();
 const SNAPSHOT_PATH = path.resolve(__dirname, '../../safescope-data/snapshots/safescope-governance-output-snapshot.v1.json');
 const SHOULD_UPDATE_SNAPSHOT =
   process.argv.includes('--update-snapshot') ||

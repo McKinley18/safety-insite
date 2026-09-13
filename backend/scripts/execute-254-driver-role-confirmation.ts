@@ -33,17 +33,17 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, classifyHttpFailure, errorTypeOf,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody, envelopeBoundOptions, EXPERT_REQUEST_ENVELOPE,
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
 import { POSTURE_PROTECTIVE_RANK }
-  from '../src/safescope-v2/expert-hazlenz/contract/expert-233-posture-contract';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  from '../src/hazlenz/expert-hazlenz/contract/expert-233-posture-contract';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { runPreSpendGate254, AUTHORIZED } from './verify-254-pre-spend';
 
 const OUT = join(__dirname, '..', '..', 'verification',

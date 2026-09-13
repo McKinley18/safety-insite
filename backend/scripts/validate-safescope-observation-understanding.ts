@@ -1,4 +1,4 @@
-import { SafeScopeObservationUnderstandingService } from '../src/safescope-v2/brain/observation-understanding/observation-understanding.service';
+import { HazLenzObservationUnderstandingService } from '../src/hazlenz/brain/observation-understanding/observation-understanding.service';
 
 type Case = {
   id: string;
@@ -170,7 +170,7 @@ const cases: Case[] = [
   },
 ];
 
-const service = new SafeScopeObservationUnderstandingService();
+const service = new HazLenzObservationUnderstandingService();
 
 let failures = 0;
 
@@ -223,4 +223,4 @@ if (failures > 0) {
   throw new Error(`${failures} observation understanding case(s) failed.`);
 }
 
-console.log('✅ SafeScope observation understanding validation passed.');
+console.log('✅ HazLenz observation understanding validation passed.');

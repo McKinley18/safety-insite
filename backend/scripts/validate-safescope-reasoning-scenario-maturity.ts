@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
 
 const reportPath = path.join(
   __dirname,
-  '../src/safescope-v2/reasoning-orchestrator/scenarios/reports/reasoning-scenario-maturity-report.json',
+  '../src/hazlenz/reasoning-orchestrator/scenarios/reports/reasoning-scenario-maturity-report.json',
 );
 
 assert(
@@ -60,7 +60,7 @@ assert(report.guardrails?.doesNotApproveKnowledge === true, 'Maturity report mus
 assert(report.guardrails?.doesNotDeclareViolations === true, 'Maturity report must not declare violations.');
 assert(report.guardrails?.doesNotChangeScenarioFixtures === true, 'Maturity report must not change scenario fixtures.');
 
-console.log('✅ SafeScope reasoning scenario maturity validation passed.');
+console.log('✅ HazLenz reasoning scenario maturity validation passed.');
 console.log(`Scenario count: ${report.scenarioCount}`);
 console.log(`Scenario target: ${report.totalScenarioTarget}`);
 console.log(`Scenario gap: ${report.totalScenarioGap}`);

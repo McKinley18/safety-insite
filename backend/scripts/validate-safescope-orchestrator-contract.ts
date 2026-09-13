@@ -1,7 +1,7 @@
-import { SafeScopeOrchestratorService } from '../src/safescope/safescope-orchestrator.service';
+import { HazLenzOrchestratorService } from '../src/safescope/safescope-orchestrator.service';
 
 async function validate() {
-  const service = new SafeScopeOrchestratorService();
+  const service = new HazLenzOrchestratorService();
   const request = {
     observationText: "Worker standing on pallet raised by forklift with no fall protection.",
     regulatoryContext: "OSHA_GENERAL" as const,

@@ -1,4 +1,4 @@
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -78,7 +78,7 @@ class StubSupervisorValidationService {
   }
 }
 
-const service = new SafescopeV2Service(
+const service = new HazLenzService(
   new StubActionEngine() as any,
   new StubEvidenceFusion() as any,
   new StubApplicableStandards() as any,
@@ -295,7 +295,7 @@ async function main() {
     throw new Error(`${failures} semantic conflict gauntlet case(s) failed.`);
   }
 
-  console.log('✅ SafeScope semantic conflict gauntlet validation passed.');
+  console.log('✅ HazLenz semantic conflict gauntlet validation passed.');
   console.log(`Scenario cases: ${cases.length}`);
 }
 

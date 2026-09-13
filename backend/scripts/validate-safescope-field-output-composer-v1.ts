@@ -1,5 +1,5 @@
-import { FieldOutputComposerV1Service } from '../src/safescope-v2/field-output-composer-v1/field-output-composer-v1.service';
-import { FieldOutputComposerV1Validator } from '../src/safescope-v2/field-output-composer-v1/field-output-composer-v1.validator';
+import { FieldOutputComposerV1Service } from '../src/hazlenz/field-output-composer-v1/field-output-composer-v1.service';
+import { FieldOutputComposerV1Validator } from '../src/hazlenz/field-output-composer-v1/field-output-composer-v1.validator';
 
 async function validate() {
   const service = new FieldOutputComposerV1Service();
@@ -26,7 +26,7 @@ async function validate() {
       }
   }
   
-  console.log('✅ SafeScope field output composer v1 validation passed.');
+  console.log('✅ HazLenz field output composer v1 validation passed.');
 }
 
 validate().catch(err => {

@@ -12,12 +12,12 @@ import * as path from 'path';
 import { execFileSync } from 'child_process';
 import {
   AUGMENTATION_IDENTIFIER, AUGMENTATION_ROWS,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
-import { classifyRow, truthOnlyStrings, validateCohortRow } from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
-import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+import { classifyRow, truthOnlyStrings, validateCohortRow } from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
+import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { REQUIRED_DISTRIBUTION } from './lib/expert-augmentation-construction-policy';
 import { providerInvocationCount, resetProviderInvocationCount, runFormalCohort } from './lib/expert-cohort-harness';
-import { assertMayOpen, planListDiscrepancies } from '../src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry';
+import { assertMayOpen, planListDiscrepancies } from '../src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry';
 
 const ROOT = path.resolve(__dirname, '..', '..');
 let passed = 0; let failed = 0;
@@ -128,7 +128,7 @@ async function main(): Promise<void> {
   let hits = '';
   try {
     hits = execFileSync('rg', ['-l', '-F', '-f', fragFile, 'verification', 'docs', 'safescope-data',
-      'backend/src/safescope-v2/expert-hazlenz/fixtures'], { cwd: ROOT, encoding: 'utf8' }).trim();
+      'backend/src/hazlenz/expert-hazlenz/fixtures'], { cwd: ROOT, encoding: 'utf8' }).trim();
   } catch { hits = ''; }   // rg exits non-zero on no matches
   fs.unlinkSync(fragFile);
   const hitFiles = hits ? hits.split('\n').filter(f => !f.includes('negative-control-augmentation')) : [];

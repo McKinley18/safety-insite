@@ -1,14 +1,14 @@
 import {
-  SAFESCOPE_SOURCE_REGISTRY,
+  HAZLENZ_SOURCE_REGISTRY,
   getApprovedAutoIngestionSources,
-  getSafeScopeSourcesByAuthorityTier,
+  getHazLenzSourcesByAuthorityTier,
 } from "./hazlenz-source-registry";
 
-console.log("SafeScope Source Registry");
-console.log("Total sources:", SAFESCOPE_SOURCE_REGISTRY.length);
+console.log("HazLenz Source Registry");
+console.log("Total sources:", HAZLENZ_SOURCE_REGISTRY.length);
 
 for (const tier of [1, 2, 3, 4, 5]) {
-  const sources = getSafeScopeSourcesByAuthorityTier(tier);
+  const sources = getHazLenzSourcesByAuthorityTier(tier);
   console.log(
     `Tier ${tier}:`,
     sources.length,
@@ -24,7 +24,7 @@ for (const source of autoSources) {
   );
 }
 
-const invalid = SAFESCOPE_SOURCE_REGISTRY.filter((source) => {
+const invalid = HAZLENZ_SOURCE_REGISTRY.filter((source) => {
   return (
     !source.sourceKey ||
     !source.displayName ||

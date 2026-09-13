@@ -34,16 +34,16 @@ import { join } from 'path';
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME,
   buildAnthropicRequestBody, type HostedExpertTelemetry,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
-import { mergeExpertIntelligence, verifyMergeInvariants } from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { GROUNDING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/grounding-fixtures';
-import { scoreRouting, totalRouting, type RoutingScore } from '../src/safescope-v2/expert-hazlenz/expert-routing-metrics';
-import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { EXPERT_PROMPT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import type { ExpertProviderResult } from '../src/safescope-v2/expert-hazlenz/expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
+import { mergeExpertIntelligence, verifyMergeInvariants } from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { GROUNDING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/grounding-fixtures';
+import { scoreRouting, totalRouting, type RoutingScore } from '../src/hazlenz/expert-hazlenz/expert-routing-metrics';
+import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { EXPERT_PROMPT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import type { ExpertProviderResult } from '../src/hazlenz/expert-hazlenz/expert-provider';
 
 const MAX_HOSTED_CALLS = 8;
 const MAX_HOSTED_COST_USD = 3.00;

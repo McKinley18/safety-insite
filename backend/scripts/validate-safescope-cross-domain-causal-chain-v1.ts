@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { CrossDomainCausalChainValidator } from '../src/safescope-v2/cross-domain-causal-chain/cross-domain-causal-chain.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { CrossDomainCausalChainValidator } from '../src/hazlenz/cross-domain-causal-chain/cross-domain-causal-chain.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -61,7 +61,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope cross-domain causal chain validation passed.');
+  console.log('✅ HazLenz cross-domain causal chain validation passed.');
 }
 
 validate().catch(err => {

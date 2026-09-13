@@ -76,7 +76,7 @@ async function bootstrap() {
   const bundle = {
     version: new Date().toISOString().slice(0, 10),
     generatedAt: new Date().toISOString(),
-    source: 'SafeScope Knowledge Brain',
+    source: 'HazLenz Knowledge Brain',
     approvedOnly: true,
     safetyGate:
       'Only documents with approvalStatus=approved are included in this offline bundle.',
@@ -124,12 +124,12 @@ async function bootstrap() {
   const outputDir = join(process.cwd(), 'dist', 'offline');
   mkdirSync(outputDir, { recursive: true });
 
-  const outputPath = join(outputDir, 'safescope-brain-bundle.json');
+  const outputPath = join(outputDir, 'hazlenz-brain-bundle.json');
   writeFileSync(outputPath, JSON.stringify(bundle, null, 2));
 
   await dataSource.destroy();
 
-  console.log(`Exported SafeScope Brain Bundle: ${outputPath}`);
+  console.log(`Exported HazLenz Brain Bundle: ${outputPath}`);
   console.log(`Documents: ${bundle.documents.length}`);
   console.log(`Chunks: ${bundle.chunks.length}`);
 }

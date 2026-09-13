@@ -22,11 +22,11 @@
 import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { createHash } from 'crypto';
-import { HAZARD_TAXONOMY } from '../src/safescope-v2/taxonomy/hazard-taxonomy';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { L3_SYSTEM_PROMPT, buildProposalSchema, buildUserPrompt } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { L3_2_INFERENCE_CONFIG } from '../src/safescope-v2/reasoning-l3/ollama-reasoning-provider';
-import type { L3RegulatoryContextValue } from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+import { HAZARD_TAXONOMY } from '../src/hazlenz/taxonomy/hazard-taxonomy';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { L3_SYSTEM_PROMPT, buildProposalSchema, buildUserPrompt } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { L3_2_INFERENCE_CONFIG } from '../src/hazlenz/reasoning-l3/ollama-reasoning-provider';
+import type { L3RegulatoryContextValue } from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 
 const FAMILIES = [...new Set(HAZARD_TAXONOMY.map(p => p.id))].sort();
 
@@ -43,7 +43,7 @@ const CURRENT = L3_SYSTEM_PROMPT;
  * hash does not match, this program refuses to run rather than compare against a prompt that never
  * existed.
  */
-const FROZEN = join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval/prompt-variants-frozen.json');
+const FROZEN = join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval/prompt-variants-frozen.json');
 const EXPECTED_HASHES: Record<string, string> = {
   v2_l32b: '676eb15ea839d9de0030f948ef8382e2317a25d6df7d9eabf3ad040d1d3f2e69',
   v3_l32c: 'c62ff3eab5559cca534d0269ffed713072ac30eac1e79927d143a8732fcba852',

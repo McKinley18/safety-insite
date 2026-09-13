@@ -1,5 +1,5 @@
-import { CausalRiskService } from '../src/safescope-v2/causal-risk/causal-risk.service';
-import { ObservationUnderstandingService } from '../src/safescope-v2/understanding/observation-understanding.service';
+import { CausalRiskService } from '../src/hazlenz/causal-risk/causal-risk.service';
+import { ObservationUnderstandingService } from '../src/hazlenz/understanding/observation-understanding.service';
 
 type TestCase = {
   id: string;
@@ -130,7 +130,7 @@ async function main() {
     throw new Error(`${failures} causal-risk reasoning case(s) failed.`);
   }
 
-  console.log('✅ SafeScope causal-risk reasoning validation passed.');
+  console.log('✅ HazLenz causal-risk reasoning validation passed.');
 }
 
 main().catch((error) => {

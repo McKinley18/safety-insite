@@ -28,7 +28,7 @@ import { join } from 'node:path';
 import {
   EXPERT_EXECUTION_ENABLED_VAR, evaluateExpertExecutionPermission, foldExpertUsage,
   readExpertOperationalConfig,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-operational-controls';
+} from '../src/hazlenz/expert-hazlenz-product/expert-operational-controls';
 import {
   evaluateSchemaReadiness, expectedMigrationTimestamps,
 } from '../src/database/schema-readiness';
@@ -135,7 +135,7 @@ async function main(): Promise<void> {
   ok('the refusal is server-side, evaluated before the pre-spend claim',
     /evaluateExpertExecutionPermission[\s\S]{0,2000}?claimExecution/.test(
       readFileSync(join(BACKEND,
-        'src/safescope-v2/expert-hazlenz-product/expert-analysis-execution.service.ts'), 'utf8')));
+        'src/hazlenz/expert-hazlenz-product/expert-analysis-execution.service.ts'), 'utf8')));
   ok('production requires the kill switch to be set explicitly',
     new RegExp(EXPERT_EXECUTION_ENABLED_VAR).test(
       readFileSync(join(BACKEND, 'src/config/validate-production-environment.ts'), 'utf8')));

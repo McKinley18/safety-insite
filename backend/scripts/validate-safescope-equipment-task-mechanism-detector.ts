@@ -1,5 +1,5 @@
-import { SafeScopeEquipmentTaskMechanismDetectorService } from '../src/safescope-v2/equipment-knowledge/equipment-task-mechanism-detector.service';
-import { SafeScopeHarmMechanism, SafeScopeTaskContext } from '../src/safescope-v2/equipment-knowledge/equipment-task-mechanism.types';
+import { HazLenzEquipmentTaskMechanismDetectorService } from '../src/hazlenz/equipment-knowledge/equipment-task-mechanism-detector.service';
+import { HazLenzHarmMechanism, HazLenzTaskContext } from '../src/hazlenz/equipment-knowledge/equipment-task-mechanism.types';
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -7,17 +7,17 @@ function assert(condition: boolean, message: string) {
   }
 }
 
-const detector = new SafeScopeEquipmentTaskMechanismDetectorService();
+const detector = new HazLenzEquipmentTaskMechanismDetectorService();
 
 type DetectorScenario = {
   name: string;
   description: string;
-  taskContext?: SafeScopeTaskContext;
+  taskContext?: HazLenzTaskContext;
   expectedEquipmentId: string;
   expectedComponentId: string;
   expectedFailureModeId: string;
   expectedDomains: string[];
-  expectedMechanisms: SafeScopeHarmMechanism[];
+  expectedMechanisms: HazLenzHarmMechanism[];
 };
 
 const scenarios: DetectorScenario[] = [
@@ -238,4 +238,4 @@ assert(vague.evidenceGaps.length > 0, 'Vague result should return evidence gaps.
 assert(vague.cautions.length > 0, 'Vague result should return cautions.');
 
 console.log('✅ vague description guardrail');
-console.log('✅ SafeScope equipment task mechanism detector validation passed.');
+console.log('✅ HazLenz equipment task mechanism detector validation passed.');

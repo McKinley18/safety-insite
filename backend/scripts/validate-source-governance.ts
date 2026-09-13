@@ -1,4 +1,4 @@
-import { SourceGovernanceService } from '../src/safescope-v2/brain/source-governance/source-governance.service';
+import { SourceGovernanceService } from '../src/hazlenz/brain/source-governance/source-governance.service';
 
 function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);

@@ -18,27 +18,27 @@
 import {
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_AFFECTED_DECISIONS, EXPERT_ANALYSIS_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
   stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { validateCohortRow } from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { validateCohortRow } from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   RETENTION_BRIDGE_FIXTURES, RETENTION_BRIDGE_BUDGET, RETENTION_BRIDGE_GATES,
   RETENTION_BRIDGE_FIXTURE_SET_VERSION, RETENTION_FORMS,
   type RetentionForm, type RetentionBridgeFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/retention-bridge-probe-v8';
+} from '../src/hazlenz/expert-hazlenz/fixtures/retention-bridge-probe-v8';
 import {
   UNSUPPORTED_SETTLEMENT_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/unsupported-settlement-probe-v7';
+} from '../src/hazlenz/expert-hazlenz/fixtures/unsupported-settlement-probe-v7';
 import {
   THRESHOLD_ARBITRATION_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
+} from '../src/hazlenz/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
 import {
   CLARIFICATION_RECALL_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/clarification-recall-probe-v5';
+} from '../src/hazlenz/expert-hazlenz/fixtures/clarification-recall-probe-v5';
 import { rawLinkageDiagnostics } from './lib/expert-raw-linkage-diagnostics';
 
 let passed = 0; const failures: string[] = [];

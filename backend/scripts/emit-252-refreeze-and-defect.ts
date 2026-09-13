@@ -13,20 +13,20 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody, envelopeBoundOptions, EXPERT_REQUEST_ENVELOPE,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
 import {
   ADMISSION_252_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import {
   buildBasisEntryUnion247, CESSATION_ROLE_247,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const ROOT = join(__dirname, '..', '..');
 const SRC249 = join(ROOT, 'verification',
@@ -195,7 +195,7 @@ async function main(): Promise<void> {
   const field = cessationBranch.properties.roleJustification.properties.alongsideControlConsidered;
   const requiredOnCessation =
     cessationBranch.properties.roleJustification.required.includes('alongsideControlConsidered');
-  const projectionSrc = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const projectionSrc = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'contract', 'expert-247-role-justification-projection.ts'), 'utf8');
   const projectionRefusesNull =
     /const nonEmpty = \(v: unknown\): v is string => typeof v === 'string'/.test(projectionSrc)

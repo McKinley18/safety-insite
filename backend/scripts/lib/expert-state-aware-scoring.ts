@@ -24,7 +24,7 @@
  * restate the physical fact the engine already weighed?
  */
 
-import type { ExpertAnalysis } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysis } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import type { DeterministicFamilyDisposition } from './expert-deterministic-projection';
 
 /**

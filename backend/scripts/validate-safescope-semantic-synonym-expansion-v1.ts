@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { SemanticSynonymExpansionValidator } from '../src/safescope-v2/semantic-synonym-expansion/semantic-synonym-expansion.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { SemanticSynonymExpansionValidator } from '../src/hazlenz/semantic-synonym-expansion/semantic-synonym-expansion.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -91,7 +91,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope semantic synonym expansion validation passed.');
+  console.log('✅ HazLenz semantic synonym expansion validation passed.');
 }
 
 validate().catch(err => {

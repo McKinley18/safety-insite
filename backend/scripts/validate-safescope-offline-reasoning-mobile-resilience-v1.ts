@@ -1,5 +1,5 @@
-import { OfflineReasoningMobileResilienceService } from '../src/safescope-v2/offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.service';
-import { OfflineReasoningMobileResilienceValidator } from '../src/safescope-v2/offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.validator';
+import { OfflineReasoningMobileResilienceService } from '../src/hazlenz/offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.service';
+import { OfflineReasoningMobileResilienceValidator } from '../src/hazlenz/offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.validator';
 
 async function validate() {
   const service = new OfflineReasoningMobileResilienceService();
@@ -60,7 +60,7 @@ async function validate() {
       // Let's see what the service actually outputs.
   }
   
-  console.log('✅ SafeScope offline reasoning mobile resilience validation passed.');
+  console.log('✅ HazLenz offline reasoning mobile resilience validation passed.');
 }
 
 validate().catch(err => {

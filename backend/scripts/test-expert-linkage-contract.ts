@@ -34,14 +34,14 @@ import { tmpdir } from 'os';
 import { join } from 'path';
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
   stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_NORMALIZATION_REASONS, normalizeExpertOutput, isFatal,
-} from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-normalization';
 import {
   citationDiagnostics, coverageDiagnostics, collectStrings, linkageDiagnostics,
   PROBE_MEASURES_VERSION,
@@ -472,9 +472,9 @@ section('E. pre-spend identity is WRITE-ONCE');
 section('M14 — explicitly NOT touched by the linkage repair');
 {
   const promptSrc = readFileSync(
-    join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'expert-prompt.ts'), 'utf8');
+    join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'expert-prompt.ts'), 'utf8');
   const normSrc = readFileSync(
-    join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'expert-normalization.ts'),
+    join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'expert-normalization.ts'),
     'utf8');
   const schema = stableStringify(buildExpertWireSchema(input()));
 

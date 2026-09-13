@@ -1,5 +1,5 @@
-import { CitationReviewBrainService } from '../src/safescope-v2/brain/citation-review-brain/citation-review.service';
-import { ScenarioIntelligence } from '../src/safescope-v2/types/scenario-intelligence.types';
+import { CitationReviewBrainService } from '../src/hazlenz/brain/citation-review-brain/citation-review.service';
+import { ScenarioIntelligence } from '../src/hazlenz/types/scenario-intelligence.types';
 
 function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);

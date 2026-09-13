@@ -1,14 +1,14 @@
 import {
   HazardClassificationServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
-import { WeightedClassifierService } from '../src/safescope-v2/classifier/weighted-classifier.service';
+import { WeightedClassifierService } from '../src/hazlenz/classifier/weighted-classifier.service';
 
 async function run() {
   const classifier = new WeightedClassifierService();
   const adapter = new HazardClassificationServiceAdapter(classifier);
 
-  const context: SafeScopeAdapterContext = {
+  const context: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText: 'Worker standing on pallet raised by forklift with no fall protection.',
       regulatoryContext: 'OSHA_GENERAL',

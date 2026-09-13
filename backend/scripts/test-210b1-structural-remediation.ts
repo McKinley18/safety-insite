@@ -309,7 +309,7 @@ section('8. REGRESSION -- pinned frozen contracts untouched');
   const prereg = JSON.parse(readFileSync(join(ROOT, 'verification',
     'expert-hazlenz-required-structured-verifier-validation-2026-09-05',
     'PREREGISTRATION.json'), 'utf8'));
-  const base = join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts');
+  const base = join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts');
   let allPinned = true;
   for (const [file, expected] of Object.entries<string>(prereg.owedFactSourceHashes)) {
     const actual = createHash('sha256').update(readFileSync(join(base, file))).digest('hex');

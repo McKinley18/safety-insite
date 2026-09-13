@@ -22,7 +22,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import { HAZARD_TAXONOMY } from '../src/safescope-v2/taxonomy/hazard-taxonomy';
+import { HAZARD_TAXONOMY } from '../src/hazlenz/taxonomy/hazard-taxonomy';
 
 interface Hazard { hazardFamily: string; conditionState: string; evidence: any[]; clarification: unknown | null }
 interface Rec {

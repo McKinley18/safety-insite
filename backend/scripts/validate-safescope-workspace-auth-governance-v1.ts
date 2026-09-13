@@ -1,5 +1,5 @@
-import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
-import { UserGovernanceContext } from '../src/safescope-v2/workspace-governance-access/workspace-governance.types';
+import { WorkspaceGovernanceAccessService } from '../src/hazlenz/workspace-governance-access/workspace-governance-access.service';
+import { UserGovernanceContext } from '../src/hazlenz/workspace-governance-access/workspace-governance.types';
 
 async function validate() {
   const service = new WorkspaceGovernanceAccessService();
@@ -58,15 +58,15 @@ async function validate() {
   if (case3.allowed) throw new Error('Case 3 failed: Viewer should be blocked from editing.');
   console.log('[PASS] Case 3: Viewer blocked from editing findings.');
 
-  // 4. Assigned field inspector can run SafeScope
+  // 4. Assigned field inspector can run HazLenz
   const case4 = service.can(inspector, 'run_classification', { inspectionId: 'ins-101' });
   if (!case4.allowed) throw new Error('Case 4 failed: Inspector should be allowed on assigned inspection.');
-  console.log('[PASS] Case 4: Assigned inspector authorized for SafeScope.');
+  console.log('[PASS] Case 4: Assigned inspector authorized for HazLenz.');
 
   // 5. Unassigned field inspector is blocked
   const case5 = service.can(inspector, 'run_classification', { inspectionId: 'ins-999' });
   if (case5.allowed) throw new Error('Case 5 failed: Inspector should be blocked on unassigned inspection.');
-  console.log('[PASS] Case 5: Unassigned inspector blocked from SafeScope.');
+  console.log('[PASS] Case 5: Unassigned inspector blocked from HazLenz.');
 
   // 6. Cross-workspace access is blocked
   const case6 = service.can(owner, 'view_workspace_data', { workspaceId: 'work-B' });
@@ -89,7 +89,7 @@ async function validate() {
   if (case9.allowed) throw new Error('Case 9 failed: OSHA reviewer should be blocked from MSHA.');
   console.log('[PASS] Case 9: MSHA review blocked for OSHA-only reviewer.');
 
-  console.log('✅ SafeScope workspace auth governance validation passed.');
+  console.log('✅ HazLenz workspace auth governance validation passed.');
 }
 
 validate().catch(err => {

@@ -18,7 +18,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataSource } from '../src/database/data-source';
-import { applyFindingScopedStandards } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyFindingScopedStandards } from '../src/hazlenz/evidence/evidence-foundation';
 import { resolveGovernedCitation } from '../src/standards/releases/governed-corpus-lookup';
 import { releaseCitationKey } from '../src/standards/releases/citation-identity';
 import { parseCitation } from '../src/applicable-standards/citation-structure';
@@ -31,11 +31,11 @@ const EXPECTED_GOLD_SET_SHA256 =
 
 /** Every file that DECLARES a citation HazLenz could emit. KG-3E looked only at the first. */
 const DECLARING_SURFACES = [
-  'safescope-v2/inspection-intelligence/standard-applicability.rules.ts',
-  'safescope-v2/inspection-intelligence/inspection-intelligence-expansion.rules.ts',
-  'safescope-v2/inspection-intelligence/msha-inspection-intelligence.service.ts',
-  'safescope-v2/evidence/evidence-foundation.ts',
-  'safescope-v2/safescope-v2.service.ts',
+  'hazlenz/inspection-intelligence/standard-applicability.rules.ts',
+  'hazlenz/inspection-intelligence/inspection-intelligence-expansion.rules.ts',
+  'hazlenz/inspection-intelligence/msha-inspection-intelligence.service.ts',
+  'hazlenz/evidence/evidence-foundation.ts',
+  'hazlenz/safescope-v2.service.ts',
 ];
 
 interface GoldCase {

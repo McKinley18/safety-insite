@@ -1,4 +1,4 @@
-import { SafeScopeStandardsIntentIntelligenceService } from '../src/safescope-v2/standards-intent-intelligence/standards-intent-intelligence.service';
+import { HazLenzStandardsIntentIntelligenceService } from '../src/hazlenz/standards-intent-intelligence/standards-intent-intelligence.service';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -11,7 +11,7 @@ function assert(condition: unknown, message: string) {
   }
 }
 
-const service = new SafeScopeStandardsIntentIntelligenceService();
+const service = new HazLenzStandardsIntentIntelligenceService();
 
 const cases = [
   {
@@ -79,8 +79,8 @@ for (const item of cases) {
   assert(!blob.includes('no human review required'), `${item.name}: prohibited no-review language`);
 }
 
-const standardsIntentPath = path.join(__dirname, '../src/safescope-v2/standards-intent-intelligence/standards-intent-intelligence.service.ts');
-const mechanismPath = path.join(__dirname, '../src/safescope-v2/mechanism-intelligence/mechanism-intelligence.service.ts');
+const standardsIntentPath = path.join(__dirname, '../src/hazlenz/standards-intent-intelligence/standards-intent-intelligence.service.ts');
+const mechanismPath = path.join(__dirname, '../src/hazlenz/mechanism-intelligence/mechanism-intelligence.service.ts');
 const standardsText = fs.readFileSync(standardsIntentPath, 'utf8').toLowerCase();
 const mechanismText = fs.readFileSync(mechanismPath, 'utf8').toLowerCase();
 
@@ -93,8 +93,8 @@ for (const domain of ['bloodborne_pathogens', 'industrial_hygiene']) {
 }
 
 if (errors > 0) {
-  console.error(`ReviewCore P3 standards/mechanism expansion validation failed with ${errors} error(s).`);
+  console.error(`Knowledge P3 standards/mechanism expansion validation failed with ${errors} error(s).`);
   process.exit(1);
 }
 
-console.log('✅ ReviewCore P3 standards/mechanism expansion validation passed.');
+console.log('✅ Knowledge P3 standards/mechanism expansion validation passed.');

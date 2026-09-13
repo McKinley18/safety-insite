@@ -1,4 +1,4 @@
-import { SafeScopeControlEffectivenessService } from '../src/safescope-v2/control-effectiveness/control-effectiveness.service';
+import { HazLenzControlEffectivenessService } from '../src/hazlenz/control-effectiveness/control-effectiveness.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: any, message: string) {
   }
 }
 
-const service = new SafeScopeControlEffectivenessService();
+const service = new HazLenzControlEffectivenessService();
 
 const scenarios = [
   {
@@ -119,5 +119,5 @@ for (const scenario of scenarios) {
   });
 }
 
-console.log('✅ SafeScope control effectiveness gauntlet passed.');
+console.log('✅ HazLenz control effectiveness gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

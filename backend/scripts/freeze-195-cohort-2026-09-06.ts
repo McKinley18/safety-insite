@@ -7,9 +7,9 @@
 import { createHash } from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { CITATION_SHAPED_PATTERN } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { EXPERT_HOSTED_INFERENCE_CONFIG } from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+import { CITATION_SHAPED_PATTERN } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { EXPERT_HOSTED_INFERENCE_CONFIG } from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import { EXPERT_VERIFIER_V3_2_SYSTEM_PROMPT, VERIFIER_V3_2_RESPONSE_SCHEMA, EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION } from './lib/expert-verifier-instruction-v3-2';
 import { EXPERT_VERIFIER_CONTRACT_V3_2_VERSION } from './lib/expert-verifier-contract-v3-2';
 import { E2E_COHORT, E2E_COVERAGE, E2E_COHORT_VERSION, verifyExpectedSpansVerbatim, governedEvidenceCitationShaped } from './lib/expert-e2e-cohort-2026-09-06';
@@ -63,7 +63,7 @@ const prereg = {
   },
   firstPassIdentity: {
     promptVersion: EXPERT_PROMPT_VERSION, systemPromptSha256: sha(EXPERT_SYSTEM_PROMPT),
-    promptFileSha256: sha(readFileSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'), 'utf8')),
+    promptFileSha256: sha(readFileSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'), 'utf8')),
   },
   verifierIdentity: {
     instructionVersion: EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION,

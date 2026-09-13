@@ -1,4 +1,4 @@
-import { EvidenceQuestionGenerationService } from '../src/safescope-v2/evidence-question-generation/evidence-question-generation.service';
+import { EvidenceQuestionGenerationService } from '../src/hazlenz/evidence-question-generation/evidence-question-generation.service';
 
 async function validate() {
   const service = new EvidenceQuestionGenerationService();

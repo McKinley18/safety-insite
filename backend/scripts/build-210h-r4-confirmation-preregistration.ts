@@ -17,10 +17,10 @@ import { join } from 'path';
 
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   buildExpertVNextUserPrompt, buildExpertVNextWireSchema, governedBindingFor,
   CLARIFICATION_DECLARATION_BACKREF_FIELD,
@@ -342,7 +342,7 @@ const record = {
       sha256(readFileSync(join(V210FH, 'CONTRACT-VALIDATION-210F.jsonl'))),
     section210fAdjudicationSha256: sha256(readFileSync(join(V210FH, 'ADJUDICATION-210F.md'))),
     pinnedV15PromptSha256: sha256(readFileSync(
-      join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz', 'expert-prompt.ts'))),
+      join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz', 'expert-prompt.ts'))),
     suitesGreenAtFreeze: {
       'section-205-remediation': '92 passed, 0 failed',
       'section-207-preregistration': '144 passed, 0 failed',

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ReputableSourceIngestionService } from '../src/safescope-v2/knowledge-intake/reputable-source-ingestion.service';
+import { ReputableSourceIngestionService } from '../src/hazlenz/knowledge-intake/reputable-source-ingestion.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -9,7 +9,7 @@ function assert(condition: boolean, message: string): void {
 }
 
 const service = new ReputableSourceIngestionService();
-const quarantinedDir = path.join(__dirname, '../src/safescope-v2/knowledge-intake/records/quarantined');
+const quarantinedDir = path.join(__dirname, '../src/hazlenz/knowledge-intake/records/quarantined');
 
 async function testCredibilityClassification() {
   console.log('  Testing credibility classification...');
@@ -182,12 +182,12 @@ async function testQuarantineSafetyAndPrecedence() {
 }
 
 async function run() {
-  console.log('--- Testing SafeScope Reputable Sources Ingestion ---');
+  console.log('--- Testing HazLenz Reputable Sources Ingestion ---');
   await testCredibilityClassification();
   await testHazardDomainCategorization();
   await testDuplicateBlocked();
   await testQuarantineSafetyAndPrecedence();
-  console.log('✅ SafeScope reputable sources ingestion validation passed.');
+  console.log('✅ HazLenz reputable sources ingestion validation passed.');
 }
 
 run().catch((error) => {

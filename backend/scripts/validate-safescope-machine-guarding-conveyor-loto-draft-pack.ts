@@ -55,7 +55,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope machine guarding conveyor LOTO draft pack validation passed.');
+  console.log('✅ HazLenz machine guarding conveyor LOTO draft pack validation passed.');
 }
 
 validate().catch(err => {

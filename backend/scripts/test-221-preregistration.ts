@@ -35,7 +35,7 @@ import {
 } from './lib/expert-221-assembly';
 import {
   PROPERTY_AUTHORITY_CONTRACT_VERSION, KR1_STATUS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 
 let passed = 0; let failed = 0;
 const ok = (id: string, cond: boolean, detail = ''): void => {

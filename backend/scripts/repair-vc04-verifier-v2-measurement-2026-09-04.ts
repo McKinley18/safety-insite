@@ -248,15 +248,15 @@ async function main(): Promise<void> {
 
   // ---- C. Nothing on the first-pass side moved.
   check('C.1 the v13 first-pass prompt module is byte-identical',
-    sha256File(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'))
+    sha256File(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'))
       === EXPECTED_PROMPT_MODULE_SHA, 'unchanged');
   check('C.2 the hardened v9 fixture is byte-identical',
     sha256File(join(ROOT,
-      'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
+      'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
       === EXPECTED_V9_FILE_SHA, 'unchanged');
   check('C.3 v14 and v15 do not exist',
-    !existsSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt-v14.ts'))
-      && !existsSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt-v15.ts')),
+    !existsSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt-v14.ts'))
+      && !existsSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt-v15.ts')),
     'absent');
   const ownImports = readFileSync(__filename, 'utf8').split('\n').filter(l => /^import /.test(l));
   check('C.4 this file imports NOTHING from src/ — no first-pass entry point is reachable',

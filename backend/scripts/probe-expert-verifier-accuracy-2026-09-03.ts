@@ -219,11 +219,11 @@ async function main(): Promise<void> {
 
   // ---- C. everything this operation must not touch.
   check('C.1 the v13 prompt module is byte-identical',
-    sha256File(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'))
+    sha256File(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'))
       === EXPECTED_PROMPT_MODULE_SHA, 'unchanged');
   check('C.2 the hardened v9 fixture file is byte-identical',
     sha256File(join(ROOT,
-      'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
+      'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
       === EXPECTED_V9_FILE_SHA, 'unchanged');
   check('C.3 detector v2 is byte-identical',
     sha256File(join(ROOT, 'backend/scripts/lib/expert-degenerate-output-detector.ts'))
@@ -237,8 +237,8 @@ async function main(): Promise<void> {
         .includes('THIS LIST IS NOT RE-DERIVED FROM THE TRIGGER AT BUILD TIME'),
     'v1, frozen as data');
   check('C.5 v14 and v15 do not exist',
-    !existsSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt-v14.ts'))
-      && !existsSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt-v15.ts')),
+    !existsSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt-v14.ts'))
+      && !existsSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt-v15.ts')),
     'absent');
 
   // ---- D. containment.

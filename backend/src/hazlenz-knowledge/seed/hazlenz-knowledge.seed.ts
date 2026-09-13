@@ -120,7 +120,7 @@ async function bootstrap() {
 
   await dataSource.destroy();
 
-  console.log(`SafeScope Knowledge seed complete: ${starterKnowledge.length} documents`);
+  console.log(`HazLenz Knowledge seed complete: ${starterKnowledge.length} documents`);
 }
 
 bootstrap().catch((error) => {

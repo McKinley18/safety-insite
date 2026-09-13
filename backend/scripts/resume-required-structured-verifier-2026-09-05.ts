@@ -28,12 +28,12 @@ function loadEnvFile(path: string): void {
 }
 loadEnvFile(join(__dirname, '..', '.env'));
 
-import { EXPERT_HOSTED_INFERENCE_CONFIG } from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { buildExpertAnalysisInputFromAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION, expertPromptIdentity } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { owedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
-import { projectOwedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
-import type { OwedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import { EXPERT_HOSTED_INFERENCE_CONFIG } from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { buildExpertAnalysisInputFromAnalysis } from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION, expertPromptIdentity } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { owedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
+import { projectOwedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+import type { OwedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   EXPERT_VERIFIER_V3_SYSTEM_PROMPT, EXPERT_VERIFIER_INSTRUCTION_V3_VERSION,
   VERIFIER_V3_RESPONSE_SCHEMA, buildVerifierV3UserPrompt, type V3SuppliedOwedFact,
@@ -180,12 +180,12 @@ async function main(): Promise<void> {
   chk('8 prompt version/model identical to §187A preregistration',
     EXPERT_PROMPT_VERSION === FROZEN_V15.promptVersion
     && sha(EXPERT_SYSTEM_PROMPT) === FROZEN_V15.systemPromptSha256
-    && shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts')) === FROZEN_V15.promptFileSha256
+    && shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts')) === FROZEN_V15.promptFileSha256
     && EXPERT_HOSTED_INFERENCE_CONFIG.model === prereg.provider_model.model,
     `model=${EXPERT_HOSTED_INFERENCE_CONFIG.model}`);
   chk('9 owed-fact runtime source unchanged since §187A',
     Object.entries(FROZEN_OWED_FACT_SOURCE).every(([f, h]) =>
-      shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts', f)) === h));
+      shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts', f)) === h));
   chk('9b verifier instruction and schema unchanged',
     sha(EXPERT_VERIFIER_V3_SYSTEM_PROMPT) === prereg.verifierIdentity.systemPromptSha256
     && sha(JSON.stringify(VERIFIER_V3_RESPONSE_SCHEMA)) === prereg.verifierIdentity.responseSchemaSha256);

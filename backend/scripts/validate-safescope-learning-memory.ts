@@ -1,4 +1,4 @@
-import { SafeScopeLearningMemoryService } from '../src/safescope-v2/brain/learning-memory/learning-memory.service';
+import { HazLenzLearningMemoryService } from '../src/hazlenz/brain/learning-memory/learning-memory.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const service = new SafeScopeLearningMemoryService();
+const service = new HazLenzLearningMemoryService();
 
 const accepted = service.add({
   source: 'supervisor_review',
@@ -95,7 +95,7 @@ assert(summary.boundary.canModifyProductionReasoning === false, 'Learning Memory
 assert(summary.boundary.canAutoApproveRegistryChange === false, 'Learning Memory must not auto-approve registry changes.');
 assert(summary.boundary.requiresQualifiedReview === true, 'Learning Memory must require qualified review.');
 
-console.log('✅ SafeScope Learning Memory v1 validation passed.');
+console.log('✅ HazLenz Learning Memory v1 validation passed.');
 console.log(`Learning records: ${summary.totalRecords}`);
 console.log(`Corrected count: ${summary.outcomeCounts.corrected}`);
 console.log(`Top correction target: ${summary.topCorrectionTargets[0]}`);

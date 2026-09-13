@@ -36,18 +36,18 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { buildExpertAnalysisInputFromAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { buildExpertAnalysisInputFromAnalysis } from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
 import {
   EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION, expertPromptIdentity,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { owedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
-import { projectOwedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
-import type { OwedFact } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { owedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
+import { projectOwedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+import type { OwedFact } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   EXPERT_VERIFIER_V3_SYSTEM_PROMPT, EXPERT_VERIFIER_INSTRUCTION_V3_VERSION,
   VERIFIER_V3_RESPONSE_SCHEMA, buildVerifierV3UserPrompt, type V3SuppliedOwedFact,
@@ -235,7 +235,7 @@ async function main(): Promise<void> {
   const stage = stageArg ? stageArg.slice('--stage='.length) : 'freeze';
 
   // ---- pre-spend identity gates
-  const promptFileSha = shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'));
+  const promptFileSha = shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'));
   if (EXPERT_PROMPT_VERSION !== FROZEN_V15.promptVersion) throw new Error(`ABORT: prompt version ${EXPERT_PROMPT_VERSION}`);
   if (sha(EXPERT_SYSTEM_PROMPT) !== FROZEN_V15.systemPromptSha256) throw new Error('ABORT: system prompt sha moved');
   if (promptFileSha !== FROZEN_V15.promptFileSha256) throw new Error(`ABORT: prompt file sha ${promptFileSha}`);
@@ -270,7 +270,7 @@ async function main(): Promise<void> {
   }
 
   const vocab = new Set<string>();
-  const { MultiHazardDecompositionService } = require('../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service');
+  const { MultiHazardDecompositionService } = require('../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service');
   const decomposer = new MultiHazardDecompositionService();
   for (const r of allRows) {
     const d: any = decomposer.decompose(r.text, { location: null, task: null });
@@ -308,10 +308,10 @@ async function main(): Promise<void> {
     contracts: { analysisContractVersion: EXPERT_ANALYSIS_CONTRACT_VERSION,
       inputContractVersion: EXPERT_INPUT_CONTRACT_VERSION, validatorVersion: EXPERT_VALIDATOR_VERSION },
     owedFactSourceHashes: {
-      'owed-fact.types.ts': shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts')),
-      'owed-fact-ledger.ts': shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts')),
-      'owed-fact-binding.ts': shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts')),
-      'verifier-v3-development-boundary.ts': shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts')),
+      'owed-fact.types.ts': shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts')),
+      'owed-fact-ledger.ts': shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger.ts')),
+      'owed-fact-binding.ts': shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts')),
+      'verifier-v3-development-boundary.ts': shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts')),
     },
     frozenRows: rows.map(r => ({ id: r.id, textSha256: sha(r.text) })),
     frozenTruthHashes: FROZEN_TRUTH_HASHES,

@@ -156,7 +156,7 @@ export class OshaEcfConnector {
     const p = join(
       process.cwd(),
       "src",
-      "safescope-knowledge",
+      "hazlenz-knowledge",
       "ingestion",
       "source-lists",
       this.listFilename,

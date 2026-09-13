@@ -1,12 +1,12 @@
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 import { ActionEngineService } from '../src/action-engine/action-engine.service';
-import { ContextExpansionService } from '../src/safescope-v2/context/context-expansion.service';
-import { EvidenceFusionService } from '../src/safescope-v2/evidence/evidence-fusion.service';
+import { ContextExpansionService } from '../src/hazlenz/context/context-expansion.service';
+import { EvidenceFusionService } from '../src/hazlenz/evidence/evidence-fusion.service';
 import { ApplicableStandardsService } from '../src/applicable-standards/applicable-standards.service';
-import { SafeScopeFeedbackService } from '../src/safescope-v2/feedback/safescope-feedback.service';
-import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
+import { HazLenzFeedbackService } from '../src/hazlenz/feedback/hazlenz-feedback.service';
+import { ReasoningSnapshotService } from '../src/hazlenz/snapshots/reasoning-snapshot.service';
 import { HazLenzKnowledgeService } from '../src/hazlenz-knowledge/hazlenz-knowledge.service';
-import { StandardsIntelligenceService } from '../src/safescope-v2/standards-intelligence/standards-intelligence.service';
+import { StandardsIntelligenceService } from '../src/hazlenz/standards-intelligence/standards-intelligence.service';
 
 type Scenario = {
   name: string;
@@ -91,7 +91,7 @@ function createMockService() {
 
   const feedbackService = {
     getWorkspaceStandardAdjustments: async () => [],
-  } as unknown as SafeScopeFeedbackService;
+  } as unknown as HazLenzFeedbackService;
 
   const reasoningSnapshotService = {
     createSnapshot: async () => ({ id: `snapshot-${Date.now()}` }),
@@ -133,7 +133,7 @@ function createMockService() {
     getWorkspaceValidationSignals: async () => [],
   };
 
-  return new SafescopeV2Service(
+  return new HazLenzService(
     actionEngine,
     new EvidenceFusionService(),
     applicableStandards,
@@ -193,12 +193,12 @@ async function main() {
     });
   }
 
-  console.log('✅ SafeScope AI scenario gauntlet passed.');
+  console.log('✅ HazLenz AI scenario gauntlet passed.');
   console.log(JSON.stringify(results, null, 2));
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope AI scenario gauntlet failed.');
+  console.error('❌ HazLenz AI scenario gauntlet failed.');
   console.error(error);
   process.exit(1);
 });

@@ -12,12 +12,12 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
 
-import type { ArbitrationRequest, OwedFact, AcceptableEvidence } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
-import { createOwedFactLedger, factOf, transition } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+import type { ArbitrationRequest, OwedFact, AcceptableEvidence } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
+import { createOwedFactLedger, factOf, transition } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   checkBindingDeclarations, applyAdmittedDeclarations, CLARIFICATION_EVIDENCE_SUFFICIENCY,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
-import { EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED } from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
+import { EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED } from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   consumeSettlementClaims, mintSettlementAuthority, settleByReviewedEvidence,
   observeSettlementReview, claimIdFor,
@@ -26,7 +26,7 @@ import {
   REVIEW_DECISIONS, PERMITTED_REVIEW_PROVENANCES, REFUSED_REVIEW_PROVENANCES,
   NEVER_PROJECTED_TO_PROVIDER,
   type ReviewDecisionRecord, type SettlementClaim, type SettlementAuthority,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 
 const ROOT = join(__dirname, '..', '..');
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');
@@ -307,7 +307,7 @@ ok('P17b the criterion is preserved verbatim and carries a caveat rather than be
 // ================================================================ 9. semantic boundary
 console.log('\n--- 9. SEMANTIC BOUNDARY AND FEEDBACK BAN');
 const moduleSrc = readFileSync(
-  join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts'), 'utf8');
+  join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/settlement-review.ts'), 'utf8');
 const moduleCode = moduleSrc.replace(/\/\*[\s\S]*?\*\//g, '')
   .split('\n').filter(l => !l.trim().startsWith('//')).join('\n');
 ok('P18 no semantic matcher, scorer or threshold was introduced',
@@ -335,7 +335,7 @@ ok('P19b the observation reconstructs the whole decision',
 
 // ================================================================ 10. boundaries
 console.log('\n--- 10. INACTIVE AND GOVERNED BOUNDARIES');
-const serviceSrc = readFileSync(join(ROOT, 'backend/src/safescope-v2/safescope-v2.service.ts'), 'utf8');
+const serviceSrc = readFileSync(join(ROOT, 'backend/src/hazlenz/safescope-v2.service.ts'), 'utf8');
 ok('P1d no customer route reaches the consumer or the producer',
   !serviceSrc.includes('settlement-review') && !serviceSrc.includes('settleByReviewedEvidence')
   && !serviceSrc.includes('mintSettlementAuthority'), '');
@@ -354,12 +354,12 @@ ok('P20 no governed record was modified',
         === 'd0e9fc54365b5e8150bd86db9328a15c24a331ad2ad054f9e5b50dd4190d28d4';
   })(), 'three registry files byte-identical to their §181 values');
 ok('P20b expert-prompt.ts was not modified',
-  sha(readFileSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'), 'utf8'))
+  sha(readFileSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'), 'utf8'))
     === 'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694', '');
 ok('P20c no existing owed-facts module was modified',
-  sha(readFileSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts'), 'utf8'))
+  sha(readFileSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts'), 'utf8'))
     === 'f77c7febb55a056271174c4efd4375506145344bd0748e5d56f93c698074c1d1'
-  && sha(readFileSync(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8'))
+  && sha(readFileSync(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8'))
     === 'e25f1fa807d4ffd4b976670e71766e371e959682eb341f5ed07cc24c6e1cd3e0',
   '§182 is one NEW file; nothing existing changed');
 
@@ -376,7 +376,7 @@ ok('R1 transition() remains directly callable in-process with ADMISSIBLE_EVIDENC
   'PRE-EXISTING and unchanged by §182 — see SECTION-182-RESULT.json residual R1');
 ok('R1b but no PROVIDER input can reach that call — the provider path mints ADMITTED_BINDING only',
   !readFileSync(join(ROOT,
-    'backend/src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8')
+    'backend/src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8')
     .includes("'ADMISSIBLE_EVIDENCE'"), '');
 
 console.log(`\n${failed === 0 ? 'ALL §182 PROOFS PASSED' : `${failed} FAILED`} — provider calls: 0   database operations: 0`);

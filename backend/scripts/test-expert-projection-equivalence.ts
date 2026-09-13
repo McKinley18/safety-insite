@@ -17,19 +17,19 @@
  * compatibility strip included -- not through an intermediate representation.
  */
 
-import { applyEvidenceFoundation } from '../src/safescope-v2/evidence/evidence-foundation';
-import { buildAnthropicRequestBody } from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { buildExpertUserPrompt } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { ADVERSARIAL_RECALL_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures';
-import { RESTORATION_TRANSITION_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/restoration-transition-fixtures';
+import { applyEvidenceFoundation } from '../src/hazlenz/evidence/evidence-foundation';
+import { buildAnthropicRequestBody } from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { buildExpertUserPrompt } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { ADVERSARIAL_RECALL_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/hazard-actuality-fixtures';
+import { RESTORATION_TRANSITION_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/restoration-transition-fixtures';
 import type {
   DeterministicFamilyDisposition, ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 // PERMANENT production projection (the promotion under test).
 import {
   projectDeterministicDispositions as projectPermanent,
-} from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+} from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 // PROTOTYPE, frozen: the exact artifact whose behaviour §118 measured hosted.
 import {
   projectDeterministicDispositions as projectPrototype,
@@ -243,12 +243,12 @@ console.log('\nF. the promotion changed no frozen vocabulary and added no suppre
 // =====================================================================================
 {
   const src = require('fs').readFileSync(
-    require('path').join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'expert-normalization.ts'),
+    require('path').join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'expert-normalization.ts'),
     'utf8') as string;
   assert(!src.includes('deterministicFamilyDispositions'),
     'F.1 normalization does not read the projection (no boundary suppression path exists)');
   const prompt = require('fs').readFileSync(
-    require('path').join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'expert-prompt.ts'),
+    require('path').join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'expert-prompt.ts'),
     'utf8') as string;
   // §139 RE-ANCHORED, NOT RELAXED. F.2 asserted the literal v6 to prove that the §119 PROJECTION
   // promotion was input data rather than a prompt revision. That property is unchanged and is what

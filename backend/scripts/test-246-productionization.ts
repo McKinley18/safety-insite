@@ -12,7 +12,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
 const BACKEND = join(__dirname, '..');
-const CONTRACT = join(BACKEND, 'src/safescope-v2/expert-hazlenz/contract');
+const CONTRACT = join(BACKEND, 'src/hazlenz/expert-hazlenz/contract');
 const LIB = join(BACKEND, 'scripts/lib');
 const sha = (b: Buffer | string): string => createHash('sha256').update(b).digest('hex');
 
@@ -55,7 +55,7 @@ if (PREMOVE && existsSync(PREMOVE)) {
     const diff: number[] = [];
     for (let i = 0; i < before.length; i++) if (before[i] !== after[i]) diff.push(i);
     if (diff.length === 0) identical++;
-    else if (diff.every(i => before[i].includes('../../src/safescope-v2/expert-hazlenz/')
+    else if (diff.every(i => before[i].includes('../../src/hazlenz/expert-hazlenz/')
       && after[i] === before[i].replace(/\.\.\/\.\.\/src\/safescope-v2\/expert-hazlenz\//g, '../'))) importOnly++;
     else other++;
   }
@@ -97,7 +97,7 @@ const NET = ['fetch(', "require('http", 'require("http', "from 'http", 'from "ht
   'XMLHttpRequest', 'WebSocket', 'net.connect', 'https://', 'http://',
   'process.env.ANTHROPIC', 'process.env.OPENAI', 'process.env.GEMINI', 'apiKey'];
 const VENDORS = ['anthropic', 'gemini', 'openai', 'ollama', 'qwen', 'claude', 'gpt-'];
-const coreFiles = walk(join(BACKEND, 'src/safescope-v2/expert-hazlenz')).filter(f => f.endsWith('.ts'));
+const coreFiles = walk(join(BACKEND, 'src/hazlenz/expert-hazlenz')).filter(f => f.endsWith('.ts'));
 const netHits = coreFiles.filter(f => NET.some(n => readFileSync(f, 'utf8').includes(n)));
 const venHits = coreFiles.filter(f => {
   const code = readFileSync(f, 'utf8').toLowerCase().split('\n')
@@ -112,13 +112,13 @@ ok('D2 the promoted contract names no vendor in module code',
 
 // ---------------------------------------------------------------- E. the production entry point
 /* eslint-disable @typescript-eslint/no-var-requires */
-const entry = require('../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis');
+const entry = require('../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis');
 ok('E1 the production entry point exports a callable analysis function',
   typeof entry.runExpertHazLenzAnalysis === 'function');
 ok('E2 it declares the §239 contract version, not a private one',
   entry.EXPERT_PRODUCTION_ENTRY_VERSION === 'hazlenz.expert.production-entry.v1');
 const entrySrc = readFileSync(
-  join(BACKEND, 'src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts'), 'utf8');
+  join(BACKEND, 'src/hazlenz/expert-hazlenz/expert-hazlenz-analysis.ts'), 'utf8');
 /**
  * §249: E3 now names the SUCCESSOR the entry point actually invokes. §248 demonstrated why the
  * weaker form was insufficient -- asserting only that the entry point imports from `./contract/`
@@ -141,7 +141,7 @@ ok('E4 the entry point reaches no harness module',
   !/expert-20[57]-|expert-243-assembly|truth-specification/.test(entrySrc));
 
 // ---------------------------------------------------------------- F. the request envelope
-const env = require('../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope');
+const env = require('../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope');
 const bound = env.envelopeBoundOptions();
 ok('F1 the canonical envelope binds the strict-schema setting, and it is ON',
   bound.strictSchema === true);
@@ -167,18 +167,18 @@ ok('F6 the verifier leg is bound by the same envelope and is also strict',
 ok('F7 the two legs carry their own bound token limits',
   typeof body.max_tokens === 'number' && typeof vbody.max_tokens === 'number');
 const adapterSrc = readFileSync(
-  join(BACKEND, 'src/safescope-v2/expert-hazlenz-adapters/expert-semantic-transport.ts'), 'utf8');
+  join(BACKEND, 'src/hazlenz/expert-hazlenz-adapters/expert-semantic-transport.ts'), 'utf8');
 ok('F8 the transport never assembles a tool block itself',
   !/tools:\s*\[/.test(adapterSrc) && adapterSrc.includes('buildEnvelopeRequestBody'));
 
 // ---------------------------------------------------------------- G. relocation did not move meaning
-const consistency = require('../src/safescope-v2/expert-hazlenz/contract/expert-218-property-consistency');
+const consistency = require('../src/hazlenz/expert-hazlenz/contract/expert-218-property-consistency');
 ok('G1 the §218 property consistency check resolves from the production tree',
   typeof consistency.checkPropertyReview218 === 'function');
 ok('G2 the §210E whole-field filler rule survived relocation',
   readFileSync(join(CONTRACT, 'expert-218-property-consistency.ts'), 'utf8')
     .includes('isNonSemanticFiller'));
-const posture = require('../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract');
+const posture = require('../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract');
 const admissible = Object.values(posture.DRIVER_ROLE_REF_KINDS_239 as Record<string, string[]>)
   .reduce((a, b) => a + b.length, 0);
 ok('G3 the §239 driver-role binding still admits exactly 6 role/carrier pairs', admissible === 6,
@@ -188,7 +188,7 @@ ok('G4 K6 is UNCHANGED by this migration -- 4 inadmissible pairs remain expressi
 
 // ---------------------------------------------------------------- H. the competing path
 const oldPrompt = readFileSync(
-  join(BACKEND, 'src/safescope-v2/expert-hazlenz/expert-prompt.ts'), 'utf8');
+  join(BACKEND, 'src/hazlenz/expert-hazlenz/expert-prompt.ts'), 'utf8');
 ok('H1 the base contract module is retained -- the §239 chain extends it, so it is not a rival',
   oldPrompt.includes('buildExpertWireSchema'));
 const vnextSrc = readFileSync(join(CONTRACT, 'expert-first-pass-instruction-vnext.ts'), 'utf8');

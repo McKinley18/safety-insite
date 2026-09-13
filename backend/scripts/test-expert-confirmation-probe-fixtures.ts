@@ -21,18 +21,18 @@ import {
   CONFIRMATION_PROBE_FIXTURES, CONFIRMATION_PROBE_ROWS, CONFIRMATION_PROBE_BUDGET,
   CONFIRMATION_PROBE_CRITERIA, CONFIRMATION_PROBE_FIXTURE_SET_VERSION,
   confirmationFixtureByRowId,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/linkage-confirmation-probe-v3';
+} from '../src/hazlenz/expert-hazlenz/fixtures/linkage-confirmation-probe-v3';
 import {
   LINKAGE_PROBE_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hosted-linkage-probe-v2';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hosted-linkage-probe-v2';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { buildExpertAnalysisInputFromAnalysis } from
-  '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { buildExpertUserPrompt } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { buildExpertUserPrompt } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { CITATION_SHAPED_PATTERN } from
-  '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { WORST_CASE_REQUEST_USD } from './lib/expert-execution-budget';
 
 let passed = 0; const failures: string[] = [];
@@ -193,7 +193,7 @@ section('D. containment');
   assert(citationInPrompt.length === 0,
     'D.2 no built prompt carries citation-shaped text — redaction holds', citationInPrompt.join(', '));
 
-  const src = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const src = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'fixtures', 'linkage-confirmation-probe-v3.ts'), 'utf8');
   // The needle spans a wrapped comment line, so intervening `\n * ` is tolerated.
   const flowed = src.replace(/\n\s*\*\s?/g, ' ');

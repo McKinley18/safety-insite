@@ -1,4 +1,4 @@
-import { ApplicabilityRetrievalService } from '../src/safescope-v2/applicability-retrieval/applicability-retrieval.service';
+import { ApplicabilityRetrievalService } from '../src/hazlenz/applicability-retrieval/applicability-retrieval.service';
 
 async function validate() {
   const service = new ApplicabilityRetrievalService();

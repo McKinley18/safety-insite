@@ -15,40 +15,40 @@ import {
   EXPERT_MEASUREMENT_CONTRACT, EXPERT_ADJUDICATION_RUBRICS,
   assertContractMatchesPlan, frozenFieldsFor, gatedMeasureIds, reportedMeasureIds, specFor,
   zeroOpportunityTreatmentFor,
-} from '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
-import { EXPERT_EVALUATION_MEASURES, EVALUATION_CORPUS_POLICY } from '../src/safescope-v2/expert-hazlenz/expert-evaluation-plan';
-import { EXPERT_CONDITION_STATES } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
+import { EXPERT_EVALUATION_MEASURES, EVALUATION_CORPUS_POLICY } from '../src/hazlenz/expert-hazlenz/expert-evaluation-plan';
+import { EXPERT_CONDITION_STATES } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   CONDITION_MAPPING_RESOLUTIONS, DETERMINISTIC_TO_EXPERT_CONDITION_STATE,
   PLANNED_FUTURE_REPRESENTATION_DEBT,
   buildExpertAnalysisInput, buildExpertAnalysisInputFromAnalysis, permuteForOrderSensitivity,
   toCanonicalExpertInputSource, toExpertConditionState,
-} from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { projectDeterministicDispositions } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+} from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { projectDeterministicDispositions } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import {
   buildExpertUserPrompt, EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   adjudicateFamilies, buildAdjudicationQueue, buildScoringReport, scoredFieldProjection,
   scorerCoverageProblems, scoreAllMeasures,
   scoreM01, scoreM02, scoreM03, scoreM04, scoreM05, scoreM06, scoreM07, scoreM08,
   scoreM09, scoreM10, scoreM11, scoreM12, scoreM13, scoreM14, scoreM15, scoreM16, scoreM17,
   type AdjudicationRecord, type CohortRunRecord, type MeasureResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+} from '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 import {
   INVALID_ROWS, VALIDATION_ROWS,
   V1_FULL_OPPORTUNITY, V2_NO_CLARIFICATION_OWED, V3_NEGATIVE_CONTROL,
   V4_NO_GOVERNED_RECORD, V5_RECALL_OPPORTUNITY, V6_DISAGREEMENT_OPPORTUNITY,
   analysis, buildRecord, candidate, clarification, disagreement, insight,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/cohort-validation-fixtures';
+} from '../src/hazlenz/expert-hazlenz/fixtures/cohort-validation-fixtures';
 import {
   FORMAL_COHORT_COMPOSITION_REQUIREMENTS, MEASURED_COST_MODEL, MINIMUM_DEFENSIBLE_ROWS,
   RECOMMENDED_CALL_TOPOLOGY, conservativeMaximumSpendUsd, evaluateComposition,
   minimumDenominatorFor, projectedCostUsd,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import {
   providerInvocationCount, resetProviderInvocationCount, runDeterministicSide, runFormalCohort,
 } from './lib/expert-cohort-harness';

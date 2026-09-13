@@ -8,8 +8,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { MultiHazardDecompositionService } from '../../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service';
-import { toExpertFamily } from '../../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+import { MultiHazardDecompositionService } from '../../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service';
+import { toExpertFamily } from '../../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import {
   ACCEPTED_EXPERT_TAXONOMY, reservedRowEligible, type ReservedRowMetadata,
 } from './expert-cohort-supplemental-policy';

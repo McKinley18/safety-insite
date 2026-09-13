@@ -15,8 +15,8 @@ import { join } from 'path';
 
 import {
   buildAnthropicRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const BACKEND = join(__dirname, '..');
 const ROOT = join(BACKEND, '..');
@@ -90,7 +90,7 @@ check('P3b the transmitted system prompt carries the §247 justification instruc
   String(body.system).includes('roleJustification'));
 
 // ---- P6 the build reports only the frozen error
-const contractDir = join(BACKEND, 'src/safescope-v2/expert-hazlenz/contract');
+const contractDir = join(BACKEND, 'src/hazlenz/expert-hazlenz/contract');
 check('P6 the production contract tree is present',
   readdirSync(contractDir).filter(f => f.endsWith('.ts')).length >= 41);
 

@@ -1,4 +1,4 @@
-import { applyEvidenceFoundation } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyEvidenceFoundation } from '../src/hazlenz/evidence/evidence-foundation';
 
 function run(text: string, jurisdiction: string, extra: Record<string, unknown> = {}) {
   return applyEvidenceFoundation({ primaryCitation: '', clarificationQuestions: [] }, {

@@ -34,22 +34,22 @@ import {
   type OwedFact, type AcceptableEvidence,
   OWED_FACT_STATUSES, TRANSITION_AUTHORITIES, REQUIRED_AUTHORITY,
   PROVIDER_FORBIDDEN_OWED_FACT_FIELDS, PRODUCTION_PERMITTED_SOURCES,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   createOwedFactLedger, addOwedFact, nominateAdditiveFact, transition, factOf,
   unresolvedFacts, factsRemoved, preservationViolations,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   checkBindingDeclarations, parseOwedFactDeclarations, applyAdmittedDeclarations,
   evaluateTargetCoverage, CLARIFICATION_EVIDENCE_SUFFICIENCY, COVERAGE_DECISION_INPUTS,
   type ClarificationDeclaration,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED, projectOwedFact, verifierV3BoundaryState,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   deriveAcceptableEvidence,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/governed-evidence-derivation';
 
 const ROOT = join(__dirname, '..', '..');
 const INSTR = join(ROOT, 'verification', 'expert-hazlenz-balanced-clarification-instrument-2026-09-05');
@@ -244,7 +244,7 @@ check('F1.e and refuses any other authority for that status',
   wrongAuth !== null && /TRANSITION_AUTHORITY_MISMATCH/.test(wrongAuth), '');
 
 const bindingSrc = readFileSync(
-  join(srcDir, 'safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8');
+  join(srcDir, 'hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts'), 'utf8');
 check('F2.a CHALLENGE_FACT_VALIDITY produces an ArbitrationRequest',
   /arbitration\.push\(\{/.test(bindingSrc) && /settles: false/.test(bindingSrc), '');
 const consumers = grepCount(srcDir, 'arbitrationRequests');
@@ -461,7 +461,7 @@ check('P1 the inactive boundary is unchanged',
   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED === false
   && verifierV3BoundaryState().readsConfiguration === false
   && verifierV3BoundaryState().customerFacingToggleExists === false, '');
-const serviceSrc = readFileSync(join(srcDir, 'safescope-v2/safescope-v2.service.ts'), 'utf8');
+const serviceSrc = readFileSync(join(srcDir, 'hazlenz/safescope-v2.service.ts'), 'utf8');
 check('P2 no customer path reaches this harness or a DEVELOPMENT ledger',
   !serviceSrc.includes('a0-settlement-replay') && !serviceSrc.includes('owed-facts')
   && !PRODUCTION_PERMITTED_SOURCES.includes('DEVELOPMENT_HUMAN_TRUTH' as never), '');

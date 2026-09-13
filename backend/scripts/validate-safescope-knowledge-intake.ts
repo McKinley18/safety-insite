@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { KnowledgeRecordValidatorService } from '../src/safescope-v2/knowledge-intake/knowledge-record-validator.service';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
+import { KnowledgeRecordValidatorService } from '../src/hazlenz/knowledge-intake/knowledge-record-validator.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
 
-const quarantinedDir = path.join(__dirname, '../src/safescope-v2/knowledge-intake/records/quarantined');
+const quarantinedDir = path.join(__dirname, '../src/hazlenz/knowledge-intake/records/quarantined');
 const validator = new KnowledgeRecordValidatorService();
 
 const files = fs.readdirSync(quarantinedDir);

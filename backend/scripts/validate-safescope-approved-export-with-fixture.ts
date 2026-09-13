@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
-import { KnowledgeReviewService } from '../src/safescope-v2/knowledge-intake/review/knowledge-review.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
+import { KnowledgeReviewService } from '../src/hazlenz/knowledge-intake/review/knowledge-review.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -10,12 +10,12 @@ function assert(condition: boolean, message: string): void {
 
 const quarantinedDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/quarantined',
+  '../src/hazlenz/knowledge-intake/records/quarantined',
 );
 
 const approvedBundlePath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/approved/approved-knowledge-bundle.json',
+  '../src/hazlenz/knowledge-intake/records/approved/approved-knowledge-bundle.json',
 );
 
 const fixturePath = path.join(quarantinedDir, '_fixture-approved-export-test.json');
@@ -86,7 +86,7 @@ try {
     'Fixture approved record was not found in approved export bundle.',
   );
 
-  console.log('✅ SafeScope approved export fixture validation passed.');
+  console.log('✅ HazLenz approved export fixture validation passed.');
 } finally {
   if (fs.existsSync(fixturePath)) {
     fs.unlinkSync(fixturePath);

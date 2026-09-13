@@ -33,7 +33,7 @@ import { dirname, join, basename } from 'path';
 import { createHash } from 'crypto';
 
 const REPO = join(__dirname, '..', '..');
-const EVAL = join(__dirname, '..', 'src', 'safescope-v2', 'reasoning-l3', 'eval');
+const EVAL = join(__dirname, '..', 'src', 'hazlenz', 'reasoning-l3', 'eval');
 
 /** The date L3-2 began. Anything authored after this may have been shaped by a known defect. */
 const PROGRAMME_START = Date.parse('2026-08-22T00:00:00Z');

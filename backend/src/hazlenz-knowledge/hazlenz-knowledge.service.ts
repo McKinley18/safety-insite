@@ -192,7 +192,7 @@ export class HazLenzKnowledgeService {
 
   async markIngestionRunRunning(id: string) {
     const run = await this.ingestionRunRepo.findOne({ where: { id } });
-    if (!run) throw new NotFoundException("SafeScope ingestion run not found");
+    if (!run) throw new NotFoundException("HazLenz ingestion run not found");
 
     run.status = "running";
     run.startedAt = new Date();
@@ -215,7 +215,7 @@ export class HazLenzKnowledgeService {
     },
   ) {
     const run = await this.ingestionRunRepo.findOne({ where: { id } });
-    if (!run) throw new NotFoundException("SafeScope ingestion run not found");
+    if (!run) throw new NotFoundException("HazLenz ingestion run not found");
 
     run.status =
       result.status ||
@@ -247,7 +247,7 @@ export class HazLenzKnowledgeService {
     });
 
     if (!document)
-      throw new NotFoundException("SafeScope knowledge document not found");
+      throw new NotFoundException("HazLenz knowledge document not found");
 
     return document;
   }
@@ -262,7 +262,7 @@ export class HazLenzKnowledgeService {
     });
 
     if (!document) {
-      throw new NotFoundException("SafeScope knowledge document not found");
+      throw new NotFoundException("HazLenz knowledge document not found");
     }
 
     document.approvalStatus = status;
@@ -291,7 +291,7 @@ export class HazLenzKnowledgeService {
       where: { id: documentId },
     });
     if (!document)
-      throw new NotFoundException("SafeScope knowledge document not found");
+      throw new NotFoundException("HazLenz knowledge document not found");
 
     await this.chunkRepo.delete({ documentId });
 

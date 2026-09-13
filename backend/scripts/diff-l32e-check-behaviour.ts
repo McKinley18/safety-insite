@@ -10,8 +10,8 @@
  */
 import { writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import { findTokenOccurrences, nounPhraseHead, asserts } from '../src/safescope-v2/reasoning-l3/predicate-role';
-import { negationScopes, governingNegation } from '../src/safescope-v2/reasoning-l3/negation-scope';
+import { findTokenOccurrences, nounPhraseHead, asserts } from '../src/hazlenz/reasoning-l3/predicate-role';
+import { negationScopes, governingNegation } from '../src/hazlenz/reasoning-l3/negation-scope';
 
 const CORRECTION_TOKENS = ['corrected', 'repaired', 'replaced', 'replacement', 'fixed', 'reset', 'restored', 'remediated',
   'resolved', 'reinstalled', 'closed out', 'addressed', 'applied', 'destroyed', 'scrapped', 'discarded', 'rectified', 'made good', 'new one'];

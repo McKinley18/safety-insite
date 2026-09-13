@@ -29,9 +29,9 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
-import { frozenFieldsFor } from '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
-import { rubricFor } from '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
-import { CONTENT_SCORING_ARM } from '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+import { frozenFieldsFor } from '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
+import { rubricFor } from '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
+import { CONTENT_SCORING_ARM } from '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 const ROOT = join(__dirname, '..', '..');
 const EVAL_DIR = join(ROOT, 'verification', 'expert-hazlenz-formal-evaluation-2026-09-01');

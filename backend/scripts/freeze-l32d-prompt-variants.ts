@@ -15,7 +15,7 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
-import { L3_SYSTEM_PROMPT } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
+import { L3_SYSTEM_PROMPT } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
 
 const V4 = L3_SYSTEM_PROMPT;
 
@@ -128,4 +128,4 @@ v2 = v2.replace(C_CLAR_TAIL, B_CLAR_TAIL);
 const h = (x: string) => createHash('sha256').update(x).digest('hex');
 const out = { v2_l32b: v2, v3_l32c: v3 };
 console.log(JSON.stringify({ v2: h(v2), v3: h(v3), v4: h(V4), lines: { v2: v2.split('\n').length, v3: v3.split('\n').length, v4: V4.split('\n').length } }, null, 2));
-writeFileSync(join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval/prompt-variants-frozen.json'), JSON.stringify(out, null, 2) + '\n');
+writeFileSync(join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval/prompt-variants-frozen.json'), JSON.stringify(out, null, 2) + '\n');

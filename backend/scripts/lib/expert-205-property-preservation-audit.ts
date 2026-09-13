@@ -33,7 +33,7 @@ import {
 import type {
   StructuredUnresolvedFactDeclaration,
 } from './expert-first-pass-owed-fact-projection';
-import type { OwedFact } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+import type { OwedFact } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 
 export const PROPERTY_PRESERVATION_AUDIT_205_VERSION =
   'hazlenz.expert.205.property-preservation-audit.v1' as const;

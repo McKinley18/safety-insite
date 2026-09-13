@@ -50,13 +50,13 @@ import { DataSource } from 'typeorm';
 import { AppModule } from '../src/app.module';
 import {
   substituteExpertSemanticTransportForVerification, expertTransportLifetimeCounts,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-semantic-transport.provider';
+} from '../src/hazlenz/expert-hazlenz-product/expert-semantic-transport.provider';
 import {
-  EXPERT_CANDIDATE_IDENTITY_259,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-candidate-provenance';
+  EXPERT_CANDIDATE_IDENTITY_274,
+} from '../src/hazlenz/expert-hazlenz-product/expert-candidate-provenance';
 import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
 import { writeEvidenceFile } from './lib/evidence-write-gate';
 
@@ -612,7 +612,7 @@ async function main(): Promise<void> {
   // rule stops holding tomorrow.
   writeEvidenceFile(evidenceDir, 'SECTION-267-ACCEPTANCE.json', JSON.stringify({
     artifact: 'SECTION-267-PRODUCT-INTEGRATION-DEFECT-CLOSURE-ACCEPTANCE',
-    candidateIdentity: EXPERT_CANDIDATE_IDENTITY_259,
+    candidateIdentity: EXPERT_CANDIDATE_IDENTITY_274,
     providerCalls: 0,
     localTransportLegs: legs,
     assertions: { pass, fail },

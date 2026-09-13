@@ -41,7 +41,7 @@ async function grant(userId: string) {
 }
 
 async function classify(token: string) {
-  return json('/safescope-v2/classify', {
+  return json('/hazlenz/classify', {
     method: 'POST',
     headers: { authorization: `Bearer ${token}` },
     body: JSON.stringify({ text: 'A clearly guarded, de-energized machine is awaiting maintenance.', scopes: ['osha_general_industry'] }),

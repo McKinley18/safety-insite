@@ -1,6 +1,6 @@
-import { SourceFreshnessGovernanceService } from '../src/safescope-v2/source-freshness-governance/source-freshness-governance.service';
-import { SourceFreshnessGovernanceValidator } from '../src/safescope-v2/source-freshness-governance/source-freshness-governance.validator';
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { SourceFreshnessGovernanceService } from '../src/hazlenz/source-freshness-governance/source-freshness-governance.service';
+import { SourceFreshnessGovernanceValidator } from '../src/hazlenz/source-freshness-governance/source-freshness-governance.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
 
 async function validate() {
   const service = new SourceFreshnessGovernanceService();
@@ -95,7 +95,7 @@ async function validate() {
       process.exit(1);
   }
 
-  console.log('✅ SafeScope source freshness governance validation passed.');
+  console.log('✅ HazLenz source freshness governance validation passed.');
 }
 
 validate().catch(err => {

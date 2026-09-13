@@ -9,12 +9,12 @@ import { createHash } from 'crypto';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { buildExpertWireSchema, stableStringify } from
-  '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildExpertVNextWireSchema, buildExpertVNextUserPrompt, buildExpertVNextSystemPrompt,
   governedBindingFor, governedBindingCapability, UNRESOLVED_FACT_DECLARATIONS_FIELD,

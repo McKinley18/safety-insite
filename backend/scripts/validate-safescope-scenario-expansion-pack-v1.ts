@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ScenarioExpansionService } from '../src/safescope-v2/scenario-expansion/scenario-expansion.service';
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { FieldOutputComposerV1Service } from '../src/safescope-v2/field-output-composer-v1/field-output-composer-v1.service';
+import { ScenarioExpansionService } from '../src/hazlenz/scenario-expansion/scenario-expansion.service';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { FieldOutputComposerV1Service } from '../src/hazlenz/field-output-composer-v1/field-output-composer-v1.service';
 
 async function validate() {
   const expansionService = new ScenarioExpansionService();
@@ -36,7 +36,7 @@ async function validate() {
       // Relaxing this check further as new narrative synthesis is the primary field output
       if (!composition.fieldAssessment.includes('potential') && 
           !composition.fieldAssessment.includes('hazard') &&
-          !composition.fieldAssessment.includes('SafeScope')) {
+          !composition.fieldAssessment.includes('HazLenz')) {
           console.error(`Unexpected field assessment format for "${tc.text}": ${composition.fieldAssessment}`);
           process.exit(1);
       }
@@ -51,7 +51,7 @@ async function validate() {
       }
   }
 
-  console.log('✅ SafeScope scenario expansion pack v1 validation passed.');
+  console.log('✅ HazLenz scenario expansion pack v1 validation passed.');
 }
 
 validate().catch(err => {

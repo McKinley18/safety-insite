@@ -30,7 +30,7 @@
 
 import {
   FORBIDDEN_EXPERT_FIELD_NAMES,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 export const BOUNDED_SCAN_VERSION = 'hazlenz.expert.204-bounded-scan.v1' as const;
 

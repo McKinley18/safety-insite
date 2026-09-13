@@ -55,7 +55,7 @@ import { join } from 'path';
 
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION, VERIFIER_V3_2_RESPONSE_SCHEMA,
 } from './lib/expert-verifier-instruction-v3-2';

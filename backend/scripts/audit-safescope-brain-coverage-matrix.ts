@@ -2,10 +2,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { join } from 'path';
 
-import { SAFESCOPE_REGULATORY_BRAIN_REGISTRY } from '../src/safescope-v2/brain/regulatory-brain/regulatory-knowledge.registry';
-import { SAFESCOPE_MECHANISM_BRAIN_REGISTRY } from '../src/safescope-v2/brain/mechanism-brain/mechanism-knowledge.registry';
-import { SAFESCOPE_CONTROLS_BRAIN_REGISTRY } from '../src/safescope-v2/brain/controls-brain/controls-knowledge.registry';
-import { SAFESCOPE_EVIDENCE_BRAIN_REGISTRY } from '../src/safescope-v2/brain/evidence-brain/evidence-knowledge.registry';
+import { HAZLENZ_REGULATORY_BRAIN_REGISTRY } from '../src/hazlenz/brain/regulatory-brain/regulatory-knowledge.registry';
+import { HAZLENZ_MECHANISM_BRAIN_REGISTRY } from '../src/hazlenz/brain/mechanism-brain/mechanism-knowledge.registry';
+import { HAZLENZ_CONTROLS_BRAIN_REGISTRY } from '../src/hazlenz/brain/controls-brain/controls-knowledge.registry';
+import { HAZLENZ_EVIDENCE_BRAIN_REGISTRY } from '../src/hazlenz/brain/evidence-brain/evidence-knowledge.registry';
 
 const REPO_ROOT = join(__dirname, '..', '..');
 
@@ -62,7 +62,7 @@ function hasDomainCoverage(domain: string, domains: string[]): boolean {
 }
 
 function hasRegulatoryCoverage(domain: string, citation: string): boolean {
-  return SAFESCOPE_REGULATORY_BRAIN_REGISTRY.some((record) => {
+  return HAZLENZ_REGULATORY_BRAIN_REGISTRY.some((record) => {
     const citationMatches = record.citation === citation;
     const domainMatches = hasDomainCoverage(domain, record.hazardDomains);
     return citationMatches || domainMatches;
@@ -70,11 +70,11 @@ function hasRegulatoryCoverage(domain: string, citation: string): boolean {
 }
 
 function hasMechanismCoverage(mechanism: string): boolean {
-  return SAFESCOPE_MECHANISM_BRAIN_REGISTRY.some((record) => record.mechanismId === mechanism);
+  return HAZLENZ_MECHANISM_BRAIN_REGISTRY.some((record) => record.mechanismId === mechanism);
 }
 
 function hasControlsCoverage(domain: string, mechanism: string): boolean {
-  return SAFESCOPE_CONTROLS_BRAIN_REGISTRY.some((record) => {
+  return HAZLENZ_CONTROLS_BRAIN_REGISTRY.some((record) => {
     const domainMatches = hasDomainCoverage(domain, record.hazardDomains);
     const mechanismMatches = mechanism ? record.mechanisms.includes(mechanism) : false;
     return domainMatches || mechanismMatches;
@@ -82,7 +82,7 @@ function hasControlsCoverage(domain: string, mechanism: string): boolean {
 }
 
 function hasEvidenceCoverage(domain: string, mechanism: string): boolean {
-  return SAFESCOPE_EVIDENCE_BRAIN_REGISTRY.some((record) => {
+  return HAZLENZ_EVIDENCE_BRAIN_REGISTRY.some((record) => {
     const domainMatches = hasDomainCoverage(domain, record.hazardDomains);
     const mechanismMatches = mechanism ? record.mechanisms.includes(mechanism) : false;
     return domainMatches || mechanismMatches;
@@ -133,7 +133,7 @@ function buildMarkdown(rows: CoverageRow[]): string {
   });
 
   return [
-    '# SafeScope Brain Coverage Matrix',
+    '# HazLenz Brain Coverage Matrix',
     '',
     '## Summary',
     '',
@@ -217,7 +217,7 @@ const counts = rows.reduce(
   {} as Record<string, number>,
 );
 
-console.log('✅ SafeScope Brain Coverage Matrix complete.');
+console.log('✅ HazLenz Brain Coverage Matrix complete.');
 console.log(`Results JSON: ${resultsPath}`);
 console.log(`Results MD: ${markdownPath}`);
 console.log(`Cases: ${rows.length}`);

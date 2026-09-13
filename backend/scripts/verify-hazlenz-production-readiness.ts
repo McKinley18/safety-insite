@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 type Scenario = {
   name: string;
@@ -126,7 +126,7 @@ async function main() {
     logger: ['error', 'warn'],
   });
 
-  const service = app.get(SafescopeV2Service);
+  const service = app.get(HazLenzService);
 
   const failures: string[] = [];
   const started = Date.now();

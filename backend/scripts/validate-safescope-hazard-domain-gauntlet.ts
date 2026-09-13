@@ -1,4 +1,4 @@
-import { SafeScopeHazardDomainIntelligenceService } from '../src/safescope-v2/hazard-domain-intelligence/hazard-domain-intelligence.service';
+import { HazLenzHazardDomainIntelligenceService } from '../src/hazlenz/hazard-domain-intelligence/hazard-domain-intelligence.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: any, message: string) {
   }
 }
 
-const service = new SafeScopeHazardDomainIntelligenceService();
+const service = new HazLenzHazardDomainIntelligenceService();
 
 const scenarios = [
   {
@@ -148,5 +148,5 @@ for (const scenario of scenarios) {
   });
 }
 
-console.log('✅ SafeScope hazard domain intelligence gauntlet passed.');
+console.log('✅ HazLenz hazard domain intelligence gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

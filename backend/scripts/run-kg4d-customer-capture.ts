@@ -6,7 +6,7 @@
  * capture and judgement apart is deliberate -- the KG-4B corpus run conflated them and a broken
  * instrument produced a confident wrong answer three times running.
  *
- * PACED INSIDE THE THROTTLE. `/safescope-v2/classify` is limited to 30 requests / 60s. This paces
+ * PACED INSIDE THE THROTTLE. `/hazlenz/classify` is limited to 30 requests / 60s. This paces
  * at 20/60s and REFUSES a 429 outright rather than recording it: an error response compares equal
  * to another error response, and an oracle fed two identical 429s reports perfect agreement. The
  * throttle is not raised.
@@ -56,7 +56,7 @@ async function login(): Promise<string> {
 }
 
 async function classify(token: string, observation: typeof OBSERVATIONS[number]): Promise<unknown> {
-  const response = await fetch(API + '/safescope-v2/classify', {
+  const response = await fetch(API + '/hazlenz/classify', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
     body: JSON.stringify({ text: observation.text, scopes: observation.scopes }),

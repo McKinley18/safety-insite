@@ -28,9 +28,9 @@ import {
   buildExecutionOrder, validateExecutionOrder, EXECUTIONS_PER_ROW, PLANNED_INVOCATIONS,
   CALL_CEILING, SPEND_CEILING_USD, RETRIES,
 } from './probe-v15-replicated-clarification-2026-09-05';
-import { buildExpertAnalysisInputFromAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+import { buildExpertAnalysisInputFromAnalysis } from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { EXPERT_ANALYSIS_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 
 const ROOT = join(__dirname, '..', '..');
 const INSTR = join(ROOT, 'verification', 'expert-hazlenz-balanced-clarification-instrument-2026-09-05');
@@ -76,7 +76,7 @@ check('1.6 AI-assistance disclosure preserved on the truth record',
 
 // ---------------------------------------------------------------- 2. frozen §178 v15 identity
 console.log('\n--- 2. frozen §178 v15 identity');
-const promptFileSha = shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'));
+const promptFileSha = shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'));
 check('2.1 EXPERT_PROMPT_VERSION is v15',
   EXPERT_PROMPT_VERSION === 'hazlenz.expert.prompt.v15', EXPERT_PROMPT_VERSION);
 check('2.2 SYSTEM_PROMPT_SHA256 reproduces the §178 value',
@@ -96,7 +96,7 @@ const PINNED: Array<[string, string]> = [
   ['expert-runner.ts', '26dac3049b2203750492fa5368c7cff76b19054166fbdc42d1770e206aeb6736'],
 ];
 for (const [file, want] of PINNED) {
-  const got = shaFile(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz', file));
+  const got = shaFile(join(ROOT, 'backend/src/hazlenz/expert-hazlenz', file));
   check(`3.x ${file} byte-identical to its §178 value`, got === want, got.slice(0, 16));
 }
 

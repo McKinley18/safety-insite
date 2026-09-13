@@ -25,9 +25,9 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
 import { EXPERT_ADJUDICATION_RUBRICS, rubricFor } from
-  '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
+  '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
 import type { AdjudicationQueueItem } from
-  '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+  '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 const ROOT = join(__dirname, '..', '..');
 const EVAL_DIR = join(ROOT, 'verification', 'expert-hazlenz-formal-evaluation-2026-09-01');

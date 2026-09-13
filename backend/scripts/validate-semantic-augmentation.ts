@@ -26,16 +26,16 @@ import { execFileSync } from 'child_process';
 import { createHash } from 'crypto';
 import {
   SEMANTIC_ROWS, SEMANTIC_AUGMENTATION_IDENTIFIER,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
-import { AUGMENTATION_ROWS } from '../src/safescope-v2/expert-hazlenz/fixtures/negative-control-augmentation-v1';
+} from '../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
+import { AUGMENTATION_ROWS } from '../src/hazlenz/expert-hazlenz/fixtures/negative-control-augmentation-v1';
 import {
   EXPERT_INTERACTION_KINDS, EXPERT_AFFECTED_DECISIONS,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { classifyRow, truthOnlyStrings, validateCohortRow } from
-  '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+  '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT } from
-  '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { assertMayOpen } from '../src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry';
+  '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { assertMayOpen } from '../src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry';
 import { ACCEPTED_EXPERT_TAXONOMY } from './lib/expert-cohort-supplemental-policy';
 import {
   CANDIDATE_TARGETS, FORBIDDEN_GAP_SHAPES, MIN_GAP_DESCRIPTION_CHARS,
@@ -75,7 +75,7 @@ async function main(): Promise<void> {
   assert(!assertMayOpen('GAUNTLET_OFFSET_0').allowed, 'A.1 retired gauntlet offset 0 REFUSED');
   assert(!assertMayOpen('GAUNTLET_OFFSET_1').allowed, 'A.2 retired gauntlet offset 1 REFUSED');
   assert(!assertMayOpen('REALISM_OFFSET_3').allowed, 'A.3 retired realism offset 3 REFUSED');
-  const srcRead = fs.readFileSync(path.join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const srcRead = fs.readFileSync(path.join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'fixtures', 'semantic-augmentation-v1.ts'), 'utf8');
   assert(!/gauntlet\.source|gauntlet\.seed|realism-pack|reserved-classification/.test(srcRead),
     'A.4 the corpus module reads NO reserved or opened corpus -- every case is newly authored');
@@ -196,7 +196,7 @@ async function main(): Promise<void> {
   let hits = '';
   try {
     hits = execFileSync('rg', ['-l', '-F', '-f', fragFile, 'verification', 'docs', 'safescope-data',
-      'backend/src/safescope-v2/expert-hazlenz/fixtures'], { cwd: ROOT, encoding: 'utf8' }).trim();
+      'backend/src/hazlenz/expert-hazlenz/fixtures'], { cwd: ROOT, encoding: 'utf8' }).trim();
   } catch { hits = ''; }
   fs.unlinkSync(fragFile);
   const hitFiles = hits ? hits.split('\n').filter(f => !f.includes('semantic-augmentation')) : [];

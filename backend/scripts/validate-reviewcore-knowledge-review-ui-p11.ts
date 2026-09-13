@@ -32,7 +32,7 @@ const combined = `${overview}\n${review}`.toLowerCase();
 [
   'fetchCandidates',
   'isBackendConnected',
-  'NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK',
+  'NEXT_PUBLIC_HAZLENZ_REVIEW_DEMO_FALLBACK',
   'currentUserRole',
   'userPlanTier',
   'setCandidates',

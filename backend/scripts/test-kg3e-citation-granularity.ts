@@ -23,7 +23,7 @@
 import 'dotenv/config';
 import { dataSource } from '../src/database/data-source';
 import { resolveGovernedCitation } from '../src/standards/releases/governed-corpus-lookup';
-import { applyFindingScopedStandards } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyFindingScopedStandards } from '../src/hazlenz/evidence/evidence-foundation';
 
 const checks: string[] = [];
 let failed = 0;

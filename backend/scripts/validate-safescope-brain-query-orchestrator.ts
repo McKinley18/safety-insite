@@ -1,4 +1,4 @@
-import { SafeScopeBrainQueryOrchestratorService } from '../src/safescope-v2/brain/query-orchestrator/brain-query-orchestrator.service';
+import { HazLenzBrainQueryOrchestratorService } from '../src/hazlenz/brain/query-orchestrator/brain-query-orchestrator.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: boolean, message: string): void {
   }
 }
 
-const orchestrator = new SafeScopeBrainQueryOrchestratorService();
+const orchestrator = new HazLenzBrainQueryOrchestratorService();
 
 const forkliftPacket = orchestrator.query({
   scenarioLabel: 'forklift pedestrian interaction',
@@ -167,7 +167,7 @@ for (const packet of [forkliftPacket, undergroundGuardingPacket, silicaPacket]) 
   );
 }
 
-console.log('✅ SafeScope Brain Query Orchestrator validation passed.');
+console.log('✅ HazLenz Brain Query Orchestrator validation passed.');
 console.log(`Forklift citation: ${forkliftPacket.summary.likelyCitation}`);
 console.log(`Forklift mechanism: ${forkliftPacket.summary.likelyMechanism}`);
 console.log(`Underground guarding citation: ${undergroundGuardingPacket.summary.likelyCitation}`);

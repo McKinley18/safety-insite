@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { RiskVerificationResidualRiskValidator } from '../src/safescope-v2/risk-verification-residual-risk/risk-verification-residual-risk.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { RiskVerificationResidualRiskValidator } from '../src/hazlenz/risk-verification-residual-risk/risk-verification-residual-risk.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -63,7 +63,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope risk verification and residual risk validation passed.');
+  console.log('✅ HazLenz risk verification and residual risk validation passed.');
 }
 
 validate().catch(err => {

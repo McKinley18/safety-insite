@@ -29,7 +29,7 @@ import { join } from 'path';
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME, applyStrictSchemaWrapper,
   stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import { VERIFIER_TOOL_NAME } from './lib/expert-208b-verifier-recovery';
 import {
   MAX_PROVIDER_CALLS_221, SPEND_CEILING_USD_221, INTEGRATED_CASES_221, TERMINALS_221,

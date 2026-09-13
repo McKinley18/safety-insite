@@ -1,13 +1,13 @@
-import { SafeScopeReasoningScenarioRunnerService } from '../src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario-runner.service';
-import { SAFESCOPE_REASONING_SCENARIOS } from '../src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures';
+import { HazLenzReasoningScenarioRunnerService } from '../src/hazlenz/reasoning-orchestrator/scenarios/reasoning-scenario-runner.service';
+import { HAZLENZ_REASONING_SCENARIOS } from '../src/hazlenz/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const scenarios = SAFESCOPE_REASONING_SCENARIOS;
+const scenarios = HAZLENZ_REASONING_SCENARIOS;
 
-const runner = new SafeScopeReasoningScenarioRunnerService();
+const runner = new HazLenzReasoningScenarioRunnerService();
 const suite = runner.run(scenarios);
 
 assert(suite.engine === 'safescope_reasoning_scenario_runner_v1', 'Unexpected scenario runner engine.');
@@ -50,5 +50,5 @@ for (const scenarioResult of suite.scenarioResults) {
   );
 }
 
-console.log('✅ SafeScope reasoning scenario validation passed.');
+console.log('✅ HazLenz reasoning scenario validation passed.');
 console.log(`Scenarios passed: ${suite.passedScenarios}/${suite.totalScenarios}`);

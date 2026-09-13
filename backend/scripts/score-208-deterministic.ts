@@ -24,10 +24,10 @@ import { join } from 'path';
 
 import {
   CITATION_SHAPED_PATTERN, FORBIDDEN_EXPERT_FIELD_NAMES,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import { FROZEN_TRUTH_CASES } from './lib/expert-207-truth-specification';
 import { preregistrationIdentity } from './lib/expert-207-preregistration';
 

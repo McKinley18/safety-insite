@@ -33,26 +33,26 @@
 
 import {
   EXPERT_INPUT_CONTRACT_VERSION, CITATION_SHAPED_PATTERN, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
   stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   normalizeExpertOutput, isFatal, offendingTextFor,
-} from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-normalization';
 import {
   CLARIFICATION_RECALL_FIXTURES, CLARIFICATION_RECALL_BUDGET, CLARIFICATION_RECALL_GATES,
   CLARIFICATION_STRUCTURES, CLARIFICATION_RECALL_FIXTURE_SET_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/clarification-recall-probe-v5';
-import { validateCohortRow } from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/fixtures/clarification-recall-probe-v5';
+import { validateCohortRow } from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   THRESHOLD_ARBITRATION_FIXTURES, THRESHOLD_ARBITRATION_BUDGET, THRESHOLD_ARBITRATION_GATES,
   THRESHOLD_ARBITRATION_FIXTURE_SET_VERSION, PROBE_OPPORTUNITIES,
   type ThresholdShape, type ThresholdArbitrationFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
+} from '../src/hazlenz/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
 import { EXPERT_AFFECTED_DECISIONS } from
-  '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string, detail = ''): void {

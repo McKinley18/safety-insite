@@ -142,7 +142,7 @@ async function main() {
   if (!legacyToken || !shadowToken) { console.log(`\n${passed} passed, ${failed} failed`); process.exit(1); }
 
   const payload = { text: OBSERVATION, scopes: ['general_industry'] };
-  const legacy = await call(legacyToken, 'POST', '/safescope-v2/classify', payload);
+  const legacy = await call(legacyToken, 'POST', '/hazlenz/classify', payload);
   assert(legacy.status === 200 || legacy.status === 201,
     `the non-allowlisted account receives a real analysis (${legacy.status})`);
   const legacyBlob = JSON.stringify(legacy.body);
@@ -154,7 +154,7 @@ async function main() {
     'HARD: nothing is reported as approved governed content to the non-allowlisted account');
 
   // The allowlisted account IS in SHADOW -- and its payload must be equally clean.
-  const shadow = await call(shadowToken, 'POST', '/safescope-v2/classify', payload);
+  const shadow = await call(shadowToken, 'POST', '/hazlenz/classify', payload);
   assert(shadow.status === 200 || shadow.status === 201,
     `the allowlisted (SHADOW) account also receives a real analysis (${shadow.status})`);
   const shadowBlob = JSON.stringify(shadow.body);
@@ -175,7 +175,7 @@ async function main() {
     ['body.knowledgeReleaseId', { ...payload, knowledgeReleaseId: 'federal-core-2026-07-30.1' }],
   ];
   for (const [label, attemptBody] of ATTEMPTS) {
-    const response = await call(legacyToken, 'POST', '/safescope-v2/classify', attemptBody);
+    const response = await call(legacyToken, 'POST', '/hazlenz/classify', attemptBody);
     // Two acceptable outcomes: the DTO REJECTS the property (4xx), or the request succeeds and the
     // property is ignored. Being HONOURED is the only failure.
     //

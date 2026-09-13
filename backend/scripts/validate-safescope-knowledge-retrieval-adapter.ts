@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
 import {
   KnowledgeRetrievalServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
 import { HazLenzKnowledgeService } from '../src/hazlenz-knowledge/hazlenz-knowledge.service';
 import { HazLenzKnowledgeDocument } from '../src/hazlenz-knowledge/entities/hazlenz-knowledge-document.entity';
@@ -49,7 +49,7 @@ async function run() {
     .getRepository(HazLenzKnowledgeDocument)
     .count({ where: { approvalStatus: 'approved' } as any });
 
-  const context: SafeScopeAdapterContext = {
+  const context: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText:
         'Worker standing near open edge with fall protection missing.',

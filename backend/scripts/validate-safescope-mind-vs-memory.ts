@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -436,7 +436,7 @@ const cases: MindVsMemoryCase[] = [
   },
 ];
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 async function main() {
   const failures: string[] = [];
@@ -535,12 +535,12 @@ async function main() {
     throw new Error(failures.join('\n'));
   }
 
-  console.log('✅ SafeScope Mind vs. Memory validation passed.');
+  console.log('✅ HazLenz Mind vs. Memory validation passed.');
   console.log(`Cases: ${cases.length}`);
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope Mind vs. Memory validation failed.');
+  console.error('❌ HazLenz Mind vs. Memory validation failed.');
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });

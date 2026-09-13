@@ -42,15 +42,15 @@ import {
   L3_CONDITION_STATES, L3_UNDECIDED_STATES, REASONING_PROPOSAL_CONTRACT_VERSION,
   type ClarificationDecision, type HazardCandidate, type L3ConditionState,
   type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
 import {
   L3_STATE_RESOLVER_VERSION, resolveConditionStates,
-} from '../src/safescope-v2/reasoning-l3/condition-state-resolution';
-import type { ValidatedReasoning } from '../src/safescope-v2/reasoning-l3/validated-reasoning.types';
-import type { L3StateFacts } from '../src/safescope-v2/reasoning-l3/state-facts';
+} from '../src/hazlenz/reasoning-l3/condition-state-resolution';
+import type { ValidatedReasoning } from '../src/hazlenz/reasoning-l3/validated-reasoning.types';
+import type { L3StateFacts } from '../src/hazlenz/reasoning-l3/state-facts';
 
 let passed = 0, failed = 0;
 const failures: string[] = [];

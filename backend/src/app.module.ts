@@ -1,4 +1,4 @@
-import { SafescopeV2Module } from './safescope-v2/safescope-v2.module';
+import { HazLenzModule } from './hazlenz/hazlenz.module';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard } from '@nestjs/throttler';
@@ -23,11 +23,10 @@ import { BillingModule } from './billing/billing.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { HazLenzKnowledgeModule } from './hazlenz-knowledge/hazlenz-knowledge.module';
-import { SafeScopeModule } from './safescope/safescope.module';
 import { UploadModule } from './upload/upload.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
 import { InspectionModule } from './inspection/inspection.module';
-import { ExpertHazLenzProductModule } from './safescope-v2/expert-hazlenz-product/expert-hazlenz-product.module';
+import { ExpertHazLenzProductModule } from './hazlenz/expert-hazlenz-product/expert-hazlenz-product.module';
 import { TasksModule } from './tasks/tasks.module';
 import { EntitlementsModule } from './auth/entitlements/entitlements.module';
 import { StorageModule } from './storage/storage.module';
@@ -52,7 +51,7 @@ function getDatabaseSslConfig() {
 
 @Module({
   controllers: [MaintenanceSeedController],
-  imports: [SafescopeV2Module,
+  imports: [HazLenzModule,
     HazLenzKnowledgeModule, 
     // 🔷 ENVIRONMENT CONFIGURATION: IT standard for secret management
     ConfigModule.forRoot({
@@ -106,7 +105,6 @@ function getDatabaseSslConfig() {
     BillingModule,
     DashboardsModule,
     AnalyticsModule,
-    SafeScopeModule,
     UploadModule,
     InspectionModule,
     ExpertHazLenzProductModule,

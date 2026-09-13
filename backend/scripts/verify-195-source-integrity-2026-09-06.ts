@@ -7,15 +7,15 @@
 import { createHash } from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { EXPERT_SYSTEM_PROMPT } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { CITATION_SHAPED_PATTERN } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { EXPERT_SYSTEM_PROMPT } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { CITATION_SHAPED_PATTERN } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { EXPERT_VERIFIER_V3_SYSTEM_PROMPT, VERIFIER_V3_RESPONSE_SCHEMA } from './lib/expert-verifier-instruction-v3';
 import { EXPERT_VERIFIER_V3_1_SYSTEM_PROMPT, VERIFIER_V3_1_RESPONSE_SCHEMA } from './lib/expert-verifier-instruction-v3-1';
 import { EXPERT_VERIFIER_V3_2_SYSTEM_PROMPT, VERIFIER_V3_2_RESPONSE_SCHEMA, EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION, REGULATORY_BASIS_LINES } from './lib/expert-verifier-instruction-v3-2';
 import { sweepAuditability } from './lib/expert-source-audit-integrity';
 
 const ROOT = join(__dirname, '..', '..');
-const SRC = join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz');
+const SRC = join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz');
 const V = (n: string): string => join(ROOT, 'verification', n);
 const E187 = V('expert-hazlenz-required-structured-verifier-validation-2026-09-05');
 const E188 = V('expert-hazlenz-required-structured-verifier-remediation-review-2026-09-06');

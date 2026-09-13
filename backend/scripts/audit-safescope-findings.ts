@@ -1,8 +1,8 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
-import { SafeScopeReasoningRequest } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.types';
-import { SAFESCOPE_MECHANISM_REGISTRY } from '../src/safescope-v2/mechanism-intelligence/safescope-mechanism.registry';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningRequest } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.types';
+import { HAZLENZ_MECHANISM_REGISTRY } from '../src/hazlenz/mechanism-intelligence/hazlenz-mechanism.registry';
 
 function buildBenchmarkSearchText(testCase: any): string {
   const parts = [
@@ -208,7 +208,7 @@ function resolveFieldFacingFamily(params: {
 
 function normalizeMechanism(label: string, description: string): string {
   const norm = (label + ' ' + description).toLowerCase();
-  for (const entry of SAFESCOPE_MECHANISM_REGISTRY) {
+  for (const entry of HAZLENZ_MECHANISM_REGISTRY) {
     if (entry.keywords.some((keyword) => norm.includes(keyword))) return entry.id;
   }
   return normalizeLower(label).replace(/\s+/g, '_');
@@ -324,9 +324,9 @@ function confidenceScore(params: {
 }
 
 async function runAudit() {
-  console.log('Starting SafeScope Finding Audit v2...');
+  console.log('Starting HazLenz Finding Audit v2...');
 
-  const orchestrator = new SafeScopeReasoningOrchestratorService();
+  const orchestrator = new HazLenzReasoningOrchestratorService();
   const rawData = await fs.readFile(BENCHMARK_PATH, 'utf-8');
   const benchmarks = JSON.parse(rawData);
 
@@ -336,7 +336,7 @@ async function runAudit() {
   for (const testCase of benchmarks) {
     const benchmarkSearchText = buildBenchmarkSearchText(testCase);
 
-    const request: SafeScopeReasoningRequest = {
+    const request: HazLenzReasoningRequest = {
       hazardObservation: benchmarkSearchText,
       siteType: testCase.context.industry === 'mining' ? 'mine' : 'facility',
       taskContext: testCase.context.task,
@@ -561,7 +561,7 @@ async function runAudit() {
 
   await fs.writeFile(RESULTS_JSON_PATH, JSON.stringify(results, null, 2));
 
-  let report = '# SafeScope Finding Audit Results\n\n';
+  let report = '# HazLenz Finding Audit Results\n\n';
   report += `- Audit version: v2 Brain-backed field-facing scoring\n`;
   report += `- Total cases: ${results.length}\n`;
   report += `- Pass: ${results.filter((r) => r.result === 'pass').length}, Review: ${results.filter((r) => r.result === 'review').length}, Fail: ${results.filter((r) => r.result === 'fail').length}\n`;
@@ -576,7 +576,7 @@ async function runAudit() {
 
   await fs.writeFile(RESULTS_MD_PATH, report);
 
-  console.log('✅ SafeScope Finding Audit v2 complete.');
+  console.log('✅ HazLenz Finding Audit v2 complete.');
   console.log(`Results JSON: ${RESULTS_JSON_PATH}`);
   console.log(`Results MD: ${RESULTS_MD_PATH}`);
   console.log(`Average weighted score: ${(totalScoreSum / Math.max(results.length, 1)).toFixed(2)}`);

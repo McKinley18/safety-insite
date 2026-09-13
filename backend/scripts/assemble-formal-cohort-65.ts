@@ -49,19 +49,19 @@ import { createHash } from 'crypto';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow, COHORT_CASE_CLASSES,
   FORMAL_COHORT_ROW_CONTRACT_VERSION, type FormalCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   evaluateComposition, REQUIRED_CLASS_MINIMUMS, MINIMUM_DEFENSIBLE_ROWS, PREFERRED_ROWS,
   MEASURED_COST_MODEL, RECOMMENDED_CALL_TOPOLOGY, projectedCostUsd,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-composition';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-composition';
 import { buildExpertUserPrompt, EXPERT_SYSTEM_PROMPT, EXPERT_PROMPT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { EXPERT_INPUT_CONTRACT_VERSION, EXPERT_ANALYSIS_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { EXPERT_MEASUREMENT_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
+  '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
 import { RETRYABLE_EXPERT_FAILURES, EXPERT_PROVIDER_FAILURES } from
-  '../src/safescope-v2/expert-hazlenz/expert-provider';
+  '../src/hazlenz/expert-hazlenz/expert-provider';
 import {
   COHORT_SIZE_POLICY_V2, COHORT_SIZE_POLICY_VERSION, SUPERSEDED_COHORT_SIZE_POLICY_V1,
   COHORT_SIZE_AMENDMENT_RATIONALE, assertFrozenOriginUnchanged,
@@ -340,14 +340,14 @@ async function main(): Promise<void> {
   say('');
   say('5. EXECUTION IDENTITY, BOUND FROM REPOSITORY STATE');
   say('');
-  const adapterPath = path.join(ROOT, 'backend', 'src', 'safescope-v2',
+  const adapterPath = path.join(ROOT, 'backend', 'src', 'hazlenz',
     'expert-hazlenz-adapters', 'anthropic-expert-provider.ts');
   const adapterSrc = fs.readFileSync(adapterPath, 'utf8');
   const modelMatch = /['"](claude-[a-z0-9.\-]+)['"]/i.exec(adapterSrc);
   const envModel = /process\.env\.[A-Z_]*MODEL[A-Z_]*/.exec(adapterSrc);
   const identity = {
     provider: 'anthropic',
-    providerModule: 'backend/src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts',
+    providerModule: 'backend/src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts',
     modelFoundInAdapter: modelMatch ? modelMatch[1] : null,
     modelIsEnvironmentOverridable: envModel !== null,
     promptVersion: EXPERT_PROMPT_VERSION,

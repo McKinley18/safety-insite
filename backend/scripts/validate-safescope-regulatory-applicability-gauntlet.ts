@@ -1,10 +1,10 @@
-import { SafeScopeRegulatoryApplicabilityService } from '../src/safescope-v2/regulatory-applicability/regulatory-applicability.service';
+import { HazLenzRegulatoryApplicabilityService } from '../src/hazlenz/regulatory-applicability/regulatory-applicability.service';
 
 function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);
 }
 
-const service = new SafeScopeRegulatoryApplicabilityService();
+const service = new HazLenzRegulatoryApplicabilityService();
 
 const scenarios = [
   {
@@ -151,5 +151,5 @@ for (const scenario of scenarios) {
   });
 }
 
-console.log('✅ SafeScope regulatory applicability gauntlet passed.');
+console.log('✅ HazLenz regulatory applicability gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

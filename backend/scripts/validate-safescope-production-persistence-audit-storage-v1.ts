@@ -1,7 +1,7 @@
-import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
+import { HazLenzPersistenceService } from '../src/hazlenz/persistence/persistence.service';
 
 async function validate() {
-  const service = new SafeScopePersistenceService();
+  const service = new HazLenzPersistenceService();
   
   console.log('--- Testing Persistence: Reviewer Candidate ---');
   const candidate = await service.save({
@@ -47,7 +47,7 @@ async function validate() {
   if (trace.length === 0) throw new Error('Trace snapshot not found');
   console.log('[PASS] Snapshots persisted and linkable.');
 
-  console.log('✅ SafeScope production persistence and audit storage validation passed.');
+  console.log('✅ HazLenz production persistence and audit storage validation passed.');
 }
 
 validate().catch(err => {

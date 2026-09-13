@@ -1,4 +1,4 @@
-import { SAFESCOPE_HAZARD_UNIVERSE_REGISTRY } from '../src/safescope-v2/brain/hazard-universe/hazard-universe.registry';
+import { HAZLENZ_HAZARD_UNIVERSE_REGISTRY } from '../src/hazlenz/brain/hazard-universe/hazard-universe.registry';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -6,12 +6,12 @@ function assert(condition: boolean, message: string): void {
   }
 }
 
-assert(SAFESCOPE_HAZARD_UNIVERSE_REGISTRY.length >= 20, 'Hazard universe should include at least 20 records.');
+assert(HAZLENZ_HAZARD_UNIVERSE_REGISTRY.length >= 20, 'Hazard universe should include at least 20 records.');
 
-const ids = SAFESCOPE_HAZARD_UNIVERSE_REGISTRY.map((record) => record.hazardUniverseId);
+const ids = HAZLENZ_HAZARD_UNIVERSE_REGISTRY.map((record) => record.hazardUniverseId);
 assert(new Set(ids).size === ids.length, 'Hazard universe IDs must be unique.');
 
-for (const record of SAFESCOPE_HAZARD_UNIVERSE_REGISTRY) {
+for (const record of HAZLENZ_HAZARD_UNIVERSE_REGISTRY) {
   assert(record.hazardUniverseId.trim().length > 0, 'Hazard universe record ID is required.');
   assert(record.label.trim().length > 0, `${record.hazardUniverseId} label is required.`);
   assert(record.domain.trim().length > 0, `${record.hazardUniverseId} domain is required.`);
@@ -21,9 +21,9 @@ for (const record of SAFESCOPE_HAZARD_UNIVERSE_REGISTRY) {
   assert(record.typicalScenarioExamples.length > 0, `${record.hazardUniverseId} must define scenario examples.`);
 }
 
-const coreRecords = SAFESCOPE_HAZARD_UNIVERSE_REGISTRY.filter((record) => record.priority === 'core');
+const coreRecords = HAZLENZ_HAZARD_UNIVERSE_REGISTRY.filter((record) => record.priority === 'core');
 assert(coreRecords.length >= 12, 'Hazard universe should preserve a strong core hazard foundation.');
 
-console.log('✅ SafeScope Hazard Universe validation passed.');
-console.log(`Hazard universe records: ${SAFESCOPE_HAZARD_UNIVERSE_REGISTRY.length}`);
+console.log('✅ HazLenz Hazard Universe validation passed.');
+console.log(`Hazard universe records: ${HAZLENZ_HAZARD_UNIVERSE_REGISTRY.length}`);
 console.log(`Core records: ${coreRecords.length}`);

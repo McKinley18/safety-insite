@@ -26,7 +26,7 @@ import { join } from 'path';
 
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   buildExpertVNextUserPrompt, governedBindingFor, type VNextGovernedEvidenceRecord,
 } from './expert-first-pass-instruction-vnext';

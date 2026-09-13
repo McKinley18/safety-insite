@@ -1,4 +1,4 @@
-import { MultidisciplinaryExpertService } from '../src/safescope-v2/multidisciplinary-expert/multidisciplinary-expert.service';
+import { MultidisciplinaryExpertService } from '../src/hazlenz/multidisciplinary-expert/multidisciplinary-expert.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Multidisciplinary Expert Synthesis ---');
+  console.log('--- Testing HazLenz Multidisciplinary Expert Synthesis ---');
 
   const expert = new MultidisciplinaryExpertService();
 
@@ -59,7 +59,7 @@ async function validate() {
   assert(res4.laborLawyer.defensibilityStrategy.includes('Repeat/Willful citation'), 'Should warn about Repeat/Willful citations.');
   assert(res4.executiveSummary.includes('HIGH LEGAL EXPOSURE'), 'Executive summary should emphasize legal exposure.');
 
-  console.log('✅ SafeScope Multidisciplinary Expert Synthesis validation passed.');
+  console.log('✅ HazLenz Multidisciplinary Expert Synthesis validation passed.');
 }
 
 validate().catch(err => {

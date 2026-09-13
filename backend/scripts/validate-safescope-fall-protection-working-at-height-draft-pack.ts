@@ -90,7 +90,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope fall protection working at height draft pack validation passed.');
+  console.log('✅ HazLenz fall protection working at height draft pack validation passed.');
 }
 
 validate().catch(err => {

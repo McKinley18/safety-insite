@@ -1,7 +1,7 @@
-import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
+import { HazLenzIntelligenceOrchestrator } from '../src/hazlenz/orchestration/intelligence-orchestrator.service';
 
 async function validate() {
-  const orchestrator = new SafeScopeIntelligenceOrchestrator();
+  const orchestrator = new HazLenzIntelligenceOrchestrator();
   
   const testCases = [
     'unguarded conveyor tail pulley',
@@ -32,7 +32,7 @@ async function validate() {
       }
   }
   
-  console.log('✅ SafeScope orchestrator field output wiring validation passed.');
+  console.log('✅ HazLenz orchestrator field output wiring validation passed.');
 }
 
 validate().catch(err => {

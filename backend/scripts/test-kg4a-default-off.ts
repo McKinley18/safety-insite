@@ -58,7 +58,7 @@ const code = (source: string) => source
   .replace(/\/\*[\s\S]*?\*\//g, '')
   .split('\n').map(l => l.replace(/\/\/.*$/, '')).join('\n');
 
-const CUSTOMER_DIRS = ['safescope-v2', 'applicable-standards', 'inspection', 'reports', 'safescope'];
+const CUSTOMER_DIRS = ['hazlenz', 'applicable-standards', 'inspection', 'reports', 'safescope'];
 const GOVERNED_DATA_MODULES = [
   'standards/releases/governed-corpus-lookup',
   'standards/releases/release-record-review.service',

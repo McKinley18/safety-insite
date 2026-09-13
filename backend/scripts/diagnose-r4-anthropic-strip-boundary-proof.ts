@@ -12,9 +12,9 @@
  */
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
 
 const NOW = '2026-08-30T00:00:00.000Z';
 const R4 = ROUTING_FIXTURES.find(f => f.id === 'R4')!;

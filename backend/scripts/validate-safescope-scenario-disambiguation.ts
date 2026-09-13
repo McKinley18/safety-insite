@@ -1,5 +1,5 @@
-import { SafeScopeScenarioDisambiguationService } from '../src/safescope-v2/brain/scenario-disambiguation/scenario-disambiguation.service';
-import { SAFESCOPE_SCENARIO_DISAMBIGUATION_REGISTRY } from '../src/safescope-v2/brain/scenario-disambiguation/scenario-disambiguation.registry';
+import { HazLenzScenarioDisambiguationService } from '../src/hazlenz/brain/scenario-disambiguation/scenario-disambiguation.service';
+import { HAZLENZ_SCENARIO_DISAMBIGUATION_REGISTRY } from '../src/hazlenz/brain/scenario-disambiguation/scenario-disambiguation.registry';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,9 +7,9 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const service = new SafeScopeScenarioDisambiguationService();
+const service = new HazLenzScenarioDisambiguationService();
 
-for (const record of SAFESCOPE_SCENARIO_DISAMBIGUATION_REGISTRY) {
+for (const record of HAZLENZ_SCENARIO_DISAMBIGUATION_REGISTRY) {
   assert(record.scenarioId.trim().length > 0, 'Scenario record must have scenarioId.');
   assert(record.label.trim().length > 0, `${record.scenarioId} must have label.`);
   assert(record.targetDomain.trim().length > 0, `${record.scenarioId} must have targetDomain.`);
@@ -90,8 +90,8 @@ assert(
   `MNM ventilation should rank MNM air quality scenario first, got ${mnmVent.selected?.record.scenarioId}`,
 );
 
-console.log('✅ SafeScope Scenario Disambiguation v1 validation passed.');
-console.log(`Scenario records: ${SAFESCOPE_SCENARIO_DISAMBIGUATION_REGISTRY.length}`);
+console.log('✅ HazLenz Scenario Disambiguation v1 validation passed.');
+console.log(`Scenario records: ${HAZLENZ_SCENARIO_DISAMBIGUATION_REGISTRY.length}`);
 console.log(`Construction falling object: ${constructionFallingObject.selected?.record.scenarioId}`);
 console.log(`GI material storage: ${materialStorage.selected?.record.scenarioId}`);
 console.log(`Welding cylinder: ${weldingCylinder.selected?.record.scenarioId}`);

@@ -65,16 +65,16 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { MultiHazardDecompositionService } from '../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { MultiHazardDecompositionService } from '../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service';
 import {
   buildExpertAnalysisInputFromAnalysis, type HazLenzAnalysisState,
-} from '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { EXPERT_SYSTEM_PROMPT, expertPromptIdentity } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { EXPERT_SYSTEM_PROMPT, expertPromptIdentity } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
 
 // §177 Phase B writes to its OWN directory. The §175 preregistration, run records and scored
 // result are immutable evidence of a DIFFERENT prompt identity (v13, systemPrompt c4b31624) and

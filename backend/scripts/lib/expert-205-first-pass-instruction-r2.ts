@@ -47,7 +47,7 @@ import {
   UNRESOLVED_FACT_DECLARATION_LINES_WITH_GOVERNED_BINDING,
   UNRESOLVED_FACT_DECLARATION_LINES_WITHOUT_GOVERNED_BINDING,
 } from './expert-first-pass-instruction-vnext';
-import { EXPERT_SYSTEM_PROMPT } from '../../src/safescope-v2/expert-hazlenz/expert-prompt';
+import { EXPERT_SYSTEM_PROMPT } from '../../src/hazlenz/expert-hazlenz/expert-prompt';
 
 export const EXPERT_FIRST_PASS_INSTRUCTION_R2_VERSION =
   'hazlenz.expert.first-pass-instruction.vNext-R2' as const;

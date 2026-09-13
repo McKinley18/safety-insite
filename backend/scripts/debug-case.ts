@@ -1,7 +1,7 @@
-import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
+import { HazLenzIntelligenceOrchestrator } from '../src/hazlenz/orchestration/intelligence-orchestrator.service';
 
 const text = "Scaffold planks are not cleated or secured, and they slide when the masonry crew steps on them.";
-const orchestrator = new SafeScopeIntelligenceOrchestrator();
+const orchestrator = new HazLenzIntelligenceOrchestrator();
 
 async function run() {
     const output = await orchestrator.evaluate({

@@ -1,4 +1,4 @@
-import { SAFESCOPE_EQUIPMENT_ARCHETYPE_REGISTRY } from '../src/safescope-v2/equipment-knowledge/equipment-archetype.registry';
+import { HAZLENZ_EQUIPMENT_ARCHETYPE_REGISTRY } from '../src/hazlenz/equipment-knowledge/equipment-archetype.registry';
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: boolean, message: string) {
   }
 }
 
-const registry = SAFESCOPE_EQUIPMENT_ARCHETYPE_REGISTRY;
+const registry = HAZLENZ_EQUIPMENT_ARCHETYPE_REGISTRY;
 
 assert(registry.engine === 'safescope_equipment_archetype_registry_v1', 'Registry engine mismatch.');
 assert(registry.mode === 'generalized_equipment_reasoning_context_only', 'Registry mode mismatch.');
@@ -58,5 +58,5 @@ for (const record of registry.records) {
   assert(record.guardrails.requiresQualifiedReview === true, `${record.archetypeId}: must require qualified review.`);
 }
 
-console.log('✅ SafeScope equipment archetype registry validation passed.');
+console.log('✅ HazLenz equipment archetype registry validation passed.');
 console.log(`Equipment archetypes validated: ${registry.records.length}`);

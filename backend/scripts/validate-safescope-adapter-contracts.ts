@@ -1,6 +1,6 @@
 import {
-  SafeScopeAdapterContext,
-  SafeScopeAdapterResult,
+  HazLenzAdapterContext,
+  HazLenzAdapterResult,
   HazardClassificationAdapter,
   StandardsMatchingAdapter,
   SourceIntelligenceRetrievalAdapter,
@@ -11,7 +11,7 @@ import {
   ReportSummaryAdapter,
 } from '../src/safescope/adapters';
 
-const context: SafeScopeAdapterContext = {
+const context: HazLenzAdapterContext = {
   normalizedObservation: {
     observationText: 'Worker standing on pallet raised by forklift with no fall protection.',
     regulatoryContext: 'OSHA_GENERAL',
@@ -22,7 +22,7 @@ const context: SafeScopeAdapterContext = {
   },
 };
 
-function result<T>(adapterName: string, data: T): SafeScopeAdapterResult<T> {
+function result<T>(adapterName: string, data: T): HazLenzAdapterResult<T> {
   return {
     data,
     diagnostic: {

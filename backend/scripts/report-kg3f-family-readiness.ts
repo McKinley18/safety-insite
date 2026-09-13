@@ -39,7 +39,7 @@ import { dataSource } from '../src/database/data-source';
 import {
   applyEvidenceFoundation,
   applyFindingScopedStandards,
-} from '../src/safescope-v2/evidence/evidence-foundation';
+} from '../src/hazlenz/evidence/evidence-foundation';
 import { resolveGovernedCitation } from '../src/standards/releases/governed-corpus-lookup';
 import { releaseCitationKey } from '../src/standards/releases/citation-identity';
 

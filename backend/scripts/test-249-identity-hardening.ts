@@ -13,20 +13,20 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, buildAnthropicRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
 import {
   build239SystemPrompt, buildExpert239WireSchema,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
 import {
   build247SystemPrompt, buildExpert247WireSchema,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   deriveExecutableIdentity, type AssembledRequest,
 } from './lib/expert-249-executable-identity';
@@ -43,13 +43,13 @@ const ok = (id: string, cond: boolean, d = ''): void => {
   else { fail++; failures.push(id); console.log(`FAIL  ${id}${d ? '  [' + d + ']' : ''}`); }
 };
 
-const S = 'src/safescope-v2/expert-hazlenz/';
+const S = 'src/hazlenz/expert-hazlenz/';
 const C = `${S}contract/`;
 const contractFiles = readdirSync(join(BACKEND, C)).filter(f => f.endsWith('.ts')).sort();
 const moduleDigests: Record<string, string> = {
   entryPoint: fsha(`${S}expert-hazlenz-analysis.ts`),
-  adapter: fsha('src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts'),
-  envelope: fsha('src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts'),
+  adapter: fsha('src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts'),
+  envelope: fsha('src/hazlenz/expert-hazlenz-adapters/expert-request-envelope.ts'),
   postureContract: fsha(`${C}expert-247-posture-contract.ts`),
   verifierInstruction: fsha(`${C}expert-218-property-instruction.ts`),
   verifierSchema: fsha(`${C}expert-218-property-review-contract.ts`),

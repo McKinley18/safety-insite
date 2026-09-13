@@ -189,7 +189,7 @@ fs.writeFileSync(
     {
       version: 'v1',
       batch: '002',
-      purpose: 'Small SafeScope precision calibration batch focused on mechanism and risk discrimination.',
+      purpose: 'Small HazLenz precision calibration batch focused on mechanism and risk discrimination.',
       caseCount: cases.length,
       cases
     },

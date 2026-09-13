@@ -51,12 +51,12 @@ import { createHash } from 'crypto';
 import {
   type AcceptableEvidence, type OwedFact, type OwedFactAffectedDecision,
   PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
-import { owedFactDefects } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
+import { owedFactDefects } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   CITATION_SHAPED_PATTERN, FORBIDDEN_EXPERT_FIELD_NAMES,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { redactCitationTokens } from '../../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { redactCitationTokens } from '../../src/hazlenz/expert-hazlenz/expert-prompt';
 import { decideCitationReuse, type CitationReuseVerdict } from './expert-governed-citation-reuse';
 import { GOVERNED_SOURCE_ID_SHAPE } from './expert-first-pass-instruction-vnext';
 import { FACT_KEY_SHAPE } from './expert-first-pass-owed-fact-projection';

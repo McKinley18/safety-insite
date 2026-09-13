@@ -22,20 +22,20 @@ const PROTECTED_MODULES: Readonly<Record<string, string>> = {
   verifierConsistencyModule: 'scripts/lib/expert-218-property-consistency.ts',
   verifierPayloadModule: 'scripts/lib/expert-212-verifier-payload.ts',
   scopeContainmentModule: 'scripts/lib/expert-214-scope-containment.ts',
-  propertyAuthorityModule: 'src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts',
-  settlementReviewModule: 'src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts',
-  owedFactLedgerModule: 'src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts',
-  owedFactTypesModule: 'src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts',
-  owedFactBindingModule: 'src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts',
+  propertyAuthorityModule: 'src/hazlenz/expert-hazlenz/owed-facts/property-authority.ts',
+  settlementReviewModule: 'src/hazlenz/expert-hazlenz/owed-facts/settlement-review.ts',
+  owedFactLedgerModule: 'src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger.ts',
+  owedFactTypesModule: 'src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts',
+  owedFactBindingModule: 'src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts',
   governedEvidenceDerivationModule:
-    'src/safescope-v2/expert-hazlenz/owed-facts/governed-evidence-derivation.ts',
+    'src/hazlenz/expert-hazlenz/owed-facts/governed-evidence-derivation.ts',
   declarationPreservationModule: 'scripts/lib/expert-205-declaration-preservation.ts',
   firstPassInstructionVNextModule: 'scripts/lib/expert-first-pass-instruction-vnext.ts',
   verifierInstructionV3Module: 'scripts/lib/expert-verifier-instruction-v3.ts',
   verifierRecoveryModule: 'scripts/lib/expert-208b-verifier-recovery.ts',
   section210bPayloadModule: 'scripts/lib/section-210b-verifier-payload.ts',
-  expertContractTypesModule: 'src/safescope-v2/expert-hazlenz/expert-contract.types.ts',
-  anthropicAdapterModule: 'src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts',
+  expertContractTypesModule: 'src/hazlenz/expert-hazlenz/expert-contract.types.ts',
+  anthropicAdapterModule: 'src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts',
   contract226Module: 'scripts/lib/expert-226-property-selection-capability.ts',
   contract224Module: 'scripts/lib/expert-224-declaration-capability.ts',
   instrument221Module: 'scripts/lib/expert-221-integrated-instrument.ts',
@@ -45,7 +45,7 @@ const PROTECTED_MODULES: Readonly<Record<string, string>> = {
   instrument228CModule: 'scripts/lib/expert-228c-kr1-instrument.ts',
   assembly228CModule: 'scripts/lib/expert-228c-assembly.ts',
   verifierDevelopmentBoundary:
-    'src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
+    'src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
 };
 
 /* eslint-disable @typescript-eslint/no-var-requires */

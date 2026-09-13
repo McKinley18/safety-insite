@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 // Mock dependencies
 class StubActionEngine { async generateActionsFromReport() { return []; } }
@@ -111,7 +111,7 @@ async function validate() {
   const scenarioPackPath = path.resolve(__dirname, '../../safescope-data/field-test-scenarios/generalization-unseen-scenarios-v1.json');
   const pack = JSON.parse(fs.readFileSync(scenarioPackPath, 'utf-8'));
   
-  const service = new SafescopeV2Service(
+  const service = new HazLenzService(
       new StubActionEngine() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
@@ -124,7 +124,7 @@ async function validate() {
       new StubKnowledgeShard() as any
   );
 
-  console.log('--- Testing SafeScope Generalization Intelligence v1 ---');
+  console.log('--- Testing HazLenz Generalization Intelligence v1 ---');
 
   for (const scenario of pack.scenarios) {
       console.log(`Testing unseen scenario: ${scenario.id}`);
@@ -164,7 +164,7 @@ async function validate() {
       console.log(`[PASS] Scenario ${scenario.id} verified.`);
   }
 
-  console.log('✅ SafeScope generalization intelligence validation passed.');
+  console.log('✅ HazLenz generalization intelligence validation passed.');
 }
 
 validate().catch(err => {

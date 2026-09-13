@@ -11,14 +11,14 @@
 import {
   CONFIRMATION_RULE_VERSION, deriveConfirmationRequired,
   deriveConfirmationRequiredFromAnalysis,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-confirmation-rule';
+} from '../src/hazlenz/expert-hazlenz-product/expert-confirmation-rule';
 import {
   ANALYSIS_PRODUCERS, ANALYSIS_STATES, MACHINE_DERIVABLE_ANALYSIS_STATES,
   classifyExistingExecution, claimPermitsProviderSpend, deriveAnalysisState,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-authority';
+} from '../src/hazlenz/expert-hazlenz-product/expert-analysis-authority';
 import {
   POSTURE_PERMITS_CONTINUED_WORK, IMMEDIATE_SAFETY_POSTURES_233,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-233-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-233-posture-contract';
 
 let pass = 0; let fail = 0; const failures: string[] = [];
 const ok = (id: string, cond: boolean, d = ''): void => {

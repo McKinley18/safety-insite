@@ -63,17 +63,17 @@ const requiredTopics = [
 
 const registerPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/source-register/source-register.seed.json',
+  '../src/hazlenz/knowledge-intake/source-register/source-register.seed.json',
 );
 
 const sourceModsDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/source-mods',
+  '../src/hazlenz/knowledge-intake/source-mods',
 );
 
 const reportPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/reports/knowledge-coverage-report.json',
+  '../src/hazlenz/knowledge-intake/reports/knowledge-coverage-report.json',
 );
 
 function normalize(value: string | undefined): string {
@@ -328,13 +328,13 @@ const summary = {
   modCoverage,
   nextActions: allNextActions,
   sourceBoundary:
-    'Coverage reporting is advisory and quarantined. It does not approve knowledge records, change SafeScope reasoning logic, declare violations, or authorize production use.',
+    'Coverage reporting is advisory and quarantined. It does not approve knowledge records, change HazLenz reasoning logic, declare violations, or authorize production use.',
 };
 
 fs.mkdirSync(path.dirname(reportPath), { recursive: true });
 fs.writeFileSync(reportPath, `${JSON.stringify(summary, null, 2)}\n`);
 
-console.log('✅ SafeScope mod-aware knowledge coverage report generated.');
+console.log('✅ HazLenz mod-aware knowledge coverage report generated.');
 console.log(`Registered sources: ${summary.totalRegisteredSources}`);
 console.log(`Source mods: ${summary.sourceModCount}`);
 console.log(`Global strong topics: ${summary.globalSummary.strongTopics}`);

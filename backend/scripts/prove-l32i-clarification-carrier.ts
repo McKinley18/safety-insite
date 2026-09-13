@@ -47,11 +47,11 @@ import { createHash } from 'crypto';
 import {
   L3_CONDITION_STATES, L3_CONTROL_HIERARCHY_LEVELS,
   type ReasoningInput, type L3RegulatoryContextValue,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { L3_SYSTEM_PROMPT, buildUserPrompt, bindProposal } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { L3_2_INFERENCE_CONFIG } from '../src/safescope-v2/reasoning-l3/ollama-reasoning-provider';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { L3_SYSTEM_PROMPT, buildUserPrompt, bindProposal } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { L3_2_INFERENCE_CONFIG } from '../src/hazlenz/reasoning-l3/ollama-reasoning-provider';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
 
 const CFG = L3_2_INFERENCE_CONFIG;
 const SHIPPED_PROMPT_SHA = 'b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf';

@@ -11,10 +11,10 @@
 import {
   runExpertHazLenzAnalysis, type ExpertHazLenzResult, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
-import type { ExpertAnalysisInput } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
+import type { ExpertAnalysisInput } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import type { VNextGovernedEvidenceRecord }
-  from '../../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+  from '../../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
 
 class ReplayTransport implements ExpertSemanticTransport {
   captured: ExpertLegRequest | null = null;

@@ -14,7 +14,7 @@
  */
 
 import { SEMANTIC_ROWS, SEMANTIC_AUGMENTATION_IDENTIFIER } from
-  '../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
+  '../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
 
 const FAMILY_LABEL: Record<string, string> = {
   chemical_exposure: 'chemical exposure',

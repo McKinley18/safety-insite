@@ -1,5 +1,5 @@
-import { SafeScopeLearningMemoryService } from '../src/safescope-v2/brain/learning-memory/learning-memory.service';
-import { SafeScopeImprovementCandidateEngineService } from '../src/safescope-v2/brain/improvement-candidate-engine/improvement-candidate-engine.service';
+import { HazLenzLearningMemoryService } from '../src/hazlenz/brain/learning-memory/learning-memory.service';
+import { HazLenzImprovementCandidateEngineService } from '../src/hazlenz/brain/improvement-candidate-engine/improvement-candidate-engine.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const learningMemory = new SafeScopeLearningMemoryService();
+const learningMemory = new HazLenzLearningMemoryService();
 
 learningMemory.add({
   source: 'field_test',
@@ -70,7 +70,7 @@ learningMemory.add({
   confidenceAfter: 40,
 });
 
-const engine = new SafeScopeImprovementCandidateEngineService();
+const engine = new HazLenzImprovementCandidateEngineService();
 const result = engine.generate({
   memories: learningMemory.list(),
   minimumSupportCount: 1,
@@ -103,7 +103,7 @@ assert(result.boundary.canAutoApply === false, 'Improvement Candidate Engine mus
 assert(result.boundary.canAutoApproveRegistryChange === false, 'Improvement Candidate Engine must not auto-approve registry changes.');
 assert(result.boundary.requiresQualifiedReview === true, 'Improvement Candidate Engine must require qualified review.');
 
-console.log('✅ SafeScope Improvement Candidate Engine v1 validation passed.');
+console.log('✅ HazLenz Improvement Candidate Engine v1 validation passed.');
 console.log(`Candidates: ${result.summary.totalCandidates}`);
 console.log(`High candidates: ${result.summary.highCandidates}`);
 console.log(`Top target: ${result.summary.topTargets[0]}`);

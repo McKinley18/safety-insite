@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
-import { SafeScopeReasoningRequest } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.types';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningRequest } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.types';
 
 
 function buildBenchmarkSearchText(testCase: any): string {
@@ -122,9 +122,9 @@ function scoreAlignment(params: {
 }
 
 async function runAudit() {
-  console.log('Starting SafeScope Brain Alignment Audit...');
+  console.log('Starting HazLenz Brain Alignment Audit...');
 
-  const orchestrator = new SafeScopeReasoningOrchestratorService();
+  const orchestrator = new HazLenzReasoningOrchestratorService();
   const rawData = await fs.readFile(BENCHMARK_PATH, 'utf-8');
   const benchmarks = JSON.parse(rawData);
 
@@ -134,7 +134,7 @@ async function runAudit() {
   for (const testCase of benchmarks) {
     const benchmarkSearchText = buildBenchmarkSearchText(testCase);
 
-    const request: SafeScopeReasoningRequest = {
+    const request: HazLenzReasoningRequest = {
       hazardObservation: benchmarkSearchText,
       siteType: testCase.context.industry === 'mining' ? 'mine' : 'facility',
       taskContext: testCase.context.task,
@@ -220,7 +220,7 @@ async function runAudit() {
 
   await fs.writeFile(RESULTS_JSON_PATH, JSON.stringify(results, null, 2));
 
-  let report = '# SafeScope Brain Alignment Audit Results\n\n';
+  let report = '# HazLenz Brain Alignment Audit Results\n\n';
   report += `- Total cases: ${results.length}\n`;
   report += `- Pass: ${results.filter((r) => r.result === 'pass').length}\n`;
   report += `- Review: ${results.filter((r) => r.result === 'review').length}\n`;
@@ -236,7 +236,7 @@ async function runAudit() {
 
   await fs.writeFile(RESULTS_MD_PATH, report);
 
-  console.log('✅ SafeScope Brain Alignment Audit complete.');
+  console.log('✅ HazLenz Brain Alignment Audit complete.');
   console.log(`Results JSON: ${RESULTS_JSON_PATH}`);
   console.log(`Results MD: ${RESULTS_MD_PATH}`);
   console.log(`Average alignment score: ${(totalScore / Math.max(results.length, 1)).toFixed(2)}`);

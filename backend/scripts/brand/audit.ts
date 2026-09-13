@@ -149,15 +149,20 @@ export function scan(globs: ReadonlyArray<readonly [string, string]>, visibleOnl
  * than a per-file allowlist, because a per-file allowlist grows silently.
  */
 /**
- * §272 recorded 2669 internal references after the sweep. This is a RATCHET: lower it whenever a
+ * §274 lowered this to 390, from the 2669 §272 recorded.
+ *
+ * A mid-§274 measurement briefly read 353. That number was taken while three path rewrites were
+ * broken — the safescope-data corpus references, two applied migration class names, and a
+ * historical document filename — and repairing them put those references back. 390 is the settled
+ * figure and the lower one was never real. This is a RATCHET: lower it whenever a
  * migration removes references, never raise it. Raising it is how a cleanup silently reverses.
  *
- * The remaining references are concentrated in `src/safescope-v2/`, which §272 could not rename —
+ * The remaining references are concentrated in `src/hazlenz/`, which §272 could not rename —
  * nine of the twenty-nine protected modules live under that path and two of them name it in a
  * comment, so the directory cannot move without editing a protected, §259-digested file. That is a
  * product-owner decision, recorded in docs/hazlenz/current/BRAND-COMPATIBILITY-REGISTER.md.
  */
-export const TIER2_BUDGET = Number(process.env.BRAND_TIER2_BUDGET ?? '') || 2669;
+export const TIER2_BUDGET = Number(process.env.BRAND_TIER2_BUDGET ?? '') || 390;
 
 function main(): void {
   const tier1 = scan(TIER1_GLOBS, true);

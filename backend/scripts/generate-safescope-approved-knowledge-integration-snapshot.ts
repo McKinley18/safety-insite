@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ApprovedKnowledgeIntegrationAdapterService } from '../src/safescope-v2/knowledge-intake/integration/approved-knowledge-integration-adapter.service';
+import { ApprovedKnowledgeIntegrationAdapterService } from '../src/hazlenz/knowledge-intake/integration/approved-knowledge-integration-adapter.service';
 
 const snapshotPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/integration/reports/approved-knowledge-integration-snapshot.json',
+  '../src/hazlenz/knowledge-intake/integration/reports/approved-knowledge-integration-snapshot.json',
 );
 
 const adapter = new ApprovedKnowledgeIntegrationAdapterService();
@@ -30,7 +30,7 @@ const snapshot = {
   mode: 'contract_snapshot_read_only',
   generatedAt: new Date().toISOString(),
   purpose:
-    'Document the SafeScope approved knowledge integration adapter contract before any production SafeScope native reasoning integration.',
+    'Document the HazLenz approved knowledge integration adapter contract before any production HazLenz native reasoning integration.',
   disabledSnapshot,
   enabledSnapshot,
   contractAssertions: {
@@ -58,13 +58,13 @@ const snapshot = {
       enabledSnapshot.adapterUseBoundary.canUseUnapprovedRecords === false,
   },
   sourceBoundary:
-    'This integration snapshot is a contract and documentation artifact only. It does not approve records, wire approved knowledge into production reasoning, alter SafeScope native reasoning, create citations, declare violations, override regulations, or bypass qualified human review.',
+    'This integration snapshot is a contract and documentation artifact only. It does not approve records, wire approved knowledge into production reasoning, alter HazLenz native reasoning, create citations, declare violations, override regulations, or bypass qualified human review.',
 };
 
 fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
 fs.writeFileSync(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`);
 
-console.log('✅ SafeScope approved knowledge integration snapshot generated.');
+console.log('✅ HazLenz approved knowledge integration snapshot generated.');
 console.log(`Snapshot: ${snapshotPath}`);
 console.log(`Disabled references: ${disabledSnapshot.references.length}`);
 console.log(`Enabled references: ${enabledSnapshot.references.length}`);

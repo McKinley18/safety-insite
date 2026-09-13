@@ -16,19 +16,19 @@ import {
   EXPERT_ACTIONS, EXPERT_AUTHORITY_SURFACES, FROZEN_GOVERNANCE_CONTRACTS,
   getAuthoritySurface, isExpertActionPermitted,
   matrixForbidsRemovalEverywhere, matrixIsUnavailabilitySafe,
-} from '../src/safescope-v2/expert-hazlenz/expert-authority-matrix';
+} from '../src/hazlenz/expert-hazlenz/expert-authority-matrix';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, EXPERT_NON_GOALS,
   EXPERT_VALIDATOR_VERSION, FORBIDDEN_EXPERT_FIELD_NAMES,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_CONDITION_STATES,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   normalizeExpertOutput, isFatal,
   type ExpertNormalizationReason,
-} from '../src/safescope-v2/expert-hazlenz/expert-normalization';
+} from '../src/hazlenz/expert-hazlenz/expert-normalization';
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
@@ -365,7 +365,7 @@ const codes = (r: { issues: { code: ExpertNormalizationReason }[] }) => r.issues
   // so the Expert module must not import from, or even name, that directory. Asserted here rather
   // than left to the L3 suite so a violation is reported by the suite that introduced it.
   const L3_DIR_NAME = ['reasoning', 'l3'].join('-');       // built, never written as a literal
-  const EXPERT_DIR = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz');
+  const EXPERT_DIR = join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz');
   const walk = (dir: string): string[] => readdirSync(dir).flatMap(name => {
     const full = join(dir, name);
     return statSync(full).isDirectory() ? walk(full) : [full];
@@ -378,7 +378,7 @@ const codes = (r: { issues: { code: ExpertNormalizationReason }[] }) => r.issues
   // The vocabularies are duplicated ON PURPOSE and must stay identical, or an Expert condition
   // assertion stops being comparable to a Level-3 one in evaluation. The L3 file is read as DATA
   // from a path assembled at runtime -- reading is not depending.
-  const l3ContractPath = join(__dirname, '..', 'src', 'safescope-v2', L3_DIR_NAME, 'reasoning-contract.types.ts');
+  const l3ContractPath = join(__dirname, '..', 'src', 'hazlenz', L3_DIR_NAME, 'reasoning-contract.types.ts');
   const l3Source = readFileSync(l3ContractPath, 'utf8');
   const l3States = (l3Source.match(/L3_CONDITION_STATES = \[([\s\S]*?)\] as const/)?.[1] ?? '')
     .split(',').map(s => s.trim().replace(/^'|'$/g, '')).filter(Boolean);

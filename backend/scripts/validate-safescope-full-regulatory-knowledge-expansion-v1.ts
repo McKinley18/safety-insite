@@ -1,6 +1,6 @@
-import { ApprovedKnowledgeRegistrySearchService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-registry-search.service';
-import { ApprovedKnowledgeRecord } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-record.types';
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { ApprovedKnowledgeRegistrySearchService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-registry-search.service';
+import { ApprovedKnowledgeRecord } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-record.types';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
 
 async function validate() {
   const searchService = new ApprovedKnowledgeRegistrySearchService();
@@ -82,7 +82,7 @@ async function validate() {
       console.log(`[INFO] Legitimate shared citations allowed: ${allowedShared.join(', ')}`);
   }
 
-  console.log('✅ SafeScope full regulatory knowledge expansion validation passed.');
+  console.log('✅ HazLenz full regulatory knowledge expansion validation passed.');
 }
 
 validate().catch(err => {

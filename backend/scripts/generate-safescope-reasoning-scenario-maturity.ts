@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SAFESCOPE_REASONING_SCENARIOS } from '../src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures';
-import { SCENARIO_COVERAGE_TAXONOMY } from '../src/safescope-v2/reasoning-orchestrator/scenarios/scenario-coverage-taxonomy';
+import { HAZLENZ_REASONING_SCENARIOS } from '../src/hazlenz/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures';
+import { SCENARIO_COVERAGE_TAXONOMY } from '../src/hazlenz/reasoning-orchestrator/scenarios/scenario-coverage-taxonomy';
 
 type CoverageLevel = 'none' | 'starter' | 'developing' | 'target_met';
 
 const reportPath = path.join(
   __dirname,
-  '../src/safescope-v2/reasoning-orchestrator/scenarios/reports/reasoning-scenario-maturity-report.json',
+  '../src/hazlenz/reasoning-orchestrator/scenarios/reports/reasoning-scenario-maturity-report.json',
 );
 
 function coverageLevel(current: number, target: number): CoverageLevel {
@@ -28,7 +28,7 @@ const jurisdictionScenarioCounts: Record<string, number> = {
   unclear: 0,
 };
 
-for (const scenario of SAFESCOPE_REASONING_SCENARIOS) {
+for (const scenario of HAZLENZ_REASONING_SCENARIOS) {
   const domain = scenario.expectation.expectedHazardDomain;
   const jurisdiction = scenario.expectation.expectedJurisdiction;
 
@@ -67,7 +67,7 @@ const totalScenarioTarget = SCENARIO_COVERAGE_TAXONOMY.reduce(
   0,
 );
 
-const currentScenarioCount = SAFESCOPE_REASONING_SCENARIOS.length;
+const currentScenarioCount = HAZLENZ_REASONING_SCENARIOS.length;
 const targetMetDomains = domainMaturity.filter((item) => item.coverageLevel === 'target_met').length;
 const developingDomains = domainMaturity.filter((item) => item.coverageLevel === 'developing').length;
 const starterDomains = domainMaturity.filter((item) => item.coverageLevel === 'starter').length;
@@ -119,7 +119,7 @@ const report = {
 fs.mkdirSync(path.dirname(reportPath), { recursive: true });
 fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 
-console.log('✅ SafeScope reasoning scenario maturity report generated.');
+console.log('✅ HazLenz reasoning scenario maturity report generated.');
 console.log(`Report: ${reportPath}`);
 console.log(`Scenarios: ${report.scenarioCount}`);
 console.log(`Scenario target: ${report.totalScenarioTarget}`);

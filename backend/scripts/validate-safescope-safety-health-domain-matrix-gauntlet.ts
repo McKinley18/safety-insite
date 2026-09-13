@@ -1,4 +1,4 @@
-import { SafeScopeSafetyHealthDomainMatrixService } from '../src/safescope-v2/safety-health-domain-matrix/safety-health-domain-matrix.service';
+import { HazLenzSafetyHealthDomainMatrixService } from '../src/hazlenz/safety-health-domain-matrix/safety-health-domain-matrix.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: any, message: string) {
   }
 }
 
-const service = new SafeScopeSafetyHealthDomainMatrixService();
+const service = new HazLenzSafetyHealthDomainMatrixService();
 
 const scenarios = [
   {
@@ -170,5 +170,5 @@ for (const scenario of scenarios) {
   });
 }
 
-console.log('✅ SafeScope safety-health domain matrix gauntlet passed.');
+console.log('✅ HazLenz safety-health domain matrix gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

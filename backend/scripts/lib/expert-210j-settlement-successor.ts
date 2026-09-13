@@ -43,14 +43,14 @@
 
 import {
   type OwedFact, type OwedFactStatus,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   type OwedFactLedger, factOf,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   type ReviewDecisionRecord, type SettlementAuthority, type SettlementClaim,
   mintSettlementAuthority, settleByReviewedEvidence,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 
 export const SETTLEMENT_SUCCESSOR_210J_VERSION =
   'hazlenz.expert.210j.settlement-successor.v1' as const;

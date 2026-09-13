@@ -1,6 +1,6 @@
-import { SCENARIO_FAMILY_REGISTRY } from '../src/safescope-v2/brain/scenario-family-knowledge/scenario-family.registry';
-import { EVIDENCE_GAP_QUESTION_REGISTRY } from '../src/safescope-v2/brain/evidence-gap-question-generator/evidence-gap-question.registry';
-import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../src/safescope-v2/corrective-actions/corrective-action-template.registry';
+import { SCENARIO_FAMILY_REGISTRY } from '../src/hazlenz/brain/scenario-family-knowledge/scenario-family.registry';
+import { EVIDENCE_GAP_QUESTION_REGISTRY } from '../src/hazlenz/brain/evidence-gap-question-generator/evidence-gap-question.registry';
+import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../src/hazlenz/corrective-actions/corrective-action-template.registry';
 
 const domains = [
   'emergency_preparedness',
@@ -52,8 +52,8 @@ for (const phrase of ['citation issued', 'violation issued', 'guaranteed complia
 }
 
 if (errors > 0) {
-  console.error(`ReviewCore P4 partial-domain closure validation failed with ${errors} error(s).`);
+  console.error(`Knowledge P4 partial-domain closure validation failed with ${errors} error(s).`);
   process.exit(1);
 }
 
-console.log('✅ ReviewCore P4 partial-domain closure validation passed.');
+console.log('✅ Knowledge P4 partial-domain closure validation passed.');

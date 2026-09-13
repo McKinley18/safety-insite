@@ -19,7 +19,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import { resolveConditionState, type L3StateFacts } from '../src/safescope-v2/reasoning-l3/state-facts';
+import { resolveConditionState, type L3StateFacts } from '../src/hazlenz/reasoning-l3/state-facts';
 
 /** The winning ordering from `rederive-l32g-resolution.ts`: missing-fact arm consulted first. */
 function resolveR1(facts: L3StateFacts) {

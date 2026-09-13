@@ -1,7 +1,7 @@
-import { ObservationUnderstandingService } from '../src/safescope-v2/understanding/observation-understanding.service';
-import { CausalRiskService } from '../src/safescope-v2/causal-risk/causal-risk.service';
-import { EvidenceSufficiencyService } from '../src/safescope-v2/evidence-sufficiency-core/evidence-sufficiency.service';
-import { ConfidenceGovernanceService } from '../src/safescope-v2/confidence-governance/confidence-governance.service';
+import { ObservationUnderstandingService } from '../src/hazlenz/understanding/observation-understanding.service';
+import { CausalRiskService } from '../src/hazlenz/causal-risk/causal-risk.service';
+import { EvidenceSufficiencyService } from '../src/hazlenz/evidence-sufficiency-core/evidence-sufficiency.service';
+import { ConfidenceGovernanceService } from '../src/hazlenz/confidence-governance/confidence-governance.service';
 
 const observationEngine = new ObservationUnderstandingService();
 const causalEngine = new CausalRiskService();
@@ -181,7 +181,7 @@ async function main() {
     throw new Error(`${failures} confidence-governance validation case(s) failed.`);
   }
 
-  console.log('✅ SafeScope confidence governance validation passed.');
+  console.log('✅ HazLenz confidence governance validation passed.');
 }
 
 main().catch((error) => {

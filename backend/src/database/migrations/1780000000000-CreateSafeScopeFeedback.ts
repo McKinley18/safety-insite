@@ -21,7 +21,7 @@ export class CreateSafeScopeFeedback1780000000000 implements MigrationInterface 
         "confidenceBefore" double precision,
         "riskProfileId" varchar,
         "reviewerRole" varchar,
-        "safeScopeVersion" varchar NOT NULL DEFAULT 'v2',
+        "hazLenzVersion" varchar NOT NULL DEFAULT 'v2',
         "expertReviewed" boolean NOT NULL DEFAULT false,
         "promotedToGlobal" boolean NOT NULL DEFAULT false,
         "createdAt" timestamp NOT NULL DEFAULT now()

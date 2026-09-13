@@ -1,16 +1,16 @@
-import { ReviewCoreKnowledgeApprovalService } from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-approval.service';
-import { ReviewCoreKnowledgeRecord, ReviewCoreKnowledgeRecordStatus, ReviewCoreKnowledgeAuthorityTier } from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-record.types';
+import { KnowledgeApprovalService } from '../src/hazlenz/knowledge-architecture/knowledge-approval.service';
+import { KnowledgeRecord, KnowledgeRecordStatus, KnowledgeAuthorityTier } from '../src/hazlenz/knowledge-architecture/knowledge-record.types';
 
-const service = new ReviewCoreKnowledgeApprovalService();
+const service = new KnowledgeApprovalService();
 
-const draft: ReviewCoreKnowledgeRecord = {
+const draft: KnowledgeRecord = {
   id: 'test-1',
   title: 'Test Record',
   content: 'Test Content',
   domain: 'machine_guarding',
   tags: [],
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.EXPERIMENTAL,
-  status: ReviewCoreKnowledgeRecordStatus.DRAFT,
+  authorityTier: KnowledgeAuthorityTier.EXPERIMENTAL,
+  status: KnowledgeRecordStatus.DRAFT,
   fingerprint: 'test-fingerprint',
   createdAt: new Date(),
   updatedAt: new Date(),

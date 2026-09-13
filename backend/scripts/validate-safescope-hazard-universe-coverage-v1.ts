@@ -1,8 +1,8 @@
-import { HAZARD_UNIVERSE_REGISTRY } from '../src/safescope-v2/hazard-universe/hazard-universe.registry';
-import { HazardFamily } from '../src/safescope-v2/hazard-universe/hazard-universe.types';
+import { HAZARD_UNIVERSE_REGISTRY } from '../src/hazlenz/hazard-universe/hazard-universe.registry';
+import { HazardFamily } from '../src/hazlenz/hazard-universe/hazard-universe.types';
 
 async function validate() {
-  console.log('--- Testing SafeScope Hazard Universe Coverage v1 ---');
+  console.log('--- Testing HazLenz Hazard Universe Coverage v1 ---');
 
   const requiredFamilies: HazardFamily[] = [
     'machine_guarding',
@@ -32,7 +32,7 @@ async function validate() {
   });
 
   console.log('[PASS] Registry integrity verified.');
-  console.log('✅ SafeScope hazard universe coverage validation passed.');
+  console.log('✅ HazLenz hazard universe coverage validation passed.');
 }
 
 validate().catch(err => {

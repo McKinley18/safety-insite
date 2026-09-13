@@ -1,6 +1,6 @@
-import { ObservationUnderstandingService } from '../src/safescope-v2/understanding/observation-understanding.service';
-import { CausalRiskService } from '../src/safescope-v2/causal-risk/causal-risk.service';
-import { EvidenceSufficiencyService } from '../src/safescope-v2/evidence-sufficiency-core/evidence-sufficiency.service';
+import { ObservationUnderstandingService } from '../src/hazlenz/understanding/observation-understanding.service';
+import { CausalRiskService } from '../src/hazlenz/causal-risk/causal-risk.service';
+import { EvidenceSufficiencyService } from '../src/hazlenz/evidence-sufficiency-core/evidence-sufficiency.service';
 
 type ValidationCase = {
   id: string;
@@ -124,7 +124,7 @@ async function main() {
     throw new Error(`${failures} evidence-sufficiency validation case(s) failed.`);
   }
 
-  console.log('✅ SafeScope evidence sufficiency validation passed.');
+  console.log('✅ HazLenz evidence sufficiency validation passed.');
 }
 
 main().catch(error => {

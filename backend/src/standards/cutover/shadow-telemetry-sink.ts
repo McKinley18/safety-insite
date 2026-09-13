@@ -26,7 +26,7 @@
  *      transactionally. That is not required to run a shadow.
  *
  *   3. THE EXISTING HazLenz KNOWLEDGE TELEMETRY helper.  REJECTED as the sink of record.
- *      `safescope-v2/telemetry/hazlenz-knowledge-telemetry.ts` logs `Record<string, any>` through
+ *      `hazlenz/telemetry/hazlenz-knowledge-telemetry.ts` logs `Record<string, any>` through
  *      `console.info` with a human-readable label. An untyped metadata bag is exactly the shape
  *      that lets customer content in by accident, and this event's contract is an ALLOWLIST. It
  *      remains fine for what it does; it is not the right vehicle for a privacy-critical record.

@@ -1,6 +1,6 @@
-import { ReviewCoreKnowledgeNormalizerService, SEED_RECORDS } from '../src/safescope-v2/knowledge-architecture';
+import { KnowledgeNormalizerService, SEED_RECORDS } from '../src/hazlenz/knowledge-architecture';
 
-const service = new ReviewCoreKnowledgeNormalizerService();
+const service = new KnowledgeNormalizerService();
 
 function validate() {
   console.log('Running Validation...');

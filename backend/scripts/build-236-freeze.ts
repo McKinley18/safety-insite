@@ -14,7 +14,7 @@ import { join } from 'path';
 
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   INSTRUMENT_236_VERSION, IMPLEMENTATION_UNDER_TEST_236, AUTHORIZATION_236,
   AUTHORING_INDEPENDENCE_236, FRESHNESS_236, SCORING_RULES_236, CONFIRMATION_CASES_236,

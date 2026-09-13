@@ -18,18 +18,18 @@ async function validate() {
   console.log('[PASS] Staging hardening validator is registered.');
 
   // 2. Verify SAFE_SCOPE_PERSISTENCE_MODE is referenced by persistence service
-  const persistenceServicePath = path.join(backendSrc, 'safescope-v2/persistence/persistence.service.ts');
+  const persistenceServicePath = path.join(backendSrc, 'hazlenz/persistence/persistence.service.ts');
   const persistenceContent = fs.readFileSync(persistenceServicePath, 'utf-8');
   if (!persistenceContent.includes('SAFE_SCOPE_PERSISTENCE_MODE')) {
-    throw new Error('Staging readiness failed: SafeScopePersistenceService does not reference SAFE_SCOPE_PERSISTENCE_MODE.');
+    throw new Error('Staging readiness failed: HazLenzPersistenceService does not reference SAFE_SCOPE_PERSISTENCE_MODE.');
   }
   console.log('[PASS] SAFE_SCOPE_PERSISTENCE_MODE is referenced in persistence service.');
 
-  // 3. Verify NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK gates reviewer console
+  // 3. Verify NEXT_PUBLIC_HAZLENZ_REVIEW_DEMO_FALLBACK gates reviewer console
   const reviewerConsolePath = path.join(frontendSrc, 'app/hazlenz-knowledge/review/page.tsx');
   if (fs.existsSync(reviewerConsolePath)) {
     const reviewerConsoleContent = fs.readFileSync(reviewerConsolePath, 'utf-8');
-    if (!reviewerConsoleContent.includes('NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK')) {
+    if (!reviewerConsoleContent.includes('NEXT_PUBLIC_HAZLENZ_REVIEW_DEMO_FALLBACK')) {
       throw new Error('Staging readiness failed: Reviewer console demo fallback is not env-gated.');
     }
     console.log('[PASS] Reviewer console demo fallback is env-gated.');
@@ -81,14 +81,14 @@ async function validate() {
   console.log('[PASS] Staging deployment readiness document exists and is complete.');
 
   // 8. Verify no unsafe default "team" privilege fallback remains
-  const controllerPath = path.join(backendSrc, 'safescope-v2/safescope-v2.controller.ts');
+  const controllerPath = path.join(backendSrc, 'hazlenz/safescope-v2.controller.ts');
   const controllerContent = fs.readFileSync(controllerPath, 'utf-8');
   if (controllerContent.includes("planTier: user?.planTier || 'team'")) {
-    throw new Error('Staging readiness failed: Unsafe default "team" privilege fallback still exists in SafescopeV2Controller.');
+    throw new Error('Staging readiness failed: Unsafe default "team" privilege fallback still exists in HazLenzController.');
   }
-  console.log('[PASS] SafescopeV2Controller hardened against default "team" privilege.');
+  console.log('[PASS] HazLenzController hardened against default "team" privilege.');
 
-  console.log('✅ SafeScope staging deployment readiness v1 validation passed.');
+  console.log('✅ HazLenz staging deployment readiness v1 validation passed.');
 }
 
 validate().catch(err => {

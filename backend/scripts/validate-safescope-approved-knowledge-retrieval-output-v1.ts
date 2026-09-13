@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { ApprovedKnowledgeRetrievalOutputV1Validator } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { ApprovedKnowledgeRetrievalOutputV1Validator } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.validator';
 
 async function validate() {
   const service = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -26,7 +26,7 @@ async function validate() {
       }
   }
   
-  console.log('✅ SafeScope approved knowledge retrieval output v1 validation passed.');
+  console.log('✅ HazLenz approved knowledge retrieval output v1 validation passed.');
 }
 
 validate().catch(err => {

@@ -23,7 +23,7 @@ import { join } from 'path';
 
 import {
   buildEnvelopeRequestBody, EXPERT_REQUEST_ENVELOPE, type ExpertRequestEnvelope,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
 
 export const OUT_251 = join(__dirname, '..', '..', 'verification',
   'expert-hazlenz-251-strict-wire-schema-budget-2026-09-12');

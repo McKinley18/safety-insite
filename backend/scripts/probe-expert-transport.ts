@@ -26,17 +26,17 @@ import { mkdirSync, writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 import {
   OllamaExpertProvider, EXPERT_PROBE_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
+} from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
 import {
   mergeExpertIntelligence, verifyMergeInvariants,
   type DeterministicAuthorityResult, type GovernedAuthorityResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 import {
   CITATION_SHAPED_PATTERN, EXPERT_INPUT_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import type { ExpertProviderResult } from '../src/safescope-v2/expert-hazlenz/expert-provider';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import type { ExpertProviderResult } from '../src/hazlenz/expert-hazlenz/expert-provider';
 
 // ---------------------------------------------------------------- budget
 

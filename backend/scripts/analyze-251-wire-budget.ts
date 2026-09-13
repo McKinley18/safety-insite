@@ -8,11 +8,11 @@ import { createHash } from 'crypto';
 
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { buildExpert239WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { buildExpert239WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');
 

@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: boolean, message: string) {
   }
 }
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const specificWithSupport = service.reason({
   hazardObservation: 'Missing guard on conveyor tail pulley with employee access to the nip point.',
@@ -126,7 +126,7 @@ for (const result of [specificWithSupport, archetypeFallback, insufficient]) {
   assert(result.equipmentReasoningSummary.rankingReasons.length > 0, 'Ranking reasons required.');
 }
 
-console.log('✅ SafeScope equipment reasoning summary validation passed.');
+console.log('✅ HazLenz equipment reasoning summary validation passed.');
 console.log(
   `Specific mode: ${specificWithSupport.equipmentReasoningSummary.primaryReasoningMode}`,
 );

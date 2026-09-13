@@ -19,10 +19,10 @@ import {
   buildExpert253WireSchema, FIRST_PASS_CONTRACT_253_VERSION, contractIdentities253,
   buildBasisEntryUnion253, reconstruct247BasisEntryUnion, NULL_SENTENCE_REPLACED_FROM_247,
   FIELDS_MADE_NON_NULLABLE_253,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-253-posture-contract';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-253-posture-contract';
 import {
   buildBasisEntryUnion247, CESSATION_ROLE_247, DRIVER_ROLE_FIELD_247, ROLE_JUSTIFICATION_FIELD,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import {
   deriveCandidateIdentity252, type AssembledRequest252, type BehaviouralProof252,
   type IdentityElement252,

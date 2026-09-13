@@ -12,15 +12,15 @@ import { join } from 'path';
 import {
   runExpertHazLenzAnalysis, type ExpertLegRequest, type ExpertLegResponse,
   type ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, buildAnthropicRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildEnvelopeRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/expert-request-envelope';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   deriveExecutableIdentity, k6OfTransmitted, type AssembledRequest,
 } from './lib/expert-249-executable-identity';
@@ -61,13 +61,13 @@ export async function runPreSpendGate(): Promise<GateResult[]> {
     && refreeze.successFloor === '5/6' && refreeze.gates.length === 6);
 
   // ---- live re-derivation of the executable identity
-  const S = 'src/safescope-v2/expert-hazlenz/';
+  const S = 'src/hazlenz/expert-hazlenz/';
   const C = `${S}contract/`;
   const files = readdirSync(join(BACKEND, C)).filter(f => f.endsWith('.ts')).sort();
   const moduleDigests: Record<string, string> = {
     entryPoint: fsha(join(BACKEND, `${S}expert-hazlenz-analysis.ts`)),
-    adapter: fsha(join(BACKEND, 'src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts')),
-    envelope: fsha(join(BACKEND, 'src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts')),
+    adapter: fsha(join(BACKEND, 'src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts')),
+    envelope: fsha(join(BACKEND, 'src/hazlenz/expert-hazlenz-adapters/expert-request-envelope.ts')),
     postureContract: fsha(join(BACKEND, `${C}expert-247-posture-contract.ts`)),
     verifierInstruction: fsha(join(BACKEND, `${C}expert-218-property-instruction.ts`)),
     verifierSchema: fsha(join(BACKEND, `${C}expert-218-property-review-contract.ts`)),

@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
 
 const reportPath = path.join(
   __dirname,
-  '../src/safescope-v2/reasoning-orchestrator/scenarios/reports/reasoning-scenario-coverage-report.json',
+  '../src/hazlenz/reasoning-orchestrator/scenarios/reports/reasoning-scenario-coverage-report.json',
 );
 
 assert(
@@ -46,6 +46,6 @@ assert(report.guardrails?.doesNotModifyReasoning === true, 'Coverage report must
 assert(report.guardrails?.doesNotApproveKnowledge === true, 'Coverage report must not approve knowledge.');
 assert(report.guardrails?.doesNotDeclareViolations === true, 'Coverage report must not declare violations.');
 
-console.log('✅ SafeScope reasoning scenario coverage validation passed.');
+console.log('✅ HazLenz reasoning scenario coverage validation passed.');
 console.log(`Scenario coverage count: ${report.scenarioCount}`);
 console.log(`Missing domains: ${report.missingDomains.length}`);

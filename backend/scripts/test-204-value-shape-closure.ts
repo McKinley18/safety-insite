@@ -30,7 +30,7 @@ import { projectDeclaredOwedFacts203 } from './lib/expert-203-successor-projecti
 import { DEFAULT_GOVERNED_TEXT_EXPOSURE } from './lib/expert-202-governed-binding-contract';
 import {
   createOwedFactLedger, owedFact, type OwedFactLedger,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 
 // ================================================================ harness
 

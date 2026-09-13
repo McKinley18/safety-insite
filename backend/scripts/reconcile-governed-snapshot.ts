@@ -15,7 +15,7 @@ import * as os from 'os';
 import * as path from 'path';
 import { createHash } from 'crypto';
 import { classifyRow, FORMAL_COHORT_ROW_CONTRACT_VERSION, type FormalCohortRow } from
-  '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+  '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { ACCEPTED_EXPERT_TAXONOMY } from './lib/expert-cohort-supplemental-policy';
 
 const SNAPSHOT = path.join(os.homedir(), 'Desktop', 'governed-snapshot.csv');

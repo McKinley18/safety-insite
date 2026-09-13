@@ -26,12 +26,12 @@
 import { createHash } from 'crypto';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, buildExpertWireSchema, stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_AFFECTED_DECISIONS, EXPERT_INPUT_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { validateCohortRow } from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { validateCohortRow } from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   lintFixtureSet, FIXTURE_LINTER_VERSION, REQUIRED_REVIEW_CLAIMS, FORBIDDEN_REVIEW_CLAIMS,
   type LintableFixtureRow,
@@ -40,19 +40,19 @@ import {
   HARDENED_FIXTURES, HARDENED_SET_VERSION, HARDENED_SET_DENOMINATORS, HARDENED_SET_STATUS,
   CANONICAL_DETERMINISTIC_FAMILIES, HARDENED_FORMS,
   type HardenedFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 import {
   RETENTION_BRIDGE_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/retention-bridge-probe-v8';
+} from '../src/hazlenz/expert-hazlenz/fixtures/retention-bridge-probe-v8';
 import {
   UNSUPPORTED_SETTLEMENT_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/unsupported-settlement-probe-v7';
+} from '../src/hazlenz/expert-hazlenz/fixtures/unsupported-settlement-probe-v7';
 import {
   THRESHOLD_ARBITRATION_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
+} from '../src/hazlenz/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
 import {
   CLARIFICATION_RECALL_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/clarification-recall-probe-v5';
+} from '../src/hazlenz/expert-hazlenz/fixtures/clarification-recall-probe-v5';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string, detail = ''): void {

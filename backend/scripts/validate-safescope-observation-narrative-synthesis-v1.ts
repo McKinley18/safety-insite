@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { ObservationNarrativeSynthesisValidator } from '../src/safescope-v2/observation-narrative-synthesis/observation-narrative-synthesis.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { ObservationNarrativeSynthesisValidator } from '../src/hazlenz/observation-narrative-synthesis/observation-narrative-synthesis.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -71,7 +71,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope observation narrative synthesis validation passed.');
+  console.log('✅ HazLenz observation narrative synthesis validation passed.');
 }
 
 validate().catch(err => {

@@ -21,7 +21,7 @@
  */
 import 'dotenv/config';
 import { dataSource } from '../src/database/data-source';
-import { applyFindingScopedStandards } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyFindingScopedStandards } from '../src/hazlenz/evidence/evidence-foundation';
 import { ReleaseRecordReviewService } from '../src/standards/releases/release-record-review.service';
 import { isPlaceholderSourceKey } from '../src/standards/releases/review-state';
 import { resolveStandardsBacking } from '../src/standards/display/standards-backing-contract';

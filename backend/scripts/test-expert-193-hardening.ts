@@ -16,7 +16,7 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 
-import { CITATION_SHAPED_PATTERN } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { CITATION_SHAPED_PATTERN } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { checkVerifierV3Output, EXPERT_VERIFIER_CONTRACT_V3_VERSION } from
   './lib/expert-verifier-contract-v3';
 import {
@@ -193,7 +193,7 @@ function main(): void {
   assert('G.1 no unauditable file remains under backend/scripts',
     sweep.clean === true,
     sweep.clean ? `${sweep.scanned} files scanned` : sweep.unauditable.map(u => u.path).join(', '));
-  const sweepSrc = sweepAuditability(join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz'));
+  const sweepSrc = sweepAuditability(join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz'));
   assert('G.2 no unauditable file under the expert-hazlenz source tree',
     sweepSrc.clean === true,
     sweepSrc.clean ? `${sweepSrc.scanned} files scanned` : sweepSrc.unauditable.map(u => u.path).join(', '));

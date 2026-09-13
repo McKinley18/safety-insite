@@ -1,5 +1,5 @@
-import { ReviewerFeedbackQueueService } from '../src/safescope-v2/brain/reviewer-feedback-queue/reviewer-feedback.service';
-import { ObservationContextService } from '../src/safescope-v2/brain/observation-context/observation-context.service';
+import { ReviewerFeedbackQueueService } from '../src/hazlenz/brain/reviewer-feedback-queue/reviewer-feedback.service';
+import { ObservationContextService } from '../src/hazlenz/brain/observation-context/observation-context.service';
 
 function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);

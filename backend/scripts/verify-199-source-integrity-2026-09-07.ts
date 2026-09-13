@@ -16,12 +16,12 @@ import { join } from 'path';
 import {
   EXPERT_SYSTEM_PROMPT, buildExpertWireSchema, buildExpertUserPrompt, stableStringify,
   EXPERT_PROMPT_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { CITATION_SHAPED_PATTERN } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { CITATION_SHAPED_PATTERN } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   TRANSITION_AUTHORITIES, REQUIRED_AUTHORITY,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   EXPERT_VERIFIER_V3_SYSTEM_PROMPT, VERIFIER_V3_RESPONSE_SCHEMA,
 } from './lib/expert-verifier-instruction-v3';
@@ -60,7 +60,7 @@ import {
 import { sweepAuditability } from './lib/expert-source-audit-integrity';
 
 const ROOT = join(__dirname, '..', '..');
-const SRC = join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz');
+const SRC = join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz');
 const LIB = join(__dirname, 'lib');
 const V = (n: string): string => join(ROOT, 'verification', n);
 const E187 = V('expert-hazlenz-required-structured-verifier-validation-2026-09-05');

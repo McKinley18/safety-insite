@@ -51,7 +51,7 @@
 
 import type {
   DeterministicFindingView, GovernedStandardView,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   SECTION_197_COHORT, type CohortRow, type ScenarioFamily, type ExpectedOwedFact,
 } from './expert-197-cohort-2026-09-07';

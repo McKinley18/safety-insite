@@ -1,10 +1,10 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const cases = [
   {
@@ -83,5 +83,5 @@ for (const testCase of cases) {
   assert(result.conclusionBoundary.doesNotCreateCitation === true, `${testCase.name}: must not create citations.`);
 }
 
-console.log('✅ SafeScope domain candidate scoring validation passed.');
+console.log('✅ HazLenz domain candidate scoring validation passed.');
 console.log(`Cases validated: ${cases.length}/${cases.length}`);

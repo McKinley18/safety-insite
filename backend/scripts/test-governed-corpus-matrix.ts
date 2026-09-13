@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataSource } from '../src/database/data-source';
-import { applyFindingScopedStandards } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyFindingScopedStandards } from '../src/hazlenz/evidence/evidence-foundation';
 import { ApplicableStandardsService } from '../src/applicable-standards/applicable-standards.service';
 import { Standard } from '../src/standards/entities/standard.entity';
 import { RegulatoryReleaseLifecycleService } from '../src/standards/releases/regulatory-release-lifecycle.service';

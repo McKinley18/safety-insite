@@ -63,11 +63,11 @@
 import {
   type OwedFactAffectedDecision, type OwedFactPriority,
   OWED_FACT_AFFECTED_DECISIONS, OWED_FACT_PRIORITIES, PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   type OwedFactLedger, factOf, nominateAdditiveFact, owedFact, transition,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
-import type { BindingCheckResult } from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
+import type { BindingCheckResult } from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   FROZEN_NOMINATION_CEILING,
   nominationCeilingViolations,

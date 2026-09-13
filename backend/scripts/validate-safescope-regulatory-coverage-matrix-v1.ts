@@ -1,11 +1,11 @@
-import { RegulatorySourceAuditService } from '../src/safescope-v2/regulatory-source-audit/regulatory-source-audit.service';
-import { RegulatoryCoverageMatrixService, CORE_STANDARD_REQUIREMENTS } from '../src/safescope-v2/regulatory-source-audit/regulatory-coverage-matrix.service';
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { RegulatorySourceAuditService } from '../src/hazlenz/regulatory-source-audit/regulatory-source-audit.service';
+import { RegulatoryCoverageMatrixService, CORE_STANDARD_REQUIREMENTS } from '../src/hazlenz/regulatory-source-audit/regulatory-coverage-matrix.service';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
 import * as fs from 'fs';
 import * as path from 'path';
 
 async function validate() {
-  console.log('--- Testing SafeScope Regulatory Coverage Matrix v1 ---');
+  console.log('--- Testing HazLenz Regulatory Coverage Matrix v1 ---');
 
   const normalizationService = new ApprovedKnowledgeCitationNormalizationService();
   const auditService = new RegulatorySourceAuditService(normalizationService);
@@ -57,7 +57,7 @@ async function validate() {
   // We can just verify it didn't modify the registry dir unexpectedly.
   console.log('[PASS] Advisory/governance boundaries preserved (read-only matrix generation).');
 
-  console.log('✅ SafeScope regulatory coverage matrix validation passed.');
+  console.log('✅ HazLenz regulatory coverage matrix validation passed.');
 }
 
 validate().catch(err => {

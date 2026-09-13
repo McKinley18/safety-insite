@@ -50,7 +50,7 @@ import { join } from 'path';
 
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import { describeGrammarProjection203 } from './lib/expert-203-effective-grammar-identity';
 import { instructionIdentities } from './lib/expert-first-pass-instruction-210b2';
 import {

@@ -31,8 +31,8 @@ import { RegulatorySection } from '../regulatory/entities/regulatory-section.ent
 import { RegulatoryParagraph } from '../regulatory/entities/regulatory-paragraph.entity';
 import { HazardTaxonomy } from '../intelligence-framework/entities/hazard-taxonomy.entity';
 import { Notification } from '../notifications/notification.entity';
-import { SafeScopeReasoningSnapshot } from '../safescope-v2/snapshots/reasoning-snapshot.entity';
-import { SafeScopeSupervisorValidation } from '../safescope-v2/validation/supervisor-validation.entity';
+import { HazLenzReasoningSnapshot } from '../hazlenz/snapshots/reasoning-snapshot.entity';
+import { HazLenzSupervisorValidation } from '../hazlenz/validation/supervisor-validation.entity';
 import { HazLenzKnowledgeDocument } from '../hazlenz-knowledge/entities/hazlenz-knowledge-document.entity';
 import { HazLenzKnowledgeChunk } from '../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity';
 import { HazLenzKnowledgeRetrievalLog } from '../hazlenz-knowledge/entities/hazlenz-knowledge-retrieval-log.entity';
@@ -44,7 +44,7 @@ import { AuditEntryAttachment } from '../audit-session/entities/audit-entry-atta
 import { AuditEntryFinding } from '../audit-session/entities/audit-entry-finding.entity';
 import { Inspection } from '../inspection/inspection.entity';
 import { Hazard } from '../inspection/hazard.entity';
-import { SafeScopeAuditRecordEntity } from '../safescope-v2/persistence/audit-record.entity';
+import { HazLenzAuditRecordEntity } from '../hazlenz/persistence/audit-record.entity';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { PlatformSupportGrant } from '../auth/entities/platform-support-grant.entity';
 import { RefreshToken } from '../auth/entities/refresh-token.entity';
@@ -52,7 +52,7 @@ import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entit
 import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
 import { Observation } from '../inspection/entities/observation.entity';
 import { HazLenzAnalysis } from '../inspection/entities/hazlenz-analysis.entity';
-import { ExpertAnalysisExecution } from '../safescope-v2/expert-hazlenz-product/expert-analysis-execution.entity';
+import { ExpertAnalysisExecution } from '../hazlenz/expert-hazlenz-product/expert-analysis-execution.entity';
 import { HumanReview } from '../inspection/entities/human-review.entity';
 import { InspectionFinding } from '../inspection/entities/inspection-finding.entity';
 import { Task } from '../tasks/task.entity';
@@ -125,8 +125,8 @@ export const dataSource = new DataSource({
     RegulatoryParagraph,
     HazardTaxonomy,
     Notification,
-    SafeScopeReasoningSnapshot,
-    SafeScopeSupervisorValidation,
+    HazLenzReasoningSnapshot,
+    HazLenzSupervisorValidation,
     HazLenzKnowledgeDocument,
     HazLenzKnowledgeChunk,
     HazLenzKnowledgeRetrievalLog,
@@ -138,7 +138,7 @@ export const dataSource = new DataSource({
     AuditEntryFinding,
     Inspection,
     Hazard,
-    SafeScopeAuditRecordEntity,
+    HazLenzAuditRecordEntity,
     OrganizationMembership,
     PlatformSupportGrant,
     SecurityAuditEvent,

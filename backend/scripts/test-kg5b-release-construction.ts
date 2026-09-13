@@ -206,7 +206,7 @@ async function main() {
 
   section('1b. The legacy seed pipeline cannot be run against a foreign corpus (KG5A-DISC-01)');
   // The safe path existing is not the same as the unsafe path being unreachable.
-  // `seed:safescope-standards` is still wired and still needed for clean disposable databases, so
+  // `seed:hazlenz-standards` is still wired and still needed for clean disposable databases, so
   // it carries a guard that asks about the DATA rather than the caller.
   const governedCitations = sourceSet.records.map(record => ({ citation: record.citation }));
   const emptyCorpus = classifyCorpus([]);

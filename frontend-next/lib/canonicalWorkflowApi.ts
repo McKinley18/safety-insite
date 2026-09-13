@@ -456,7 +456,7 @@ export async function analyzeObservation(
     };
   } = {},
 ) {
-  return apiJson<HazLenzAnalysisResult>("/safescope-v2/classify", {
+  return apiJson<HazLenzAnalysisResult>("/hazlenz/classify", {
     method: "POST",
     body: JSON.stringify({ text, scopes: ["all"], ...input }),
   });

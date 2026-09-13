@@ -36,13 +36,13 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { createHash } from 'crypto';
-import type { ReasoningInput, L3RegulatoryContextValue } from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
+import type { ReasoningInput, L3RegulatoryContextValue } from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
 import { L3_PROMPT_VERSION, L3_SYSTEM_PROMPT, bindProposal, buildProposalSchema, buildUserPrompt }
-  from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { L3_2_INFERENCE_CONFIG } from '../src/safescope-v2/reasoning-l3/ollama-reasoning-provider';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
+  from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { L3_2_INFERENCE_CONFIG } from '../src/hazlenz/reasoning-l3/ollama-reasoning-provider';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
 
 const CFG = L3_2_INFERENCE_CONFIG;
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');

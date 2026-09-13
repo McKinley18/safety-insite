@@ -6,8 +6,8 @@ import { resolveStandardsBacking } from "../standards/display/standards-backing-
 import { projectGovernedDisplay } from "../standards/cutover/governed-cutover-context";
 import type { GovernedCutoverContext } from "../standards/cutover/governed-cutover-context";
 import { HazLenzKnowledgeChunk } from "../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity";
-import { hasNonNegatedTerm } from "../safescope-v2/reasoning-orchestrator/negation-context.util";
-import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
+import { hasNonNegatedTerm } from "../hazlenz/reasoning-orchestrator/negation-context.util";
+import { HazLenzKnowledgeShardService } from "../hazlenz/knowledge-shards/hazlenz-knowledge-shard.service";
 
 import {
   citationSortKey,

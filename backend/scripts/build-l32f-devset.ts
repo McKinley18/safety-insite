@@ -15,7 +15,7 @@ import { createHash } from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const EVAL = join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval');
+const EVAL = join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval');
 const OUT = join(EVAL, 'development-l32f.json');
 const NON_ACTIVE = ['CONTROLLED', 'CORRECTED', 'REMOVED_FROM_SERVICE', 'NEGATED', 'HYPOTHETICAL', 'INSUFFICIENT_EVIDENCE', 'UNKNOWN'];
 

@@ -11,20 +11,20 @@
 import {
   isIrregularFinitePast, isFunctionWord, closesNounPhrase, couldBeFiniteLexicalVerb,
   hasParticipleShape, findWholeWordMatch, tokenMatchesWord, PREPOSITIONS, DETERMINERS,
-} from '../src/safescope-v2/reasoning-l3/word-classes';
-import { negationScopes, governingNegation } from '../src/safescope-v2/reasoning-l3/negation-scope';
-import { nounPhraseHead, tokenRole } from '../src/safescope-v2/reasoning-l3/predicate-role';
-import { controlAdequacyOf } from '../src/safescope-v2/reasoning-l3/control-adequacy';
-import { L3_PROMPT_VERSION, L3_SYSTEM_PROMPT } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
+} from '../src/hazlenz/reasoning-l3/word-classes';
+import { negationScopes, governingNegation } from '../src/hazlenz/reasoning-l3/negation-scope';
+import { nounPhraseHead, tokenRole } from '../src/hazlenz/reasoning-l3/predicate-role';
+import { controlAdequacyOf } from '../src/hazlenz/reasoning-l3/control-adequacy';
+import { L3_PROMPT_VERSION, L3_SYSTEM_PROMPT } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
 import {
   L3_SEMANTIC_BINDER_VERSION, L3_ADVISORY_REASONS, severityOf, bindEvidenceSemantically,
-} from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
+} from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 
 let passed = 0; let failed = 0;
 function check(name: string, ok: boolean, actual?: unknown): void {

@@ -1,11 +1,11 @@
-import { ReviewCoreKnowledgeRecordStatus } from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-record.types';
-import { ReviewCoreKnowledgeIngestionService } from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-ingestion.service';
+import { KnowledgeRecordStatus } from '../src/hazlenz/knowledge-architecture/knowledge-record.types';
+import { KnowledgeIngestionService } from '../src/hazlenz/knowledge-architecture/knowledge-ingestion.service';
 
-const service = new ReviewCoreKnowledgeIngestionService();
+const service = new KnowledgeIngestionService();
 
 const draft = service.ingestDraft({ title: 'Test Record', sourceTitle: 'Test Source', domain: 'machine_guarding' });
 
-if (draft.draftRecord.status !== ReviewCoreKnowledgeRecordStatus.DRAFT) {
+if (draft.draftRecord.status !== KnowledgeRecordStatus.DRAFT) {
   throw new Error('Draft should have DRAFT status');
 }
 

@@ -20,17 +20,17 @@ import { mkdirSync, writeFileSync, appendFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import {
   OllamaExpertProvider, EXPERT_PROBE_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { TEMPORAL_STATE_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/temporal-state-fixtures';
+} from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { TEMPORAL_STATE_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/temporal-state-fixtures';
 import {
   HAZARD_ACTUALITY_FIXTURES, ADVERSARIAL_RECALL_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hazard-actuality-fixtures';
 import {
   scoreRouting, totalRouting, type RoutingScore,
-} from '../src/safescope-v2/expert-hazlenz/expert-routing-metrics';
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-routing-metrics';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const label = (process.argv.find(a => a.startsWith('--label=')) ?? '--label=unlabeled').split('=')[1];
 const REPEATS = Number(process.env.DIAG_REPEATS || 5);
@@ -48,8 +48,8 @@ writeFileSync(LOG, '');
 interface FixtureCase {
   id: string;
   input: ExpertAnalysisInput;
-  expectations: import('../src/safescope-v2/expert-hazlenz/expert-routing-metrics').RoutingExpectations;
-  probes: readonly import('../src/safescope-v2/expert-hazlenz/expert-routing-metrics').ConceptProbe[];
+  expectations: import('../src/hazlenz/expert-hazlenz/expert-routing-metrics').RoutingExpectations;
+  probes: readonly import('../src/hazlenz/expert-hazlenz/expert-routing-metrics').ConceptProbe[];
 }
 
 const PROTECTED_ROUTING: FixtureCase[] = ['R4', 'R5', 'R6', 'R7'].map(id => {

@@ -43,25 +43,25 @@ import {
 import {
   type OwedFactLedger,
   owedFact, createOwedFactLedger, transition, factOf, preservationViolations,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger';
 import {
   checkBindingDeclarations, applyAdmittedDeclarations, bindingSideEffects,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding';
 import {
   projectStructuralQuestions, selectQuestionsForBudget,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/structural-questions';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/structural-questions';
 import {
   mergeExpertIntelligence, verifyMergeInvariants,
-} from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 import {
   consumeSettlementClaims,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   EXPERT_VERIFIER_V3_DEVELOPMENT_ENABLED,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   ACCEPTABLE_EVIDENCE_PROVENANCES, PROVIDER_FORBIDDEN_OWED_FACT_FIELDS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 
 // ================================================================ harness
 
@@ -451,7 +451,7 @@ ok('ABF-8.a TODAY the ceiling holds at the default and is widened by a caller ar
   checkBindingDeclarations(fiveNominations, dev([deterministicFact()]), OBS).admitted.length === 1
   && checkBindingDeclarations(fiveNominations, dev([deterministicFact()]), OBS, 5).admitted.length === 5);
 ok('ABF-8.a2 there is no named ceiling constant in the runtime binding module',
-  !readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts',
+  !readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts',
     'owed-fact-binding.ts'), 'utf8').includes('NOMINATION_CEILING'));
 // .b  GUARD
 ok('ABF-8.b the guard refuses a widened ceiling',
@@ -579,7 +579,7 @@ ok('HIGH-2.c consuming claims never moves a fact — ledgerUnchanged is the lite
 
 // ================================================================ HIGH-1  the two implementations
 
-const RUNTIME_TYPES = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+const RUNTIME_TYPES = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
   'owed-facts', 'owed-fact.types.ts'), 'utf8');
 const PROTOTYPE = readFileSync(join(__dirname, 'lib', 'expert-owed-facts.ts'), 'utf8');
 const PROTOTYPE_BINDING = readFileSync(join(__dirname, 'lib', 'expert-owed-fact-binding.ts'), 'utf8');
@@ -595,7 +595,7 @@ ok('HIGH-1.b the prototype has no AcceptableEvidence, no nullable whyUnresolved 
   && RUNTIME_TYPES.includes('whyUnresolvedAtTransition'));
 ok('HIGH-1.c the prototype binding has NO forbidden-field scan; the runtime one does',
   !PROTOTYPE_BINDING.includes('PROVIDER_RETURNED_A_HAZLENZ_OWNED_FIELD')
-  && readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts',
+  && readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts',
     'owed-fact-binding.ts'), 'utf8').includes('PROVIDER_RETURNED_A_HAZLENZ_OWNED_FIELD'));
 // HIGH-1.e is the consequence, measured rather than inferred: the SAME declaration that the runtime
 // refuses at ABF-3.c3 is admitted with zero codes on the prototype path.
@@ -630,7 +630,7 @@ ok('HIGH-1.e MEASURED: a declaration carrying acceptableEvidence and status is R
   'the two halves of one chain disagree about whether that declaration is legal');
 ok('HIGH-1.d COVERAGE_DECISION_FORBIDDEN_INPUTS survives only on the prototype',
   PROTOTYPE_BINDING.includes('COVERAGE_DECISION_FORBIDDEN_INPUTS')
-  && !readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts',
+  && !readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts',
     'owed-fact-binding.ts'), 'utf8').includes('COVERAGE_DECISION_FORBIDDEN_INPUTS'));
 
 // ================================================================ the §187 pin, recomputed
@@ -638,7 +638,7 @@ ok('HIGH-1.d COVERAGE_DECISION_FORBIDDEN_INPUTS survives only on the prototype',
 const PIN = JSON.parse(readFileSync(join(__dirname, '..', '..', 'verification',
   'expert-hazlenz-required-structured-verifier-validation-2026-09-05', 'PREREGISTRATION.json'),
 'utf8')).owedFactSourceHashes as Record<string, string>;
-const OWED = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'owed-facts');
+const OWED = join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'owed-facts');
 const shaFile = (p: string): string =>
   createHash('sha256').update(readFileSync(p, 'utf8'), 'utf8').digest('hex');
 for (const [file, expected] of Object.entries(PIN)) {

@@ -50,24 +50,24 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   LINKAGE_PROBE_FIXTURES, LINKAGE_PROBE_ROWS, LINKAGE_PROBE_FIXTURE_SET_VERSION,
   NEXT_PROBE_ADVANCEMENT_CRITERIA, linkageFixtureByRowId, linkageRowsWithRole,
   type LinkageProbeFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hosted-linkage-probe-v2';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hosted-linkage-probe-v2';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   EXPERT_SYSTEM_PROMPT, buildExpertUserPrompt, expertPromptIdentity,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   CITATION_SHAPED_PATTERN, EXPERT_AFFECTED_DECISIONS, EXPERT_ANALYSIS_CONTRACT_VERSION,
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { EXPERT_MEASUREMENT_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
+  '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
 import {
   runFormalCohort, providerInvocationCount, resetProviderInvocationCount,
   EXPERT_COHORT_HARNESS_VERSION,
@@ -87,7 +87,7 @@ import {
   writeRemeasureIdentity, type PreSpendIdentity,
 } from './lib/expert-probe-identity';
 import type { CallRecord, CohortRunRecord } from
-  '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+  '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 const ROOT = join(__dirname, '..', '..');
 const OUT = join(ROOT, 'verification', 'expert-hazlenz-hosted-linkage-probe-2026-09-02');
@@ -108,9 +108,9 @@ const HISTORICAL_PROVIDER_INVOCATION_COUNT = 195;
 
 const PROBE_SCRIPT = 'backend/scripts/probe-expert-hosted-linkage-2026-09-02.ts';
 const FIXTURE_MODULE =
-  'backend/src/safescope-v2/expert-hazlenz/fixtures/hosted-linkage-probe-v2.ts';
-const NORMALIZATION = 'backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts';
-const CONTRACT_TYPES = 'backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts';
+  'backend/src/hazlenz/expert-hazlenz/fixtures/hosted-linkage-probe-v2.ts';
+const NORMALIZATION = 'backend/src/hazlenz/expert-hazlenz/expert-normalization.ts';
+const CONTRACT_TYPES = 'backend/src/hazlenz/expert-hazlenz/expert-contract.types.ts';
 
 // ---------------------------------------------------------------- gate plumbing
 

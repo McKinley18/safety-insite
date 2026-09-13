@@ -15,7 +15,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataSource } from '../src/database/data-source';
-import { applyFindingScopedStandards } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyFindingScopedStandards } from '../src/hazlenz/evidence/evidence-foundation';
 import { RegulatoryReleaseLifecycleService } from '../src/standards/releases/regulatory-release-lifecycle.service';
 import { releaseCitationKey } from '../src/standards/releases/citation-identity';
 import { EFFECTIVE_STATE_SQL } from '../src/standards/releases/release-record-review.service';

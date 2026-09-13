@@ -145,7 +145,7 @@ async function main() {
       ON safescope_knowledge_documents ("approvalStatus");
   `);
 
-  console.log("SafeScope knowledge tables verified/created.");
+  console.log("HazLenz knowledge tables verified/created.");
 
   await dataSource.destroy();
 }

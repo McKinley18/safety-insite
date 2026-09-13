@@ -43,8 +43,8 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   buildAnthropicRequestBody, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
 
 const MAX_HOSTED_CALLS = 1;
 const MAX_HOSTED_COST_USD = 1.00;

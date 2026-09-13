@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafeScopeIntelligenceOrchestrator } from "../src/safescope-v2/orchestration/intelligence-orchestrator.service";
+import { HazLenzIntelligenceOrchestrator } from "../src/hazlenz/orchestration/intelligence-orchestrator.service";
 
 const datasetPath = path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-field-validation-dataset.v1.json');
 const dataset = JSON.parse(fs.readFileSync(datasetPath, 'utf-8'));
-const orchestrator = new SafeScopeIntelligenceOrchestrator();
+const orchestrator = new HazLenzIntelligenceOrchestrator();
 
 console.log(`Running Calibration Triage for ${dataset.length} cases...`);
 

@@ -1,14 +1,14 @@
 import {
   SourceIntelligenceRetrievalServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
-import { SourceRetrievalService } from '../src/safescope-source-intelligence/source-retrieval.service';
+import { SourceRetrievalService } from '../src/hazlenz-source-intelligence/source-retrieval.service';
 
 async function run() {
   const sourceRetrievalService = new SourceRetrievalService();
   const adapter = new SourceIntelligenceRetrievalServiceAdapter(sourceRetrievalService);
 
-  const context: SafeScopeAdapterContext = {
+  const context: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText: 'Worker standing on pallet raised by forklift with no fall protection.',
       regulatoryContext: 'OSHA_GENERAL',

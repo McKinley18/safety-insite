@@ -19,7 +19,7 @@ import { join } from 'path';
   }
 }
 
-import { EXPERT_HOSTED_INFERENCE_CONFIG } from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+import { EXPERT_HOSTED_INFERENCE_CONFIG } from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   INSTRUMENT_227_VERSION, HOSTED_CASES_227, PRIMARY_GATES_227, GATE_RULE_227,
   MAX_PROVIDER_CALLS_227, PLANNED_CALLS_227, CONTINGENCY_CALLS_227, SPEND_CEILING_USD_227,

@@ -1,6 +1,6 @@
-import { SCENARIO_FAMILY_REGISTRY } from '../src/safescope-v2/brain/scenario-family-knowledge/scenario-family.registry';
-import { EVIDENCE_GAP_QUESTION_REGISTRY } from '../src/safescope-v2/brain/evidence-gap-question-generator/evidence-gap-question.registry';
-import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../src/safescope-v2/corrective-actions/corrective-action-template.registry';
+import { SCENARIO_FAMILY_REGISTRY } from '../src/hazlenz/brain/scenario-family-knowledge/scenario-family.registry';
+import { EVIDENCE_GAP_QUESTION_REGISTRY } from '../src/hazlenz/brain/evidence-gap-question-generator/evidence-gap-question.registry';
+import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../src/hazlenz/corrective-actions/corrective-action-template.registry';
 
 const weakDomains = ['bloodborne_pathogens', 'cranes_rigging_hoisting', 'ergonomics', 'industrial_hygiene'];
 const partialDomains = [

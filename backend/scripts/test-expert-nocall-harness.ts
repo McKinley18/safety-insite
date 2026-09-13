@@ -2,7 +2,7 @@
  * EXPERT HAZLENZ -- the NO-CALL harness.
  *
  * `PROVIDER_CALLS = 0` and `API_COST = $0.00`, and section D proves it from the source rather than
- * asserting it in a comment: it reads every file in `src/safescope-v2/expert-hazlenz/` and fails if
+ * asserting it in a comment: it reads every file in `src/hazlenz/expert-hazlenz/` and fails if
  * any of them contains a network primitive.
  *
  * WHAT THIS HARNESS IS FOR. Before a single paid call is authorized, everything downstream of the
@@ -17,16 +17,16 @@
  */
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
-import { NO_CALL_SCENARIOS } from '../src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios';
-import { ReplayExpertProvider } from '../src/safescope-v2/expert-hazlenz/replay-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
+import { NO_CALL_SCENARIOS } from '../src/hazlenz/expert-hazlenz/fixtures/no-call-scenarios';
+import { ReplayExpertProvider } from '../src/hazlenz/expert-hazlenz/replay-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
 import {
   mergeExpertIntelligence, verifyMergeInvariants,
-} from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 import {
   EXPERT_EVALUATION_MEASURES, EVALUATION_CORPUS_POLICY, EVALUATION_PRECONDITIONS,
   evaluateGateFamilies,
-} from '../src/safescope-v2/expert-hazlenz/expert-evaluation-plan';
+} from '../src/hazlenz/expert-hazlenz/expert-evaluation-plan';
 
 let passed = 0, failed = 0;
 const assert = (c: unknown, m: string) => { if (c) { passed++; console.log(`ok    ${m}`); } else { failed++; console.log(`FAIL  ${m}`); } };
@@ -208,7 +208,7 @@ let totalProviderCalls = 0;
   assert(totalProviderCalls > 0,
     'D.1 the replay provider was actually exercised (a harness that ran nothing proves nothing)');
 
-  const MODULE_DIR = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz');
+  const MODULE_DIR = join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz');
   const NETWORK_PRIMITIVES = [
     'fetch(', 'require(\'http', 'require("http', 'from \'http', 'from "http',
     'axios', 'XMLHttpRequest', 'WebSocket', 'net.connect', 'https://', 'http://',

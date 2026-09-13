@@ -27,7 +27,7 @@ import { join } from 'path';
 import { createHash } from 'crypto';
 import {
   CONFIRMATION_PROBE_FIXTURES, confirmationFixtureByRowId,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/linkage-confirmation-probe-v3';
+} from '../src/hazlenz/expert-hazlenz/fixtures/linkage-confirmation-probe-v3';
 import {
   evaluateScenarioIntent, classifyCandidateQuality,
   type ScenarioIntent, type ScenarioIntentResult,

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
+import { HazLenzIntelligenceOrchestrator } from '../src/hazlenz/orchestration/intelligence-orchestrator.service';
 
 type PrecisionCase = {
   id: string;
@@ -83,7 +83,7 @@ async function main() {
   const raw = JSON.parse(fs.readFileSync(datasetPath, 'utf-8'));
   const cases: PrecisionCase[] = raw.cases ?? [];
 
-  const orchestrator = new SafeScopeIntelligenceOrchestrator();
+  const orchestrator = new HazLenzIntelligenceOrchestrator();
 
   const details = [];
 

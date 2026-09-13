@@ -2,16 +2,16 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 import {
-  ReviewCoreKnowledgeReviewQueueHttpController,
-  ReviewCoreKnowledgeReviewQueueModule,
-  ReviewCoreKnowledgeReviewQueueModuleDefinition,
-  ReviewCoreKnowledgeReviewQueueProvider,
-  ReviewCoreQueueActor,
-} from '../src/safescope-v2/knowledge-architecture';
+  KnowledgeReviewQueueHttpController,
+  KnowledgeReviewQueueModule,
+  KnowledgeReviewQueueModuleDefinition,
+  KnowledgeReviewQueueProvider,
+  KnowledgeQueueActor,
+} from '../src/hazlenz/knowledge-architecture';
 import {
-  ReviewCoreKnowledgeAuthorityTier,
-  ReviewCoreKnowledgeRecordStatus,
-} from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-record.types';
+  KnowledgeAuthorityTier,
+  KnowledgeRecordStatus,
+} from '../src/hazlenz/knowledge-architecture/knowledge-record.types';
 
 function assertEnvelope(value: any, label: string) {
   assert.equal(value?.guardrails?.advisoryOnly, true, `${label}: advisoryOnly missing`);
@@ -26,38 +26,38 @@ function assertEnvelope(value: any, label: string) {
 
 const repoRoot = path.resolve(__dirname, '../..');
 [
-  'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.provider.ts',
-  'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.http-controller.ts',
-  'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.module.ts',
-  'backend/scripts/validate-reviewcore-knowledge-review-queue-nest-p15.ts',
-  'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-nest-p15-summary.md',
+  'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.provider.ts',
+  'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.http-controller.ts',
+  'backend/src/hazlenz/knowledge-architecture/knowledge-review-queue.module.ts',
+  'backend/scripts/validate-knowledge-review-queue-nest-p15.ts',
+  'project-docs/historical/08-audits/knowledge-review-queue-nest-p15-summary.md',
 ].forEach((file) => assert.ok(fs.existsSync(path.join(repoRoot, file)), `Missing P15 file: ${file}`));
 
-const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/safescope-v2/knowledge-architecture/index.ts'), 'utf8');
+const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/hazlenz/knowledge-architecture/index.ts'), 'utf8');
 [
-  'ReviewCoreKnowledgeReviewQueueProvider',
-  'ReviewCoreKnowledgeReviewQueueHttpController',
-  'ReviewCoreKnowledgeReviewQueueModule',
+  'KnowledgeReviewQueueProvider',
+  'KnowledgeReviewQueueHttpController',
+  'KnowledgeReviewQueueModule',
 ].forEach((token) => assert.ok(indexText.includes(token), `Missing index export: ${token}`));
 
-const owner: ReviewCoreQueueActor = { actorId: 'owner-p15', role: 'owner', planTier: 'company' };
-const admin: ReviewCoreQueueActor = { actorId: 'admin-p15', role: 'admin', planTier: 'company' };
-const safetyManager: ReviewCoreQueueActor = { actorId: 'safety-p15', role: 'safety_manager', planTier: 'company' };
-const fieldInspector: ReviewCoreQueueActor = { actorId: 'field-p15', role: 'field_inspector', planTier: 'team' };
-const viewer: ReviewCoreQueueActor = { actorId: 'viewer-p15', role: 'viewer', planTier: 'company' };
-const individualAdmin: ReviewCoreQueueActor = { actorId: 'individual-p15', role: 'admin', planTier: 'individual' };
+const owner: KnowledgeQueueActor = { actorId: 'owner-p15', role: 'owner', planTier: 'company' };
+const admin: KnowledgeQueueActor = { actorId: 'admin-p15', role: 'admin', planTier: 'company' };
+const safetyManager: KnowledgeQueueActor = { actorId: 'safety-p15', role: 'safety_manager', planTier: 'company' };
+const fieldInspector: KnowledgeQueueActor = { actorId: 'field-p15', role: 'field_inspector', planTier: 'team' };
+const viewer: KnowledgeQueueActor = { actorId: 'viewer-p15', role: 'viewer', planTier: 'company' };
+const individualAdmin: KnowledgeQueueActor = { actorId: 'individual-p15', role: 'admin', planTier: 'individual' };
 
-function createValidDraft(provider: ReviewCoreKnowledgeReviewQueueProvider, seed: string, actor: ReviewCoreQueueActor = admin): string {
+function createValidDraft(provider: KnowledgeReviewQueueProvider, seed: string, actor: KnowledgeQueueActor = admin): string {
   const draft = provider.createDraft(
     {
       title: `P15 valid source-backed record ${seed}`,
       content: 'Source-backed queue record for P15 validation.',
       domain: 'machine_guarding',
       tags: ['machine_guarding'],
-      authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
+      authorityTier: KnowledgeAuthorityTier.CORE,
       primaryCitation: '30 CFR 56.14107(a)',
       fingerprint: `p15-${seed}`,
-      status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+      status: KnowledgeRecordStatus.PENDING_VALIDATION,
     },
     actor,
   ) as any;
@@ -68,7 +68,7 @@ function createValidDraft(provider: ReviewCoreKnowledgeReviewQueueProvider, seed
   return id;
 }
 
-const provider = new ReviewCoreKnowledgeReviewQueueProvider();
+const provider = new KnowledgeReviewQueueProvider();
 provider.resetForValidation();
 
 const resolvedDefault = provider.resolveActorFromRequest();
@@ -89,9 +89,9 @@ const missingDraft = provider.createDraft(
     content: 'Core record missing source reference.',
     domain: 'machine_guarding',
     tags: ['machine_guarding'],
-    authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
+    authorityTier: KnowledgeAuthorityTier.CORE,
     fingerprint: 'p15-missing-source',
-    status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+    status: KnowledgeRecordStatus.PENDING_VALIDATION,
   },
   admin,
 ) as any;
@@ -102,9 +102,9 @@ assert.equal(blocked.data.result.approved, false, 'missing source approval must 
 assert.equal(blocked.auditEvent.denied, true, 'blocked approval audit should be denied');
 assert.ok(!(provider.listActiveRetrievalRecords(admin) as any).data.records.some((record: any) => record.id === missingId), 'blocked record must not enter active retrieval');
 
-const controllerProvider = new ReviewCoreKnowledgeReviewQueueProvider();
+const controllerProvider = new KnowledgeReviewQueueProvider();
 controllerProvider.resetForValidation();
-const controller = new ReviewCoreKnowledgeReviewQueueHttpController(controllerProvider);
+const controller = new KnowledgeReviewQueueHttpController(controllerProvider);
 
 const controllerDraft = controller.createDraft({
   actor: admin,
@@ -113,10 +113,10 @@ const controllerDraft = controller.createDraft({
     content: 'Unique source-backed controller record.',
     domain: 'controller_machine_guarding_p15',
     tags: ['controller_machine_guarding_p15'],
-    authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
+    authorityTier: KnowledgeAuthorityTier.CORE,
     primaryCitation: '30 CFR 56.14107(a)',
     fingerprint: 'p15-controller-valid-unique',
-    status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+    status: KnowledgeRecordStatus.PENDING_VALIDATION,
   },
 }) as any;
 assertEnvelope(controllerDraft, 'controller createDraft');
@@ -172,10 +172,10 @@ assertEnvelope(readiness, 'controller persistence readiness');
 assert.equal(readiness.data.databaseMigrationReady, false, 'databaseMigrationReady must remain false in P15');
 assert.equal(readiness.data.durablePersistenceReady, false, 'durablePersistenceReady must remain false in P15');
 
-assert.ok(ReviewCoreKnowledgeReviewQueueModule, 'module class should exist');
-assert.ok(ReviewCoreKnowledgeReviewQueueModuleDefinition.controllers.includes(ReviewCoreKnowledgeReviewQueueHttpController), 'module definition should include controller');
-assert.ok(ReviewCoreKnowledgeReviewQueueModuleDefinition.providers.includes(ReviewCoreKnowledgeReviewQueueProvider), 'module definition should include provider');
-assert.ok(ReviewCoreKnowledgeReviewQueueModuleDefinition.exports.includes(ReviewCoreKnowledgeReviewQueueProvider), 'module definition should export provider');
+assert.ok(KnowledgeReviewQueueModule, 'module class should exist');
+assert.ok(KnowledgeReviewQueueModuleDefinition.controllers.includes(KnowledgeReviewQueueHttpController), 'module definition should include controller');
+assert.ok(KnowledgeReviewQueueModuleDefinition.providers.includes(KnowledgeReviewQueueProvider), 'module definition should include provider');
+assert.ok(KnowledgeReviewQueueModuleDefinition.exports.includes(KnowledgeReviewQueueProvider), 'module definition should export provider');
 
 const allOutput = JSON.stringify({
   approveRes,
@@ -201,4 +201,4 @@ const allOutput = JSON.stringify({
   'com' + 'pliant',
 ].forEach((phrase) => assert.equal(allOutput.includes(phrase), false, `Prohibited phrase present: ${phrase}`));
 
-console.log('P15 ReviewCore NestJS Queue Wiring Validation Successful!');
+console.log('P15 Knowledge NestJS Queue Wiring Validation Successful!');

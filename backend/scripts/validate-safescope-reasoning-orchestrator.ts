@@ -1,10 +1,10 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 const result = service.reason({
   hazardObservation: 'Unguarded conveyor tail pulley with employee access during cleanup.',
@@ -83,4 +83,4 @@ assert(enabledContext.correctiveActionReasoning.reasoningBoundary.doesNotGuarant
 assert(enabledContext.conclusionBoundary.doesNotDeclareViolation === true, 'Enabled context result still must not declare violations.');
 assert(enabledContext.conclusionBoundary.doesNotCreateCitation === true, 'Enabled context result still must not create citations.');
 
-console.log('✅ SafeScope reasoning orchestrator validation passed.');
+console.log('✅ HazLenz reasoning orchestrator validation passed.');

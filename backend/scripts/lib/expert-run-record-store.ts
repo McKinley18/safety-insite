@@ -34,7 +34,7 @@ import { appendFileSync, closeSync, existsSync, fsyncSync, mkdirSync, openSync, 
   writeSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
-import type { CohortRunRecord } from '../../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+import type { CohortRunRecord } from '../../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 export const RUN_RECORD_STORE_VERSION = 'hazlenz.expert.run-record-store.v1' as const;
 

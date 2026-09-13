@@ -26,7 +26,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import type { L3StateFacts } from '../src/safescope-v2/reasoning-l3/state-facts';
+import type { L3StateFacts } from '../src/hazlenz/reasoning-l3/state-facts';
 
 interface Row {
   scenarioId: string; pole: string; variant: string;

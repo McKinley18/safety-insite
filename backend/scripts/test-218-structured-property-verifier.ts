@@ -78,7 +78,7 @@ const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest
  * ==================== §247 RELOCATION REPAIR ====================
  *
  * §246 promoted the §218 contract modules into the production tree at
- * `src/safescope-v2/expert-hazlenz/contract/` and left one-line re-export shims at their historical
+ * `src/hazlenz/expert-hazlenz/contract/` and left one-line re-export shims at their historical
  * `scripts/lib/` paths. Every assertion below must read the IMPLEMENTATION, not a shim, so a module
  * is resolved to the canonical production location when it exists there and to `scripts/lib/`
  * otherwise -- which is still correct for the §218 modules that were not relocated.
@@ -88,7 +88,7 @@ const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest
  * changed. The source-rule scan asserts the same rule against the same bytes at their canonical
  * location.
  */
-const CONTRACT_DIR = join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz', 'contract');
+const CONTRACT_DIR = join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz', 'contract');
 /** Redirect a historical `scripts/lib/<name>` path to the promoted module when one exists. */
 function canonicalModulePath(repoRelativeOrName: string): string {
   const name = repoRelativeOrName.split('/').pop() as string;
@@ -660,7 +660,7 @@ const PINNED: readonly (readonly [string, string])[] = [
     '00b7aed2053b7a6d8a7f10d032a4333664e69f4d335345400de863dfff8382d4'],
   ['scripts/lib/expert-verifier-instruction-v3-2.ts',
     '9ab0321212f9100f3c2eb4d6b0d4a8170ce93ed97f596430fb8a02ae554292e5'],
-  ['src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts',
     '102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a'],
 ];
 const BACKEND = join(__dirname, '..');

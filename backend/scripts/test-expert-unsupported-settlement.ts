@@ -18,24 +18,24 @@
 import {
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_AFFECTED_DECISIONS, EXPERT_ANALYSIS_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertWireSchema,
   stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { validateCohortRow } from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { validateCohortRow } from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   UNSUPPORTED_SETTLEMENT_FIXTURES, UNSUPPORTED_SETTLEMENT_BUDGET, UNSUPPORTED_SETTLEMENT_GATES,
   UNSUPPORTED_SETTLEMENT_FIXTURE_SET_VERSION, ABSENCE_FORMS,
   type AbsenceForm, type UnsupportedSettlementFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/unsupported-settlement-probe-v7';
+} from '../src/hazlenz/expert-hazlenz/fixtures/unsupported-settlement-probe-v7';
 import {
   THRESHOLD_ARBITRATION_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
+} from '../src/hazlenz/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
 import {
   CLARIFICATION_RECALL_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/clarification-recall-probe-v5';
+} from '../src/hazlenz/expert-hazlenz/fixtures/clarification-recall-probe-v5';
 import {
   rawLinkageDiagnostics, RAW_LINKAGE_DIAGNOSTICS_VERSION,
 } from './lib/expert-raw-linkage-diagnostics';

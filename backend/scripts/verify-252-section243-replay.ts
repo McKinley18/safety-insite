@@ -25,11 +25,11 @@ import { createHash } from 'crypto';
 
 import {
   conformsToContract252, closeObjectNodes252,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import { admitThroughProductionPath } from './lib/expert-252-replay-path';
-import { normalizeExpertToolOutput235 } from '../src/safescope-v2/expert-hazlenz/contract/expert-235-wire-normalization';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+import { normalizeExpertToolOutput235 } from '../src/hazlenz/expert-hazlenz/contract/expert-235-wire-normalization';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
 import { assembleFirstPass243 } from './lib/expert-243-assembly';
 
 const ROOT = join(__dirname, '..', '..');

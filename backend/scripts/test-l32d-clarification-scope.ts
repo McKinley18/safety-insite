@@ -16,11 +16,11 @@
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { L3_SYSTEM_PROMPT, L3_PROMPT_VERSION } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { L3_SYSTEM_PROMPT, L3_PROMPT_VERSION } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
 
 let passed = 0, failed = 0;
 const failures: string[] = [];

@@ -48,7 +48,7 @@ function productionCallersOfExpert(): string[] {
 
 const calls = s254.providerCalls as number;
 const envelopeSrc = readFileSync(join(BACKEND,
-  'src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts'), 'utf8');
+  'src/hazlenz/expert-hazlenz-adapters/expert-request-envelope.ts'), 'utf8');
 
 const measured = {
   section254: {

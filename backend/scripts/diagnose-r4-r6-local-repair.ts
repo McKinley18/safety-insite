@@ -25,14 +25,14 @@ import { mkdirSync, writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 import {
   OllamaExpertProvider, EXPERT_PROBE_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
 import {
   buildAnthropicRequestBody,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { buildExpertWireSchema } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { buildExpertWireSchema } from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const REPEATS = Number(process.env.DIAG_REPEATS || 10);
 const NOW = '2026-08-30T00:00:00.000Z';

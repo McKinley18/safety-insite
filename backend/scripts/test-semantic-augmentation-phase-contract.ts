@@ -22,7 +22,7 @@ import {
   derivedCountableCases, resolveValidationPhase,
   type MechanicalComposition, type SemanticReviewRecord,
 } from './lib/expert-semantic-augmentation-review-record';
-import { SEMANTIC_ROWS } from '../src/safescope-v2/expert-hazlenz/fixtures/semantic-augmentation-v1';
+import { SEMANTIC_ROWS } from '../src/hazlenz/expert-hazlenz/fixtures/semantic-augmentation-v1';
 
 let passed = 0, failed = 0;
 function assert(cond: boolean, label: string, detail = ''): void {

@@ -74,7 +74,7 @@ async function main() {
   const chunkRepo = dataSource.getRepository(HazLenzKnowledgeChunk);
   const runRepo = dataSource.getRepository(HazLenzKnowledgeIngestionRun);
 
-  console.log("\nSafeScope Knowledge Expansion Gate");
+  console.log("\nHazLenz Knowledge Expansion Gate");
   console.log("==================================");
 
   const documentCount = await docRepo.count();

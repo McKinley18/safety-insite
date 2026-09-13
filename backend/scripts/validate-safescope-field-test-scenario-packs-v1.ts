@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 // Mock/Stub dependencies for service instantiation
 class StubActionEngine { async generateActionsFromReport() { return []; } }
@@ -21,7 +21,7 @@ class StubOrchestrator {
                 primaryDomain: 'test',
                 confidence: 0.5,
                 fieldAssessment: 'Test assessment',
-                advisoryBoundaries: ['SafeScope provides advisory information only.']
+                advisoryBoundaries: ['HazLenz provides advisory information only.']
             }
         };
     }
@@ -52,8 +52,8 @@ async function validate() {
   });
   console.log('Schema validated for ' + pack.scenarios.length + ' scenarios.');
 
-  console.log('--- Testing Scenarios through SafescopeV2Service ---');
-  const service = new SafescopeV2Service(
+  console.log('--- Testing Scenarios through HazLenzService ---');
+  const service = new HazLenzService(
       new StubActionEngine() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
@@ -105,7 +105,7 @@ async function validate() {
       console.log('[PASS] Scenario ' + scenario.id + ' verified.');
   }
 
-  console.log('✅ SafeScope field test scenario packs validation passed.');
+  console.log('✅ HazLenz field test scenario packs validation passed.');
 }
 
 validate().catch(err => {

@@ -1,6 +1,6 @@
-import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
-import { CryptographicAuditService } from '../src/safescope-v2/persistence/cryptographic-audit.service';
-import { SafeScopeAuditRecord } from '../src/safescope-v2/persistence/persistence.types';
+import { HazLenzPersistenceService } from '../src/hazlenz/persistence/persistence.service';
+import { CryptographicAuditService } from '../src/hazlenz/persistence/cryptographic-audit.service';
+import { HazLenzAuditRecord } from '../src/hazlenz/persistence/persistence.types';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -9,9 +9,9 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Cryptographic Immutable Audit Trail ---');
+  console.log('--- Testing HazLenz Cryptographic Immutable Audit Trail ---');
 
-  const persistence = new SafeScopePersistenceService();
+  const persistence = new HazLenzPersistenceService();
   const signer = new CryptographicAuditService();
 
   // Create clean workspace audit data
@@ -65,7 +65,7 @@ async function validate() {
   console.log('  Testing Case 4: Tamper detection simulation');
   
   // Create a deep copy of the retrieved record and maliciously alter it
-  const tamperedRecord = JSON.parse(JSON.stringify(retrieved)) as SafeScopeAuditRecord;
+  const tamperedRecord = JSON.parse(JSON.stringify(retrieved)) as HazLenzAuditRecord;
   tamperedRecord.payload.proposedKnowledgeText = 'MALICIOUS MODIFICATION: bypass guards entirely'; // Alter payload
 
   const isTamperedVerified = signer.verifyRecord(tamperedRecord);
@@ -74,14 +74,14 @@ async function validate() {
   assert(tamperedRecord.metadata.isTampered, 'Tamper indicator flag must be set to true.');
 
   // Malicious status manipulation
-  const tamperedStatusRecord = JSON.parse(JSON.stringify(retrieved)) as SafeScopeAuditRecord;
+  const tamperedStatusRecord = JSON.parse(JSON.stringify(retrieved)) as HazLenzAuditRecord;
   tamperedStatusRecord.status = 'approved_for_promotion'; // Maliciously changing status without signing key
 
   const isStatusTamperedVerified = signer.verifyRecord(tamperedStatusRecord);
   assert(!isStatusTamperedVerified, 'Tamper verification must detect modified status and fail.');
   assert(tamperedStatusRecord.metadata.isTampered, 'Status tampering indicator flag must be set to true.');
 
-  console.log('✅ SafeScope Cryptographic Audit Trail validation passed.');
+  console.log('✅ HazLenz Cryptographic Audit Trail validation passed.');
 }
 
 validate().catch(err => {

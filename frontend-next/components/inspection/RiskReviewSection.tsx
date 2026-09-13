@@ -24,7 +24,7 @@ type Props = {
 
 /**
  * Cell banding comes from the ONE shared table in `lib/inspection/riskBands.ts`, which mirrors
- * `backend/src/safescope-v2/risk/risk-profiles.ts` and is held to it by
+ * `backend/src/hazlenz/risk/risk-profiles.ts` and is held to it by
  * `npm run check:risk-band-parity`.
  *
  * This was previously a proportional rule (>=75% Critical, >=50% High, >=25% Medium), which

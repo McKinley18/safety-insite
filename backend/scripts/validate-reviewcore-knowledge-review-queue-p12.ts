@@ -1,8 +1,8 @@
-import { ReviewCoreKnowledgeReviewQueueService } from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.service';
+import { KnowledgeReviewQueueService } from '../src/hazlenz/knowledge-architecture/knowledge-review-queue.service';
 import {
-  ReviewCoreKnowledgeAuthorityTier,
-  ReviewCoreKnowledgeRecordStatus,
-} from '../src/safescope-v2/knowledge-architecture/reviewcore-knowledge-record.types';
+  KnowledgeAuthorityTier,
+  KnowledgeRecordStatus,
+} from '../src/hazlenz/knowledge-architecture/knowledge-record.types';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -17,7 +17,7 @@ function assertGuardrails(value: any, label: string) {
   assert(value?.guardrails?.unapprovedRecordsAffectRetrieval === false, `${label}: retrieval guardrail missing`);
 }
 
-const service = new ReviewCoreKnowledgeReviewQueueService();
+const service = new KnowledgeReviewQueueService();
 
 const baseRecord = {
   id: 'draft-1',
@@ -25,8 +25,8 @@ const baseRecord = {
   content: 'Draft knowledge record for guarded review queue validation.',
   domain: 'machine_guarding',
   tags: ['machine_guarding'],
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.EXPERIMENTAL,
-  status: ReviewCoreKnowledgeRecordStatus.DRAFT,
+  authorityTier: KnowledgeAuthorityTier.EXPERIMENTAL,
+  status: KnowledgeRecordStatus.DRAFT,
   fingerprint: 'fingerprint-draft-1',
   createdAt: new Date(),
   updatedAt: new Date(),
@@ -36,15 +36,15 @@ const baseRecord = {
 const needsReviewRecord = {
   ...baseRecord,
   id: 'needs-review-1',
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
   fingerprint: 'fingerprint-needs-review-1',
 } as any;
 
 const validRecord = {
   ...baseRecord,
   id: 'approved-eligible-1',
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
+  authorityTier: KnowledgeAuthorityTier.CORE,
   primaryCitation: '30 CFR 56.14107(a)',
   fingerprint: 'fingerprint-approved-eligible-1',
 } as any;
@@ -52,23 +52,23 @@ const validRecord = {
 const missingCitationPrimaryRecord = {
   ...baseRecord,
   id: 'blocked-primary-1',
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.CORE,
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+  authorityTier: KnowledgeAuthorityTier.CORE,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
   fingerprint: 'fingerprint-blocked-primary-1',
 } as any;
 
 const missingCitationGuidanceRecord = {
   ...baseRecord,
   id: 'blocked-guidance-1',
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.ENHANCED,
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+  authorityTier: KnowledgeAuthorityTier.ENHANCED,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
   fingerprint: 'fingerprint-blocked-guidance-1',
 } as any;
 
 const approvedRecord = {
   ...validRecord,
   id: 'already-approved-1',
-  status: ReviewCoreKnowledgeRecordStatus.GOVERNED,
+  status: KnowledgeRecordStatus.GOVERNED,
   fingerprint: 'fingerprint-already-approved-1',
 } as any;
 
@@ -107,11 +107,11 @@ const createdDraft = service.createDraft({
   title: 'Created draft',
   content: 'Created through local P12 contract.',
   domain: 'machine_guarding',
-  authorityTier: ReviewCoreKnowledgeAuthorityTier.EXPERIMENTAL,
+  authorityTier: KnowledgeAuthorityTier.EXPERIMENTAL,
 });
 assertGuardrails(createdDraft, 'createDraft');
 assert(createdDraft.activeRetrievalEligible === false, 'created draft must not be retrieval eligible');
-assert(createdDraft.result.status !== ReviewCoreKnowledgeRecordStatus.GOVERNED, 'created draft must not auto-approve');
+assert(createdDraft.result.status !== KnowledgeRecordStatus.GOVERNED, 'created draft must not auto-approve');
 
 const activeAfterDraft = service.listActiveRetrievalRecords([createdDraft.result as any]);
 assert(activeAfterDraft.length === 0, 'created draft must not appear in active retrieval records');
@@ -151,7 +151,7 @@ const replacement = {
   ...validRecord,
   id: 'replacement-1',
   fingerprint: 'fingerprint-replacement-1',
-  status: ReviewCoreKnowledgeRecordStatus.PENDING_VALIDATION,
+  status: KnowledgeRecordStatus.PENDING_VALIDATION,
 } as any;
 const superseded = service.supersede(approvedRecord, replacement, 'reviewer');
 assertGuardrails(superseded, 'supersede');

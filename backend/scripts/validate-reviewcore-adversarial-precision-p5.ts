@@ -1,7 +1,7 @@
-import { SafeScopeMechanismIntelligenceService } from '../src/safescope-v2/mechanism-intelligence/mechanism-intelligence.service';
-import { SafeScopeStandardsIntentIntelligenceService } from '../src/safescope-v2/standards-intent-intelligence/standards-intent-intelligence.service';
-import { SafeScopeRegulatoryApplicabilityService } from '../src/safescope-v2/regulatory-applicability/regulatory-applicability.service';
-import { SafeScopeControlEffectivenessService } from '../src/safescope-v2/control-effectiveness/control-effectiveness.service';
+import { HazLenzMechanismIntelligenceService } from '../src/hazlenz/mechanism-intelligence/mechanism-intelligence.service';
+import { HazLenzStandardsIntentIntelligenceService } from '../src/hazlenz/standards-intent-intelligence/standards-intent-intelligence.service';
+import { HazLenzRegulatoryApplicabilityService } from '../src/hazlenz/regulatory-applicability/regulatory-applicability.service';
+import { HazLenzControlEffectivenessService } from '../src/hazlenz/control-effectiveness/control-effectiveness.service';
 
 type CaseType = 'positive' | 'controlled';
 
@@ -331,10 +331,10 @@ const cases: AdversarialCase[] = [
   },
 ];
 
-const mechanismService = new SafeScopeMechanismIntelligenceService();
-const standardsIntentService = new SafeScopeStandardsIntentIntelligenceService();
-const applicabilityService = new SafeScopeRegulatoryApplicabilityService();
-const controlEffectivenessService = new SafeScopeControlEffectivenessService();
+const mechanismService = new HazLenzMechanismIntelligenceService();
+const standardsIntentService = new HazLenzStandardsIntentIntelligenceService();
+const applicabilityService = new HazLenzRegulatoryApplicabilityService();
+const controlEffectivenessService = new HazLenzControlEffectivenessService();
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -458,5 +458,5 @@ const totals = {
   domains: Object.keys(summary).length,
 };
 
-console.log('✅ ReviewCore P5 adversarial precision validation passed.');
+console.log('✅ Knowledge P5 adversarial precision validation passed.');
 console.log(JSON.stringify({ totals, byDomain: summary }, null, 2));

@@ -17,12 +17,12 @@ import { createHash } from 'crypto';
 
 import {
   POSTURE_DRIVER_ROLES_239, DRIVER_ROLE_REF_KINDS_239,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
 import {
   buildBasisEntryUnion247, admissiblePairs247, expressiblePairsUnder239,
   ROLE_EPISTEMIC_CHARACTERS_247, ROLE_JUSTIFICATION_SUBFIELDS_247, CESSATION_ROLE_247,
   CONTROLS_ROLE_247,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import { buildCompactBasisEntryUnion251 } from './analyze-251-compaction-ceiling';
 
 const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');

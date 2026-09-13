@@ -10,7 +10,7 @@ const API_BASE_URL =
 
 export async function downloadHazLenzBrainBundle() {
   const response = await fetch(
-    `${API_BASE_URL}/offline/safescope-brain-bundle.json`,
+    `${API_BASE_URL}/offline/hazlenz-brain-bundle.json`,
     {
       cache: "no-store",
     },

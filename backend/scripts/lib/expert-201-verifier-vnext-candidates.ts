@@ -58,7 +58,7 @@ import {
 } from './expert-verifier-contract-v3-2';
 import { v3_3ScannedStrings } from './expert-verifier-contract-v3-3';
 import { CITATION_SHAPED_PATTERN } from
-  '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 export const EXPERT_201_VERIFIER_VNEXT_VERSION =
   'hazlenz.expert.verifier-vnext.candidates.201' as const;

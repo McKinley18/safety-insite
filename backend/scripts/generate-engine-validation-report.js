@@ -27,7 +27,7 @@ const speed = JSON.parse(speedOutput);
 
 const report = {
   generatedAt: new Date().toISOString(),
-  engine: 'SafeScope OSHA/MSHA condition engine',
+  engine: 'HazLenz OSHA/MSHA condition engine',
   summary: {
     totalSuites: results.length,
     totalCases: results.reduce((sum, r) => sum + r.totalCases, 0),

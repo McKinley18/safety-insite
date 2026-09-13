@@ -1,6 +1,6 @@
-import { MultiHazardDecompositionService } from '../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service';
-import { MultiHazardDecompositionValidator } from '../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.validator';
-import { FieldOutputComposerV1Service } from '../src/safescope-v2/field-output-composer-v1/field-output-composer-v1.service';
+import { MultiHazardDecompositionService } from '../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service';
+import { MultiHazardDecompositionValidator } from '../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.validator';
+import { FieldOutputComposerV1Service } from '../src/hazlenz/field-output-composer-v1/field-output-composer-v1.service';
 
 async function validate() {
   const service = new MultiHazardDecompositionService();
@@ -59,7 +59,7 @@ async function validate() {
       }
   }
 
-  console.log('✅ SafeScope multi-hazard decomposition validation passed.');
+  console.log('✅ HazLenz multi-hazard decomposition validation passed.');
 }
 
 validate().catch(err => {

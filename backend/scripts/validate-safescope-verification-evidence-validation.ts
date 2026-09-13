@@ -1,8 +1,8 @@
-import { VerificationEvidenceValidationService } from '../src/safescope-v2/verification-evidence/verification-evidence.service';
+import { VerificationEvidenceValidationService } from '../src/hazlenz/verification-evidence/verification-evidence.service';
 import * as assert from 'assert';
 
 async function validate() {
-  console.log('--- Testing SafeScope Verification Evidence Validation Service (P0) ---');
+  console.log('--- Testing HazLenz Verification Evidence Validation Service (P0) ---');
   const service = new VerificationEvidenceValidationService();
 
   // Test Case 1: Minimal length check
@@ -59,7 +59,7 @@ async function validate() {
   assert(case5.warnings[0].includes('without supporting photo evidence'));
   console.log('[PASS] Missing photo warning check verified.');
 
-  console.log('✅ SafeScope verification evidence validation passed.');
+  console.log('✅ HazLenz verification evidence validation passed.');
 }
 
 validate().catch((err) => {

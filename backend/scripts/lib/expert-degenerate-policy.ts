@@ -180,7 +180,7 @@ export function customerEffectOf(decision: DegeneratePolicyDecision): {
 /**
  * One recorded response inside a logical call, degenerate or not.
  *
- * Mirrors `ExpertAttemptRecord` in `src/safescope-v2/expert-hazlenz/expert-runner.ts` closely
+ * Mirrors `ExpertAttemptRecord` in `src/hazlenz/expert-hazlenz/expert-runner.ts` closely
  * enough to reason about, and does not import it: a prototype under `scripts/` must not create a
  * dependency that a later refactor could invert into production. §151 hit exactly that with a
  * fixture importing a script type across `rootDir`, and the fix was to declare the shape locally.

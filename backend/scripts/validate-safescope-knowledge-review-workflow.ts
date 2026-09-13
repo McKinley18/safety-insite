@@ -1,5 +1,5 @@
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
-import { KnowledgeReviewService } from '../src/safescope-v2/knowledge-intake/review/knowledge-review.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
+import { KnowledgeReviewService } from '../src/hazlenz/knowledge-intake/review/knowledge-review.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
@@ -109,4 +109,4 @@ expectFailure('approval of prohibited boundary', () => {
   );
 });
 
-console.log('✅ SafeScope knowledge review workflow validation passed.');
+console.log('✅ HazLenz knowledge review workflow validation passed.');

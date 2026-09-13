@@ -1,9 +1,9 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 import * as assert from 'assert';
 
 async function validate() {
-  console.log('--- Testing SafeScope P1 Knowledge Expansion: Industrial Hygiene & Ergonomics ---');
-  const service = new SafeScopeReasoningOrchestratorService();
+  console.log('--- Testing HazLenz P1 Knowledge Expansion: Industrial Hygiene & Ergonomics ---');
+  const service = new HazLenzReasoningOrchestratorService();
 
   // Test Case 1: Industrial Hygiene routing & citation
   const case1 = await service.reason({
@@ -31,7 +31,7 @@ async function validate() {
   assert(case2.missingEvidence.some((gap: any) => gap.field === 'ergonomicsLiftingFacts'));
   console.log('[PASS] Ergonomics routing, citation, and evidence gap verified.');
 
-  console.log('✅ SafeScope P1 knowledge expansion validation passed.');
+  console.log('✅ HazLenz P1 knowledge expansion validation passed.');
 }
 
 validate().catch((err) => {

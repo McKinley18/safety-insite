@@ -18,15 +18,15 @@ import { DataSource } from 'typeorm';
 
 import { AppModule } from '../src/app.module';
 import { ExpertAnalysisController }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis.controller';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis.controller';
 import {
   substituteExpertSemanticTransportForVerification, expertTransportLifetimeCounts,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-semantic-transport.provider';
+} from '../src/hazlenz/expert-hazlenz-product/expert-semantic-transport.provider';
 import { EXPERT_CLASSIFICATION_SETTLED_AUDIT_ACTION }
-  from '../src/safescope-v2/expert-hazlenz-product/expert-analysis-audit';
+  from '../src/hazlenz/expert-hazlenz-product/expert-analysis-audit';
 import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
-} from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
+} from '../src/hazlenz/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
 
 const PROTECTED_DATABASE_NAMES = [
@@ -633,7 +633,7 @@ async function main(): Promise<void> {
   // So this drives the service directly, where both settlements perform their reads before either
   // transaction commits, and asserts which mechanism actually rejected the loser.
   const { ExpertAnalysisService: SettlementService } =
-    require('../src/safescope-v2/expert-hazlenz-product/expert-analysis.service');
+    require('../src/hazlenz/expert-hazlenz-product/expert-analysis.service');
   const authority = app.get(SettlementService) as {
     settleExpertAnalysis: (u: unknown, o: string, a: string, r: Record<string, unknown>) => Promise<unknown>;
   };

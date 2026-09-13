@@ -1,4 +1,4 @@
-import { SourceBackedKnowledgeCandidateService } from '../src/safescope-v2/source-backed-knowledge-candidates/source-backed-knowledge-candidate.service';
+import { SourceBackedKnowledgeCandidateService } from '../src/hazlenz/source-backed-knowledge-candidates/source-backed-knowledge-candidate.service';
 
 async function validate() {
   const service = new SourceBackedKnowledgeCandidateService();

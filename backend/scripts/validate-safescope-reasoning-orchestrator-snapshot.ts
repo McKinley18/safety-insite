@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
 
 const snapshotPath = path.join(
   __dirname,
-  '../src/safescope-v2/reasoning-orchestrator/reports/reasoning-orchestrator-snapshot.json',
+  '../src/hazlenz/reasoning-orchestrator/reports/reasoning-orchestrator-snapshot.json',
 );
 
 assert(
@@ -83,4 +83,4 @@ assert(
   'Snapshot sourceBoundary must preserve violation boundary.',
 );
 
-console.log('✅ SafeScope reasoning orchestrator snapshot validation passed.');
+console.log('✅ HazLenz reasoning orchestrator snapshot validation passed.');

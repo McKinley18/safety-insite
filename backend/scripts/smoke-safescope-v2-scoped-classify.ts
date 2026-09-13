@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "../src/app.module";
-import { SafescopeV2Service } from "../src/safescope-v2/safescope-v2.service";
+import { HazLenzService } from "../src/hazlenz/safescope-v2.service";
 
 type Case = {
   name: string;
@@ -53,7 +53,7 @@ async function run() {
     logger: false,
   });
 
-  const service = app.get(SafescopeV2Service);
+  const service = app.get(HazLenzService);
 
   const results = [];
 

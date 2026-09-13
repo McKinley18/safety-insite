@@ -1,5 +1,5 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
-import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
+import { ReasoningSnapshotService } from '../src/hazlenz/snapshots/reasoning-snapshot.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
   }
 }
 
-const reasoning = new SafeScopeReasoningOrchestratorService();
+const reasoning = new HazLenzReasoningOrchestratorService();
 const snapshotService = Object.create(
   ReasoningSnapshotService.prototype,
 ) as ReasoningSnapshotService;
@@ -85,7 +85,7 @@ assert(
   'Snapshot should receive live-path equipment reasoning summary.',
 );
 
-console.log('✅ SafeScope v2 live equipment snapshot context validation passed.');
+console.log('✅ HazLenz v2 live equipment snapshot context validation passed.');
 console.log(
   `Live snapshot mode: ${snapshot.equipmentReasoningSummary?.primaryReasoningMode}`,
 );

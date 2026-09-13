@@ -18,7 +18,7 @@
 
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput, type ExpertConditionState,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import { governedBindingFor } from './expert-first-pass-instruction-vnext';
 import { buildExpert239WireSchema, type PostureDriverRole239 }
   from './expert-239-posture-contract';

@@ -1,5 +1,5 @@
-import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
-import { RoleBasedApprovalGatesValidator } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.validator';
+import { RoleBasedApprovalGatesService } from '../src/hazlenz/role-based-approval-gates/role-based-approval-gates.service';
+import { RoleBasedApprovalGatesValidator } from '../src/hazlenz/role-based-approval-gates/role-based-approval-gates.validator';
 
 async function validate() {
   const service = new RoleBasedApprovalGatesService();
@@ -132,7 +132,7 @@ async function validate() {
 
   // 12. Promotion without authorized prior approval is blocked (implicitly handled by evaluate check in services)
   
-  console.log('✅ SafeScope role-based approval gates validation passed.');
+  console.log('✅ HazLenz role-based approval gates validation passed.');
 }
 
 validate().catch(err => {

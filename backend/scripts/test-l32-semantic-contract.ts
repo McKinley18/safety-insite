@@ -12,17 +12,17 @@
  */
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import type { HazLenzReasoningProvider, ReasoningProviderResult } from '../src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider';
+import type { HazLenzReasoningProvider, ReasoningProviderResult } from '../src/hazlenz/reasoning-l3/hazlenz-reasoning-provider';
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { runValidatedReasoning } from '../src/safescope-v2/reasoning-l3/reasoning-runner';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { buildReasoningInput, describeEgress, redactForProvider } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { bindProposal, buildProposalSchema, buildUserPrompt } from '../src/safescope-v2/reasoning-l3/reasoning-prompt';
-import { carriesHazardConclusion } from '../src/safescope-v2/reasoning-l3/reasoning-outcome';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { runValidatedReasoning } from '../src/hazlenz/reasoning-l3/reasoning-runner';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { buildReasoningInput, describeEgress, redactForProvider } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { bindProposal, buildProposalSchema, buildUserPrompt } from '../src/hazlenz/reasoning-l3/reasoning-prompt';
+import { carriesHazardConclusion } from '../src/hazlenz/reasoning-l3/reasoning-outcome';
 
 let passed = 0;
 let failed = 0;
@@ -392,7 +392,7 @@ function dataBoundary(): void {
     (egress.sourceTypes as string[]).every(t => ['observation', 'inspection_context', 'clarification_answer'].includes(t)));
 
   // Structural exclusion: the request type has no field through which identity could be supplied.
-  const builderSource = readFileSync(join(__dirname, '..', 'src/safescope-v2/reasoning-l3/reasoning-input-builder.ts'), 'utf8');
+  const builderSource = readFileSync(join(__dirname, '..', 'src/hazlenz/reasoning-l3/reasoning-input-builder.ts'), 'utf8');
   const requestBlock = builderSource.slice(
     builderSource.indexOf('export interface ReasoningInputRequest'),
     builderSource.indexOf('export interface RedactionRecord'));
@@ -405,15 +405,15 @@ function dataBoundary(): void {
 
 function customerAuthority(): void {
   const root = join(__dirname, '..', 'src');
-  const seam = readFileSync(join(root, 'safescope-v2/orchestration/intelligence-orchestrator.service.ts'), 'utf8');
-  const service = readFileSync(join(root, 'safescope-v2/safescope-v2.service.ts'), 'utf8');
+  const seam = readFileSync(join(root, 'hazlenz/orchestration/intelligence-orchestrator.service.ts'), 'utf8');
+  const service = readFileSync(join(root, 'hazlenz/safescope-v2.service.ts'), 'utf8');
   check('authority: the seam does not import reasoning-l3', !seam.includes('reasoning-l3'));
   check('authority: safescope-v2.service does not import reasoning-l3', !service.includes('reasoning-l3'));
   check('authority: the seam still exposes evaluate()', seam.includes('evaluate('));
   check('authority: the customer call site still calls it', service.includes('orchestrator.evaluate('));
 
   // The L3 tree must remain un-injectable: nothing may register it with Nest.
-  const l3Dir = join(root, 'safescope-v2/reasoning-l3');
+  const l3Dir = join(root, 'hazlenz/reasoning-l3');
   const files = require('fs').readdirSync(l3Dir).filter((f: string) => f.endsWith('.ts'));
   for (const f of files) {
     const src = readFileSync(join(l3Dir, f), 'utf8');

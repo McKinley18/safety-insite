@@ -28,12 +28,12 @@ import { dirname } from 'path';
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
-import { negationScopes, governingNegation } from '../src/safescope-v2/reasoning-l3/negation-scope';
-import { nounPhraseHead, tokenRole } from '../src/safescope-v2/reasoning-l3/predicate-role';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
+import { negationScopes, governingNegation } from '../src/hazlenz/reasoning-l3/negation-scope';
+import { nounPhraseHead, tokenRole } from '../src/hazlenz/reasoning-l3/predicate-role';
 
 const FAM = ['electrical', 'machine_guarding', 'chemical_storage', 'hazard_communication',
   'loto_stored_energy', 'walking_working_surfaces', 'falls', 'housekeeping', 'confined_space',
@@ -136,7 +136,7 @@ const out: any = { phase: 'L3-2f', role: 'ROOT_CAUSE_PROOF_AGAINST_UNPATCHED_L3_
   out.findings.F1 = {
     id: 'F1',
     defect: 'L3_2E_SCOPE_CONTRADICTION -- negation-scope.ts::hasPredicate()',
-    responsibleFunction: 'backend/src/safescope-v2/reasoning-l3/negation-scope.ts::hasPredicate()',
+    responsibleFunction: 'backend/src/hazlenz/reasoning-l3/negation-scope.ts::hasPredicate()',
     consumedBy: 'negationScopes() comma-boundary test -> governingNegation() -> checkNegationAddressed()',
     mechanism: 'predicate recognition is membership in FINITE_VERB_MARKERS (24 auxiliaries) OR a participle regex requiring five letters before -ing/-ed. A finite lexical verb that is neither -- "went" -- is invisible, so the comma is not treated as a clause boundary and the negation scope runs to the end of the sentence.',
     semanticExpectation: 'the comma before "and the fitter went inside" ends the negation scope, exactly as it does for "and the fitter was inside"',
@@ -188,7 +188,7 @@ const out: any = { phase: 'L3-2f', role: 'ROOT_CAUSE_PROOF_AGAINST_UNPATCHED_L3_
   out.findings.F2 = {
     id: 'F2',
     defect: 'L3-2E-DISC-05 -- NP_TERMINATORS is an incomplete preposition list',
-    responsibleFunction: 'backend/src/safescope-v2/reasoning-l3/predicate-role.ts::nounPhraseHead() via NP_TERMINATORS',
+    responsibleFunction: 'backend/src/hazlenz/reasoning-l3/predicate-role.ts::nounPhraseHead() via NP_TERMINATORS',
     consumedBy: 'checkContradiction path (A) -- the negated-hazard guard',
     mechanism: 'the NP head is "the last content word before a LISTED terminator". `against` is not listed, so head resolution walks through the preposition and returns the object of the PP ("standard") instead of the head ("deficiencies"). The hazard-object guard then finds nothing and a genuinely negated hazard is no longer refused.',
     semanticExpectation: 'the head of "no deficiencies against the storage standard" is "deficiencies"',

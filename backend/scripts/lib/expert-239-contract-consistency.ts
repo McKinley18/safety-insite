@@ -28,8 +28,8 @@ import { createHash } from 'crypto';
 
 import {
   EXPERT_CONDITION_STATES, EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { L3_UNDECIDED_STATES } from '../../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+} from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { L3_UNDECIDED_STATES } from '../../src/hazlenz/reasoning-l3/reasoning-contract.types';
 import { governedBindingFor } from './expert-first-pass-instruction-vnext';
 import { POSTURE_FIELD } from './expert-233-posture-contract';
 import { POSTURE_REFUSAL_CODES_233 } from './expert-233-posture-projection';

@@ -139,11 +139,11 @@ gate('A.4 verifier contract v3 is frozen and hashed',
   EXPERT_VERIFIER_CONTRACT_V3_VERSION === 'hazlenz.expert.verifier.v3',
   `${EXPERT_VERIFIER_CONTRACT_V3_VERSION}  schema ${v3SchemaSha.slice(0, 32)}…`);
 gate('A.5 the v13 first-pass prompt module is byte-identical — no v14, no v15',
-  sha256File(join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'))
+  sha256File(join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'))
     === EXPECTED.v13PromptModuleSha, 'unchanged');
 gate('A.6 the hardened v9 fixture is byte-identical',
   sha256File(join(ROOT,
-    'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
+    'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))
     === EXPECTED.v9FixtureSha, 'unchanged');
 
 const packet = JSON.parse(readFileSync(packetPath, 'utf8')) as { cases: PacketCase[] };

@@ -36,13 +36,13 @@ import { createHash } from 'crypto';
 
 import {
   build247SystemPrompt, buildExpert247WireSchema, FIRST_PASS_CONTRACT_247_VERSION,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
 import {
   build239SystemPrompt, buildExpert239WireSchema,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
 import {
   ADMISSION_252_VERSION,
-} from '../../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+} from '../../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import { k6OfTransmitted } from './expert-249-executable-identity';
 
 export const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');
@@ -154,10 +154,10 @@ export function deriveCandidateIdentity252(io: IdentityInputs252): CandidateIden
   const S = 'buildExpert247WireSchema';
 
   add(1, 'production Expert entry point', true,
-    'src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts',
+    'src/hazlenz/expert-hazlenz/expert-hazlenz-analysis.ts',
     'the assembled request was produced by driving this entry point', 'entryPoint');
   add(2, 'compatibility adapter entry point', true,
-    'src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts',
+    'src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts',
     'the adapter request was produced by driving the compatibility builder', 'adapter');
   add(3, 'semantic-path identity across both paths',
     prompt.name === P && schema.name === S && aPrompt.name === prompt.name

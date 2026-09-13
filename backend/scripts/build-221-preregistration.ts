@@ -6,7 +6,7 @@ import { join } from 'path';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, EXPERT_HOSTED_INFERENCE_CONFIG,
   EXPERT_TOOL_NAME,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildExpertVNextWireSchema, governedBindingFor,
 } from './lib/expert-first-pass-instruction-vnext';
@@ -26,10 +26,10 @@ import { VERIFIER_PAYLOAD_212_VERSION } from './lib/expert-212-verifier-payload'
 import { VERIFIER_TOOL_NAME } from './lib/expert-208b-verifier-recovery';
 import {
   PROPERTY_AUTHORITY_CONTRACT_VERSION, KR1_STATUS,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 import {
   SETTLEMENT_REVIEW_CONTRACT_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   INTEGRATED_INSTRUMENT_221_VERSION, PROVIDER_CALLS_IN_PHASE_A, MAX_PROVIDER_CALLS_221,
   SPEND_CEILING_USD_221, PROJECTED_SPEND_USD_221, DATABASE_OPERATIONS_AUTHORIZED_221,
@@ -49,7 +49,7 @@ const ROOT = join(__dirname, '..', '..');
 const DIR = join(ROOT, 'verification',
   'expert-hazlenz-221-integrated-pipeline-validation-2026-09-10');
 const LIB = join(__dirname, 'lib');
-const SRC = join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts');
+const SRC = join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts');
 
 if (!existsSync(DIR)) mkdirSync(DIR, { recursive: true });
 const sha = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');

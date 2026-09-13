@@ -1,11 +1,11 @@
-import { SafeScopeApplicabilityAnalysisService } from '../src/safescope-v2/reasoning-orchestrator/applicability/applicability-analysis.service';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
+import { HazLenzApplicabilityAnalysisService } from '../src/hazlenz/reasoning-orchestrator/applicability/applicability-analysis.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const service = new SafeScopeApplicabilityAnalysisService();
+const service = new HazLenzApplicabilityAnalysisService();
 
 const approvedMachineGuardingRecord: KnowledgeRecord = {
   recordId: 'fixture-applicability-machine-guarding',
@@ -87,4 +87,4 @@ const noRecords = service.analyze({
 assert(noRecords.recordAnalyses.length === 0, 'Expected no analyses when no approved records are supplied.');
 assert(noRecords.summary.likelyApplicableCount === 0, 'Expected zero likely applicable records with no approved records.');
 
-console.log('✅ SafeScope applicability analysis validation passed.');
+console.log('✅ HazLenz applicability analysis validation passed.');

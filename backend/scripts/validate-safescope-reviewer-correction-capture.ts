@@ -1,12 +1,12 @@
-import { ReviewerCorrectionCaptureService } from '../src/safescope-v2/reviewer-correction-capture/reviewer-correction-capture.service';
-import { ReviewerCorrection } from '../src/safescope-v2/reviewer-correction-capture/reviewer-correction-capture.types';
+import { ReviewerCorrectionCaptureService } from '../src/hazlenz/reviewer-correction-capture/reviewer-correction-capture.service';
+import { ReviewerCorrection } from '../src/hazlenz/reviewer-correction-capture/reviewer-correction-capture.types';
 
 async function validate() {
   const service = new ReviewerCorrectionCaptureService();
   
   // Test Case: Valid accept_with_edits
   const correction: ReviewerCorrection = {
-    originalSafeScopeSnapshotId: 'snap-1',
+    originalHazLenzSnapshotId: 'snap-1',
     reviewerDecision: 'accept_with_edits',
     reviewerId: 'user-1',
     reviewerRole: 'Safety Engineer',

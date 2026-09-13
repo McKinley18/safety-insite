@@ -1,9 +1,9 @@
 import {
   MockSourceIntelligenceRetrievalAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
 
-const context: SafeScopeAdapterContext = {
+const context: HazLenzAdapterContext = {
   normalizedObservation: {
     observationText: 'Worker standing on pallet raised by forklift with no fall protection.',
     regulatoryContext: 'OSHA_GENERAL',

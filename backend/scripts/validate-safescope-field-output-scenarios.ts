@@ -1,14 +1,14 @@
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 import { ActionEngineService } from '../src/action-engine/action-engine.service';
-import { ContextExpansionService } from '../src/safescope-v2/context/context-expansion.service';
-import { EvidenceFusionService } from '../src/safescope-v2/evidence/evidence-fusion.service';
+import { ContextExpansionService } from '../src/hazlenz/context/context-expansion.service';
+import { EvidenceFusionService } from '../src/hazlenz/evidence/evidence-fusion.service';
 import { ApplicableStandardsService } from '../src/applicable-standards/applicable-standards.service';
-import { SafeScopeFeedbackService } from '../src/safescope-v2/feedback/safescope-feedback.service';
-import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
+import { HazLenzFeedbackService } from '../src/hazlenz/feedback/hazlenz-feedback.service';
+import { ReasoningSnapshotService } from '../src/hazlenz/snapshots/reasoning-snapshot.service';
 import { HazLenzKnowledgeService } from '../src/hazlenz-knowledge/hazlenz-knowledge.service';
-import { StandardsIntelligenceService } from '../src/safescope-v2/standards-intelligence/standards-intelligence.service';
-import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
-import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
+import { StandardsIntelligenceService } from '../src/hazlenz/standards-intelligence/standards-intelligence.service';
+import { HazLenzIntelligenceOrchestrator } from '../src/hazlenz/orchestration/intelligence-orchestrator.service';
+import { WorkspaceGovernanceAccessService } from '../src/hazlenz/workspace-governance-access/workspace-governance-access.service';
 
 type Scenario = {
   name: string;
@@ -19,7 +19,7 @@ type Scenario = {
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
-    throw new Error(`SafeScope field output scenario validation failed: ${message}`);
+    throw new Error(`HazLenz field output scenario validation failed: ${message}`);
   }
 }
 
@@ -83,8 +83,8 @@ function createMockService() {
         [
           input?.description,
           input?.category,
-          input?.safeScope?.classification,
-          input?.safeScope?.mechanism,
+          input?.hazLenz?.classification,
+          input?.hazLenz?.mechanism,
         ].join(' '),
       );
 
@@ -242,7 +242,7 @@ function createMockService() {
 
   const feedbackService = {
     getWorkspaceStandardAdjustments: async () => [],
-  } as unknown as SafeScopeFeedbackService;
+  } as unknown as HazLenzFeedbackService;
 
   const reasoningSnapshotService = {
     createSnapshot: async () => ({ id: 'test-field-output-snapshot-id' }),
@@ -255,7 +255,7 @@ function createMockService() {
         {
           chunkId: 'field-output-chunk-1',
           documentId: 'field-output-doc-1',
-          title: 'Representative SafeScope reference',
+          title: 'Representative HazLenz reference',
           agency: input?.jurisdiction || 'OSHA',
           sourceType: 'regulation',
           authorityTier: 1,
@@ -287,7 +287,7 @@ function createMockService() {
         priority: action.priority || 'high',
         suggestedFixes: action.suggestedFixes || ['Verify safety controls'],
         verification: action.verification || 'Supervisor verification of correction',
-        source: action.source || 'SafeScope Brain',
+        source: action.source || 'HazLenz Brain',
       }));
 
       if (correctiveActions.length === 0) {
@@ -297,7 +297,7 @@ function createMockService() {
           priority: 'high',
           suggestedFixes: ['Verify safety controls'],
           verification: 'Supervisor verification of correction',
-          source: 'SafeScope Brain',
+          source: 'HazLenz Brain',
         });
       }
 
@@ -312,7 +312,7 @@ function createMockService() {
           verificationEvidence: ['Supervisor verification of correction'],
           evidenceGaps: ['Confirm task status'],
           supervisorQuestions: ['What is the verification evidence?'],
-          warnings: ['SafeScope is advisory only'],
+          warnings: ['HazLenz is advisory only'],
           correctiveActions,
           boundary: {
             requiresQualifiedReview: true,
@@ -329,9 +329,9 @@ function createMockService() {
         },
       };
     },
-  } as unknown as SafeScopeIntelligenceOrchestrator;
+  } as unknown as HazLenzIntelligenceOrchestrator;
 
-  return new SafescopeV2Service(
+  return new HazLenzService(
     actionEngine,
     new EvidenceFusionService(),
     applicableStandards,
@@ -450,7 +450,7 @@ async function main() {
     );
   }
 
-  console.log('✅ SafeScope field output scenario validation passed.');
+  console.log('✅ HazLenz field output scenario validation passed.');
   console.log(`Scenarios: ${scenarios.length}`);
   for (const summary of summaries) {
     console.log(`- ${summary}`);
@@ -458,7 +458,7 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope field output scenario validation failed.');
+  console.error('❌ HazLenz field output scenario validation failed.');
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });

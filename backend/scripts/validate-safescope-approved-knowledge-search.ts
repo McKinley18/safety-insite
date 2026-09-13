@@ -1,4 +1,4 @@
-import { ApprovedKnowledgeSearchService } from '../src/safescope-v2/approved-knowledge-search/approved-knowledge-search.service';
+import { ApprovedKnowledgeSearchService } from '../src/hazlenz/approved-knowledge-search/approved-knowledge-search.service';
 
 async function validate() {
   const service = new ApprovedKnowledgeSearchService();

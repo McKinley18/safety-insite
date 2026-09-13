@@ -44,7 +44,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 import { hardenedFixtureByRowId, HARDENED_SET_VERSION }
-  from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+  from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 
 const ROOT = join(__dirname, '..', '..');
 const V = join(ROOT, 'verification');
@@ -175,7 +175,7 @@ function main(): void {
     w();
     w(`Fixture \`${HARDENED_SET_VERSION}\`, file sha256 `
       + `\`${sha256File(join(ROOT,
-        'backend/src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))}\``);
+        'backend/src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9.ts'))}\``);
     w(`Jurisdiction \`${fixture.row.source.jurisdiction}\`  ·  `
       + `${observation.length} characters`);
     w();

@@ -1,4 +1,4 @@
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: boolean, message: string): void {
   }
 }
 
-const service = Object.create(SafescopeV2Service.prototype) as any;
+const service = Object.create(HazLenzService.prototype) as any;
 
 const standards = [
   {
@@ -92,7 +92,7 @@ assert(
   'Part 75 should be demoted as mismatch for surface MNM.',
 );
 
-console.log('✅ SafeScope standards scope-fit ranking validation passed.');
+console.log('✅ HazLenz standards scope-fit ranking validation passed.');
 console.log(`Surface MNM top citation: ${topCitation(['msha_mnm_surface'])}`);
 console.log(`Underground MNM top citation: ${topCitation(['msha_mnm_underground'])}`);
 console.log(`Coal underground top citation: ${topCitation(['msha_coal_underground'])}`);

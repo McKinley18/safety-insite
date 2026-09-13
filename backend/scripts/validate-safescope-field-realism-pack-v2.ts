@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -79,7 +79,7 @@ const benchmarkPath = path.resolve(
 
 const cases: FieldRealismPackV2Case[] = JSON.parse(fs.readFileSync(benchmarkPath, 'utf8'));
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 type FieldRealismPackV2ResultRow = {
   id: string;
@@ -126,7 +126,7 @@ function writeResultsReport(rows: FieldRealismPackV2ResultRow[]) {
   const failedRows = rows.filter((row) => row.status === 'fail');
 
   const resultPayload = {
-    benchmark: 'SafeScope Field Realism Pack v2',
+    benchmark: 'HazLenz Field Realism Pack v2',
     version: 'v1',
     generatedAt: new Date().toISOString(),
     totalCases: rows.length,
@@ -170,7 +170,7 @@ function writeResultsReport(rows: FieldRealismPackV2ResultRow[]) {
         .join('\n')
     : 'No failed or weak cases identified.';
 
-  const md = `# SafeScope Field Realism Pack v2 Results
+  const md = `# HazLenz Field Realism Pack v2 Results
 
 ## Summary
 
@@ -341,12 +341,12 @@ async function main() {
     throw new Error(failures.join('\n'));
   }
 
-  console.log('✅ SafeScope Field Realism Pack v2 validation passed.');
+  console.log('✅ HazLenz Field Realism Pack v2 validation passed.');
   console.log(`Cases: ${cases.length}`);
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope Field Realism Pack v2 validation failed.');
+  console.error('❌ HazLenz Field Realism Pack v2 validation failed.');
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });

@@ -40,7 +40,7 @@
 
 import type {
   OwedFactAffectedDecision, OwedFactPriority,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import { FIRST_PASS_PROJECTED_PRIORITY } from './expert-first-pass-owed-fact-projection';
 
 export const ESCALATION_DESIGN_205_VERSION = 'hazlenz.expert.205.escalation-design.v1' as const;

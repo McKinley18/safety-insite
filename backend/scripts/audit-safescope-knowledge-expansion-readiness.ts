@@ -33,7 +33,7 @@ async function main() {
   const chunkRepo = dataSource.getRepository(HazLenzKnowledgeChunk);
   const runRepo = dataSource.getRepository(HazLenzKnowledgeIngestionRun);
 
-  console.log("\nSafeScope Knowledge Expansion Readiness Audit");
+  console.log("\nHazLenz Knowledge Expansion Readiness Audit");
   console.log("============================================");
 
   const docCount = await docRepo.count();

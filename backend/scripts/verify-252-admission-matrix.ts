@@ -15,13 +15,13 @@ import { createHash } from 'crypto';
 import {
   closeObjectNodes252, conformsToContract252, agreesWithSection235,
   admissionIdentity252, type AdmissionOutcome252,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission';
 import { admitThroughProductionPath } from './lib/expert-252-replay-path';
-import { buildExpert247WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract';
-import { buildExpert239WireSchema } from '../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract';
-import { governedBindingFor } from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
-import { applyStrictSchemaWrapper } from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import { buildExpert247WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract';
+import { buildExpert239WireSchema } from '../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract';
+import { governedBindingFor } from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+import { applyStrictSchemaWrapper } from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import { EXPERT_INPUT_CONTRACT_VERSION } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 const OUT = join(__dirname, '..', '..', 'verification',
   'expert-hazlenz-252-nonstrict-admission-architecture-2026-09-12');

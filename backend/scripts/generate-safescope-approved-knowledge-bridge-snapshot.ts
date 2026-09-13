@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ApprovedKnowledgeBridgeService } from '../src/safescope-v2/knowledge-intake/bridge/approved-knowledge-bridge.service';
+import { ApprovedKnowledgeBridgeService } from '../src/hazlenz/knowledge-intake/bridge/approved-knowledge-bridge.service';
 
 const snapshotPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/bridge/reports/approved-knowledge-bridge-snapshot.json',
+  '../src/hazlenz/knowledge-intake/bridge/reports/approved-knowledge-bridge-snapshot.json',
 );
 
 const bridgeService = new ApprovedKnowledgeBridgeService();
@@ -30,7 +30,7 @@ const snapshot = {
   mode: 'contract_snapshot_read_only',
   generatedAt: new Date().toISOString(),
   purpose:
-    'Document the SafeScope approved knowledge bridge contract before production reasoning integration. This snapshot is advisory and does not modify SafeScope reasoning behavior.',
+    'Document the HazLenz approved knowledge bridge contract before production reasoning integration. This snapshot is advisory and does not modify HazLenz reasoning behavior.',
   disabledSnapshot,
   enabledSnapshot,
   contractAssertions: {
@@ -58,13 +58,13 @@ const snapshot = {
       enabledSnapshot.reasoningUseBoundary.productionReasoningModified === false,
   },
   sourceBoundary:
-    'This bridge snapshot is a contract and documentation artifact only. It does not approve knowledge records, alter SafeScope native reasoning, declare violations, create citations, or bypass qualified human review.',
+    'This bridge snapshot is a contract and documentation artifact only. It does not approve knowledge records, alter HazLenz native reasoning, declare violations, create citations, or bypass qualified human review.',
 };
 
 fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
 fs.writeFileSync(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`);
 
-console.log('✅ SafeScope approved knowledge bridge snapshot generated.');
+console.log('✅ HazLenz approved knowledge bridge snapshot generated.');
 console.log(`Snapshot: ${snapshotPath}`);
 console.log(`Disabled references: ${disabledSnapshot.references.length}`);
 console.log(`Enabled references: ${enabledSnapshot.references.length}`);

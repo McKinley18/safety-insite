@@ -34,7 +34,7 @@ const REPO = join(__dirname, '..', '..');
 const FIELD = join(REPO, 'safescope-data/benchmarks/safescope-field-validation-dataset.v1.json');
 const DIAG_MINE = join(REPO, 'verification/hazlenz-capability-acceptance-2026-08-22/contracts/diag-mine-routing.json');
 const DIAG_OVERFIT = join(REPO, 'verification/hazlenz-capability-acceptance-2026-08-22/contracts/diag-overfit.json');
-const OUT = join(__dirname, '..', 'src/safescope-v2/reasoning-l3/eval/holdout-l32b.json');
+const OUT = join(__dirname, '..', 'src/hazlenz/reasoning-l3/eval/holdout-l32b.json');
 
 /** Same list L3-2 declared, reused unchanged so the gate means the same thing across phases. */
 const HIGH_CONSEQUENCE = [

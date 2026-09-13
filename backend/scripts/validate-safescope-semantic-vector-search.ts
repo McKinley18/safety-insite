@@ -1,4 +1,4 @@
-import { SemanticVectorSearchService } from '../src/safescope-v2/semantic-vector-search/semantic-vector-search.service';
+import { SemanticVectorSearchService } from '../src/hazlenz/semantic-vector-search/semantic-vector-search.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -7,7 +7,7 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Semantic Vector Search Prototype ---');
+  console.log('--- Testing HazLenz Semantic Vector Search Prototype ---');
 
   const service = new SemanticVectorSearchService();
   await service.onModuleInit(); // Manually initialize to load default catalog
@@ -73,7 +73,7 @@ async function validate() {
   assert(results5.length === 1, 'Should find custom document.');
   assert(results5[0].id === 'custom-hard-hat-policy', 'Should resolve custom hard hat policy.');
 
-  console.log('✅ SafeScope Semantic Vector Search validation passed.');
+  console.log('✅ HazLenz Semantic Vector Search validation passed.');
 }
 
 validate().catch(err => {

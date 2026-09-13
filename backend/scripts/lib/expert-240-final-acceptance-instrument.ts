@@ -65,9 +65,9 @@ import {
 import { POSTURE_REFUSAL_CODES_239 } from './expert-239-posture-projection';
 import {
   type PropertyAuthorityState, type PropertyConfirmationDecision,
-} from '../../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 import { type ReviewDecision }
-  from '../../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+  from '../../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   PROPERTY_SEMANTIC_ROLES_218, type PropertySemanticRole218, type PropertyValidity218,
 } from './expert-218-property-review-contract';

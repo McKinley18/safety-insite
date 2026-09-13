@@ -1,5 +1,5 @@
-import { ReviewWorkflowService } from '../src/safescope-v2/approved-knowledge-review-workflow/review-workflow.service';
-import { ReviewWorkflowStateMetadata } from '../src/safescope-v2/approved-knowledge-review-workflow/review-workflow.types';
+import { ReviewWorkflowService } from '../src/hazlenz/approved-knowledge-review-workflow/review-workflow.service';
+import { ReviewWorkflowStateMetadata } from '../src/hazlenz/approved-knowledge-review-workflow/review-workflow.types';
 
 async function validate() {
   const service = new ReviewWorkflowService();

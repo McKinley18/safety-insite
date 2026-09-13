@@ -1,6 +1,6 @@
-import { STANDARDS_APPLICABILITY_REGISTRY } from '../src/safescope-v2/standards/standards-applicability.registry';
-import { SAFESCOPE_REGULATORY_BRAIN_REGISTRY } from '../src/safescope-v2/brain/regulatory-brain/regulatory-knowledge.registry';
-import { SafeScopeRegulatoryBrainService } from '../src/safescope-v2/brain/regulatory-brain/regulatory-brain.service';
+import { STANDARDS_APPLICABILITY_REGISTRY } from '../src/hazlenz/standards/standards-applicability.registry';
+import { HAZLENZ_REGULATORY_BRAIN_REGISTRY } from '../src/hazlenz/brain/regulatory-brain/regulatory-knowledge.registry';
+import { HazLenzRegulatoryBrainService } from '../src/hazlenz/brain/regulatory-brain/regulatory-brain.service';
 
 function assert(condition: unknown, message: string): void {
   if (!condition) {
@@ -10,7 +10,7 @@ function assert(condition: unknown, message: string): void {
 
 const recordIds = new Set<string>();
 
-for (const record of SAFESCOPE_REGULATORY_BRAIN_REGISTRY) {
+for (const record of HAZLENZ_REGULATORY_BRAIN_REGISTRY) {
   assert(record.recordId, 'Every Regulatory Brain record must have a recordId.');
   assert(!recordIds.has(record.recordId), `Duplicate Regulatory Brain recordId: ${record.recordId}`);
   recordIds.add(record.recordId);
@@ -55,7 +55,7 @@ for (const record of SAFESCOPE_REGULATORY_BRAIN_REGISTRY) {
 }
 
 const standardsCitations = Array.from(new Set(STANDARDS_APPLICABILITY_REGISTRY.map((entry) => entry.primaryCitation)));
-const brainCitations = new Set(SAFESCOPE_REGULATORY_BRAIN_REGISTRY.map((record) => record.citation));
+const brainCitations = new Set(HAZLENZ_REGULATORY_BRAIN_REGISTRY.map((record) => record.citation));
 
 const missingFromBrain = standardsCitations.filter((citation) => !brainCitations.has(citation));
 assert(
@@ -63,7 +63,7 @@ assert(
   `Regulatory Brain missing standards registry citations: ${missingFromBrain.join(', ')}`,
 );
 
-const service = new SafeScopeRegulatoryBrainService();
+const service = new HazLenzRegulatoryBrainService();
 
 const scaffoldQuery = service.query({
   jurisdiction: 'osha_construction',
@@ -104,8 +104,8 @@ assert(
   'Forklift pedestrian query should rank 29 CFR 1910.178(l) first.',
 );
 
-console.log('✅ SafeScope Regulatory Brain validation passed.');
-console.log(`Regulatory Brain records: ${SAFESCOPE_REGULATORY_BRAIN_REGISTRY.length}`);
+console.log('✅ HazLenz Regulatory Brain validation passed.');
+console.log(`Regulatory Brain records: ${HAZLENZ_REGULATORY_BRAIN_REGISTRY.length}`);
 console.log(`Standards primary citations covered: ${standardsCitations.length}`);
 console.log(`Top scaffold query: ${scaffoldQuery.matches[0]?.record.citation}`);
 console.log(`Top underground guarding query: ${undergroundGuardingQuery.matches[0]?.record.citation}`);

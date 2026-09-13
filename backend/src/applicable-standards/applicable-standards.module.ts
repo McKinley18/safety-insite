@@ -7,7 +7,7 @@ import { HazLenzKnowledgeChunk } from "../hazlenz-knowledge/entities/hazlenz-kno
 import { HazLenzKnowledgeDocument } from "../hazlenz-knowledge/entities/hazlenz-knowledge-document.entity";
 import { ApplicableStandardsController } from "./applicable-standards.controller";
 import { ApplicableStandardsService } from "./applicable-standards.service";
-import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
+import { HazLenzKnowledgeShardService } from "../hazlenz/knowledge-shards/hazlenz-knowledge-shard.service";
 
 @Module({
   imports: [

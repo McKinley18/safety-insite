@@ -1,4 +1,4 @@
-import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
+import { ReasoningSnapshotService } from '../src/hazlenz/snapshots/reasoning-snapshot.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -97,7 +97,7 @@ assert(
   'Limited reliability snapshot should require review.',
 );
 
-console.log('✅ SafeScope reasoning snapshot equipment field validation passed.');
+console.log('✅ HazLenz reasoning snapshot equipment field validation passed.');
 console.log(
   `Snapshot equipment mode: ${snapshot.equipmentReasoningSummary?.primaryReasoningMode}`,
 );

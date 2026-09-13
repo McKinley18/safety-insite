@@ -1,12 +1,12 @@
-import { SafeScopeOrchestratorService } from '../src/safescope/safescope-orchestrator.service';
+import { HazLenzOrchestratorService } from '../src/safescope/safescope-orchestrator.service';
 import {
   SourceIntelligenceRetrievalServiceAdapter,
-  SafeScopeAdapterContext,
+  HazLenzAdapterContext,
 } from '../src/safescope/adapters';
-import { SourceRetrievalService } from '../src/safescope-source-intelligence/source-retrieval.service';
+import { SourceRetrievalService } from '../src/hazlenz-source-intelligence/source-retrieval.service';
 
 async function run() {
-  const orchestrator = new SafeScopeOrchestratorService();
+  const orchestrator = new HazLenzOrchestratorService();
   const sourceRetrievalService = new SourceRetrievalService();
   const sourceAdapter = new SourceIntelligenceRetrievalServiceAdapter(sourceRetrievalService);
 
@@ -21,7 +21,7 @@ async function run() {
 
   const baseAnalysis = orchestrator.analyze(request);
 
-  const adapterContext: SafeScopeAdapterContext = {
+  const adapterContext: HazLenzAdapterContext = {
     normalizedObservation: {
       observationText: request.observationText,
       regulatoryContext: request.regulatoryContext,

@@ -1,4 +1,4 @@
-import { SafeScopeMechanismIntelligenceService } from '../src/safescope-v2/mechanism-intelligence/mechanism-intelligence.service';
+import { HazLenzMechanismIntelligenceService } from '../src/hazlenz/mechanism-intelligence/mechanism-intelligence.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -168,7 +168,7 @@ function includesAny(actual: string[], expected: string[]) {
 }
 
 async function main() {
-  const service = new SafeScopeMechanismIntelligenceService();
+  const service = new HazLenzMechanismIntelligenceService();
 
   const results = [];
 
@@ -249,12 +249,12 @@ async function main() {
     });
   }
 
-  console.log('✅ SafeScope OSHA/MSHA coverage gauntlet passed.');
+  console.log('✅ HazLenz OSHA/MSHA coverage gauntlet passed.');
   console.log(JSON.stringify(results, null, 2));
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope OSHA/MSHA coverage gauntlet failed.');
+  console.error('❌ HazLenz OSHA/MSHA coverage gauntlet failed.');
   console.error(error);
   process.exit(1);
 });

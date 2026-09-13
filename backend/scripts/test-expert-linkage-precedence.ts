@@ -28,10 +28,10 @@ import { tmpdir } from 'os';
 import { join } from 'path';
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT, buildExpertWireSchema, stableStringify,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   linkageDiagnostics, classifyLinkage, evaluateScenarioIntent, classifyCandidateQuality,
   type LinkageCallInput,
@@ -95,7 +95,7 @@ section('A. the precedence is STATED, and the collision clause is fixed');
 {
   const sys = EXPERT_SYSTEM_PROMPT;
   const schema = stableStringify(buildExpertWireSchema(input()));
-  const types = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const types = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'expert-contract.types.ts'), 'utf8');
 
   // §147 re-anchored v9 -> v10 for the clarification-recall remediation, which added no linkage
@@ -149,7 +149,7 @@ section('A. the precedence is STATED, and the collision clause is fixed');
   assert(/Short stable id, unique within this response/i.test(schema),
     'A.14 candidateKey is STILL producer-authored and free-form — the mechanism §142 proved working '
     + 'was not changed');
-  assert(/MECHANISM is untouched/i.test(readFileSync(join(__dirname, '..', 'src', 'safescope-v2',
+  assert(/MECHANISM is untouched/i.test(readFileSync(join(__dirname, '..', 'src', 'hazlenz',
     'expert-hazlenz', 'expert-prompt.ts'), 'utf8')),
     'A.15 and the v9 rationale records that the mechanism was deliberately left alone');
 }
@@ -457,9 +457,9 @@ section('D. pre-spend identity — a rehearsal must not consume the live write-o
 // ===================================================================== M14
 section('M14 — untouched by the precedence repair');
 {
-  const promptSrc = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const promptSrc = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'expert-prompt.ts'), 'utf8');
-  const normSrc = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const normSrc = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'expert-normalization.ts'), 'utf8');
   const codeOnly = (src: string) => src.split('\n')
     .filter(l => { const t = l.trim();

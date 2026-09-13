@@ -1,10 +1,10 @@
-import { SAFESCOPE_EQUIPMENT_TASK_MECHANISM_REGISTRY } from '../src/safescope-v2/equipment-knowledge/equipment-task-mechanism.registry';
+import { HAZLENZ_EQUIPMENT_TASK_MECHANISM_REGISTRY } from '../src/hazlenz/equipment-knowledge/equipment-task-mechanism.registry';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const registry = SAFESCOPE_EQUIPMENT_TASK_MECHANISM_REGISTRY;
+const registry = HAZLENZ_EQUIPMENT_TASK_MECHANISM_REGISTRY;
 
 assert(registry.length >= 1, 'Task mechanism registry should include at least one equipment record.');
 
@@ -69,5 +69,5 @@ assert(
   'Missing tail pulley guard must ask whether conveyor is running/stopped/locked out.',
 );
 
-console.log('✅ SafeScope equipment task mechanism validation passed.');
+console.log('✅ HazLenz equipment task mechanism validation passed.');
 console.log(`Equipment task mechanism records validated: ${registry.length}`);

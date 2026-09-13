@@ -83,7 +83,7 @@ async function main() {
   });
   const observationId = observation.body.id;
 
-  const analysis = await call('/safescope-v2/classify', {
+  const analysis = await call('/hazlenz/classify', {
     method: 'POST', headers: owner.headers,
     body: JSON.stringify({ text: OBSERVATION, scopes: ['all'], inspectionId }),
   });
@@ -154,7 +154,7 @@ async function main() {
     JSON.stringify(auditRows[0]?.metadata || {}));
 
   // ------------------------------- re-analysis must not delete the inspector's own finding
-  const reanalysis = await call('/safescope-v2/classify', {
+  const reanalysis = await call('/hazlenz/classify', {
     method: 'POST', headers: owner.headers,
     body: JSON.stringify({ text: OBSERVATION, scopes: ['all'], inspectionId }),
   });

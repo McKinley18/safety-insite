@@ -8,7 +8,7 @@ type MatchResult = {
 };
 
 @Injectable()
-export class SafeScopeEngine {
+export class HazLenzEngine {
   /* 🔥 CORE MATCH FUNCTION */
   match(text: string): MatchResult[] {
     if (!text) return [];

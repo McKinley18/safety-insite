@@ -265,7 +265,7 @@ export async function runHazLenzClassify(input: {
   priorStructuredObservation?: StructuredObservationInput;
   clarificationAnswers?: HazLenzClarificationAnswerInput[];
 }) {
-  const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
+  const requestUrl = `${API_BASE_URL}/hazlenz/classify`;
 
   const normalizedScopes = Array.isArray(input.scopes)
     ? input.scopes.map((scope) => String(scope || "").trim()).filter(Boolean)
@@ -348,7 +348,7 @@ export async function sendHazLenzFeedback(payload: any) {
 
 export async function getHazLenzReasoningSnapshot(snapshotId: string) {
   const response = await apiFetch(
-    `${API_BASE_URL}/safescope-v2/reasoning-snapshots/${snapshotId}`,
+    `${API_BASE_URL}/hazlenz/reasoning-snapshots/${snapshotId}`,
   );
 
   if (!response.ok) {
@@ -375,7 +375,7 @@ export async function submitSupervisorValidation(payload: {
   modifiedRiskAssessment?: any;
 }) {
   const response = await apiFetch(
-    `${API_BASE_URL}/safescope-v2/supervisor-validations`,
+    `${API_BASE_URL}/hazlenz/supervisor-validations`,
     {
       method: "POST",
       headers: {
@@ -396,7 +396,7 @@ export async function getSupervisorValidationHistory(
   reasoningSnapshotId: string,
 ) {
   const response = await apiFetch(
-    `${API_BASE_URL}/safescope-v2/supervisor-validations/${reasoningSnapshotId}`,
+    `${API_BASE_URL}/hazlenz/supervisor-validations/${reasoningSnapshotId}`,
   );
 
   if (!response.ok) {

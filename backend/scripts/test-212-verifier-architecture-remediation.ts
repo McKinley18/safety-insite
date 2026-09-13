@@ -560,11 +560,11 @@ ok('G10. FIXTURE 6 — a two-fact row yields two isolated requests',
 console.log('\n---- H. BOUNDARIES ----');
 
 const PINNED = [
-  ['src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types.ts',
     '102d059bc477270d6e7286c4a6bf197093eaae443839b29205e5b90a9311e30a'],
-  ['src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
+  ['src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary.ts',
     '5273d5af08693be8096746da03eaba8bd046fd8bfd42c18050bbe6216ae15245'],
-  ['src/safescope-v2/expert-hazlenz/expert-prompt.ts',
+  ['src/hazlenz/expert-hazlenz/expert-prompt.ts',
     'bfe564c25515cabf5149d9629aa9aa58ea2287dd8691dc338a2f9ec47fd0f694'],
   ['scripts/lib/expert-verifier-contract-v3.ts',
     '475a957747c145682a7027c3f4f06041e45a1d93df9779be02e0424962d6a3dc'],

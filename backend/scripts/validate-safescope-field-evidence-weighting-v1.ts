@@ -1,5 +1,5 @@
-import { FieldEvidenceWeightingService } from '../src/safescope-v2/field-evidence-weighting/field-evidence-weighting.service';
-import { FieldEvidenceWeightingValidator } from '../src/safescope-v2/field-evidence-weighting/field-evidence-weighting.validator';
+import { FieldEvidenceWeightingService } from '../src/hazlenz/field-evidence-weighting/field-evidence-weighting.service';
+import { FieldEvidenceWeightingValidator } from '../src/hazlenz/field-evidence-weighting/field-evidence-weighting.validator';
 
 async function validate() {
   const service = new FieldEvidenceWeightingService();
@@ -46,7 +46,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope field evidence weighting validation passed.');
+  console.log('✅ HazLenz field evidence weighting validation passed.');
 }
 
 validate().catch(err => {

@@ -28,19 +28,19 @@ import { HazLenzAnalysis } from './entities/hazlenz-analysis.entity';
 import {
   ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION, ANALYSIS_AUDIT_RESOURCE_TYPE,
   auditMetadataForClientSuppliedAnalysisCreation,
-} from '../safescope-v2/expert-hazlenz-product/expert-analysis-audit';
+} from '../hazlenz/expert-hazlenz-product/expert-analysis-audit';
 import {
   CLIENT_SUPPLIED_ANALYSIS_STATE,
-} from '../safescope-v2/expert-hazlenz-product/expert-analysis-authority';
+} from '../hazlenz/expert-hazlenz-product/expert-analysis-authority';
 import {
   DETERMINISTIC_PRODUCER, highestReservedRequestVersion, maySupersede,
-} from '../safescope-v2/expert-hazlenz-product/expert-analysis-currentness';
+} from '../hazlenz/expert-hazlenz-product/expert-analysis-currentness';
 import {
   projectAnalysesForGenericRead,
-} from '../safescope-v2/expert-hazlenz-product/expert-analysis-read-projection';
+} from '../hazlenz/expert-hazlenz-product/expert-analysis-read-projection';
 import {
   ExpertEffectiveDecisionService,
-} from '../safescope-v2/expert-hazlenz-product/expert-effective-decision.service';
+} from '../hazlenz/expert-hazlenz-product/expert-effective-decision.service';
 import { HumanReview } from './entities/human-review.entity';
 import { InspectionAssignment } from './entities/inspection-assignment.entity';
 import { InspectionFinding } from './entities/inspection-finding.entity';
@@ -118,9 +118,9 @@ function findingReleaseId(
   const consumed = candidates.some((item: any) => String(item?.knowledgeReleaseId || '').trim() === analysisReleaseId);
   return consumed ? analysisReleaseId : null;
 }
-import { evaluateRisk } from '../safescope-v2/risk/risk-engine';
+import { evaluateRisk } from '../hazlenz/risk/risk-engine';
 import { hazardFamilyToRiskClassification } from './finding-risk.mapping';
-import { getCorrectiveActionIntelligence } from '../safescope-v2/intelligence/corrective-action-intelligence';
+import { getCorrectiveActionIntelligence } from '../hazlenz/intelligence/corrective-action-intelligence';
 import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
 
 @Injectable()

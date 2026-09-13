@@ -1,9 +1,9 @@
-import { SafeScopeIntelligenceOrchestrator, SafeScopeIntelligenceOrchestratorInput } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
+import { HazLenzIntelligenceOrchestrator, HazLenzIntelligenceOrchestratorInput } from '../src/hazlenz/orchestration/intelligence-orchestrator.service';
 
-const orchestrator = new SafeScopeIntelligenceOrchestrator();
+const orchestrator = new HazLenzIntelligenceOrchestrator();
 
 async function validate() {
-  const testCases: { name: string; input: SafeScopeIntelligenceOrchestratorInput }[] = [
+  const testCases: { name: string; input: HazLenzIntelligenceOrchestratorInput }[] = [
     {
       name: 'Clear conveyor servicing / lockout',
       input: {

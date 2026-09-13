@@ -14,7 +14,7 @@ import {
   EXPERT_EXECUTION_DISABLED_MESSAGE, EXPERT_EXECUTION_ENABLED_VAR,
   evaluateExpertExecutionPermission, foldExpertUsage, readExpertOperationalConfig,
   type ExpertOperationalConfig,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-operational-controls';
+} from '../src/hazlenz/expert-hazlenz-product/expert-operational-controls';
 import {
   OPERATIONAL_EVENTS, buildOperationalEvent, redactMetadata,
 } from '../src/observability/operational-events';

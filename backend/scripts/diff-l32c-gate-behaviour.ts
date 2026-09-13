@@ -11,7 +11,7 @@
  */
 import { writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
-import { assessImpression } from '../src/safescope-v2/reasoning-l3/impression-scope';
+import { assessImpression } from '../src/hazlenz/reasoning-l3/impression-scope';
 
 // ---- the retired L3-2b implementation, copied verbatim from the pre-L3-2c source.
 const SUBJECTIVE_IMPRESSION_TOKENS = [

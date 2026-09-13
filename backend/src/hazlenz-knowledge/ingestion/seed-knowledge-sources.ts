@@ -126,7 +126,7 @@ async function bootstrap() {
 
   await dataSource.destroy();
 
-  console.log(`SafeScope trusted sources seeded: ${trustedSources.length}`);
+  console.log(`HazLenz trusted sources seeded: ${trustedSources.length}`);
 }
 
 bootstrap().catch((error) => {

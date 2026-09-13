@@ -1,8 +1,8 @@
-import { RegulatoryDraftPromotionService } from '../src/safescope-v2/regulatory-source-audit/regulatory-draft-promotion.service';
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
-import { RegulatorySourceAuditService } from '../src/safescope-v2/regulatory-source-audit/regulatory-source-audit.service';
-import { RegulatoryCoverageMatrixService } from '../src/safescope-v2/regulatory-source-audit/regulatory-coverage-matrix.service';
-import { RegulatoryMetadataNormalizationService } from '../src/safescope-v2/regulatory-source-audit/regulatory-metadata-normalization.service';
+import { RegulatoryDraftPromotionService } from '../src/hazlenz/regulatory-source-audit/regulatory-draft-promotion.service';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { RegulatorySourceAuditService } from '../src/hazlenz/regulatory-source-audit/regulatory-source-audit.service';
+import { RegulatoryCoverageMatrixService } from '../src/hazlenz/regulatory-source-audit/regulatory-coverage-matrix.service';
+import { RegulatoryMetadataNormalizationService } from '../src/hazlenz/regulatory-source-audit/regulatory-metadata-normalization.service';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -34,7 +34,7 @@ function restoreFile(filePath: string, snapshot: FileSnapshot): void {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Core Regulatory Draft Promotion Workflow v1 ---');
+  console.log('--- Testing HazLenz Core Regulatory Draft Promotion Workflow v1 ---');
 
   const normalizationService = new ApprovedKnowledgeCitationNormalizationService();
   const auditService = new RegulatorySourceAuditService(normalizationService);
@@ -139,7 +139,7 @@ async function validate() {
     }
 
     console.log('[PASS] Inventory report re-generated.');
-    console.log('✅ SafeScope core regulatory draft promotion workflow validation passed.');
+    console.log('✅ HazLenz core regulatory draft promotion workflow validation passed.');
   } finally {
     for (const filePath of [tempPackPath, registryPath, ...generatedReportPaths]) {
       restoreFile(filePath, snapshots.get(filePath) || { exists: false });

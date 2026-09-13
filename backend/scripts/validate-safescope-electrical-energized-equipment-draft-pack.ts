@@ -90,7 +90,7 @@ async function validate() {
     }
   }
   
-  console.log('✅ SafeScope electrical energized equipment draft pack validation passed.');
+  console.log('✅ HazLenz electrical energized equipment draft pack validation passed.');
 }
 
 validate().catch(err => {

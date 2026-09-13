@@ -38,7 +38,7 @@
  *    checkable against the observation rather than persuasive.
  */
 
-import type { ExpertConditionState } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertConditionState } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 /**
  * What the deterministic layer concluded about ONE hazard family.

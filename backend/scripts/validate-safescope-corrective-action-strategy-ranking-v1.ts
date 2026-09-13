@@ -1,5 +1,5 @@
-import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/safescope-v2/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
-import { CorrectiveActionStrategyRankingValidator } from '../src/safescope-v2/corrective-action-strategy-ranking/corrective-action-strategy-ranking.validator';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../src/hazlenz/approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { CorrectiveActionStrategyRankingValidator } from '../src/hazlenz/corrective-action-strategy-ranking/corrective-action-strategy-ranking.validator';
 
 async function validate() {
   const retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
@@ -66,7 +66,7 @@ async function validate() {
       console.log(`[PASS] Case: ${tc.name}`);
   }
 
-  console.log('✅ SafeScope corrective action strategy ranking validation passed.');
+  console.log('✅ HazLenz corrective action strategy ranking validation passed.');
 }
 
 validate().catch(err => {

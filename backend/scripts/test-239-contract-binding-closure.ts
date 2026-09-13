@@ -10,8 +10,8 @@ import { deepStrictEqual } from 'assert';
 import { governedBindingFor } from './lib/expert-first-pass-instruction-vnext';
 import {
   EXPERT_CONDITION_STATES,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { L3_UNDECIDED_STATES } from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { L3_UNDECIDED_STATES } from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
 import { POSTURE_REF_KINDS_233, POSTURE_PERMITS_CONTINUED_WORK, IMMEDIATE_SAFETY_POSTURES_233 }
   from './lib/expert-233-posture-contract';
 import {

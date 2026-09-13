@@ -68,7 +68,7 @@ export function buildSourceSynthesis(matches: KnowledgeMatchForSynthesis[]) {
     },
     finalReasoningSummary: "",
     complianceCaution:
-      "SafeScope separates enforceable standards from guidance, incident learning, and best-practice references. Final compliance determinations require qualified safety review.",
+      "HazLenz separates enforceable standards from guidance, incident learning, and best-practice references. Final compliance determinations require qualified safety review.",
   };
 
   for (const match of matches || []) {

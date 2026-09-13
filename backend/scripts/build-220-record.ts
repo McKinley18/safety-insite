@@ -16,11 +16,11 @@ import {
   PROPERTY_AUTHORITY_STATES, SETTLEMENT_PERMITTING_STATES, PROPERTY_CONFIRMATION_DECISIONS,
   TRIGGER_SOURCES_EVALUATED_220, SCOPING_LIMITATION_220, TRANSITION_COVERAGE_220,
   propertyAuthorityEffect, propertyAuthorityFailClosedEffect,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/property-authority';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/property-authority';
 import {
   APPLICATION_REFUSAL_CODES, PROPERTY_AUTHORITY_ATTACH_REFUSAL_CODES,
   SETTLEMENT_REVIEW_CONTRACT_VERSION, PROVIDER_SETTLEMENT_AUTHORITY,
-} from '../src/safescope-v2/expert-hazlenz/owed-facts/settlement-review';
+} from '../src/hazlenz/expert-hazlenz/owed-facts/settlement-review';
 import {
   INTEGRATED_GATE_DESIGN_220_VERSION, AUTHORIZED_TO_EXECUTE, OBSERVATIONS_AUTHORED_HERE,
   FROZEN_FOR_EXECUTION, PROVIDER_CALLS_IN_SECTION_220, PRIOR_CASES_NOT_REUSED_IN_INTEGRATION,
@@ -31,7 +31,7 @@ import {
 } from './lib/expert-220-integrated-gate-design';
 
 const ROOT = join(__dirname, '..', '..');
-const SRC = join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/owed-facts');
+const SRC = join(ROOT, 'backend/src/hazlenz/expert-hazlenz/owed-facts');
 const EVID = join(ROOT, 'verification',
   'expert-hazlenz-220-kr1-property-authority-boundary-2026-09-10');
 const EVID_219 = join(ROOT, 'verification',
@@ -100,13 +100,13 @@ const record = {
   filesChanged: {
     added: [
       {
-        path: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts',
+        path: 'backend/src/hazlenz/expert-hazlenz/owed-facts/property-authority.ts',
         sha256: shaFile(join(SRC, 'property-authority.ts')),
       },
     ],
     modified: [
       {
-        path: 'backend/src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts',
+        path: 'backend/src/hazlenz/expert-hazlenz/owed-facts/settlement-review.ts',
         sha256: shaFile(join(SRC, 'settlement-review.ts')),
         change: 'ADDITIVE — SettlementClaim gains two provenance-derived fields, '
           + 'attachPropertyAuthority and recordPropertyAuthorityDeclined are added, and '
@@ -117,7 +117,7 @@ const record = {
     unmodifiedOwedFactModules: ['owed-fact.types.ts', 'owed-fact-binding.ts', 'owed-fact-ledger.ts',
       'owed-fact-observability.ts', 'structural-questions.ts', 'governed-evidence-derivation.ts',
       'verifier-v3-development-boundary.ts'].map(f => ({
-      path: `backend/src/safescope-v2/expert-hazlenz/owed-facts/${f}`,
+      path: `backend/src/hazlenz/expert-hazlenz/owed-facts/${f}`,
       sha256: shaFile(join(SRC, f)),
     })),
   },

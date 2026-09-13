@@ -41,13 +41,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { createHash } from 'crypto';
 import { MultiHazardDecompositionService } from
-  '../src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service';
-import { toExpertFamily } from '../src/safescope-v2/expert-hazlenz/expert-deterministic-projection';
+  '../src/hazlenz/multi-hazard-decomposition/multi-hazard-decomposition.service';
+import { toExpertFamily } from '../src/hazlenz/expert-hazlenz/expert-deterministic-projection';
 import {
   CORPUS_RETIREMENT_REGISTRY, RETIREMENT_REGISTRY_VERSION, assertMayOpen,
-} from '../src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry';
+} from '../src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry';
 import { EVALUATION_CORPUS_POLICY } from
-  '../src/safescope-v2/expert-hazlenz/expert-evaluation-plan';
+  '../src/hazlenz/expert-hazlenz/expert-evaluation-plan';
 import {
   ACCEPTED_EXPERT_TAXONOMY, reservedRowEligible, RESERVED_SELECTION_ORDER,
   type ReservedRowMetadata,
@@ -64,9 +64,9 @@ const SOURCE_REL = 'safescope-data/gauntlets/safescope-gauntlet.source.v1.json';
 const SOURCE_ABS = path.join(ROOT, SOURCE_REL);
 const REALISM_REL = 'safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json';
 const SEED_REL = 'safescope-data/gauntlets/safescope-gauntlet.seed.json';
-const REGISTRY_REL = 'backend/src/safescope-v2/expert-hazlenz/expert-corpus-retirement-registry.ts';
+const REGISTRY_REL = 'backend/src/hazlenz/expert-hazlenz/expert-corpus-retirement-registry.ts';
 const POLICY_REL = 'backend/scripts/lib/expert-cohort-supplemental-policy.ts';
-const PLAN_REL = 'backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts';
+const PLAN_REL = 'backend/src/hazlenz/expert-hazlenz/expert-evaluation-plan.ts';
 
 const AUTHORIZED_OFFSETS = [2, 3] as const;
 

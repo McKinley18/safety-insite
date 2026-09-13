@@ -59,10 +59,10 @@ import { join } from 'path';
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG, EXPERT_TOOL_NAME, applyStrictSchemaWrapper,
   stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   buildExpertVNextUserPrompt, buildExpertVNextWireSchema,
 } from './lib/expert-first-pass-instruction-vnext';
@@ -77,7 +77,7 @@ import {
 import { buildGoverned202Request } from './lib/expert-202-governed-stage-pipeline';
 import { projectDeclaredOwedFacts } from './lib/expert-first-pass-owed-fact-projection';
 import { projectOwedFact } from
-  '../src/safescope-v2/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
+  '../src/hazlenz/expert-hazlenz/owed-facts/verifier-v3-development-boundary';
 import {
   EXPERT_VERIFIER_INSTRUCTION_V3_2_VERSION, EXPERT_VERIFIER_V3_2_SYSTEM_PROMPT,
   VERIFIER_V3_2_RESPONSE_SCHEMA, buildVerifierV3UserPrompt,

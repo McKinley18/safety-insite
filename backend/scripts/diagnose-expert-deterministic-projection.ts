@@ -31,16 +31,16 @@
 
 import { mkdirSync, writeFileSync, appendFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { applyEvidenceFoundation } from '../src/safescope-v2/evidence/evidence-foundation';
+import { applyEvidenceFoundation } from '../src/hazlenz/evidence/evidence-foundation';
 import {
   EXPERT_SYSTEM_PROMPT, bindWireAnalysis, buildExpertUserPrompt, buildExpertWireSchema,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
-import { normalizeExpertOutput } from '../src/safescope-v2/expert-hazlenz/expert-normalization';
-import { EXPERT_PROBE_INFERENCE_CONFIG } from '../src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider';
-import { ROUTING_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures';
-import { ADVERSARIAL_RECALL_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/hazard-actuality-fixtures';
-import { RESTORATION_TRANSITION_FIXTURES } from '../src/safescope-v2/expert-hazlenz/fixtures/restoration-transition-fixtures';
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
+import { normalizeExpertOutput } from '../src/hazlenz/expert-hazlenz/expert-normalization';
+import { EXPERT_PROBE_INFERENCE_CONFIG } from '../src/hazlenz/expert-hazlenz-adapters/ollama-expert-provider';
+import { ROUTING_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/routing-fixtures';
+import { ADVERSARIAL_RECALL_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/hazard-actuality-fixtures';
+import { RESTORATION_TRANSITION_FIXTURES } from '../src/hazlenz/expert-hazlenz/fixtures/restoration-transition-fixtures';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   projectDeterministicDispositions, renderDeterministicDispositionBlock,
   type DeterministicFamilyDisposition,

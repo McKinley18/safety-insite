@@ -12,15 +12,15 @@ import { createHash } from 'crypto';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords, buildAnthropicRequestBody,
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   buildExpertWireSchema, bindWireAnalysis,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { normalizeExpertOutput, ANALYSIS_FATAL_REASONS } from
-  '../src/safescope-v2/expert-hazlenz/expert-normalization';
+  '../src/hazlenz/expert-hazlenz/expert-normalization';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string): void {

@@ -1,5 +1,5 @@
-import { DomainKnowledgeRegistryValidator } from '../src/safescope-v2/domain-knowledge/domain-knowledge-registry.validator';
-import { DomainKnowledge } from '../src/safescope-v2/domain-knowledge/domain-knowledge.types';
+import { DomainKnowledgeRegistryValidator } from '../src/hazlenz/domain-knowledge/domain-knowledge-registry.validator';
+import { DomainKnowledge } from '../src/hazlenz/domain-knowledge/domain-knowledge.types';
 
 async function validate() {
   const validator = DomainKnowledgeRegistryValidator;

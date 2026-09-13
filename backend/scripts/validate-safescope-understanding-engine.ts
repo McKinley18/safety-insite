@@ -1,4 +1,4 @@
-import { ObservationUnderstandingService } from '../src/safescope-v2/understanding/observation-understanding.service';
+import { ObservationUnderstandingService } from '../src/hazlenz/understanding/observation-understanding.service';
 
 type ExpectedCase = {
   id: string;
@@ -164,7 +164,7 @@ for (const c of cases) {
 }
 
 if (failed) {
-  throw new Error('SafeScope understanding engine validation failed.');
+  throw new Error('HazLenz understanding engine validation failed.');
 }
 
-console.log('\nSafeScope understanding engine validation passed.');
+console.log('\nHazLenz understanding engine validation passed.');

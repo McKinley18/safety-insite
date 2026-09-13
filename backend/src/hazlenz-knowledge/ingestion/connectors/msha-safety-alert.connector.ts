@@ -46,7 +46,7 @@ export class MshaSafetyAlertConnector {
     private readonly sourceListPath = join(
       process.cwd(),
       "src",
-      "safescope-knowledge",
+      "hazlenz-knowledge",
       "ingestion",
       "source-lists",
       "msha-safety-alerts.json",

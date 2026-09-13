@@ -1,12 +1,12 @@
-import { ECfrRegulatorySourceConnector } from '../src/safescope-v2/regulatory-source-audit/connectors/ecfr-regulatory-source.connector';
-import { RegulatoryLiveFetchService } from '../src/safescope-v2/regulatory-source-audit/regulatory-live-fetch.service';
-import { RegulatoryDifferentialComparisonService } from '../src/safescope-v2/regulatory-source-audit/regulatory-differential-comparison.service';
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { ECfrRegulatorySourceConnector } from '../src/hazlenz/regulatory-source-audit/connectors/ecfr-regulatory-source.connector';
+import { RegulatoryLiveFetchService } from '../src/hazlenz/regulatory-source-audit/regulatory-live-fetch.service';
+import { RegulatoryDifferentialComparisonService } from '../src/hazlenz/regulatory-source-audit/regulatory-differential-comparison.service';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
 import * as fs from 'fs';
 import * as path from 'path';
 
 async function validate() {
-  console.log('--- Testing SafeScope Live Regulatory Connectors v1 ---');
+  console.log('--- Testing HazLenz Live Regulatory Connectors v1 ---');
 
   const liveFetchService = new RegulatoryLiveFetchService();
   const connector = new ECfrRegulatorySourceConnector(liveFetchService);
@@ -26,15 +26,15 @@ async function validate() {
   }
 
   // 2. Live mode is blocked when env var is absent/false
-  process.env.SAFESCOPE_ALLOW_LIVE_SOURCE_FETCH = 'false';
+  process.env.HAZLENZ_ALLOW_LIVE_SOURCE_FETCH = 'false';
   const blockedLiveResult = await connector.fetchCandidates({ mode: 'live', allowNetwork: true });
   if (blockedLiveResult.length !== 0) {
-      throw new Error('Live mode should be blocked when SAFESCOPE_ALLOW_LIVE_SOURCE_FETCH is false.');
+      throw new Error('Live mode should be blocked when HAZLENZ_ALLOW_LIVE_SOURCE_FETCH is false.');
   }
   console.log('[PASS] Live mode blocked by default environment configuration.');
 
   // 3. Live mode requires allowNetwork true
-  process.env.SAFESCOPE_ALLOW_LIVE_SOURCE_FETCH = 'true';
+  process.env.HAZLENZ_ALLOW_LIVE_SOURCE_FETCH = 'true';
   const noNetworkLiveResult = await connector.fetchCandidates({ mode: 'live', allowNetwork: false });
   if (noNetworkLiveResult.length !== 0) {
       throw new Error('Live mode should be blocked when allowNetwork is false.');
@@ -75,9 +75,9 @@ async function validate() {
   console.log('[PASS] Differential comparison handles live-fetched candidates.');
 
   // Reset env
-  process.env.SAFESCOPE_ALLOW_LIVE_SOURCE_FETCH = 'false';
+  process.env.HAZLENZ_ALLOW_LIVE_SOURCE_FETCH = 'false';
 
-  console.log('✅ SafeScope live regulatory connectors validation passed.');
+  console.log('✅ HazLenz live regulatory connectors validation passed.');
 }
 
 validate().catch(err => {

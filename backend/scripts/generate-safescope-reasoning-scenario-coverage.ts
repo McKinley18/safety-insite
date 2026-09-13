@@ -1,14 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SAFESCOPE_REASONING_SCENARIOS } from '../src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures';
-import { SCENARIO_COVERAGE_TAXONOMY } from '../src/safescope-v2/reasoning-orchestrator/scenarios/scenario-coverage-taxonomy';
+import { HAZLENZ_REASONING_SCENARIOS } from '../src/hazlenz/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures';
+import { SCENARIO_COVERAGE_TAXONOMY } from '../src/hazlenz/reasoning-orchestrator/scenarios/scenario-coverage-taxonomy';
 
 const reportPath = path.join(
   __dirname,
-  '../src/safescope-v2/reasoning-orchestrator/scenarios/reports/reasoning-scenario-coverage-report.json',
+  '../src/hazlenz/reasoning-orchestrator/scenarios/reports/reasoning-scenario-coverage-report.json',
 );
 
-const scenarios = SAFESCOPE_REASONING_SCENARIOS;
+const scenarios = HAZLENZ_REASONING_SCENARIOS;
 
 const expectedJurisdictions = ['msha', 'osha_general_industry', 'osha_construction', 'unclear'];
 const expectedDomains = SCENARIO_COVERAGE_TAXONOMY.map((item) => item.domain);
@@ -89,7 +89,7 @@ const report = {
 fs.mkdirSync(path.dirname(reportPath), { recursive: true });
 fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 
-console.log('✅ SafeScope reasoning scenario coverage report generated.');
+console.log('✅ HazLenz reasoning scenario coverage report generated.');
 console.log(`Report: ${reportPath}`);
 console.log(`Scenarios: ${report.scenarioCount}`);
 console.log(`Missing domains: ${missingDomains.length}`);

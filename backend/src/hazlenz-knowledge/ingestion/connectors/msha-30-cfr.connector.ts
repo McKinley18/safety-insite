@@ -129,7 +129,7 @@ export class Msha30CfrConnector {
     private readonly sourceListPath = join(
       process.cwd(),
       "src",
-      "safescope-knowledge",
+      "hazlenz-knowledge",
       "ingestion",
       "source-lists",
       "msha-30-cfr-core.json",

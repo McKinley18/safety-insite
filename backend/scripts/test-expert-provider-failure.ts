@@ -22,17 +22,17 @@ import {
   EXPERT_PROVIDER_FAILURES, RETRYABLE_EXPERT_FAILURES, UnavailableExpertProvider,
   isRetryableExpertFailure,
   type ExpertProviderFailureKind, type ExpertProviderResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-provider';
-import { ReplayExpertProvider } from '../src/safescope-v2/expert-hazlenz/replay-expert-provider';
-import { runExpertAnalysis } from '../src/safescope-v2/expert-hazlenz/expert-runner';
+} from '../src/hazlenz/expert-hazlenz/expert-provider';
+import { ReplayExpertProvider } from '../src/hazlenz/expert-hazlenz/replay-expert-provider';
+import { runExpertAnalysis } from '../src/hazlenz/expert-hazlenz/expert-runner';
 import {
   mergeExpertIntelligence, verifyMergeInvariants,
   type DeterministicAuthorityResult, type GovernedAuthorityResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-authority-merge';
+} from '../src/hazlenz/expert-hazlenz/expert-authority-merge';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_INPUT_CONTRACT_VERSION,
   type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let passed = 0, failed = 0;
 const assert = (c: unknown, m: string) => { if (c) { passed++; console.log(`ok    ${m}`); } else { failed++; console.log(`FAIL  ${m}`); } };

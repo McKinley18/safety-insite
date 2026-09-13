@@ -131,7 +131,7 @@ export class NioshMiningPublicationConnector {
     private readonly sourceListPath = join(
       process.cwd(),
       "src",
-      "safescope-knowledge",
+      "hazlenz-knowledge",
       "ingestion",
       "source-lists",
       "niosh-mining-publications.json",
@@ -164,7 +164,7 @@ export class NioshMiningPublicationConnector {
         const response = await fetch(item.url, {
           headers: {
             "User-Agent":
-              "SentinelSafetySafeScope/0.1 local governed safety research ingestion",
+              "SafetyInSiteHazLenz/0.1 local governed safety research ingestion",
           },
         });
 

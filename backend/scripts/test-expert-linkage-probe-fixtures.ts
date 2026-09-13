@@ -20,18 +20,18 @@ import { join } from 'path';
 import {
   LINKAGE_PROBE_FIXTURES, LINKAGE_PROBE_ROWS, LINKAGE_PROBE_FIXTURE_SET_VERSION,
   NEXT_PROBE_ADVANCEMENT_CRITERIA, linkageRowsWithRole, linkageFixtureByRowId,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hosted-linkage-probe-v2';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hosted-linkage-probe-v2';
 import {
   HOSTED_REMEDIATION_PROBE_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hosted-remediation-probe-v1';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hosted-remediation-probe-v1';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import { buildExpertAnalysisInputFromAnalysis } from
-  '../src/safescope-v2/expert-hazlenz/expert-input-constructor';
-import { buildExpertUserPrompt } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+  '../src/hazlenz/expert-hazlenz/expert-input-constructor';
+import { buildExpertUserPrompt } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import { CITATION_SHAPED_PATTERN } from
-  '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+  '../src/hazlenz/expert-hazlenz/expert-contract.types';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string, detail = ''): void {
@@ -194,7 +194,7 @@ section('D. containment — no truth leak, no spent-cohort contact');
     + 'citation before rendering');
 
   // Provenance: the module must say in its own source that it touched no spent or reserved material.
-  const src = readFileSync(join(__dirname, '..', 'src', 'safescope-v2', 'expert-hazlenz',
+  const src = readFileSync(join(__dirname, '..', 'src', 'hazlenz', 'expert-hazlenz',
     'fixtures', 'hosted-linkage-probe-v2.ts'), 'utf8');
   assert(/No reserved material was opened/i.test(src)
       && /No row of the spent 65-row formal cohort was read, copied, paraphrased, reconstructed or mimicked/i.test(src),

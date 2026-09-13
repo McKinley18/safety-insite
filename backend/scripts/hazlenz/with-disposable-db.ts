@@ -20,7 +20,7 @@ import { join } from 'path';
 const BACKEND = join(__dirname, '..', '..');
 
 const PROTECTED_DATABASE_NAMES = [
-  'safescope', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1',
+  'hazlenz', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1',
 ];
 
 function connectionBase(): URL {

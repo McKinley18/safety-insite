@@ -11,10 +11,10 @@ import { dirname } from 'path';
 import {
   REASONING_PROPOSAL_CONTRACT_VERSION,
   type HazardCandidate, type ReasoningInput, type ReasoningProposal,
-} from '../src/safescope-v2/reasoning-l3/reasoning-contract.types';
-import { validateReasoningProposal } from '../src/safescope-v2/reasoning-l3/deterministic-safety-validator';
-import { bindEvidenceSemantically } from '../src/safescope-v2/reasoning-l3/semantic-evidence-binding';
-import { buildReasoningInput } from '../src/safescope-v2/reasoning-l3/reasoning-input-builder';
+} from '../src/hazlenz/reasoning-l3/reasoning-contract.types';
+import { validateReasoningProposal } from '../src/hazlenz/reasoning-l3/deterministic-safety-validator';
+import { bindEvidenceSemantically } from '../src/hazlenz/reasoning-l3/semantic-evidence-binding';
+import { buildReasoningInput } from '../src/hazlenz/reasoning-l3/reasoning-input-builder';
 
 const FAM = ['electrical', 'machine_guarding', 'chemical_storage', 'hazard_communication', 'loto_stored_energy', 'walking_working_surfaces'];
 const HIGH_CONSEQUENCE = ['fall', 'trench', 'excavation', 'cave_in', 'loto', 'energy', 'confined', 'electrical', 'struck_by', 'mobile_equipment', 'scaffold', 'hole', 'opening', 'impalement', 'rebar', 'explosion', 'ground_control'];

@@ -245,13 +245,13 @@ async function main(): Promise<void> {
     const {
       buildExpert259WireSchema, reconstruct253WireSchema, build259SystemPrompt,
       reconstruct247SystemPrompt,
-    } = await import('../src/safescope-v2/expert-hazlenz/contract/expert-259-control-identity-contract');
+    } = await import('../src/hazlenz/expert-hazlenz/contract/expert-259-control-identity-contract');
     const { buildExpert253WireSchema } =
-      await import('../src/safescope-v2/expert-hazlenz/contract/expert-253-posture-contract');
+      await import('../src/hazlenz/expert-hazlenz/contract/expert-253-posture-contract');
     const { build247SystemPrompt } =
-      await import('../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract');
+      await import('../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract');
     const { governedBindingFor } =
-      await import('../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext');
+      await import('../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext');
     const g = governedBindingFor([]);
     ok('Z2 the §259 wire schema reduces back to §253 byte for byte',
       JSON.stringify(reconstruct253WireSchema(INPUT, g))
@@ -266,7 +266,7 @@ async function main(): Promise<void> {
   // The transmitted instruction and the validator must state the same rule in both directions.
   {
     const { CONTROL_ID_FIELD_259, build259SystemPrompt } =
-      await import('../src/safescope-v2/expert-hazlenz/contract/expert-259-control-identity-contract');
+      await import('../src/hazlenz/expert-hazlenz/contract/expert-259-control-identity-contract');
     const prompt = build259SystemPrompt(0);
     ok('Z5 the transmitted instruction names the controlId, matching the validator',
       prompt.includes(CONTROL_ID_FIELD_259) && !prompt.includes('the exact control text'));
@@ -275,9 +275,9 @@ async function main(): Promise<void> {
   // The driver-role vocabulary and carrier bindings are untouched.
   {
     const { DRIVER_ROLE_REF_KINDS_239, POSTURE_DRIVER_ROLES_239 } =
-      await import('../src/safescope-v2/expert-hazlenz/contract/expert-239-posture-contract');
+      await import('../src/hazlenz/expert-hazlenz/contract/expert-239-posture-contract');
     const { admissiblePairs247 } =
-      await import('../src/safescope-v2/expert-hazlenz/contract/expert-247-posture-contract');
+      await import('../src/hazlenz/expert-hazlenz/contract/expert-247-posture-contract');
     ok('Z6 the driver-role vocabulary is unchanged', POSTURE_DRIVER_ROLES_239.length === 5);
     ok('Z7 the admissible role/carrier pair set is still six', admissiblePairs247().length === 6);
     ok('Z8 UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION still binds both carriers',

@@ -1,4 +1,4 @@
-import { SafeScopeReasoningOrchestratorService } from '../src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service';
+import { HazLenzReasoningOrchestratorService } from '../src/hazlenz/reasoning-orchestrator/reasoning-orchestrator.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -30,7 +30,7 @@ function assertObject(value: unknown, message: string) {
   assert(Boolean(value) && typeof value === 'object' && !Array.isArray(value), message);
 }
 
-const service = new SafeScopeReasoningOrchestratorService();
+const service = new HazLenzReasoningOrchestratorService();
 
 type CanonicalPipelineCase = {
   id: string;
@@ -225,12 +225,12 @@ async function main() {
     throw new Error(failures.join('\n'));
   }
 
-  console.log('✅ SafeScope canonical pipeline contract validation passed.');
+  console.log('✅ HazLenz canonical pipeline contract validation passed.');
   console.log(`Cases: ${cases.length}`);
 }
 
 main().catch((error) => {
-  console.error('❌ SafeScope canonical pipeline contract validation failed.');
+  console.error('❌ HazLenz canonical pipeline contract validation failed.');
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });

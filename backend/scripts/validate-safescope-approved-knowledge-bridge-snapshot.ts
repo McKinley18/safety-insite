@@ -7,7 +7,7 @@ function assert(condition: boolean, message: string): void {
 
 const snapshotPath = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/bridge/reports/approved-knowledge-bridge-snapshot.json',
+  '../src/hazlenz/knowledge-intake/bridge/reports/approved-knowledge-bridge-snapshot.json',
 );
 
 assert(fs.existsSync(snapshotPath), 'Bridge snapshot does not exist. Run generate-safescope-approved-knowledge-bridge-snapshot.ts first.');
@@ -63,4 +63,4 @@ assert(
   'Snapshot sourceBoundary must preserve approval boundary.',
 );
 
-console.log('✅ SafeScope approved knowledge bridge snapshot validation passed.');
+console.log('✅ HazLenz approved knowledge bridge snapshot validation passed.');

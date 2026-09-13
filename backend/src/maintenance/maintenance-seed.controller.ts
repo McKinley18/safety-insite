@@ -118,7 +118,7 @@ export class MaintenanceSeedController {
   constructor(private readonly dataSource: DataSource) {}
 
   @Post('seed-safescope')
-  async seedSafeScope(@Headers('x-maintenance-token') token: string, @Body() body: any) {
+  async seedHazLenz(@Headers('x-maintenance-token') token: string, @Body() body: any) {
     if (process.env.ENABLE_MAINTENANCE_SEED !== 'true') {
       throw new NotFoundException();
     }

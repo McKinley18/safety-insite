@@ -1,10 +1,10 @@
-import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
+import { HazLenzService } from '../src/hazlenz/safescope-v2.service';
 
 function assert(condition: unknown, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const service = Object.create(SafescopeV2Service.prototype) as any;
+const service = Object.create(HazLenzService.prototype) as any;
 
 const trafficPatterns = [
   'Separate pedestrians from equipment travel paths',
@@ -82,4 +82,4 @@ assert(
   'Traffic-control action should remain for a true mobile-equipment/pedestrian observation.',
 );
 
-console.log('✅ SafeScope corrective action relevance filter validation passed.');
+console.log('✅ HazLenz corrective action relevance filter validation passed.');

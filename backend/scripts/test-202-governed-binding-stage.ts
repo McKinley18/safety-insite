@@ -19,12 +19,12 @@ import { createHash } from 'crypto';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import type { ExpertAnalysisInput } from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
-import { stableStringify } from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+import type { ExpertAnalysisInput } from '../src/hazlenz/expert-hazlenz/expert-contract.types';
+import { stableStringify } from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
-import type { AcceptableEvidence } from '../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
+import type { AcceptableEvidence } from '../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   buildExpertVNextWireSchema, buildExpertVNextSystemPrompt, buildExpertVNextUserPrompt,
   governedBindingFor, governedBindingCapability,
@@ -568,7 +568,7 @@ const b18Invariants = evaluateNarrowedInvariants();
 ok('B18. the first-pass protocol files are byte-unchanged by §202 '
   + '(projection sub-clause narrowed, §212 PM-1 CLASS 2)',
   hashOf(join(__dirname, 'lib', 'expert-first-pass-instruction-vnext.ts')) === FROZEN.vnextModule
-  && hashOf(join(ROOT, 'backend', 'src', 'safescope-v2', 'expert-hazlenz', 'expert-prompt.ts'))
+  && hashOf(join(ROOT, 'backend', 'src', 'hazlenz', 'expert-hazlenz', 'expert-prompt.ts'))
   === FROZEN.expertPrompt
   && sha(EXPERT_FIRST_PASS_VNEXT_SYSTEM_PROMPT) === FROZEN.absentSystemPrompt
   && b18Invariants.every(r => r.holds),

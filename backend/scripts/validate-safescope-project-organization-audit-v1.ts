@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 async function validate() {
-  console.log('--- Testing SafeScope Project Organization Audit v1 ---');
+  console.log('--- Testing HazLenz Project Organization Audit v1 ---');
 
   const rootDir = path.resolve(__dirname, '../../');
   const backendSrc = path.join(rootDir, 'backend/src');
@@ -50,7 +50,7 @@ async function validate() {
   }
   console.log('[PASS] Verified prompt archive.');
 
-  console.log('✅ SafeScope project organization and coverage audit validation passed.');
+  console.log('✅ HazLenz project organization and coverage audit validation passed.');
 }
 
 validate().catch(err => {

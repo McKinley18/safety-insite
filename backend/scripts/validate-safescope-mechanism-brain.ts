@@ -1,6 +1,6 @@
-import { SAFESCOPE_MECHANISM_REGISTRY } from '../src/safescope-v2/mechanism-intelligence/safescope-mechanism.registry';
-import { SAFESCOPE_MECHANISM_BRAIN_REGISTRY } from '../src/safescope-v2/brain/mechanism-brain/mechanism-knowledge.registry';
-import { SafeScopeMechanismBrainService } from '../src/safescope-v2/brain/mechanism-brain/mechanism-brain.service';
+import { HAZLENZ_MECHANISM_REGISTRY } from '../src/hazlenz/mechanism-intelligence/hazlenz-mechanism.registry';
+import { HAZLENZ_MECHANISM_BRAIN_REGISTRY } from '../src/hazlenz/brain/mechanism-brain/mechanism-knowledge.registry';
+import { HazLenzMechanismBrainService } from '../src/hazlenz/brain/mechanism-brain/mechanism-brain.service';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -8,19 +8,19 @@ function assert(condition: unknown, message: string): asserts condition {
   }
 }
 
-const service = new SafeScopeMechanismBrainService();
+const service = new HazLenzMechanismBrainService();
 
-const registryMechanismIds = new Set(SAFESCOPE_MECHANISM_REGISTRY.map((entry) => entry.id));
-const brainMechanismIds = new Set(SAFESCOPE_MECHANISM_BRAIN_REGISTRY.map((entry) => entry.mechanismId));
+const registryMechanismIds = new Set(HAZLENZ_MECHANISM_REGISTRY.map((entry) => entry.id));
+const brainMechanismIds = new Set(HAZLENZ_MECHANISM_BRAIN_REGISTRY.map((entry) => entry.mechanismId));
 
-for (const mechanism of SAFESCOPE_MECHANISM_REGISTRY) {
+for (const mechanism of HAZLENZ_MECHANISM_REGISTRY) {
   assert(
     brainMechanismIds.has(mechanism.id),
-    `Mechanism Brain missing mechanism from SAFESCOPE_MECHANISM_REGISTRY: ${mechanism.id}`,
+    `Mechanism Brain missing mechanism from HAZLENZ_MECHANISM_REGISTRY: ${mechanism.id}`,
   );
 }
 
-for (const record of SAFESCOPE_MECHANISM_BRAIN_REGISTRY) {
+for (const record of HAZLENZ_MECHANISM_BRAIN_REGISTRY) {
   assert(record.mechanismId.trim().length > 0, 'Mechanism record must have mechanismId.');
   assert(record.label.trim().length > 0, `${record.mechanismId} must have label.`);
   assert(record.hazardDomains.length > 0, `${record.mechanismId} must have hazard domain.`);
@@ -114,9 +114,9 @@ assert(
   'Damaged rigging query should include rigging_failure.',
 );
 
-console.log('✅ SafeScope Mechanism Brain validation passed.');
-console.log(`Mechanism registry records: ${SAFESCOPE_MECHANISM_REGISTRY.length}`);
-console.log(`Mechanism Brain records: ${SAFESCOPE_MECHANISM_BRAIN_REGISTRY.length}`);
+console.log('✅ HazLenz Mechanism Brain validation passed.');
+console.log(`Mechanism registry records: ${HAZLENZ_MECHANISM_REGISTRY.length}`);
+console.log(`Mechanism Brain records: ${HAZLENZ_MECHANISM_BRAIN_REGISTRY.length}`);
 console.log(`Top forklift query: ${forkliftQuery.matches[0]?.record.mechanismId}`);
 console.log(`Top conductor query: ${conductorQuery.matches[0]?.record.mechanismId}`);
 console.log(`Top escapeway query: ${escapewayQuery.matches[0]?.record.mechanismId}`);

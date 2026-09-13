@@ -33,12 +33,12 @@
  * the provider was asked anything" is a property of the call graph rather than of a comment.
  */
 
-import type { ExpertAnalysisInput } from '../../src/safescope-v2/expert-hazlenz/expert-contract.types';
+import type { ExpertAnalysisInput } from '../../src/hazlenz/expert-hazlenz/expert-contract.types';
 import type { AcceptableEvidence, OwedFact } from
-  '../../src/safescope-v2/expert-hazlenz/owed-facts/owed-fact.types';
+  '../../src/hazlenz/expert-hazlenz/owed-facts/owed-fact.types';
 import {
   applyStrictSchemaWrapper, stripAnthropicUnsupportedKeywords,
-} from '../../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   type ExpertVNextGovernedBinding, governedBindingCapability,
 } from './expert-first-pass-instruction-vnext';

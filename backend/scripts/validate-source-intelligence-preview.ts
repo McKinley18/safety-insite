@@ -1,4 +1,4 @@
-import { SourceIngestionService } from '../src/safescope-source-intelligence/source-ingestion.service';
+import { SourceIngestionService } from '../src/hazlenz-source-intelligence/source-ingestion.service';
 import * as fs from 'fs';
 import * as path from 'path';
 

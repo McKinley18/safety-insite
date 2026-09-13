@@ -1,4 +1,4 @@
-import { ExposureIntelligenceService } from '../src/safescope-v2/exposure-intelligence/exposure-intelligence.service';
+import { ExposureIntelligenceService } from '../src/hazlenz/exposure-intelligence/exposure-intelligence.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -48,7 +48,7 @@ async function main() {
         assert(output.requiresIndustrialHygieneReview === true, `${scenario.name}: should require IH review`);
     }
   }
-  console.log('✅ SafeScope Exposure gauntlet passed.');
+  console.log('✅ HazLenz Exposure gauntlet passed.');
 }
 
 main().catch(console.error);

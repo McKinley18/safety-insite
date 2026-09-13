@@ -1,4 +1,4 @@
-import { resolveCanonicalHazardFamily } from '../safescope-v2/taxonomy/canonical-taxonomy-aliases';
+import { resolveCanonicalHazardFamily } from '../hazlenz/taxonomy/canonical-taxonomy-aliases';
 
 export type ContextualControls = {
   immediateControls: string[];

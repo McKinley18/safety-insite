@@ -26,7 +26,7 @@ import { join } from 'path';
 
 import {
   EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import { VERIFIER_TOOL_NAME } from './lib/expert-208b-verifier-recovery';
 import {
   MAX_VERIFIER_CALLS_219, SPEND_CEILING_USD_219, SCHEMA_CANARY_219, TERMINALS_219,

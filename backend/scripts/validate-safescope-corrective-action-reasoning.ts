@@ -1,10 +1,10 @@
-import { SafeScopeCorrectiveActionReasoningService } from '../src/safescope-v2/reasoning-orchestrator/corrective-actions/corrective-action-reasoning.service';
+import { HazLenzCorrectiveActionReasoningService } from '../src/hazlenz/reasoning-orchestrator/corrective-actions/corrective-action-reasoning.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const service = new SafeScopeCorrectiveActionReasoningService();
+const service = new HazLenzCorrectiveActionReasoningService();
 
 const machineGuarding = service.reason({
   hazardObservation: 'Unguarded conveyor tail pulley with employee access during cleanup.',
@@ -78,4 +78,4 @@ assert(
 );
 assert(unknown.reasoningBoundary.doesNotDeclareViolation === true, 'Unknown hazard still must not declare violations.');
 
-console.log('✅ SafeScope corrective action reasoning validation passed.');
+console.log('✅ HazLenz corrective action reasoning validation passed.');

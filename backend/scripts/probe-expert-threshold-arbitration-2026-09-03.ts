@@ -65,27 +65,27 @@ loadEnvFile(join(__dirname, '..', '.env'));
 
 import {
   AnthropicExpertProvider, EXPERT_HOSTED_INFERENCE_CONFIG,
-} from '../src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider';
+} from '../src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider';
 import {
   THRESHOLD_ARBITRATION_FIXTURES, THRESHOLD_ARBITRATION_ROWS, THRESHOLD_ARBITRATION_BUDGET,
   THRESHOLD_ARBITRATION_GATES, THRESHOLD_ARBITRATION_FIXTURE_SET_VERSION,
   PROBE_OPPORTUNITIES, thresholdFixtureByRowId, type ThresholdArbitrationFixture,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
+} from '../src/hazlenz/expert-hazlenz/fixtures/threshold-arbitration-probe-v6';
 import {
   classifyRow, truthOnlyStrings, validateCohortRow,
-} from '../src/safescope-v2/expert-hazlenz/expert-cohort-contract';
+} from '../src/hazlenz/expert-hazlenz/expert-cohort-contract';
 import {
   EXPERT_SYSTEM_PROMPT, buildExpertUserPrompt, expertPromptIdentity,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   CITATION_SHAPED_PATTERN, EXPERT_AFFECTED_DECISIONS, EXPERT_ANALYSIS_CONTRACT_VERSION,
   EXPERT_INPUT_CONTRACT_VERSION, EXPERT_VALIDATOR_VERSION, type ExpertAnalysisInput,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import type {
   ExpertProvider, ExpertProviderResult,
-} from '../src/safescope-v2/expert-hazlenz/expert-provider';
+} from '../src/hazlenz/expert-hazlenz/expert-provider';
 import { EXPERT_MEASUREMENT_CONTRACT_VERSION } from
-  '../src/safescope-v2/expert-hazlenz/expert-measurement-contract';
+  '../src/hazlenz/expert-hazlenz/expert-measurement-contract';
 import {
   runFormalCohort, providerInvocationCount, resetProviderInvocationCount,
   EXPERT_COHORT_HARNESS_VERSION,
@@ -104,7 +104,7 @@ import {
   writeRemeasureIdentity, type PreSpendIdentity,
 } from './lib/expert-probe-identity';
 import type { CallRecord, CohortRunRecord } from
-  '../src/safescope-v2/expert-hazlenz/expert-measure-scorers';
+  '../src/hazlenz/expert-hazlenz/expert-measure-scorers';
 
 const ROOT = join(__dirname, '..', '..');
 const OUT = join(ROOT, 'verification', 'expert-hazlenz-threshold-arbitration-remediation-2026-09-03');
@@ -118,10 +118,10 @@ const BOUND_MODEL = 'claude-sonnet-5';
 const HISTORICAL_PROVIDER_INVOCATION_COUNT = 195;
 
 const SCRIPT = 'backend/scripts/probe-expert-threshold-arbitration-2026-09-03.ts';
-const FIXTURES = 'backend/src/safescope-v2/expert-hazlenz/fixtures/threshold-arbitration-probe-v6.ts';
-const PROMPT = 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts';
-const NORMALIZATION = 'backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts';
-const CONTRACT_TYPES = 'backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts';
+const FIXTURES = 'backend/src/hazlenz/expert-hazlenz/fixtures/threshold-arbitration-probe-v6.ts';
+const PROMPT = 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts';
+const NORMALIZATION = 'backend/src/hazlenz/expert-hazlenz/expert-normalization.ts';
+const CONTRACT_TYPES = 'backend/src/hazlenz/expert-hazlenz/expert-contract.types.ts';
 
 const gate: Array<{ id: string; ok: boolean; detail: string }> = [];
 let gateFailed = false;

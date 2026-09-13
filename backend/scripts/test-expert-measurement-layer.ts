@@ -36,13 +36,13 @@ import {
 } from './lib/expert-family-comparison-map';
 import {
   EXPERT_PROMPT_VERSION, EXPERT_SYSTEM_PROMPT,
-} from '../src/safescope-v2/expert-hazlenz/expert-prompt';
+} from '../src/hazlenz/expert-hazlenz/expert-prompt';
 import {
   EXPERT_ANALYSIS_CONTRACT_VERSION, EXPERT_AFFECTED_DECISIONS,
-} from '../src/safescope-v2/expert-hazlenz/expert-contract.types';
+} from '../src/hazlenz/expert-hazlenz/expert-contract.types';
 import {
   HARDENED_FIXTURES,
-} from '../src/safescope-v2/expert-hazlenz/fixtures/hardened-development-set-v9';
+} from '../src/hazlenz/expert-hazlenz/fixtures/hardened-development-set-v9';
 
 let passed = 0; const failures: string[] = [];
 function assert(ok: boolean, label: string, detail = ''): void {
@@ -76,7 +76,7 @@ section('F. THE FREEZE — §153 repairs measurement only');
   assert(EXPERT_PROMPT_VERSION === 'hazlenz.expert.prompt.v15',
     'F.1 the prompt is v15 — the §178 authorized version, and no further', EXPERT_PROMPT_VERSION);
   const promptSrc = readFileSync(
-    join(ROOT, 'backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts'), 'utf8');
+    join(ROOT, 'backend/src/hazlenz/expert-hazlenz/expert-prompt.ts'), 'utf8');
   // The ceiling moves WITH the authorization, never ahead of it: §177 authorized v14 and this
   // forbade v15/v16; §178 authorizes v15, so it forbids v16/v17. The gate is re-anchored, not
   // relaxed -- it still proves the module contains no successor beyond what was authorized.

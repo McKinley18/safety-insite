@@ -1,4 +1,4 @@
-import { SafeScopeActionQualityService } from '../src/safescope-v2/action-quality/action-quality.service';
+import { HazLenzActionQualityService } from '../src/hazlenz/action-quality/action-quality.service';
 
 function assert(condition: any, message: string) {
   if (!condition) {
@@ -6,7 +6,7 @@ function assert(condition: any, message: string) {
   }
 }
 
-const service = new SafeScopeActionQualityService();
+const service = new HazLenzActionQualityService();
 
 const scenarios = [
   {
@@ -115,5 +115,5 @@ for (const scenario of scenarios) {
   });
 }
 
-console.log('✅ SafeScope action quality gauntlet passed.');
+console.log('✅ HazLenz action quality gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));

@@ -18,13 +18,13 @@ import { join } from 'path';
 import {
   build259SystemPrompt, buildExpert259WireSchema, contractIdentities259,
   FIRST_PASS_CONTRACT_259_VERSION,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-259-control-identity-contract';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-259-control-identity-contract';
 import {
   governedBindingFor,
-} from '../src/safescope-v2/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
+} from '../src/hazlenz/expert-hazlenz/contract/expert-first-pass-instruction-vnext';
 import {
   EXPERT_CANDIDATE_IDENTITY_259, EXPERT_259_SYSTEM_PROMPT_SHA,
-} from '../src/safescope-v2/expert-hazlenz-product/expert-candidate-provenance';
+} from '../src/hazlenz/expert-hazlenz-product/expert-candidate-provenance';
 // The frozen §252 matrix input. The recorded wire-schema element was computed over THIS input, so
 // the recomputation imports it rather than restating it -- a restated fixture is a fixture that can
 // drift into agreement.
@@ -42,43 +42,43 @@ const fileSha = (relative: string): string => sha(readFileSync(join(BACKEND, rel
  * Element -> how it is derived. Nineteen source digests and three contract derivations, in the
  * order the frozen artifact lists them, because the composite is a digest over the ORDERED lines.
  */
-const DERIVATIONS: Readonly<Record<string, () => string>> = {
+export const DERIVATIONS: Readonly<Record<string, () => string>> = {
   contractVersion: () => FIRST_PASS_CONTRACT_259_VERSION,
   systemPrompt: () => sha(build259SystemPrompt(0)),
   wireSchema: () => sha(JSON.stringify(
     buildExpert259WireSchema(MATRIX_INPUT as any, governedBindingFor([])))),
   contractIdentities259: () => sha(JSON.stringify(contractIdentities259())),
-  entryPoint: () => fileSha('src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis.ts'),
-  adapter: () => fileSha('src/safescope-v2/expert-hazlenz-adapters/anthropic-expert-provider.ts'),
-  envelope: () => fileSha('src/safescope-v2/expert-hazlenz-adapters/expert-request-envelope.ts'),
+  entryPoint: () => fileSha('src/hazlenz/expert-hazlenz/expert-hazlenz-analysis.ts'),
+  adapter: () => fileSha('src/hazlenz/expert-hazlenz-adapters/anthropic-expert-provider.ts'),
+  envelope: () => fileSha('src/hazlenz/expert-hazlenz-adapters/expert-request-envelope.ts'),
   controlIdentityContract: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-259-control-identity-contract.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-259-control-identity-contract.ts'),
   postureContract253: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-253-posture-contract.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-253-posture-contract.ts'),
   postureProjection233: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-233-posture-projection.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-233-posture-projection.ts'),
   postureProjection239: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-239-posture-projection.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-239-posture-projection.ts'),
   roleJustificationProjection: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-247-role-justification-projection.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-247-role-justification-projection.ts'),
   structuralAdmission252: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-252-structural-admission.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-252-structural-admission.ts'),
   normalizer235: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-235-wire-normalization.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-235-wire-normalization.ts'),
   declarationProjection210j: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-210j-declaration-projection.ts'),
-  owedFactLedger: () => fileSha('src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-ledger.ts'),
-  owedFactBinding: () => fileSha('src/safescope-v2/expert-hazlenz/owed-facts/owed-fact-binding.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-210j-declaration-projection.ts'),
+  owedFactLedger: () => fileSha('src/hazlenz/expert-hazlenz/owed-facts/owed-fact-ledger.ts'),
+  owedFactBinding: () => fileSha('src/hazlenz/expert-hazlenz/owed-facts/owed-fact-binding.ts'),
   propertyAuthority: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/owed-facts/property-authority.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/owed-facts/property-authority.ts'),
   settlementReview: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/owed-facts/settlement-review.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/owed-facts/settlement-review.ts'),
   verifierInstruction218: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-218-property-instruction.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-218-property-instruction.ts'),
   verifierSchema218: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-218-property-review-contract.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-218-property-review-contract.ts'),
   verifierPayload212: () =>
-    fileSha('src/safescope-v2/expert-hazlenz/contract/expert-212-verifier-payload.ts'),
+    fileSha('src/hazlenz/expert-hazlenz/contract/expert-212-verifier-payload.ts'),
 };
 
 function main(): void {
@@ -145,4 +145,4 @@ function main(): void {
   console.log('IDENTITY MATCH');
 }
 
-main();
+if (require.main === module) main();

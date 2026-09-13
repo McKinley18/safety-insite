@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { KnowledgeRecord } from '../src/safescope-v2/knowledge-intake/knowledge-intake.types';
-import { KnowledgeRecordValidatorService } from '../src/safescope-v2/knowledge-intake/knowledge-record-validator.service';
+import { KnowledgeRecord } from '../src/hazlenz/knowledge-intake/knowledge-intake.types';
+import { KnowledgeRecordValidatorService } from '../src/hazlenz/knowledge-intake/knowledge-record-validator.service';
 
 type ApprovedKnowledgeBundle = {
   engine: 'safescope_approved_knowledge_export';
@@ -21,12 +21,12 @@ type ApprovedKnowledgeBundle = {
 
 const quarantinedDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/quarantined',
+  '../src/hazlenz/knowledge-intake/records/quarantined',
 );
 
 const approvedDir = path.join(
   __dirname,
-  '../src/safescope-v2/knowledge-intake/records/approved',
+  '../src/hazlenz/knowledge-intake/records/approved',
 );
 
 const approvedBundlePath = path.join(approvedDir, 'approved-knowledge-bundle.json');
@@ -94,6 +94,6 @@ const bundle: ApprovedKnowledgeBundle = {
 
 fs.writeFileSync(approvedBundlePath, `${JSON.stringify(bundle, null, 2)}\n`);
 
-console.log('✅ SafeScope approved knowledge export completed.');
+console.log('✅ HazLenz approved knowledge export completed.');
 console.log(`Approved records exported: ${approvedRecords.length}`);
 console.log(`Bundle: ${approvedBundlePath}`);

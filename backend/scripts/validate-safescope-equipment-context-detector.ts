@@ -1,10 +1,10 @@
-import { SafeScopeEquipmentContextDetectorService } from '../src/safescope-v2/equipment-knowledge/equipment-context-detector.service';
+import { HazLenzEquipmentContextDetectorService } from '../src/hazlenz/equipment-knowledge/equipment-context-detector.service';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) throw new Error(message);
 }
 
-const detector = new SafeScopeEquipmentContextDetectorService();
+const detector = new HazLenzEquipmentContextDetectorService();
 
 const cases = [
   {
@@ -156,5 +156,5 @@ const unknown = detector.detect({
 assert(unknown.detectedEquipment.length === 0, 'Unknown observation should not force equipment detection.');
 assert(unknown.primaryEquipment === undefined, 'Unknown observation should not have primaryEquipment.');
 
-console.log('✅ SafeScope equipment context detector validation passed.');
+console.log('✅ HazLenz equipment context detector validation passed.');
 console.log(`Cases validated: ${cases.length + 1}/${cases.length + 1}`);

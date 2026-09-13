@@ -1,6 +1,6 @@
-import { SafeScopeSourceRegistryEntry } from "./hazlenz-source-registry.types";
+import { HazLenzSourceRegistryEntry } from "./hazlenz-source-registry.types";
 
-export const SAFESCOPE_SOURCE_REGISTRY: SafeScopeSourceRegistryEntry[] = [
+export const HAZLENZ_SOURCE_REGISTRY: HazLenzSourceRegistryEntry[] = [
   {
     sourceKey: "msha-30-cfr-standards",
     displayName: "MSHA 30 CFR Standards",
@@ -890,27 +890,27 @@ export const SAFESCOPE_SOURCE_REGISTRY: SafeScopeSourceRegistryEntry[] = [
   },
 ];
 
-export function getSafeScopeSourceByKey(sourceKey: string) {
-  return SAFESCOPE_SOURCE_REGISTRY.find(
+export function getHazLenzSourceByKey(sourceKey: string) {
+  return HAZLENZ_SOURCE_REGISTRY.find(
     (source) => source.sourceKey === sourceKey,
   );
 }
 
-export function getSafeScopeSourcesByAuthorityTier(authorityTier: number) {
-  return SAFESCOPE_SOURCE_REGISTRY.filter(
+export function getHazLenzSourcesByAuthorityTier(authorityTier: number) {
+  return HAZLENZ_SOURCE_REGISTRY.filter(
     (source) => source.authorityTier === authorityTier,
   );
 }
 
-export function getSafeScopeSourcesByAgency(agency: string) {
+export function getHazLenzSourcesByAgency(agency: string) {
   const normalized = agency.toLowerCase();
-  return SAFESCOPE_SOURCE_REGISTRY.filter(
+  return HAZLENZ_SOURCE_REGISTRY.filter(
     (source) => source.agency.toLowerCase() === normalized,
   );
 }
 
 export function getApprovedAutoIngestionSources() {
-  return SAFESCOPE_SOURCE_REGISTRY.filter(
+  return HAZLENZ_SOURCE_REGISTRY.filter(
     (source) => source.approvedForAutoIngestion,
   );
 }

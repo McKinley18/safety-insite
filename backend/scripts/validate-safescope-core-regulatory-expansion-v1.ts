@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { RegulatoryCoverageMatrixService } from '../src/safescope-v2/regulatory-source-audit/regulatory-coverage-matrix.service';
-import { RegulatorySourceAuditService } from '../src/safescope-v2/regulatory-source-audit/regulatory-source-audit.service';
-import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
+import { RegulatoryCoverageMatrixService } from '../src/hazlenz/regulatory-source-audit/regulatory-coverage-matrix.service';
+import { RegulatorySourceAuditService } from '../src/hazlenz/regulatory-source-audit/regulatory-source-audit.service';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/hazlenz/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
 
 type KnowledgeRecord = {
   recordId: string;
@@ -38,7 +38,7 @@ function normalizeCitation(value: string | undefined): string {
 }
 
 async function validate() {
-  console.log('--- Testing SafeScope Core Regulatory Expansion Pack v1 ---');
+  console.log('--- Testing HazLenz Core Regulatory Expansion Pack v1 ---');
 
   const root = path.resolve(__dirname, '../..');
   const packPath = path.join(root, 'safescope-data/approved-knowledge/draft-candidates/core-expansion-v1.json');
@@ -149,7 +149,7 @@ async function validate() {
     console.log('[PASS] Promoted core expansion record remains approved and governed.');
   }
 
-  console.log('✅ SafeScope core regulatory expansion pack validation passed.');
+  console.log('✅ HazLenz core regulatory expansion pack validation passed.');
 }
 
 validate().catch((err) => {

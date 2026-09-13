@@ -80,7 +80,7 @@ async function audit() {
       process.exit(1);
   }
   
-  console.log('✅ SafeScope system audit passed.');
+  console.log('✅ HazLenz system audit passed.');
 }
 
 audit().catch(err => {
