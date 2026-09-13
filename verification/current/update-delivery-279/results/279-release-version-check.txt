@@ -1,0 +1,37 @@
+
+§279 — CLIENT VERSION CHECK
+
+ok    the client reports the build-supplied version (1.4.0)
+ok    F1 an unreachable server leaves the client UNKNOWN
+ok    F2 and blocks nothing
+ok    F3 so a write still goes through
+ok    F4 a 503 from a restarting instance is also UNKNOWN
+ok    F5 and still blocks nothing
+ok    A1 a matching server reports CURRENT (CURRENT)
+ok    A2 and the check is stamped, so staleness can be measured
+ok    C1 a newer server release reports UPDATE_AVAILABLE
+ok    C2 and does not block work
+ok    D1 a client below the floor is UPDATE_REQUIRED
+ok    E1 a POST is refused
+ok    E2 a PATCH is refused
+ok    E3 a DELETE is refused
+ok    E4 but a READ is not — an inspector must still be able to open the record in front of them
+ok    E5 and a request with no method defaults to a read, not to a refusal
+ok    E6 signing out is never blocked — a gate that trapped a user would be worse than the staleness
+ok    E7 nor is a session refresh, which is how a client recovers
+ok    E8 nor the version check itself
+ok    G1 starting the watch checks once (1)
+ok    G2 and the tab is current
+ok    G3 a quick tab switch spends no request (1)
+ok    G4 returning after 15 minutes re-checks (2)
+ok    G5 and the woken tab discovers it is no longer supported
+ok    G6 and stops writing from that moment
+ok    G7 a hidden tab checks nothing (2)
+ok    G8 exactly one background schedule, at 30 minutes (1800000)
+ok    G9 stopping the watch removes its listener rather than leaking one per mount
+ok    J1 four simultaneous triggers make ONE request (1)
+ok    J2 and all four callers get the same answer
+ok    J3 repeated checks publish the same state rather than a changing one, so the banner renders identically (UPDATE_AVAILABLE,UPDATE_AVAILABLE)
+
+31 passed, 0 failed.
+§279 client version check: PASS

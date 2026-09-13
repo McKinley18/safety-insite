@@ -1,0 +1,65 @@
+
+§279 — RELEASE COMPATIBILITY
+
+ok    A1 a client on the shipped version is CURRENT  [CURRENT]
+ok    A2 and nothing is blocked
+ok    A3 and it is shown no notice at all
+ok    B1 a client exactly at the supported floor is not blocked  [UPDATE_AVAILABLE]
+ok    B2 a client between the floor and the shipped version is not blocked  [UPDATE_AVAILABLE]
+ok    B3 a supported-but-old client is never told it must update
+ok    C1 an older supported client reports UPDATE_AVAILABLE  [UPDATE_AVAILABLE]
+ok    C2 which does not block writes
+ok    C3 and a refresh would resolve it
+ok    C4 the notice names the product and offers, rather than demands  [A newer version of Safety InSite is available.]
+ok    D1 a client below the floor reports UPDATE_REQUIRED  [UPDATE_REQUIRED]
+ok    D2 and safety-critical writes are blocked
+ok    D3 and the remedy offered is one that works
+ok    D4 the notice says what happened and what to do  [Safety InSite has been updated. Refresh to continue.]
+ok    D5 a client a whole MAJOR below the floor is UPDATE_REQUIRED, not INCOMPATIBLE, because refreshing does fix it  [UPDATE_REQUIRED]
+ok    D6 and it is blocked
+ok    E1 a client a major ahead of the server is INCOMPATIBLE  [INCOMPATIBLE]
+ok    E2 and is blocked from safety-critical writes
+ok    E3 and is NOT told to refresh, because refreshing cannot resolve it
+ok    E4 the notice directs to support rather than to a refresh  [This version of Safety InSite cannot reach the current server. Contact support before continuing.]
+ok    E5 a client merely a MINOR ahead is supported, not incompatible — a frontend deployed minutes before its backend is an ordinary switchover  [SUPPORTED]
+ok    F the server was unreachable, so there is no contract at all -> UNKNOWN  [UNKNOWN]
+ok    F the server was unreachable, so there is no contract at all -> blocks nothing
+ok    F the server answered something that is not a contract -> UNKNOWN  [UNKNOWN]
+ok    F the server answered something that is not a contract -> blocks nothing
+ok    F the server declared no frontendVersion -> UNKNOWN  [UNKNOWN]
+ok    F the server declared no frontendVersion -> blocks nothing
+ok    F the server declared a malformed frontendVersion -> UNKNOWN  [UNKNOWN]
+ok    F the server declared a malformed frontendVersion -> blocks nothing
+ok    F the server declared a malformed floor -> UNKNOWN  [UNKNOWN]
+ok    F the server declared a malformed floor -> blocks nothing
+ok    F the client does not know its own version -> UNKNOWN  [UNKNOWN]
+ok    F the client does not know its own version -> blocks nothing
+ok    F the client version is a placeholder -> UNKNOWN  [UNKNOWN]
+ok    F the client version is a placeholder -> blocks nothing
+ok    F8 and UNKNOWN shows no notice, so nothing appears on screen either
+ok    O1 below-the-floor outranks major-ahead, because its remedy is the one that works  [UPDATE_REQUIRED]
+ok    V1 major.minor.patch parses
+ok    V2 a pre-release suffix parses and is ignored for ordering
+ok    V3 rejects "1.2"
+ok    V3 rejects "v1.2.3"
+ok    V3 rejects "1.2.3.4"
+ok    V3 rejects ""
+ok    V3 rejects "unknown"
+ok    V3 rejects "latest"
+ok    V3 rejects null
+ok    V3 rejects undefined
+ok    V3 rejects 42
+ok    V3 rejects {}
+ok    V4 numeric comparison, not lexical: 1.10.0 is newer than 1.9.0
+ok    S1 it declares a parseable frontendVersion  [1.0.0]
+ok    S2 it declares a parseable supported floor  [1.0.0]
+ok    S3 the frontend this backend ships with is CURRENT against its own contract
+ok    S4 and the floor is not above it, which would obsolete the product on release day
+ok    S5 schemaCompatibilityVersion is derived from the shipped migrations, not invented  [1800000021000]
+ok    S6 it reports where its commit came from rather than presenting it bare  [BUILD_FALLBACK]
+ok    S7 a package version is never reported as a commit, even though npm has set one here  [ae5c586 via BUILD_FALLBACK]
+ok    S8 the contract carries EXACTLY the public release fields and nothing else — it is served unauthenticated, so an added field is an added disclosure  [backendVersion,buildTimestamp,buildTimestampSourceStatus,frontendVersion,gitSha,minimumSupportedFrontendVersion,releaseVersion,schemaCompatibilityVersion,versionSourceStatus]
+ok    S9 and nothing in it looks like a credential or a connection string
+
+59 passed, 0 failed.
+§279 release compatibility: PASS

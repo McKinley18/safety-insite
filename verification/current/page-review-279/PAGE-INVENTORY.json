@@ -1,0 +1,490 @@
+{
+  "section": "279",
+  "generatedAtHead": "38dd45c19972cd49bd9cb454e705c72b020f4e97",
+  "reviewedInBrowser": true,
+  "developmentBypass": false,
+  "rule": "No page may be marked PASS on automated route tests. Browser inspection is required.",
+  "statuses": [
+    "NOT_REVIEWED",
+    "REVIEW_IN_PROGRESS",
+    "ADJUSTMENTS_REQUIRED",
+    "PASS",
+    "PASS_WITH_LIMITATION",
+    "BLOCKED"
+  ],
+  "widthsReviewed": [
+    390,
+    768,
+    1280,
+    1440
+  ],
+  "activePages": [
+    {
+      "route": "/login",
+      "name": "Sign in",
+      "purpose": "Authenticate",
+      "primaryUser": "any",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "ADJUSTMENTS_REQUIRED",
+      "batch": 1
+    },
+    {
+      "route": "/command-center",
+      "name": "Dashboard",
+      "purpose": "Home: due work, week at a glance, counts",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "ADJUSTMENTS_REQUIRED",
+      "batch": 1
+    },
+    {
+      "route": "(shell)",
+      "name": "Navigation / header / mobile tab bar",
+      "purpose": "Primary navigation on every page",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "ADJUSTMENTS_REQUIRED",
+      "batch": 1
+    },
+    {
+      "route": "/inspections",
+      "name": "Inspection hub",
+      "purpose": "Choose a workflow, pick site and regulatory context, open saved inspections",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "ADJUSTMENTS_REQUIRED",
+      "batch": 1
+    },
+    {
+      "route": "/inspection-cover",
+      "name": "New inspection (cover)",
+      "purpose": "Inspection team and report options before starting",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "ADJUSTMENTS_REQUIRED",
+      "batch": 1
+    },
+    {
+      "route": "/settings",
+      "name": "Settings",
+      "purpose": "Sites, billing, theme, report storage, risk matrix, HazLenz scope, version",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "ADJUSTMENTS_REQUIRED",
+      "batch": 1
+    },
+    {
+      "route": "/inspection",
+      "name": "Inspection overview",
+      "purpose": "The inspection record being worked",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 2
+    },
+    {
+      "route": "/inspection-workspace",
+      "name": "Observation entry, HazLenz, findings, review, actions",
+      "purpose": "The core workflow",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 2
+    },
+    {
+      "route": "/field-capture",
+      "name": "Field capture",
+      "purpose": "Offline-capable observation and photo capture",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 2
+    },
+    {
+      "route": "/inspection-review",
+      "name": "Finding review",
+      "purpose": "Review findings before completion",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 4
+    },
+    {
+      "route": "/inspection-complete",
+      "name": "Inspection completion",
+      "purpose": "Close out and generate the report",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 4
+    },
+    {
+      "route": "/reports",
+      "name": "Report history",
+      "purpose": "Generated reports",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 4
+    },
+    {
+      "route": "/safety-calendar",
+      "name": "Safety Calendar",
+      "purpose": "Scheduled corrective actions and follow-up tasks",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 5
+    },
+    {
+      "route": "/profile",
+      "name": "Account",
+      "purpose": "The signed-in user's account",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 6
+    },
+    {
+      "route": "/upgrade",
+      "name": "Upgrade",
+      "purpose": "Plan upgrade entry (redirect shim)",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 6
+    },
+    {
+      "route": "/unlock",
+      "name": "Unlock",
+      "purpose": "PIN / local vault unlock",
+      "primaryUser": "inspector",
+      "access": "auth",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 6
+    },
+    {
+      "route": "/pricing",
+      "name": "Pricing",
+      "purpose": "Plans",
+      "primaryUser": "prospect",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 6
+    },
+    {
+      "route": "/register",
+      "name": "Create account",
+      "purpose": "Sign up",
+      "primaryUser": "prospect",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    },
+    {
+      "route": "/forgot-password",
+      "name": "Forgot password",
+      "purpose": "Request a reset",
+      "primaryUser": "any",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    },
+    {
+      "route": "/reset-password",
+      "name": "Reset password",
+      "purpose": "Complete a reset",
+      "primaryUser": "any",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    },
+    {
+      "route": "/",
+      "name": "Home (marketing)",
+      "purpose": "Product landing",
+      "primaryUser": "prospect",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    },
+    {
+      "route": "/about",
+      "name": "About",
+      "purpose": "What the product does",
+      "primaryUser": "prospect",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    },
+    {
+      "route": "/hazlenz",
+      "name": "HazLenz",
+      "purpose": "What the engine does",
+      "primaryUser": "prospect",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    },
+    {
+      "route": "/legal",
+      "name": "Legal",
+      "purpose": "Legal index",
+      "primaryUser": "any",
+      "access": "public",
+      "desktop": true,
+      "mobile": true,
+      "lifecycle": "active",
+      "reviewStatus": "NOT_REVIEWED",
+      "batch": 7
+    }
+  ],
+  "inactiveRoutes": [
+    {
+      "route": "/inspection-quick",
+      "classification": "ORPHAN_SUPERSEDED_PROTOTYPE",
+      "lines": 570,
+      "evidence": "Zero inbound references in app/, components/, lib/ or hooks/. Both workflow cards on /inspections route to /inspection-workspace.",
+      "action": "REGISTERED_NOT_REMOVED",
+      "decision": "D-033"
+    }
+  ],
+  "absentSystemSurfaces": [
+    {
+      "surface": "not-found.tsx (404)",
+      "present": false,
+      "consequence": "Next.js' unbranded default is what a customer sees",
+      "decision": "D-034"
+    },
+    {
+      "surface": "error.tsx (error boundary)",
+      "present": false,
+      "consequence": "An uncaught render error has no product-owned surface",
+      "decision": "D-034"
+    },
+    {
+      "surface": "loading.tsx",
+      "present": false,
+      "consequence": "Pages manage their own loading text"
+    },
+    {
+      "surface": "About / version surface",
+      "present": true,
+      "addedIn": "279",
+      "location": "/settings"
+    },
+    {
+      "surface": "Update-available UI",
+      "present": true,
+      "addedIn": "279"
+    },
+    {
+      "surface": "Update-required UI",
+      "present": true,
+      "addedIn": "279"
+    }
+  ],
+  "batch1": {
+    "pages": [
+      "/login",
+      "/command-center",
+      "(shell)",
+      "/inspections",
+      "/inspection-cover",
+      "/settings"
+    ],
+    "objectiveObservationsFirstRun": 22,
+    "instrumentArtifactsRemoved": 18,
+    "remainingAutomatedHits": 4,
+    "confirmedAutomatedDefects": 0,
+    "confirmedAutomatedDefectsNote": "All four remaining hits are `disabled` controls at 3.86:1; WCAG 1.4.3 exempts inactive components.",
+    "defectFoundOnlyByLooking": "O-1 week-strip date/weekday overlap at 390px \u2014 every automated check passed it because each span fits its own box.",
+    "objectiveDefects": [
+      {
+        "id": "O-1",
+        "page": "/command-center",
+        "status": "FIXED"
+      },
+      {
+        "id": "O-2",
+        "page": "all authenticated",
+        "status": "OPEN",
+        "decision": "D-031"
+      },
+      {
+        "id": "O-3",
+        "page": "(shell)",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-4",
+        "page": "/inspections",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-5",
+        "page": "/inspections",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-6",
+        "page": "/inspections",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-7",
+        "page": "/inspections",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-8",
+        "page": "/inspection-cover",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-9",
+        "page": "/inspection-cover",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-10",
+        "page": "/settings",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-11",
+        "page": "/settings",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-12",
+        "page": "(shell)",
+        "status": "OPEN"
+      },
+      {
+        "id": "O-13",
+        "page": "(shell)",
+        "status": "OPEN",
+        "decision": "D-032"
+      },
+      {
+        "id": "O-14",
+        "page": "/login",
+        "status": "OPEN"
+      }
+    ],
+    "subjectiveOpportunities": 12,
+    "subjectiveChangesMade": 0,
+    "hazLenzSurfacesReached": 0
+  },
+  "measuredShellInconsistency": {
+    "measuredAtViewportWidth": 1440,
+    "sentinel-mobile-page": {
+      "contentWidth": 1152,
+      "leftGutter": 144,
+      "routes": [
+        "/command-center",
+        "/inspections",
+        "/safety-calendar"
+      ]
+    },
+    "sentinel-page-shell": {
+      "contentWidth": 1120,
+      "leftGutter": 160,
+      "routes": [
+        "/inspection-cover",
+        "/settings"
+      ]
+    },
+    "none": {
+      "contentWidth": 976,
+      "leftGutter": 232,
+      "routes": [
+        "/reports"
+      ]
+    }
+  },
+  "openDecisions": [
+    "D-031",
+    "D-032",
+    "D-033",
+    "D-034",
+    "D-035",
+    "D-036"
+  ],
+  "d030": {
+    "status": "OPEN_UNCHANGED",
+    "weakenedD024b": false,
+    "electricalSemanticsAdded": false,
+    "noteOnly": "Where unsupported-capability communication may eventually need to appear: /inspections, at the point a workflow is chosen. No wording added in 279."
+  }
+}

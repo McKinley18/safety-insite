@@ -1,0 +1,29 @@
+ok   A a current client shows no update notice of any kind
+ok   C1 a newer release shows the update-available notice  [1]
+ok   C2 it reads as an offer, not a demand  [A newer version of Safety InSite is available. Refresh now Later]
+ok   C3 it offers both Refresh now and Later
+ok   C4 it does NOT block the application — the page behind it is still usable
+ok   C5 Later dismisses it
+ok   J once dismissed, repeated checks do not re-open the same notice
+ok   D1 an unsupported client is shown the update-required state
+ok   D2 which says what happened and what to do  [Safety InSite has been updated  This page is running an older version and can no longer save. Anything you have typed but not saved will be lost when you refres]
+ok   H1 NOTHING RELOADED ON ITS OWN
+ok   H2 and the unsaved work is still on the screen
+ok   H3 the notice warns that unsaved work will be lost before the user refreshes  [Safety InSite has been updated  This page is running an older version and can no longer save. Anything you have typed but not saved will be lost when you refres]
+ok   E0 the blocked state survives a navigation within the stale client
+ok   E1 the add-task control is present to be attempted  [field=1 button=1]
+ok   E2 a safety-critical write from an unsupported client never reaches the server  [no mutation transmitted]
+ok   E3 CONTROL: the identical click from a CURRENT client DOES reach the server  [mutation transmitted]
+ok   F0 the session is authenticated and on an application page, so a notice COULD appear
+ok   F1 an unreachable version endpoint shows NO update-required state
+ok   F2 and no update-available notice either
+ok   F3 and the client KEEPS WORKING — a failed version check must never stop an inspector recording work  [write transmitted]
+ok   I1 Settings carries a version surface
+ok   I2 it names a product version, not a commit  [Safety InSite 1.0.0  Released Sep 13, 2026. Up to date with the Safety InSite service.  Support details]
+ok   I3 it states whether the client is current  [Safety InSite 1.0.0  Released Sep 13, 2026. Up to date with the Safety InSite service.  Support details]
+ok   I4 the commit is NOT in the default view — a user is never asked to read one  [Safety InSite 1.0.0  Released Sep 13, 2026. Up to date with the Safety InSite service.  Support details]
+ok   I5 but it is one disclosure level down, for support  [Safety InSite 1.0.0  Released Sep 13, 2026. Up to date with the Safety InSite service.  Hide support details Application build 38dd45c19972 Service release 1.0.]
+ok   I6 together with the server's own release and schema position
+
+26 passed, 0 failed.
+§279 update delivery (browser): PASS

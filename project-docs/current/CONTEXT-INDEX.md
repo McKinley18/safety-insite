@@ -31,6 +31,8 @@ About 2,500 words. That is the whole default context. For a machine consumer the
 | **Deterministic HazLenz** | `backend/src/hazlenz/` (the rest) | the customer-authoritative path |
 | **Migrations** | `backend/src/database/migrations/` | §261 added `1800000019000-ExpertAnalysisAuthorityFoundation` |
 | **Current verification and tooling** | `backend/scripts/hazlenz/` | the §263 command surface; everything here is read-only except the disposable-DB wrapper |
+| **Release / update delivery** | `backend/src/common/release-contract.ts` + `release-identity.ts`, `frontend-next/lib/release/` | §279. The compatibility rule (mirrored, parity-checked), `GET /version`, the client's version check and write gate. Architecture: `project-docs/current/UPDATE-DELIVERY.md` |
+| **Page-by-page product review** | `project-docs/current/PAGE-BY-PAGE-PRODUCT-REVIEW.md` | §279. Every active route, its status, and the batch order. Evidence in `verification/current/page-review-279/` |
 | **Current state, machine-readable** | `verification/current/` | state, capability register, beta register, mutating-script registry, evidence baseline |
 | **Historical evidence** | `verification/expert-hazlenz-*/` | frozen. Never edited, never deleted. |
 | **Superseded contract ancestry** | `backend/scripts/lib/` | kept because byte-for-byte identity reconstruction depends on the additive chain. **Not a current entry point.** |
