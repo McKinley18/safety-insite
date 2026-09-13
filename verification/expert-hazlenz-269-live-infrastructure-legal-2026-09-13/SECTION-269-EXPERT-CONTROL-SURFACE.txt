@@ -1,0 +1,26 @@
+
+EXPERT CONTROL SURFACE resolved from the live production environment
+
+  executionEnabled                       false
+  dailyAnalysisLimitPerWorkspace         25
+  dailyCostLimitUsdPerWorkspace          10
+  windowHours                            24
+  expectedProviderLegsPerAnalysis        2
+  perLegTimeoutMs                        180000
+  maxAttemptsPerLeg                      1
+
+PRE-SPEND DECISION (kill switch currently false)
+
+  fresh workspace, 0 used            permitted=false  reason=EXPERT_EXECUTION_DISABLED
+  at the analysis ceiling (25)       permitted=false  reason=EXPERT_EXECUTION_DISABLED
+  at the cost ceiling (USD 10)       permitted=false  reason=EXPERT_EXECUTION_DISABLED
+
+SAME CEILINGS WITH THE KILL SWITCH FLIPPED TO true (what release would set)
+
+  fresh workspace, 0 used            permitted=true
+  at the analysis ceiling (25)       permitted=false  reason=WORKSPACE_ANALYSIS_CEILING_REACHED
+  at the cost ceiling (USD 10)       permitted=false  reason=WORKSPACE_COST_CEILING_REACHED
+
+  worst-case spend per workspace per 24h window: USD 10
+  legs per analysis: 2   attempts per leg: 1 (no automatic retry)
+

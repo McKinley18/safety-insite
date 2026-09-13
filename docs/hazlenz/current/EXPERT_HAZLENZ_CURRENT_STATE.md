@@ -3,7 +3,7 @@
 **Read this and `HAZLENZ_INVARIANTS.md`. That is the default context.** Together about 2,500 words.
 Machine-readable equivalent: `verification/current/EXPERT-HAZLENZ-STATE.json`.
 
-Refreshed at **§268** (2026-09-13). Supersedes the §229 text, which described a layer with no
+Refreshed at **§269** (2026-09-13). Supersedes the §229 text, which described a layer with no
 production caller — that has not been true since §246.
 
 Everything below is **current truth only**. It is not a history. Evidence pointers are at the end.
@@ -185,15 +185,22 @@ There is still one implementation; it is now reachable from both sides.
 
 ## 10. Known environmental and live gaps
 
+**Amended at §269, which contacted the live environment for the first time.** Four of these were
+unverified only because no section had looked.
+
 | gap | status |
 |---|---|
-| object storage / report generation | ENVIRONMENTALLY BLOCKED — no `STORAGE_*` set |
-| live provider transport | UNVERIFIED LIVE |
-| running production SHA | UNVERIFIED LIVE |
+| object storage / report generation | **RESOLVED §269.** Cloudflare R2, bucket `insite-production`, verified live: upload, authorised download with sha256 match, unsigned GET and LIST refused, no public policy, delete, zero residue. The bucket already holds `evidence/` and `report/` objects |
+| running production SHA | **RESOLVED §269.** `de655d2f6e4c0ff7b0de17f9ccfbd3668138a936`, = `origin/main`, `versionSourceStatus: RENDER_GIT_COMMIT`. The mechanism was already deployed |
+| production instance plan | **RESOLVED §269.** Render free plan, 1 instance, oregon. Measured cold start 39.8 s → 503, then 5.2 s |
+| error-monitoring ingestion | **RESOLVED §269.** Render ingests and indexes; verified by inducing a production request and retrieving it by exact path |
+| live provider transport | UNVERIFIED LIVE — and `ANTHROPIC_API_KEY` is **absent in production**, so the smoke cannot run until it is set |
 | live billing | UNVERIFIED LIVE |
 
-`hazlenz:verify` reports these as their own outcomes. They are never converted into a pass or a
-failure.
+`hazlenz:verify` reports the remaining two as their own outcomes. They are never converted into a
+pass or a failure. Note that `hazlenz:verify` still prints `ENVIRONMENTALLY_BLOCKED` for storage
+because it reads the *local* environment; that is correct for what it measures and is not a
+statement about production.
 
 ## 9c. Two producers, two currentness slots — §267
 
@@ -309,21 +316,53 @@ identity — and the Anthropic adapter is a protected module. Neither could be e
 construction**: values coerced to bounded scalars, keys whose *name* looks credential- or
 content-bearing dropped. Passing an observation to the emitter does not log the observation.
 
-> **This is emission, not monitoring.** Nothing collects, retains, alerts on or routes these events.
-> `NO_ERROR_MONITORING` remains a **P0**.
+> **This is emission, not monitoring** — and it is still not monitoring. What changed at §269 is
+> that a **collector** was found, verified and given a review path. `NO_ERROR_MONITORING` is
+> **closed**, on the collector, not on the emitter.
+
+**§269 amendment.** Render ingests this service's stdout and stderr, retains it, and indexes it by
+level, type, HTTP path, status code and time. Verified live rather than assumed: a production request
+was induced at a unique path and that exact record retrieved seconds later with structured labels.
+Events are severity-routed — `info` to stdout, `warning` and `error` to stderr — which is what lets
+Render label them.
+
+Reviewing it is `npm run ops:events` (read-only; shells out to the authenticated Render CLI so no
+credential reaches this repository). Push alerting on service failure is Render's own
+`notifyOnFail`. The signal → observer → responder table is
+`docs/operations/MONITORING_AND_ALERTING.md`.
+
+**The one honest gap:** the 17-event vocabulary has never appeared in production, because the code
+that emits it is not deployed. Absence before the release is *expected*, not healthy, and
+`ops:events` says so rather than printing a reassuring zero. §269 verified the shape instead —
+8 of 8 representative events emitted by the compiled emitter and parsed back by the reviewer, with a
+planted provider key, observation text and `Authorization` header all `[redacted]`.
 
 ## 11. Current beta blockers
 
-**Six P0s, none of them an Expert architecture defect, and none of them now an engineering gap.**
-See
-`verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
-`RELEASE_BLOCKERS.md` files under `verification/` record blockers that were live at the time and are
-not current status.
+**Five P0s as of §269** (was six), none of them an Expert architecture defect, and none of them an
+engineering gap. See `verification/current/BETA-BLOCKERS.json` — **the only current register**.
+Historical `RELEASE_BLOCKERS.md` files under `verification/` record blockers that were live at the
+time and are not current status.
 
-Live infrastructure and legal only: production migrations not yet **run** and autoDeploy not yet
-disabled (the mechanism exists — §10c); no Terms or Privacy Policy; no third-party model
-disclosure; report generation blocked on object storage; no error-monitoring **ingestion**; the
-candidate has never been pushed.
+| P0 | status after §269 |
+|---|---|
+| `PRODUCTION_MIGRATION_NOT_YET_EXECUTED` (renamed from `NO_PRODUCTION_MIGRATION_MECHANISM`) | MECHANISM_READY / LIVE_EXECUTION_PENDING_RELEASE. Dry-run reached production and reported pending; 019/020/021 confirmed absent |
+| `NO_TERMS_NO_PRIVACY_POLICY` | DRAFTED at §269 / counsel review required |
+| `NO_THIRD_PARTY_MODEL_DISCLOSURE` | DRAFTED at §269 / counsel review required |
+| `BETA_CANDIDATE_NOT_PUSHED` | unchanged — HEAD is **12** ahead of `origin/main` (was 9 at §266) |
+| `PRODUCTION_PROVIDER_CREDENTIAL_ABSENT` | **new at §269.** `ANTHROPIC_API_KEY` is not set in production; blocks the smoke, not the deploy |
+
+§269 closed `REPORT_GENERATION_BLOCKED` — its premise was false for production, which has had object
+storage configured all along — and `NO_ERROR_MONITORING`. It also closed deployment control on
+**both** platforms: Render `autoDeploy=no/off`, and Vercel `createDeployments=disabled`, the latter
+being a hazard no prior section had recorded.
+
+> **The §269 finding that mattered most.** `EXPERT_EXECUTION_ENABLED` was **absent** in production,
+> and `validateProductionEnvironment` requires it to be exactly `true` or `false`. **The beta
+> candidate could not have booted.** Every other requirement of the production boot contract was
+> already satisfied, so this single variable was the entire gap. It is now `false`. Verified by
+> executing the *compiled* validator — the one `dist/main.js` calls — against the live 37-variable
+> production environment.
 
 §268 closed `NO_SPEND_CEILING_OR_KILL_SWITCH` outright, and closed the *engineering* half of
 `NO_PRODUCTION_MIGRATION_MECHANISM` and `NO_ERROR_MONITORING`. It also closed the §266
@@ -337,13 +376,32 @@ in the build context) and the §267 stale mutation registry.
 
 ## 12. Next implementation step
 
-**Live infrastructure and legal.** The local engineering exists; what remains cannot be done from
-here. In order: **disable Render autoDeploy** (or set a pre-deploy migrate hook) — this gates
-everything, because with it on pushing IS deploying; provision object storage, which production
-cannot boot without; confirm backups and rehearse one restore; provision a destination for the
-events the product now emits; then execute `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md`, ending
-with the one authorized Expert live smoke (1 analysis, ≤2 provider legs, ≤ USD 0.50). The **legal**
-lane has no engineering prerequisite and is not made implicit by any of this.
+**The release, and a counsel review no engineering work can substitute for.**
+
+§269 closed the live-infrastructure lane. What is left in Lane A is execution that belongs to the
+release by design; what is left in Lane B is not engineering at all.
+
+1. **Product owner classifies the seven legal drafts** in `docs/legal/`. This is the only remaining
+   P0 that is not a release execution step. All seven currently read
+   `INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED`, and engineering cannot
+   change that by doing more engineering.
+2. **Set `ANTHROPIC_API_KEY`** on the Render service — absent today; blocks only the smoke.
+3. **Set `healthCheckPath` to `/health/ready`** — empty today, so Render neither probes readiness nor
+   restarts an unready instance. Deferred from §269 because changing it risks triggering a deploy.
+4. **Decide `ENABLE_MAINTENANCE_SEED`** — `true` today. It gates a route that runs `ALTER TABLE` and
+   `dataSource.synchronize(false)` against production, bypassing `TYPEORM_SYNCHRONIZE=false`. Three
+   factors defend it, so it is not remotely exploitable, but it should be `false` once participants
+   have accounts.
+5. **Execute `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md`**, whose §269 preamble records which steps
+   are already closed, ending with the one authorised Expert live smoke (1 analysis, ≤2 provider
+   legs, ≤ USD 0.50).
+
+### Superseded — §268's next step, now done
+
+**Live infrastructure and legal.** Deployment control is established on both platforms; storage,
+backups, the running SHA, the instance shape, the production security configuration and a monitoring
+collector are all verified live; the seven legal artifacts are drafted. What §268 could not do from
+a local session, §269 did against the live environment.
 
 ### Superseded — §267's next step, now done
 

@@ -13,13 +13,13 @@
     "UNKNOWN_WRITE_BEHAVIOR"
   ],
   "totals": {
-    "scripts": 1049,
-    "READ_ONLY": 666,
+    "scripts": 1050,
+    "READ_ONLY": 667,
     "WRITES_HISTORICAL_OUTPUT": 253,
     "UNKNOWN_WRITE_BEHAVIOR": 128,
     "MUTATES_DATABASE": 48,
     "PROVIDER_CALLING": 63,
-    "LIVE_ENVIRONMENT": 33,
+    "LIVE_ENVIRONMENT": 34,
     "WRITES_SUCCESSOR_OUTPUT": 2
   },
   "writesAcceptedHistoricalEvidence": [
@@ -10901,6 +10901,20 @@
       "sandboxRequired": true,
       "notes": [
         "writes into an accepted historical evidence package"
+      ]
+    },
+    {
+      "script": "backend/scripts/ops/review-operational-events.js",
+      "classes": [
+        "LIVE_ENVIRONMENT",
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": [
+        "requires a live environment: storage, a running server, a browser or billing"
       ]
     },
     {

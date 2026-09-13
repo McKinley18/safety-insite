@@ -390,7 +390,8 @@
     "test:268-operational-controls": "ts-node scripts/test-268-operational-controls.ts",
     "test:268-deployment-safety": "ts-node scripts/hazlenz/with-disposable-db.ts test:268-deployment-safety:inner",
     "test:268-deployment-safety:inner": "ts-node scripts/test-268-deployment-safety.ts",
-    "beta:readiness": "ts-node scripts/beta-readiness.ts"
+    "beta:readiness": "ts-node scripts/beta-readiness.ts",
+    "ops:events": "node scripts/ops/review-operational-events.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

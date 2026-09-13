@@ -1,0 +1,17 @@
+
+§269 PRODUCTION BOOT CONTRACT — live Render env vs the beta candidate
+
+  live variables read:              42
+  EXPERT_EXECUTION_ENABLED          present: true
+  ANTHROPIC_API_KEY                 present: false
+  DEV_FORCE_PRO                     present: false
+  DEV_EXPOSE_RESET_TOKEN            present: false
+
+  live env AS IT IS TODAY                        BOOTS
+  live + EXPERT_EXECUTION_ENABLED=false          BOOTS
+  live + EXPERT_EXECUTION_ENABLED=true           BOOTS
+  live + EXPERT_EXECUTION_ENABLED=""             BOOT FAILS
+      -> EXPERT_EXECUTION_ENABLED must be set to exactly "true" or "false" in production. It is the Expert execution kill switch and its production value must be a decision, not a default. Received "".
+  live + EXPERT_EXECUTION_ENABLED=FALSE          BOOT FAILS
+      -> EXPERT_EXECUTION_ENABLED must be set to exactly "true" or "false" in production. It is the Expert execution kill switch and its production value must be a decision, not a default. Received "FALSE".
+

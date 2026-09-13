@@ -1,0 +1,364 @@
+{
+  "artifact": "SECTION_269_LIVE_INFRASTRUCTURE_EVIDENCE",
+  "section": 269,
+  "date": "2026-09-13",
+  "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "scope": "Live infrastructure and operations readiness for the Safety InSite v1.0 controlled beta. Lane A of §269.",
+  "constraintsHeld": {
+    "providerAnalysisCalls": 0,
+    "productionMigrationsRun": 0,
+    "applicationPushes": 0,
+    "applicationDeploys": 0,
+    "expertExecutionEnabledForLiveUse": false,
+    "productionDatabaseWrites": 0,
+    "secretValuesPrintedOrStored": 0,
+    "saphyrApiModified": false,
+    "protectedModulesModified": 0,
+    "expertSemanticsModified": false
+  },
+
+  "deploymentControl": {
+    "renderBackend": {
+      "serviceId": "srv-d7kl74jeo5us73deaor0",
+      "serviceName": "safety-insite-backend",
+      "autoDeployBefore": "no",
+      "autoDeployTriggerBefore": "off",
+      "autoDeployAfter": "no",
+      "autoDeployTriggerAfter": "off",
+      "establishedBy": "product owner, before §269 continued; independently re-verified at §269 via render services -o json",
+      "proofPushesNoLongerAutoActivate": "Five production environment variables were written via the Render API during §269. The service deploy list was identical before and after (live deploy dep-da95s1hsrm7s73b9gn4g, sha de655d2f6e4c, trigger=manual, created 2026-08-29). No deploy was created by a configuration change, and /health/version returned the same gitCommit afterwards. With autoDeployTrigger=off a git push cannot create a deploy either, which is the same control path.",
+      "notModified": "srv-d74vubdm5p6s73fedj9g (Saphyr-api) — unrelated, autoDeploy=yes, deliberately untouched"
+    },
+    "vercelFrontend": {
+      "projectId": "prj_iYd9sHjnCaR8bWXYnKOpw5OKU7hw",
+      "projectName": "safety-insite",
+      "teamId": "team_cfAC34zFRbIMAzd97zY6Rr3U",
+      "linkedRepo": "github McKinley18/safety-insite",
+      "productionBranch": "main",
+      "before": { "gitProviderOptions": { "createDeployments": "enabled" } },
+      "after": { "gitProviderOptions": { "createDeployments": "disabled" } },
+      "verification": "independent re-read of GET /v9/projects/{id} after the PATCH returned createDeployments=disabled",
+      "effect": "Vercel will not create deployments in response to Git events. The Git link is retained, so manual and release-time deployment remains available.",
+      "frontendStillServing": "https://safety-insite.vercel.app -> HTTP 200 after the change",
+      "authorizedBy": "product-owner decision recorded in the §269 instruction"
+    }
+  },
+
+  "runningProduction": {
+    "backendUrl": "https://safescope-backend.onrender.com",
+    "gitCommit": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "versionSourceStatus": "RENDER_GIT_COMMIT",
+    "nodeEnv": "production",
+    "equalsOriginMain": true,
+    "headCommitsAhead": 12,
+    "liveDeploy": {
+      "id": "dep-da95s1hsrm7s73b9gn4g",
+      "status": "live",
+      "trigger": "manual",
+      "createdAt": "2026-08-29T04:20:22Z"
+    },
+    "readiness": {
+      "healthLive": "ok",
+      "healthReady": "ready",
+      "databaseDependency": "available"
+    },
+    "staleBuildTimestampDefect": {
+      "value": "2026-06-19T20:42:00Z",
+      "source": "backend/src/build-info.ts:3, hardcoded",
+      "severity": "P2 release metadata",
+      "gitCommitProvenanceAccurate": true,
+      "action": "carried forward to the release section, not opportunistically altered at §269"
+    }
+  },
+
+  "instanceConfiguration": {
+    "plan": "free",
+    "buildPlan": "starter",
+    "numInstances": 1,
+    "region": "oregon",
+    "runtime": "node",
+    "env": "node",
+    "rootDir": "backend",
+    "buildCommand": "npm install --include=dev && npm run build:render",
+    "startCommand": "npm run start:render",
+    "healthCheckPath": "",
+    "maintenanceMode": false,
+    "suspended": "not_suspended",
+    "ipAllowList": "0.0.0.0/0 (public web service, expected)",
+    "notifyOnFail": "default",
+    "measuredStartupMemory": "rss 195 MB, heapUsed 112 MB",
+    "findings": [
+      {
+        "id": "FREE_PLAN_SPIN_DOWN",
+        "severity": "material for beta experience, not a blocker",
+        "measured": "a request arriving after idle took 39.806 s and returned 503 before the instance woke; the next request succeeded in 5.19 s. Observed twice during §269.",
+        "consequence": "the first request of a session will frequently be slow or fail. For 3-5 named users who can retry this is tolerable; it is disclosed in PRODUCT_LIMITATIONS.md."
+      },
+      {
+        "id": "NO_HEALTH_CHECK_PATH",
+        "severity": "material for the release, reserved to the release sequence",
+        "statement": "healthCheckPath is empty, so Render does not probe /health/ready. A deploy that boots but is not schema-ready would still be treated as live, and an unready instance is not restarted.",
+        "whyNotFixedAtSection269": "changing this service setting risks triggering a deploy, which §269 forbids. It is a release-sequence step, where a deploy is authorised anyway."
+      },
+      {
+        "id": "HEAP_CEILING_EXCEEDS_PLAN",
+        "severity": "low, recorded not acted on",
+        "statement": "NODE_OPTIONS=--max-old-space-size=1024 permits a 1 GB old-space heap on a free instance. Measured startup heap is 112 MB, so this is not currently reached."
+      }
+    ],
+    "capacityJudgement": "One instance on the current plan is obviously sufficient for 3-5 named users performing interactive inspections. No benchmark was invented, and none is required at this cohort size. The operative constraint is spin-down latency, not throughput."
+  },
+
+  "productionDatabase": {
+    "provider": "Neon (managed PostgreSQL on AWS)",
+    "host": "ep-weathered-moon-a4egk93d-pooler.us-east-1.aws.neon.tech",
+    "database": "neondb",
+    "region": "us-east-1",
+    "serverVersion": "PostgreSQL 17.11",
+    "connection": "pooler endpoint, sslmode=require in DATABASE_URL",
+    "sizeOnDisk": "31 MB",
+    "tables": 76,
+    "totalRows": 7049,
+    "note": "The production database is NOT a Render Postgres resource. It is Neon, reached by DATABASE_URL from the Render service.",
+    "migrationState": {
+      "maxAppliedTimestamp": "1800000018000",
+      "migrationRows": 50,
+      "m_1800000019000": "ABSENT",
+      "m_1800000020000": "ABSENT",
+      "m_1800000021000": "ABSENT",
+      "verifiedBy": "read-only SQL against production",
+      "productionMigrationsExecutedAtSection269": 0
+    },
+    "migrationMechanismReadiness": {
+      "command": "npm run migrate:prod",
+      "dryRunCommand": "npm run migrate:prod:dry-run",
+      "dryRunExecutedAgainstProduction": true,
+      "dryRunResult": "reached the database; reported 'migrations are PENDING and would be applied by this command'; exit 0; no writes",
+      "postDryRunStateUnchanged": "max timestamp still 1800000018000, 019/020/021 still absent",
+      "status": "MECHANISM_READY / LIVE_EXECUTION_PENDING_RELEASE"
+    },
+    "operationsPerformed": "READ-ONLY ONLY. Two SELECT queries, one pg_dump, one dry-run that issues no writes. No DDL, no DML, no schema mutation."
+  },
+
+  "backupAndRestore": {
+    "platformMechanism": {
+      "provider": "Neon",
+      "status": "NOT VERIFIED",
+      "why": "Neon's control plane is not reachable from this session. No Neon CLI, no NEON_* credential, and DATABASE_URL grants data-plane access only. Neon's history-retention / point-in-time-restore window, its retention period and who may initiate a restore could not be established, and §269 forbids claiming backup readiness merely because a platform advertises backups.",
+      "action": "the product owner must confirm the Neon plan's retention window and restore procedure in the Neon console before the beta opens"
+    },
+    "independentMechanismEstablishedAtSection269": {
+      "mechanism": "operator-controlled logical backup via pg_dump, independent of the Neon console",
+      "tool": "pg_dump (PostgreSQL) 18.3 from libpq — required because the local PostgreSQL 16.13 client refuses a 17.11 server",
+      "command": "pg_dump \"$DATABASE_URL\" --format=custom --no-owner --no-acl --file=<path>",
+      "executed": true,
+      "durationSeconds": 6.9,
+      "dumpSizeBytes": "7.4 MB",
+      "dumpSha256": "db0246acad623aa7b288beb84dd0c524a6342f554864749156580db7fdaadc64",
+      "tocEntries": 423,
+      "restoreRehearsal": {
+        "target": "a DISPOSABLE local database, never production",
+        "executed": true,
+        "tablesProduction": 76,
+        "tablesRestored": 76,
+        "rowsProduction": 7049,
+        "rowsRestored": 7049,
+        "perTableDifferences": 0,
+        "migrationStateRestored": "max timestamp 1800000018000, 50 rows — identical to production",
+        "onlyError": "SET transaction_timeout = 0 — a PostgreSQL 17 parameter unknown to the local 16.13 server. Cosmetic; it sets a timeout, restores no data, and the row comparison proves nothing was lost.",
+        "cleanup": "disposable database dropped; the production dump was deleted from local disk. Metadata retained as evidence."
+      },
+      "whoCanInitiateRestore": "the product owner, from any machine with the DATABASE_URL and a PostgreSQL 17-or-newer client",
+      "verdict": "A defensible backup state is established: a real backup was taken and a real restore was verified byte-for-byte at row granularity. This does not substitute for confirming Neon's own retention window, which remains open."
+    }
+  },
+
+  "storage": {
+    "provider": "Cloudflare R2 (S3-compatible)",
+    "bucket": "insite-production",
+    "endpoint": "https://f2e58f298c5955ff2c54084209546d4a.r2.cloudflarestorage.com",
+    "region": "auto",
+    "forcePathStyle": true,
+    "configuredInProduction": true,
+    "liveVerification": {
+      "bucketExistsAndCredentialsAuthorize": "PASS",
+      "uploadSyntheticObject": "PASS (82 bytes, non-customer, clearly labelled)",
+      "authorizedDownload": "PASS — sha256 of retrieved bytes matched the uploaded bytes",
+      "unsignedGetRefused": "PASS — HTTP 400, no anonymous read",
+      "unsignedListRefused": "PASS — HTTP 400",
+      "publicBucketPolicy": "PASS — none attached (GetBucketPolicy: NotImplemented)",
+      "deleteSyntheticObject": "PASS",
+      "objectGoneAfterDelete": "PASS — NoSuchKey",
+      "residue": "PASS — 0 keys remain under the probe prefix",
+      "customerDataUsed": false
+    },
+    "bucketContents": "2 objects, under the prefixes 'evidence' and 'report' — production has previously written both evidence uploads and generated reports",
+    "tenantIsolationModel": {
+      "mechanism": "database-enforced, not path-enforced",
+      "objectKeyShape": "<category>/<YYYY-MM-DD>/<randomUUID> — deliberately carries no tenant identifier",
+      "enforcement": "storage_object rows carry organizationId / ownerUserId under a CHECK constraint permitting exactly one scope; every read goes through findAuthorized(user, id) and a scope failure returns 404 rather than 403, so existence is not disclosed",
+      "objectKeyExposure": "the objectKey column is select:false, so it is not returned by an ordinary record read",
+      "integrityOnRead": "a retrieved object whose sha256 does not match the recorded digest is refused",
+      "routeGuard": "@UseGuards(JwtGuard) on the whole FilesController",
+      "conclusion": "an object identifier alone confers no access, because the bucket refuses unsigned requests and every product retrieval is authorised against the caller's scope first"
+    },
+    "deletionBehaviour": "Deleting a file through the product removes the bytes from R2 and retains a metadata tombstone (status=deleted, deletedAt, deletedByUserId) for the audit trail. Only the uploading user may delete; a colleague in the same organisation cannot.",
+    "retention": "No lifecycle rule and no retention sweeper. An expiresAt column exists per object and is enforced at read time, but expired bytes are not automatically removed. Stated as-is in BETA_PRIVACY_NOTICE.md rather than implied away.",
+    "reportPathReadiness": "The storage dependency that REPORT_GENERATION_BLOCKED named is satisfied in production and verified live. The product-route report round-trip remains a release-sequence step."
+  },
+
+  "providerConfiguration": {
+    "variableName": "ANTHROPIC_API_KEY",
+    "presentInProduction": false,
+    "consequence": "The Expert live smoke CANNOT run until this is set. It is read at call time (anthropic-expert-provider.ts:273, expert-semantic-transport.ts:74), not at boot, so its absence does NOT block deployment of the beta candidate.",
+    "action": "set on the Render service immediately before the live smoke; recorded as a release-sequence step",
+    "model": "claude-sonnet-5 (hosted third party)",
+    "liveCallStatus": "NOT RUN — 0 provider analysis calls at §269",
+    "credentialValidity": "CONFIG ABSENT — LIVE SEMANTIC CALL RESERVED FOR RELEASE SMOKE",
+    "frontendExposure": {
+      "sourceScan": "no ANTHROPIC / CLAUDE_API / sk-ant reference anywhere in frontend-next source",
+      "deployedArtifactScan": "714,019 bytes of live Vercel chunks fetched from https://safety-insite.vercel.app — 0 occurrences of sk-ant- or ANTHROPIC",
+      "limit": "the 11 chunks referenced by the root document, not every route's bundle",
+      "verdict": "PASS — no provider credential reaches the frontend"
+    }
+  },
+
+  "expertSwitchAndSpend": {
+    "killSwitchVariable": "EXPERT_EXECUTION_ENABLED",
+    "before": "ABSENT",
+    "after": "false",
+    "decisiveFinding": {
+      "statement": "THE BETA CANDIDATE COULD NOT HAVE BOOTED IN PRODUCTION BEFORE THIS CHANGE.",
+      "detail": "validate-production-environment.ts requires EXPERT_EXECUTION_ENABLED to be exactly 'true' or 'false' in production and throws on absence. It was absent. Every other requirement of the production boot contract was already satisfied by the live environment, so this single variable was the whole gap between the candidate and a successful boot.",
+      "method": "the COMPILED dist/config/validate-production-environment.js — the exact function dist/main.js calls at boot — was executed against the 37-variable live production environment map read from the Render API. Execution-derived, not declaration-derived.",
+      "resultBefore": "BOOT FAILS — EXPERT_EXECUTION_ENABLED must be set to exactly \"true\" or \"false\" in production",
+      "resultAfter": "BOOTS",
+      "caseSensitivity": "'FALSE' and '' both still fail, by design — verified"
+    },
+    "toggleProvenWithoutCodeChange": "readExpertOperationalConfig resolved executionEnabled=false from the live environment; re-resolving the same live environment with EXPERT_EXECUTION_ENABLED=true flipped the pre-spend decision from refused to permitted. No code changed.",
+    "spendConfiguration": {
+      "EXPERT_DAILY_ANALYSIS_LIMIT_PER_WORKSPACE": 25,
+      "EXPERT_DAILY_COST_LIMIT_USD_PER_WORKSPACE": 10,
+      "EXPERT_SPEND_WINDOW_HOURS": 24,
+      "EXPERT_ANTHROPIC_TIMEOUT_MS": 180000,
+      "expectedProviderLegsPerAnalysis": 2,
+      "maxAttemptsPerLeg": 1,
+      "basis": "1330 non-zero measured per-leg costs in the evidence base: median USD 0.038, p95 USD 0.080, max USD 2.98. Two legs per analysis puts a typical analysis near USD 0.08 and a p95 analysis near USD 0.16. A 25-analysis ceiling therefore sits near USD 2-4 of expected spend, and the USD 10 cost ceiling bounds the worst case including outlier legs.",
+      "worstCaseDailySpend": "USD 10 per workspace; USD 20 across the 2 workspaces the beta contemplates",
+      "adjustableWithoutCodeChange": true,
+      "notPermanentPricing": "these are controlled-beta operational ceilings, not commercial pricing",
+      "refusalBehaviourVerified": {
+        "atAnalysisCeiling": "WORKSPACE_ANALYSIS_CEILING_REACHED",
+        "atCostCeiling": "WORKSPACE_COST_CEILING_REACHED",
+        "killSwitchFirst": "with the switch false, all three probe cases refuse with EXPERT_EXECUTION_DISABLED — the switch is evaluated before usage is read"
+      }
+    }
+  },
+
+  "monitoring": {
+    "collectorStatus": "EXISTS AND VERIFIED LIVE",
+    "collector": "Render log ingestion for srv-d7kl74jeo5us73deaor0",
+    "ingestionProof": {
+      "method": "a production request was induced at a unique path and then retrieved from the log store",
+      "induced": "GET /section269-ingestion-probe-1789311424 -> HTTP 404 at 14:57:05.043Z",
+      "retrieved": "render logs --path /section269-ingestion-probe-1789311424 -> 1 match",
+      "structuredLabels": "method=GET, statusCode=404, host=safescope-backend.onrender.com, path=/section269-ingestion-probe-1789311424, level=warning, type=request",
+      "latency": "seconds"
+    },
+    "capabilities": "queryable by text, level, type, HTTP path, status code, method, instance and time range; app and request streams both captured; a 39.8 s cold-start failure was independently captured at level=error",
+    "eventShapeVerified": {
+      "method": "the compiled §268 emitter was executed and its real output parsed by the §269 reviewer's parser",
+      "eventsEmitted": 8,
+      "eventsParsed": 8,
+      "covering": ["expert.execution.failed", "expert.provider.transport_failure", "expert.control.spend_limit_refused", "storage.operation_failed", "report.generation_failed", "schema.readiness_failed", "migration.failed", "expert.execution.refused"],
+      "severityRouting": "info to stdout, warning and error to stderr — which is what lets Render label them",
+      "redaction": {
+        "plantedProviderKey": "absent from emitted output ([redacted])",
+        "plantedObservationText": "absent from emitted output ([redacted])",
+        "plantedAuthorizationHeader": "absent from emitted output ([redacted])"
+      }
+    },
+    "operatorReviewMechanism": {
+      "command": "npm run ops:events",
+      "script": "backend/scripts/ops/review-operational-events.js",
+      "readOnly": true,
+      "credentialHandling": "shells out to the authenticated Render CLI; no Render credential is read, stored or referenced by any repository file",
+      "firstRunResult": "reviewed 300 records over a 3h window and surfaced a real 503 in the response mix",
+      "documentation": "docs/operations/MONITORING_AND_ALERTING.md"
+    },
+    "alertingMinimum": {
+      "push": "Render service-failure notification (notifyOnFail=default on the service record) — email to the account owner on crash or failed deploy",
+      "pull": "npm run ops:events, daily during the beta and after any participant report",
+      "signalToResponderTable": "docs/operations/MONITORING_AND_ALERTING.md",
+      "limitsRecorded": ["pull not push for error rate", "retention is Render's and uncontrolled by us", "no health check configured", "no alert on error rate, only on the service being down"]
+    },
+    "honestGap": {
+      "statement": "The §268 operational event vocabulary has NEVER appeared in production, because the code that emits it is not deployed.",
+      "classification": "the emission layer is not monitoring, and this is not reported as monitoring",
+      "consequence": "first observation of a real §268 event in production is a RELEASE-SEQUENCE verification step, not an architecture gap",
+      "guardAgainstMisreading": "npm run ops:events states explicitly that an empty result before the release is EXPECTED, not a healthy signal"
+    }
+  },
+
+  "productionSecurityConfiguration": {
+    "method": "37 live environment variables read by key name; values disclosed only for an explicit non-secret safelist. No secret value was printed or stored.",
+    "NODE_ENV": "production",
+    "DEV_AUTH_BYPASS": "false",
+    "DEV_FORCE_PRO": "ABSENT (disabled)",
+    "DEV_EXPOSE_RESET_TOKEN": "ABSENT (disabled)",
+    "TYPEORM_SYNCHRONIZE": "false",
+    "JWT_SECRET": "present, 63 characters, not one of the known insecure development literals — verified by executing the real validator, which enforces >=32 characters and a deny-list",
+    "CORS_ORIGINS": "https://safety-insite.vercel.app — exact HTTPS origin, no wildcard",
+    "TRUST_PROXY_HOPS": "1",
+    "liveProbes": {
+      "protectedRouteUnauthenticated": "GET /inspections -> 401 'No token provided'; GET /auth/me -> 401",
+      "corsForeignOrigin": "OPTIONS with Origin https://evil.example.com -> no access-control-allow-origin header",
+      "corsLegitimateOrigin": "OPTIONS with Origin https://safety-insite.vercel.app -> 204 with access-control-allow-origin echoed and credentials allowed",
+      "securityHeaders": "CSP, HSTS max-age=31536000 includeSubDomains, X-Content-Type-Options nosniff, X-Frame-Options SAMEORIGIN, X-Permitted-Cross-Domain-Policies none",
+      "rateLimit": "x-ratelimit-limit 100 per 60 s window, active",
+      "debugAndAdminRoutes": "/admin /debug /metrics /api-docs /swagger /graphql /.env /config /dev/seed /expert/config all -> 404 unauthenticated",
+      "edge": "Cloudflare in front of the Render origin"
+    },
+    "findings": [
+      {
+        "id": "MAINTENANCE_SEED_ENABLED_IN_PRODUCTION",
+        "severity": "MEDIUM — a real risk to the release discipline, not a remotely exploitable vulnerability",
+        "statement": "ENABLE_MAINTENANCE_SEED=true in production enables POST /maintenance/seed-safescope, which runs ALTER TABLE DDL and dataSource.synchronize(false) against the live database. synchronize() reshapes the schema to match entity definitions, which is exactly what TYPEORM_SYNCHRONIZE=false exists to prevent; this route bypasses that setting.",
+        "mitigations": "three independent factors are required: a valid JWT (@UseGuards(JwtGuard)), the 32-character MAINTENANCE_SEED_TOKEN in an x-maintenance-token header, and the exact confirmation phrase 'seed-production-safescope'. It is not reachable without the token, and no exposure of that token was found.",
+        "whyNotChangedAtSection269": "it is a deliberate operational tool and the knowledge base it seeds holds 2280 chunks; disabling it unilaterally could break a planned pre-beta seeding step. Turning it off is a product-owner decision, recorded as a release-sequence step.",
+        "recommendation": "set ENABLE_MAINTENANCE_SEED=false before any beta participant has an account"
+      },
+      {
+        "id": "BILLING_CANCEL_URL_MALFORMED",
+        "severity": "LOW",
+        "statement": "BILLING_CANCEL_URL contains a literal space in its hostname ('https://sentinel safety.vercel.app/settings?billing=cancel') and is not a resolvable URL. BILLING_SUCCESS_URL points at https://sentinelsafety.vercel.app, which IS a live alias of the same Vercel deployment, so it resolves — but both point at the legacy alias rather than the canonical https://safety-insite.vercel.app.",
+        "consequence": "a cancelled Stripe checkout would redirect to an invalid host",
+        "recommendation": "correct both to the canonical origin during the release"
+      }
+    ]
+  },
+
+  "subprocessorsIdentifiedFromLiveConfiguration": [
+    { "provider": "Render", "role": "backend hosting", "location": "US Oregon" },
+    { "provider": "Neon", "role": "managed PostgreSQL", "location": "AWS us-east-1" },
+    { "provider": "Cloudflare R2", "role": "object storage" },
+    { "provider": "Vercel", "role": "frontend hosting" },
+    { "provider": "Anthropic", "role": "AI model provider (claude-sonnet-5)" },
+    { "provider": "Resend", "role": "transactional email (password reset)" },
+    { "provider": "Stripe", "role": "payments" }
+  ],
+
+  "liveSmokeDesign": {
+    "status": "NOT EXECUTED AT §269 — preserved for the final release",
+    "userAnalysisInitiations": 1,
+    "maxProviderLegs": 2,
+    "maxSpendUsd": 0.50,
+    "acceptableTransportOutcomes": ["ADMIT", "REFUSE", "PRESERVE_UNRESOLVED"],
+    "prerequisites": [
+      "ANTHROPIC_API_KEY set on the Render service",
+      "EXPERT_EXECUTION_ENABLED flipped to true immediately before the smoke",
+      "migrations 019000/020000/021000 applied and schema verified",
+      "the beta candidate deployed at a named SHA and verified by release:verify-sha"
+    ]
+  }
+}

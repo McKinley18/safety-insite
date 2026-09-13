@@ -14,13 +14,53 @@ pass **stops the release**. There is no step whose failure is acceptable to cont
 
 ---
 
+## §269 UPDATE — WHAT IS ALREADY CLOSED, AND WHAT §269 ADDED
+
+§269 executed the live-infrastructure lane against production without deploying anything. It changed
+the starting state of this runbook. Read this before step 0.
+
+**Already closed by §269 — do not repeat, only confirm unchanged:**
+
+| runbook step | §269 result |
+|---|---|
+| 2 — deployment control | **CLOSED.** Render `autoDeploy=no`, `autoDeployTrigger=off` on `srv-d7kl74jeo5us73deaor0`. Verified that a production env-var change did **not** trigger a deploy. Vercel Git auto-deploy also disabled (`gitProviderOptions.createDeployments=disabled`) |
+| 3 — back up and verify | **CLOSED.** Full logical backup of production taken and a restore rehearsed into a disposable database: 76/76 tables, 7049/7049 rows, zero differences |
+| 9 — verify storage | **INFRASTRUCTURE CLOSED.** R2 bucket `insite-production` verified live: upload, authorised download with checksum match, delete, no residue, unsigned access refused, no public policy. The *product-route* round-trip in step 9 still stands |
+| 4/5 — migrate and verify | **MECHANISM PROVEN, NOT RUN.** `migrate:prod --dry-run` executed against production: reached the database and correctly reported migrations pending. Production remains at `1800000018000` with `019000/020000/021000` all absent |
+
+**New steps §269 discovered. These are additions to the sequence, not optional:**
+
+1. **Set `ANTHROPIC_API_KEY` on the Render service before step 11.** It is **absent in production**.
+   The Expert live smoke cannot run without it. It is read at call time, not at boot, so its absence
+   does not block the deploy — it blocks only the smoke.
+2. **Set `healthCheckPath` to `/health/ready` on the Render service, during this release.** It is
+   currently empty, so Render does not probe readiness and will neither restart nor refuse a deploy
+   on an unready instance. §269 did not set it because doing so risks triggering a deploy.
+3. **Decide `ENABLE_MAINTENANCE_SEED` before participants are admitted.** It is currently `true` in
+   production. It gates `POST /maintenance/seed-safescope`, which runs `ALTER TABLE` and
+   `dataSource.synchronize(false)` against the live database — bypassing the migration discipline
+   this runbook exists to enforce. It is defended by three factors (a valid JWT, a 32-character
+   token, an exact confirmation phrase), so it is not remotely exploitable, but it should be `false`
+   while beta participants have accounts. Left `true` by §269 in case pre-beta knowledge seeding
+   needs it.
+4. **`EXPERT_EXECUTION_ENABLED` is now set to `false` in production** and must be flipped to `true`
+   only immediately before step 11, then reconsidered after. Spend ceilings are configured: 25
+   analyses and USD 10 per workspace per 24h.
+
+**Carried forward as a defect, not a blocker:** `backend/src/build-info.ts` hardcodes
+`buildTimestamp: "2026-06-19T20:42:00Z"`. `gitCommit` provenance is accurate (`RENDER_GIT_COMMIT`);
+only the timestamp is stale. Fix it in the release commit or accept it knowingly.
+
+---
+
 ## 0. PREPARE
 
 | | |
 |---|---|
-| Migration backlog | `1800000019000`, `1800000020000`, `1800000021000` — all three **unapplied** |
+| Migration backlog | `1800000019000`, `1800000020000`, `1800000021000` — all three **unapplied** (re-confirmed live at §269) |
 | Expected schema version after migrating | `1800000021000` |
-| Render `autoDeploy` | **ON** — see step 2, this must be handled before anything else |
+| Render `autoDeploy` | **OFF as of §269** — step 2 is already satisfied; confirm, do not re-do |
+| Running production SHA | `de655d2f6e4c0ff7b0de17f9ccfbd3668138a936` (= `origin/main`), deployed manually 2026-08-29 |
 
 ```bash
 cd backend

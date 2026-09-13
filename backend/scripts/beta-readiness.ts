@@ -242,17 +242,30 @@ async function main(): Promise<void> {
       readFileSync(join(REPO, 'docs/operations/ROLLBACK_MODEL.md'), 'utf8')));
 
   // ---------------------------------------------------------------- honest remainder
-  section('NOT ESTABLISHED HERE — these remain open and are not what this command measures');
-  for (const item of [
-    'object storage provisioned and a report round-trip verified (REPORT_GENERATION_BLOCKED)',
-    'database backups enabled and one restore rehearsed (BACKUPS_AND_RETENTION)',
-    'the running production SHA (requires a deployed instance)',
-    'provider credential validity (never read here; only its variable name and boot behaviour)',
-    'error-monitoring INGESTION — events are emitted, nothing collects them yet',
-    'Terms, Privacy Notice and third-party model disclosure — the entire LEGAL lane',
-  ]) {
-    console.log(`  open  ${item}`);
+  // §269 amended this block. It previously listed six items as "open", and by §269 four of them
+  // were not open at all — they had simply never been looked at, because no section had contacted
+  // the live environment. A readiness command that keeps reporting a closed item as open teaches
+  // its reader to discount the list, which is worse than not printing one. So each line now carries
+  // what it actually is: still open, or established elsewhere and by what.
+  section('NOT ESTABLISHED BY THIS COMMAND — it contacts nothing live, by design');
+  for (const [state, item] of [
+    ['done', 'object storage — §269 verified the live R2 bucket end to end (upload, authorised '
+      + 'download with checksum, unsigned access refused, delete, no residue)'],
+    ['done', 'database backup and restore — §269 took a full logical backup of production and '
+      + 'rehearsed a restore: 76/76 tables, 7049/7049 rows, zero differences'],
+    ['done', 'the running production SHA — §269 read de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 from '
+      + '/health/version (versionSourceStatus RENDER_GIT_COMMIT)'],
+    ['done', 'error-monitoring INGESTION — §269 induced a production request and retrieved that '
+      + 'exact record from the Render log store. Review path: npm run ops:events'],
+    ['OPEN', 'provider credential — ANTHROPIC_API_KEY is ABSENT in production (§269). It is read at '
+      + 'call time, so it blocks the live smoke, not the deploy'],
+    ['OPEN', 'Terms, Privacy Notice and third-party model disclosure — drafted at §269 in '
+      + 'docs/legal/, all seven classified LEGAL COUNSEL REVIEW REQUIRED BEFORE BETA'],
+  ] as const) {
+    console.log(`  ${state === 'done' ? '§269' : 'open'}  ${item}`);
   }
+  console.log('\n  Live evidence: verification/expert-hazlenz-269-live-infrastructure-legal-'
+    + '2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json');
 
   console.log(`\nBETA READINESS (local engineering): ${fail === 0 ? 'PASS' : `FAIL (${fail})`}`
     + `  —  ${pass} checks passed`);

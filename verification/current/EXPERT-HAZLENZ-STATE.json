@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_STATE",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266; live infrastructure verified and legal minimum drafted at §269",
   "role": "POINTER AND INDEX. This file states current truth and points at the evidence that established it. It does not reproduce evidence, and a future session should be able to answer the ordinary questions from this file alone without reading §§229-262.",
   "asOf": "2026-09-13",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
@@ -301,7 +301,8 @@
     "betaReadiness": "npm run beta:readiness",
     "productionMigration": "npm run migrate:prod  (and migrate:prod:dry-run)",
     "verifyRunningSha": "npm run release:verify-sha -- --url=<host> --expected=<sha>",
-    "buildContextGuard": "npm run release:check-build-context"
+    "buildContextGuard": "npm run release:check-build-context",
+    "operatorEventReview": "npm run ops:events   (read-only; queries the Render log store via the authenticated CLI)"
   },
   "evidencePointers": {
     "candidateIdentity259": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/",
@@ -315,26 +316,29 @@
     "frontendProductWorkflow265": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/",
     "betaReadinessClosure266": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
     "productIntegrationDefectClosure267": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/",
-    "betaInfrastructureOperations268": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/"
+    "betaInfrastructureOperations268": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/",
+    "section269": "verification/expert-hazlenz-269-live-infrastructure-legal-2026-09-13/SECTION-269-LIVE-INFRASTRUCTURE.json",
+    "section269Legal": "docs/legal/ (7 artifacts + README index)",
+    "section269Monitoring": "docs/operations/MONITORING_AND_ALERTING.md"
   },
-  "nextAuthorizedWork": "LIVE INFRASTRUCTURE AND LEGAL. The local engineering for a beta deployment now exists. In order: disable Render autoDeploy (or set a pre-deploy migrate hook) — this gates everything else because with it on, pushing IS deploying; provision object storage, which production cannot boot without; confirm backups and rehearse one restore; provision an error-monitoring destination for the events the product now emits; then execute docs/operations/BETA_DEPLOYMENT_RUNBOOK.md, ending with the one authorized Expert live smoke (1 analysis, <=2 provider legs, <= USD 0.50). The LEGAL lane — Terms, Privacy Notice, third-party model disclosure — has no engineering prerequisite and is not made implicit by any of this.",
+  "nextAuthorizedWork": "THE RELEASE, plus a counsel review that no engineering work can substitute for. §269 closed the live-infrastructure lane: deployment control is off on BOTH platforms (Render autoDeploy=no/off, Vercel createDeployments=disabled), the running production SHA is de655d2f, production storage is verified end to end, a backup was taken and a restore rehearsed at 76/76 tables and 7049/7049 rows, the migration mechanism was dry-run against production, spend ceilings are configured (25 analyses / USD 10 per workspace per 24h), and a log collector was verified ingesting live. §269 also found and fixed the one condition that would have broken the release: EXPERT_EXECUTION_ENABLED was ABSENT, and the candidate could not have booted in production. It is now false. REMAINING, in order: (1) product owner classifies the seven legal drafts in docs/legal/ — this is the only remaining P0 that is not a release execution step; (2) set ANTHROPIC_API_KEY on the Render service; (3) set healthCheckPath to /health/ready; (4) decide ENABLE_MAINTENANCE_SEED (currently true, and it can reshape the production schema); (5) execute docs/operations/BETA_DEPLOYMENT_RUNBOOK.md, ending with one Expert live smoke at <=2 provider legs and <= USD 0.50.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"
   },
   "betaReadiness": {
-    "reviewedBy": "§266, defect-closure §267, infrastructure/operations §268",
-    "verdict": "NOT_YET_READY",
-    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
-    "architectureSound": true,
-    "p0Count": 6,
-    "register": "verification/current/BETA-BLOCKERS.json — the ONE authoritative register",
-    "evidence": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
-    "productionCodeChanged": 0,
-    "providerCalls": 0,
-    "productionDatabaseOperations": 0,
-    "packageDigest266": "fadd0eeebe13e007f64cef767c71262ee046226259de4b5e8a4615bba6eb508e",
-    "§267": "Two of §266's nine P0s are closed — EXPERT_CLIENT_VERSION_COLLISION and EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS — along with two P1s: the inspection-payload Expert read boundary and the dismissal over-restriction. The seven that remain are infrastructure, operations and legal; none is an Expert architecture defect and none requires redesign.",
-    "§268": "NO_SPEND_CEILING_OR_KILL_SWITCH is CLOSED. Six P0s remain and none is an engineering gap in the Expert architecture: production migration EXECUTION and autoDeploy control, object storage, error-monitoring ingestion, two legal items, and the push itself. ENGINEERING CLOSED IS NOT PRODUCTION READY."
+    "p0Remaining": 5,
+    "p0ClosedAtSection269": [
+      "REPORT_GENERATION_BLOCKED",
+      "NO_ERROR_MONITORING"
+    ],
+    "p0AddedAtSection269": [
+      "PRODUCTION_PROVIDER_CREDENTIAL_ABSENT"
+    ],
+    "register": "verification/current/BETA-BLOCKERS.json — the only authoritative register",
+    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_BLOCKER — PRODUCT_OWNER_DECISION_REQUIRED",
+    "liveInfrastructureLane": "closed, or converted to execution steps belonging to the release",
+    "legalLane": "all seven artifacts drafted at §269; every one classified INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED",
+    "betaAcknowledgementDecision": "Option A — out-of-product signed beta agreement before account creation. No new consent UI. The existing registration checkbox is client-side only (register/page.tsx:36,79,343; never transmitted, never persisted) and must not be relied upon as acceptance evidence."
   }
 }
