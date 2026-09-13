@@ -22,7 +22,7 @@ import { PdfModule } from './pdf/pdf.module';
 import { BillingModule } from './billing/billing.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { AnalyticsModule } from './analytics/analytics.module';
-import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowledge.module';
+import { HazLenzKnowledgeModule } from './hazlenz-knowledge/hazlenz-knowledge.module';
 import { SafeScopeModule } from './safescope/safescope.module';
 import { UploadModule } from './upload/upload.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
@@ -53,7 +53,7 @@ function getDatabaseSslConfig() {
 @Module({
   controllers: [MaintenanceSeedController],
   imports: [SafescopeV2Module,
-    SafeScopeKnowledgeModule, 
+    HazLenzKnowledgeModule, 
     // 🔷 ENVIRONMENT CONFIGURATION: IT standard for secret management
     ConfigModule.forRoot({
       isGlobal: true,

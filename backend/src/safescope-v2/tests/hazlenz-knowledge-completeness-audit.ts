@@ -7,7 +7,7 @@ import { TAXONOMY } from "../taxonomy.seed";
 import { standards as standardsSeed } from "../../standards/seed/standards.seed";
 import { dataSource } from "../../database/data-source";
 import { Standard } from "../../standards/standard.entity";
-import { SafeScopeKnowledgeChunk } from "../../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
+import { HazLenzKnowledgeChunk } from "../../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity";
 import { HazardTaxonomy } from "../../intelligence-framework/entities/hazard-taxonomy.entity";
 import { HazardStandardMapping } from "../../standards/entities/hazard-standard-mapping.entity";
 import * as fs from "fs";
@@ -92,7 +92,7 @@ async function tryDbBackedCounts() {
 
     const [standardsCount, chunkCount, taxonomyCount, mappingCount] = await Promise.all([
       dataSource.getRepository(Standard).count(),
-      dataSource.getRepository(SafeScopeKnowledgeChunk).count(),
+      dataSource.getRepository(HazLenzKnowledgeChunk).count(),
       dataSource.getRepository(HazardTaxonomy).count(),
       dataSource.getRepository(HazardStandardMapping).count(),
     ]);

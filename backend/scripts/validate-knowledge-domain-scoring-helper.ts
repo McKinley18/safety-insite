@@ -1,4 +1,4 @@
-import { scoreKnowledgeDomainAlignment } from '../src/safescope-knowledge/scoring/knowledge-domain-scoring.helper';
+import { scoreKnowledgeDomainAlignment } from '../src/hazlenz-knowledge/scoring/knowledge-domain-scoring.helper';
 
 type Case = {
   name: string;

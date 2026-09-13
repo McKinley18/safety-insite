@@ -1,4 +1,4 @@
-import { SafeScopeSourceRegistryEntry } from "./safescope-source-registry.types";
+import { SafeScopeSourceRegistryEntry } from "./hazlenz-source-registry.types";
 
 export const SAFESCOPE_SOURCE_REGISTRY: SafeScopeSourceRegistryEntry[] = [
   {

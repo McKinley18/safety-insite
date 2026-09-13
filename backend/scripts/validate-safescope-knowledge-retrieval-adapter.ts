@@ -4,12 +4,12 @@ import {
   KnowledgeRetrievalServiceAdapter,
   SafeScopeAdapterContext,
 } from '../src/safescope/adapters';
-import { SafeScopeKnowledgeService } from '../src/safescope-knowledge/safescope-knowledge.service';
-import { SafeScopeKnowledgeDocument } from '../src/safescope-knowledge/entities/safescope-knowledge-document.entity';
-import { SafeScopeKnowledgeChunk } from '../src/safescope-knowledge/entities/safescope-knowledge-chunk.entity';
-import { SafeScopeKnowledgeSource } from '../src/safescope-knowledge/entities/safescope-knowledge-source.entity';
-import { SafeScopeKnowledgeIngestionRun } from '../src/safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity';
-import { SafeScopeKnowledgeRetrievalLog } from '../src/safescope-knowledge/entities/safescope-knowledge-retrieval-log.entity';
+import { HazLenzKnowledgeService } from '../src/hazlenz-knowledge/hazlenz-knowledge.service';
+import { HazLenzKnowledgeDocument } from '../src/hazlenz-knowledge/entities/hazlenz-knowledge-document.entity';
+import { HazLenzKnowledgeChunk } from '../src/hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity';
+import { HazLenzKnowledgeSource } from '../src/hazlenz-knowledge/entities/hazlenz-knowledge-source.entity';
+import { HazLenzKnowledgeIngestionRun } from '../src/hazlenz-knowledge/entities/hazlenz-knowledge-ingestion-run.entity';
+import { HazLenzKnowledgeRetrievalLog } from '../src/hazlenz-knowledge/entities/hazlenz-knowledge-retrieval-log.entity';
 
 config();
 
@@ -20,33 +20,33 @@ async function run() {
       process.env.DATABASE_URL ||
       'postgres://mckinley@localhost:5432/sentinel_safety',
     entities: [
-      SafeScopeKnowledgeDocument,
-      SafeScopeKnowledgeChunk,
-      SafeScopeKnowledgeSource,
-      SafeScopeKnowledgeIngestionRun,
-      SafeScopeKnowledgeRetrievalLog,
+      HazLenzKnowledgeDocument,
+      HazLenzKnowledgeChunk,
+      HazLenzKnowledgeSource,
+      HazLenzKnowledgeIngestionRun,
+      HazLenzKnowledgeRetrievalLog,
     ],
     synchronize: false,
   });
 
   await dataSource.initialize();
 
-  const knowledgeService = new SafeScopeKnowledgeService(
-    dataSource.getRepository(SafeScopeKnowledgeDocument),
-    dataSource.getRepository(SafeScopeKnowledgeChunk),
-    dataSource.getRepository(SafeScopeKnowledgeRetrievalLog),
-    dataSource.getRepository(SafeScopeKnowledgeSource),
-    dataSource.getRepository(SafeScopeKnowledgeIngestionRun),
+  const knowledgeService = new HazLenzKnowledgeService(
+    dataSource.getRepository(HazLenzKnowledgeDocument),
+    dataSource.getRepository(HazLenzKnowledgeChunk),
+    dataSource.getRepository(HazLenzKnowledgeRetrievalLog),
+    dataSource.getRepository(HazLenzKnowledgeSource),
+    dataSource.getRepository(HazLenzKnowledgeIngestionRun),
   );
 
   const adapter = new KnowledgeRetrievalServiceAdapter(knowledgeService);
 
   const beforeDocumentCount = await dataSource
-    .getRepository(SafeScopeKnowledgeDocument)
+    .getRepository(HazLenzKnowledgeDocument)
     .count();
 
   const beforeApprovedCount = await dataSource
-    .getRepository(SafeScopeKnowledgeDocument)
+    .getRepository(HazLenzKnowledgeDocument)
     .count({ where: { approvalStatus: 'approved' } as any });
 
   const context: SafeScopeAdapterContext = {
@@ -83,11 +83,11 @@ async function run() {
   const data = result.data as any;
 
   const afterDocumentCount = await dataSource
-    .getRepository(SafeScopeKnowledgeDocument)
+    .getRepository(HazLenzKnowledgeDocument)
     .count();
 
   const afterApprovedCount = await dataSource
-    .getRepository(SafeScopeKnowledgeDocument)
+    .getRepository(HazLenzKnowledgeDocument)
     .count({ where: { approvalStatus: 'approved' } as any });
 
   await dataSource.destroy();

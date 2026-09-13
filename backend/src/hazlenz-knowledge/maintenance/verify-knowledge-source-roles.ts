@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import { config } from "dotenv";
-import { SafeScopeKnowledgeDocument } from "../entities/safescope-knowledge-document.entity";
-import { SafeScopeKnowledgeChunk } from "../entities/safescope-knowledge-chunk.entity";
+import { HazLenzKnowledgeDocument } from "../entities/hazlenz-knowledge-document.entity";
+import { HazLenzKnowledgeChunk } from "../entities/hazlenz-knowledge-chunk.entity";
 import { getSourceRole, ROLE_LABELS } from "../sources/source-role-helper";
 
 config();
@@ -12,12 +12,12 @@ async function run() {
     url:
       process.env.DATABASE_URL ||
       "postgres://mckinley@localhost:5432/sentinel_safety",
-    entities: [SafeScopeKnowledgeDocument, SafeScopeKnowledgeChunk],
+    entities: [HazLenzKnowledgeDocument, HazLenzKnowledgeChunk],
     synchronize: false,
   });
 
   await dataSource.initialize();
-  const repo = dataSource.getRepository(SafeScopeKnowledgeDocument);
+  const repo = dataSource.getRepository(HazLenzKnowledgeDocument);
 
   const docs = await repo.find({ take: 10 });
 

@@ -1,4 +1,4 @@
-import { SafeScopeKnowledgeService } from '../../safescope-knowledge/safescope-knowledge.service';
+import { HazLenzKnowledgeService } from '../../hazlenz-knowledge/hazlenz-knowledge.service';
 import { SafeScopeAdapterContext, SafeScopeAdapterResult } from './safescope-adapter.types';
 
 /**
@@ -9,7 +9,7 @@ import { SafeScopeAdapterContext, SafeScopeAdapterResult } from './safescope-ada
  * or override Standards Matching.
  */
 export class KnowledgeRetrievalServiceAdapter {
-  constructor(private readonly knowledgeService: SafeScopeKnowledgeService) {}
+  constructor(private readonly knowledgeService: HazLenzKnowledgeService) {}
 
   async retrieveKnowledge(
     context: SafeScopeAdapterContext,
@@ -53,7 +53,7 @@ export class KnowledgeRetrievalServiceAdapter {
         status: 'called',
         notes: [
           'Read-only SafeScope Knowledge retrieval adapter called.',
-          'Approved-only trusted knowledge retrieval enforced by SafeScopeKnowledgeService.retrieveForHazard().',
+          'Approved-only trusted knowledge retrieval enforced by HazLenzKnowledgeService.retrieveForHazard().',
           'No source ingestion performed by adapter.',
           'No document approval status changed by adapter.',
           'No taxonomy mutation performed by adapter.',

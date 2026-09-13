@@ -1,94 +1,94 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { JwtGuard } from "../auth/guards/jwt.guard";
 import { EntitlementGuard, RequireEntitlement } from "../auth/entitlements/entitlement.guard";
-import { SafeScopeKnowledgeService } from "./safescope-knowledge.service";
+import { HazLenzKnowledgeService } from "./hazlenz-knowledge.service";
 import { Roles } from "../auth/decorators/roles.decorator";
 import { RolesGuard } from "../auth/guards/roles.guard";
 
 @UseGuards(JwtGuard, EntitlementGuard)
 @RequireEntitlement("auditTrail")
 @Controller("safescope-knowledge")
-export class SafeScopeKnowledgeController {
+export class HazLenzKnowledgeController {
   constructor(
-    private readonly safeScopeKnowledgeService: SafeScopeKnowledgeService,
+    private readonly hazLenzKnowledgeService: HazLenzKnowledgeService,
   ) {}
 
   @Post("documents")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   createDocument(@Body() body: any) {
-    return this.safeScopeKnowledgeService.createDocument(body);
+    return this.hazLenzKnowledgeService.createDocument(body);
   }
 
   @Get("documents")
   listDocuments() {
-    return this.safeScopeKnowledgeService.listDocuments();
+    return this.hazLenzKnowledgeService.listDocuments();
   }
 
   @Get("review/pending")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   listPendingDocuments() {
-    return this.safeScopeKnowledgeService.listPendingDocuments();
+    return this.hazLenzKnowledgeService.listPendingDocuments();
   }
 
   @Get("review/status-counts")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   getStatusCounts() {
-    return this.safeScopeKnowledgeService.getStatusCounts();
+    return this.hazLenzKnowledgeService.getStatusCounts();
   }
 
   @Get("sources")
   listSources() {
-    return this.safeScopeKnowledgeService.listSources();
+    return this.hazLenzKnowledgeService.listSources();
   }
 
   @Post("sources")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   upsertSource(@Body() body: any) {
-    return this.safeScopeKnowledgeService.upsertSource(body);
+    return this.hazLenzKnowledgeService.upsertSource(body);
   }
 
   @Get("ingestion-runs")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   listIngestionRuns() {
-    return this.safeScopeKnowledgeService.listIngestionRuns();
+    return this.hazLenzKnowledgeService.listIngestionRuns();
   }
 
   @Post("ingestion-runs")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   createIngestionRun(@Body() body: any) {
-    return this.safeScopeKnowledgeService.createIngestionRun(body);
+    return this.hazLenzKnowledgeService.createIngestionRun(body);
   }
 
   @Post("ingestion-runs/:id/running")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   markIngestionRunRunning(@Param("id") id: string) {
-    return this.safeScopeKnowledgeService.markIngestionRunRunning(id);
+    return this.hazLenzKnowledgeService.markIngestionRunRunning(id);
   }
 
   @Post("ingestion-runs/:id/complete")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   completeIngestionRun(@Param("id") id: string, @Body() body: any) {
-    return this.safeScopeKnowledgeService.completeIngestionRun(id, body);
+    return this.hazLenzKnowledgeService.completeIngestionRun(id, body);
   }
 
   @Get("documents/:id")
   findDocument(@Param("id") id: string) {
-    return this.safeScopeKnowledgeService.findDocument(id);
+    return this.hazLenzKnowledgeService.findDocument(id);
   }
 
   @Post("documents/:id/chunks/rebuild")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   rebuildChunks(@Param("id") id: string) {
-    return this.safeScopeKnowledgeService.rebuildChunks(id);
+    return this.hazLenzKnowledgeService.rebuildChunks(id);
   }
 
   @Post("documents/:id/approval-status")
@@ -101,7 +101,7 @@ export class SafeScopeKnowledgeController {
       status: "draft" | "pending_review" | "approved" | "rejected" | "archived";
     },
   ) {
-    return this.safeScopeKnowledgeService.updateDocumentApprovalStatus(
+    return this.hazLenzKnowledgeService.updateDocumentApprovalStatus(
       id,
       body.status,
     );
@@ -111,18 +111,18 @@ export class SafeScopeKnowledgeController {
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   approveDocument(@Param("id") id: string) {
-    return this.safeScopeKnowledgeService.approveDocument(id);
+    return this.hazLenzKnowledgeService.approveDocument(id);
   }
 
   @Post("documents/:id/reject")
   @UseGuards(RolesGuard)
   @Roles("SUPER_ADMIN", "PLATFORM_ADMIN")
   rejectDocument(@Param("id") id: string) {
-    return this.safeScopeKnowledgeService.rejectDocument(id);
+    return this.hazLenzKnowledgeService.rejectDocument(id);
   }
 
   @Post("search")
   search(@Body() body: any) {
-    return this.safeScopeKnowledgeService.search(body);
+    return this.hazLenzKnowledgeService.search(body);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {
   ExpertObservationInput,
   ExpertObservationOutput,
-  SafeScopeKnowledgeMatch,
+  HazLenzKnowledgeMatch,
 } from '../types/knowledge-expansion.types';
 
 type ExpertDomain = {
@@ -423,7 +423,7 @@ export class SafeScopeExpertObservationService {
     const confidenceCautions: string[] = [];
     const humanReviewTriggers: string[] = [];
 
-    for (const match of knowledgeMatches as SafeScopeKnowledgeMatch[]) {
+    for (const match of knowledgeMatches as HazLenzKnowledgeMatch[]) {
       const type = String(match.knowledgeType || match.type || '').toLowerCase();
       const title =
         match.title || match.summary || match.citation || 'approved knowledge signal';

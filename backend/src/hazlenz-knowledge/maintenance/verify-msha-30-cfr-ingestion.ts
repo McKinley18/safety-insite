@@ -1,5 +1,5 @@
 import { Msha30CfrConnector } from "../ingestion/connectors/msha-30-cfr.connector";
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/safescope-source-registry";
+import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import { getGovernanceConfig } from "../ingestion/ingestion-control-plane";
 
 async function verify() {

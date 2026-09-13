@@ -5,17 +5,17 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { SafeScopeKnowledgeDocument } from './safescope-knowledge-document.entity';
+import { HazLenzKnowledgeDocument } from './hazlenz-knowledge-document.entity';
 
 @Entity('safescope_knowledge_chunks')
-export class SafeScopeKnowledgeChunk {
+export class HazLenzKnowledgeChunk {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => SafeScopeKnowledgeDocument, (document) => document.chunks, {
+  @ManyToOne(() => HazLenzKnowledgeDocument, (document) => document.chunks, {
     onDelete: 'CASCADE',
   })
-  document: SafeScopeKnowledgeDocument;
+  document: HazLenzKnowledgeDocument;
 
   @Column({ type: 'uuid' })
   documentId: string;

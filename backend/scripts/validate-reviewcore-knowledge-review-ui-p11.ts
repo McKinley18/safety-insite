@@ -8,19 +8,19 @@ function assert(condition: unknown, message: string): asserts condition {
 }
 
 const repoRoot = path.resolve(__dirname, '../..');
-const overviewPath = path.join(repoRoot, 'frontend-next/app/safescope-knowledge/page.tsx');
-const reviewPath = path.join(repoRoot, 'frontend-next/app/safescope-knowledge/review/page.tsx');
+const overviewPath = path.join(repoRoot, 'frontend-next/app/hazlenz-knowledge/page.tsx');
+const reviewPath = path.join(repoRoot, 'frontend-next/app/hazlenz-knowledge/review/page.tsx');
 
-assert(fs.existsSync(overviewPath), 'Missing /safescope-knowledge page.');
-assert(fs.existsSync(reviewPath), 'Missing /safescope-knowledge/review page.');
+assert(fs.existsSync(overviewPath), 'Missing /hazlenz-knowledge page.');
+assert(fs.existsSync(reviewPath), 'Missing /hazlenz-knowledge/review page.');
 
 const overview = fs.readFileSync(overviewPath, 'utf8');
 const review = fs.readFileSync(reviewPath, 'utf8');
 const combined = `${overview}\n${review}`.toLowerCase();
 
 [
-  'searchSafeScopeKnowledge',
-  'listSafeScopeKnowledgeDocuments',
+  'searchHazLenzKnowledge',
+  'listHazLenzKnowledgeDocuments',
   'runSearch',
   'searchResult',
   'documentsLoading',

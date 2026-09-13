@@ -6,16 +6,16 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { SafeScopeKnowledgeChunk } from "./safescope-knowledge-chunk.entity";
+import { HazLenzKnowledgeChunk } from "./hazlenz-knowledge-chunk.entity";
 
-export type SafeScopeKnowledgeAgency =
+export type HazLenzKnowledgeAgency =
   | "MSHA"
   | "OSHA"
   | "NIOSH"
   | "Internal"
   | "Other";
 
-export type SafeScopeKnowledgeSourceType =
+export type HazLenzKnowledgeSourceType =
   | "regulation"
   | "policy"
   | "interpretation"
@@ -39,7 +39,7 @@ export type SafeScopeKnowledgeSourceType =
   | "internal_learning"
   | "other";
 
-export type SafeScopeKnowledgeApprovalStatus =
+export type HazLenzKnowledgeApprovalStatus =
   | "draft"
   | "pending_review"
   | "approved"
@@ -47,7 +47,7 @@ export type SafeScopeKnowledgeApprovalStatus =
   | "archived";
 
 @Entity("safescope_knowledge_documents")
-export class SafeScopeKnowledgeDocument {
+export class HazLenzKnowledgeDocument {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -55,10 +55,10 @@ export class SafeScopeKnowledgeDocument {
   title: string;
 
   @Column({ type: "varchar", length: 40, default: "Other" })
-  agency: SafeScopeKnowledgeAgency;
+  agency: HazLenzKnowledgeAgency;
 
   @Column({ type: "varchar", length: 60, default: "other" })
-  sourceType: SafeScopeKnowledgeSourceType;
+  sourceType: HazLenzKnowledgeSourceType;
 
   @Column({ type: "int", default: 5 })
   authorityTier: number;
@@ -76,7 +76,7 @@ export class SafeScopeKnowledgeDocument {
   reviewedAt?: string | null;
 
   @Column({ type: "varchar", length: 40, default: "draft" })
-  approvalStatus: SafeScopeKnowledgeApprovalStatus;
+  approvalStatus: HazLenzKnowledgeApprovalStatus;
 
   @Column({ type: "text", nullable: true })
   summary?: string | null;
@@ -114,10 +114,10 @@ export class SafeScopeKnowledgeDocument {
   @Column({ type: "jsonb", default: [] })
   lessonTags: string[];
 
-  @OneToMany(() => SafeScopeKnowledgeChunk, (chunk) => chunk.document, {
+  @OneToMany(() => HazLenzKnowledgeChunk, (chunk) => chunk.document, {
     cascade: true,
   })
-  chunks: SafeScopeKnowledgeChunk[];
+  chunks: HazLenzKnowledgeChunk[];
 
   @CreateDateColumn()
   createdAt: Date;

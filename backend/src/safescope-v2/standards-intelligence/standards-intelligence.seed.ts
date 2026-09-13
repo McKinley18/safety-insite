@@ -1,5 +1,5 @@
 import { StandardsIntelligenceRecord } from "./standards-intelligence.types";
-import { buildSourceRegistryMetadata } from "../../safescope-knowledge/sources/source-registry-metadata";
+import { buildSourceRegistryMetadata } from "../../hazlenz-knowledge/sources/source-registry-metadata";
 import { V1_STANDARDS_EXPANSION } from "./standards-intelligence.v1-expansion";
 
 const MSHA_STANDARDS_SOURCE_METADATA = buildSourceRegistryMetadata(

@@ -26,7 +26,7 @@ async function validate() {
   console.log('[PASS] SAFE_SCOPE_PERSISTENCE_MODE is referenced in persistence service.');
 
   // 3. Verify NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK gates reviewer console
-  const reviewerConsolePath = path.join(frontendSrc, 'app/safescope-knowledge/review/page.tsx');
+  const reviewerConsolePath = path.join(frontendSrc, 'app/hazlenz-knowledge/review/page.tsx');
   if (fs.existsSync(reviewerConsolePath)) {
     const reviewerConsoleContent = fs.readFileSync(reviewerConsolePath, 'utf-8');
     if (!reviewerConsoleContent.includes('NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK')) {

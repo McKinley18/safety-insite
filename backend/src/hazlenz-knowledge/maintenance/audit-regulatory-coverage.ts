@@ -1,7 +1,7 @@
 import { DataSource, ILike } from "typeorm";
 import { config } from "dotenv";
-import { SafeScopeKnowledgeDocument } from "../entities/safescope-knowledge-document.entity";
-import { SafeScopeKnowledgeChunk } from "../entities/safescope-knowledge-chunk.entity";
+import { HazLenzKnowledgeDocument } from "../entities/hazlenz-knowledge-document.entity";
+import { HazLenzKnowledgeChunk } from "../entities/hazlenz-knowledge-chunk.entity";
 
 config();
 
@@ -70,11 +70,11 @@ async function run() {
     url:
       process.env.DATABASE_URL ||
       "postgres://mckinley@localhost:5432/sentinel_safety",
-    entities: [SafeScopeKnowledgeDocument, SafeScopeKnowledgeChunk],
+    entities: [HazLenzKnowledgeDocument, HazLenzKnowledgeChunk],
     synchronize: false,
   });
   await ds.initialize();
-  const chunkRepo = ds.getRepository(SafeScopeKnowledgeChunk);
+  const chunkRepo = ds.getRepository(HazLenzKnowledgeChunk);
 
   const titles = ["29", "30"];
   const mshaChapterIParts = ["56", "57", "75", "77"];

@@ -1,7 +1,7 @@
 import {
   getSafeScopeSourceByKey,
   SAFESCOPE_SOURCE_REGISTRY,
-} from "./safescope-source-registry";
+} from "./hazlenz-source-registry";
 
 export function buildSourceRegistryMetadata(sourceKey: string) {
   const source = getSafeScopeSourceByKey(sourceKey);

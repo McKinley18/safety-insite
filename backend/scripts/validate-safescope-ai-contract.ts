@@ -5,7 +5,7 @@ import { EvidenceFusionService } from '../src/safescope-v2/evidence/evidence-fus
 import { ApplicableStandardsService } from '../src/applicable-standards/applicable-standards.service';
 import { SafeScopeFeedbackService } from '../src/safescope-v2/feedback/safescope-feedback.service';
 import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
-import { SafeScopeKnowledgeService } from '../src/safescope-knowledge/safescope-knowledge.service';
+import { HazLenzKnowledgeService } from '../src/hazlenz-knowledge/hazlenz-knowledge.service';
 import { StandardsIntelligenceService } from '../src/safescope-v2/standards-intelligence/standards-intelligence.service';
 import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
 
@@ -55,7 +55,7 @@ function createMockService() {
     createSnapshot: async () => ({ id: 'test-reasoning-snapshot-id' }),
   } as unknown as ReasoningSnapshotService;
 
-  const safeScopeKnowledge = {
+  const hazLenzKnowledge = {
     retrieveForHazard: async () => ({
       confidence: 0.85,
       matches: [
@@ -80,7 +80,7 @@ function createMockService() {
         caution: 'Qualified review remains required for final compliance decisions.',
       },
     }),
-  } as unknown as SafeScopeKnowledgeService;
+  } as unknown as HazLenzKnowledgeService;
 
   const supervisorValidationService = {
     getWorkspaceValidationSignals: async () => [],

@@ -4,31 +4,31 @@ import { buildSourceSynthesis } from "./sources/source-synthesis-helper";
 import { scoreKnowledgeDomainAlignment } from "./scoring/knowledge-domain-scoring.helper";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ILike, Repository } from "typeorm";
-import { SafeScopeKnowledgeChunk } from "./entities/safescope-knowledge-chunk.entity";
+import { HazLenzKnowledgeChunk } from "./entities/hazlenz-knowledge-chunk.entity";
 import {
-  SafeScopeKnowledgeApprovalStatus,
-  SafeScopeKnowledgeDocument,
-  SafeScopeKnowledgeSourceType,
-} from "./entities/safescope-knowledge-document.entity";
-import { SafeScopeKnowledgeRetrievalLog } from "./entities/safescope-knowledge-retrieval-log.entity";
-import { SafeScopeKnowledgeSource } from "./entities/safescope-knowledge-source.entity";
-import { SafeScopeKnowledgeIngestionRun } from "./entities/safescope-knowledge-ingestion-run.entity";
+  HazLenzKnowledgeApprovalStatus,
+  HazLenzKnowledgeDocument,
+  HazLenzKnowledgeSourceType,
+} from "./entities/hazlenz-knowledge-document.entity";
+import { HazLenzKnowledgeRetrievalLog } from "./entities/hazlenz-knowledge-retrieval-log.entity";
+import { HazLenzKnowledgeSource } from "./entities/hazlenz-knowledge-source.entity";
+import { HazLenzKnowledgeIngestionRun } from "./entities/hazlenz-knowledge-ingestion-run.entity";
 import {
   getSourceRole,
   ROLE_LABELS,
   ROLE_GUIDANCE,
 } from "./sources/source-role-helper";
 
-type CreateSafeScopeKnowledgeDocumentDto = {
+type CreateHazLenzKnowledgeDocumentDto = {
   title: string;
   agency?: string;
-  sourceType?: SafeScopeKnowledgeSourceType;
+  sourceType?: HazLenzKnowledgeSourceType;
   authorityTier?: number;
   citation?: string;
   sourceUrl?: string;
   publishedAt?: string;
   reviewedAt?: string;
-  approvalStatus?: SafeScopeKnowledgeApprovalStatus;
+  approvalStatus?: HazLenzKnowledgeApprovalStatus;
   summary?: string;
   rawText: string;
   hazardTags?: string[];
@@ -38,7 +38,7 @@ type CreateSafeScopeKnowledgeDocumentDto = {
   lessonTags?: string[];
 };
 
-type SearchSafeScopeKnowledgeDto = {
+type SearchHazLenzKnowledgeDto = {
   query: string;
   agency?: string;
   agencyMode?: string;
@@ -51,21 +51,21 @@ type SearchSafeScopeKnowledgeDto = {
 };
 
 @Injectable()
-export class SafeScopeKnowledgeService {
+export class HazLenzKnowledgeService {
   constructor(
-    @InjectRepository(SafeScopeKnowledgeDocument)
-    private readonly documentRepo: Repository<SafeScopeKnowledgeDocument>,
-    @InjectRepository(SafeScopeKnowledgeChunk)
-    private readonly chunkRepo: Repository<SafeScopeKnowledgeChunk>,
-    @InjectRepository(SafeScopeKnowledgeRetrievalLog)
-    private readonly retrievalLogRepo: Repository<SafeScopeKnowledgeRetrievalLog>,
-    @InjectRepository(SafeScopeKnowledgeSource)
-    private readonly sourceRepo: Repository<SafeScopeKnowledgeSource>,
-    @InjectRepository(SafeScopeKnowledgeIngestionRun)
-    private readonly ingestionRunRepo: Repository<SafeScopeKnowledgeIngestionRun>,
+    @InjectRepository(HazLenzKnowledgeDocument)
+    private readonly documentRepo: Repository<HazLenzKnowledgeDocument>,
+    @InjectRepository(HazLenzKnowledgeChunk)
+    private readonly chunkRepo: Repository<HazLenzKnowledgeChunk>,
+    @InjectRepository(HazLenzKnowledgeRetrievalLog)
+    private readonly retrievalLogRepo: Repository<HazLenzKnowledgeRetrievalLog>,
+    @InjectRepository(HazLenzKnowledgeSource)
+    private readonly sourceRepo: Repository<HazLenzKnowledgeSource>,
+    @InjectRepository(HazLenzKnowledgeIngestionRun)
+    private readonly ingestionRunRepo: Repository<HazLenzKnowledgeIngestionRun>,
   ) {}
 
-  async createDocument(dto: CreateSafeScopeKnowledgeDocumentDto) {
+  async createDocument(dto: CreateHazLenzKnowledgeDocumentDto) {
     const document = this.documentRepo.create({
       title: dto.title,
       agency: (dto.agency as any) || "Other",
@@ -147,7 +147,7 @@ export class SafeScopeKnowledgeService {
       where: { name: dto.name },
     });
 
-    const source = existing || new SafeScopeKnowledgeSource();
+    const source = existing || new HazLenzKnowledgeSource();
 
     Object.assign(source, {
       name: dto.name,
@@ -317,7 +317,7 @@ export class SafeScopeKnowledgeService {
     return this.chunkRepo.save(chunks);
   }
 
-  async search(dto: SearchSafeScopeKnowledgeDto) {
+  async search(dto: SearchHazLenzKnowledgeDto) {
     const limit = Math.min(Math.max(dto.limit || 8, 1), 25);
     const query = (dto.query || "").trim();
 
@@ -687,7 +687,7 @@ export class SafeScopeKnowledgeService {
   private scoreChunk(
     query: string,
     terms: string[],
-    chunk: SafeScopeKnowledgeChunk,
+    chunk: HazLenzKnowledgeChunk,
     agencyMode?: string,
   ) {
     const haystack = [
@@ -759,7 +759,7 @@ export class SafeScopeKnowledgeService {
     );
   }
 
-  private explainMatch(terms: string[], chunk: SafeScopeKnowledgeChunk) {
+  private explainMatch(terms: string[], chunk: HazLenzKnowledgeChunk) {
     const text = chunk.chunkText.toLowerCase();
     const matchedTerms = terms.filter((term) => text.includes(term));
 
@@ -807,7 +807,7 @@ export class SafeScopeKnowledgeService {
     return gaps;
   }
 
-  private defaultAuthorityTier(sourceType?: SafeScopeKnowledgeSourceType) {
+  private defaultAuthorityTier(sourceType?: HazLenzKnowledgeSourceType) {
     if (sourceType === "regulation") return 1;
     if (["policy", "interpretation", "directive"].includes(String(sourceType)))
       return 2;

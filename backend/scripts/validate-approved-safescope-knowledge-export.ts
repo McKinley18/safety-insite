@@ -26,7 +26,7 @@ const approvedBundlePath = path.join(
   '../src/safescope-v2/knowledge-intake/records/approved/approved-knowledge-bundle.json',
 );
 
-assert(fs.existsSync(approvedBundlePath), 'Approved knowledge bundle does not exist. Run export-approved-safescope-knowledge.ts first.');
+assert(fs.existsSync(approvedBundlePath), 'Approved knowledge bundle does not exist. Run export-approved-hazlenz-knowledge.ts first.');
 
 const bundle = JSON.parse(fs.readFileSync(approvedBundlePath, 'utf-8')) as ApprovedKnowledgeBundle;
 

@@ -77,7 +77,7 @@ async function validate() {
   console.log('[PASS] Persistence modes hardened.');
 
   console.log('--- Testing Staging Hardening: Frontend Demo Gating ---');
-  const frontendPath = path.resolve(__dirname, '../../frontend-next/app/safescope-knowledge/review/page.tsx');
+  const frontendPath = path.resolve(__dirname, '../../frontend-next/app/hazlenz-knowledge/review/page.tsx');
   if (fs.existsSync(frontendPath)) {
     const frontendContent = fs.readFileSync(frontendPath, 'utf-8');
     if (!frontendContent.includes('NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK')) {

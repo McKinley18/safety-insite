@@ -20,7 +20,7 @@ function getMemorySnapshot() {
     externalMb: Math.round(usage.external / 1024 / 1024),
   };
 }
-import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
+import { buildSourceSynthesis } from "../hazlenz-knowledge/sources/source-synthesis-helper";
 import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intelligence";
 import { getCorrectiveActionIntelligence } from "./intelligence/corrective-action-intelligence";
 import { SafeScopeNativeReasoningService } from "./native-reasoning/native-reasoning.service";

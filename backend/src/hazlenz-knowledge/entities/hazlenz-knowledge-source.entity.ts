@@ -6,19 +6,19 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export type SafeScopeKnowledgeSourceStatus =
+export type HazLenzKnowledgeSourceStatus =
   | 'active'
   | 'paused'
   | 'disabled';
 
-export type SafeScopeKnowledgeSourceTrustLevel =
+export type HazLenzKnowledgeSourceTrustLevel =
   | 'official'
   | 'research'
   | 'internal'
   | 'external_review_required';
 
 @Entity('safescope_knowledge_sources')
-export class SafeScopeKnowledgeSource {
+export class HazLenzKnowledgeSource {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -32,7 +32,7 @@ export class SafeScopeKnowledgeSource {
   sourceType: string;
 
   @Column({ type: 'varchar', length: 80, default: 'official' })
-  trustLevel: SafeScopeKnowledgeSourceTrustLevel;
+  trustLevel: HazLenzKnowledgeSourceTrustLevel;
 
   @Column({ type: 'int', default: 3 })
   defaultAuthorityTier: number;
@@ -44,7 +44,7 @@ export class SafeScopeKnowledgeSource {
   description?: string | null;
 
   @Column({ type: 'varchar', length: 40, default: 'active' })
-  status: SafeScopeKnowledgeSourceStatus;
+  status: HazLenzKnowledgeSourceStatus;
 
   @Column({ type: 'timestamp', nullable: true })
   lastCheckedAt?: Date | null;

@@ -1,4 +1,4 @@
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/safescope-source-registry";
+import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import { getGovernanceConfig } from "../ingestion/ingestion-control-plane";
 import { getConnectorPriority } from "../ingestion/connector-priority-planner";
 

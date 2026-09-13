@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 
 @Entity('safescope_knowledge_retrieval_logs')
-export class SafeScopeKnowledgeRetrievalLog {
+export class HazLenzKnowledgeRetrievalLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

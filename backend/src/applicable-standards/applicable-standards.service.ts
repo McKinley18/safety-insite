@@ -5,7 +5,7 @@ import { Standard } from "../standards/entities/standard.entity";
 import { resolveStandardsBacking } from "../standards/display/standards-backing-contract";
 import { projectGovernedDisplay } from "../standards/cutover/governed-cutover-context";
 import type { GovernedCutoverContext } from "../standards/cutover/governed-cutover-context";
-import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
+import { HazLenzKnowledgeChunk } from "../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity";
 import { hasNonNegatedTerm } from "../safescope-v2/reasoning-orchestrator/negation-context.util";
 import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
 
@@ -44,7 +44,7 @@ function isCitationMatch(dbCit: string, targetCit: string): boolean {
 }
 
 type CachedKnowledgeChunk = Pick<
-  SafeScopeKnowledgeChunk,
+  HazLenzKnowledgeChunk,
   "id" | "citation" | "sectionHeading" | "chunkSummary" | "chunkText"
 > & {
   document: {
@@ -354,7 +354,7 @@ export class ApplicableStandardsService {
   }
 
   private scoreKnowledgeChunk(
-    chunk: SafeScopeKnowledgeChunk,
+    chunk: HazLenzKnowledgeChunk,
     observation: string,
     siteType?: string,
     mshaPartPreference?: "56" | "57" | "75" | "77",
@@ -870,8 +870,8 @@ export class ApplicableStandardsService {
     @InjectRepository(Standard)
     private readonly standardRepo: Repository<Standard>,
     @Optional()
-    @InjectRepository(SafeScopeKnowledgeChunk)
-    private readonly knowledgeChunkRepo?: Repository<SafeScopeKnowledgeChunk>,
+    @InjectRepository(HazLenzKnowledgeChunk)
+    private readonly knowledgeChunkRepo?: Repository<HazLenzKnowledgeChunk>,
     @Optional()
     private readonly knowledgeShardService?: HazLenzKnowledgeShardService,
   ) {}

@@ -17,7 +17,7 @@ import { SupervisorValidationController } from "./validation/supervisor-validati
 import { SafeScopeAuditRecordEntity } from "./persistence/audit-record.entity";
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
 import { SafeScopePersistenceController } from "./persistence/persistence.controller";
-import { SafeScopeKnowledgeModule } from "../safescope-knowledge/safescope-knowledge.module";
+import { HazLenzKnowledgeModule } from "../hazlenz-knowledge/hazlenz-knowledge.module";
 import { Standard } from "../standards/entities/standard.entity";
 import { HazLenzKnowledgeIndexService } from "./knowledge-index/hazlenz-knowledge-index.service";
 import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
@@ -39,7 +39,7 @@ import { InspectionModule } from "../inspection/inspection.module";
     // Lets the classify endpoint resolve a persisted inspection's regulatory context
     // authoritatively (InspectionModule does not import this module -- no cycle).
     InspectionModule,
-    SafeScopeKnowledgeModule,
+    HazLenzKnowledgeModule,
     ReviewCoreKnowledgeReviewQueueModule,
     TypeOrmModule.forFeature([
       SafeScopeFeedback,

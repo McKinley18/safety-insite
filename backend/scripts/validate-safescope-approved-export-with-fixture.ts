@@ -72,8 +72,8 @@ try {
 
   fs.writeFileSync(fixturePath, `${JSON.stringify(approved.record, null, 2)}\n`);
 
-  runTsNode('backend/scripts/export-approved-safescope-knowledge.ts');
-  runTsNode('backend/scripts/validate-approved-safescope-knowledge-export.ts');
+  runTsNode('backend/scripts/export-approved-hazlenz-knowledge.ts');
+  runTsNode('backend/scripts/validate-approved-hazlenz-knowledge-export.ts');
 
   const bundle = JSON.parse(fs.readFileSync(approvedBundlePath, 'utf-8')) as {
     approvedRecordCount: number;
@@ -92,5 +92,5 @@ try {
     fs.unlinkSync(fixturePath);
   }
 
-  runTsNode('backend/scripts/export-approved-safescope-knowledge.ts');
+  runTsNode('backend/scripts/export-approved-hazlenz-knowledge.ts');
 }

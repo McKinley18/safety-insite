@@ -2,7 +2,7 @@ import {
   SAFESCOPE_SOURCE_REGISTRY,
   getApprovedAutoIngestionSources,
   getSafeScopeSourcesByAuthorityTier,
-} from "./safescope-source-registry";
+} from "./hazlenz-source-registry";
 
 console.log("SafeScope Source Registry");
 console.log("Total sources:", SAFESCOPE_SOURCE_REGISTRY.length);

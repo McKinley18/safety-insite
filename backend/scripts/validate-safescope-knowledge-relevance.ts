@@ -1,7 +1,7 @@
 import { dataSource } from "../src/database/data-source";
-import { SafeScopeKnowledgeDocument } from "../src/safescope-knowledge/entities/safescope-knowledge-document.entity";
-import { SafeScopeKnowledgeChunk } from "../src/safescope-knowledge/entities/safescope-knowledge-chunk.entity";
-import { SafeScopeKnowledgeIngestionRun } from "../src/safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity";
+import { HazLenzKnowledgeDocument } from "../src/hazlenz-knowledge/entities/hazlenz-knowledge-document.entity";
+import { HazLenzKnowledgeChunk } from "../src/hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity";
+import { HazLenzKnowledgeIngestionRun } from "../src/hazlenz-knowledge/entities/hazlenz-knowledge-ingestion-run.entity";
 
 type RelevanceScenario = {
   name: string;
@@ -60,7 +60,7 @@ function normalize(value: unknown) {
   return String(value || "").toLowerCase();
 }
 
-function scoreChunk(chunk: SafeScopeKnowledgeChunk) {
+function scoreChunk(chunk: HazLenzKnowledgeChunk) {
   const haystack = normalize([
     chunk.citation,
     chunk.sectionHeading,
@@ -82,9 +82,9 @@ function scoreChunk(chunk: SafeScopeKnowledgeChunk) {
 async function main() {
   await dataSource.initialize();
 
-  const docRepo = dataSource.getRepository(SafeScopeKnowledgeDocument);
-  const chunkRepo = dataSource.getRepository(SafeScopeKnowledgeChunk);
-  const runRepo = dataSource.getRepository(SafeScopeKnowledgeIngestionRun);
+  const docRepo = dataSource.getRepository(HazLenzKnowledgeDocument);
+  const chunkRepo = dataSource.getRepository(HazLenzKnowledgeChunk);
+  const runRepo = dataSource.getRepository(HazLenzKnowledgeIngestionRun);
 
   console.log("\nSafeScope Knowledge Relevance Validation");
   console.log("========================================");

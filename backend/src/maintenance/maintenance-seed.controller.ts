@@ -1,9 +1,9 @@
 import { Body, Controller, Headers, NotFoundException, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { Standard } from '../standards/entities/standard.entity';
-import { SafeScopeKnowledgeDocument } from '../safescope-knowledge/entities/safescope-knowledge-document.entity';
-import { SafeScopeKnowledgeChunk } from '../safescope-knowledge/entities/safescope-knowledge-chunk.entity';
-import { starterKnowledge } from '../safescope-knowledge/seed/starter-knowledge';
+import { HazLenzKnowledgeDocument } from '../hazlenz-knowledge/entities/hazlenz-knowledge-document.entity';
+import { HazLenzKnowledgeChunk } from '../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity';
+import { starterKnowledge } from '../hazlenz-knowledge/seed/starter-knowledge';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 
 const standards: Partial<Standard>[] = [
@@ -145,8 +145,8 @@ export class MaintenanceSeedController {
     await this.dataSource.synchronize(false);
 
     const standardRepo = this.dataSource.getRepository(Standard);
-    const documentRepo = this.dataSource.getRepository(SafeScopeKnowledgeDocument);
-    const chunkRepo = this.dataSource.getRepository(SafeScopeKnowledgeChunk);
+    const documentRepo = this.dataSource.getRepository(HazLenzKnowledgeDocument);
+    const chunkRepo = this.dataSource.getRepository(HazLenzKnowledgeChunk);
 
     let standardsSeeded = 0;
 
@@ -176,7 +176,7 @@ export class MaintenanceSeedController {
         where: { citation: item.citation },
       });
 
-      const documentToSave = existing || new SafeScopeKnowledgeDocument();
+      const documentToSave = existing || new HazLenzKnowledgeDocument();
       Object.assign(documentToSave, item);
 
       const saved = await documentRepo.save(documentToSave);

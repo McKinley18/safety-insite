@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SafeScopeKnowledgeDocument } from '../entities/safescope-knowledge-document.entity';
-import { SafeScopeKnowledgeChunk } from '../entities/safescope-knowledge-chunk.entity';
-import { SafeScopeKnowledgeRetrievalLog } from '../entities/safescope-knowledge-retrieval-log.entity';
-import { SafeScopeKnowledgeSource } from '../entities/safescope-knowledge-source.entity';
-import { SafeScopeKnowledgeIngestionRun } from '../entities/safescope-knowledge-ingestion-run.entity';
+import { HazLenzKnowledgeDocument } from '../entities/hazlenz-knowledge-document.entity';
+import { HazLenzKnowledgeChunk } from '../entities/hazlenz-knowledge-chunk.entity';
+import { HazLenzKnowledgeRetrievalLog } from '../entities/hazlenz-knowledge-retrieval-log.entity';
+import { HazLenzKnowledgeSource } from '../entities/hazlenz-knowledge-source.entity';
+import { HazLenzKnowledgeIngestionRun } from '../entities/hazlenz-knowledge-ingestion-run.entity';
 import { starterKnowledge } from './starter-knowledge';
 
 function chunkText(rawText: string) {
@@ -68,25 +68,25 @@ async function bootstrap() {
       configService.get<string>('TYPEORM_SYNCHRONIZE') === 'true' ||
       (!isProduction && configService.get<string>('NODE_ENV') === 'development'),
     entities: [
-      SafeScopeKnowledgeDocument,
-      SafeScopeKnowledgeChunk,
-      SafeScopeKnowledgeRetrievalLog,
-      SafeScopeKnowledgeSource,
-      SafeScopeKnowledgeIngestionRun,
+      HazLenzKnowledgeDocument,
+      HazLenzKnowledgeChunk,
+      HazLenzKnowledgeRetrievalLog,
+      HazLenzKnowledgeSource,
+      HazLenzKnowledgeIngestionRun,
     ],
   });
 
   await dataSource.initialize();
 
-  const documentRepo = dataSource.getRepository(SafeScopeKnowledgeDocument);
-  const chunkRepo = dataSource.getRepository(SafeScopeKnowledgeChunk);
+  const documentRepo = dataSource.getRepository(HazLenzKnowledgeDocument);
+  const chunkRepo = dataSource.getRepository(HazLenzKnowledgeChunk);
 
   for (const item of starterKnowledge) {
     const existing = await documentRepo.findOne({
       where: { citation: item.citation },
     });
 
-    const documentToSave = existing || new SafeScopeKnowledgeDocument();
+    const documentToSave = existing || new HazLenzKnowledgeDocument();
 
     Object.assign(documentToSave, item);
 

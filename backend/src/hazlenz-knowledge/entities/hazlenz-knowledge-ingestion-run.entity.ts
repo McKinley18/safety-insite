@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-export type SafeScopeKnowledgeIngestionStatus =
+export type HazLenzKnowledgeIngestionStatus =
   | 'queued'
   | 'running'
   | 'completed'
@@ -13,7 +13,7 @@ export type SafeScopeKnowledgeIngestionStatus =
   | 'failed';
 
 @Entity('safescope_knowledge_ingestion_runs')
-export class SafeScopeKnowledgeIngestionRun {
+export class HazLenzKnowledgeIngestionRun {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -30,7 +30,7 @@ export class SafeScopeKnowledgeIngestionRun {
   sourceType: string;
 
   @Column({ type: 'varchar', length: 40, default: 'queued' })
-  status: SafeScopeKnowledgeIngestionStatus;
+  status: HazLenzKnowledgeIngestionStatus;
 
   @Column({ type: 'int', default: 0 })
   discoveredCount: number;

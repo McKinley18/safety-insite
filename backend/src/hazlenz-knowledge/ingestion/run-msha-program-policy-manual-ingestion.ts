@@ -1,10 +1,10 @@
 import { DataSource } from "typeorm";
 import { config } from "dotenv";
-import { SafeScopeKnowledgeDocument } from "../entities/safescope-knowledge-document.entity";
-import { SafeScopeKnowledgeChunk } from "../entities/safescope-knowledge-chunk.entity";
-import { SafeScopeKnowledgeSource } from "../entities/safescope-knowledge-source.entity";
-import { SafeScopeKnowledgeIngestionRun } from "../entities/safescope-knowledge-ingestion-run.entity";
-import { SafeScopeKnowledgeRetrievalLog } from "../entities/safescope-knowledge-retrieval-log.entity";
+import { HazLenzKnowledgeDocument } from "../entities/hazlenz-knowledge-document.entity";
+import { HazLenzKnowledgeChunk } from "../entities/hazlenz-knowledge-chunk.entity";
+import { HazLenzKnowledgeSource } from "../entities/hazlenz-knowledge-source.entity";
+import { HazLenzKnowledgeIngestionRun } from "../entities/hazlenz-knowledge-ingestion-run.entity";
+import { HazLenzKnowledgeRetrievalLog } from "../entities/hazlenz-knowledge-retrieval-log.entity";
 import { MshaProgramPolicyManualConnector } from "./connectors/msha-program-policy-manual.connector";
 import { buildSourceRegistryMetadata } from "../sources/source-registry-metadata";
 import {
@@ -43,20 +43,20 @@ async function run() {
       process.env.DATABASE_URL ||
       "postgres://mckinley@localhost:5432/sentinel_safety",
     entities: [
-      SafeScopeKnowledgeDocument,
-      SafeScopeKnowledgeChunk,
-      SafeScopeKnowledgeSource,
-      SafeScopeKnowledgeIngestionRun,
-      SafeScopeKnowledgeRetrievalLog,
+      HazLenzKnowledgeDocument,
+      HazLenzKnowledgeChunk,
+      HazLenzKnowledgeSource,
+      HazLenzKnowledgeIngestionRun,
+      HazLenzKnowledgeRetrievalLog,
     ],
     synchronize: false,
   });
 
   await dataSource.initialize();
 
-  const documentRepo = dataSource.getRepository(SafeScopeKnowledgeDocument);
-  const chunkRepo = dataSource.getRepository(SafeScopeKnowledgeChunk);
-  const runRepo = dataSource.getRepository(SafeScopeKnowledgeIngestionRun);
+  const documentRepo = dataSource.getRepository(HazLenzKnowledgeDocument);
+  const chunkRepo = dataSource.getRepository(HazLenzKnowledgeChunk);
+  const runRepo = dataSource.getRepository(HazLenzKnowledgeIngestionRun);
 
   const ingestionRun = await startIngestionRun(runRepo, {
     sourceName: MSHA_PPM_METADATA.sourceName || "MSHA Program Policy Manual",

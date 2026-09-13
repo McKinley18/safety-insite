@@ -87,8 +87,8 @@ try {
 
   fs.writeFileSync(fixturePath, `${JSON.stringify(approved.record, null, 2)}\n`);
 
-  runTsNode('backend/scripts/export-approved-safescope-knowledge.ts');
-  runTsNode('backend/scripts/validate-approved-safescope-knowledge-export.ts');
+  runTsNode('backend/scripts/export-approved-hazlenz-knowledge.ts');
+  runTsNode('backend/scripts/validate-approved-hazlenz-knowledge-export.ts');
 
   const enabled = adapter.getContextForReasoning({
     enabled: true,
@@ -123,5 +123,5 @@ try {
     fs.unlinkSync(fixturePath);
   }
 
-  runTsNode('backend/scripts/export-approved-safescope-knowledge.ts');
+  runTsNode('backend/scripts/export-approved-hazlenz-knowledge.ts');
 }

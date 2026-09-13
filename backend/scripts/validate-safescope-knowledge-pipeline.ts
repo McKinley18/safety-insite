@@ -15,7 +15,7 @@ const steps: PipelineStep[] = [
   {
     name: 'Validate quarantined knowledge records',
     command: 'npx',
-    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-knowledge-intake.ts'],
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-hazlenz-knowledge-intake.ts'],
   },
   {
     name: 'Validate reputable source ingestion',
@@ -30,22 +30,22 @@ const steps: PipelineStep[] = [
   {
     name: 'Generate knowledge coverage report',
     command: 'npx',
-    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/report-safescope-knowledge-coverage.ts'],
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/report-hazlenz-knowledge-coverage.ts'],
   },
   {
     name: 'Validate human review workflow',
     command: 'npx',
-    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-knowledge-review-workflow.ts'],
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-hazlenz-knowledge-review-workflow.ts'],
   },
   {
     name: 'Export approved knowledge bundle',
     command: 'npx',
-    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/export-approved-safescope-knowledge.ts'],
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/export-approved-hazlenz-knowledge.ts'],
   },
   {
     name: 'Validate approved knowledge bundle',
     command: 'npx',
-    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-approved-safescope-knowledge-export.ts'],
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-approved-hazlenz-knowledge-export.ts'],
   },
   {
     name: 'Validate approved export fixture lifecycle',
@@ -170,7 +170,7 @@ const steps: PipelineStep[] = [
   {
     name: 'Final approved knowledge bundle validation',
     command: 'npx',
-    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-approved-safescope-knowledge-export.ts'],
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-approved-hazlenz-knowledge-export.ts'],
   },
 ];
 

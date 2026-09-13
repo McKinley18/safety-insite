@@ -3,8 +3,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Standard } from "../standards/entities/standard.entity";
 import { CorrectiveActionTemplate } from "../standards/entities/corrective-action-template.entity";
 import { RegulatorySection } from "../regulatory/entities/regulatory-section.entity";
-import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
-import { SafeScopeKnowledgeDocument } from "../safescope-knowledge/entities/safescope-knowledge-document.entity";
+import { HazLenzKnowledgeChunk } from "../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity";
+import { HazLenzKnowledgeDocument } from "../hazlenz-knowledge/entities/hazlenz-knowledge-document.entity";
 import { ApplicableStandardsController } from "./applicable-standards.controller";
 import { ApplicableStandardsService } from "./applicable-standards.service";
 import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
@@ -15,8 +15,8 @@ import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/h
       Standard,
       CorrectiveActionTemplate,
       RegulatorySection,
-      SafeScopeKnowledgeChunk,
-      SafeScopeKnowledgeDocument,
+      HazLenzKnowledgeChunk,
+      HazLenzKnowledgeDocument,
     ]),
   ],
   controllers: [ApplicableStandardsController],

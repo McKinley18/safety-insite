@@ -1,4 +1,4 @@
-import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/safescope-source-registry";
+import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/hazlenz-source-registry";
 import { getSourceGovernance } from "../sources/source-governance-helper";
 import { getSourceRole } from "../sources/source-role-helper";
 

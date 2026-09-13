@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 import {
-  SafeScopeKnowledgeIngestionRun,
-  SafeScopeKnowledgeIngestionStatus,
-} from "../entities/safescope-knowledge-ingestion-run.entity";
+  HazLenzKnowledgeIngestionRun,
+  HazLenzKnowledgeIngestionStatus,
+} from "../entities/hazlenz-knowledge-ingestion-run.entity";
 
 export type IngestionRunLoggerInput = {
   sourceName: string;
@@ -23,7 +23,7 @@ export type CompleteIngestionRunInput = {
 };
 
 export async function startIngestionRun(
-  runRepo: Repository<SafeScopeKnowledgeIngestionRun>,
+  runRepo: Repository<HazLenzKnowledgeIngestionRun>,
   input: IngestionRunLoggerInput,
 ) {
   return runRepo.save(
@@ -48,8 +48,8 @@ export async function startIngestionRun(
 }
 
 export async function completeIngestionRun(
-  runRepo: Repository<SafeScopeKnowledgeIngestionRun>,
-  run: SafeScopeKnowledgeIngestionRun,
+  runRepo: Repository<HazLenzKnowledgeIngestionRun>,
+  run: HazLenzKnowledgeIngestionRun,
   input: CompleteIngestionRunInput,
 ) {
   const warnings = input.warnings || [];
@@ -71,8 +71,8 @@ export async function completeIngestionRun(
 }
 
 export async function failIngestionRun(
-  runRepo: Repository<SafeScopeKnowledgeIngestionRun>,
-  run: SafeScopeKnowledgeIngestionRun | null,
+  runRepo: Repository<HazLenzKnowledgeIngestionRun>,
+  run: HazLenzKnowledgeIngestionRun | null,
   error: unknown,
   metadataJson: Record<string, any> = {},
 ) {

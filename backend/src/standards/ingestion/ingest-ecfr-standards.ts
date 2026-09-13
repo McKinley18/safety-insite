@@ -3,7 +3,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { XMLParser } from "fast-xml-parser";
 import { Standard } from "../entities/standard.entity";
-import { buildSourceRegistryMetadata } from "../../safescope-knowledge/sources/source-registry-metadata";
+import { buildSourceRegistryMetadata } from "../../hazlenz-knowledge/sources/source-registry-metadata";
 
 const MSHA_STANDARDS_SOURCE_METADATA = buildSourceRegistryMetadata(
   "msha-30-cfr-standards",

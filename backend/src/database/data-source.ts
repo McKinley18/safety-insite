@@ -33,11 +33,11 @@ import { HazardTaxonomy } from '../intelligence-framework/entities/hazard-taxono
 import { Notification } from '../notifications/notification.entity';
 import { SafeScopeReasoningSnapshot } from '../safescope-v2/snapshots/reasoning-snapshot.entity';
 import { SafeScopeSupervisorValidation } from '../safescope-v2/validation/supervisor-validation.entity';
-import { SafeScopeKnowledgeDocument } from '../safescope-knowledge/entities/safescope-knowledge-document.entity';
-import { SafeScopeKnowledgeChunk } from '../safescope-knowledge/entities/safescope-knowledge-chunk.entity';
-import { SafeScopeKnowledgeRetrievalLog } from '../safescope-knowledge/entities/safescope-knowledge-retrieval-log.entity';
-import { SafeScopeKnowledgeSource } from '../safescope-knowledge/entities/safescope-knowledge-source.entity';
-import { SafeScopeKnowledgeIngestionRun } from '../safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity';
+import { HazLenzKnowledgeDocument } from '../hazlenz-knowledge/entities/hazlenz-knowledge-document.entity';
+import { HazLenzKnowledgeChunk } from '../hazlenz-knowledge/entities/hazlenz-knowledge-chunk.entity';
+import { HazLenzKnowledgeRetrievalLog } from '../hazlenz-knowledge/entities/hazlenz-knowledge-retrieval-log.entity';
+import { HazLenzKnowledgeSource } from '../hazlenz-knowledge/entities/hazlenz-knowledge-source.entity';
+import { HazLenzKnowledgeIngestionRun } from '../hazlenz-knowledge/entities/hazlenz-knowledge-ingestion-run.entity';
 import { AuditSession } from '../audit-session/audit-session.entity';
 import { AuditEntry } from '../audit-session/audit-entry.entity';
 import { AuditEntryAttachment } from '../audit-session/entities/audit-entry-attachment.entity';
@@ -127,11 +127,11 @@ export const dataSource = new DataSource({
     Notification,
     SafeScopeReasoningSnapshot,
     SafeScopeSupervisorValidation,
-    SafeScopeKnowledgeDocument,
-    SafeScopeKnowledgeChunk,
-    SafeScopeKnowledgeRetrievalLog,
-    SafeScopeKnowledgeSource,
-    SafeScopeKnowledgeIngestionRun,
+    HazLenzKnowledgeDocument,
+    HazLenzKnowledgeChunk,
+    HazLenzKnowledgeRetrievalLog,
+    HazLenzKnowledgeSource,
+    HazLenzKnowledgeIngestionRun,
     AuditSession,
     AuditEntry,
     AuditEntryAttachment,

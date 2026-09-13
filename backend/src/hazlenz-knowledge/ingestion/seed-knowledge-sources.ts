@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SafeScopeKnowledgeSource } from '../entities/safescope-knowledge-source.entity';
-import { SafeScopeKnowledgeIngestionRun } from '../entities/safescope-knowledge-ingestion-run.entity';
+import { HazLenzKnowledgeSource } from '../entities/hazlenz-knowledge-source.entity';
+import { HazLenzKnowledgeIngestionRun } from '../entities/hazlenz-knowledge-ingestion-run.entity';
 
 const trustedSources = [
   {
@@ -104,19 +104,19 @@ async function bootstrap() {
     synchronize:
       configService.get<string>('TYPEORM_SYNCHRONIZE') === 'true' ||
       (!isProduction && configService.get<string>('NODE_ENV') === 'development'),
-    entities: [SafeScopeKnowledgeSource, SafeScopeKnowledgeIngestionRun],
+    entities: [HazLenzKnowledgeSource, HazLenzKnowledgeIngestionRun],
   });
 
   await dataSource.initialize();
 
-  const sourceRepo = dataSource.getRepository(SafeScopeKnowledgeSource);
+  const sourceRepo = dataSource.getRepository(HazLenzKnowledgeSource);
 
   for (const item of trustedSources) {
     const existing = await sourceRepo.findOne({
       where: { name: item.name },
     });
 
-    const source = existing || new SafeScopeKnowledgeSource();
+    const source = existing || new HazLenzKnowledgeSource();
 
     Object.assign(source, item);
 

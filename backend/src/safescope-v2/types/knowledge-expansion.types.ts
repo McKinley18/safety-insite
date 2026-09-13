@@ -1,4 +1,4 @@
-export type SafeScopeKnowledgeAuthorityTier =
+export type HazLenzKnowledgeAuthorityTier =
   | "regulatory"
   | "government_guidance"
   | "consensus_standard"
@@ -7,13 +7,13 @@ export type SafeScopeKnowledgeAuthorityTier =
   | "workspace_validated"
   | "unreviewed";
 
-export type SafeScopeKnowledgeReviewStatus =
+export type HazLenzKnowledgeReviewStatus =
   | "approved"
   | "needs_review"
   | "rejected"
   | "quarantined";
 
-export type SafeScopeKnowledgeType =
+export type HazLenzKnowledgeType =
   | "regulatory_standard"
   | "regulatory_interpretation"
   | "hazard_mechanism"
@@ -25,7 +25,7 @@ export type SafeScopeKnowledgeType =
   | "corrective_action_pattern"
   | "verification_requirement";
 
-export type SafeScopeKnowledgeMatch = {
+export type HazLenzKnowledgeMatch = {
   id?: string;
   title?: string;
   summary?: string;
@@ -33,9 +33,9 @@ export type SafeScopeKnowledgeMatch = {
   agency?: string;
   sourceName?: string;
   sourceType?: string;
-  authorityTier?: SafeScopeKnowledgeAuthorityTier | string;
-  reviewStatus?: SafeScopeKnowledgeReviewStatus | string;
-  knowledgeType?: SafeScopeKnowledgeType | string;
+  authorityTier?: HazLenzKnowledgeAuthorityTier | string;
+  reviewStatus?: HazLenzKnowledgeReviewStatus | string;
+  knowledgeType?: HazLenzKnowledgeType | string;
   hazardFamilies?: string[];
   controlFamilies?: string[];
   evidenceQuestions?: string[];
@@ -57,7 +57,7 @@ export type ExpertObservationInput = {
   nativeReasoning?: any;
   learningGovernance?: any;
   learningMemory?: any;
-  knowledgeMatches?: SafeScopeKnowledgeMatch[];
+  knowledgeMatches?: HazLenzKnowledgeMatch[];
 };
 
 export type ExpertObservationOutput = {
