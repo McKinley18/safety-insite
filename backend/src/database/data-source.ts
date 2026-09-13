@@ -52,6 +52,7 @@ import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entit
 import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
 import { Observation } from '../inspection/entities/observation.entity';
 import { HazLenzAnalysis } from '../inspection/entities/hazlenz-analysis.entity';
+import { ExpertAnalysisExecution } from '../safescope-v2/expert-hazlenz-product/expert-analysis-execution.entity';
 import { HumanReview } from '../inspection/entities/human-review.entity';
 import { InspectionFinding } from '../inspection/entities/inspection-finding.entity';
 import { Task } from '../tasks/task.entity';
@@ -144,6 +145,7 @@ export const dataSource = new DataSource({
     InspectionAssignment,
     Observation,
     HazLenzAnalysis,
+    ExpertAnalysisExecution,
     HumanReview,
     InspectionFinding,
     Task,

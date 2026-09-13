@@ -27,6 +27,7 @@ import { SafeScopeModule } from './safescope/safescope.module';
 import { UploadModule } from './upload/upload.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
 import { InspectionModule } from './inspection/inspection.module';
+import { ExpertHazLenzProductModule } from './safescope-v2/expert-hazlenz-product/expert-hazlenz-product.module';
 import { TasksModule } from './tasks/tasks.module';
 import { EntitlementsModule } from './auth/entitlements/entitlements.module';
 import { StorageModule } from './storage/storage.module';
@@ -108,6 +109,7 @@ function getDatabaseSslConfig() {
     SafeScopeModule,
     UploadModule,
     InspectionModule,
+    ExpertHazLenzProductModule,
     TasksModule,
     EntitlementsModule,
     StorageModule,

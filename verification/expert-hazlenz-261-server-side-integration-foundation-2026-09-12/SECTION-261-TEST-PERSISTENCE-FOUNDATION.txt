@@ -1,0 +1,112 @@
+
+> safety-insite-backend@1.0.0 test:261-expert-persistence-foundation
+> ts-node scripts/test-261-expert-persistence-foundation.ts
+
+resolved target host=127.0.0.1 port=5432 database=test_insite_261_clean_201218
+target proven disposable
+
+
+---- P0. the service that owns Expert authority makes no provider call ----
+
+ok    P0-A the service does not import the Expert entry point  [11 imports, none of them the entry point]
+ok    P0-B the service imports no provider adapter
+ok    P0-D the service uses no dynamic import or require to reach a provider
+ok    P0-C the service issues no outbound HTTP
+
+---- P1 (req. 1). a client-supplied analysis persists as client_supplied ----
+
+ok    P1-A the legacy snapshot path persists producer = client_supplied  [client_supplied]
+ok    P1-B it carries no execution linkage, because no server-owned execution ran
+ok    P1-C it is ANALYSIS_AVAILABLE with confirmationRequired false
+
+---- P2 (req. 2). a client CANNOT forge server_authored ----
+
+ok    P2-A a body asserting producer = server_authored still persists as client_supplied  [client_supplied]
+ok    P2-B a body asserting an execution id still persists no execution linkage
+ok    P2-C a body asserting confirmationRequired = true still persists false
+ok    P2-D a body asserting an authoritative state still persists ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    P2-E even raw SQL cannot mint server_authored without a real execution row  [the trust boundary is enforced in the database, not only in TypeScript]
+ok    P2-F the producer vocabulary is closed; free text is rejected
+
+---- P3 (req. 10). pre-spend execution identity contains duplicates ----
+
+ok    P3-A the first claim is CLAIMED and is the only one permitted to spend
+ok    P3-B the execution exists in ANALYSIS_RUNNING before any provider call  [attempts 0 proves the provider was never reached]
+ok    P3-C it is server_authored and names the workspace the server authorized
+ok    P3-D a duplicate under the same identity discovers ALREADY_RUNNING and MUST NOT spend
+ok    P3-E the duplicate resolves to the SAME execution, it does not create a second
+ok    P3-F three concurrent claims produce exactly one spender  [CLAIMED/ALREADY_RUNNING/ALREADY_RUNNING]
+ok    P3-G exactly one execution row exists for the contended identity  [rows=1]
+
+---- P4 (req. 3). the Expert path assigns server_authored internally ----
+
+ok    P4-A the Expert path persists producer = server_authored  [server_authored]
+ok    P4-B the analysis names the execution that authored it
+ok    P4-C the execution names the analysis it produced
+ok    P4-D candidate provenance is persisted, not engineVersion alone
+ok    P4-E a controlling unresolved claim yields ANALYSIS_AWAITING_CONFIRMATION
+ok    P4-F the execution records WHICH confirmation rule produced the flag
+ok    P4-G the prior current analysis was superseded, not duplicated
+
+---- P5 (req. 9). the confirmation flag is STORED, never recomputed on read ----
+
+ok    P5-A the stored flag survives a snapshot whose content would now score differently  [a later rule or content change must not alter what an earlier reviewer was asked]
+ok    P5-B the stored state survives with it
+ok    P5-C the live rule genuinely disagrees with the stored flag, so P5-A is not vacuous
+
+---- P6 (req. 11 and 12). H3/H4 structural identity survives persistence ----
+
+ok    P6-A unresolved declaration IDs survive persistence
+ok    P6-B resumeCondition.resolvedByDeclarationIds survives as declaration REFERENCES
+ok    P6-C the resume condition still resolves against the persisted declaration IDs  [the binding is by identity, not by paraphrase]
+ok    P6-D controlId survives on every required control
+ok    P6-E dischargingControlRef survives AS THE ID, not resolved to prose
+ok    P6-F the discharging reference resolves against a persisted controlId
+ok    P6-G the refKind:ref pair on the driver survives for the confirmation subject
+ok    P6-H nothing was flattened: the persisted snapshot round-trips with no loss at all  [there is no mapper between the admitted structure and the column]
+ok    P6-J array ORDER survives, so declaration and control sequencing is not reshuffled
+ok    P6-I branch (b) on a permitting posture produced AWAITING_CONFIRMATION through the service
+
+---- P7 (req. 13). the analysis-creation audit event ----
+
+ok    P7-A a server-authored analysis emits an analysis_created event
+ok    P7-B it records who initiated it
+ok    P7-C it records the workspace, inspection and observation
+ok    P7-D it records the execution and analysis identities
+ok    P7-E it records candidate/version provenance
+ok    P7-F it records the resulting state and confirmation status
+ok    P7-G it records the producer that distinguishes the two paths
+ok    P7-H NO raw provider payload or model prose is written into generic audit metadata  [raw output stays on the execution record, under the analysis access controls]
+ok    P7-I the execution record is where raw output would live  [null here because this slice makes no provider call]
+ok    P7-J the legacy client-supplied path also emits the event, closing the gap for both
+ok    P7-K the legacy event records the engineVersion AS A CLIENT CLAIM, not as provenance
+ok    P7-L one action name covers both producers, distinguished by the producer field
+
+---- P8 (req. 14). cross-workspace linkage cannot be created ----
+
+ok    P8-A a user from another workspace cannot claim an execution on this observation  [NotFound, so no existence is leaked]
+ok    P8-B a cross-workspace read of a known execution id is refused
+ok    P8-C a cross-workspace persistence attempt is refused
+ok    P8-D workspace B can legitimately claim on its own observation
+ok    P8-E presenting another workspace's execution id under an authorized observation is refused  [findOne({ id, observationId }), never findOne({ id })]
+ok    P8-F no cross-workspace execution linkage was created
+
+---- P9. refusal and failure are persisted OUTCOMES, never generic success ----
+
+ok    P9-A a refused output persists as ANALYSIS_REFUSED, never as available
+ok    P9-B a refused analysis is still server_authored: the server owns the refusal
+ok    P9-C the structured refusal codes are persisted on the execution
+ok    P9-D a refused execution is TERMINAL for re-spend
+ok    P9-E a transport failure settles the execution as ANALYSIS_FAILED
+ok    P9-F a transport failure creates NO analysis row, so nothing can render as a result
+ok    P9-G a transport failure is RETRYABLE, unlike a refusal
+ok    P9-H an already-settled execution cannot be settled twice
+
+---- P10. every server-authored row satisfies the trust boundary ----
+
+ok    P10-A no server-authored analysis lacks an execution
+ok    P10-B no client-supplied analysis names an execution
+ok    P10-C both producers are actually present, so P10-A/B are not vacuous  [server_authored=6 client_supplied=4]
+
+================ §261 persistence foundation: 69 passed, 0 failed
+{"providerCalls":0,"database":"test_insite_261_clean_201218","disposable":true,"passed":69,"failed":0}

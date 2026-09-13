@@ -1,0 +1,157 @@
+{
+  "section": "261",
+  "generated": "2026-09-12",
+  "kind": "SERVER_SIDE_INTEGRATION_FOUNDATION_IMPLEMENTATION",
+  "providerCalls": 0,
+  "productionDatabaseOperations": 0,
+  "pushes": 0, "tags": 0, "deploys": 0,
+  "historicalEvidencePackagesMutated": 0,
+  "predecessor": {
+    "successorIdentity259": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "packageDigest260": "0ccfe3bda89897338257c578d49534dd554b2efeda6a22c0acba078a60c50c89"
+  },
+  "candidateIntegrity": {
+    "successorIdentity259Before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "successorIdentity259After": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "elementsChecked": 22,
+    "elementDrift": 0,
+    "candidateChanged": false,
+    "recomputationWasReadOnly": true,
+    "protectedModulesPresent": 29,
+    "protectedModulesMissing": 0,
+    "candidateDefiningFilesModified": 0
+  },
+  "persistence": {
+    "reusedEntity": "hazlenz_analyses",
+    "parallelExpertTableCreated": false,
+    "addedColumns": ["producer", "analysisState", "confirmationRequired", "expertExecutionId"],
+    "newTable": "expert_analysis_executions",
+    "newTableColumns": 41,
+    "migration": "1800000019000-ExpertAnalysisAuthorityFoundation",
+    "migrationAdditive": true,
+    "destructiveRewriteOfHistoricalData": false,
+    "upLocal": "exit 0", "upIdempotent": "exit 0", "downLocal": "exit 0",
+    "reUpLocal": "exit 0", "upOnFreshDatabase": "exit 0"
+  },
+  "producerVocabulary": ["client_supplied", "server_authored"],
+  "producerBackfill": "client_supplied",
+  "historicalRowsClaimedServerAuthored": 0,
+  "producerAssignmentSites": 2,
+  "producerReachableFromRequestBody": false,
+  "analysisStateVocabulary": [
+    "ANALYSIS_RUNNING", "ANALYSIS_FAILED", "ANALYSIS_REFUSED", "ANALYSIS_UNRESOLVED",
+    "ANALYSIS_AVAILABLE", "ANALYSIS_AWAITING_CONFIRMATION", "ANALYSIS_CONFIRMED",
+    "ANALYSIS_OVERRIDDEN"
+  ],
+  "statesRequiredBySection261": 8,
+  "statesRepresentableDistinctly": 8,
+  "namingAdjustment": {
+    "authorizationName": "ANALYSIS_AVAILABLE_NO_CONFIRMATION_REQUIRED",
+    "frozen260NameUsed": "ANALYSIS_AVAILABLE",
+    "semanticEquivalence": "ANALYSIS_AVAILABLE together with the persisted confirmationRequired=false, written by the same rule in the same transaction",
+    "silentDivergence": false,
+    "reason": "encoding the flag in both the state name and the column would create two places to disagree"
+  },
+  "advisoryStatusOverloaded": false,
+  "existingReviewDecisionsOverloaded": false,
+  "newReviewDecisionsAdded": 0,
+  "confirmationRule": {
+    "version": "hazlenz.expert.confirmation-required.261-unresolved-classification-boundary",
+    "deterministic": true,
+    "readsProse": false,
+    "asksAModel": false,
+    "branchAPreserved": true,
+    "branchBPreserved": true,
+    "ruleNarrowedToObservedDirection": false,
+    "establishedConditionAloneTriggers": false,
+    "followUpUnderNonPermittingPostureTriggers": false,
+    "posturePermissivenessSource": "POSTURE_PERMITS_CONTINUED_WORK imported from expert-233-posture-contract",
+    "posturePermissivenessRestated": false,
+    "postureMapTotalOverFourPostures": true,
+    "unknownPostureFailsClosed": true,
+    "failClosedCodes": 7,
+    "failedClosedDistinguishableFromSubstantive": true,
+    "c2Reimplemented": false,
+    "c2ConsumedAsStructuralConsequence": true,
+    "computedAt": "authoritative persistence time",
+    "recomputedOnRead": false,
+    "ruleVersionPersisted": "expert_analysis_executions.confirmationRuleVersion"
+  },
+  "preSpendIdempotency": {
+    "executionCreatedBeforeFirstProviderCall": true,
+    "state": "ANALYSIS_RUNNING",
+    "guard": "unique (observationId, idempotencyKey) on expert_analysis_executions",
+    "advisoryLockReused": "pg_advisory_xact_lock(hashtext('hazlenz-analysis:' || observationId))",
+    "collisionOutcomes": [
+      "CLAIMED", "ALREADY_RUNNING", "ALREADY_COMPLETED",
+      "ALREADY_FAILED_RETRYABLE", "ALREADY_FAILED_TERMINAL"
+    ],
+    "retryPolicyReimplemented": false,
+    "concurrentClaimsTested": 3,
+    "spendersPermitted": 1,
+    "executionRowsCreated": 1
+  },
+  "structuralIdentity": {
+    "declarationIdPersisted": true,
+    "resumeConditionResolvedByDeclarationIdsPersisted": true,
+    "controlIdPersisted": true,
+    "dischargingControlRefPersistedAsId": true,
+    "refKindRefPairPersisted": true,
+    "flattenedToProse": false,
+    "mappingCodeBetweenAdmittedStructureAndColumn": "none",
+    "wholeTreeLosslessRoundTrip": true,
+    "arrayOrderPreserved": true,
+    "objectKeyOrderNormalizedByJsonb": true
+  },
+  "audit": {
+    "action": "analysis_created",
+    "resourceType": "hazlenz_analysis",
+    "emittedForClientSupplied": true,
+    "emittedForServerAuthored": true,
+    "sameTransactionAsRow": true,
+    "rawProviderPayloadInGenericAuditMetadata": false,
+    "modelProseInGenericAuditMetadata": false
+  },
+  "clientWriteProtection": {
+    "dtoDeclaresServerOwnedFields": false,
+    "globalValidationPipeForbidNonWhitelisted": true,
+    "serviceAssignsFromLiterals": true,
+    "databaseCheckConstraint": "ck_hazlenz_analysis_producer_execution",
+    "rawSqlForgeryRejected": true,
+    "authorityBoundaryRedesignRequired": false
+  },
+  "authorization": {
+    "newMechanismIntroduced": false,
+    "chokePoint": "InspectionService.authorizeObservation / findAccessible",
+    "analysisOrExecutionIdTrustedAsBareKey": false,
+    "crossTenantResponse": "NotFound",
+    "routeExposed": false,
+    "guardProfilePreparedForLaterSlice": ["JwtGuard", "EntitlementGuard('fullSafeScope')", "RolesGuard", "Throttle"]
+  },
+  "notDoneInThisSection": [
+    "live provider invocation",
+    "runExpertHazLenzAnalysis wired into a production route",
+    "Expert frontend workflow",
+    "human confirmation UI",
+    "override UI",
+    "billing changes",
+    "object storage configuration",
+    "deployment configuration changes",
+    "finding reconciliation on the Expert path (blocked pre-confirmation by §260 section 11)"
+  ],
+  "tests": {
+    "confirmationRule": { "passed": 60, "failed": 0, "databaseOperations": 0 },
+    "persistenceFoundation": { "passed": 69, "failed": 0, "database": "disposable test_* only" },
+    "requirementsCovered": [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+  },
+  "regression": {
+    "buildBaseline": "exit 0", "buildRenderBaseline": "exit 0",
+    "build": "exit 0", "buildRender": "exit 0",
+    "persistedDecompositionFindings": "exit 0",
+    "findingScopedReviews": "exit 0",
+    "canonicalWorkflow": "exit 0",
+    "knowledgeReleaseProvenance": "exit 1 -- environmental: STORAGE_S3_BUCKET unset; §261 changed 0 files under src/storage and src/reports; configuring object storage is prohibited by §261",
+    "applicationBootsAgainstNewSchema": true
+  },
+  "terminal": "EXPERT_HAZLENZ_SERVER_SIDE_FOUNDATION_IMPLEMENTED — AUTHORITATIVE_EXPERT_EXECUTION_ROUTE_AUTHORIZATION_REQUIRED"
+}

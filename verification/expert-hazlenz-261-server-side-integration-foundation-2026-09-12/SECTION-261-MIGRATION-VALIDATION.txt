@@ -1,0 +1,41 @@
+§261 LOCAL MIGRATION VALIDATION
+================================
+Provider calls: 0
+Production database operations: 0
+All operations against disposable test_* databases created for this section.
+
+Migration: 1800000019000-ExpertAnalysisAuthorityFoundation
+
+UP        -> exit 0   (test_insite_261_20260912200811)
+UP again  -> exit 0   (idempotent; IF NOT EXISTS / duplicate_object guards hold)
+DOWN      -> exit 0
+RE-UP     -> exit 0
+UP clean  -> exit 0   (test_insite_261_clean_201218, fresh database from zero)
+
+POST-UP SCHEMA
+--------------
+hazlenz_analyses additive columns:
+  analysisState        character varying  NOT NULL  DEFAULT 'ANALYSIS_AVAILABLE'
+  confirmationRequired boolean            NOT NULL  DEFAULT false
+  expertExecutionId    uuid               NULL
+  producer             character varying  NOT NULL  DEFAULT 'client_supplied'
+
+expert_analysis_executions: 41 columns created.
+
+Constraints present after UP:
+  ck_expert_execution_producer
+  ck_expert_execution_state
+  ck_hazlenz_analysis_producer
+  ck_hazlenz_analysis_producer_execution
+  ck_hazlenz_analysis_state
+  fk_expert_execution_analysis
+  fk_expert_execution_observation
+  fk_hazlenz_analysis_expert_execution
+  (pre-existing hazlenz_analyses constraints unchanged)
+
+POST-DOWN
+---------
+hazlenz_analyses §261 columns remaining: 0
+expert_analysis_executions tables remaining: 0
+Pre-existing columns intact after DOWN: idempotencyKey, requestVersion, resultSnapshot, status
+No historical analysis row data was rewritten in either direction.

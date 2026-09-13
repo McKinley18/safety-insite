@@ -360,7 +360,9 @@
     "execute:197-firstpass": "ts-node scripts/execute-197-structured-e2e-2026-09-07.ts --stage=firstpass",
     "execute:197-verifier": "ts-node scripts/execute-197-structured-e2e-2026-09-07.ts --stage=verifier",
     "score:197-deterministic": "ts-node scripts/score-197-deterministic-2026-09-07.ts",
-    "diagnose:197-transport": "ts-node scripts/diagnose-197-transport-rejection-2026-09-07.ts"
+    "diagnose:197-transport": "ts-node scripts/diagnose-197-transport-rejection-2026-09-07.ts",
+    "test:261-confirmation-rule": "ts-node scripts/test-261-confirmation-rule.ts",
+    "test:261-expert-persistence-foundation": "ts-node scripts/test-261-expert-persistence-foundation.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

@@ -25,6 +25,13 @@ import {
   CreateUserAuthoredFindingDto,
 } from './dto/inspection.dto';
 import { HazLenzAnalysis } from './entities/hazlenz-analysis.entity';
+import {
+  ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION, ANALYSIS_AUDIT_RESOURCE_TYPE,
+  auditMetadataForClientSuppliedAnalysisCreation,
+} from '../safescope-v2/expert-hazlenz-product/expert-analysis-audit';
+import {
+  CLIENT_SUPPLIED_ANALYSIS_STATE,
+} from '../safescope-v2/expert-hazlenz-product/expert-analysis-authority';
 import { HumanReview } from './entities/human-review.entity';
 import { InspectionAssignment } from './entities/inspection-assignment.entity';
 import { InspectionFinding } from './entities/inspection-finding.entity';
@@ -681,7 +688,50 @@ export class InspectionService {
           knowledgeReleaseId: await this.resolveKnowledgeReleaseId(
             dto.resultSnapshot, user, observation.inspectionId,
           ),
+          /**
+           * §261. ASSIGNED BY THE SERVICE, AND THE ONLY VALUE THIS PATH MAY EVER WRITE.
+           *
+           * This route receives a result the client computed and held, and the server does not
+           * establish that the snapshot equals the analysis it previously returned. `client_supplied`
+           * states that plainly. It is written here, from a literal, rather than taken from the DTO:
+           * `CreateAnalysisSnapshotDto` declares no producer field, the global ValidationPipe runs
+           * with `forbidNonWhitelisted`, and `repository.create` is handed an explicit object -- so a
+           * client cannot reach this value through the body, through an extra property, or through a
+           * partial entity merge. There are exactly two assignment sites for `producer` in the
+           * codebase and this is the one that can be reached from a request body.
+           *
+           * The state is ANALYSIS_AVAILABLE with `confirmationRequired` false. That is a fact rather
+           * than a default: the deterministic path carries no server-authored operational conclusion,
+           * so the confirmation rule does not run on it and there is nothing for a human to settle.
+           * Marking legacy rows as awaiting confirmation would make the awaiting-confirmation state
+           * meaningless on the rows where it carries the §255 boundary.
+           */
+          producer: 'client_supplied',
+          analysisState: CLIENT_SUPPLIED_ANALYSIS_STATE,
+          confirmationRequired: false,
+          expertExecutionId: null,
         }));
+        /**
+         * §261. The analysis-creation audit gap, closed for the legacy producer.
+         *
+         * Emitted INSIDE the same transaction as the row it describes, so an audit event can never
+         * outlive a rolled-back analysis and an analysis can never exist without its event. The same
+         * action name the server-authored path uses, so one query covers both producers.
+         */
+        await manager.getRepository(SecurityAuditEvent).save(
+          manager.getRepository(SecurityAuditEvent).create({
+            actorUserId: user.userId,
+            organizationId: user.organizationId ?? null,
+            action: ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION,
+            resourceType: ANALYSIS_AUDIT_RESOURCE_TYPE,
+            resourceId: saved.id,
+            metadata: auditMetadataForClientSuppliedAnalysisCreation({
+              observationId,
+              inspectionId: observation.inspectionId,
+              analysis: saved,
+            }),
+          }),
+        );
         await this.reconcileDecompositionFindings(manager, observation, saved);
         return saved;
       });

@@ -1,0 +1,99 @@
+
+> safety-insite-backend@1.0.0 test:261-confirmation-rule
+> ts-node scripts/test-261-confirmation-rule.ts
+
+
+---- R1. the frozen total posture-permissiveness map is used, not restated ----
+
+ok    R1-A the map is total over the four postures  [4 postures]
+ok    R1-B the map is exactly CONTINUE/CONTINUE_WITH_CONTROLS permitting, HOLD/STOP not
+ok    R1-C every admitted posture value maps deterministically, none is guessed
+
+---- R2 (req. 4 and 7). no relevant unresolved driver: confirmation NOT required ----
+
+ok    R2-A ordinary CONTINUE with an established-condition driver requires no confirmation
+ok    R2-B CONTINUE_WITH_CONTROLS driven only by an established condition requires no confirmation
+ok    R2-C an established-condition cessation driver ALONE never triggers confirmation  [§255 bounded the continuation-controlling/follow-up distinction, not established conditions]
+ok    R2-D an empty requiredBy requires no confirmation and does not fail closed
+
+---- R3 (req. 5). branch (a): an unresolved-property-controlling claim ----
+
+ok    R3-A HOLD driven by a controlling unresolved claim REQUIRES confirmation
+ok    R3-B the trigger is identified structurally by refKind:ref, never by prose
+ok    R3-C branch (a) fires on a NON-permitting posture too; it is not gated on permissiveness  [this is the over-restriction direction §254 observed]
+ok    R3-D branch (a) fires on a HAZARD_CANDIDATE carrier as well as a declaration carrier  [§239 binds the role to both ref kinds]
+
+---- R4 (req. 6). branch (b): follow-up classification while work continues ----
+
+ok    R4-A a permitted posture with an unresolved follow-up REQUIRES confirmation  [the under-restriction direction §254 did not observe and nothing excludes]
+ok    R4-B branch (b) fires on CONTINUE as well, because CONTINUE permits work
+ok    R4-C RESTRAINT: a follow-up under a NON-permitting posture does NOT trigger confirmation  [work is already held, so nothing continues on the follow-up classification]
+ok    R4-D RESTRAINT: the same under STOP does not trigger confirmation either
+
+---- R5. BOTH directions are preserved; neither branch is the whole rule ----
+
+ok    R5-A branch (a) alone is insufficient: R4-A would be missed without branch (b)
+ok    R5-B branch (b) alone is insufficient: R3-C would be missed without branch (a)
+ok    R5-C a mixed posture collects EVERY triggering entry, not the first  [the confirmation subject binds to all of them]
+
+---- R6 (req. 8). unknown or invalid structured state FAILS CLOSED ----
+
+ok    R6 posture absent fails closed  [POSTURE_ABSENT]
+ok    R6 posture undefined fails closed  [POSTURE_ABSENT]
+ok    R6 posture is a string fails closed  [POSTURE_NOT_AN_OBJECT]
+ok    R6 posture is an array fails closed  [POSTURE_NOT_AN_OBJECT]
+ok    R6 posture value outside the closed vocabulary fails closed  [POSTURE_VALUE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 posture value is not a string fails closed  [POSTURE_VALUE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 requiredBy is not an array fails closed  [REQUIRED_BY_NOT_AN_ARRAY]
+ok    R6 requiredBy is absent fails closed  [REQUIRED_BY_NOT_AN_ARRAY]
+ok    R6 a requiredBy entry is not an object fails closed  [REQUIRED_BY_ENTRY_NOT_AN_OBJECT]
+ok    R6 a driverRole is outside the closed vocabulary fails closed  [DRIVER_ROLE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 a driverRole is absent fails closed  [DRIVER_ROLE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 a refKind is outside the closed vocabulary fails closed  [REF_KIND_NOT_IN_CLOSED_VOCABULARY]
+ok    R6-Z a failed-closed determination is DISTINGUISHABLE from a substantive requirement  [same flag, different meaning, and both are recorded]
+
+---- R7. the rule reads structure only; prose cannot move it ----
+
+ok    R7-A prose asserting a controlling unresolved property does NOT trigger confirmation  [no prose is read and no model is asked]
+ok    R7-B prose asserting nothing is needed does NOT suppress a structural trigger
+ok    R7-C the whole-analysis entry point reads the posture field and agrees with the direct call
+ok    R7-D an analysis carrying no posture field fails closed rather than reading as settled
+
+---- R8. the §260 design check against the §254 shapes ----
+
+ok    R8 H1 CONTINUE -> confirmation not required  [ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION]
+ok    R8 H2 STOP -> confirmation not required  [ESTABLISHED_CONDITION_REQUIRING_CESSATION]
+ok    R8 H3 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8 H4 CONTINUE_WITH_CONTROLS -> confirmation required  [UNRESOLVED_RESPONSE_OR_FOLLOW_UP]
+ok    R8 H5 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8 H6 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8-Z the rule fires on exactly the four unresolved-classification shapes and no others
+
+---- R9. the state derivation is total and availability is the last conclusion ----
+
+ok    R9-A PROVIDER_FAILED -> ANALYSIS_FAILED
+ok    R9-B FIRST_PASS_REFUSED -> ANALYSIS_REFUSED
+ok    R9-C COMPLETE + REFUSE -> ANALYSIS_REFUSED, never a generic success
+ok    R9-D COMPLETE + PRESERVE_UNRESOLVED -> ANALYSIS_UNRESOLVED
+ok    R9-E PRESERVE_UNRESOLVED outranks a refused status rather than reading as a plain refusal  [RR-7 exists to keep the preserved truth visible]
+ok    R9-F COMPLETE + ADMIT + no confirmation -> ANALYSIS_AVAILABLE
+ok    R9-G COMPLETE + ADMIT + confirmation -> ANALYSIS_AWAITING_CONFIRMATION
+ok    R9-H COMPLETE with no admission disposition THROWS rather than defaulting to available  [no benign default is permitted]
+ok    R9-I the eight §261 states are all representable and distinct
+ok    R9-J this slice can derive only the six machine states; the human two are unreachable here
+
+---- R10. the producer vocabulary is closed, and pre-spend classification ----
+
+ok    R10-A the producer vocabulary is exactly two values
+ok    R10-B a running execution is discovered as ALREADY_RUNNING and may not spend
+ok    R10-C a completed execution may not spend again
+ok    R10-D a transport failure is RETRYABLE: no semantic answer was ever obtained
+ok    R10-E a refusal is TERMINAL: the provider answered and admission refused it  [re-spending would be shopping for a different answer to the same question]
+ok    R10-F only a fresh CLAIMED outcome permits provider spend
+
+---- R11. the rule carries its own identity ----
+
+ok    R11-A every determination carries the rule version that produced it
+ok    R11-B the rule version names §261 and the boundary it enforces
+
+================ §261 confirmation rule: 60 passed, 0 failed
