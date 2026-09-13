@@ -10,14 +10,18 @@ import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { CalendarViewRenderer } from "@/components/calendar/CalendarViewRenderer";
 import {
+  CalendarSyncNotice,
+  type SafetyCalendarSyncState,
+} from "@/components/calendar/CalendarSyncNotice";
+import {
   createPersonalCalendarTask,
-  completePersonalCalendarEvent,
-  clearCompletedPersonalCalendarEvents,
-  deletePersonalCalendarEvent,
-  isPersonalCalendarEvent,
-  reopenPersonalCalendarEvent,
-  updatePersonalCalendarEvent,
-  getSafetyCalendarEvents,
+  completeCalendarEvent,
+  clearCompletedCalendarEvents,
+  deleteCalendarEvent as deleteCalendarEventRecord,
+  isCalendarManagedEvent,
+  reopenCalendarEvent,
+  updateCalendarEvent,
+  getSafetyCalendarSnapshot,
   getTodayDateKey,
   parseLocalCalendarDate,
   toDateKey,
@@ -129,6 +133,20 @@ function SafetyCalendarPageInner() {
   const requestedView = searchParams.get("view") as CalendarView | null;
 
   const [events, setEvents] = useState<SafetyCalendarEvent[]>([]);
+  /**
+   * §276 / D-007. How the list on screen was produced, not just what is on it.
+   *
+   * §275's calendar said "0 EVENTS" while nine rows sat on the server, and there was no
+   * way for the page to tell the user -- or a reviewer -- which of "nothing is due" and
+   * "we could not ask" it meant. The snapshot carries that distinction so the interface
+   * can say it out loud.
+   */
+  const [syncState, setSyncState] = useState<SafetyCalendarSyncState>({
+    serverReachable: true,
+    servedFromCache: false,
+    pendingCount: 0,
+    blockedCount: 0,
+  });
   const [view, setView] = useState<CalendarView>(
     requestedView === "day" || requestedView === "week" || requestedView === "month"
       ? requestedView
@@ -170,8 +188,15 @@ function SafetyCalendarPageInner() {
       setPlanCode(getStoredPlanCode());
       getVerifiedPlanCode().then(setPlanCode).catch(() => {});
 
-      const loaded = await getSafetyCalendarEvents();
-      setEvents(loaded);
+      const snapshot = await getSafetyCalendarSnapshot();
+      setEvents(snapshot.events);
+      setSyncState({
+        serverReachable: snapshot.serverReachable,
+        servedFromCache: snapshot.servedFromCache,
+        pendingCount: snapshot.pendingCount,
+        blockedCount: snapshot.blockedCount,
+        reason: snapshot.reason,
+      });
     }
 
     loadEvents();
@@ -195,7 +220,7 @@ function SafetyCalendarPageInner() {
   const completedPersonalTaskCount = useMemo(
     () =>
       filteredEvents.filter(
-        (event) => isPersonalCalendarEvent(event) && isCompletedCalendarStatus(event.status),
+        (event) => isCalendarManagedEvent(event) && isCompletedCalendarStatus(event.status),
       ).length,
     [filteredEvents],
   );
@@ -273,12 +298,19 @@ function SafetyCalendarPageInner() {
   }
 
   async function refreshCalendarEvents() {
-    const loaded = await getSafetyCalendarEvents();
-    setEvents(loaded);
+    const snapshot = await getSafetyCalendarSnapshot();
+    setEvents(snapshot.events);
+    setSyncState({
+      serverReachable: snapshot.serverReachable,
+      servedFromCache: snapshot.servedFromCache,
+      pendingCount: snapshot.pendingCount,
+      blockedCount: snapshot.blockedCount,
+      reason: snapshot.reason,
+    });
   }
 
   function beginEditPersonalTask(event: SafetyCalendarEvent) {
-    if (!isPersonalCalendarEvent(event)) {
+    if (!isCalendarManagedEvent(event)) {
       setTaskMessage("Corrective actions are managed from their source inspection/action.");
       return;
     }
@@ -307,12 +339,24 @@ function SafetyCalendarPageInner() {
       return;
     }
 
-    const updated = updatePersonalCalendarEvent(editingTaskId, {
-      title: editingTaskTitle,
-      date: editingTaskDate,
-      priority: editingTaskPriority as SafetyCalendarEvent["priority"],
-      location: editingTaskLocation,
-    });
+    const target = events.find((event) => event.id === editingTaskId) || null;
+    if (!target) {
+      setTaskMessage("Unable to update that task.");
+      return;
+    }
+
+    let updated: SafetyCalendarEvent | null = null;
+    try {
+      updated = await updateCalendarEvent(target, {
+        title: editingTaskTitle,
+        date: editingTaskDate,
+        priority: editingTaskPriority as SafetyCalendarEvent["priority"],
+        location: editingTaskLocation,
+      });
+    } catch (error) {
+      setTaskMessage(error instanceof Error ? error.message : "Unable to update that task.");
+      return;
+    }
 
     if (!updated) {
       setTaskMessage("Unable to update that task.");
@@ -330,7 +374,7 @@ function SafetyCalendarPageInner() {
   }
 
   async function togglePersonalTaskComplete(event: SafetyCalendarEvent) {
-    if (!isPersonalCalendarEvent(event)) {
+    if (!isCalendarManagedEvent(event)) {
       setTaskMessage(
         // Source-managed corrective actions remain read-only here until a safe write-back exists.
         "Corrective actions are managed from their source inspection/action.",
@@ -338,10 +382,16 @@ function SafetyCalendarPageInner() {
       return;
     }
 
-    const nextStatus =
-      event.status === "Completed"
-        ? reopenPersonalCalendarEvent(event.id)
-        : completePersonalCalendarEvent(event.id);
+    let nextStatus: SafetyCalendarEvent | null = null;
+    try {
+      nextStatus =
+        event.status === "Completed"
+          ? await reopenCalendarEvent(event)
+          : await completeCalendarEvent(event);
+    } catch (error) {
+      setTaskMessage(error instanceof Error ? error.message : "Unable to update that task.");
+      return;
+    }
 
     await refreshCalendarEvents();
 
@@ -353,7 +403,7 @@ function SafetyCalendarPageInner() {
     : null;
 
   async function deleteCalendarEvent(event: SafetyCalendarEvent) {
-    if (!isPersonalCalendarEvent(event)) {
+    if (!isCalendarManagedEvent(event)) {
       setTaskMessage(
         // Source-managed corrective actions remain read-only here until a safe write-back exists.
         "Corrective actions are managed from their source inspection/action.",
@@ -364,7 +414,13 @@ function SafetyCalendarPageInner() {
     const confirmed = window.confirm(`Delete "${event.title}" from your calendar?`);
     if (!confirmed) return;
 
-    const deleted = deletePersonalCalendarEvent(event.id);
+    let deleted = false;
+    try {
+      deleted = await deleteCalendarEventRecord(event);
+    } catch (error) {
+      setTaskMessage(error instanceof Error ? error.message : "Unable to delete that task.");
+      return;
+    }
     await refreshCalendarEvents();
 
     if (editingTaskId === event.id) {
@@ -375,7 +431,7 @@ function SafetyCalendarPageInner() {
   }
 
   async function clearCompletedTasks() {
-    const removed = clearCompletedPersonalCalendarEvents();
+    const removed = await clearCompletedCalendarEvents(events);
     if (!removed) {
       setTaskMessage("No completed personal tasks to clear.");
       return;
@@ -420,7 +476,7 @@ function SafetyCalendarPageInner() {
     }
 
     try {
-      const task = createPersonalCalendarTask({
+      const task = await createPersonalCalendarTask({
         title: taskTitle,
         date: taskDate,
         priority: taskPriority as SafetyCalendarEvent["priority"],
@@ -485,6 +541,8 @@ function SafetyCalendarPageInner() {
           ))}
         </div>
       </HeroPanel>
+
+      <CalendarSyncNotice state={syncState} />
 
       <AppPanel padding="sm" className="app-card px-3 py-2.5 sm:px-4 sm:py-3">
         <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
@@ -639,7 +697,7 @@ function SafetyCalendarPageInner() {
             selectedDateKey={selectedDateKey}
             selectedEvents={selectedEvents}
             formatFullDate={formatFullDate}
-            isPersonalCalendarEvent={isPersonalCalendarEvent}
+            isCalendarManagedEvent={isCalendarManagedEvent}
             onOpenDay={openDateInDayView}
             onAddTaskForDate={startTaskForDate}
             onEditPersonalEvent={beginEditPersonalTask}

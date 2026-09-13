@@ -585,6 +585,17 @@ export async function createPersistedCorrectiveAction(input: {
    * rather than naming the inspector. This is report metadata, not an account assignment.
    */
   assignedToName?: string;
+  /**
+   * §276 / D-007. When the corrective action is DUE, as `YYYY-MM-DD`.
+   *
+   * This was never sent, so every corrective action the inspection workflow created was
+   * persisted with a NULL due date -- and a calendar is dated, so an undated action can
+   * never appear on one. §275 saw the symptom (corrective actions absent from the Safety
+   * Calendar) and diagnosed only the read path; this is the other half. The workflow
+   * already computes the risk-derived due date it gives the follow-up task, so the action
+   * and its task now carry the SAME date rather than one of them carrying none.
+   */
+  dueDate?: string;
 }) {
   return apiJson<Record<string, unknown>>("/actions", {
     method: "POST",

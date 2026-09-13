@@ -50,6 +50,15 @@ const SENSITIVE_LOCAL_STORAGE_KEYS = [
   "sentinel_inspection_autosave",        // legacy /inspection route: raw observation text
   "auditally_personal_calendar_events",  // personal safety tasks
   "safety_insite_custom_risk_matrix",    // user-authored risk matrix
+  // §276 / D-007. The reconciled calendar's device-side halves. The outbox holds work the
+  // user typed but the server has not accepted yet, and the cache holds the last answer
+  // the server gave -- both are that account's due work, so both are the same class of
+  // cross-account leak as the three keys above. The migration ledger goes with them: it
+  // names records in stores that are themselves cleared here, so keeping it would make the
+  // next account's legitimate records look already-migrated and silently drop them.
+  "safety_insite_calendar_outbox",
+  "safety_insite_calendar_cache",
+  "safety_insite_calendar_migrated_local_ids",
   // V1-OFFLINE-ISO-01. lib/inspection/offlineInspectionStore.ts writes these DEVICE-GLOBAL
   // localStorage keys from the legacy /inspection route. They hold raw observation text, local
   // findings and report drafts with no account namespace at all, so they are the same class of

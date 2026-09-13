@@ -39,7 +39,10 @@ export function WeekAtAGlancePanel({
     }
 
     try {
-      createPersonalCalendarTask({
+      // §276 / D-007. Awaited: this now writes to the server, and a rejected write has to
+      // reach the catch below rather than becoming an unhandled rejection while the panel
+      // reports "Task added."
+      await createPersonalCalendarTask({
         title: taskTitle,
         date: selectedWeekDateKey,
         priority: taskPriority,

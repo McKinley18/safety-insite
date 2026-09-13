@@ -4,7 +4,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { SafetyCalendarControls } from "@/components/calendar/SafetyCalendarControls";
 import { eventTone, eventTypeLabel } from "@/lib/calendar/helpers";
 import {
-  isPersonalCalendarEvent,
+  isCalendarManagedEvent,
   toDateKey,
   parseLocalCalendarDate,
 } from "@/lib/safetyCalendar";
@@ -29,7 +29,7 @@ interface CalendarViewRendererProps {
   selectedDateKey: string;
   selectedEvents: SafetyCalendarEvent[];
   formatFullDate: (date: Date) => string;
-  isPersonalCalendarEvent: typeof isPersonalCalendarEvent;
+  isCalendarManagedEvent: typeof isCalendarManagedEvent;
   onOpenDay: (dateKey: string) => void;
   onAddTaskForDate: (dateKey: string) => void;
   onEditPersonalEvent: (event: SafetyCalendarEvent) => void;
@@ -54,7 +54,7 @@ export function CalendarViewRenderer({
   selectedDateKey,
   selectedEvents,
   formatFullDate,
-  isPersonalCalendarEvent,
+  isCalendarManagedEvent,
   onOpenDay,
   onAddTaskForDate,
   onEditPersonalEvent,
@@ -143,7 +143,7 @@ export function CalendarViewRenderer({
                               {event.location}
                               {event.sourceLabel ? ` · ${event.sourceLabel}` : ""}
                             </p>
-                            {isPersonalCalendarEvent(event) && (
+                            {isCalendarManagedEvent(event) && (
                               <div className="mt-2 flex flex-wrap gap-1.5">
                                 <AppButton
                                   type="button"
@@ -195,7 +195,7 @@ export function CalendarViewRenderer({
                                 </AppButton>
                               </div>
                             )}
-                            {!isPersonalCalendarEvent(event) && (
+                            {!isCalendarManagedEvent(event) && (
                               <p className="mt-2 text-[10px] font-semibold text-app-text-muted">
                                 Managed from source inspection/action.
                               </p>
@@ -253,7 +253,7 @@ export function CalendarViewRenderer({
                               {event.location}
                               {event.sourceLabel ? ` · ${event.sourceLabel}` : ""}
                             </p>
-                            {isPersonalCalendarEvent(event) && (
+                            {isCalendarManagedEvent(event) && (
                               <div className="mt-2 flex flex-wrap gap-1.5">
                                 <AppButton
                                   type="button"
@@ -293,7 +293,7 @@ export function CalendarViewRenderer({
                                 </AppButton>
                               </div>
                             )}
-                            {!isPersonalCalendarEvent(event) && (
+                            {!isCalendarManagedEvent(event) && (
                               <p className="mt-2 text-[10px] text-app-text-muted">
                                 Managed from source inspection/action.
                               </p>
@@ -349,7 +349,7 @@ export function CalendarViewRenderer({
                   </div>
                     <div className="flex items-center gap-2">
                       <div className="rounded-lg bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">{event.status}</div>
-                      {isPersonalCalendarEvent(event) ? (
+                      {isCalendarManagedEvent(event) ? (
                         <>
                           <AppButton
                             type="button"

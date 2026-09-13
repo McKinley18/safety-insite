@@ -2,13 +2,13 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { eventTone, eventTypeLabel } from "@/lib/calendar/helpers";
-import { isPersonalCalendarEvent } from "@/lib/safetyCalendar";
+import { isCalendarManagedEvent } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 
 interface PriorityTodoPanelProps {
   priorityTodoGroups: readonly (readonly [string, SafetyCalendarEvent[]])[];
   openEventDay: (event: SafetyCalendarEvent) => void;
-  isPersonalCalendarEvent: typeof isPersonalCalendarEvent;
+  isCalendarManagedEvent: typeof isCalendarManagedEvent;
   onEditPersonalEvent: (event: SafetyCalendarEvent) => void;
   onTogglePersonalEvent: (event: SafetyCalendarEvent) => void | Promise<void>;
   deleteCalendarEvent: (event: SafetyCalendarEvent) => void;
@@ -21,7 +21,7 @@ interface PriorityTodoPanelProps {
 export function PriorityTodoPanel({
   priorityTodoGroups,
   openEventDay,
-  isPersonalCalendarEvent,
+  isCalendarManagedEvent,
   onEditPersonalEvent,
   onTogglePersonalEvent,
   deleteCalendarEvent,
@@ -75,7 +75,7 @@ export function PriorityTodoPanel({
                         </p>
                       </button>
 
-                      {isPersonalCalendarEvent(event) ? (
+                      {isCalendarManagedEvent(event) ? (
                         <div className="flex flex-wrap items-center gap-1.5 pt-1">
                           <AppButton
                             type="button"

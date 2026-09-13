@@ -8,15 +8,15 @@ import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { PriorityTodoPanel } from "@/components/calendar/PriorityTodoPanel";
 import {
-  clearCompletedPersonalCalendarEvents,
-  completePersonalCalendarEvent,
-  deletePersonalCalendarEvent,
+  clearCompletedCalendarEvents,
+  completeCalendarEvent,
+  deleteCalendarEvent as deleteCalendarEventRecord,
   getTodayDateKey,
-  isPersonalCalendarEvent,
+  isCalendarManagedEvent,
   parseLocalCalendarDate,
-  reopenPersonalCalendarEvent,
+  reopenCalendarEvent,
   toDateKey,
-  updatePersonalCalendarEvent,
+  updateCalendarEvent,
 } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 
@@ -54,7 +54,7 @@ export function PriorityTodoSection({
   const completedCount = useMemo(
     () =>
       events.filter(
-        (event) => isPersonalCalendarEvent(event) && isCompletedCalendarStatus(event.status),
+        (event) => isCalendarManagedEvent(event) && isCompletedCalendarStatus(event.status),
       ).length,
     [events],
   );
@@ -95,7 +95,7 @@ export function PriorityTodoSection({
   }
 
   function beginEditPersonalTask(event: SafetyCalendarEvent) {
-    if (!isPersonalCalendarEvent(event)) {
+    if (!isCalendarManagedEvent(event)) {
       setMessage("Corrective actions are managed from their source inspection/action.");
       return;
     }
@@ -124,12 +124,24 @@ export function PriorityTodoSection({
       return;
     }
 
-    const updated = updatePersonalCalendarEvent(editingTaskId, {
-      title: editingTaskTitle,
-      date: editingTaskDate,
-      priority: editingTaskPriority as SafetyCalendarEvent["priority"],
-      location: editingTaskLocation,
-    });
+    const target = events.find((event) => event.id === editingTaskId) || null;
+    if (!target) {
+      setMessage("Unable to update that task.");
+      return;
+    }
+
+    let updated: SafetyCalendarEvent | null = null;
+    try {
+      updated = await updateCalendarEvent(target, {
+        title: editingTaskTitle,
+        date: editingTaskDate,
+        priority: editingTaskPriority as SafetyCalendarEvent["priority"],
+        location: editingTaskLocation,
+      });
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Unable to update that task.");
+      return;
+    }
 
     if (!updated) {
       setMessage("Unable to update that task.");
@@ -142,22 +154,28 @@ export function PriorityTodoSection({
   }
 
   async function togglePersonalTaskComplete(event: SafetyCalendarEvent) {
-    if (!isPersonalCalendarEvent(event)) {
+    if (!isCalendarManagedEvent(event)) {
       setMessage("Corrective actions are managed from their source inspection/action.");
       return;
     }
 
-    const nextStatus =
-      event.status === "Completed"
-        ? reopenPersonalCalendarEvent(event.id)
-        : completePersonalCalendarEvent(event.id);
+    let nextStatus: SafetyCalendarEvent | null = null;
+    try {
+      nextStatus =
+        event.status === "Completed"
+          ? await reopenCalendarEvent(event)
+          : await completeCalendarEvent(event);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Unable to update that task.");
+      return;
+    }
 
     await onEventsChanged();
     setMessage(nextStatus?.status === "Completed" ? "Task marked complete." : "Task reopened.");
   }
 
   async function deleteCalendarEvent(event: SafetyCalendarEvent) {
-    if (!isPersonalCalendarEvent(event)) {
+    if (!isCalendarManagedEvent(event)) {
       setMessage("Corrective actions are managed from their source inspection/action.");
       return;
     }
@@ -165,7 +183,13 @@ export function PriorityTodoSection({
     const confirmed = window.confirm(`Delete "${event.title}" from your calendar?`);
     if (!confirmed) return;
 
-    const deleted = deletePersonalCalendarEvent(event.id);
+    let deleted = false;
+    try {
+      deleted = await deleteCalendarEventRecord(event);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Unable to delete that task.");
+      return;
+    }
     await onEventsChanged();
 
     if (editingTaskId === event.id) cancelEditPersonalTask();
@@ -173,7 +197,7 @@ export function PriorityTodoSection({
   }
 
   async function clearCompletedTasks() {
-    const removed = clearCompletedPersonalCalendarEvents();
+    const removed = await clearCompletedCalendarEvents(events);
     if (!removed) {
       setMessage("No completed personal tasks to clear.");
       return;
@@ -190,7 +214,7 @@ export function PriorityTodoSection({
       <PriorityTodoPanel
         priorityTodoGroups={priorityTodoGroups}
         openEventDay={openEventDay}
-        isPersonalCalendarEvent={isPersonalCalendarEvent}
+        isCalendarManagedEvent={isCalendarManagedEvent}
         onEditPersonalEvent={beginEditPersonalTask}
         onTogglePersonalEvent={togglePersonalTaskComplete}
         deleteCalendarEvent={deleteCalendarEvent}
