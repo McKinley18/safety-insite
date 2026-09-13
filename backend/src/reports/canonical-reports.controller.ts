@@ -39,6 +39,15 @@ export class CanonicalReportsController {
    * finishing an inspection again REPLACES the report rather than adding a version beside it, so a
    * URL that named a version would be a URL the customer could keep and later find empty.
    */
+  /**
+   * §277 / D-028. The revision history of one report: what was issued, when, with which
+   * checksum, and which revision superseded which.
+   */
+  @Get('inspection-reports/:reportId/revisions')
+  revisions(@Req() req: any, @Param('reportId') reportId: string) {
+    return this.reports.revisions(req.user, reportId);
+  }
+
   @Get('inspection-reports/:reportId/download')
   async downloadCurrent(@Req() req: any, @Param('reportId') reportId: string, @Res() response: Response) {
     const result = await this.reports.downloadCurrent(req.user, reportId);

@@ -16,7 +16,24 @@ import { InspectionReportVersion } from './entities/inspection-report-version.en
 import { renderInspectionReportPdf } from './canonical-report-pdf-renderer';
 import { emitOperationalEvent } from '../observability/operational-events';
 
-const GENERATOR_VERSION = 'safety-insite-pdf/2';
+/**
+ * §277 / D-028. The renderer's identity, and part of the report fingerprint.
+ *
+ * Bumped from `/2` because §276 corrected two things a compliance artifact carries: the
+ * product brand on the cover and in the running header (D-013), and the severity a finding
+ * states along with the basis line under it (D-008). A report issued by `/2` states a brand
+ * the product does not have, and may state a number no reviewer chose.
+ *
+ * Bumping this does NOT rewrite those artifacts -- nothing rewrites an issued report. It
+ * means the next generation for an inspection produces a NEW REVISION rendered by `/3`,
+ * with its own id, timestamp and checksum, and marks the `/2` artifact superseded beside it.
+ * Both remain retrievable, and the history says which was issued when.
+ *
+ * Change this deliberately, when a renderer correction must reach reports that already
+ * exist. It is not a build number and must not track one: a value that moved on every
+ * deploy would re-issue every report in the product for no stated reason.
+ */
+const GENERATOR_VERSION = 'safety-insite-pdf/3';
 
 function pdfFromSnapshot(snapshot: Record<string, any>): Promise<Buffer> {
   return renderInspectionReportPdf(snapshot);
@@ -204,7 +221,23 @@ export class CanonicalReportsService {
     // the snapshot already carries, so regenerating or re-reading an old report reproduces
     // the historical provenance instead of recomputing it from present-day knowledge.
     sourceSnapshot.knowledgeProvenance = this.knowledgeProvenance(sourceSnapshot);
-    const sourceFingerprint = this.snapshotFingerprint(sourceSnapshot);
+    /**
+     * §277 / D-028. The fingerprint covers the GENERATOR as well as the snapshot.
+     *
+     * It used to cover the snapshot alone, so an unchanged inspection returned its existing
+     * artifact however much the renderer had changed underneath -- and §276 measured the
+     * consequence: the brand and severity corrections could not reach a report that had
+     * already been issued, because nothing about the inspection had moved.
+     *
+     * D-028 settles it: an authoritative renderer, severity or branding correction that
+     * requires a report to change produces a NEW REVISION. Including the generator version
+     * here is what makes that happen, and it happens deliberately -- someone has to bump
+     * `GENERATOR_VERSION` -- rather than on every unrelated deploy.
+     *
+     * The previously issued artifact is not touched. It is superseded, which is the whole
+     * of D-028's other half.
+     */
+    const sourceFingerprint = this.snapshotFingerprint({ ...sourceSnapshot, generatorVersion: GENERATOR_VERSION });
 
     // Artifacts to destroy only once the replacement has COMMITTED. Populated inside the
     // transaction; consumed after it returns.
@@ -231,9 +264,23 @@ export class CanonicalReportsService {
           await auditRepo.save(auditRepo.create({ actorUserId: user.userId, organizationId: user.organizationId, action: 'report_generation_duplicate_replayed', resourceType: 'inspection_report_version', resourceId: existing.id, metadata: { reportId: report.id, version: existing.version, inspectionId, sourceFingerprint } }));
           return this.metadata(report, existing, inspection);
         }
-        const superseded = await versionRepo.find({ where: { reportId: report.id }, order: { version: 'DESC' } });
+        /**
+         * Every revision, newest first -- used for the next version number, which must keep
+         * counting past revisions that are already superseded.
+         */
+        const allRevisions = await versionRepo.find({ where: { reportId: report.id }, order: { version: 'DESC' } });
+        /**
+         * §277 / D-028. Only the revisions that are CURRENT stop being current.
+         *
+         * This was `allRevisions`, and it re-pointed every already-superseded row at the new
+         * revision -- so after a third issue, revision 1 claimed to have been superseded by
+         * revision 3 when it was actually superseded by revision 2. That is history being
+         * rewritten by a later event, which is the precise thing an immutable-artifact rule
+         * exists to prevent. A superseded revision keeps the pointer it was given.
+         */
+        const superseded = allRevisions.filter(revision => revision.status === 'generated');
         const replacement = await versionRepo.save(versionRepo.create({
-          reportId: report.id, version: (superseded[0]?.version || 0) + 1, status: 'generating',
+          reportId: report.id, version: (allRevisions[0]?.version || 0) + 1, status: 'generating',
           sourceInspectionVersion: inspection.version, sourceFingerprint, sourceSnapshot,
           storageObjectId: null, sha256: null, sizeBytes: null, generatorVersion: GENERATOR_VERSION,
           generatedByUserId: user.userId, generatedAt: null, failureReason: null, supersededByVersionId: null,
@@ -255,12 +302,35 @@ export class CanonicalReportsService {
         replacement.generatedAt = new Date();
         await versionRepo.save(replacement);
 
-        // THE SWITCH. Only now, with the replacement proven to exist and verify, do the previous
-        // snapshots stop being the inspection's report -- and they stop atomically, so no reader
-        // ever observes two.
+        /**
+         * THE SWITCH. Only now, with the replacement proven to exist and verify, do the
+         * previous revisions stop being the inspection's CURRENT report -- and they stop
+         * atomically, so no reader ever observes two current ones.
+         *
+         * §277 / D-028: AN ISSUED REPORT IS AN IMMUTABLE ARTIFACT.
+         *
+         * This used to `delete` the previous rows and destroy their PDFs. That made the
+         * replacement indistinguishable from a correction of the original, and it destroyed
+         * the record of what the customer had actually been given -- for a compliance
+         * artifact that may already have been filed with a client or a regulator, the
+         * question "what did the report say when we issued it?" has to remain answerable.
+         *
+         * The rows are retained and marked `superseded`, each pointing at the revision that
+         * replaced it, and their artifacts are NOT retired. `currentSnapshot()` already
+         * selects the highest-numbered `generated` row, so the current report is unambiguous
+         * without any read-path change, and the orphan sweep below stops treating those
+         * artifacts as orphans because their parent row still exists.
+         *
+         * No migration was needed: `status: 'superseded'` was already in the column's
+         * vocabulary and `supersededByVersionId` was already on the table. The schema had
+         * been built for this; only the write path had not used it.
+         */
         if (superseded.length) {
-          for (const stale of superseded) if (stale.storageObjectId) retireAfterCommit.push(stale.storageObjectId);
-          await versionRepo.delete(superseded.map(stale => stale.id));
+          for (const stale of superseded) {
+            stale.status = 'superseded';
+            stale.supersededByVersionId = replacement.id;
+          }
+          await versionRepo.save(superseded);
         }
         for (const orphan of await this.orphanedReportArtifactIds(user)) {
           if (orphan !== object.id && !retireAfterCommit.includes(orphan)) retireAfterCommit.push(orphan);
@@ -271,8 +341,11 @@ export class CanonicalReportsService {
           resourceType: 'inspection_report_version', resourceId: replacement.id,
           metadata: {
             reportId: report.id, version: replacement.version, inspectionId, sourceFingerprint,
-            replacedSnapshotIds: superseded.map(stale => stale.id),
-            retainedSnapshots: 1,
+            supersededRevisionIds: superseded.map(stale => stale.id),
+            supersededRevisions: superseded.length,
+            // §277 / D-028. Every revision is retained; none is destroyed.
+            retainedRevisions: superseded.length + 1,
+            generatorVersion: GENERATOR_VERSION,
           },
         }));
         return this.metadata(report, replacement, inspection);
@@ -461,17 +534,54 @@ export class CanonicalReportsService {
   }
 
   /**
-   * Download by internal snapshot sequence. Retained for the existing verification suites that
-   * address a snapshot directly; the product never builds this URL, because the customer has no
-   * version to name. A sequence whose snapshot was replaced is genuinely gone and answers 404.
+   * Download one REVISION by its internal sequence. The product never builds this URL --
+   * the customer has no version to name and always gets the current report -- but an
+   * auditor asking "what did we issue on the 13th?" must be able to retrieve exactly that.
+   *
+   * §277 / D-028. A `superseded` revision is downloadable, because it is the immutable
+   * artifact that was actually issued. Before §277 a replaced revision was deleted outright
+   * and this answered 404 for it; now it answers with the bytes that were given out, and
+   * only a revision that never finished generating is genuinely absent.
    */
   async download(rawUser: unknown, reportId: string, versionNumber: number) {
     await this.accessibleReport(rawUser, reportId);
     const version = await this.versions.findOne({ where: { reportId, version: versionNumber } });
-    if (!version || !version.storageObjectId || version.status !== 'generated') {
+    if (!version || !version.storageObjectId || !['generated', 'superseded'].includes(version.status)) {
       throw new NotFoundException('Report version not found.');
     }
     return this.storage.read(rawUser, version.storageObjectId);
+  }
+
+  /**
+   * §277 / D-028 — THE REVISION HISTORY OF ONE REPORT.
+   *
+   * Newest first. Each entry states its own identity, checksum, generation time, generator
+   * and whether it is the current revision or was superseded by a named later one, so
+   * "history can distinguish revisions" is answerable from one read rather than inferred.
+   */
+  async revisions(rawUser: unknown, reportId: string) {
+    const report = await this.accessibleReport(rawUser, reportId);
+    const versions = await this.versions.find({ where: { reportId }, order: { version: 'DESC' } });
+    const current = this.currentSnapshot(versions);
+    return {
+      reportId: report.id,
+      inspectionId: report.inspectionId,
+      currentRevisionId: current?.id || null,
+      revisionCount: versions.length,
+      revisions: versions.map(version => ({
+        revisionId: version.id,
+        revision: version.version,
+        status: version.status,
+        isCurrent: current ? version.id === current.id : false,
+        checksum: version.sha256,
+        sizeBytes: version.sizeBytes,
+        generatedAt: version.generatedAt,
+        generatorVersion: version.generatorVersion,
+        supersededByRevisionId: version.supersededByVersionId,
+        sourceInspectionVersion: version.sourceInspectionVersion,
+        failureReason: version.failureReason,
+      })),
+    };
   }
 
   /**

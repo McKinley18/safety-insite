@@ -203,6 +203,8 @@
     "test:264-settlement-contract": "ts-node scripts/test-264-settlement-contract.ts",
     "test:265-expert-product-acceptance": "ts-node scripts/test-265-expert-product-acceptance.ts",
     "test:276-calendar-reconciliation": "ts-node scripts/test-276-calendar-reconciliation.ts",
+    "test:277-report-revision": "ts-node scripts/test-277-report-revision.ts",
+    "test:277-report-revision:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:277-report-revision",
     "test:276-calendar-reconciliation:db": "ts-node scripts/hazlenz/with-disposable-db.ts test:276-calendar-reconciliation",
     "test:267-product-integration-defects": "ts-node scripts/test-267-product-integration-defects.ts",
     "test:268-deployment-safety": "ts-node scripts/hazlenz/with-disposable-db.ts test:268-deployment-safety:inner",
