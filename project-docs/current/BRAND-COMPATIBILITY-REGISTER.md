@@ -30,8 +30,31 @@ customer-visible surface and ratchets the internal count downward.
 | `fullSafeScope` | the entitlement discriminator in `@RequireEntitlement` on eight controllers and in `plan-entitlements.ts` | no | it is an authorization token; renaming it touches the access-control path | **migrate only with an authorization test pass.** A silent mismatch here fails *open* or *closed* on billing-gated routes, so it is not cosmetic |
 | `sentinel_safescope_brain_bundle_v1`, `…_meta_v1` | `localStorage` keys holding the cached offline knowledge bundle | no | renaming orphans every existing installed client's cached bundle | **keep**, or rename with a one-time read-old/write-new migration in `offlineBrainStorage.ts` |
 | `auditally_personal_calendar_events` | `localStorage` key holding user-authored calendar entries | no | renaming silently discards user data | **keep** unless paired with a read-old/write-new migration |
+| `auditally_cache_cleanup_version` | `localStorage` key gating the one-time client cache cleanup in `ClientCacheCleanup.tsx` | no | renaming re-runs the cleanup on every existing client | **keep**. Added to the register at §275, when case-insensitive matching first made it visible |
 | ~~`/safescope-v2/*`, `/safescope/*`, `/safescope-knowledge/*`~~ | **MIGRATED at §274.** Now `/hazlenz/*` and `/hazlenz-knowledge/*`; `/safescope/analyze` and `/safescope/feedback` were deleted with the dead v1 module. Zero active SafeScope routes remain | — | done | — |
 | `reviewcore/knowledge-queue`, `legacy/pdf`, `legacy/reports` | internal/admin routes with **zero** frontend consumers | no | yes, cheaply | **migrate**; these are the cheapest route wins and nothing outside the backend calls them |
+
+
+## 2a. How this register is enforced — corrected at §275
+
+`npm run brand:audit` matches retired brands **case-insensitively and separator-tolerantly**, derived
+from six canonical names rather than a hand-written list of spellings. Until §275 it compared with a
+case-sensitive `String.includes` against fifteen enumerated spellings, and therefore could not see
+`Safescope`, `safeScope`, `SAFE_SCOPE` or any other case it had not been told about. It reported
+PASS at 390 references while 987 were actually present — the 597 it could not see are overwhelmingly
+the `safeScopeResult` field this register's own section 2 describes as "the single largest remaining
+item". The gate was agreeing with the register by coincidence, not by measurement.
+
+The count is now reported in two ratcheted halves, because they have different futures:
+
+| line | meaning | §275 baseline |
+|---|---|---|
+| TIER 2 | internal identifiers nobody has decided to keep; lower it, never raise it | 293 |
+| RETAINED | lines matching a row of this register, each dangerous to rename | 694 |
+
+Tier 1 — a retired brand reaching a customer — remains a hard zero, and it **measured zero under
+the new case-insensitive matcher**, so no customer-visible leakage was hiding behind the old
+matcher's blind spot.
 
 ## 3. Resolved at §274 — the engine directory moved
 

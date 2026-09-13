@@ -28,12 +28,61 @@ import { join, relative, sep } from 'path';
 const BACKEND = join(__dirname, '..', '..');
 const REPO = join(BACKEND, '..');
 
-/** Brands that are retired. Safety InSite and HazLenz are the only live names. */
+/**
+ * Brands that are retired. Safety InSite and HazLenz are the only live names.
+ *
+ * §275. These are CANONICAL names, matched case-insensitively and separator-tolerantly by
+ * `brandPatterns()` below. They are deliberately NOT an enumeration of spellings.
+ *
+ * The previous list enumerated cases by hand — `SafeScope`, `safescope`, `SAFESCOPE`, `safe-scope`
+ * — and matched with a case-SENSITIVE `String.includes`. That list could never be complete, and it
+ * demonstrably was not: `SafescopeV2Service` (lowercase `s` in `scope`) matched none of the five
+ * SafeScope spellings and was invisible to this gate. Enumerating one more case would have fixed
+ * that one identifier and left `safeScope`, `SAFE_SCOPE` and `Safe_Scope` equally invisible. The
+ * failure mode of a hand-maintained case list is that it reports PASS because it cannot see, which
+ * is worse than reporting a number, so the list is now canonical names and the matching is derived.
+ */
 export const RETIRED_BRANDS = [
-  'SafeScope', 'Safe Scope', 'safescope', 'safe-scope', 'SAFESCOPE',
-  'Sentinel Safety', 'sentinel_safety', 'sentinel-safety', 'SentinelSafety',
-  'AuditAlly', 'auditally', 'GuideGuard', 'SightSignal', 'ReviewCore',
+  'SafeScope', 'Sentinel Safety', 'AuditAlly', 'GuideGuard', 'SightSignal', 'ReviewCore',
 ] as const;
+
+/**
+ * One case-insensitive pattern per canonical brand.
+ *
+ * A canonical name is split on its internal capitals and spaces (`SafeScope` -> `Safe` + `Scope`,
+ * `Sentinel Safety` -> `Sentinel` + `Safety`) and rejoined with `[\s_-]*`, so a single entry
+ * catches `SafeScope`, `Safescope`, `safescope`, `safeScope`, `SAFESCOPE`, `safe-scope`,
+ * `safe_scope` and `Safe Scope` without any of them being written down.
+ */
+export function brandPatterns(): ReadonlyArray<readonly [string, RegExp]> {
+  return RETIRED_BRANDS.map((b) => [
+    b,
+    new RegExp(b.split(/(?=[A-Z])|\s+/).filter(Boolean).join('[\\s_-]*'), 'i'),
+  ] as const);
+}
+
+/**
+ * IDENTIFIERS RETAINED ON PURPOSE — every entry is a row of
+ * `project-docs/current/BRAND-COMPATIBILITY-REGISTER.md`, not a convenience silencer.
+ *
+ * These carry a retired brand because CHANGING them is the hazard: an applied migration's class
+ * name keys the `migrations` table, a physical table name holds governed knowledge rows, an
+ * entitlement discriminator sits on the access-control path where a silent mismatch fails open or
+ * closed on billing-gated routes, and a `localStorage` key rename silently discards a user's cached
+ * bundle or their calendar entries. They are counted and REPORTED SEPARATELY rather than dropped,
+ * and they carry their own ratchet, so the set cannot grow quietly.
+ */
+export const COMPATIBILITY_IDENTIFIERS: ReadonlyArray<readonly [RegExp, string]> = [
+  [/safeScopeResult/i, 'persisted finding JSON field; needs a data migration plus a coordinated frontend change'],
+  [/fullSafeScope/i, 'entitlement discriminator on the access-control path'],
+  [/safescope_knowledge_\w+/i, 'physical table created by applied migration 1780000000000 and successors'],
+  [/safescope_reasoning_snapshots/i, 'physical table created by applied migration 1790000000000'],
+  [/safescope_supervisor_validations/i, 'physical table created by applied migration 1790000001000'],
+  [/(?:Create|Add)SafeScope\w*/i, 'applied migration class name; renaming re-runs or orphans it'],
+  [/sentinel_safescope_brain_bundle\w*/i, 'localStorage key for the cached offline knowledge bundle'],
+  [/auditally_personal_calendar_events/i, 'localStorage key holding user-authored calendar entries'],
+  [/auditally_cache_cleanup_version/i, 'localStorage key gating the one-time client cache cleanup'],
+];
 
 /**
  * Paths this audit never reads. Each entry is a REASON, not a convenience.
@@ -83,7 +132,12 @@ const TIER2_GLOBS: ReadonlyArray<readonly [string, string]> = [
 export interface Hit {
   readonly file: string;
   readonly line: number;
+  /** The canonical retired brand this matched. */
   readonly brand: string;
+  /** The spelling actually present in the source, which may differ in case and separators. */
+  readonly spelling: string;
+  /** The register reason when this is a deliberately retained identifier, else null. */
+  readonly compatibility: string | null;
   readonly text: string;
 }
 
@@ -118,8 +172,19 @@ function isCustomerVisible(line: string, brand: string): boolean {
   return false;
 }
 
+/**
+ * Which register entry, if any, explains this line. Classified against the FULL line, never the
+ * truncated `text` a Hit carries for display — a compatibility identifier that happens to sit past
+ * the display cut-off is still a compatibility identifier.
+ */
+function compatibilityReason(line: string): string | null {
+  for (const [re, why] of COMPATIBILITY_IDENTIFIERS) if (re.test(line)) return why;
+  return null;
+}
+
 export function scan(globs: ReadonlyArray<readonly [string, string]>, visibleOnly: boolean): Hit[] {
   const hits: Hit[] = [];
+  const patterns = brandPatterns();
   for (const [g] of globs) {
     const files: string[] = [];
     walk(join(REPO, g), files);
@@ -128,12 +193,17 @@ export function scan(globs: ReadonlyArray<readonly [string, string]>, visibleOnl
       try { content = readFileSync(f, 'utf8'); } catch { continue; }
       const lines = content.split('\n');
       lines.forEach((line, i) => {
-        for (const brand of RETIRED_BRANDS) {
-          if (!line.includes(brand)) continue;
-          if (visibleOnly && !isCustomerVisible(line, brand)) continue;
+        for (const [brand, re] of patterns) {
+          const m = line.match(re);
+          if (!m) continue;
+          // `m[0]` is the spelling actually present, which is what the visibility predicate has to
+          // look for; `brand` is the canonical name, which is what a reader wants to be told.
+          if (visibleOnly && !isCustomerVisible(line, m[0])) continue;
           hits.push({
             file: relative(REPO, f).split(sep).join('/'),
-            line: i + 1, brand, text: line.trim().slice(0, 120),
+            line: i + 1, brand, spelling: m[0],
+            compatibility: compatibilityReason(line),
+            text: line.trim().slice(0, 120),
           });
           break;
         }
@@ -162,21 +232,56 @@ export function scan(globs: ReadonlyArray<readonly [string, string]>, visibleOnl
  * comment, so the directory cannot move without editing a protected, §259-digested file. That is a
  * product-owner decision, recorded in docs/hazlenz/current/BRAND-COMPATIBILITY-REGISTER.md.
  */
-export const TIER2_BUDGET = Number(process.env.BRAND_TIER2_BUDGET ?? '') || 390;
+/**
+ * §275 RE-BASELINED THIS, AND THE NUMBER MOVING IS NOT THE RATCHET BEING RAISED.
+ *
+ * 390 was measured by a case-SENSITIVE matcher that could not see 597 further references —
+ * `safeScopeResult` alone accounts for most of them. Nothing was cleaned up and nothing regressed;
+ * the instrument simply started measuring the thing it always claimed to measure. Carrying 390
+ * forward against a matcher that now sees 987 would have failed the gate for a reason that has
+ * nothing to do with anyone's work.
+ *
+ * The count is now split, because the two halves have different meanings and different futures:
+ *
+ *   REMAINING DEBT (293, budgeted here)  internal identifiers nobody has decided to keep. This is
+ *                                        the ratchet. Lower it whenever a migration removes
+ *                                        references; never raise it.
+ *   RETAINED (694, budgeted separately)  every line matching a COMPATIBILITY_IDENTIFIERS entry,
+ *                                        each of which is a row of the compatibility register with
+ *                                        a stated reason it is dangerous to rename.
+ *
+ * Splitting them is what makes the debt number honest. Under the old single integer, migrating a
+ * table name and adding a new `safeScopeResult` reference were the same event.
+ */
+export const TIER2_BUDGET = Number(process.env.BRAND_TIER2_BUDGET ?? '') || 293;
+
+/** Ratchet over the deliberately retained set, so the register cannot grow without being noticed. */
+export const COMPATIBILITY_BUDGET = Number(process.env.BRAND_COMPAT_BUDGET ?? '') || 694;
 
 function main(): void {
   const tier1 = scan(TIER1_GLOBS, true);
-  const tier2 = scan(TIER2_GLOBS, false).concat(scan(TIER1_GLOBS, false));
+  const all = scan(TIER2_GLOBS, false).concat(scan(TIER1_GLOBS, false));
+  const retained = all.filter((h) => h.compatibility !== null);
+  const tier2 = all.filter((h) => h.compatibility === null);
 
   console.log('\nSafety InSite — brand audit (read-only, 0 provider calls)\n');
-  console.log('  Live brands: Safety InSite (product), HazLenz (engine)\n');
+  console.log('  Live brands: Safety InSite (product), HazLenz (engine)');
+  console.log('  Matching:    case-insensitive, separator-tolerant, derived from canonical names\n');
 
   console.log(`  TIER 1  customer-visible retired brand        ${tier1.length === 0 ? 'PASS' : 'FAIL'}   ${tier1.length} hit(s)`);
-  for (const h of tier1) console.log(`            ${h.file}:${h.line}  [${h.brand}]  ${h.text}`);
+  for (const h of tier1) console.log(`            ${h.file}:${h.line}  [${h.spelling}]  ${h.text}`);
 
   const budget = TIER2_BUDGET;
-  const t2status = budget === null ? 'RECORDED' : tier2.length <= budget ? 'PASS' : 'FAIL';
-  console.log(`  TIER 2  internal identifiers (ratcheted)      ${t2status}   ${tier2.length} reference(s)${budget !== null ? ` / budget ${budget}` : ''}`);
+  const t2status = tier2.length <= budget ? 'PASS' : 'FAIL';
+  console.log(`  TIER 2  internal identifiers (ratcheted)      ${t2status}   ${tier2.length} reference(s) / budget ${budget}`);
+
+  const cstatus = retained.length <= COMPATIBILITY_BUDGET ? 'PASS' : 'FAIL';
+  console.log(`  RETAINED  register-documented identifiers     ${cstatus}   ${retained.length} reference(s) / budget ${COMPATIBILITY_BUDGET}`);
+  const byReason = new Map<string, number>();
+  for (const h of retained) byReason.set(h.compatibility as string, (byReason.get(h.compatibility as string) ?? 0) + 1);
+  for (const [why, n] of [...byReason.entries()].sort((a, b) => b[1] - a[1])) {
+    console.log(`            ${String(n).padStart(5)}  ${why}`);
+  }
 
   const byTree = new Map<string, number>();
   for (const h of tier2) {
@@ -197,11 +302,15 @@ function main(): void {
     tier1CustomerVisible: tier1.length,
     tier2InternalIdentifiers: tier2.length,
     tier2Budget: budget,
+    retainedCompatibilityIdentifiers: retained.length,
+    compatibilityBudget: COMPATIBILITY_BUDGET,
+    matching: 'case-insensitive',
     providerCalls: 0, databaseOperations: 0, filesWritten: 0,
   }));
 
   if (tier1.length > 0) { console.log('\nBRAND AUDIT FAIL — a retired brand reaches the customer\n'); process.exit(1); }
   if (t2status === 'FAIL') { console.log('\nBRAND AUDIT FAIL — Tier 2 budget exceeded\n'); process.exit(1); }
+  if (cstatus === 'FAIL') { console.log('\nBRAND AUDIT FAIL — the retained-identifier set grew\n'); process.exit(1); }
   console.log('\nBRAND AUDIT PASS\n');
 }
 
