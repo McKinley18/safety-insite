@@ -50,7 +50,11 @@ const WRITE_CALL = /\b(?:writeFileSync|writeFile|appendFileSync|appendFile|mkdir
 const WRITE_WITH_LITERAL = /\b(?:writeFileSync|appendFileSync|copyFileSync|renameSync|rmSync|unlinkSync|mkdirSync)\s*\(\s*(?:join|resolve)?\s*\(?\s*([^)]*)/g;
 const PROVIDER_REACH = /ANTHROPIC_API_KEY|api\.anthropic\.com|HostedExpertSemanticTransport|OPENAI_API_KEY|OLLAMA_HOST/;
 const LIVE_ENVIRONMENT = /STORAGE_S3_BUCKET|puppeteer|API_BASE_URL|RENDER_|STRIPE_SECRET|playwright/;
-const DATABASE_MUTATION = /\b(?:INSERT\s+INTO|UPDATE\s+"|DELETE\s+FROM|CREATE\s+TABLE|ALTER\s+TABLE|DROP\s+TABLE|migration:run|synchronize:\s*true)\b/i;
+// §268 added `runMigrations` and `undoLastMigration`. The pattern previously recognised only the
+// CLI form (`migration:run`), so `scripts/release/migrate.js` — which applies migrations through
+// the TypeORM API and is the one script that mutates PRODUCTION schema — was classified READ_ONLY.
+// A registry that mislabels the most consequential mutator is worse than one that omits it.
+const DATABASE_MUTATION = /\b(?:INSERT\s+INTO|UPDATE\s+"|DELETE\s+FROM|CREATE\s+TABLE|ALTER\s+TABLE|DROP\s+TABLE|CREATE\s+DATABASE|DROP\s+DATABASE|migration:run|runMigrations|undoLastMigration|synchronize:\s*true)\b/i;
 /**
  * A path literal that lands inside the evidence tree.
  *
@@ -91,7 +95,12 @@ function walk(dir: string): string[] {
   return readdirSync(dir).flatMap(name => {
     const full = join(dir, name);
     if (statSync(full).isDirectory()) return walk(full);
-    return full.endsWith('.ts') ? [full] : [];
+    // §268 extended this from `.ts` only. The release scripts added at §268 are plain JavaScript
+    // precisely so they can run in the production image without ts-node — including
+    // `scripts/release/migrate.js`, which runs migrations against a real database. A registry that
+    // structurally could not see the one script that mutates production schema was not reflecting
+    // current known behaviour, which is the property this file exists to have.
+    return full.endsWith('.ts') || full.endsWith('.js') ? [full] : [];
   });
 }
 

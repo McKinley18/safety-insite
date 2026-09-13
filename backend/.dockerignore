@@ -1,0 +1,102 @@
+# §268 — BUILD CONTEXT HYGIENE.
+#
+# §266 found this file absent while the Dockerfile does `COPY . .`, which means the ENTIRE backend
+# working directory — including untracked local files — was uploaded into the build context and
+# copied into the build stage. `backend/.env` lives there during normal development and carries
+# DATABASE_URL, JWT_SECRET and ANTHROPIC_API_KEY. A build run from a developer machine therefore
+# baked real credentials into an image layer.
+#
+# It matters even though the RUNTIME stage copies only `dist`, `scripts` and four `src/safescope-v2`
+# data directories: the BUILD stage layer still contains whatever was copied, layers are part of the
+# image's history, and anyone who can pull the image can read them.
+#
+# THE ORDERING BELOW IS DELIBERATE: broad excludes first, then re-includes for the few excluded
+# paths the build genuinely needs. `scripts/release/*.js` is re-included because the runtime image
+# runs the release migration from it.
+
+# ---- secrets and local configuration. The reason this file exists.
+# No re-include for .env.example: the build does not need it, and an absolute rule is one fewer
+# thing to get wrong than a rule with a hole in it.
+#
+# NOTE THE `**/` PREFIXES. Docker anchors every pattern at the CONTEXT ROOT, so a bare `*.pem`
+# excludes `private.pem` and does NOT exclude `tls/private.pem`. The §268 build-context guard
+# caught exactly that hole in the first draft of this file, which is why each secret pattern is
+# written twice — once anchored, once with `**/` — rather than trusting the bare form.
+.env
+.env.*
+**/.env
+**/.env.*
+*.pem
+**/*.pem
+*.key
+**/*.key
+*.p12
+**/*.p12
+*.pfx
+**/*.pfx
+*.keystore
+**/*.keystore
+id_rsa*
+**/id_rsa*
+id_ed25519*
+**/id_ed25519*
+*credentials*.json
+**/*credentials*.json
+*service-account*.json
+**/*service-account*.json
+.npmrc
+**/.npmrc
+.netrc
+**/.netrc
+secrets
+**/secrets
+
+# ---- dependencies and build output. Reinstalled/rebuilt inside the image.
+node_modules
+dist
+build
+coverage
+*.tsbuildinfo
+
+# ---- verification evidence. Large, and the runtime needs none of it.
+
+verification
+evidence
+*.sha256
+
+# ---- local artifacts, caches and temporary files.
+tmp
+temp
+tmp-*
+*.log
+*.tmp
+.cache
+.turbo
+.parcel-cache
+.eslintcache
+uploads
+storage-local
+
+# ---- version control, CI and editor/system noise.
+.git
+.gitignore
+.github
+.vscode
+.idea
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---- test and documentation surfaces the runtime image does not execute.
+test
+__tests__
+*.spec.ts
+*.test.ts
+docs
+
+# ---- RE-INCLUDES. Everything below is needed by the build or the runtime.
+# `scripts/` as a whole is NOT excluded above; these entries exist so that a future broad
+# `scripts` exclusion cannot silently remove the release migration path from the image.
+!scripts/release/migrate.js
+!scripts/release/verify-running-sha.js
+!scripts/render-start-diagnostic.js

@@ -33,6 +33,7 @@ import {
   EXPERT_PRODUCER, adjudicateExpertRequestVersion, expertRequestVersionRefusal,
   highestReservedRequestVersion, isExpertAnalysis, maySupersede,
 } from './expert-analysis-currentness';
+import { emitOperationalEvent } from '../../observability/operational-events';
 
 /**
  * §261 — THE SERVER-SIDE EXPERT INTEGRATION FOUNDATION.
@@ -250,6 +251,83 @@ export class ExpertAnalysisService {
         expertExecutionId: execution.id,
       },
     });
+  }
+
+  /**
+   * §268 — WHAT HAS THIS WORKSPACE ALREADY SPENT IN THE WINDOW?
+   *
+   * Read from `expert_analysis_executions`, which is the ONLY complete record of Expert spend: an
+   * execution row is written before the provider is reached and survives every outcome, including
+   * the failures and refusals that cost money and produce no analysis. Counting analyses instead
+   * would let a workspace spend without limit as long as its executions kept failing.
+   *
+   * SCOPED BY ORGANIZATION, FALLING BACK TO THE USER. `organizationId` is null for individual
+   * accounts, and a null-scoped query would pool every individual account in the deployment into
+   * one shared ceiling — which is both wrong and a cross-tenant coupling. Those accounts are
+   * scoped by the requesting user, who IS the workspace in that case.
+   *
+   * `costUsd` is summed over the rows that HAVE one. A null cost means the leg reported no usage,
+   * not that it was free, so nulls are excluded from the sum rather than counted as zero — and the
+   * analysis-count ceiling is what bounds spend when the provider reports nothing at all.
+   */
+  async readWorkspaceExpertUsage(
+    scope: { readonly organizationId: string | null; readonly userId: string },
+    windowHours: number,
+  ): Promise<{ readonly analysesInWindow: number; readonly costUsdInWindow: number }> {
+    const since = new Date(Date.now() - windowHours * 60 * 60 * 1000);
+    const query = this.executions.createQueryBuilder('execution')
+      .select('COUNT(*)', 'analyses')
+      .addSelect('COALESCE(SUM(execution."costUsd"), 0)', 'cost')
+      .where('execution."createdAt" >= :since', { since });
+    if (scope.organizationId) {
+      query.andWhere('execution."organizationId" = :organizationId',
+        { organizationId: scope.organizationId });
+    } else {
+      query.andWhere('execution."organizationId" IS NULL')
+        .andWhere('execution."requestedByUserId" = :userId', { userId: scope.userId });
+    }
+    const row = await query.getRawOne<{ analyses: string; cost: string }>();
+    return {
+      analysesInWindow: Number(row?.analyses ?? 0),
+      costUsdInWindow: Number(row?.cost ?? 0),
+    };
+  }
+
+  /**
+   * §268 — RECORD WHAT THE PROVIDER ACTUALLY COST, on the execution that spent it.
+   *
+   * Separate from `persistAuthoritativeAnalysis` on purpose. Usage must be recorded for EVERY
+   * outcome — admitted, refused, unresolved and failed — because all four spend, and only the
+   * first writes an analysis. Folding it into the persistence path would have accounted for
+   * exactly the outcomes that are cheapest to account for and missed the ones a beta most needs
+   * to see.
+   *
+   * It never throws into the caller: a cost figure that could not be written must not turn a
+   * completed safety analysis into a failure.
+   */
+  async recordExecutionUsage(
+    executionId: string,
+    usage: {
+      readonly firstPassInputTokens: number | null;
+      readonly firstPassOutputTokens: number | null;
+      readonly verifierInputTokens: number | null;
+      readonly verifierOutputTokens: number | null;
+      readonly costUsd: number | null;
+      readonly legs: number;
+    },
+  ): Promise<void> {
+    try {
+      await this.executions.update({ id: executionId }, {
+        firstPassInputTokens: usage.firstPassInputTokens,
+        firstPassOutputTokens: usage.firstPassOutputTokens,
+        verifierInputTokens: usage.verifierInputTokens,
+        verifierOutputTokens: usage.verifierOutputTokens,
+        costUsd: usage.costUsd === null ? null : usage.costUsd.toFixed(6),
+        attempts: usage.legs,
+      });
+    } catch {
+      // Deliberately swallowed. See the header.
+    }
   }
 
   /**
@@ -501,6 +579,20 @@ export class ExpertAnalysisService {
         execution,
         review,
         settled,
+      });
+
+      // §268. The human authority boundary being CROSSED is an operational signal, not only an
+      // audit fact: an analysis sitting in ANALYSIS_AWAITING_CONFIRMATION is work the product is
+      // holding, and the age of that queue is one of the two Expert numbers a beta needs to watch.
+      // The decision is reported; the rationale is not, because it is customer prose.
+      emitOperationalEvent('expert.confirmation.settled', {
+        observationId,
+        inspectionId: observation.inspectionId,
+        analysisId: after.id,
+        executionId: execution?.id ?? null,
+        decision: request.decision,
+        analysisState: after.analysisState,
+        entriesSettled: settled.length,
       });
 
       return {

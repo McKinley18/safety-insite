@@ -1,0 +1,109 @@
+
+SAFETY INSITE — BETA READINESS (local mechanisms only; contacts nothing live)
+
+
+BUILD
+
+  ok    the compiled datasource exists  [dist/database/data-source.js]
+  ok    the compiled schema-readiness evaluator exists
+  ok    compiled migrations are present in the build output
+  ok    the build carries every migration in the source tree — a stale build is a deployment hazard  [dist 53 / src 53]
+
+MIGRATION COMMAND
+
+  ok    a production migration command is registered  [node scripts/release/migrate.js]
+  ok    it does NOT depend on ts-node
+  ok    it does NOT depend on the src/ tree
+  ok    the migration script exists
+  ok    it loads the COMPILED datasource
+  ok    it exits non-zero on failure rather than falling through to startup
+  ok    it verifies the schema in the same step
+  ok    typeorm is a PRODUCTION dependency, so it survives npm install --omit=dev
+  ok    MIGRATE && START is available for platforms with no pre-deploy hook
+
+MIGRATIONS RECOGNISED
+
+  ok    the source tree carries migrations  [53]
+  ok    backlog migration 1800000019000 is present
+  ok    backlog migration 1800000020000 is present
+  ok    backlog migration 1800000021000 is present
+  ok    migrationsRun stays false — migration is explicit, not implicit at boot
+
+SCHEMA READINESS
+
+  ok    readiness FAILS when a required migration is absent
+  ok    readiness PASSES when every required migration is applied
+  ok    readiness names the expected schema version  [1800000021000]
+  ok    a never-migrated database is NOT ready
+  ok    /health/ready consults the schema, not only the connection
+
+RELEASE SHA
+
+  ok    a running-SHA verifier exists
+  ok    it refuses an unstamped build rather than matching a stale literal
+  ok    the Dockerfile accepts a GIT_COMMIT build argument
+
+EXPERT KILL SWITCH
+
+  ok    an explicit false disables Expert execution
+  ok    a disabled feature refuses execution
+  ok    the refusal is server-side, evaluated before the pre-spend claim
+  ok    production requires the kill switch to be set explicitly
+
+SPEND CONTROLS
+
+  ok    limits are configurable
+  ok    a request below the ceiling is permitted
+  ok    a request at the ceiling is refused
+  ok    a cost ceiling refuses independently of the count
+  ok    one analysis is expected to cost TWO provider legs, not one
+  ok    there is no automatic retry
+  ok    a per-leg timeout is bounded  [180000ms]
+  ok    usage accounting covers both provider legs
+  ok    unmeasured usage yields a NULL cost, never a free-looking zero
+
+OBSERVABILITY
+
+  ok    the operational event vocabulary is closed and covers the §268 minimum set  [17 events]
+  ok    emitted events carry no raw provider output
+  ok    emitted events carry no observation text
+  ok    emitted events carry no credential
+
+BUILD CONTEXT / SECRET GUARD
+
+  ok    the Docker build-context secret guard passes
+
+MUTATION REGISTRY
+
+  ok    the mutating-script registry exists
+  ok    it knows about the §265 evidence writer
+  ok    it knows about the §264 suite
+  ok    it knows about the §268 suites
+  ok    it knows about the production migration script
+  ok    test-265-expert-product-acceptance gates its evidence writes
+  ok    test-267-product-integration-defects gates its evidence writes
+  ok    test-268-deployment-safety gates its evidence writes
+
+RUNBOOK AND ROLLBACK
+
+  ok    docs/operations/BETA_DEPLOYMENT_RUNBOOK.md exists
+  ok    docs/operations/ROLLBACK_MODEL.md exists
+  ok    the runbook contains every ordered step  [all present]
+  ok    MIGRATE precedes DEPLOY in the runbook, which is the whole safety property
+  ok    VERIFY SCHEMA precedes DEPLOY
+  ok    the rollback model forbids destroying settlements to restore older code
+
+NOT ESTABLISHED HERE — these remain open and are not what this command measures
+
+  open  object storage provisioned and a report round-trip verified (REPORT_GENERATION_BLOCKED)
+  open  database backups enabled and one restore rehearsed (BACKUPS_AND_RETENTION)
+  open  the running production SHA (requires a deployed instance)
+  open  provider credential validity (never read here; only its variable name and boot behaviour)
+  open  error-monitoring INGESTION — events are emitted, nothing collects them yet
+  open  Terms, Privacy Notice and third-party model disclosure — the entire LEGAL lane
+
+BETA READINESS (local engineering): PASS  —  58 checks passed
+
+Passing means the local engineering mechanisms exist. It does NOT mean production is ready.
+
+EXIT=0

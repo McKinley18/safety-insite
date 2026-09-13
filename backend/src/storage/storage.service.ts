@@ -8,6 +8,7 @@ import { isUniqueViolation } from '../common/unique-violation';
 import { InspectionService } from '../inspection/inspection.service';
 import { StorageCategory, StorageObject } from './storage-object.entity';
 import { LocalTestStorageProvider, PrivateStorageProvider, S3PrivateStorageProvider } from './storage-provider';
+import { emitOperationalEvent } from '../observability/operational-events';
 
 const TYPES: Record<StorageCategory, Set<string>> = {
   report: new Set(['application/pdf']),
@@ -133,6 +134,14 @@ export class StorageService {
     } catch (error) {
       await this.objects.update(record.id, { status: 'failed' });
       record.status = 'failed';
+      // §268. Storage failure is the one platform dependency §266 measured as already blocking the
+      // product (report generation returns 500 with no bucket configured), so it gets a signal of
+      // its own. The object id and kind only: a download name or key can carry customer content.
+      emitOperationalEvent('storage.operation_failed', {
+        storageObjectId: record.id,
+        parentType: record.parentType,
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+      });
       await provider.delete(objectKey).catch(() => undefined);
       throw error;
     }

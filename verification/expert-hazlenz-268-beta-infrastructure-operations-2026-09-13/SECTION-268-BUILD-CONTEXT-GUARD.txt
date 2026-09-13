@@ -1,0 +1,49 @@
+§268 — Docker build-context secret guard
+
+ok    backend/.dockerignore exists
+ok    the .dockerignore declares at least one rule  [63 rules]
+
+---- synthetic paths that must never enter the build context ----
+
+ok    excluded: .env
+ok    excluded: .env.local
+ok    excluded: .env.production
+ok    excluded: .env.backup-before-clean-db-20260623-221649
+ok    excluded: .npmrc
+ok    excluded: .netrc
+ok    excluded: server.key
+ok    excluded: tls/private.pem
+ok    excluded: id_rsa
+ok    excluded: secrets/id_ed25519
+ok    excluded: config/gcp-service-account.json
+ok    excluded: config/aws-credentials.json
+ok    excluded: node_modules/typeorm/package.json
+ok    excluded: .git/config
+
+---- files actually present in this build context ----
+
+ok    present-and-excluded: .env
+ok    present-and-excluded: .env.backup-before-clean-db-20260623-221649
+ok    present-and-excluded: .env.example
+ok    2596 context entries scanned
+
+---- files the build and the runtime image require ----
+
+ok    included: package.json
+ok    included: package-lock.json
+ok    included: tsconfig.json
+ok    included: src/main.ts
+ok    included: src/app.module.ts
+ok    included: src/database/data-source.ts
+ok    included: src/database/schema-readiness.ts
+ok    included: src/database/migrations/1800000019000-ExpertAnalysisAuthorityFoundation.ts
+ok    included: src/database/migrations/1800000020000-ExpertHumanConfirmation.ts
+ok    included: src/database/migrations/1800000021000-ProducerScopedAnalysisCurrentness.ts
+ok    included: scripts/render-start-diagnostic.js
+ok    included: scripts/release/migrate.js
+ok    included: scripts/release/verify-running-sha.js
+ok    included: src/safescope-v2/hazard-taxonomy-coverage
+ok    included: src/safescope-v2/site-policy-isolation
+ok    included: src/safescope-v2/scenario-expansion
+
+BUILD CONTEXT GUARD: PASS

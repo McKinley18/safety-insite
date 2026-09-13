@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CAPABILITY_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure §267, infrastructure/operations §268",
   "role": "ONE row per capability. The single answer to 'what can this thing do, and what is that claim worth'. Supersedes reading §§229-262 to reconstruct it.",
   "statuses": {
     "ACCEPTED": "proven and usable as it stands",
@@ -105,7 +105,8 @@
       "evidence": "test:knowledge-release-provenance exits 1; no STORAGE_* variable is set",
       "productConsequence": "reports cannot be generated in this environment",
       "boundary": "environmental, not a code defect; §§261-263 changed 0 files under src/storage and src/reports",
-      "nextAction": "configure storage deliberately, in a section authorized to do so"
+      "nextAction": "configure storage deliberately, in a section authorized to do so",
+      "§268": "Unchanged as a capability — still BLOCKED on provisioning. What §268 added is a signal: a storage failure now emits storage.operation_failed and a failed report emits report.generation_failed, so the blockage is observable rather than only a 500."
     },
     {
       "capability": "Live provider transport from a deployed instance",
@@ -190,6 +191,46 @@
       "productConsequence": "A stale or invented execution version is refused before the transport is reachable, so a conflicting request costs nothing. This extends the §261 pre-spend claim from \"duplicate identity\" to \"conflicting version\".",
       "boundary": "It bounds waste on KNOWABLE conflicts only. It is not a spend ceiling: NO_SPEND_CEILING_OR_KILL_SWITCH remains an open P0 and total Expert cost is still unbounded.",
       "nextAction": "the per-workspace spend ceiling and the explicit Expert enable flag"
+    },
+    {
+      "capability": "Production migration-before-code deployment path",
+      "status": "ACCEPTED",
+      "evidence": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/ — cases A-1..4, B, C-1..4, D-1..4, E-1..3",
+      "productConsequence": "A release can apply schema before code activates, using only artifacts present in the deployed image, and a failed migration cannot fall through to startup.",
+      "boundary": "The MECHANISM is proven locally. It has never been run against production, and Render autoDeploy is still ON — with it on, pushing IS deploying. Both are live acts §268 was forbidden to perform.",
+      "nextAction": "disable autoDeploy or set a pre-deploy hook, then execute the runbook"
+    },
+    {
+      "capability": "Schema-aware readiness (safe to serve, not merely running)",
+      "status": "ACCEPTED",
+      "evidence": "same package — cases D-1..4, E-1..3",
+      "productConsequence": "/health/ready refuses traffic when the database lacks migrations this build requires, which is the backstop if the release ordering is ever skipped.",
+      "boundary": "It compares migration timestamps. It does not verify column-level shape, so a hand-altered schema that carries the right migration rows would still read as ready.",
+      "nextAction": null
+    },
+    {
+      "capability": "Expert kill switch and per-workspace spend ceilings",
+      "status": "ACCEPTED",
+      "evidence": "same package — cases G-1..8, H-1..4, I-1..2, J-1..7",
+      "productConsequence": "Expert execution can be disabled server-side in seconds with no redeploy, and a workspace can be bounded by analysis count and by cost. Every refusal is measured before the provider seam with a provider-entry delta of zero.",
+      "boundary": "The ceilings bound a WORKSPACE over a rolling window. There is no global deployment-wide budget, and the cost ceiling is retrospective by nature — it cannot know the cost of the request it is authorizing, which is why the count ceiling exists beside it.",
+      "nextAction": null
+    },
+    {
+      "capability": "Provider-leg and token/cost accounting",
+      "status": "UNVERIFIED_LIVE",
+      "evidence": "same package — cases K-0..6; unit-tier folding proven on literals",
+      "productConsequence": "Both legs of an Expert analysis are counted and costed, for every outcome including refusals and transport failures.",
+      "boundary": "THE PLUMBING IS PROVEN; THE NUMBERS ARE NOT. A substituted transport reports no tokens, so locally costUsd is correctly NULL. That the hosted provider populates it is confirmable only by the one authorized live smoke.",
+      "nextAction": "the live smoke — expect a non-null costUsd and transportSubstituted: false"
+    },
+    {
+      "capability": "Structured operational event emission",
+      "status": "ACCEPTED_WITH_HUMAN_CONFIRMATION",
+      "evidence": "same package — cases L, M; unit-tier redaction proven on literals",
+      "productConsequence": "17 events on one closed schema covering execution lifecycle, provider failures, operational refusals, the human authority boundary, storage/report failure and schema/migration failure, with redaction by construction.",
+      "boundary": "EMISSION ONLY. Nothing collects, retains, alerts on or routes these events, and §268 forbids calling that monitoring. The status is not ACCEPTED for that reason.",
+      "nextAction": "provision a log drain or error reporter; closure proof is an induced failure appearing in it within one minute"
     }
   ],
   "betaReadinessDomains": {
@@ -214,16 +255,16 @@
       "10_billingSubscriptions": "READY_WITH_ACCEPTED_LIMITATION",
       "11_planAndSeatEnforcement": "READY",
       "12_objectStorage": "BLOCKER",
-      "13_productionDatabaseMigrations": "BLOCKER",
+      "13_productionDatabaseMigrations": "READY_WITH_ACCEPTED_LIMITATION",
       "14_productionDeployment": "BLOCKER",
       "15_runningProductionSha": "UNVERIFIED_LIVE",
       "16_productionInstanceSizing": "UNVERIFIED_LIVE",
       "17_providerTransport": "UNVERIFIED_LIVE",
       "18_providerCredentialsConfig": "UNVERIFIED_LIVE",
-      "19_providerCostSpendGuards": "BLOCKER",
+      "19_providerCostSpendGuards": "READY",
       "20_loggingErrorMonitoring": "BLOCKER",
       "21_auditability": "READY",
-      "22_rollback": "READY_WITH_ACCEPTED_LIMITATION",
+      "22_rollback": "READY",
       "23_releaseUpdateMechanism": "BLOCKER",
       "24_backupsRetention": "UNVERIFIED_LIVE",
       "25_privacyControls": "BLOCKER",
@@ -240,6 +281,7 @@
     },
     "blockerDomains": 10,
     "note": "A BLOCKER domain does not mean the domain is architecturally wrong. Every one of the ten maps to a finite item in BETA-BLOCKERS.json, and none requires redesign.",
-    "§267": "Domain 4 moves BLOCKER -> READY: the two P0 defects that made the shipped Expert workflow non-functional are closed and proven against the real client request path. Domain 5 (downstream authority containment) keeps READY_WITH_ACCEPTED_LIMITATION, but the limitation is now smaller — the inspection-payload bypass that made containment a property of what happens to be written rather than of a guard is closed. Every other domain is unchanged; §267 touched no infrastructure, operations or legal surface."
+    "§267": "Domain 4 moves BLOCKER -> READY: the two P0 defects that made the shipped Expert workflow non-functional are closed and proven against the real client request path. Domain 5 (downstream authority containment) keeps READY_WITH_ACCEPTED_LIMITATION, but the limitation is now smaller — the inspection-payload bypass that made containment a property of what happens to be written rather than of a guard is closed. Every other domain is unchanged; §267 touched no infrastructure, operations or legal surface.",
+    "§268": "Domain 19 (provider cost/spend guards) BLOCKER -> READY: the kill switch and both ceilings exist and refuse before the provider seam. Domain 13 (production database migrations) BLOCKER -> READY_WITH_ACCEPTED_LIMITATION: the mechanism exists and is proven, but it has never run against production and autoDeploy is still ON. Domain 22 (rollback) READY: the model is documented and the forward-only DOWN policy is explicit. Domains 12 (object storage) and 20 (logging/error monitoring) REMAIN BLOCKER — §268 added emission, not ingestion, and provisioned no storage."
   }
 }

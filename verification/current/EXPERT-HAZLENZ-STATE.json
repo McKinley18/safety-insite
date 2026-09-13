@@ -18,10 +18,10 @@
     "frozenRecord": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/SECTION-259-SUCCESSOR-IDENTITY.json"
   },
   "integration": {
-    "stage": "EXPERT PRODUCT INTEGRATION DEFECTS CLOSED (local)",
-    "commit": "§267 (see evidencePointers.productIntegrationDefectClosure267)",
-    "packageDigest": "b2a7e1e0eb6e9ecb5cd989e83e860d6f76992e80bf2de7e80c446cb4057e83f4",
-    "terminal": "EXPERT_HAZLENZ_PRODUCT_INTEGRATION_DEFECTS_CLOSED — BETA_INFRASTRUCTURE_AND_OPERATIONS_CLOSURE_AUTHORIZATION_REQUIRED",
+    "stage": "BETA INFRASTRUCTURE AND OPERATIONS ENGINEERING CLOSED (local)",
+    "commit": "§268 (see evidencePointers.betaInfrastructureOperations268)",
+    "packageDigest": "5016f10cde2e196e4580c992b9c42164dc83a43cf6951f1768f60bb434fc7953",
+    "terminal": "SAFETY_INSITE_BETA_INFRASTRUCTURE_OPERATIONS_ENGINEERING_CLOSED — LIVE_INFRASTRUCTURE_AND_LEGAL_CLOSURE_AUTHORIZATION_REQUIRED",
     "route": {
       "method": "POST",
       "path": "/inspections/observations/:id/expert-analyses",
@@ -167,7 +167,35 @@
       "finalization": "GATED on effectiveDecision. Unchanged.",
       "dismissal": "NOT GATED, by §267 product-owner decision. Dismissal rejects the proposed finding and consumes no operational conclusion, so it does not require settling the Expert classification. It leaves the analysis in ANALYSIS_AWAITING_CONFIRMATION, writes no settlement, creates no corrective action and creates no effective decision."
     },
-    "packageDigestNote": "sha256 of REPORT-267.sha256, which is the manifest over every other member of verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
+    "packageDigestNote": "sha256 of REPORT-268.sha256, the manifest over every other member of verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/",
+    "deploymentSafety": {
+      "establishedBy": "§268",
+      "rule": "It must be impossible for new application code to become active against the old schema.",
+      "migrationCommand": "npm run migrate:prod -> scripts/release/migrate.js. Loads the COMPILED dist/database/data-source.js and uses the production typeorm dependency: no ts-node, no src/, no devDependency, no interactive step. Applies, then verifies the schema in the SAME command using the evaluator /health/ready serves. Exits non-zero on any failure.",
+      "order": "MIGRATE -> VERIFY SCHEMA -> ACTIVATE. migrationsRun stays false; migration is explicit so failure is visible and separately auditable.",
+      "threeIndependentMechanisms": "(1) the release step runs before activation; (2) the runbook orders it with autoDeploy disabled first; (3) /health/ready FAILS CLOSED on missing migrations, so an instance that skipped 1 and 2 never becomes ready rather than silently serving broken reads.",
+      "readiness": "/health/ready compares migrations shipped in the artifact against the migrations table, by timestamp. Fails closed on a missing migration, an unreadable migrations table, and an artifact carrying no migrations at all. A schema AHEAD of the build is READY — that is a deliberate code rollback, not a fault.",
+      "runningSha": "npm run release:verify-sha compares the deployed commit to the intended one and REFUSES an answer sourced from the unstamped BUILD_FALLBACK literal.",
+      "runbook": "docs/operations/BETA_DEPLOYMENT_RUNBOOK.md — never executed",
+      "rollback": "docs/operations/ROLLBACK_MODEL.md — application rollback onto a forward-migrated schema; migration DOWN is forward-only in production and two of the three enforce that themselves",
+      "autoDeploy": "STILL ON. §268 changed no live configuration. Disabling it, or setting a pre-deploy migrate hook, is a precondition of any push."
+    },
+    "operationalControls": {
+      "establishedBy": "§268",
+      "killSwitch": "EXPERT_EXECUTION_ENABLED. Production must set exactly \"true\" or \"false\" or boot fails. Disables Expert EXECUTION only: the deterministic workflow, reads of existing Expert analyses, and settlement of analyses already awaiting confirmation all keep working — settlement deliberately, because disabling it would strand analyses in ANALYSIS_AWAITING_CONFIRMATION and block inspection completion.",
+      "spendCeilings": "Per-workspace analysis count AND per-workspace cost, both configurable, both counting STARTED executions because failures and refusals spend too. Scoped by organization, falling back to the requesting user for individual accounts.",
+      "enforcementPoint": "After authorization, BEFORE claimExecution — so a refusal writes no execution row and the transport is never reachable. Measured provider-entry delta 0 on every refusal.",
+      "legAccounting": "Per LEG. One analysis is NOT one provider call: a verifier-reaching analysis records 2 legs, one whose verifier is not reached records 1.",
+      "costAccounting": "Provider usage reaches the product through ExpertLegUsageReporter, a side channel on the seam, because ExpertLegResponse lives in a §259 identity element and the Anthropic adapter is a protected module. Recorded for every outcome in a finally. NULL when unmeasured — never a false zero.",
+      "retry": "One attempt per leg. No automatic retry anywhere on the product path."
+    },
+    "observability": {
+      "establishedBy": "§268",
+      "schema": "safety-insite.operational-event.v1",
+      "events": 17,
+      "redaction": "BY CONSTRUCTION: values coerced to bounded scalars, keys whose NAME looks credential- or content-bearing dropped, nested objects reduced to a shape description.",
+      "honestLimit": "THIS IS EMISSION, NOT MONITORING. Nothing collects, retains, alerts on or routes these events. NO_ERROR_MONITORING remains a P0 and its closure proof is unchanged."
+    }
   },
   "confirmationTrigger": {
     "deterministic": true,
@@ -269,7 +297,11 @@
     "fastAfterASmallChange": "npm run hazlenz:check",
     "beforeAnAuthorizedCommit": "npm run hazlenz:precommit",
     "reclassifyScripts": "npm run hazlenz:scripts:classify",
-    "realFrontendExpertRequest": "cd frontend-next && npm run check:expert-request-construction"
+    "realFrontendExpertRequest": "cd frontend-next && npm run check:expert-request-construction",
+    "betaReadiness": "npm run beta:readiness",
+    "productionMigration": "npm run migrate:prod  (and migrate:prod:dry-run)",
+    "verifyRunningSha": "npm run release:verify-sha -- --url=<host> --expected=<sha>",
+    "buildContextGuard": "npm run release:check-build-context"
   },
   "evidencePointers": {
     "candidateIdentity259": "verification/expert-hazlenz-259-carrier-coherence-2026-09-12/",
@@ -282,25 +314,27 @@
     "humanConfirmation264": "verification/expert-hazlenz-264-human-confirmation-boundary-2026-09-12/",
     "frontendProductWorkflow265": "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12/",
     "betaReadinessClosure266": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
-    "productIntegrationDefectClosure267": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
+    "productIntegrationDefectClosure267": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/",
+    "betaInfrastructureOperations268": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/"
   },
-  "nextAuthorizedWork": "BETA INFRASTRUCTURE AND OPERATIONS. The Expert product integration defects are closed as of §267, so the remaining P0s are no longer blocked behind a broken workflow. In dependency order: production migration mechanism (now THREE unapplied migrations, 1800000019000/020000/021000) before any push, because Render autoDeploy is on; object storage provisioning, which production cannot boot without; a spend ceiling and an explicit Expert kill switch; error monitoring. The LEGAL lane — Terms, Privacy Notice and third-party model disclosure — has no engineering prerequisite and should already be running in parallel. See verification/current/BETA-BLOCKERS.json.",
+  "nextAuthorizedWork": "LIVE INFRASTRUCTURE AND LEGAL. The local engineering for a beta deployment now exists. In order: disable Render autoDeploy (or set a pre-deploy migrate hook) — this gates everything else because with it on, pushing IS deploying; provision object storage, which production cannot boot without; confirm backups and rehearse one restore; provision an error-monitoring destination for the events the product now emits; then execute docs/operations/BETA_DEPLOYMENT_RUNBOOK.md, ending with the one authorized Expert live smoke (1 analysis, <=2 provider legs, <= USD 0.50). The LEGAL lane — Terms, Privacy Notice, third-party model disclosure — has no engineering prerequisite and is not made implicit by any of this.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"
   },
   "betaReadiness": {
-    "reviewedBy": "§266, defect-closure updated at §267",
+    "reviewedBy": "§266, defect-closure §267, infrastructure/operations §268",
     "verdict": "NOT_YET_READY",
     "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
     "architectureSound": true,
-    "p0Count": 7,
+    "p0Count": 6,
     "register": "verification/current/BETA-BLOCKERS.json — the ONE authoritative register",
     "evidence": "verification/expert-hazlenz-266-controlled-beta-readiness-closure-2026-09-13/",
     "productionCodeChanged": 0,
     "providerCalls": 0,
     "productionDatabaseOperations": 0,
     "packageDigest266": "fadd0eeebe13e007f64cef767c71262ee046226259de4b5e8a4615bba6eb508e",
-    "§267": "Two of §266's nine P0s are closed — EXPERT_CLIENT_VERSION_COLLISION and EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS — along with two P1s: the inspection-payload Expert read boundary and the dismissal over-restriction. The seven that remain are infrastructure, operations and legal; none is an Expert architecture defect and none requires redesign."
+    "§267": "Two of §266's nine P0s are closed — EXPERT_CLIENT_VERSION_COLLISION and EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS — along with two P1s: the inspection-payload Expert read boundary and the dismissal over-restriction. The seven that remain are infrastructure, operations and legal; none is an Expert architecture defect and none requires redesign.",
+    "§268": "NO_SPEND_CEILING_OR_KILL_SWITCH is CLOSED. Six P0s remain and none is an engineering gap in the Expert architecture: production migration EXECUTION and autoDeploy control, object storage, error-monitoring ingestion, two legal items, and the push itself. ENGINEERING CLOSED IS NOT PRODUCTION READY."
   }
 }

@@ -1,0 +1,1514 @@
+
+> safety-insite-backend@1.0.0 hazlenz:precommit
+> npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence
+
+
+> safety-insite-backend@1.0.0 hazlenz:verify
+> ts-node scripts/hazlenz/verify.ts
+
+Expert HazLenz — current state verification (read-only, 0 provider calls)
+
+  Candidate identity                  PASS                      22 elements, drift 0
+  Identity constant in the build      PASS                      the compiled-in identity equals the recomputation
+  Protected modules                   PASS                      29/29 present, 1 digest(s) newer than the §229 snapshot (anthropicAdapterModule)
+  Accepted evidence drift             PASS                      0 new (5562 members over 93 manifests; 0 pre-existing, 8 baselined, 66 external pointers)
+  Current-state manifest              PASS                      agrees with the recomputed identity
+  Provider transport (live)           UNVERIFIED_LIVE           no provider is called by any §263 command
+  Object storage / report generation  ENVIRONMENTALLY_BLOCKED   STORAGE_S3_BUCKET and STORAGE_LOCAL_ROOT are unset; test:knowledge-release-provenance cannot reach report generation
+  Billing and deployment              UNVERIFIED_LIVE           no live environment is contacted
+
+VERIFICATION PASS  —  2 unverified live, 1 environmentally blocked
+
+> safety-insite-backend@1.0.0 hazlenz:test
+> npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness && npm run test:268-operational-controls && npm run release:check-build-context
+
+
+> safety-insite-backend@1.0.0 test:261-confirmation-rule
+> ts-node scripts/test-261-confirmation-rule.ts
+
+
+---- R1. the frozen total posture-permissiveness map is used, not restated ----
+
+ok    R1-A the map is total over the four postures  [4 postures]
+ok    R1-B the map is exactly CONTINUE/CONTINUE_WITH_CONTROLS permitting, HOLD/STOP not
+ok    R1-C every admitted posture value maps deterministically, none is guessed
+
+---- R2 (req. 4 and 7). no relevant unresolved driver: confirmation NOT required ----
+
+ok    R2-A ordinary CONTINUE with an established-condition driver requires no confirmation
+ok    R2-B CONTINUE_WITH_CONTROLS driven only by an established condition requires no confirmation
+ok    R2-C an established-condition cessation driver ALONE never triggers confirmation  [§255 bounded the continuation-controlling/follow-up distinction, not established conditions]
+ok    R2-D an empty requiredBy requires no confirmation and does not fail closed
+
+---- R3 (req. 5). branch (a): an unresolved-property-controlling claim ----
+
+ok    R3-A HOLD driven by a controlling unresolved claim REQUIRES confirmation
+ok    R3-B the trigger is identified structurally by refKind:ref, never by prose
+ok    R3-C branch (a) fires on a NON-permitting posture too; it is not gated on permissiveness  [this is the over-restriction direction §254 observed]
+ok    R3-D branch (a) fires on a HAZARD_CANDIDATE carrier as well as a declaration carrier  [§239 binds the role to both ref kinds]
+
+---- R4 (req. 6). branch (b): follow-up classification while work continues ----
+
+ok    R4-A a permitted posture with an unresolved follow-up REQUIRES confirmation  [the under-restriction direction §254 did not observe and nothing excludes]
+ok    R4-B branch (b) fires on CONTINUE as well, because CONTINUE permits work
+ok    R4-C RESTRAINT: a follow-up under a NON-permitting posture does NOT trigger confirmation  [work is already held, so nothing continues on the follow-up classification]
+ok    R4-D RESTRAINT: the same under STOP does not trigger confirmation either
+
+---- R5. BOTH directions are preserved; neither branch is the whole rule ----
+
+ok    R5-A branch (a) alone is insufficient: R4-A would be missed without branch (b)
+ok    R5-B branch (b) alone is insufficient: R3-C would be missed without branch (a)
+ok    R5-C a mixed posture collects EVERY triggering entry, not the first  [the confirmation subject binds to all of them]
+
+---- R6 (req. 8). unknown or invalid structured state FAILS CLOSED ----
+
+ok    R6 posture absent fails closed  [POSTURE_ABSENT]
+ok    R6 posture undefined fails closed  [POSTURE_ABSENT]
+ok    R6 posture is a string fails closed  [POSTURE_NOT_AN_OBJECT]
+ok    R6 posture is an array fails closed  [POSTURE_NOT_AN_OBJECT]
+ok    R6 posture value outside the closed vocabulary fails closed  [POSTURE_VALUE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 posture value is not a string fails closed  [POSTURE_VALUE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 requiredBy is not an array fails closed  [REQUIRED_BY_NOT_AN_ARRAY]
+ok    R6 requiredBy is absent fails closed  [REQUIRED_BY_NOT_AN_ARRAY]
+ok    R6 a requiredBy entry is not an object fails closed  [REQUIRED_BY_ENTRY_NOT_AN_OBJECT]
+ok    R6 a driverRole is outside the closed vocabulary fails closed  [DRIVER_ROLE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 a driverRole is absent fails closed  [DRIVER_ROLE_NOT_IN_CLOSED_VOCABULARY]
+ok    R6 a refKind is outside the closed vocabulary fails closed  [REF_KIND_NOT_IN_CLOSED_VOCABULARY]
+ok    R6-Z a failed-closed determination is DISTINGUISHABLE from a substantive requirement  [same flag, different meaning, and both are recorded]
+
+---- R7. the rule reads structure only; prose cannot move it ----
+
+ok    R7-A prose asserting a controlling unresolved property does NOT trigger confirmation  [no prose is read and no model is asked]
+ok    R7-B prose asserting nothing is needed does NOT suppress a structural trigger
+ok    R7-C the whole-analysis entry point reads the posture field and agrees with the direct call
+ok    R7-D an analysis carrying no posture field fails closed rather than reading as settled
+
+---- R8. the §260 design check against the §254 shapes ----
+
+ok    R8 H1 CONTINUE -> confirmation not required  [ESTABLISHED_CONDITION_REQUIRING_NO_IMMEDIATE_ACTION]
+ok    R8 H2 STOP -> confirmation not required  [ESTABLISHED_CONDITION_REQUIRING_CESSATION]
+ok    R8 H3 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8 H4 CONTINUE_WITH_CONTROLS -> confirmation required  [UNRESOLVED_RESPONSE_OR_FOLLOW_UP]
+ok    R8 H5 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8 H6 HOLD_PENDING_VERIFICATION -> confirmation required  [UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION]
+ok    R8-Z the rule fires on exactly the four unresolved-classification shapes and no others
+
+---- R9. the state derivation is total and availability is the last conclusion ----
+
+ok    R9-A PROVIDER_FAILED -> ANALYSIS_FAILED
+ok    R9-B FIRST_PASS_REFUSED -> ANALYSIS_REFUSED
+ok    R9-C COMPLETE + REFUSE -> ANALYSIS_REFUSED, never a generic success
+ok    R9-D COMPLETE + PRESERVE_UNRESOLVED -> ANALYSIS_UNRESOLVED
+ok    R9-E PRESERVE_UNRESOLVED outranks a refused status rather than reading as a plain refusal  [RR-7 exists to keep the preserved truth visible]
+ok    R9-F COMPLETE + ADMIT + no confirmation -> ANALYSIS_AVAILABLE
+ok    R9-G COMPLETE + ADMIT + confirmation -> ANALYSIS_AWAITING_CONFIRMATION
+ok    R9-H COMPLETE with no admission disposition THROWS rather than defaulting to available  [no benign default is permitted]
+ok    R9-I the eight §261 states are all representable and distinct
+ok    R9-J this slice can derive only the six machine states; the human two are unreachable here
+
+---- R10. the producer vocabulary is closed, and pre-spend classification ----
+
+ok    R10-A the producer vocabulary is exactly two values
+ok    R10-B a running execution is discovered as ALREADY_RUNNING and may not spend
+ok    R10-C a completed execution may not spend again
+ok    R10-D a transport failure is RETRYABLE: no semantic answer was ever obtained
+ok    R10-E a refusal is TERMINAL: the provider answered and admission refused it  [re-spending would be shopping for a different answer to the same question]
+ok    R10-F only a fresh CLAIMED outcome permits provider spend
+
+---- R11. the rule carries its own identity ----
+
+ok    R11-A every determination carries the rule version that produced it
+ok    R11-B the rule version names §261 and the boundary it enforces
+
+================ §261 confirmation rule: 60 passed, 0 failed
+
+> safety-insite-backend@1.0.0 test:264-settlement-contract
+> ts-node scripts/test-264-settlement-contract.ts
+
+---- S1. the subject is the triggering entries and nothing else ----
+
+ok    S1-A the subject resolves
+ok    S1-B exactly the ONE triggering entry is the subject, not every driver  [1 entries]
+ok    S1-C it is identified by the refKind:ref pair the analysis already carries
+ok    S1-D the claim is stated in product language, never as the internal driver role
+ok    S1-E the established-condition driver is NOT put in front of a human
+
+---- S2. a drifted rule version refuses rather than re-deriving ----
+
+ok    S2-A a subject is not produced under a rule version this build does not implement  [CONFIRMATION_RULE_VERSION_DRIFTED]
+ok    S2-B a null persisted version also refuses
+
+---- S3. an unreadable or empty posture refuses ----
+
+ok    S3-A no posture refuses
+ok    S3-B a posture outside the closed vocabulary refuses  [POSTURE_UNREADABLE]
+ok    S3-C a posture with no triggering entry refuses rather than presenting an empty question  [NO_SUBJECT_ENTRIES]
+
+---- S4. the override contract is closed ----
+
+ok    S4-A a change with no replacement is refused
+ok    S4-B a reference the analysis does not ask about is refused  [REPLACEMENT_NOT_A_SUBJECT_ENTRY]
+ok    S4-C a value outside the two-member vocabulary is refused, not coerced  [REPLACEMENT_CLASSIFICATION_NOT_IN_VOCABULARY]
+ok    S4-D a "change" that changes nothing is refused, so no false disagreement is recorded  [REPLACEMENT_CHANGES_NOTHING]
+ok    S4-E a duplicated reference is refused rather than last-one-wins  [REPLACEMENT_DUPLICATED]
+ok    S4-F a genuine change is accepted
+
+---- S5. both sides are carried into the settled record ----
+
+ok    S5-A a confirmation records the human value equal to the Expert value, and changed=false
+ok    S5-B a change records BOTH the Expert claim and the human replacement
+
+---- S6. the effective decision is total and never manufactures a conclusion ----
+
+ok    S6 ANALYSIS_RUNNING yields no settled conclusion  [NONE_RUNNING]
+ok    S6 ANALYSIS_FAILED yields no settled conclusion  [NONE_EXPERT_UNAVAILABLE]
+ok    S6 ANALYSIS_REFUSED yields no settled conclusion  [NONE_REFUSED]
+ok    S6 ANALYSIS_UNRESOLVED yields no settled conclusion  [NONE_UNRESOLVED_TRUTH_PRESERVED]
+ok    S6 ANALYSIS_AWAITING_CONFIRMATION yields no settled conclusion  [NONE_AWAITING_HUMAN_CONFIRMATION]
+ok    S6-F ANALYSIS_AVAILABLE is settled without a human, under the existing authority rules
+ok    S6-G awaiting confirmation says it is neither confirmed nor rejected
+ok    S6-H a failed execution never reads as "no hazards"
+ok    S6-I a confirmed analysis is settled by a human and uses the confirmed conclusion
+ok    S6-J an overridden analysis uses the HUMAN replacement as the effective value
+ok    S6-K the Expert proposal is still readable from the effective decision itself
+ok    S6-L the reviewer and timestamp are carried
+ok    S6-M a settled STATE with no settlement RECORD aborts rather than yielding a conclusion
+
+---- S7. the vocabularies are closed and mutually consistent ----
+
+ok    S7-A exactly two human classifications exist
+ok    S7-B exactly two settlement decisions exist
+ok    S7-C the driver-role map covers exactly the two trigger roles and no others
+ok    S7-D the map is injective, so the answer space has not collapsed
+
+================ §264 settlement contract: 35 passed, 0 failed
+{"providerCalls":0,"databaseOperations":0,"passed":35,"failed":0}
+
+> safety-insite-backend@1.0.0 test:expert-nocall-harness
+> ts-node scripts/test-expert-nocall-harness.ts
+
+
+--- A. the ten scenarios
+ok    A.0 ten representative scenarios
+ok    A.1 S01 single obvious hazard: layer status PRESENT (got PRESENT)
+ok    A.2 S01 single obvious hazard: 0 advisory candidate(s)
+ok    A.3 S01 single obvious hazard: 0 clarification(s)
+ok    A.4 S01 single obvious hazard: 0 cross-hazard insight(s)
+ok    A.5 S01 single obvious hazard: 0 disagreement(s)
+ok    A.6 S01 single obvious hazard: required issue codes present []
+ok    A.7 S01 single obvious hazard: every deterministic finding retained
+ok    A.8 S01 single obvious hazard: deterministic findings are source-labelled
+ok    A.9 S01 single obvious hazard: knowledge release id unchanged
+ok    A.10 S01 single obvious hazard: governed citations retained and source-labelled
+ok    A.11 S01 single obvious hazard: no merge invariant violated []
+ok    A.1 S02 genuine multi-hazard observation with a cross-hazard interaction: layer status PRESENT (got PRESENT)
+ok    A.2 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 advisory candidate(s)
+ok    A.3 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 clarification(s)
+ok    A.4 S02 genuine multi-hazard observation with a cross-hazard interaction: 1 cross-hazard insight(s)
+ok    A.5 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 disagreement(s)
+ok    A.6 S02 genuine multi-hazard observation with a cross-hazard interaction: required issue codes present []
+ok    A.7 S02 genuine multi-hazard observation with a cross-hazard interaction: every deterministic finding retained
+ok    A.8 S02 genuine multi-hazard observation with a cross-hazard interaction: deterministic findings are source-labelled
+ok    A.9 S02 genuine multi-hazard observation with a cross-hazard interaction: knowledge release id unchanged
+ok    A.10 S02 genuine multi-hazard observation with a cross-hazard interaction: governed citations retained and source-labelled
+ok    A.11 S02 genuine multi-hazard observation with a cross-hazard interaction: no merge invariant violated []
+ok    A.1 S03 negated / safe-state observation, Expert proposes a candidate anyway: layer status PRESENT (got PRESENT)
+ok    A.2 S03 negated / safe-state observation, Expert proposes a candidate anyway: 1 advisory candidate(s)
+ok    A.3 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 clarification(s)
+ok    A.4 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 cross-hazard insight(s)
+ok    A.5 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 disagreement(s)
+ok    A.6 S03 negated / safe-state observation, Expert proposes a candidate anyway: required issue codes present []
+ok    A.7 S03 negated / safe-state observation, Expert proposes a candidate anyway: every deterministic finding retained
+ok    A.8 S03 negated / safe-state observation, Expert proposes a candidate anyway: deterministic findings are source-labelled
+ok    A.9 S03 negated / safe-state observation, Expert proposes a candidate anyway: knowledge release id unchanged
+ok    A.10 S03 negated / safe-state observation, Expert proposes a candidate anyway: governed citations retained and source-labelled
+ok    A.11 S03 negated / safe-state observation, Expert proposes a candidate anyway: no merge invariant violated []
+ok    A.1 S04 ZERO hazard candidates and a decision-critical clarification: layer status PRESENT (got PRESENT)
+ok    A.2 S04 ZERO hazard candidates and a decision-critical clarification: 0 advisory candidate(s)
+ok    A.3 S04 ZERO hazard candidates and a decision-critical clarification: 1 clarification(s)
+ok    A.4 S04 ZERO hazard candidates and a decision-critical clarification: 0 cross-hazard insight(s)
+ok    A.5 S04 ZERO hazard candidates and a decision-critical clarification: 0 disagreement(s)
+ok    A.6 S04 ZERO hazard candidates and a decision-critical clarification: required issue codes present []
+ok    A.7 S04 ZERO hazard candidates and a decision-critical clarification: every deterministic finding retained
+ok    A.8 S04 ZERO hazard candidates and a decision-critical clarification: deterministic findings are source-labelled
+ok    A.9 S04 ZERO hazard candidates and a decision-critical clarification: knowledge release id unchanged
+ok    A.10 S04 ZERO hazard candidates and a decision-critical clarification: governed citations retained and source-labelled
+ok    A.11 S04 ZERO hazard candidates and a decision-critical clarification: no merge invariant violated []
+ok    A.1 S05 Expert-only plausible candidate the deterministic set missed: layer status PRESENT (got PRESENT)
+ok    A.2 S05 Expert-only plausible candidate the deterministic set missed: 1 advisory candidate(s)
+ok    A.3 S05 Expert-only plausible candidate the deterministic set missed: 0 clarification(s)
+ok    A.4 S05 Expert-only plausible candidate the deterministic set missed: 1 cross-hazard insight(s)
+ok    A.5 S05 Expert-only plausible candidate the deterministic set missed: 0 disagreement(s)
+ok    A.6 S05 Expert-only plausible candidate the deterministic set missed: required issue codes present []
+ok    A.7 S05 Expert-only plausible candidate the deterministic set missed: every deterministic finding retained
+ok    A.8 S05 Expert-only plausible candidate the deterministic set missed: deterministic findings are source-labelled
+ok    A.9 S05 Expert-only plausible candidate the deterministic set missed: knowledge release id unchanged
+ok    A.10 S05 Expert-only plausible candidate the deterministic set missed: governed citations retained and source-labelled
+ok    A.11 S05 Expert-only plausible candidate the deterministic set missed: no merge invariant violated []
+ok    A.1 S06 Expert disagrees with the deterministic condition state: layer status PRESENT (got PRESENT)
+ok    A.2 S06 Expert disagrees with the deterministic condition state: 0 advisory candidate(s)
+ok    A.3 S06 Expert disagrees with the deterministic condition state: 0 clarification(s)
+ok    A.4 S06 Expert disagrees with the deterministic condition state: 0 cross-hazard insight(s)
+ok    A.5 S06 Expert disagrees with the deterministic condition state: 1 disagreement(s)
+ok    A.6 S06 Expert disagrees with the deterministic condition state: required issue codes present []
+ok    A.7 S06 Expert disagrees with the deterministic condition state: every deterministic finding retained
+ok    A.8 S06 Expert disagrees with the deterministic condition state: deterministic findings are source-labelled
+ok    A.9 S06 Expert disagrees with the deterministic condition state: knowledge release id unchanged
+ok    A.10 S06 Expert disagrees with the deterministic condition state: governed citations retained and source-labelled
+ok    A.11 S06 Expert disagrees with the deterministic condition state: no merge invariant violated []
+ok    A.1 S07 Expert disagrees with a governed interpretation; approval is untouched: layer status PRESENT (got PRESENT)
+ok    A.2 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 advisory candidate(s)
+ok    A.3 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 clarification(s)
+ok    A.4 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 cross-hazard insight(s)
+ok    A.5 S07 Expert disagrees with a governed interpretation; approval is untouched: 1 disagreement(s)
+ok    A.6 S07 Expert disagrees with a governed interpretation; approval is untouched: required issue codes present []
+ok    A.7 S07 Expert disagrees with a governed interpretation; approval is untouched: every deterministic finding retained
+ok    A.8 S07 Expert disagrees with a governed interpretation; approval is untouched: deterministic findings are source-labelled
+ok    A.9 S07 Expert disagrees with a governed interpretation; approval is untouched: knowledge release id unchanged
+ok    A.10 S07 Expert disagrees with a governed interpretation; approval is untouched: governed citations retained and source-labelled
+ok    A.11 S07 Expert disagrees with a governed interpretation; approval is untouched: no merge invariant violated []
+ok    A.1 S08 malformed Expert output is rejected at the boundary: layer status OUTPUT_REJECTED (got OUTPUT_REJECTED)
+ok    A.2 S08 malformed Expert output is rejected at the boundary: 0 advisory candidate(s)
+ok    A.3 S08 malformed Expert output is rejected at the boundary: 0 clarification(s)
+ok    A.4 S08 malformed Expert output is rejected at the boundary: 0 cross-hazard insight(s)
+ok    A.5 S08 malformed Expert output is rejected at the boundary: 0 disagreement(s)
+ok    A.6 S08 malformed Expert output is rejected at the boundary: required issue codes present []
+ok    A.7 S08 malformed Expert output is rejected at the boundary: every deterministic finding retained
+ok    A.8 S08 malformed Expert output is rejected at the boundary: deterministic findings are source-labelled
+ok    A.9 S08 malformed Expert output is rejected at the boundary: knowledge release id unchanged
+ok    A.10 S08 malformed Expert output is rejected at the boundary: governed citations retained and source-labelled
+ok    A.11 S08 malformed Expert output is rejected at the boundary: no merge invariant violated []
+ok    A.1 S09 provider unavailable; the inspection is unaffected: layer status NOT_CONFIGURED (got NOT_CONFIGURED)
+ok    A.2 S09 provider unavailable; the inspection is unaffected: 0 advisory candidate(s)
+ok    A.3 S09 provider unavailable; the inspection is unaffected: 0 clarification(s)
+ok    A.4 S09 provider unavailable; the inspection is unaffected: 0 cross-hazard insight(s)
+ok    A.5 S09 provider unavailable; the inspection is unaffected: 0 disagreement(s)
+ok    A.6 S09 provider unavailable; the inspection is unaffected: required issue codes present []
+ok    A.7 S09 provider unavailable; the inspection is unaffected: every deterministic finding retained
+ok    A.8 S09 provider unavailable; the inspection is unaffected: deterministic findings are source-labelled
+ok    A.9 S09 provider unavailable; the inspection is unaffected: knowledge release id unchanged
+ok    A.10 S09 provider unavailable; the inspection is unaffected: governed citations retained and source-labelled
+ok    A.11 S09 provider unavailable; the inspection is unaffected: no merge invariant violated []
+ok    A.1 S10 life-critical deterministic hazard plus total Expert omission: layer status PRESENT (got PRESENT)
+ok    A.2 S10 life-critical deterministic hazard plus total Expert omission: 0 advisory candidate(s)
+ok    A.3 S10 life-critical deterministic hazard plus total Expert omission: 0 clarification(s)
+ok    A.4 S10 life-critical deterministic hazard plus total Expert omission: 0 cross-hazard insight(s)
+ok    A.5 S10 life-critical deterministic hazard plus total Expert omission: 0 disagreement(s)
+ok    A.6 S10 life-critical deterministic hazard plus total Expert omission: required issue codes present []
+ok    A.7 S10 life-critical deterministic hazard plus total Expert omission: every deterministic finding retained
+ok    A.8 S10 life-critical deterministic hazard plus total Expert omission: deterministic findings are source-labelled
+ok    A.9 S10 life-critical deterministic hazard plus total Expert omission: knowledge release id unchanged
+ok    A.10 S10 life-critical deterministic hazard plus total Expert omission: governed citations retained and source-labelled
+ok    A.11 S10 life-critical deterministic hazard plus total Expert omission: no merge invariant violated []
+
+--- B. the scenarios that carry a specific proof
+ok    B.1 S04: zero deterministic findings, zero Expert candidates, and the clarification SURVIVES the merge
+ok    B.2 S04: the clarification keeps its criticality through the merge
+ok    B.3 S03: an Expert candidate on a safe state stays ADVISORY and creates no finding
+ok    B.4 S03: it is labelled so a consumer cannot mistake it for authority
+ok    B.5 S06: a challenge to the condition state is recorded and the state is unchanged
+ok    B.6 S07: a governed challenge is recorded and approval is NOT conferred
+ok    B.7 S08: rejected Expert output leaves the required action intact
+ok    B.8 S09: the inspection is unaffected by an absent provider
+ok    B.9 S10: a life-critical finding survives a total Expert omission with all four actions
+ok    B.10 S10: the omission is recorded as a PRESENT layer that added nothing -- not as a failure
+ok    B.11 S02: a cross-hazard insight is added beside two unchanged deterministic findings
+
+--- C. the evaluation plan is specified and NOT executed
+ok    C.1 seventeen measures pre-registered (the fourteen required, split where precision and recall differ)
+ok    C.2 four independent gate families
+ok    C.3 every hard gate carries a direction and a threshold
+ok    C.4 every measure states why its threshold is where it is
+ok    C.5 M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY is a zero-tolerance gate
+ok    C.5 M05_FABRICATED_CITATIONS is a zero-tolerance gate
+ok    C.5 M08_GOVERNED_PROVENANCE_INTEGRITY is a zero-tolerance gate
+ok    C.6 life-critical retention is a 100% floor
+ok    C.7 cross-process reproducibility is REPORTED, not a hard gate -- the G9 lesson
+ok    C.8 a determinism-control precondition exists and is established before a corpus is opened
+ok    C.9 a pre-spend authorization is a precondition, not an assumption
+ok    C.10 with nothing measured, every gated family fails -- an unmeasured gate is not a passed one
+ok    C.11 there is no aggregate score that could hide a safety failure
+ok    C.12 the corpus policy names what is burnt and what is reserved
+ok    C.13 the spent Run-2 holdout is CLOSED and cannot be re-scored
+
+--- D. zero provider calls, proved from the source
+      replay provider invocations this run: 18
+ok    D.1 the replay provider was actually exercised (a harness that ran nothing proves nothing)
+ok    D.2 the module has 90 source files to scan
+ok    D.3 no network primitive, endpoint or credential appears anywhere in the module []
+ok    D.4 no vendor name appears in module CODE []
+
+141 passed, 0 failed
+
+> safety-insite-backend@1.0.0 test:268-operational-controls
+> ts-node scripts/test-268-operational-controls.ts
+
+
+---- K. the kill switch ----
+
+ok    K-1 a disabled feature refuses execution
+ok    K-2 the refusal names the kill switch, not a limit  [EXPERT_EXECUTION_DISABLED]
+ok    K-3 the message tells the user the deterministic workflow is unaffected
+ok    K-4 the message states nothing was charged
+ok    K-5 the disabled message is the single shared constant
+ok    K-6 a disabled feature refuses for the KILL SWITCH reason even when also over every limit
+
+---- C. configuration is explicit and does not silently default ----
+
+ok    C-1 an explicit "false" disables
+ok    C-2 an explicit "true" enables
+ok    C-3 an unrecognised value does not read as disabled by accident outside production (production requires true/false at boot; see validate-production-environment)
+ok    C-4 limits are configurable
+ok    C-5 a nonsense limit falls back to the default rather than to zero or infinity
+ok    C-6 no automatic retry: one attempt per leg
+ok    C-7 one analysis is expected to cost TWO provider legs, not one
+ok    C-8 a per-leg timeout is bounded
+
+---- S. the spend ceilings ----
+
+ok    S-1 a request below both ceilings is permitted
+ok    S-2 the Nth+1 analysis is refused, so a limit of 5 permits exactly 5
+ok    S-3 the cost ceiling refuses independently of the count
+ok    S-4 a ceiling refusal states nothing was charged
+ok    S-5 a ceiling refusal keeps the deterministic path available in what it tells the user
+ok    S-6 the operator detail carries the numbers and the window  [analyses=5 limit=5 window=24h]
+ok    S-7 with a limit of 1, the first analysis is permitted
+ok    S-8 with a limit of 1, the second is refused
+
+---- U. provider-leg and token/cost accounting ----
+
+ok    U-1 BOTH legs are accounted, not just the authoring leg  [2]
+ok    U-2 the authoring leg tokens are kept separately
+ok    U-3 the verifier leg tokens are kept separately
+ok    U-4 cost is computed across both legs at the configured rates  [0.055]
+ok    U-5 an analysis that never reached the verifier accounts for one leg
+ok    U-6 legs that reported no usage still count as legs spent
+ok    U-7 unreported usage yields a NULL cost, never a free-looking zero  [null]
+ok    U-8 no leg at all yields no cost and no legs
+
+---- L. logging carries no sensitive content ----
+
+ok    L-1 raw provider output is not present
+ok    L-2 observation text is not present
+ok    L-3 a credential is not present
+ok    L-4 reviewer prose is not present
+ok    L-5 the identifiers an operator needs ARE present
+ok    L-6 redaction is by key name, so an unforeseen sensitive key is still caught
+ok    L-7 an over-long value is truncated rather than emitted whole
+ok    L-8 a nested object is reduced to a shape description, never serialised
+ok    L-9 every event carries a stable schema and severity
+
+---- E. the operational event vocabulary covers the §268 minimum set ----
+
+ok    E-expert.execution.started
+ok    E-expert.execution.admitted
+ok    E-expert.execution.refused
+ok    E-expert.execution.unresolved
+ok    E-expert.execution.failed
+ok    E-expert.provider.transport_failure
+ok    E-expert.provider.verifier_failure
+ok    E-expert.control.spend_limit_refused
+ok    E-expert.control.execution_disabled
+ok    E-expert.confirmation.required
+ok    E-expert.confirmation.settled
+ok    E-storage.operation_failed
+ok    E-report.generation_failed
+ok    E-schema.readiness_failed
+ok    E-migration.failed
+
+---- R. schema readiness, evaluated against fixture databases ----
+
+ok    R-1 this artifact ships migrations and their timestamps are discoverable  [53 migrations]
+ok    R-2 the three §268 backlog migrations are among them  [1800000019000, 1800000020000, 1800000021000]
+ok    R-3 a fully migrated database is READY  [READY: every migration this build requires is applied.]
+ok    R-4 it reports the expected schema version  [1800000021000]
+ok    R-5 a database missing the three backlog migrations is NOT READY
+ok    R-6 it names exactly which migrations are missing  [1800000019000,1800000020000,1800000021000]
+ok    R-7 the reason explains the consequence rather than only the fact
+ok    R-8 a database that has never been migrated is NOT READY
+ok    R-9 a database AHEAD of this build is READY — that is a code rollback, not a fault
+ok    R-10 an artifact shipping NO migrations is NOT READY and is reported as a build fault
+
+================ §268 operational controls: 64 passed, 0 failed
+
+> safety-insite-backend@1.0.0 release:check-build-context
+> node scripts/release/check-build-context.js
+
+§268 — Docker build-context secret guard
+
+ok    backend/.dockerignore exists
+ok    the .dockerignore declares at least one rule  [63 rules]
+
+---- synthetic paths that must never enter the build context ----
+
+ok    excluded: .env
+ok    excluded: .env.local
+ok    excluded: .env.production
+ok    excluded: .env.backup-before-clean-db-20260623-221649
+ok    excluded: .npmrc
+ok    excluded: .netrc
+ok    excluded: server.key
+ok    excluded: tls/private.pem
+ok    excluded: id_rsa
+ok    excluded: secrets/id_ed25519
+ok    excluded: config/gcp-service-account.json
+ok    excluded: config/aws-credentials.json
+ok    excluded: node_modules/typeorm/package.json
+ok    excluded: .git/config
+
+---- files actually present in this build context ----
+
+ok    present-and-excluded: .env
+ok    present-and-excluded: .env.backup-before-clean-db-20260623-221649
+ok    present-and-excluded: .env.example
+ok    2596 context entries scanned
+
+---- files the build and the runtime image require ----
+
+ok    included: package.json
+ok    included: package-lock.json
+ok    included: tsconfig.json
+ok    included: src/main.ts
+ok    included: src/app.module.ts
+ok    included: src/database/data-source.ts
+ok    included: src/database/schema-readiness.ts
+ok    included: src/database/migrations/1800000019000-ExpertAnalysisAuthorityFoundation.ts
+ok    included: src/database/migrations/1800000020000-ExpertHumanConfirmation.ts
+ok    included: src/database/migrations/1800000021000-ProducerScopedAnalysisCurrentness.ts
+ok    included: scripts/render-start-diagnostic.js
+ok    included: scripts/release/migrate.js
+ok    included: scripts/release/verify-running-sha.js
+ok    included: src/safescope-v2/hazard-taxonomy-coverage
+ok    included: src/safescope-v2/site-policy-isolation
+ok    included: src/safescope-v2/scenario-expansion
+
+BUILD CONTEXT GUARD: PASS
+
+> safety-insite-backend@1.0.0 hazlenz:build
+> npm run build && npm run build:render
+
+
+> safety-insite-backend@1.0.0 build
+> tsc
+
+
+> safety-insite-backend@1.0.0 build:render
+> node --max-old-space-size=1024 ./node_modules/typescript/bin/tsc
+
+
+> safety-insite-backend@1.0.0 hazlenz:integration:test
+> ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner
+
+inherited DATABASE_URL names database "safescope" — used for connection parameters only, never as the target
+disposable target host=127.0.0.1 port=5432 database=test_insite_1789307453054_6508
+
+> safety-insite-backend@1.0.0 hazlenz:integration:inner
+> npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation && npm run test:265-expert-product-acceptance && npm run test:267-product-integration-defects && npm run test:268-deployment-safety:inner
+
+
+> safety-insite-backend@1.0.0 test:261-expert-persistence-foundation
+> ts-node scripts/test-261-expert-persistence-foundation.ts
+
+resolved target host=127.0.0.1 port=5432 database=test_insite_1789307453054_6508
+target proven disposable
+
+
+---- P0. the service that owns Expert authority makes no provider call ----
+
+ok    P0-A the service does not import the Expert entry point  [16 imports, none of them the entry point]
+ok    P0-B the service imports no provider adapter
+ok    P0-D the service uses no dynamic import or require to reach a provider
+ok    P0-C the service issues no outbound HTTP
+
+---- P1 (req. 1). a client-supplied analysis persists as client_supplied ----
+
+ok    P1-A the legacy snapshot path persists producer = client_supplied  [client_supplied]
+ok    P1-B it carries no execution linkage, because no server-owned execution ran
+ok    P1-C it is ANALYSIS_AVAILABLE with confirmationRequired false
+
+---- P2 (req. 2). a client CANNOT forge server_authored ----
+
+ok    P2-A a body asserting producer = server_authored still persists as client_supplied  [client_supplied]
+ok    P2-B a body asserting an execution id still persists no execution linkage
+ok    P2-C a body asserting confirmationRequired = true still persists false
+ok    P2-D a body asserting an authoritative state still persists ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    P2-E even raw SQL cannot mint server_authored without a real execution row  [the trust boundary is enforced in the database, not only in TypeScript]
+ok    P2-F the producer vocabulary is closed; free text is rejected
+
+---- P3 (req. 10). pre-spend execution identity contains duplicates ----
+
+ok    P3-A the first claim is CLAIMED and is the only one permitted to spend
+ok    P3-B the execution exists in ANALYSIS_RUNNING before any provider call  [attempts 0 proves the provider was never reached]
+ok    P3-C it is server_authored and names the workspace the server authorized
+ok    P3-D a duplicate under the same identity discovers ALREADY_RUNNING and MUST NOT spend
+ok    P3-E the duplicate resolves to the SAME execution, it does not create a second
+ok    P3-F three concurrent claims produce exactly one spender  [CLAIMED/ALREADY_RUNNING/ALREADY_RUNNING]
+ok    P3-G exactly one execution row exists for the contended identity  [rows=1]
+
+---- P4 (req. 3). the Expert path assigns server_authored internally ----
+
+ok    P4-A the Expert path persists producer = server_authored  [server_authored]
+ok    P4-B the analysis names the execution that authored it
+ok    P4-C the execution names the analysis it produced
+ok    P4-D candidate provenance is persisted, not engineVersion alone
+ok    P4-E a controlling unresolved claim yields ANALYSIS_AWAITING_CONFIRMATION
+ok    P4-F the execution records WHICH confirmation rule produced the flag
+ok    P4-G §267: the Expert run did NOT supersede the current DETERMINISTIC analysis  [client_supplied/current]
+ok    P4-G2 within-family supersession still holds: the older deterministic row is superseded  [superseded]
+ok    P4-G3 the Expert analysis is current within its OWN family, so each producer has exactly one  [server_authored/current]
+
+---- P5 (req. 9). the confirmation flag is STORED, never recomputed on read ----
+
+ok    P5-A the stored flag survives a snapshot whose content would now score differently  [a later rule or content change must not alter what an earlier reviewer was asked]
+ok    P5-B the stored state survives with it
+ok    P5-C the live rule genuinely disagrees with the stored flag, so P5-A is not vacuous
+
+---- P6 (req. 11 and 12). H3/H4 structural identity survives persistence ----
+
+ok    P6-A unresolved declaration IDs survive persistence
+ok    P6-B resumeCondition.resolvedByDeclarationIds survives as declaration REFERENCES
+ok    P6-C the resume condition still resolves against the persisted declaration IDs  [the binding is by identity, not by paraphrase]
+ok    P6-D controlId survives on every required control
+ok    P6-E dischargingControlRef survives AS THE ID, not resolved to prose
+ok    P6-F the discharging reference resolves against a persisted controlId
+ok    P6-G the refKind:ref pair on the driver survives for the confirmation subject
+ok    P6-H nothing was flattened: the persisted snapshot round-trips with no loss at all  [there is no mapper between the admitted structure and the column]
+ok    P6-J array ORDER survives, so declaration and control sequencing is not reshuffled
+ok    P6-I branch (b) on a permitting posture produced AWAITING_CONFIRMATION through the service
+
+---- P7 (req. 13). the analysis-creation audit event ----
+
+ok    P7-A a server-authored analysis emits an analysis_created event
+ok    P7-B it records who initiated it
+ok    P7-C it records the workspace, inspection and observation
+ok    P7-D it records the execution and analysis identities
+ok    P7-E it records candidate/version provenance
+ok    P7-F it records the resulting state and confirmation status
+ok    P7-G it records the producer that distinguishes the two paths
+ok    P7-H NO raw provider payload or model prose is written into generic audit metadata  [raw output stays on the execution record, under the analysis access controls]
+ok    P7-I the execution record is where raw output would live  [null here because this slice makes no provider call]
+ok    P7-J the legacy client-supplied path also emits the event, closing the gap for both
+ok    P7-K the legacy event records the engineVersion AS A CLIENT CLAIM, not as provenance
+ok    P7-L one action name covers both producers, distinguished by the producer field
+
+---- P8 (req. 14). cross-workspace linkage cannot be created ----
+
+ok    P8-A a user from another workspace cannot claim an execution on this observation  [NotFound, so no existence is leaked]
+ok    P8-B a cross-workspace read of a known execution id is refused
+ok    P8-C a cross-workspace persistence attempt is refused
+ok    P8-D workspace B can legitimately claim on its own observation
+ok    P8-E presenting another workspace's execution id under an authorized observation is refused  [findOne({ id, observationId }), never findOne({ id })]
+ok    P8-F no cross-workspace execution linkage was created
+
+---- P9. refusal and failure are persisted OUTCOMES, never generic success ----
+
+ok    P9-A a refused output persists as ANALYSIS_REFUSED, never as available
+ok    P9-B a refused analysis is still server_authored: the server owns the refusal
+ok    P9-C the structured refusal codes are persisted on the execution
+ok    P9-D a refused execution is TERMINAL for re-spend
+ok    P9-E a transport failure settles the execution as ANALYSIS_FAILED
+ok    P9-F a transport failure creates NO analysis row, so nothing can render as a result
+ok    P9-G a transport failure is RETRYABLE, unlike a refusal
+ok    P9-H an already-settled execution cannot be settled twice
+
+---- P10. every server-authored row satisfies the trust boundary ----
+
+ok    P10-A no server-authored analysis lacks an execution
+ok    P10-B no client-supplied analysis names an execution
+ok    P10-C both producers are actually present, so P10-A/B are not vacuous  [server_authored=3 client_supplied=2]
+
+================ §261 persistence foundation: 71 passed, 0 failed
+{"providerCalls":0,"database":"test_insite_1789307453054_6508","disposable":true,"passed":71,"failed":0}
+
+> safety-insite-backend@1.0.0 test:262-expert-authoritative-route
+> ts-node scripts/test-262-expert-authoritative-route.ts
+
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+resolved target host=127.0.0.1 port=5432 database=test_insite_1789307453054_6508
+target proven disposable
+
+application listening on http://127.0.0.1:60051
+
+---- R0. the route carries the analysis-production authorization profile ----
+
+ok    R0-A JwtGuard is attached to the route  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    R0-B EntitlementGuard is attached
+ok    R0-C RolesGuard is attached
+ok    R0-D the required entitlement is fullSafeScope  [fullSafeScope]
+ok    R0-E a dedicated throttle is attached and stricter than classify's 30/60s  [limit=10 ttl=60000]
+ok    R0-F the route declares the same role list the classify route does  [INDIVIDUAL,MEMBER,MANAGER,ORGANIZATION_ADMIN,ORG_OWNER,SAFETY_DIRECTOR,SUPERVISOR,AUDITOR,WORKER]
+
+---- R1. authorization (§262 cases A-F of the authorization matrix) ----
+
+ok    R1-B an unauthenticated caller is rejected  [401]
+ok    R1-C a caller without fullSafeScope is rejected with PAYMENT_REQUIRED  [402 PAID_SUBSCRIPTION_REQUIRED]
+ok    R1-D a caller whose role is outside the route's list is rejected  [403]
+ok    R1-E a cross-workspace observation answers NotFound  [404]
+ok    R1-E2 and it is INDISTINGUISHABLE from an observation that does not exist  [404:Observation not found. vs 404:Observation not found.]
+ok    R1-E3 the refused cross-workspace attempt created no execution in the target workspace  [executions=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:06.660Z","metadata":{"observationId":"5d3d7374-96a4-44bb-9344-569083e34de9","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"4a3ee422-b6c3-46bd-9925-3dda84a09b94","requestVersion":1,"analysesInWindow":0,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:06.673Z","metadata":{"observationId":"5d3d7374-96a4-44bb-9344-569083e34de9","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"4a3ee422-b6c3-46bd-9925-3dda84a09b94","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:06.673Z","metadata":{"observationId":"5d3d7374-96a4-44bb-9344-569083e34de9","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"4a3ee422-b6c3-46bd-9925-3dda84a09b94","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"8a21aa1c-ee02-4c54-af17-eb1985f23adf"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:06.673Z","metadata":{"observationId":"5d3d7374-96a4-44bb-9344-569083e34de9","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"4a3ee422-b6c3-46bd-9925-3dda84a09b94","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:06.778Z","metadata":{"observationId":"88ca2427-2107-4f4c-aecd-88edce74eebb","inspectionId":"622d6563-ba2b-4781-9d48-72051c8b1cb3","organizationId":null,"executionId":"98fdc77b-a710-4aca-b6d0-efd008cf1f52","requestVersion":1,"analysesInWindow":0,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:06.785Z","metadata":{"observationId":"88ca2427-2107-4f4c-aecd-88edce74eebb","inspectionId":"622d6563-ba2b-4781-9d48-72051c8b1cb3","organizationId":null,"executionId":"98fdc77b-a710-4aca-b6d0-efd008cf1f52","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:06.785Z","metadata":{"observationId":"88ca2427-2107-4f4c-aecd-88edce74eebb","inspectionId":"622d6563-ba2b-4781-9d48-72051c8b1cb3","organizationId":null,"executionId":"98fdc77b-a710-4aca-b6d0-efd008cf1f52","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"2e48dbac-2b31-4c00-afe4-03ec2e07349e"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:06.786Z","metadata":{"observationId":"88ca2427-2107-4f4c-aecd-88edce74eebb","inspectionId":"622d6563-ba2b-4781-9d48-72051c8b1cb3","organizationId":null,"executionId":"98fdc77b-a710-4aca-b6d0-efd008cf1f52","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R1-F an idempotency key is scoped to its observation and cannot reach another workspace's execution  [201/201 4a3ee422-b6c3-46bd-9925-3dda84a09b94 vs 98fdc77b-a710-4aca-b6d0-efd008cf1f52]
+
+---- R2. acceptance A: an ordinary admitted analysis requiring no confirmation ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:06.872Z","metadata":{"observationId":"e0df33e8-ef37-4ebe-bf1b-c4b880a5bc9d","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"ebc635a2-8049-46e8-bf28-74cc3428c2dd","requestVersion":1,"analysesInWindow":1,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:06.879Z","metadata":{"observationId":"e0df33e8-ef37-4ebe-bf1b-c4b880a5bc9d","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"ebc635a2-8049-46e8-bf28-74cc3428c2dd","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:06.879Z","metadata":{"observationId":"e0df33e8-ef37-4ebe-bf1b-c4b880a5bc9d","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"ebc635a2-8049-46e8-bf28-74cc3428c2dd","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"7bf751cd-6136-49d4-b4d9-4442371b6af8"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:06.879Z","metadata":{"observationId":"e0df33e8-ef37-4ebe-bf1b-c4b880a5bc9d","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"ebc635a2-8049-46e8-bf28-74cc3428c2dd","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R2-A the route answers 201  [201]
+ok    R2-B the stored analysis state is ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    R2-C confirmation is not required, and the stored row says so
+ok    R2-D the row is server_authored
+ok    R2-E the row names the execution that authored it
+ok    R2-F the response states the authority position without calling it approved or final  [This Expert analysis is available for review. No human confirmation of its operational conclusion is required.]
+
+---- R3. acceptance B: an admitted analysis that requires confirmation ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:06.966Z","metadata":{"observationId":"a0fdd7c3-60ad-44c6-a2fb-492d2caa5bc4","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"e4f2ecaa-68ad-4218-b705-f555f49bac35","requestVersion":1,"analysesInWindow":2,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:06.975Z","metadata":{"observationId":"a0fdd7c3-60ad-44c6-a2fb-492d2caa5bc4","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"e4f2ecaa-68ad-4218-b705-f555f49bac35","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"6ed18e9b-4aa0-44b1-b8e1-a221f61995bf"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:06.975Z","metadata":{"observationId":"a0fdd7c3-60ad-44c6-a2fb-492d2caa5bc4","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"e4f2ecaa-68ad-4218-b705-f555f49bac35","analysisId":"6ed18e9b-4aa0-44b1-b8e1-a221f61995bf","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:06.976Z","metadata":{"observationId":"a0fdd7c3-60ad-44c6-a2fb-492d2caa5bc4","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"e4f2ecaa-68ad-4218-b705-f555f49bac35","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R3-A the stored analysis state is ANALYSIS_AWAITING_CONFIRMATION  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    R3-B confirmation is required, and the flag was computed once and stored
+ok    R3-C the rule that produced the flag is recorded on the execution  [hazlenz.expert.confirmation-required.261-unresolved-classification-boundary]
+ok    R3-D the client is TOLD confirmation is required and never has to infer it  [This Expert analysis is available for review, and its operational conclusion requires a person to confirm it before it is acted on. It has not been confirmed.]
+ok    R3-E the verifier leg was reached and recorded  [reached=true factKey=FP.REQUIRED_CONTROL.observation.133-181.1]
+
+---- R3b. H3 and H4 structural identity survive persistence and the response ----
+
+ok    R3b-H3a declarationId survives into the persisted snapshot  [["decl-stored-energy-state"]]
+ok    R3b-H3b the projected posture references the declaration by ID, not by prose  [["HAZARD_CANDIDATE:drive-stored-energy","UNRESOLVED_DECLARATION:decl-stored-energy-state"]]
+ok    R3b-H4a controlId survives into the persisted snapshot  [["ctl-isolate-drive"]]
+ok    R3b-H4b dischargingControlRef carries the control ID and NOT the control prose  [ctl-isolate-drive]
+ok    R3b-H4c the same identities survive into the response the client receives
+
+---- R3c. acceptance J: server-authored provenance ----
+
+ok    R3c-A the frozen §259 candidate identity is persisted  [0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee]
+ok    R3c-B contract, entry, admission and projection versions are persisted  [hazlenz.expert.first-pass.259 | hazlenz.expert.production-entry.v1 | hazlenz.expert.252.structural-admission.v1 | hazlenz.expert.239.posture-projection.v1]
+ok    R3c-C the transmitted system prompt digest is the frozen §259 element  [680f5127776427963d89244eafa32ce57973575ffbfae2f3326ed92fc17be34a]
+ok    R3c-D the transmitted wire schema digest is recorded
+ok    R3c-E the organization, inspection and observation are the SERVER's, not the request's
+ok    R3c-F the admission disposition and timestamps are persisted
+ok    R3c-G the server-established basis is recorded on the snapshot  ["osha-general-industry"]
+
+---- R3d. the analysis-creation audit event ----
+
+ok    R3d-A an analysis_created audit event was written  [present]
+ok    R3d-B it names the actor and the organization the server established
+ok    R3d-C no raw provider payload reached generic audit metadata  [874 chars]
+
+---- R4. acceptance E: whole-analysis refusal ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.063Z","metadata":{"observationId":"2ab4d73b-06c1-42cb-9c9b-c8c3b628209b","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"d56d8d7d-73ee-4e4d-8293-c9526eba310b","requestVersion":1,"analysesInWindow":3,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:07.070Z","metadata":{"observationId":"2ab4d73b-06c1-42cb-9c9b-c8c3b628209b","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"d56d8d7d-73ee-4e4d-8293-c9526eba310b","verifierNotReachedBecause":"FIRST_PASS_NOT_ADMITTED"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.refused","severity":"warning","at":"2026-09-13T13:51:07.070Z","metadata":{"observationId":"2ab4d73b-06c1-42cb-9c9b-c8c3b628209b","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"d56d8d7d-73ee-4e4d-8293-c9526eba310b","executionState":"ANALYSIS_REFUSED","admission":"REFUSE","providerLegs":1,"analysisId":"e0cb9f21-8753-4c6e-8476-a4f4c2c59a73"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.071Z","metadata":{"observationId":"2ab4d73b-06c1-42cb-9c9b-c8c3b628209b","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"d56d8d7d-73ee-4e4d-8293-c9526eba310b","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R4-A a refused output is ANALYSIS_REFUSED and never ANALYSIS_AVAILABLE  [ANALYSIS_REFUSED]
+ok    R4-B the refusal is still server_authored: the server owns its own refusal
+ok    R4-C confirmation is NOT required of a refusal
+ok    R4-D the structured refusal codes are persisted  [["DECLARATION_NOT_COVERED"]]
+ok    R4-E no admitted Expert content is carried in the snapshot
+ok    R4-F the response says the answer was refused, not that no hazards were found  [The Expert layer answered and the answer did not meet the contract, so it was refused in full and no part of it is shown. The deterministic analysis is unaffected.]
+
+---- R5. acceptance F: a CONTAINED declaration refusal ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.156Z","metadata":{"observationId":"06eaa4d7-d624-41d4-96a7-748882d5ef52","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"8ea3795d-6c24-4758-890b-b41316a360fa","requestVersion":1,"analysesInWindow":4,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:07.163Z","metadata":{"observationId":"06eaa4d7-d624-41d4-96a7-748882d5ef52","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"8ea3795d-6c24-4758-890b-b41316a360fa","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.unresolved","severity":"warning","at":"2026-09-13T13:51:07.163Z","metadata":{"observationId":"06eaa4d7-d624-41d4-96a7-748882d5ef52","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"8ea3795d-6c24-4758-890b-b41316a360fa","executionState":"ANALYSIS_UNRESOLVED","admission":"PRESERVE_UNRESOLVED","providerLegs":1,"analysisId":"d8684937-7f9e-40e7-b78f-7336af388cc6"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.163Z","metadata":{"observationId":"06eaa4d7-d624-41d4-96a7-748882d5ef52","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"8ea3795d-6c24-4758-890b-b41316a360fa","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R5-A the contained refusal does not present as an available analysis  [ANALYSIS_UNRESOLVED]
+ok    R5-B exactly one declaration was refused, and it is recorded  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    R5-C the analysis was otherwise usable: the posture ADMITTED and survives in the snapshot  [[]]
+
+---- R6. acceptance G: preserved unresolved truth ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.248Z","metadata":{"observationId":"6bc758cf-c74b-47eb-a2ff-ab9cf0fc3800","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"6abb6954-7748-4da5-93c6-6f748dc83acc","requestVersion":1,"analysesInWindow":5,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:07.254Z","metadata":{"observationId":"6bc758cf-c74b-47eb-a2ff-ab9cf0fc3800","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"6abb6954-7748-4da5-93c6-6f748dc83acc","verifierNotReachedBecause":"FIRST_PASS_NOT_ADMITTED"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.unresolved","severity":"warning","at":"2026-09-13T13:51:07.254Z","metadata":{"observationId":"6bc758cf-c74b-47eb-a2ff-ab9cf0fc3800","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"6abb6954-7748-4da5-93c6-6f748dc83acc","executionState":"ANALYSIS_UNRESOLVED","admission":"PRESERVE_UNRESOLVED","providerLegs":1,"analysisId":"bee4a4b9-676c-448b-ae6d-54367676a8bb"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.255Z","metadata":{"observationId":"6bc758cf-c74b-47eb-a2ff-ab9cf0fc3800","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"6abb6954-7748-4da5-93c6-6f748dc83acc","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R6-A a preserved-unresolved outcome is ANALYSIS_UNRESOLVED  [ANALYSIS_UNRESOLVED]
+ok    R6-B the admission disposition PRESERVE_UNRESOLVED is persisted, not flattened to REFUSE  [PRESERVE_UNRESOLVED]
+ok    R6-C nothing was admitted, and the response offers no operational conclusion
+ok    R6-D the declaration whose truth was preserved is recorded
+
+---- R7. provider/transport failure is an OUTCOME, not a generic error ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.340Z","metadata":{"observationId":"bb0a2d6f-1b80-412e-a71b-921eaee00609","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"61287cbe-df4f-4236-ac24-58931cf9103d","requestVersion":1,"analysesInWindow":6,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.transport_failure","severity":"error","at":"2026-09-13T13:51:07.344Z","metadata":{"observationId":"bb0a2d6f-1b80-412e-a71b-921eaee00609","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"61287cbe-df4f-4236-ac24-58931cf9103d","failureKind":"TRANSPORT_TIMEOUT","providerLegs":1}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.failed","severity":"error","at":"2026-09-13T13:51:07.344Z","metadata":{"observationId":"bb0a2d6f-1b80-412e-a71b-921eaee00609","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"61287cbe-df4f-4236-ac24-58931cf9103d","executionState":"ANALYSIS_FAILED","admission":null,"providerLegs":1,"analysisId":null}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.345Z","metadata":{"observationId":"bb0a2d6f-1b80-412e-a71b-921eaee00609","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"61287cbe-df4f-4236-ac24-58931cf9103d","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R7-A the execution settles as ANALYSIS_FAILED  [ANALYSIS_FAILED]
+ok    R7-B no analysis row is created, so nothing can render as a result  [analysisRow=none]
+ok    R7-C the failure kind is preserved, distinguishable from a refusal  [TRANSPORT_TIMEOUT]
+ok    R7-D the response says the layer was unavailable, not that there are no hazards  [The Expert layer could not be reached, so it produced no analysis. This is not a finding that there are no hazards. The deterministic analysis is unaffected.]
+
+---- R8. a verifier-leg failure does not invalidate an admitted first pass ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.430Z","metadata":{"observationId":"b54fff60-a401-4e8c-82fe-7b2d3f75ac81","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"230b3ab9-7e43-4a56-b2e8-77407a0c9cba","requestVersion":1,"analysesInWindow":7,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:07.437Z","metadata":{"observationId":"b54fff60-a401-4e8c-82fe-7b2d3f75ac81","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"230b3ab9-7e43-4a56-b2e8-77407a0c9cba","verifierNotReachedBecause":"VERIFIER_LEG_FAILED:TRANSPORT_TIMEOUT"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:07.437Z","metadata":{"observationId":"b54fff60-a401-4e8c-82fe-7b2d3f75ac81","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"230b3ab9-7e43-4a56-b2e8-77407a0c9cba","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"1127bf6b-e93f-45c7-92dd-aee7bad85432"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:07.437Z","metadata":{"observationId":"b54fff60-a401-4e8c-82fe-7b2d3f75ac81","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"230b3ab9-7e43-4a56-b2e8-77407a0c9cba","analysisId":"1127bf6b-e93f-45c7-92dd-aee7bad85432","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.437Z","metadata":{"observationId":"b54fff60-a401-4e8c-82fe-7b2d3f75ac81","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"230b3ab9-7e43-4a56-b2e8-77407a0c9cba","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R8-A the first pass is still admitted  [ADMIT]
+ok    R8-B the verifier is recorded as NOT REACHED, never as a pass  [VERIFIER_LEG_FAILED:TRANSPORT_TIMEOUT]
+ok    R8-C the analysis still carries its confirmation requirement
+
+---- R9. acceptance I: pre-spend idempotency under concurrent duplicates ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.523Z","metadata":{"observationId":"b6f387d7-4896-40cc-9b3a-dadad09c4597","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"34c3c893-072d-406c-b7f8-339462916371","requestVersion":1,"analysesInWindow":8,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:07.530Z","metadata":{"observationId":"b6f387d7-4896-40cc-9b3a-dadad09c4597","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"34c3c893-072d-406c-b7f8-339462916371","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:07.530Z","metadata":{"observationId":"b6f387d7-4896-40cc-9b3a-dadad09c4597","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"34c3c893-072d-406c-b7f8-339462916371","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"4b1c65f7-6fa7-4837-adef-c7bcd233b3ed"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.530Z","metadata":{"observationId":"b6f387d7-4896-40cc-9b3a-dadad09c4597","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"34c3c893-072d-406c-b7f8-339462916371","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R9-A exactly ONE execution identity governs the operation  [executions=1]
+ok    R9-B exactly one caller won spend authority  [executed=1 reused=2]
+ok    R9-C every other caller was answered without entering the provider seam
+ok    R9-D the simulated provider-entry count is the ONE winner's legs, not three callers' legs  [{"total":1,"firstPass":1,"verifier":0}]
+ok    R9-E no duplicate server-authored analysis was created  [analyses=1]
+ok    R9-F all three callers resolve to the same execution identity  [201:EXECUTED 201:REUSED_RUNNING 201:REUSED_RUNNING]
+ok    R9-G a later duplicate reuses the authoritative result and still does not spend  [REUSED_SETTLED entries 1 -> 1]
+
+---- R10. every server-owned field is unreachable from the request body ----
+
+ok    R10 forging producer is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging candidateIdentity is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging confirmationRequired is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging analysisState is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging expertExecutionId is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging resultSnapshot is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging providerId/respondedModel is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging engineVersion is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging contractVersion is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10 forging admission is rejected before the controller runs  [400 rowsCreated=0]
+ok    R10-Z every server-owned field attempted was refused  [10/10]
+ok    R10-Y raw SQL cannot mint server_authored without a real execution  [new row for relation "hazlenz_analyses" violates check constraint "ck_hazlenz_analysis_producer_execution"]
+
+---- R11. no downstream finding is materialized from an unconfirmed conclusion ----
+
+ok    R11-A the awaiting-confirmation analysis reconciled no findings  [findings=0]
+ok    R11-B no server-authored analysis reconciled findings in this slice at all  [findings=0]
+ok    R11-C the response states it, so no client infers a finding was created
+
+---- R12. server-authored rows coexist with historical client_supplied rows ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:07.660Z","metadata":{"observationId":"b09bcf93-9dcf-4db0-b78e-4912ca88783c","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"90ce1844-c23c-4f99-b51b-79eca6e84810","requestVersion":2,"analysesInWindow":9,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:07.667Z","metadata":{"observationId":"b09bcf93-9dcf-4db0-b78e-4912ca88783c","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"90ce1844-c23c-4f99-b51b-79eca6e84810","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:07.667Z","metadata":{"observationId":"b09bcf93-9dcf-4db0-b78e-4912ca88783c","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"90ce1844-c23c-4f99-b51b-79eca6e84810","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"99fde1d6-8abe-4eeb-b73c-02aa6d1d8978"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:07.668Z","metadata":{"observationId":"b09bcf93-9dcf-4db0-b78e-4912ca88783c","inspectionId":"9dabad2f-f6ce-46fd-a4b5-b08daffa5554","organizationId":null,"executionId":"90ce1844-c23c-4f99-b51b-79eca6e84810","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    R12-A the legacy snapshot persisted as client_supplied and was not rewritten  [[{"producer":"client_supplied","status":"current","analysisState":"ANALYSIS_AVAILABLE"},{"producer":"server_authored","status":"current","analysisState":"ANALYSIS_AVAILABLE"}]]
+ok    R12-B the server-authored row coexists with it
+ok    R12-C §267: the legacy row was neither deleted nor relabelled, and the Expert run did not supersede it  [[{"producer":"client_supplied","status":"current","analysisState":"ANALYSIS_AVAILABLE"},{"producer":"server_authored","status":"current","analysisState":"ANALYSIS_AVAILABLE"}]]
+ok    R12-C2 §267: each producer holds exactly one current row on the observation  [["client_supplied=current","server_authored=current"]]
+ok    R12-D no server-authored analysis exists without an execution
+ok    R12-E no client-supplied analysis names an execution
+ok    R12-F both producers are present, so the invariants are not vacuous  [server_authored=13 client_supplied=3]
+
+---- R13. the response never labels an unconfirmed conclusion as settled ----
+
+ok    R13-A no response labels an Expert result approved, final, settled or completed
+ok    R13-B no response carries the raw provider payload
+ok    R13-C the raw provider output IS retained on the execution record for later comparison
+
+---- T1. the route is actually behind its throttle ----
+
+ok    T1-A the route returns 429 once its own limit is exceeded  [first 429 at attempt 11]
+
+---- Z. spend accounting ----
+
+simulated provider entries, whole run: {"total":13,"firstPass":11,"verifier":2,"windowsReset":2}
+simulated provider entries since the idempotency window was opened: {"total":2,"firstPass":2,"verifier":0}
+ok    Z-A the deterministic transport was in force for the whole run
+ok    Z-B every settled execution records the local deterministic seam, and none records a hosted one  [{"local":10,"other":0,"total":11}]
+ok    Z-C this run contains a genuine opportunity to have spent, so Z-B is not vacuous  [legs=13 (verifier 2) credentialPresent=true]
+
+================ §262 acceptance cases, reported individually
+
+  A  PASS  ordinary admitted analysis requiring no confirmation
+        ANALYSIS_AVAILABLE, confirmationRequired=false, server_authored
+  B  PASS  admitted analysis requiring confirmation
+        ANALYSIS_AWAITING_CONFIRMATION, confirmationRequired=true, stated in the response
+  E  PASS  whole-analysis refusal
+        ANALYSIS_REFUSED, no Expert content rendered, refusal codes persisted
+  F  PASS  contained declaration refusal / partially usable analysis
+        ANALYSIS_UNRESOLVED with the posture contained and one declaration refused
+  G  PASS  preserved unresolved truth
+        ANALYSIS_UNRESOLVED, PRESERVE_UNRESOLVED persisted, no conclusion offered
+  H  PASS  unauthorized cross-workspace access
+        NotFound, indistinguishable from a non-existent observation, no execution created
+  I  PASS  duplicate / idempotent execution behaviour
+        1 execution, 1 spender, 1 simulated provider entry, 1 analysis
+  J  PASS  candidate and version provenance persistence
+        candidate identity, contract/entry/admission/projection versions, transmitted prompt digest
+  C  RESERVED  human confirmation accepted unchanged (the confirmation action does not exist yet; not faked)
+  D  RESERVED  human override / change (the override action does not exist yet; not faked)
+
+================ §262 route acceptance: 95 passed, 0 failed
+{"realProviderCalls":0,"simulatedProviderEntries":{"total":13,"firstPass":11,"verifier":2,"windowsReset":2},"simulatedProviderEntriesInIdempotencyWindow":{"total":2,"firstPass":2,"verifier":0},"productionDatabaseOperations":0,"database":"test_insite_1789307453054_6508","disposable":true,"passed":95,"failed":0,"casesPassed":["A","B","E","F","G","H","I","J"],"casesFailed":[],"casesReserved":["C","D"]}
+
+> safety-insite-backend@1.0.0 test:264-expert-human-confirmation
+> ts-node scripts/test-264-expert-human-confirmation.ts
+
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+resolved target host=127.0.0.1 database=test_insite_1789307453054_6508
+target proven disposable
+
+application listening on http://127.0.0.1:60081
+
+ok    SETUP both reviewer tokens carry the shared organization  [A=organization_admin B=manager]
+ok    SETUP both reviewers share one organization-scoped workspace  [d1ce282e-e051-4bb3-a28e-5dc695891ca3]
+---- G0. the settlement route carries the analysis-production profile ----
+
+ok    G0-A JwtGuard, EntitlementGuard and RolesGuard are all attached  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    G0-B the required entitlement is fullSafeScope
+ok    G0-C a dedicated throttle is attached
+ok    G0-D the role list matches the execution route exactly
+
+---- ACCEPTANCE C. human confirmation accepted unchanged ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:15.614Z","metadata":{"observationId":"7f67bad0-4ffb-4ae5-a4bf-3ded827f4e0a","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"fcfcbcff-e06d-4605-9559-736fbe84698b","requestVersion":1,"analysesInWindow":0,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:15.628Z","metadata":{"observationId":"7f67bad0-4ffb-4ae5-a4bf-3ded827f4e0a","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"fcfcbcff-e06d-4605-9559-736fbe84698b","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"104ef975-273b-4e94-9566-9b9f3751d04f"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:15.628Z","metadata":{"observationId":"7f67bad0-4ffb-4ae5-a4bf-3ded827f4e0a","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"fcfcbcff-e06d-4605-9559-736fbe84698b","analysisId":"104ef975-273b-4e94-9566-9b9f3751d04f","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:15.628Z","metadata":{"observationId":"7f67bad0-4ffb-4ae5-a4bf-3ded827f4e0a","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"fcfcbcff-e06d-4605-9559-736fbe84698b","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    C-1 the analysis starts awaiting confirmation  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    C-2 and it is server-authored with no settlement yet
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:15.638Z","metadata":{"observationId":"7f67bad0-4ffb-4ae5-a4bf-3ded827f4e0a","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","analysisId":"104ef975-273b-4e94-9566-9b9f3751d04f","executionId":"fcfcbcff-e06d-4605-9559-736fbe84698b","decision":"classification_confirmed","analysisState":"ANALYSIS_CONFIRMED","entriesSettled":1}}
+ok    C-3 the confirmation is accepted  [201 ""]
+ok    C-4 the state becomes ANALYSIS_CONFIRMED  [ANALYSIS_CONFIRMED]
+ok    C-5 THE ORIGINAL EXPERT RESULT IS BYTE-FOR-BYTE UNCHANGED
+ok    C-6 the Expert provenance fields are unchanged  [confirmationRequired still true]
+ok    C-7 the execution record is untouched by the human decision
+ok    C-8 the human decision is persisted SEPARATELY, as its own review row
+ok    C-9 the review records what HazLenz claimed and what the human settled
+ok    C-10 an audit event records the transition and that nothing changed
+ok    C-11 no raw provider output reached the audit metadata
+ok    C-12 the effective decision now resolves to a human-settled conclusion  [HUMAN_CONFIRMED_AS_AUTHORED]
+ok    C-13 a retry under the same key replays and creates NO duplicate review or audit row  [outcome=REPLAYED reviews=1 audits=1]
+ok    C-14 the replay returns the same review and the same settled state
+
+---- ACCEPTANCE D. human override / change ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:15.747Z","metadata":{"observationId":"9aa9a2a6-39b2-4132-b8e5-24377d36fa14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"5960dc22-bb2f-4e86-9e77-672af7e0f520","requestVersion":1,"analysesInWindow":1,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:15.754Z","metadata":{"observationId":"9aa9a2a6-39b2-4132-b8e5-24377d36fa14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"5960dc22-bb2f-4e86-9e77-672af7e0f520","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"02c32881-671c-4620-981f-cf8c69ef7cbf"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:15.754Z","metadata":{"observationId":"9aa9a2a6-39b2-4132-b8e5-24377d36fa14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"5960dc22-bb2f-4e86-9e77-672af7e0f520","analysisId":"02c32881-671c-4620-981f-cf8c69ef7cbf","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:15.755Z","metadata":{"observationId":"9aa9a2a6-39b2-4132-b8e5-24377d36fa14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"5960dc22-bb2f-4e86-9e77-672af7e0f520","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:15.761Z","metadata":{"observationId":"9aa9a2a6-39b2-4132-b8e5-24377d36fa14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","analysisId":"02c32881-671c-4620-981f-cf8c69ef7cbf","executionId":"5960dc22-bb2f-4e86-9e77-672af7e0f520","decision":"classification_changed","analysisState":"ANALYSIS_OVERRIDDEN","entriesSettled":1}}
+ok    D-1 the override is accepted  [201 ""]
+ok    D-2 the state becomes ANALYSIS_OVERRIDDEN  [ANALYSIS_OVERRIDDEN]
+ok    D-3 THE ORIGINAL EXPERT PROPOSAL IS BYTE-FOR-BYTE PRESERVED
+ok    D-4 the human replacement is independently attributable
+ok    D-5 the effective decision uses the HUMAN replacement  [HUMAN_REPLACED]
+ok    D-6 the response carries the original-versus-effective distinction for the frontend
+ok    D-7 the audit records the override and that the conclusion changed
+ok    D-8 no unrelated Expert field changed
+
+---- N. the fourteen negative tests ----
+
+ok    N1 a client_supplied analysis cannot enter the Expert confirmation action  [409 This analysis was supplied by a client and carries no server-authored operational conclusion. The Expert confirmation action does not apply to it.]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:15.856Z","metadata":{"observationId":"a82e5759-8406-4a7a-819f-8fd1208b6bb5","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"875cb6f7-efeb-4bb5-8957-8079772f8f96","requestVersion":1,"analysesInWindow":2,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:15.862Z","metadata":{"observationId":"a82e5759-8406-4a7a-819f-8fd1208b6bb5","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"875cb6f7-efeb-4bb5-8957-8079772f8f96","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:15.862Z","metadata":{"observationId":"a82e5759-8406-4a7a-819f-8fd1208b6bb5","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"875cb6f7-efeb-4bb5-8957-8079772f8f96","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"ab7463d9-507c-49f2-9c0b-1f5c50e47de7"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:15.862Z","metadata":{"observationId":"a82e5759-8406-4a7a-819f-8fd1208b6bb5","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"875cb6f7-efeb-4bb5-8957-8079772f8f96","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N2 ANALYSIS_AVAILABLE reached  [ANALYSIS_AVAILABLE]
+ok    N2 ANALYSIS_AVAILABLE cannot be confirmed  [409 This analysis is ANALYSIS_AVAILABLE and is not awaiting confirmation.]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:15.953Z","metadata":{"observationId":"66d98f30-d1ec-4282-b5c4-b8c28afec63f","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"bd0ea8bc-c87a-4b41-860b-7e0acbefdc66","requestVersion":1,"analysesInWindow":3,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:15.960Z","metadata":{"observationId":"66d98f30-d1ec-4282-b5c4-b8c28afec63f","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"bd0ea8bc-c87a-4b41-860b-7e0acbefdc66","verifierNotReachedBecause":"FIRST_PASS_NOT_ADMITTED"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.refused","severity":"warning","at":"2026-09-13T13:51:15.960Z","metadata":{"observationId":"66d98f30-d1ec-4282-b5c4-b8c28afec63f","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"bd0ea8bc-c87a-4b41-860b-7e0acbefdc66","executionState":"ANALYSIS_REFUSED","admission":"REFUSE","providerLegs":1,"analysisId":"71e9b19e-23e9-4665-8c9a-20a84026d2b9"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:15.960Z","metadata":{"observationId":"66d98f30-d1ec-4282-b5c4-b8c28afec63f","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"bd0ea8bc-c87a-4b41-860b-7e0acbefdc66","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N3 ANALYSIS_REFUSED reached  [ANALYSIS_REFUSED]
+ok    N3 ANALYSIS_REFUSED cannot be confirmed  [409 This analysis is ANALYSIS_REFUSED and is not awaiting confirmation.]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.050Z","metadata":{"observationId":"97ee1179-acca-415d-90e3-d7b4e33a0d0d","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a539801f-b7ae-4cbd-a824-7cdef990947d","requestVersion":1,"analysesInWindow":4,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:16.056Z","metadata":{"observationId":"97ee1179-acca-415d-90e3-d7b4e33a0d0d","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a539801f-b7ae-4cbd-a824-7cdef990947d","verifierNotReachedBecause":"FIRST_PASS_NOT_ADMITTED"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.unresolved","severity":"warning","at":"2026-09-13T13:51:16.056Z","metadata":{"observationId":"97ee1179-acca-415d-90e3-d7b4e33a0d0d","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a539801f-b7ae-4cbd-a824-7cdef990947d","executionState":"ANALYSIS_UNRESOLVED","admission":"PRESERVE_UNRESOLVED","providerLegs":1,"analysisId":"ddd15dd7-09ab-41a9-8c09-a454ccb0ff8b"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.057Z","metadata":{"observationId":"97ee1179-acca-415d-90e3-d7b4e33a0d0d","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a539801f-b7ae-4cbd-a824-7cdef990947d","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N4 ANALYSIS_UNRESOLVED reached  [ANALYSIS_UNRESOLVED]
+ok    N4 ANALYSIS_UNRESOLVED cannot be confirmed  [409 This analysis is ANALYSIS_UNRESOLVED and is not awaiting confirmation.]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.144Z","metadata":{"observationId":"c0727b58-3e2f-49ab-a969-8aa011f96422","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b13f64bc-6579-42c1-bd6d-f92b6460704b","requestVersion":1,"analysesInWindow":5,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.transport_failure","severity":"error","at":"2026-09-13T13:51:16.149Z","metadata":{"observationId":"c0727b58-3e2f-49ab-a969-8aa011f96422","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b13f64bc-6579-42c1-bd6d-f92b6460704b","failureKind":"TRANSPORT_TIMEOUT","providerLegs":1}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.failed","severity":"error","at":"2026-09-13T13:51:16.149Z","metadata":{"observationId":"c0727b58-3e2f-49ab-a969-8aa011f96422","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b13f64bc-6579-42c1-bd6d-f92b6460704b","executionState":"ANALYSIS_FAILED","admission":null,"providerLegs":1,"analysisId":null}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.149Z","metadata":{"observationId":"c0727b58-3e2f-49ab-a969-8aa011f96422","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b13f64bc-6579-42c1-bd6d-f92b6460704b","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N5 ANALYSIS_FAILED creates no analysis row at all, so there is nothing to confirm  [analysisRow=none]
+ok    N6 an already CONFIRMED analysis cannot be re-settled through this route  [409 This analysis is ANALYSIS_CONFIRMED and is not awaiting confirmation.]
+ok    N7 an already OVERRIDDEN analysis cannot be re-settled through this route  [409 This analysis is ANALYSIS_OVERRIDDEN and is not awaiting confirmation.]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.242Z","metadata":{"observationId":"7e720a53-174b-4b6a-ad36-b9b2e7d5b2b3","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"42d5c8a0-2657-4dda-9221-cf64f7fac526","requestVersion":1,"analysesInWindow":6,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.249Z","metadata":{"observationId":"7e720a53-174b-4b6a-ad36-b9b2e7d5b2b3","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"42d5c8a0-2657-4dda-9221-cf64f7fac526","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"ec2eac11-aef3-40d5-ad12-08194c7b7d6e"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.249Z","metadata":{"observationId":"7e720a53-174b-4b6a-ad36-b9b2e7d5b2b3","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"42d5c8a0-2657-4dda-9221-cf64f7fac526","analysisId":"ec2eac11-aef3-40d5-ad12-08194c7b7d6e","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.249Z","metadata":{"observationId":"7e720a53-174b-4b6a-ad36-b9b2e7d5b2b3","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"42d5c8a0-2657-4dda-9221-cf64f7fac526","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N8 a cross-tenant settlement is non-disclosing and identical to a non-existent resource  [404:Observation not found. vs 404:Observation not found.]
+ok    N8b and the target analysis is untouched
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.338Z","metadata":{"observationId":"30bd85f2-9f9b-47fc-8802-e2ac38106c57","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8d89edd4-d56f-4a76-b33d-c27335d1957a","requestVersion":1,"analysesInWindow":7,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.345Z","metadata":{"observationId":"30bd85f2-9f9b-47fc-8802-e2ac38106c57","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8d89edd4-d56f-4a76-b33d-c27335d1957a","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"5757adac-c12f-4a39-8d69-5be89fbac762"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.345Z","metadata":{"observationId":"30bd85f2-9f9b-47fc-8802-e2ac38106c57","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8d89edd4-d56f-4a76-b33d-c27335d1957a","analysisId":"5757adac-c12f-4a39-8d69-5be89fbac762","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.345Z","metadata":{"observationId":"30bd85f2-9f9b-47fc-8802-e2ac38106c57","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8d89edd4-d56f-4a76-b33d-c27335d1957a","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging reviewedByUserId is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.433Z","metadata":{"observationId":"f14bcf02-fbf2-4691-962c-368be0d0e273","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"e5273d3c-1104-40b1-8dc6-3eeea3ab6ab7","requestVersion":1,"analysesInWindow":8,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.440Z","metadata":{"observationId":"f14bcf02-fbf2-4691-962c-368be0d0e273","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"e5273d3c-1104-40b1-8dc6-3eeea3ab6ab7","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"022bdcbf-838e-48bf-a6da-92c00daef25a"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.440Z","metadata":{"observationId":"f14bcf02-fbf2-4691-962c-368be0d0e273","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"e5273d3c-1104-40b1-8dc6-3eeea3ab6ab7","analysisId":"022bdcbf-838e-48bf-a6da-92c00daef25a","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.440Z","metadata":{"observationId":"f14bcf02-fbf2-4691-962c-368be0d0e273","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"e5273d3c-1104-40b1-8dc6-3eeea3ab6ab7","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging reviewerId is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.527Z","metadata":{"observationId":"9e21c113-f97b-4af5-b502-ba86163f9c6c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"130f4f14-2e8e-4535-93b4-88dafe7c2707","requestVersion":1,"analysesInWindow":9,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.535Z","metadata":{"observationId":"9e21c113-f97b-4af5-b502-ba86163f9c6c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"130f4f14-2e8e-4535-93b4-88dafe7c2707","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"dca66d74-eafd-405e-a79f-a317454800bf"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.535Z","metadata":{"observationId":"9e21c113-f97b-4af5-b502-ba86163f9c6c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"130f4f14-2e8e-4535-93b4-88dafe7c2707","analysisId":"dca66d74-eafd-405e-a79f-a317454800bf","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.535Z","metadata":{"observationId":"9e21c113-f97b-4af5-b502-ba86163f9c6c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"130f4f14-2e8e-4535-93b4-88dafe7c2707","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging candidateIdentity is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.623Z","metadata":{"observationId":"e989fc4c-cb0b-4827-8688-5bd28268bb14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cf452a0c-a86f-41a2-a463-a478d5dc9d53","requestVersion":1,"analysesInWindow":10,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.630Z","metadata":{"observationId":"e989fc4c-cb0b-4827-8688-5bd28268bb14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cf452a0c-a86f-41a2-a463-a478d5dc9d53","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"fa015da0-772b-4f66-8f77-ea9e84b5d4f1"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.630Z","metadata":{"observationId":"e989fc4c-cb0b-4827-8688-5bd28268bb14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cf452a0c-a86f-41a2-a463-a478d5dc9d53","analysisId":"fa015da0-772b-4f66-8f77-ea9e84b5d4f1","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.630Z","metadata":{"observationId":"e989fc4c-cb0b-4827-8688-5bd28268bb14","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cf452a0c-a86f-41a2-a463-a478d5dc9d53","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging resultSnapshot is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.715Z","metadata":{"observationId":"d50515c1-651e-4240-a29e-34d11f66c9b7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"36d844e2-e13c-4e08-9f58-143af99455c7","requestVersion":1,"analysesInWindow":11,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.722Z","metadata":{"observationId":"d50515c1-651e-4240-a29e-34d11f66c9b7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"36d844e2-e13c-4e08-9f58-143af99455c7","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"d4fe06cb-cf6d-4c82-9424-23cc0a657a4b"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.722Z","metadata":{"observationId":"d50515c1-651e-4240-a29e-34d11f66c9b7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"36d844e2-e13c-4e08-9f58-143af99455c7","analysisId":"d4fe06cb-cf6d-4c82-9424-23cc0a657a4b","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.723Z","metadata":{"observationId":"d50515c1-651e-4240-a29e-34d11f66c9b7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"36d844e2-e13c-4e08-9f58-143af99455c7","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging analysisState is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.809Z","metadata":{"observationId":"b2809158-4d48-4a04-a29a-e57e7ddec0ea","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"113b3455-6a95-431c-acdf-16c00737e919","requestVersion":1,"analysesInWindow":12,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.815Z","metadata":{"observationId":"b2809158-4d48-4a04-a29a-e57e7ddec0ea","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"113b3455-6a95-431c-acdf-16c00737e919","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"97cd5f61-623b-461f-9d1a-2fea21b2a94f"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.815Z","metadata":{"observationId":"b2809158-4d48-4a04-a29a-e57e7ddec0ea","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"113b3455-6a95-431c-acdf-16c00737e919","analysisId":"97cd5f61-623b-461f-9d1a-2fea21b2a94f","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.816Z","metadata":{"observationId":"b2809158-4d48-4a04-a29a-e57e7ddec0ea","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"113b3455-6a95-431c-acdf-16c00737e919","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging confirmationRequired is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.899Z","metadata":{"observationId":"374c57e1-72aa-4566-882d-485602e3f27c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0e9df23f-5c16-40ef-beed-ad62482cb49b","requestVersion":1,"analysesInWindow":13,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:16.905Z","metadata":{"observationId":"374c57e1-72aa-4566-882d-485602e3f27c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0e9df23f-5c16-40ef-beed-ad62482cb49b","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"2a0a3dda-e53a-42ae-9f2d-e26369a0681d"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:16.905Z","metadata":{"observationId":"374c57e1-72aa-4566-882d-485602e3f27c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0e9df23f-5c16-40ef-beed-ad62482cb49b","analysisId":"2a0a3dda-e53a-42ae-9f2d-e26369a0681d","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:16.906Z","metadata":{"observationId":"374c57e1-72aa-4566-882d-485602e3f27c","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0e9df23f-5c16-40ef-beed-ad62482cb49b","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging producer is rejected before the controller runs  [400 reviewsCreated=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:16.994Z","metadata":{"observationId":"ff3c210d-945d-4aad-a4b7-97e93cf2793b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b1cb0024-8e87-4d57-a3fa-513c500f6237","requestVersion":1,"analysesInWindow":14,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.000Z","metadata":{"observationId":"ff3c210d-945d-4aad-a4b7-97e93cf2793b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b1cb0024-8e87-4d57-a3fa-513c500f6237","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"09e4a2cf-bafa-4ad2-84cd-bb6691be6379"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.000Z","metadata":{"observationId":"ff3c210d-945d-4aad-a4b7-97e93cf2793b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b1cb0024-8e87-4d57-a3fa-513c500f6237","analysisId":"09e4a2cf-bafa-4ad2-84cd-bb6691be6379","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.000Z","metadata":{"observationId":"ff3c210d-945d-4aad-a4b7-97e93cf2793b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"b1cb0024-8e87-4d57-a3fa-513c500f6237","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N9/N10/N11 forging expertExecutionId is rejected before the controller runs  [400 reviewsCreated=0]
+ok    N9-Z every server-owned field attempted was refused  [8/8]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.088Z","metadata":{"observationId":"8ca0337e-d318-43a5-8e11-47d4bbc512c7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"349c6d03-3470-4208-ba98-f1d835184260","requestVersion":1,"analysesInWindow":15,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.095Z","metadata":{"observationId":"8ca0337e-d318-43a5-8e11-47d4bbc512c7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"349c6d03-3470-4208-ba98-f1d835184260","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"b967f1be-5860-4bbd-8a9d-3f2ad89a169a"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.095Z","metadata":{"observationId":"8ca0337e-d318-43a5-8e11-47d4bbc512c7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"349c6d03-3470-4208-ba98-f1d835184260","analysisId":"b967f1be-5860-4bbd-8a9d-3f2ad89a169a","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.095Z","metadata":{"observationId":"8ca0337e-d318-43a5-8e11-47d4bbc512c7","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"349c6d03-3470-4208-ba98-f1d835184260","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 an unknown classification is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.181Z","metadata":{"observationId":"c58fa3d2-0ffc-44f9-929c-f722dadafa17","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"aee52362-89ea-483d-b458-a43f71b3c9a3","requestVersion":1,"analysesInWindow":16,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.186Z","metadata":{"observationId":"c58fa3d2-0ffc-44f9-929c-f722dadafa17","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"aee52362-89ea-483d-b458-a43f71b3c9a3","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"48fc037c-0226-430b-af85-8611b723477c"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.186Z","metadata":{"observationId":"c58fa3d2-0ffc-44f9-929c-f722dadafa17","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"aee52362-89ea-483d-b458-a43f71b3c9a3","analysisId":"48fc037c-0226-430b-af85-8611b723477c","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.187Z","metadata":{"observationId":"c58fa3d2-0ffc-44f9-929c-f722dadafa17","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"aee52362-89ea-483d-b458-a43f71b3c9a3","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 a reference the analysis does not ask about is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.273Z","metadata":{"observationId":"3b7b0cc2-1c9f-4b51-9bc3-bde4732bd32b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a5b19de2-7352-43ec-8b33-e7eefab77d49","requestVersion":1,"analysesInWindow":17,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.279Z","metadata":{"observationId":"3b7b0cc2-1c9f-4b51-9bc3-bde4732bd32b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a5b19de2-7352-43ec-8b33-e7eefab77d49","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"18fb3191-3328-47d1-986a-37c7a7bcb49d"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.279Z","metadata":{"observationId":"3b7b0cc2-1c9f-4b51-9bc3-bde4732bd32b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a5b19de2-7352-43ec-8b33-e7eefab77d49","analysisId":"18fb3191-3328-47d1-986a-37c7a7bcb49d","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.279Z","metadata":{"observationId":"3b7b0cc2-1c9f-4b51-9bc3-bde4732bd32b","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"a5b19de2-7352-43ec-8b33-e7eefab77d49","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 a change that changes nothing is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.368Z","metadata":{"observationId":"73ddde12-9f82-4625-a42f-75922f758387","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"dd780120-ccae-4c81-9f30-c8eb90ddfc11","requestVersion":1,"analysesInWindow":18,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.375Z","metadata":{"observationId":"73ddde12-9f82-4625-a42f-75922f758387","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"dd780120-ccae-4c81-9f30-c8eb90ddfc11","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"73e07dac-d887-4685-aaba-807d475030c3"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.375Z","metadata":{"observationId":"73ddde12-9f82-4625-a42f-75922f758387","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"dd780120-ccae-4c81-9f30-c8eb90ddfc11","analysisId":"73e07dac-d887-4685-aaba-807d475030c3","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.375Z","metadata":{"observationId":"73ddde12-9f82-4625-a42f-75922f758387","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"dd780120-ccae-4c81-9f30-c8eb90ddfc11","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 a change with no replacement at all is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.463Z","metadata":{"observationId":"9dd8ba0f-a3b2-4d48-8dfc-6afa907764fe","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0d1f1b6e-1c7c-4855-bfb0-f7609987c6c0","requestVersion":1,"analysesInWindow":19,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.469Z","metadata":{"observationId":"9dd8ba0f-a3b2-4d48-8dfc-6afa907764fe","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0d1f1b6e-1c7c-4855-bfb0-f7609987c6c0","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"e4674cdb-57bf-4654-8f2c-2a5c39091912"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.470Z","metadata":{"observationId":"9dd8ba0f-a3b2-4d48-8dfc-6afa907764fe","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0d1f1b6e-1c7c-4855-bfb0-f7609987c6c0","analysisId":"e4674cdb-57bf-4654-8f2c-2a5c39091912","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.470Z","metadata":{"observationId":"9dd8ba0f-a3b2-4d48-8dfc-6afa907764fe","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"0d1f1b6e-1c7c-4855-bfb0-f7609987c6c0","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 a confirmation carrying a replacement is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.559Z","metadata":{"observationId":"1c252ad9-deaf-456e-9890-19fb16bf3329","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8f3a4d63-7485-46e6-ae16-13b6da5dd961","requestVersion":1,"analysesInWindow":20,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.565Z","metadata":{"observationId":"1c252ad9-deaf-456e-9890-19fb16bf3329","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8f3a4d63-7485-46e6-ae16-13b6da5dd961","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"9a5c8d28-af63-4949-abd6-179e5a887229"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.565Z","metadata":{"observationId":"1c252ad9-deaf-456e-9890-19fb16bf3329","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8f3a4d63-7485-46e6-ae16-13b6da5dd961","analysisId":"9a5c8d28-af63-4949-abd6-179e5a887229","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.565Z","metadata":{"observationId":"1c252ad9-deaf-456e-9890-19fb16bf3329","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"8f3a4d63-7485-46e6-ae16-13b6da5dd961","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 a decision outside the vocabulary is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.651Z","metadata":{"observationId":"ec62aa72-4d6e-476d-a3ae-14a716323382","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"6cbda6c4-a3c1-4e29-b6ed-49bc2192f9de","requestVersion":1,"analysesInWindow":21,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.657Z","metadata":{"observationId":"ec62aa72-4d6e-476d-a3ae-14a716323382","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"6cbda6c4-a3c1-4e29-b6ed-49bc2192f9de","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"23964af6-12cf-4bc9-a631-bdfc90af84b0"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.657Z","metadata":{"observationId":"ec62aa72-4d6e-476d-a3ae-14a716323382","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"6cbda6c4-a3c1-4e29-b6ed-49bc2192f9de","analysisId":"23964af6-12cf-4bc9-a631-bdfc90af84b0","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.658Z","metadata":{"observationId":"ec62aa72-4d6e-476d-a3ae-14a716323382","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"6cbda6c4-a3c1-4e29-b6ed-49bc2192f9de","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    N12 a rationale below the minimum is rejected and settles nothing  [400 state=ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.743Z","metadata":{"observationId":"1bc06297-af1f-4c86-995e-80b37fc064ec","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"f488d102-c603-4a33-8493-cf751f8f9e2c","requestVersion":1,"analysesInWindow":0,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.749Z","metadata":{"observationId":"1bc06297-af1f-4c86-995e-80b37fc064ec","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"f488d102-c603-4a33-8493-cf751f8f9e2c","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"8270ae74-b2ab-4b79-8f1e-0fef06063f08"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.749Z","metadata":{"observationId":"1bc06297-af1f-4c86-995e-80b37fc064ec","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"f488d102-c603-4a33-8493-cf751f8f9e2c","analysisId":"8270ae74-b2ab-4b79-8f1e-0fef06063f08","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.750Z","metadata":{"observationId":"1bc06297-af1f-4c86-995e-80b37fc064ec","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"f488d102-c603-4a33-8493-cf751f8f9e2c","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.833Z","metadata":{"observationId":"46cda6b4-d820-4503-ad3e-004bd7fa7617","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"bb5c44ba-1e49-4e4d-aa5f-190c4c60131d","requestVersion":1,"analysesInWindow":1,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.839Z","metadata":{"observationId":"46cda6b4-d820-4503-ad3e-004bd7fa7617","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"bb5c44ba-1e49-4e4d-aa5f-190c4c60131d","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"62c07f9b-3a8b-48fb-a01c-7abd69e60c25"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.839Z","metadata":{"observationId":"46cda6b4-d820-4503-ad3e-004bd7fa7617","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"bb5c44ba-1e49-4e4d-aa5f-190c4c60131d","analysisId":"62c07f9b-3a8b-48fb-a01c-7abd69e60c25","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.840Z","metadata":{"observationId":"46cda6b4-d820-4503-ad3e-004bd7fa7617","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"bb5c44ba-1e49-4e4d-aa5f-190c4c60131d","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:17.846Z","metadata":{"observationId":"46cda6b4-d820-4503-ad3e-004bd7fa7617","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","analysisId":"62c07f9b-3a8b-48fb-a01c-7abd69e60c25","executionId":"bb5c44ba-1e49-4e4d-aa5f-190c4c60131d","decision":"classification_confirmed","analysisState":"ANALYSIS_CONFIRMED","entriesSettled":1}}
+ok    N13-0 reviewer B can genuinely settle in this workspace, so the race is a real race  [201 ]
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:17.851Z","metadata":{"observationId":"1bc06297-af1f-4c86-995e-80b37fc064ec","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","analysisId":"8270ae74-b2ab-4b79-8f1e-0fef06063f08","executionId":"f488d102-c603-4a33-8493-cf751f8f9e2c","decision":"classification_confirmed","analysisState":"ANALYSIS_CONFIRMED","entriesSettled":1}}
+ok    N13-A exactly one of two concurrent reviewers settles the analysis  [201:"SETTLED" | 409:"This analysis is ANALYSIS_CONFIRMED and is not awaiting confirmation."]
+ok    N13-B the loser gets a deterministic conflict, not a silent overwrite  [This analysis is ANALYSIS_CONFIRMED and is not awaiting confirmation.]
+ok    N13-C exactly one review row and one audit row exist  [reviews=1 audits=1]
+ok    N13-D the analysis is in exactly one settled state naming that one review  [ANALYSIS_CONFIRMED]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:17.944Z","metadata":{"observationId":"92830610-ffbc-41e1-b46e-6a419afbfcd6","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"6d5589ed-a85e-4068-8470-1cf46edc88a3","requestVersion":1,"analysesInWindow":2,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:17.951Z","metadata":{"observationId":"92830610-ffbc-41e1-b46e-6a419afbfcd6","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"6d5589ed-a85e-4068-8470-1cf46edc88a3","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"2169d1a6-be28-4f8e-a698-3f92f7619a94"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:17.951Z","metadata":{"observationId":"92830610-ffbc-41e1-b46e-6a419afbfcd6","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"6d5589ed-a85e-4068-8470-1cf46edc88a3","analysisId":"2169d1a6-be28-4f8e-a698-3f92f7619a94","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:17.952Z","metadata":{"observationId":"92830610-ffbc-41e1-b46e-6a419afbfcd6","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","organizationId":"d1ce282e-e051-4bb3-a28e-5dc695891ca3","executionId":"6d5589ed-a85e-4068-8470-1cf46edc88a3","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:17.956Z","metadata":{"observationId":"92830610-ffbc-41e1-b46e-6a419afbfcd6","inspectionId":"1e862809-f869-43cc-9afb-48a2a86f883a","analysisId":"2169d1a6-be28-4f8e-a698-3f92f7619a94","executionId":"6d5589ed-a85e-4068-8470-1cf46edc88a3","decision":"classification_confirmed","analysisState":"ANALYSIS_CONFIRMED","entriesSettled":1}}
+ok    N13-F2 the loser never sees a raw database error  [This analysis was settled by another reviewer while your decision was in flight. (Adjudicated by the]
+ok    N13-E two settlements reading the same pending state produce exactly one winner  [1 won / 1 lost]
+ok    N13-F the loser is rejected deterministically, never by last-write-wins  [This analysis was settled by another reviewer while your decision was in flight. (Adjudicated by the one-settlement-per-]
+ok    N13-G exactly one review row survives; the loser's transaction left nothing behind  [reviews=1]
+ok    N13-H the rejection came from an in-transaction guard, not merely from the earlier read  [ONE_SETTLEMENT_UNIQUE_INDEX]
+      concurrency guard that fired: ONE_SETTLEMENT_UNIQUE_INDEX
+ok    N14 retrying the winning request creates no duplicate rows  [201 REPLAYED reviews=1]
+
+---- V. version binding: a superseded analysis is detected, not silently settled ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:18.052Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"218a702e-252a-4f0b-8b8c-10f2602df277","requestVersion":1,"analysesInWindow":22,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:18.059Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"218a702e-252a-4f0b-8b8c-10f2602df277","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"ad5de15b-5a51-46da-9bee-2c1b9598074b"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:18.059Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"218a702e-252a-4f0b-8b8c-10f2602df277","analysisId":"ad5de15b-5a51-46da-9bee-2c1b9598074b","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:18.059Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"218a702e-252a-4f0b-8b8c-10f2602df277","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:18.140Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"eca08412-3520-4606-a8da-c581fc10f983","requestVersion":2,"analysesInWindow":23,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:18.147Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"eca08412-3520-4606-a8da-c581fc10f983","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"abdea51b-e634-4598-98ce-8bd8347e0df0"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:18.147Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"eca08412-3520-4606-a8da-c581fc10f983","analysisId":"abdea51b-e634-4598-98ce-8bd8347e0df0","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:18.148Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"eca08412-3520-4606-a8da-c581fc10f983","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    V-1 a second Expert analysis supersedes the first
+ok    V-2 confirming the superseded analysis is REFUSED with a specific reason  [409 A newer Expert analysis exists for this observation. Review the current analysis instead; confirming a superseded one would settle a conclusion the product has already replaced.]
+ok    V-3 and the NEWER analysis was not settled by the attempt on the older one  [ANALYSIS_AWAITING_CONFIRMATION]
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:18.156Z","metadata":{"observationId":"9b4b2b32-43c0-414c-8ba8-21a08e754973","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","analysisId":"abdea51b-e634-4598-98ce-8bd8347e0df0","executionId":"eca08412-3520-4606-a8da-c581fc10f983","decision":"classification_confirmed","analysisState":"ANALYSIS_CONFIRMED","entriesSettled":1}}
+ok    V-4 settling the newer analysis leaves the older one exactly as it was  [newer=201 older=ANALYSIS_AWAITING_CONFIRMATION]
+
+---- W. no premature findings, and authority is exposed rather than activated ----
+
+ok    W-1 a confirmed analysis still reconciles NO findings in this slice  [findings=0]
+ok    W-1 a overridden analysis still reconciles NO findings in this slice  [findings=0]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:18.240Z","metadata":{"observationId":"28351e06-4506-4e2b-8721-2718184c15ff","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cc998217-9940-46a1-b542-c46538e0b544","requestVersion":1,"analysesInWindow":24,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:18.246Z","metadata":{"observationId":"28351e06-4506-4e2b-8721-2718184c15ff","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cc998217-9940-46a1-b542-c46538e0b544","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"4604f61a-f533-4f21-8eff-964d28d6ca50"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:18.246Z","metadata":{"observationId":"28351e06-4506-4e2b-8721-2718184c15ff","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cc998217-9940-46a1-b542-c46538e0b544","analysisId":"4604f61a-f533-4f21-8eff-964d28d6ca50","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:18.247Z","metadata":{"observationId":"28351e06-4506-4e2b-8721-2718184c15ff","inspectionId":"b1947113-217f-4b62-b8a5-94bbd6aa31b9","organizationId":null,"executionId":"cc998217-9940-46a1-b542-c46538e0b544","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    W-2 an awaiting-confirmation analysis reconciles no findings either
+ok    W-3 the settlement response states that nothing downstream was activated
+ok    W-4 the CHECK constraint refuses a settled state minted without a review row
+
+simulated provider entries: {"total":52,"firstPass":28,"verifier":24,"windowsReset":0}
+ok    Z-A no execution reached a hosted transport  [{"other":0,"total":28}]
+ok    Z-B this run had a genuine opportunity to spend, so Z-A is not vacuous  [legs=52]
+
+================ §264 acceptance cases
+
+  C  PASS  human confirmation accepted unchanged
+        ANALYSIS_CONFIRMED, Expert result byte-identical, one review, one audit, retry replayed
+  D  PASS  human override / change
+        ANALYSIS_OVERRIDDEN, Expert proposal preserved, human replacement authoritative
+
+================ §264 human confirmation: 78 passed, 0 failed
+{"realProviderCalls":0,"simulatedProviderEntries":{"total":52,"firstPass":28,"verifier":24,"windowsReset":0},"productionDatabaseOperations":0,"database":"test_insite_1789307453054_6508","disposable":true,"passed":78,"failed":0,"concurrencyRejectionMechanism":"ONE_SETTLEMENT_UNIQUE_INDEX","casesPassed":["C","D"],"casesFailed":[]}
+
+> safety-insite-backend@1.0.0 test:265-expert-product-acceptance
+> ts-node scripts/test-265-expert-product-acceptance.ts
+
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+resolved target host=127.0.0.1 database=test_insite_1789307453054_6508
+target proven disposable
+
+application listening on http://127.0.0.1:60113
+
+---- P0. the read route carries the analysis-production guard profile ----
+
+ok    P0-A the read route attaches JwtGuard, EntitlementGuard and RolesGuard  [JwtGuard,EntitlementGuard,RolesGuard]
+ok    P0-B the read route requires the same fullSafeScope entitlement as the writes  [fullSafeScope]
+ok    P0-C an unauthenticated read is rejected  [401]
+
+---- A. ordinary admitted analysis, no confirmation required ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:24.436Z","metadata":{"observationId":"3b161fd2-bd3a-489b-9f6b-c32ddfe24ebf","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"726a8d69-902a-4996-95c4-6b6fc64a93d8","requestVersion":1,"analysesInWindow":0,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:24.448Z","metadata":{"observationId":"3b161fd2-bd3a-489b-9f6b-c32ddfe24ebf","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"726a8d69-902a-4996-95c4-6b6fc64a93d8","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:24.448Z","metadata":{"observationId":"3b161fd2-bd3a-489b-9f6b-c32ddfe24ebf","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"726a8d69-902a-4996-95c4-6b6fc64a93d8","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"3be9deb9-f25f-49fe-ade2-c656f48a9bf2"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:24.449Z","metadata":{"observationId":"3b161fd2-bd3a-489b-9f6b-c32ddfe24ebf","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"726a8d69-902a-4996-95c4-6b6fc64a93d8","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    A-1 the read reports the analysis present  [200]
+ok    A-2 the state is ANALYSIS_AVAILABLE  [ANALYSIS_AVAILABLE]
+ok    A-3 the producer is server_authored  [server_authored]
+ok    A-4 no confirmation is required and no question is asked
+ok    A-5 the effective decision is the admitted-no-confirmation source  [EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED]
+ok    A-6 it is settled for use and no human settled it
+ok    A-7 the execution response carried the same derivation as the read
+ok    A-8 no finding is reconciled by the analysis itself
+
+---- B. admitted analysis requiring confirmation ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:24.564Z","metadata":{"observationId":"eef5b143-c5d0-419a-9e6f-126477e2c4d3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"f35ebc26-4e9c-464b-91c0-30477e09c72f","requestVersion":1,"analysesInWindow":1,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:24.573Z","metadata":{"observationId":"eef5b143-c5d0-419a-9e6f-126477e2c4d3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"f35ebc26-4e9c-464b-91c0-30477e09c72f","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"cc7816b0-e672-4d7a-9684-343b2edb63e4"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:24.573Z","metadata":{"observationId":"eef5b143-c5d0-419a-9e6f-126477e2c4d3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"f35ebc26-4e9c-464b-91c0-30477e09c72f","analysisId":"cc7816b0-e672-4d7a-9684-343b2edb63e4","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:24.573Z","metadata":{"observationId":"eef5b143-c5d0-419a-9e6f-126477e2c4d3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"f35ebc26-4e9c-464b-91c0-30477e09c72f","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    B-1 the state is ANALYSIS_AWAITING_CONFIRMATION  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    B-2 the stored confirmation flag is served as true
+ok    B-3 the server supplies the confirmation subject and it is resolvable  [null]
+ok    B-4 the subject names the entry the rule fired on, by refKind:ref  [[{"refKind":"UNRESOLVED_DECLARATION","ref":"decl-stored-energy-state","expertClassification":"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES"}]]
+ok    B-5 the subject carries what HazLenz claimed, in the product vocabulary  [DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES]
+ok    B-6 the answer vocabulary is served by the server, not assumed by the client  [["CONTROLS_WHETHER_WORK_CONTINUES","DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES"]]
+ok    B-7 NO settled conclusion is offered while it awaits a person  [NONE_AWAITING_HUMAN_CONFIRMATION]
+ok    B-8 neither served sentence calls the unconfirmed conclusion approved or final  [This Expert analysis is available for review, and its operational conclusion requires a person to confirm it before it is acted on. It has not been confirmed. / This analysis requires a person to settle its operational conclusion, and no one has. It is not confirmed and it is not rejected.]
+ok    B-9 no settlement record exists yet
+
+---- L. the downstream consumer refuses an unsettled Expert conclusion ----
+
+ok    L-1 finalizing a finding from an unsettled Expert analysis is refused  [409]
+ok    L-2 the refusal states WHY, in the derivation's own words  [This finding rests on an Expert analysis with no settled operational conclusion. This analysis requires a person to settle its operational conclusion, and no one has. It is not confirmed and it is not rejected.]
+ok    L-3 NO finding row was written  [0]
+ok    L-4 no corrective action was created from the unsettled posture  [0]
+
+---- C. confirmation accepted unchanged ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:24.594Z","metadata":{"observationId":"eef5b143-c5d0-419a-9e6f-126477e2c4d3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","analysisId":"cc7816b0-e672-4d7a-9684-343b2edb63e4","executionId":"f35ebc26-4e9c-464b-91c0-30477e09c72f","decision":"classification_confirmed","analysisState":"ANALYSIS_CONFIRMED","entriesSettled":1}}
+ok    C-1 the settlement succeeded  [201]
+ok    C-2 the state is ANALYSIS_CONFIRMED  [ANALYSIS_CONFIRMED]
+ok    C-3 the effective decision is HUMAN_CONFIRMED_AS_AUTHORED and settled  [HUMAN_CONFIRMED_AS_AUTHORED]
+ok    C-4 the reviewer and the time of the decision are served
+ok    C-5 nothing was changed by the human, and the read says so
+ok    C-6 the Expert result is byte-identical after settlement
+
+---- M. the downstream consumer consumes the CONFIRMED decision ----
+
+ok    M-1 the SAME review that was refused now finalizes  [201]
+ok    M-2 exactly one finding exists, and only after the human settled  [1]
+
+---- D. human override of the classification ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:24.688Z","metadata":{"observationId":"b5a304cf-3d7e-4ffe-bc23-590ebffc9193","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"b2ffe661-7f30-45a6-9f88-7ec065f5da25","requestVersion":1,"analysesInWindow":2,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:24.695Z","metadata":{"observationId":"b5a304cf-3d7e-4ffe-bc23-590ebffc9193","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"b2ffe661-7f30-45a6-9f88-7ec065f5da25","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"ee1ff9d9-29a6-4b63-af83-d57e2454137c"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:24.695Z","metadata":{"observationId":"b5a304cf-3d7e-4ffe-bc23-590ebffc9193","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"b2ffe661-7f30-45a6-9f88-7ec065f5da25","analysisId":"ee1ff9d9-29a6-4b63-af83-d57e2454137c","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:24.695Z","metadata":{"observationId":"b5a304cf-3d7e-4ffe-bc23-590ebffc9193","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"b2ffe661-7f30-45a6-9f88-7ec065f5da25","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.settled","severity":"info","at":"2026-09-13T13:51:24.705Z","metadata":{"observationId":"b5a304cf-3d7e-4ffe-bc23-590ebffc9193","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","analysisId":"ee1ff9d9-29a6-4b63-af83-d57e2454137c","executionId":"b2ffe661-7f30-45a6-9f88-7ec065f5da25","decision":"classification_changed","analysisState":"ANALYSIS_OVERRIDDEN","entriesSettled":1}}
+ok    D-1 the override succeeded  [201]
+ok    D-2 the state is ANALYSIS_OVERRIDDEN  [ANALYSIS_OVERRIDDEN]
+ok    D-3 the effective decision is HUMAN_REPLACED and settled  [HUMAN_REPLACED]
+ok    D-4 the read carries BOTH sides, so the UI never implies HazLenz authored the replacement  [[{"refKind":"UNRESOLVED_DECLARATION","ref":"decl-stored-energy-state","expertClassification":"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES","effectiveClassification":"CONTROLS_WHETHER_WORK_CONTINUES","changedByHuman":true}]]
+ok    D-5 the Expert proposal is preserved byte-identically under the override
+
+---- N. the downstream consumer consumes the OVERRIDE, not the proposal ----
+
+ok    N-1 finalization proceeds on the human replacement  [201]
+ok    N-2 the effective decision the consumer read carries the HUMAN value, not the Expert one  [[{"refKind":"UNRESOLVED_DECLARATION","ref":"decl-stored-energy-state","expertClassification":"DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES","effectiveClassification":"CONTROLS_WHETHER_WORK_CONTINUES","changedByHuman":true}]]
+ok    N-3 the source records that a human replaced it, so the proposal can never be preferred
+
+---- E. whole-analysis refusal ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:24.800Z","metadata":{"observationId":"13503122-3893-4246-93e6-06091161d26f","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"9effbac4-e3f7-40df-a66e-1da7c18eb6e9","requestVersion":1,"analysesInWindow":3,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:24.806Z","metadata":{"observationId":"13503122-3893-4246-93e6-06091161d26f","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"9effbac4-e3f7-40df-a66e-1da7c18eb6e9","verifierNotReachedBecause":"FIRST_PASS_NOT_ADMITTED"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.refused","severity":"warning","at":"2026-09-13T13:51:24.807Z","metadata":{"observationId":"13503122-3893-4246-93e6-06091161d26f","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"9effbac4-e3f7-40df-a66e-1da7c18eb6e9","executionState":"ANALYSIS_REFUSED","admission":"REFUSE","providerLegs":1,"analysisId":"8ce91e6c-7090-42bc-b7db-a50c7da28300"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:24.807Z","metadata":{"observationId":"13503122-3893-4246-93e6-06091161d26f","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"9effbac4-e3f7-40df-a66e-1da7c18eb6e9","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    E-1 the state is ANALYSIS_REFUSED  [ANALYSIS_REFUSED]
+ok    E-2 no settled conclusion is offered  [NONE_REFUSED]
+ok    E-3 the served sentence does not say "no hazards"  [The Expert layer answered and the answer was refused in full. No conclusion is offered.]
+ok    E-4 no confirmation is asked about a conclusion that does not exist
+ok    E-5 the downstream consumer refuses a refused analysis too  [409]
+
+---- F. contained declaration refusal, truth preserved ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:24.902Z","metadata":{"observationId":"e7c16bc8-45f4-41e1-8e0b-0a41ef93d08d","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"79ff8aba-07f9-46e4-a498-999397260e9b","requestVersion":1,"analysesInWindow":4,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:24.909Z","metadata":{"observationId":"e7c16bc8-45f4-41e1-8e0b-0a41ef93d08d","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"79ff8aba-07f9-46e4-a498-999397260e9b","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.unresolved","severity":"warning","at":"2026-09-13T13:51:24.909Z","metadata":{"observationId":"e7c16bc8-45f4-41e1-8e0b-0a41ef93d08d","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"79ff8aba-07f9-46e4-a498-999397260e9b","executionState":"ANALYSIS_UNRESOLVED","admission":"PRESERVE_UNRESOLVED","providerLegs":1,"analysisId":"71ac083b-31a1-4e6e-bdd4-2ebfabeff9a2"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:24.909Z","metadata":{"observationId":"e7c16bc8-45f4-41e1-8e0b-0a41ef93d08d","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"79ff8aba-07f9-46e4-a498-999397260e9b","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+    F admission=PRESERVE_UNRESOLVED state=ANALYSIS_UNRESOLVED postureRefusalCodes=[] conformance=[]
+ok    F-1 the state is ANALYSIS_UNRESOLVED, so the preserved truth is visible rather than dropped  [ANALYSIS_UNRESOLVED]
+ok    F-2 the contained refusal is surfaced to the reviewer, by declaration id and code  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    F-3 no operational conclusion is manufactured from a refused declaration  [NONE_UNRESOLVED_TRUTH_PRESERVED]
+ok    F-4 no confirmation is asked about a conclusion that was not admitted
+
+---- G. preserved unresolved truth ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:24.998Z","metadata":{"observationId":"6e041827-351c-4d04-be3b-ccc20dd51888","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"7997c047-7f88-4c6c-8f52-216e684932ea","requestVersion":1,"analysesInWindow":5,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:25.006Z","metadata":{"observationId":"6e041827-351c-4d04-be3b-ccc20dd51888","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"7997c047-7f88-4c6c-8f52-216e684932ea","verifierNotReachedBecause":"FIRST_PASS_NOT_ADMITTED"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.unresolved","severity":"warning","at":"2026-09-13T13:51:25.006Z","metadata":{"observationId":"6e041827-351c-4d04-be3b-ccc20dd51888","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"7997c047-7f88-4c6c-8f52-216e684932ea","executionState":"ANALYSIS_UNRESOLVED","admission":"PRESERVE_UNRESOLVED","providerLegs":1,"analysisId":"82eb02ca-e95d-4d19-93dc-af969386bc35"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:25.006Z","metadata":{"observationId":"6e041827-351c-4d04-be3b-ccc20dd51888","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"7997c047-7f88-4c6c-8f52-216e684932ea","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+    G admission=PRESERVE_UNRESOLVED state=ANALYSIS_UNRESOLVED postureRefusalCodes=["DECLARATION_NOT_COVERED"] conformance=[]
+ok    G-1 the state is ANALYSIS_UNRESOLVED  [ANALYSIS_UNRESOLVED]
+ok    G-2 the effective decision names truth preservation, not plain refusal  [NONE_UNRESOLVED_TRUTH_PRESERVED]
+ok    G-3 no settled conclusion is offered
+ok    G-4 the preserved record reached the client  [[{"codes":["EVIDENCE_SPAN_NOT_VERBATIM"],"declarationId":"decl-stored-energy-state"}]]
+ok    G-5 the contained shape and the whole-output shape are distinguishable in the record  [F.conformance=[] G.conformance=[]]
+
+---- FAILED. a provider failure is a system failure, not a safety refusal ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:25.096Z","metadata":{"observationId":"62a63a89-9dce-4bed-be80-f19b1f0e69bc","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"312b0179-1896-44f8-b96d-34fdab7ee7f3","requestVersion":1,"analysesInWindow":6,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.transport_failure","severity":"error","at":"2026-09-13T13:51:25.100Z","metadata":{"observationId":"62a63a89-9dce-4bed-be80-f19b1f0e69bc","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"312b0179-1896-44f8-b96d-34fdab7ee7f3","failureKind":"TRANSPORT_TIMEOUT","providerLegs":1}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.failed","severity":"error","at":"2026-09-13T13:51:25.100Z","metadata":{"observationId":"62a63a89-9dce-4bed-be80-f19b1f0e69bc","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"312b0179-1896-44f8-b96d-34fdab7ee7f3","executionState":"ANALYSIS_FAILED","admission":null,"providerLegs":1,"analysisId":null}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:25.101Z","metadata":{"observationId":"62a63a89-9dce-4bed-be80-f19b1f0e69bc","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"312b0179-1896-44f8-b96d-34fdab7ee7f3","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    FAILED-1 no analysis row exists at all  [false]
+ok    FAILED-2 the execution response names it a failure, distinctly from a refusal  [ANALYSIS_FAILED/null]
+ok    FAILED-3 the sentence does not report an absence of hazards  [The Expert layer could not be reached, so it produced no analysis. This is not a finding that there are no hazards. The deterministic analysis is unaffected.]
+ok    FAILED-4 no provider or transport internals reach the client
+
+---- H. cross-tenant and unentitled access ----
+
+ok    H-1 reading another workspace's observation answers NotFound, not Forbidden  [404]
+ok    H-2 the refusal discloses nothing about the observation  [{"message":"Observation not found.","error":"Not Found","statusCode":404}]
+ok    H-3 settling across the boundary answers NotFound  [404]
+ok    H-4 a body naming its own reviewer is rejected structurally  [400]
+
+---- I. duplicate / idempotent execution ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:25.196Z","metadata":{"observationId":"e442ef09-79ab-4625-8293-c3aba4c96de3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"49e59d21-96f0-4e83-9370-95a474bce49c","requestVersion":1,"analysesInWindow":7,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:25.202Z","metadata":{"observationId":"e442ef09-79ab-4625-8293-c3aba4c96de3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"49e59d21-96f0-4e83-9370-95a474bce49c","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:25.202Z","metadata":{"observationId":"e442ef09-79ab-4625-8293-c3aba4c96de3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"49e59d21-96f0-4e83-9370-95a474bce49c","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"d15dd7ed-28a5-4f65-a277-66b2869fc5ee"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:25.202Z","metadata":{"observationId":"e442ef09-79ab-4625-8293-c3aba4c96de3","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"49e59d21-96f0-4e83-9370-95a474bce49c","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    I-1 the replay resolves to the same execution  [49e59d21-96f0-4e83-9370-95a474bce49c / 49e59d21-96f0-4e83-9370-95a474bce49c]
+ok    I-2 the replay resolves to the same analysis
+ok    I-3 exactly one first-pass leg was spent for the two requests  [1]
+ok    I-4 exactly one analysis row exists  [1]
+ok    I-5 a settlement retry under the same key replays rather than conflicting  [201 REPLAYED]
+ok    I-6 the retry created no second settlement row  [1]
+
+---- J. provenance and version persistence ----
+
+ok    J-1 the read serves the frozen §259 candidate identity  [0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee]
+ok    J-2 the contract, entry, admission, projection and confirmation-rule versions all persist  [{"candidateIdentity":"0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee","contractVersion":"hazlenz.expert.first-pass.259","entryVersion":"hazlenz.expert.production-entry.v1","admissionVersion":"hazlenz.expert.252.structural-admission.v1","projectionVersion":"hazlenz.expert.239.posture-projection.v1","confirmationRuleVersion":"hazlenz.expert.confirmation-required.261-unresolved-classification-boundary","admission":"ADMIT","verifierReached":false,"verifierNotReachedBecause":"NO_ADMITTED_DECLARATION","requestedAt":"2026-09-13T13:51:23.939Z","completedAt":"2026-09-13T13:51:24.445Z"}]
+ok    J-3 the raw provider payload is NOT served by the read
+ok    J-4 the history distinguishes the producers rather than normalising them  [["server_authored"]]
+
+---- HISTORY. the two trust boundaries stay distinguishable ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:25.299Z","metadata":{"observationId":"bf1efe21-0b60-4eba-99e8-671d234d12a2","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"ab32d24c-2d56-4f9b-94b1-3df5fbf6aec8","requestVersion":2,"analysesInWindow":8,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:25.306Z","metadata":{"observationId":"bf1efe21-0b60-4eba-99e8-671d234d12a2","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"ab32d24c-2d56-4f9b-94b1-3df5fbf6aec8","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:25.306Z","metadata":{"observationId":"bf1efe21-0b60-4eba-99e8-671d234d12a2","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"ab32d24c-2d56-4f9b-94b1-3df5fbf6aec8","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"7faa49fc-a3f9-4029-b377-f605ee97a203"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:25.306Z","metadata":{"observationId":"bf1efe21-0b60-4eba-99e8-671d234d12a2","inspectionId":"5f36b7ca-2177-4a91-bcea-7302dfd995ee","organizationId":null,"executionId":"ab32d24c-2d56-4f9b-94b1-3df5fbf6aec8","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    HIST-1 both producers appear in the history  [server_authored,client_supplied]
+ok    HIST-2 the legacy row was NOT rewritten into the new authority model
+ok    HIST-3 the current analysis served is the server-authored one  [server_authored]
+
+provider legs that reached the seam: total=11 firstPass=9 verifier=2
+ok    SPEND every leg was answered by the substituted deterministic transport, so zero hosted calls were made  [11 local legs]
+
+76 passed, 0 failed
+
+> safety-insite-backend@1.0.0 test:267-product-integration-defects
+> ts-node scripts/test-267-product-integration-defects.ts
+
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+resolved target host=127.0.0.1 database=test_insite_1789307453054_6508
+target proven disposable
+
+application listening on http://127.0.0.1:60121
+
+---- P0-1. the real shipped frontend request, on a real product observation ----
+
+ok    P0-1-A the deterministic analysis persists at requestVersion 1, as in the product  [201]
+  captured from expertApi.ts: POST /inspections/observations/93e35130-7ace-47ba-b354-75308b9daad9/expert-analyses
+  body {"idempotencyKey":"expert-93e35130-7ace-47ba-b354-75308b9daad9-0","taskContext":"changing the drive belt on the packaging line"}
+
+ok    P0-1-B the captured request came from the real client and sends NO requestVersion  [idempotencyKey,taskContext]
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:30.945Z","metadata":{"observationId":"93e35130-7ace-47ba-b354-75308b9daad9","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"2f0728eb-ef31-4709-ac82-7e364631ea62","requestVersion":2,"analysesInWindow":0,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:30.958Z","metadata":{"observationId":"93e35130-7ace-47ba-b354-75308b9daad9","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"2f0728eb-ef31-4709-ac82-7e364631ea62","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:30.958Z","metadata":{"observationId":"93e35130-7ace-47ba-b354-75308b9daad9","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"2f0728eb-ef31-4709-ac82-7e364631ea62","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"1c56260b-4e33-436e-9b8c-f642e1b408c0"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:30.959Z","metadata":{"observationId":"93e35130-7ace-47ba-b354-75308b9daad9","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"2f0728eb-ef31-4709-ac82-7e364631ea62","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    P0-1-C THE §266 DEFECT: the real client request now SUCCEEDS on an observation that already carries a deterministic analysis  [201 state=ANALYSIS_AVAILABLE]
+ok    P0-1-D the server allocated the next execution version rather than the client choosing it  [["client_supplied@v1","server_authored@v2"]]
+ok    P0-1-E exactly one Expert execution proceeded  [2 rows]
+ok    P0-1-F no version/persistence conflict was discovered after provider entry
+
+---- PRE-SPEND. a stale/conflicting execution request never reaches a provider ----
+
+ok    PRE-1 a stale request version is REFUSED  [409]
+ok    PRE-2 PROVIDER-ENTRY COUNT FOR THE REJECTED CONFLICT IS 0  [delta=0]
+ok    PRE-3 the refusal says nothing was charged  [This Expert request carries an execution version that conflicts with this observation’s an]
+ok    PRE-4 no execution row was written for the refused request
+ok    PRE-5 no analysis row was written for the refused request
+ok    PRE-6 an INVENTED version that skips ahead is also refused pre-spend  [409 delta=0]
+
+---- P0-2. a successful Expert run does not supersede the deterministic analysis ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:31.092Z","metadata":{"observationId":"5a97ddf7-5fe7-401c-8726-3ad3bd89d0ed","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"35ea1f32-489c-4ccc-b89c-348687d8155d","requestVersion":2,"analysesInWindow":1,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:31.099Z","metadata":{"observationId":"5a97ddf7-5fe7-401c-8726-3ad3bd89d0ed","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"35ea1f32-489c-4ccc-b89c-348687d8155d","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:31.099Z","metadata":{"observationId":"5a97ddf7-5fe7-401c-8726-3ad3bd89d0ed","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"35ea1f32-489c-4ccc-b89c-348687d8155d","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"9da1cf08-842a-47b4-a037-d33a3b29ca64"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:31.100Z","metadata":{"observationId":"5a97ddf7-5fe7-401c-8726-3ad3bd89d0ed","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"35ea1f32-489c-4ccc-b89c-348687d8155d","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    P0-2-A the Expert run succeeded  [201]
+ok    P0-2-B the DETERMINISTIC analysis is still current after the Expert run  [current]
+ok    P0-2-C the Expert analysis is current within its own family  [current]
+ok    P0-2-D the two rows are distinct and carry distinct producers
+ok    P0-2-E workspace reload selects the DETERMINISTIC analysis, not the Expert one  [4c9cb308-ede4-4da7-a778-b9ed00118d42]
+ok    P0-2-F the deterministic consumer receives a deterministic snapshot it can read  [executiveJudgment,multiHazardDecomposition]
+ok    P0-2-G the Expert panel receives the Expert representation  [200 server_authored]
+ok    P0-2-H the two surfaces serve different analysis ids
+ok    CAST-1 the Expert row is present in the generic payload but carries NO resultSnapshot  [["id","observationId","producer","status","analysisState","requestVersion","engineVersion","createdAt","expertResultWithheld","readThrough"]]
+ok    CAST-2 it is explicitly marked withheld rather than silently empty
+
+---- LINEAGE. D1 -> E1 -> E2 scopes Expert supersession only ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:31.205Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"8de340a3-bdad-40b5-aef7-325b09880ed0","requestVersion":2,"analysesInWindow":2,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:31.212Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"8de340a3-bdad-40b5-aef7-325b09880ed0","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:31.212Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"8de340a3-bdad-40b5-aef7-325b09880ed0","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"c20308c9-2259-4904-b1c7-9ecdc8dc7162"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:31.213Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"8de340a3-bdad-40b5-aef7-325b09880ed0","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:31.299Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"5608a1b8-48fa-48b0-ba26-c36ddccc6dea","requestVersion":3,"analysesInWindow":3,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:31.308Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"5608a1b8-48fa-48b0-ba26-c36ddccc6dea","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:31.308Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"5608a1b8-48fa-48b0-ba26-c36ddccc6dea","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"142356e3-3d6b-4064-bf0e-2632311969dd"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:31.308Z","metadata":{"observationId":"92fcc1d3-b964-4a64-9312-ee5b5b5918c4","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"5608a1b8-48fa-48b0-ba26-c36ddccc6dea","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    LIN-1 D1 remains the current deterministic analysis  [current]
+ok    LIN-2 E2 is the current Expert analysis  [current]
+ok    LIN-3 E1 is superseded WITHIN the Expert lineage  [superseded]
+ok    LIN-4 E2 did not supersede D1
+
+---- LINEAGE. D1 -> E1 -> D2 scopes deterministic supersession only ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:31.399Z","metadata":{"observationId":"8a317b16-b999-4565-95d4-3d0d1dbb2ad7","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"0513f77f-df76-4770-a62a-fc38239fea21","requestVersion":2,"analysesInWindow":4,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.verifier_failure","severity":"warning","at":"2026-09-13T13:51:31.407Z","metadata":{"observationId":"8a317b16-b999-4565-95d4-3d0d1dbb2ad7","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"0513f77f-df76-4770-a62a-fc38239fea21","verifierNotReachedBecause":"NO_ADMITTED_DECLARATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:31.407Z","metadata":{"observationId":"8a317b16-b999-4565-95d4-3d0d1dbb2ad7","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"0513f77f-df76-4770-a62a-fc38239fea21","executionState":"ANALYSIS_AVAILABLE","admission":"ADMIT","providerLegs":1,"analysisId":"6e5b8b50-09a0-445b-8886-435db5d99e3d"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:31.408Z","metadata":{"observationId":"8a317b16-b999-4565-95d4-3d0d1dbb2ad7","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"0513f77f-df76-4770-a62a-fc38239fea21","providerLegs":1,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    RERUN-0 the deterministic rerun persists  [201]
+ok    RERUN-1 D2 is the current deterministic analysis  [current]
+ok    RERUN-2 D1 is superseded within the deterministic family  [superseded]
+ok    RERUN-3 E1 is STILL the current Expert analysis  [current]
+ok    RERUN-4 the deterministic rerun did not erase the Expert provenance
+
+---- P1. the generic inspection payload does not expose Expert content ----
+
+ok    READ-1 the generic inspection payload carries no Expert posture
+ok    READ-2 it carries no Expert snapshot marker
+ok    READ-3 it still carries the deterministic snapshot unchanged
+ok    READ-4 it does not reconstruct effectiveDecision
+ok    READ-5 an unentitled principal is still blocked from the Expert read route  [402 PAID_SUBSCRIPTION_REQUIRED]
+ok    READ-6 an unauthenticated Expert read is rejected  [401]
+
+---- DISMISSAL. finalization stays gated; dismissal is released ----
+
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.started","severity":"info","at":"2026-09-13T13:51:31.504Z","metadata":{"observationId":"72a65edd-2321-4a8d-b6fe-7d48a01d1e67","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"9369fd49-db2e-46ff-8eb8-0b52836aca84","requestVersion":2,"analysesInWindow":5,"costUsdInWindow":0,"analysisLimit":50,"costLimitUsd":25}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.execution.admitted","severity":"info","at":"2026-09-13T13:51:31.512Z","metadata":{"observationId":"72a65edd-2321-4a8d-b6fe-7d48a01d1e67","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"9369fd49-db2e-46ff-8eb8-0b52836aca84","executionState":"ANALYSIS_AWAITING_CONFIRMATION","admission":"ADMIT","providerLegs":2,"analysisId":"0f112a26-d0e6-4861-af7f-2fdb394981de"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.confirmation.required","severity":"info","at":"2026-09-13T13:51:31.512Z","metadata":{"observationId":"72a65edd-2321-4a8d-b6fe-7d48a01d1e67","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"9369fd49-db2e-46ff-8eb8-0b52836aca84","analysisId":"0f112a26-d0e6-4861-af7f-2fdb394981de","analysisState":"ANALYSIS_AWAITING_CONFIRMATION"}}
+{"schema":"safety-insite.operational-event.v1","event":"expert.provider.usage_recorded","severity":"info","at":"2026-09-13T13:51:31.512Z","metadata":{"observationId":"72a65edd-2321-4a8d-b6fe-7d48a01d1e67","inspectionId":"40345374-77da-427b-9d01-c8d22d5e7455","organizationId":null,"executionId":"9369fd49-db2e-46ff-8eb8-0b52836aca84","providerLegs":2,"expectedProviderLegs":2,"firstPassInputTokens":"[redacted]","firstPassOutputTokens":"[redacted]","verifierInputTokens":"[redacted]","verifierOutputTokens":"[redacted]","costUsd":null,"transportSubstituted":true}}
+ok    DIS-0 the Expert analysis is awaiting confirmation  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    DIS-1 FINALIZATION of a finding resting on an unsettled Expert analysis is STILL blocked  [409]
+ok    DIS-2 DISMISSAL of the same finding SUCCEEDS  [201 ]
+ok    DIS-3 the finding is recorded as dismissed  [dismissed]
+ok    DIS-4 the Expert analysis is STILL ANALYSIS_AWAITING_CONFIRMATION  [ANALYSIS_AWAITING_CONFIRMATION]
+ok    DIS-5 the dismissal did not settle the analysis (no settlementReviewId)  [0]
+ok    DIS-6 deriveEffectiveDecision remains UNSETTLED after the dismissal  [source=NONE_AWAITING_HUMAN_CONFIRMATION settledForUse=false]
+ok    DIS-7 the dismissal created no corrective action
+ok    DIS-8 the dismissal is separately attributable and auditable  [["dismissed"]]
+
+---- HISTORY. both producers survive with provenance intact ----
+
+ok    HIST-1 the history carries both producers  [server_authored,server_authored,client_supplied]
+ok    HIST-2 every item preserves producer, state and version  [3 items]
+ok    HIST-3 history ordering does not define currentness — the newest item is Expert while the current deterministic analysis is older
+
+provider legs that reached the seam: total=7 firstPass=6 verifier=1
+ok    SPEND every leg was answered by the substituted deterministic transport, so zero hosted calls were made  [7 local legs]
+evidence write SKIPPED (HAZLENZ_WRITE_EVIDENCE is not 1): SECTION-267-ACCEPTANCE.json
+
+50 passed, 0 failed
+
+> safety-insite-backend@1.0.0 test:268-deployment-safety:inner
+> ts-node scripts/test-268-deployment-safety.ts
+
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+resolved target host=127.0.0.1 database=test_insite_1789307453054_6508
+target proven disposable
+
+---- A/B/C. the production migration command on a never-migrated database ----
+
+ok    A-1 the production migration command runs against compiled runtime artifacts  [exit 0]
+ok    A-2 it needs no ts-node and no src/ — it loads dist/database/data-source.js
+ok    A-3 it prints the target host and database so the release log records what was migrated
+ok    A-4 it never prints a credential
+ok    B-1800000019000 applied on the clean database
+ok    B-1800000020000 applied on the clean database
+ok    B-1800000021000 applied on the clean database
+ok    B-order the three backlog migrations applied in ascending order  [3274 < 3345 < 3406]
+ok    B-verify the command verifies the schema after migrating, in the same step
+ok    B-idempotent a second invocation is a clean no-op  [exit 0]
+ok    C-1 a failing migration exits NON-ZERO  [exit 1]
+ok    C-2 it says the new version must not be activated
+ok    C-3 it does not swallow the error into a success
+ok    C-4 MIGRATE && START never reaches START when the migration fails
+
+dropped test_insite_268_1789307495176
+
+application listening on http://127.0.0.1:60133
+
+---- D/E/F. schema readiness and running-version identification ----
+
+ok    E-1 a migrated database reports READY  [200]
+ok    E-2 readiness names the schema version it verified against  [1800000021000]
+ok    E-3 readiness reports the schema dependency explicitly, not just the database
+ok    D-1 readiness FAILS when required migrations are absent
+ok    D-2 it names the missing migrations  [1800000019000,1800000020000,1800000021000]
+ok    D-3 a never-migrated database is NOT READY rather than assumed fine
+ok    D-4 /health/live stays UP regardless, so "restart me" and "do not route to me" stay distinct
+ok    F-1 the running instance reports a commit  [1.0.0]
+ok    F-2 it reports WHICH source supplied the commit, so an unstamped build is detectable  [npm_package_version]
+ok    F-3 /health/version discloses no secret
+ok    F-4 the release verifier refuses an unstamped answer rather than matching it
+
+---- G/H. the Expert kill switch ----
+
+ok    G-1 an execution request is REFUSED while Expert is disabled  [503]
+ok    G-2 PROVIDER-ENTRY COUNT IS 0 for the blocked request  [delta=0]
+ok    G-3 the refusal names the kill switch  [EXPERT_EXECUTION_DISABLED]
+ok    G-4 the response states no provider call was made
+ok    G-5 NO execution row was written, so nothing is falsely recorded as having run
+ok    G-6 no analysis row was written
+ok    G-7 the refusal is emitted as an operational event
+ok    H-1 a deterministic analysis still persists while Expert is disabled  [201]
+ok    H-2 a human review of it still succeeds  [201]
+ok    H-3 finalizing a finding from it still succeeds — the customer-authoritative path is intact  [201]
+ok    H-4 reading an existing Expert analysis is still permitted while execution is disabled
+ok    G-8 re-enabling restores execution with no redeploy  [201]
+
+---- I/J. the workspace spend ceilings ----
+
+ok    I-1 the first analysis, below the ceiling, executes  [201]
+ok    I-2 the second analysis, still below the ceiling, executes  [201]
+ok    J-1 the third analysis is REFUSED at the workspace ceiling  [503]
+ok    J-2 PROVIDER-ENTRY COUNT IS 0 for the request blocked by the ceiling  [delta=0]
+ok    J-3 the refusal names the ceiling, not the kill switch  [WORKSPACE_ANALYSIS_CEILING_REACHED]
+ok    J-4 the ceiling refusal is emitted as an operational event
+ok    J-5 the ceiling is per workspace: the other workspace is unaffected
+ok    J-6 a cost ceiling refuses independently of the analysis count  [WORKSPACE_COST_CEILING_REACHED]
+ok    J-7 provider-entry count is 0 for the cost-blocked request
+
+---- K. provider-leg and token/cost accounting ----
+
+ok    K-0 the two-leg analysis executed  [201]
+ok    K-1 an analysis that reaches the verifier records TWO provider legs  [attempts=2]
+ok    K-2 an analysis whose verifier is deliberately not reached records ONE leg — so the count is measured, not assumed  [attempts=1]
+ok    K-3 the substituted transport reports no tokens, so cost is NULL rather than a false zero  [null]
+ok    K-4 usage is emitted as an operational event carrying the leg count  [1,1,1,1,2]
+ok    K-5 the event names the expected legs per analysis alongside the actual, so a one-leg analysis is legible rather than looking like a lost call
+ok    K-6 the usage event records that a substituted transport answered, so a null cost in a local run is never mistaken for a hosted call that reported nothing
+
+---- L/M. structured operational events, and what they must not contain ----
+
+ok    L-expert.execution.started  [5]
+ok    L-expert.execution.admitted  [5]
+ok    L-expert.control.execution_disabled  [1]
+ok    L-expert.control.spend_limit_refused  [2]
+ok    L-expert.provider.usage_recorded  [5]
+ok    L-schema every emitted event carries the stable schema and a severity  [23 events]
+ok    L-identifiers events carry the identifiers an operator needs
+ok    M-1 no observation text appears in any emitted event
+ok    M-2 no Expert posture appears in any emitted event
+ok    M-3 no bearer token or credential appears in any emitted event
+ok    M-4 no raw provider tool input appears in any emitted event
+
+provider legs that reached the seam: total=6 firstPass=5 verifier=1
+ok    SPEND every leg was answered by the substituted deterministic transport, so zero hosted calls were made  [6 local legs]
+evidence write SKIPPED (HAZLENZ_WRITE_EVIDENCE is not 1): SECTION-268-DEPLOYMENT-SAFETY.json
+
+65 passed, 0 failed
+dropped test_insite_1789307453054_6508
+
+> safety-insite-backend@1.0.0 hazlenz:evidence
+> ts-node scripts/hazlenz/evidence-integrity.ts
+
+Accepted evidence drift: PASS (0)
+  manifests checked          93
+  members verified           5562
+  worktree drift vs HEAD     0 new (0 pre-existing, see EVIDENCE-BASELINE.json)
+  in-package mismatches      8 (0 new, rest baseline)
+  external pointer drift     66 (informational)
+  living index updated       1 (verification/current/, by design)
+  untracked (not a fault)    34
+EXIT=0

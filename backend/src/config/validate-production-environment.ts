@@ -1,4 +1,7 @@
 import { assertCutoverConfigurationSafeForProduction } from '../standards/cutover/cutover-mode';
+import {
+  EXPERT_EXECUTION_ENABLED_VAR,
+} from '../safescope-v2/expert-hazlenz-product/expert-operational-controls';
 
 const INSECURE_JWT_VALUES = new Set([
   'dev-only-secret-change-me',
@@ -56,6 +59,23 @@ export function validateProductionEnvironment(): void {
     throw new Error('STORAGE_PROVIDER must be s3 in production.');
   }
   requireValue('STORAGE_S3_BUCKET');
+
+  // -----------------------------------------------------------------------------------------
+  // §268 — THE EXPERT KILL SWITCH MUST BE AN EXPLICIT PRODUCTION DECISION.
+  //
+  // Required to be present and to be exactly `true` or `false`. Not defaulted, and deliberately
+  // not defaulted in either direction: "nobody set it" and "somebody decided it" must not produce
+  // the same running system for the one control an operator reaches for in an emergency. An
+  // operator who has to discover, mid-incident, whether the switch they are about to flip was ever
+  // wired does not have a kill switch.
+  //
+  // Boot fails on absence, which is the same posture STORAGE_S3_BUCKET already takes one line up.
+  const expertExecution = String(process.env[EXPERT_EXECUTION_ENABLED_VAR] ?? '').trim();
+  if (expertExecution !== 'true' && expertExecution !== 'false') {
+    throw new Error(`${EXPERT_EXECUTION_ENABLED_VAR} must be set to exactly "true" or "false" in `
+      + 'production. It is the Expert execution kill switch and its production value must be a '
+      + `decision, not a default. Received ${JSON.stringify(process.env[EXPERT_EXECUTION_ENABLED_VAR] ?? null)}.`);
+  }
 
   const origins = String(process.env.CORS_ORIGINS || process.env.CORS_ORIGIN || '')
     .split(',')

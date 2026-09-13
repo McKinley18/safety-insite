@@ -1,0 +1,62 @@
+{
+  "artifact": "SECTION-268-DEPLOYMENT-SAFETY-AND-OPERATIONAL-CONTROLS",
+  "candidateIdentity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+  "providerCalls": 0,
+  "localTransportLegs": {
+    "total": 6,
+    "firstPass": 5,
+    "verifier": 1,
+    "windowsReset": 0
+  },
+  "assertions": {
+    "pass": 65,
+    "fail": 0
+  },
+  "cases": [
+    {
+      "id": "MIGRATION-CHAIN",
+      "title": "the production migration command applies the three-migration chain on a clean database and fails closed",
+      "passed": true,
+      "detail": "exit 0 clean, non-zero on failure"
+    },
+    {
+      "id": "READINESS-VERSION",
+      "title": "readiness distinguishes \"running\" from \"safe to serve\", and the running commit is identifiable",
+      "passed": true,
+      "detail": "schemaVersion=1800000021000"
+    },
+    {
+      "id": "KILL-SWITCH",
+      "title": "Expert execution is disabled server-side before the provider seam while the deterministic workflow stays usable",
+      "passed": true,
+      "detail": "provider-entry delta 0"
+    },
+    {
+      "id": "SPEND-CEILING",
+      "title": "a workspace ceiling refuses before the provider seam and is scoped per workspace",
+      "passed": true,
+      "detail": "provider-entry delta 0"
+    },
+    {
+      "id": "LEG-ACCOUNTING",
+      "title": "both provider legs are accounted, a one-leg analysis is recorded as one, and an unmeasured cost stays null",
+      "passed": true,
+      "detail": "twoLeg=2 oneLeg=1"
+    },
+    {
+      "id": "OBSERVABILITY",
+      "title": "the minimum event set is emitted and carries no sensitive content",
+      "passed": true,
+      "detail": "23 events"
+    }
+  ],
+  "operationalEventsObserved": [
+    "expert.confirmation.required",
+    "expert.control.execution_disabled",
+    "expert.control.spend_limit_refused",
+    "expert.execution.admitted",
+    "expert.execution.started",
+    "expert.provider.usage_recorded",
+    "expert.provider.verifier_failure"
+  ]
+}

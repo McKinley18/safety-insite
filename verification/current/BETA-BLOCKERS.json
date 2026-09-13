@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
   "asOf": "2026-09-13",
@@ -16,8 +16,12 @@
       "requiredAction": "Add a migration step that runs against the COMPILED datasource — typeorm is already a production dependency and dist/database/{data-source,migrations} are already in the image, so `typeorm -d dist/database/data-source.js migration:run` works. Run it as a release command BEFORE the new code serves traffic, and record the applied version.",
       "owner": "engineering + live infrastructure",
       "dependency": null,
-      "closureProof": "a deploy rehearsal on a disposable database proving migrate-then-serve ordering",
-      "§267": "The unapplied count is now THREE, not two. §267 added 1800000021000 (ProducerScopedAnalysisCurrentness), which replaces the single-currentness partial unique index with a producer-scoped one. It is index-only — no column, no data — but it is still schema that must be applied before the code that depends on it serves traffic, so it raises the stakes of this blocker rather than changing its nature. NO PRODUCTION MIGRATION WAS EXECUTED at §267; the migration was applied only to disposable test_* databases created and dropped by the §263 wrapper."
+      "closureProof": "autoDeploy disabled (or a pre-deploy migrate hook configured), then one migrate-then-serve deploy rehearsal completed with /health/ready reporting schema current",
+      "§267": "The unapplied count is now THREE, not two. §267 added 1800000021000 (ProducerScopedAnalysisCurrentness), which replaces the single-currentness partial unique index with a producer-scoped one. It is index-only — no column, no data — but it is still schema that must be applied before the code that depends on it serves traffic, so it raises the stakes of this blocker rather than changing its nature. NO PRODUCTION MIGRATION WAS EXECUTED at §267; the migration was applied only to disposable test_* databases created and dropped by the §263 wrapper.",
+      "§268engineeringClosed": "THE MECHANISM NOW EXISTS AND IS PROVEN LOCALLY. `npm run migrate:prod` runs `scripts/release/migrate.js`, which loads the COMPILED `dist/database/data-source.js` and uses the production `typeorm` dependency — no ts-node, no src/, no devDependency, no interactive step. It applies migrations, then verifies the schema in the SAME command using the same evaluator the running application serves at /health/ready, and exits non-zero on any failure. Measured on a never-migrated disposable database: all three backlog migrations applied in ascending order; a second invocation was a clean no-op; a failure exited non-zero and `migrate && start` never reached `start`.",
+      "§268stillOpen": "EXECUTION AND DEPLOYMENT CONTROL, both of which are live acts §268 was forbidden to perform. (1) Render autoDeploy is still ON — with it on, pushing IS deploying, and there is no point in the sequence at which migrations can run first. It must be disabled, or a pre-deploy hook set to `npm run migrate:prod`, before any push. (2) The migrations have not been run against production. Until both are done this remains a P0.",
+      "§268defenceInDepth": "If the release step is skipped anyway, /health/ready now fails closed on missing migrations, so the instance never becomes ready rather than silently serving broken reads. That is a backstop, not a substitute for the ordering.",
+      "runbook": "docs/operations/BETA_DEPLOYMENT_RUNBOOK.md"
     },
     {
       "id": "NO_TERMS_NO_PRIVACY_POLICY",
@@ -62,21 +66,6 @@
       "environmentalNotCodeDefect": true
     },
     {
-      "id": "NO_SPEND_CEILING_OR_KILL_SWITCH",
-      "priority": "P0",
-      "severity": "BLOCKER",
-      "kind": "code",
-      "statement": "No per-workspace or per-user spend ceiling exists, and there is no targeted Expert kill switch. The cost-accounting columns on expert_analysis_executions (firstPassInputTokens, firstPassOutputTokens, verifierInputTokens, verifierOutputTokens, costUsd) are never populated by the product path, because the transport seam ExpertLegResponse carries only { ok, toolInput, failureKind, detail } and drops usage.",
-      "measured": "no product-path writer for any usage column; ExpertLegResponse has no usage field; no EXPERT_ENABLED-style flag exists anywhere in src.",
-      "consequence": "Beta cost is unbounded and unattributable. §255 measured material per-analysis cost and an unconditional verifier leg. Existing controls are a 10/60s per-caller throttle, a 180s per-leg timeout, max_tokens 8000, and pre-spend idempotency — which bound RATE but not TOTAL.",
-      "mitigationThatExistsToday": "unsetting ANTHROPIC_API_KEY disables Expert and degrades to ANALYSIS_FAILED, which the product renders honestly as 'could not be reached... not a finding that there are no hazards'. That is a real, product-safe kill switch, but it needs a restart and it is not a first-class control. Revoking the fullSafeScope grant is NOT an Expert kill switch: it also disables /safescope-v2/classify, the deterministic path.",
-      "requiredAction": "carry usage back through the transport seam and persist it; add a per-workspace daily analysis ceiling enforced server-side; add an explicit Expert enable flag.",
-      "owner": "engineering",
-      "dependency": null,
-      "closureProof": "a workspace that hits the ceiling is refused before the provider is reached",
-      "§256Id": "I1 / P0-12"
-    },
-    {
       "id": "NO_ERROR_MONITORING",
       "priority": "P0",
       "severity": "BLOCKER",
@@ -87,8 +76,10 @@
       "requiredAction": "minimum: backend error reporting with release tagging, plus one operational query or dashboard over expert_analysis_executions (failures, awaiting-confirmation age) and security_audit_events (entitlement_denied, authorization failures).",
       "owner": "engineering + operations",
       "dependency": null,
-      "closureProof": "an induced failure appears in the monitoring surface within one minute",
-      "§256Id": "N9"
+      "closureProof": "unchanged: an induced failure appears in a monitoring surface within one minute. Emission alone does not satisfy it.",
+      "§256Id": "N9",
+      "§268emissionClosed": "A closed vocabulary of 17 structured operational events now exists on the `safety-insite.operational-event.v1` schema, covering Expert execution start/admit/refuse/unresolved/fail, provider transport and verifier failure, usage recorded, kill-switch and spend-limit refusals, request-version conflicts, confirmation required and settled, storage and report failures, and schema-readiness and migration failures. Redaction is BY CONSTRUCTION: metadata values are coerced to bounded scalars and any key whose NAME looks credential- or content-bearing is dropped, so passing an observation to the emitter does not log the observation. Proven: no raw provider output, no observation text, no credential, no reviewer prose in any emitted event.",
+      "§268stillOpen": "INGESTION. §268 forbids calling console output monitoring and this register will not. Nothing collects, retains, alerts on or routes these events; there is still no error-monitoring or structured-logging dependency in either workspace. Every candidate destination ingests structured stdout, so emitting the canonical shape first and choosing a destination second is the order that does not have to be undone — but the destination is unchosen and unprovisioned."
     },
     {
       "id": "BETA_CANDIDATE_NOT_PUSHED",
@@ -101,7 +92,8 @@
       "requiredAction": "push the candidate branch, then decide the deploy commit deliberately — with Render autoDeploy ON, pushing to the deployed branch IS deploying.",
       "owner": "product owner + engineering",
       "dependency": "NO_PRODUCTION_MIGRATION_MECHANISM must close first, or the push deploys code ahead of schema",
-      "closureProof": "one named SHA, confirmed by GET /health/version against the running instance"
+      "closureProof": "one named SHA, confirmed by GET /health/version against the running instance",
+      "§268": "The dependency is now SATISFIABLE rather than blocked: a production-capable migration path exists and the deployment order is documented as an executable runbook. What is still required before the push is the LIVE half — disable autoDeploy, run the migrations, then deploy the named SHA. HEAD is now 12 commits ahead of origin/main."
     }
   ],
   "canRunInParallelWithTheBlockers": [
@@ -192,7 +184,8 @@
       "kind": "live-verification",
       "statement": "No backup or point-in-time-recovery configuration or documentation exists in the repository. Whatever exists is Render-managed and external.",
       "consequence": "beta users would enter real compliance records with no established recovery position. Account deletion deliberately RETAINS inspection content (documented in auth.service.ts) — which is the right call for a compliance record and must be disclosed.",
-      "owner": "live infrastructure + legal (retention disclosure)"
+      "owner": "live infrastructure + legal (retention disclosure)",
+      "§268": "The pre-deployment verification is now DEFINED even though it cannot be performed from here: docs/operations/ROLLBACK_MODEL.md lists the four things that must be confirmed once against the live platform — backups enabled with known frequency and retention, one rehearsed restore into a scratch database, object-storage retention and deletion behaviour, and the documented account-deletion behaviour (inspection content is RETAINED by design, correct for a compliance record and requiring disclosure). Remains UNVERIFIED_LIVE."
     },
     {
       "id": "HEALTH_VERSION_OMITS_CANDIDATE_IDENTITY",
@@ -200,7 +193,8 @@
       "kind": "code",
       "statement": "/health/version reports the git commit (RENDER_GIT_COMMIT) but not the §259 candidate identity, so the analysis engine version is not directly readable from a running instance.",
       "mitigation": "the candidate is derivable from the commit; hazlenz:verify recomputes it",
-      "owner": "engineering"
+      "owner": "engineering",
+      "§268": "Still open, and adjacent work landed: §268 added `release:verify-sha`, which compares the running commit against the intended release commit and REFUSES an answer sourced from the unstamped BUILD_FALLBACK literal rather than matching against it. The candidate identity itself is still not served by /health/version."
     },
     {
       "id": "TRACKED_DEAD_CODE",
@@ -220,6 +214,16 @@
       "consequence": "COSMETIC AND CONTAINED. The read is correctly refused and no Expert content is served; the user sees \"The Expert analysis could not be completed.\" instead of \"Expert analysis is not included in this plan.\" It is a wrong message, not a wrong authorization.",
       "whyNotFixedAtSection267": "It is not one of the four defects §267 authorized, and it was not raised by §266. Fixing it opportunistically would be an unrelated change in an authorized bounded commit.",
       "requiredAction": "map 402 to EXPERT_NOT_ENTITLED alongside 403 in expertApi.ts",
+      "owner": "engineering"
+    },
+    {
+      "id": "BUILD_INFO_FALLBACK_IS_STALE",
+      "priority": "P2",
+      "kind": "code",
+      "discoveredBy": "§268",
+      "statement": "src/build-info.ts is a checked-in literal that no build step stamps. It currently names gitCommit \"ae5c586\" with a June timestamp, and getBuildMetadata() falls back to it when no pipeline variable is set.",
+      "consequence": "CONTAINED. Render sets RENDER_GIT_COMMIT, which is read first, and §268 added a GIT_COMMIT build arg to the Dockerfile for every other build path. `release:verify-sha` treats a BUILD_FALLBACK answer as NOT ESTABLISHED and exits non-zero rather than matching against it, so the stale value cannot silently confirm a deploy.",
+      "requiredAction": "stamp it at build time, or replace the literal with an explicit non-SHA sentinel so it can never look like a real commit",
       "owner": "engineering"
     }
   ],
@@ -335,14 +339,49 @@
       "resolvedBy": "§267 moved the §265 authority gate inside the `status === 'finalized'` branch in `InspectionService.finalizeFinding`. The finalization gate itself is otherwise untouched.",
       "measured": "§267 DIS-1..8. Finalization on an ANALYSIS_AWAITING_CONFIRMATION analysis is still refused 409. Dismissal of the same finding succeeds; the analysis remains ANALYSIS_AWAITING_CONFIRMATION with `settlementReviewId` NULL; `deriveEffectiveDecision` still answers NONE_AWAITING_HUMAN_CONFIRMATION with settledForUse false, humanSettled false and no entries; no corrective action is created; and the `finding_review_finalized` audit event records status `dismissed` with the reviewer, review and analysis.",
       "evidence": "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13/"
+    },
+    {
+      "id": "NO_SPEND_CEILING_OR_KILL_SWITCH",
+      "was": "P0 / BLOCKER",
+      "resolvedBy": "§268. Three controls, all enforced server-side BEFORE the pre-spend claim and therefore before the transport is reachable: an explicit Expert kill switch (EXPERT_EXECUTION_ENABLED), a per-workspace analysis ceiling, and a per-workspace cost ceiling. All three are evaluated by one pure function, `evaluateExpertExecutionPermission`, with the kill switch checked FIRST so an emergency disable works even when the usage accounting is the thing that is broken.",
+      "killSwitch": "Production must set EXPERT_EXECUTION_ENABLED to exactly \"true\" or \"false\"; boot fails otherwise, so its production value is a decision rather than a default. Disabling refuses Expert EXECUTION only — the deterministic workflow, reads of existing Expert analyses, and settlement of analyses already awaiting confirmation all keep working. Settlement stays available deliberately: disabling it too would strand every analysis already in ANALYSIS_AWAITING_CONFIRMATION and block inspection completion.",
+      "costAccounting": "The §266 gap — ExpertLegResponse drops usage, so the cost columns were never populated — is closed WITHOUT touching a frozen file. `ExpertLegResponse` lives in expert-hazlenz-analysis.ts, which is element 5 of the §259 candidate identity, and anthropic-expert-provider.ts is a protected module. So usage travels beside the response through `ExpertLegUsageReporter`, a side channel on the seam: the hosted transport already parses the provider envelope and now keeps `usage.input_tokens`/`output_tokens` instead of discarding them. Recorded for EVERY outcome, in a `finally`, because refusals and truncated answers spend too.",
+      "legAccounting": "Per LEG, never per analysis. §255 measured an unconditional verifier leg, so one analysis is not one provider call. Measured: an analysis reaching the verifier records 2 legs; one whose verifier is deliberately not reached records 1.",
+      "boundedRetry": "One attempt per leg — there is no automatic retry anywhere on the product path, so worst-case spend is bounded by the leg count rather than by a retry policy. A human retry reuses the idempotency key and resolves to the execution that already ran.",
+      "measured": "§268 cases G-1..8, H-1..4, I-1..2, J-1..7, K-0..6. Every blocked request measured a provider-entry DELTA of 0, wrote no execution row, and wrote no analysis row.",
+      "evidence": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/",
+      "residualUnverifiedLive": "A substituted transport reports no tokens, so locally `costUsd` is correctly NULL rather than a fabricated zero. That the hosted provider actually populates it is confirmable only by the one authorized live smoke."
+    },
+    {
+      "id": "DOCKER_BUILD_CONTEXT_INGESTS_SECRETS",
+      "was": "raised by §266; never carried as its own register row",
+      "resolvedBy": "§268 added `backend/.dockerignore`. §266 found none while the Dockerfile does `COPY . .`, so the entire backend working directory entered the build context — and a real `backend/.env` (DATABASE_URL, JWT_SECRET, ANTHROPIC_API_KEY) plus a `.env.backup-before-clean-db-*` were both present on disk when §268 checked. The runtime stage copies only dist/scripts/four data directories, but the BUILD stage layer still contained them and layers are part of image history.",
+      "guard": "`npm run release:check-build-context` evaluates the .dockerignore using Docker's own matching semantics — per-segment filepath.Match, `**` spanning segments, last-matching-rule-wins — without needing a daemon, so it runs in `hazlenz:test` on any machine. It asserts in BOTH directions: secret-bearing paths excluded, and the files the build and runtime actually need still included.",
+      "whatTheGuardCaught": "Its first run failed on the first draft of the rules: Docker anchors patterns at the context root, so a bare `*.pem` excludes `private.pem` and NOT `tls/private.pem`. Every secret pattern is now written twice, anchored and `**/`-prefixed.",
+      "notClaimed": "This checks the RULES, evaluated exactly. It is not a check of a produced image; a real `docker build` against a running daemon is a separate live step in the runbook.",
+      "evidence": "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13/"
+    },
+    {
+      "id": "NO_DOCUMENTED_ROLLBACK_MODEL",
+      "was": "implicit; §268 objective 6",
+      "resolvedBy": "docs/operations/ROLLBACK_MODEL.md. The governing rule is that a database rollback must never destroy human settlements or Expert analyses in order to restore older application code. The supported path is APPLICATION ROLLBACK ONTO A FORWARD-MIGRATED SCHEMA: all three backlog migrations are additive and backward-compatible with the previous application version, which is why /health/ready treats a database AHEAD of the running build as READY rather than as a fault.",
+      "migrationDownPolicy": "Production rollback is NOT \"run every DOWN\". All three are forward-only once real beta data exists, and TWO OF THE THREE ENFORCE IT THEMSELVES: 1800000020000 already refuses when settlements exist (§264 built that in), and 1800000021000 cannot recreate the stricter single-current index on any observation carrying both a current deterministic and a current Expert analysis — the normal state after any Expert run. 1800000019000 does NOT self-enforce and its DOWN would destroy every execution record and Expert provenance column; it must never be run against a database that has served beta traffic. If the schema genuinely must go backward, restore the pre-deployment backup and accept the documented write loss.",
+      "caveatRecorded": "Rolling application code back past §267 while 1800000021000 remains applied reintroduces the §266 P0-2 selection defect for the duration, because the relaxed index lets the old query find two current rows. Documented, with the instruction to set EXPERT_EXECUTION_ENABLED=false at the same time."
+    },
+    {
+      "id": "MUTATING_SCRIPT_REGISTRY_STALE",
+      "was": "raised by §267",
+      "resolvedBy": "§268 regenerated verification/current/MUTATING-SCRIPTS.json with the §263 classifier. It now carries 1049 scripts (was 1005) and classifies test-265-expert-product-acceptance as WRITES_HISTORICAL_OUTPUT / sandbox-required, listing it under writesAcceptedHistoricalEvidence, alongside entries for test-264, test-267 and the two §268 suites.",
+      "classifierExtended": "Two minimal extensions, each closing a case where the registry was structurally unable to see or correctly label a real mutator. (1) It scanned `.ts` only, so the §268 release scripts — plain JavaScript precisely so they run in the production image without ts-node — were invisible, including the one that migrates production schema. (2) Its database-mutation pattern recognised only the CLI form `migration:run`, so scripts/release/migrate.js was classified READ_ONLY; it now also recognises `runMigrations` and `undoLastMigration` and is correctly MUTATES_DATABASE.",
+      "mutationSafetyRule": "§268 required that normal verification not run evidence writers in write mode. All three evidence-writing suites (§265, §267, §268) now route their writes through one shared gate, `scripts/lib/evidence-write-gate.ts`, off unless HAZLENZ_WRITE_EVIDENCE=1. No assertion is gated — only the side effect of overwriting an accepted package — which is what lets hazlenz:evidence mean \"something changed\" rather than \"a suite ran again\"."
     }
   ],
   "verdict": {
     "question": "Is the current Safety InSite v1.0 product ready for a controlled human beta?",
     "answer": "NO",
-    "terminal": "SAFETY_INSITE_CONTROLLED_BETA_NOT_YET_READY — FINITE_P0_CLOSURE_PLAN_AUTHORIZATION_REQUIRED",
+    "terminal": "SAFETY_INSITE_BETA_INFRASTRUCTURE_OPERATIONS_ENGINEERING_CLOSED — LIVE_INFRASTRUCTURE_AND_LEGAL_CLOSURE_AUTHORIZATION_REQUIRED",
     "architectureSound": true,
-    "why": "The safety-authority architecture is sound and proven, and as of §267 the Expert PRODUCT INTEGRATION defects are closed: the shipped client executes against a real observation, conflicts are adjudicated before spend, deterministic and Expert currentness are independent, the generic inspection read no longer serves raw Expert snapshots, and finding dismissal no longer requires settling an Expert classification. What blocks beta is now purely INFRASTRUCTURE, OPERATIONS AND LEGAL: production has no migration mechanism (and now three unapplied migrations), no Terms or Privacy Policy exist, no third-party model disclosure exists, report generation has no object storage, there is no spend ceiling or kill switch, there is no error monitoring, and the candidate has never been pushed. Every remaining P0 is finite and none requires redesign.",
-    "measuredNotInferred": "§266 ran a read-only probe and measured P0-1, P0-2 and P0-3. §267 closed the first two and the two P1 items against a disposable database over real HTTP with zero provider calls, using a request body constructed by the shipped frontend module itself."
+    "why": "The safety-authority architecture was proven through §265, the Expert product-integration defects closed at §267, and as of §268 the LOCAL ENGINEERING for a beta deployment exists: a production-capable migration command that runs in the deployed artifact and fails closed, a readiness probe that distinguishes \"running\" from \"safe to serve\", a release-SHA verifier, an Expert kill switch, per-workspace spend ceilings enforced before the provider seam, per-leg cost accounting, a closed structured-event vocabulary with redaction by construction, a documented rollback model, and a build context that can no longer ingest a .env. What remains is deliberately NOT engineering: LIVE INFRASTRUCTURE — disable autoDeploy, run the migrations, provision object storage, provision backups, provision an error-monitoring destination, deploy a named SHA and run one authorized Expert smoke — and the entire LEGAL lane, which §268 was forbidden to touch and which no engineering work makes implicit.",
+    "measuredNotInferred": "§268 measured its controls against disposable databases over real HTTP with zero provider calls and zero production database operations. Every refusal path was measured as a provider-entry DELTA of zero. Nothing live was contacted, configured or deployed."
   }
 }

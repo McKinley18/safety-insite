@@ -1,0 +1,200 @@
+/**
+ * §268 — THE MINIMUM BETA OPERATIONAL SIGNAL SET.
+ *
+ * ===============================================================================================
+ * WHAT THIS IS, STATED HONESTLY.
+ *
+ * This is the EMISSION layer: one structured line per operationally meaningful event, on a stable
+ * schema, with bounded metadata. It is not a monitoring system and §268 forbids calling it one.
+ * Collection, retention, alerting and on-call routing are a platform concern that no code in this
+ * repository can satisfy, and the beta blocker for those remains open until a log drain or error
+ * reporter is actually provisioned and an induced failure is observed arriving in it.
+ *
+ * What it does buy, today: the product currently writes rich `security_audit_events` and
+ * `expert_analysis_executions` rows and surfaces none of it, and nothing at all is emitted in a
+ * shape a drain could parse. §266's finding was that a beta whose stated purpose is learning from
+ * real use would run blind. After this, every event below is one `grep` away on any platform that
+ * captures stdout, and one drain configuration away from being queryable.
+ *
+ * ===============================================================================================
+ * WHY STDOUT JSON AND NOT A VENDOR SDK.
+ *
+ * §268 says not to build a new observability platform, and adding a vendor dependency now would
+ * commit the beta to a vendor before anyone has chosen one. Every candidate — Sentry, Datadog,
+ * Better Stack, Render's own log stream — ingests structured stdout. Emitting the canonical shape
+ * first and choosing the destination second is the order that does not have to be undone.
+ *
+ * ===============================================================================================
+ * REDACTION IS BY CONSTRUCTION, NOT BY REVIEW.
+ *
+ * §268 forbids raw provider output, observation text, tokens, keys and attachments in logs. A rule
+ * that says "do not log observation text" is a rule someone breaks in six months while adding a
+ * helpful debug line. So `emit` does not accept arbitrary objects: metadata values are coerced to
+ * bounded scalars, any key whose NAME looks credential- or content-bearing is dropped, and any
+ * string longer than `MAX_VALUE_LENGTH` is truncated. Passing an observation to this function does
+ * not log the observation — it logs a truncated, key-filtered scalar or nothing at all.
+ *
+ * Identifiers are the intended payload: an observation ID, an execution ID, an organization ID, a
+ * state name, a count, a duration. Everything an operator needs to find the row, nothing that
+ * discloses what the row says.
+ */
+
+export const OPERATIONAL_EVENT_SCHEMA = 'safety-insite.operational-event.v1' as const;
+
+/**
+ * THE CLOSED EVENT VOCABULARY. Closed because an open one becomes a second, undocumented log
+ * format within a release, and because a dashboard can only be built against names that are fixed.
+ */
+export const OPERATIONAL_EVENTS = [
+  // ---- Expert execution lifecycle
+  'expert.execution.started',
+  'expert.execution.admitted',
+  'expert.execution.refused',
+  'expert.execution.unresolved',
+  'expert.execution.failed',
+  // ---- provider / transport
+  'expert.provider.transport_failure',
+  'expert.provider.verifier_failure',
+  'expert.provider.usage_recorded',
+  // ---- operational controls
+  'expert.control.execution_disabled',
+  'expert.control.spend_limit_refused',
+  'expert.control.request_version_conflict',
+  // ---- the human authority boundary
+  'expert.confirmation.required',
+  'expert.confirmation.settled',
+  // ---- platform
+  'storage.operation_failed',
+  'report.generation_failed',
+  'schema.readiness_failed',
+  'migration.failed',
+] as const;
+export type OperationalEvent = (typeof OPERATIONAL_EVENTS)[number];
+
+export type OperationalSeverity = 'info' | 'warning' | 'error';
+
+/** Severity per event, fixed here so two call sites cannot disagree about how loud one thing is. */
+const SEVERITY: Record<OperationalEvent, OperationalSeverity> = {
+  'expert.execution.started': 'info',
+  'expert.execution.admitted': 'info',
+  // A refusal is the fail-closed path working correctly, not an error. It is a WARNING because a
+  // rising refusal rate is the single most informative Expert signal in a beta.
+  'expert.execution.refused': 'warning',
+  'expert.execution.unresolved': 'warning',
+  'expert.execution.failed': 'error',
+  'expert.provider.transport_failure': 'error',
+  'expert.provider.verifier_failure': 'warning',
+  'expert.provider.usage_recorded': 'info',
+  'expert.control.execution_disabled': 'warning',
+  'expert.control.spend_limit_refused': 'warning',
+  'expert.control.request_version_conflict': 'warning',
+  'expert.confirmation.required': 'info',
+  'expert.confirmation.settled': 'info',
+  'storage.operation_failed': 'error',
+  'report.generation_failed': 'error',
+  'schema.readiness_failed': 'error',
+  'migration.failed': 'error',
+};
+
+const MAX_VALUE_LENGTH = 200;
+
+/**
+ * Key names that must never carry a value into a log line, matched on the NAME rather than on the
+ * content. Content-based redaction requires recognising a secret, and the ones that matter are the
+ * ones nobody recognised.
+ */
+const FORBIDDEN_KEY = new RegExp([
+  'token', 'secret', 'password', 'passwd', 'credential', 'apikey', 'api_key', 'authorization',
+  'cookie', 'session', 'privatekey', 'private_key',
+  // Content-bearing, not credential-bearing, and equally forbidden by §268.
+  'rawtext', 'observationtext', 'narrative', 'prompt', 'snapshot', 'resultsnapshot',
+  'toolinput', 'rawfirstpass', 'rawverifier', 'completion', 'attachment', 'filecontent',
+  'posture', 'reasoning', 'rationale', 'conclusion', 'explanation',
+].join('|'), 'i');
+
+export type OperationalMetadata = Record<string, unknown>;
+
+/**
+ * Coerce one metadata value to something safe to print.
+ *
+ * Objects and arrays are reduced to a shape description rather than serialised. An operator
+ * learning that a field held 3 items is useful; a log line containing those 3 items is the leak.
+ */
+function safeValue(value: unknown): string | number | boolean | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') {
+    return value.length > MAX_VALUE_LENGTH ? `${value.slice(0, MAX_VALUE_LENGTH)}…[truncated]` : value;
+  }
+  if (Array.isArray(value)) return `[array:${value.length}]`;
+  if (value instanceof Date) return value.toISOString();
+  return `[object:${Object.keys(value as object).length}]`;
+}
+
+export function redactMetadata(metadata: OperationalMetadata): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(metadata)) {
+    if (FORBIDDEN_KEY.test(key)) { out[key] = '[redacted]'; continue; }
+    out[key] = safeValue(value);
+  }
+  return out;
+}
+
+export interface OperationalEventLine {
+  readonly schema: typeof OPERATIONAL_EVENT_SCHEMA;
+  readonly event: OperationalEvent;
+  readonly severity: OperationalSeverity;
+  readonly at: string;
+  readonly metadata: Record<string, unknown>;
+}
+
+export function buildOperationalEvent(
+  event: OperationalEvent,
+  metadata: OperationalMetadata = {},
+  now: Date = new Date(),
+): OperationalEventLine {
+  return {
+    schema: OPERATIONAL_EVENT_SCHEMA,
+    event,
+    severity: SEVERITY[event],
+    at: now.toISOString(),
+    metadata: redactMetadata(metadata),
+  };
+}
+
+/** Test hook: capture emissions in-process instead of writing them. Never used in production. */
+let sink: ((line: OperationalEventLine) => void) | null = null;
+export function captureOperationalEventsForVerification(
+  capture: ((line: OperationalEventLine) => void) | null,
+): void {
+  if (process.env.NODE_ENV !== 'test') {
+    throw new Error('OPERATIONAL_EVENTS_268_ABORT: emissions may only be captured under '
+      + 'NODE_ENV=test');
+  }
+  sink = capture;
+}
+
+/**
+ * EMIT. Errors and warnings go to stderr, information to stdout, because most log drains and
+ * platform dashboards separate the two streams by default and an operator scanning for trouble
+ * should not have to filter out the happy path first.
+ *
+ * It never throws. An observability layer that can break a safety analysis is worse than no
+ * observability layer, so a failure to log is swallowed deliberately — this is the one place in
+ * the product where swallowing is the correct behaviour.
+ */
+export function emitOperationalEvent(
+  event: OperationalEvent,
+  metadata: OperationalMetadata = {},
+): void {
+  try {
+    const line = buildOperationalEvent(event, metadata);
+    if (sink) { sink(line); return; }
+    const serialized = JSON.stringify(line);
+    if (line.severity === 'info') process.stdout.write(`${serialized}\n`);
+    else process.stderr.write(`${serialized}\n`);
+  } catch {
+    // Deliberately silent. See above.
+  }
+}

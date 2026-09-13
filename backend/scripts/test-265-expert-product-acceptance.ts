@@ -53,6 +53,7 @@ import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
 } from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
+import { evidenceWritesEnabled } from './lib/evidence-write-gate';
 
 const PROTECTED_DATABASE_NAMES = [
   'safescope', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1',
@@ -326,9 +327,11 @@ async function main(): Promise<void> {
   // the evidence guard able to mean "something changed" rather than "the suite ran again". The
   // §265 bytes on disk remain exactly the bytes §265 accepted.
   //
-  // Set SECTION_265_WRITE_EVIDENCE=1 to regenerate the package deliberately — which also requires
-  // recomputing `REPORT-265.sha256`, and is therefore an authorized act rather than a side effect.
-  const WRITE_EVIDENCE = process.env.SECTION_265_WRITE_EVIDENCE === '1';
+  // §268 replaced §267's suite-specific variable with the one shared gate in
+  // `scripts/lib/evidence-write-gate.ts`, because §267 and §268 have the same problem and three
+  // conventions for one rule is how the rule gets forgotten. Set HAZLENZ_WRITE_EVIDENCE=1 to
+  // regenerate the package deliberately — which also obliges recomputing `REPORT-265.sha256`.
+  const WRITE_EVIDENCE = evidenceWritesEnabled();
   const evidenceDir = join(__dirname, '..', '..', 'verification',
     'expert-hazlenz-265-frontend-product-workflow-2026-09-12');
   if (WRITE_EVIDENCE) {

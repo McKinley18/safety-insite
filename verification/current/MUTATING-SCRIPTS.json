@@ -13,12 +13,12 @@
     "UNKNOWN_WRITE_BEHAVIOR"
   ],
   "totals": {
-    "scripts": 1005,
-    "READ_ONLY": 650,
-    "WRITES_HISTORICAL_OUTPUT": 252,
-    "UNKNOWN_WRITE_BEHAVIOR": 101,
-    "MUTATES_DATABASE": 39,
-    "PROVIDER_CALLING": 61,
+    "scripts": 1049,
+    "READ_ONLY": 666,
+    "WRITES_HISTORICAL_OUTPUT": 253,
+    "UNKNOWN_WRITE_BEHAVIOR": 128,
+    "MUTATES_DATABASE": 48,
+    "PROVIDER_CALLING": 63,
     "LIVE_ENVIRONMENT": 33,
     "WRITES_SUCCESSOR_OUTPUT": 2
   },
@@ -2842,6 +2842,17 @@
       "safeReplacement": null
     },
     {
+      "script": "backend/scripts/test-265-expert-product-acceptance.ts",
+      "packages": [
+        "expert-hazlenz-265-frontend-product-workflow-2026-09-12"
+      ],
+      "paths": [
+        "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12"
+      ],
+      "sandboxRequired": true,
+      "safeReplacement": null
+    },
+    {
       "script": "backend/scripts/test-expert-193-hardening.ts",
       "packages": [
         "expert-hazlenz-verifier-v3-1-integration-readiness-hardening-2026-09-06",
@@ -3284,6 +3295,7 @@
     "backend/scripts/audit-safescope-brain-coverage-matrix.ts",
     "backend/scripts/audit-safescope-findings.ts",
     "backend/scripts/audit-safescope-hazard-universe-coverage.ts",
+    "backend/scripts/audit-test-data.js",
     "backend/scripts/build-kg4e-mutation-control.ts",
     "backend/scripts/build-l32c-holdout.ts",
     "backend/scripts/build-l32d-devset.ts",
@@ -3291,6 +3303,7 @@
     "backend/scripts/build-l32e-holdout.ts",
     "backend/scripts/build-l32f-devset.ts",
     "backend/scripts/build-l32f-holdout.ts",
+    "backend/scripts/category-audit.js",
     "backend/scripts/compare-kg4d-customer-capture.ts",
     "backend/scripts/compare-kg4e-report-invariance.ts",
     "backend/scripts/compare-l32-customer-invariance.ts",
@@ -3298,7 +3311,13 @@
     "backend/scripts/compare-l32b-reproducibility.ts",
     "backend/scripts/create-safescope-precision-batch-001.ts",
     "backend/scripts/create-safescope-precision-batch-002.ts",
+    "backend/scripts/enterprise-stress-audit.js",
     "backend/scripts/export-approved-safescope-knowledge.ts",
+    "backend/scripts/fix-all-seeds.js",
+    "backend/scripts/fix-camera.js",
+    "backend/scripts/fix-dropdown-overflow.js",
+    "backend/scripts/fix-jsx.js",
+    "backend/scripts/fix-seeds.js",
     "backend/scripts/freeze-207-preregistration.ts",
     "backend/scripts/freeze-l32d-prompt-variants.ts",
     "backend/scripts/generate-5k-real-v2.ts",
@@ -3307,19 +3326,27 @@
     "backend/scripts/generate-5k-real.ts",
     "backend/scripts/generate-5k-scenarios.ts",
     "backend/scripts/generate-batch-v4.ts",
+    "backend/scripts/generate-batch-v5.js",
     "backend/scripts/generate-batch-v5.ts",
     "backend/scripts/generate-batch-v6.ts",
     "backend/scripts/generate-batch.ts",
+    "backend/scripts/generate-condition-benchmark.js",
+    "backend/scripts/generate-corrective-action-library.js",
+    "backend/scripts/generate-engine-validation-report.js",
     "backend/scripts/generate-real-scenarios.ts",
     "backend/scripts/generate-safescope-approved-knowledge-bridge-snapshot.ts",
     "backend/scripts/generate-safescope-approved-knowledge-integration-snapshot.ts",
     "backend/scripts/generate-safescope-reasoning-orchestrator-snapshot.ts",
     "backend/scripts/generate-safescope-reasoning-scenario-coverage.ts",
     "backend/scripts/generate-safescope-reasoning-scenario-maturity.ts",
+    "backend/scripts/generate-scenario-bank.js",
     "backend/scripts/generate-scenarios-10k.ts",
+    "backend/scripts/integrate-risk-ui.js",
     "backend/scripts/legacy-database-inventory.ts",
+    "backend/scripts/lib/evidence-write-gate.ts",
     "backend/scripts/lib/expert-probe-identity.ts",
     "backend/scripts/lib/expert-run-record-store.ts",
+    "backend/scripts/massive-enterprise-audit.js",
     "backend/scripts/measure-suggest-backing-impact.ts",
     "backend/scripts/probe-kg3f-retrieval.ts",
     "backend/scripts/prove-l32f-rootcause.ts",
@@ -3328,16 +3355,24 @@
     "backend/scripts/record-209-batch.ts",
     "backend/scripts/record-209-verdict.ts",
     "backend/scripts/rederive-l32g-resolution.ts",
+    "backend/scripts/refactor-camera-ui-risk.js",
+    "backend/scripts/refactor-camera-ui.js",
     "backend/scripts/render-207-artifacts.ts",
     "backend/scripts/report-kg4a-performance.ts",
     "backend/scripts/report-kg4b-shadow-analytics.ts",
     "backend/scripts/report-kg4b-shadow-performance.ts",
     "backend/scripts/report-safescope-knowledge-coverage.ts",
     "backend/scripts/run-229-protected-ladder.ts",
+    "backend/scripts/run-async-audit.js",
     "backend/scripts/run-audit-runner.ts",
+    "backend/scripts/run-condition-library-batch.js",
+    "backend/scripts/run-enterprise-audit.js",
+    "backend/scripts/run-gemini-standards-batch.js",
     "backend/scripts/run-kg4d-customer-capture.ts",
     "backend/scripts/run-kg4e-report-capture.ts",
     "backend/scripts/run-l32-reasoning.ts",
+    "backend/scripts/run-massive-audit.js",
+    "backend/scripts/run-massive-relevance-audit.js",
     "backend/scripts/run-safescope-200-baseline-calibration-triage.ts",
     "backend/scripts/run-safescope-200-baseline-calibration.ts",
     "backend/scripts/run-safescope-full-validation.ts",
@@ -3367,6 +3402,9 @@
     "backend/scripts/test-release-binding-acceptance.ts",
     "backend/scripts/test-report-replacement-failure-safety.ts",
     "backend/scripts/trace-l32b-rootcause.ts",
+    "backend/scripts/update-categories-final.js",
+    "backend/scripts/update-categories-refined.js",
+    "backend/scripts/update-categories.js",
     "backend/scripts/validate-safescope-approved-export-with-fixture.ts",
     "backend/scripts/validate-safescope-approved-knowledge-bridge.ts",
     "backend/scripts/validate-safescope-approved-knowledge-integration-adapter.ts",
@@ -4096,6 +4134,43 @@
       "sandboxRequired": false
     },
     {
+      "npmScript": "test:264-expert-human-confirmation",
+      "script": "backend/scripts/test-264-expert-human-confirmation.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "PROVIDER_CALLING",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false
+    },
+    {
+      "npmScript": "test:265-expert-product-acceptance",
+      "script": "backend/scripts/test-265-expert-product-acceptance.ts",
+      "classes": [
+        "WRITES_HISTORICAL_OUTPUT"
+      ],
+      "sandboxRequired": true
+    },
+    {
+      "npmScript": "test:268-deployment-safety",
+      "script": "backend/scripts/hazlenz/with-disposable-db.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false
+    },
+    {
+      "npmScript": "test:268-deployment-safety:inner",
+      "script": "backend/scripts/test-268-deployment-safety.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "PROVIDER_CALLING",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false
+    },
+    {
       "npmScript": "test:approval-contract",
       "script": "backend/scripts/test-approval-contract.ts",
       "classes": [
@@ -4362,6 +4437,15 @@
       "sandboxRequired": false
     },
     {
+      "npmScript": "test:kg4d-default-off",
+      "script": "backend/scripts/test-kg4d-default-off.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false
+    },
+    {
       "npmScript": "test:kg4d-integration-e2e",
       "script": "backend/scripts/test-kg4d-integration-e2e.ts",
       "classes": [
@@ -4382,9 +4466,19 @@
       "npmScript": "test:kg5b-approval-continuity",
       "script": "backend/scripts/test-kg5b-approval-continuity.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "WRITES_HISTORICAL_OUTPUT"
       ],
       "sandboxRequired": true
+    },
+    {
+      "npmScript": "test:kg5b-operator-cli",
+      "script": "backend/scripts/test-kg5b-operator-cli.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false
     },
     {
       "npmScript": "test:kg5b-release-construction",
@@ -4399,6 +4493,7 @@
       "npmScript": "test:kg5c-customer-path-equivalence",
       "script": "backend/scripts/test-kg5c-customer-path-equivalence.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "WRITES_HISTORICAL_OUTPUT"
       ],
       "sandboxRequired": true
@@ -4407,6 +4502,7 @@
       "npmScript": "test:kg5c-goldset-customer-path",
       "script": "backend/scripts/test-kg5c-goldset-customer-path.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "WRITES_HISTORICAL_OUTPUT"
       ],
       "sandboxRequired": true
@@ -5176,6 +5272,43 @@
         "READ_ONLY"
       ],
       "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
+      "script": "backend/scripts/audit-test-data.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/benchmark-condition-engine.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
+      "script": "backend/scripts/beta-readiness.ts",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [
+        "verification/current/MUTATING-SCRIPTS.json"
+      ],
       "evidencePackagesNamed": [],
       "unresolvedWriteCalls": 0,
       "sandboxRequired": false,
@@ -6153,6 +6286,19 @@
       ]
     },
     {
+      "script": "backend/scripts/category-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/chaos-diagnostic.ts",
       "classes": [
         "READ_ONLY"
@@ -7117,6 +7263,19 @@
       ]
     },
     {
+      "script": "backend/scripts/enterprise-stress-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/execute-197-structured-e2e-2026-09-07.ts",
       "classes": [
         "PROVIDER_CALLING",
@@ -7693,6 +7852,71 @@
       ]
     },
     {
+      "script": "backend/scripts/fix-all-seeds.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/fix-camera.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/fix-dropdown-overflow.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/fix-jsx.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/fix-seeds.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/freeze-195-cohort-2026-09-06.ts",
       "classes": [
         "WRITES_HISTORICAL_OUTPUT"
@@ -7868,6 +8092,19 @@
       ]
     },
     {
+      "script": "backend/scripts/generate-batch-v5.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/generate-batch-v5.ts",
       "classes": [
         "UNKNOWN_WRITE_BEHAVIOR"
@@ -7904,6 +8141,45 @@
       "sandboxRequired": true,
       "notes": [
         "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/generate-condition-benchmark.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/generate-corrective-action-library.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "2 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/generate-engine-validation-report.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "2 write call(s) whose destination the static reader could not resolve to a literal path"
       ]
     },
     {
@@ -7985,6 +8261,19 @@
       ]
     },
     {
+      "script": "backend/scripts/generate-scenario-bank.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/generate-scenarios-10k.ts",
       "classes": [
         "UNKNOWN_WRITE_BEHAVIOR"
@@ -8041,7 +8330,10 @@
       "classes": [
         "READ_ONLY"
       ],
-      "writesLiteralPaths": [],
+      "writesLiteralPaths": [
+        "  living index updated       ${result.livingIndexChanged} (verification/current/, by design)",
+        "verification/current/"
+      ],
       "evidencePackagesNamed": [],
       "unresolvedWriteCalls": 0,
       "sandboxRequired": false,
@@ -8127,6 +8419,19 @@
       "notes": []
     },
     {
+      "script": "backend/scripts/integrate-risk-ui.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/legacy-database-inventory.ts",
       "classes": [
         "UNKNOWN_WRITE_BEHAVIOR"
@@ -8154,6 +8459,19 @@
       "sandboxRequired": true,
       "notes": [
         "writes into an accepted historical evidence package"
+      ]
+    },
+    {
+      "script": "backend/scripts/lib/evidence-write-gate.ts",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "2 write call(s) whose destination the static reader could not resolve to a literal path"
       ]
     },
     {
@@ -10463,6 +10781,20 @@
       "notes": []
     },
     {
+      "script": "backend/scripts/lib/test-database-ownership.js",
+      "classes": [
+        "MUTATES_DATABASE",
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": [
+        "issues schema or row mutation; disposable target only"
+      ]
+    },
+    {
       "script": "backend/scripts/lib/test-database-ownership.ts",
       "classes": [
         "MUTATES_DATABASE",
@@ -10486,6 +10818,19 @@
       "unresolvedWriteCalls": 0,
       "sandboxRequired": false,
       "notes": []
+    },
+    {
+      "script": "backend/scripts/massive-enterprise-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
     },
     {
       "script": "backend/scripts/massive-marketing-audit.ts",
@@ -11607,6 +11952,32 @@
       ]
     },
     {
+      "script": "backend/scripts/refactor-camera-ui-risk.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/refactor-camera-ui.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/regression-audit-v1.2.ts",
       "classes": [
         "READ_ONLY"
@@ -11678,6 +12049,53 @@
       ]
     },
     {
+      "script": "backend/scripts/release/check-build-context.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
+      "script": "backend/scripts/release/migrate.js",
+      "classes": [
+        "MUTATES_DATABASE",
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": [
+        "issues schema or row mutation; disposable target only"
+      ]
+    },
+    {
+      "script": "backend/scripts/release/verify-running-sha.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
+      "script": "backend/scripts/relevance-audit.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
       "script": "backend/scripts/render-207-artifacts.ts",
       "classes": [
         "UNKNOWN_WRITE_BEHAVIOR"
@@ -11714,6 +12132,17 @@
       "notes": [
         "writes into an accepted historical evidence package"
       ]
+    },
+    {
+      "script": "backend/scripts/render-start-diagnostic.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
     },
     {
       "script": "backend/scripts/repair-vc04-verifier-v2-measurement-2026-09-04.ts",
@@ -12104,6 +12533,19 @@
       ]
     },
     {
+      "script": "backend/scripts/run-async-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
       "script": "backend/scripts/run-audit-runner.ts",
       "classes": [
         "UNKNOWN_WRITE_BEHAVIOR"
@@ -12135,6 +12577,45 @@
         "requires a live environment: storage, a running server, a browser or billing",
         "issues schema or row mutation; disposable target only",
         "writes into an accepted historical evidence package"
+      ]
+    },
+    {
+      "script": "backend/scripts/run-condition-library-batch.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "3 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/run-enterprise-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/run-gemini-standards-batch.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "2 write call(s) whose destination the static reader could not resolve to a literal path"
       ]
     },
     {
@@ -12219,6 +12700,32 @@
       "sandboxRequired": true,
       "notes": [
         "2 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/run-massive-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/run-massive-relevance-audit.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
       ]
     },
     {
@@ -12808,6 +13315,17 @@
       "notes": [
         "writes into an accepted historical evidence package"
       ]
+    },
+    {
+      "script": "backend/scripts/sentinel-condition-engine.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
     },
     {
       "script": "backend/scripts/shadow-governed-standards.ts",
@@ -13784,6 +14302,96 @@
       ]
     },
     {
+      "script": "backend/scripts/test-264-expert-human-confirmation.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "PROVIDER_CALLING",
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": [
+        "names a provider credential, endpoint or hosted transport",
+        "issues schema or row mutation; disposable target only"
+      ]
+    },
+    {
+      "script": "backend/scripts/test-264-settlement-contract.ts",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
+      "script": "backend/scripts/test-265-expert-product-acceptance.ts",
+      "classes": [
+        "WRITES_HISTORICAL_OUTPUT"
+      ],
+      "writesLiteralPaths": [
+        "verification/expert-hazlenz-265-frontend-product-workflow-2026-09-12"
+      ],
+      "evidencePackagesNamed": [
+        "expert-hazlenz-265-frontend-product-workflow-2026-09-12"
+      ],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "writes into an accepted historical evidence package"
+      ]
+    },
+    {
+      "script": "backend/scripts/test-267-product-integration-defects.ts",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [
+        "verification/expert-hazlenz-267-product-integration-defect-closure-2026-09-13"
+      ],
+      "evidencePackagesNamed": [
+        "expert-hazlenz-267-product-integration-defect-closure-2026-09-13"
+      ],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
+      "script": "backend/scripts/test-268-deployment-safety.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "PROVIDER_CALLING",
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [
+        "verification/expert-hazlenz-268-beta-infrastructure-operations-2026-09-13"
+      ],
+      "evidencePackagesNamed": [
+        "expert-hazlenz-268-beta-infrastructure-operations-2026-09-13"
+      ],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": [
+        "names a provider credential, endpoint or hosted transport",
+        "issues schema or row mutation; disposable target only"
+      ]
+    },
+    {
+      "script": "backend/scripts/test-268-operational-controls.ts",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
       "script": "backend/scripts/test-applicable-standards.ts",
       "classes": [
         "READ_ONLY"
@@ -13881,6 +14489,17 @@
       "notes": [
         "requires a live environment: storage, a running server, a browser or billing"
       ]
+    },
+    {
+      "script": "backend/scripts/test-condition-library.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
     },
     {
       "script": "backend/scripts/test-control-property-sufficiency-2026-09-05.ts",
@@ -14721,13 +15340,16 @@
     {
       "script": "backend/scripts/test-kg4d-default-off.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "READ_ONLY"
       ],
       "writesLiteralPaths": [],
       "evidencePackagesNamed": [],
       "unresolvedWriteCalls": 0,
       "sandboxRequired": false,
-      "notes": []
+      "notes": [
+        "issues schema or row mutation; disposable target only"
+      ]
     },
     {
       "script": "backend/scripts/test-kg4d-integration-e2e.ts",
@@ -14792,6 +15414,7 @@
     {
       "script": "backend/scripts/test-kg5b-approval-continuity.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "WRITES_HISTORICAL_OUTPUT"
       ],
       "writesLiteralPaths": [
@@ -14804,19 +15427,23 @@
       "unresolvedWriteCalls": 0,
       "sandboxRequired": true,
       "notes": [
+        "issues schema or row mutation; disposable target only",
         "writes into an accepted historical evidence package"
       ]
     },
     {
       "script": "backend/scripts/test-kg5b-operator-cli.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "READ_ONLY"
       ],
       "writesLiteralPaths": [],
       "evidencePackagesNamed": [],
       "unresolvedWriteCalls": 0,
       "sandboxRequired": false,
-      "notes": []
+      "notes": [
+        "issues schema or row mutation; disposable target only"
+      ]
     },
     {
       "script": "backend/scripts/test-kg5b-release-construction.ts",
@@ -14835,6 +15462,7 @@
     {
       "script": "backend/scripts/test-kg5c-customer-path-equivalence.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "WRITES_HISTORICAL_OUTPUT"
       ],
       "writesLiteralPaths": [
@@ -14846,12 +15474,14 @@
       "unresolvedWriteCalls": 0,
       "sandboxRequired": true,
       "notes": [
+        "issues schema or row mutation; disposable target only",
         "writes into an accepted historical evidence package"
       ]
     },
     {
       "script": "backend/scripts/test-kg5c-goldset-customer-path.ts",
       "classes": [
+        "MUTATES_DATABASE",
         "WRITES_HISTORICAL_OUTPUT"
       ],
       "writesLiteralPaths": [
@@ -14865,6 +15495,7 @@
       "unresolvedWriteCalls": 0,
       "sandboxRequired": true,
       "notes": [
+        "issues schema or row mutation; disposable target only",
         "writes into an accepted historical evidence package"
       ]
     },
@@ -15318,6 +15949,17 @@
       ]
     },
     {
+      "script": "backend/scripts/test-standards-keywords.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": false,
+      "notes": []
+    },
+    {
       "script": "backend/scripts/test-storage-provider.ts",
       "classes": [
         "READ_ONLY"
@@ -15375,6 +16017,45 @@
       "sandboxRequired": true,
       "notes": [
         "2 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/update-categories-final.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/update-categories-refined.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
+      ]
+    },
+    {
+      "script": "backend/scripts/update-categories.js",
+      "classes": [
+        "UNKNOWN_WRITE_BEHAVIOR"
+      ],
+      "writesLiteralPaths": [],
+      "evidencePackagesNamed": [],
+      "unresolvedWriteCalls": 0,
+      "sandboxRequired": true,
+      "notes": [
+        "1 write call(s) whose destination the static reader could not resolve to a literal path"
       ]
     },
     {

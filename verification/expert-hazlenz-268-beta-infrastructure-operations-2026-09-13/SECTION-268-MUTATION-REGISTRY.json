@@ -1,0 +1,95 @@
+{
+  "artifact": "SECTION-268-MUTATING-SCRIPT-REGISTRY-REFRESH",
+  "totals": {
+    "scripts": 1049,
+    "READ_ONLY": 666,
+    "WRITES_HISTORICAL_OUTPUT": 253,
+    "UNKNOWN_WRITE_BEHAVIOR": 128,
+    "MUTATES_DATABASE": 48,
+    "PROVIDER_CALLING": 63,
+    "LIVE_ENVIRONMENT": 33,
+    "WRITES_SUCCESSOR_OUTPUT": 2
+  },
+  "classifierExtendedBy268": [
+    "walk() now scans .js as well as .ts",
+    "DATABASE_MUTATION now recognises runMigrations / undoLastMigration / CREATE|DROP DATABASE"
+  ],
+  "namedInSection268": [
+    {
+      "script": "backend/scripts/test-264-expert-human-confirmation.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "PROVIDER_CALLING",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": []
+    },
+    {
+      "script": "backend/scripts/test-265-expert-product-acceptance.ts",
+      "classes": [
+        "WRITES_HISTORICAL_OUTPUT"
+      ],
+      "sandboxRequired": true,
+      "packages": [
+        "expert-hazlenz-265-frontend-product-workflow-2026-09-12"
+      ]
+    },
+    {
+      "script": "backend/scripts/test-267-product-integration-defects.ts",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": [
+        "expert-hazlenz-267-product-integration-defect-closure-2026-09-13"
+      ]
+    },
+    {
+      "script": "backend/scripts/test-268-deployment-safety.ts",
+      "classes": [
+        "MUTATES_DATABASE",
+        "PROVIDER_CALLING",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": [
+        "expert-hazlenz-268-beta-infrastructure-operations-2026-09-13"
+      ]
+    },
+    {
+      "script": "backend/scripts/test-268-operational-controls.ts",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": []
+    },
+    {
+      "script": "backend/scripts/release/migrate.js",
+      "classes": [
+        "MUTATES_DATABASE",
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": []
+    },
+    {
+      "script": "backend/scripts/release/check-build-context.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": []
+    },
+    {
+      "script": "backend/scripts/release/verify-running-sha.js",
+      "classes": [
+        "READ_ONLY"
+      ],
+      "sandboxRequired": false,
+      "packages": []
+    }
+  ],
+  "writesAcceptedHistoricalEvidenceIncludes265": true
+}

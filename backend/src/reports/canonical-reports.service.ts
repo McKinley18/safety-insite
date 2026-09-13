@@ -14,6 +14,7 @@ import { User } from '../users/user.entity';
 import { InspectionReport } from './entities/inspection-report.entity';
 import { InspectionReportVersion } from './entities/inspection-report-version.entity';
 import { renderInspectionReportPdf } from './canonical-report-pdf-renderer';
+import { emitOperationalEvent } from '../observability/operational-events';
 
 const GENERATOR_VERSION = 'safety-insite-pdf/2';
 
@@ -283,6 +284,14 @@ export class CanonicalReportsService {
       if (replacementObjectId) {
         await this.storage.retireReportArtifact(user, replacementObjectId).catch(() => undefined);
       }
+      // §268. The audit row below records it for the customer's history; this records it for the
+      // operator. Only the failure KIND crosses into the log — the message can carry a database
+      // error or a storage path, so it is deliberately not emitted.
+      emitOperationalEvent('report.generation_failed', {
+        inspectionId,
+        failureKind: error instanceof Error ? error.name : 'UnknownError',
+        previousReportPreserved: true,
+      });
       await this.audits.save(this.audits.create({
         actorUserId: user.userId, organizationId: user.organizationId,
         action: 'report_generation_failed', resourceType: 'inspection_report', resourceId: inspectionId,

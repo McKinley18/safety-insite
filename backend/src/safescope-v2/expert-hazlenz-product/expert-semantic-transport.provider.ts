@@ -43,6 +43,38 @@ import {
  */
 export const EXPERT_SEMANTIC_TRANSPORT = 'EXPERT_SEMANTIC_TRANSPORT';
 
+/**
+ * §268 — HOW PROVIDER USAGE REACHES THE PRODUCT WITHOUT TOUCHING A FROZEN FILE.
+ *
+ * §266 recorded that the cost columns on `expert_analysis_executions` are never populated, because
+ * `ExpertLegResponse` carries only `{ ok, toolInput, failureKind, detail }` and drops usage. The
+ * obvious repair — add a `usage` field to `ExpertLegResponse` — is NOT AVAILABLE, and the reason is
+ * structural rather than stylistic:
+ *
+ *   `ExpertLegResponse` is declared in `expert-hazlenz/expert-hazlenz-analysis.ts`, which is
+ *   ELEMENT 5 of the §259 candidate identity (`entryPoint`, a sha256 of that file). Editing it by
+ *   one character changes the candidate identity, which §268 forbids absolutely.
+ *
+ * The other obvious place, `anthropic-expert-provider.ts`, is one of the 29 PROTECTED MODULES.
+ *
+ * So usage travels beside the response rather than inside it. A transport that knows its usage
+ * implements this interface; the seam asks for it after each leg. `HostedExpertSemanticTransport`
+ * — which is neither frozen nor protected — already parses the provider's whole response envelope,
+ * so it has the numbers in hand and simply keeps the last leg's.
+ *
+ * `take` semantics, not `get`: reading CLEARS the value. A stale reading silently attributed to a
+ * later leg would corrupt the cost accounting in the direction that matters — it would make spend
+ * look smaller than it was on the leg that reported nothing, and double-count the one that did.
+ */
+export interface ExpertLegUsageReporter {
+  takeLastLegUsage(): { readonly inputTokens: number | null; readonly outputTokens: number | null }
+    | null;
+}
+
+export function isExpertLegUsageReporter(value: unknown): value is ExpertLegUsageReporter {
+  return typeof (value as ExpertLegUsageReporter | null)?.takeLastLegUsage === 'function';
+}
+
 /** Legs that reached the transport in this process, by leg. Never reset by production code. */
 export interface ExpertTransportEntryCounts {
   readonly total: number;
@@ -72,12 +104,27 @@ let windowsReset = 0;
  * The counting decorator. Wraps whichever transport is in force, so the count is a property of the
  * seam rather than of any particular implementation.
  */
-class CountingExpertSemanticTransport implements ExpertSemanticTransport {
+class CountingExpertSemanticTransport
+implements ExpertSemanticTransport, ExpertLegUsageReporter {
+  /** The transport that answered the most recent leg, so usage is read from the one that ran. */
+  private lastActive: ExpertSemanticTransport | null = null;
+
   async send(request: ExpertLegRequest): Promise<ExpertLegResponse> {
     if (request.leg === 'FIRST_PASS') { firstPassEntries += 1; lifetimeFirstPass += 1; }
     else { verifierEntries += 1; lifetimeVerifier += 1; }
     const active = substituted ?? hostedTransport();
+    this.lastActive = active;
     return active.send(request);
+  }
+
+  /**
+   * §268. Delegates to whichever transport actually answered. A substituted deterministic transport
+   * reports nothing, which is correct and is why a zero-provider-call suite records a null cost
+   * rather than a fabricated one.
+   */
+  takeLastLegUsage(): { inputTokens: number | null; outputTokens: number | null } | null {
+    const active = this.lastActive;
+    return isExpertLegUsageReporter(active) ? active.takeLastLegUsage() : null;
   }
 }
 

@@ -39,10 +39,33 @@ import {
 } from './expert-request-envelope';
 
 export class HostedExpertSemanticTransport implements ExpertSemanticTransport {
+  /**
+   * §268 — the usage the provider reported for the most recent leg.
+   *
+   * The numbers are already in hand: this class reads the provider's whole response envelope, and
+   * `usage.input_tokens` / `usage.output_tokens` sit beside the content it already parses. They
+   * were simply being discarded, which is why §266 found the cost columns on
+   * `expert_analysis_executions` permanently null.
+   *
+   * It is kept HERE rather than added to `ExpertLegResponse` because that type lives in
+   * `expert-hazlenz-analysis.ts`, which is element 5 of the §259 candidate identity — changing it
+   * would change the candidate. See `ExpertLegUsageReporter` in the product seam for the full
+   * reasoning. Nothing about the request, the response, or the semantic contract changes here;
+   * this class only stops throwing a number away.
+   */
+  private lastLegUsage: { inputTokens: number | null; outputTokens: number | null } | null = null;
+
   constructor(
     private readonly envelope: ExpertRequestEnvelope = EXPERT_REQUEST_ENVELOPE,
     private readonly timeoutMs: number = EXPERT_HOSTED_INFERENCE_CONFIG.timeoutMs,
   ) {}
+
+  /** Reading CLEARS it, so a leg that reported nothing cannot inherit the previous leg's numbers. */
+  takeLastLegUsage(): { inputTokens: number | null; outputTokens: number | null } | null {
+    const usage = this.lastLegUsage;
+    this.lastLegUsage = null;
+    return usage;
+  }
 
   async send(request: ExpertLegRequest): Promise<ExpertLegResponse> {
     const fail = (kind: string, detail: string): ExpertLegResponse =>
@@ -103,6 +126,17 @@ export class HostedExpertSemanticTransport implements ExpertSemanticTransport {
     } catch {
       return fail('MALFORMED_JSON', 'response body was not JSON');
     }
+
+    // §268. Recorded BEFORE any of the refusal branches below, because a refused, truncated or
+    // structurally invalid answer STILL COST MONEY. Accounting that only captured successful legs
+    // would under-report exactly the spend a beta most needs to see.
+    const usage = (envelope?.usage ?? {}) as Record<string, unknown>;
+    const tokenCount = (value: unknown): number | null =>
+      typeof value === 'number' && Number.isFinite(value) ? value : null;
+    this.lastLegUsage = {
+      inputTokens: tokenCount(usage.input_tokens),
+      outputTokens: tokenCount(usage.output_tokens),
+    };
 
     const stopReason = typeof envelope?.stop_reason === 'string' ? envelope.stop_reason : null;
     if (stopReason === 'refusal') return fail('PROVIDER_REFUSAL', 'provider declined to analyze');

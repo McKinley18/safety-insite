@@ -41,7 +41,6 @@
  */
 import 'dotenv/config';
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -59,6 +58,7 @@ import type {
   ExpertLegRequest, ExpertLegResponse, ExpertSemanticTransport,
 } from '../src/safescope-v2/expert-hazlenz/expert-hazlenz-analysis';
 import { EXPERT_FIXTURES, OBS_TEXT } from './lib/expert-262-fixtures';
+import { writeEvidenceFile } from './lib/evidence-write-gate';
 
 const PROTECTED_DATABASE_NAMES = [
   'safescope', 'sentinel_dev', 'sentinel_safety', 'postgres', 'template0', 'template1',
@@ -605,8 +605,12 @@ async function main(): Promise<void> {
   const evidenceDir = join(
     __dirname, '..', '..', 'verification',
     'expert-hazlenz-267-product-integration-defect-closure-2026-09-13');
-  mkdirSync(evidenceDir, { recursive: true });
-  writeFileSync(join(evidenceDir, 'SECTION-267-ACCEPTANCE.json'), JSON.stringify({
+  // §268. Gated behind the one shared evidence-write gate. The artifact is already run-stable
+  // (identifiers are redacted below), so this is belt and braces — but the rule is that a suite in
+  // `hazlenz:integration:inner` does not write into an evidence package during ordinary
+  // verification, and an exception for the file that happens to be deterministic today is how the
+  // rule stops holding tomorrow.
+  writeEvidenceFile(evidenceDir, 'SECTION-267-ACCEPTANCE.json', JSON.stringify({
     artifact: 'SECTION-267-PRODUCT-INTEGRATION-DEFECT-CLOSURE-ACCEPTANCE',
     candidateIdentity: EXPERT_CANDIDATE_IDENTITY_259,
     providerCalls: 0,

@@ -3,7 +3,7 @@
 **Read this and `HAZLENZ_INVARIANTS.md`. That is the default context.** Together about 2,500 words.
 Machine-readable equivalent: `verification/current/EXPERT-HAZLENZ-STATE.json`.
 
-Refreshed at **§267** (2026-09-13). Supersedes the §229 text, which described a layer with no
+Refreshed at **§268** (2026-09-13). Supersedes the §229 text, which described a layer with no
 production caller — that has not been true since §246.
 
 Everything below is **current truth only**. It is not a history. Evidence pointers are at the end.
@@ -256,17 +256,79 @@ All eight states render distinctly. `ANALYSIS_FAILED` is reachable only from the
 response — a provider failure writes no analysis row — so the execution response is adapted into
 the read shape and passed through the same total state map rather than through a second presenter.
 
+## 10c. Deployment safety and operational controls — §268
+
+**The rule:** it must be impossible for new application code to become active against the old
+database schema. §266 measured why — the `HazLenzAnalysis` entity declares five columns the
+pre-`019000` schema lacks, so **every** read of `hazlenz_analyses` fails, including the core
+deterministic `finalizeFinding` path.
+
+Three independent mechanisms, and only the third is not procedural:
+
+1. `npm run migrate:prod` runs as an explicit release step **before** activation. It loads the
+   **compiled** `dist/database/data-source.js` and the production `typeorm` dependency — no
+   `ts-node`, no `src/`, no devDependency — verifies the schema in the same command, and exits
+   non-zero on failure. `migrate && start` never reaches `start`.
+2. `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md` orders MIGRATE → VERIFY SCHEMA → DEPLOY, with
+   autoDeploy disabled first. **Render autoDeploy is still ON** — §268 changed no live
+   configuration, so this is a precondition of any push, not a completed act.
+3. **`/health/ready` fails closed** when required migrations are absent, so an instance that
+   skipped 1 and 2 never becomes ready rather than silently serving broken reads. A schema *ahead*
+   of the build is READY — that is a deliberate code rollback, not a fault.
+
+`migrationsRun` stays **false**. Explicit migration makes failure visible and separately auditable.
+
+### The Expert kill switch
+
+`EXPERT_EXECUTION_ENABLED` — production must set exactly `true` or `false` or **boot fails**.
+"Nobody set it" and "somebody decided it" must not produce the same running system for the one
+control reached for in an emergency.
+
+It disables Expert **execution**, not Safety InSite. Still working while disabled: the deterministic
+workflow end to end, reads of existing Expert analyses, and **settlement** of analyses already
+awaiting confirmation — the last one deliberately, because disabling it would strand every analysis
+in `ANALYSIS_AWAITING_CONFIRMATION` and block inspection completion.
+
+### Spend ceilings and leg accounting
+
+Per-workspace **analysis count** and **cost**, both configurable, both counting *started*
+executions because failures and refusals spend too. Enforced after authorization and **before**
+`claimExecution`, so a refusal writes no execution row and the transport is never reachable —
+measured provider-entry delta **0** on every refusal path.
+
+**One analysis is not one provider call.** A verifier-reaching analysis records 2 legs; one whose
+verifier is deliberately not reached records 1. Cost is `NULL` when unmeasured, never a false zero.
+
+Provider usage reaches the product through `ExpertLegUsageReporter`, a **side channel on the seam**,
+because `ExpertLegResponse` lives in `expert-hazlenz-analysis.ts` — element 5 of the §259 candidate
+identity — and the Anthropic adapter is a protected module. Neither could be edited.
+
+### Observability
+
+17 events on the closed `safety-insite.operational-event.v1` schema, with redaction **by
+construction**: values coerced to bounded scalars, keys whose *name* looks credential- or
+content-bearing dropped. Passing an observation to the emitter does not log the observation.
+
+> **This is emission, not monitoring.** Nothing collects, retains, alerts on or routes these events.
+> `NO_ERROR_MONITORING` remains a **P0**.
+
 ## 11. Current beta blockers
 
-**Seven P0s, none of them an Expert architecture defect.** See
+**Six P0s, none of them an Expert architecture defect, and none of them now an engineering gap.**
+See
 `verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
 `RELEASE_BLOCKERS.md` files under `verification/` record blockers that were live at the time and are
 not current status.
 
-Infrastructure, operations and legal only: no production migration mechanism (with **three**
-unapplied migrations — 019000, 020000 and §267's 021000); no Terms or Privacy Policy; no
-third-party model disclosure; report generation blocked on object storage; no spend ceiling or
-Expert kill switch; no error monitoring; the candidate has never been pushed.
+Live infrastructure and legal only: production migrations not yet **run** and autoDeploy not yet
+disabled (the mechanism exists — §10c); no Terms or Privacy Policy; no third-party model
+disclosure; report generation blocked on object storage; no error-monitoring **ingestion**; the
+candidate has never been pushed.
+
+§268 closed `NO_SPEND_CEILING_OR_KILL_SWITCH` outright, and closed the *engineering* half of
+`NO_PRODUCTION_MIGRATION_MECHANISM` and `NO_ERROR_MONITORING`. It also closed the §266
+build-context finding (`backend/.dockerignore` — a real `.env` and a `.env.backup-*` were sitting
+in the build context) and the §267 stale mutation registry.
 
 §265 closed `NO_EXPERT_FRONTEND`. §267 closed `EXPERT_CLIENT_VERSION_COLLISION`,
 `EXPERT_SUPERSEDES_DETERMINISTIC_ANALYSIS`,
@@ -274,6 +336,16 @@ Expert kill switch; no error monitoring; the candidate has never been pushed.
 `FINALIZATION_GUARD_ALSO_BLOCKS_DISMISSAL`.
 
 ## 12. Next implementation step
+
+**Live infrastructure and legal.** The local engineering exists; what remains cannot be done from
+here. In order: **disable Render autoDeploy** (or set a pre-deploy migrate hook) — this gates
+everything, because with it on pushing IS deploying; provision object storage, which production
+cannot boot without; confirm backups and rehearse one restore; provision a destination for the
+events the product now emits; then execute `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md`, ending
+with the one authorized Expert live smoke (1 analysis, ≤2 provider legs, ≤ USD 0.50). The **legal**
+lane has no engineering prerequisite and is not made implicit by any of this.
+
+### Superseded — §267's next step, now done
 
 **Beta infrastructure and operations.** The Expert workflow now functions against a real
 observation, so the remaining lanes are no longer blocked behind it. In dependency order: the
@@ -295,6 +367,11 @@ npm run hazlenz:check               after a small change            (verify + un
 npm run hazlenz:integration:test    route/auth/idempotency          (creates and drops its own DB)
 npm run hazlenz:precommit           before an authorized commit     (everything except live)
 npm run hazlenz:evidence            did accepted evidence change
+npm run beta:readiness              are the deployment mechanisms in place (contacts nothing live)
+npm run migrate:prod                the production migration command (needs DATABASE_URL)
+npm run migrate:prod:dry-run        what would apply; changes nothing
+npm run release:verify-sha          is the intended commit the one serving requests
+npm run release:check-build-context can a secret enter the Docker build context
 ```
 
 ```
@@ -309,13 +386,17 @@ sent a different one; this measures the code that constructs it.
 packages and 101 more have write behaviour a static reader could not resolve. §258 ran two of them
 without noticing.
 
-**That registry is stale, and `hazlenz:precommit` itself trips the hazard.** It was generated at
-§263 and carries no entry for `test-264-expert-human-confirmation.ts` or
-`test-265-expert-product-acceptance.ts`, both of which are in `hazlenz:integration:inner`. §267
-observed the §265 suite rewriting its own accepted
-`SECTION-265-READ-PAYLOAD-SHAPE.json`, producing a `DIGEST_MISMATCH` against `REPORT-265.sha256`;
-the bytes differed only in per-run UUIDs and timestamps and were restored. **Always run
-`npm run hazlenz:evidence` and `git status verification/` after `hazlenz:precommit`.**
+**§268 refreshed that registry** — 1049 scripts, and `test-265` is now correctly
+`WRITES_HISTORICAL_OUTPUT` / sandbox-required. Two classifier extensions were needed: it scanned
+`.ts` only (so the plain-JavaScript release scripts, including the one that migrates production
+schema, were invisible) and its mutation pattern recognised only the CLI form `migration:run` (so
+`scripts/release/migrate.js` read as `READ_ONLY`).
+
+**Every evidence-writing suite is now gated.** §265, §267 and §268 all route writes through
+`scripts/lib/evidence-write-gate.ts`, off unless `HAZLENZ_WRITE_EVIDENCE=1`. No assertion is gated —
+only the side effect of overwriting an accepted package, which is what lets `hazlenz:evidence` mean
+"something changed" rather than "a suite ran again". It is still worth running
+`git status verification/` after `hazlenz:precommit`.
 
 ## 14. Evidence pointers
 
@@ -332,6 +413,9 @@ Do not load these for ordinary development.
 | frontend workflow and first downstream consumer §265 | `verification/expert-hazlenz-265-.../` |
 | beta readiness closure review §266 | `verification/expert-hazlenz-266-.../` |
 | product integration defect closure §267 | `verification/expert-hazlenz-267-.../` |
+| beta infrastructure and operations §268 | `verification/expert-hazlenz-268-.../` |
+| beta deployment runbook | `docs/operations/BETA_DEPLOYMENT_RUNBOOK.md` |
+| rollback model | `docs/operations/ROLLBACK_MODEL.md` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |
 | what to read for a given task | `docs/hazlenz/current/CONTEXT_INDEX.md` |
 | rules that must not be violated | `docs/hazlenz/current/HAZLENZ_INVARIANTS.md` |

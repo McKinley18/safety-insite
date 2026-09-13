@@ -1,0 +1,102 @@
+{
+  "artifact": "SECTION-268-IMPLEMENTATION",
+  "section": "§268 Beta infrastructure and operations P0 closure",
+  "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "baseCommit": "5c8ed095",
+  "candidateIdentity": {
+    "before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "after": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "protectedModules": "29/29 unchanged",
+    "expertSemanticChanges": 0,
+    "howCostAccountingAvoidedTheFrozenFiles": "ExpertLegResponse lives in expert-hazlenz-analysis.ts, which is element 5 of the §259 identity, and anthropic-expert-provider.ts is protected. Usage travels beside the response through ExpertLegUsageReporter, a side channel on the unprotected product seam, implemented by the unprotected HostedExpertSemanticTransport."
+  },
+  "spend": {
+    "providerCalls": 0,
+    "productionDatabaseOperations": 0,
+    "productionMigrationsExecuted": 0,
+    "liveConfigurationChanges": 0,
+    "push": 0, "tag": 0, "deploy": 0
+  },
+  "newModules": [
+    { "path": "backend/src/database/schema-readiness.ts", "role": "compares migrations shipped in the artifact against the migrations table; fails closed in every direction including an artifact carrying no migrations" },
+    { "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-operational-controls.ts", "role": "the Expert kill switch, the two workspace spend ceilings, and per-leg usage folding — all pure" },
+    { "path": "backend/src/observability/operational-events.ts", "role": "closed 17-event vocabulary with redaction by construction" },
+    { "path": "backend/scripts/release/migrate.js", "role": "the production migration command; compiled artifacts only, verifies schema in the same step, exits non-zero on failure" },
+    { "path": "backend/scripts/release/verify-running-sha.js", "role": "compares the running commit to the intended release commit; refuses an unstamped answer" },
+    { "path": "backend/scripts/release/check-build-context.js", "role": "evaluates .dockerignore with Docker's own semantics, no daemon required; asserts in both directions" },
+    { "path": "backend/scripts/lib/evidence-write-gate.ts", "role": "one shared gate for every suite that writes into an evidence package" },
+    { "path": "backend/scripts/beta-readiness.ts", "role": "npm run beta:readiness — 58 local checks, contacts nothing live" },
+    { "path": "backend/scripts/test-268-operational-controls.ts", "role": "unit tier, 64 assertions, no database" },
+    { "path": "backend/scripts/test-268-deployment-safety.ts", "role": "integration tier, 65 assertions, disposable databases only" },
+    { "path": "backend/.dockerignore", "role": "the build context can no longer ingest .env or any credential-bearing file" },
+    { "path": "docs/operations/BETA_DEPLOYMENT_RUNBOOK.md", "role": "the ordered deployment procedure; never executed" },
+    { "path": "docs/operations/ROLLBACK_MODEL.md", "role": "rollback strategy and the forward-only migration-DOWN policy" }
+  ],
+  "modifiedModules": [
+    { "path": "backend/src/health/health.controller.ts", "change": "/health/ready now consults schema readiness and fails closed; /health/schema added; schema.readiness_failed emitted" },
+    { "path": "backend/src/health/health.service.ts", "change": "exposes schema() alongside check()" },
+    { "path": "backend/src/config/validate-production-environment.ts", "change": "production requires EXPERT_EXECUTION_ENABLED to be exactly true or false" },
+    { "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis-execution.service.ts", "change": "the operational gate before claimExecution; per-leg usage collection; outcome events" },
+    { "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-analysis.service.ts", "change": "workspace usage read, execution usage recording, settlement event" },
+    { "path": "backend/src/safescope-v2/expert-hazlenz-product/expert-semantic-transport.provider.ts", "change": "ExpertLegUsageReporter side channel on the seam" },
+    { "path": "backend/src/safescope-v2/expert-hazlenz-adapters/expert-semantic-transport.ts", "change": "keeps the provider-reported usage it was already parsing and discarding" },
+    { "path": "backend/src/storage/storage.service.ts", "change": "storage.operation_failed event" },
+    { "path": "backend/src/reports/canonical-reports.service.ts", "change": "report.generation_failed event" },
+    { "path": "backend/Dockerfile", "change": "GIT_COMMIT build arg; deployment-ordering rationale recorded on the CMD" },
+    { "path": "backend/scripts/hazlenz/classify-scripts.ts", "change": "scans .js as well as .ts; DATABASE_MUTATION recognises runMigrations/undoLastMigration/CREATE|DROP DATABASE" },
+    { "path": "backend/scripts/test-265-expert-product-acceptance.ts", "change": "§267's suite-specific evidence variable replaced by the shared gate" },
+    { "path": "backend/scripts/test-267-product-integration-defects.ts", "change": "evidence write routed through the shared gate" }
+  ],
+  "localAcceptance": {
+    "A production migration command runs against compiled/runtime-style artifacts": "PASS",
+    "B all three migrations apply in order on a disposable DB": "PASS — 019000 -> 020000 -> 021000 on a never-migrated database",
+    "C migration failure prevents startup/activation": "PASS — exit 1; migrate && start never reached start",
+    "D readiness fails when expected schema is absent": "PASS",
+    "E readiness passes after migrations": "PASS — expectedSchemaVersion 1800000021000",
+    "F running SHA/version can be identified": "PASS — and an unstamped source is refused",
+    "G Expert kill switch blocks execution pre-provider": "PASS — 503, provider-entry delta 0, no execution row",
+    "H deterministic workflow remains available when Expert disabled": "PASS — analysis, review and finalization all succeed",
+    "I spend ceiling allows request below limit": "PASS",
+    "J spend ceiling refuses request above limit pre-provider": "PASS — provider-entry delta 0, count and cost ceilings both",
+    "K verifier/provider-leg accounting covers both legs": "PASS — 2 legs measured with the verifier-reaching fixture, 1 with the non-reaching one",
+    "L structured operational events emitted": "PASS — 17-event vocabulary, minimum set observed",
+    "M sensitive raw provider output absent from default logs": "PASS — no provider output, observation text, credential or reviewer prose",
+    "N Docker/build-context secret guard passes": "PASS — after the guard caught a real hole in the first draft of the rules",
+    "O refreshed mutation registry includes known §264/§265 writers": "PASS — 1049 scripts; test-265 WRITES_HISTORICAL_OUTPUT / sandbox-required",
+    "P current precommit remains evidence-clean": "PASS — hazlenz:precommit exit 0, evidence drift 0 new",
+    "Q deployment runbook exists and is internally consistent": "PASS — ordered steps present; MIGRATE and VERIFY SCHEMA both precede DEPLOY, asserted mechanically"
+  },
+  "commandResults": {
+    "hazlenz:verify": "PASS — 22 elements drift 0; 29/29 protected modules; evidence drift 0 new",
+    "hazlenz:test": "PASS — 141 + §268 operational controls 64 + build-context guard",
+    "hazlenz:integration:test": "PASS — §261 71, §262 95, §264 78, §265 76, §267 50, §268 65",
+    "hazlenz:build": "PASS",
+    "hazlenz:precommit": "PASS (exit 0)",
+    "beta:readiness": "PASS — 58 checks",
+    "evidenceDrift": "0 new"
+  },
+  "notClosed": {
+    "NO_PRODUCTION_MIGRATION_MECHANISM": "P0 — mechanism exists and is proven; disabling autoDeploy and running it against production are live acts §268 was forbidden to perform",
+    "REPORT_GENERATION_BLOCKED": "P0 — object storage provisioning",
+    "NO_ERROR_MONITORING": "P0 — events are emitted; nothing collects them. Emission is not monitoring.",
+    "NO_TERMS_NO_PRIVACY_POLICY": "P0 — legal lane, untouched by design",
+    "NO_THIRD_PARTY_MODEL_DISCLOSURE": "P0 — legal lane, untouched by design",
+    "BETA_CANDIDATE_NOT_PUSHED": "P0 — dependency now satisfiable",
+    "BACKUPS_AND_RETENTION": "UNVERIFIED_LIVE — the required verification is now defined in the rollback model",
+    "EXPERT_CLIENT_MISREADS_THE_ENTITLEMENT_REFUSAL": "P2 — carried forward from §267 unchanged"
+  },
+  "newFindings": [
+    {
+      "id": "BUILD_INFO_FALLBACK_IS_STALE",
+      "priority": "P2",
+      "statement": "src/build-info.ts is a checked-in literal no build step stamps; it names a June commit. Contained: Render sets RENDER_GIT_COMMIT, §268 added a GIT_COMMIT build arg, and release:verify-sha refuses a BUILD_FALLBACK answer rather than matching it."
+    }
+  ],
+  "liveSmokeDesignPreserved": {
+    "scope": "ONE user-initiated analysis",
+    "maxProviderLegs": 2,
+    "spendCeilingUsd": 0.5,
+    "acceptableTransportOutcomes": ["ADMIT", "REFUSE", "PRESERVE_UNRESOLVED"],
+    "executed": false
+  }
+}

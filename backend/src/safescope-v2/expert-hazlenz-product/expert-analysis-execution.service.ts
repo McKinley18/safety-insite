@@ -1,4 +1,6 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import {
+  ConflictException, Inject, Injectable, ServiceUnavailableException,
+} from '@nestjs/common';
 import { createHash } from 'crypto';
 
 import { requireAuthenticatedUser } from '../../common/authenticated-user';
@@ -23,8 +25,16 @@ import { ExpertAnalysisExecution } from './expert-analysis-execution.entity';
 import { ExpertAnalysisService, type AuthoritativeExpertResult } from './expert-analysis.service';
 import { ExpertAnalysisContextService } from './expert-analysis-context';
 import {
-  EXPERT_SEMANTIC_TRANSPORT, expertTransportIsSubstituted,
+  EXPERT_SEMANTIC_TRANSPORT, expertTransportIsSubstituted, isExpertLegUsageReporter,
 } from './expert-semantic-transport.provider';
+import {
+  EXPERT_HOSTED_INFERENCE_CONFIG as EXPERT_RATES,
+} from '../expert-hazlenz-adapters/expert-request-envelope';
+import {
+  evaluateExpertExecutionPermission, foldExpertUsage, readExpertOperationalConfig,
+  type ExpertLegUsage, type ExpertOperationalConfig,
+} from './expert-operational-controls';
+import { emitOperationalEvent } from '../../observability/operational-events';
 import {
   EXPERT_CANDIDATE_IDENTITY_259, TransmittedCandidateMismatchError,
   assertTransmittedCandidateIsFrozen259,
@@ -92,6 +102,15 @@ export class ExpertAnalysisExecutionService {
     private readonly transport: ExpertSemanticTransport,
   ) {}
 
+  /**
+   * §268. Read at call time rather than captured in the constructor, so an operator who changes a
+   * limit — or throws the kill switch — does not have to wait for a process restart on a platform
+   * that can update environment without one.
+   */
+  private controls(): ExpertOperationalConfig {
+    return readExpertOperationalConfig();
+  }
+
   async execute(
     rawUser: unknown,
     observationId: string,
@@ -112,6 +131,50 @@ export class ExpertAnalysisExecutionService {
     const { observation, inspection } = await this.inspections.authorizeObservation(
       user, observationId,
     );
+
+    // -------------------------------------------------------------------------------------------
+    // §268 — THE OPERATIONAL GATE. BEFORE THE CLAIM, WHICH IS BEFORE ANY SPEND.
+    //
+    // It runs after authorization (so a caller who cannot reach this observation still learns
+    // nothing about it) and before `claimExecution` (so a refusal writes NO execution row and
+    // nothing is recorded as having run). §267 established the same ordering for version
+    // conflicts; this extends it to the kill switch and the spend ceilings.
+    //
+    // WHY IT REFUSES WITH 503 AND NOT 403. A disabled Expert feature and a spent ceiling are both
+    // temporary operational states of the SERVICE, not judgements about the caller's rights. 403
+    // would tell an entitled user their entitlement failed, and would be indistinguishable from the
+    // entitlement guard's own refusal one layer up.
+    const controls = this.controls();
+    const usage = controls.executionEnabled
+      ? await this.authority.readWorkspaceExpertUsage(
+        { organizationId: inspection.organizationId ?? null, userId: user.userId },
+        controls.windowHours)
+      // Not read when Expert is disabled: an emergency disable has to work even when the thing
+      // that made it an emergency is the usage accounting itself.
+      : { analysesInWindow: 0, costUsdInWindow: 0 };
+    const permission = evaluateExpertExecutionPermission(controls, usage);
+    if (!permission.permitted) {
+      emitOperationalEvent(
+        permission.reason === 'EXPERT_EXECUTION_DISABLED'
+          ? 'expert.control.execution_disabled'
+          : 'expert.control.spend_limit_refused',
+        {
+          observationId,
+          inspectionId: observation.inspectionId,
+          organizationId: inspection.organizationId ?? null,
+          reason: permission.reason,
+          detail: permission.detail,
+          analysesInWindow: usage.analysesInWindow,
+          costUsdInWindow: usage.costUsdInWindow,
+          providerLegsSpent: 0,
+        },
+      );
+      throw new ServiceUnavailableException({
+        message: permission.message,
+        code: permission.reason,
+        providerCallsMade: 0,
+      });
+    }
 
     const claim = await this.authority.claimExecution(user, observationId, {
       idempotencyKey: request.idempotencyKey,
@@ -144,75 +207,176 @@ export class ExpertAnalysisExecutionService {
     // The recording wrapper sits between the entry point and the injected transport, so what it
     // digests is the request that was actually sent rather than a rebuild of it.
     const recorder = new RecordingTransport(this.transport);
-    let result: ExpertHazLenzResult;
-    try {
-      result = await runExpertHazLenzAnalysis(serverContext.request, recorder);
-    } catch (error) {
-      // The entry point documents that it does not throw; if it ever does, that is an execution
-      // failure and not an analysis. It is never converted into a result.
-      const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
-        kind: 'EXPERT_ENTRY_POINT_THREW',
-        detail: describeFailure(error),
-        attempts: recorder.legs,
-      });
-      return { outcome: 'FAILED', claim: claim.outcome, execution: failed, analysis: null };
-    }
+    // §268. Context every operational event on this execution carries. Identifiers and states
+    // only — the redaction in `emitOperationalEvent` is the backstop, not the plan.
+    const signal = {
+      observationId,
+      inspectionId: observation.inspectionId,
+      organizationId: inspection.organizationId ?? null,
+      executionId: execution.id,
+    };
+    emitOperationalEvent('expert.execution.started', {
+      ...signal,
+      requestVersion: execution.requestVersion,
+      analysesInWindow: usage.analysesInWindow,
+      costUsdInWindow: usage.costUsdInWindow,
+      analysisLimit: controls.dailyAnalysisLimitPerWorkspace,
+      costLimitUsd: controls.dailyCostLimitUsdPerWorkspace,
+    });
 
-    // ---- PROVIDER/TRANSPORT FAILURE. A persisted OUTCOME with no analysis row, so nothing can
-    // ---- render as a result. Distinguished from a refusal, which means the provider DID answer.
-    if (result.status === 'PROVIDER_FAILED') {
-      const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
-        kind: result.failure?.kind ?? 'PROVIDER_FAILED',
-        detail: result.failure?.detail ?? '',
-        attempts: recorder.legs,
-      });
-      return { outcome: 'FAILED', claim: claim.outcome, execution: failed, analysis: null };
-    }
-
-    // ---- THE CANDIDATE BINDING, EXECUTION-DERIVED. Checked before anything is attributed to §259.
+    // §268. THE `finally` IS HOW USAGE ACCOUNTING BECOMES UNCONDITIONAL.
+    //
+    // Every outcome below spends — an admitted analysis, a refusal the provider answered with, a
+    // truncated response, a transport failure after a leg was already sent — and only one of them
+    // writes an analysis row. Recording usage at each return point would mean six places to forget
+    // it; recording it here means the cost of an execution is written whatever happened to it,
+    // including on the paths that throw.
     try {
-      assertTransmittedCandidateIsFrozen259(recorder.firstPassSystemPromptSha);
-    } catch (error) {
-      if (!(error instanceof TransmittedCandidateMismatchError)) throw error;
-      const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
-        kind: 'TRANSMITTED_CANDIDATE_NOT_FROZEN_259',
-        detail: error.message,
-        attempts: recorder.legs,
-      });
-      return { outcome: 'FAILED', claim: claim.outcome, execution: failed, analysis: null };
-    }
+      let result: ExpertHazLenzResult;
+      try {
+        result = await runExpertHazLenzAnalysis(serverContext.request, recorder);
+      } catch (error) {
+        // The entry point documents that it does not throw; if it ever does, that is an execution
+        // failure and not an analysis. It is never converted into a result.
+        const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
+          kind: 'EXPERT_ENTRY_POINT_THREW',
+          detail: describeFailure(error),
+          attempts: recorder.legs,
+        });
+        return this.signalOutcome(
+          { outcome: 'FAILED', claim: claim.outcome, execution: failed, analysis: null },
+          signal, recorder);
+      }
 
-    const authoritative = this.toAuthoritativeResult(result, recorder, serverContext);
-    try {
-      const persisted = await this.authority.persistAuthoritativeAnalysis(
-        user, observationId, execution.id, authoritative,
-      );
-      return {
-        outcome: 'EXECUTED',
-        claim: claim.outcome,
-        execution: persisted.execution,
-        analysis: persisted.analysis,
-      };
-    } catch (error) {
-      // PERSISTENCE FAILED AFTER THE PROVIDER ANSWERED. The transaction rolled back, so no analysis
-      // exists and the execution is still ANALYSIS_RUNNING — which would be a false claim that a
-      // call is in flight. It is settled as failed with its own kind, so the provenance that an
-      // answer WAS obtained and could not be stored is not erased.
-      //
-      // A conflict is re-raised as itself after settling: "a newer analysis request already exists"
-      // is a client-visible fact, not a server fault, and must not be flattened into a 500.
-      const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
-        kind: error instanceof ConflictException
-          ? 'PERSISTENCE_CONFLICT' : 'PERSISTENCE_FAILED_AFTER_PROVIDER_ANSWERED',
-        detail: describeFailure(error),
-        attempts: recorder.legs,
-      }).catch(() => null);
-      if (error instanceof ConflictException) throw error;
-      return {
-        outcome: 'FAILED', claim: claim.outcome,
-        execution: failed ?? execution, analysis: null,
-      };
+      // ---- PROVIDER/TRANSPORT FAILURE. A persisted OUTCOME with no analysis row, so nothing can
+      // ---- render as a result. Distinguished from a refusal, which means the provider DID answer.
+      if (result.status === 'PROVIDER_FAILED') {
+        const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
+          kind: result.failure?.kind ?? 'PROVIDER_FAILED',
+          detail: result.failure?.detail ?? '',
+          attempts: recorder.legs,
+        });
+        return this.signalOutcome(
+          { outcome: 'FAILED', claim: claim.outcome, execution: failed, analysis: null },
+          signal, recorder);
+      }
+
+      // ---- THE CANDIDATE BINDING, EXECUTION-DERIVED. Checked before anything is attributed to §259.
+      try {
+        assertTransmittedCandidateIsFrozen259(recorder.firstPassSystemPromptSha);
+      } catch (error) {
+        if (!(error instanceof TransmittedCandidateMismatchError)) throw error;
+        const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
+          kind: 'TRANSMITTED_CANDIDATE_NOT_FROZEN_259',
+          detail: error.message,
+          attempts: recorder.legs,
+        });
+        return this.signalOutcome(
+          { outcome: 'FAILED', claim: claim.outcome, execution: failed, analysis: null },
+          signal, recorder);
+      }
+
+      const authoritative = this.toAuthoritativeResult(result, recorder, serverContext);
+      try {
+        const persisted = await this.authority.persistAuthoritativeAnalysis(
+          user, observationId, execution.id, authoritative,
+        );
+        return this.signalOutcome({
+          outcome: 'EXECUTED',
+          claim: claim.outcome,
+          execution: persisted.execution,
+          analysis: persisted.analysis,
+        }, signal, recorder);
+      } catch (error) {
+        // PERSISTENCE FAILED AFTER THE PROVIDER ANSWERED. The transaction rolled back, so no analysis
+        // exists and the execution is still ANALYSIS_RUNNING — which would be a false claim that a
+        // call is in flight. It is settled as failed with its own kind, so the provenance that an
+        // answer WAS obtained and could not be stored is not erased.
+        //
+        // A conflict is re-raised as itself after settling: "a newer analysis request already exists"
+        // is a client-visible fact, not a server fault, and must not be flattened into a 500.
+        const failed = await this.authority.markExecutionFailed(user, observationId, execution.id, {
+          kind: error instanceof ConflictException
+            ? 'PERSISTENCE_CONFLICT' : 'PERSISTENCE_FAILED_AFTER_PROVIDER_ANSWERED',
+          detail: describeFailure(error),
+          attempts: recorder.legs,
+        }).catch(() => null);
+        if (error instanceof ConflictException) throw error;
+        return this.signalOutcome({
+          outcome: 'FAILED', claim: claim.outcome,
+          execution: failed ?? execution, analysis: null,
+        }, signal, recorder);
+      }
+    } finally {
+      const folded = foldExpertUsage(recorder.usage, {
+        inputUsdPerMTok: EXPERT_RATES.inputUsdPerMTok,
+        outputUsdPerMTok: EXPERT_RATES.outputUsdPerMTok,
+      });
+      if (folded.legs > 0) {
+        await this.authority.recordExecutionUsage(execution.id, folded);
+        emitOperationalEvent('expert.provider.usage_recorded', {
+          ...signal,
+          providerLegs: folded.legs,
+          expectedProviderLegs: controls.expectedProviderLegsPerAnalysis,
+          firstPassInputTokens: folded.firstPassInputTokens,
+          firstPassOutputTokens: folded.firstPassOutputTokens,
+          verifierInputTokens: folded.verifierInputTokens,
+          verifierOutputTokens: folded.verifierOutputTokens,
+          costUsd: folded.costUsd,
+          // TRUE when the numbers are absent because a deterministic transport answered, so a
+          // null cost in a local run is never mistaken for a hosted call that reported nothing.
+          transportSubstituted: expertTransportIsSubstituted(),
+        });
+      }
     }
+  }
+
+  /**
+   * §268 — emit the one operational event that describes how this execution ended.
+   *
+   * Derived from the execution's PERSISTED state rather than from a label the caller passes, so
+   * the signal and the database cannot disagree about what happened. A verifier leg that was
+   * reached and failed is reported separately, because "the analysis is unresolved" and "the
+   * verifier could not be reached" are different operational problems with different responses.
+   */
+  private signalOutcome(
+    result: ExpertExecutionOutcome,
+    signal: Record<string, unknown>,
+    recorder: RecordingTransport,
+  ): ExpertExecutionOutcome {
+    const state = result.execution.executionState;
+    const event = state === 'ANALYSIS_FAILED' ? 'expert.execution.failed'
+      : state === 'ANALYSIS_REFUSED' ? 'expert.execution.refused'
+        : state === 'ANALYSIS_UNRESOLVED' ? 'expert.execution.unresolved'
+          : 'expert.execution.admitted';
+    if (state === 'ANALYSIS_FAILED' && result.execution.failureKind) {
+      emitOperationalEvent('expert.provider.transport_failure', {
+        ...signal,
+        failureKind: result.execution.failureKind,
+        providerLegs: recorder.legs,
+      });
+    }
+    if (result.execution.verifierNotReachedBecause) {
+      emitOperationalEvent('expert.provider.verifier_failure', {
+        ...signal,
+        verifierNotReachedBecause: result.execution.verifierNotReachedBecause,
+      });
+    }
+    emitOperationalEvent(event, {
+      ...signal,
+      executionState: state,
+      admission: result.execution.admission,
+      providerLegs: recorder.legs,
+      analysisId: result.analysis?.id ?? null,
+    });
+    if (result.analysis?.confirmationRequired) {
+      emitOperationalEvent('expert.confirmation.required', {
+        ...signal,
+        analysisId: result.analysis.id,
+        analysisState: result.analysis.analysisState,
+      });
+    }
+    return result;
   }
 
   private async reuse(
@@ -350,6 +514,12 @@ class RecordingTransport implements ExpertSemanticTransport {
   firstPassWireSchemaSha: string | null = null;
   rawFirstPass: Record<string, unknown> | null = null;
   rawVerifier: Record<string, unknown> | null = null;
+  /**
+   * §268. One entry per leg that reached the transport, in order. Collected per EXECUTION because
+   * this wrapper is constructed per execution, which is what makes the attribution correct without
+   * any request-scoped plumbing through the frozen entry point.
+   */
+  readonly usage: ExpertLegUsage[] = [];
 
   constructor(private readonly inner: ExpertSemanticTransport) {}
 
@@ -360,6 +530,16 @@ class RecordingTransport implements ExpertSemanticTransport {
       this.firstPassWireSchemaSha = sha256(JSON.stringify(request.wireSchema));
     }
     const response = await this.inner.send(request);
+    // §268. Read AFTER the leg and regardless of whether it succeeded: a refused, truncated or
+    // malformed answer still cost money, and accounting that skipped those would under-report the
+    // spend a beta most needs to see. A substituted transport reports nothing, which correctly
+    // yields a null cost rather than a fabricated one.
+    const reported = isExpertLegUsageReporter(this.inner) ? this.inner.takeLastLegUsage() : null;
+    this.usage.push({
+      leg: request.leg,
+      inputTokens: reported?.inputTokens ?? null,
+      outputTokens: reported?.outputTokens ?? null,
+    });
     const captured = asRecord(response.toolInput);
     if (request.leg === 'FIRST_PASS') this.rawFirstPass = captured;
     else this.rawVerifier = captured;
