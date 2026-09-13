@@ -95,6 +95,11 @@ backend/server_logs.txt
 backend/report.pdf
 backend/generated-tests.json
 backend/feedback-store.json
+
+# §277. The disposable-resource ledger: machine-local state about THIS machine's throwaway
+# databases, recording which invocation created each one. Committing it would carry one
+# machine's resource names onto another, where the cleanup tool would refuse them anyway.
+backend/.disposable-resources.json
 backend/pico.save
 backend/dist/
 # macOS Finder duplicate-copy artifacts. Not evidence; never authored.

@@ -16,6 +16,7 @@
 import 'dotenv/config';
 import { execFileSync, spawnSync } from 'child_process';
 import { join } from 'path';
+import { newRunId, register, release } from '../disposable/registry';
 
 const BACKEND = join(__dirname, '..', '..');
 
@@ -58,6 +59,25 @@ function main(): void {
   const psql = (sql: string) => execFileSync('psql', [admin.toString(), '-v', 'ON_ERROR_STOP=1',
     '-q', '-c', sql], { stdio: 'pipe' });
 
+  /**
+   * §277. REGISTERED BEFORE IT EXISTS, so a run killed between the CREATE and the first line
+   * of the suite still leaves an OWNED record rather than an anonymous database. An
+   * unregistered leftover can only ever be cleaned by matching its name, and §276 is what
+   * matching a name looks like when the match is right about the shape and wrong about the
+   * owner.
+   */
+  const runId = newRunId();
+  register({
+    kind: 'database',
+    name,
+    host: target.hostname,
+    port: target.port || '5432',
+    runId,
+    createdByPid: process.pid,
+    purpose: `with-disposable-db ${command.join(' ')}`.slice(0, 200),
+  });
+  console.log(`registered as run ${runId}`);
+
   psql(`CREATE DATABASE "${name}"`);
   let code = 1;
   try {
@@ -76,8 +96,19 @@ function main(): void {
   } finally {
     // Dropped whether the suite passed or failed. A disposable database left behind is a database
     // someone eventually points something at.
-    try { psql(`DROP DATABASE IF EXISTS "${name}"`); console.log(`dropped ${name}`); }
-    catch (error) { console.error(`WARNING: could not drop ${name}: ${String(error)}`); }
+    //
+    // §277. The ledger row is RELEASED only after the drop succeeds. If the drop fails the row
+    // stays outstanding, which is what lets `cleanup --abandoned` finish the job later with
+    // ownership still proven -- rather than leaving a database nobody can safely claim.
+    try {
+      psql(`DROP DATABASE IF EXISTS "${name}"`);
+      release(runId, name);
+      console.log(`dropped ${name}`);
+    } catch (error) {
+      console.error(`WARNING: could not drop ${name}: ${String(error)}`);
+      console.error(`  it remains registered to run ${runId}; `
+        + 'run `npm run disposable:cleanup -- --abandoned` to remove it with ownership proven.');
+    }
   }
   process.exit(code);
 }
