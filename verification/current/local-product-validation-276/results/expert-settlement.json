@@ -1,0 +1,73 @@
+{
+  "section": 276,
+  "observationId": "0001a820-5b81-41ff-9153-ebf54044c47e",
+  "providerCallsThisScript": 0,
+  "results": [
+    {
+      "id": "X01",
+      "title": "the Expert read route serves the analysis",
+      "outcome": "PASS",
+      "detail": "status 200"
+    },
+    {
+      "id": "X02",
+      "title": "the analysis is awaiting a human decision",
+      "outcome": "FAIL",
+      "detail": "ANALYSIS_CONFIRMED"
+    },
+    {
+      "id": "X03",
+      "title": "the server says confirmation is required rather than the browser deciding",
+      "outcome": "PASS",
+      "detail": "true"
+    },
+    {
+      "id": "X04",
+      "title": "and it does NOT present a settled conclusion before a person settles it",
+      "outcome": "FAIL",
+      "detail": "settledForUse=true"
+    },
+    {
+      "id": "X05",
+      "title": "the server names the classification entries the reviewer must settle",
+      "outcome": "PASS",
+      "detail": "2 entry(ies)"
+    },
+    {
+      "id": "X06",
+      "title": "the workspace renders an Expert panel",
+      "outcome": "NOTE",
+      "detail": "inspection 91d3507f-ffbd-4e9a-b1ab-9cacda44f35c"
+    },
+    {
+      "id": "X07",
+      "title": "a reviewer can settle the analysis",
+      "outcome": "PASS",
+      "detail": "status 201 "
+    },
+    {
+      "id": "X08",
+      "title": "the state moves to a settled one",
+      "outcome": "PASS",
+      "detail": "ANALYSIS_CONFIRMED"
+    },
+    {
+      "id": "X09",
+      "title": "and the conclusion becomes usable only now",
+      "outcome": "PASS",
+      "detail": "settledForUse=true"
+    },
+    {
+      "id": "X10",
+      "title": "the Expert result is byte-identical after settlement",
+      "outcome": "PASS",
+      "detail": "the proposal and the decision stay separately attributable"
+    },
+    {
+      "id": "X11",
+      "title": "a replayed settlement does not create a second decision",
+      "outcome": "PASS",
+      "detail": "status 201"
+    }
+  ]
+}

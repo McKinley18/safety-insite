@@ -1,0 +1,99 @@
+{
+  "section": 276,
+  "what": "The six areas \u00a7275 recorded NOT_EXECUTED, and what executing them produced.",
+  "rule": "A NOT_EXECUTED entry is replaced only by an outcome that was actually driven. Nothing here is a ceremonial PASS.",
+  "areas": {
+    "A_workspace_isolation": {
+      "checks": 15,
+      "pass": 15,
+      "note": 0,
+      "fail": 0,
+      "failures": [],
+      "notes": [],
+      "section275": "NOT_EXECUTED \u2014 a second user existed; no cross-tenant attempt was made.",
+      "section276": "PASS",
+      "howDriven": "Two synthetic accounts. Eleven direct-id attempts across inspection, observation, corrective action, task edit, task delete, Expert analysis read, transition, report generation, report read, completion readiness and evidence upload; plus three listing reads and one unauthenticated read.",
+      "keyFinding": "Every cross-workspace attempt answered 404, never 403 \u2014 the id is not confirmed to exist. An unauthenticated read answered 401."
+    },
+    "B_storage_and_images": {
+      "checks": 10,
+      "pass": 10,
+      "note": 0,
+      "fail": 0,
+      "failures": [],
+      "notes": [],
+      "section275": "NOT_EXECUTED \u2014 no upload was driven.",
+      "section276": "PASS",
+      "howDriven": "Synthetic PNG and JPEG generated in the harness; upload, byte-identical download, cross-workspace refusal, unsupported type, a non-image body claiming to be a PNG, a missing id, delete, and retrieval after delete.",
+      "keyFinding": "Content is validated against its declared type, not just the extension: a text body sent as image/png was refused with \"File content does not match its image type.\" Downloads are attachment-only with nosniff."
+    },
+    "C_idempotency": {
+      "checks": 8,
+      "pass": 7,
+      "note": 1,
+      "fail": 0,
+      "failures": [],
+      "notes": [
+        "C4b an action created with NO findingId is not deduplicated \u2014 8 -> 10 \u2014 no product surface sends this shape; recorded, not scored"
+      ],
+      "section275": "NOT_EXECUTED \u2014 no double-submit was driven.",
+      "section276": "PASS_WITH_LIMITATION",
+      "howDriven": "Explicit replay of inspection create, observation create, evidence upload, corrective action for a finding, report generation and task completion.",
+      "keyFinding": "Every route the product actually uses is replay-safe. An action created with NO findingId is not deduplicated; no product surface sends that shape, and it is recorded rather than scored."
+    },
+    "D_settings": {
+      "checks": 16,
+      "pass": 16,
+      "note": 0,
+      "fail": 0,
+      "failures": [],
+      "notes": [],
+      "section275": "NOT_EXECUTED \u2014 the page rendered; nothing was changed or verified.",
+      "section276": "PASS",
+      "howDriven": "Settings and profile driven in the browser: brand, real plan, the account's own sites, an unavailable action explaining itself, a setting CHANGED and seen to survive a reload and then changed back, sign-out reachable, deletion password-gated, and a placeholder/debug-token scan on both screens.",
+      "keyFinding": "One defect found and repaired: the profile rendered the account's own name and email in capitals because `uppercase` on the row wrapper applied to the value as well as the label."
+    },
+    "E_clarification": {
+      "checks": 10,
+      "pass": 9,
+      "note": 0,
+      "fail": 1,
+      "failures": [
+        "E05 a PREDICATE clarification answer changes the recomputed result \u2014 confidence Low -> Low \u2014 recorded as a \u00a7276 defect requiring a product decision"
+      ],
+      "notes": [],
+      "section275": "NOT_EXECUTED \u2014 no clarification-required case was exercised.",
+      "section276": "PASS_WITH_LIMITATION",
+      "howDriven": "A decision-critical jurisdiction clarification driven over the same classify contract the workflow posts to, and the in-product predicate clarification driven through the confidence panel in the inspection workspace.",
+      "keyFinding": "The decision-critical question works end to end: three candidate regimes collapse to one, provenance becomes USER_CONFIRMED. Two defects were found and repaired (a false \"Unknown question ID ignored\" record, and an answer that damaged the finding). One remains open for a product decision: a PREDICATE answer changes nothing."
+    },
+    "F_performance_sanity": {
+      "checks": 3,
+      "pass": 2,
+      "note": 1,
+      "fail": 0,
+      "failures": [],
+      "notes": [
+        "F01 no single page VISIT asks the server for the same thing more than twice \u2014 /settings#1 :: GET /billing/status x4 | /inspection-workspace#7 :: POST /hazlenz/classify x4 | /settings#1 :: GET /sites x3"
+      ],
+      "section275": "NOT_EXECUTED \u2014 not measured.",
+      "section276": "PASS_WITH_LIMITATION",
+      "howDriven": "Representative localhost timings for app load, sign-in, dashboard, inspections, calendar, reports, settings, HazLenz analysis, normal save and report generation; plus a per-visit count of every API request each page makes.",
+      "keyFinding": "Redundant calls found and reduced: one Settings visit issued six identical GET /billing/status requests. De-duplication now shares one in-flight read. Nothing user-visible stalls on localhost."
+    }
+  },
+  "totals": {
+    "api": {
+      "pass": 33,
+      "note": 1,
+      "fail": 0,
+      "notExercised": 0
+    },
+    "ui": {
+      "pass": 27,
+      "note": 1,
+      "fail": 1,
+      "notExercised": 0
+    }
+  }
+}

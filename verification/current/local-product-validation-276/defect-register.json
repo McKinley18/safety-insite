@@ -1,0 +1,192 @@
+{
+  "section": 276,
+  "supersedes": "verification/current/local-product-validation-275",
+  "rule": "A \u00a7275 defect is closed only where \u00a7276 RETESTED it. Nothing is closed by having been edited.",
+  "section275DefectsRetestedHere": [
+    {
+      "id": "D-007",
+      "severity": "P1",
+      "area": "Calendar",
+      "section275": "Corrective actions and tasks created by the Pro workflow never appeared on the Safety Calendar. 9 server events, 0 displayed.",
+      "rootCause": "Two independent halves. (1) The READ path composed three device-local stores and never called GET /calendar. (2) The inspection workflow never sent a dueDate when creating a corrective action, so every one was persisted UNDATED and could not reach a dated surface even once the read path existed.",
+      "remediation": "Server-persisted state is authoritative. The browser now reads GET /calendar and reconciles it with a pending-write outbox; the three pre-reconciliation stores stop being calendar sources and their records migrate onto the server once each. The workflow sends the risk-derived due date it already computes. PATCH/DELETE /tasks added so a calendar edit reaches the server rather than only the device.",
+      "retested": "\u00a7276 walkthrough: 35 server events, 32 displayed (3 completed hidden by the page's own filter). Backend gate 39/39. Browser gate 34/34. Identical across a full stack restart.",
+      "status": "REMEDIATED_AND_RETESTED"
+    },
+    {
+      "id": "D-008",
+      "severity": "P1",
+      "area": "Reports",
+      "section275": "The PDF called finding 2 Critical; the screen the inspector approved called it High; the stored record attributed the Critical to source: \"reviewer_confirmed\" beside a rationale computing to High.",
+      "rootCause": "A field collision with no shared rule. riskBand carries HazLenz's ESCALATION band and overallRisk carries the REVIEWER's matrix band; the PDF read riskBand||overallRisk and the workspace read overallRisk||riskBand in three places and riskBand||overallRisk in two others. Separately, finalization stamped the WHOLE merged snapshot source:\"reviewer_confirmed\", including the AI band.",
+      "remediation": "One canonical rule, resolveEffectiveSeverity, mirrored on both sides and held together by a parity gate. Finalization relocates the analysis band to analysisRiskBand so a reviewer-confirmed object is true about its contents. The report states the reviewer band and labels HazLenz's separately.",
+      "retested": "Report #32 and #6: screen High/Moderate, report High/Moderate, \"HazLenz analysis: Critical\" labelled as HazLenz's, risk distribution Critical 0. Pure regression 48/48. Report acceptance 92 checks, 0 failures.",
+      "status": "REMEDIATED_AND_RETESTED"
+    },
+    {
+      "id": "D-009",
+      "severity": "P2",
+      "area": "HazLenz content",
+      "section275": "Per-finding applicability was evaluated against the decomposed fragment alone, so a finding the engine rates SUPPORTED at 0.96 on the whole observation read \"Candidate \u00b7 Confidence: Low \u00b7 missing: moving or accessible energy\".",
+      "rootCause": "The fragment for finding 1 contained no energy or exposure statement; those facts were in the NEXT sentence, about the same press, owned by no finding.",
+      "remediation": "Scoped evidence: the finding's own fragment PLUS unclaimed parent sentences that explicitly co-reference its subject and name no other unit. Not fragment isolation and not whole-observation evaluation.",
+      "retested": "22/22 across the four cases \u00a7276 names plus distinct-unit and cross-family containment controls. Live: the candidate card reads \"Applies \u00b7 Confidence: High\".",
+      "status": "REMEDIATED_AND_RETESTED"
+    },
+    {
+      "id": "D-013",
+      "severity": "P2",
+      "area": "Reports",
+      "section275": "The PDF was branded \"INSITE\" on the cover and \"InSite \u00b7\" in the running header. The canonical product name is Safety InSite.",
+      "rootCause": "Report copy, plus a brand audit whose Tier 1 only looked for RETIRED brands, so a wrong rendering of the LIVE brand passed.",
+      "remediation": "Cover, running header, PDF metadata title and the unmounted legacy renderer corrected. Brand audit gained Tier 1B, which fails on a non-canonical rendering of the live product name in customer-visible text and in document-emitting trees.",
+      "retested": "Tier 1B verified against the deliberately reintroduced defect: it FAILED on it, then passed once repaired. Every report artifact carries SAFETY INSITE and \"Safety InSite \u00b7\".",
+      "status": "REMEDIATED_AND_RETESTED"
+    },
+    {
+      "id": "D-015",
+      "severity": "P2",
+      "area": "Dashboard",
+      "section275": "The Inspections page reported 3 SCHEDULED against 1 stored inspection. \u00a7275 guessed the number tracked three tasks.",
+      "rootCause": "Not tasks. seedInspectionProgramIfEmpty() wrote three FABRICATED records into localStorage on first visit and the tiles counted them. Nothing else in the product read that store.",
+      "remediation": "The store is deleted. The tiles are derived from the inspections the server holds, under labels that name states the product actually has.",
+      "retested": "\u00a7276 walkthrough W24: no \"3 SCHEDULED\" against the account's real inspections.",
+      "status": "REMEDIATED_AND_RETESTED"
+    },
+    {
+      "id": "D-020",
+      "severity": "P3",
+      "area": "Local dev",
+      "section275": "frontend-next/.env.local pointed at port 4001 with nothing listening.",
+      "remediation": "Port 4000 confirmed canonical (backend main.ts default, README, the tracked .env.local.example). The untracked .env.local was repointed and its development bypasses set false. Not committed.",
+      "retested": "The whole \u00a7276 pass ran against it.",
+      "status": "REMEDIATED_AND_RETESTED"
+    },
+    {
+      "id": "D-014",
+      "severity": "P3",
+      "area": "Reports",
+      "section275": "Page footers read \"Page 1 of 5\" while the PDF has 6 pages.",
+      "finding": "Re-examined at \u00a7276 and NOT changed. The cover is deliberately unnumbered and the content pages are numbered 1..N of N, which is internally consistent and a common convention. \u00a7275 recorded it as a convention to confirm; it remains a product-owner decision.",
+      "status": "OPEN_PRODUCT_DECISION"
+    },
+    {
+      "id": "D-010",
+      "severity": "P2",
+      "area": "Data",
+      "section275": "Corrective-action rows written before the D-001 repair are stored a day early.",
+      "finding": "Unchanged. A one-time data migration over existing due dates, out of scope for a localhost validation and unchanged by \u00a7276.",
+      "status": "OPEN"
+    },
+    {
+      "id": "D-011",
+      "severity": "P3",
+      "area": "Navigation",
+      "finding": "Unchanged. /inspection-quick remains reachable only by URL.",
+      "status": "OPEN"
+    },
+    {
+      "id": "D-016",
+      "severity": "P3",
+      "area": "Sign-in",
+      "finding": "Unchanged. The error message still renders below the links rather than beside the control.",
+      "status": "OPEN"
+    },
+    {
+      "id": "D-017",
+      "severity": "P3",
+      "area": "Accessibility",
+      "finding": "Partially addressed. The 25 risk-matrix cells were unlabelled buttons reading only their score and now carry an accessible name stating what pressing them decides. The missing <h1> on three routes and the unlabelled inputs \u00a7275 counted are unchanged.",
+      "status": "PARTIALLY_ADDRESSED"
+    }
+  ],
+  "newDefectsFoundAtSection276": [
+    {
+      "id": "D-021",
+      "severity": "P2",
+      "area": "HazLenz clarification",
+      "status": "REMEDIATED_AND_RETESTED",
+      "defect": "A decision-critical jurisdiction answer was applied by the evidence layer AND simultaneously recorded as {\"reason\":\"Unknown question ID ignored.\"}. The analysis was right; its own record of how it got there said the opposite.",
+      "rootCause": "The answer normaliser had a case for `jurisdiction-work-environment` and none for `jurisdiction`, which is the id the engine actually asks under, so it fell through to the default branch.",
+      "remediation": "A `jurisdiction` case added. Confers no new authority \u2014 the path that consumes jurisdiction already treated it as user-confirmed.",
+      "retested": "invalidAnswers is now empty and the outcome is otherwise byte-identical. \u00a7117 16/16 and the jurisdiction-unknown regression both unchanged."
+    },
+    {
+      "id": "D-022",
+      "severity": "P1",
+      "area": "HazLenz clarification",
+      "status": "REMEDIATED_AND_RETESTED",
+      "defect": "Answering a clarification question DAMAGED the finding: it lost its applicable standard, the proposed-hazard count rose from one to two, and the interface quoted the internal token \"guardstate=absent_or_ineffective\" back as the inspector's own words.",
+      "rootCause": "reanalyze() re-labelled EVERY engine-extracted fact source:\"user_confirmation\" and sent them all as structuredObservation.userConfirmedFacts \u2014 including on a re-run where the reviewer never opened the fact list. Those render into the analysis text as \"User-confirmed facts: field=value\", which decomposition then splits into a hazard fragment.",
+      "remediation": "Only facts whose value the reviewer actually CHANGED are sent as corrections; the rest keep the provenance HazLenz gave them. This is the D-008 principle in a second place: an engine value must not wear a person's label.",
+      "retested": "The standard survives, the count stays at one, and the screen quotes the inspector's sentence."
+    },
+    {
+      "id": "D-023",
+      "severity": "P2",
+      "area": "HazLenz clarification",
+      "status": "OPEN_PRODUCT_DECISION",
+      "defect": "A PREDICATE clarification answer changes nothing. The panel is captioned \"What would raise this\" and offers Yes / No / Not sure; answering Yes leaves the candidate at the same confidence with the same missing predicate.",
+      "whyNotFixed": "Whether a reviewer's unsupported assertion may promote a regulatory predicate \u2014 carrying a citation from Candidate to Supported with no corroborating observation text \u2014 is a safety-semantics decision about what a human assertion establishes, not a scoping bug. The direction of the error is the safe one: the finding stays at LOWER confidence. The alternative remedy, withdrawing the question, is a product-copy decision.",
+      "decisionRequired": "Either (a) consume predicate answers as user-confirmed evidence, with a stated rule for what that establishes, or (b) stop offering a question the engine will not consume."
+    },
+    {
+      "id": "D-024",
+      "severity": "P1 as first measured; the remaining half is P2",
+      "area": "HazLenz content",
+      "status": "P1_HALF_CLOSED / P2_HALF_OPEN_PRODUCT_DECISION",
+      "defect": "On a deliberately SAFE observation the product proposed two hazards, one of them pre-ticked for inclusion in a compliance report.",
+      "rootCause": "Two distinct causes. (1) A `hot_work` hazard the engine had ITSELF assessed conditionState: SAFE_VERIFIED was proposed anyway \u2014 the rule that drops such hazards existed but was gated behind a whole-text regex that did not recognise the inspector's wording. (2) A `ground_control` route at confidence 0.2 whose entire supporting evidence was the single word \"wall\", from the fragment \"isolated at the wall\".",
+      "remediation": "(1) closed: a hazard the engine assessed SAFE_VERIFIED or HISTORICAL is never proposed as a candidate, unconditionally, and the withdrawal is recorded in routingNotes rather than being silent.",
+      "stillOpen": "(2). A routing-confidence floor chosen from one observation is exactly the tuning \u00a7276 forbids, and it is a HazLenz routing decision.",
+      "decisionRequired": "A minimum routing confidence, or a rule that a route whose only signal is a single generic token is not proposed.",
+      "severityReasoning": "As first measured this was P1: TWO hazards were proposed on a safe observation and one was PRE-TICKED, so a reviewer pressing Continue without reading would have carried a fabricated finding into a compliance report. That half is closed. With the SAFE_VERIFIED hazard withdrawn only ONE candidate remains, the candidate-confirmation step no longer appears, and nothing is pre-selected: the reviewer must drive the risk, review and save steps for it before it becomes a finding at all. The remaining defect is review noise and an unnecessary dismissal, not a record that creates itself, so it is P2. The direction of the error is over-flagging, never under-reporting. This is a severity change caused by a real remediation, not a reclassification of the same condition.",
+      "remainingBehaviour": "A fully compliant, de-energised bench grinder still yields one proposed hazard, \"Ground control\" at Moderate with no standard matched, routed at confidence 0.2 from the single word \"wall\" in the clause \"isolated at the wall\"."
+    },
+    {
+      "id": "D-025",
+      "severity": "P2",
+      "area": "Tooling",
+      "status": "REMEDIATED_AND_RETESTED",
+      "defect": "npm run check:risk-band-parity threw ENOENT on every run: it read backend/src/safescope-v2/risk/risk-profiles.ts, deleted by \u00a7274.",
+      "whyItMatters": "This is the gate that holds the browser's risk-band table to the server's profiles \u2014 the arithmetic D-008 turns on (High 10-16, Critical 17-25 on the Standard 5x5). It had been silently unrunnable. It is the same defect class as \u00a7275's D-018, in a path inside a script rather than in package.json, which is why that sweep did not reach it.",
+      "remediation": "Repointed. Also repaired test:expert-presentation, which invoked a `tsx` binary that is not installed.",
+      "retested": "Both run and pass; parity confirmed across 3 matrix profiles and 16 values."
+    },
+    {
+      "id": "D-026",
+      "severity": "P3",
+      "area": "Profile",
+      "status": "REMEDIATED_AND_RETESTED",
+      "defect": "The profile screen rendered the account's own first name, last name and email address in capitals \u2014 \"VALIDATION-276-A@EXAMPLE.TEST\".",
+      "rootCause": "`uppercase` on the row wrapper applied to the VALUE as well as the label. An email address is case-preserving data, not a label.",
+      "remediation": "The label keeps its treatment; the value renders as stored."
+    },
+    {
+      "id": "D-027",
+      "severity": "P3",
+      "area": "Performance",
+      "status": "REMEDIATED_AND_RETESTED",
+      "defect": "A single Settings visit issued six identical GET /billing/status requests, and Inspections issued four across two visits.",
+      "rootCause": "Several independent components each call getVerifiedPlanCode()/getBillingMe() on mount and every call went to the network.",
+      "remediation": "One in-flight read is shared and a result is reused for five seconds, dropped on sign-out. UI visibility only \u2014 backend entitlement guards are evaluated per request regardless."
+    },
+    {
+      "id": "D-028",
+      "severity": "P2",
+      "area": "Reports",
+      "status": "OPEN_PRODUCT_DECISION",
+      "defect": "A renderer correction does not reach a report that was already issued.",
+      "finding": "CanonicalReportsService fingerprints the inspection SNAPSHOT, not the generator, and returns the existing artifact unchanged when the inspection has not changed. That is deliberate and documented in the service. The consequence is that reports issued before the \u00a7276 brand and severity repairs keep the old rendering.",
+      "decisionRequired": "Whether a renderer correction should re-issue existing reports, or whether an issued artifact is final. \u00a7276 does not decide it, and does not change the fingerprint, because changing it would silently re-issue every existing report on the next request."
+    },
+    {
+      "id": "D-029",
+      "severity": "P2",
+      "area": "Corrective actions",
+      "status": "OPEN",
+      "defect": "A corrective action created with no findingId is not deduplicated on replay.",
+      "finding": "The product always creates corrective actions FOR A FINDING, and that path keeps one canonical action per finding \u2014 measured, 8 actions before and 8 after a replay. The unbound shape is reachable through the API and no product surface sends it."
+    }
+  ]
+}

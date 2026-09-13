@@ -1,17 +1,22 @@
-# Whole-product local validation — §275
+# Whole-product local validation — §276
 
-**Terminal: `SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_BLOCKED — REMEDIATION_REQUIRED`**
+**Terminal: `SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_COMPLETE_WITH_LIVE_GAPS —
+CONTROLLED_RELEASE_VERIFICATION_REQUIRED`**
 
 | | |
 |---|---|
 | Date | 2026-09-13 |
 | Branch | `beta/expert-hazlenz-validated-candidate-2026-09-12` |
-| Commit tested | `ae075555` (started from `45642bbe`) |
+| Supersedes | §275, whose terminal was `SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_BLOCKED — REMEDIATION_REQUIRED` |
 | Successor identity | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` — **unchanged** |
 | Machine-readable companion | `WHOLE-PRODUCT-VALIDATION.json` |
-| Evidence package | `verification/current/local-product-validation-275/` |
-| Provider spend | **$0.119524** of the $2.00 allowance, 1 analysis of 10 |
+| Evidence package | `verification/current/local-product-validation-276/` |
+| Provider spend | **$0.375220** of the $1.50 cumulative ceiling, **3** analyses of 6 across §§275–276 |
 | Production changes | **0**. No push, no deploy, no production migration, no production write |
+
+**§275's results are preserved, not overwritten.** Every check in the JSON carries its §275
+status under `section275` beside its §276 outcome. Four §275 failures and six NOT_EXECUTED
+areas are recorded as *found in §275 → remediated in §276 → retested*, with the retest named.
 
 ---
 
@@ -20,235 +25,313 @@
 > Can a real controlled-beta user use Safety InSite end to end without encountering broken,
 > confusing, inconsistent or unprofessional product behavior?
 
-**Not yet.** The product is much closer than the defect list suggests — the inspection pipeline
-works end to end, the report is genuinely professional, HazLenz is correctly wired and appropriately
-concise, and nothing silently lost a user's work. But two defects would be obvious to a beta user
-in their first session, and one of them defeats a headline promise on the landing page.
+**Locally, yes.** The two defects that blocked §275 are closed and retested, the six areas
+§275 never drove are driven, and a clean uninterrupted walkthrough passes 25 of 25 steps
+with no development bypass. What remains is four **P2** items — three of them product
+decisions rather than engineering gaps — and the live/external gaps that by definition
+cannot be closed on localhost.
 
-### What blocks acceptance
+### What changed the terminal
 
-1. **Corrective actions never reach the calendar (D-007, P1).** The Safety Calendar's own subtitle
-   promises "corrective actions, follow-ups, reminders, and due work in one lightweight schedule".
-   With nine events on the server — including the two corrective actions the Pro inspection had just
-   created — the page displayed **0 EVENTS, 0 OPEN, 0 OVERDUE**.
-2. **The report and the application disagree about a finding's severity (D-008, P1).** The PDF that
-   leaves the building called finding 2 **Critical**; the screen the inspector approved called it
-   **High**; and the stored record attributes the Critical to `source: "reviewer_confirmed"` beside a
-   rationale that computes to High.
-
-Both are recorded for product-owner decision rather than repaired here, because both turn on a
-product decision rather than a coding error — see *Blockers* below.
+1. **Corrective actions now reach the calendar (D-007).** §275 measured nine pieces of
+   persisted due work against **0 EVENTS** on screen. §276 measures **35 on the server, 32
+   displayed** — the three absent ones are completed items the page's own filter hides —
+   and the same picture survives a full stack restart byte for byte.
+2. **The report and the application agree about severity (D-008).** §275's report called a
+   finding **Critical** while the screen the inspector approved called it **High**. §276's
+   report states the reviewer's band and labels HazLenz's escalation as
+   `HazLenz analysis: Critical`, beside a risk distribution counting **Critical 0**.
 
 ---
 
 ## How this was validated
 
-The stack was run as a real application, not read. Every user-facing claim below was produced by
-driving the running product in a browser.
+The stack was run as a real application and driven in a browser. Nothing below was read out
+of source.
 
 | | |
 |---|---|
-| Backend | `npx ts-node src/main.ts`, port 4000, 146 routes mapped |
+| Backend | `npx ts-node src/main.ts`, **port 4000**, 148 routes (146 plus `PATCH`/`DELETE /tasks`) |
 | Frontend | `npx next dev --port 3000` |
-| Database | **`test_insite_validation_275`** — disposable, created for this section, 53 migrations |
-| Development database | **`safescope` was never written to.** The resolved target was asserted disposable before every mutating command |
+| Database | **`test_insite_validation_275`** — kept from §275 as instructed, 53 migrations |
+| Development database | **`safescope` was never written to** |
 | Storage | `STORAGE_PROVIDER=local_test` into the session scratchpad |
 | Authentication | **Real.** `DEV_AUTH_BYPASS=false`, `NEXT_PUBLIC_DISABLE_AUTH=false`, `NEXT_PUBLIC_DEV_FORCE_PRO=false` |
-| Entitlement | Time-limited grant through the guarded `scripts/grant-test-entitlement.ts`, which refuses outside `NODE_ENV=test` and a `test_*` database |
-| Browser | Playwright 1.60 (already in `frontend-next`) plus Chrome for manual visual review |
+| Entitlement | Time-limited grants through the guarded `scripts/grant-test-entitlement.ts` |
+| Browser | Playwright 1.60, already present in `frontend-next` |
 
-Running under the development bypass would have measured the bypass. Two new Playwright
-instruments were added beside the 34 that already existed:
-`scripts/validate-275-product-surface.mjs` and `scripts/validate-275-contrast-sweep.mjs`.
+**Port 4000 is confirmed canonical** — `backend/src/main.ts` defaults to it, `README.md`
+documents it, and the tracked `.env.local.example` names it. The developer's untracked
+`frontend-next/.env.local` was repointed from 4001 and its two development bypasses set
+false. It is not committed; the tracked example already matched.
 
-### Two instrument corrections, stated because they change how to read the numbers
+### Three instrument corrections, stated because they change how to read the numbers
 
-Both were caught by noticing that a result was too tidy to be true.
+§275 recorded two. §276 found three more, all of them instruments reporting something
+tidier than the truth.
 
-- The surface sweep first logged in **once per viewport**, tripping the product's own
-  `@Throttle({ limit: 3, ttl: 60000 })` on `POST /auth/login`. Two of four viewports silently lost
-  their session and the sweep scored 14 photographs of the sign-in page as passes. It now signs in
-  once and reuses the session, and an authenticated route that lands on `/login` is recorded
-  **NOT_EXERCISED**, never PASS.
-- The contrast sweep first reported 404 failures at an improbably exact 202 per theme, including
-  the login hero at 1:1 — plainly legible on screen. Two causes: it ignored gradient backgrounds
-  and walked up to `body`, and Playwright's `colorScheme` does nothing here because the app reads
-  `safety_insite_theme` from localStorage. It now seeds the key the app actually reads, asserts the
-  theme applied, and reports gradient-backed text as **unmeasured** rather than scoring it.
+- **Timings measured waiting, not work.** The first performance pass wrapped a fixed
+  2.5 s sleep inside the measured window, so every page "took" about 3 s and the two
+  slowest results were simply the two with the longest sleep after them. The window now
+  closes on a content condition; the settling delay is taken outside it. Measured again,
+  navigations are 30–90 ms.
+- **Redundant-call counting summed separate visits.** Keyed on the route name alone, it
+  reported "`/settings` 10 requests" for a page this script visits four times. Counted per
+  visit, the real number was six — still a defect, and now a true one.
+- **The restart helper could return before the restart.** It polled `/health/ready` with no
+  delay, so forty failed probes completed in about a second and it returned while the old
+  process was still answering. One report-acceptance run measured a stale renderer and
+  reported a pass. That run is not the record; the run after the helper was fixed is.
 
-The contrast sweep still cannot measure text over a gradient, and mis-parses `lab()` colours. Its
-numbers are a floor on the real count, not a ceiling.
+A fourth instrument error is recorded because it produced a false *failure*: the Expert
+settlement probe read `analysisState` off the wrong level of the read payload and scored
+`undefined` as a product defect. It was not one.
 
 ---
 
 ## Validation matrix
 
-Full detail, with evidence pointers, is in `WHOLE-PRODUCT-VALIDATION.json`.
-**14 PASS · 10 PASS_WITH_LIMITATION · 4 FAIL · 6 NOT_EXECUTED.**
+Full detail, with per-check §275 and §276 status, is in `WHOLE-PRODUCT-VALIDATION.json`.
 
-| Area | Result | The short version |
-|---|---|---|
-| Application startup | PASS | Clean boot, database up |
-| Authentication | PASS_WITH_LIMITATION | Guards hold with the bypass off; logout and expiry not driven |
-| Workspace isolation | **NOT_EXECUTED** | Second user exists; no cross-tenant attempt made |
-| Navigation | PASS_WITH_LIMITATION | No navigation item points at a missing page; 1 orphan route |
-| Dashboard | PASS_WITH_LIMITATION | Correct zero state; two layout defects, both repaired |
-| Responsive UI | PASS | 96/96 route×viewport checks, **zero horizontal overflow** at 390/768/1280/1440 |
-| Theme and visual consistency | **FAIL** | Two panels unreadable in dark theme; both repaired |
-| Inspection creation | PASS | Site and jurisdiction persisted |
-| Observation capture | PASS | Survived a full context loss |
-| HazLenz analysis | PASS | `1910.212(a)(1)` **SUPPORTED at 0.96**, `USER_CONFIRMED` |
-| HazLenz concision | PASS_WITH_LIMITATION | Two one-line findings; an 83KB payload stays off the screen |
-| Clarification | **NOT_EXECUTED** | No clarification-required case exercised |
-| Human confirmation | PASS_WITH_LIMITATION | Risk confirmation works; Expert settlement unreachable (the run was refused) |
-| Multiple findings | PASS | Two findings from one observation, not collapsed |
-| Finding persistence | PASS | Restored after total local context loss |
-| Corrective actions | PASS_WITH_LIMITATION | Created with a risk-derived due date; lifecycle not driven |
-| Tasks | PASS_WITH_LIMITATION | Dates round-trip exactly; no UI CRUD walkthrough |
-| Calendar | **FAIL** | **9 server events, 0 displayed** |
-| Due dates and timezones | PASS | Off-by-one found and repaired; 25/25 regression |
-| Reports | PASS | 6-page PDF, checksum matched exactly |
-| PDF output formatting | **FAIL** | Professional, but mis-branded and severity-inconsistent |
-| History | PASS | Saved inspection recoverable and resumable |
-| Analytics and counts | **FAIL** | Calendar 0 vs 9; Inspections "3 SCHEDULED" vs 1 inspection |
-| Settings | **NOT_EXECUTED** | Renders; nothing changed or verified |
-| Entitlements | PASS | Free plan correctly refused with clean copy |
-| Storage and images | **NOT_EXECUTED** | No upload driven |
-| Error states | PASS_WITH_LIMITATION | No stack trace reached the interface in any case observed |
-| Idempotency | **NOT_EXECUTED** | No double-submit driven |
-| Audit trail | PASS_WITH_LIMITATION | Reviews, security events and provider usage recorded; tokens redacted |
-| Accessibility baseline | PASS_WITH_LIMITATION | Nested buttons eliminated; keyboard traversal not driven |
-| Browser console and network | PASS | 0 errors / 0 failed requests across 96 checks after the hydration repair |
-| Restart persistence | PASS | Everything survived a full stop and start |
-| Data integrity | PASS | No orphans; UI matches stored truth |
-| Performance sanity | **NOT_EXECUTED** | Not measured |
+**§275: 14 PASS · 10 PASS_WITH_LIMITATION · 4 FAIL · 6 NOT_EXECUTED**
+**§276: 25 PASS · 9 PASS_WITH_LIMITATION · 0 FAIL · 0 NOT_EXECUTED**
 
----
-
-## What genuinely works, stated plainly
-
-It would be misleading to list only defects.
-
-- **The inspection pipeline is complete.** Create → site and jurisdiction → observation → HazLenz
-  review → confirm findings → risk matrix → corrective actions → finish → report, driven end to end
-  in a browser as a real authenticated Pro user.
-- **The §117 repair is live in the product.** A punch press with the guard removed, running, with
-  the operator's hands in the die, *and a lockout that had since been withdrawn* resolves
-  `29 CFR 1910.212(a)(1)` **SUPPORTED at 0.96** with all four predicates supported and jurisdiction
-  `USER_CONFIRMED`. Before the repair this family was excluded at 0.96 by the withdrawn lockout.
-  `1910.147` is correctly `CONTRADICTED`.
-- **HazLenz is concise where it matters.** The classify payload is ~83KB across ~110 keys; the user
-  sees two findings of one line each, each quoting their own words, with risk and citation inline.
-  The presentation layer is already doing the job Phase 10 asks for.
-- **Human authority is respected in the interface.** "Tick the ones that are real findings. Anything
-  you leave unticked is not recorded as a finding, creates no corrective action, and does not appear
-  in your report — you do not have to review it or explain why."
-- **Expert refusal is honest.** "Expert analysis could not be used. The Expert layer answered and the
-  answer was refused in full. No conclusion is offered." and, when absent, "That is not a finding
-  that there are no hazards." The architecture contained a non-admitted provider answer, spent one
-  leg instead of two, and offered the user nothing from it.
-- **Nothing lost a user's work.** After the local inspection context was destroyed, the inspection
-  was recoverable from the inspections list with its observation, finding and Expert state intact,
-  and it survived a full restart of both processes.
-- **The report is a professional artifact.** Cover page, executive summary with a risk distribution,
-  inspection record, assessment prose, an explicit basis-and-limitations statement carrying the
-  advisory disclaimer, and a findings table.
-
----
-
-## Defect register
-
-Severity: **P0** unsafe / security / data loss · **P1** materially broken primary workflow ·
-**P2** significant UX or product defect · **P3** polish.
-
-### Fixed in this section
-
-| ID | Sev | Area | Defect | Fix | Verification |
-|---|---|---|---|---|---|
-| D-001 | P2 | Calendar / actions | A corrective action due 8pm on Sep 15 displayed on **Sep 16**. `new Date("2026-09-15")` parsed a bare date as UTC midnight on ingestion, and `toISOString().slice(0,10)` read the day back in UTC on projection. The two errors cancelled on the obvious test case, which is why it survived | `parseDueDate` / `toCalendarDayKey` in `backend/src/common/calendar-date.ts`, applied to both ends | Re-measured on the running stack: both inputs now display Sep 15. `npm run test:calendar-date-boundary` 25/25 |
-| D-002 | P2 | Home | `.app-input { width: 100% }` beat every width utility a caller passed. On Home the priority select took **687px of a 935px row**, starving the task-title label to **0px** and wrapping its text into a six-line column | Width moved out of the CSS class into the components' Tailwind class list so caller overrides sort after it | Re-measured: label 549px, input 549px, select 128px, row height 128px → 53px |
-| D-003 | P3 | Home | A raw date key in the interface: "Add task for 2026-09-13" | `formatCalendarDateLabel`, parsing locally so it cannot shift a day | Reads "Add task for Sunday, September 13" |
-| D-004 | P2 | Inspection workspace | HazLenz's suggested risk — the number the inspector is asked to confirm — rendered at **1.07:1** in dark theme, a fixed light panel under theme-varying text | Dark counterparts for the panel background and border | Re-measured in browser |
-| D-005 | P2 | Inspection complete | The completion hero measured **1.95:1**: heading, completion time, jurisdiction and report status effectively unreadable in dark theme | Dark counterparts on the success panel and its risk pills | Re-measured and visually confirmed |
-| D-006 | P1 | Sign-in | Every non-OK response mapped to "Check your email and password" — so on a **429 rate limit** a user with the correct password was told it was wrong, retried, extended their own lockout, and was never told that waiting is the fix | 429 and 5xx now say what they are; registration given the same treatment | Throttle reproduced at 3 attempts/minute |
-| D-012 | P2 | Inspection workspace | Nested `<button>` elements in the applicable-standard card. React reported a hydration error on every render, and a control inside a control has no defined activation behaviour; the outer one had no accessible name, only a "+" glyph | Made siblings; the card toggle now reads "Show details for 29 CFR 1910.212(a)(1)" | `document.querySelectorAll('button button').length` 2 → 0; dev overlay issues cleared |
-| D-018 | P2 | Tooling | 32 `package.json` script entries pointed at `src/safescope-v2/`, deleted by §274 — the entire deterministic HazLenz battery exited MODULE_NOT_FOUND. **This is why nobody noticed the committed §117 gate was failing 9 of 16 cases** | Repointed to `src/hazlenz/` | Every file target in `package.json` now resolves; 0 missing |
-| D-019 | P2 | Tooling | The brand audit matched case-sensitively against hand-written spellings and could not see `SafescopeV2Service`. It reported PASS at 390 while 987 references were present | Canonical names, case-insensitive derived patterns, and the count split into ratcheted debt (293) and register-documented retained identifiers (694) | Tier 1 measured **0** under the new matcher — nothing was hiding |
-
-### Open — require a product-owner decision
-
-| ID | Sev | Area | Defect | Why it is not fixed here |
-|---|---|---|---|---|
-| **D-007** | **P1** | Calendar | Corrective actions and tasks created by the Pro inspection workflow **never appear on the Safety Calendar**. `getSafetyCalendarEvents()` composes only from `getCompanyAssignedWork()`, `getStoredActions()` and `getPersonalCalendarEvents()` — all device-local — and never calls `GET /calendar`, while `app/inspection-workspace/page.tsx` writes through `createPersistedCorrectiveAction` and `createPersistedTask` to the server. The write path is server-side; the read path is device-local; they never meet | Reconciling a deliberately offline-first local store with the server requires deciding dedupe identity, conflict precedence, offline behaviour and ownership filtering. That is an architecture decision, not a bug fix |
-| **D-008** | **P1** | Reports | The PDF called finding 2 **Critical**; the application called it **High**. `riskSnapshot.riskBand` carries the **AI escalation band**, while `overallRisk` / `operationalRisk.matrixBand` carry the **reviewer's matrix band**. The PDF renderer prefers `riskBand`; the app renders the matrix band. The stored record then attributes Critical to `source: "reviewer_confirmed"` beside the rationale "Reviewer-confirmed on the Standard 5x5 matrix: severity 4 x likelihood 4 = 16" — and 16 is High on that profile (High 10–16, Critical 17–25) | Choosing which band is authoritative on a compliance artifact is a safety-semantics decision. Both may be legitimate; what is not legitimate is two surfaces disagreeing and one of them mislabelling an AI band as reviewer-confirmed |
-| **D-009** | P2 | HazLenz content | Per-finding applicability is evaluated against the decomposed `observationFragment`, not the whole observation. The fragment for finding 1 contains no energy or exposure statement, so the card reads **"Candidate · Confidence: Low · missing: moving or accessible energy"** for a finding the engine rates SUPPORTED at 0.96 on the full text. Reproduced exactly: the fragment yields `"Candidate only; missing: moving or accessible energy."`, the whole observation yields `"Supported by submitted evidence…"` | Whether applicability should read the fragment or the whole observation is a HazLenz semantic decision. The product itself draws this distinction — the Expert panel says it "reasons over the whole observation" — so the fragment scoping may be deliberate |
-| D-010 | P2 | Data | Corrective-action rows written **before** the D-001 repair are stored a day early. The projection is now honest about the instant it is given, so those rows display on the earlier day rather than being accidentally corrected | A one-time data migration over existing due dates. Out of scope for a localhost validation |
-| D-013 | P2 | Reports | The PDF is branded **"INSITE"** on the cover and **"InSite ·"** in the running header. The canonical product name is **Safety InSite**. The brand audit's Tier 1 covers `backend/src/pdf` and `backend/src/reports` but only looks for *retired* brands, so a wrong rendering of the *live* brand passes | Trivial to change; it is customer-facing brand copy on a compliance artifact and should be a deliberate decision, not a silent edit during a validation pass |
-| D-014 | P3 | Reports | Page footers read "Page 1 of 5" while the PDF has 6 pages | Cover-page numbering convention — a deliberate choice to confirm |
-
-### Open — bounded, not yet fixed
-
-| ID | Sev | Area | Defect |
+| Area | §275 | §276 | The short version |
 |---|---|---|---|
-| D-011 | P3 | Navigation | `/inspection-quick` is a maintained 570-line page reachable only by typing the URL. `/inspection-workspace` reached without local context shows "No server-saved inspection was selected." with no in-page link onward — recoverable only via the tab bar |
-| D-015 | P2 | Dashboard | The Inspections page reported **3 SCHEDULED** against **1** stored inspection; the number tracked the three tasks created at the time |
-| D-016 | P3 | Sign-in | The error message renders *below* the "Create an account / Forgot password?" links rather than next to the control that failed |
-| D-017 | P3 | Accessibility | `/inspection-review`, `/inspection-complete` and `/field-capture` render **no `<h1>`**; `/safety-calendar` has 2 unlabelled inputs; `/inspection-quick` has 2 |
-| D-020 | P3 | Local dev | `frontend-next/.env.local` pointed at port **4001** with nothing listening, and there is **no tracked `.env.local.example`** to drift from. Also: starting `next dev` before the backend lets it take port 4000 |
+| Application startup | PASS | PASS | 148 routes, schema current |
+| Authentication | PASS_WITH_LIM | PASS_WITH_LIM | Real login drove every pass; expiry still undriven |
+| Workspace isolation | **NOT_EXECUTED** | **PASS** | 11 direct-id attempts, all 404 — never 403 |
+| Navigation | PASS_WITH_LIM | PASS_WITH_LIM | No error boundary; the orphan route is unchanged |
+| Dashboard | PASS_WITH_LIM | **PASS** | The three fabricated "scheduled" records are gone |
+| Responsive UI | PASS | PASS | Unchanged by §276; no layout was altered |
+| Theme and visual consistency | **FAIL** | **PASS** | §275's repairs re-driven; 0 console errors |
+| Inspection creation | PASS | PASS | Driven five times across five contexts |
+| Observation capture | PASS | PASS | Survived reloads and a restart |
+| HazLenz analysis | PASS | PASS | Five new product paths |
+| HazLenz concision | PASS_WITH_LIM | PASS_WITH_LIM | 826–1076 chars on screen from an ~83KB payload |
+| Clarification | **NOT_EXECUTED** | **PASS_WITH_LIM** | Decision-critical path works; a predicate answer does not |
+| Human confirmation | PASS_WITH_LIM | **PASS** | Expert settlement driven end to end for the first time |
+| Multiple findings | PASS | PASS | Two findings, and two independent domains |
+| Finding persistence | PASS | PASS | Survived a full restart |
+| Corrective actions | PASS_WITH_LIM | **PASS** | Now dated, and their lifecycle was driven |
+| Tasks | PASS_WITH_LIM | **PASS** | Edit and delete added and driven |
+| Calendar | **FAIL** | **PASS** | **35 server events, 32 displayed** |
+| Due dates and timezones | PASS | PASS | 25/25, plus a live 20:00-local boundary case |
+| Reports | PASS | PASS | Checksums matched on every download |
+| PDF output formatting | **FAIL** | **PASS** | Four report shapes inspected from extracted text |
+| History | PASS | PASS | Recoverable and resumable |
+| Analytics and counts | **FAIL** | **PASS** | Both halves closed |
+| Settings | **NOT_EXECUTED** | **PASS** | A setting changed and seen to survive a reload |
+| Entitlements | PASS | PASS | Guards exercised throughout |
+| Storage and images | **NOT_EXECUTED** | **PASS** | Upload, integrity, refusal, delete |
+| Error states | PASS_WITH_LIM | PASS_WITH_LIM | No stack trace reached the interface |
+| Idempotency | **NOT_EXECUTED** | **PASS_WITH_LIM** | Every route the product uses is replay-safe |
+| Audit trail | PASS_WITH_LIM | PASS_WITH_LIM | 264 security events across the pass |
+| Accessibility baseline | PASS_WITH_LIM | PASS_WITH_LIM | 25 matrix cells labelled; the `<h1>` gaps remain |
+| Browser console and network | PASS | PASS | Zero console errors |
+| Restart persistence | PASS | PASS | Calendar digest identical across a restart |
+| Data integrity | PASS | PASS | No orphans, including after an injected failure |
+| Performance sanity | **NOT_EXECUTED** | **PASS_WITH_LIM** | 30–90 ms navigations; redundant calls reduced |
 
 ---
 
-## HazLenz product-path assessment
+## The four product-owner decisions, as implemented
 
-One deep OSHA General Industry machine-guarding case was driven end to end, plus one real Expert
-execution. **MSHA, a second hazard domain, a safe/negated condition, an unresolved condition and a
-clarification-required condition were NOT exercised** — the product-path set is narrower than
-Phase 10 describes, and the conclusions below are correspondingly narrow.
+### D-007 — calendar authority
 
-| Criterion | Assessment |
+Server-persisted state is authoritative. The browser reads `GET /calendar` and reconciles it
+with a pending-write outbox; the three pre-reconciliation device stores stop being calendar
+sources, and the two with live writers have their records migrated onto the server once
+each, tracked per record so nothing migrates twice.
+
+The §275 root cause was **two** independent halves, and only one of them was the read path.
+The inspection workflow never sent a `dueDate` when creating a corrective action, so every
+one was persisted **undated** — and a calendar is dated. Repairing the read path alone would
+have left the corrective actions invisible for a second reason.
+
+A pending item is rendered as pending and never as saved; an unreachable server produces a
+labelled cache rather than a silent zero; and a synced item leaves the outbox, so "collapse
+to one event" is true by construction rather than by de-duplication.
+
+### D-008 — severity authority
+
+One rule, `resolveEffectiveSeverity`, mirrored on both sides and held together by
+`npm run check:effective-severity-parity`. The reviewer's band is authoritative on every
+customer-facing surface; HazLenz's escalation band is retained and labelled as HazLenz's.
+
+Finalization no longer stamps the whole merged snapshot `reviewer_confirmed`: the analysis
+band moves to `analysisRiskBand`, so the record is true about what it contains. The rule
+reads §275's stored rows correctly without a data migration.
+
+A second false attribution was found while proving the first. The report's detail line was
+built from `operationalRisk`, which holds the **system's** matrix and is never rewritten by
+a review — so a finding the reviewer set to 3 × 3 = 9 printed
+`Severity 4 · Likelihood 4 · Risk score 16 · Reviewer-confirmed`. Every number on that line
+was the machine's, on a line labelled as the person's. The line is now built from the
+authoritative side only, and a band matching is **not** treated as the same cell.
+
+### D-009 — applicability scope
+
+Scoped evidence: the finding's own fragment **plus** unclaimed parent sentences that
+explicitly co-reference its subject and name no other unit. Not fragment isolation, and not
+a return to whole-observation evaluation. A sentence another finding owns is never
+forwarded, which is the anti-contamination invariant the finding-scoping exists for.
+
+§275's case now reads **SUPPORTED at 0.96** with no missing predicate, reached through
+scoped evidence — the same answer the whole-observation path gives, without the leakage.
+§117 remains **16/16, 0 dangerous**, and the withdrawn-lockout case still does not exclude
+the guarding family.
+
+### D-013 — report brand
+
+Cover, running header, PDF metadata title and the unmounted legacy renderer all carry
+**Safety InSite**, with HazLenz named as the engine.
+
+The brand audit gained **Tier 1B**, which fails on a non-canonical rendering of the *live*
+product name. It was verified against the deliberately reintroduced defect: with `'INSITE'`
+put back on the cover it **failed**, and passed again once repaired. A first version of that
+check could not see the defect at all — it recognised JSX text and prop assignments, and the
+defect was a `doc.text('INSITE', ...)` call — which is exactly how a gate becomes a
+decoration.
+
+---
+
+## What §276 found that §275 had not
+
+Nine new defects. Six are closed and retested; three await a product decision.
+
+| ID | Sev | Status | What |
+|---|---|---|---|
+| D-021 | P2 | **CLOSED** | A decision-critical jurisdiction answer was applied *and* simultaneously recorded as "Unknown question ID ignored" |
+| D-022 | **P1** | **CLOSED** | Answering a clarification **damaged** the finding: it lost its standard, the hazard count rose, and `guardstate=absent_or_ineffective` was quoted back as the inspector's own words |
+| D-024(a) | **P1** | **CLOSED** | On a safe observation, a hazard the engine itself assessed `SAFE_VERIFIED` was proposed and pre-ticked |
+| D-025 | P2 | **CLOSED** | `check:risk-band-parity` threw ENOENT on every run — the gate that holds the browser's risk bands to the server's, silently unrunnable since §274 |
+| D-026 | P3 | **CLOSED** | The profile shouted the account's own name and email back in capitals |
+| D-027 | P3 | **CLOSED** | One Settings visit issued six identical `GET /billing/status` requests |
+| D-023 | P2 | **OPEN — decision** | A **predicate** clarification answer changes nothing, under a panel captioned "What would raise this" |
+| D-024(b) | P2 | **OPEN — decision** | A `ground_control` hazard routed at confidence **0.2** from the single word "wall" is still proposed on a safe observation |
+| D-028 | P2 | **OPEN — decision** | A renderer correction does not re-issue an already-issued report |
+| D-029 | P2 | OPEN | A corrective action created with no `findingId` is not deduplicated on replay |
+
+**D-022 and D-024(a) were P1 and are closed.** Both are the same failure as D-008 in a
+different place: a machine value wearing a person's label. D-022 re-labelled every
+engine-extracted fact `user_confirmation` on any re-run, including one where the reviewer
+never opened the fact list. D-024(a) proposed as a hazard something the engine's own
+analysis recorded as verified safe.
+
+**D-024(b) is P2, and the reasoning is recorded rather than asserted.** As first measured it
+was P1: two hazards on a safe observation with one pre-ticked, so pressing Continue without
+reading carried a fabricated finding into a compliance report. With the `SAFE_VERIFIED`
+hazard withdrawn only one candidate remains, the confirmation step no longer appears, and
+nothing is pre-selected — the reviewer must drive risk, review and save before it becomes a
+finding at all. That is review noise and an unnecessary dismissal, not a record that creates
+itself. The direction of the error is over-flagging, never under-reporting.
+
+**Why D-023 and D-024(b) were not simply fixed.** Whether a reviewer's unsupported assertion
+may promote a regulatory predicate — carrying a citation from Candidate to Supported with no
+corroborating observation text — is a safety-semantics decision about what a human assertion
+establishes. So is a minimum routing confidence chosen from a single observation, which is
+the tuning §276 explicitly forbids. Both are stated with the measurement and handed over.
+
+---
+
+## HazLenz product-path coverage
+
+§275 drove one deep OSHA machine-guarding case. §276 adds five, driven through the real
+interface.
+
+| Path | Domain | Outcome |
+|---|---|---|
+| 1 | OSHA machine guarding | §275's case, re-driven by the §276 walkthrough |
+| 2 | OSHA, second domain (electrical) | Hazard proposed, standard carried, no token leak |
+| 3 | MSHA | Two hazards proposed under the MSHA context |
+| 4 | Safe / negated condition | **The one that found something.** See D-024 |
+| 5 | Multiple independent hazards | Two independent hazards across two domains, not collapsed |
+| 6 | Unresolved / clarification-required | Candidate with a stated missing predicate; the Expert execution here was **admitted** |
+
+### Concision
+
+Scored from the **default** screen — what the reviewer sees before expanding anything,
+because "correct but buried" is invisible to any assertion made against the payload.
+
+**826–1076 rendered characters** per path, against a classify payload of roughly 83KB. Zero
+internal-token leaks after the D-022 repair. Every path quotes the inspector's own words,
+states a risk band, and defers regulatory text behind a disclosure. Three advisory
+statements per screen — present without becoming a wall.
+
+Two presentation defects were repaired under the authority §276 grants (presentation before
+semantics): a finding headed by HazLenz's internal `mechanism` clause now carries a hazard
+name, and a reanalysis no longer injects fact tokens into the analysis text.
+
+One **content-design limitation** is recorded rather than repaired, because presentation
+cannot fix it: the corrective-action text is still a template with the hazard family
+substituted — "Immediate hazard control required to prevent contact/exposure to Machine
+Guarding hazard" — naming neither the machine nor the control. §275 called this weak; §276
+re-measured it and it is unchanged.
+
+### Provider accounting
+
+**3 analyses of the 6 allowed across §§275–276. $0.375220 of the $1.50 ceiling.**
+
+| # | Section | Outcome | Cost | Cause, classified individually |
+|---|---|---|---|---|
+| 1 | §275 | REFUSED | $0.119524 | `POSTURE_BASIS_REF_UNRESOLVED` + `ACTIVE_CANDIDATE_NOT_COVERED` |
+| 2 | §276 (P4) | REFUSED | $0.101634 | `POSTURE_BASIS_REF_UNRESOLVED` — **one** code, a different cause list from #1 |
+| 3 | §276 (P6) | **ADMITTED** | $0.154062 | Reached `ANALYSIS_AWAITING_CONFIRMATION` |
+
+Execution 3 is the first admitted Expert execution in the product record. It named two
+unresolved items — `decl-energized-status` and `cand-pinch-exposure` — on an observation
+that states a guard is missing and says nothing about energy. That is what made the
+human-confirmation path drivable at all, and §275's "Expert settlement unreachable"
+limitation is closed on it: a reviewer settled it, the state moved to `ANALYSIS_CONFIRMED`,
+`settledForUse` became true only then, and the Expert result was **byte-identical**
+afterwards.
+
+No provider call was spent to replace an unfavourable answer. No Expert prompt, wire schema,
+admission rule, verifier or governed regulatory semantic was changed.
+
+---
+
+## Gates
+
+| Gate | Result |
 |---|---|
-| Relevance | **Good.** Each finding quotes the inspector's own words as its basis |
-| Concision | **Good.** Two findings, one line each. The ~83KB payload does not reach the screen |
-| Prioritisation | **Good.** Risk band and citation inline on each finding |
-| Non-repetition | **Adequate.** The two findings overlap in subject; the second adds "no light curtain or two-hand control" |
-| User language | **Mixed.** Finding 1 reads "Machine guarding". Finding 2 is rendered from an internal `mechanism` clause: *"required machine-guarding component missing, defeated or out of adjustment"* — lowercase, clause-shaped, and used as a page heading |
-| Clarification discipline | Not exercised |
-| Regulatory grounding | **Good.** One citation, with an expandable standard detail panel, and an explicit "No standard established" where none applied |
-| Corrective action | **Weak.** "Immediate hazard control required to prevent contact/exposure to Machine Guarding hazard" is a template with the family name substituted — it names neither the guard, the press, nor what to do |
-| Uncertainty | **Good.** Advisory framing is present without becoming a wall of caveats |
+| backend TypeScript / build | PASS |
+| frontend TypeScript / build | PASS |
+| frontend lint delta | **0 new errors, 0 new warnings** |
+| `brand:audit` | PASS — Tier 1 **0**, Tier 1B **0**, Tier 2 293/293, retained 694/694 |
+| `hazlenz:verify` | PASS — 29/29 protected modules, 0 new accepted-evidence drift |
+| `verify:274-successor-identity` | PASS — 22 elements, 0 failures, identity **unchanged** |
+| `beta:readiness` · `docs:check-links` | PASS |
+| §117 guarding regression | **16/16, 0 dangerous** |
+| §276 scoped-evidence regression (D-009) | 22/22 |
+| §276 effective-severity regression (D-008) | 48/48 |
+| §276 calendar reconciliation, server (D-007) | 39/39 |
+| §276 calendar reconciliation, browser (D-007) | 34/34 |
+| calendar date boundary | 25/25 |
+| `hazlenz:integration:test` | PASS |
+| report replacement failure safety | 16/16 |
+| risk-band parity · effective-severity parity · Expert authority boundary | PASS |
+| §276 gap closure (A–C / D–F) | 33 pass 1 note · 27 pass 1 note 1 fail (D-023, recorded) |
+| §276 report acceptance | 92 pass, 0 fail |
+| §276 Expert settlement | 11/11 |
+| §276 final walkthrough | **25/25** |
 
-No Expert prompt, wire schema, admission rule, verifier, settlement or governed regulatory semantic
-was changed. The single Expert execution was **refused** by deterministic structural admission
-(`FIRST_PASS_NOT_ADMITTED`), which spent one provider leg instead of two and offered the user
-nothing from the refused answer — the containment behaved as designed. **One refusal on one
-observation is not evidence about Expert reliability in either direction**, and no conclusion is
-drawn from it here.
-
----
-
-## Identity and production safety
-
-| | |
-|---|---|
-| Successor identity before | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
-| Successor identity after | `8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee` |
-| `verify:274-successor-identity` | PASS — 22 elements, 0 failures |
-| `hazlenz:verify` | PASS — 29/29 protected modules, **0 new accepted-evidence drift** |
-| Production migrations | 0 |
-| Production database writes | 0 |
-| Deployments | 0 |
-| Pushes | 0 |
-
-The §117 files are outside the 29 protected modules and are not digested members of any frozen
-manifest, which is why committing them did not move the candidate identity.
+Two gates could not run at all and were repaired (D-025): `check:risk-band-parity` pointed
+at a directory §274 deleted, and `test:expert-presentation` invoked a binary that is not
+installed. The first matters here in particular — it is the check that holds the browser's
+risk bands to the server's profiles, which is the arithmetic D-008 turns on.
 
 ---
 
-## What remains before this terminal can change
+## What remains
 
-1. Decide **D-007** (calendar reconciliation) and **D-008** (authoritative severity on the report).
-   These are the two that block controlled beta.
-2. Decide **D-009** (fragment versus whole-observation applicability) and **D-013** (report brand).
-3. Execute the six **NOT_EXECUTED** areas: workspace isolation, storage and images, idempotency,
-   settings, clarification, and performance.
-4. Broaden the HazLenz product-path set to MSHA, a second domain, and a negated condition.
+**Local, and needing a product-owner decision:** D-023, D-024(b), D-028. All P2.
+**Local, bounded:** D-029, D-010, D-011, D-014, D-016, D-017.
+**Live/external, and not closable on localhost:** live provider transport from a deployed
+instance, and live billing — both recorded in `CURRENT-STATE.md` §10 as `UNVERIFIED_LIVE`,
+unchanged by §276.
+
+The full terminal is deliberately not claimed. P0 and P1 are zero and every mandatory
+NOT_EXECUTED area is executed, but gaps remain beyond a clean local baseline and they are
+named above rather than absorbed into a pass.

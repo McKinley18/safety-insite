@@ -1,0 +1,288 @@
+{
+  "section": 276,
+  "run": "VALIDATION-276-UI-1789330849763",
+  "areas": {
+    "D": "settings",
+    "E": "clarification",
+    "F": "performance sanity"
+  },
+  "results": [
+    {
+      "area": "D",
+      "id": "D01",
+      "title": "settings renders under the canonical product brand",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D02",
+      "title": "it shows the account's REAL plan, not a default",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D03",
+      "title": "it lists the account's own saved sites",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D04",
+      "title": "an unavailable action says why rather than failing silently",
+      "outcome": "PASS",
+      "detail": "billing is unconfigured locally and the screen states it"
+    },
+    {
+      "area": "D",
+      "id": "D05",
+      "title": "no placeholder or debug value reaches the settings screen",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "area": "D",
+      "id": "D06",
+      "title": "a changed setting survives a reload",
+      "outcome": "PASS",
+      "detail": "risk matrix default switched to Simple 4x4"
+    },
+    {
+      "area": "D",
+      "id": "D07",
+      "title": "and can be changed back",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D08",
+      "title": "the profile shows the signed-in account's own email",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D09",
+      "title": "the email is shown as stored, not shouted back in capitals",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "area": "D",
+      "id": "D10",
+      "title": "role and plan are visible",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D11",
+      "title": "sign-out is reachable",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D12",
+      "title": "account deletion requires the password",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D13",
+      "title": "no placeholder or debug value reaches the profile screen",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "area": "D",
+      "id": "D14-Home",
+      "title": "navigation reaches Home without an error boundary",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D14-Settings",
+      "title": "navigation reaches Settings without an error boundary",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "D",
+      "id": "D14-Calendar",
+      "title": "navigation reaches Calendar without an error boundary",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "E",
+      "id": "E01",
+      "title": "the confidence control that leads to clarification is present",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "area": "E",
+      "id": "E02",
+      "title": "HazLenz states what would raise the finding's confidence",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "E",
+      "id": "E03",
+      "title": "and asks a question that materially relates to the settlement",
+      "outcome": "PASS",
+      "detail": "\"moving or accessible energy\""
+    },
+    {
+      "area": "E",
+      "id": "E04",
+      "title": "answering resumes the analysis without losing the inspection",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "E",
+      "id": "E05",
+      "title": "a PREDICATE clarification answer changes the recomputed result",
+      "outcome": "FAIL",
+      "detail": "confidence Low -> Low — recorded as a §276 defect requiring a product decision"
+    },
+    {
+      "area": "E",
+      "id": "E05b",
+      "title": "and the finding is not DAMAGED by answering",
+      "outcome": "PASS",
+      "detail": "§276 found the standard disappearing and an internal token quoted back as the inspector's words"
+    },
+    {
+      "area": "E",
+      "id": "E06",
+      "title": "a decision-critical clarification is raised when jurisdiction is unresolved",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "area": "E",
+      "id": "E07",
+      "title": "answering it collapses the candidate regimes to the one named",
+      "outcome": "PASS",
+      "detail": "3 -> 1 candidate(s)"
+    },
+    {
+      "area": "E",
+      "id": "E08",
+      "title": "and the provenance records the human as the source",
+      "outcome": "PASS",
+      "detail": "UNKNOWN -> USER_CONFIRMED"
+    },
+    {
+      "area": "E",
+      "id": "E09",
+      "title": "the answer is not simultaneously recorded as ignored",
+      "outcome": "PASS",
+      "detail": "[]"
+    },
+    {
+      "area": "F",
+      "id": "F01",
+      "title": "no single page VISIT asks the server for the same thing more than twice",
+      "outcome": "NOTE",
+      "detail": "/settings#1 :: GET /billing/status x4 | /inspection-workspace#7 :: POST /hazlenz/classify x4 | /settings#1 :: GET /sites x3"
+    },
+    {
+      "area": "F",
+      "id": "F02",
+      "title": "no measured interaction exceeds 3 s on localhost",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "area": "F",
+      "id": "F03",
+      "title": "the browser console carried no errors across this pass",
+      "outcome": "PASS",
+      "detail": ""
+    }
+  ],
+  "timings": [
+    {
+      "label": "settings load",
+      "ms": 70
+    },
+    {
+      "label": "profile load",
+      "ms": 63
+    },
+    {
+      "label": "HazLenz analysis (clarification case)",
+      "ms": 31
+    },
+    {
+      "label": "clarification answer -> recomputed analysis",
+      "ms": 95
+    },
+    {
+      "label": "dashboard (cold navigation)",
+      "ms": 48
+    },
+    {
+      "label": "inspections list (cold navigation)",
+      "ms": 75
+    },
+    {
+      "label": "calendar (cold navigation)",
+      "ms": 76
+    },
+    {
+      "label": "reports (cold navigation)",
+      "ms": 80
+    },
+    {
+      "label": "settings (cold navigation)",
+      "ms": 76
+    }
+  ],
+  "networkByRoute": {
+    "startup :: POST /auth/login": 1,
+    "/settings#1 :: GET /calendar": 2,
+    "/settings#1 :: GET /billing/status": 4,
+    "/settings#1 :: GET /sites": 3,
+    "/profile#2 :: GET /billing/status": 1,
+    "/profile#2 :: GET /auth/me": 1,
+    "/command-center#3 :: GET /calendar": 1,
+    "/command-center#3 :: GET /billing/status": 1,
+    "/settings#4 :: GET /billing/status": 1,
+    "/settings#4 :: GET /sites": 1,
+    "/safety-calendar#5 :: GET /calendar": 1,
+    "/safety-calendar#5 :: GET /billing/status": 1,
+    "/inspections#6 :: GET /sites": 1,
+    "/inspections#6 :: GET /inspections": 1,
+    "/inspections#6 :: GET /billing/status": 2,
+    "/inspections#6 :: POST /sites": 1,
+    "/inspections#6 :: POST /inspections": 1,
+    "/inspections#6 :: GET /inspections/df90f20c-cada-4b0a-a512-db5d4ba4cf5f": 2,
+    "/inspection-workspace#7 :: POST /inspections/df90f20c-cada-4b0a-a512-db5d4ba4cf5f/observations": 1,
+    "/inspection-workspace#7 :: POST /hazlenz/classify": 4,
+    "/inspection-workspace#7 :: POST /inspections/observations/b768e65b-ca1d-4428-917d-bf0afad14beb/analyses": 2,
+    "/inspection-workspace#7 :: GET /inspections/df90f20c-cada-4b0a-a512-db5d4ba4cf5f": 2,
+    "/inspection-workspace#7 :: GET /inspections/observations/b768e65b-ca1d-4428-917d-bf0afad14beb/expert-analyses/current": 2,
+    "/command-center#8 :: GET /calendar": 1,
+    "/command-center#8 :: GET /billing/status": 1,
+    "/inspections#9 :: GET /sites": 1,
+    "/inspections#9 :: GET /inspections": 1,
+    "/inspections#9 :: GET /billing/status": 1,
+    "/safety-calendar#10 :: GET /calendar": 1,
+    "/safety-calendar#10 :: GET /billing/status": 1,
+    "/reports#11 :: GET /inspection-reports": 1,
+    "/settings#12 :: GET /billing/status": 1,
+    "/settings#12 :: GET /sites": 1
+  },
+  "consoleErrors": []
+}

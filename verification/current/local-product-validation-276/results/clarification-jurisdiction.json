@@ -1,0 +1,69 @@
+{
+  "before": {
+    "questions": [
+      {
+        "id": "jurisdiction",
+        "critical": true
+      },
+      {
+        "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+        "critical": false
+      }
+    ],
+    "decisions": [
+      {
+        "citation": "30 CFR 56.14107(a)",
+        "status": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "missing": [
+          "MSHA jurisdiction"
+        ]
+      },
+      {
+        "citation": "29 CFR 1910.212(a)(1)",
+        "status": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "missing": [
+          "general-industry jurisdiction",
+          "moving or accessible energy"
+        ]
+      },
+      {
+        "citation": "29 CFR 1926.300(b)(2)",
+        "status": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "missing": [
+          "construction jurisdiction"
+        ]
+      }
+    ],
+    "state": {
+      "answeredQuestionIds": [],
+      "invalidAnswers": []
+    }
+  },
+  "after": {
+    "questions": [
+      {
+        "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+        "critical": false
+      }
+    ],
+    "decisions": [
+      {
+        "citation": "29 CFR 1910.212(a)(1)",
+        "status": "UNKNOWN",
+        "provenance": "USER_CONFIRMED",
+        "missing": [
+          "moving or accessible energy"
+        ]
+      }
+    ],
+    "state": {
+      "answeredQuestionIds": [
+        "jurisdiction"
+      ],
+      "invalidAnswers": []
+    }
+  }
+}

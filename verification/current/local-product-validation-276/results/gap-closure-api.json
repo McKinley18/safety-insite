@@ -1,0 +1,250 @@
+{
+  "section": 276,
+  "run": "VALIDATION-276-GAP-1789330038072",
+  "apiUrl": "http://localhost:4000",
+  "areas": {
+    "A": "workspace isolation",
+    "B": "storage and images",
+    "C": "idempotency"
+  },
+  "results": [
+    {
+      "area": "SEED",
+      "id": "S1",
+      "title": "A's workspace is seeded with an inspection, observation, action and task",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "area": "A",
+      "id": "A1",
+      "title": "a cross-workspace inspection is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A2",
+      "title": "a cross-workspace observation (via its inspection) is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A3",
+      "title": "a cross-workspace corrective action status is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A4",
+      "title": "a cross-workspace task edit is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A5",
+      "title": "a cross-workspace task delete is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A6",
+      "title": "a cross-workspace Expert analysis read is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A7",
+      "title": "a cross-workspace inspection transition is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A8",
+      "title": "a cross-workspace report generation is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A9",
+      "title": "a cross-workspace report read is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A10",
+      "title": "a cross-workspace completion readiness is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A11",
+      "title": "a cross-workspace evidence upload is refused",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "A",
+      "id": "A12",
+      "title": "B's inspection list contains none of A's inspections",
+      "outcome": "PASS",
+      "detail": "0 inspection(s) visible to B"
+    },
+    {
+      "area": "A",
+      "id": "A13",
+      "title": "B's calendar contains none of A's due work",
+      "outcome": "PASS",
+      "detail": "0 event(s) visible to B"
+    },
+    {
+      "area": "A",
+      "id": "A14",
+      "title": "B's corrective-action list contains none of A's",
+      "outcome": "PASS",
+      "detail": "0 action(s) visible to B"
+    },
+    {
+      "area": "A",
+      "id": "A15",
+      "title": "an unauthenticated read of A's inspection is refused",
+      "outcome": "PASS",
+      "detail": "status 401"
+    },
+    {
+      "area": "B",
+      "id": "B1",
+      "title": "a synthetic image uploads and attaches to the inspection",
+      "outcome": "PASS",
+      "detail": "status 201 id 0d1a7e55-6d41-439d-8232-16774d57e216"
+    },
+    {
+      "area": "B",
+      "id": "B2",
+      "title": "it downloads back byte-identical",
+      "outcome": "PASS",
+      "detail": "sha256 c414cd0e204de974 vs c414cd0e204de974"
+    },
+    {
+      "area": "B",
+      "id": "B3",
+      "title": "it is served with hardening headers, never inline",
+      "outcome": "PASS",
+      "detail": "attachment; filename=\"VALIDATION-276-GAP-1789330038072.png\" / nosniff"
+    },
+    {
+      "area": "B",
+      "id": "B4",
+      "title": "another workspace cannot download it",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "B",
+      "id": "B5",
+      "title": "a JPEG is accepted as well as a PNG",
+      "outcome": "PASS",
+      "detail": "status 201"
+    },
+    {
+      "area": "B",
+      "id": "B6",
+      "title": "an unsupported file type is refused with a 4xx, not a stack trace",
+      "outcome": "PASS",
+      "detail": "status 400 — Only PNG, JPG, or WEBP image files are allowed."
+    },
+    {
+      "area": "B",
+      "id": "B7",
+      "title": "a non-image body claiming to be a PNG is refused",
+      "outcome": "PASS",
+      "detail": "status 400 — File content does not match its image type."
+    },
+    {
+      "area": "B",
+      "id": "B8",
+      "title": "a missing image reads as not-found, not as a server error",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "B",
+      "id": "B9",
+      "title": "an image can be deleted",
+      "outcome": "PASS",
+      "detail": "status 200"
+    },
+    {
+      "area": "B",
+      "id": "B10",
+      "title": "and is no longer retrievable afterwards",
+      "outcome": "PASS",
+      "detail": "status 404"
+    },
+    {
+      "area": "C",
+      "id": "C1",
+      "title": "a replayed inspection create stores ONE inspection",
+      "outcome": "PASS",
+      "detail": "9 -> 10, same id true"
+    },
+    {
+      "area": "C",
+      "id": "C2",
+      "title": "a replayed observation create stores ONE observation",
+      "outcome": "PASS",
+      "detail": "1 observation(s), same id true"
+    },
+    {
+      "area": "C",
+      "id": "C3",
+      "title": "a replayed evidence upload stores ONE object",
+      "outcome": "PASS",
+      "detail": "6e91918c-921d-4101-a462-4dd8e757b715 vs 6e91918c-921d-4101-a462-4dd8e757b715"
+    },
+    {
+      "area": "C",
+      "id": "C4",
+      "title": "a replayed corrective action for a finding stores ONE action",
+      "outcome": "PASS",
+      "detail": "8 -> 8, same id true"
+    },
+    {
+      "area": "C",
+      "id": "C4b",
+      "title": "an action created with NO findingId is not deduplicated",
+      "outcome": "NOTE",
+      "detail": "8 -> 10 — no product surface sends this shape; recorded, not scored"
+    },
+    {
+      "area": "C",
+      "id": "C5",
+      "title": "report generation replays without erroring",
+      "outcome": "PASS",
+      "detail": "statuses 201 / 201"
+    },
+    {
+      "area": "C",
+      "id": "C6",
+      "title": "and the inspection still has exactly ONE current report",
+      "outcome": "PASS",
+      "detail": "reportId d181f7d0-2dcb-4a47-b43a-fbbbfa4011a5 (was d181f7d0-2dcb-4a47-b43a-fbbbfa4011a5), version 2"
+    },
+    {
+      "area": "C",
+      "id": "C7",
+      "title": "a replayed completion leaves ONE calendar event",
+      "outcome": "PASS",
+      "detail": "1 copies"
+    }
+  ]
+}

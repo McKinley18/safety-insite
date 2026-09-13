@@ -1,0 +1,146 @@
+{
+  "section": 276,
+  "what": "HazLenz concision acceptance, scored from the DEFAULT screen \u2014 what the reviewer sees before expanding anything.",
+  "whyTheDefaultScreen": "Correct but buried is the failure this measures, and it is invisible to any assertion made against the analysis payload. The \u00a7275 classify payload was ~83KB; almost none of it reaches a screen.",
+  "authorisedRemedies": "Presentation only: concise summary, collapsed details, expandable regulatory evidence, compact reasoning, improved hierarchy. NOT authorised and NOT done: Expert prompt tuning, schema contraction, semantic deletion, verifier changes.",
+  "presentationChangesMadeAtSection276": [
+    "A finding is headed by a hazard NAME, not by HazLenz's internal `mechanism` clause. \u00a7275 photographed a card headed \"required machine-guarding component missing, defeated or out of adjustment\".",
+    "A reanalysis no longer injects engine fact tokens into the analysis text, so the screen no longer quotes \"guardstate=absent_or_ineffective\" back as the inspector's own words."
+  ],
+  "paths": [
+    {
+      "path": "P2",
+      "domain": "OSHA General Industry \u2014 second domain (electrical)",
+      "regulatoryContext": "osha-general-industry",
+      "analysisMs": 264,
+      "renderedCharactersOnTheDefaultScreen": 859,
+      "immediateConclusionVisibility": "GOOD",
+      "hazardRelevance": "GOOD",
+      "actionability": "GOOD",
+      "repetition": "0 repeated sentence(s)",
+      "regulatoryVerbosity": "no standard text on the default screen",
+      "clarificationNecessity": "nothing is asked",
+      "caveatBurden": "3 advisory statement(s)",
+      "userFacingLanguage": "GOOD \u2014 no internal token on screen",
+      "citationOnTheDefaultScreen": false,
+      "quotesTheInspectorsOwnWords": true,
+      "fourQuestions": {
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatImportantFactIsStillMissing": false
+      },
+      "expert": null
+    },
+    {
+      "path": "P3",
+      "domain": "MSHA",
+      "regulatoryContext": "msha",
+      "analysisMs": 197,
+      "renderedCharactersOnTheDefaultScreen": 826,
+      "immediateConclusionVisibility": "GOOD",
+      "hazardRelevance": "GOOD",
+      "actionability": "GOOD",
+      "repetition": "0 repeated sentence(s)",
+      "regulatoryVerbosity": "no standard text on the default screen",
+      "clarificationNecessity": "nothing is asked",
+      "caveatBurden": "3 advisory statement(s)",
+      "userFacingLanguage": "GOOD \u2014 no internal token on screen",
+      "citationOnTheDefaultScreen": true,
+      "quotesTheInspectorsOwnWords": true,
+      "fourQuestions": {
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatImportantFactIsStillMissing": false
+      },
+      "expert": null
+    },
+    {
+      "path": "P4",
+      "domain": "safe / negated condition",
+      "regulatoryContext": "osha-general-industry",
+      "analysisMs": 211,
+      "renderedCharactersOnTheDefaultScreen": 893,
+      "immediateConclusionVisibility": "GOOD",
+      "hazardRelevance": "DEFECT",
+      "actionability": "GOOD",
+      "repetition": "0 repeated sentence(s)",
+      "regulatoryVerbosity": "no standard text on the default screen",
+      "clarificationNecessity": "a question is offered",
+      "caveatBurden": "3 advisory statement(s)",
+      "userFacingLanguage": "GOOD \u2014 no internal token on screen",
+      "citationOnTheDefaultScreen": false,
+      "quotesTheInspectorsOwnWords": true,
+      "fourQuestions": {
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatImportantFactIsStillMissing": true
+      },
+      "expert": {
+        "ms": 9161,
+        "panelText": "HazLenz Expert is analysing this observation This takes longer than the standard analysis because it reasons over the whole observation. Nothing is shown until it finishes. ",
+        "refused": false,
+        "awaitingConfirmation": false
+      }
+    },
+    {
+      "path": "P5",
+      "domain": "multiple independent hazards",
+      "regulatoryContext": "osha-general-industry",
+      "analysisMs": 197,
+      "renderedCharactersOnTheDefaultScreen": 867,
+      "immediateConclusionVisibility": "GOOD",
+      "hazardRelevance": "GOOD",
+      "actionability": "GOOD",
+      "repetition": "0 repeated sentence(s)",
+      "regulatoryVerbosity": "no standard text on the default screen",
+      "clarificationNecessity": "nothing is asked",
+      "caveatBurden": "3 advisory statement(s)",
+      "userFacingLanguage": "GOOD \u2014 no internal token on screen",
+      "citationOnTheDefaultScreen": true,
+      "quotesTheInspectorsOwnWords": true,
+      "fourQuestions": {
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatImportantFactIsStillMissing": false
+      },
+      "expert": null
+    },
+    {
+      "path": "P6",
+      "domain": "unresolved / clarification-required",
+      "regulatoryContext": "osha-general-industry",
+      "analysisMs": 131,
+      "renderedCharactersOnTheDefaultScreen": 1076,
+      "immediateConclusionVisibility": "GOOD",
+      "hazardRelevance": "GOOD",
+      "actionability": "GOOD",
+      "repetition": "0 repeated sentence(s)",
+      "regulatoryVerbosity": "DEFERRED behind a control",
+      "clarificationNecessity": "a question is offered",
+      "caveatBurden": "3 advisory statement(s)",
+      "userFacingLanguage": "GOOD \u2014 no internal token on screen",
+      "citationOnTheDefaultScreen": true,
+      "quotesTheInspectorsOwnWords": true,
+      "fourQuestions": {
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatImportantFactIsStillMissing": true
+      },
+      "expert": {
+        "ms": 9158,
+        "panelText": "HazLenz Expert is analysing this observation This takes longer than the standard analysis because it reasons over the whole observation. Nothing is shown until it finishes. ",
+        "refused": false,
+        "awaitingConfirmation": false
+      }
+    }
+  ],
+  "contentDesignLimitationsRecorded": [
+    "Corrective-action text is still a template with the hazard family substituted (\"Immediate hazard control required to prevent contact/exposure to Machine Guarding hazard\"). It names neither the machine nor the control. \u00a7275 recorded this as WEAK; \u00a7276 re-measured it and it is unchanged. It is a generator content-design limitation, not a presentation one, and presentation cannot fix it.",
+    "Two findings decomposed from one observation about the same machine both read \"Machine guarding\". They are distinguished by the fragment each quotes, which is honest, but the headings alone do not tell them apart."
+  ]
+}

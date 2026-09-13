@@ -1,93 +1,824 @@
 {
   "artifact": "SAFETY_INSITE_WHOLE_PRODUCT_LOCAL_VALIDATION",
-  "section": "§275",
+  "section": "\u00a7276",
   "validatedAt": "2026-09-13",
-  "commitSha": "ae075555bd86a0c2baf74a4d4d81d018a890d7df",
+  "commitSha": "9b4a201b78633872b3156661b8be8d0103794084",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
   "successorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
   "role": "MACHINE-READABLE COMPANION to project-docs/current/WHOLE-PRODUCT-VALIDATION.md. Every status here was produced by an executed check against a running local stack. A check that was not executed is NOT_EXECUTED, never PASS.",
   "stack": {
-    "backend": "npx ts-node src/main.ts on port 4000",
+    "backend": "npx ts-node src/main.ts on port 4000 (canonical: backend/src/main.ts default, README, the tracked .env.local.example)",
     "frontend": "npx next dev --port 3000",
-    "database": "test_insite_validation_275 (disposable, created for §275, 53 migrations)",
-    "developmentDatabaseUntouched": "safescope — never written to; target asserted disposable before every mutating command",
+    "database": "test_insite_validation_275 (disposable; kept from \u00a7275 as instructed, 53 migrations)",
+    "developmentDatabaseUntouched": "safescope \u2014 never written to; target asserted disposable before every mutating command",
     "storage": "STORAGE_PROVIDER=local_test, STORAGE_LOCAL_ROOT under the session scratchpad",
     "authentication": "REAL. DEV_AUTH_BYPASS=false, NEXT_PUBLIC_DISABLE_AUTH=false, NEXT_PUBLIC_DEV_FORCE_PRO=false",
     "entitlement": "time-limited test grant via the guarded scripts/grant-test-entitlement.ts (requires NODE_ENV=test and a test_* database)",
-    "expertMode": "server_authored Expert analysis, real AnthropicExpertProvider, one execution",
+    "expertMode": "server_authored Expert analysis, real AnthropicExpertProvider, two further executions at \u00a7276",
     "node": "v20.20.2",
     "browser": "Chromium via Playwright 1.60 (already present in frontend-next) and Chrome via the extension"
   },
   "testData": {
-    "prefix": "VALIDATION-275",
-    "users": 2,
-    "sites": 1,
-    "inspections": 1,
-    "observations": 1,
-    "findings": 2,
-    "correctiveActions": 6,
-    "tasks": 5,
-    "reports": 1,
-    "note": "All synthetic. No customer information was used or stored."
+    "prefix": "VALIDATION-276",
+    "users": 4,
+    "sites": 32,
+    "inspections": 35,
+    "observations": 35,
+    "findings": 47,
+    "correctiveActions": 26,
+    "tasks": 21,
+    "reports": 10,
+    "storageObjects": 17,
+    "note": "All synthetic. No customer information was used or stored. \u00a7275 data was retained, not deleted."
   },
   "provider": {
-    "analysesRun": 1,
-    "allowanceAnalyses": 10,
-    "providerLegs": 1,
-    "expectedProviderLegs": 2,
-    "costUsd": 0.119524,
-    "ceilingUsd": 2.0,
-    "admissionOutcome": "REFUSE",
-    "executionState": "ANALYSIS_REFUSED",
-    "verifierReached": false,
-    "verifierNotReachedBecause": "FIRST_PASS_NOT_ADMITTED",
-    "confirmationRequired": false,
-    "tokensRedactedInLogs": true
+    "section": 276,
+    "scope": "cumulative across \u00a7275 and \u00a7276 \u2014 the ledger is the same disposable database",
+    "ceilingUsd": 1.5,
+    "allowedAnalyses": 6,
+    "analysesSpent": 3,
+    "totalCostUsd": 0.37522,
+    "section275Analyses": 1,
+    "section276Analyses": 2,
+    "executions": [
+      {
+        "executionState": "ANALYSIS_REFUSED",
+        "admission": "REFUSE",
+        "costUsd": 0.119524,
+        "postureRefusalCodes": [
+          "POSTURE_BASIS_REF_UNRESOLVED",
+          "ACTIVE_CANDIDATE_NOT_COVERED"
+        ],
+        "createdAt": "2026-09-13 14:46:36.466562-04"
+      },
+      {
+        "executionState": "ANALYSIS_REFUSED",
+        "admission": "REFUSE",
+        "costUsd": 0.101634,
+        "postureRefusalCodes": [
+          "POSTURE_BASIS_REF_UNRESOLVED"
+        ],
+        "createdAt": "2026-09-13 16:26:59.405937-04"
+      },
+      {
+        "executionState": "ANALYSIS_AWAITING_CONFIRMATION",
+        "admission": "ADMIT",
+        "costUsd": 0.154062,
+        "postureRefusalCodes": [],
+        "createdAt": "2026-09-13 16:27:31.685402-04"
+      }
+    ],
+    "refusalsClassifiedIndividually": [
+      {
+        "execution": 1,
+        "section": 275,
+        "cause": "POSTURE_BASIS_REF_UNRESOLVED + ACTIVE_CANDIDATE_NOT_COVERED",
+        "reading": "the provider answer referenced a basis deterministic admission could not resolve, and left an active candidate uncovered. Structural refusal, contained: no conclusion was offered and 1 leg was spent instead of 2."
+      },
+      {
+        "execution": 2,
+        "section": 276,
+        "productPath": "P4 safe / negated condition",
+        "cause": "POSTURE_BASIS_REF_UNRESOLVED",
+        "reading": "a DIFFERENT cause list from execution 1 \u2014 one code, not two. Refused on basis resolution alone. Recorded as its own event, not merged with execution 1."
+      },
+      {
+        "execution": 3,
+        "section": 276,
+        "productPath": "P6 unresolved / clarification-required",
+        "cause": null,
+        "reading": "ADMITTED. Reached ANALYSIS_AWAITING_CONFIRMATION and named two unresolved items \u2014 decl-energized-status and cand-pinch-exposure. This is the first admitted Expert execution in the product record, and it is what made the human-confirmation path drivable at all."
+      }
+    ],
+    "note": "Three of six allowed analyses spent; $0.375220 of the $1.50 ceiling. No provider call was made to replace an unfavourable answer, and no prompt, schema, admission rule or verifier was changed."
   },
-  "statuses": ["PASS", "PASS_WITH_LIMITATION", "FAIL", "NOT_APPLICABLE", "BLOCKED", "NOT_EXECUTED"],
+  "statuses": [
+    "PASS",
+    "PASS_WITH_LIMITATION",
+    "FAIL",
+    "NOT_APPLICABLE",
+    "BLOCKED",
+    "NOT_EXECUTED"
+  ],
   "checks": [
-    { "id": "C01", "area": "Application startup", "method": "Started backend and frontend against the disposable database; polled /health", "status": "PASS", "evidence": "health status ok, database up; 146 backend routes mapped", "defects": [] },
-    { "id": "C02", "area": "Authentication", "method": "Real UI login, invalid login, garbage token, unauthenticated API probes", "status": "PASS_WITH_LIMITATION", "evidence": "401 unauthenticated, 200 authenticated, 401 on a forged token, non-disclosing invalid-login copy; token refresh observed (POST /auth/refresh 201)", "defects": ["D-006"], "limitation": "Logout, deliberate session expiry and password reset were NOT exercised." },
-    { "id": "C03", "area": "Workspace isolation", "method": "Second user registered", "status": "NOT_EXECUTED", "evidence": "validation-275-b@example.test exists but no cross-tenant read attempt was made", "defects": [] },
-    { "id": "C04", "area": "Navigation", "method": "Route inventory from disk compared with sidebar, mobile tab bar and every internal href", "status": "PASS_WITH_LIMITATION", "evidence": "24 page routes; 5 in sidebar, 4 in mobile tab bar; no navigation item points at a missing page", "defects": ["D-011"] },
-    { "id": "C05", "area": "Dashboard", "method": "Browser, zero-data and populated", "status": "PASS_WITH_LIMITATION", "evidence": "zero state renders 0/0/0/0 correctly; week strip highlights the correct day", "defects": ["D-002", "D-003"] },
-    { "id": "C06", "area": "Responsive UI", "method": "Playwright sweep, 24 routes x 4 viewports (1440/1280/768/390)", "status": "PASS", "evidence": "results/route-matrix.json — 96/96 rendered, 0 horizontal overflow at any width, 0 error boundaries", "defects": [] },
-    { "id": "C07", "area": "Theme and visual consistency", "method": "Computed-colour contrast sweep in both themes plus manual inspection of populated screens", "status": "FAIL", "evidence": "results/contrast-sweep.json; HazLenz suggested risk measured 1.07:1 and the completion hero 1.95:1 before repair", "defects": ["D-004", "D-005", "D-012"] },
-    { "id": "C08", "area": "Inspection creation", "method": "Browser, real Pro workflow", "status": "PASS", "evidence": "site + regulatory context set, inspection persisted with regulatoryContext=osha-general-industry", "defects": [] },
-    { "id": "C09", "area": "Observation capture", "method": "Browser, realistic machine-guarding observation with location and task", "status": "PASS", "evidence": "observation persisted and restored after a full context loss", "defects": [] },
-    { "id": "C10", "area": "HazLenz analysis (deterministic)", "method": "Real product path via the authoritative inspectionId", "status": "PASS", "evidence": "29 CFR 1910.212(a)(1) SUPPORTED at 0.96, jurisdictionProvenance USER_CONFIRMED, all four predicates SUPPORTED; 1910.147 correctly CONTRADICTED at 0.05", "defects": [], "note": "This is the §117 repair working end to end: the same observation states a lockout that was REMOVED, which pre-repair excluded the family at 0.96." },
-    { "id": "C11", "area": "HazLenz concision", "method": "Read the rendered result as a user", "status": "PASS_WITH_LIMITATION", "evidence": "two findings, one line each, each quoting the inspector's own words; the ~83KB / 110-key API payload does not reach the screen", "defects": ["D-009"] },
-    { "id": "C12", "area": "Clarification", "method": "not triggered by the chosen observation", "status": "NOT_EXECUTED", "evidence": "no clarification-required case was exercised", "defects": [] },
-    { "id": "C13", "area": "Human confirmation", "method": "Risk matrix confirmation in the Pro workflow", "status": "PASS_WITH_LIMITATION", "evidence": "reviewer-confirmed risk persisted with source=reviewer_confirmed and a matrix rationale; human_reviews rows written", "defects": ["D-008"], "limitation": "Expert SETTLEMENT was not exercised: the single Expert execution was refused, so no analysis reached a confirmable state." },
-    { "id": "C14", "area": "Multiple findings", "method": "One observation producing two findings, processed sequentially", "status": "PASS", "evidence": "findings did not collapse; each carried its own risk, standard and corrective action; report preserved both", "defects": [] },
-    { "id": "C15", "area": "Finding persistence", "method": "Browser refresh and full context loss, then resume from the inspections list", "status": "PASS", "evidence": "observation, finding and the Expert refusal state all restored", "defects": [] },
-    { "id": "C16", "area": "Corrective actions", "method": "Created through the Pro workflow and via the API", "status": "PASS_WITH_LIMITATION", "evidence": "server-side corrective actions created with a risk-derived due date (High -> 3 days -> Sep 16); entitlement guard correctly refuses on the free plan", "defects": ["D-007"], "limitation": "Edit, reassign, close and reopen were NOT exercised." },
-    { "id": "C17", "area": "Tasks", "method": "API create and list", "status": "PASS_WITH_LIMITATION", "evidence": "dueDate round-trips exactly through the date column", "defects": ["D-007"], "limitation": "No task UI CRUD walkthrough." },
-    { "id": "C18", "area": "Calendar", "method": "Compared GET /calendar against the rendered Safety Calendar with product-created data", "status": "FAIL", "evidence": "server returned 9 events (5 tasks, 4 corrective actions); the page displayed 0 EVENTS / 0 OPEN / 0 OVERDUE", "defects": ["D-007"] },
-    { "id": "C19", "area": "Due dates and timezones", "method": "Explicit boundary probe on a UTC-4 machine, before and after repair, plus a 25-check pure-function regression", "status": "PASS", "evidence": "an action due 2026-09-15T20:00-04:00 displayed as 2026-09-16 before the fix and 2026-09-15 after; npm run test:calendar-date-boundary 25/25", "defects": [], "note": "Repaired in this section. Pre-existing rows written by the old ingestion remain stored a day early — see D-010." },
-    { "id": "C20", "area": "Reports", "method": "Generated from the completed inspection, downloaded, checksum compared", "status": "PASS", "evidence": "6-page PDF, 10779 bytes, sha256 matched the recorded checksum exactly", "defects": [] },
-    { "id": "C21", "area": "PDF output formatting", "method": "Opened and read the artifact", "status": "FAIL", "evidence": "results/inspection-report-sample.pdf — professional cover, executive summary, risk distribution, findings table; but the product is branded INSITE, and finding 2's severity contradicts the application", "defects": ["D-008", "D-013", "D-014"] },
-    { "id": "C22", "area": "History", "method": "Inspections list after a full context loss", "status": "PASS", "evidence": "saved inspection rendered with number, status, site, jurisdiction and time, with a working Continue affordance", "defects": [] },
-    { "id": "C23", "area": "Analytics and counts", "method": "Compared rendered stats against the database", "status": "FAIL", "evidence": "Safety Calendar 0 against 9 server events; Inspections page reported 3 SCHEDULED against 1 stored inspection", "defects": ["D-007", "D-015"] },
-    { "id": "C24", "area": "Settings", "method": "Rendered at four viewports", "status": "NOT_EXECUTED", "evidence": "page renders without error; no setting was changed or verified", "defects": [] },
-    { "id": "C25", "area": "Entitlements", "method": "Free-plan refusal then a granted entitlement", "status": "PASS", "evidence": "POST /actions refused with PAID_SUBSCRIPTION_REQUIRED and a clean user-facing message; accepted after the grant", "defects": [] },
-    { "id": "C26", "area": "Storage and images", "method": "not exercised", "status": "NOT_EXECUTED", "evidence": "one storage_objects row exists but no upload, preview, replacement or invalid-file case was driven", "defects": [] },
-    { "id": "C27", "area": "Error states", "method": "Unauthenticated, forged token, invalid login, rate limit, entitlement refusal, Expert refusal", "status": "PASS_WITH_LIMITATION", "evidence": "no stack trace or internal error reached the interface in any case observed", "defects": ["D-006", "D-016"], "limitation": "Backend-unavailable, network interruption and report-generation failure were NOT simulated." },
-    { "id": "C28", "area": "Idempotency", "method": "not exercised", "status": "NOT_EXECUTED", "evidence": "idempotency keys are present in the Expert client but no double-submit was driven", "defects": [] },
-    { "id": "C29", "area": "Audit trail", "method": "Database inspection", "status": "PASS_WITH_LIMITATION", "evidence": "6 audit_logs, 15 security_audit_events, 2 human_reviews, 1 expert_analysis_execution; operational events carry redacted token counts", "defects": [] },
-    { "id": "C30", "area": "Accessibility baseline", "method": "Heading structure, control names, form labels, contrast, nested interactive elements", "status": "PASS_WITH_LIMITATION", "evidence": "nested buttons eliminated (document.querySelectorAll('button button').length 2 -> 0)", "defects": ["D-012", "D-017"], "limitation": "Keyboard traversal, focus order and modal focus trapping were NOT driven. This is a product-quality baseline, not a WCAG certification." },
-    { "id": "C31", "area": "Browser console and network", "method": "Console and network capture across the sweep and the workflow", "status": "PASS", "evidence": "0 console errors and 0 failed requests across 96 route/viewport checks once the session was real; the React hydration error was found and repaired", "defects": [] },
-    { "id": "C32", "area": "Restart persistence", "method": "Full stop and restart of both processes", "status": "PASS", "evidence": "session, inspection, tasks, calendar and the downloadable report all survived; no hidden in-memory state", "defects": [] },
-    { "id": "C33", "area": "Data integrity", "method": "Database reconciliation against the UI", "status": "PASS", "evidence": "results/db-reconciliation.json — 1 inspection -> 1 observation -> 2 findings -> 2 human reviews -> 1 report + 1 version; 2 analyses (1 deterministic current, 1 Expert refused); no orphans", "defects": [] },
-    { "id": "C34", "area": "Performance sanity", "method": "not measured", "status": "NOT_EXECUTED", "evidence": "no timings were captured; the one Expert execution took roughly 27 seconds wall clock", "defects": [] }
+    {
+      "id": "C01",
+      "area": "Application startup",
+      "method": "Started backend and frontend against the disposable database; polled /health",
+      "status": "PASS",
+      "evidence": "health status ok, database up; 146 backend routes mapped",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "health status ok, database up; 146 backend routes mapped",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven at \u00a7276. Backend 148 routes (146 + PATCH/DELETE /tasks), schema current, 53 migrations."
+      }
+    },
+    {
+      "id": "C02",
+      "area": "Authentication",
+      "method": "Real UI login, invalid login, garbage token, unauthenticated API probes",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "401 unauthenticated, 200 authenticated, 401 on a forged token, non-disclosing invalid-login copy; token refresh observed (POST /auth/refresh 201)",
+      "defects": [
+        "D-006"
+      ],
+      "limitation": "Logout, deliberate session expiry and password reset were NOT exercised.",
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "401 unauthenticated, 200 authenticated, 401 on a forged token, non-disclosing invalid-login copy; token refresh observed (POST /auth/refresh 201)",
+        "defects": [
+          "D-006"
+        ],
+        "limitation": "Logout, deliberate session expiry and password reset were NOT exercised."
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "Real UI login drove every \u00a7276 browser pass with the bypass off. Logout is reachable and was verified present on /profile; deliberate session expiry and password reset remain undriven."
+      }
+    },
+    {
+      "id": "C03",
+      "area": "Workspace isolation",
+      "method": "Second user registered",
+      "status": "PASS",
+      "evidence": "validation-275-b@example.test exists but no cross-tenant read attempt was made",
+      "defects": [],
+      "section275": {
+        "status": "NOT_EXECUTED",
+        "evidence": "validation-275-b@example.test exists but no cross-tenant read attempt was made",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. Two synthetic accounts; 11 direct-id attempts across every resource kind plus three listing reads and one unauthenticated read. Every cross-workspace attempt answered 404, never 403.",
+        "checksExecuted": 15
+      }
+    },
+    {
+      "id": "C04",
+      "area": "Navigation",
+      "method": "Route inventory from disk compared with sidebar, mobile tab bar and every internal href",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "24 page routes; 5 in sidebar, 4 in mobile tab bar; no navigation item points at a missing page",
+      "defects": [
+        "D-011"
+      ],
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "24 page routes; 5 in sidebar, 4 in mobile tab bar; no navigation item points at a missing page",
+        "defects": [
+          "D-011"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "Navigation re-driven across Home, Settings and Calendar with no error boundary. The /inspection-quick orphan route (D-011) is unchanged."
+      }
+    },
+    {
+      "id": "C05",
+      "area": "Dashboard",
+      "method": "Browser, zero-data and populated",
+      "status": "PASS",
+      "evidence": "zero state renders 0/0/0/0 correctly; week strip highlights the correct day",
+      "defects": [
+        "D-002",
+        "D-003"
+      ],
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "zero state renders 0/0/0/0 correctly; week strip highlights the correct day",
+        "defects": [
+          "D-002",
+          "D-003"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND FAIL-ADJACENT IN \u00a7275 (D-015) -> REMEDIATED IN \u00a7276 -> RETESTED. The Inspections tiles are derived from the account's own inspections; the three fabricated seeded records are gone."
+      }
+    },
+    {
+      "id": "C06",
+      "area": "Responsive UI",
+      "method": "Playwright sweep, 24 routes x 4 viewports (1440/1280/768/390)",
+      "status": "PASS",
+      "evidence": "results/route-matrix.json \u2014 96/96 rendered, 0 horizontal overflow at any width, 0 error boundaries",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "results/route-matrix.json \u2014 96/96 rendered, 0 horizontal overflow at any width, 0 error boundaries",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Unchanged by \u00a7276. The \u00a7275 96/96 zero-overflow measurement stands; \u00a7276 changed no layout."
+      }
+    },
+    {
+      "id": "C07",
+      "area": "Theme and visual consistency",
+      "method": "Computed-colour contrast sweep in both themes plus manual inspection of populated screens",
+      "status": "PASS",
+      "evidence": "results/contrast-sweep.json; HazLenz suggested risk measured 1.07:1 and the completion hero 1.95:1 before repair",
+      "defects": [
+        "D-004",
+        "D-005",
+        "D-012"
+      ],
+      "section275": {
+        "status": "FAIL",
+        "evidence": "results/contrast-sweep.json; HazLenz suggested risk measured 1.07:1 and the completion hero 1.95:1 before repair",
+        "defects": [
+          "D-004",
+          "D-005",
+          "D-012"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND FAIL IN \u00a7275 -> REMEDIATED IN \u00a7275 -> RETESTED IN \u00a7276. The two repaired panels were re-driven in the \u00a7276 walkthrough and the browser console carried zero errors across the pass."
+      }
+    },
+    {
+      "id": "C08",
+      "area": "Inspection creation",
+      "method": "Browser, real Pro workflow",
+      "status": "PASS",
+      "evidence": "site + regulatory context set, inspection persisted with regulatoryContext=osha-general-industry",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "site + regulatory context set, inspection persisted with regulatoryContext=osha-general-industry",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven five times at \u00a7276 across five regulatory contexts."
+      }
+    },
+    {
+      "id": "C09",
+      "area": "Observation capture",
+      "method": "Browser, realistic machine-guarding observation with location and task",
+      "status": "PASS",
+      "evidence": "observation persisted and restored after a full context loss",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "observation persisted and restored after a full context loss",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven; observations survived reloads and a full stack restart."
+      }
+    },
+    {
+      "id": "C10",
+      "area": "HazLenz analysis (deterministic)",
+      "method": "Real product path via the authoritative inspectionId",
+      "status": "PASS",
+      "evidence": "29 CFR 1910.212(a)(1) SUPPORTED at 0.96, jurisdictionProvenance USER_CONFIRMED, all four predicates SUPPORTED; 1910.147 correctly CONTRADICTED at 0.05",
+      "defects": [],
+      "note": "This is the \u00a7117 repair working end to end: the same observation states a lockout that was REMOVED, which pre-repair excluded the family at 0.96.",
+      "section275": {
+        "status": "PASS",
+        "evidence": "29 CFR 1910.212(a)(1) SUPPORTED at 0.96, jurisdictionProvenance USER_CONFIRMED, all four predicates SUPPORTED; 1910.147 correctly CONTRADICTED at 0.05",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven across five product paths: OSHA second domain, MSHA, safe/negated, multiple independent hazards, unresolved."
+      }
+    },
+    {
+      "id": "C11",
+      "area": "HazLenz concision",
+      "method": "Read the rendered result as a user",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "two findings, one line each, each quoting the inspector's own words; the ~83KB / 110-key API payload does not reach the screen",
+      "defects": [
+        "D-009"
+      ],
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "two findings, one line each, each quoting the inspector's own words; the ~83KB / 110-key API payload does not reach the screen",
+        "defects": [
+          "D-009"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "Scored per path from the DEFAULT screen: 826-1076 rendered characters against an ~83KB payload, zero internal-token leaks, the inspector's own words quoted. Two presentation defects repaired (a mechanism clause used as a heading; a fact token quoted as the inspector's words). The corrective-action template remains a recorded content-design limitation."
+      }
+    },
+    {
+      "id": "C12",
+      "area": "Clarification",
+      "method": "not triggered by the chosen observation",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "no clarification-required case was exercised",
+      "defects": [],
+      "section275": {
+        "status": "NOT_EXECUTED",
+        "evidence": "no clarification-required case was exercised",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. The decision-critical jurisdiction clarification works end to end: three candidate regimes collapse to one and provenance becomes USER_CONFIRMED. Two defects found and repaired (D-021, D-022). One open: a PREDICATE answer changes nothing (D-023).",
+        "checksExecuted": 10
+      }
+    },
+    {
+      "id": "C13",
+      "area": "Human confirmation",
+      "method": "Risk matrix confirmation in the Pro workflow",
+      "status": "PASS",
+      "evidence": "reviewer-confirmed risk persisted with source=reviewer_confirmed and a matrix rationale; human_reviews rows written",
+      "defects": [
+        "D-008"
+      ],
+      "limitation": "Expert SETTLEMENT was not exercised: the single Expert execution was refused, so no analysis reached a confirmable state.",
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "reviewer-confirmed risk persisted with source=reviewer_confirmed and a matrix rationale; human_reviews rows written",
+        "defects": [
+          "D-008"
+        ],
+        "limitation": "Expert SETTLEMENT was not exercised: the single Expert execution was refused, so no analysis reached a confirmable state."
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND PASS_WITH_LIMITATION IN \u00a7275 (\"Expert settlement unreachable\") -> EXECUTED IN \u00a7276. An admitted Expert execution reached ANALYSIS_AWAITING_CONFIRMATION, a reviewer settled it, the state moved to ANALYSIS_CONFIRMED, settledForUse became true only then, and the Expert result was byte-identical afterwards.",
+        "checksExecuted": 11
+      }
+    },
+    {
+      "id": "C14",
+      "area": "Multiple findings",
+      "method": "One observation producing two findings, processed sequentially",
+      "status": "PASS",
+      "evidence": "findings did not collapse; each carried its own risk, standard and corrective action; report preserved both",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "findings did not collapse; each carried its own risk, standard and corrective action; report preserved both",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven; two findings from one observation, not collapsed, and a second path produced two independent hazards across two domains."
+      }
+    },
+    {
+      "id": "C15",
+      "area": "Finding persistence",
+      "method": "Browser refresh and full context loss, then resume from the inspections list",
+      "status": "PASS",
+      "evidence": "observation, finding and the Expert refusal state all restored",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "observation, finding and the Expert refusal state all restored",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven across reloads and a full stack restart."
+      }
+    },
+    {
+      "id": "C16",
+      "area": "Corrective actions",
+      "method": "Created through the Pro workflow and via the API",
+      "status": "PASS",
+      "evidence": "server-side corrective actions created with a risk-derived due date (High -> 3 days -> Sep 16); entitlement guard correctly refuses on the free plan",
+      "defects": [
+        "D-007"
+      ],
+      "limitation": "Edit, reassign, close and reopen were NOT exercised.",
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "server-side corrective actions created with a risk-derived due date (High -> 3 days -> Sep 16); entitlement guard correctly refuses on the free plan",
+        "defects": [
+          "D-007"
+        ],
+        "limitation": "Edit, reassign, close and reopen were NOT exercised."
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND PASS_WITH_LIMITATION IN \u00a7275 -> EXTENDED IN \u00a7276. Corrective actions now carry the risk-derived due date, reach the calendar, and their lifecycle (complete, reopen, cancel) was driven."
+      }
+    },
+    {
+      "id": "C17",
+      "area": "Tasks",
+      "method": "API create and list",
+      "status": "PASS",
+      "evidence": "dueDate round-trips exactly through the date column",
+      "defects": [
+        "D-007"
+      ],
+      "limitation": "No task UI CRUD walkthrough.",
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "dueDate round-trips exactly through the date column",
+        "defects": [
+          "D-007"
+        ],
+        "limitation": "No task UI CRUD walkthrough."
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Tasks gained edit and delete routes and were driven through create, edit, move, complete and delete."
+      }
+    },
+    {
+      "id": "C18",
+      "area": "Calendar",
+      "method": "Compared GET /calendar against the rendered Safety Calendar with product-created data",
+      "status": "PASS",
+      "evidence": "server returned 9 events (5 tasks, 4 corrective actions); the page displayed 0 EVENTS / 0 OPEN / 0 OVERDUE",
+      "defects": [
+        "D-007"
+      ],
+      "section275": {
+        "status": "FAIL",
+        "evidence": "server returned 9 events (5 tasks, 4 corrective actions); the page displayed 0 EVENTS / 0 OPEN / 0 OVERDUE",
+        "defects": [
+          "D-007"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND FAIL IN \u00a7275 (9 server events, 0 displayed) -> REMEDIATED IN \u00a7276 -> RETESTED. 35 server events, 32 displayed (3 completed hidden by the page filter); identical across a full stack restart.",
+        "checksExecuted": 39
+      }
+    },
+    {
+      "id": "C19",
+      "area": "Due dates and timezones",
+      "method": "Explicit boundary probe on a UTC-4 machine, before and after repair, plus a 25-check pure-function regression",
+      "status": "PASS",
+      "evidence": "an action due 2026-09-15T20:00-04:00 displayed as 2026-09-16 before the fix and 2026-09-15 after; npm run test:calendar-date-boundary 25/25",
+      "defects": [],
+      "note": "Repaired in this section. Pre-existing rows written by the old ingestion remain stored a day early \u2014 see D-010.",
+      "section275": {
+        "status": "PASS",
+        "evidence": "an action due 2026-09-15T20:00-04:00 displayed as 2026-09-16 before the fix and 2026-09-15 after; npm run test:calendar-date-boundary 25/25",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-verified. 25/25 pure regression, plus a live boundary case: a date-only task and an action due 20:00 local both land on the same day."
+      }
+    },
+    {
+      "id": "C20",
+      "area": "Reports",
+      "method": "Generated from the completed inspection, downloaded, checksum compared",
+      "status": "PASS",
+      "evidence": "6-page PDF, 10779 bytes, sha256 matched the recorded checksum exactly",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "6-page PDF, 10779 bytes, sha256 matched the recorded checksum exactly",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven. Reports generated for every completed inspection; downloaded bytes matched the recorded checksum in every case."
+      }
+    },
+    {
+      "id": "C21",
+      "area": "PDF output formatting",
+      "method": "Opened and read the artifact",
+      "status": "PASS",
+      "evidence": "results/inspection-report-sample.pdf \u2014 professional cover, executive summary, risk distribution, findings table; but the product is branded INSITE, and finding 2's severity contradicts the application",
+      "defects": [
+        "D-008",
+        "D-013",
+        "D-014"
+      ],
+      "section275": {
+        "status": "FAIL",
+        "evidence": "results/inspection-report-sample.pdf \u2014 professional cover, executive summary, risk distribution, findings table; but the product is branded INSITE, and finding 2's severity contradicts the application",
+        "defects": [
+          "D-008",
+          "D-013",
+          "D-014"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND FAIL IN \u00a7275 (mis-branded and severity-inconsistent) -> REMEDIATED IN \u00a7276 -> RETESTED. Four report shapes inspected from extracted PDF text: canonical brand, reviewer-confirmed severity, labelled HazLenz provenance, no internal vocabulary, readable dates, page numbering, no clipping.",
+        "checksExecuted": 92
+      }
+    },
+    {
+      "id": "C22",
+      "area": "History",
+      "method": "Inspections list after a full context loss",
+      "status": "PASS",
+      "evidence": "saved inspection rendered with number, status, site, jurisdiction and time, with a working Continue affordance",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "saved inspection rendered with number, status, site, jurisdiction and time, with a working Continue affordance",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven; the completed inspection is recoverable from saved history."
+      }
+    },
+    {
+      "id": "C23",
+      "area": "Analytics and counts",
+      "method": "Compared rendered stats against the database",
+      "status": "PASS",
+      "evidence": "Safety Calendar 0 against 9 server events; Inspections page reported 3 SCHEDULED against 1 stored inspection",
+      "defects": [
+        "D-007",
+        "D-015"
+      ],
+      "section275": {
+        "status": "FAIL",
+        "evidence": "Safety Calendar 0 against 9 server events; Inspections page reported 3 SCHEDULED against 1 stored inspection",
+        "defects": [
+          "D-007",
+          "D-015"
+        ],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND FAIL IN \u00a7275 -> REMEDIATED IN \u00a7276 -> RETESTED. Both halves closed: the calendar now agrees with the server, and the Inspections counts are the account's own inspections rather than three seeded records."
+      }
+    },
+    {
+      "id": "C24",
+      "area": "Settings",
+      "method": "Rendered at four viewports",
+      "status": "PASS",
+      "evidence": "page renders without error; no setting was changed or verified",
+      "defects": [],
+      "section275": {
+        "status": "NOT_EXECUTED",
+        "evidence": "page renders without error; no setting was changed or verified",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. Settings and profile driven: brand, real plan, own sites, an unavailable action explaining itself, a setting CHANGED and seen to survive a reload, logout reachable, deletion password-gated, and a placeholder scan on both. One defect found and repaired (D-026).",
+        "checksExecuted": 16
+      }
+    },
+    {
+      "id": "C25",
+      "area": "Entitlements",
+      "method": "Free-plan refusal then a granted entitlement",
+      "status": "PASS",
+      "evidence": "POST /actions refused with PAID_SUBSCRIPTION_REQUIRED and a clean user-facing message; accepted after the grant",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "POST /actions refused with PAID_SUBSCRIPTION_REQUIRED and a clean user-facing message; accepted after the grant",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Unchanged. The Pro entitlement came from a time-limited guarded grant and the guards were exercised throughout."
+      }
+    },
+    {
+      "id": "C26",
+      "area": "Storage and images",
+      "method": "not exercised",
+      "status": "PASS",
+      "evidence": "one storage_objects row exists but no upload, preview, replacement or invalid-file case was driven",
+      "defects": [],
+      "section275": {
+        "status": "NOT_EXECUTED",
+        "evidence": "one storage_objects row exists but no upload, preview, replacement or invalid-file case was driven",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. Synthetic PNG and JPEG: upload, byte-identical download, cross-workspace refusal, unsupported type, a non-image body claiming to be a PNG, a missing id, delete, and retrieval after delete.",
+        "checksExecuted": 10
+      }
+    },
+    {
+      "id": "C27",
+      "area": "Error states",
+      "method": "Unauthenticated, forged token, invalid login, rate limit, entitlement refusal, Expert refusal",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "no stack trace or internal error reached the interface in any case observed",
+      "defects": [
+        "D-006",
+        "D-016"
+      ],
+      "limitation": "Backend-unavailable, network interruption and report-generation failure were NOT simulated.",
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "no stack trace or internal error reached the interface in any case observed",
+        "defects": [
+          "D-006",
+          "D-016"
+        ],
+        "limitation": "Backend-unavailable, network interruption and report-generation failure were NOT simulated."
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "No stack trace reached the interface in any \u00a7276 case, and refusals carried readable messages. Not every error path was driven."
+      }
+    },
+    {
+      "id": "C28",
+      "area": "Idempotency",
+      "method": "not exercised",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "idempotency keys are present in the Expert client but no double-submit was driven",
+      "defects": [],
+      "section275": {
+        "status": "NOT_EXECUTED",
+        "evidence": "idempotency keys are present in the Expert client but no double-submit was driven",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. Every route the product uses is replay-safe under explicit double submission. An action created with NO findingId is not deduplicated; no product surface sends that shape (D-029).",
+        "checksExecuted": 8
+      }
+    },
+    {
+      "id": "C29",
+      "area": "Audit trail",
+      "method": "Database inspection",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "6 audit_logs, 15 security_audit_events, 2 human_reviews, 1 expert_analysis_execution; operational events carry redacted token counts",
+      "defects": [],
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "6 audit_logs, 15 security_audit_events, 2 human_reviews, 1 expert_analysis_execution; operational events carry redacted token counts",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "264 security audit events and 27 audit logs recorded across the \u00a7276 pass, including a report_generation_duplicate_replayed event on a replayed generation."
+      }
+    },
+    {
+      "id": "C30",
+      "area": "Accessibility baseline",
+      "method": "Heading structure, control names, form labels, contrast, nested interactive elements",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "nested buttons eliminated (document.querySelectorAll('button button').length 2 -> 0)",
+      "defects": [
+        "D-012",
+        "D-017"
+      ],
+      "limitation": "Keyboard traversal, focus order and modal focus trapping were NOT driven. This is a product-quality baseline, not a WCAG certification.",
+      "section275": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "nested buttons eliminated (document.querySelectorAll('button button').length 2 -> 0)",
+        "defects": [
+          "D-012",
+          "D-017"
+        ],
+        "limitation": "Keyboard traversal, focus order and modal focus trapping were NOT driven. This is a product-quality baseline, not a WCAG certification."
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "The 25 risk-matrix cells were unlabelled buttons reading only their score and now carry an accessible name. The missing <h1> on three routes and the unlabelled inputs \u00a7275 counted are unchanged (D-017)."
+      }
+    },
+    {
+      "id": "C31",
+      "area": "Browser console and network",
+      "method": "Console and network capture across the sweep and the workflow",
+      "status": "PASS",
+      "evidence": "0 console errors and 0 failed requests across 96 route/viewport checks once the session was real; the React hydration error was found and repaired",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "0 console errors and 0 failed requests across 96 route/viewport checks once the session was real; the React hydration error was found and repaired",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Zero console errors across the \u00a7276 browser passes."
+      }
+    },
+    {
+      "id": "C32",
+      "area": "Restart persistence",
+      "method": "Full stop and restart of both processes",
+      "status": "PASS",
+      "evidence": "session, inspection, tasks, calendar and the downloadable report all survived; no hidden in-memory state",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "session, inspection, tasks, calendar and the downloadable report all survived; no hidden in-memory state",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Re-driven explicitly: the calendar digest is identical across a full stop and start of both processes."
+      }
+    },
+    {
+      "id": "C33",
+      "area": "Data integrity",
+      "method": "Database reconciliation against the UI",
+      "status": "PASS",
+      "evidence": "results/db-reconciliation.json \u2014 1 inspection -> 1 observation -> 2 findings -> 2 human reviews -> 1 report + 1 version; 2 analyses (1 deterministic current, 1 Expert refused); no orphans",
+      "defects": [],
+      "section275": {
+        "status": "PASS",
+        "evidence": "results/db-reconciliation.json \u2014 1 inspection -> 1 observation -> 2 findings -> 2 human reviews -> 1 report + 1 version; 2 analyses (1 deterministic current, 1 Expert refused); no orphans",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS",
+        "evidence": "Row counts reconciled at the end of the run; no orphaned storage objects after a failed replacement."
+      }
+    },
+    {
+      "id": "C34",
+      "area": "Performance sanity",
+      "method": "not measured",
+      "status": "PASS_WITH_LIMITATION",
+      "evidence": "no timings were captured; the one Expert execution took roughly 27 seconds wall clock",
+      "defects": [],
+      "section275": {
+        "status": "NOT_EXECUTED",
+        "evidence": "no timings were captured; the one Expert execution took roughly 27 seconds wall clock",
+        "defects": [],
+        "limitation": null
+      },
+      "section276": {
+        "status": "PASS_WITH_LIMITATION",
+        "evidence": "FOUND NOT_EXECUTED IN \u00a7275 -> EXECUTED IN \u00a7276. Representative localhost timings measured to a content condition rather than across a sleep. Redundant calls found and reduced (D-027). This is sanity checking, not load testing.",
+        "checksExecuted": 3
+      }
+    }
   ],
   "summary": {
-    "PASS": 14,
-    "PASS_WITH_LIMITATION": 10,
-    "FAIL": 4,
-    "NOT_EXECUTED": 6,
-    "NOT_APPLICABLE": 0,
-    "BLOCKED": 0
+    "section275": {
+      "PASS": 14,
+      "PASS_WITH_LIMITATION": 10,
+      "FAIL": 4,
+      "NOT_EXECUTED": 6
+    },
+    "section276": {
+      "PASS": 25,
+      "PASS_WITH_LIMITATION": 9
+    },
+    "notExecutedRemaining": 0,
+    "p0Unresolved": 0,
+    "p1Unresolved": 0,
+    "newLintErrors": 0,
+    "section117": "16/16, 0 dangerous",
+    "successorIdentity": "unchanged \u2014 8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee"
   },
-  "terminal": "SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_BLOCKED — REMEDIATION_REQUIRED"
+  "terminal": "SAFETY_INSITE_LOCAL_PRODUCT_ACCEPTANCE_COMPLETE_WITH_LIVE_GAPS \u2014 CONTROLLED_RELEASE_VERIFICATION_REQUIRED",
+  "supersedes": "\u00a7275 \u2014 every \u00a7275 status is preserved on each check under `section275`. Nothing was erased.",
+  "terminalReasoning": "P0 unresolved 0, P1 unresolved 0, previously NOT_EXECUTED mandatory areas 0, customer-visible retired brands 0, calendar server/local disagreement 0, finding/report effective-severity disagreement 0, new lint violations 0, \u00a7117 16/16, \u00a7274 identity unchanged. The full terminal is NOT claimed: alongside the genuinely live gaps (live provider transport from a deployed instance, live billing) FOUR LOCAL P2 ITEMS REMAIN OPEN, three of them awaiting a product-owner decision \u2014 D-023 (a predicate clarification answer changes nothing), D-024(b) (a 0.2-confidence routing noise hazard on a safe observation), D-028 (a renderer correction does not re-issue an already-issued report) and D-029 (an unbound corrective action is not deduplicated). Stating this as the second terminal rather than the first is the conservative reading: gaps remain beyond a clean local baseline, and they are named rather than absorbed.",
+  "evidencePackage": "verification/current/local-product-validation-276/"
 }

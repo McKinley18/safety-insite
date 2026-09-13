@@ -1,0 +1,710 @@
+{
+  "section": 276,
+  "run": "VALIDATION-276-REPORT-1789331913811",
+  "artifacts": [
+    {
+      "inspectionId": "ee661106-2ccd-4d36-8fd1-e82e47290a4b",
+      "displayNumber": 32,
+      "reportId": "24cd8c49-b787-4026-91d6-50eb78b824c9",
+      "file": "/private/tmp/claude-501/-Users-mckinley/175a800e-6db0-4383-911d-44c630ca19d8/scratchpad/276/reports/reports/inspection-32.pdf",
+      "sha256": "87c16cc2bb272f3c44fb1c55d2db86004f6e6202ad22bd01f1691062af1ffa50",
+      "serverChecksum": "87c16cc2bb272f3c44fb1c55d2db86004f6e6202ad22bd01f1691062af1ffa50",
+      "sizeBytes": 8970,
+      "findingCount": 1,
+      "correctiveActionCount": 1,
+      "reviewerConfirmedFindings": 1,
+      "divergentSeverityFindings": [
+        {
+          "id": "8776d629-b40b-445a-824d-9b6b4e3ebb4d",
+          "reviewerBand": "Moderate",
+          "analysisBand": "Critical",
+          "matrixScore": 16
+        }
+      ],
+      "pages": 5,
+      "extractedCharacters": 4895,
+      "basisLineUsesReviewerLabels": true,
+      "basisLineAttributesSystemNumbers": false
+    },
+    {
+      "inspectionId": "bb2dd8fe-1041-4fb8-9f88-5b432154e626",
+      "displayNumber": 31,
+      "reportId": "538344d9-ca96-4dbf-99d3-8c13cfb045f9",
+      "file": "/private/tmp/claude-501/-Users-mckinley/175a800e-6db0-4383-911d-44c630ca19d8/scratchpad/276/reports/reports/inspection-31.pdf",
+      "sha256": "759ce0cd8bea92a9468d67033431604e554776ce1d59506c70d0fbb696db873c",
+      "serverChecksum": "759ce0cd8bea92a9468d67033431604e554776ce1d59506c70d0fbb696db873c",
+      "sizeBytes": 8970,
+      "findingCount": 1,
+      "correctiveActionCount": 1,
+      "reviewerConfirmedFindings": 1,
+      "divergentSeverityFindings": [
+        {
+          "id": "a5edf24e-194a-4b6e-983d-27f833ec3118",
+          "reviewerBand": "Moderate",
+          "analysisBand": "Critical",
+          "matrixScore": 16
+        }
+      ],
+      "pages": 5,
+      "extractedCharacters": 4896,
+      "basisLineUsesReviewerLabels": true,
+      "basisLineAttributesSystemNumbers": false
+    },
+    {
+      "inspectionId": "62a0223d-94fb-48a4-98ee-8b7276107219",
+      "displayNumber": 30,
+      "reportId": "1c0c7dd9-2550-4726-8d98-5e0cc7da3cff",
+      "file": "/private/tmp/claude-501/-Users-mckinley/175a800e-6db0-4383-911d-44c630ca19d8/scratchpad/276/reports/reports/inspection-30.pdf",
+      "sha256": "2def7e92d8fd024893b1107ec50aee29afebd733b3db3508ba4b1b853eea3fd8",
+      "serverChecksum": "2def7e92d8fd024893b1107ec50aee29afebd733b3db3508ba4b1b853eea3fd8",
+      "sizeBytes": 8970,
+      "findingCount": 1,
+      "correctiveActionCount": 1,
+      "reviewerConfirmedFindings": 1,
+      "divergentSeverityFindings": [
+        {
+          "id": "37a3683d-ec75-493c-806d-bf701470955f",
+          "reviewerBand": "Moderate",
+          "analysisBand": "Critical",
+          "matrixScore": 16
+        }
+      ],
+      "pages": 5,
+      "extractedCharacters": 4895,
+      "basisLineUsesReviewerLabels": true,
+      "basisLineAttributesSystemNumbers": false
+    },
+    {
+      "inspectionId": "e70b2334-564d-4ea2-9282-7aa0a5c23134",
+      "displayNumber": 29,
+      "reportId": "3dab3275-2a80-4595-9583-e28d7c9084d1",
+      "file": "/private/tmp/claude-501/-Users-mckinley/175a800e-6db0-4383-911d-44c630ca19d8/scratchpad/276/reports/reports/inspection-29.pdf",
+      "sha256": "63707e555e338ff112c2275301e6efd69b7dde5b707b0589ea7cf34f25a93127",
+      "serverChecksum": "63707e555e338ff112c2275301e6efd69b7dde5b707b0589ea7cf34f25a93127",
+      "sizeBytes": 8966,
+      "findingCount": 1,
+      "correctiveActionCount": 1,
+      "reviewerConfirmedFindings": 1,
+      "divergentSeverityFindings": [
+        {
+          "id": "07484749-d75c-44cf-bc52-20262a1cc6f0",
+          "reviewerBand": "Moderate",
+          "analysisBand": "Critical",
+          "matrixScore": 16
+        }
+      ],
+      "pages": 5,
+      "extractedCharacters": 4895,
+      "basisLineUsesReviewerLabels": true,
+      "basisLineAttributesSystemNumbers": false
+    },
+    {
+      "inspectionId": "c544e90e-57c2-42da-b769-722a937efba6",
+      "displayNumber": 28,
+      "reportId": "13101917-7d2a-455d-a441-b076daaadb0f",
+      "file": "/private/tmp/claude-501/-Users-mckinley/175a800e-6db0-4383-911d-44c630ca19d8/scratchpad/276/reports/reports/inspection-28.pdf",
+      "sha256": "959bc14afa336517d888cca1765d40e07f1baffb0b7ea284204078a705743232",
+      "serverChecksum": "959bc14afa336517d888cca1765d40e07f1baffb0b7ea284204078a705743232",
+      "sizeBytes": 8965,
+      "findingCount": 1,
+      "correctiveActionCount": 1,
+      "reviewerConfirmedFindings": 1,
+      "divergentSeverityFindings": [
+        {
+          "id": "aefd9bcd-933d-427b-b26e-701e8f2c4f59",
+          "reviewerBand": "Moderate",
+          "analysisBand": "Critical",
+          "matrixScore": 16
+        }
+      ],
+      "pages": 5,
+      "extractedCharacters": 4898,
+      "basisLineUsesReviewerLabels": false,
+      "basisLineAttributesSystemNumbers": true
+    },
+    {
+      "inspectionId": "abe468b0-568a-4b82-893d-e071b6c4a068",
+      "displayNumber": 6,
+      "reportId": "d181f7d0-2dcb-4a47-b43a-fbbbfa4011a5",
+      "file": "/private/tmp/claude-501/-Users-mckinley/175a800e-6db0-4383-911d-44c630ca19d8/scratchpad/276/reports/reports/inspection-6.pdf",
+      "sha256": "8528da40613e1f36c0a68849fc38c3aebe79de4bb92803ad0adf4ac9faac7a5b",
+      "serverChecksum": "8528da40613e1f36c0a68849fc38c3aebe79de4bb92803ad0adf4ac9faac7a5b",
+      "sizeBytes": 10610,
+      "findingCount": 2,
+      "correctiveActionCount": 2,
+      "reviewerConfirmedFindings": 2,
+      "divergentSeverityFindings": [
+        {
+          "id": "90328f05-b2ee-4a9f-b414-ce9f7227ed2d",
+          "reviewerBand": "High",
+          "analysisBand": "Critical",
+          "matrixScore": 16
+        }
+      ],
+      "pages": 6,
+      "extractedCharacters": 6595,
+      "basisLineUsesReviewerLabels": false,
+      "basisLineAttributesSystemNumbers": true
+    }
+  ],
+  "results": [
+    {
+      "id": "R00",
+      "title": "reports were produced and downloaded for the completed inspections",
+      "outcome": "PASS",
+      "detail": "6 artifact(s)"
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: the cover carries the canonical product name",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: the running header carries it too",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: the engine is named HazLenz",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: no bare \"INSITE\" wordmark survives",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: no internal vocabulary reaches the page",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: it carries dates a person can read",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: every page after the cover is numbered",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: nothing is clipped to an empty page",
+      "outcome": "PASS",
+      "detail": "5 page(s)"
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: the advisory basis is stated",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "D-008: the report states the REVIEWER's Moderate, not HazLenz's Critical",
+      "outcome": "PASS",
+      "detail": "matrix score 16"
+    },
+    {
+      "id": "R-32",
+      "title": "D-008: HazLenz's Critical is retained and LABELLED as HazLenz's",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-32",
+      "title": "D-008: the risk distribution counts no Critical finding",
+      "outcome": "PASS",
+      "detail": "Critical 0"
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: corrective actions appear with an owner and a due date",
+      "outcome": "PASS",
+      "detail": "1 action(s)"
+    },
+    {
+      "id": "R-32",
+      "title": "report #32: the downloaded bytes match the recorded checksum",
+      "outcome": "PASS",
+      "detail": "87c16cc2bb272f3c vs 87c16cc2bb272f3c"
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: the cover carries the canonical product name",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: the running header carries it too",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: the engine is named HazLenz",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: no bare \"INSITE\" wordmark survives",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: no internal vocabulary reaches the page",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: it carries dates a person can read",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: every page after the cover is numbered",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: nothing is clipped to an empty page",
+      "outcome": "PASS",
+      "detail": "5 page(s)"
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: the advisory basis is stated",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "D-008: the report states the REVIEWER's Moderate, not HazLenz's Critical",
+      "outcome": "PASS",
+      "detail": "matrix score 16"
+    },
+    {
+      "id": "R-31",
+      "title": "D-008: HazLenz's Critical is retained and LABELLED as HazLenz's",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-31",
+      "title": "D-008: the risk distribution counts no Critical finding",
+      "outcome": "PASS",
+      "detail": "Critical 0"
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: corrective actions appear with an owner and a due date",
+      "outcome": "PASS",
+      "detail": "1 action(s)"
+    },
+    {
+      "id": "R-31",
+      "title": "report #31: the downloaded bytes match the recorded checksum",
+      "outcome": "PASS",
+      "detail": "759ce0cd8bea92a9 vs 759ce0cd8bea92a9"
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: the cover carries the canonical product name",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: the running header carries it too",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: the engine is named HazLenz",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: no bare \"INSITE\" wordmark survives",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: no internal vocabulary reaches the page",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: it carries dates a person can read",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: every page after the cover is numbered",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: nothing is clipped to an empty page",
+      "outcome": "PASS",
+      "detail": "5 page(s)"
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: the advisory basis is stated",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "D-008: the report states the REVIEWER's Moderate, not HazLenz's Critical",
+      "outcome": "PASS",
+      "detail": "matrix score 16"
+    },
+    {
+      "id": "R-30",
+      "title": "D-008: HazLenz's Critical is retained and LABELLED as HazLenz's",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-30",
+      "title": "D-008: the risk distribution counts no Critical finding",
+      "outcome": "PASS",
+      "detail": "Critical 0"
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: corrective actions appear with an owner and a due date",
+      "outcome": "PASS",
+      "detail": "1 action(s)"
+    },
+    {
+      "id": "R-30",
+      "title": "report #30: the downloaded bytes match the recorded checksum",
+      "outcome": "PASS",
+      "detail": "2def7e92d8fd0248 vs 2def7e92d8fd0248"
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: the cover carries the canonical product name",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: the running header carries it too",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: the engine is named HazLenz",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: no bare \"INSITE\" wordmark survives",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: no internal vocabulary reaches the page",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: it carries dates a person can read",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: every page after the cover is numbered",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: nothing is clipped to an empty page",
+      "outcome": "PASS",
+      "detail": "5 page(s)"
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: the advisory basis is stated",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "D-008: the report states the REVIEWER's Moderate, not HazLenz's Critical",
+      "outcome": "PASS",
+      "detail": "matrix score 16"
+    },
+    {
+      "id": "R-29",
+      "title": "D-008: HazLenz's Critical is retained and LABELLED as HazLenz's",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-29",
+      "title": "D-008: the risk distribution counts no Critical finding",
+      "outcome": "PASS",
+      "detail": "Critical 0"
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: corrective actions appear with an owner and a due date",
+      "outcome": "PASS",
+      "detail": "1 action(s)"
+    },
+    {
+      "id": "R-29",
+      "title": "report #29: the downloaded bytes match the recorded checksum",
+      "outcome": "PASS",
+      "detail": "63707e555e338ff1 vs 63707e555e338ff1"
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: the cover carries the canonical product name",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: the running header carries it too",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: the engine is named HazLenz",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: no bare \"INSITE\" wordmark survives",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: no internal vocabulary reaches the page",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: it carries dates a person can read",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: every page after the cover is numbered",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: nothing is clipped to an empty page",
+      "outcome": "PASS",
+      "detail": "5 page(s)"
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: the advisory basis is stated",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "D-008: the report states the REVIEWER's Moderate, not HazLenz's Critical",
+      "outcome": "PASS",
+      "detail": "matrix score 16"
+    },
+    {
+      "id": "R-28",
+      "title": "D-008: HazLenz's Critical is retained and LABELLED as HazLenz's",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-28",
+      "title": "D-008: the risk distribution counts no Critical finding",
+      "outcome": "PASS",
+      "detail": "Critical 0"
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: corrective actions appear with an owner and a due date",
+      "outcome": "PASS",
+      "detail": "1 action(s)"
+    },
+    {
+      "id": "R-28",
+      "title": "report #28: the downloaded bytes match the recorded checksum",
+      "outcome": "PASS",
+      "detail": "959bc14afa336517 vs 959bc14afa336517"
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: the cover carries the canonical product name",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: the running header carries it too",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: the engine is named HazLenz",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: no bare \"INSITE\" wordmark survives",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: no internal vocabulary reaches the page",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: it carries dates a person can read",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: every page after the cover is numbered",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: nothing is clipped to an empty page",
+      "outcome": "PASS",
+      "detail": "6 page(s)"
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: the advisory basis is stated",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "D-008: the report states the REVIEWER's High, not HazLenz's Critical",
+      "outcome": "PASS",
+      "detail": "matrix score 16"
+    },
+    {
+      "id": "R-6",
+      "title": "D-008: HazLenz's Critical is retained and LABELLED as HazLenz's",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R-6",
+      "title": "D-008: the risk distribution counts no Critical finding",
+      "outcome": "PASS",
+      "detail": "Critical 0"
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: corrective actions appear with an owner and a due date",
+      "outcome": "PASS",
+      "detail": "2 action(s)"
+    },
+    {
+      "id": "R-6",
+      "title": "report #6: the downloaded bytes match the recorded checksum",
+      "outcome": "PASS",
+      "detail": "8528da40613e1f36 vs 8528da40613e1f36"
+    },
+    {
+      "id": "R10",
+      "title": "a SIMPLE report (one finding) was inspected",
+      "outcome": "PASS",
+      "detail": "#28, 5 pages"
+    },
+    {
+      "id": "R11",
+      "title": "a MULTIPLE-FINDINGS report was inspected",
+      "outcome": "PASS",
+      "detail": "#6, 2 findings"
+    },
+    {
+      "id": "R12",
+      "title": "a report WITH CORRECTIVE ACTIONS was inspected",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "R13",
+      "title": "a report with REVIEWER-CONFIRMED severity diverging from HazLenz was inspected",
+      "outcome": "PASS",
+      "detail": "#6"
+    },
+    {
+      "id": "R15",
+      "title": "at least one artifact was rendered by the current renderer",
+      "outcome": "PASS",
+      "detail": "#32, #31, #30, #29"
+    },
+    {
+      "id": "R16",
+      "title": "and on it, no number the reviewer did not choose is labelled Reviewer-confirmed",
+      "outcome": "PASS",
+      "detail": "#32 carries the reviewer's own severity and likelihood"
+    },
+    {
+      "id": "R17",
+      "title": "reports issued BEFORE a renderer correction are not silently re-issued",
+      "outcome": "NOTE",
+      "detail": "the snapshot fingerprint gates regeneration; recorded as a §276 product finding"
+    },
+    {
+      "id": "R14",
+      "title": "the completion screen and the report agree on severity",
+      "outcome": "PASS",
+      "detail": "screen and artifact compared for the walkthrough inspection in walkthrough.json"
+    }
+  ]
+}

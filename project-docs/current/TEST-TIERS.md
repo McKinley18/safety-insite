@@ -56,6 +56,45 @@ be the weaker evidence pretending to be the stronger.
 `DEV_AUTH_BYPASS=false` is forced rather than left to the operator: the developer `.env` enables the
 bypass, and an authorization suite run under it measures the bypass instead of the route.
 
+## TIER 1P — PRODUCT RELEASE GATES (added at §276)
+
+Pure, no database, no network. Each pins a defect that reached a customer-facing artifact, so
+each fails loudly rather than reporting a number.
+
+```
+npm run test:effective-severity          48 checks — D-008. A reviewer-confirmed severity and the
+                                         severity a customer-facing artifact states are one value.
+npm run test:hazlenz-scoped-evidence     22 checks — D-009. A finding is evaluated against its own
+                                         evidence PLUS the parent facts that explicitly modify it;
+                                         never the fragment alone, never the whole observation.
+npm run test:calendar-date-boundary      25 checks — a due date is a calendar DAY, in both directions.
+```
+
+From `frontend-next/`:
+
+```
+npm run check:effective-severity-parity  holds the browser's copy of the severity rule to the
+                                         server's. The rule exists twice because the two packages
+                                         build separately; a copy nobody checks is what produced
+                                         D-008.
+npm run check:risk-band-parity           holds the browser's risk bands to the server's profiles.
+                                         §276 found this had been throwing ENOENT since §274 and
+                                         repaired it — it is the arithmetic D-008 turns on.
+npm run test:calendar-reconciliation     34 checks — D-007, the BROWSER half. The server half cannot
+                                         prove the browser asks, and §275's defect lived entirely on
+                                         the asking side.
+```
+
+## TIER 2P — PRODUCT INTEGRATION GATE (added at §276)
+
+Disposable database, real HTTP, no provider.
+
+```
+npm run test:276-calendar-reconciliation:db    39 checks — D-007, the SERVER half. Fails if
+                                               server-persisted corrective actions exist and the
+                                               calendar returns zero.
+```
+
 ## TIER 3 — BUILD
 
 ```
@@ -81,8 +120,11 @@ second is structural and covers what the first cannot — the ABSENCE of a secon
 elsewhere in the feature. A component that quietly computed `state === "CONFIRMED"` would pass every
 assertion in the first and is caught by the second.
 
-`npm run lint` is **not** a gate in this workspace and never has been: it reports 520 pre-existing
-errors across the app. The four files §265 added lint clean.
+`npm run lint` is **not** a gate in this workspace and never has been: it reports several hundred
+pre-existing errors across the app. What IS measured is the DELTA — §265's four files and §276's
+files lint clean, and §276 compared every file it modified against its `HEAD` version to establish
+that it introduced 0 new errors and 0 new warnings. A whole-repo count would fail for reasons that
+have nothing to do with the change under review; a delta cannot.
 
 ## TIER 4 — LIVE ENVIRONMENT
 

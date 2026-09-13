@@ -1,0 +1,301 @@
+{
+  "status": 200,
+  "body": {
+    "responseVersion": "hazlenz.expert.265.read-response.v1",
+    "present": true,
+    "analysisId": "91d3507f-ffbd-4e9a-b1ab-9cacda44f35c",
+    "analysisState": "ANALYSIS_CONFIRMED",
+    "producer": "server_authored",
+    "confirmationRequired": true,
+    "confirmationSubject": {
+      "resolvable": true,
+      "entries": [
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "ref": "decl-energized-status",
+          "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES"
+        },
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "ref": "cand-pinch-exposure",
+          "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES"
+        }
+      ],
+      "refusalCode": null,
+      "statement": "HazLenz classified 2 unresolved items. Confirm whether each decides if work continues."
+    },
+    "answerOptions": [
+      {
+        "value": "CONTROLS_WHETHER_WORK_CONTINUES",
+        "label": "It decides whether work continues",
+        "detail": "Work does not simply continue until this is resolved."
+      },
+      {
+        "value": "DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES",
+        "label": "It is a follow-up",
+        "detail": "It still needs resolving, but it does not decide whether work continues now."
+      }
+    ],
+    "effectiveDecision": {
+      "version": "hazlenz.expert.264.effective-decision.v1",
+      "source": "HUMAN_CONFIRMED_AS_AUTHORED",
+      "settledForUse": true,
+      "humanSettled": true,
+      "entries": [
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "ref": "decl-energized-status",
+          "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "effectiveClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "changedByHuman": false
+        },
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "ref": "cand-pinch-exposure",
+          "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "effectiveClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "changedByHuman": false
+        }
+      ],
+      "reviewer": {
+        "userId": "c046dd0a-1688-4223-aace-61d3e77718ba",
+        "at": "2026-09-13T20:29:47.173Z"
+      },
+      "statement": "A person reviewed this Expert analysis and confirmed its operational classification as authored."
+    },
+    "authorityStatement": "A person confirmed this Expert analysis's operational conclusion as authored.",
+    "analysis": {
+      "kind": "EXPERT_HAZLENZ_SERVER_AUTHORED_ANALYSIS",
+      "basis": {
+        "inspectionId": "dfa48bee-1a36-4b52-8800-f1247444fdeb",
+        "jurisdiction": "osha-general-industry",
+        "observationId": "0001a820-5b81-41ff-9153-ebf54044c47e",
+        "organizationId": null,
+        "governedRecordCount": 0,
+        "contextBuilderVersion": "hazlenz.expert.262.server-context.v1",
+        "jurisdictionProvenance": "USER_CONFIRMED",
+        "allowedHazardFamilyCount": 41,
+        "deterministicBasisDigest": "34eb3ecab0877491c8238c0c60e3b4d9a5503ead3e6b5e26c6802c643fcf7a21",
+        "deterministicFindingCount": 1,
+        "deterministicFamilyDispositionCount": 1
+      },
+      "status": "COMPLETE",
+      "posture": {
+        "posture": "HOLD_PENDING_VERIFICATION",
+        "requiredBy": [
+          {
+            "ref": "decl-energized-status",
+            "refKind": "UNRESOLVED_DECLARATION",
+            "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+          },
+          {
+            "ref": "cand-pinch-exposure",
+            "refKind": "HAZARD_CANDIDATE",
+            "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION"
+          }
+        ],
+        "whatHappensNow": "The press brake in bay 2 should not be operated, and access to its point of operation should be restricted, until it is confirmed whether the machine is currently energized/accessible in its unguarded state. If it is found to be energized and accessible, it must be locked out immediately; if it is already de-energized or out of service, work may proceed on reinstalling the guard before returning it to service.",
+        "resumeCondition": {
+          "correctionsRequired": [
+            "Reinstall the point-of-operation guard on the press brake before it is returned to energized/operable service",
+            "Lock out or otherwise verify the press brake is de-energized and inaccessible until the guard is reinstalled"
+          ],
+          "resolvedByDeclarationIds": [
+            "decl-energized-status"
+          ]
+        },
+        "requiredControls": [],
+        "acceptedWithoutImmediateAction": []
+      },
+      "analysis": {
+        "outcome": "ANALYZED",
+        "uncertainty": {
+          "statements": []
+        },
+        "disagreements": [],
+        "expertExplanation": {
+          "summary": "The observation establishes that the point-of-operation guard has been removed from the press brake in bay 2, which the deterministic engine already correctly captures as an active machine guarding hazard, though it cannot determine from the stated facts whether the machine currently has moving or accessible energy. The single decision-critical gap is whether the press brake remains energized and accessible in this unguarded state, since that determines whether immediate lockout/isolation is required versus the machine already being out of service pending guard restoration. No additional hazard families or cross-hazard interactions are supported by the text as given."
+        },
+        "crossHazardInsights": [],
+        "expertHazardCandidates": [
+          {
+            "evidence": [
+              {
+                "sourceId": "observation",
+                "quotedText": "The point of operation guard has been removed from the press brake in bay 2."
+              }
+            ],
+            "reasoning": "This is the same fact already carried by the deterministic finding (haz-1, ACTIVE, machine_guarding) and the deterministic assessment for the family (moving or accessible energy = UNKNOWN). I am not adding a new hazard family here; the deterministic engine already covers this exact condition, so I have not introduced a distinct candidate beyond it.",
+            "confidence": "MODERATE",
+            "candidateKey": "cand-pinch-exposure",
+            "hazardFamily": "machine_guarding",
+            "evidenceBasis": "The observation states the point-of-operation guard has been removed from the press brake, meaning the physical barrier at the point of operation is currently not in place. Whether the machine is operable or being operated is not stated.",
+            "groundingStatus": "EXACT_QUOTE_SUPPLIED",
+            "assertedConditionState": "UNKNOWN",
+            "requiresUserConfirmation": false,
+            "relationshipToDeterministic": "AGREES_WITH_DETERMINISTIC"
+          }
+        ],
+        "immediateSafetyPosture": {
+          "posture": "HOLD_PENDING_VERIFICATION",
+          "requiredBy": [
+            {
+              "ref": "decl-energized-status",
+              "refKind": "UNRESOLVED_DECLARATION",
+              "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+              "roleJustification": {
+                "factualBasis": "The observation states the point-of-operation guard has been removed from the press brake in bay 2, but does not state whether the machine is energized, operable, or accessible to workers.",
+                "unresolvedElement": "Whether the press brake is currently energized/operable and accessible with the guard removed",
+                "epistemicCharacter": "UNRESOLVED_DECISION_CRITICAL",
+                "whyDecisionMaterial": "If the machine is energized and accessible, workers face an immediate crushing/amputation hazard at the point of operation requiring lockout now; if it is already de-energized or out of service, no immediate isolation action is needed beyond guard restoration.",
+                "whyControllingNotFollowUp": "This determines whether the work/operation of the machine may continue at all right now, not merely how the guard repair is documented or scheduled afterward."
+              }
+            },
+            {
+              "ref": "cand-pinch-exposure",
+              "refKind": "HAZARD_CANDIDATE",
+              "driverRole": "UNRESOLVED_PROPERTY_CONTROLLING_CONTINUATION",
+              "roleJustification": {
+                "factualBasis": "The point-of-operation guard has been removed from the press brake; the deterministic engine could not determine moving or accessible energy.",
+                "unresolvedElement": "Whether moving or accessible energy is present at the point of operation right now",
+                "epistemicCharacter": "UNRESOLVED_DECISION_CRITICAL",
+                "whyDecisionMaterial": "This directly determines whether continued use or access to the press brake in its current unguarded state is acceptable.",
+                "whyControllingNotFollowUp": "It bears on whether the machine may be used or approached now, not just on how a corrective action is later recorded."
+              }
+            }
+          ],
+          "whatHappensNow": "The press brake in bay 2 should not be operated, and access to its point of operation should be restricted, until it is confirmed whether the machine is currently energized/accessible in its unguarded state. If it is found to be energized and accessible, it must be locked out immediately; if it is already de-energized or out of service, work may proceed on reinstalling the guard before returning it to service.",
+          "resumeCondition": {
+            "correctionsRequired": [
+              "Reinstall the point-of-operation guard on the press brake before it is returned to energized/operable service",
+              "Lock out or otherwise verify the press brake is de-energized and inaccessible until the guard is reinstalled"
+            ],
+            "resolvedByDeclarationIds": [
+              "decl-energized-status"
+            ]
+          },
+          "requiredControls": [],
+          "acceptedWithoutImmediateAction": []
+        },
+        "unresolvedFactDeclarations": [
+          {
+            "branchA": "The press brake is energized and accessible to workers in its unguarded state",
+            "branchB": "The press brake is de-energized, locked out, or otherwise rendered inaccessible pending guard reinstallation",
+            "decisionIfA": "The machine must be immediately locked out/de-energized and removed from operation until the guard is reinstalled, since an accessible unguarded point of operation presents an active crushing/amputation hazard",
+            "decisionIfB": "No immediate isolation action is needed beyond what is already in place; the corrective action is to reinstall the guard before the machine is returned to energized/operable service",
+            "missingFact": "Whether the press brake is currently energized/operable and accessible to workers with the point-of-operation guard removed",
+            "declarationId": "decl-energized-status",
+            "observationSpan": "The point of operation guard has been removed from the press brake in bay 2.",
+            "whyNecessaryNow": "Whether workers face an active struck-by/crush exposure right now, requiring immediate lockout, versus a machine already safely out of service, cannot be determined without this fact, and it governs what protective action is needed today.",
+            "affectedDecision": "HAZARD_SEVERITY",
+            "observationSourceId": "observation",
+            "notEstablishedBecause": "The observation states only that the guard has been removed; it does not state the power state of the machine, whether it has been locked out, or whether anyone can access the point of operation.",
+            "decisionWhileUnresolved": "Treat the press brake as not to be operated and restrict access to the point of operation until the energized/accessible state is confirmed"
+          }
+        ],
+        "decisionCriticalClarifications": [
+          {
+            "question": "Is the press brake currently energized/operable (power on, not locked out) and is it accessible to operators or other workers with the point-of-operation guard removed?",
+            "criticality": "BLOCKING",
+            "evidenceGap": "The observation does not state whether the press brake is powered/operable or whether it has been taken out of service pending guard repair.",
+            "whyItMatters": "If the press brake is energized and accessible with the guard removed, workers face an active crushing/amputation hazard at the point of operation and the machine must be immediately locked out or otherwise made inaccessible before any further use. If the press brake is de-energized, locked out, or otherwise removed from service pending guard reinstallation, no immediate exposure exists and the corrective action is simply to restore the guard before returning it to service.",
+            "clarificationId": "clar-energized-status",
+            "affectedDecision": "HAZARD_SEVERITY",
+            "answersUnresolvedFactDeclarationId": "decl-energized-status"
+          }
+        ]
+      },
+      "verifier": {
+        "factKey": "FP.HAZARD_SEVERITY.observation.0-76.1",
+        "reached": true,
+        "notReachedBecause": null
+      },
+      "admission": "ADMIT",
+      "entryVersion": "hazlenz.expert.production-entry.v1",
+      "admittedFacts": [
+        {
+          "source": "FIRST_PASS_MODEL",
+          "status": "UNRESOLVED",
+          "branchA": "The press brake is energized and accessible to workers in its unguarded state",
+          "branchB": "The press brake is de-energized, locked out, or otherwise rendered inaccessible pending guard reinstallation",
+          "factKey": "FP.HAZARD_SEVERITY.observation.0-76.1",
+          "priority": "OTHER",
+          "evidenceSpan": "The point of operation guard has been removed from the press brake in bay 2.",
+          "modelAuthored": true,
+          "whyUnresolved": "The observation states only that the guard has been removed; it does not state the power state of the machine, whether it has been locked out, or whether anyone can access the point of operation.",
+          "affectedDecision": "HAZARD_SEVERITY",
+          "acceptableEvidence": null,
+          "decisionDivergence": {
+            "ifA": "The machine must be immediately locked out/de-energized and removed from operation until the guard is reinstalled, since an accessible unguarded point of operation presents an active crushing/amputation hazard",
+            "ifB": "No immediate isolation action is needed beyond what is already in place; the corrective action is to reinstall the guard before the machine is returned to energized/operable service"
+          }
+        }
+      ],
+      "contractVersion": "hazlenz.expert.first-pass.259",
+      "candidateIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+      "semanticInventions": [],
+      "declarationRefusals": [],
+      "postureRefusalCodes": [],
+      "conformanceViolations": [],
+      "roleJustificationCodes": []
+    },
+    "settlement": {
+      "reviewId": "0f4e93d7-4e8a-42c1-aedc-fcff9bf2303d",
+      "decision": "classification_confirmed",
+      "reviewedByUserId": "c046dd0a-1688-4223-aace-61d3e77718ba",
+      "reviewedAt": "2026-09-13T20:29:47.173Z",
+      "rationale": "§276 acceptance: the energized status and the pinch exposure both decide whether work continues here, as classified.",
+      "entries": [
+        {
+          "refKind": "UNRESOLVED_DECLARATION",
+          "ref": "decl-energized-status",
+          "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "effectiveClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "changedByHuman": false
+        },
+        {
+          "refKind": "HAZARD_CANDIDATE",
+          "ref": "cand-pinch-exposure",
+          "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "effectiveClassification": "CONTROLS_WHETHER_WORK_CONTINUES",
+          "changedByHuman": false
+        }
+      ]
+    },
+    "provenance": {
+      "candidateIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+      "contractVersion": "hazlenz.expert.first-pass.259",
+      "entryVersion": "hazlenz.expert.production-entry.v1",
+      "admissionVersion": "hazlenz.expert.252.structural-admission.v1",
+      "projectionVersion": "hazlenz.expert.239.posture-projection.v1",
+      "confirmationRuleVersion": "hazlenz.expert.confirmation-required.261-unresolved-classification-boundary",
+      "admission": "ADMIT",
+      "verifierReached": true,
+      "verifierNotReachedBecause": null,
+      "requestedAt": "2026-09-13T20:27:31.685Z",
+      "completedAt": "2026-09-13T20:28:05.393Z"
+    },
+    "failure": null,
+    "history": [
+      {
+        "analysisId": "91d3507f-ffbd-4e9a-b1ab-9cacda44f35c",
+        "producer": "server_authored",
+        "analysisState": "ANALYSIS_CONFIRMED",
+        "requestVersion": 2,
+        "status": "current",
+        "createdAt": "2026-09-13T20:28:05.379Z",
+        "humanSettled": true
+      },
+      {
+        "analysisId": "3a59fcb7-6c8b-469f-b2ea-dc52bf9dbadb",
+        "producer": "client_supplied",
+        "analysisState": "ANALYSIS_AVAILABLE",
+        "requestVersion": 1,
+        "status": "current",
+        "createdAt": "2026-09-13T20:27:29.505Z",
+        "humanSettled": false
+      }
+    ],
+    "findingsReconciled": false
+  }
+}

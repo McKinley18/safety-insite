@@ -1,0 +1,61 @@
+{
+  "section": 276,
+  "scope": "cumulative across \u00a7275 and \u00a7276 \u2014 the ledger is the same disposable database",
+  "ceilingUsd": 1.5,
+  "allowedAnalyses": 6,
+  "analysesSpent": 3,
+  "totalCostUsd": 0.37522,
+  "section275Analyses": 1,
+  "section276Analyses": 2,
+  "executions": [
+    {
+      "executionState": "ANALYSIS_REFUSED",
+      "admission": "REFUSE",
+      "costUsd": 0.119524,
+      "postureRefusalCodes": [
+        "POSTURE_BASIS_REF_UNRESOLVED",
+        "ACTIVE_CANDIDATE_NOT_COVERED"
+      ],
+      "createdAt": "2026-09-13 14:46:36.466562-04"
+    },
+    {
+      "executionState": "ANALYSIS_REFUSED",
+      "admission": "REFUSE",
+      "costUsd": 0.101634,
+      "postureRefusalCodes": [
+        "POSTURE_BASIS_REF_UNRESOLVED"
+      ],
+      "createdAt": "2026-09-13 16:26:59.405937-04"
+    },
+    {
+      "executionState": "ANALYSIS_AWAITING_CONFIRMATION",
+      "admission": "ADMIT",
+      "costUsd": 0.154062,
+      "postureRefusalCodes": [],
+      "createdAt": "2026-09-13 16:27:31.685402-04"
+    }
+  ],
+  "refusalsClassifiedIndividually": [
+    {
+      "execution": 1,
+      "section": 275,
+      "cause": "POSTURE_BASIS_REF_UNRESOLVED + ACTIVE_CANDIDATE_NOT_COVERED",
+      "reading": "the provider answer referenced a basis deterministic admission could not resolve, and left an active candidate uncovered. Structural refusal, contained: no conclusion was offered and 1 leg was spent instead of 2."
+    },
+    {
+      "execution": 2,
+      "section": 276,
+      "productPath": "P4 safe / negated condition",
+      "cause": "POSTURE_BASIS_REF_UNRESOLVED",
+      "reading": "a DIFFERENT cause list from execution 1 \u2014 one code, not two. Refused on basis resolution alone. Recorded as its own event, not merged with execution 1."
+    },
+    {
+      "execution": 3,
+      "section": 276,
+      "productPath": "P6 unresolved / clarification-required",
+      "cause": null,
+      "reading": "ADMITTED. Reached ANALYSIS_AWAITING_CONFIRMATION and named two unresolved items \u2014 decl-energized-status and cand-pinch-exposure. This is the first admitted Expert execution in the product record, and it is what made the human-confirmation path drivable at all."
+    }
+  ],
+  "note": "Three of six allowed analyses spent; $0.375220 of the $1.50 ceiling. No provider call was made to replace an unfavourable answer, and no prompt, schema, admission rule or verifier was changed."
+}

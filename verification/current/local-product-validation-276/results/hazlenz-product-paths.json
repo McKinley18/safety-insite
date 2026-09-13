@@ -1,0 +1,303 @@
+{
+  "section": 276,
+  "run": "VALIDATION-276-PATH-1789331183876",
+  "expertEnabled": true,
+  "note": "Path 1 (OSHA machine guarding) is §275's case, re-driven by the §276 walkthrough and not repeated here.",
+  "matrix": [
+    {
+      "id": "P2",
+      "domain": "OSHA General Industry — second domain (electrical)",
+      "regulatoryContext": "osha-general-industry",
+      "observation": "The cover plate is missing from a 480-volt disconnect panel in the compressor room and energized terminals are exposed at chest height. Employees pass within arm's reach of the opening to reach the parts crib, and nothing guards the opening.",
+      "expectedHazard": true,
+      "observedHazard": true,
+      "analysisMs": 264,
+      "concision": {
+        "renderedCharacters": 859,
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatIsMissing": false,
+        "quotesTheInspectorsOwnWords": true,
+        "citationOnTheDefaultScreen": false,
+        "internalTokenLeaks": 0,
+        "repeatedSentences": 0,
+        "caveatCount": 3,
+        "regulatoryTextDeferred": false
+      },
+      "expert": null
+    },
+    {
+      "id": "P3",
+      "domain": "MSHA",
+      "regulatoryContext": "msha",
+      "observation": "On the number two conveyor drive at the primary crusher, the guard over the tail pulley pinch point has been removed and not replaced. The conveyor is running and a miner cleans spillage beside the pulley while it turns.",
+      "expectedHazard": true,
+      "observedHazard": true,
+      "analysisMs": 197,
+      "concision": {
+        "renderedCharacters": 826,
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatIsMissing": false,
+        "quotesTheInspectorsOwnWords": true,
+        "citationOnTheDefaultScreen": true,
+        "internalTokenLeaks": 0,
+        "repeatedSentences": 0,
+        "caveatCount": 3,
+        "regulatoryTextDeferred": false
+      },
+      "expert": null
+    },
+    {
+      "id": "P4",
+      "domain": "safe / negated condition",
+      "regulatoryContext": "osha-general-industry",
+      "observation": "The fixed guard on the bench grinder in the maintenance shop is in place, correctly adjusted and secured with all fasteners present. The tool rest is set within one eighth of an inch of the wheel. Nobody was working at the grinder and it was switched off and isolated at the wall.",
+      "expectedHazard": false,
+      "observedHazard": true,
+      "analysisMs": 211,
+      "concision": {
+        "renderedCharacters": 893,
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatIsMissing": true,
+        "quotesTheInspectorsOwnWords": true,
+        "citationOnTheDefaultScreen": false,
+        "internalTokenLeaks": 0,
+        "repeatedSentences": 0,
+        "caveatCount": 3,
+        "regulatoryTextDeferred": false
+      },
+      "expert": {
+        "ms": 9161,
+        "panelText": "HazLenz Expert is analysing this observation This takes longer than the standard analysis because it reasons over the whole observation. Nothing is shown until it finishes. ",
+        "refused": false,
+        "awaitingConfirmation": false
+      }
+    },
+    {
+      "id": "P5",
+      "domain": "multiple independent hazards",
+      "regulatoryContext": "osha-general-industry",
+      "observation": "The point of operation guard on the punch press has been removed and the press is energized and cycling with the operator feeding blanks by hand. Separately, the guardrail along the north mezzanine walkway is missing over a four metre drop and employees walk within a metre of the open edge.",
+      "expectedHazard": true,
+      "observedHazard": true,
+      "analysisMs": 197,
+      "concision": {
+        "renderedCharacters": 867,
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatIsMissing": false,
+        "quotesTheInspectorsOwnWords": true,
+        "citationOnTheDefaultScreen": true,
+        "internalTokenLeaks": 0,
+        "repeatedSentences": 0,
+        "caveatCount": 3,
+        "regulatoryTextDeferred": false
+      },
+      "expert": null
+    },
+    {
+      "id": "P6",
+      "domain": "unresolved / clarification-required",
+      "regulatoryContext": "osha-general-industry",
+      "observation": "The point of operation guard has been removed from the press brake in bay 2.",
+      "expectedHazard": true,
+      "observedHazard": true,
+      "analysisMs": 131,
+      "concision": {
+        "renderedCharacters": 1076,
+        "whatWasFound": true,
+        "whatNeedsAttention": true,
+        "whatToDo": true,
+        "whatIsMissing": true,
+        "quotesTheInspectorsOwnWords": true,
+        "citationOnTheDefaultScreen": true,
+        "internalTokenLeaks": 0,
+        "repeatedSentences": 0,
+        "caveatCount": 3,
+        "regulatoryTextDeferred": true
+      },
+      "expert": {
+        "ms": 9158,
+        "panelText": "HazLenz Expert is analysing this observation This takes longer than the standard analysis because it reasons over the whole observation. Nothing is shown until it finishes. ",
+        "refused": false,
+        "awaitingConfirmation": false
+      }
+    }
+  ],
+  "expertExecutions": [
+    {
+      "path": "P4",
+      "ms": 9161,
+      "panelText": "HazLenz Expert is analysing this observation This takes longer than the standard analysis because it reasons over the whole observation. Nothing is shown until it finishes. ",
+      "refused": false,
+      "awaitingConfirmation": false
+    },
+    {
+      "path": "P6",
+      "ms": 9158,
+      "panelText": "HazLenz Expert is analysing this observation This takes longer than the standard analysis because it reasons over the whole observation. Nothing is shown until it finishes. ",
+      "refused": false,
+      "awaitingConfirmation": false
+    }
+  ],
+  "results": [
+    {
+      "id": "P2",
+      "title": "OSHA General Industry — second domain (electrical): hazard outcome matches the condition",
+      "outcome": "PASS",
+      "detail": "2 proposed — expected at least one"
+    },
+    {
+      "id": "P2",
+      "title": "the default screen answers the four questions",
+      "outcome": "PASS",
+      "detail": "found=true attention=true todo=true missing=false"
+    },
+    {
+      "id": "P2",
+      "title": "no internal token reaches the screen",
+      "outcome": "PASS",
+      "detail": "0 pattern(s)"
+    },
+    {
+      "id": "P2",
+      "title": "the screen quotes the inspector's own words",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "P3",
+      "title": "MSHA: hazard outcome matches the condition",
+      "outcome": "PASS",
+      "detail": "2 proposed — expected at least one"
+    },
+    {
+      "id": "P3",
+      "title": "the default screen answers the four questions",
+      "outcome": "PASS",
+      "detail": "found=true attention=true todo=true missing=false"
+    },
+    {
+      "id": "P3",
+      "title": "no internal token reaches the screen",
+      "outcome": "PASS",
+      "detail": "0 pattern(s)"
+    },
+    {
+      "id": "P3",
+      "title": "the screen quotes the inspector's own words",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "P3",
+      "title": "an Expert execution completes and is presented honestly",
+      "outcome": "NOTE",
+      "detail": "the Run Expert review control was not present on this screen"
+    },
+    {
+      "id": "P4",
+      "title": "safe / negated condition: hazard outcome matches the condition",
+      "outcome": "FAIL",
+      "detail": "1 proposed — expected none"
+    },
+    {
+      "id": "P4",
+      "title": "no hazard the engine assessed SAFE_VERIFIED is proposed",
+      "outcome": "PASS",
+      "detail": "the engine's own per-hazard determination is now respected unconditionally"
+    },
+    {
+      "id": "P4",
+      "title": "no weakly-routed hazard is proposed either",
+      "outcome": "FAIL",
+      "detail": "a low-confidence domain route survives; referred as a §276 defect"
+    },
+    {
+      "id": "P4",
+      "title": "the default screen answers the four questions",
+      "outcome": "PASS",
+      "detail": "found=true attention=true todo=true missing=true"
+    },
+    {
+      "id": "P4",
+      "title": "no internal token reaches the screen",
+      "outcome": "PASS",
+      "detail": "0 pattern(s)"
+    },
+    {
+      "id": "P4",
+      "title": "the screen quotes the inspector's own words",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "P4",
+      "title": "an Expert execution completes and is presented honestly",
+      "outcome": "PASS",
+      "detail": "a conclusion or a pending state is shown"
+    },
+    {
+      "id": "P5",
+      "title": "multiple independent hazards: hazard outcome matches the condition",
+      "outcome": "PASS",
+      "detail": "2 proposed — expected at least one"
+    },
+    {
+      "id": "P5",
+      "title": "the default screen answers the four questions",
+      "outcome": "PASS",
+      "detail": "found=true attention=true todo=true missing=false"
+    },
+    {
+      "id": "P5",
+      "title": "no internal token reaches the screen",
+      "outcome": "PASS",
+      "detail": "0 pattern(s)"
+    },
+    {
+      "id": "P5",
+      "title": "the screen quotes the inspector's own words",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "P6",
+      "title": "unresolved / clarification-required: hazard outcome matches the condition",
+      "outcome": "PASS",
+      "detail": "1 proposed — expected at least one"
+    },
+    {
+      "id": "P6",
+      "title": "the default screen answers the four questions",
+      "outcome": "PASS",
+      "detail": "found=true attention=true todo=true missing=true"
+    },
+    {
+      "id": "P6",
+      "title": "no internal token reaches the screen",
+      "outcome": "PASS",
+      "detail": "0 pattern(s)"
+    },
+    {
+      "id": "P6",
+      "title": "the screen quotes the inspector's own words",
+      "outcome": "PASS",
+      "detail": null
+    },
+    {
+      "id": "P6",
+      "title": "an Expert execution completes and is presented honestly",
+      "outcome": "PASS",
+      "detail": "a conclusion or a pending state is shown"
+    }
+  ],
+  "consoleErrors": [],
+  "serverReachableAtEnd": "reachable"
+}

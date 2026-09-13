@@ -1,0 +1,17 @@
+{
+  "resolvable": true,
+  "entries": [
+    {
+      "refKind": "UNRESOLVED_DECLARATION",
+      "ref": "decl-energized-status",
+      "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES"
+    },
+    {
+      "refKind": "HAZARD_CANDIDATE",
+      "ref": "cand-pinch-exposure",
+      "expertClassification": "CONTROLS_WHETHER_WORK_CONTINUES"
+    }
+  ],
+  "refusalCode": null,
+  "statement": "HazLenz classified 2 unresolved items. Confirm whether each decides if work continues."
+}
