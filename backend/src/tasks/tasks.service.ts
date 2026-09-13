@@ -8,6 +8,7 @@ import { OrganizationMembership } from '../organizations/entities/organization-m
 import { Site } from '../sites/entities/site.entity';
 import { CreateTaskDto, UpdateTaskStatusDto } from './task.dto';
 import { Task } from './task.entity';
+import { toCalendarDayKey } from '../common/calendar-date';
 
 @Injectable()
 export class TasksService {
@@ -129,7 +130,10 @@ export class TasksService {
       ...actions.filter(action => action.dueDate).map(action => ({
         kind: 'corrective_action' as const,
         sourceId: action.id,
-        date: new Date(action.dueDate).toISOString().slice(0, 10),
+        // §275. `toISOString()` reports the UTC day, so an action due in the local
+        // evening was rendering on the FOLLOWING calendar day. Tasks alongside it are a
+        // `date` column passed through verbatim; this makes the two agree.
+        date: toCalendarDayKey(action.dueDate) as string,
         title: action.title,
         status: action.statusCode === 'closed' ? 'completed' : action.statusCode,
         priority: action.priorityCode,

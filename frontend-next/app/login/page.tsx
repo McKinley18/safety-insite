@@ -87,7 +87,18 @@ export default function LoginPage() {
 
       if (!response.ok) {
         setStatusType("error");
-        setStatus("Sign in failed. Check your email and password.");
+        // §275. Every non-OK response used to produce "Check your email and password",
+        // which is the one thing that is NOT true when sign-in is rate limited. Login is
+        // throttled at 3 attempts per minute, so a user whose password is CORRECT could be
+        // told it was wrong, retry, extend their own lockout, and have no way to learn that
+        // waiting is the fix. Each recoverable condition now says what it actually is.
+        if (response.status === 429) {
+          setStatus("Too many sign-in attempts. Wait a minute and try again — your password may well be correct.");
+        } else if (response.status >= 500) {
+          setStatus("Sign-in is temporarily unavailable. This is a problem on our side, not with your password. Please try again shortly.");
+        } else {
+          setStatus("Sign in failed. Check your email and password.");
+        }
         return;
       }
 

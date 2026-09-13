@@ -116,7 +116,11 @@ export default function RegisterPage() {
 
       if (!response.ok) {
         setStatusType("error");
-        setStatus("Account creation failed. Please try again.");
+        // §275. Registration is throttled too, and "try again" is the wrong instruction
+        // when trying again is exactly what is being refused.
+        setStatus(response.status === 429
+          ? "Too many attempts from this device. Wait a minute and try again."
+          : "Account creation failed. Please try again.");
         return;
       }
 

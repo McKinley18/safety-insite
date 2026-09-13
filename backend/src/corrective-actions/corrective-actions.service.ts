@@ -10,6 +10,7 @@ import { randomUUID } from 'crypto';
 import { CorrectiveAction } from './entities/corrective-action.entity';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 import { AuditService } from '../audit/audit.service';
+import { parseDueDate } from '../common/calendar-date';
 import { NotificationsService } from '../notifications/notifications.service';
 import { FixFeedbackService } from '../intelligence/fix-feedback.service';
 import { OutcomeService } from '../outcomes/outcome.service';
@@ -221,7 +222,9 @@ export class CorrectiveActionsService {
         : null,
       priorityCode: this.normalizePriority(dto.priorityCode),
       statusCode: this.normalizeStatus((dto as any).statusCode),
-      dueDate: dto.dueDate ? new Date(dto.dueDate) : undefined,
+      // §275. A bare YYYY-MM-DD must land on the day the user named, not on UTC
+      // midnight, which is the previous evening west of Greenwich.
+      dueDate: parseDueDate(dto.dueDate),
       tenantId: auth.tenantId,
       organizationId: auth.organizationId,
       ownerUserId: String(auth.userId),
@@ -425,7 +428,7 @@ export class CorrectiveActionsService {
     record.description = description;
     record.priorityCode = this.normalizePriority(action.priority || action.priorityCode);
     record.statusCode = this.normalizeStatus(action.status || action.statusCode);
-    record.dueDate = action.dueDate || action.due ? new Date(action.dueDate || action.due) : record.dueDate;
+    record.dueDate = parseDueDate(action.dueDate || action.due) ?? record.dueDate;
     record.assignedToUserId = action.assignedToUserId || record.assignedToUserId;
     record.assignedToName = action.assignedToName || action.assignedRole || record.assignedToName;
     record.category =
