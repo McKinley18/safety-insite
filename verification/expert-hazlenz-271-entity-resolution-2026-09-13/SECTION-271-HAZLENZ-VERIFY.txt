@@ -1,0 +1,12 @@
+Expert HazLenz — current state verification (read-only, 0 provider calls)
+
+  Candidate identity                  PASS                      22 elements, drift 0
+  Identity constant in the build      PASS                      the compiled-in identity equals the recomputation
+  Protected modules                   PASS                      29/29 present, 1 digest(s) newer than the §229 snapshot (anthropicAdapterModule)
+  Accepted evidence drift             PASS                      0 new (5588 members over 96 manifests; 0 pre-existing, 8 baselined, 66 external pointers)
+  Current-state manifest              PASS                      agrees with the recomputed identity
+  Provider transport (live)           UNVERIFIED_LIVE           no provider is called by any §263 command
+  Object storage / report generation  ENVIRONMENTALLY_BLOCKED   STORAGE_S3_BUCKET and STORAGE_LOCAL_ROOT are unset; test:knowledge-release-provenance cannot reach report generation
+  Billing and deployment              UNVERIFIED_LIVE           no live environment is contacted
+
+VERIFICATION PASS  —  2 unverified live, 1 environmentally blocked

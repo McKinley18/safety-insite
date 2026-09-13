@@ -46,11 +46,30 @@ required. It is **preserved as a future expansion requirement**: admitting any n
 requires a transfer mechanism and jurisdiction-specific rights disclosures, neither of which exists.
 Re-check before widening the cohort.
 
+## §271 — contracting entity policy
+
+**Confirmed by the product owner at §271: no legal operating entity exists.** Counsel has not been
+engaged.
+
+The standing policy, recorded so it is not quietly eroded later:
+
+> The controlled beta does **not** default to an informal individual or sole-proprietor contracting
+> arrangement. The intended legal operating entity is established **before** outside beta
+> participants are admitted — unless qualified counsel specifically advises that an individual
+> arrangement is appropriate.
+
+Engineering has no view on which way that should go. What engineering can say is that the exception
+has to be asked for explicitly rather than arrived at by default, which is why it is question 1 of
+the counsel packet rather than an assumption anywhere in these documents.
+
+Governing law must be **confirmed by counsel**, not inferred from the formation state or from the
+product owner's residence.
+
 ## Placeholders — UNRESOLVED, and blocking
 
 These are unknown to engineering and were deliberately **not invented**. §270 searched the
 repository and found no legal entity, no registered address and no business contact address — only
-development and test artefacts.
+development and test artefacts; §271 confirmed with the product owner that none exists.
 
 | placeholder | what it needs | status |
 |---|---|---|

@@ -12,7 +12,22 @@ are later work and are out of scope for this review.
 
 ---
 
-## 0. BLOCKING — the contracting entity is not established
+## 0. BLOCKING — no legal operating entity exists
+
+**Confirmed by the product owner at §271: no legal operating entity for Safety InSite has been
+formed.** This is not an unknown that engineering failed to look up; it is a settled fact about the
+business.
+
+**The product owner's standing policy, recorded at §271:**
+
+> The controlled beta is **not** to default to an informal individual or sole-proprietor contracting
+> arrangement. The intended legal operating entity is to be established before outside beta
+> participants are admitted — **unless qualified counsel specifically advises that an individual
+> arrangement is appropriate for a cohort of this size and character.**
+
+**That exception is question 1 below, and it is the first thing counsel should answer**, because the
+answer determines whether entity formation blocks the beta or merely precedes commercial launch.
+Everything else in this packet is downstream of it.
 
 **Engineering could not resolve five placeholders, and did not invent them.** Every document in this
 packet still contains them:
@@ -128,8 +143,15 @@ Ordered by how much they change the documents.
 
 **Contracting and liability**
 
-1. **Who contracts?** If no entity is formed, may this beta be run by an individual, and what
-   liability exposure does that create? (See section 0 — this blocks everything else.)
+1. **Who contracts — and must an entity be formed first?** No entity exists (§271). The product
+   owner's policy is to form one before admitting participants, with a single stated exception:
+   counsel advising that an individual arrangement is appropriate here. **So the question is not
+   "may an individual do this" in the abstract — it is whether this specific cohort (3–5 named,
+   individually invited U.S. safety professionals, no fee charged, invitation-only, software that
+   informs workplace safety decisions) justifies the exception, and what personal liability exposure
+   accepting it would create.** If it does not, entity formation and its state of organisation are
+   the first actions, and question 4 depends on the answer. See section 0 — this blocks everything
+   else in this packet.
 2. **Liability allocation.** Clause 11 of the Terms is deliberately undrafted. What cap, exclusions
    and carve-outs are appropriate where the product informs workplace safety decisions and a
    foreseeable failure mode is a hazard that goes unidentified?

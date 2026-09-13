@@ -1,0 +1,140 @@
+{
+  "artifact": "SECTION_271_ENTITY_RESOLUTION_AND_BILLING_CLEANUP",
+  "section": 271,
+  "date": "2026-09-13",
+  "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+  "predecessor": { "commit": "3c475c48d0574e7ef2b7c0cc343d5278dc396923", "digest": "194ce17f659f8cfdb23cb57ce7644b64d64b00cf794c82d0c3e11933494a34d9" },
+  "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_REVIEW_INCOMPLETE — LEGAL_CLOSURE_REQUIRED",
+
+  "constraintsHeld": {
+    "providerSemanticCalls": 0,
+    "productionMigrations": 0,
+    "candidateDeployments": 0,
+    "applicationPushes": 0,
+    "serviceRestarts": 0,
+    "expertExecutionEnabled": false,
+    "expertSemanticsModified": false,
+    "candidateIdentityAltered": false,
+    "hazlenzCapabilityTesting": "none — §271 authorized none and none was performed",
+    "saphyrApiModified": false,
+    "secretValuesPrintedOrStored": 0
+  },
+
+  "entityResolution": {
+    "question": "Does a legal operating entity for Safety InSite exist today?",
+    "answer": "NO — no entity has been formed",
+    "confirmedBy": "product owner, §271",
+    "significance": "This is now a settled fact about the business rather than an unknown engineering failed to look up. §270 established that the repository contains no entity facts; §271 established that none exist to find.",
+    "policyRecorded": {
+      "statement": "The controlled beta does NOT default to an informal individual or sole-proprietor contracting arrangement. The intended legal operating entity is to be established BEFORE outside beta participants are admitted.",
+      "theOneException": "unless qualified counsel specifically advises that an individual arrangement is appropriate",
+      "howTheExceptionIsHandled": "framed as question 1 of the counsel packet, so it must be ASKED FOR EXPLICITLY rather than arrived at by default. The question is not whether an individual may contract in the abstract, but whether this specific cohort justifies the exception: 3-5 named, individually invited U.S. safety professionals, no fee charged, invitation-only, software that informs workplace safety decisions.",
+      "recordedIn": ["docs/legal/README.md", "docs/legal/COUNSEL_REVIEW_PACKET.md"]
+    },
+    "placeholders": {
+      "status": "ALL FIVE REMAIN UNRESOLVED",
+      "list": ["[LEGAL ENTITY]", "[ENTITY ADDRESS]", "[CONTACT EMAIL]", "[GOVERNING LAW]", "[BETA TERM]"],
+      "nothingInvented": true,
+      "governingLawConstraint": "must be CONFIRMED BY COUNSEL, not inferred from the formation state or from the product owner's residence"
+    },
+    "engineeringPosition": "Engineering has no view on whether an entity should be formed or whether the exception should be taken. What engineering can say is that the exception has to be requested explicitly rather than reached by default, which is why it is the first question in the packet rather than an assumption anywhere in the documents."
+  },
+
+  "counsel": {
+    "engaged": false,
+    "confirmedBy": "product owner, §271",
+    "reviewer": "NONE",
+    "packet": "docs/legal/COUNSEL_REVIEW_PACKET.md — prepared at §270, sharpened at §271",
+    "changesAtSection271": [
+      "section 0 rewritten from 'the entity is not established' to 'no entity exists', reflecting the confirmed fact",
+      "the §271 entity policy and its single exception recorded verbatim",
+      "question 1 reframed from an abstract 'may an individual do this' to whether THIS cohort justifies the exception, and what personal liability exposure accepting it would create"
+    ],
+    "substanceUnchanged": "the seven artifacts were not otherwise edited and NOTHING was relabelled",
+    "dependencyOrder": "counsel review is downstream of the entity question. Who contracts determines the data controller, the party bearing liability and the governing law, and questions 4 and 12 depend on the answer.",
+    "documentsLabelledCounselApproved": 0,
+    "approvalEvidenceHeld": "none"
+  },
+
+  "renderPlan": {
+    "authorizedBy": "product owner, §271",
+    "executable": false,
+    "attempt": {
+      "request": "PATCH /v1/services/srv-d7kl74jeo5us73deaor0 with serviceDetails.plan=starter",
+      "result": "HTTP 500 {\"message\":\"internal server error\"} — unchanged from §270",
+      "interpretation": "no payment method has been added to the Render workspace since §270. The slug is valid; an invalid one returns a clean HTTP 400 listing the valid paid plans."
+    },
+    "whyNotExecutableHere": "§271 itself specifies that the payment method is added by the product owner through the Render dashboard. Entering payment credentials is not a command this session can run.",
+    "planBefore": "free",
+    "planAfter": "free",
+    "coldStartBlocker": "STILL OPEN — the service continues to sleep when idle (39.8 s to an initial 503, then 5.2 s, measured at §269)",
+    "statePreservedMeanwhile": {
+      "autoDeploy": "no / off",
+      "autoDeployTrigger": "off",
+      "healthCheckPath": "/health/ready",
+      "instances": 1,
+      "region": "oregon",
+      "expertExecutionEnabled": "false",
+      "runningSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 — unchanged",
+      "saphyrApi": "untouched"
+    }
+  },
+
+  "billingConfigurationCleanup": {
+    "instruction": "§271 — remove the two dead BILLING_* variables rather than preserving misleading configuration, after proving repository and runtime references are zero outside configuration and evidence documentation.",
+    "proofOfZeroConsumers": {
+      "method": "repository-wide search for both variable names, excluding node_modules, .git, dist and .next",
+      "codeOrRuntimeConsumers": 0,
+      "hitsOnlyIn": [
+        "backend/.env.example — a template, not a consumer",
+        "docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json — documentation",
+        "verification/expert-hazlenz-269-*, verification/expert-hazlenz-270-*, verification/production-readiness-audit-2026-08-15 — frozen evidence"
+      ],
+      "noReferenceUnder": ["backend/src", "backend/scripts", "frontend-next"],
+      "independentCorroboration": "docs/INSITE_ENGINEERING_BLUEPRINT.md had already recorded both as dead variables and classified them SAFE_POST_LAUNCH_CLEANUP, reached independently of §269-§271"
+    },
+    "removal": {
+      "production": "DELETE /v1/services/{id}/env-vars/{key} — HTTP 204 for each; production environment 43 -> 41 variables; no BILLING_* variable remains",
+      "template": "both lines removed from backend/.env.example",
+      "deployCreated": false,
+      "evidence": "the deploy list is byte-identical before and after, and /health/version still reports de655d2f6e4c0ff7b0de17f9ccfbd3668138a936"
+    },
+    "postRemovalVerification": {
+      "bootContract": "re-evaluated against the 41-variable live environment using the compiled validator — BOOTS",
+      "redirectSourceUnaffected": "FRONTEND_URL remains https://safety-insite.vercel.app/; frontendUrl() resolves FRONTEND_APP_URL -> APP_URL -> FRONTEND_URL",
+      "liveRedirects": { "success": "https://safety-insite.vercel.app/profile?billing=success", "cancel": "https://safety-insite.vercel.app/pricing?billing=cancelled" },
+      "healthReady": "HTTP 200, status ready, database available"
+    },
+    "whyRemovedNowRatherThanAtSection270": "§270 corrected the values because deletion is the more destructive of the two options and consumers had not yet been exhaustively proven absent. §271 proved it and removed them, because plausible values implying a control that does not exist are worse for an operator than no variable at all.",
+    "canonicalFrontendOrigin": "https://safety-insite.vercel.app"
+  },
+
+  "p0Reconciliation": {
+    "before": 4,
+    "after": 4,
+    "closed": [],
+    "added": [],
+    "composition": "3 legal, 1 configuration. ZERO development, architecture or engineering blockers.",
+    "alsoResolvedButNotAP0": "DEAD_BILLING_URL_CONFIGURATION (P2) — moved to resolvedOrSuperseded",
+    "remaining": [
+      { "id": "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED", "gate": "form the entity, or obtain the counsel exception" },
+      { "id": "NO_TERMS_NO_PRIVACY_POLICY", "gate": "counsel review" },
+      { "id": "NO_THIRD_PARTY_MODEL_DISCLOSURE", "gate": "counsel review" },
+      { "id": "BACKEND_NOT_ON_ALWAYS_ON_PLAN", "gate": "payment method on the Render workspace" }
+    ],
+    "everyRemainingBlockerIsARealWorldAct": true,
+    "engineeringOwes": "nothing toward any of the four"
+  },
+
+  "preserved": {
+    "usOnlyScope": "retained",
+    "acknowledgementMechanism": "Option A — signed out-of-product agreement before account creation; retained",
+    "registrationCheckbox": "still rejected as acceptance evidence",
+    "monitoring": "closed at §269, not reopened",
+    "backup": "accepted at §269, not re-run; a fresh release-time backup remains a release step",
+    "storage": "ready; no-lifecycle-rule limitation still recorded",
+    "backendAutoDeploy": "no / off",
+    "frontendGitAutoDeploy": "disabled",
+    "expertHazlenzValidation": "NOT REOPENED — §271 authorized no capability testing and none was performed"
+  }
+}

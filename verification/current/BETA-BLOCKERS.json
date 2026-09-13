@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_BETA_REGISTER",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266, defect-closure updated at §267, infrastructure/operations updated at §268, LIVE INFRASTRUCTURE AND LEGAL DRAFTING updated at §269; release-prerequisite closure at §270; entity resolution attempted and billing configuration cleaned at §271",
   "role": "THE ONLY register of what currently blocks external beta. §266 made it the single authoritative P0/P1/P2 closure register for Safety InSite v1.0 controlled human beta. Historical RELEASE_BLOCKERS.md and REMAINING_BLOCKERS.md files under verification/ are historical evidence of blockers that were live at the time; they are not current status and must not be read as such.",
   "scope": "the WHOLE Safety InSite v1.0 product as a controlled-beta candidate, not only the Expert HazLenz layer. §266 widened it from the Expert-only scope §263 established.",
   "asOf": "2026-09-13",
@@ -41,6 +41,12 @@
         "scopeResolved": "International-transfer gap resolved by the product owner’s U.S.-only cohort decision; preserved as a future expansion requirement",
         "remainingDependency": "counsel review — which cannot begin until the contracting entity is established",
         "closureProof": "a recorded counsel approval, or an explicit product-owner acceptance of INTERNAL BETA DRAFT ACCEPTED FOR CONTROLLED TEST"
+      },
+      "section271": {
+        "counselEngaged": false,
+        "confirmedBy": "product owner, §271",
+        "statement": "No attorney has been engaged. The review packet is prepared and unchanged in substance; its section 0 and question 1 were sharpened to put entity formation first.",
+        "dependencyOrder": "counsel review is downstream of the entity question — who contracts determines the controller, the liable party and the governing law"
       }
     },
     {
@@ -79,6 +85,12 @@
         "scopeResolved": "International-transfer gap resolved by the product owner’s U.S.-only cohort decision; preserved as a future expansion requirement",
         "remainingDependency": "counsel review — which cannot begin until the contracting entity is established",
         "closureProof": "a recorded counsel approval, or an explicit product-owner acceptance of INTERNAL BETA DRAFT ACCEPTED FOR CONTROLLED TEST"
+      },
+      "section271": {
+        "counselEngaged": false,
+        "confirmedBy": "product owner, §271",
+        "statement": "No attorney has been engaged. The review packet is prepared and unchanged in substance; its section 0 and question 1 were sharpened to put entity formation first.",
+        "dependencyOrder": "counsel review is downstream of the entity question — who contracts determines the controller, the liable party and the governing law"
       }
     },
     {
@@ -87,11 +99,23 @@
       "severity": "BLOCKER",
       "kind": "legal",
       "discoveredAt": "§270",
-      "statement": "No contracting legal entity, registered address, business contact address, governing law or beta term is established. All five placeholders in the seven legal artifacts remain unresolved.",
+      "statement": "No legal operating entity for Safety InSite has been formed. CONFIRMED with the product owner at §271 — this is a settled fact about the business, not an unknown engineering failed to look up. All five legal placeholders remain unresolved.",
       "measured": "§270 searched the repository for entity and business facts and found none — only development and test artefacts (dev@sentinelsafety.local, a personal +tag gmail address, and a .test acceptance domain). §270 explicitly forbids inventing corporate or legal facts.",
       "whyItBlocks": "A counsel review cannot meaningfully begin without knowing who contracts: the controller of participant data, the party bearing liability and the governing law all follow from it. Documents issued with unresolved placeholders are not defensible documents.",
-      "status": "OPEN / PRODUCT_OWNER_INPUT_REQUIRED",
-      "closureProof": "the five placeholders resolved with actual business facts supplied by the product owner, or — if no entity is formed — a counsel determination that the beta may be run by an individual and on what terms"
+      "status": "OPEN / ENTITY FORMATION OR COUNSEL EXCEPTION REQUIRED",
+      "closureProof": "either (a) an entity formed and the five placeholders resolved with its actual registered facts, or (b) recorded counsel advice that an individual arrangement is appropriate, together with the contracting facts that arrangement requires",
+      "section271": {
+        "entityExists": false,
+        "confirmedBy": "product owner, §271",
+        "policy": "The controlled beta does NOT default to an informal individual or sole-proprietor contracting arrangement. The intended legal operating entity is to be established BEFORE outside beta participants are admitted, unless qualified counsel specifically advises that an individual arrangement is appropriate.",
+        "policyRecordedIn": [
+          "docs/legal/README.md",
+          "docs/legal/COUNSEL_REVIEW_PACKET.md"
+        ],
+        "theOneException": "counsel advising that an individual arrangement suits this specific cohort — 3-5 named, individually invited U.S. safety professionals, no fee charged, software that informs workplace safety decisions. Framed as question 1 of the counsel packet so the exception must be asked for explicitly rather than arrived at by default.",
+        "governingLaw": "must be CONFIRMED BY COUNSEL, not inferred from formation state or product-owner residence",
+        "nothingInvented": true
+      }
     },
     {
       "id": "BACKEND_NOT_ON_ALWAYS_ON_PLAN",
@@ -104,7 +128,21 @@
       "probableCause": "No payment method on the Render workspace. A paid-plan upgrade is a billing action that cannot be performed through the API without one, and adding one requires entering payment credentials in the Render dashboard.",
       "consequence": "Measured cold start 39.8 s returning 503, then 5.2 s. The first request of a session will frequently be slow or fail and need retrying. Tolerable for 3-5 named users who can retry; it is disclosed in docs/legal/PRODUCT_LIMITATIONS.md.",
       "status": "OPEN / PRODUCT_OWNER_ACTION_REQUIRED",
-      "closureProof": "plan=starter (or larger) on the service record, and no 503 on a first request after an idle period"
+      "closureProof": "plan=starter (or larger) on the service record, and no 503 on a first request after an idle period",
+      "section271": {
+        "retried": true,
+        "result": "PATCH serviceDetails.plan=starter returned HTTP 500 again — unchanged from §270",
+        "interpretation": "no payment method has been added to the Render workspace since §270",
+        "authorizedBy": "product owner at §271, but the authorization cannot be executed from this session: adding a payment method requires entering payment credentials in the Render dashboard",
+        "preservedMeanwhile": {
+          "autoDeploy": "no / off",
+          "healthCheckPath": "/health/ready",
+          "instances": 1,
+          "region": "oregon",
+          "expertExecutionEnabled": "false",
+          "runningSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 — unchanged"
+        }
+      }
     }
   ],
   "canRunInParallelWithTheBlockers": [
@@ -444,11 +482,24 @@
       "resolvedAt": "§270",
       "resolution": "ANTHROPIC_API_KEY configured on srv-d7kl74jeo5us73deaor0 through Render environment configuration. Validated NON-SEMANTICALLY against GET https://api.anthropic.com/v1/models, which lists models, invokes none and bills no tokens: HTTP 200, credential valid, 11 models visible, claude-sonnet-5 present. 0 semantic/model requests were sent. The value was never printed, never written to any repository file, and is recorded only as PRESENT.",
       "residual": "The credential configured is the same one present in the local development environment. A DEDICATED production key is recommended before the cohort widens, for revocation independence, rate-limit separation and cost attribution. Recorded as a recommendation, not a blocker."
+    },
+    {
+      "id": "DEAD_BILLING_URL_CONFIGURATION",
+      "priority": "P2",
+      "kind": "config",
+      "discoveredAt": "§269",
+      "resolvedAt": "§271",
+      "statement": "BILLING_SUCCESS_URL and BILLING_CANCEL_URL were production configuration that nothing read. BILLING_CANCEL_URL contained a literal space in its hostname and did not parse; both named a legacy alias rather than the canonical origin.",
+      "resolution": "REMOVED from the production service (HTTP 204 each; 43 -> 41 variables) and from backend/.env.example, after proving zero consumers.",
+      "proofOfZeroConsumers": "a repository-wide search excluding node_modules, .git, dist and .next returned hits ONLY in documentation, frozen evidence packages, and backend/.env.example (a template). No file under backend/src, backend/scripts or frontend-next references either name. Corroborated independently by docs/INSITE_ENGINEERING_BLUEPRINT.md, which had already classified them SAFE_POST_LAUNCH_CLEANUP.",
+      "actualMechanismUnaffected": "billing.service.ts derives Stripe redirects from frontendUrl() -> FRONTEND_APP_URL -> APP_URL -> FRONTEND_URL. FRONTEND_URL is unchanged at https://safety-insite.vercel.app/, so the live redirects are unaffected: success -> /profile?billing=success, cancel -> /pricing?billing=cancelled, both verified HTTP 200.",
+      "postRemovalVerification": "production boot contract re-evaluated against the 41-variable environment: BOOTS. No deploy was created — the deploy list is byte-identical and /health/version still reports de655d2f.",
+      "whyRemovedRatherThanCorrected": "§270 corrected them because deleting configuration is the more destructive option and consumers had not yet been exhaustively proven absent. §271 proved it and removed them: plausible values implying a control that does not exist are worse for an operator than no variable at all."
     }
   ],
   "verdict": {
     "question": "Is the current Safety InSite v1.0 product ready for a controlled human beta?",
-    "answer": "NOT YET. Every engineering and release-hygiene prerequisite is closed. Two blockers remain and neither is engineering.",
+    "answer": "NOT YET. All three remaining gates are product-owner actions in the world, not work that can be done in this repository.",
     "terminal": "SAFETY_INSITE_CONTROLLED_BETA_LEGAL_REVIEW_INCOMPLETE — LEGAL_CLOSURE_REQUIRED",
     "alsoOpen": "SAFETY_INSITE_CONTROLLED_BETA_CONFIGURATION_BLOCKER — the backend is still on the free plan. Subordinate to the legal blocker: legal gates admitting any participant at all, the plan gates only beta quality.",
     "architectureSound": true,
@@ -465,8 +516,9 @@
       "LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED",
       "BACKEND_NOT_ON_ALWAYS_ON_PLAN"
     ],
-    "why": "§270 closed every item it could reach: the provider credential is configured and validated without a single model call; the maintenance-seed route that could reshape the production schema is disabled and the change applied by a same-SHA restart; the health check now points at /health/ready rather than nothing; the billing redirect defect is closed, and was found to be dead configuration the application never read; the stale buildTimestamp is now derived with a source-status field so a fallback can never again pass for a stamp. What remains needs the product owner: a contracting entity and a counsel review, and a payment method on the Render workspace.",
-    "measuredNotInferred": "0 provider semantic calls, 0 production migrations, 0 candidate deployments, 0 pushes. One same-SHA restart of the already-running production version, which created no deploy — the deploy list is byte-identical before and after and /health/version still reports de655d2f6e4c0ff7b0de17f9ccfbd3668138a936."
+    "why": "§271 executed everything executable: the dead billing configuration is proven unread and removed from production and from the template, and the paid-plan upgrade was retried and still fails. The three gates — form the operating entity (or obtain counsel advice that an individual arrangement suits this cohort), engage counsel for the bounded review, and add a payment method to the Render workspace — are real-world acts. Engineering owes nothing further toward any of them; the counsel packet is prepared and the entity question is its first question.",
+    "measuredNotInferred": "0 provider semantic calls, 0 production migrations, 0 candidate deployments, 0 pushes, 0 restarts. Two environment-variable deletions, neither of which created a deploy.",
+    "p0After271": 4
   },
   "releaseExecutionSteps": {
     "role": "§270. Scheduled actions that belong to the release procedure. These are NOT blockers and NOT unresolved defects. Every one is proven ready; none has been performed.",

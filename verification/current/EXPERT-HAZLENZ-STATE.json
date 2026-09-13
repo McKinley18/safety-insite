@@ -1,6 +1,6 @@
 {
   "artifact": "EXPERT_HAZLENZ_CURRENT_STATE",
-  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266; live infrastructure verified and legal minimum drafted at §269; release-prerequisite closure at §270",
+  "establishedBy": "§263, refreshed at §265, closure-reviewed at §266; live infrastructure verified and legal minimum drafted at §269; release-prerequisite closure at §270; entity resolution attempted at §271",
   "role": "POINTER AND INDEX. This file states current truth and points at the evidence that established it. It does not reproduce evidence, and a future session should be able to answer the ordinary questions from this file alone without reading §§229-262.",
   "asOf": "2026-09-13",
   "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
@@ -322,9 +322,10 @@
     "section269Legal": "docs/legal/ (7 artifacts + README index)",
     "section269Monitoring": "docs/operations/MONITORING_AND_ALERTING.md",
     "section270": "verification/expert-hazlenz-270-release-prerequisite-closure-2026-09-13/SECTION-270-RELEASE-PREREQUISITES.json",
-    "section270CounselPacket": "docs/legal/COUNSEL_REVIEW_PACKET.md"
+    "section270CounselPacket": "docs/legal/COUNSEL_REVIEW_PACKET.md",
+    "section271": "verification/expert-hazlenz-271-entity-resolution-2026-09-13/SECTION-271-ENTITY-AND-CLEANUP.json"
   },
-  "nextAuthorizedWork": "TWO PRODUCT-OWNER ACTIONS, then the release. §270 closed every release-prerequisite it could reach: provider credential configured and validated with zero model calls; maintenance-seed route disabled and the change applied by restart; health check pointed at /health/ready; billing redirect defect closed (and found to be dead configuration the application never read — the real redirects come from FRONTEND_URL and were already canonical); stale buildTimestamp replaced by a derived chain that reports its own source. REMAINING: (1) establish the contracting legal entity and the four other legal facts, then obtain the bounded counsel review prepared in docs/legal/COUNSEL_REVIEW_PACKET.md; (2) add a payment method to the Render workspace so the backend can move to an always-on plan. Then execute the eight release-execution steps in verification/current/BETA-BLOCKERS.json#releaseExecutionSteps.",
+  "nextAuthorizedWork": "THREE PRODUCT-OWNER ACTIONS IN THE WORLD, then the release. Nothing further is owed by engineering toward any of them. In dependency order: (1) resolve the contracting question — form the intended legal operating entity, OR obtain counsel advice that an individual arrangement suits this specific cohort, which is question 1 of docs/legal/COUNSEL_REVIEW_PACKET.md and gates everything else because who contracts determines the data controller, the liable party and the governing law; (2) engage qualified business/technology/privacy counsel for the bounded review and resolve the five legal placeholders from the resulting facts, with governing law CONFIRMED by counsel rather than inferred; (3) add a payment method to the Render workspace so safety-insite-backend can move to the starter plan — the API returns HTTP 500 for a valid plan slug and both workspace services sit on free. Then execute the eight release-execution steps in verification/current/BETA-BLOCKERS.json#releaseExecutionSteps.",
   "sectionsThatMustNotBeReRunCasually": {
     "reason": "252 scripts write into accepted historical evidence packages; 101 more have write behaviour a static reader could not resolve",
     "registry": "verification/current/MUTATING-SCRIPTS.json"
@@ -354,9 +355,12 @@
       "renderPlan": "free (upgrade blocked)",
       "backendAutoDeploy": "no / off",
       "frontendGitAutoDeploy": "disabled",
-      "runningSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 — unchanged throughout §270"
+      "runningSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 — unchanged throughout §270",
+      "deadBillingVars": "REMOVED at §271 after proving zero consumers (43 -> 41 production variables)"
     },
     "legalLane": "seven artifacts + counsel review packet in docs/legal/. All still classified INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED, deliberately not relabelled. Initial cohort scope: UNITED STATES ONLY.",
-    "betaAcknowledgementDecision": "Option A ACCEPTED — signed out-of-product controlled-beta agreement before account creation. The registration checkbox is client-side only, never transmitted, never persisted, not auditable, and provides no acceptance evidence."
+    "betaAcknowledgementDecision": "Option A ACCEPTED — signed out-of-product controlled-beta agreement before account creation. The registration checkbox is client-side only, never transmitted, never persisted, not auditable, and provides no acceptance evidence.",
+    "entityStatus": "NO LEGAL OPERATING ENTITY EXISTS — confirmed with the product owner at §271. Policy: do not default to an informal individual/sole-proprietor arrangement; form the intended entity before admitting participants, unless counsel advises otherwise.",
+    "counselStatus": "NOT ENGAGED — confirmed at §271. Packet ready at docs/legal/COUNSEL_REVIEW_PACKET.md."
   }
 }
