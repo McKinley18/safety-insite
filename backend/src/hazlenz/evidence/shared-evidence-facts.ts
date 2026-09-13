@@ -22,8 +22,17 @@ export interface EvidenceFact {
   type: string;
   value: string | number | boolean | string[] | null;
   unit?: string;
+  /**
+   * §277 / D-023 added `human_assertion`, and it is deliberately NOT a synonym for
+   * `user_confirmation`. `user_confirmation` records that a person accepted something the
+   * engine produced; `human_assertion` records that a person stated a FACT ABOUT THE WORLD
+   * in answer to a question naming that fact. Only the second may settle a regulatory
+   * predicate, so the two must remain distinguishable in the record -- collapsing them is
+   * exactly how "agree with finding" would come to mean "the machine was energized".
+   */
   source: 'user_text' | 'user_confirmation' | 'photo_model' | 'site_context' |
-    'inspection_context' | 'clarification' | 'qualified_review' | 'system_inference';
+    'inspection_context' | 'clarification' | 'qualified_review' | 'system_inference' |
+    'human_assertion';
   confidence: number;
   status: FactStatus;
   temporalState: 'current' | 'previously_observed' | 'corrected_before_review' | 'unknown';
@@ -92,7 +101,84 @@ export type ExtractedEvidenceFacts = {
   depthFeet?: number;
   distanceFeet?: number;
   noiseTwa?: number;
+  /**
+   * §277 / D-023 — FACTS A PERSON EXPLICITLY ASSERTED, keyed by predicate slug.
+   *
+   * A regulatory predicate may become human-settled only when the user explicitly asserts
+   * the underlying fact. "Agree with finding" does not establish "machine energized = true";
+   * answering "Yes" to "Can you confirm: moving or accessible energy?" may.
+   *
+   * The key is the predicate's own name, slugified exactly as
+   * `evidence-foundation.ts` slugifies it when it BUILDS the question id. That round-trip is
+   * what makes this general rather than another hand-maintained per-predicate table: the
+   * engine names the predicate it is unsure about, the person answers that named predicate,
+   * and the answer comes back under the same name. A predicate nobody asked about has no
+   * key here and cannot be asserted.
+   */
+  humanAssertedPredicates: Record<string, HumanPredicateAssertion>;
 };
+
+/** One explicit factual assertion about one named regulatory predicate. */
+export type HumanPredicateAssertion = {
+  /** The predicate name, slugified. */
+  predicate: string;
+  /** What the person asserted. `undefined` means they answered "not sure" -- still unknown. */
+  asserted: boolean | undefined;
+  /** The clarification question they were answering, for audit. */
+  questionId: string;
+  /** Always `human_asserted`. Present so a consumer never has to infer it. */
+  provenance: 'human_asserted';
+};
+
+/**
+ * §277 / D-023. The predicate slug carried inside a `predicate-*` clarification question id.
+ *
+ * `evidence-foundation.ts` builds the id as
+ *   `predicate-<citation slugified>-<predicate name slugified>`
+ * with the same `\W+ -> -` transform, so the predicate name is recoverable by matching the
+ * tail. Jurisdiction predicates are deliberately EXCLUDED: jurisdiction is one
+ * inspection-wide fact with its own consolidated question and its own resolution path, and
+ * two mechanisms competing over one fact is how a provenance record starts disagreeing with
+ * the result it describes.
+ */
+export function slugifyPredicate(name: string): string {
+  return String(name || '').replace(/\W+/g, '-').toLowerCase().replace(/^-|-$/g, '');
+}
+
+export function humanAssertedPredicatesFrom(
+  clarificationAnswers: Array<{ questionId?: string; answer?: unknown; value?: unknown; selectedOptions?: string[] }> | undefined,
+): Record<string, HumanPredicateAssertion> {
+  const asserted: Record<string, HumanPredicateAssertion> = {};
+  for (const answer of clarificationAnswers || []) {
+    const questionId = String(answer?.questionId || '').trim();
+    if (!questionId.toLowerCase().startsWith('predicate-')) continue;
+    if (/jurisdiction$/i.test(questionId)) continue;
+
+    const value = answerValue(answer);
+    if (!value) continue;
+
+    /**
+     * "Not sure" is recorded, not discarded. A person saying they cannot confirm a fact is
+     * itself an answer, and it must leave the predicate UNKNOWN rather than silently
+     * behaving as if the question had never been asked.
+     */
+    const unsure = /^(not sure|unsure|unknown|cannot verify|can't verify)/i.test(value);
+    const affirmative = !unsure && isYes(value);
+    const negative = !unsure && /^(no|n|false)\b/i.test(value);
+    if (!unsure && !affirmative && !negative) continue;
+
+    // The predicate name is the tail of the id. The citation slug precedes it, and the two
+    // are separated by the same '-' the slugifier produces, so the tail is matched by the
+    // consumer against its own slugified predicate names rather than parsed out here.
+    asserted[questionId.toLowerCase()] = {
+      predicate: questionId.toLowerCase(),
+      asserted: unsure ? undefined : affirmative,
+      questionId,
+      provenance: 'human_asserted',
+    };
+  }
+  return asserted;
+}
 
 function answerValue(answer: any): string {
   const selected = Array.isArray(answer?.selectedOptions) ? answer.selectedOptions[0] : undefined;
@@ -753,12 +839,30 @@ export function buildEvidenceFacts(input: SharedEvidenceFactInput): ExtractedEvi
         absent || present ? 'confirmed' : 'unknown');
     }
   }
+  /**
+   * §277 / D-023. Every explicit predicate assertion is ALSO recorded as an evidence fact, so
+   * it is visible and auditable in `evidenceSnapshot` wherever the analysis is reviewed --
+   * not only inside the decision that consumed it.
+   */
+  const humanAssertedPredicates = humanAssertedPredicatesFrom(input.clarificationAnswers);
+  for (const assertion of Object.values(humanAssertedPredicates)) {
+    fact(
+      facts,
+      'humanAssertedPredicate',
+      `${assertion.questionId}=${assertion.asserted === undefined ? 'not_sure' : assertion.asserted}`,
+      'human_assertion',
+      assertion.asserted === undefined ? 0 : 1,
+      assertion.asserted === undefined ? 'unknown' : 'confirmed',
+    );
+  }
+
   return {
     facts, text, lower, jurisdiction, jurisdictionProvenance, jurisdictionBasis,
     currentHazardNegated, correctedBeforeReview,
     noExposure, controlsAffirmed: (structured.controlsPresent || []).length > 0 &&
       (structured.controlsMissing || []).length === 0,
     depthFeet, distanceFeet, noiseTwa,
+    humanAssertedPredicates,
   };
 }
 

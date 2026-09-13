@@ -2,7 +2,7 @@ import { createHash } from 'crypto';
 import { ClassifyDto } from '../dto/classify.dto';
 import {
   EvidenceFact, FactStatus, ExtractedEvidenceFacts,
-  buildEvidenceFacts, hasFact, factIds,
+  buildEvidenceFacts, hasFact, factIds, slugifyPredicate,
 } from './shared-evidence-facts';
 
 export type { EvidenceFact, FactStatus };
@@ -13,7 +13,19 @@ export interface ApplicabilityDecision {
   family: string;
   status: PredicateStatus;
   confidence: number;
-  requiredPredicates: Array<{ name: string; status: PredicateStatus; factIds: string[] }>;
+  requiredPredicates: Array<{
+    name: string;
+    status: PredicateStatus;
+    factIds: string[];
+    /**
+     * §277 / D-023. Present ONLY on a predicate settled by an explicit human assertion,
+     * naming the question the person was answering. Absent means the engine derived the
+     * status from the observation's own evidence. A reader can therefore always tell which
+     * predicates a person settled and which the evidence did, and the two never merge.
+     */
+    provenance?: 'human_asserted';
+    assertedFromQuestionId?: string;
+  }>;
   missingPredicates: string[];
   contradictoryEvidence: string[];
   source: { authority: 'regulation'; bundle: string; version: string };
@@ -45,19 +57,91 @@ function ids(e: Extracted, type: string) {
   return factIds(e, type);
 }
 
+/**
+ * §277 / D-023 — AN EXPLICIT HUMAN ASSERTION MAY SETTLE A PREDICATE THE ENGINE ASKED ABOUT.
+ *
+ * ==================== THE DISTINCTION THIS EXISTS TO HOLD ====================
+ *
+ * A generic review or confirmation action does NOT establish a previously unresolved
+ * regulatory fact. "Agree with finding" does not establish "machine energized = true".
+ * An explicit answer -- "Yes, the machine was energized" -- MAY establish it, with
+ * provenance `human_asserted`.
+ *
+ * The two are different acts: accepting a CONCLUSION, and giving EVIDENCE about a
+ * PREDICATE. §276 found the product collapsing them in the other direction, re-labelling
+ * every engine-extracted fact `user_confirmation` whenever a reviewer re-ran an analysis.
+ * This is the same boundary from the other side.
+ *
+ * ==================== THE THREE LIMITS ====================
+ *
+ * ONLY AN UNKNOWN PREDICATE. An assertion may settle a fact the observation left open. It
+ * may NOT overturn a predicate the evidence already SUPPORTED or CONTRADICTED: that would
+ * let a person's say-so erase what was observed and written down, and the direction of that
+ * error is unbounded. A predicate with evidence keeps its evidence.
+ *
+ * ONLY A PREDICATE THE ENGINE NAMED. The key is the clarification question's own id, which
+ * the engine built from the predicate's name. A predicate nobody was asked about has no
+ * assertion to find. This is what makes the mechanism general instead of another
+ * hand-maintained per-predicate table -- and it is why a generic confirmation, which
+ * carries no question id at all, can never reach this code.
+ *
+ * ONLY WITH ITS PROVENANCE ATTACHED. The predicate carries `provenance: 'human_asserted'`
+ * and the question it came from, and the same assertion is recorded as an evidence fact
+ * under source `human_assertion`. No silent promotion: a reader can always separate what a
+ * person asserted from what the observation showed.
+ */
+function humanAssertionFor(e: Extracted, predicateName: string) {
+  const assertions = e.humanAssertedPredicates || {};
+  const slug = slugifyPredicate(predicateName);
+  if (!slug) return undefined;
+  // The question id is `predicate-<citation slug>-<predicate slug>`, so the predicate a
+  // person answered about is the one whose slugified name the id ENDS with. Matching the
+  // tail rather than parsing the citation out is deliberate: an assertion is about the
+  // world, not about one citation, and "the machine was energized" settles that predicate
+  // wherever it is required.
+  const match = Object.values(assertions).find((assertion) => assertion.predicate.endsWith(`-${slug}`));
+  return match;
+}
+
 function decision(
   e: Extracted, citation: string, family: string,
   predicates: Array<[string, boolean | undefined, string[]]>,
   notApplicable = false,
 ): ApplicabilityDecision {
-  const requiredPredicates = predicates.map(([name, state, factIds]) => ({
-    name, status: (state === true ? 'SUPPORTED' : state === false ? 'CONTRADICTED' : 'UNKNOWN') as PredicateStatus, factIds,
-  }));
+  const requiredPredicates = predicates.map(([name, state, factIds]) => {
+    if (state === undefined) {
+      const assertion = humanAssertionFor(e, name);
+      if (assertion && assertion.asserted !== undefined) {
+        return {
+          name,
+          status: (assertion.asserted ? 'SUPPORTED' : 'CONTRADICTED') as PredicateStatus,
+          factIds,
+          provenance: 'human_asserted' as const,
+          assertedFromQuestionId: assertion.questionId,
+        };
+      }
+    }
+    return {
+      name,
+      status: (state === true ? 'SUPPORTED' : state === false ? 'CONTRADICTED' : 'UNKNOWN') as PredicateStatus,
+      factIds,
+    };
+  });
   const missingPredicates = requiredPredicates.filter(item => item.status === 'UNKNOWN').map(item => item.name);
   const contradictoryEvidence = requiredPredicates.filter(item => item.status === 'CONTRADICTED').map(item => item.name);
   const status: PredicateStatus = notApplicable ? 'NOT_APPLICABLE' :
     contradictoryEvidence.length ? 'CONTRADICTED' : missingPredicates.length ? 'UNKNOWN' : 'SUPPORTED';
   const inferredJurisdiction = e.jurisdictionProvenance === 'HAZLENZ_INFERRED';
+  /**
+   * §277 / D-023. A decision that rests on something a PERSON asserted must say so in the
+   * sentence a reviewer reads, not only in a field a reviewer would have to go looking for.
+   */
+  const assertedPredicates = requiredPredicates
+    .filter((item) => item.provenance === 'human_asserted')
+    .map((item) => item.name);
+  const assertionNote = assertedPredicates.length
+    ? ` ${assertedPredicates.length === 1 ? 'One predicate was' : `${assertedPredicates.length} predicates were`} settled by an explicit answer from a person rather than by the observation: ${assertedPredicates.join(', ')}.`
+    : '';
   return {
     citation, family, status,
     confidence: status === 'SUPPORTED' && inferredJurisdiction ? 0.8
@@ -65,7 +149,7 @@ function decision(
     requiredPredicates, missingPredicates, contradictoryEvidence,
     source: { authority: 'regulation', bundle: 'hazlenz-offline-federal-core', version: '2026-07-29.1' },
     jurisdictionProvenance: e.jurisdictionProvenance,
-    explanation: status === 'SUPPORTED'
+    explanation: (status === 'SUPPORTED'
       ? inferredJurisdiction
         ? `Supported by submitted evidence for ${family}; jurisdiction was inferred by HazLenz from the observation wording (${e.jurisdictionBasis.map(item => `"${item}"`).join(', ') || 'regime cues'}), not user-confirmed -- confirm the inspection's regulatory context to finalize. Qualified review remains required.`
         : `Supported by submitted evidence for ${family}; qualified review remains required.`
@@ -73,7 +157,7 @@ function decision(
         ? `The submitted evidence establishes an exception or a condition below this family's material threshold.`
         : status === 'UNKNOWN'
           ? `Candidate only; missing: ${missingPredicates.join(', ')}.`
-          : `Suppressed because submitted evidence contradicts: ${contradictoryEvidence.join(', ')}.`,
+          : `Suppressed because submitted evidence contradicts: ${contradictoryEvidence.join(', ')}.`) + assertionNote,
   };
 }
 

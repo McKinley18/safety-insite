@@ -316,6 +316,17 @@ export class HazLenzService {
           addFact("chemicalExposurePathway", selected, questionId);
           break;
         default:
+          /**
+           * §277 / D-023. A `predicate-*` answer is NOT unknown. It is consumed by the
+           * evidence layer, which settles the named regulatory predicate it asks about and
+           * stamps `human_asserted` provenance on it.
+           *
+           * This is the §276 D-021 defect one place along: recording an answer as ignored
+           * while another layer acts on it makes the analysis and its own account of itself
+           * disagree, and a reviewer reading that record would conclude their answer had
+           * been discarded when the decision in front of them rests on it.
+           */
+          if (/^predicate-/i.test(questionId)) break;
           invalidAnswers.push({ questionId, reason: "Unknown question ID ignored." });
       }
     }
