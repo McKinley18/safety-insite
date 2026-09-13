@@ -65,3 +65,15 @@ Two items were scoped, costed and deliberately left undone:
    live API contract change and belongs in its own section with its own route tests.
 
 Both are recommended. Neither is safe to fold into a professionalization sweep.
+
+## 5. Refactor rule — carried forward from the retired `docs/refactor/naming-policy.md`
+
+That document was a second, competing statement of the same policy and was deleted in §273. Its one
+rule not already stated above is preserved here verbatim in substance:
+
+> Do not perform a broad find-and-replace across the whole repository unless imports, routes,
+> storage keys, report fields and API contracts are each covered — either by a rename that follows
+> the file, or by an explicit decision to leave the identifier alone.
+
+§272 followed exactly that: contract-bearing tokens were substituted out before the rename pass and
+restored afterwards, which is why the table above exists rather than a list of regressions.

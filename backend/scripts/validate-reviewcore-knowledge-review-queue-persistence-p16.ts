@@ -42,7 +42,7 @@ async function runValidation() {
     'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.repository.ts',
     'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.persistence-adapter.ts',
     'backend/scripts/validate-reviewcore-knowledge-review-queue-persistence-p16.ts',
-    'project-docs/08-audits/reviewcore-knowledge-review-queue-persistence-p16-summary.md',
+    'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-persistence-p16-summary.md',
   ].forEach(assertExists);
 
   const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/safescope-v2/knowledge-architecture/index.ts'), 'utf8');

@@ -25,7 +25,7 @@ function buildBenchmarkSearchText(testCase: any): string {
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const BENCHMARK_PATH = path.join(PROJECT_ROOT, 'safescope-data/benchmarks/safescope-finding-audit.v1.json');
 const RESULTS_JSON_PATH = path.join(PROJECT_ROOT, 'safescope-data/benchmarks/safescope-finding-audit-results.v1.json');
-const RESULTS_MD_PATH = path.join(PROJECT_ROOT, 'project-docs/08-audits/SAFESCOPE_FINDING_AUDIT_RESULTS.md');
+const RESULTS_MD_PATH = path.join(PROJECT_ROOT, 'project-docs/historical/08-audits/SAFESCOPE_FINDING_AUDIT_RESULTS.md');
 
 const DOMAIN_ALIAS_MAP: Record<string, string[]> = {
   excavation_trenching: ['trenching_and_excavation', 'excavation_trenching'],

@@ -6,7 +6,7 @@
 
 Authored at §269. No attorney has reviewed, approved, or been engaged on any document here. Nothing
 in this directory is legal advice, and no document here may be represented to any recipient as
-attorney-approved. `docs/PRODUCT-CLAIMS-REGISTER.md` records
+attorney-approved. `project-docs/current/CAPABILITY-REGISTER.md` records
 `FINAL_LEGAL_IP_LAUNCH_GATE = NOT_YET_EXECUTED`, and §269 does not change that.
 
 These drafts exist because §266 found that no Terms, no Privacy Notice and no third-party model
@@ -21,15 +21,15 @@ does not do, what happens to their information, and that a third-party AI provid
 
 | # | artifact | file | covers |
 |---|---|---|---|
-| 1 | Controlled Beta Terms | [`CONTROLLED_BETA_TERMS.md`](CONTROLLED_BETA_TERMS.md) | invitation-only nature, permitted use, allocation of responsibility, availability, termination |
-| 2 | Beta Privacy Notice | [`BETA_PRIVACY_NOTICE.md`](BETA_PRIVACY_NOTICE.md) | what is collected, why, who processes it, retention, choices |
-| 3 | AI / third-party provider disclosure | [`AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md`](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md) | that a hosted third-party model performs semantic reasoning, and what it is and is not permitted to decide |
-| 4 | Safety responsibility statement | [`SAFETY_RESPONSIBILITY_STATEMENT.md`](SAFETY_RESPONSIBILITY_STATEMENT.md) | the qualified-professional boundary the architecture actually enforces |
-| 5 | Product limitations | [`PRODUCT_LIMITATIONS.md`](PRODUCT_LIMITATIONS.md) | measured, specific limitations — not a generic disclaimer |
-| 6 | Feedback & improvement boundary | [`FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md`](FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md) | what may and may not be done with beta content; the no-training commitment |
-| 7 | Beta claims guardrails | [`BETA_CLAIMS_GUARDRAILS.md`](BETA_CLAIMS_GUARDRAILS.md) | language that may and may not be used while the beta runs |
+| 1 | Controlled Beta Terms | [`CONTROLLED-BETA-TERMS.md`](CONTROLLED-BETA-TERMS.md) | invitation-only nature, permitted use, allocation of responsibility, availability, termination |
+| 2 | Beta Privacy Notice | [`BETA-PRIVACY-NOTICE.md`](BETA-PRIVACY-NOTICE.md) | what is collected, why, who processes it, retention, choices |
+| 3 | AI / third-party provider disclosure | [`AI-PROVIDER-DISCLOSURE.md`](AI-PROVIDER-DISCLOSURE.md) | that a hosted third-party model performs semantic reasoning, and what it is and is not permitted to decide |
+| 4 | Safety responsibility statement | [`SAFETY-RESPONSIBILITY.md`](SAFETY-RESPONSIBILITY.md) | the qualified-professional boundary the architecture actually enforces |
+| 5 | Product limitations | [`PRODUCT-LIMITATIONS.md`](PRODUCT-LIMITATIONS.md) | measured, specific limitations — not a generic disclaimer |
+| 6 | Feedback & improvement boundary | [`FEEDBACK-AND-DATA-USE.md`](FEEDBACK-AND-DATA-USE.md) | what may and may not be done with beta content; the no-training commitment |
+| 7 | Beta claims guardrails | [`CLAIMS-GUARDRAILS.md`](CLAIMS-GUARDRAILS.md) | language that may and may not be used while the beta runs |
 
-Artifacts 4, 5 and 7 are internally consistent with `docs/PRODUCT-CLAIMS-REGISTER.md`, which remains
+Artifacts 4, 5 and 7 are internally consistent with `project-docs/current/CAPABILITY-REGISTER.md`, which remains
 the authoritative claims inventory. This directory does not replace it and does not re-classify any
 claim in it.
 
@@ -86,11 +86,11 @@ and which law governs all follow from it.
 Tracked as `LEGAL_ENTITY_AND_CONTRACTING_PARTY_UNRESOLVED` in
 `verification/current/BETA-BLOCKERS.json`. If no entity has been formed, whether the beta may be run
 by an individual is itself the first question for counsel — see
-[`COUNSEL_REVIEW_PACKET.md`](COUNSEL_REVIEW_PACKET.md) question 1.
+[`COUNSEL-REVIEW-PACKET.md`](COUNSEL-REVIEW-PACKET.md) question 1.
 
 ## The counsel review packet
 
-[`COUNSEL_REVIEW_PACKET.md`](COUNSEL_REVIEW_PACKET.md) — prepared at §270. It bundles all seven
+[`COUNSEL-REVIEW-PACKET.md`](COUNSEL-REVIEW-PACKET.md) — prepared at §270. It bundles all seven
 artifacts with a one-page architecture and data-flow summary, the verified service-provider list,
 and **twelve specific questions** requiring a counsel decision, ordered by how much each changes the
 documents. It scopes the review deliberately: 3–5 named U.S. participants across 1–2 organisations,

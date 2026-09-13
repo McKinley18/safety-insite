@@ -45,7 +45,7 @@ organisation's own policies permit, and prefer role descriptions over names.
 * To detect, investigate and fix failures.
 * To administer billing.
 * To improve the product, within the boundary in
-  [`FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md`](FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md).
+  [`FEEDBACK-AND-DATA-USE.md`](FEEDBACK-AND-DATA-USE.md).
 
 ## 3. Who else processes it
 
@@ -54,7 +54,7 @@ disclosed to them only as needed for them to provide their service to us.
 
 | provider | role | what reaches them |
 |---|---|---|
-| **Anthropic** | AI model provider | the text of observations submitted for HazLenz Expert analysis, and the analysis context accompanying them. See the [AI disclosure](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md) |
+| **Anthropic** | AI model provider | the text of observations submitted for HazLenz Expert analysis, and the analysis context accompanying them. See the [AI disclosure](AI-PROVIDER-DISCLOSURE.md) |
 | **Render** | backend application hosting (US, Oregon) | all data in transit through the application; diagnostic logs |
 | **Neon** | managed PostgreSQL database (AWS, US East) | all stored records other than files |
 | **Cloudflare R2** | object storage | photographs, documents and generated reports |
@@ -69,12 +69,12 @@ We do not sell your information, and we do not share it for advertising.
 Your operational content is **not** used to train third-party AI models, and not used to train any
 future model of ours. Submitting an observation for analysis does not license it for training. The
 full boundary, including feedback and corrections, is in
-[`FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md`](FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md).
+[`FEEDBACK-AND-DATA-USE.md`](FEEDBACK-AND-DATA-USE.md).
 
 **One honest limit.** Our own systems do not use your content for training, and we have configured
 nothing that would. We have **not** completed a contractual review of our AI provider's data
 retention and training terms — that review is item 8 of the launch gate in
-`docs/PRODUCT-CLAIMS-REGISTER.md` and it is `NOT_YET_EXECUTED`. We therefore do **not** claim
+`project-docs/current/CAPABILITY-REGISTER.md` and it is `NOT_YET_EXECUTED`. We therefore do **not** claim
 zero-retention by the provider, because we have not verified it. Treat observation text you submit
 for analysis as disclosed to a third-party processor under that processor's terms.
 

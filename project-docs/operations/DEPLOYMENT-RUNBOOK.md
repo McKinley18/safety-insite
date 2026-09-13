@@ -136,7 +136,7 @@ Trigger a manual backup and record its identifier.
 ```
 
 **Pass condition:** a backup exists, taken *after* the last write you care about, and you have
-written down how to restore it. See `docs/operations/ROLLBACK_MODEL.md`.
+written down how to restore it. See `project-docs/operations/ROLLBACK-MODEL.md`.
 
 > This is the step with no code behind it. §268 could not provision backups and did not pretend to;
 > `BACKUPS_AND_RETENTION` remains `UNVERIFIED_LIVE` in the beta register until this is confirmed
@@ -298,6 +298,6 @@ EXPERT_EXECUTION_ENABLED=false
 Expert execution is refused before the provider seam; the deterministic HazLenz workflow, existing
 Expert analyses, and settlement of analyses already awaiting confirmation all keep working.
 
-**B. Roll back the application** — see `docs/operations/ROLLBACK_MODEL.md`. **Do not roll back the
+**B. Roll back the application** — see `project-docs/operations/ROLLBACK-MODEL.md`. **Do not roll back the
 database to do it.** The schema is forward-compatible with the previous application version, and the
 migration `DOWN` paths are forward-only in practice once real beta data exists.

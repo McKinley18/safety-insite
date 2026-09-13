@@ -36,6 +36,7 @@
     "diagnose:knowledge-release-null-path": "ts-node scripts/diagnose-knowledge-release-null-path.ts",
     "diagnose:production": "ts-node src/safescope-v2/maintenance/check-production-hazlenz-diagnostics.ts",
     "diagnose:safescope-200:scenario": "ts-node scripts/diagnose-scenario-mismatches.ts",
+    "docs:check-links": "ts-node scripts/docs/check-links.ts",
     "emit:198-request-compatibility": "ts-node scripts/emit-198-request-compatibility-2026-09-07.ts",
     "emit:formal-adjudication-packet": "ts-node scripts/emit-formal-adjudication-packet.ts",
     "emit:silence-control-candidates": "ts-node scripts/emit-silence-control-candidate-packet-2026-09-04.ts",

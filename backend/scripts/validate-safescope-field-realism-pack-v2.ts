@@ -110,7 +110,7 @@ function writeResultsReport(rows: FieldRealismPackV2ResultRow[]) {
   );
   const mdPath = path.join(
     rootDir,
-    'project-docs/08-audits/SAFESCOPE_FIELD_REALISM_PACK_V2_RESULTS.md',
+    'project-docs/historical/08-audits/SAFESCOPE_FIELD_REALISM_PACK_V2_RESULTS.md',
   );
 
   const domainDistribution: Record<string, number> = {};

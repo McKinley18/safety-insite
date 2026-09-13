@@ -29,7 +29,7 @@ const repoRoot = path.resolve(__dirname, '../..');
   'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.store.ts',
   'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.controller.ts',
   'backend/scripts/validate-reviewcore-knowledge-review-queue-routes-p13.ts',
-  'project-docs/08-audits/reviewcore-knowledge-review-queue-routes-p13-summary.md',
+  'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-routes-p13-summary.md',
 ].forEach((relativePath) => {
   assert(fs.existsSync(path.join(repoRoot, relativePath)), `Missing required P13 file: ${relativePath}`);
 });

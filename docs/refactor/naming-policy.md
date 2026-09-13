@@ -1,35 +1,7 @@
-# Safety InSite Naming Policy
+# Moved
 
-## Current customer-facing names
+This document now lives at [`project-docs/current/BRAND-COMPATIBILITY-REGISTER.md`](../../project-docs/current/BRAND-COMPATIBILITY-REGISTER.md).
 
-- App / platform: Safety InSite
-- AI engine: HazLenz AI
+> This path is digested as a member of a frozen verification manifest, so the file must continue to exist. Deleting it would report a MEMBER_ABSENT fault against accepted evidence, which §273 is forbidden to cause and may not baseline away. The document itself moved; only this forwarding stub remains.
 
-## Legacy names
-
-The following names are legacy and should not appear in customer-facing copy:
-
-- Sentinel Safety
-- SafeScope
-- ReviewCore
-- GuideGuard
-- SightSignal
-- AuditAlly
-
-## Internal compatibility
-
-Some internal code identifiers, API routes, database fields, and local-storage keys may temporarily keep legacy names to avoid breaking the app.
-
-Examples that may remain temporarily:
-
-- `/safescope-v2/classify`
-- `safeScopeResult`
-- `SafeScopeStandardsSection`
-- `includeSafeScopeNotesInReport`
-- `safescope_*` internal engine IDs
-
-These should be hidden behind adapters/constants and renamed only during controlled refactor passes.
-
-## Refactor rule
-
-Do not perform broad find-and-replace across the whole repo unless imports, routes, storage keys, report fields, and API contracts are covered by compatibility aliases.
+Documentation starts at [`project-docs/README.md`](../../project-docs/README.md).

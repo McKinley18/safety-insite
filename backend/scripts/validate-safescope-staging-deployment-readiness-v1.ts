@@ -67,7 +67,7 @@ async function validate() {
   }
 
   // 7. Verify staging readiness document exists and contains required sections
-  const readinessDocPath = path.join(rootDir, 'project-docs/05-deployment/SAFESCOPE_STAGING_DEPLOYMENT_READINESS_V1.md');
+  const readinessDocPath = path.join(rootDir, 'project-docs/historical/05-deployment/SAFESCOPE_STAGING_DEPLOYMENT_READINESS_V1.md');
   if (!fs.existsSync(readinessDocPath)) {
     throw new Error('Staging readiness failed: Staging deployment readiness document missing.');
   }

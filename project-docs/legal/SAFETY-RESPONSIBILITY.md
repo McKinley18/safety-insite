@@ -2,7 +2,7 @@
 
 > ### INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED
 >
-> Authored at §269 by engineering. Not reviewed by an attorney. `docs/PRODUCT-CLAIMS-REGISTER.md`
+> Authored at §269 by engineering. Not reviewed by an attorney. `project-docs/current/CAPABILITY-REGISTER.md`
 > records that anything implying replacement of a qualified safety professional is
 > `NOT_CURRENTLY_SUPPORTABLE` **and** the highest-liability claim class in the product.
 

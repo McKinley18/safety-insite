@@ -69,7 +69,7 @@ person, reviewed by a person, evaluated offline, and released deliberately.
 
 This is also a factual statement about the system as built: nothing in Safety InSite learns from
 customer data. The governed knowledge base changes only through an explicit, reviewed governance
-process. `docs/PRODUCT-CLAIMS-REGISTER.md` classifies any claim that the product "learns" as
+process. `project-docs/current/CAPABILITY-REGISTER.md` classifies any claim that the product "learns" as
 `NOT_CURRENTLY_SUPPORTABLE`, and that cuts both ways — it is a limitation on our marketing and a
 protection for your data.
 
@@ -91,7 +91,7 @@ Our commitments cover what **we** do. Observation text submitted for Expert anal
 to a third-party AI provider and is then subject to that provider's terms. We have not completed a
 contractual review of those terms — launch gate item 8, `NOT_YET_EXECUTED` — and we therefore do not
 promise provider zero-retention. See the
-[AI disclosure](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md).
+[AI disclosure](AI-PROVIDER-DISCLOSURE.md).
 
 Completing that review is a prerequisite for commercial release and should be completed during the
 beta.

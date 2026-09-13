@@ -3,7 +3,7 @@
 > ### INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED
 >
 > Authored at §269 by engineering. Not reviewed by an attorney. Customer-facing AI disclosure
-> obligations vary by jurisdiction and are changing; `docs/PRODUCT-CLAIMS-REGISTER.md` classifies
+> obligations vary by jurisdiction and are changing; `project-docs/current/CAPABILITY-REGISTER.md` classifies
 > this whole subject `LEGAL_REVIEW_REQUIRED`, and item 17 of its launch gate is `NOT_YET_EXECUTED`.
 
 ---
@@ -63,7 +63,7 @@ a third-party processor.
 ## Provider data handling — what we have and have not verified
 
 We have **not** completed a contractual review of the provider's data retention, data use and
-training terms. That is item 8 of the launch gate in `docs/PRODUCT-CLAIMS-REGISTER.md` and it is
+training terms. That is item 8 of the launch gate in `project-docs/current/CAPABILITY-REGISTER.md` and it is
 `NOT_YET_EXECUTED`.
 
 Accordingly:

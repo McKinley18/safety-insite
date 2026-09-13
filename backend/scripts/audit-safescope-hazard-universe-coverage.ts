@@ -39,7 +39,7 @@ function unique(values: string[]): string[] {
 const repoRoot = join(__dirname, '..', '..');
 const benchmarkPath = join(repoRoot, 'safescope-data/benchmarks/safescope-finding-audit.v1.json');
 const resultsPath = join(repoRoot, 'safescope-data/benchmarks/safescope-hazard-universe-coverage.v1.json');
-const markdownPath = join(repoRoot, 'project-docs/08-audits/SAFESCOPE_HAZARD_UNIVERSE_COVERAGE.md');
+const markdownPath = join(repoRoot, 'project-docs/historical/08-audits/SAFESCOPE_HAZARD_UNIVERSE_COVERAGE.md');
 
 const benchmark = JSON.parse(fs.readFileSync(benchmarkPath, 'utf8')) as Array<{
   id: string;
@@ -247,7 +247,7 @@ function buildMarkdown(rows: HazardUniverseCoverageRow[]): string {
   return lines.join('\n');
 }
 
-fs.mkdirSync(join(repoRoot, 'project-docs/08-audits'), { recursive: true });
+fs.mkdirSync(join(repoRoot, 'project-docs/historical/08-audits'), { recursive: true });
 fs.mkdirSync(join(repoRoot, 'safescope-data/benchmarks'), { recursive: true });
 
 fs.writeFileSync(resultsPath, JSON.stringify(rows, null, 2));

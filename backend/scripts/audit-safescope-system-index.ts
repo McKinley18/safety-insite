@@ -8,7 +8,7 @@ async function audit() {
   const runnerPath = path.join(root, 'scripts/run-safescope-full-validation.ts');
   const targetedRunnerPath = path.join(root, 'scripts/run-safescope-targeted-validation.ts');
   const packageJsonPath = path.join(root, 'package.json');
-  const guidePath = path.join(root, '../project-docs/04-safescope-engine/SAFESCOPE_TARGETED_VALIDATION_GUIDE.md');
+  const guidePath = path.join(root, '../project-docs/historical/04-safescope-engine/SAFESCOPE_TARGETED_VALIDATION_GUIDE.md');
   
   const draftFiles = fs.readdirSync(draftCandidatesDir).filter(f => f.endsWith('.json'));
   const runnerContent = fs.readFileSync(runnerPath, 'utf-8');

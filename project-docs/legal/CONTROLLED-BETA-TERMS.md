@@ -54,7 +54,7 @@ We make no guarantee, express or implied, that the service will:
 * be available, uninterrupted, or free of defects.
 
 **These are not boilerplate.** Each corresponds to a measured limitation recorded in
-[`PRODUCT_LIMITATIONS.md`](PRODUCT_LIMITATIONS.md), which forms part of these terms.
+[`PRODUCT-LIMITATIONS.md`](PRODUCT-LIMITATIONS.md), which forms part of these terms.
 
 ## 5. Human review is required, and the software is built to require it
 
@@ -79,15 +79,15 @@ any time.
 ## 7. Your content, and what we may do with it
 
 You retain all rights in the information you put into the service. We process it to operate the
-service for you, as described in the [Beta Privacy Notice](BETA_PRIVACY_NOTICE.md).
+service for you, as described in the [Beta Privacy Notice](BETA-PRIVACY-NOTICE.md).
 
 **We do not use your operational content to train AI models** — not third-party models, and not any
 future model of our own. The complete boundary, including what we may do with feedback and
-corrections, is in [`FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md`](FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md)
+corrections, is in [`FEEDBACK-AND-DATA-USE.md`](FEEDBACK-AND-DATA-USE.md)
 and forms part of these terms.
 
 Observations you submit for analysis are transmitted to a third-party AI provider. This is disclosed
-in full in [`AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md`](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md),
+in full in [`AI-PROVIDER-DISCLOSURE.md`](AI-PROVIDER-DISCLOSURE.md),
 which forms part of these terms. **Do not submit information you are not permitted to disclose to a
 third-party processor.**
 
@@ -135,7 +135,7 @@ personal rather than by posting.
 ---
 
 **Acknowledgement.** By signing the beta agreement accompanying these terms, you confirm that you
-have read and accept these terms, the [Beta Privacy Notice](BETA_PRIVACY_NOTICE.md), the
-[AI and third-party provider disclosure](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md), and the
-[Safety responsibility statement](SAFETY_RESPONSIBILITY_STATEMENT.md), and that you are a qualified
+have read and accept these terms, the [Beta Privacy Notice](BETA-PRIVACY-NOTICE.md), the
+[AI and third-party provider disclosure](AI-PROVIDER-DISCLOSURE.md), and the
+[Safety responsibility statement](SAFETY-RESPONSIBILITY.md), and that you are a qualified
 safety professional acting within the scope of your role.

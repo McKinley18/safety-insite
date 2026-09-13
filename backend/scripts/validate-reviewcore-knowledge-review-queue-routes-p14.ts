@@ -31,7 +31,7 @@ const repoRoot = path.resolve(__dirname, '../..');
   'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.guard.ts',
   'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.route-scaffold.ts',
   'backend/scripts/validate-reviewcore-knowledge-review-queue-routes-p14.ts',
-  'project-docs/08-audits/reviewcore-knowledge-review-queue-routes-p14-summary.md',
+  'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-routes-p14-summary.md',
 ].forEach((file) => assert(fs.existsSync(path.join(repoRoot, file)), `Missing P14 file: ${file}`));
 
 const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/safescope-v2/knowledge-architecture/index.ts'), 'utf8');

@@ -154,7 +154,7 @@ function main() {
   }
 
   console.log(`\n  reviewed ${records.length} log record(s).`);
-  console.log('  escalation path: docs/operations/MONITORING_AND_ALERTING.md\n');
+  console.log('  escalation path: project-docs/operations/MONITORING.md\n');
 }
 
 main();

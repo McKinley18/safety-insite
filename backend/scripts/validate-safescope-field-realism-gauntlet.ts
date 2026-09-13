@@ -211,7 +211,7 @@ async function main() {
   }
 
   const outputDir = path.resolve(process.cwd(), '../safescope-data/benchmarks');
-  const docsDir = path.resolve(process.cwd(), '../project-docs/08-audits');
+  const docsDir = path.resolve(process.cwd(), '../project-docs/historical/08-audits');
   fs.mkdirSync(outputDir, { recursive: true });
   fs.mkdirSync(docsDir, { recursive: true });
 

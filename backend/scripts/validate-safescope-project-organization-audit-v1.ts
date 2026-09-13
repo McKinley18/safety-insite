@@ -12,19 +12,19 @@ async function validate() {
 
   const newDocs = [
     { 
-        path: 'project-docs/00-index/PROJECT_STRUCTURE_MAP.md',
+        path: 'project-docs/historical/00-index/PROJECT_STRUCTURE_MAP.md',
         keywords: ['backend', 'frontend', 'safescope-data', 'project-docs']
     },
     { 
-        path: 'project-docs/04-safescope-engine/SAFESCOPE_CANONICAL_TAXONOMY_MAP.md',
+        path: 'project-docs/historical/04-safescope-engine/SAFESCOPE_CANONICAL_TAXONOMY_MAP.md',
         keywords: ['canonical', 'hazard', 'alias', 'machine_guarding']
     },
     { 
-        path: 'project-docs/04-safescope-engine/SAFESCOPE_COVERAGE_GAP_REGISTER.md',
+        path: 'project-docs/historical/04-safescope-engine/SAFESCOPE_COVERAGE_GAP_REGISTER.md',
         keywords: ['OSHA', 'MSHA', 'controls', 'mitigation', 'evidence', 'P0', 'P1']
     },
     { 
-        path: 'project-docs/04-safescope-engine/SAFESCOPE_GENERATED_FILES_POLICY.md',
+        path: 'project-docs/historical/04-safescope-engine/SAFESCOPE_GENERATED_FILES_POLICY.md',
         keywords: ['benchmark', 'results', 'reviewer', 'candidates', 'persistence', 'audit_records', 'scenario packs']
     }
   ];
@@ -44,7 +44,7 @@ async function validate() {
   }
 
   // Verify Prompt Archive
-  const archivePath = path.join(rootDir, 'project-docs/09-archive-reference/prompts/SAFESCOPE_PROJECT_ORGANIZATION_COVERAGE_READINESS_AUDIT_V1_PROMPT.md');
+  const archivePath = path.join(rootDir, 'project-docs/historical/09-archive-reference/prompts/SAFESCOPE_PROJECT_ORGANIZATION_COVERAGE_READINESS_AUDIT_V1_PROMPT.md');
   if (!fs.existsSync(archivePath)) {
       throw new Error('Project Audit failed: Prompt archive missing.');
   }

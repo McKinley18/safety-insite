@@ -7,7 +7,7 @@
 This is not a generic disclaimer. Every limitation below is something we have measured or verified,
 with the source of the measurement named. Participants should read it before recording anything.
 
-Sources: `docs/PRODUCT-CLAIMS-REGISTER.md` (measured development results, §156–§160);
+Sources: `project-docs/current/CAPABILITY-REGISTER.md` (measured development results, §156–§160);
 §269 live production verification.
 
 ---
@@ -96,4 +96,4 @@ software hurts people:
 
 No claim of accuracy, completeness, compliance, autonomy or professional replacement appears in the
 product interface, and none may be added while these limitations stand. See
-[`BETA_CLAIMS_GUARDRAILS.md`](BETA_CLAIMS_GUARDRAILS.md).
+[`CLAIMS-GUARDRAILS.md`](CLAIMS-GUARDRAILS.md).

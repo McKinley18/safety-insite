@@ -30,7 +30,7 @@ const repoRoot = path.resolve(__dirname, '../..');
   'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.http-controller.ts',
   'backend/src/safescope-v2/knowledge-architecture/reviewcore-knowledge-review-queue.module.ts',
   'backend/scripts/validate-reviewcore-knowledge-review-queue-nest-p15.ts',
-  'project-docs/08-audits/reviewcore-knowledge-review-queue-nest-p15-summary.md',
+  'project-docs/historical/08-audits/reviewcore-knowledge-review-queue-nest-p15-summary.md',
 ].forEach((file) => assert.ok(fs.existsSync(path.join(repoRoot, file)), `Missing P15 file: ${file}`));
 
 const indexText = fs.readFileSync(path.join(repoRoot, 'backend/src/safescope-v2/knowledge-architecture/index.ts'), 'utf8');

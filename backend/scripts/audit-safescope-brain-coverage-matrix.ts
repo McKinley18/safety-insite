@@ -169,7 +169,7 @@ function buildMarkdown(rows: CoverageRow[]): string {
 
 const benchmarkPath = join(REPO_ROOT, 'safescope-data/benchmarks/safescope-finding-audit.v1.json');
 const resultsPath = join(REPO_ROOT, 'safescope-data/benchmarks/safescope-brain-coverage-matrix.v1.json');
-const markdownPath = join(REPO_ROOT, 'project-docs/08-audits/SAFESCOPE_BRAIN_COVERAGE_MATRIX.md');
+const markdownPath = join(REPO_ROOT, 'project-docs/historical/08-audits/SAFESCOPE_BRAIN_COVERAGE_MATRIX.md');
 
 const benchmark = JSON.parse(fs.readFileSync(benchmarkPath, 'utf8')) as BenchmarkCase[];
 

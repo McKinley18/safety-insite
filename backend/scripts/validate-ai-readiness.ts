@@ -4,7 +4,7 @@ function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);
 }
 
-const manifest = fs.readFileSync('project-docs/08-audits/SAFESCOPE_AI_READINESS_MANIFEST.md', 'utf-8');
+const manifest = fs.readFileSync('project-docs/historical/08-audits/SAFESCOPE_AI_READINESS_MANIFEST.md', 'utf-8');
 
 const requiredSections = [
   '1. Classification Statement',

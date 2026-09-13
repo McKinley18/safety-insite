@@ -223,12 +223,12 @@ async function main(): Promise<void> {
   // ---------------------------------------------------------------- runbook
   section('RUNBOOK AND ROLLBACK');
   for (const doc of [
-    'docs/operations/BETA_DEPLOYMENT_RUNBOOK.md', 'docs/operations/ROLLBACK_MODEL.md',
+    'project-docs/operations/DEPLOYMENT-RUNBOOK.md', 'project-docs/operations/ROLLBACK-MODEL.md',
   ]) {
     ok(`${doc} exists`, existsSync(join(REPO, doc)));
   }
-  const runbook = existsSync(join(REPO, 'docs/operations/BETA_DEPLOYMENT_RUNBOOK.md'))
-    ? readFileSync(join(REPO, 'docs/operations/BETA_DEPLOYMENT_RUNBOOK.md'), 'utf8') : '';
+  const runbook = existsSync(join(REPO, 'project-docs/operations/DEPLOYMENT-RUNBOOK.md'))
+    ? readFileSync(join(REPO, 'project-docs/operations/DEPLOYMENT-RUNBOOK.md'), 'utf8') : '';
   const orderedSteps = ['FREEZE THE SHA', 'DISABLE AUTODEPLOY', 'BACK UP', 'RUN MIGRATIONS',
     'VERIFY SCHEMA', 'DEPLOY THE EXACT SHA', 'VERIFY THE RUNNING SHA', 'VERIFY READINESS'];
   const positions = orderedSteps.map(step => runbook.indexOf(step));
@@ -239,7 +239,7 @@ async function main(): Promise<void> {
   ok('VERIFY SCHEMA precedes DEPLOY', positions[4] > 0 && positions[5] > positions[4]);
   ok('the rollback model forbids destroying settlements to restore older code',
     /must never destroy human settlements/i.test(
-      readFileSync(join(REPO, 'docs/operations/ROLLBACK_MODEL.md'), 'utf8')));
+      readFileSync(join(REPO, 'project-docs/operations/ROLLBACK-MODEL.md'), 'utf8')));
 
   // ---------------------------------------------------------------- honest remainder
   // §269 amended this block. It previously listed six items as "open", and by §269 four of them

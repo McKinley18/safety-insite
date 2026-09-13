@@ -4,7 +4,7 @@
 >
 > Authored at §269 by engineering. Not reviewed by an attorney.
 
-**This document does not replace `docs/PRODUCT-CLAIMS-REGISTER.md`,** which remains the
+**This document does not replace `project-docs/current/CAPABILITY-REGISTER.md`,** which remains the
 authoritative claims inventory and the source of every classification below. This is the operational
 subset: what may and may not be said *while the controlled beta runs*, in a form short enough to
 check a sentence against.
@@ -54,7 +54,7 @@ These are supportable today and already reflect the architecture:
 | claim | required qualification |
 |---|---|
 | "proprietary" | attach it to the governed knowledge base, the deterministic engine, the scorers or the evaluation architecture — which are ours. Never to the reasoning model, which is not |
-| "HazLenz AI" | the register's sharpest item. Permitted in the beta only where the [AI disclosure](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md) is available to the reader. It reads naturally as an AI we built, and we did not |
+| "HazLenz AI" | the register's sharpest item. Permitted in the beta only where the [AI disclosure](AI-PROVIDER-DISCLOSURE.md) is available to the reader. It reads naturally as an AI we built, and we did not |
 | "real-time" | only for interactive workflow responsiveness, never implying instantaneous or continuous. Measured median 15.7s, up to 38.2s |
 | "current standards" / "regulatory-current" | must state the corpus date and its scope in the same copy |
 | "expert" | "Expert HazLenz" is an internal layer name and is fine internally. Telling a participant they are getting a safety expert is a different claim and is prohibited |

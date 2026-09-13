@@ -57,13 +57,13 @@ This is recorded in `verification/current/BETA-BLOCKERS.json` as
 
 | # | document | what it does |
 |---|---|---|
-| 1 | [`CONTROLLED_BETA_TERMS.md`](CONTROLLED_BETA_TERMS.md) | invitation-only nature, permitted use, allocation of responsibility, availability, termination |
-| 2 | [`BETA_PRIVACY_NOTICE.md`](BETA_PRIVACY_NOTICE.md) | categories collected, purposes, service providers, retention, choices, US-only processing |
-| 3 | [`AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md`](AI_AND_THIRD_PARTY_PROVIDER_DISCLOSURE.md) | that a hosted third-party model performs the reasoning, and what it may and may not decide |
-| 4 | [`SAFETY_RESPONSIBILITY_STATEMENT.md`](SAFETY_RESPONSIBILITY_STATEMENT.md) | the qualified-professional boundary the architecture enforces |
-| 5 | [`PRODUCT_LIMITATIONS.md`](PRODUCT_LIMITATIONS.md) | measured limitations, with sources — not generic disclaimer text |
-| 6 | [`FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md`](FEEDBACK_AND_IMPROVEMENT_BOUNDARY.md) | what may and may not be done with beta content; the no-training commitment |
-| 7 | [`BETA_CLAIMS_GUARDRAILS.md`](BETA_CLAIMS_GUARDRAILS.md) | language permitted and prohibited while the beta runs |
+| 1 | [`CONTROLLED-BETA-TERMS.md`](CONTROLLED-BETA-TERMS.md) | invitation-only nature, permitted use, allocation of responsibility, availability, termination |
+| 2 | [`BETA-PRIVACY-NOTICE.md`](BETA-PRIVACY-NOTICE.md) | categories collected, purposes, service providers, retention, choices, US-only processing |
+| 3 | [`AI-PROVIDER-DISCLOSURE.md`](AI-PROVIDER-DISCLOSURE.md) | that a hosted third-party model performs the reasoning, and what it may and may not decide |
+| 4 | [`SAFETY-RESPONSIBILITY.md`](SAFETY-RESPONSIBILITY.md) | the qualified-professional boundary the architecture enforces |
+| 5 | [`PRODUCT-LIMITATIONS.md`](PRODUCT-LIMITATIONS.md) | measured limitations, with sources — not generic disclaimer text |
+| 6 | [`FEEDBACK-AND-DATA-USE.md`](FEEDBACK-AND-DATA-USE.md) | what may and may not be done with beta content; the no-training commitment |
+| 7 | [`CLAIMS-GUARDRAILS.md`](CLAIMS-GUARDRAILS.md) | language permitted and prohibited while the beta runs |
 
 All seven are classified **INTERNAL BETA DRAFT — LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED**.
 

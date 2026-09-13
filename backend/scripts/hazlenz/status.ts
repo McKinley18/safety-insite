@@ -65,7 +65,7 @@ function main(): void {
     console.log(`  ${name.padEnd(26)} ${command}`);
   }
   console.log('\nFull detail: verification/current/EXPERT-HAZLENZ-STATE.json'
-    + ' · docs/hazlenz/current/EXPERT_HAZLENZ_CURRENT_STATE.md');
+    + ' · project-docs/current/CURRENT-STATE.md');
 }
 
 if (require.main === module) main();
