@@ -37,7 +37,19 @@ export interface BuildMetadata {
  * with the same confidence as a real one.
  */
 
-/** Sources for the commit, most authoritative first. Render sets RENDER_GIT_COMMIT itself. */
+/**
+ * Sources for the commit, most authoritative first. Render sets RENDER_GIT_COMMIT itself.
+ *
+ * §279 REMOVED `npm_package_version` FROM THIS LIST. npm sets it for every script it runs, so
+ * `npm run start:render` -- the production start command -- always supplied it, and any instance
+ * where the platform did not set a commit reported `gitCommit: "1.0.0"` with
+ * `versionSourceStatus: "npm_package_version"`. A package version is not a commit. It is the §270
+ * defect exactly: a value that cannot establish what is deployed, presented with the confidence of
+ * one that can, and it also masked the `BUILD_FALLBACK` status that exists to say "this is not a
+ * stamp". `release:verify-sha` already refused the source, so no release gate changes; what
+ * changes is that /version and /health/version now report an honest status instead of a number
+ * that looks like an answer.
+ */
 const COMMIT_SOURCES = [
   'RENDER_GIT_COMMIT',
   'GIT_COMMIT',
@@ -45,7 +57,6 @@ const COMMIT_SOURCES = [
   'COMMIT_SHA',
   'VERCEL_GIT_COMMIT_SHA',
   'SOURCE_VERSION',
-  'npm_package_version',
 ] as const;
 
 /**
