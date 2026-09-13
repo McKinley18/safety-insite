@@ -3,8 +3,8 @@
 **Read this and `HAZLENZ_INVARIANTS.md`. That is the default context.** Together about 2,500 words.
 Machine-readable equivalent: `verification/current/EXPERT-HAZLENZ-STATE.json`.
 
-Refreshed at **§263** (2026-09-12). Supersedes the §229 text, which described a layer with no
-production caller — that has not been true since §246 and is actively misleading now.
+Refreshed at **§264** (2026-09-12). Supersedes the §229 text, which described a layer with no
+production caller — that has not been true since §246.
 
 Everything below is **current truth only**. It is not a history. Evidence pointers are at the end.
 
@@ -36,9 +36,14 @@ and writes nothing.
 **Implemented and reachable, behind the strongest authorization profile in the product.**
 
 ```
-POST /inspections/observations/:id/expert-analyses
-  JwtGuard · EntitlementGuard('fullSafeScope') · RolesGuard · Throttle 10/60s
+POST /inspections/observations/:id/expert-analyses                          execute
+POST /inspections/observations/:id/expert-analyses/:analysisId/settlement   confirm or override
+
+both: JwtGuard · EntitlementGuard('fullSafeScope') · RolesGuard · Throttle
 ```
+
+The settlement route serves confirm and override as **one** action with two outcomes: one
+eligibility rule, one concurrency guarantee, one audit path, one state-machine edge.
 
 - The server runs the deterministic analysis itself and builds the Expert input from it.
 - The client may send only `idempotencyKey`, `requestVersion`, and optional `taskContext` and
@@ -62,6 +67,11 @@ Source: `backend/src/safescope-v2/expert-hazlenz-product/`.
 | `declarationId`, `controlId`, `dischargingControlRef`, `resolvedByDeclarationIds` survive persistence and the response | §262 H3/H4 |
 | a cross-workspace caller cannot learn whether the observation exists | §262 case H, §263 |
 | the transmitted system prompt is bound to the frozen candidate before attribution | §262 |
+| a reviewer can confirm a pending classification, and the Expert result stays byte-identical | §264 case C |
+| a reviewer can replace it, and the human value becomes authoritative while the proposal is preserved | §264 case D |
+| two co-authorized reviewers racing one pending analysis produce exactly one settlement | §264 N13 |
+| a retry creates no duplicate review or audit row | §264 C-13 |
+| a settled state cannot be minted without a real review row | `ck_hazlenz_analysis_settlement` |
 
 ## 5. What is deliberately not proven
 
@@ -69,7 +79,9 @@ Source: `backend/src/safescope-v2/expert-hazlenz-product/`.
   Expert may cite nothing. Fail-closed on purpose — the only available source of approved regulatory
   text was the client-supplied snapshot, and accepting that would let a request inject text labelled
   as governed.
-- **Human confirmation and override:** the actions do not exist. §262 cases C and D are RESERVED.
+- **The frontend:** no user interface reaches either Expert route.
+- **Downstream activation:** §264 exposes `effectiveDecision` and activates no consumer of it. A
+  settled analysis still reconciles **zero** findings.
 - **Live provider transport from a deployed instance:** never spent.
 - **Report generation:** blocked, no object storage configured.
 
@@ -105,15 +117,37 @@ dropped.** An unreadable posture fails closed.
 | deterministic | the client calls `/safescope-v2/classify`, holds the result, posts it back. The server does **not** establish that what it stores equals what it returned. Every historical row is `client_supplied`. |
 | Expert | the server ran it. `server_authored` is assigned from a literal in one service and cannot be conferred by metadata. |
 
-## 9. Analysis states
+## 9. Analysis states and the human boundary
 
-Reachable today: `ANALYSIS_RUNNING`, `ANALYSIS_FAILED`, `ANALYSIS_REFUSED`, `ANALYSIS_UNRESOLVED`,
-`ANALYSIS_AVAILABLE`, `ANALYSIS_AWAITING_CONFIRMATION`.
+All eight states are reachable as of §264.
 
-Unreachable until the confirmation action exists: `ANALYSIS_CONFIRMED`, `ANALYSIS_OVERRIDDEN`.
+```
+ANALYSIS_AWAITING_CONFIRMATION --confirm--> ANALYSIS_CONFIRMED
+                               --change---> ANALYSIS_OVERRIDDEN
+```
 
-**No finding is reconciled from any Expert analysis**, confirmed or not. The API says so explicitly
+A reviewer settles the **named classification entries** the rule fired on, keyed by `refKind:ref`,
+answering in a two-member closed vocabulary: `CONTROLS_WHETHER_WORK_CONTINUES` or
+`DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES`. They do not re-author the analysis, and hazard
+identification, citations, control text, declarations, raw output and provenance are **not
+addressable** by the action.
+
+The human decision lives in `human_reviews` under two new decision values. The Expert result is
+**never rewritten** by settlement: `resultSnapshot` still holds exactly what the server obtained, so
+the proposal and the decision remain separately attributable.
+
+**No finding is reconciled from any Expert analysis**, settled or not. The API says so explicitly
 (`findingsReconciled: false`).
+
+## 9b. The effective decision — ask this, do not reconstruct it
+
+`ExpertAnalysisService.effectiveDecisionFor(analysis)` is the one derivation of whether an analysis
+carries a settled operational conclusion. It is total over the state vocabulary with no default
+branch, and it distinguishes five different reasons for *no* conclusion — awaiting a human, refused,
+refused with truth preserved, unavailable, still running — so a consumer can never flatten them into
+"no hazards".
+
+Downstream features must consume it rather than reading `analysisState` themselves.
 
 ## 10. Known environmental and live gaps
 
@@ -129,19 +163,18 @@ failure.
 
 ## 11. Current beta blockers
 
-Three. See `verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
+Two. See `verification/current/BETA-BLOCKERS.json` — **the only current register**. Historical
 `RELEASE_BLOCKERS.md` files under `verification/` record blockers that were live at the time and are
 not current status.
 
-1. no human-confirmation action
-2. no Expert frontend
-3. report generation blocked (environmental, can be worked in parallel)
+1. no Expert frontend
+2. report generation blocked (environmental, can be worked in parallel)
 
 ## 12. Next implementation step
 
-**The human-confirmation action and the override action.** Blocked until product-owner
-authorization. `ANALYSIS_AWAITING_CONFIRMATION` is reachable and nothing can move an analysis out of
-it.
+**The frontend Expert workflow, and the downstream authority-guard slice that consumes
+`effectiveDecision`.** Blocked until product-owner authorization. The server-side authority
+lifecycle frozen in §260 is complete; nothing consumes it and no user can reach it.
 
 ## 13. Safe commands
 
@@ -170,6 +203,7 @@ Do not load these for ordinary development.
 | persistence and authority foundation §261 | `verification/expert-hazlenz-261-.../` |
 | authoritative route §262 | `verification/expert-hazlenz-262-.../` |
 | recall optimization §263 | `verification/expert-hazlenz-263-.../` |
+| human confirmation boundary §264 | `verification/expert-hazlenz-264-.../` |
 | historical archive index (142 directories) | `verification/expert-hazlenz-229-.../SECTION-229-HISTORICAL-ARCHIVE-INDEX.md` |
 | what to read for a given task | `docs/hazlenz/current/CONTEXT_INDEX.md` |
 | rules that must not be violated | `docs/hazlenz/current/HAZLENZ_INVARIANTS.md` |

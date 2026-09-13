@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { HazLenzAnalysis } from '../../inspection/entities/hazlenz-analysis.entity';
+import { HumanReview } from '../../inspection/entities/human-review.entity';
 import { SecurityAuditEvent } from '../../audit/entities/security-audit-event.entity';
 import { InspectionModule } from '../../inspection/inspection.module';
 import { SitesModule } from '../../sites/sites.module';
@@ -37,7 +38,9 @@ import { expertSemanticTransportProvider } from './expert-semantic-transport.pro
  */
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ExpertAnalysisExecution, HazLenzAnalysis, SecurityAuditEvent]),
+    TypeOrmModule.forFeature([
+      ExpertAnalysisExecution, HazLenzAnalysis, HumanReview, SecurityAuditEvent,
+    ]),
     InspectionModule,
     SitesModule,
     SafescopeV2Module,

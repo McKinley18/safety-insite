@@ -187,8 +187,12 @@ async function main(): Promise<void> {
     null as any,
     ds,
   );
+  // §264 added the HumanReview repository to this constructor so the settlement action can write
+  // the human decision into the EXISTING review table rather than a competing subsystem. The
+  // parameter is threaded through here mechanically; §261 exercises no settlement, and every
+  // assertion in this suite is unchanged.
   const expert = new ExpertAnalysisService(
-    ds, repo(ExpertAnalysisExecution), repo(HazLenzAnalysis), inspections,
+    ds, repo(ExpertAnalysisExecution), repo(HazLenzAnalysis), repo(HumanReview), inspections,
   );
 
   console.log('\n---- P0. the service that owns Expert authority makes no provider call ----\n');

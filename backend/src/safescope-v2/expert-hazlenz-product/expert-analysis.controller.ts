@@ -6,8 +6,14 @@ import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { EntitlementGuard, RequireEntitlement } from '../../auth/entitlements/entitlement.guard';
 import { RequestExpertAnalysisDto } from './dto/request-expert-analysis.dto';
+import { SettleExpertAnalysisDto } from './dto/settle-expert-analysis.dto';
 import { ExpertAnalysisExecutionService } from './expert-analysis-execution.service';
-import { toExpertAnalysisResponse, type ExpertAnalysisResponse } from './expert-analysis-response';
+import { ExpertAnalysisService } from './expert-analysis.service';
+import {
+  toExpertAnalysisResponse, toExpertSettlementResponse,
+  type ExpertAnalysisResponse, type ExpertSettlementResponse,
+} from './expert-analysis-response';
+import type { SettlementDecision } from './expert-settlement-contract';
 
 /**
  * §262 — THE PROTECTED EXPERT PRODUCT ROUTE.
@@ -50,7 +56,10 @@ import { toExpertAnalysisResponse, type ExpertAnalysisResponse } from './expert-
  */
 @Controller('inspections/observations')
 export class ExpertAnalysisController {
-  constructor(private readonly executions: ExpertAnalysisExecutionService) {}
+  constructor(
+    private readonly executions: ExpertAnalysisExecutionService,
+    private readonly authority: ExpertAnalysisService,
+  ) {}
 
   @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
   @RequireEntitlement('fullSafeScope')
@@ -70,4 +79,49 @@ export class ExpertAnalysisController {
     });
     return toExpertAnalysisResponse(result);
   }
+
+  /**
+   * §264 — THE HUMAN SETTLEMENT OF AN EXPERT OPERATIONAL CLASSIFICATION.
+   *
+   * ONE ROUTE FOR CONFIRM AND OVERRIDE, because they are two outcomes of one act: one eligibility
+   * rule, one concurrency guarantee, one audit path, one state-machine edge. Splitting them would
+   * duplicate all four and give the eligibility check two places to drift.
+   *
+   * THE SAME GUARD PROFILE AS THE EXECUTION ROUTE, and for a stronger reason. Executing an Expert
+   * analysis spends money; settling one decides whether work continues. §264 requires a profile at
+   * least as strong, and this is the same one — JwtGuard, the `fullSafeScope` entitlement, the role
+   * list and a dedicated throttle — declared on the same controller so it cannot inherit the
+   * weaker persistence posture.
+   *
+   * THE THROTTLE IS LOOSER THAN THE EXECUTION ROUTE'S, and that is deliberate rather than an
+   * oversight. A settlement costs no provider legs and no deterministic analysis; it is a human
+   * pressing a button, and a reviewer working through a backlog of pending analyses should not be
+   * rate-limited as though each decision cost two hosted calls. It is still bounded.
+   *
+   * THE ANALYSIS ID IS NOT A BARE KEY. It is addressed under its observation, and the service
+   * resolves it as `{ id, observationId }` only after the observation has been authorized — the
+   * §261 pattern — so an id from another workspace answers NotFound and discloses nothing.
+   */
+  @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
+  @RequireEntitlement('fullSafeScope')
+  @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @Throttle({ default: { limit: 60, ttl: 60000 } })
+  @Post(':id/expert-analyses/:analysisId/settlement')
+  async settleExpertAnalysis(
+    @Req() req: { user?: unknown },
+    @Param('id', new ParseUUIDPipe()) observationId: string,
+    @Param('analysisId', new ParseUUIDPipe()) analysisId: string,
+    @Body() dto: SettleExpertAnalysisDto,
+  ): Promise<ExpertSettlementResponse> {
+    const result = await this.authority.settleExpertAnalysis(req.user, observationId, analysisId, {
+      idempotencyKey: dto.idempotencyKey,
+      decision: dto.decision as SettlementDecision,
+      rationale: dto.rationale,
+      replacements: dto.replacements ?? [],
+      comment: dto.comment ?? null,
+    });
+    const effective = await this.authority.effectiveDecisionFor(result.analysis);
+    return toExpertSettlementResponse(result, effective);
+  }
+
 }

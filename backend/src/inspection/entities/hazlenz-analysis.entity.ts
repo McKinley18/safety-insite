@@ -120,6 +120,21 @@ export class HazLenzAnalysis {
   @Column({ type: 'uuid', nullable: true })
   expertExecutionId: string | null;
 
+  /**
+   * §264 — THE HUMAN DECISION THAT SETTLED THIS ANALYSIS.
+   *
+   * NULL in every state except ANALYSIS_CONFIRMED and ANALYSIS_OVERRIDDEN, and NOT NULL in exactly
+   * those two, enforced by `ck_hazlenz_analysis_settlement`. A settled state therefore cannot be
+   * minted by writing the state name: without a real `human_reviews` row to reference, the write is
+   * rejected — the same argument that makes `producer` unforgeable one column over.
+   *
+   * The Expert result itself is NOT rewritten when a human settles it. `resultSnapshot` still holds
+   * exactly what the server obtained, and the human decision lives at the other end of this
+   * reference, so the two remain separately attributable and the original stays reconstructable.
+   */
+  @Column({ type: 'uuid', nullable: true })
+  settlementReviewId: string | null;
+
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 }

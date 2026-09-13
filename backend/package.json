@@ -371,9 +371,11 @@
     "hazlenz:evidence": "ts-node scripts/hazlenz/evidence-integrity.ts",
     "hazlenz:scripts:classify": "ts-node scripts/hazlenz/classify-scripts.ts",
     "hazlenz:build": "npm run build && npm run build:render",
-    "hazlenz:test": "npm run test:261-confirmation-rule && npm run test:expert-nocall-harness",
+    "hazlenz:test": "npm run test:261-confirmation-rule && npm run test:264-settlement-contract && npm run test:expert-nocall-harness",
+    "test:264-settlement-contract": "ts-node scripts/test-264-settlement-contract.ts",
+    "test:264-expert-human-confirmation": "ts-node scripts/test-264-expert-human-confirmation.ts",
     "hazlenz:integration:test": "ts-node scripts/hazlenz/with-disposable-db.ts hazlenz:integration:inner",
-    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route",
+    "hazlenz:integration:inner": "npm run test:261-expert-persistence-foundation && npm run test:262-expert-authoritative-route && npm run test:264-expert-human-confirmation",
     "hazlenz:check": "npm run hazlenz:verify && npm run hazlenz:test && npm run build",
     "hazlenz:precommit": "npm run hazlenz:verify && npm run hazlenz:test && npm run hazlenz:build && npm run hazlenz:integration:test && npm run hazlenz:evidence"
   },

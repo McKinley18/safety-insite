@@ -1,0 +1,223 @@
+{
+  "section": "264",
+  "generated": "2026-09-12",
+  "kind": "HUMAN_CONFIRMATION_AND_OVERRIDE_BOUNDARY",
+  "providerCalls": 0,
+  "productionDatabaseOperations": 0,
+  "pushes": 0, "tags": 0, "deploys": 0,
+  "predecessor": {
+    "successorIdentity259": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "commit262": "a32a2f67", "commit263": "25b036cc",
+    "packageDigest263": "0c9dc77bd87fb76f919d7f4ce3a4ad25fc73b66e24439f924646ef25087661dc"
+  },
+  "candidateIntegrity": {
+    "successorIdentity259Before": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "successorIdentity259After": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "elementsChecked": 22, "elementDrift": 0, "candidateChanged": false,
+    "protectedModulesPresent": 29, "protectedModulesMissing": 0,
+    "protectedModulesModifiedBy264": 0,
+    "expertSemanticsChanged": false,
+    "confirmationTriggerRuleChanged": false,
+    "providerOrchestrationChanged": false
+  },
+
+  "route": {
+    "method": "POST",
+    "path": "/inspections/observations/:id/expert-analyses/:analysisId/settlement",
+    "servesBothActions": "confirm and override are two outcomes of one act: one eligibility rule, one concurrency guarantee, one audit path, one state-machine edge",
+    "guards": ["JwtGuard", "EntitlementGuard('fullSafeScope')", "RolesGuard"],
+    "roleListIdenticalToExecutionRoute": true,
+    "throttle": { "limit": 60, "ttl": 60000 },
+    "throttleRationale": "looser than the execution route's 10/60s because a settlement costs no provider legs and no deterministic analysis; a reviewer clearing a backlog should not be rate-limited as though each decision cost two hosted calls",
+    "analysisIdTrustedAsBareKey": false,
+    "tenantCheck": "InspectionService.authorizeObservation, then findOne({ id, observationId })",
+    "crossTenantResponse": "NotFound, indistinguishable from a non-existent resource"
+  },
+
+  "acceptedRequestFields": ["idempotencyKey", "decision", "rationale", "replacements[].refKind", "replacements[].ref", "replacements[].classification", "comment"],
+  "rejectedServerOwnedFields": {
+    "mechanism": "the DTO declares none of them and the global ValidationPipe is whitelist + forbidNonWhitelisted, so an undeclared property is a 400 before the controller runs",
+    "attemptedAndRefused": ["reviewedByUserId", "reviewerId", "candidateIdentity", "resultSnapshot", "analysisState", "confirmationRequired", "producer", "expertExecutionId"],
+    "attempted": 8, "refused": 8, "reviewRowsCreatedByAForgedRequest": 0,
+    "reviewerIdentity": "taken from the authenticated principal; not expressible in the body"
+  },
+
+  "eligibility": {
+    "producerMustBe": "server_authored",
+    "stateMustBe": "ANALYSIS_AWAITING_CONFIRMATION",
+    "analysisMustBeCurrent": true,
+    "refusedStates": ["ANALYSIS_AVAILABLE", "ANALYSIS_REFUSED", "ANALYSIS_UNRESOLVED", "ANALYSIS_CONFIRMED", "ANALYSIS_OVERRIDDEN"],
+    "analysisFailedHasNoRow": "a provider failure creates no analysis at all, so there is nothing to confirm",
+    "clientSuppliedRefusedWith": "409 — a client-supplied snapshot carries no server-authored operational conclusion"
+  },
+
+  "confirmationSubject": {
+    "what": "the requiredBy entries that triggered the rule, each keyed by its refKind:ref pair",
+    "derivedFrom": "the immutable persisted posture on resultSnapshot",
+    "derivedBy": "the SAME confirmation rule version that produced the stored flag",
+    "ruleVersionMismatchBehaviour": "REFUSE — re-deriving the subject under a newer rule would silently change the question the reviewer was originally asked, breaking §261's compute-once guarantee",
+    "answerVocabulary": ["CONTROLS_WHETHER_WORK_CONTINUES", "DOES_NOT_CONTROL_WHETHER_WORK_CONTINUES"],
+    "internalDriverVocabularyExposed": false
+  },
+
+  "overrideScope": {
+    "addressableByTheAction": "the classification of a named subject entry, and nothing else",
+    "notAddressable": ["hazard identification", "citations", "control text", "declaration inventory", "raw provider output", "governed evidence", "candidate provenance", "posture", "driver role"],
+    "refusals": ["REPLACEMENT_REQUIRED", "REPLACEMENT_NOT_A_SUBJECT_ENTRY", "REPLACEMENT_CLASSIFICATION_NOT_IN_VOCABULARY", "REPLACEMENT_DUPLICATED", "REPLACEMENT_CHANGES_NOTHING"],
+    "changeThatChangesNothingIsRefused": "recording it as a change would put a disagreement that did not happen into the audit trail",
+    "rationaleRequiredOnBothDecisions": "including on a confirmation: a person putting their name to 'work may continue on this basis' with no stated reason is the record hardest to defend later"
+  },
+
+  "stateTransitions": {
+    "ANALYSIS_AWAITING_CONFIRMATION -> ANALYSIS_CONFIRMED": "classification_confirmed",
+    "ANALYSIS_AWAITING_CONFIRMATION -> ANALYSIS_OVERRIDDEN": "classification_changed",
+    "anyOtherTransition": "refused"
+  },
+
+  "persistenceModel": {
+    "table": "human_reviews",
+    "competingSubsystemCreated": false,
+    "newDecisionValues": ["classification_confirmed", "classification_changed"],
+    "existingFourValuesOverloaded": false,
+    "reviewedConclusionCarries": "both the Expert claim and the human value per entry, plus the posture, the contract version and the confirmation rule version",
+    "expertResultRewritten": false
+  },
+
+  "migration": {
+    "name": "1800000020000-ExpertHumanConfirmation",
+    "additive": true,
+    "changes": [
+      "human_reviews.decision widened varchar(24) -> varchar(32) (classification_confirmed is exactly 24)",
+      "ck_human_review_decision extended with the two settlement values",
+      "uq_human_review_analysis_settlement — at most one settlement per analysis",
+      "uq_human_review_analysis_idempotency — retry resolves to its own row",
+      "hazlenz_analyses.settlementReviewId + FK",
+      "ck_hazlenz_analysis_settlement — a settled state requires a real review row and server_authored"
+    ],
+    "upClean": "exit 0", "upIdempotent": "exit 0", "down": "exit 0", "reUp": "exit 0",
+    "downRefusesWhenASettlementExists": true,
+    "productionMigrationsRun": 0,
+    "legacyDecisionValuesStillAccepted": true,
+    "invalidDecisionValueStillRefused": true,
+    "settledStateWithoutAReviewRowRefusedBy": "ck_hazlenz_analysis_settlement"
+  },
+
+  "concurrency": {
+    "guards": [
+      "advisory lock on the observation",
+      "uq_human_review_analysis_settlement — one settlement row per analysis",
+      "conditional UPDATE ... WHERE analysisState = ANALYSIS_AWAITING_CONFIRMATION"
+    ],
+    "lastWriteWins": false,
+    "httpRaceResult": "1 settled, 1 conflict",
+    "serviceLevelRaceResult": "1 settled, 1 conflict, 1 review row",
+    "guardThatFiredInTheServiceLevelRace": "ONE_SETTLEMENT_UNIQUE_INDEX",
+    "loserSeesRawDatabaseError": false,
+    "defectFoundAndFixed": "the loser originally received an untranslated unique-violation, which Nest renders as a 500. The guarantee held and the message was wrong; the violation is now translated into a deterministic already-settled conflict, and the two in-transaction guards carry distinguishable wording so an operator can tell which fired."
+  },
+
+  "idempotency": {
+    "key": "idempotencyKey, scoped to (analysisId, idempotencyKey)",
+    "sameKeyRetry": "REPLAYED — returns the existing review and state, creating no second review or audit row",
+    "differentKeyAgainstASettledAnalysis": "409 conflict, a competing decision",
+    "replayCheckOrder": "BEFORE the state eligibility check, because a retry necessarily arrives after the original moved the state",
+    "defectFoundAndFixed": "the replay check was originally after the state check, so every successful request's own retry was rejected as 'not awaiting confirmation'"
+  },
+
+  "effectiveDecision": {
+    "function": "deriveEffectiveDecision / ExpertAnalysisService.effectiveDecisionFor",
+    "version": "hazlenz.expert.264.effective-decision.v1",
+    "total": true, "defaultBranch": false,
+    "settled": {
+      "ANALYSIS_AVAILABLE": "EXPERT_ADMITTED_NO_CONFIRMATION_REQUIRED",
+      "ANALYSIS_CONFIRMED": "HUMAN_CONFIRMED_AS_AUTHORED",
+      "ANALYSIS_OVERRIDDEN": "HUMAN_REPLACED"
+    },
+    "unsettled": {
+      "ANALYSIS_AWAITING_CONFIRMATION": "NONE_AWAITING_HUMAN_CONFIRMATION",
+      "ANALYSIS_REFUSED": "NONE_REFUSED",
+      "ANALYSIS_UNRESOLVED": "NONE_UNRESOLVED_TRUTH_PRESERVED",
+      "ANALYSIS_FAILED": "NONE_EXPERT_UNAVAILABLE",
+      "ANALYSIS_RUNNING": "NONE_RUNNING"
+    },
+    "settledStateWithNoSettlementRecordAborts": true,
+    "consumersActivatedBy264": 0
+  },
+
+  "downstream": {
+    "findingsReconciledFromAConfirmedAnalysis": 0,
+    "findingsReconciledFromAnOverriddenAnalysis": 0,
+    "findingsReconciledFromAnAwaitingAnalysis": 0,
+    "reportFinalizationActivated": false,
+    "statedInTheResponse": "findingsReconciled: false",
+    "hiddenActivation": false
+  },
+
+  "staleAnalysisBinding": {
+    "mechanism": "the reviewer names the analysis by id, and a superseded analysis is refused with a specific conflict",
+    "confirmingASupersededAnalysis": "409 — a newer Expert analysis exists for this observation",
+    "settlingTheNewerAnalysisTouchesTheOlder": false,
+    "authorityIsAnalysisSpecific": true
+  },
+
+  "acceptanceCases": { "C": "PASS", "D": "PASS" },
+  "negativeTests": {
+    "1_clientSuppliedCannotEnter": "PASS",
+    "2_availableCannotBeConfirmed": "PASS",
+    "3_refusedCannotBeConfirmed": "PASS",
+    "4_unresolvedCannotBeConfirmed": "PASS",
+    "5_failedHasNoAnalysisToConfirm": "PASS",
+    "6_alreadyConfirmedCannotBeReSettled": "PASS",
+    "7_alreadyOverriddenCannotBeReSettled": "PASS",
+    "8_crossTenantIsNonDisclosing": "PASS",
+    "9_reviewerIdCannotBeForged": "PASS",
+    "10_candidateProvenanceCannotBeReplaced": "PASS",
+    "11_expertResultCannotBeReplaced": "PASS",
+    "12_invalidClosedVocabularyOverrideRejected": "PASS",
+    "13_twoConcurrentReviewersProduceOneSettlement": "PASS",
+    "14_retryCreatesNoDuplicateRows": "PASS"
+  },
+
+  "tests": {
+    "settlementContract264": { "passed": 35, "failed": 0, "databaseOperations": 0 },
+    "humanConfirmation264": { "passed": 78, "failed": 0 },
+    "confirmationRule261": { "passed": 60, "failed": 0 },
+    "persistenceFoundation261": { "passed": 69, "failed": 0 },
+    "authoritativeRoute262": { "passed": 94, "failed": 0 },
+    "expertNoCallHarness": { "passed": 141, "failed": 0 }
+  },
+  "commands": {
+    "hazlenzVerify": "PASS", "hazlenzTest": "PASS", "hazlenzIntegrationTest": "PASS",
+    "hazlenzBuild": "PASS", "hazlenzPrecommit": "PASS", "acceptedEvidenceDrift": 0
+  },
+
+  "guardImprovement263": {
+    "what": "the §263 evidence-integrity guard treated verification/current/ as frozen evidence",
+    "consequence": "§264 failed the guard for keeping the current-state surface current",
+    "fix": "verification/current/ is the LIVING index and is excluded from the frozen-evidence drift check; its updates are reported on their own line rather than hidden",
+    "guardStillNonVacuous": "re-proven after the change — a deliberate mutation of the §262 report was caught by both mechanisms and PASS returned after restoration"
+  },
+
+  "testDefectsFoundInThisSection": [
+    "the concurrency case originally raced two unrelated individual accounts; the loser was answered 404 because it had no access at all, so the case measured tenant isolation twice and concurrency not at all. It now races two members of one organization.",
+    "the reachability probe for that case sent an empty rationale and read 400 as proof of access — vacuous, because the validation pipe rejects before authorization. It now performs a real settlement.",
+    "six authentications from one address silently exceeded the 5-per-minute /auth/login throttle, leaving one reviewer with no token; the resulting 404 looked like a tenant refusal. Each auth call now uses its own address and the harness aborts on a missing token."
+  ],
+
+  "notDoneInThisSection": [
+    "the frontend Expert workflow",
+    "automatic finding reconciliation or report finalization",
+    "any Expert semantic change", "any candidate change", "any confirmation-trigger rule change",
+    "billing", "storage configuration", "provider architecture", "prompt token optimization"
+  ],
+
+  "statedLimitations": [
+    "NO CONSUMER READS effectiveDecision YET. §264 exposes the derivation and activates nothing, so the property that downstream features agree about authority is designed rather than demonstrated.",
+    "A SETTLED ANALYSIS CANNOT BE RE-OPENED. There is no un-confirm, no re-settle and no supersession of a human decision; the only path is a new Expert analysis, which starts its own settlement. Whether a reviewer may revise their own decision is a product question §264 did not decide.",
+    "CONFIRMING A SUPERSEDED ANALYSIS IS REFUSED OUTRIGHT. That is the fail-closed reading of 'do not accept a stale decision without detection'; a product that wanted to permit it with a warning would need a different answer.",
+    "GOVERNED CITATION REMAINS UNEXERCISED, unchanged from §262.",
+    "VERIFICATION RAN ON A WORKTREE CARRYING UNRELATED UNCOMMITTED §117 CHANGES to evidence-foundation.ts and shared-evidence-facts.ts, as in §262 and §263. They are not in the §264 commit."
+  ],
+
+  "terminal": "EXPERT_HAZLENZ_HUMAN_CONFIRMATION_BOUNDARY_IMPLEMENTED — FRONTEND_EXPERT_WORKFLOW_AUTHORIZATION_REQUIRED"
+}

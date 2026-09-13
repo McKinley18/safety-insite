@@ -23,6 +23,16 @@ import type { ExpertAnalysisExecution } from './expert-analysis-execution.entity
  */
 export const ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION = 'analysis_created' as const;
 
+/**
+ * §264 — the human settlement of an Expert operational classification.
+ *
+ * ONE ACTION NAME FOR BOTH CONFIRM AND OVERRIDE, with `conclusionChanged` as a field. One query
+ * then answers "who settled an Expert classification, and when" without unioning two names, and the
+ * same query separates agreement from disagreement. Two action names would make the second question
+ * require knowing both of them.
+ */
+export const EXPERT_CLASSIFICATION_SETTLED_AUDIT_ACTION = 'expert_classification_settled' as const;
+
 /** The resource an analysis-creation event is about. */
 export const ANALYSIS_AUDIT_RESOURCE_TYPE = 'hazlenz_analysis' as const;
 

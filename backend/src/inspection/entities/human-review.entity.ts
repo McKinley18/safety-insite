@@ -35,8 +35,21 @@ export class HumanReview {
   @JoinColumn({ name: 'analysisId' })
   analysis: HazLenzAnalysis | null;
 
-  @Column({ type: 'varchar', length: 24 })
-  decision: 'accepted' | 'edited' | 'overridden' | 'dismissed';
+  /**
+   * §264 extended this vocabulary with two values rather than overloading the original four.
+   *
+   * `accepted` means a reviewer accepted a FINDING. `classification_confirmed` means a reviewer
+   * settled the operational classification of a server-authored Expert analysis. Collapsing them
+   * would destroy the distinction between "a human reviewed this finding" and "a human settled the
+   * operational conclusion", which is the whole boundary §255 established.
+   *
+   * The two settlement values can only appear on a row naming a server-authored analysis, enforced
+   * by `ck_hazlenz_analysis_settlement` on the other side of the link.
+   */
+  @Column({ type: 'varchar', length: 32 })
+  decision:
+    | 'accepted' | 'edited' | 'overridden' | 'dismissed'
+    | 'classification_confirmed' | 'classification_changed';
 
   @Column({ type: 'varchar', length: 24, default: 'current' })
   status: 'current' | 'superseded' | 'invalidated';

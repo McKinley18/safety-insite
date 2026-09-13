@@ -1,7 +1,9 @@
 import type { HazLenzAnalysis } from '../../inspection/entities/hazlenz-analysis.entity';
 import type { ExpertAnalysisExecution } from './expert-analysis-execution.entity';
 import type { AnalysisState } from './expert-analysis-authority';
-import type { ExpertExecutionOutcome } from './expert-analysis-execution.service';
+import type { ExpertExecutionOutcome, } from './expert-analysis-execution.service';
+import type { ExpertSettlementOutcome } from './expert-analysis.service';
+import type { EffectiveDecision } from './expert-effective-decision';
 
 /**
  * §262 — THE PRODUCT-SAFE REPRESENTATION OF A SERVER-AUTHORED EXPERT ANALYSIS.
@@ -138,5 +140,95 @@ export function toExpertAnalysisResponse(
       ? null
       : { kind: execution.failureKind, detail: execution.failureDetail ?? '' },
     findingsReconciled: false,
+  };
+}
+
+
+// ================================================================ §264 settlement
+
+/**
+ * §264 — WHAT A REVIEWER'S CLIENT GETS BACK AFTER SETTLING A CLASSIFICATION.
+ *
+ * IT CARRIES BOTH SIDES, ALWAYS. §264 requires the later frontend to render the original-versus-
+ * effective distinction without reconstructing authority semantics, so every entry states what
+ * HazLenz claimed, what the human settled, and whether those differ. A client that renders only
+ * `effectiveClassification` is still correct; a client that wants to show the disagreement has the
+ * data without asking a second question.
+ *
+ * THE EFFECTIVE DECISION IS SERVER-DERIVED AND INCLUDED WHOLE. It is the same value every future
+ * downstream consumer will read, so the client and the server cannot form different opinions about
+ * whether a conclusion is settled.
+ *
+ * THE RAW EXPERT OUTPUT IS NOT HERE, and neither is the analysis snapshot: this is the response to
+ * a DECISION, not a re-read of the analysis. The analysis is unchanged and can be read where it
+ * always could.
+ */
+export const EXPERT_SETTLEMENT_RESPONSE_VERSION = 'hazlenz.expert.264.settlement-response.v1' as const;
+
+export interface ExpertSettlementResponse {
+  readonly responseVersion: typeof EXPERT_SETTLEMENT_RESPONSE_VERSION;
+  /** `SETTLED` for the decision that took effect, `REPLAYED` for a retry of that same request. */
+  readonly outcome: ExpertSettlementOutcome['outcome'];
+  readonly analysisId: string;
+  readonly analysisState: AnalysisState;
+  readonly previousAnalysisState: 'ANALYSIS_AWAITING_CONFIRMATION';
+  readonly decision: string;
+  readonly conclusionChanged: boolean;
+  readonly reviewId: string;
+  readonly reviewedByUserId: string;
+  readonly reviewedAt: string;
+  readonly rationale: string;
+  readonly entries: readonly {
+    readonly refKind: string;
+    readonly ref: string;
+    readonly expertClassification: string;
+    readonly effectiveClassification: string;
+    readonly changedByHuman: boolean;
+  }[];
+  /** The server-derived authority. The client never reconstructs this. */
+  readonly effectiveDecision: EffectiveDecision;
+  readonly provenance: {
+    readonly producer: string;
+    readonly expertExecutionId: string | null;
+    /** The Expert proposal is untouched by settlement; this is where it still lives. */
+    readonly expertResultUnmodified: true;
+  };
+  /** §264 activates no downstream consumer. Stated so no client infers otherwise. */
+  readonly findingsReconciled: false;
+  readonly authorityStatement: string;
+}
+
+export function toExpertSettlementResponse(
+  result: ExpertSettlementOutcome,
+  effective: EffectiveDecision,
+): ExpertSettlementResponse {
+  const analysis = result.analysis;
+  return {
+    responseVersion: EXPERT_SETTLEMENT_RESPONSE_VERSION,
+    outcome: result.outcome,
+    analysisId: analysis.id,
+    analysisState: analysis.analysisState,
+    previousAnalysisState: 'ANALYSIS_AWAITING_CONFIRMATION',
+    decision: result.review.decision,
+    conclusionChanged: result.settledEntries.some(entry => entry.changed),
+    reviewId: result.review.id,
+    reviewedByUserId: result.review.reviewedByUserId,
+    reviewedAt: result.review.createdAt.toISOString(),
+    rationale: result.review.rationale,
+    entries: result.settledEntries.map(entry => ({
+      refKind: entry.refKind,
+      ref: entry.ref,
+      expertClassification: entry.expertClassification,
+      effectiveClassification: entry.humanClassification,
+      changedByHuman: entry.changed,
+    })),
+    effectiveDecision: effective,
+    provenance: {
+      producer: analysis.producer,
+      expertExecutionId: analysis.expertExecutionId,
+      expertResultUnmodified: true,
+    },
+    findingsReconciled: false,
+    authorityStatement: effective.statement,
   };
 }

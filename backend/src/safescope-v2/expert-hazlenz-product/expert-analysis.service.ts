@@ -1,15 +1,26 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException, ConflictException, Injectable, NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, EntityManager, QueryFailedError, Repository } from 'typeorm';
 
 import { AuthenticatedUser, requireAuthenticatedUser } from '../../common/authenticated-user';
+import { isUniqueViolation } from '../../common/unique-violation';
 import { SecurityAuditEvent } from '../../audit/entities/security-audit-event.entity';
 import { HazLenzAnalysis } from '../../inspection/entities/hazlenz-analysis.entity';
+import { HumanReview } from '../../inspection/entities/human-review.entity';
 import { InspectionService } from '../../inspection/inspection.service';
 import { ExpertAnalysisExecution } from './expert-analysis-execution.entity';
 import {
-  ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION, auditMetadataForAnalysisCreation,
+  ANALYSIS_ANALYSIS_CREATED_AUDIT_ACTION, EXPERT_CLASSIFICATION_SETTLED_AUDIT_ACTION,
+  auditMetadataForAnalysisCreation,
 } from './expert-analysis-audit';
+import {
+  SETTLEMENT_CONTRACT_VERSION, type ReplacementInput, type SettledEntry,
+  type SettlementDecision, type SubjectEntry,
+  resolveConfirmationSubject, settleEntries, validateReplacements,
+} from './expert-settlement-contract';
+import { deriveEffectiveDecision, type EffectiveDecision } from './expert-effective-decision';
 import {
   type AnalysisState, type ExecutionClaimOutcome, type ExpertExecutionState,
   type ExpertOutcomeForState, classifyExistingExecution, claimPermitsProviderSpend,
@@ -61,6 +72,11 @@ export class ExpertAnalysisService {
     private readonly executions: Repository<ExpertAnalysisExecution>,
     @InjectRepository(HazLenzAnalysis)
     private readonly analyses: Repository<HazLenzAnalysis>,
+    // §264. The human decision lives in the EXISTING review table rather than a competing Expert
+    // review subsystem, so this class reaches it directly instead of routing settlement through
+    // InspectionService.addReview, whose finding-scoped supersession semantics do not apply here.
+    @InjectRepository(HumanReview)
+    private readonly reviews: Repository<HumanReview>,
     private readonly inspections: InspectionService,
   ) {}
 
@@ -200,6 +216,338 @@ export class ExpertAnalysisService {
    */
   determineConfirmation(admittedAnalysis: unknown): ConfirmationDetermination {
     return deriveConfirmationRequiredFromAnalysis(admittedAnalysis);
+  }
+
+
+  // ================================================================ §264 human settlement
+
+  /**
+   * SETTLE A PENDING EXPERT ANALYSIS. The confirmation and override action, as one transition.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * ONE METHOD FOR BOTH DECISIONS, DELIBERATELY.
+   *
+   * Confirm and override are not two workflows; they are two outcomes of one act with one
+   * eligibility rule, one concurrency guarantee, one audit path and one state machine edge. Two
+   * methods would mean two places for the eligibility check to drift and two races to get right.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * WHAT MAKES THIS SAFE UNDER CONCURRENCY.
+   *
+   *   1. an advisory lock on the observation, the same convention every other write on this table
+   *      uses, so a settlement cannot interleave with a new analysis on the same observation;
+   *   2. a CONDITIONAL state transition — `UPDATE ... WHERE analysisState = AWAITING` — whose row
+   *      count decides the winner. There is no read-then-write window, and no last-write-wins;
+   *   3. a partial unique index permitting one settlement row per analysis, which would refuse the
+   *      second writer even if 1 and 2 were both wrong.
+   *
+   * The loser gets ConflictException naming the state it lost to, not a generic error.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * RETRY IS NOT RE-DECISION.
+   *
+   * A replayed request carrying the SAME idempotency key resolves to the row it already wrote and
+   * returns it unchanged — no second review, no second audit event, no second state transition. A
+   * DIFFERENT key against an already-settled analysis is a competing decision and is refused. That
+   * distinction is the one §264 asks for, and it is drawn on the key rather than on timing.
+   *
+   * ---------------------------------------------------------------------------------------------
+   * THE EXPERT RESULT IS NOT TOUCHED.
+   *
+   * Nothing in this method writes `resultSnapshot`, `engineVersion`, `producer`, `expertExecutionId`,
+   * `confirmationRequired`, or any execution-record field. It writes `analysisState` and
+   * `settlementReviewId` and nothing else, so the Expert proposal and the human decision stay
+   * separately attributable and the original stays reconstructable byte for byte.
+   */
+  async settleExpertAnalysis(
+    rawUser: unknown,
+    observationId: string,
+    analysisId: string,
+    request: {
+      readonly idempotencyKey: string;
+      readonly decision: SettlementDecision;
+      readonly rationale: string;
+      readonly replacements?: readonly ReplacementInput[];
+      readonly comment?: string | null;
+    },
+  ): Promise<ExpertSettlementOutcome> {
+    const user = requireAuthenticatedUser(rawUser);
+    const { observation, inspection } = await this.inspections.authorizeObservation(
+      user, observationId,
+    );
+
+    // The analysis id is NEVER trusted as a bare key: it is resolved within the observation that
+    // was just authorized, so an id from another workspace resolves to NotFound rather than a row.
+    const analysis = await this.analyses.findOne({ where: { id: analysisId, observationId } });
+    if (!analysis) throw new NotFoundException('Expert analysis not found.');
+
+    // ---- eligibility, in the order that leaks the least.
+    if (analysis.producer !== 'server_authored') {
+      // A client-supplied snapshot carries no server-authored operational conclusion, so there is
+      // nothing for this action to settle. Promoting one through the Expert authority action is
+      // exactly the trust-boundary breach §260 recorded.
+      throw new ConflictException(
+        'This analysis was supplied by a client and carries no server-authored operational '
+        + 'conclusion. The Expert confirmation action does not apply to it.');
+    }
+    // ---- THE REPLAY CHECK COMES BEFORE THE STATE CHECK, AND THE ORDER IS THE WHOLE POINT.
+    //
+    // A retry arrives AFTER the original request already moved the analysis out of
+    // ANALYSIS_AWAITING_CONFIRMATION. Checking the state first would reject every successful
+    // request's own retry with "not awaiting confirmation" — which is exactly the case idempotency
+    // exists to handle, and the caller would have no way to tell a lost response from a rejected
+    // decision. Resolving the replay first answers the retry with what it already achieved.
+    const replay = await this.reviews.findOne({
+      where: { analysisId: analysis.id, idempotencyKey: request.idempotencyKey },
+    });
+    if (replay) {
+      const conclusion = replay.reviewedConclusion as { entries?: SettledEntry[] } | null;
+      return {
+        outcome: 'REPLAYED',
+        analysis,
+        review: replay,
+        settledEntries: conclusion?.entries ?? [],
+      };
+    }
+
+    if (analysis.analysisState !== 'ANALYSIS_AWAITING_CONFIRMATION') {
+      throw new ConflictException(
+        `This analysis is ${analysis.analysisState} and is not awaiting confirmation.`);
+    }
+    if (analysis.status !== 'current') {
+      // A newer analysis has superseded this one. Settling it would record a human decision about a
+      // conclusion the product has already replaced, and the reviewer would not know. Authority
+      // stays analysis-specific: this refuses, and it never reaches across to the newer analysis.
+      throw new ConflictException(
+        'A newer Expert analysis exists for this observation. Review the current analysis instead; '
+        + 'confirming a superseded one would settle a conclusion the product has already replaced.');
+    }
+
+    const execution = analysis.expertExecutionId
+      ? await this.executions.findOne({
+        where: { id: analysis.expertExecutionId, observationId },
+      })
+      : null;
+
+    // ---- what is actually being settled, re-derived from the immutable stored posture by the
+    // ---- SAME rule version that produced the flag.
+    const snapshot = analysis.resultSnapshot as Record<string, unknown>;
+    const subject = resolveConfirmationSubject(
+      snapshot?.posture ?? null, execution?.confirmationRuleVersion ?? null,
+    );
+    if (!subject.ok) {
+      throw new ConflictException(
+        `The confirmation subject cannot be established (${subject.code}): ${subject.detail}`);
+    }
+
+    let replaced: readonly SubjectEntry[] = [];
+    if (request.decision === 'classification_changed') {
+      const validation = validateReplacements(subject.entries, request.replacements ?? []);
+      if (!validation.ok) {
+        throw new BadRequestException(`${validation.code}: ${validation.detail}`);
+      }
+      replaced = validation.changed;
+    } else if ((request.replacements ?? []).length > 0) {
+      throw new BadRequestException(
+        'A confirmation accepts the classification as authored and carries no replacement. Use '
+        + 'classification_changed to change it.');
+    }
+    const settled = settleEntries(subject.entries, replaced);
+
+    try {
+      return await this.settleInTransaction(
+        user, observationId, inspection, observation, analysis, execution, request, subject, settled,
+      );
+    } catch (error) {
+      // THE UNIQUE INDEX IS THE ADJUDICATOR, AND ITS VERDICT IS A CONFLICT, NOT A CRASH.
+      //
+      // Two reviewers who both read ANALYSIS_AWAITING_CONFIRMATION both proceed, and the loser's
+      // INSERT is rejected by `uq_human_review_analysis_settlement` — which is exactly the
+      // behaviour that makes one-settlement true, adjudicated in the database rather than by
+      // application timing. Left untranslated it surfaced as a 500: the guarantee held, and the
+      // loser was told the server had broken rather than that someone else had decided. §264
+      // requires a deterministic already-settled result, so the driver error is translated here
+      // and nowhere else.
+      if (isUniqueViolation(error)) {
+        throw new ConflictException(
+          'This analysis was settled by another reviewer while your decision was in flight. '
+          + '(Adjudicated by the one-settlement-per-analysis index.)');
+      }
+      throw error;
+    }
+  }
+
+  private async settleInTransaction(
+    user: AuthenticatedUser,
+    observationId: string,
+    inspection: { organizationId: string | null },
+    observation: { inspectionId: string },
+    analysis: HazLenzAnalysis,
+    execution: ExpertAnalysisExecution | null,
+    request: {
+      readonly idempotencyKey: string;
+      readonly decision: SettlementDecision;
+      readonly rationale: string;
+      readonly comment?: string | null;
+    },
+    subject: { readonly posture: string },
+    settled: readonly SettledEntry[],
+  ): Promise<ExpertSettlementOutcome> {
+    return this.dataSource.transaction(async manager => {
+      await manager.query(
+        `SELECT pg_advisory_xact_lock(hashtext($1))`,
+        [`hazlenz-analysis:${observationId}`],
+      );
+
+      const reviews = manager.getRepository(HumanReview);
+      const review = await reviews.save(reviews.create({
+        observationId,
+        findingId: null,
+        idempotencyKey: request.idempotencyKey,
+        status: 'current',
+        analysisId: analysis.id,
+        decision: request.decision,
+        rationale: request.rationale.trim(),
+        // BOTH SIDES ARE CARRIED, so the record is readable without interpreting the decision type
+        // against the analysis, and the Expert proposal survives inside the human decision itself.
+        reviewedConclusion: {
+          contractVersion: SETTLEMENT_CONTRACT_VERSION,
+          confirmationRuleVersion: execution?.confirmationRuleVersion ?? null,
+          posture: subject.posture,
+          entries: settled,
+          comment: typeof request.comment === 'string' && request.comment.trim()
+            ? request.comment.trim() : null,
+        },
+        reviewedByUserId: user.userId,
+      }));
+
+      // ---- THE TRANSITION. Conditional on the state this caller observed, so a concurrent
+      // ---- settlement that already moved the row leaves this update matching zero rows.
+      const nextState: AnalysisState = request.decision === 'classification_changed'
+        ? 'ANALYSIS_OVERRIDDEN' : 'ANALYSIS_CONFIRMED';
+      const updated: { affected?: number | null } = await manager
+        .getRepository(HazLenzAnalysis)
+        .createQueryBuilder()
+        .update(HazLenzAnalysis)
+        .set({ analysisState: nextState, settlementReviewId: review.id })
+        .where('id = :id', { id: analysis.id })
+        .andWhere('"analysisState" = :expected', { expected: 'ANALYSIS_AWAITING_CONFIRMATION' })
+        .execute();
+      if (!updated.affected) {
+        // Another reviewer settled it between the read above and this write. Rolling back discards
+        // the review row this transaction just created, so the loser leaves nothing behind.
+        //
+        // The wording differs from the index-adjudicated conflict on purpose: two guards cover this
+        // race, and an operator reading a log should be able to tell which one fired without
+        // reproducing it.
+        throw new ConflictException(
+          'This analysis was settled by another reviewer before your decision was applied. '
+          + '(Adjudicated by the conditional state transition.)');
+      }
+
+      const after = await manager.getRepository(HazLenzAnalysis)
+        .findOneOrFail({ where: { id: analysis.id } });
+
+      await this.writeSettlementAudit(manager, {
+        actorUserId: user.userId,
+        organizationId: inspection.organizationId ?? null,
+        analysis: after,
+        previousState: 'ANALYSIS_AWAITING_CONFIRMATION',
+        observationId,
+        inspectionId: observation.inspectionId,
+        execution,
+        review,
+        settled,
+      });
+
+      return {
+        outcome: 'SETTLED' as const,
+        analysis: after,
+        review,
+        settledEntries: settled,
+      };
+    });
+  }
+
+  /**
+   * THE SETTLEMENT AUDIT EVENT.
+   *
+   * One action name for both decisions, with `changed` as a field, so one query answers "who settled
+   * an Expert classification and when" without unioning two action names — and the same query
+   * distinguishes agreement from disagreement.
+   *
+   * NO RAW PROVIDER OUTPUT REACHES THIS METADATA. Only identifiers, the two states, and the
+   * per-entry classifications, which are closed-vocabulary values rather than model prose.
+   */
+  private async writeSettlementAudit(
+    manager: EntityManager,
+    context: {
+      readonly actorUserId: string;
+      readonly organizationId: string | null;
+      readonly analysis: HazLenzAnalysis;
+      readonly previousState: AnalysisState;
+      readonly observationId: string;
+      readonly inspectionId: string;
+      readonly execution: ExpertAnalysisExecution | null;
+      readonly review: HumanReview;
+      readonly settled: readonly SettledEntry[];
+    },
+  ): Promise<void> {
+    const audits = manager.getRepository(SecurityAuditEvent);
+    await audits.save(audits.create({
+      actorUserId: context.actorUserId,
+      organizationId: context.organizationId,
+      action: EXPERT_CLASSIFICATION_SETTLED_AUDIT_ACTION,
+      resourceType: 'hazlenz_analysis',
+      resourceId: context.analysis.id,
+      metadata: {
+        inspectionId: context.inspectionId,
+        observationId: context.observationId,
+        analysisId: context.analysis.id,
+        expertExecutionId: context.analysis.expertExecutionId,
+        reviewId: context.review.id,
+        reviewDecision: context.review.decision,
+        previousAnalysisState: context.previousState,
+        newAnalysisState: context.analysis.analysisState,
+        conclusionChanged: context.settled.some(entry => entry.changed),
+        entriesSettled: context.settled.length,
+        entriesChanged: context.settled.filter(entry => entry.changed).length,
+        subject: context.settled.map(entry => ({
+          refKind: entry.refKind,
+          ref: entry.ref,
+          expertClassification: entry.expertClassification,
+          humanClassification: entry.humanClassification,
+        })),
+        candidateIdentity: context.execution?.candidateIdentity ?? null,
+        confirmationRuleVersion: context.execution?.confirmationRuleVersion ?? null,
+      },
+    }));
+  }
+
+  /**
+   * THE AUTHORITATIVE CONSEQUENTIAL CONCLUSION FOR ONE ANALYSIS.
+   *
+   * The one place downstream features ask "is there a settled conclusion here". It reads the
+   * settlement record where one exists and hands both to the pure derivation; it decides nothing
+   * itself, so the rule stays testable without a database.
+   */
+  async effectiveDecisionFor(analysis: HazLenzAnalysis): Promise<EffectiveDecision> {
+    const settlementReview = analysis.settlementReviewId
+      ? await this.reviews.findOne({
+        where: { id: analysis.settlementReviewId, analysisId: analysis.id },
+      })
+      : null;
+    const conclusion = settlementReview?.reviewedConclusion as
+      { entries?: SettledEntry[] } | null | undefined;
+    return deriveEffectiveDecision({
+      analysisState: analysis.analysisState,
+      settlement: settlementReview === null || settlementReview === undefined ? null : {
+        decision: settlementReview.decision as SettlementDecision,
+        entries: conclusion?.entries ?? [],
+        reviewedByUserId: settlementReview.reviewedByUserId,
+        createdAt: settlementReview.createdAt,
+      },
+    });
   }
 
   /**
@@ -449,6 +797,14 @@ export interface AuthoritativeExpertResult {
   } | null;
   readonly rawFirstPass?: Record<string, unknown> | null;
   readonly rawVerifier?: Record<string, unknown> | null;
+}
+
+/** What a settlement attempt produced. `REPLAYED` is a retry resolving to its own earlier row. */
+export interface ExpertSettlementOutcome {
+  readonly outcome: 'SETTLED' | 'REPLAYED';
+  readonly analysis: HazLenzAnalysis;
+  readonly review: HumanReview;
+  readonly settledEntries: readonly SettledEntry[];
 }
 
 export type { AnalysisState };
