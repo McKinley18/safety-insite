@@ -221,13 +221,56 @@ function evaluate(e: Extracted): ApplicabilityDecision[] {
     const guardPresent = has(e, 'guardState', 'present_and_effective');
     const energyUnsafe = has(e, 'energyState', 'energized_or_operating');
     const energySafe = has(e, 'energyIsolationState', 'isolated_and_verified') || has(e, 'energyState', 'deenergized');
+    // §117. `notApplicable` was `guardPresent || energySafe`, and `decision()` resolves `status`
+    // from it BEFORE consulting the predicate statuses. So a verified-isolation fact anywhere in
+    // the text excluded this family at 0.96 no matter what else the observation said -- including
+    // an observation that ALSO stated the equipment was energized or operating, which produced a
+    // decision reading NOT_APPLICABLE while its own `moving or accessible energy` predicate read
+    // SUPPORTED. That is not a close call; it is a decision contradicting its own evidence.
+    //
+    // A verified safe-energy state is EVIDENCE FOR non-applicability, not an override of an
+    // exposure the same observation independently establishes. So the exclusion now yields
+    // whenever the evidence itself asserts a live pathway: energy stated present/operating, or an
+    // isolation stated absent. Where nothing asserts a pathway, `energySafe` still excludes the
+    // family exactly as before -- which is what keeps the §115/D-127 R6 determination intact.
+    //
+    // This corrects the PRECEDENCE. It does not, on its own, recover every dangerous case: where
+    // the extractor never surfaced a fact for the exposure (a worker stated to be reaching into
+    // the point of operation produces no fact at all today), there is nothing for this rule to
+    // defer to. That gap is an extraction-layer limitation recorded in §117, not a logic error
+    // here.
+    // A verified zero-energy state makes MOTION impossible; it does not make CONTACT impossible.
+    // Where the observation states a person is inside the opening the guard would have closed,
+    // the family is applicable regardless of the energy state -- see the `machineContactExposure`
+    // header in `shared-evidence-facts.ts`.
+    const contactExposure = has(e, 'machineContactExposure', 'person_in_guarded_zone');
+    const guardingExposureEstablished = energyUnsafe || notIsolated || contactExposure;
     output.push(decision(e, '29 CFR 1910.212(a)(1)', 'OSHA General Industry machine guarding', [
       ['general-industry jurisdiction', giJur, ids(e, 'jurisdiction')],
       ['machine guard condition', guardPresent ? false : true, ids(e, 'guardState')],
-      ['moving or accessible energy', energyUnsafe ? true : energySafe ? false : undefined,
-        [...ids(e, 'energyState'), ...ids(e, 'energyIsolationState')]],
+      // The predicate is "moving OR ACCESSIBLE", and both disjuncts count. Isolated energy makes
+      // the parts non-MOVING, which is why `energySafe` reads it CONTRADICTED for R6. A person
+      // stated to be inside the opening makes them ACCESSIBLE, which satisfies the predicate on
+      // its own terms -- without this, a stated hands-in-the-die observation resolved CONTRADICTED
+      // (confidence 0.05) rather than SUPPORTED, trading one wrong suppression for another.
+      // Contact exposure rides INSIDE this predicate rather than becoming a fifth required one.
+      // A separate `employee in the guarded zone` predicate was tried and measured: because it is
+      // UNKNOWN whenever the observation does not mention a person -- which is most observations --
+      // `decision()`'s `missingPredicates.length ? 'UNKNOWN'` branch downgraded every ordinary
+      // unguarded-machine finding from SUPPORTED to UNKNOWN. The inspection-context/autonomy
+      // regression caught it on "the point of operation on the punch press is unguarded and the
+      // operator's hands enter the die area while it is running", which must stay SUPPORTED.
+      //
+      // Folding it in here is also the more honest modelling: the predicate is "moving OR
+      // ACCESSIBLE", and both disjuncts satisfy it. Isolated energy makes the parts non-MOVING,
+      // which is why `energySafe` reads it CONTRADICTED for R6; a person stated to be inside the
+      // opening makes them ACCESSIBLE, which satisfies it on its own terms.
+      ['moving or accessible energy',
+        energyUnsafe || contactExposure ? true : energySafe ? false : undefined,
+        [...ids(e, 'energyState'), ...ids(e, 'energyIsolationState'),
+         ...ids(e, 'machineContactExposure')]],
       ['current condition', current, ids(e, 'currentHazardState')],
-    ], guardPresent || energySafe));
+    ], guardPresent || (energySafe && !guardingExposureEstablished)));
   }
   if (giGate && has(e, 'electricalLiveParts')) output.push(decision(e, '29 CFR 1910.303', 'OSHA General Industry live electrical parts', [
     ['general-industry jurisdiction', giJur, ids(e, 'jurisdiction')],
@@ -678,7 +721,7 @@ export interface FindingStandardCandidate {
   missingPredicates: string[];
   /** How the jurisdiction this candidate was evaluated under was established (see ApplicabilityDecision). */
   jurisdictionProvenance: 'USER_CONFIRMED' | 'HAZLENZ_INFERRED' | 'UNKNOWN';
-  /** Filled by SafescopeV2Service.hydrateFindingScopedStandards() when standards_master has a row. */
+  /** Filled by HazLenzService.hydrateFindingScopedStandards() when standards_master has a row. */
   title?: string;
   plainLanguageSummary?: string;
   sourceKey?: string;

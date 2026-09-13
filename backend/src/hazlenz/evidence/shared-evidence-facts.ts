@@ -116,6 +116,57 @@ function isNo(value: string): boolean {
 const ISOLATION_UNVERIFIED_OR_CONTRADICTED =
   /\b(?:could\s+not\s+verify|can(?:no|')t\s+verify|unable\s+to\s+verify|did\s+not\s+verify|not\s+(?:been\s+)?verified|never\s+(?:been\s+)?verified|unverified|verification\s+(?:was\s+)?(?:not|never)\b|not\s+(?:yet\s+)?confirmed|may\s+still\s+be\s+energ\w*|might\s+still\s+be\s+energ\w*|(?:is|are|was|were|remains?)\s+still\s+energ\w*|still\s+(?:be\s+)?live\b|remains?\s+energ\w*|measured\s+voltage|voltage\s+(?:was\s+)?(?:measured|found|present|detected|read)|stored\s+(?:hydraulic|pneumatic|electrical|mechanical|spring)?\s*(?:pressure|energy)\s+(?:remains?|is\s+(?:still\s+)?present|was\s+not\s+relieved)|pressure\s+remains?|disconnect\s+(?:was\s+)?(?:found\s+)?(?:in\s+the\s+)?ON\b|power\s+(?:was\s+)?never\s+verified)\b/i;
 
+/**
+ * §117. THREE FURTHER WAYS AN ISOLATION CLAIM IS DEFEATED BY THE SAME OBSERVATION.
+ *
+ * Same contract as `ISOLATION_UNVERIFIED_OR_CONTRADICTED` above and used at the same single site:
+ * these only WITHHOLD `energyIsolationState='isolated_and_verified'`. They never assert the
+ * opposite, so a defeated claim leaves the state genuinely unknown and applicability UNKNOWN --
+ * the contradiction is preserved for review rather than resolved in the safe direction.
+ *
+ * These are three CONCEPTS, not three fixture phrasings, and each is a recognised element of a
+ * complete energy isolation:
+ *
+ *   1. DISSIPATION NOT PERFORMED. 1910.147 isolation requires stored energy to be relieved,
+ *      disconnected, restrained or otherwise rendered safe. An observation that claims a lockout
+ *      and in the same breath reports an energy store still charged, or a dissipation step not
+ *      done, has not described a verified zero-energy state. The pre-existing alternative above
+ *      only catches the literal word "stored", so "the hydraulic accumulator was left charged and
+ *      was not bled down" and "stored energy has not yet been bled down or verified at zero" both
+ *      slipped through as isolated_and_verified.
+ *
+ *   2. A SOURCE LEFT CONNECTED. An isolation of one energy source is not an isolation of the
+ *      equipment when the text says another remains connected to a live supply.
+ *
+ *   3. THE ISOLATION IS NOT CURRENT. A lockout stated as being removed, already removed, or the
+ *      equipment returned to service is a HISTORICAL isolation. Reading it as a present verified
+ *      state is the same temporal error §111 repaired on the Expert side, here on the
+ *      deterministic side: "the lock and tag have since been removed and the press is now running"
+ *      previously produced isolated_and_verified.
+ *
+ * Deliberately vocabulary-general (accumulator/cylinder/spring/capacitor/receiver; bled/relieved/
+ * discharged/dissipated/vented/drained) rather than keyed to any fixture sentence, and every one is
+ * validated against the false-positive controls in
+ * `machine-guarding-applicability-corpus.ts` (`A`, `K`, `L`) plus the protected suites.
+ */
+const ISOLATION_INCOMPLETE_OR_WITHDRAWN = new RegExp([
+  // 1. a dissipation/verification step reported as not done
+  String.raw`\bnot\s+(?:yet\s+)?(?:been\s+)?(?:bled|relieved|discharged|dissipated|vented|drained|blocked|restrained)\b`,
+  String.raw`\b(?:was|were|is|are)\s+not\s+bled\s+down\b`,
+  // 1b. an energy store reported as still holding energy
+  String.raw`\b(?:accumulator|cylinder|spring|capacitor|reservoir|receiver|ram)\b[^.]{0,60}\b(?:left\s+)?(?:charged|pressuri[sz]ed|under\s+pressure|still\s+holding)\b`,
+  // 2. another source still connected to a live supply
+  String.raw`\bremain(?:ed|s|ing)?\s+connected\s+to\s+(?:live|energi[sz]ed|shop\s+air|the\s+supply)\b`,
+  String.raw`\b(?:second|separate|another|additional)\b[^.]{0,60}\b(?:circuit|supply|source|line)\b[^.]{0,40}\b(?:remain(?:ed|s|ing)?|still)\b[^.]{0,30}\b(?:connected|live|energi[sz]ed|charged)\b`,
+  // 2b. the isolation can be defeated without human action
+  String.raw`\bre-?energi[sz]e\b[^.]{0,60}\bwithout\s+operator\s+action\b`,
+  String.raw`\bautomatic\s+power[- ]restoration\b`,
+  // 3. the isolation is being or has been withdrawn
+  String.raw`\b(?:lock|tag)s?(?:\s+and\s+tags?)?\s+(?:have|has|had)\s+(?:since\s+)?been\s+removed\b`,
+  String.raw`\b(?:removing|removed)\s+the\s+(?:lock|tag)s?(?:\s+and\s+tags?)?\s+to\s+(?:restart|re-?energi[sz]e|return)\b`,
+  String.raw`\b(?:returned|back)\s+to\s+(?:production|service|operation)\b[^.]{0,60}\bguard\b`,
+].join('|'), 'i');
+
 const SINGLETON_FACT_TYPES = new Set([
   'jurisdiction', 'currentHazardState', 'employeeExposure', 'workActivity', 'equipmentType',
   'loadState', 'energyState', 'energyIsolationState', 'electricalLiveParts', 'environment',
@@ -130,6 +181,13 @@ const SINGLETON_FACT_TYPES = new Set([
   // required" as a hard-coded `true` and never established the obstructed-view condition, and it
   // ignored the observer alternative entirely. These three facts make both conditions evidence-borne.
   'rearViewState', 'reverseWarningAlternative', 'hornState',
+  // §117. A person stated to be reaching into, or working inside, the normally-guarded zone.
+  // A NEW type rather than a value on `employeeExposure`, deliberately: `employeeExposure` is a
+  // singleton already carrying `false` / `within_overhead_or_fall_zone` / `cave_in_zone` for the
+  // fall and excavation rules, and adding a fourth meaning to it would couple this concept to
+  // rules that must not change. Nothing but the OSHA General Industry guarding rule reads this
+  // type, so its blast radius is exactly one predicate.
+  'machineContactExposure',
 ]);
 
 function fact(
@@ -304,7 +362,12 @@ export function buildEvidenceFacts(input: SharedEvidenceFactInput): ExtractedEvi
 
   const correctedBeforeReview =
     /\b(corrected|repaired|replaced|resolved)\b.{0,80}\b(now|passed|tested|verified)\b/i.test(text) ||
-    /\b(?:now|current|currently)\b.{0,45}\b(?:interlock(?:ed)?|guard(?:ed)?|open and usable|clear and usable|compliant|passed)\b/i.test(text) ||
+    // §117. `guard(?:ed)?` matched the BARE noun "guard", so "the press is now running production
+    // parts with the guard still off" read as "now guarded" and negated the current hazard state on
+    // an observation that says the exact opposite. Every other alternative in this list is a
+    // past-participle/adjective describing a CORRECTED state ("now interlocked", "now compliant",
+    // "now passed"); the bare noun never belonged. Narrowed to the participle only.
+    /\b(?:now|current|currently)\b.{0,45}\b(?:interlock(?:ed)?|guarded|open and usable|clear and usable|compliant|passed)\b/i.test(text) ||
     // V5-C02: covers "<defect> last week but was corrected/repaired/replaced/resolved before this
     // inspection/review/audit/visit" -- a demonstrated gap where a genuinely historical, already-
     // corrected condition was represented as current (the original two alternatives above require
@@ -405,7 +468,9 @@ export function buildEvidenceFacts(input: SharedEvidenceFactInput): ExtractedEvi
       // says. Neither fact is asserted in that case: the state is genuinely unknown, so
       // applicability stays UNKNOWN and the contradiction is preserved for review rather than
       // being resolved in the safe direction by the engine.
-      !ISOLATION_UNVERIFIED_OR_CONTRADICTED.test(text)) {
+      !ISOLATION_UNVERIFIED_OR_CONTRADICTED.test(text) &&
+      // §117. Same withhold-only contract; see the constant's own header for the three concepts.
+      !ISOLATION_INCOMPLETE_OR_WITHDRAWN.test(text)) {
     fact(facts, 'energyIsolationState', 'isolated_and_verified', structured.energyState ? 'user_confirmation' : 'user_text');
   }
   if (/\b(no (?:personal )?lo[ck]+(?: is fitted| is applied| fitted| applied| was fitted| was applied)?|not\s+(?:been\s+|yet\s+)?(?:locked|isolated|deenergized|de-energized)|disconnect (?:remains|stayed) (?:on|ON)|without lockout)\b/i.test(text) ||
@@ -479,6 +544,37 @@ export function buildEvidenceFacts(input: SharedEvidenceFactInput): ExtractedEvi
       !/\bno\s+(?:missing|absent|removed)\s+guards?\b/i.test(text)) {
     fact(facts, 'guardState', 'absent_or_ineffective');
   }
+
+  // §117. A PERSON STATED TO BE IN, OR REACHING INTO, THE NORMALLY-GUARDED ZONE.
+  //
+  // The evidence foundation had no representation for this at all, which is why §116's diagnostic
+  // could not tell the R6 sentence apart from "a technician is currently reaching into the point of
+  // operation with both hands" -- both produced byte-identical fact sets, so no applicability logic
+  // could ever have distinguished them. The gap is not incidental: the governed 1910.212 record in
+  // this repository names "point of operation" and "employee access to moving parts" among its own
+  // `applicabilityTriggers`, and its `evidenceNeeded` asks to "document whether employees can
+  // contact moving parts during operation, setup, adjustment, cleaning, or maintenance."
+  //
+  // Why this is a hazard fact even under a verified isolation: a control that makes MOTION
+  // impossible does not make CONTACT impossible. A verified zero-energy state is what licenses
+  // 1910.212 non-applicability for a removed guard (§115/D-127, the R6 determination), and a person
+  // stated to be inside that opening is precisely the fact that defeats it.
+  //
+  // Requires a PERSON and a NORMALLY-GUARDED LOCATION in the same clause. A bare mention of a
+  // point of operation, or of a worker somewhere in the plant, asserts nothing.
+  const machineZone =
+    /\b(?:point\s+of\s+operation|die\s+area|nip\s+point|pinch\s+point|in-?going\s+nip|guarded\s+area|guard\s+opening)\b/i;
+  const personAtZone =
+    // "a technician is currently reaching into the point of operation", "reached into the die area"
+    new RegExp(String.raw`\b(?:reach(?:ing|es|ed)?|placing|placed|inserting|inserted|working|works?|positioned|standing)\b[^.]{0,60}` + machineZone.source, 'i').test(text)
+    // "with both hands in the point of operation", "hands inside the die area"
+    || new RegExp(String.raw`\b(?:hands?|arms?|fingers?)\b[^.]{0,40}\b(?:in|into|inside|within)\b[^.]{0,30}` + machineZone.source, 'i').test(text)
+    // "a technician is currently working inside the die area of the press" -- person noun first
+    || /\b(?:technician|worker|operator|millwright|mechanic|employee|maintenance\s+\w+)\b[^.]{0,80}\b(?:is|are|was|were)\s+(?:currently\s+)?(?:reaching|working|positioned|standing|located)\b[^.]{0,40}\b(?:in|into|inside|within)\b[^.]{0,40}\b(?:die|press|machine|point\s+of\s+operation|nip|pinch)\b/i.test(text);
+  if (personAtZone) {
+    fact(facts, 'machineContactExposure', 'person_in_guarded_zone');
+  }
+
   if (/\b(?:backup|back-up|reverse) alarm\b.{0,35}\b(?:no sound|silent|did not sound|failed|not (?:functional|working|operable|sounding)|inoperative|inoperable|disconnected|missing)\b/i.test(text) ||
       /\b(?:without|no|lacks?|lacking|missing)\s+(?:a\s+|an\s+)?(?:functional\s+|working\s+|operable\s+|operating\s+|audible\s+)?(?:backup|back-up|reverse)\s+alarm\b/i.test(text)) {
     fact(facts, 'backupAlarmState', 'failed');
