@@ -1,0 +1,160 @@
+{
+  "artifact": "SAFETY_INSITE_LOCAL_PRODUCT_BASELINE",
+  "section": "\u00a7277",
+  "frozenAt": "2026-09-13",
+  "describes": "The commit named below, which is the state every gate in this record was run against. This file is committed AFTER it and therefore cannot be part of it; that is deliberate, because a record of a commit cannot also be inside the commit it describes.",
+  "git": {
+    "sha": "709ee151b932095020ea69d25daa04a337ccba16",
+    "branch": "beta/expert-hazlenz-validated-candidate-2026-09-12",
+    "pushed": false,
+    "aheadOfOriginMain": "40"
+  },
+  "expertCandidate": {
+    "successorIdentity": "8c163b312b291ef3b7ec361df371b86afdd92d15ae87ad71c2e06462942c4aee",
+    "predecessorIdentity": "0b12adf6e44e4586ec2be27c5274dafd8a36b2c1042dfe34d543b51d5be70bee",
+    "verifiedBy": "npm run verify:274-successor-identity \u2014 22 elements, 0 failures, delta is the authorised \u00a7274 path rename only",
+    "movedBySection277": false,
+    "why": "\u00a7277 changed no Expert prompt, wire schema, admission rule, projection or verifier. The deterministic HazLenz changes it did make are outside the 29 protected modules."
+  },
+  "section117": {
+    "status": "16/16, 0 dangerous failures",
+    "reRunAfter": "D-023, D-024b and D-028, because all three touch the deterministic path",
+    "command": "npm run test:hazlenz-guarding-applicability"
+  },
+  "documents": {
+    "project-docs/current/WHOLE-PRODUCT-VALIDATION.md": "48ed5015deb742433925a13d971391a6dfa502bc8b291eb6ec0acc402674f935",
+    "project-docs/current/WHOLE-PRODUCT-VALIDATION.json": "5f04b29dbeda3b36e8dc437249465772826d51a012ae8fb58ebac8fa05488590",
+    "project-docs/current/CURRENT-STATE.md": "1160659c41df112d1768380db9ba9fa03caa0de19087542acb61f449a6353ba0",
+    "project-docs/current/TEST-TIERS.md": "526f47995caaf3f50c1c55eae484198a5c81fe3804b5f3013cd88e7a0ff4da61"
+  },
+  "evidencePackages": {
+    "verification/current/local-product-validation-275/MANIFEST.md": "69b03d5140342c742f4aacee1d0436e489b5fec0e7c68a285e4386d2a27a453f",
+    "verification/current/local-product-validation-276/DIGEST.txt": "93b8e92c6e92502c3b940c6e14530886478648eb799f6264cec9d7bc0ae557c9",
+    "verification/current/local-product-baseline-277/DIGEST.txt": "3401db8f1d9b001d94ef64b402e773c362986c50474929c9d5de8754fbedd771"
+  },
+  "gates": {
+    "backendTypeScript": "PASS",
+    "backendBuild": "PASS",
+    "frontendTypeScript": "PASS",
+    "frontendBuild": "PASS",
+    "frontendLintDelta": "0 new errors, 0 new warnings \u2014 \u00a7277 changed no frontend source file",
+    "brandAudit": "PASS \u2014 Tier 1 0, Tier 1B 0, Tier 2 293/293, retained 694/694",
+    "hazlenzVerify": "PASS \u2014 29/29 protected modules, 0 new accepted-evidence drift",
+    "betaReadiness": "PASS",
+    "docsCheckLinks": "PASS",
+    "verify274SuccessorIdentity": "PASS \u2014 identity unchanged",
+    "section117Guarding": "16/16, 0 dangerous",
+    "scopedEvidenceD009": "22/22",
+    "effectiveSeverityD008": "48/48",
+    "calendarDateBoundary": "25/25",
+    "calendarReconciliationServerD007": "39/39",
+    "calendarReconciliationBrowserD007": "34/34",
+    "humanAssertionD023": "47/47",
+    "routingFloorD024b": "26/26",
+    "reportRevisionD028": "38/38",
+    "disposableCleanupSafety": "19/19",
+    "hazlenzIntegration": "PASS",
+    "riskBandParity": "PASS",
+    "effectiveSeverityParity": "PASS",
+    "expertAuthorityBoundary": "PASS",
+    "expertPresentation": "PASS",
+    "productWalkthrough": "25/25 after all three \u00a7277 changes",
+    "everyCommitBuildsIndependently": "verified \u2014 all five \u00a7277 commits typecheck in an isolated worktree"
+  },
+  "unresolvedLocal": {
+    "P0": {
+      "count": 0,
+      "items": []
+    },
+    "P1": {
+      "count": 0,
+      "items": []
+    },
+    "P2": {
+      "count": 2,
+      "items": [
+        {
+          "id": "D-029",
+          "what": "A corrective action created with no findingId is not deduplicated on replay.",
+          "why not closed": "No product surface sends that shape. The path the product uses keeps one canonical action per finding, measured at \u00a7276: 8 actions before a replay, 8 after. It is an API shape, not a product behaviour."
+        },
+        {
+          "id": "D-030",
+          "what": "The governed knowledge base establishes no standard for an exposed-live-parts electrical condition, so after the D-024b floor a genuine electrical hazard is not proposed as a candidate.",
+          "why not closed": "Knowledge authoring, not product scoping. Exposed by D-024b rather than caused by it: the hazard was previously surfaced on the lexical route \"panel\" alone, which is what D-024b forbids. Direction is under-surfacing on a family with no governed rule; the inspector's own \"add a finding HazLenz missed\" path remains."
+        }
+      ]
+    }
+  },
+  "knownDebtP3": [
+    {
+      "id": "D-010",
+      "what": "Corrective-action rows written before the \u00a7275 D-001 repair are stored a day early. A one-time data migration over existing due dates."
+    },
+    {
+      "id": "D-011",
+      "what": "/inspection-quick is a maintained page reachable only by typing the URL."
+    },
+    {
+      "id": "D-014",
+      "what": "Report footers number content pages 1..N of N with the cover unnumbered. Internally consistent; a convention to confirm."
+    },
+    {
+      "id": "D-016",
+      "what": "The sign-in error renders below the links rather than beside the control that failed."
+    },
+    {
+      "id": "D-017",
+      "what": "Three routes render no <h1>, and some inputs are unlabelled. The 25 risk-matrix cells were labelled at \u00a7276."
+    },
+    {
+      "id": "tier2-brand-debt",
+      "what": "293 internal identifiers still carry a retired brand, ratcheted and never customer-visible. 694 more are register-documented as dangerous to rename."
+    }
+  ],
+  "knownLiveGaps": [
+    {
+      "id": "live-provider-transport",
+      "what": "The Expert provider transport has never been exercised from a deployed instance.",
+      "status": "UNVERIFIED_LIVE",
+      "note": "The credential is set in production and was validated against the provider model-list endpoint at \u00a7270, which invokes no model. The transport itself is unexercised."
+    },
+    {
+      "id": "live-billing",
+      "what": "Billing has never been exercised live.",
+      "status": "UNVERIFIED_LIVE"
+    },
+    {
+      "id": "production-migration-not-yet-executed",
+      "what": "Migrations 019/020/021 are absent from production. The mechanism is ready and dry-run reached production; execution belongs to the release.",
+      "status": "MECHANISM_READY / LIVE_EXECUTION_PENDING_RELEASE"
+    },
+    {
+      "id": "legal-drafts-unapproved",
+      "what": "Seven legal drafts read \"INTERNAL BETA DRAFT \u2014 LEGAL COUNSEL REVIEW STATUS: NOT YET APPROVED\". No engineering can change that.",
+      "status": "BLOCKS_RELEASE"
+    },
+    {
+      "id": "candidate-not-pushed",
+      "what": "HEAD is ahead of origin/main; the validated candidate has never been pushed.",
+      "status": "EXPECTED \u2014 no push is authorised"
+    }
+  ],
+  "localEnvironment": {
+    "canonicalBackendPort": 4000,
+    "developmentBypasses": "false \u2014 the normal local configuration as of \u00a7277",
+    "validationDatabase": "test_insite_validation_275 \u2014 DROPPED at \u00a7277 teardown",
+    "runningProcesses": "none \u2014 the \u00a7275/\u00a7276 localhost stack was stopped at \u00a7277 teardown",
+    "preExistingDatabasesUntouched": 154
+  },
+  "providerSpend": {
+    "section277Calls": 0,
+    "cumulative275to277Usd": 0.37522,
+    "cumulativeAnalyses": 3,
+    "ceilingUsd": 1.5,
+    "allowedAnalyses": 6
+  },
+  "productionChanges": 0,
+  "pushes": 0,
+  "terminal": "SAFETY_INSITE_LOCAL_PRODUCT_BASELINE_FROZEN \u2014 CONTROLLED_RELEASE_GATE_READY"
+}
